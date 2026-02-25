@@ -7186,6 +7186,9 @@ visibility: hidden;
       uiOverlay.classList.add('faded');
       logoBtn.style.opacity = '0';
       if (EMBED_FIGHT_INTRO) {
+        await new Promise(r => setTimeout(r, 900));
+        flashOverlay.classList.remove('active');
+        document.body.classList.remove('chromatic-impact');
         notifyParentIntroComplete();
         return;
       }
