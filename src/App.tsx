@@ -3391,6 +3391,7 @@ function App() {
   const [importFileName, setImportFileName] = useState('')
   const [viewMode, setViewMode] = useState<'search' | 'home' | 'fight-intro' | 'fight'>('search')
   const [introVisible, setIntroVisible] = useState(true)
+  const [fightViewVisible, setFightViewVisible] = useState(true)
   const [searchMorphVisible, setSearchMorphVisible] = useState(false)
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
@@ -3417,6 +3418,7 @@ function App() {
   const draftPortraitInputRefA = useRef<HTMLInputElement>(null)
   const draftPortraitInputRefB = useRef<HTMLInputElement>(null)
   const draftPortraitPreviewRef = useRef<{ a: string | null; b: string | null }>({ a: null, b: null })
+  const fightViewRevealTimeoutRef = useRef<number | null>(null)
   const [previewScale, setPreviewScale] = useState(1)
   const PREVIEW_BASE_WIDTH = 1400
   const PREVIEW_BASE_HEIGHT = 787.5
@@ -3637,6 +3639,22 @@ function App() {
     setSearchMorphHandoff(null)
   }
 
+  const clearFightViewRevealTimeout = () => {
+    if (fightViewRevealTimeoutRef.current !== null) {
+      window.clearTimeout(fightViewRevealTimeoutRef.current)
+      fightViewRevealTimeoutRef.current = null
+    }
+  }
+
+  const triggerFightViewFadeIn = () => {
+    clearFightViewRevealTimeout()
+    setFightViewVisible(false)
+    fightViewRevealTimeoutRef.current = window.setTimeout(() => {
+      setFightViewVisible(true)
+      fightViewRevealTimeoutRef.current = null
+    }, 24)
+  }
+
   const postMessageToSearchFrame = (payload: { type: string }) => {
     const target = searchFrameRef.current?.contentWindow
     if (!target || typeof window === 'undefined') return
@@ -3791,6 +3809,8 @@ function App() {
 
   const goBackToLibrary = () => {
     clearSearchTransitionQueue()
+    clearFightViewRevealTimeout()
+    setFightViewVisible(true)
     setViewMode('home')
     setActiveFightId(null)
   }
@@ -3814,6 +3834,7 @@ function App() {
       const typed = payload as { type?: unknown; query?: unknown; handoff?: unknown }
       if (typed.type === 'vvv-aaa-complete') {
         clearSearchTransitionQueue()
+        triggerFightViewFadeIn()
         setViewMode('fight')
         return
       }
@@ -3842,7 +3863,10 @@ function App() {
     }
 
     window.addEventListener('message', onMessage)
-    return () => window.removeEventListener('message', onMessage)
+    return () => {
+      window.removeEventListener('message', onMessage)
+      clearFightViewRevealTimeout()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fights])
 
@@ -4362,7 +4386,10 @@ function App() {
             </div>
           </section>
         ) : (
-          <section className="flex h-full min-h-0 flex-col gap-3">
+          <section
+            className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
+            style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
+          >
             <div className="shrink-0 flex flex-wrap items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl">
               <span className="rounded-xl border border-cyan-300/50 bg-cyan-400/15 px-3 py-2 text-sm font-semibold text-cyan-100">
                 {ui.liveMode}
