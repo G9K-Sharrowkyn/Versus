@@ -46,6 +46,7 @@ Available IDs (pick only what fits the current fight):
 - `stat-trap`
 - `verdict-matrix`
 - `blank-template`
+- `fight-title`
 - `methodology`
 
 Section 9 rules:
@@ -53,6 +54,9 @@ Section 9 rules:
 - You can list any subset of IDs above (for some fights `x-factor` may be unnecessary).
 - The order listed in section `9` is the render order used by the app.
 - If section `9` is omitted, the app falls back to default full order.
+- Final template is always `fight-title` (forced as the last screen by the app).
+- `fight-title` is a mandatory outro screen with matchup name in character-themed colors.
+- The app keeps this last screen even if `fight-title` is missing from section `9`.
 
 Recommended sequencing pattern (reference, not mandatory):
 Use this as a baseline for classic power-scaling matchups, then adapt per fight.
@@ -78,6 +82,7 @@ Adaptation notes:
 - Remove any template that adds no value in a given matchup.
 - If no meaningful joker-card exists, skip `x-factor`.
 - If fight simulation is simple, keep only `fight-simulation` and skip extra narrative fillers.
+- Keep in mind that `fight-title` is always appended as the final template.
 
 ## 4) Template block syntax
 ```txt
@@ -369,6 +374,19 @@ Accepted block names: `Blank Template`, `New Template`, `Nowy Template`
 - `line_1 | line1`
 - `line_2 | line2`
 - `line_3 | line3`
+
+### Fight Title Outro
+Accepted block names: `Fight Title`, `Final Title`, `Ending Title`, `Napis Koncowy`
+- `fight_title | match_title | title_text | line_1 | line1`
+- `subtitle | purpose | note | line_2 | line2` (optional)
+
+Color behavior:
+- This screen is always the final template.
+- The displayed text is split into 3 lines: `Character A`, `vs`, `Character B`.
+- Character-themed colors are applied to letters (alternating per character line).
+- Current fixed palettes:
+- Superman: `#f11712` + `#0099f7`
+- King Hyperion: black + blood red
 
 ### Methodology
 Accepted block names: `Methodology`, `Metodologia`
