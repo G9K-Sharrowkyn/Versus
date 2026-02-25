@@ -30,10 +30,7 @@ body {
   min-width: 320px;
   font-family: var(--font-ui);
   color: var(--ink-strong);
-  background:
-    radial-gradient(circle at 0% 0%, rgba(52, 211, 153, 0.16), transparent 40%),
-    radial-gradient(circle at 100% 100%, rgba(251, 191, 36, 0.12), transparent 40%),
-    linear-gradient(155deg, var(--bg-900), var(--bg-800));
+  background: linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -291,11 +288,11 @@ body {
   from {
     opacity: 0;
   }
-  20% {
-    opacity: 0.02;
+  30% {
+    opacity: 0.08;
   }
   to {
-    opacity: 1;
+    opacity: 0.48;
   }
 }
 
@@ -324,11 +321,11 @@ body {
   z-index: 2147483647;
   isolation: isolate;
   transform: translateZ(0);
-  background: #111418;
+  background: linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
 }
 
 .vvv-morph-stage.is-running {
-  animation: vvv-morph-stage-fade-out 680ms ease-out 3400ms forwards;
+  animation: vvv-morph-stage-fade-out 620ms ease-out 3560ms forwards;
 }
 
 .vvv-morph-stage::before {
@@ -345,11 +342,12 @@ body {
       0deg,
       transparent 0,
       transparent 1px,
-      rgba(0, 255, 255, 0.03) 2px,
-      rgba(0, 255, 255, 0.03) 3px
+      rgba(255, 255, 255, 0.018) 2px,
+      rgba(255, 255, 255, 0.018) 3px
     ),
-    radial-gradient(circle at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.82) 130%);
-  background-size: 100% 4px, 100% 100%;
+    radial-gradient(circle at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.82) 130%),
+    linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
+  background-size: 100% 4px, 100% 100%, 100% 100%;
 }
 
 .vvv-morph-stage.is-running::before {
@@ -380,14 +378,7 @@ body {
   border-radius: 999px;
   border: none;
   overflow: hidden;
-  background:
-    linear-gradient(
-      -30deg,
-      rgba(var(--vvv-electric-blue-rgb), 0.2),
-      transparent,
-      rgba(var(--vvv-electric-blue-rgb), 0.2)
-    ),
-    linear-gradient(to bottom, oklch(0.185 0 0), oklch(0.185 0 0));
+  background: linear-gradient(to bottom, #1a1c1e, #1a1c1e);
   box-shadow: none;
 }
 

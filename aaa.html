@@ -1,6 +1,16 @@
 ﻿<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    (function () {
+      try {
+        var mode = new URLSearchParams(window.location.search).get('mode') || 'default';
+        document.documentElement.setAttribute('data-vvv-mode', mode);
+      } catch (error) {
+        document.documentElement.setAttribute('data-vvv-mode', 'default');
+      }
+    })();
+  </script>
   <title>Agile Tech - Enterprise Technology, Small Business Prices</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -383,6 +393,37 @@ linear-gradient(90deg,
 #0f121c 60%,
 #0b0e16 80%,
 #030307 100%);
+}
+html[data-vvv-mode="fight-intro"] body {
+background-color: #111418;
+background:
+repeating-linear-gradient(0deg,
+transparent 0,
+transparent 1px,
+rgba(255, 255, 255, 0.018) 2px,
+rgba(255, 255, 255, 0.018) 3px),
+radial-gradient(circle at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.82) 130%),
+linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
+background-size: 100% 4px, 100% 100%, 100% 100%;
+}
+html[data-vvv-mode="fight-intro"] .noise-overlay {
+opacity: 0.06;
+}
+html[data-vvv-mode="fight-intro"] .overlay {
+background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.82) 130%),
+repeating-linear-gradient(0deg,
+transparent 0,
+transparent 1px,
+rgba(255, 255, 255, 0.018) 2px,
+rgba(255, 255, 255, 0.018) 3px);
+background-size: 100% 100%, 100% 4px;
+}
+html[data-vvv-mode="fight-intro"] .starry-background {
+opacity: 0.72;
+filter: saturate(0.45) brightness(0.78);
+}
+html[data-vvv-mode="fight-intro"] #fx-canvas {
+opacity: 0.78;
 }
 body.pre-boot {
 overflow: hidden;

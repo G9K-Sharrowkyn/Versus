@@ -3428,7 +3428,7 @@ function App() {
   const MORPH_TOTAL_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_MS
   const MORPH_OVERLAY_BUFFER_MS = 180
   const INTRO_MOUNT_AT_MS = 1200
-  const INTRO_REVEAL_AT_MS = MORPH_TOTAL_MS - 520
+  const INTRO_REVEAL_AT_MS = MORPH_TOTAL_MS - 220
   const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 
   const rows = useMemo<ScoreRow[]>(
@@ -4343,7 +4343,7 @@ function App() {
         ) : viewMode === 'fight-intro' ? (
           <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <div
-              className="relative z-0 h-full w-full transition-opacity duration-[2000ms] ease-out"
+              className="relative z-0 h-full w-full transition-opacity duration-[1200ms] ease-out"
               style={{ opacity: introVisible ? 1 : 0 }}
             >
               <iframe

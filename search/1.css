@@ -19,7 +19,9 @@ body {
   padding: 0;
   place-content: center;
   font-family: system-ui, -apple-system, sans-serif;
-  background-color: oklch(0.145 0 0);
+  background-color: #111418;
+  background: linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
