@@ -8,6 +8,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from 'recharts'
+import { createPortal } from 'react-dom'
 import {
   Award,
   BookOpen,
@@ -166,7 +167,7 @@ type FightScenarioId =
 type FightScenarioLead = 'a' | 'b'
 
 type ImportDropTarget = 'txt' | 'a' | 'b'
-type SearchMorphPhase = 'electric' | 'powerdown' | 'trace' | 'frame'
+type SearchMorphHandoff = { x: number; y: number; width: number; height: number }
 
 const FIGHTER_A_COLOR = '#3FC3CF'
 const FIGHTER_B_COLOR = '#EF5D5D'
@@ -650,6 +651,8 @@ const ICON_BY_CATEGORY: Record<string, IconType> = {
 
 const FALLBACK_ICONS: IconType[] = [Sparkles, Award, BookOpen, Gauge]
 const DEFAULT_TEMPLATE_ORDER: TemplateId[] = TEMPLATE_PRESETS.map((template) => template.id)
+const DEFAULT_MORPH_SIZE = 66
+const MORPH_ORIGIN_SIZE_SHRINK_PX = 0
 
 const FIGHT_SCENARIO_LABELS: Record<FightScenarioId, Record<Language, string>> = {
   'orbit-harass': { pl: 'Orbita i nÄ™kanie', en: 'Orbit Harass' },
@@ -699,6 +702,37 @@ const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
 
 const clamp = (value: number) =>
   Math.max(0, Math.min(100, Number.isFinite(value) ? Math.round(value) : 0))
+
+const normalizeSearchMorphHandoff = (value: unknown): SearchMorphHandoff | null => {
+  if (!value || typeof value !== 'object') return null
+  const payload = value as Record<string, unknown>
+  const readFinite = (input: unknown) =>
+    typeof input === 'number' && Number.isFinite(input) ? input : null
+  const x = readFinite(payload.x)
+  const y = readFinite(payload.y)
+  const width = readFinite(payload.width)
+  const height = readFinite(payload.height)
+  if (x === null || y === null || width === null || height === null) return null
+
+  return {
+    x: Math.max(0, x),
+    y: Math.max(0, y),
+    width: Math.max(28, Math.min(220, width)),
+    height: Math.max(28, Math.min(220, height)),
+  }
+}
+
+const getViewportCenterHandoff = (): SearchMorphHandoff => {
+  if (typeof window === 'undefined') {
+    return { x: 0, y: 0, width: DEFAULT_MORPH_SIZE, height: DEFAULT_MORPH_SIZE }
+  }
+  return {
+    x: window.innerWidth / 2,
+    y: window.innerHeight / 2,
+    width: DEFAULT_MORPH_SIZE,
+    height: DEFAULT_MORPH_SIZE,
+  }
+}
 
 const slug = (value: string) =>
   value
@@ -3358,8 +3392,7 @@ function App() {
   const [viewMode, setViewMode] = useState<'search' | 'home' | 'fight-intro' | 'fight'>('search')
   const [introVisible, setIntroVisible] = useState(true)
   const [searchMorphVisible, setSearchMorphVisible] = useState(false)
-  const [searchMorphExpanded, setSearchMorphExpanded] = useState(false)
-  const [searchMorphPhase, setSearchMorphPhase] = useState<SearchMorphPhase>('electric')
+  const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
   const [activeFightId, setActiveFightId] = useState<string | null>(null)
   const [storageReady, setStorageReady] = useState(false)
@@ -3375,7 +3408,8 @@ function App() {
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
   const searchTransitionTimeoutsRef = useRef<number[]>([])
-  const searchTransitionRafsRef = useRef<number[]>([])
+  const searchTransitioningRef = useRef(false)
+  const searchCollapseAckedRef = useRef(false)
   const searchFrameRef = useRef<HTMLIFrameElement>(null)
   const draftTxtInputRef = useRef<HTMLInputElement>(null)
   const draftPortraitInputRefA = useRef<HTMLInputElement>(null)
@@ -3386,6 +3420,13 @@ function App() {
   const PREVIEW_BASE_HEIGHT = 787.5
   const PREVIEW_MIN_SCALE = 0.62
   const PREVIEW_MAX_SCALE = 1.7
+  const MORPH_POWER_OFF_MS = 1000
+  const MORPH_RING_ON_MS = 1000
+  const MORPH_FINAL_MS = 2000
+  const MORPH_TOTAL_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_MS
+  const MORPH_OVERLAY_BUFFER_MS = 350
+  const INTRO_MOUNT_AT_MS = MORPH_TOTAL_MS
+  const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 
   const rows = useMemo<ScoreRow[]>(
     () =>
@@ -3585,14 +3626,10 @@ function App() {
       window.clearTimeout(timeoutId)
     }
     searchTransitionTimeoutsRef.current = []
-
-    for (const rafId of searchTransitionRafsRef.current) {
-      window.cancelAnimationFrame(rafId)
-    }
-    searchTransitionRafsRef.current = []
-    setSearchMorphExpanded(false)
-    setSearchMorphPhase('electric')
+    searchTransitioningRef.current = false
+    searchCollapseAckedRef.current = false
     setSearchMorphVisible(false)
+    setSearchMorphHandoff(null)
   }
 
   const postMessageToSearchFrame = (payload: { type: string }) => {
@@ -3642,49 +3679,40 @@ function App() {
     applyTemplateById(firstTemplate, false)
   }
 
-  const startSearchFightTransition = (fight: FightRecord) => {
-    clearSearchTransitionQueue()
-    applyFightRecord(fight, { enterIntro: false })
-    setIntroVisible(true)
-    postMessageToSearchFrame({ type: 'vvv-search-collapse' })
+  const runSearchMorphSequence = (handoff?: SearchMorphHandoff | null) => {
+    if (!searchTransitioningRef.current || searchCollapseAckedRef.current) return
+    searchCollapseAckedRef.current = true
 
-    const showMorphTimeout = window.setTimeout(() => {
-      setSearchMorphPhase('electric')
-      setSearchMorphVisible(true)
-    }, 3000)
-
-    const powerDownTimeout = window.setTimeout(() => {
-      setSearchMorphPhase('powerdown')
-    }, 4200)
-
-    const traceTimeout = window.setTimeout(() => {
-      setSearchMorphPhase('trace')
-    }, 5200)
+    setSearchMorphHandoff(handoff ?? getViewportCenterHandoff())
+    setSearchMorphVisible(true)
 
     const introMountTimeout = window.setTimeout(() => {
       setViewMode('fight-intro')
       setIntroVisible(true)
-    }, 4700)
-
-    const frameTimeout = window.setTimeout(() => {
-      setSearchMorphExpanded(true)
-      setSearchMorphPhase('frame')
-    }, 7900)
+    }, INTRO_MOUNT_AT_MS)
 
     const hideMorphTimeout = window.setTimeout(() => {
-      setSearchMorphExpanded(false)
-      setSearchMorphPhase('electric')
       setSearchMorphVisible(false)
-    }, 9000)
+      searchTransitioningRef.current = false
+      searchCollapseAckedRef.current = false
+    }, MORPH_TOTAL_MS + MORPH_OVERLAY_BUFFER_MS)
 
-    searchTransitionTimeoutsRef.current.push(
-      showMorphTimeout,
-      powerDownTimeout,
-      traceTimeout,
-      introMountTimeout,
-      frameTimeout,
-      hideMorphTimeout,
-    )
+    searchTransitionTimeoutsRef.current.push(introMountTimeout, hideMorphTimeout)
+  }
+
+  const startSearchFightTransition = (fight: FightRecord) => {
+    if (searchTransitioningRef.current) return
+    clearSearchTransitionQueue()
+    searchTransitioningRef.current = true
+    applyFightRecord(fight, { enterIntro: false })
+    postMessageToSearchFrame({ type: 'vvv-search-collapse' })
+    setIntroVisible(false)
+
+    const collapseWatchdogTimeout = window.setTimeout(() => {
+      runSearchMorphSequence(null)
+    }, SEARCH_COLLAPSE_WATCHDOG_MS)
+
+    searchTransitionTimeoutsRef.current.push(collapseWatchdogTimeout)
   }
 
   const createFightFromDraft = async () => {
@@ -3766,10 +3794,15 @@ function App() {
       const payload = event.data
       if (!payload || typeof payload !== 'object') return
 
-      const typed = payload as { type?: unknown; query?: unknown }
+      const typed = payload as { type?: unknown; query?: unknown; handoff?: unknown }
       if (typed.type === 'vvv-aaa-complete') {
         clearSearchTransitionQueue()
         setViewMode('fight')
+        return
+      }
+
+      if (typed.type === 'vvv-search-collapsed') {
+        runSearchMorphSequence(normalizeSearchMorphHandoff(typed.handoff))
         return
       }
 
@@ -4012,6 +4045,35 @@ function App() {
   const isTemplateView = viewMode === 'fight'
   const isFightFlow = isIntroView || isTemplateView
   const isEmbeddedFullscreenView = isSearchView || isIntroView
+  const morphHandoff = searchMorphHandoff ?? getViewportCenterHandoff()
+  const morphOriginSize = Math.max(
+    28,
+    Math.min(
+      120,
+      ((morphHandoff.width + morphHandoff.height) / 2 || DEFAULT_MORPH_SIZE) - MORPH_ORIGIN_SIZE_SHRINK_PX,
+    ),
+  )
+  const searchMorphAnchorStyle = {
+    '--vvv-origin-x': `${morphHandoff.x}px`,
+    '--vvv-origin-y': `${morphHandoff.y}px`,
+    '--vvv-origin-size': `${morphOriginSize}px`,
+  } as Record<string, string>
+  const searchMorphOverlay =
+    searchMorphVisible && typeof document !== 'undefined'
+      ? createPortal(
+          <div className="vvv-morph-stage is-running pointer-events-none fixed inset-0 z-[2147483647]">
+            <div className="vvv-logo-morph-anchor" style={searchMorphAnchorStyle}>
+              <div className="vvv-logo-morph is-running" aria-hidden="true">
+                <div className="vvv-logo-morph__electric" />
+                <div className="vvv-logo-morph__ring" />
+                <div className="vvv-logo-morph__core" />
+                <div className="vvv-logo-morph__logo" />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null
 
   return (
     <main
@@ -4054,12 +4116,12 @@ function App() {
         ) : null}
 
         {viewMode === 'search' ? (
-          <section className="relative h-full min-h-0 overflow-hidden bg-[#111418]">
+          <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <iframe
               ref={searchFrameRef}
               src="/search/1.html"
               title="Fight Search"
-              className="h-full w-full border-0"
+              className="relative z-0 h-full w-full border-0"
               onLoad={() => {
                 postMessageToSearchFrame({ type: 'vvv-search-reset' })
               }}
@@ -4262,16 +4324,16 @@ function App() {
             </section>
           </div>
         ) : viewMode === 'fight-intro' ? (
-          <section className="relative h-full min-h-0 overflow-hidden bg-[#111418]">
+          <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <div
-              className="h-full w-full transition-opacity duration-[2000ms] ease-out"
+              className="relative z-0 h-full w-full transition-opacity duration-[2000ms] ease-out"
               style={{ opacity: introVisible ? 1 : 0 }}
             >
               <iframe
                 key={activeFightId || importFileName || 'intro'}
                 src="/aaa.html?mode=fight-intro"
                 title="Fight Intro"
-                className="h-full w-full border-0"
+                className="relative z-0 h-full w-full border-0"
               />
             </div>
           </section>
@@ -4336,32 +4398,7 @@ function App() {
           </section>
         )}
       </div>
-      {searchMorphVisible ? (
-        <div
-          className={clsx(
-            'vvv-morph-stage pointer-events-none fixed inset-0 z-[90] flex items-center justify-center',
-            searchMorphPhase !== 'electric' && 'is-dark',
-          )}
-        >
-          <div
-            className={clsx(
-              'vvv-logo-morph',
-              `is-${searchMorphPhase}`,
-              searchMorphExpanded && 'is-active',
-            )}
-            aria-hidden="true"
-          >
-            <div className="vvv-logo-morph__electric" />
-            <div className="vvv-logo-morph__ring" />
-            <svg className="vvv-logo-morph__trace" viewBox="0 0 100 100" preserveAspectRatio="none">
-              <circle className="vvv-logo-morph__trace-circle" cx="50" cy="50" r="48" pathLength="100" />
-              <rect className="vvv-logo-morph__trace-square" x="2" y="2" width="96" height="96" rx="32" ry="32" pathLength="100" />
-            </svg>
-            <div className="vvv-logo-morph__core" />
-            <div className="vvv-logo-morph__logo" />
-          </div>
-        </div>
-      ) : null}
+      {searchMorphOverlay}
     </main>
   )
 }

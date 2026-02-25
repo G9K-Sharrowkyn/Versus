@@ -35,6 +35,8 @@ body {
   --gradient-color: oklch(from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4);
   --expanded-width: clamp(340px, 54vw, 520px);
   --collapse-width: 66px;
+  --electric-fade-delay: 1550ms;
+  --electric-fade-duration: 1500ms;
 
   position: relative;
   width: var(--expanded-width);
@@ -63,15 +65,48 @@ body.search-collapsing .gemini .border-outer {
 
 .gemini.is-collapsing {
   width: var(--collapse-width);
+  border-radius: 999px;
 }
 
 .gemini.is-cap-fade {
-  opacity: 0;
-  filter: blur(0.9px);
+  /* opacity: 0; removed to keep it visible for hand-off */
+  filter: blur(0.55px);
 }
 
 .gemini.is-collapsed {
-  display: none;
+  animation: vvv-search-handoff 400ms ease-out forwards;
+}
+
+@keyframes vvv-search-handoff {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(1.1); filter: blur(4px); }
+}
+
+@keyframes vvv-electric-dissolve {
+  0% {
+    opacity: 0.95;
+    filter: var(--f) blur(0.55px);
+  }
+  20% {
+    opacity: 0.84;
+    filter: var(--f) blur(0.72px);
+  }
+  42% {
+    opacity: 0.66;
+    filter: var(--f) blur(0.92px);
+  }
+  64% {
+    opacity: 0.46;
+    filter: var(--f) blur(1.16px);
+  }
+  82% {
+    opacity: 0.24;
+    filter: var(--f) blur(1.46px);
+  }
+  100% {
+    opacity: 0;
+    filter: blur(2.1px);
+  }
 }
 
 .gemini .inner-container {
@@ -97,6 +132,8 @@ body.search-collapsing .gemini .border-outer {
   filter: var(--f) blur(0.45px);
   transform: translateY(var(--electric-y-offset));
   pointer-events: none;
+  animation: none;
+  transition: opacity 220ms linear, filter 220ms linear;
 }
 
 .gemini .inner {
@@ -128,6 +165,8 @@ body.search-collapsing .gemini .border-outer {
   filter: var(--f) blur(0.8px);
   transform: translateY(var(--electric-y-offset));
   pointer-events: none;
+  animation: none;
+  transition: opacity 220ms linear, filter 220ms linear;
 }
 
 .gemini .glow-layer-2 {
@@ -138,6 +177,14 @@ body.search-collapsing .gemini .border-outer {
   filter: var(--f) blur(1.2px);
   transform: translateY(var(--electric-y-offset));
   pointer-events: none;
+  animation: none;
+  transition: opacity 220ms linear, filter 220ms linear;
+}
+
+.gemini.is-collapsing .border-outer::after,
+.gemini.is-collapsing .glow-layer-1,
+.gemini.is-collapsing .glow-layer-2 {
+  animation: vvv-electric-dissolve var(--electric-fade-duration) linear var(--electric-fade-delay) forwards;
 }
 
 .gemini .overlay-1 {

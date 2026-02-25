@@ -82,6 +82,7 @@
         const input = document.getElementById('search-input');
         const searchBar = document.querySelector('.gemini');
         let collapseStarted = false;
+        let collapseNotified = false;
         let collapseTimers = [];
 
         const submit = (value) => {
@@ -92,11 +93,34 @@
           }
         };
 
+        const buildSearchHandoff = () => {
+          if (!searchBar) return null;
+          const barRect = searchBar.getBoundingClientRect();
+          const frameRect =
+            window.frameElement instanceof Element
+              ? window.frameElement.getBoundingClientRect()
+              : null;
+          const offsetX = frameRect ? frameRect.left : 0;
+          const offsetY = frameRect ? frameRect.top : 0;
+          return {
+            x: offsetX + barRect.left + barRect.width / 2,
+            y: offsetY + barRect.top + barRect.height / 2,
+            width: barRect.width,
+            height: barRect.height,
+          };
+        };
+
         const startCollapse = () => {
           if (collapseStarted) return;
           collapseStarted = true;
+          collapseNotified = false;
           collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
           collapseTimers = [];
+          if (searchBar) {
+            const rect = searchBar.getBoundingClientRect();
+            const collapseSize = Math.max(48, Math.round(rect.height));
+            searchBar.style.setProperty('--collapse-width', `${collapseSize}px`);
+          }
           document.body.classList.add('search-collapsing');
           searchBar?.classList.remove('is-collapsed', 'is-cap-fade');
           window.requestAnimationFrame(() => {
@@ -109,6 +133,13 @@
           );
           collapseTimers.push(
             window.setTimeout(() => {
+              if (!collapseNotified && window.parent && window.parent !== window) {
+                collapseNotified = true;
+                window.parent.postMessage(
+                  { type: 'vvv-search-collapsed', handoff: buildSearchHandoff() },
+                  window.location.origin,
+                );
+              }
               searchBar?.classList.add('is-collapsed');
             }, 3220),
           );
@@ -116,9 +147,11 @@
 
         const resetCollapse = () => {
           collapseStarted = false;
+          collapseNotified = false;
           collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
           collapseTimers = [];
           document.body.classList.remove('search-collapsing');
+          searchBar?.style.removeProperty('--collapse-width');
           searchBar?.classList.remove('is-collapsing', 'is-cap-fade', 'is-collapsed');
         };
 
