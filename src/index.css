@@ -1,0 +1,485 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Barlow:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Archivo Black', 'Barlow', sans-serif;
+  --font-ui: 'Space Grotesk', 'Barlow', sans-serif;
+  --ink-strong: #f1f5f9;
+  --ink-soft: #cbd5e1;
+  --bg-900: #0b1120;
+  --bg-800: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  font-family: var(--font-ui);
+  color: var(--ink-strong);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(52, 211, 153, 0.16), transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(251, 191, 36, 0.12), transparent 40%),
+    linear-gradient(155deg, var(--bg-900), var(--bg-800));
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@keyframes vv-float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes vv-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(255, 255, 255, 0);
+  }
+  50% {
+    box-shadow: 0 0 24px rgba(255, 255, 255, 0.22);
+  }
+}
+
+@keyframes vv-scan {
+  0% {
+    transform: translateY(-120%);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.75;
+  }
+  90% {
+    opacity: 0.75;
+  }
+  100% {
+    transform: translateY(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes vv-fade {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.995);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes vv-gold-spark {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 rgba(250, 204, 21, 0),
+      0 0 24px rgba(250, 204, 21, 0.2),
+      inset 0 0 14px rgba(255, 246, 196, 0.12);
+    background-position: 0% 50%;
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(252, 211, 77, 0.7),
+      0 0 40px rgba(217, 119, 6, 0.45),
+      inset 0 0 20px rgba(255, 251, 235, 0.24);
+    background-position: 100% 50%;
+  }
+}
+
+.float-slow {
+  animation: vv-float 6s ease-in-out infinite;
+}
+
+.pulse-glow {
+  animation: vv-pulse 3.8s ease-in-out infinite;
+}
+
+.scan-sweep {
+  pointer-events: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 20%;
+  background: linear-gradient(
+    to bottom,
+    rgba(34, 211, 238, 0),
+    rgba(34, 211, 238, 0.25),
+    rgba(34, 211, 238, 0)
+  );
+  mix-blend-mode: screen;
+  animation: vv-scan 5.8s linear infinite;
+}
+
+.template-fade {
+  animation: vv-fade 0.45s ease;
+}
+
+.favorite-stamp {
+  border: 1px solid rgba(251, 191, 36, 0.95);
+  color: #fff7d6;
+  text-shadow:
+    0 0 8px rgba(255, 245, 195, 0.65),
+    0 0 18px rgba(251, 191, 36, 0.35);
+  background:
+    linear-gradient(
+      118deg,
+      rgba(120, 53, 15, 0.42) 0%,
+      rgba(253, 224, 71, 0.22) 35%,
+      rgba(255, 251, 235, 0.34) 50%,
+      rgba(251, 191, 36, 0.24) 66%,
+      rgba(120, 53, 15, 0.42) 100%
+    );
+  background-size: 240% 240%;
+  animation: vv-gold-spark 2.4s ease-in-out infinite;
+}
+
+.lightning-wrapper {
+  background: transparent;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.lightning {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.lightning-canvas {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@keyframes vvv-morph-electric {
+  0%,
+  100% {
+    opacity: 0.74;
+    filter: blur(0.8px);
+    transform: translateY(0);
+  }
+  50% {
+    opacity: 0.95;
+    filter: blur(1.35px);
+    transform: translateY(-0.6px);
+  }
+}
+
+.vvv-morph-stage {
+  background: transparent;
+  transition: background-color 1300ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vvv-morph-stage.is-dark {
+  background: #000;
+}
+
+@keyframes vvv-morph-trace {
+  0% {
+    stroke-dashoffset: 100;
+    opacity: 0.12;
+  }
+  18% {
+    opacity: 0.72;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes vvv-morph-trace-square {
+  0% {
+    stroke-dashoffset: 42;
+    opacity: 0;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 0.9;
+  }
+}
+
+.vvv-logo-morph {
+  position: relative;
+  width: 66px;
+  height: 66px;
+  border-radius: 999px;
+  border: 2px solid rgba(56, 189, 248, 0.95);
+  background: #1a1d22;
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.34),
+    0 0 18px rgba(56, 189, 248, 0.5),
+    inset 0 0 12px rgba(3, 16, 35, 0.65);
+  transition:
+    width 1950ms cubic-bezier(0.16, 1, 0.3, 1),
+    height 1950ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 1950ms cubic-bezier(0.16, 1, 0.3, 1),
+    background 1500ms ease,
+    box-shadow 1950ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 1400ms ease;
+}
+
+.vvv-logo-morph::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid rgba(34, 211, 238, 0.82);
+  filter: blur(0.55px);
+  opacity: 0.9;
+  transition: opacity 600ms ease;
+}
+
+.vvv-logo-morph::after {
+  content: '';
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background:
+    radial-gradient(130% 45% at 50% 4%, rgba(56, 189, 248, 0.56), transparent 72%),
+    radial-gradient(130% 45% at 50% 96%, rgba(56, 189, 248, 0.6), transparent 72%);
+  mix-blend-mode: screen;
+  opacity: 0.68;
+  transition: opacity 800ms ease;
+}
+
+.vvv-logo-morph__electric {
+  position: absolute;
+  inset: -8px;
+  border-radius: inherit;
+  background:
+    radial-gradient(126% 42% at 50% 10%, rgba(56, 189, 248, 0.92), transparent 73%),
+    radial-gradient(126% 42% at 50% 90%, rgba(56, 189, 248, 0.95), transparent 73%),
+    radial-gradient(16px 12px at 98% 46%, rgba(56, 189, 248, 0.78), transparent 80%),
+    radial-gradient(14px 12px at 98% 57%, rgba(56, 189, 248, 0.74), transparent 80%);
+  mix-blend-mode: screen;
+  animation: vvv-morph-electric 280ms linear infinite;
+  opacity: 0.92;
+  pointer-events: none;
+  transition: opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1), filter 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vvv-logo-morph.is-powerdown .vvv-logo-morph__electric,
+.vvv-logo-morph.is-trace .vvv-logo-morph__electric,
+.vvv-logo-morph.is-frame .vvv-logo-morph__electric {
+  opacity: 0;
+  filter: blur(2.8px);
+}
+
+.vvv-logo-morph__ring {
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid rgba(56, 189, 248, 0.9);
+  opacity: 0;
+  filter: blur(0.25px);
+  box-shadow:
+    0 0 0 1px rgba(56, 189, 248, 0.22),
+    0 0 8px rgba(56, 189, 248, 0.18);
+  transition:
+    opacity 1000ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 1000ms ease,
+    border-width 1000ms ease,
+    box-shadow 1000ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.vvv-logo-morph.is-trace .vvv-logo-morph__ring,
+.vvv-logo-morph.is-frame .vvv-logo-morph__ring {
+  opacity: 1;
+}
+
+.vvv-logo-morph.is-powerdown .vvv-logo-morph__ring {
+  border-width: 3.4px;
+  border-color: rgba(110, 229, 255, 0.97);
+  box-shadow:
+    0 0 0 1px rgba(103, 232, 249, 0.35),
+    0 0 16px rgba(34, 211, 238, 0.42),
+    0 0 28px rgba(34, 211, 238, 0.22);
+}
+
+.vvv-logo-morph.is-trace .vvv-logo-morph__ring {
+  border-width: 3.25px;
+  border-color: rgba(125, 211, 252, 0.96);
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.3),
+    0 0 18px rgba(56, 189, 248, 0.4);
+}
+
+.vvv-logo-morph.is-powerdown {
+  border-color: rgba(147, 197, 253, 0.5);
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.2),
+    0 0 12px rgba(56, 189, 248, 0.26),
+    inset 0 0 10px rgba(6, 15, 29, 0.7);
+}
+
+.vvv-logo-morph__trace {
+  position: absolute;
+  inset: -1px;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.vvv-logo-morph__trace-circle,
+.vvv-logo-morph__trace-square {
+  fill: none;
+  stroke: rgba(125, 211, 252, 0.96);
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  transform: rotate(-90deg);
+  transform-origin: center center;
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(56, 189, 248, 0.8));
+}
+
+.vvv-logo-morph__trace-square {
+  stroke: rgba(148, 163, 184, 0.68);
+  stroke-dashoffset: 42;
+}
+
+.vvv-logo-morph.is-trace .vvv-logo-morph__trace-circle {
+  opacity: 0.98;
+  animation: vvv-morph-trace 1000ms linear forwards;
+}
+
+.vvv-logo-morph.is-frame .vvv-logo-morph__trace-circle {
+  opacity: 0;
+  transition: opacity 520ms ease;
+}
+
+.vvv-logo-morph.is-frame .vvv-logo-morph__trace-square {
+  stroke: rgba(148, 163, 184, 0.7);
+  stroke-width: 2.1;
+  animation: vvv-morph-trace-square 1000ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.vvv-logo-morph__core {
+  position: absolute;
+  inset: 4px;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 34% 28%, rgba(114, 148, 185, 0.24), transparent 42%),
+    linear-gradient(165deg, #1f232a, #171b22);
+  transition: background 1200ms ease, box-shadow 1200ms ease;
+}
+
+.vvv-logo-morph__logo {
+  position: absolute;
+  left: 20%;
+  top: 20%;
+  width: 60%;
+  height: 60%;
+  background: center / contain no-repeat url('/search/3.png');
+  opacity: 0;
+  transform: translateY(1px) scale(0.55);
+  transform-origin: center center;
+  filter: brightness(1.1) blur(1.4px);
+  transition:
+    opacity 1100ms ease 210ms,
+    transform 1750ms cubic-bezier(0.19, 1, 0.22, 1) 160ms,
+    filter 1600ms ease 120ms;
+}
+
+.vvv-logo-morph.is-active {
+  width: 140px;
+  height: 140px;
+  border-radius: 42px;
+  border-color: rgba(148, 163, 184, 0.36);
+  background:
+    linear-gradient(145deg, #101318 0, #1a1f28 55%, #0a0d12 100%),
+    radial-gradient(circle at 25% 25%, rgba(56, 189, 248, 0.08), transparent 50%);
+  box-shadow:
+    0 0 0 1px rgba(148, 163, 184, 0.12),
+    0 0 14px rgba(56, 189, 248, 0.12),
+    inset -8px -8px 16px rgba(80, 90, 100, 0.25),
+    inset 12px 12px 24px rgba(0, 0, 0, 0.72);
+}
+
+.vvv-logo-morph.is-active::before {
+  opacity: 0.42;
+}
+
+.vvv-logo-morph.is-active::after {
+  opacity: 0.24;
+}
+
+.vvv-logo-morph.is-active .vvv-logo-morph__core {
+  background:
+    linear-gradient(145deg, #161b23 0, #0f131a 100%),
+    radial-gradient(circle at 58% 72%, rgba(255, 255, 255, 0.06), transparent 60%);
+  box-shadow: inset 0 2px 4px rgba(0, 255, 255, 0.08);
+}
+
+.vvv-logo-morph.is-active .vvv-logo-morph__ring {
+  opacity: 0.34;
+  border-width: 2px;
+  border-color: rgba(148, 163, 184, 0.34);
+  box-shadow:
+    0 0 0 1px rgba(148, 163, 184, 0.1),
+    0 0 8px rgba(56, 189, 248, 0.12);
+}
+
+.vvv-logo-morph.is-active .vvv-logo-morph__logo {
+  opacity: 0.8;
+  transform: translateY(8px) scale(2.14);
+  filter: brightness(0.68) blur(0.4px);
+}
+
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-slate-900/65 p-4 backdrop-blur-xl;
+  }
+
+  .section-label {
+    @apply mb-2 block text-[11px] uppercase tracking-[0.16em] text-slate-300/80;
+  }
+
+  .input-ui {
+    @apply w-full rounded-xl border border-slate-700/80 bg-slate-950/65 px-3 py-2 text-sm text-slate-100 transition focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/40;
+  }
+
+  .button-main {
+    @apply inline-flex items-center gap-2 rounded-xl border border-cyan-300/60 bg-cyan-400/20 px-3 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/30;
+  }
+
+  .button-soft {
+    @apply inline-flex items-center gap-2 rounded-xl border border-slate-600/70 bg-slate-800/70 px-3 py-2 text-sm text-slate-100 transition hover:border-slate-400 hover:bg-slate-700/70;
+  }
+
+  .chip {
+    @apply rounded-full border border-white/15 px-2 py-1 text-xs text-slate-200;
+  }
+}

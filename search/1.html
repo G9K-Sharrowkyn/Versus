@@ -1,0 +1,156 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Versus Search</title>
+    <link rel="stylesheet" href="./1.css" />
+  </head>
+  <body>
+    <svg class="svg-container" aria-hidden="true">
+      <defs>
+        <filter id="electric-flow" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise1" seed="1" />
+          <feOffset in="noise1" dx="0" dy="0" result="offsetNoise1">
+            <animate attributeName="dy" values="700;0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise2" seed="1" />
+          <feOffset in="noise2" dx="0" dy="0" result="offsetNoise2">
+            <animate attributeName="dy" values="0;-700" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise3" seed="2" />
+          <feOffset in="noise3" dx="0" dy="0" result="offsetNoise3">
+            <animate attributeName="dx" values="490;0" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="10" result="noise4" seed="2" />
+          <feOffset in="noise4" dx="0" dy="0" result="offsetNoise4">
+            <animate attributeName="dx" values="0;-490" dur="6s" repeatCount="indefinite" calcMode="linear" />
+          </feOffset>
+
+          <feComposite in="offsetNoise1" in2="offsetNoise2" result="part1" />
+          <feComposite in="offsetNoise3" in2="offsetNoise4" result="part2" />
+          <feBlend in="part1" in2="part2" mode="color-dodge" result="combinedNoise" />
+
+          <feDisplacementMap in="SourceGraphic" in2="combinedNoise" scale="30" xChannelSelector="R" yChannelSelector="B" />
+        </filter>
+        <filter id="electric-flow-hue" color-interpolation-filters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+          <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+          <feColorMatrix type="hueRotate" result="pt1">
+            <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+          </feColorMatrix>
+          <feComposite />
+          <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+          <feColorMatrix type="hueRotate" result="pt2">
+            <animate attributeName="values" values="0;333;199;286;64;168;256;157;360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
+          </feColorMatrix>
+          <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+          <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+        </filter>
+      </defs>
+    </svg>
+
+    <div class="gemini" aria-label="Fight search">
+      <div class="inner-container">
+        <div class="border-outer">
+          <div class="inner">
+            <div class="input-clip">
+              <input
+                id="search-input"
+                aria-label="Fight search"
+                autocomplete="off"
+                autocapitalize="off"
+                autocorrect="off"
+                spellcheck="false"
+                inputmode="search"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="glow-layer-1"></div>
+        <div class="glow-layer-2"></div>
+      </div>
+      <div class="overlay-1"></div>
+      <div class="overlay-2"></div>
+      <div class="background-glow"></div>
+    </div>
+
+    <script>
+      (() => {
+        const input = document.getElementById('search-input');
+        const searchBar = document.querySelector('.gemini');
+        let collapseStarted = false;
+        let collapseTimers = [];
+
+        const submit = (value) => {
+          const query = String(value || '').trim();
+          if (!query) return;
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'vvv-search-submit', query }, window.location.origin);
+          }
+        };
+
+        const startCollapse = () => {
+          if (collapseStarted) return;
+          collapseStarted = true;
+          collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
+          collapseTimers = [];
+          document.body.classList.add('search-collapsing');
+          searchBar?.classList.remove('is-collapsed', 'is-cap-fade');
+          window.requestAnimationFrame(() => {
+            searchBar?.classList.add('is-collapsing');
+          });
+          collapseTimers.push(
+            window.setTimeout(() => {
+              searchBar?.classList.add('is-cap-fade');
+            }, 2920),
+          );
+          collapseTimers.push(
+            window.setTimeout(() => {
+              searchBar?.classList.add('is-collapsed');
+            }, 3220),
+          );
+        };
+
+        const resetCollapse = () => {
+          collapseStarted = false;
+          collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
+          collapseTimers = [];
+          document.body.classList.remove('search-collapsing');
+          searchBar?.classList.remove('is-collapsing', 'is-cap-fade', 'is-collapsed');
+        };
+
+        input?.addEventListener('keydown', (event) => {
+          if (event.key !== 'Enter') return;
+          event.preventDefault();
+          submit(input.value);
+        });
+
+        window.addEventListener('message', (event) => {
+          if (event.origin !== window.location.origin) return;
+          const payload = event.data;
+          if (!payload || typeof payload !== 'object') return;
+          if (payload.type === 'vvv-search-collapse') {
+            startCollapse();
+            return;
+          }
+          if (payload.type === 'vvv-search-reset') {
+            resetCollapse();
+          }
+        });
+
+        window.addEventListener('load', () => {
+          resetCollapse();
+          if (input) {
+            input.name = `vvv-search-${Math.random().toString(36).slice(2)}`;
+            input.autocomplete = 'off';
+            input.value = '';
+          }
+          input?.focus();
+        });
+      })();
+    </script>
+  </body>
+</html>

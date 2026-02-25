@@ -1,0 +1,239 @@
+﻿1. Iron Specter
+
+2. Character A Stats
+- Strength: 88
+- Speed: 94
+- Durability: 79
+- Combat IQ: 91
+- Hax: 72
+- Stamina: 86
+- Fighting Style: 89
+- Experience: 84
+- Combat Skills: 90
+
+3. Character A Feats
+- Style: High tempo pressure and angle control
+- Advantage: Advanced battlefield reading
+- Mentality: Win early before attrition starts
+
+4. Defeated by Character A
+- Titan Prime
+- Nova Jackal
+- Vanguard-11
+- Chrono Viper
+
+5. Crimson Warden
+
+6. Character B Stats
+- Strength: 93
+- Speed: 81
+- Durability: 95
+- Combat IQ: 84
+- Hax: 87
+- Stamina: 94
+- Fighting Style: 82
+- Experience: 92
+- Combat Skills: 83
+
+7. Character B Feats
+- Style: Slow pressure with direct collision game
+- Advantage: Massive regeneration loops
+- Mentality: Survive phase one and break morale
+
+8. Defeated by Character B
+- Atlas Rex
+- Night Reactor
+- Iron Monk
+- Helix Wolf
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- winner-cv
+- summary
+- battle-dynamics
+- x-factor
+- interpretation
+- fight-simulation
+- stat-trap
+- verdict-matrix
+- phase-1
+- phase-2
+- turning-points
+- methodology
+- blank-template
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // LIVE MODEL
+- subtitle: Category board and chaos lane monitor
+- left_header: CATEGORY GRID
+- right_header: CHAOS LANE
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
+- lane: Active tactical lane online
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: Earth-91
+- style: Hit-and-shift with range resets
+- atut: Decision speed under pressure
+- mentalnosc: End it before attrition
+- quote: Keep it clean, keep it fast.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Ruin Sector-3
+- style: Forward collapse and clinch grind
+- atut: Regen plus structural toughness
+- mentalnosc: Drag every fight into chaos
+- quote: I only need one long round.
+
+Template HUD Bars:
+- headline: HIGH-END COMBAT ANALYTICS
+- subtitle: Subject comparison protocol
+- threat_level: EXTREME
+- integrity: 99.7%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Relative profile map
+- left_header: BLUE CORNER ADVANTAGES
+- right_header: RED CORNER ADVANTAGES
+- draw_header: DRAW CATEGORIES
+- favorite: PROBABILITY FAVORITE
+
+Template Winner CV:
+- headline: WINNER CV ARCHIVE
+- subtitle: Defeated opponents and average score
+- archive_label: ARCHIVE
+- avg_label: AVG SCORE
+- left_title: BLUE CORNER RECORD
+- right_title: RED CORNER RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle: Condensed verdict snapshot
+- winner: CONDITIONAL EDGE: CRIMSON WARDEN
+- line_1: Blue dominates speed and precision windows.
+- line_2: Red dominates durability, regen, and long-fight pressure.
+- line_3: Outcome swings by end-condition and phase pacing.
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS: SIMULATION
+- subtitle: Pace and pressure over time
+- a_curve: 82,71,57,42,30
+- b_curve: 34,36,37,41,48
+- yellow_wave: 33,35,32,36,34,37,33,36,34
+- phase_1: Blue sets the pace through speed entries.
+- phase_2: Red absorbs and stabilizes exchanges.
+- phase_3: Red attrition line crosses late.
+- analysis: Blue wins the sprint. Red wins the marathon.
+
+Template X-Factor:
+- headline: X-FACTOR: REGENERATION LOOP
+- subtitle: Non-linear pressure variable
+- factor: REGENERATION AND SURVIVAL
+- a_value: 41
+- a_bonus: 6
+- a_bonus_label: BOOST
+- b_value: 44
+- b_bonus: 18
+- regen: REGEN
+- mechanika: Crimson Warden recovers in micro windows between clashes.
+- implikacja: Blue must convert early momentum into a clean finish.
+- psychologia: Long exchanges favor the fighter with panic-proof endurance.
+
+Template Interpretation:
+- headline: INTERPRETATION: PAPER ADVANTAGE
+- subtitle: Statistical reading before chaos correction
+- line_1: Iron Specter leads in speed, skill, and first-contact control.
+- line_2: Crimson Warden carries superior durability and recovery economy.
+- line_3: In linear model Blue is favored; in attrition model Red catches up.
+- quote: If this was only math, the fight would end here.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: Branching scenarios per phase
+- opening: Phase one: fast pressure and angle denial.
+- mid_fight: Phase two: clinch tests and regen loops.
+- late_fight: Phase three: attrition and decision collapse.
+- end_condition: End condition decides final edge.
+- phase_1_mode: bars
+- phase_1_animation: orbit-harass
+- phase_1_title: Opening Exchange
+- phase_1_a_label: Tempo
+- phase_1_b_label: Stability
+- phase_1_a_value: 92
+- phase_1_b_value: 80
+- phase_2_mode: split
+- phase_2_animation: clash-lock
+- phase_2_title: Mid-Fight Pivot
+- phase_2_event: First lock-up decides map control.
+- phase_2_branch_a: Blue slips out and rebuilds range.
+- phase_2_branch_b: Red pins and starts grind pressure.
+- phase_3_mode: animation
+- phase_3_animation: regen-attrition
+- phase_3_title: Late Attrition
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why small stat edges can disappear
+- trap_top: REGEN AND BRUTALITY >
+- trap_bottom: TECHNIQUE IN LONG FIGHTS
+- example: A 2-3 point edge in skills can vanish when healing resets damage repeatedly.
+- question: KEY QUESTION: In kill-only conditions, does regen outweigh all-around stats?
+
+Template Verdict Matrix:
+- headline: VERDICT MATRIX
+- subtitle: Condition-based result grid
+- col_left: SOLAR FLARE: YES
+- col_right: SOLAR FLARE: NO
+- row_top: STANDARD KO
+- row_bottom: DEATHMATCH
+- case_1: Iron Specter (6/10). Speed and technical entries close before attrition.
+- case_2: Crimson Warden (5.5/10). Fast closure is harder and regen keeps pressure alive.
+- case_3: Iron Specter (5.0/10). Risk rises if early finish fails.
+- case_4: Crimson Warden (6.5/10). Long war strongly rewards regeneration economy.
+
+Template Phase 1:
+- headline: PHASE 1: OPENING
+- subtitle: Burst tempo and distance control
+- line_1: Blue starts with speed advantage.
+- line_2: Red tests reactions and guard discipline.
+- line_3: One clean entry can set fight rhythm.
+
+Template Phase 2:
+- headline: PHASE 2: MID-FIGHT
+- subtitle: Contact trading and pressure turns
+- line_1: Exchanges get heavier.
+- line_2: Regen vs precision becomes central.
+- line_3: Tactical discipline decides momentum.
+
+Template Turning Points:
+- headline: TURNING POINTS
+- subtitle: Key moments that flip probability
+- turn_1: First successful lock-up.
+- turn_2: First major stamina drop.
+- turn_3: First failed finisher attempt.
+
+Template Methodology:
+- headline: METHODOLOGY
+- subtitle: Source model and non-linear correction
+- list_label: METHOD LIST
+- reality_label: COMBAT REALITY
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
+- closing_label: Stats are linear. Fight is not.
+
+Template Blank Template:
+- headline: NEW TEMPLATE SLOT
+- subtitle: Reserved for custom layout
+- line_1: Add custom data block here.
+- line_2: This slot is intentionally generic.
+- line_3: Ready for next iteration.
