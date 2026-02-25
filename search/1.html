@@ -84,6 +84,82 @@
         let collapseStarted = false;
         let collapseNotified = false;
         let collapseTimers = [];
+        let relayMoveRaf = 0;
+        let relayMoveX = window.innerWidth * 0.5;
+        let relayMoveY = window.innerHeight * 0.5;
+        let disposePointerRelay = () => {};
+
+        const postPointerRelay = (kind, x, y, down) => {
+          if (!(window.parent && window.parent !== window)) return;
+          window.parent.postMessage(
+            {
+              type: 'vvv-pointer-relay',
+              source: 'search',
+              event: kind,
+              x,
+              y,
+              down,
+              timestamp: performance.now(),
+            },
+            window.location.origin,
+          );
+        };
+
+        const bindPointerRelay = () => {
+          if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) {
+            return () => {};
+          }
+          const root = document.documentElement;
+          root.classList.add('vvv-parent-cursor');
+
+          const flushMoveRelay = () => {
+            relayMoveRaf = 0;
+            postPointerRelay('move', relayMoveX, relayMoveY);
+          };
+
+          const onPointerMove = (event) => {
+            relayMoveX = event.clientX;
+            relayMoveY = event.clientY;
+            if (!relayMoveRaf) relayMoveRaf = window.requestAnimationFrame(flushMoveRelay);
+          };
+
+          const onPointerDown = (event) => {
+            relayMoveX = event.clientX;
+            relayMoveY = event.clientY;
+            postPointerRelay('down', relayMoveX, relayMoveY, true);
+          };
+
+          const onPointerUp = (event) => {
+            relayMoveX = event.clientX;
+            relayMoveY = event.clientY;
+            postPointerRelay('up', relayMoveX, relayMoveY, false);
+          };
+
+          const onPointerLeave = () => {
+            postPointerRelay('leave', relayMoveX, relayMoveY, false);
+          };
+
+          window.addEventListener('pointermove', onPointerMove, { passive: true });
+          window.addEventListener('pointerdown', onPointerDown, { passive: true });
+          window.addEventListener('pointerup', onPointerUp, { passive: true });
+          window.addEventListener('pointercancel', onPointerUp, { passive: true });
+          window.addEventListener('pointerleave', onPointerLeave, { passive: true });
+          window.addEventListener('blur', onPointerLeave, { passive: true });
+
+          return () => {
+            window.removeEventListener('pointermove', onPointerMove);
+            window.removeEventListener('pointerdown', onPointerDown);
+            window.removeEventListener('pointerup', onPointerUp);
+            window.removeEventListener('pointercancel', onPointerUp);
+            window.removeEventListener('pointerleave', onPointerLeave);
+            window.removeEventListener('blur', onPointerLeave);
+            root.classList.remove('vvv-parent-cursor');
+            if (relayMoveRaf) {
+              window.cancelAnimationFrame(relayMoveRaf);
+              relayMoveRaf = 0;
+            }
+          };
+        };
 
         const submit = (value) => {
           const query = String(value || '').trim();
@@ -175,6 +251,7 @@
         });
 
         window.addEventListener('load', () => {
+          disposePointerRelay = bindPointerRelay();
           resetCollapse();
           if (input) {
             input.name = `vvv-search-${Math.random().toString(36).slice(2)}`;
@@ -182,6 +259,10 @@
             input.value = '';
           }
           input?.focus();
+        });
+
+        window.addEventListener('beforeunload', () => {
+          disposePointerRelay();
         });
       })();
     </script>
