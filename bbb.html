@@ -1,16 +1,6 @@
-﻿<head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script>
-    (function () {
-      try {
-        var mode = new URLSearchParams(window.location.search).get('mode') || 'default';
-        document.documentElement.setAttribute('data-vvv-mode', mode);
-      } catch (error) {
-        document.documentElement.setAttribute('data-vvv-mode', 'default');
-      }
-    })();
-  </script>
   <title>Agile Tech - Enterprise Technology, Small Business Prices</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -393,45 +383,6 @@ linear-gradient(90deg,
 #0f121c 60%,
 #0b0e16 80%,
 #030307 100%);
-}
-html[data-vvv-mode="fight-intro"] body {
-background-color: #111418;
-background:
-repeating-linear-gradient(0deg,
-transparent 0,
-transparent 1px,
-rgba(255, 255, 255, 0.018) 2px,
-rgba(255, 255, 255, 0.018) 3px),
-radial-gradient(circle at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.82) 130%),
-linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
-background-size: 100% 4px, 100% 100%, 100% 100%;
-}
-html[data-vvv-mode="fight-intro"] .noise-overlay {
-opacity: 0.06;
-mix-blend-mode: normal;
-}
-html[data-vvv-mode="fight-intro"] .overlay {
-background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0, 0, 0, 0.82) 130%),
-repeating-linear-gradient(0deg,
-transparent 0,
-transparent 1px,
-rgba(255, 255, 255, 0.018) 2px,
-rgba(255, 255, 255, 0.018) 3px);
-background-size: 100% 100%, 100% 4px;
-}
-html[data-vvv-mode="fight-intro"] .starry-background {
-opacity: 0.72;
-filter: none;
-}
-html[data-vvv-mode="fight-intro"] #fx-canvas {
-opacity: 0.78;
-mix-blend-mode: normal;
-}
-html[data-vvv-mode="fight-intro"] body > :not(.svg-engine):not(.page-container):not(script) {
-display: none !important;
-}
-html[data-vvv-mode="fight-intro"] .page-container > :not(.noise-overlay):not(.flash-overlay):not(#fx-canvas):not(#uiOverlay):not(#logoContainer) {
-display: none !important;
 }
 body.pre-boot {
 overflow: hidden;
@@ -4196,7 +4147,7 @@ z-index: 3;
 transition: 0.28s cubic-bezier(0.19, 1, 0.22, 1);
 }
 .feature-item .check-icon::before {
-content: "âś“";
+content: "✓";
 font-weight: 700;
 font-size: 11px;
 }
@@ -4256,7 +4207,7 @@ border-color: rgba(226, 232, 240, 0.2);
 color: rgba(226, 232, 240, 0.7);
 }
 .feature-card-beveled .check-icon::before {
-content: "â…";
+content: "★";
 }
 .feature-card-beveled:hover .check-icon {
 color: rgba(226, 232, 240, 0.95);
@@ -5504,7 +5455,7 @@ top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-z-index: 20;
+z-index: 50;
 pointer-events: none;
 mix-blend-mode: screen;
 }
@@ -5580,7 +5531,6 @@ opacity: 0.15;
 will-change: transform;
 z-index: -1;
 mix-blend-mode: overlay;
-display: none !important;
 }
 .logo-container.calibrating .layer-new,
 .ring-2 {
@@ -5734,12 +5684,10 @@ width: 60%;
 height: auto;
 position: relative;
 z-index: 10;
-transform: translateY(8px) scale(2.14);
-transform-origin: center center;
 filter: brightness(0.68) blur(0.4px);
 opacity: 0.78;
 pointer-events: none;
-transition: filter 0.5s, opacity 0.5s, transform 0.5s;
+transition: filter 0.5s, opacity 0.5s;
 will-change: filter, transform;
 }
 .hint,
@@ -5934,7 +5882,7 @@ visibility: hidden;
     <div class="flash-overlay" id="flashOverlay"></div>
     <canvas id="fx-canvas"></canvas>
     <div class="overlay" id="uiOverlay"></div>
-    <div class="logo-container" id="logoContainer" tabindex="0" role="button" aria-label="Start fight">
+    <div class="logo-container" id="logoContainer" tabindex="0" role="button" aria-label="Initialize System">
       <div class="style-layer layer-new"></div>
       <div class="style-layer layer-holographic"></div>
       <div class="style-layer layer-cybernetic"></div>
@@ -5943,8 +5891,8 @@ visibility: hidden;
       <div class="tech-ring ring-2"></div>
       <div class="tech-ring ring-3"></div>
       <div class="tech-ring ring-4"></div>
-      <img class="logo" id="logoImage" src="/search/3.png" alt="VersusVerseVault Logo" fetchpriority="high" decoding="async" draggable="false">
-      <div class="hint">Start fight</div>
+      <img class="logo" id="logoImage" src="https://agiletech.pro/wp-content/uploads/2025/05/imageedit_264_3420605703.png" alt="Agile Tech Logo" crossorigin="anonymous" fetchpriority="high" decoding="async" draggable="false">
+      <div class="hint">Initialize System</div>
     </div>
     <section class="hero" id="main-content">
       <div class="trust-bar holographic-reveal">
@@ -6001,7 +5949,7 @@ visibility: hidden;
                 <span class="headline-emphasis" data-text="70% less">70% less</span>
               </span> than competitors.
             </p>
-            <p class="cta-details">Intelligent automation, 24/7 reliability, and stunning digital designâ€”without enterprise overhead. We turn IT from a cost center into your <strong class="text-accent">competitive advantage.</strong>
+            <p class="cta-details">Intelligent automation, 24/7 reliability, and stunning digital design—without enterprise overhead. We turn IT from a cost center into your <strong class="text-accent">competitive advantage.</strong>
             </p>
           </div>
           <div class="cta-actions">
@@ -6614,7 +6562,7 @@ visibility: hidden;
         tagline: 'Strategic Engineering',
         head: 'Stop Overpaying',
         headStrong: 'For Technology',
-        desc: 'Slash costs 70% while boosting performance and eliminating downtime headachesâ€”all at a fraction of traditional costs. Our precision audit reveals hidden inefficiencies instantly.',
+        desc: 'Slash costs 70% while boosting performance and eliminating downtime headaches—all at a fraction of traditional costs. Our precision audit reveals hidden inefficiencies instantly.',
         cta: 'Learn More',
         link: '/it-services-technology-consulting',
         img: 'https://agiletech.pro/wp-content/uploads/2025/04/pzaat7ja5etl5mq0brlm.webp',
@@ -6650,7 +6598,7 @@ visibility: hidden;
         tagline: 'Automation Logic',
         head: 'Experience The',
         headStrong: 'Future Today',
-        desc: 'Control everything from anywhere. Boost productivity and comfort while cutting energy costs with intelligent automationâ€”all controlled at your fingertips.',
+        desc: 'Control everything from anywhere. Boost productivity and comfort while cutting energy costs with intelligent automation—all controlled at your fingertips.',
         cta: 'Explore Systems',
         link: '/smart-home-services',
         img: 'https://agiletech.pro/wp-content/uploads/2025/04/qrhjjrvxxrjtihsqzquy.webp',
@@ -6691,8 +6639,8 @@ visibility: hidden;
         type: 'scalability-engine',
         class: 'SCALABILITY_ENGINE',
         label: 'GROWTH_ACCELERATION_INDEX',
-        value: 'âž',
-        unit: 'â†‘',
+        value: '∞',
+        unit: '↑',
         title: 'Scale Without',
         emp: 'Headaches',
         desc: 'Focus on growing your business, not managing IT. We handle the complexity so you can grow.',
@@ -6759,7 +6707,6 @@ visibility: hidden;
     const logoBtn = document.getElementById('logoContainer');
     const uiOverlay = document.getElementById('uiOverlay');
     const flashOverlay = document.getElementById('flashOverlay');
-    const EMBED_FIGHT_INTRO = new URLSearchParams(window.location.search).get('mode') === 'fight-intro';
     const PERF_BOOT_AT = performance.now();
     const PERF = {
       enabled: true,
@@ -6794,7 +6741,7 @@ visibility: hidden;
       delete PERF.marks[label];
       perfLog(`mark-end:${label}`, { elapsedMs: Number(elapsedMs.toFixed(1)), ...payload });
     };
-    perfLog('script-init', { embedFightIntro: EMBED_FIGHT_INTRO });
+    perfLog('script-init', { embedFightIntro: false });
     window.addEventListener('load', () => {
       perfLog('window-load', { elapsedMs: Number((performance.now() - PERF_BOOT_AT).toFixed(1)) });
     });
@@ -6813,53 +6760,19 @@ visibility: hidden;
         longTaskObserver.observe({ type: 'longtask', buffered: true });
       } catch (_error) {}
     }
-    if (EMBED_FIGHT_INTRO) {
-      const pageContainer = document.querySelector('.page-container');
-      if (pageContainer) {
-        Array.from(pageContainer.children).forEach((child) => {
-          const element = child;
-          const keep =
-            element.classList?.contains('noise-overlay') ||
-            element.classList?.contains('flash-overlay') ||
-            element.id === 'fx-canvas' ||
-            element.id === 'uiOverlay' ||
-            element.id === 'logoContainer';
-          if (!keep) {
-            element.remove();
-          }
-        });
-      }
-      Array.from(document.body.children).forEach((child) => {
-        const element = child;
-        const keep =
-          element.classList?.contains('svg-engine') ||
-          element.classList?.contains('page-container') ||
-          element.tagName === 'SCRIPT';
-        if (!keep) {
-          element.remove();
-        }
-      });
-    }
-    const notifyParentIntroComplete = () => {
-      if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ type: 'vvv-aaa-complete' }, window.location.origin);
-      }
-    };
     const layerHolo = document.querySelector('.layer-holographic');
     const layerCyber = document.querySelector('.layer-cybernetic');
     const rings = document.querySelectorAll('.tech-ring');
     let width, height, cx, cy, dpr = 1;
     const ringRotation = [0, 0, 0, 0];
     function resize() {
-      const maxDpr = EMBED_FIGHT_INTRO ? 1.75 : 2;
-      dpr = Math.min(window.devicePixelRatio || 1, maxDpr);
+      dpr = window.devicePixelRatio || 1;
       const rect = document.body.getBoundingClientRect();
       width = rect.width;
       height = rect.height;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      canvas.width = Math.max(1, Math.round(width * dpr));
-      canvas.height = Math.max(1, Math.round(height * dpr));
-      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
       cx = width / 2;
       cy = height / 2;
     }
@@ -6990,9 +6903,7 @@ visibility: hidden;
         path,
         life: 1
       });
-      if (lightning.length > MAX_ACTIVE_LIGHTNING_BOLTS) {
-        lightning.shift();
-      }
+      if (lightning.length > MAX_ACTIVE_LIGHTNING_BOLTS) lightning.shift();
     }
     let lastTime = 0;
     function animate(time) {
@@ -7029,6 +6940,7 @@ visibility: hidden;
       }
       if (gravityActive && suctionMode) {
         suctionStrength *= Math.pow(1.06, dt);
+        if (suctionStrength > 2) canvas.style.transform = `translate(${Math.random()*4-2}px, ${Math.random()*4-2}px)`;
       }
       if (!systemOnline) {
         const wave = Math.sin(time * 0.0015);
@@ -7221,6 +7133,7 @@ visibility: hidden;
       isHolding = true;
       holdStart = performance.now();
       PERF.holdPrimedLogged = false;
+      lightningSpawnAccumulatorMs = 0;
       logoBtn.classList.add('calibrating');
       targetWarpFactor = HOLD_WARP_TARGET;
       document.title = "Initializing...";
@@ -7319,14 +7232,6 @@ visibility: hidden;
       });
       uiOverlay.classList.add('faded');
       logoBtn.style.opacity = '0';
-      if (EMBED_FIGHT_INTRO) {
-        await new Promise(r => setTimeout(r, 900));
-        flashOverlay.classList.remove('active');
-        document.body.classList.remove('chromatic-impact');
-        perfMarkEnd('sequence', { mode: 'embed-intro', elapsedMs: sequenceElapsed() });
-        notifyParentIntroComplete();
-        return;
-      }
       await new Promise(r => setTimeout(r, 200));
       logoBtn.classList.remove('imploding', 'locked', 'vacuum-state');
       logoBtn.classList.add('online');
@@ -8217,17 +8122,14 @@ visibility: hidden;
       const hero = document.querySelector('.hero');
       if (hero) heroObserver.observe(hero);
     }
-    if (!EMBED_FIGHT_INTRO) {
-      initializeComponents();
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.classList.add("in-viewport");
-        });
-      }, {
-        threshold: 0.1
+    initializeComponents();
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add("in-viewport");
       });
-      document.querySelectorAll('.quantum-particle-system, .starry-background, .nebula-fog, .gallery_line').forEach(el => observer.observe(el));
-    }
+    }, {
+      threshold: 0.1
+    });
+    document.querySelectorAll('.quantum-particle-system, .starry-background, .nebula-fog, .gallery_line').forEach(el => observer.observe(el));
   });
 </script>
-
