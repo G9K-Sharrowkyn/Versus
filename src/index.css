@@ -291,8 +291,29 @@ body {
   from {
     opacity: 0;
   }
+  20% {
+    opacity: 0.02;
+  }
   to {
     opacity: 1;
+  }
+}
+
+@keyframes vvv-morph-stage-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes vvv-morph-logo-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
   }
 }
 
@@ -304,6 +325,10 @@ body {
   isolation: isolate;
   transform: translateZ(0);
   background: #111418;
+}
+
+.vvv-morph-stage.is-running {
+  animation: vvv-morph-stage-fade-out 680ms ease-out 3400ms forwards;
 }
 
 .vvv-morph-stage::before {
@@ -318,34 +343,13 @@ body {
   background:
     repeating-linear-gradient(
       0deg,
-      rgba(148, 163, 184, 0.08) 0,
-      rgba(148, 163, 184, 0.08) 1px,
+      transparent 0,
       transparent 1px,
-      transparent 4px
+      rgba(0, 255, 255, 0.03) 2px,
+      rgba(0, 255, 255, 0.03) 3px
     ),
-    radial-gradient(
-      ellipse 160% 120% at -5% 40%,
-      rgba(255, 255, 255, 0.025) 0,
-      rgba(14, 165, 233, 0.015) 30%,
-      rgba(18, 19, 23, 0.9) 60%,
-      #08080a 80%
-    ),
-    radial-gradient(
-      ellipse 140% 160% at 105% 60%,
-      rgba(14, 165, 233, 0.06) 0,
-      rgba(255, 255, 255, 0.02) 25%,
-      rgba(25, 27, 34, 0.7) 60%,
-      #08080a 85%
-    ),
-    linear-gradient(
-      90deg,
-      #030307 0,
-      #070a10 20%,
-      #0b0e16 40%,
-      #0f121c 60%,
-      #0b0e16 80%,
-      #030307 100%
-    );
+    radial-gradient(circle at 50% 50%, transparent 22%, rgba(0, 0, 0, 0.82) 130%);
+  background-size: 100% 4px, 100% 100%;
 }
 
 .vvv-morph-stage.is-running::before {
@@ -425,7 +429,9 @@ body {
 }
 
 .vvv-logo-morph.is-running {
-  animation: vvv-morph-shell 2000ms cubic-bezier(0.19, 1, 0.22, 1) 2000ms forwards;
+  animation:
+    vvv-morph-shell 2000ms cubic-bezier(0.19, 1, 0.22, 1) 2000ms forwards,
+    vvv-morph-logo-fade-out 620ms ease-out 3380ms forwards;
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__electric {

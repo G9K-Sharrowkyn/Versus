@@ -3410,6 +3410,8 @@ function App() {
   const searchTransitionTimeoutsRef = useRef<number[]>([])
   const searchTransitioningRef = useRef(false)
   const searchCollapseAckedRef = useRef(false)
+  const introFrameReadyRef = useRef(false)
+  const introRevealPendingRef = useRef(false)
   const searchFrameRef = useRef<HTMLIFrameElement>(null)
   const draftTxtInputRef = useRef<HTMLInputElement>(null)
   const draftPortraitInputRefA = useRef<HTMLInputElement>(null)
@@ -3424,8 +3426,9 @@ function App() {
   const MORPH_RING_ON_MS = 1000
   const MORPH_FINAL_MS = 2000
   const MORPH_TOTAL_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_MS
-  const MORPH_OVERLAY_BUFFER_MS = 350
-  const INTRO_MOUNT_AT_MS = MORPH_TOTAL_MS
+  const MORPH_OVERLAY_BUFFER_MS = 180
+  const INTRO_MOUNT_AT_MS = 1200
+  const INTRO_REVEAL_AT_MS = MORPH_TOTAL_MS - 520
   const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 
   const rows = useMemo<ScoreRow[]>(
@@ -3628,6 +3631,8 @@ function App() {
     searchTransitionTimeoutsRef.current = []
     searchTransitioningRef.current = false
     searchCollapseAckedRef.current = false
+    introFrameReadyRef.current = false
+    introRevealPendingRef.current = false
     setSearchMorphVisible(false)
     setSearchMorphHandoff(null)
   }
@@ -3688,8 +3693,18 @@ function App() {
 
     const introMountTimeout = window.setTimeout(() => {
       setViewMode('fight-intro')
-      setIntroVisible(true)
+      setIntroVisible(false)
+      introFrameReadyRef.current = false
+      introRevealPendingRef.current = false
     }, INTRO_MOUNT_AT_MS)
+
+    const introRevealTimeout = window.setTimeout(() => {
+      if (introFrameReadyRef.current) {
+        setIntroVisible(true)
+      } else {
+        introRevealPendingRef.current = true
+      }
+    }, INTRO_REVEAL_AT_MS)
 
     const hideMorphTimeout = window.setTimeout(() => {
       setSearchMorphVisible(false)
@@ -3697,7 +3712,7 @@ function App() {
       searchCollapseAckedRef.current = false
     }, MORPH_TOTAL_MS + MORPH_OVERLAY_BUFFER_MS)
 
-    searchTransitionTimeoutsRef.current.push(introMountTimeout, hideMorphTimeout)
+    searchTransitionTimeoutsRef.current.push(introMountTimeout, introRevealTimeout, hideMorphTimeout)
   }
 
   const startSearchFightTransition = (fight: FightRecord) => {
@@ -3706,6 +3721,8 @@ function App() {
     searchTransitioningRef.current = true
     applyFightRecord(fight, { enterIntro: false })
     postMessageToSearchFrame({ type: 'vvv-search-collapse' })
+    introFrameReadyRef.current = false
+    introRevealPendingRef.current = false
     setIntroVisible(false)
 
     const collapseWatchdogTimeout = window.setTimeout(() => {
@@ -4334,6 +4351,13 @@ function App() {
                 src="/aaa.html?mode=fight-intro"
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
+                onLoad={() => {
+                  introFrameReadyRef.current = true
+                  if (introRevealPendingRef.current) {
+                    introRevealPendingRef.current = false
+                    setIntroVisible(true)
+                  }
+                }}
               />
             </div>
           </section>
