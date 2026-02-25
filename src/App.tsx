@@ -5176,10 +5176,11 @@ function BlankTemplate({
                     <div className="absolute inset-y-0 left-0 bg-[linear-gradient(90deg,#0ea5e9,#1d4ed8)]" style={{ width: `${superPct}%` }} />
                     {superBonusPct > 0 ? (
                       <div
-                        className="absolute inset-y-1 bg-[repeating-linear-gradient(135deg,rgba(125,211,252,0.95)_0px,rgba(125,211,252,0.95)_6px,rgba(125,211,252,0.35)_6px,rgba(125,211,252,0.35)_12px)]"
+                        className="pointer-events-none absolute inset-0"
                         style={{
-                          left: `${superPct}%`,
-                          width: `${Math.max(0, superTotalPct - superPct)}%`,
+                          clipPath: `inset(5% ${Math.max(0, 100 - superTotalPct)}% 5% ${Math.max(0, Math.min(100, superPct))}%)`,
+                          background:
+                            'repeating-linear-gradient(135deg, rgba(56,189,248,0.75) 0px, rgba(56,189,248,0.75) 8px, rgba(15,23,42,0) 8px, rgba(15,23,42,0) 16px)',
                         }}
                       />
                     ) : null}
@@ -5205,14 +5206,15 @@ function BlankTemplate({
                     <div className="absolute inset-y-0 left-0 bg-[linear-gradient(90deg,#ef4444,#b91c1c)]" style={{ width: `${hyperPct}%` }} />
                     {hyperBonusPct > 0 ? (
                       <div
-                        className="absolute inset-y-1 bg-[repeating-linear-gradient(135deg,rgba(248,113,113,0.95)_0px,rgba(248,113,113,0.95)_6px,rgba(248,113,113,0.35)_6px,rgba(248,113,113,0.35)_12px)]"
+                        className="pointer-events-none absolute inset-0"
                         style={{
-                          left: `${hyperPct}%`,
-                          width: `${Math.max(0, hyperTotalPct - hyperPct)}%`,
+                          clipPath: `inset(5% ${Math.max(0, 100 - hyperTotalPct)}% 5% ${Math.max(0, Math.min(100, hyperPct))}%)`,
+                          background:
+                            'repeating-linear-gradient(135deg, rgba(248,113,113,0.75) 0px, rgba(248,113,113,0.75) 8px, rgba(15,23,42,0) 8px, rgba(15,23,42,0) 16px)',
                         }}
                       />
                     ) : null}
-                    <div className="pointer-events-none absolute bottom-0 left-[40%] right-0 top-0 bg-[radial-gradient(circle_at_20%_50%,rgba(248,113,113,0.46),transparent_26%),radial-gradient(circle_at_55%_55%,rgba(190,24,93,0.34),transparent_28%)]" />
+                    <div className="pointer-events-none absolute inset-0 bg-[repeating-linear-gradient(135deg,rgba(226,232,240,0.08)_0px,rgba(226,232,240,0.08)_8px,rgba(15,23,42,0)_8px,rgba(15,23,42,0)_16px)]" />
                   </div>
                   <div className="flex h-14 w-[168px] flex-col items-center justify-center rounded-md border-2 border-rose-300/55 bg-slate-950/92 px-3 leading-none text-rose-200">
                     <span className={hyperBonusPct > 0 ? 'text-[34px]' : 'text-[36px]'}>{Math.round(hyperPct)}%</span>
@@ -5673,11 +5675,6 @@ function BlankTemplate({
       <div className="relative z-10 flex h-full flex-col text-slate-100">
         <div className="relative mt-1 min-h-0 flex-1 overflow-hidden rounded-xl border border-cyan-300/35 bg-[linear-gradient(180deg,#06172a_0%,#0a2036_52%,#061325_100%)] p-3">
           <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:7%_13%]" />
-          <svg viewBox="0 0 100 100" className="pointer-events-none absolute inset-0 h-full w-full opacity-15">
-            <polygon points="50,8 85,86 15,86" fill="none" stroke="#f43f5e" strokeWidth="2.2" />
-            <line x1="50" y1="32" x2="50" y2="60" stroke="#f43f5e" strokeWidth="3" />
-            <circle cx="50" cy="70" r="3.2" fill="#f43f5e" />
-          </svg>
 
           <div className="relative z-10 flex h-full flex-col">
             <h2 className="text-center text-[72px] uppercase leading-none tracking-[0.02em] text-slate-100" style={{ fontFamily: 'var(--font-display)' }}>
@@ -5698,6 +5695,24 @@ function BlankTemplate({
             <p className="mt-2 whitespace-pre-line text-[clamp(1.8rem,1.95vw,2.95rem)] leading-[1.08] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
               {example}
             </p>
+
+            <div className="mt-[clamp(12px,1.4vh,22px)] mb-[-8px] flex items-center justify-center">
+              <svg
+                viewBox="0 0 100 92"
+                className="h-[clamp(156px,16.8vw,252px)] w-[clamp(178px,19vw,286px)] drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]"
+                aria-hidden="true"
+              >
+                <polygon
+                  points="50,6 95,84 5,84"
+                  fill="rgba(255,255,255,0.96)"
+                  stroke="#ff2d3f"
+                  strokeWidth="6"
+                  strokeLinejoin="round"
+                />
+                <line x1="50" y1="30" x2="50" y2="56" stroke="#ff2d3f" strokeWidth="8" strokeLinecap="round" />
+                <circle cx="50" cy="69" r="4.8" fill="#ff2d3f" />
+              </svg>
+            </div>
 
             <p className="mt-auto text-[clamp(1.6rem,1.75vw,2.6rem)] leading-[1.08] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
               <span className="font-bold">{questionLead}</span> {questionBody}
