@@ -5141,7 +5141,14 @@ function BlankTemplate({
             <span className="vvv-fight-title-outro__line">
               {renderAnimatedLine(topName, topPalette)}
             </span>
-            <span className="vvv-fight-title-outro__vs">vs</span>
+            <span className="vvv-fight-title-outro__vs">
+              <img
+                src="/assets/VS.png"
+                alt="VS"
+                className="vvv-fight-title-outro__vs-image"
+                draggable={false}
+              />
+            </span>
             <span className="vvv-fight-title-outro__line">
               {renderAnimatedLine(bottomName, bottomPalette)}
             </span>

@@ -625,14 +625,19 @@ body {
 }
 
 .vvv-fight-title-outro__vs {
-  font-family: var(--font-ui);
-  font-weight: 700;
-  font-size: clamp(1.1rem, 2.1vw, 1.75rem);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   line-height: 1;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: rgba(241, 245, 249, 0.92);
-  text-shadow: none;
+}
+
+.vvv-fight-title-outro__vs-image {
+  display: block;
+  width: clamp(2.4rem, 5.8vw, 5.2rem);
+  height: auto;
+  filter: drop-shadow(0 0 0.55rem rgba(96, 165, 250, 0.45));
+  user-select: none;
+  -webkit-user-drag: none;
 }
 
 @keyframes vvv-fight-title-stripe-loop {
