@@ -427,6 +427,15 @@ body {
   }
 }
 
+@keyframes vvv-morph-stage-from-intro {
+  from {
+    opacity: 0.48;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
 @keyframes vvv-morph-logo-fade-out {
   from {
     opacity: 1;
@@ -591,8 +600,8 @@ body {
 }
 
 .vvv-morph-stage.is-running.is-reverse::after {
-  animation: none;
-  opacity: 0;
+  opacity: 0.48;
+  animation: vvv-morph-stage-from-intro 4000ms linear forwards;
 }
 
 .vvv-logo-morph.is-running.is-reverse {
