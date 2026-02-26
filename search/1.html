@@ -84,6 +84,9 @@
         let collapseStarted = false;
         let collapseNotified = false;
         let collapseTimers = [];
+        let expandFrameA = 0;
+        let expandFrameB = 0;
+        let expandFrameC = 0;
         let relayMoveRaf = 0;
         let relayMoveX = window.innerWidth * 0.5;
         let relayMoveY = window.innerHeight * 0.5;
@@ -169,6 +172,11 @@
           }
         };
 
+        const notifySearchReady = () => {
+          if (!(window.parent && window.parent !== window)) return;
+          window.parent.postMessage({ type: 'vvv-search-ready' }, window.location.origin);
+        };
+
         const buildSearchHandoff = () => {
           if (!searchBar) return null;
           const barRect = searchBar.getBoundingClientRect();
@@ -226,9 +234,93 @@
           collapseNotified = false;
           collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
           collapseTimers = [];
+          if (expandFrameA) {
+            window.cancelAnimationFrame(expandFrameA);
+            expandFrameA = 0;
+          }
+          if (expandFrameB) {
+            window.cancelAnimationFrame(expandFrameB);
+            expandFrameB = 0;
+          }
+          if (expandFrameC) {
+            window.cancelAnimationFrame(expandFrameC);
+            expandFrameC = 0;
+          }
           document.body.classList.remove('search-collapsing');
           searchBar?.style.removeProperty('--collapse-width');
           searchBar?.classList.remove('is-collapsing', 'is-cap-fade', 'is-collapsed');
+        };
+
+        const primeCollapsed = () => {
+          collapseStarted = true;
+          collapseNotified = false;
+          collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
+          collapseTimers = [];
+          if (expandFrameA) {
+            window.cancelAnimationFrame(expandFrameA);
+            expandFrameA = 0;
+          }
+          if (expandFrameB) {
+            window.cancelAnimationFrame(expandFrameB);
+            expandFrameB = 0;
+          }
+          if (expandFrameC) {
+            window.cancelAnimationFrame(expandFrameC);
+            expandFrameC = 0;
+          }
+          if (searchBar) {
+            const rect = searchBar.getBoundingClientRect();
+            const collapseSize = Math.max(48, Math.round(rect.height));
+            searchBar.style.setProperty('--collapse-width', `${collapseSize}px`);
+            searchBar.style.transition = 'none';
+          }
+          document.body.classList.add('search-collapsing');
+          searchBar?.classList.remove('is-collapsed', 'is-cap-fade');
+          searchBar?.classList.add('is-collapsing');
+          void searchBar?.offsetWidth;
+          searchBar?.style.removeProperty('transition');
+
+          if (window.parent && window.parent !== window) {
+            window.parent.postMessage(
+              { type: 'vvv-search-primed', handoff: buildSearchHandoff() },
+              window.location.origin,
+            );
+          }
+        };
+
+        const expandFromPrime = () => {
+          collapseStarted = false;
+          collapseNotified = false;
+          collapseTimers.forEach((timerId) => window.clearTimeout(timerId));
+          collapseTimers = [];
+          if (expandFrameA) {
+            window.cancelAnimationFrame(expandFrameA);
+            expandFrameA = 0;
+          }
+          if (expandFrameB) {
+            window.cancelAnimationFrame(expandFrameB);
+            expandFrameB = 0;
+          }
+          if (expandFrameC) {
+            window.cancelAnimationFrame(expandFrameC);
+            expandFrameC = 0;
+          }
+          document.body.classList.remove('search-collapsing');
+          searchBar?.classList.remove('is-cap-fade', 'is-collapsed');
+          expandFrameA = window.requestAnimationFrame(() => {
+            expandFrameA = 0;
+            if (searchBar) {
+              void searchBar.offsetWidth;
+            }
+            expandFrameB = window.requestAnimationFrame(() => {
+              expandFrameB = 0;
+              searchBar?.classList.remove('is-collapsing');
+              expandFrameC = window.requestAnimationFrame(() => {
+                expandFrameC = 0;
+                searchBar?.style.removeProperty('--collapse-width');
+              });
+            });
+          });
         };
 
         input?.addEventListener('keydown', (event) => {
@@ -245,14 +337,24 @@
             startCollapse();
             return;
           }
+          if (payload.type === 'vvv-search-prime-collapsed') {
+            primeCollapsed();
+            return;
+          }
+          if (payload.type === 'vvv-search-expand') {
+            expandFromPrime();
+            return;
+          }
           if (payload.type === 'vvv-search-reset') {
             resetCollapse();
+            notifySearchReady();
           }
         });
 
         window.addEventListener('load', () => {
           disposePointerRelay = bindPointerRelay();
           resetCollapse();
+          notifySearchReady();
           if (input) {
             input.name = `vvv-search-${Math.random().toString(36).slice(2)}`;
             input.autocomplete = 'off';

@@ -513,11 +513,27 @@ body {
 }
 
 .vvv-logo-morph__electric {
-  display: none;
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.88);
+  filter: blur(1.05px);
+  opacity: 0.86;
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: translateY(-1px);
 }
 
 .vvv-logo-morph__ring {
-  display: none;
+  position: absolute;
+  inset: 1px;
+  border-radius: inherit;
+  border: 2px solid rgba(var(--vvv-electric-blue-soft-rgb), 0.46);
+  opacity: 0;
+  box-shadow:
+    0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.18),
+    0 0 12px rgba(var(--vvv-electric-blue-rgb), 0.34);
+  pointer-events: none;
 }
 
 .vvv-logo-morph__core {
@@ -563,6 +579,39 @@ body {
 
 .vvv-logo-morph.is-running .vvv-logo-morph__logo {
   animation: vvv-morph-logo-reveal 2000ms linear 2000ms forwards;
+}
+
+.vvv-morph-stage.is-running.is-reverse {
+  animation: none;
+  opacity: 1;
+}
+
+.vvv-morph-stage.is-running.is-reverse::before {
+  animation: none;
+}
+
+.vvv-morph-stage.is-running.is-reverse::after {
+  animation: none;
+  opacity: 0;
+}
+
+.vvv-logo-morph.is-running.is-reverse {
+  animation: vvv-morph-shell 2000ms cubic-bezier(0.19, 1, 0.22, 1) 2000ms reverse both;
+}
+
+.vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__electric {
+  opacity: 0;
+  animation:
+    vvv-morph-electric-flicker 280ms linear 3000ms infinite,
+    vvv-morph-electric-off 1000ms linear 3000ms reverse both;
+}
+
+.vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__ring {
+  animation: vvv-morph-ring-on 1000ms ease 3000ms reverse both;
+}
+
+.vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__logo {
+  animation: vvv-morph-logo-reveal 2000ms linear 2000ms reverse both;
 }
 
 .vvv-fight-title-outro {

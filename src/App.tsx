@@ -192,6 +192,7 @@ type PointerRelayPayload = {
   down?: boolean
   timestamp: number
 }
+type ReverseStage = 'idle' | 'explosion' | 'morph-reverse' | 'search-expand'
 
 const FIGHTER_A_COLOR = '#3FC3CF'
 const FIGHTER_B_COLOR = '#EF5D5D'
@@ -3667,6 +3668,9 @@ function App() {
   const [introVisible, setIntroVisible] = useState(true)
   const [fightViewVisible, setFightViewVisible] = useState(true)
   const [searchMorphVisible, setSearchMorphVisible] = useState(false)
+  const [searchMorphDirection, setSearchMorphDirection] = useState<'forward' | 'reverse'>('forward')
+  const [reverseStage, setReverseStage] = useState<ReverseStage>('idle')
+  const [introFlowMode, setIntroFlowMode] = useState<'forward' | 'reverse'>('forward')
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
   const [activeFightId, setActiveFightId] = useState<string | null>(null)
@@ -3688,9 +3692,16 @@ function App() {
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
   const searchTransitionTimeoutsRef = useRef<number[]>([])
+  const reverseTransitionTimeoutsRef = useRef<number[]>([])
+  const finalTemplateAutoReturnTimeoutRef = useRef<number | null>(null)
   const searchTransitioningRef = useRef(false)
+  const returnTransitioningRef = useRef(false)
   const searchCollapseAckedRef = useRef(false)
   const introFrameReadyRef = useRef(false)
+  const introBridgeReadyRef = useRef(false)
+  const searchBridgeReadyRef = useRef(false)
+  const reverseExplosionDispatchPendingRef = useRef(false)
+  const reversePrimePendingRef = useRef(false)
   const introRevealPendingRef = useRef(false)
   const searchFrameRef = useRef<HTMLIFrameElement>(null)
   const introFrameRef = useRef<HTMLIFrameElement>(null)
@@ -3700,6 +3711,7 @@ function App() {
   const draftPortraitPreviewRef = useRef<{ a: string | null; b: string | null }>({ a: null, b: null })
   const portraitEditorPreviewRef = useRef<string | null>(null)
   const fightViewRevealTimeoutRef = useRef<number | null>(null)
+  const reverseStageRef = useRef<ReverseStage>('idle')
   const [previewScale, setPreviewScale] = useState(1)
   const PREVIEW_BASE_WIDTH = 1400
   const PREVIEW_BASE_HEIGHT = 787.5
@@ -3713,6 +3725,8 @@ function App() {
   const INTRO_MOUNT_AT_MS = 1200
   const INTRO_REVEAL_AT_MS = MORPH_TOTAL_MS - 220
   const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
+  const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
+  const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
 
   useEffect(() => {
     if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return
@@ -4099,13 +4113,46 @@ function App() {
   const clearSearchTransitionQueue = () => {
     for (const timeoutId of searchTransitionTimeoutsRef.current) {
       window.clearTimeout(timeoutId)
+      window.clearInterval(timeoutId)
     }
     searchTransitionTimeoutsRef.current = []
     searchTransitioningRef.current = false
     searchCollapseAckedRef.current = false
     introFrameReadyRef.current = false
+    introBridgeReadyRef.current = false
+    searchBridgeReadyRef.current = false
+    reverseExplosionDispatchPendingRef.current = false
+    reversePrimePendingRef.current = false
     introRevealPendingRef.current = false
     setSearchMorphVisible(false)
+    setSearchMorphDirection('forward')
+    setSearchMorphHandoff(null)
+  }
+
+  const clearFinalTemplateAutoReturnTimeout = () => {
+    if (finalTemplateAutoReturnTimeoutRef.current !== null) {
+      window.clearTimeout(finalTemplateAutoReturnTimeoutRef.current)
+      finalTemplateAutoReturnTimeoutRef.current = null
+    }
+  }
+
+  const clearReturnTransitionQueue = () => {
+    clearFinalTemplateAutoReturnTimeout()
+    for (const timeoutId of reverseTransitionTimeoutsRef.current) {
+      window.clearTimeout(timeoutId)
+      window.clearInterval(timeoutId)
+    }
+    reverseTransitionTimeoutsRef.current = []
+    returnTransitioningRef.current = false
+    reverseStageRef.current = 'idle'
+    introBridgeReadyRef.current = false
+    searchBridgeReadyRef.current = false
+    reverseExplosionDispatchPendingRef.current = false
+    reversePrimePendingRef.current = false
+    setReverseStage('idle')
+    setIntroFlowMode('forward')
+    setSearchMorphVisible(false)
+    setSearchMorphDirection('forward')
     setSearchMorphHandoff(null)
   }
 
@@ -4127,8 +4174,16 @@ function App() {
 
   const postMessageToSearchFrame = (payload: { type: string }) => {
     const target = searchFrameRef.current?.contentWindow
-    if (!target || typeof window === 'undefined') return
+    if (!target || typeof window === 'undefined') return false
     target.postMessage(payload, window.location.origin)
+    return true
+  }
+
+  const postMessageToIntroFrame = (payload: { type: string }) => {
+    const target = introFrameRef.current?.contentWindow
+    if (!target || typeof window === 'undefined') return false
+    target.postMessage(payload, window.location.origin)
+    return true
   }
 
   const applyFightRecord = (fight: FightRecord, options?: { enterIntro?: boolean }) => {
@@ -4181,9 +4236,13 @@ function App() {
     searchCollapseAckedRef.current = true
 
     setSearchMorphHandoff(handoff ?? getViewportCenterHandoff())
+    setSearchMorphDirection('forward')
     setSearchMorphVisible(true)
+    reverseStageRef.current = 'idle'
+    setReverseStage('idle')
 
     const introMountTimeout = window.setTimeout(() => {
+      setIntroFlowMode('forward')
       setViewMode('fight-intro')
       setIntroVisible(false)
       introFrameReadyRef.current = false
@@ -4200,6 +4259,7 @@ function App() {
 
     const hideMorphTimeout = window.setTimeout(() => {
       setSearchMorphVisible(false)
+      setSearchMorphDirection('forward')
       searchTransitioningRef.current = false
       searchCollapseAckedRef.current = false
     }, MORPH_TOTAL_MS + MORPH_OVERLAY_BUFFER_MS)
@@ -4209,12 +4269,14 @@ function App() {
 
   const startSearchFightTransition = (fight: FightRecord) => {
     if (searchTransitioningRef.current) return
+    clearReturnTransitionQueue()
     clearSearchTransitionQueue()
     searchTransitioningRef.current = true
     applyFightRecord(fight, { enterIntro: false })
     postMessageToSearchFrame({ type: 'vvv-search-collapse' })
     introFrameReadyRef.current = false
     introRevealPendingRef.current = false
+    setIntroFlowMode('forward')
     setIntroVisible(false)
 
     const collapseWatchdogTimeout = window.setTimeout(() => {
@@ -4222,6 +4284,124 @@ function App() {
     }, SEARCH_COLLAPSE_WATCHDOG_MS)
 
     searchTransitionTimeoutsRef.current.push(collapseWatchdogTimeout)
+  }
+
+  const completeReverseMorphToSearch = (handoff?: SearchMorphHandoff | null) => {
+    if (!returnTransitioningRef.current || reverseStageRef.current !== 'morph-reverse') return
+
+    if (handoff) {
+      setSearchMorphHandoff(handoff)
+    }
+    reversePrimePendingRef.current = false
+    reverseStageRef.current = 'search-expand'
+    setReverseStage('search-expand')
+
+    const hideMorphDelayMs = MORPH_TOTAL_MS + MORPH_OVERLAY_BUFFER_MS
+
+    const hideMorphTimeout = window.setTimeout(() => {
+      if (!returnTransitioningRef.current) return
+      setSearchMorphVisible(false)
+      setSearchMorphDirection('forward')
+      setSearchMorphHandoff(null)
+    }, hideMorphDelayMs)
+
+    const expandSearchTimeout = window.setTimeout(() => {
+      if (!returnTransitioningRef.current) return
+      window.requestAnimationFrame(() => {
+        if (!returnTransitioningRef.current) return
+        postMessageToSearchFrame({ type: 'vvv-search-expand' })
+      })
+    }, hideMorphDelayMs)
+
+    const finalizeReverseTimeout = window.setTimeout(() => {
+      if (!returnTransitioningRef.current) return
+      reverseStageRef.current = 'idle'
+      setReverseStage('idle')
+      returnTransitioningRef.current = false
+      reverseTransitionTimeoutsRef.current = []
+      setFightViewVisible(true)
+    }, hideMorphDelayMs + 180)
+
+    reverseTransitionTimeoutsRef.current.push(hideMorphTimeout, expandSearchTimeout, finalizeReverseTimeout)
+  }
+
+  const startReverseMorphToSearch = () => {
+    if (!returnTransitioningRef.current || reverseStageRef.current !== 'explosion') return
+    reverseExplosionDispatchPendingRef.current = false
+    reverseStageRef.current = 'morph-reverse'
+    setReverseStage('morph-reverse')
+    setSearchMorphDirection('reverse')
+    setSearchMorphHandoff(getViewportCenterHandoff())
+    setSearchMorphVisible(true)
+    searchBridgeReadyRef.current = false
+    reversePrimePendingRef.current = true
+    setViewMode('search')
+    setIntroVisible(true)
+
+    const primeReadyWatchdogTimeout = window.setTimeout(() => {
+      if (!returnTransitioningRef.current) return
+      if (reverseStageRef.current !== 'morph-reverse') return
+      if (!reversePrimePendingRef.current) return
+      const sent = postMessageToSearchFrame({ type: 'vvv-search-prime-collapsed' })
+      if (!sent) return
+    }, 1200)
+
+    const primeWatchdogTimeout = window.setTimeout(() => {
+      if (!returnTransitioningRef.current) return
+      completeReverseMorphToSearch(null)
+    }, SEARCH_COLLAPSE_WATCHDOG_MS)
+
+    reverseTransitionTimeoutsRef.current.push(primeReadyWatchdogTimeout, primeWatchdogTimeout)
+  }
+
+  const tryDispatchReverseExplosion = () => {
+    if (!returnTransitioningRef.current) return
+    if (reverseStageRef.current !== 'explosion') return
+    if (!reverseExplosionDispatchPendingRef.current) return
+    const sent = postMessageToIntroFrame({ type: 'vvv-aaa-play-reverse-explosion' })
+    if (!sent) return
+    setIntroVisible(true)
+  }
+
+  const tryDispatchReversePrime = () => {
+    if (!returnTransitioningRef.current) return
+    if (reverseStageRef.current !== 'morph-reverse') return
+    if (!reversePrimePendingRef.current) return
+    const sent = postMessageToSearchFrame({ type: 'vvv-search-prime-collapsed' })
+    if (!sent) return
+  }
+
+  const startFightReturnTransition = () => {
+    if (returnTransitioningRef.current) return
+    clearSearchTransitionQueue()
+    clearReturnTransitionQueue()
+    returnTransitioningRef.current = true
+    reverseStageRef.current = 'explosion'
+    setReverseStage('explosion')
+    setFightViewVisible(false)
+    setIntroFlowMode('reverse')
+    setIntroVisible(false)
+    introFrameReadyRef.current = false
+    introBridgeReadyRef.current = false
+    reverseExplosionDispatchPendingRef.current = true
+    introRevealPendingRef.current = false
+    setViewMode('fight-intro')
+    const reverseDispatchTimeout = window.setTimeout(() => {
+      tryDispatchReverseExplosion()
+    }, 50)
+    const reverseDispatchPump = window.setInterval(() => {
+      if (!returnTransitioningRef.current || reverseStageRef.current !== 'explosion') return
+      if (!reverseExplosionDispatchPendingRef.current) return
+      tryDispatchReverseExplosion()
+    }, 180)
+
+    const reverseExplosionWatchdog = window.setTimeout(() => {
+      if (!returnTransitioningRef.current || reverseStageRef.current !== 'explosion') return
+      reverseExplosionDispatchPendingRef.current = false
+      startReverseMorphToSearch()
+    }, REVERSE_EXPLOSION_WATCHDOG_MS)
+
+    reverseTransitionTimeoutsRef.current.push(reverseDispatchTimeout, reverseDispatchPump, reverseExplosionWatchdog)
   }
 
   const createFightFromDraft = async () => {
@@ -4284,6 +4464,7 @@ function App() {
   }
 
   const goBackToLibrary = () => {
+    clearReturnTransitionQueue()
     clearSearchTransitionQueue()
     clearFightViewRevealTimeout()
     setFightViewVisible(true)
@@ -4308,15 +4489,47 @@ function App() {
       if (!payload || typeof payload !== 'object') return
 
       const typed = payload as { type?: unknown; query?: unknown; handoff?: unknown }
+      if (typed.type === 'vvv-aaa-ready') {
+        introBridgeReadyRef.current = true
+        if (returnTransitioningRef.current && reverseStageRef.current === 'explosion') {
+          tryDispatchReverseExplosion()
+        }
+        return
+      }
+
       if (typed.type === 'vvv-aaa-complete') {
+        if (returnTransitioningRef.current) return
         clearSearchTransitionQueue()
         triggerFightViewFadeIn()
         setViewMode('fight')
         return
       }
 
+      if (typed.type === 'vvv-aaa-reverse-explosion-done') {
+        if (!returnTransitioningRef.current || reverseStageRef.current !== 'explosion') return
+        reverseExplosionDispatchPendingRef.current = false
+        startReverseMorphToSearch()
+        return
+      }
+
       if (typed.type === 'vvv-search-collapsed') {
+        if (returnTransitioningRef.current) return
         runSearchMorphSequence(normalizeSearchMorphHandoff(typed.handoff))
+        return
+      }
+
+      if (typed.type === 'vvv-search-ready') {
+        searchBridgeReadyRef.current = true
+        if (returnTransitioningRef.current && reverseStageRef.current === 'morph-reverse') {
+          tryDispatchReversePrime()
+        }
+        return
+      }
+
+      if (typed.type === 'vvv-search-primed') {
+        if (!returnTransitioningRef.current || reverseStageRef.current !== 'morph-reverse') return
+        reversePrimePendingRef.current = false
+        completeReverseMorphToSearch(normalizeSearchMorphHandoff(typed.handoff))
         return
       }
 
@@ -4563,9 +4776,25 @@ function App() {
   useEffect(
     () => () => {
       clearSearchTransitionQueue()
+      clearReturnTransitionQueue()
     },
     [],
   )
+
+  useEffect(() => {
+    clearFinalTemplateAutoReturnTimeout()
+    if (viewMode !== 'fight' || activeTemplate !== FINAL_TEMPLATE_ID) return
+    if (returnTransitioningRef.current) return
+
+    finalTemplateAutoReturnTimeoutRef.current = window.setTimeout(() => {
+      startFightReturnTransition()
+    }, FINAL_TEMPLATE_RETURN_DELAY_MS)
+
+    return () => {
+      clearFinalTemplateAutoReturnTimeout()
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeTemplate, viewMode, activeFightId, templateCursor])
 
   const scaledPreviewWidth = Math.round(PREVIEW_BASE_WIDTH * previewScale)
   const scaledPreviewHeight = Math.round(PREVIEW_BASE_HEIGHT * previewScale)
@@ -4590,9 +4819,17 @@ function App() {
   const searchMorphOverlay =
     searchMorphVisible && typeof document !== 'undefined'
       ? createPortal(
-          <div className="vvv-morph-stage is-running pointer-events-none fixed inset-0 z-[2147483647]">
+          <div
+            className={clsx(
+              'vvv-morph-stage is-running pointer-events-none fixed inset-0 z-[2147483647]',
+              searchMorphDirection === 'reverse' && 'is-reverse',
+            )}
+          >
             <div className="vvv-logo-morph-anchor" style={searchMorphAnchorStyle}>
-              <div className="vvv-logo-morph is-running" aria-hidden="true">
+              <div
+                className={clsx('vvv-logo-morph is-running', searchMorphDirection === 'reverse' && 'is-reverse')}
+                aria-hidden="true"
+              >
                 <div className="vvv-logo-morph__electric" />
                 <div className="vvv-logo-morph__ring" />
                 <div className="vvv-logo-morph__core" />
@@ -4710,6 +4947,7 @@ function App() {
 
   return (
     <main
+      data-reverse-stage={reverseStage}
       className={clsx(
         'text-slate-100',
         isEmbeddedFullscreenView
@@ -4755,9 +4993,6 @@ function App() {
               src="/search/1.html"
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
-              onLoad={() => {
-                postMessageToSearchFrame({ type: 'vvv-search-reset' })
-              }}
             />
           </section>
         ) : viewMode === 'home' ? (
@@ -4988,13 +5223,17 @@ function App() {
             >
               <iframe
                 ref={introFrameRef}
-                key={activeFightId || importFileName || 'intro'}
-                src="/aaa.html?mode=fight-intro"
+                key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
+                src={`/aaa.html?mode=fight-intro&flow=${introFlowMode}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}
                 onLoad={() => {
                   introFrameReadyRef.current = true
+                  if (returnTransitioningRef.current && reverseStageRef.current === 'explosion') {
+                    tryDispatchReverseExplosion()
+                    return
+                  }
                   if (introRevealPendingRef.current) {
                     introRevealPendingRef.current = false
                     setIntroVisible(true)

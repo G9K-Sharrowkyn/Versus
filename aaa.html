@@ -5829,6 +5829,9 @@ filter: brightness(2);
 .logo-container.imploding {
 animation: 0.2s cubic-bezier(0.6, 0, 1, 1) forwards implodes;
 }
+.logo-container.imploding.imploding-reverse {
+animation: 0.2s cubic-bezier(0.6, 0, 1, 1) both implodes reverse;
+}
 .logo-container.imploding .tech-ring {
 transform: scale(0.01);
 opacity: 0;
@@ -6789,7 +6792,10 @@ visibility: hidden;
     const logoBtn = document.getElementById('logoContainer');
     const uiOverlay = document.getElementById('uiOverlay');
     const flashOverlay = document.getElementById('flashOverlay');
-    const EMBED_FIGHT_INTRO = new URLSearchParams(window.location.search).get('mode') === 'fight-intro';
+    const QUERY_PARAMS = new URLSearchParams(window.location.search);
+    const EMBED_FIGHT_INTRO = QUERY_PARAMS.get('mode') === 'fight-intro';
+    const INTRO_FLOW_MODE = QUERY_PARAMS.get('flow') === 'reverse' ? 'reverse' : 'forward';
+    const REVERSE_EMBED_MODE = EMBED_FIGHT_INTRO && INTRO_FLOW_MODE === 'reverse';
     const PERF_BOOT_AT = performance.now();
     const PERF = {
       enabled: true,
@@ -6948,10 +6954,17 @@ visibility: hidden;
       });
     }
     disposePointerRelay = bindPointerRelay();
-    const notifyParentIntroComplete = () => {
+    const sleep = (ms) => new Promise((resolve) => window.setTimeout(resolve, ms));
+    const notifyParentMessage = (message) => {
       if (window.parent && window.parent !== window) {
-        window.parent.postMessage({ type: 'vvv-aaa-complete' }, window.location.origin);
+        window.parent.postMessage(message, window.location.origin);
       }
+    };
+    const notifyParentIntroComplete = (messageType = 'vvv-aaa-complete') => {
+      notifyParentMessage({ type: messageType });
+    };
+    const notifyParentIntroReady = () => {
+      notifyParentMessage({ type: 'vvv-aaa-ready' });
     };
     const layerHolo = document.querySelector('.layer-holographic');
     const layerCyber = document.querySelector('.layer-cybernetic');
@@ -6976,6 +6989,7 @@ visibility: hidden;
     let isHolding = false,
       holdStart = 0,
       sequenceActive = false,
+      reverseSequenceActive = false,
       systemOnline = false;
     let manualPhysics = false,
       suctionMode = false,
@@ -6993,6 +7007,123 @@ visibility: hidden;
       debris = [],
       shockwaves = [],
       lightning = [];
+
+    if (REVERSE_EMBED_MODE) {
+      logoBtn.classList.remove('primed', 'calibrating', 'online');
+      logoBtn.classList.add('locked');
+      logoBtn.style.opacity = '0';
+      uiOverlay.classList.remove('faded');
+      flashOverlay.classList.remove('active');
+      document.body.classList.remove('chromatic-impact');
+    }
+
+    const triggerReverseExplosionSequence = async () => {
+      if (!EMBED_FIGHT_INTRO || sequenceActive || reverseSequenceActive || systemOnline) return;
+      perfMarkStart('sequence-reverse');
+      reverseSequenceActive = true;
+      sequenceActive = true;
+      manualPhysics = true;
+      suctionMode = false;
+      gravityActive = false;
+      suctionStrength = 0;
+      document.title = 'REVERSE: SINGULARITY RECOVERY';
+      perfLog('sequence-reverse-start');
+      const sequenceStartedAt = performance.now();
+      const sequenceElapsed = () => Number((performance.now() - sequenceStartedAt).toFixed(1));
+
+      logoBtn.classList.remove('calibrating', 'primed', 'online', 'vacuum-state', 'imploding', 'imploding-reverse');
+      logoBtn.classList.add('locked');
+      logoBtn.style.transition = 'none';
+      logoBtn.style.opacity = '0';
+      document.querySelectorAll('.tech-ring, .hint').forEach((el) => {
+        el.style.opacity = '0';
+      });
+      uiOverlay.classList.add('faded');
+      flashOverlay.classList.add('active');
+      document.body.classList.add('chromatic-impact');
+      for (let i = 0; i < 8; i++) {
+        const angle = Math.random() * TAU;
+        const dist = 600 * Math.random();
+        createLightningBolt(cx, cy, dist, 8);
+      }
+      for (let s of stars) s.explode();
+      for (let i = 0; i < 140; i++) {
+        const angle = Math.random() * TAU,
+          speed = Math.random() * 22 + 4;
+        debris.push({
+          x: cx,
+          y: cy,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          life: 1.0,
+          decay: Math.random() * 0.022 + 0.012,
+          color: Math.random() > 0.35 ? "rgb(255,255,255)" : "rgb(0,255,255)",
+          angle: Math.random() * TAU,
+          spin: (Math.random() - 0.5) * 0.22
+        });
+      }
+      shockwaves.push({
+        size: 1,
+        maxSize: Math.max(width, height) * 0.9,
+        life: 1
+      });
+      await sleep(220);
+      perfLog('sequence-reverse-phase', { phase: 'burst', elapsedMs: sequenceElapsed() });
+      flashOverlay.classList.remove('active');
+      document.body.classList.remove('chromatic-impact');
+
+      logoBtn.classList.add('vacuum-state', 'imploding', 'imploding-reverse');
+      logoBtn.style.transition = 'opacity 260ms ease-out';
+      logoBtn.style.opacity = '1';
+      await sleep(180);
+      perfLog('sequence-reverse-phase', { phase: 'logo-return', elapsedMs: sequenceElapsed() });
+
+      await sleep(200);
+      perfLog('sequence-reverse-phase', { phase: 'implosion-rewind', elapsedMs: sequenceElapsed() });
+
+      logoBtn.classList.remove('imploding', 'imploding-reverse');
+      suctionMode = true;
+      suctionStrength = 0.08;
+      await sleep(1100);
+      perfLog('sequence-reverse-phase', { phase: 'vacuum-release', elapsedMs: sequenceElapsed() });
+
+      suctionMode = false;
+      manualPhysics = false;
+      warpFactor = 0.5;
+      targetWarpFactor = 0.5;
+      logoBtn.classList.remove('vacuum-state', 'locked');
+      document.querySelectorAll('.tech-ring, .hint').forEach((el) => {
+        el.style.opacity = '';
+      });
+      uiOverlay.classList.remove('faded');
+      logoBtn.style.transition = 'opacity 400ms ease-out';
+      logoBtn.style.opacity = EMBED_FIGHT_INTRO ? '0.85' : '1';
+      await sleep(400);
+      perfLog('sequence-reverse-phase', { phase: 'final-settle', elapsedMs: sequenceElapsed() });
+
+      logoBtn.style.transition = '';
+      if (REVERSE_EMBED_MODE) {
+        logoBtn.style.removeProperty('opacity');
+      }
+      sequenceActive = false;
+      reverseSequenceActive = false;
+      perfMarkEnd('sequence-reverse', { mode: 'embed-intro', elapsedMs: sequenceElapsed() });
+      notifyParentIntroComplete('vvv-aaa-reverse-explosion-done');
+    };
+
+    window.addEventListener('message', (event) => {
+      if (event.origin !== window.location.origin) return;
+      const payload = event.data;
+      if (!payload || typeof payload !== 'object') return;
+      if (payload.type !== 'vvv-aaa-play-reverse-explosion') return;
+      if (!EMBED_FIGHT_INTRO || sequenceActive || systemOnline) return;
+      void triggerReverseExplosionSequence();
+    });
+    if (EMBED_FIGHT_INTRO) {
+      window.requestAnimationFrame(() => {
+        notifyParentIntroReady();
+      });
+    }
     class Star {
       constructor() {
         this.reset();
@@ -7324,6 +7455,7 @@ visibility: hidden;
     }
     requestAnimationFrame(animate);
     const startHold = (e) => {
+      if (REVERSE_EMBED_MODE) return;
       if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
       if (sequenceActive || systemOnline || isHolding) return;
       isHolding = true;
@@ -7337,6 +7469,7 @@ visibility: hidden;
       if (navigator.vibrate) navigator.vibrate(20);
     };
     const endHold = (e) => {
+      if (REVERSE_EMBED_MODE) return;
       if (e.type === 'keyup' && e.key !== 'Enter' && e.key !== ' ') return;
       if (!isHolding || sequenceActive || systemOnline) return;
       isHolding = false;
@@ -7432,7 +7565,7 @@ visibility: hidden;
         flashOverlay.classList.remove('active');
         document.body.classList.remove('chromatic-impact');
         perfMarkEnd('sequence', { mode: 'embed-intro', elapsedMs: sequenceElapsed() });
-        notifyParentIntroComplete();
+        notifyParentIntroComplete('vvv-aaa-complete');
         return;
       }
       await new Promise(r => setTimeout(r, 200));
