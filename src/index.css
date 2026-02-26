@@ -620,7 +620,7 @@ body {
   display: inline-block;
   position: relative;
   margin: 0 auto;
-  line-height: 1;
+  line-height: 1.12;
   white-space: nowrap;
   --vvv-stripe-period: 8.514em;
   --vvv-stripe-overlap: 0.572em;
@@ -635,7 +635,7 @@ body {
   -webkit-background-clip: text;
   background-clip: text;
   animation: vvv-fight-title-stripe-loop 9s linear infinite;
-  transform: translate3d(0, 0, 0);
+  transform: translate3d(0, -0.035em, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   will-change: background-position, filter;
@@ -673,7 +673,10 @@ body {
 
 .vvv-fight-title-portrait {
   --vvv-portrait-color: #38bdf8;
+  --vvv-name-inset: clamp(0.55rem, 1vw, 1rem);
+  --vvv-name-height: clamp(5.4rem, 8.2vw, 7.1rem);
   position: relative;
+  min-width: 0;
   height: 100%;
   min-height: 0;
   border-radius: 20px;
@@ -753,14 +756,18 @@ body {
 .vvv-fight-title-portrait__name {
   position: absolute;
   bottom: clamp(0.55rem, 1vw, 1rem);
-  left: clamp(0.55rem, 1vw, 1rem);
-  right: clamp(0.55rem, 1vw, 1rem);
+  left: 50%;
+  width: calc(100% - (var(--vvv-name-inset) * 2));
+  height: var(--vvv-name-height);
+  transform: translateX(-50%);
   z-index: 8;
   text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.25rem, 0.55vw, 0.45rem) clamp(0.4rem, 0.8vw, 0.7rem);
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 0 clamp(0.4rem, 0.8vw, 0.7rem);
   border-radius: 14px;
   border: 1px solid color-mix(in srgb, var(--vvv-portrait-color) 72%, #e2e8f0 28%);
   background: linear-gradient(

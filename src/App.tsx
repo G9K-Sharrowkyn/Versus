@@ -961,6 +961,14 @@ const resolveFightTitleStripeStyle = (palette: FightTitlePalette) => {
   return { textureUrl, textureFilter }
 }
 
+const resolveFightTitleNameFontRem = (text: string) => {
+  const normalized = text.replace(/\s+/g, ' ').trim()
+  if (!normalized) return 6
+  const visualLength = normalized.split('').reduce((acc, char) => acc + (char === ' ' ? 0.55 : 1), 0)
+  const estimated = 8.2 - visualLength * 0.23
+  return Math.max(3.35, Math.min(6.8, estimated))
+}
+
 const parseBooleanFlag = (value: string, fallback: boolean) => {
   const token = normalizeToken(value)
   if (!token) return fallback
@@ -5377,6 +5385,7 @@ function BlankTemplate({
     const renderAnimatedLine = (text: string, palette: FightTitlePalette) => (
       (() => {
         const stripeStyle = resolveFightTitleStripeStyle(palette)
+        const fontSizeRem = resolveFightTitleNameFontRem(text)
         return (
           <span
             data-text={text}
@@ -5384,6 +5393,7 @@ function BlankTemplate({
             style={
               {
                 color: palette.colorA,
+                fontSize: `${fontSizeRem}rem`,
                 '--vvv-stripe-image': stripeStyle.textureUrl,
                 '--vvv-stripe-filter': stripeStyle.textureFilter,
               } as CSSProperties
