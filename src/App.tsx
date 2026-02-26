@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type ChangeEvent, type DragEvent } from 'react'
+import { useEffect, useMemo, useRef, useState, type CSSProperties, type ChangeEvent, type DragEvent } from 'react'
 import clsx from 'clsx'
 import {
   PolarAngleAxis,
@@ -828,6 +828,8 @@ const normalizeToken = (value: string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '')
 
+const AVERAGE_DRAW_THRESHOLD = 1
+
 const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
 
 const parseMatchupFromFileName = (fileName: string): { leftName: string; rightName: string } | null => {
@@ -846,8 +848,94 @@ type FightTitlePalette = {
   dark: boolean
 }
 
+const normalizeHexColor = (value: string) => {
+  const raw = value.trim()
+  const short = raw.match(/^#([0-9a-f]{3})$/i)
+  if (short) {
+    const token = short[1].toLowerCase()
+    return `#${token[0]}${token[0]}${token[1]}${token[1]}${token[2]}${token[2]}`
+  }
+  const full = raw.match(/^#([0-9a-f]{6})$/i)
+  if (full) return `#${full[1].toLowerCase()}`
+  return ''
+}
+
+const parseHexRgb = (value: string) => {
+  const normalized = normalizeHexColor(value)
+  if (!normalized) return null
+  const intValue = Number.parseInt(normalized.slice(1), 16)
+  if (!Number.isFinite(intValue)) return null
+  return {
+    r: (intValue >> 16) & 255,
+    g: (intValue >> 8) & 255,
+    b: intValue & 255,
+  }
+}
+
+type FightTitleColorToken = 'red' | 'blue' | 'gold' | 'dark' | 'neutral'
+
+const classifyFightTitleColor = (hexColor: string, dark: boolean): FightTitleColorToken => {
+  if (dark) return 'dark'
+  const rgb = parseHexRgb(hexColor)
+  if (!rgb) return 'neutral'
+
+  const { r, g, b } = rgb
+  const max = Math.max(r, g, b)
+  const min = Math.min(r, g, b)
+  const delta = max - min
+  const value = max / 255
+  const saturation = max === 0 ? 0 : delta / max
+
+  if (value < 0.16 || (value < 0.24 && saturation < 0.2)) return 'dark'
+
+  let hue = 0
+  if (delta !== 0) {
+    if (max === r) hue = ((g - b) / delta) % 6
+    else if (max === g) hue = (b - r) / delta + 2
+    else hue = (r - g) / delta + 4
+    hue *= 60
+    if (hue < 0) hue += 360
+  }
+
+  if (hue >= 335 || hue <= 22) return 'red'
+  if (hue >= 182 && hue <= 248) return 'blue'
+  if (hue >= 35 && hue <= 68) return 'gold'
+  return 'neutral'
+}
+
+const resolveFightTitleStripeStyle = (palette: FightTitlePalette) => {
+  const tokenA = classifyFightTitleColor(palette.colorA, palette.dark)
+  const tokenB = classifyFightTitleColor(palette.colorB, false)
+  const has = (token: FightTitleColorToken) => tokenA === token || tokenB === token
+
+  let textureUrl = "url('/assets/blue-red.png')"
+  if (has('dark') && has('red')) textureUrl = "url('/assets/black-red.png')"
+  else if (has('gold') && has('blue')) textureUrl = "url('/assets/blue-gold.png')"
+  else if (has('gold') && has('red')) textureUrl = "url('/assets/gold-red.png')"
+  else if (has('blue') && has('red')) textureUrl = "url('/assets/blue-red.png')"
+
+  // Keep original texture colors exactly as provided.
+  const textureFilter = 'none'
+
+  return { textureUrl, textureFilter }
+}
+
+const parseBooleanFlag = (value: string, fallback: boolean) => {
+  const token = normalizeToken(value)
+  if (!token) return fallback
+  if (['1', 'true', 'yes', 'on'].includes(token)) return true
+  if (['0', 'false', 'no', 'off'].includes(token)) return false
+  return fallback
+}
+
 const resolveFightTitlePalette = (name: string, side: 'a' | 'b'): FightTitlePalette => {
   const token = normalizeToken(name)
+  if (token.includes('knull')) {
+    return { colorA: '#08090c', colorB: '#b91c1c', dark: true }
+  }
+  if (token.includes('odin')) {
+    return { colorA: '#c9a227', colorB: '#4f6f96', dark: false }
+  }
   if (token.includes('superman')) {
     return { colorA: '#f11712', colorB: '#0099f7', dark: false }
   }
@@ -1221,6 +1309,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
       'right_header',
       'draw_header',
       'favorite_label | favorite',
+      'draw_favorite | draw_favorite_label | favorite_draw',
     ],
   },
   {
@@ -1371,6 +1460,22 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     fields: ['headline | header | title', 'subtitle | purpose | note', 'line_1 | line1', 'line_2 | line2', 'line_3 | line3'],
   },
   {
+    blockPl: 'Napis Koncowy',
+    blockEn: 'Fight Title',
+    purposePl: 'Finalny ekran z nazwami postaci i ich kolorami.',
+    purposeEn: 'Final screen with fighter names and character-themed colors.',
+    fields: [
+      'fight_title | match_title | title_text | line_1 | line1',
+      'subtitle | purpose | note | line_2 | line2',
+      'top_color_a | top_primary | fighter_a_color_a | fighter_a_primary',
+      'top_color_b | top_secondary | fighter_a_color_b | fighter_a_secondary',
+      'bottom_color_a | bottom_primary | fighter_b_color_a | fighter_b_primary',
+      'bottom_color_b | bottom_secondary | fighter_b_color_b | fighter_b_secondary',
+      'top_dark | fighter_a_dark',
+      'bottom_dark | fighter_b_dark',
+    ],
+  },
+  {
     blockPl: 'Metodologia',
     blockEn: 'Methodology',
     purposePl: 'Plansza metodologii i nieliniowości walki.',
@@ -1435,6 +1540,7 @@ const findTemplateBlockLines = (
   aliases: string[],
 ) => {
   const normalizedAliases = aliases.map((alias) => normalizeToken(alias))
+  let latestMatch: string[] = []
   for (const [heading, lines] of Object.entries(blocks)) {
     const normalizedHeading = normalizeToken(heading)
     if (
@@ -1445,10 +1551,10 @@ const findTemplateBlockLines = (
           alias.includes(normalizedHeading),
       )
     ) {
-      return lines
+      latestMatch = lines
     }
   }
-  return []
+  return latestMatch
 }
 
 const parseTemplateFieldMap = (lines: string[]) => {
@@ -3149,15 +3255,20 @@ function RadarBriefTemplate({
   const drawRows = rows.filter((row) => row.winner === 'draw')
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
+  const averageGap = Math.abs(averageA - averageB)
+  const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const favoriteSide: 'a' | 'b' | 'draw' =
-    averageA === averageB ? 'draw' : averageA > averageB ? 'a' : 'b'
+    isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
+  const favoriteDrawLabel =
+    pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
+    tr('REMIS', 'DRAW')
   const favorite =
-    pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
-    (averageA === averageB
-      ? tr('Remis', 'Draw')
-      : averageA > averageB
-        ? `${fighterAText} ${tr('faworyt', 'favorite')}`
-        : `${fighterBText} ${tr('faworyt', 'favorite')}`)
+    isAverageDraw
+      ? favoriteDrawLabel
+      : pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
+        (averageA > averageB
+          ? `${fighterAText} ${tr('faworyt', 'favorite')}`
+          : `${fighterBText} ${tr('faworyt', 'favorite')}`)
   // Position stamp at ~3/4 of winner panel width, not the whole row.
   const favoriteLeft = favoriteSide === 'a' ? '37.5%' : favoriteSide === 'b' ? '87.5%' : '50%'
   const favoriteRotation = favoriteSide === 'a' ? -12 : favoriteSide === 'b' ? 12 : 0
@@ -4687,10 +4798,12 @@ function App() {
                     transformOrigin: 'top left',
                   }}
                 >
-                  <div className={clsx('pointer-events-none absolute inset-0', THEME_OVERLAYS[theme])} />
+                  {activeTemplate === 'fight-title' ? null : (
+                    <div className={clsx('pointer-events-none absolute inset-0', THEME_OVERLAYS[theme])} />
+                  )}
                   <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:34px_34px]" />
                   <div className="pointer-events-none absolute inset-3 rounded-[26px] border border-white/12" />
-                  <div className="scan-sweep" />
+                  {activeTemplate === 'fight-title' ? null : <div className="scan-sweep" />}
                   <div key={layoutMode} className="template-fade h-full">
                     {renderTemplate()}
                   </div>
@@ -4955,7 +5068,7 @@ function BlankTemplate({
 
   const winnerLabel =
     pickTemplateField(blockFields, ['winner', 'verdict']) ||
-    (averageA === averageB
+    (Math.abs(averageA - averageB) < AVERAGE_DRAW_THRESHOLD
       ? tr('Remis', 'Draw')
       : averageA > averageB
         ? `${fighterA.name || 'Fighter A'} ${Math.round(averageA)}`
@@ -4971,47 +5084,66 @@ function BlankTemplate({
     const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
     const topName = (parsedLabel?.[1] || fighterA.name || 'Fighter A').trim()
     const bottomName = (parsedLabel?.[2] || fighterB.name || 'Fighter B').trim()
-    const topPalette = resolveFightTitlePalette(topName, 'a')
-    const bottomPalette = resolveFightTitlePalette(bottomName, 'b')
-    const renderAlternatingLetters = (
-      text: string,
-      palette: FightTitlePalette,
-      keyPrefix: string,
-    ) => {
-      let letterIndex = 0
-      return Array.from(text).map((char, index) => {
-        if (char === ' ') {
-          return (
-            <span key={`${keyPrefix}-space-${index}`} className="vvv-fight-title-outro__space" aria-hidden="true">
-              &nbsp;
-            </span>
-          )
-        }
-        const usePrimary = letterIndex % 2 === 0
-        letterIndex += 1
-        const isDarkChar = palette.dark && usePrimary
+    const topBasePalette = resolveFightTitlePalette(topName, 'a')
+    const bottomBasePalette = resolveFightTitlePalette(bottomName, 'b')
+    const topPalette: FightTitlePalette = {
+      colorA:
+        normalizeHexColor(
+          pickTemplateField(blockFields, ['top_color_a', 'top_primary', 'fighter_a_color_a', 'fighter_a_primary']),
+        ) || topBasePalette.colorA,
+      colorB:
+        normalizeHexColor(
+          pickTemplateField(blockFields, ['top_color_b', 'top_secondary', 'fighter_a_color_b', 'fighter_a_secondary']),
+        ) || topBasePalette.colorB,
+      dark: parseBooleanFlag(
+        pickTemplateField(blockFields, ['top_dark', 'fighter_a_dark']),
+        topBasePalette.dark,
+      ),
+    }
+    const bottomPalette: FightTitlePalette = {
+      colorA:
+        normalizeHexColor(
+          pickTemplateField(blockFields, ['bottom_color_a', 'bottom_primary', 'fighter_b_color_a', 'fighter_b_primary']),
+        ) || bottomBasePalette.colorA,
+      colorB:
+        normalizeHexColor(
+          pickTemplateField(blockFields, ['bottom_color_b', 'bottom_secondary', 'fighter_b_color_b', 'fighter_b_secondary']),
+        ) || bottomBasePalette.colorB,
+      dark: parseBooleanFlag(
+        pickTemplateField(blockFields, ['bottom_dark', 'fighter_b_dark']),
+        bottomBasePalette.dark,
+      ),
+    }
+    const renderAnimatedLine = (text: string, palette: FightTitlePalette) => (
+      (() => {
+        const stripeStyle = resolveFightTitleStripeStyle(palette)
         return (
           <span
-            key={`${keyPrefix}-char-${index}`}
-            className={clsx('vvv-fight-title-outro__char', isDarkChar && 'is-dark')}
-            style={{ color: usePrimary ? palette.colorA : palette.colorB }}
+            data-text={text}
+            className="vvv-fight-title-outro__wordmark"
+            style={
+              {
+                color: palette.colorA,
+                '--vvv-stripe-image': stripeStyle.textureUrl,
+                '--vvv-stripe-filter': stripeStyle.textureFilter,
+              } as CSSProperties
+            }
           >
-            {char}
+            {text}
           </span>
         )
-      })
-    }
+      })()
+    )
     return (
-      <div className="relative z-10 flex h-full items-center justify-center overflow-hidden rounded-[20px] border border-cyan-300/25 bg-[#090d00] px-6 py-10 text-center text-slate-200">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_50%_46%,rgba(56,189,248,0.14),transparent_58%)]" />
+      <div className="relative z-10 flex h-full items-center justify-center overflow-hidden rounded-[20px] border border-cyan-300/25 bg-[linear-gradient(180deg,#051224_0%,#0a1f36_50%,#051022_100%)] px-6 py-10 text-center text-slate-200">
         <div className="relative z-10 w-full">
           <p className="vvv-fight-title-outro">
             <span className="vvv-fight-title-outro__line">
-              {renderAlternatingLetters(topName, topPalette, 'top')}
+              {renderAnimatedLine(topName, topPalette)}
             </span>
             <span className="vvv-fight-title-outro__vs">vs</span>
             <span className="vvv-fight-title-outro__line">
-              {renderAlternatingLetters(bottomName, bottomPalette, 'bottom')}
+              {renderAnimatedLine(bottomName, bottomPalette)}
             </span>
           </p>
         </div>
@@ -5402,49 +5534,98 @@ function BlankTemplate({
   }
 
   if (activeTemplateId === 'interpretation') {
+    const averageGap = Math.abs(averageA - averageB)
+    const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
     const leaderSide: 'a' | 'b' = averageA >= averageB ? 'a' : 'b'
     const leaderName = leaderSide === 'a' ? fighterA.name || 'Fighter A' : fighterB.name || 'Fighter B'
-    const leaderColor = leaderSide === 'a' ? '#0b69ad' : '#b91c1c'
-    const topEdges = [...rows]
+    const cardTitleText = isAverageDraw ? tr('REMIS', 'DRAW') : leaderName
+    const leaderColor = isAverageDraw ? '#94a3b8' : leaderSide === 'a' ? '#0b69ad' : '#b91c1c'
+
+    const edgeRows = [...rows]
       .map((row) => {
-        const delta = leaderSide === 'a' ? row.a - row.b : row.b - row.a
+        const delta = isAverageDraw
+          ? Math.abs(row.a - row.b)
+          : leaderSide === 'a'
+            ? row.a - row.b
+            : row.b - row.a
         return { label: row.label.toUpperCase(), delta }
       })
       .filter((row) => row.delta > 0)
       .sort((left, right) => right.delta - left.delta)
+      .slice(0, 5)
 
-    const maxDelta = topEdges.length ? topEdges[0].delta : 1
-    const fallbackEdges = [
-      { label: 'SILA', delta: 4 },
-      { label: 'SZYBKOSC', delta: 12 },
-      { label: 'IQ BOJOWE', delta: 8 },
-    ]
-    const bars = topEdges.length ? topEdges : fallbackEdges
+    const fallbackEdges = isAverageDraw
+      ? [
+          { label: 'TEMPO CONTROL', delta: 0.8 },
+          { label: 'RESOURCE ECONOMY', delta: 0.7 },
+          { label: 'FINISH WINDOWS', delta: 0.6 },
+        ]
+      : [
+          { label: 'POWER WINDOW', delta: 4 },
+          { label: 'PACE CONTROL', delta: 3 },
+          { label: 'COMBAT IQ', delta: 2 },
+        ]
+    const bars = edgeRows.length ? edgeRows : fallbackEdges
+    const maxDelta = bars.length ? Math.max(...bars.map((bar) => bar.delta), 1) : 1
+    const formatDelta = (value: number) => (Number.isInteger(value) ? `${value}` : value.toFixed(1))
+    const barGradient = isAverageDraw
+      ? 'linear-gradient(90deg,#334155,#94a3b8)'
+      : leaderSide === 'a'
+        ? 'linear-gradient(90deg,#0b69ad,#1377b9)'
+        : 'linear-gradient(90deg,#8b1e1e,#dc2626)'
 
     const bullet1 = line(
       0,
       ['line_1', 'line1', 'thesis'],
-      tr(
-        `${leaderName} prowadzi w kluczowych statystykach atletycznych.`,
-        `${leaderName} leads in key athletic categories.`,
-      ),
+      isAverageDraw
+        ? tr(
+            'Srednie sa w progu remisu (<1 punkt), wiec bazowy odczyt to remis.',
+            'Averages are inside the draw threshold (<1 point), so baseline reads as a draw.',
+          )
+        : tr(
+            `${leaderName} ma mierzalna przewage w modelu liniowym.`,
+            `${leaderName} has a measurable edge in the linear model.`,
+          ),
     )
     const bullet2 = line(
       1,
       ['line_2', 'line2', 'antithesis'],
-      tr('Jako technik ma lepszy toolkit do kontroli dystansu.', 'As a technician, he has the better toolkit for range control.'),
+      isAverageDraw
+        ? tr(
+            'Brak stabilnego faworyta na papierze. O wyniku decyduja warunki i wykonanie.',
+            'There is no stable paper favorite. Conditions and execution decide the winner.',
+          )
+        : tr(
+            'Mimo przewagi statystycznej, kontrmechaniki moga odwracac pojedyncze scenariusze.',
+            'Even with a stat edge, counter-mechanics can flip individual scenarios.',
+          ),
     )
     const bullet3 = line(
       2,
       ['line_3', 'line3', 'conclusion'],
-      tr(`W modelu liniowym ${leaderName} wygrywa większość scenariuszy.`, `In a linear model, ${leaderName} wins most scenarios.`),
+      isAverageDraw
+        ? tr(
+            'Finalny werdykt musi wynikac z matrycy warunkow, nie tylko z tabeli statystyk.',
+            'Final verdict must come from condition matrix, not from stats table alone.',
+          )
+        : tr(
+            `Bazowo ${leaderName} prowadzi, ale tylko przy utrzymaniu wlasnych warunkow walki.`,
+            `Baseline favors ${leaderName}, but only while maintaining preferred fight conditions.`,
+          ),
     )
     const closingQuote =
       pickTemplateField(blockFields, ['quote', 'line_4', 'line4']) ||
-      tr(
-        'Gdyby walka była matematyką, analiza by się skończyła. Ale walka to chaos.',
-        'If fighting were math, analysis would end here. But fighting is chaos.',
-      )
+      (isAverageDraw
+        ? tr(
+            'Prawie rowne statystyki przenosza decyzje z liczb na warunki walki.',
+            'Near-equal stats move decisions from numbers to fight conditions.',
+          )
+        : tr(
+            'Statystyki daja kierunek, ale warunki walki decyduja o wyniku.',
+            'Stats set direction, but fight conditions decide outcome.',
+          ))
+
+    const badgeSymbol = isAverageDraw ? '=' : 'V'
 
     return (
       <div className="relative z-10 flex h-full flex-col text-slate-100">
@@ -5460,10 +5641,10 @@ function BlankTemplate({
               <div className="flex min-h-[185px] items-center justify-center rounded-md border-2 p-3" style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
                 <div className="w-full rounded-md border border-slate-500/70 bg-[linear-gradient(135deg,rgba(2,132,199,0.28),rgba(15,23,42,0.5))] p-2 text-center">
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg border-2 text-3xl font-bold" style={{ borderColor: leaderColor, color: leaderColor }}>
-                    ✓
+                    {badgeSymbol}
                   </div>
                   <p className="mt-3 text-[52px] uppercase leading-none" style={{ color: leaderColor, fontFamily: 'var(--font-display)' }}>
-                    {leaderName}
+                    {cardTitleText}
                   </p>
                 </div>
               </div>
@@ -5474,10 +5655,10 @@ function BlankTemplate({
                   return (
                     <div key={`interp-bar-${index}-${bar.label}`} className="grid grid-cols-[1fr_auto] items-center gap-2">
                       <div className="h-8 overflow-hidden rounded-sm border border-slate-500/70 bg-slate-900/85">
-                        <div className="h-full" style={{ width: `${width}%`, background: 'linear-gradient(90deg,#0b69ad,#1377b9)' }} />
+                        <div className="h-full" style={{ width: `${width}%`, background: barGradient }} />
                       </div>
                       <p className="text-[20px] font-semibold uppercase leading-none text-slate-100">
-                        {bar.label} (+{bar.delta})
+                        {isAverageDraw ? `${bar.label} (d${formatDelta(bar.delta)})` : `${bar.label} (+${formatDelta(bar.delta)})`}
                       </p>
                     </div>
                   )
@@ -6107,6 +6288,7 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
 }
 
 export default App
+
 
 
 

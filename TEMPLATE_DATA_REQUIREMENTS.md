@@ -144,6 +144,13 @@ Accepted block names: `Radar Brief`, `Parameter Comparison`, `Raport Radarowy`, 
 - `right_header`
 - `draw_header`
 - `favorite_label | favorite`
+- `draw_favorite | draw_favorite_label | favorite_draw`
+
+Baseline favorite rule:
+- Use a draw threshold of `< 1.0` average-point difference.
+- If `|avgA - avgB| < 1.0`, baseline is a draw (not side A or side B).
+- In draw state, keep the stamp in the middle and use draw labeling.
+- `favorite_label` is used only for non-draw states; use `draw_favorite` for draw states.
 
 ### Winner CV
 Accepted block names: `Winner CV`, `CV Zwycięzców`
@@ -154,6 +161,11 @@ Accepted block names: `Winner CV`, `CV Zwycięzców`
 - `left_title`
 - `right_title`
 - `win_badge`
+
+Winner CV curation rules:
+- Keep entries unique (no duplicates in one side list).
+- Do not mix umbrella + member duplicates in the same list.
+- Example: avoid `Celestials (multiple)` together with `Arishem` in one list.
 
 ### Summary
 Accepted block names: `Summary`, `Podsumowanie`
@@ -221,6 +233,11 @@ Accepted block names: `Interpretation`, `Interpretacja`
 - `line_3 | line3 | conclusion`
 - `quote | line_4 | line4`
 
+Interpretation rule:
+- If average gap is `< 1.0`, frame this block as a draw analysis.
+- In draw analysis, explain why conditions/mechanics decide more than linear stat deltas.
+- If gap is `>= 1.0`, you can present a baseline side favorite.
+
 ### Fight Simulation
 Accepted block names: `Fight Simulation`, `Symulacja Walki`
 - `headline | header | title`
@@ -272,6 +289,11 @@ Animation attacker direction:
 - `Character A` (section 1) = `Actor 1` (lead) = `a`
 - `Character B` (section 5) = `Actor 2` (other side) = `b`
 - To avoid ambiguity, prefer `a` / `b` values in import files.
+
+Animation selection rule:
+- Pick phase animations that match declared style and initiative owner.
+- Do not use high-mobility harassment presets (for example `orbit-harass`) unless the acting fighter is actually represented as speed-harass archetype in the writeup.
+- If phase text says one fighter controls pace, set `phase_<N>_actor` to that fighter.
 
 Example:
 ```txt
@@ -367,6 +389,11 @@ Accepted block names: `Verdict Matrix`, `Matryca Werdyktu`
 - `case_3 | case3`
 - `case_4 | case4`
 
+Verdict Matrix modeling rule:
+- Cases may be non-equiprobable (weighted), not necessarily 50/50.
+- If weighting is used, describe it explicitly in `Template Summary` (`line_2` and/or `line_3`).
+- Avoid framing any single condition as automatic hard-counter unless the writeup explicitly supports guaranteed uptime.
+
 ### Blank Template
 Accepted block names: `Blank Template`, `New Template`, `Nowy Template`
 - `headline | header | title`
@@ -379,14 +406,25 @@ Accepted block names: `Blank Template`, `New Template`, `Nowy Template`
 Accepted block names: `Fight Title`, `Final Title`, `Ending Title`, `Napis Koncowy`
 - `fight_title | match_title | title_text | line_1 | line1`
 - `subtitle | purpose | note | line_2 | line2` (optional)
+- `top_color_a | top_primary | fighter_a_color_a | fighter_a_primary` (optional, hex `#RRGGBB` or `#RGB`)
+- `top_color_b | top_secondary | fighter_a_color_b | fighter_a_secondary` (optional, hex `#RRGGBB` or `#RGB`)
+- `bottom_color_a | bottom_primary | fighter_b_color_a | fighter_b_primary` (optional, hex `#RRGGBB` or `#RGB`)
+- `bottom_color_b | bottom_secondary | fighter_b_color_b | fighter_b_secondary` (optional, hex `#RRGGBB` or `#RGB`)
+- `top_dark | fighter_a_dark` (optional boolean: `true/false`, `yes/no`, `on/off`, `1/0`)
+- `bottom_dark | fighter_b_dark` (optional boolean: `true/false`, `yes/no`, `on/off`, `1/0`)
 
 Color behavior:
 - This screen is always the final template.
 - The displayed text is split into 3 lines: `Character A`, `vs`, `Character B`.
 - Character-themed colors are applied to letters (alternating per character line).
-- Current fixed palettes:
+- If color keys are provided in `.txt`, they override built-in palettes.
+- If color keys are missing, app uses built-in palette mapping by character name.
+- Built-in palettes include:
 - Superman: `#f11712` + `#0099f7`
-- King Hyperion: black + blood red
+- King Hyperion: `#08090c` + `#b91c1c`
+- Knull: `#08090c` + `#b91c1c`
+- Odin: `#f5c542` + `#38bdf8`
+- Unknown names fall back to side defaults (A: Superman palette, B: Hyperion palette).
 
 ### Methodology
 Accepted block names: `Methodology`, `Metodologia`

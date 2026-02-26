@@ -568,11 +568,12 @@ body {
 .vvv-fight-title-outro {
   width: min(96%, 46em);
   margin: 0 auto;
-  padding: 1.05em 0;
+  padding: 1.5em 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: clamp(0.25rem, 0.8vh, 0.6rem);
+  letter-spacing: 0.5em;
   border: 4px double rgba(241, 245, 249, 0.32);
   border-width: 4px 0;
   color: rgba(241, 245, 249, 0.32);
@@ -581,33 +582,46 @@ body {
 .vvv-fight-title-outro__line {
   display: block;
   max-width: 100%;
-  padding: 0.08em 0;
+  padding: 0.25em 0 0.325em;
   font-family: var(--font-display);
   font-weight: 700;
-  font-size: clamp(2rem, 5.7vw, 4.65rem);
+  font-size: clamp(2.05rem, 5.7vw, 4.8rem);
   line-height: 1.05;
-  letter-spacing: 0.02em;
+  letter-spacing: 0;
   white-space: nowrap;
-  text-shadow: 0 0 28px rgba(248, 250, 252, 0.3);
+  text-shadow: none;
 }
 
-.vvv-fight-title-outro__char {
+.vvv-fight-title-outro__wordmark {
   display: inline-block;
-  text-shadow:
-    0 0 8px rgba(248, 250, 252, 0.25),
-    0 0 16px rgba(56, 189, 248, 0.18);
+  position: relative;
+  margin: 0 auto;
+  line-height: 1;
+  white-space: nowrap;
+  --vvv-stripe-period: 8.514em;
+  --vvv-stripe-overlap: 0.572em;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image:
+    var(--vvv-stripe-image, url('/assets/blue-red.png')),
+    var(--vvv-stripe-image, url('/assets/blue-red.png'));
+  background-size: var(--vvv-stripe-period) 100%, var(--vvv-stripe-period) 100%;
+  background-position: 0 50%, calc(-1 * var(--vvv-stripe-overlap)) 50%;
+  background-repeat: repeat-x, repeat-x;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: vvv-fight-title-stripe-loop 9s linear infinite;
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: background-position, filter;
+  filter: var(--vvv-stripe-filter, none);
+  text-shadow: none;
 }
 
-.vvv-fight-title-outro__char.is-dark {
-  -webkit-text-stroke: 0.8px rgba(248, 113, 113, 0.62);
-  text-shadow:
-    0 0 9px rgba(248, 113, 113, 0.36),
-    0 0 16px rgba(127, 29, 29, 0.5);
-}
-
-.vvv-fight-title-outro__space {
-  display: inline-block;
-  width: 0.45em;
+.vvv-fight-title-outro__wordmark::before,
+.vvv-fight-title-outro__wordmark::after {
+  content: none;
 }
 
 .vvv-fight-title-outro__vs {
@@ -618,7 +632,18 @@ body {
   letter-spacing: 0.38em;
   text-transform: uppercase;
   color: rgba(241, 245, 249, 0.92);
-  text-shadow: 0 0 14px rgba(56, 189, 248, 0.28);
+  text-shadow: none;
+}
+
+@keyframes vvv-fight-title-stripe-loop {
+  0% {
+    background-position: 0 50%, calc(-1 * var(--vvv-stripe-overlap)) 50%;
+  }
+  100% {
+    background-position:
+      calc(-1 * var(--vvv-stripe-period)) 50%,
+      calc(-1 * (var(--vvv-stripe-period) + var(--vvv-stripe-overlap))) 50%;
+  }
 }
 
 @layer components {
