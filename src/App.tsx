@@ -126,6 +126,8 @@ type FightRecord = {
   payload: ParsedVsImport
   portraitADataUrl: string
   portraitBDataUrl: string
+  portraitAAdjust: PortraitAdjust
+  portraitBAdjust: PortraitAdjust
 }
 
 type FightMetaRecord = {
@@ -139,6 +141,8 @@ type TemplatePreviewProps = {
   rows: ScoreRow[]
   fighterA: Fighter
   fighterB: Fighter
+  portraitAAdjust: PortraitAdjust
+  portraitBAdjust: PortraitAdjust
   averageA: number
   averageB: number
   title: string
@@ -170,6 +174,13 @@ type FightScenarioLead = 'a' | 'b'
 
 type ImportDropTarget = 'txt' | 'a' | 'b'
 type SearchMorphHandoff = { x: number; y: number; width: number; height: number }
+type PortraitAdjust = { x: number; y: number; scale: number }
+type PortraitEditorState = {
+  side: 'a' | 'b'
+  file: File
+  previewUrl: string
+  adjust: PortraitAdjust
+}
 type PointerRelaySource = 'search' | 'intro'
 type PointerRelayEvent = 'move' | 'down' | 'up' | 'leave'
 type PointerRelayPayload = {
@@ -752,6 +763,36 @@ const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
 
 const clamp = (value: number) =>
   Math.max(0, Math.min(100, Number.isFinite(value) ? Math.round(value) : 0))
+
+const PORTRAIT_ADJUST_DEFAULT: PortraitAdjust = { x: 50, y: 50, scale: 1 }
+const PORTRAIT_SCALE_MIN = 0.6
+const PORTRAIT_SCALE_MAX = 2.4
+const FIGHT_TITLE_PORTRAIT_ASPECT = 695 / 787.5
+
+const clampPortraitPosition = (value: number) =>
+  Math.max(0, Math.min(100, Number.isFinite(value) ? value : 50))
+
+const clampPortraitScale = (value: number) =>
+  Math.max(PORTRAIT_SCALE_MIN, Math.min(PORTRAIT_SCALE_MAX, Number.isFinite(value) ? value : 1))
+
+const normalizePortraitAdjust = (value: unknown): PortraitAdjust => {
+  if (!value || typeof value !== 'object') return { ...PORTRAIT_ADJUST_DEFAULT }
+  const raw = value as Record<string, unknown>
+  const x = typeof raw.x === 'number' ? raw.x : Number(raw.x)
+  const y = typeof raw.y === 'number' ? raw.y : Number(raw.y)
+  const scale = typeof raw.scale === 'number' ? raw.scale : Number(raw.scale)
+  return {
+    x: clampPortraitPosition(x),
+    y: clampPortraitPosition(y),
+    scale: clampPortraitScale(scale),
+  }
+}
+
+const buildPortraitImageStyle = (adjust: PortraitAdjust): CSSProperties => ({
+  objectPosition: `${clampPortraitPosition(adjust.x)}% ${clampPortraitPosition(adjust.y)}%`,
+  transform: `scale(${clampPortraitScale(adjust.scale)})`,
+  transformOrigin: 'center center',
+})
 
 const normalizeSearchMorphHandoff = (value: unknown): SearchMorphHandoff | null => {
   if (!value || typeof value !== 'object') return null
@@ -1888,6 +1929,8 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
   const createdAt = Number.isFinite(createdAtRaw) ? createdAtRaw : Date.now()
   const portraitADataUrl = typeof raw.portraitADataUrl === 'string' ? raw.portraitADataUrl : ''
   const portraitBDataUrl = typeof raw.portraitBDataUrl === 'string' ? raw.portraitBDataUrl : ''
+  const portraitAAdjust = normalizePortraitAdjust(raw.portraitAAdjust)
+  const portraitBAdjust = normalizePortraitAdjust(raw.portraitBAdjust)
 
   if (!portraitADataUrl || !portraitBDataUrl) return null
 
@@ -1899,6 +1942,8 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
     payload,
     portraitADataUrl,
     portraitBDataUrl,
+    portraitAAdjust,
+    portraitBAdjust,
   }
 }
 
@@ -3545,6 +3590,14 @@ function App() {
       portraitB: t('Portret B (prawy)', 'Portrait B (right)'),
       dropTxtHint: t('Przeciągnij plik TXT tutaj lub kliknij, aby wybrać.', 'Drag a TXT file here or click to browse.'),
       dropImageHint: t('Przeciągnij obraz tutaj lub kliknij, aby wybrać.', 'Drag an image here or click to browse.'),
+      portraitEditorTitle: t('Ustaw kadr portretu', 'Adjust portrait framing'),
+      portraitEditorHint: t('Ustaw pozycję i skalę. Te ustawienia zostaną zapisane dla tej walki.', 'Set position and zoom. These settings will be saved for this fight.'),
+      portraitPosX: t('Pozycja X', 'Position X'),
+      portraitPosY: t('Pozycja Y', 'Position Y'),
+      portraitZoom: t('Skala', 'Zoom'),
+      portraitReset: t('Reset', 'Reset'),
+      portraitCancel: t('Anuluj', 'Cancel'),
+      portraitApply: t('Zastosuj', 'Apply'),
       invalidTxtType: t('Niepoprawny plik. Wymagany format .txt.', 'Invalid file. A .txt file is required.'),
       invalidImageType: t('Niepoprawny plik obrazu. Wymagany format graficzny.', 'Invalid image file. A graphic format is required.'),
       txtLoadedLabel: t('Plik załadowany', 'File loaded'),
@@ -3616,6 +3669,11 @@ function App() {
   const [draftPortraitFileB, setDraftPortraitFileB] = useState<File | null>(null)
   const [draftPortraitPreviewA, setDraftPortraitPreviewA] = useState('')
   const [draftPortraitPreviewB, setDraftPortraitPreviewB] = useState('')
+  const [draftPortraitAdjustA, setDraftPortraitAdjustA] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
+  const [draftPortraitAdjustB, setDraftPortraitAdjustB] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
+  const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
+  const [portraitAAdjust, setPortraitAAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
+  const [portraitBAdjust, setPortraitBAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [activeDropTarget, setActiveDropTarget] = useState<ImportDropTarget | null>(null)
   const [frame, setFrame] = useState<Frame>(initialTemplate.frame)
   const [theme, setTheme] = useState<Theme>(initialTemplate.theme)
@@ -3632,6 +3690,7 @@ function App() {
   const draftPortraitInputRefA = useRef<HTMLInputElement>(null)
   const draftPortraitInputRefB = useRef<HTMLInputElement>(null)
   const draftPortraitPreviewRef = useRef<{ a: string | null; b: string | null }>({ a: null, b: null })
+  const portraitEditorPreviewRef = useRef<string | null>(null)
   const fightViewRevealTimeoutRef = useRef<number | null>(null)
   const [previewScale, setPreviewScale] = useState(1)
   const PREVIEW_BASE_WIDTH = 1400
@@ -3835,23 +3894,80 @@ function App() {
     applyTemplateById(templateOrder[next], false)
   }
 
-  const setDraftPortraitFromFile = (side: 'a' | 'b', file: File) => {
-    const url = URL.createObjectURL(file)
-    const previous = draftPortraitPreviewRef.current[side]
-    if (previous) URL.revokeObjectURL(previous)
-    draftPortraitPreviewRef.current[side] = url
+  const closePortraitEditor = (options?: { revokePreview?: boolean }) => {
+    const revokePreview = options?.revokePreview ?? true
+    setPortraitEditor((current) => {
+      if (current?.previewUrl && revokePreview) {
+        URL.revokeObjectURL(current.previewUrl)
+      }
+      return null
+    })
+  }
 
+  const commitDraftPortrait = (side: 'a' | 'b', file: File, previewUrl: string, adjust: PortraitAdjust) => {
+    const previous = draftPortraitPreviewRef.current[side]
+    if (previous && previous !== previewUrl) URL.revokeObjectURL(previous)
+    draftPortraitPreviewRef.current[side] = previewUrl
+
+    const normalizedAdjust = normalizePortraitAdjust(adjust)
     if (side === 'a') {
       setDraftPortraitFileA(file)
-      setDraftPortraitPreviewA(url)
+      setDraftPortraitPreviewA(previewUrl)
+      setDraftPortraitAdjustA(normalizedAdjust)
       return
     }
 
     setDraftPortraitFileB(file)
-    setDraftPortraitPreviewB(url)
+    setDraftPortraitPreviewB(previewUrl)
+    setDraftPortraitAdjustB(normalizedAdjust)
+  }
+
+  const openDraftPortraitEditor = (side: 'a' | 'b', file: File) => {
+    const previewUrl = URL.createObjectURL(file)
+    const baseAdjust = side === 'a' ? draftPortraitAdjustA : draftPortraitAdjustB
+    setPortraitEditor((current) => {
+      if (current?.previewUrl) {
+        URL.revokeObjectURL(current.previewUrl)
+      }
+      return {
+        side,
+        file,
+        previewUrl,
+        adjust: normalizePortraitAdjust(baseAdjust),
+      }
+    })
+  }
+
+  const applyPortraitEditor = () => {
+    if (!portraitEditor) return
+    commitDraftPortrait(
+      portraitEditor.side,
+      portraitEditor.file,
+      portraitEditor.previewUrl,
+      portraitEditor.adjust,
+    )
+    closePortraitEditor({ revokePreview: false })
+  }
+
+  const updatePortraitEditorAdjust = (patch: Partial<PortraitAdjust>) => {
+    setPortraitEditor((current) => {
+      if (!current) return current
+      return {
+        ...current,
+        adjust: normalizePortraitAdjust({
+          ...current.adjust,
+          ...patch,
+        }),
+      }
+    })
+  }
+
+  const resetPortraitEditorAdjust = () => {
+    updatePortraitEditorAdjust(PORTRAIT_ADJUST_DEFAULT)
   }
 
   const clearDraftPortraits = () => {
+    closePortraitEditor()
     const oldA = draftPortraitPreviewRef.current.a
     const oldB = draftPortraitPreviewRef.current.b
     if (oldA) URL.revokeObjectURL(oldA)
@@ -3861,6 +3977,8 @@ function App() {
     setDraftPortraitFileB(null)
     setDraftPortraitPreviewA('')
     setDraftPortraitPreviewB('')
+    setDraftPortraitAdjustA({ ...PORTRAIT_ADJUST_DEFAULT })
+    setDraftPortraitAdjustB({ ...PORTRAIT_ADJUST_DEFAULT })
   }
 
   const isImportTxtFile = (file: File) => {
@@ -3941,7 +4059,7 @@ function App() {
         flashStatus(ui.invalidImageType)
         return
       }
-      setDraftPortraitFromFile(side, file)
+      openDraftPortraitEditor(side, file)
     }
 
   const handleDraftPortraitUpload =
@@ -3953,7 +4071,7 @@ function App() {
         event.target.value = ''
         return
       }
-      setDraftPortraitFromFile(side, file)
+      openDraftPortraitEditor(side, file)
       event.target.value = ''
     }
 
@@ -4030,6 +4148,8 @@ function App() {
       imageUrl: fight.portraitBDataUrl,
       stats: categoryPayload.statsRecordB,
     })
+    setPortraitAAdjust(normalizePortraitAdjust(fight.portraitAAdjust))
+    setPortraitBAdjust(normalizePortraitAdjust(fight.portraitBAdjust))
 
     setFactsA(payload.factsA.length ? payload.factsA.slice(0, 5) : defaultFactsFor('a', language))
     setFactsB(payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', language))
@@ -4122,6 +4242,8 @@ function App() {
         payload: draftPayload,
         portraitADataUrl,
         portraitBDataUrl,
+        portraitAAdjust: normalizePortraitAdjust(draftPortraitAdjustA),
+        portraitBAdjust: normalizePortraitAdjust(draftPortraitAdjustB),
       }
 
       setFights((current) => [fight, ...current])
@@ -4355,6 +4477,8 @@ function App() {
       rows,
       fighterA,
       fighterB,
+      portraitAAdjust,
+      portraitBAdjust,
       averageA,
       averageB,
       title,
@@ -4418,9 +4542,15 @@ function App() {
       const oldB = draftPortraitPreviewRef.current.b
       if (oldA) URL.revokeObjectURL(oldA)
       if (oldB) URL.revokeObjectURL(oldB)
+      const editorPreview = portraitEditorPreviewRef.current
+      if (editorPreview) URL.revokeObjectURL(editorPreview)
     },
     [],
   )
+
+  useEffect(() => {
+    portraitEditorPreviewRef.current = portraitEditor?.previewUrl || null
+  }, [portraitEditor])
 
   useEffect(
     () => () => {
@@ -4459,6 +4589,110 @@ function App() {
                 <div className="vvv-logo-morph__ring" />
                 <div className="vvv-logo-morph__core" />
                 <div className="vvv-logo-morph__logo" />
+              </div>
+            </div>
+          </div>,
+          document.body,
+        )
+      : null
+
+  const portraitEditorOverlay =
+    portraitEditor && typeof document !== 'undefined'
+      ? createPortal(
+          <div className="fixed inset-0 z-[2147483646] flex items-center justify-center bg-black/72 p-4 backdrop-blur-sm">
+            <div className="w-full max-w-3xl rounded-2xl border border-cyan-300/35 bg-slate-950/96 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.62)]">
+              <div className="mb-3 flex items-center justify-between gap-3 border-b border-slate-700/70 pb-3">
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-100">{ui.portraitEditorTitle}</p>
+                  <p className="mt-1 text-xs text-slate-300">{ui.portraitEditorHint}</p>
+                </div>
+                <span
+                  className={clsx(
+                    'rounded-md border px-2 py-1 text-[11px] uppercase tracking-[0.14em]',
+                    portraitEditor.side === 'a'
+                      ? 'border-sky-300/55 bg-sky-500/15 text-sky-200'
+                      : 'border-rose-300/55 bg-rose-500/15 text-rose-200',
+                  )}
+                >
+                  {portraitEditor.side === 'a' ? ui.portraitA : ui.portraitB}
+                </span>
+              </div>
+
+              <div className="grid gap-4 lg:grid-cols-[1.25fr_1fr]">
+                <div className="rounded-xl border border-slate-700/80 bg-black/55 p-3">
+                  <div
+                    className="relative mx-auto w-full max-w-[430px] overflow-hidden rounded-lg border border-slate-600/70 bg-slate-900/80"
+                    style={{ aspectRatio: `${FIGHT_TITLE_PORTRAIT_ASPECT}` }}
+                  >
+                    <img
+                      src={portraitEditor.previewUrl}
+                      alt="portrait-editor-preview"
+                      className="h-full w-full object-cover"
+                      style={buildPortraitImageStyle(portraitEditor.adjust)}
+                    />
+                    <div className="pointer-events-none absolute inset-0 border-2 border-white/15" />
+                    <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:28px_28px]" />
+                  </div>
+                </div>
+
+                <div className="space-y-3 rounded-xl border border-slate-700/80 bg-slate-900/70 p-3">
+                  <label className="block">
+                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
+                      {ui.portraitPosX}: {Math.round(portraitEditor.adjust.x)}%
+                    </p>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={portraitEditor.adjust.x}
+                      onChange={(event) => updatePortraitEditorAdjust({ x: Number(event.target.value) })}
+                      className="w-full accent-cyan-400"
+                    />
+                  </label>
+
+                  <label className="block">
+                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
+                      {ui.portraitPosY}: {Math.round(portraitEditor.adjust.y)}%
+                    </p>
+                    <input
+                      type="range"
+                      min={0}
+                      max={100}
+                      step={1}
+                      value={portraitEditor.adjust.y}
+                      onChange={(event) => updatePortraitEditorAdjust({ y: Number(event.target.value) })}
+                      className="w-full accent-cyan-400"
+                    />
+                  </label>
+
+                  <label className="block">
+                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
+                      {ui.portraitZoom}: {portraitEditor.adjust.scale.toFixed(2)}x
+                    </p>
+                    <input
+                      type="range"
+                      min={PORTRAIT_SCALE_MIN}
+                      max={PORTRAIT_SCALE_MAX}
+                      step={0.01}
+                      value={portraitEditor.adjust.scale}
+                      onChange={(event) => updatePortraitEditorAdjust({ scale: Number(event.target.value) })}
+                      className="w-full accent-cyan-400"
+                    />
+                  </label>
+
+                  <div className="flex flex-wrap gap-2 pt-2">
+                    <button type="button" className="button-soft" onClick={resetPortraitEditorAdjust}>
+                      {ui.portraitReset}
+                    </button>
+                    <button type="button" className="button-soft" onClick={() => closePortraitEditor()}>
+                      {ui.portraitCancel}
+                    </button>
+                    <button type="button" className="button-soft" onClick={applyPortraitEditor}>
+                      {ui.portraitApply}
+                    </button>
+                  </div>
+                </div>
               </div>
             </div>
           </div>,
@@ -4599,7 +4833,14 @@ function App() {
                     className="hidden"
                     onChange={handleDraftPortraitUpload('a')}
                   />
-                  {draftPortraitPreviewA ? <img src={draftPortraitPreviewA} alt="portrait-a-preview" className="mt-2 h-20 w-full rounded-md object-cover" /> : null}
+                  {draftPortraitPreviewA ? (
+                    <img
+                      src={draftPortraitPreviewA}
+                      alt="portrait-a-preview"
+                      className="mt-2 h-20 w-full rounded-md object-cover"
+                      style={buildPortraitImageStyle(draftPortraitAdjustA)}
+                    />
+                  ) : null}
                 </label>
                 <label
                   className={clsx(
@@ -4635,7 +4876,14 @@ function App() {
                     className="hidden"
                     onChange={handleDraftPortraitUpload('b')}
                   />
-                  {draftPortraitPreviewB ? <img src={draftPortraitPreviewB} alt="portrait-b-preview" className="mt-2 h-20 w-full rounded-md object-cover" /> : null}
+                  {draftPortraitPreviewB ? (
+                    <img
+                      src={draftPortraitPreviewB}
+                      alt="portrait-b-preview"
+                      className="mt-2 h-20 w-full rounded-md object-cover"
+                      style={buildPortraitImageStyle(draftPortraitAdjustB)}
+                    />
+                  ) : null}
                 </label>
               </div>
 
@@ -4813,6 +5061,7 @@ function App() {
           </section>
         )}
       </div>
+      {portraitEditorOverlay}
       {searchMorphOverlay}
     </main>
   )
@@ -4916,6 +5165,7 @@ function WinnerCvTemplate({
 function CharacterCardTemplate({
   title,
   fighter,
+  portraitAdjust,
   fighterText,
   corner,
   facts,
@@ -4924,6 +5174,7 @@ function CharacterCardTemplate({
 }: {
   title: string
   fighter: Fighter
+  portraitAdjust: PortraitAdjust
   fighterText: string
   corner: string
   facts: ReadonlyArray<{ title: string; text: string }>
@@ -4941,7 +5192,12 @@ function CharacterCardTemplate({
         <div className="grid h-full grid-cols-[1.06fr_1.4fr] gap-3">
           <div className="relative overflow-hidden rounded-lg border bg-black/45" style={{ borderColor: `${fighter.color}88` }}>
             {fighter.imageUrl ? (
-              <img src={fighter.imageUrl} alt={fighterText} className="h-full w-full object-cover object-center" />
+              <img
+                src={fighter.imageUrl}
+                alt={fighterText}
+                className="h-full w-full object-cover"
+                style={buildPortraitImageStyle(portraitAdjust)}
+              />
             ) : (
               <div
                 className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.14),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
@@ -4985,7 +5241,7 @@ function CharacterCardTemplate({
   )
 }
 
-function CharacterCardATemplate({ fighterA, title, factsA, templateBlocks, language }: TemplatePreviewProps) {
+function CharacterCardATemplate({ fighterA, portraitAAdjust, title, factsA, templateBlocks, language }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const fighterAText = fighterA.name || 'Fighter A'
   const safeFacts = factsA.length ? factsA : defaultFactsFor('a', language)
@@ -5004,6 +5260,7 @@ function CharacterCardATemplate({ fighterA, title, factsA, templateBlocks, langu
     <CharacterCardTemplate
       title={cardTitle}
       fighter={fighterForCard}
+      portraitAdjust={portraitAAdjust}
       fighterText={fighterAText}
       corner={tr('Niebieski narożnik', 'Blue corner')}
       facts={cardFacts}
@@ -5013,7 +5270,7 @@ function CharacterCardATemplate({ fighterA, title, factsA, templateBlocks, langu
   )
 }
 
-function CharacterCardBTemplate({ fighterB, title, factsB, templateBlocks, language }: TemplatePreviewProps) {
+function CharacterCardBTemplate({ fighterB, portraitBAdjust, title, factsB, templateBlocks, language }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const fighterBText = fighterB.name || 'Fighter B'
   const safeFacts = factsB.length ? factsB : defaultFactsFor('b', language)
@@ -5032,6 +5289,7 @@ function CharacterCardBTemplate({ fighterB, title, factsB, templateBlocks, langu
     <CharacterCardTemplate
       title={cardTitle}
       fighter={fighterForCard}
+      portraitAdjust={portraitBAdjust}
       fighterText={fighterBText}
       corner={tr('Czerwony narożnik', 'Red corner')}
       facts={cardFacts}
@@ -5048,6 +5306,8 @@ function BlankTemplate({
   templateBlocks,
   fighterA,
   fighterB,
+  portraitAAdjust,
+  portraitBAdjust,
   averageA,
   averageB,
   rows,
@@ -5134,25 +5394,87 @@ function BlankTemplate({
         )
       })()
     )
+    const renderFightTitlePortrait = (
+      fighter: Fighter,
+      nameText: string,
+      palette: FightTitlePalette,
+      side: 'left' | 'right',
+    ) => (
+      <div
+        className={clsx('vvv-fight-title-portrait', side === 'left' ? 'vvv-fight-title-portrait--left' : 'vvv-fight-title-portrait--right')}
+        style={
+          {
+            '--vvv-portrait-color': fighter.color,
+            '--f': 'url(#vvv-electric-flow-hue)',
+            '--electric-y-offset': '-3px',
+            '--electric-border-color': 'DodgerBlue',
+            '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
+          } as CSSProperties
+        }
+      >
+        <div className="vvv-fight-title-portrait__inner-container">
+          <div className="vvv-fight-title-portrait__border-outer">
+            <div className="vvv-fight-title-portrait__inner">
+              {fighter.imageUrl ? (
+                <img
+                  src={fighter.imageUrl}
+                  alt={fighter.name || 'Fighter'}
+                  className="h-full w-full object-cover"
+                  style={buildPortraitImageStyle(side === 'left' ? portraitAAdjust : portraitBAdjust)}
+                />
+              ) : (
+                <div
+                  className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.16),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
+                  style={{ color: fighter.color }}
+                >
+                  <div className="text-center">
+                    <p className="text-[62px] font-semibold tracking-[0.04em]">{fighterMonogram(fighter.name || 'Fighter')}</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-300">{tr('Miejsce na portret', 'Portrait Slot')}</p>
+                  </div>
+                </div>
+              )}
+              <div className="vvv-fight-title-portrait__name">
+                {renderAnimatedLine(nameText, palette)}
+              </div>
+              <div className="vvv-fight-title-portrait__name-fade" />
+              <div className="vvv-fight-title-portrait__scan" />
+            </div>
+          </div>
+          <div className="vvv-fight-title-portrait__glow-layer-1" />
+          <div className="vvv-fight-title-portrait__glow-layer-2" />
+        </div>
+      </div>
+    )
     return (
-      <div className="relative z-10 flex h-full items-center justify-center overflow-hidden rounded-[20px] border border-cyan-300/25 bg-[linear-gradient(180deg,#051224_0%,#0a1f36_50%,#051022_100%)] px-6 py-10 text-center text-slate-200">
-        <div className="relative z-10 w-full">
-          <p className="vvv-fight-title-outro">
-            <span className="vvv-fight-title-outro__line">
-              {renderAnimatedLine(topName, topPalette)}
-            </span>
-            <span className="vvv-fight-title-outro__vs">
-              <img
-                src="/assets/VS.png"
-                alt="VS"
-                className="vvv-fight-title-outro__vs-image"
-                draggable={false}
-              />
-            </span>
-            <span className="vvv-fight-title-outro__line">
-              {renderAnimatedLine(bottomName, bottomPalette)}
-            </span>
-          </p>
+      <div className="relative z-10 flex h-full min-h-0 overflow-visible rounded-[20px] border border-cyan-300/25 bg-[linear-gradient(180deg,#051224_0%,#0a1f36_50%,#051022_100%)] px-2 py-2 text-center text-slate-200">
+        <svg className="vvv-fight-title-svg-defs" aria-hidden="true">
+          <defs>
+            <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+              <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+              <feColorMatrix type="hueRotate" result="pt1">
+                <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feComposite />
+              <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+              <feColorMatrix type="hueRotate" result="pt2">
+                <animate attributeName="values" values="0;333;199;286;64;168;256;157;360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+              <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+            </filter>
+          </defs>
+        </svg>
+        <div className="vvv-fight-title-split relative z-10 h-full w-full overflow-visible">
+          {renderFightTitlePortrait(fighterA, topName, topPalette, 'left')}
+          {renderFightTitlePortrait(fighterB, bottomName, bottomPalette, 'right')}
+          <span className="vvv-fight-title-split__vs">
+            <img
+              src="/assets/VS.png"
+              alt="VS"
+              className="vvv-fight-title-outro__vs-image"
+              draggable={false}
+            />
+          </span>
         </div>
       </div>
     )
@@ -5180,7 +5502,12 @@ function BlankTemplate({
             </div>
             <div className="relative h-[78%] overflow-hidden rounded-lg border bg-black/45" style={{ borderColor: `${fighterA.color}88` }}>
               {fighterA.imageUrl ? (
-                <img src={fighterA.imageUrl} alt={fighterA.name || 'Fighter A'} className="h-full w-full object-cover object-center" />
+                <img
+                  src={fighterA.imageUrl}
+                  alt={fighterA.name || 'Fighter A'}
+                  className="h-full w-full object-cover"
+                  style={buildPortraitImageStyle(portraitAAdjust)}
+                />
               ) : (
                 <div
                   className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.14),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
@@ -5239,7 +5566,12 @@ function BlankTemplate({
             </div>
             <div className="relative h-[78%] overflow-hidden rounded-lg border bg-black/45" style={{ borderColor: `${fighterB.color}88` }}>
               {fighterB.imageUrl ? (
-                <img src={fighterB.imageUrl} alt={fighterB.name || 'Fighter B'} className="h-full w-full object-cover object-center" />
+                <img
+                  src={fighterB.imageUrl}
+                  alt={fighterB.name || 'Fighter B'}
+                  className="h-full w-full object-cover"
+                  style={buildPortraitImageStyle(portraitBAdjust)}
+                />
               ) : (
                 <div
                   className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.14),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
