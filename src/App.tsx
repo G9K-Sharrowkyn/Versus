@@ -118,11 +118,15 @@ type ParsedVsImport = {
   templateBlocks: Record<string, string[]>
 }
 
+type FightSource = 'manual' | 'folder'
+
 type FightRecord = {
   id: string
   name: string
   fileName: string
   createdAt: number
+  source: FightSource
+  folderKey?: string
   payload: ParsedVsImport
   portraitADataUrl: string
   portraitBDataUrl: string
@@ -175,12 +179,21 @@ type FightScenarioLead = 'a' | 'b'
 type ImportDropTarget = 'txt' | 'a' | 'b'
 type SearchMorphHandoff = { x: number; y: number; width: number; height: number }
 type PortraitAdjust = { x: number; y: number; scale: number }
-type PortraitEditorState = {
-  side: 'a' | 'b'
-  file: File
-  previewUrl: string
-  adjust: PortraitAdjust
-}
+type PortraitEditorState =
+  | {
+      mode: 'draft'
+      side: 'a' | 'b'
+      file: File
+      previewUrl: string
+      adjust: PortraitAdjust
+    }
+  | {
+      mode: 'fight'
+      fightId: string
+      side: 'a' | 'b'
+      previewUrl: string
+      adjust: PortraitAdjust
+    }
 type PointerRelaySource = 'search' | 'intro'
 type PointerRelayEvent = 'move' | 'down' | 'up' | 'leave'
 type PointerRelayPayload = {
@@ -193,6 +206,23 @@ type PointerRelayPayload = {
   timestamp: number
 }
 type ReverseStage = 'idle' | 'explosion' | 'morph-reverse' | 'search-expand'
+
+type FolderFightScanRecord = {
+  folderKey: string
+  displayName: string
+  matchName: string
+  txtFileName: string
+  txtContent: string
+  portraitAUrl: string
+  portraitBUrl: string
+  sortIndex: number
+  warnings?: string[]
+}
+
+type FolderFightsScanResponse = {
+  fights?: FolderFightScanRecord[]
+  warnings?: string[]
+}
 
 const FIGHTER_A_COLOR = '#3FC3CF'
 const FIGHTER_B_COLOR = '#EF5D5D'
@@ -674,6 +704,7 @@ const FIGHTS_DB_VERSION = 1
 const FIGHTS_STORE_NAME = 'fights'
 const META_STORE_NAME = 'meta'
 const META_ACTIVE_FIGHT_KEY = 'activeFightId'
+const FOLDER_FIGHT_ID_PREFIX = 'folder::'
 
 const TEMPLATE_ID_SET = new Set<TemplateId>(TEMPLATE_PRESETS.map((template) => template.id))
 const FINAL_TEMPLATE_ID: TemplateId = 'fight-title'
@@ -1852,6 +1883,88 @@ const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { 
   }
 }
 
+const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord | null => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  const raw = value as Record<string, unknown>
+  const folderKey = typeof raw.folderKey === 'string' ? raw.folderKey.trim() : ''
+  const displayName = typeof raw.displayName === 'string' ? raw.displayName.trim() : ''
+  const matchName = typeof raw.matchName === 'string' ? raw.matchName.trim() : ''
+  const txtFileName = typeof raw.txtFileName === 'string' ? raw.txtFileName.trim() : ''
+  const txtContent = typeof raw.txtContent === 'string' ? raw.txtContent : ''
+  const portraitAUrl = typeof raw.portraitAUrl === 'string' ? raw.portraitAUrl.trim() : ''
+  const portraitBUrl = typeof raw.portraitBUrl === 'string' ? raw.portraitBUrl.trim() : ''
+  const sortIndexRaw = typeof raw.sortIndex === 'number' ? raw.sortIndex : Number(raw.sortIndex)
+  const sortIndex = Number.isFinite(sortIndexRaw) ? sortIndexRaw : Number.MAX_SAFE_INTEGER
+  const warnings = Array.isArray(raw.warnings)
+    ? raw.warnings.filter((item): item is string => typeof item === 'string')
+    : []
+
+  if (!folderKey || !txtFileName || !txtContent || !portraitAUrl || !portraitBUrl) return null
+
+  return {
+    folderKey,
+    displayName,
+    matchName,
+    txtFileName,
+    txtContent,
+    portraitAUrl,
+    portraitBUrl,
+    sortIndex,
+    warnings,
+  }
+}
+
+const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[]; warnings: string[] }> => {
+  if (typeof window === 'undefined') return { fights: [], warnings: [] }
+
+  const response = await fetch('/api/fights/scan', { cache: 'no-store' })
+  if (!response.ok) {
+    throw new Error(`Folder scan failed (${response.status})`)
+  }
+
+  const payload = (await response.json()) as FolderFightsScanResponse
+  const records = Array.isArray(payload.fights) ? payload.fights.map(normalizeFolderScanRecord).filter(Boolean) : []
+  const warnings = Array.isArray(payload.warnings)
+    ? payload.warnings.filter((item): item is string => typeof item === 'string')
+    : []
+  const fights: FightRecord[] = []
+
+  records.forEach((record, index) => {
+    if (!record) return
+    if (record.warnings?.length) {
+      warnings.push(...record.warnings.map((item) => `[${record.displayName || record.folderKey}] ${item}`))
+    }
+    const parsed = parseVsImportText(record.txtContent)
+    if (!parsed.ok) {
+      warnings.push(`[${record.displayName || record.folderKey}] ${parsed.error}`)
+      return
+    }
+
+    const payloadOrdered = enforceFileNameSideOrder(parsed.data, record.txtFileName)
+    const name =
+      record.matchName ||
+      stripFileExtension(record.txtFileName) ||
+      record.displayName ||
+      `${payloadOrdered.fighterAName} vs ${payloadOrdered.fighterBName}`
+
+    fights.push({
+      id: `${FOLDER_FIGHT_ID_PREFIX}${record.folderKey}`,
+      name,
+      fileName: record.txtFileName,
+      createdAt: Date.now() - index,
+      source: 'folder',
+      folderKey: record.folderKey,
+      payload: payloadOrdered,
+      portraitADataUrl: record.portraitAUrl,
+      portraitBDataUrl: record.portraitBUrl,
+      portraitAAdjust: { ...PORTRAIT_ADJUST_DEFAULT },
+      portraitBAdjust: { ...PORTRAIT_ADJUST_DEFAULT },
+    })
+  })
+
+  return { fights, warnings }
+}
+
 const toStringArray = (value: unknown) =>
   Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []
 
@@ -1940,6 +2053,12 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
   const portraitBDataUrl = typeof raw.portraitBDataUrl === 'string' ? raw.portraitBDataUrl : ''
   const portraitAAdjust = normalizePortraitAdjust(raw.portraitAAdjust)
   const portraitBAdjust = normalizePortraitAdjust(raw.portraitBAdjust)
+  const source: FightSource = raw.source === 'folder' ? 'folder' : 'manual'
+  const rawFolderKey = typeof raw.folderKey === 'string' && raw.folderKey.trim() ? raw.folderKey.trim() : ''
+  const folderKey =
+    source === 'folder'
+      ? rawFolderKey || (id.startsWith(FOLDER_FIGHT_ID_PREFIX) ? id.slice(FOLDER_FIGHT_ID_PREFIX.length) : '')
+      : ''
 
   if (!portraitADataUrl || !portraitBDataUrl) return null
 
@@ -1948,6 +2067,8 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
     name,
     fileName,
     createdAt,
+    source,
+    folderKey: source === 'folder' ? folderKey || undefined : undefined,
     payload,
     portraitADataUrl,
     portraitBDataUrl,
@@ -2062,6 +2183,7 @@ const idbSetActiveFightId = async (fightId: string | null) => {
 }
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
+const clampLightningXRatio = (value: number) => Math.max(-0.2, Math.min(1.45, value))
 
 type LightningOptions = {
   points: LightningPoint[]
@@ -2193,6 +2315,7 @@ const buildSplitStrands = (
   )
   const tail = points.slice(pivotIndex)
   if (tail.length < 3) return []
+  const pivotPoint = points[pivotIndex]
 
   const before = points[pivotIndex - 1]
   const after = points[pivotIndex + 1]
@@ -2207,19 +2330,91 @@ const buildSplitStrands = (
 
   return Array.from({ length: strandCount }, (_, strandIndex) => {
     const lane = strandIndex - center
-    return tail.map((point, index) => {
-      const t = tail.length === 1 ? 1 : index / (tail.length - 1)
-      const divergence = lane * spread * (0.18 + t * 1.2)
-      const lateralNoise = (Math.random() * 2 - 1) * jitter * (0.28 + t * 0.92)
-      const alongNoise = (Math.random() * 2 - 1) * jitter * 0.16
+    const strand = tail.map((point, index) => {
+      // Force exact attachment to the main stream at split origin.
+      if (index === 0) {
+        return {
+          x: pivotPoint.x,
+          y: pivotPoint.y,
+        }
+      }
+      const tRaw = tail.length === 1 ? 1 : index / (tail.length - 1)
+      const t = Math.max(0, Math.min(1, tRaw))
+      const divergenceRamp = t * (0.92 + t * 1.38)
+      const divergence = lane * spread * divergenceRamp
+      const lateralNoise = (Math.random() * 2 - 1) * jitter * (t * (0.28 + t * 0.94))
+      const alongNoise = (Math.random() * 2 - 1) * jitter * (0.06 + t * 0.2)
 
       return {
         x: point.x + normalX * (divergence + lateralNoise) + tangentX * alongNoise,
         y: point.y + normalY * (divergence + lateralNoise) + tangentY * alongNoise,
       }
     })
+
+    return strand
   })
 }
+
+const extendStrandsTowardRightEdge = (
+  strands: LightningPoint[][],
+  rightStart: number,
+  rightEnd: number,
+  verticalJitter: number,
+  fanSpread: number,
+  centerY: number,
+  minY: number,
+  maxY: number,
+) =>
+  strands.map((strand, strandIndex) => {
+    if (strand.length < 2) return strand
+    const out = [...strand]
+    const last = out[out.length - 1]
+    const center = (strands.length - 1) / 2
+    const lane = strandIndex - center
+    const desiredYRaw = centerY + lane * fanSpread + (Math.random() * 2 - 1) * verticalJitter
+    const desiredY = Math.max(minY, Math.min(maxY, desiredYRaw))
+    const targetX = rightStart + Math.random() * Math.max(2, rightEnd - rightStart)
+
+    if (last.x >= targetX - 2) {
+      if (last.x < rightEnd) {
+        const endY = Math.max(
+          minY,
+          Math.min(
+            maxY,
+            last.y * 0.32 + desiredY * 0.68 + (Math.random() * 2 - 1) * verticalJitter * 0.2,
+          ),
+        )
+        out.push({
+          x: rightEnd,
+          y: endY,
+        })
+      }
+      return out
+    }
+
+    const midX = (last.x + targetX) / 2
+    const midY = Math.max(
+      minY,
+      Math.min(
+        maxY,
+        last.y +
+          (desiredY - last.y) * (0.52 + Math.random() * 0.2) +
+          (Math.random() * 2 - 1) * verticalJitter * 0.24,
+      ),
+    )
+    out.push({
+      x: midX,
+      y: midY,
+    })
+    out.push({
+      x: targetX,
+      y: Math.max(
+        minY,
+        Math.min(maxY, desiredY + (Math.random() * 2 - 1) * verticalJitter * 0.35),
+      ),
+    })
+    return out
+  })
 
 const drawLightningBolt = (
   context: CanvasRenderingContext2D,
@@ -2298,7 +2493,7 @@ function LightningCanvas({
             y: height * clamp01(startRatio.y),
           },
           {
-            x: width * clamp01(endRatio.x),
+            x: width * clampLightningXRatio(endRatio.x),
             y: height * clamp01(endRatio.y),
           },
         ],
@@ -2379,19 +2574,38 @@ function LightningCanvas({
           const glow = Math.max(5, options.Hfgr49fuaq * 0.65)
           const darkPasses = 2 + (Math.random() < 0.65 ? 1 : 0)
           const splitBase = Math.max(5.5, Math.min(width, height) * 0.024)
-          const splitOneThird = buildSplitStrands(
-            points,
-            0.34,
-            5,
-            splitBase * 0.9,
-            splitBase * 0.34,
+          const totalSpanX = Math.max(1, end.x - start.x)
+          const visibleRightEdgeX = Math.min(width - 2, Math.max(start.x + 2, end.x))
+          const visibleSpanX = Math.max(1, visibleRightEdgeX - start.x)
+          // Keep split points at ~1/3 and ~2/3 of the *visible* segment, even if beam extends beyond frame.
+          const splitRatioOneThird = clamp01((visibleSpanX / 3) / totalSpanX)
+          const splitRatioTwoThirds = clamp01(((visibleSpanX * 2) / 3) / totalSpanX)
+          const rightReachStart = Math.max(width * 0.995, options.points[1].x + 12)
+          const rightReachEnd = Math.max(width * 1.08, rightReachStart + 12)
+          const branchMinY = Math.max(4, height * 0.04)
+          const branchMaxY = Math.min(height - 4, height * 0.96)
+          const spreadBoost = 1.6
+          const oneThirdSpread = Math.max(splitBase * 1.45, height * 0.032) * spreadBoost
+          const twoThirdSpread = Math.max(splitBase * 2.35, height * 0.052) * spreadBoost
+          const splitOneThird = extendStrandsTowardRightEdge(
+            buildSplitStrands(points, splitRatioOneThird, 3, oneThirdSpread, splitBase * 0.52 * spreadBoost),
+            rightReachStart,
+            rightReachEnd,
+            splitBase * 1.1 * spreadBoost,
+            height * 0.09 * spreadBoost,
+            options.points[1].y,
+            branchMinY,
+            branchMaxY,
           )
-          const splitTwoThirds = buildSplitStrands(
-            points,
-            0.67,
-            9,
-            splitBase * 1.34,
-            splitBase * 0.46,
+          const splitTwoThirds = extendStrandsTowardRightEdge(
+            buildSplitStrands(points, splitRatioTwoThirds, 12, twoThirdSpread, splitBase * 0.86 * spreadBoost),
+            rightReachStart,
+            rightReachEnd,
+            splitBase * 1.44 * spreadBoost,
+            height * 0.14 * spreadBoost,
+            options.points[1].y,
+            branchMinY,
+            branchMaxY,
           )
 
           ctx.save()
@@ -3485,7 +3699,7 @@ function TacticalBoardTemplate({
   const chaosLabelX = 75
 
   return (
-    <div className="relative z-10 flex h-full flex-col text-slate-100">
+    <div className="relative z-10 flex h-full min-h-0 flex-col gap-3 text-slate-100">
       <div className="border-b border-slate-300/25 pb-2">
         <h2 className="text-3xl uppercase tracking-[0.06em] text-slate-50" style={{ fontFamily: 'var(--font-display)' }}>
           {headerText}
@@ -3493,10 +3707,10 @@ function TacticalBoardTemplate({
         <p className="text-sm uppercase tracking-[0.16em] text-slate-300">{subText}</p>
       </div>
 
-      <div className="mt-3 grid min-h-0 flex-1 grid-cols-2 gap-3">
-        <div className="min-h-0 rounded-xl border border-slate-400/35 bg-black/25 p-3">
+      <div className="grid min-h-0 flex-1 grid-cols-2 gap-3">
+        <div className="flex min-h-0 flex-col rounded-xl border border-slate-400/35 bg-black/25 p-3">
           <p className="mb-2 text-[11px] uppercase tracking-[0.18em] text-slate-300">{boardHeader}</p>
-          <div className="grid h-full grid-cols-3 gap-2">
+          <div className="grid min-h-0 flex-1 grid-cols-3 gap-2">
             {tiles.map((row, index) => {
               const Icon = iconForCategory(row.id, index)
               const isDraw = row.winner === 'draw'
@@ -3517,13 +3731,13 @@ function TacticalBoardTemplate({
           </div>
         </div>
 
-        <div className="min-h-0 rounded-xl border border-slate-400/35 bg-black/25 p-3">
+        <div className="flex min-h-0 flex-col rounded-xl border border-slate-400/35 bg-black/25 p-3">
           <p className="text-[11px] uppercase tracking-[0.18em] text-slate-300">{realityHeader}</p>
-          <div className="mt-2 h-[92%] rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
-            <div className="relative h-full w-full overflow-hidden rounded-md">
+          <div className="mt-2 min-h-0 flex-1 overflow-hidden rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
+            <div className="relative -m-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-hidden rounded-lg">
               <LightningCanvas
                 startRatio={{ x: splitX / 100, y: 0.5 }}
-                endRatio={{ x: chaosEndX / 100, y: 0.5 }}
+                endRatio={{ x: Math.min(1.34, chaosEndX / 100 + 0.42), y: 0.5 }}
               />
               <svg viewBox="0 0 100 100" className="relative z-10 h-full w-full">
                 <line
@@ -3550,7 +3764,7 @@ function TacticalBoardTemplate({
         </div>
       </div>
 
-      <div className="mt-3 h-9 rounded border border-amber-300/45 bg-[linear-gradient(90deg,rgba(234,179,8,0.14),rgba(234,179,8,0.45),rgba(234,179,8,0.14))] px-4 py-2 text-center text-sm uppercase tracking-[0.22em] text-amber-100">
+      <div className="h-9 shrink-0 rounded border border-amber-300/45 bg-[linear-gradient(90deg,rgba(234,179,8,0.14),rgba(234,179,8,0.45),rgba(234,179,8,0.14))] px-4 py-2 text-center text-sm uppercase tracking-[0.22em] text-amber-100">
         {laneLabel}
       </div>
     </div>
@@ -3579,12 +3793,19 @@ function App() {
       homeTitle: t('Panel Walk', 'Fight Hub'),
       homeSubtitle: t('Wgraj dane walki, zatwierdź i wybierz pojedynek z listy.', 'Upload fight data, confirm, then pick a matchup from the list.'),
       fightsLibrary: t('Lista Walk', 'Fight List'),
+      folderFightsLibrary: t('Walki z folderu Fights', 'Folder Fights'),
+      manualFightsLibrary: t('Walki dodane ręcznie', 'Manual Fights'),
       noFights: t('Brak zapisanych walk. Dodaj pierwszą poniżej.', 'No saved fights yet. Add your first one below.'),
+      noFolderFights: t('Brak walk znalezionych w folderze `Fights`.', 'No fights found in the `Fights` folder.'),
+      noManualFights: t('Brak ręcznie dodanych walk.', 'No manually added fights.'),
+      folderWarningsTitle: t('Problemy ze skanem folderu', 'Folder scan warnings'),
       createFight: t('Zatwierdź i dodaj walkę', 'Confirm and add fight'),
       openFight: t('Otwórz walkę', 'Open fight'),
       deleteFight: t('Usuń', 'Delete'),
       deleteFightAria: t('Usuń walkę', 'Delete fight'),
       deleteFightConfirm: t('Czy na pewno usunąć tę walkę?', 'Are you sure you want to delete this fight?'),
+      adjustPortraits: t('Ustaw kadry', 'Adjust portraits'),
+      adjustPortraitsAria: t('Ustaw kadry portretów dla tej walki', 'Adjust portrait framing for this fight'),
       backToLibrary: t('Powrót do listy walk', 'Back to fight list'),
       draftNeedTxt: t('Najpierw wgraj poprawny plik TXT.', 'Upload a valid TXT file first.'),
       draftNeedPortraits: t('Dodaj oba portrety (A i B), potem zatwierdź.', 'Add both portraits (A and B) before confirming.'),
@@ -3605,6 +3826,7 @@ function App() {
       portraitPosY: t('Pozycja Y', 'Position Y'),
       portraitZoom: t('Skala', 'Zoom'),
       portraitReset: t('Reset', 'Reset'),
+      portraitSwitchSide: t('Przełącz A/B', 'Switch A/B'),
       portraitCancel: t('Anuluj', 'Cancel'),
       portraitApply: t('Zastosuj', 'Apply'),
       invalidTxtType: t('Niepoprawny plik. Wymagany format .txt.', 'Invalid file. A .txt file is required.'),
@@ -3673,6 +3895,7 @@ function App() {
   const [introFlowMode, setIntroFlowMode] = useState<'forward' | 'reverse'>('forward')
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
+  const [folderScanWarnings, setFolderScanWarnings] = useState<string[]>([])
   const [activeFightId, setActiveFightId] = useState<string | null>(null)
   const [storageReady, setStorageReady] = useState(false)
   const [draftPayload, setDraftPayload] = useState<ParsedVsImport | null>(null)
@@ -3878,6 +4101,8 @@ function App() {
 
   const averageA = useMemo(() => avg(rows, 'a'), [rows])
   const averageB = useMemo(() => avg(rows, 'b'), [rows])
+  const folderFights = useMemo(() => fights.filter((fight) => fight.source === 'folder'), [fights])
+  const manualFights = useMemo(() => fights.filter((fight) => fight.source !== 'folder'), [fights])
 
   const flashStatus = (text: string) => {
     void text
@@ -3919,7 +4144,7 @@ function App() {
   const closePortraitEditor = (options?: { revokePreview?: boolean }) => {
     const revokePreview = options?.revokePreview ?? true
     setPortraitEditor((current) => {
-      if (current?.previewUrl && revokePreview) {
+      if (current?.previewUrl && revokePreview && current.previewUrl.startsWith('blob:')) {
         URL.revokeObjectURL(current.previewUrl)
       }
       return null
@@ -3948,10 +4173,11 @@ function App() {
     const previewUrl = URL.createObjectURL(file)
     const baseAdjust = side === 'a' ? draftPortraitAdjustA : draftPortraitAdjustB
     setPortraitEditor((current) => {
-      if (current?.previewUrl) {
+      if (current?.previewUrl && current.previewUrl.startsWith('blob:')) {
         URL.revokeObjectURL(current.previewUrl)
       }
       return {
+        mode: 'draft',
         side,
         file,
         previewUrl,
@@ -3960,14 +4186,61 @@ function App() {
     })
   }
 
+  const openSavedFightPortraitEditor = (fightId: string, side: 'a' | 'b') => {
+    const match = fights.find((fight) => fight.id === fightId)
+    if (!match) return
+    const previewUrl = side === 'a' ? match.portraitADataUrl : match.portraitBDataUrl
+    if (!previewUrl) return
+    const baseAdjust = side === 'a' ? match.portraitAAdjust : match.portraitBAdjust
+    setPortraitEditor((current) => {
+      if (current?.previewUrl && current.previewUrl.startsWith('blob:')) {
+        URL.revokeObjectURL(current.previewUrl)
+      }
+      return {
+        mode: 'fight',
+        fightId: match.id,
+        side,
+        previewUrl,
+        adjust: normalizePortraitAdjust(baseAdjust),
+      }
+    })
+  }
+
   const applyPortraitEditor = () => {
     if (!portraitEditor) return
-    commitDraftPortrait(
-      portraitEditor.side,
-      portraitEditor.file,
-      portraitEditor.previewUrl,
-      portraitEditor.adjust,
+    if (portraitEditor.mode === 'draft') {
+      commitDraftPortrait(
+        portraitEditor.side,
+        portraitEditor.file,
+        portraitEditor.previewUrl,
+        portraitEditor.adjust,
+      )
+      closePortraitEditor({ revokePreview: false })
+      return
+    }
+
+    const nextAdjust = normalizePortraitAdjust(portraitEditor.adjust)
+    setFights((current) =>
+      current.map((fight) => {
+        if (fight.id !== portraitEditor.fightId) return fight
+        if (portraitEditor.side === 'a') {
+          return {
+            ...fight,
+            portraitAAdjust: nextAdjust,
+          }
+        }
+        return {
+          ...fight,
+          portraitBAdjust: nextAdjust,
+        }
+      }),
     )
+
+    if (activeFightId === portraitEditor.fightId) {
+      if (portraitEditor.side === 'a') setPortraitAAdjust(nextAdjust)
+      if (portraitEditor.side === 'b') setPortraitBAdjust(nextAdjust)
+    }
+
     closePortraitEditor({ revokePreview: false })
   }
 
@@ -3986,6 +4259,42 @@ function App() {
 
   const resetPortraitEditorAdjust = () => {
     updatePortraitEditorAdjust(PORTRAIT_ADJUST_DEFAULT)
+  }
+
+  const togglePortraitEditorSide = () => {
+    setPortraitEditor((current) => {
+      if (!current) return current
+      const nextSide = current.side === 'a' ? 'b' : 'a'
+
+      if (current.mode === 'draft') {
+        const nextFile = nextSide === 'a' ? draftPortraitFileA : draftPortraitFileB
+        if (!nextFile) return current
+        const nextPreviewUrl = URL.createObjectURL(nextFile)
+        if (current.previewUrl.startsWith('blob:') && current.previewUrl !== nextPreviewUrl) {
+          URL.revokeObjectURL(current.previewUrl)
+        }
+        const nextAdjust = nextSide === 'a' ? draftPortraitAdjustA : draftPortraitAdjustB
+        return {
+          mode: 'draft',
+          side: nextSide,
+          file: nextFile,
+          previewUrl: nextPreviewUrl,
+          adjust: normalizePortraitAdjust(nextAdjust),
+        }
+      }
+
+      const match = fights.find((fight) => fight.id === current.fightId)
+      if (!match) return current
+      const nextPreviewUrl = nextSide === 'a' ? match.portraitADataUrl : match.portraitBDataUrl
+      if (!nextPreviewUrl) return current
+      const nextAdjust = nextSide === 'a' ? match.portraitAAdjust : match.portraitBAdjust
+      return {
+        ...current,
+        side: nextSide,
+        previewUrl: nextPreviewUrl,
+        adjust: normalizePortraitAdjust(nextAdjust),
+      }
+    })
   }
 
   const clearDraftPortraits = () => {
@@ -4427,6 +4736,7 @@ function App() {
         name: derivedName,
         fileName: draftTxtFileName || `${derivedName}.txt`,
         createdAt: Date.now(),
+        source: 'manual',
         payload: draftPayload,
         portraitADataUrl,
         portraitBDataUrl,
@@ -4434,7 +4744,11 @@ function App() {
         portraitBAdjust: normalizePortraitAdjust(draftPortraitAdjustB),
       }
 
-      setFights((current) => [fight, ...current])
+      setFights((current) => {
+        const folderOnly = current.filter((item) => item.source === 'folder')
+        const manualOnly = current.filter((item) => item.source !== 'folder')
+        return [...folderOnly, fight, ...manualOnly]
+      })
       setDraftPayload(null)
       setDraftTxtFileName('')
       clearDraftPortraits()
@@ -4453,6 +4767,7 @@ function App() {
   const deleteFight = (fightId: string) => {
     const match = fights.find((item) => item.id === fightId)
     if (!match) return
+    if (match.source === 'folder') return
     const confirmed = window.confirm(`${ui.deleteFightConfirm}\n\n${match.name}`)
     if (!confirmed) return
 
@@ -4618,8 +4933,39 @@ function App() {
         restoredActiveFightId = null
       }
 
+      let mergedFights = restoredFights
+      let scanWarnings: string[] = []
+      try {
+        const scanned = await fetchFolderFightsFromApi()
+        scanWarnings = scanned.warnings
+        if (scanWarnings.length) console.warn('[vs-fights-scan]', scanWarnings)
+
+        const persistedById = new Map(restoredFights.map((fight) => [fight.id, fight]))
+        const scannedFolderFights = scanned.fights.map((fight) => {
+          const persisted = persistedById.get(fight.id)
+          if (!persisted) return fight
+          return {
+            ...fight,
+            createdAt: persisted.createdAt,
+            portraitAAdjust: normalizePortraitAdjust(persisted.portraitAAdjust),
+            portraitBAdjust: normalizePortraitAdjust(persisted.portraitBAdjust),
+          }
+        })
+
+        const manualFights = restoredFights.filter((fight) => fight.source !== 'folder')
+        mergedFights = [...scannedFolderFights, ...manualFights]
+      } catch (error) {
+        scanWarnings = [String(error)]
+        console.warn('[vs-fights-scan] Folder scan failed, using persisted fights.', error)
+      }
+
+      if (restoredActiveFightId && !mergedFights.some((fight) => fight.id === restoredActiveFightId)) {
+        restoredActiveFightId = null
+      }
+
       if (!mounted) return
-      setFights(restoredFights)
+      setFights(mergedFights)
+      setFolderScanWarnings(scanWarnings)
       setActiveFightId(restoredActiveFightId)
       setStorageReady(true)
     }
@@ -4764,7 +5110,7 @@ function App() {
       if (oldA) URL.revokeObjectURL(oldA)
       if (oldB) URL.revokeObjectURL(oldB)
       const editorPreview = portraitEditorPreviewRef.current
-      if (editorPreview) URL.revokeObjectURL(editorPreview)
+      if (editorPreview && editorPreview.startsWith('blob:')) URL.revokeObjectURL(editorPreview)
     },
     [],
   )
@@ -4816,6 +5162,57 @@ function App() {
     '--vvv-origin-y': `${morphHandoff.y}px`,
     '--vvv-origin-size': `${morphOriginSize}px`,
   } as Record<string, string>
+
+  const renderFightLibraryCard = (fight: FightRecord) => (
+    <div
+      key={fight.id}
+      className={clsx(
+        'flex items-stretch gap-2 rounded-xl border p-2 transition',
+        activeFightId === fight.id
+          ? 'border-cyan-300/55 bg-cyan-500/16'
+          : 'border-slate-600/70 bg-slate-900/60 hover:border-slate-400',
+      )}
+    >
+      <button type="button" onClick={() => openFight(fight.id)} className="min-w-0 flex-1 rounded-lg px-2 py-1 text-left">
+        <div className="flex items-start justify-between gap-3">
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-sm font-semibold text-slate-100">{fight.name}</p>
+            <p className="mt-1 truncate text-xs text-slate-300">
+              {fight.payload.fighterAName} vs {fight.payload.fighterBName}
+            </p>
+            <p className="mt-1 truncate text-[11px] text-slate-400">{fight.fileName}</p>
+          </div>
+          <span className="rounded-xl border border-cyan-300/45 bg-cyan-400/15 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
+            {ui.openFight}
+          </span>
+        </div>
+      </button>
+      <div className="flex shrink-0 items-center gap-2">
+        <button
+          type="button"
+          onClick={() => openSavedFightPortraitEditor(fight.id, 'a')}
+          className="flex h-10 items-center justify-center rounded-lg border border-sky-300/45 bg-sky-500/12 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-100 transition hover:bg-sky-500/24"
+          aria-label={ui.adjustPortraitsAria}
+          title={ui.adjustPortraits}
+        >
+          <Crosshair size={14} className="mr-1" />
+          {ui.adjustPortraits}
+        </button>
+        {fight.source === 'manual' ? (
+          <button
+            type="button"
+            onClick={() => deleteFight(fight.id)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-rose-300/45 bg-rose-500/12 text-rose-200 transition hover:bg-rose-500/24"
+            aria-label={ui.deleteFightAria}
+            title={ui.deleteFight}
+          >
+            <Trash2 size={16} />
+          </button>
+        ) : null}
+      </div>
+    </div>
+  )
+
   const searchMorphOverlay =
     searchMorphVisible && typeof document !== 'undefined'
       ? createPortal(
@@ -4851,16 +5248,23 @@ function App() {
                   <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-100">{ui.portraitEditorTitle}</p>
                   <p className="mt-1 text-xs text-slate-300">{ui.portraitEditorHint}</p>
                 </div>
-                <span
-                  className={clsx(
-                    'rounded-md border px-2 py-1 text-[11px] uppercase tracking-[0.14em]',
-                    portraitEditor.side === 'a'
-                      ? 'border-sky-300/55 bg-sky-500/15 text-sky-200'
-                      : 'border-rose-300/55 bg-rose-500/15 text-rose-200',
-                  )}
-                >
-                  {portraitEditor.side === 'a' ? ui.portraitA : ui.portraitB}
-                </span>
+                <div className="flex items-center gap-2">
+                  <span
+                    className={clsx(
+                      'rounded-md border px-2 py-1 text-[11px] uppercase tracking-[0.14em]',
+                      portraitEditor.side === 'a'
+                        ? 'border-sky-300/55 bg-sky-500/15 text-sky-200'
+                        : 'border-rose-300/55 bg-rose-500/15 text-rose-200',
+                    )}
+                  >
+                    {portraitEditor.side === 'a' ? ui.portraitA : ui.portraitB}
+                  </span>
+                  {(portraitEditor.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB)) ? (
+                    <button type="button" className="button-soft" onClick={togglePortraitEditorSide}>
+                      {ui.portraitSwitchSide}
+                    </button>
+                  ) : null}
+                </div>
               </div>
 
               <div className="grid gap-4 lg:grid-cols-[1.25fr_1fr]">
@@ -5169,43 +5573,34 @@ function App() {
 
             <section className="panel">
               <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-100">{ui.fightsLibrary}</h2>
-              {fights.length ? (
-                <div className="mt-3 space-y-2">
-                  {fights.map((fight) => (
-                    <div
-                      key={fight.id}
-                      className={clsx(
-                        'flex items-stretch gap-2 rounded-xl border p-2 transition',
-                        activeFightId === fight.id
-                          ? 'border-cyan-300/55 bg-cyan-500/16'
-                          : 'border-slate-600/70 bg-slate-900/60 hover:border-slate-400',
-                      )}
-                    >
-                      <button type="button" onClick={() => openFight(fight.id)} className="min-w-0 flex-1 rounded-lg px-2 py-1 text-left">
-                        <div className="flex items-start justify-between gap-3">
-                          <div className="min-w-0 flex-1">
-                            <p className="truncate text-sm font-semibold text-slate-100">{fight.name}</p>
-                            <p className="mt-1 truncate text-xs text-slate-300">
-                              {fight.payload.fighterAName} vs {fight.payload.fighterBName}
-                            </p>
-                            <p className="mt-1 truncate text-[11px] text-slate-400">{fight.fileName}</p>
-                          </div>
-                          <span className="rounded-xl border border-cyan-300/45 bg-cyan-400/15 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
-                            {ui.openFight}
-                          </span>
+              {folderFights.length || manualFights.length ? (
+                <div className="mt-3 space-y-4">
+                  <div>
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200/90">{ui.folderFightsLibrary}</h3>
+                    {folderFights.length ? (
+                      <div className="mt-2 space-y-2">{folderFights.map((fight) => renderFightLibraryCard(fight))}</div>
+                    ) : (
+                      <p className="mt-2 text-xs text-slate-400">{ui.noFolderFights}</p>
+                    )}
+                    {folderScanWarnings.length ? (
+                      <div className="mt-2 rounded-lg border border-amber-300/35 bg-amber-500/10 p-2">
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-200">{ui.folderWarningsTitle}</p>
+                        <div className="mt-1 max-h-24 overflow-y-auto space-y-1 text-[11px] text-amber-100/90">
+                          {folderScanWarnings.map((warning, index) => (
+                            <p key={`${warning}-${index}`}>{warning}</p>
+                          ))}
                         </div>
-                      </button>
-                      <button
-                        type="button"
-                        onClick={() => deleteFight(fight.id)}
-                        className="flex w-10 shrink-0 items-center justify-center rounded-lg border border-rose-300/45 bg-rose-500/12 text-rose-200 transition hover:bg-rose-500/24"
-                        aria-label={ui.deleteFightAria}
-                        title={ui.deleteFight}
-                      >
-                        <Trash2 size={16} />
-                      </button>
-                    </div>
-                  ))}
+                      </div>
+                    ) : null}
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-200">{ui.manualFightsLibrary}</h3>
+                    {manualFights.length ? (
+                      <div className="mt-2 space-y-2">{manualFights.map((fight) => renderFightLibraryCard(fight))}</div>
+                    ) : (
+                      <p className="mt-2 text-xs text-slate-400">{ui.noManualFights}</p>
+                    )}
+                  </div>
                 </div>
               ) : (
                 <p className="mt-3 text-sm text-slate-300">{ui.noFights}</p>
@@ -6835,12 +7230,12 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
         <div className="grid grid-rows-[1fr_auto] gap-3">
           <div className="rounded-xl border border-slate-300/30 bg-black/28 p-3">
             <p className="text-[12px] uppercase tracking-[0.18em] text-slate-300">{realityLabel}</p>
-            <div className="mt-2 h-[72%] rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
-              <div className="relative h-full w-full overflow-hidden rounded-md">
-                <LightningCanvas
-                  startRatio={{ x: splitX / 100, y: 0.5 }}
-                  endRatio={{ x: chaosEndX / 100, y: 0.5 }}
-                />
+            <div className="mt-2 h-[72%] overflow-hidden rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
+              <div className="relative -m-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-hidden rounded-lg">
+              <LightningCanvas
+                startRatio={{ x: splitX / 100, y: 0.5 }}
+                endRatio={{ x: Math.min(1.34, chaosEndX / 100 + 0.42), y: 0.5 }}
+              />
                 <svg viewBox="0 0 100 100" className="relative z-10 h-full w-full">
                   <line
                     x1={splitX}

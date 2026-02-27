@@ -34,6 +34,17 @@ inherits: false;
 .vvv-parent-cursor * {
 cursor: none !important;
 }
+html[data-vvv-mode="fight-intro"] .logo-container,
+html[data-vvv-mode="fight-intro"] .logo-container * {
+user-select: none;
+-webkit-user-select: none;
+-webkit-user-drag: none;
+}
+html[data-vvv-mode="fight-intro"] body.vvv-no-select,
+html[data-vvv-mode="fight-intro"] body.vvv-no-select * {
+user-select: none !important;
+-webkit-user-select: none !important;
+}
 html,
 body {
 cursor: var(--vvv-cursor-default) 2 2, auto;
@@ -7458,6 +7469,14 @@ visibility: hidden;
       if (REVERSE_EMBED_MODE) return;
       if (e.type === 'keydown' && e.key !== 'Enter' && e.key !== ' ') return;
       if (sequenceActive || systemOnline || isHolding) return;
+      if (e && e.type !== 'keydown' && typeof e.preventDefault === 'function' && e.cancelable) {
+        e.preventDefault();
+      }
+      if (window.getSelection) {
+        const selection = window.getSelection();
+        if (selection && selection.rangeCount > 0) selection.removeAllRanges();
+      }
+      document.body.classList.add('vvv-no-select');
       isHolding = true;
       holdStart = performance.now();
       PERF.holdPrimedLogged = false;
@@ -7471,6 +7490,10 @@ visibility: hidden;
     const endHold = (e) => {
       if (REVERSE_EMBED_MODE) return;
       if (e.type === 'keyup' && e.key !== 'Enter' && e.key !== ' ') return;
+      if (e && e.type !== 'keyup' && typeof e.preventDefault === 'function' && e.cancelable) {
+        e.preventDefault();
+      }
+      document.body.classList.remove('vvv-no-select');
       if (!isHolding || sequenceActive || systemOnline) return;
       isHolding = false;
       logoBtn.classList.remove('calibrating');
@@ -7486,15 +7509,19 @@ visibility: hidden;
       }
     };
     ['mousedown', 'touchstart'].forEach(e => logoBtn.addEventListener(e, startHold, {
-      passive: true
+      passive: false
     }));
     ['mouseup', 'touchend'].forEach(e => window.addEventListener(e, endHold, {
       passive: true
+    }));
+    ['selectstart', 'dragstart'].forEach(e => logoBtn.addEventListener(e, (event) => {
+      if (event.cancelable) event.preventDefault();
     }));
     logoBtn.addEventListener('keydown', startHold);
     logoBtn.addEventListener('keyup', endHold);
     async function triggerSequence() {
       perfMarkStart('sequence');
+      document.body.classList.remove('vvv-no-select');
       sequenceActive = true;
       logoBtn.classList.remove('primed');
       logoBtn.classList.add('locked');

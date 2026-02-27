@@ -1,5 +1,44 @@
 # React + TypeScript + Vite
 
+## Fights Auto-Import (Folder Scan)
+
+App supports two import modes:
+
+1. Manual Add in the `Add` panel (TXT + portraits upload).
+2. Auto-import from local `Fights` directory on page reload.
+
+Auto-import path:
+
+`VS/App/vs-graphic-studio/Fights`
+
+Fallback path (also supported):
+
+`VS/Fights`
+
+Expected structure:
+
+```txt
+Fights/
+  1. Superman vs King Hyperion/
+    Superman vs King Hyperion.txt
+    1.jpg   (or .jpeg/.png/.webp/.avif)
+    2.jpg   (or .jpeg/.png/.webp/.avif)
+  2. Knull vs Odin/
+    Knull vs Odin.txt
+    1.png
+    2.png
+```
+
+Rules:
+
+- Preferred TXT name: `<A> vs <B>.txt` (matching folder fight name without numeric prefix).
+- Fallback TXT selection works only when exactly one `.txt` exists in the folder.
+- Portrait A must be `1.*`, portrait B must be `2.*`.
+- If `1.*` / `2.*` are missing but there are at least 2 image files, app falls back to the first two images (alphabetical).
+- Folder fights are rebuilt from disk on refresh and shown in `Folder Fights`.
+- Manual fights stay in `Manual Fights`.
+- Portrait framing (`x/y/scale`) can be edited for both folder and manual fights and is persisted in local storage/IndexedDB.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
