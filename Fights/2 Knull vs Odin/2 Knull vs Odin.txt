@@ -1,0 +1,233 @@
+﻿1. Knull (King in Black, Earth-616)
+
+2. Character A Stats
+- Strength: 96
+- Speed: 85
+- Durability: 94
+- Combat IQ: 80
+- Hax: 95
+- Stamina: 97
+- Fighting Style: 88
+- Experience: 95
+- Combat Skills: 90
+
+3. Character A Feats
+- Style: Overwhelming pressure, swarm control, brutal close-range finish attempts
+- Advantage: Regeneration economy plus Necrosword deicide profile
+- Mentality: Force attrition, break structure, end by repeated high-value exchanges
+
+4. Defeated by Character A
+- Arishem
+- Jemiah
+- Ziran
+- Eson
+- Sentry
+- The Void
+- Silver Surfer
+- All-Father Thor
+- Venom (Eddie Brock)
+- Fin Fang Foom
+- Avengers rosters
+- God armies and pantheons
+
+5. Odin (Destroyer Armor + Odinsword, Earth-616)
+
+6. Character B Stats
+- Strength: 92
+- Speed: 84
+- Durability: 94
+- Combat IQ: 94
+- Hax: 92
+- Stamina: 86
+- Fighting Style: 93
+- Experience: 95
+- Combat Skills: 91
+
+7. Character B Feats
+- Style: Tactical distance control, layered magic, selective burst finish windows
+- Advantage: Solar-class counter pressure plus high combat IQ execution
+- Mentality: Stabilize pace, deny clean Necrosword entries, convert counter windows
+
+8. Defeated by Character B
+- Surtur
+- Seth
+- Absorbing Man
+- Mangog
+- Loki
+- Hela
+- Thanos
+- Silver Surfer
+- Laufey
+- Frost Giants
+- Cul Borson (Serpent)
+- Nezarr (Celestial, severe damage)
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- verdict-matrix
+- fight-title
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // KNULL VS ODIN
+- subtitle: Four-source synthesis with conditional non-linear outcomes
+- left_header: CATEGORY GRID
+- right_header: FIGHT REALITY
+- linear_label: STAT LINE
+- chaos_label: COUNTER LINE
+- lane: Regeneration economy vs solar counter control
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: Earth-616, King in Black
+- style: Brutal pressure, abyss swarms, deicidal close-range entries
+- atut: Necrosword plus extreme regeneration and stamina
+- mentalnosc: Overwhelm and force long attrition
+- quote: If the fight goes long, the abyss keeps coming.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Earth-616, Destroyer Armor + Odinsword
+- style: Strategic control, burst punishment, layered magical defense
+- atut: Solar-class counter tools and elite combat IQ
+- mentalnosc: Keep spacing, punish entries, finish through windows
+- quote: Survive the storm, then cut the core.
+
+Template HUD Bars:
+- headline: HIGH-END COMBAT ANALYTICS
+- subtitle: Two-profile readout with scenario filters
+- threat_level: EXTREME
+- integrity: 99.7%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Averaged 9-category profile
+- left_header: KNULL ADVANTAGES
+- right_header: ODIN ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite: BASELINE DRAW
+- draw_favorite: BASELINE DRAW
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Why a baseline draw still needs scenario logic
+- line_1: Average gap is below 1 point, so parameter baseline is a draw.
+- line_2: Knull gains in long regen attrition; Odin gains with sustained light-control execution.
+- line_3: Final favorite must be selected by conditions, not by raw table values.
+- quote: Paper parity moves the verdict to conditions.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Near draw averages can hide hard-counter pathways
+- trap_top: PAPER PARITY
+- trap_bottom: CONDITIONAL OUTCOME SHIFT
+- example: One stable counter interaction can outweigh small category leads.
+- question: Who controls the fight condition before resources fall off?
+
+Template X-Factor:
+- headline: X-FACTOR: ABYSS REGEN VS SOLAR COUNTER
+- subtitle: Joker-card interaction that changes outcome probability
+- factor: CONDITIONAL HARD-COUNTER ECONOMY
+- a_value: 50
+- a_bonus: 14
+- a_bonus_label: REGEN
+- b_value: 50
+- b_bonus: 12
+- regen: COUNTER
+- mechanika: Knull gains value as damage is reset; Odin gains value by sustained light suppression.
+- implikacja: Short controlled exchanges help Odin, extended exchanges help Knull.
+- psychologia: Failed finish attempts increase pressure on the side with lower recovery economy.
+
+Template Winner CV:
+- headline: WINNER CV ARCHIVE
+- subtitle: Record scope and average profile snapshot
+- archive_label: ARCHIVE
+- avg_label: AVG SCORE
+- left_title: KNULL RECORD
+- right_title: ODIN RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle: Baseline plus conditional branches
+- winner: BASELINE DRAW (stats) | CONDITIONAL EDGE: KNULL 6/10 (4-source synthesis)
+- line_1: Overall averages are inside draw threshold (<1), Knull 90.97 vs Odin 91.06.
+- line_2: Knull leads attrition; Odin leads tactical conversion when light-control uptime is sustained.
+- line_3: Matrix is weighted, not 50/50; sustained control is rarer than disrupted control, so baseline remains slightly pro-Knull.
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Momentum shifts across phases
+- a_curve: 90,84,76,82,88
+- b_curve: 74,82,88,81,75
+- yellow_wave: 35,38,34,39,33,37,35,38
+- phase_1: Knull takes early initiative through swarm pressure and pace.
+- phase_2: Odin stabilizes with spacing, control tools, and counter windows.
+- phase_3: Attrition and resource economy decide late-fight direction.
+- analysis: Knull wins long damage loops. Odin wins controlled counter windows.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: Branching fight logic by condition
+- opening: Knull starts with direct rush pressure, swarm volume, and close-range entries.
+- mid_fight: Odin shifts to controlled spacing, kite lanes, and high-value counter bursts.
+- late_fight: Fight collapses into heavy exchanges where resource economy decides.
+- end_condition: Sustained light suppression favors Odin; broken control loops favor Knull attrition.
+- phase_actor: a
+- phase_1_mode: bars
+- phase_1_animation: rush-ko
+- phase_1_actor: a
+- phase_1_title: Direct Entry Pressure
+- phase_1_a_label: Knull Tempo
+- phase_1_b_label: Odin Setup
+- phase_1_a_value: 92
+- phase_1_b_value: 84
+- phase_2_mode: split
+- phase_2_animation: kite-zone
+- phase_2_actor: b
+- phase_2_title: Counter Window
+- phase_2_event: Odin attempts to establish solar-control lanes before clean Necrosword contact.
+- phase_2_branch_a: Knull breaks spacing and forces close attrition.
+- phase_2_branch_b: Odin keeps distance and applies sustained light pressure.
+- phase_3_mode: bars
+- phase_3_animation: clash-lock
+- phase_3_actor: a
+- phase_3_title: Attrition Lock
+- phase_3_a_label: Knull Recovery
+- phase_3_b_label: Odin Resources
+- phase_3_a_value: 93
+- phase_3_b_value: 78
+
+Template Verdict Matrix:
+- headline: VERDICT MATRIX
+- subtitle: Condition-dependent outcomes
+- col_left: LIGHT CONTROL: SUSTAINED
+- col_right: LIGHT CONTROL: DISRUPTED
+- row_top: STANDARD KO/BFR/INCAP
+- row_bottom: KILL-ONLY DEATHMATCH
+- case_1: Odin 6.5/10. If light-control uptime is sustained through most phases, Odin converts safer with spacing and Destroyer durability.
+- case_2: Knull 6.5/10. If light control is disrupted, Knull closes distance and recovers value through regen loops.
+- case_3: Odin 5.5/10. Sustained control still helps, but kill-only raises finish requirements and attrition risk.
+- case_4: Knull 7/10. Disrupted control in kill-only most strongly favors Necrosword attrition and endurance economy.
+
+Template Fight Title:
+- fight_title: Knull vs Odin
+- subtitle: Abyss pressure versus solar control
+- top_color_a: #08090c
+- top_color_b: #b91c1c
+- top_dark: true
+- bottom_color_a: #B38A2A
+- bottom_color_b: #4f6f96
+- bottom_dark: false
