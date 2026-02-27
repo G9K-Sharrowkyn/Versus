@@ -119,6 +119,7 @@ type ParsedVsImport = {
 }
 
 type FightSource = 'manual' | 'folder'
+type FightVariantLocale = Language | 'unknown'
 
 type FightRecord = {
   id: string
@@ -126,6 +127,9 @@ type FightRecord = {
   fileName: string
   createdAt: number
   source: FightSource
+  matchupKey: string
+  variantLocale: FightVariantLocale
+  variantLabel: string
   folderKey?: string
   payload: ParsedVsImport
   portraitADataUrl: string
@@ -211,6 +215,9 @@ type FolderFightScanRecord = {
   folderKey: string
   displayName: string
   matchName: string
+  matchupKey: string
+  variantLocale: FightVariantLocale
+  variantLabel: string
   txtFileName: string
   txtContent: string
   portraitAUrl: string
@@ -699,11 +706,13 @@ const THEME_CLASSES: Record<Theme, string> = {
 
 const LEGACY_FIGHTS_STORAGE_KEY = 'versus-verse-vault:fights:v1'
 const LEGACY_ACTIVE_FIGHT_STORAGE_KEY = 'versus-verse-vault:active-fight-id:v1'
+const LEGACY_MATCHUP_VARIANT_PREFS_KEY = 'versus-verse-vault:matchup-variant-prefs:v1'
 const FIGHTS_DB_NAME = 'versus-verse-vault-db'
 const FIGHTS_DB_VERSION = 1
 const FIGHTS_STORE_NAME = 'fights'
 const META_STORE_NAME = 'meta'
 const META_ACTIVE_FIGHT_KEY = 'activeFightId'
+const META_MATCHUP_VARIANT_PREFS_KEY = 'matchupVariantPrefs'
 const FOLDER_FIGHT_ID_PREFIX = 'folder::'
 
 const TEMPLATE_ID_SET = new Set<TemplateId>(TEMPLATE_PRESETS.map((template) => template.id))
@@ -762,8 +771,116 @@ const FIGHT_SCENARIO_LABELS: Record<FightScenarioId, Record<Language, string>> =
   'trade-chaos': { pl: 'Chaotyczna wymiana', en: 'Trade Chaos' },
 }
 
+const FIGHT_SCENARIO_EXTENDED_LABELS_EN: Record<string, string> = {
+  sonicboomblitz: 'Sonic Boom Blitz',
+  flickerdisplacement: 'Flicker Displacement',
+  vortexvacuum: 'Vortex Vacuum',
+  attosecondperception: 'Attosecond Perception',
+  molecularvibrationpass: 'Molecular Vibration Pass',
+  afterimagefeint: 'Afterimage Feint',
+  infinitemasspunch: 'Infinite Mass Punch',
+  temporalanchor: 'Temporal Anchor',
+  slipstreamdrag: 'Slipstream Drag',
+  kineticsteal: 'Kinetic Steal',
+  groundshatter: 'Ground Shatter',
+  colossalgrapple: 'Colossal Grapple',
+  mountainthrow: 'Mountain Throw',
+  thunderclapshock: 'Thunderclap Shock',
+  unstoppablejuggernaut: 'Unstoppable Juggernaut',
+  seismicslam: 'Seismic Slam',
+  environmentweaponize: 'Environment Weaponize',
+  bearhugcrush: 'Bear Hug Crush',
+  avalancherush: 'Avalanche Rush',
+  skyhighlauncher: 'Sky-High Launcher',
+  beamstruggle: 'Beam Struggle',
+  constructcage: 'Construct Cage',
+  omnidirectionalburst: 'Omnidirectional Burst',
+  guidedvolley: 'Guided Volley',
+  energytether: 'Energy Tether',
+  refractiveshield: 'Refractive Shield',
+  sustainedsuppression: 'Sustained Suppression',
+  sniperprecision: 'Sniper Precision',
+  energysiphon: 'Energy Siphon',
+  orbitalstrike: 'Orbital Strike',
+  magneticcrush: 'Magnetic Crush',
+  gravityanchor: 'Gravity Anchor',
+  singularitypull: 'Singularity Pull',
+  ferrofluidwhip: 'Ferrofluid Whip',
+  internalirongrip: 'Internal Iron Grip',
+  polarityreversal: 'Polarity Reversal',
+  scraparmorbuild: 'Scrap Armor Build',
+  magneticlevitation: 'Magnetic Levitation',
+  geomagneticpulse: 'Geomagnetic Pulse',
+  orbitaldebrisrain: 'Orbital Debris Rain',
+  smokescreenvanish: 'Smoke Screen Vanish',
+  explosivetrapplacement: 'Explosive Trap Placement',
+  grapplehookswing: 'Grapple Hook Swing',
+  countermeasurebuffer: 'Counter-Measure Buffer',
+  weaknessanalysis: 'Weakness Analysis',
+  acrobaticflurry: 'Acrobatic Flurry',
+  stealthtakedown: 'Stealth Takedown',
+  disarmingmaneuver: 'Disarming Maneuver',
+  feartoxinillusion: 'Fear Toxin Illusion',
+  environmentallure: 'Environmental Lure',
+  berserkercharge: 'Berserker Charge',
+  healingstandoff: 'Healing Standoff',
+  tankhitexchange: 'Tank-Hit Exchange',
+  wildslashes: 'Wild Slashes',
+  deathdefiance: 'Death Defiance',
+  animalisticsenses: 'Animalistic Senses',
+  leapandpin: 'Leap-and-Pin',
+  attritiongrind: 'Attrition Grind',
+  selfmutilationfeint: 'Self-Mutilation Feint',
+  adrenalineoverload: 'Adrenaline Overload',
+  mirrordimensionloop: 'Mirror Dimension Loop',
+  eldritchwhiplasso: 'Eldritch Whip Lasso',
+  astralprojectionstrike: 'Astral Projection Strike',
+  realitywarpingobjectswap: 'Reality Warping - Object Swap',
+  timerewindcounter: 'Time Rewind Counter',
+  chaosmagichex: 'Chaos Magic Hex',
+  summoningcirclehorde: 'Summoning Circle - Horde',
+  portaldisplacement: 'Portal Displacement',
+  soulgazingstun: 'Soul Gazing Stun',
+  elementaltransmutation: 'Elemental Transmutation',
+  satelliteuplinklaser: 'Satellite Uplink Laser',
+  nanorepairstall: 'Nano-Repair Stall',
+  sonicfrequencydisruptor: 'Sonic Frequency Disruptor',
+  aipredictionengine: 'AI Prediction Engine',
+  rocketpoweredtackle: 'Rocket Powered Tackle',
+  heatseekingmicromissiles: 'Heat-Seeking Micro-Missiles',
+  empblast: 'EMP Blast',
+  integratedbladecombo: 'Integrated Blade Combo',
+  jetpackhoverharass: 'Jetpack Hover-Harass',
+  holographicdecoyburst: 'Holographic Decoy Burst',
+  feralpounce: 'Feral Pounce',
+  wallclingambush: 'Wall-Cling Ambush',
+  lowprofiledash: 'Low-Profile Dash',
+  multislashjuggle: 'Multi-Slash Juggle',
+  scenttrackingpursuit: 'Scent-Tracking Pursuit',
+  dominancedisplay: 'Dominance Display',
+  desperationblitz: 'Desperation Blitz',
+  calculatedretreat: 'Calculated Retreat',
+  mutualrespectclash: 'Mutual Respect Clash',
+  villainousmonologuestall: 'Villainous Monologue Stall',
+}
+
+const FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID: Record<string, FightScenarioId> = {
+  orbitharass: 'orbit-harass',
+  hitandrun: 'hit-and-run',
+  rushko: 'rush-ko',
+  clashlock: 'clash-lock',
+  kitezone: 'kite-zone',
+  teleportburst: 'teleport-burst',
+  feintcounter: 'feint-counter',
+  grapplepin: 'grapple-pin',
+  cornertrap: 'corner-trap',
+  regenattrition: 'regen-attrition',
+  berserkoverextend: 'berserk-overextend',
+  tradechaos: 'trade-chaos',
+}
+
 const fightScenarioLabel = (scenario: FightScenarioId, language: Language) =>
-  FIGHT_SCENARIO_LABELS[scenario][language]
+  FIGHT_SCENARIO_LABELS[scenario]?.[language] || FIGHT_SCENARIO_LABELS[scenario]?.en || scenario
 
 const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   orbitharass: 'orbit-harass',
@@ -791,6 +908,97 @@ const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   overextend: 'berserk-overextend',
   tradechaos: 'trade-chaos',
   chaos: 'trade-chaos',
+  // Extended cinematic aliases from new.md
+  sonicboomblitz: 'rush-ko',
+  flickerdisplacement: 'teleport-burst',
+  vortexvacuum: 'orbit-harass',
+  attosecondperception: 'teleport-burst',
+  molecularvibrationpass: 'hit-and-run',
+  afterimagefeint: 'feint-counter',
+  infinitemasspunch: 'rush-ko',
+  temporalanchor: 'teleport-burst',
+  slipstreamdrag: 'hit-and-run',
+  kineticsteal: 'grapple-pin',
+  groundshatter: 'rush-ko',
+  colossalgrapple: 'grapple-pin',
+  mountainthrow: 'grapple-pin',
+  thunderclapshock: 'trade-chaos',
+  unstoppablejuggernaut: 'rush-ko',
+  seismicslam: 'rush-ko',
+  environmentweaponize: 'clash-lock',
+  bearhugcrush: 'grapple-pin',
+  avalancherush: 'rush-ko',
+  skyhighlauncher: 'grapple-pin',
+  beamstruggle: 'trade-chaos',
+  constructcage: 'corner-trap',
+  omnidirectionalburst: 'trade-chaos',
+  guidedvolley: 'kite-zone',
+  energytether: 'grapple-pin',
+  refractiveshield: 'kite-zone',
+  sustainedsuppression: 'kite-zone',
+  sniperprecision: 'kite-zone',
+  energysiphon: 'regen-attrition',
+  orbitalstrike: 'kite-zone',
+  magneticcrush: 'corner-trap',
+  gravityanchor: 'corner-trap',
+  singularitypull: 'corner-trap',
+  ferrofluidwhip: 'hit-and-run',
+  internalirongrip: 'grapple-pin',
+  polarityreversal: 'feint-counter',
+  scraparmorbuild: 'regen-attrition',
+  magneticlevitation: 'grapple-pin',
+  geomagneticpulse: 'kite-zone',
+  orbitaldebrisrain: 'kite-zone',
+  smokescreenvanish: 'feint-counter',
+  explosivetrapplacement: 'corner-trap',
+  grapplehookswing: 'hit-and-run',
+  countermeasurebuffer: 'feint-counter',
+  weaknessanalysis: 'feint-counter',
+  acrobaticflurry: 'hit-and-run',
+  stealthtakedown: 'feint-counter',
+  disarmingmaneuver: 'clash-lock',
+  feartoxinillusion: 'trade-chaos',
+  environmentallure: 'corner-trap',
+  berserkercharge: 'berserk-overextend',
+  healingstandoff: 'regen-attrition',
+  tankhitexchange: 'clash-lock',
+  wildslashes: 'trade-chaos',
+  deathdefiance: 'regen-attrition',
+  animalisticsenses: 'hit-and-run',
+  leapandpin: 'grapple-pin',
+  attritiongrind: 'regen-attrition',
+  selfmutilationfeint: 'feint-counter',
+  adrenalineoverload: 'berserk-overextend',
+  mirrordimensionloop: 'trade-chaos',
+  eldritchwhiplasso: 'grapple-pin',
+  astralprojectionstrike: 'teleport-burst',
+  realitywarpingobjectswap: 'trade-chaos',
+  timerewindcounter: 'feint-counter',
+  chaosmagichex: 'trade-chaos',
+  summoningcirclehorde: 'corner-trap',
+  portaldisplacement: 'teleport-burst',
+  soulgazingstun: 'corner-trap',
+  elementaltransmutation: 'corner-trap',
+  satelliteuplinklaser: 'kite-zone',
+  nanorepairstall: 'regen-attrition',
+  sonicfrequencydisruptor: 'kite-zone',
+  aipredictionengine: 'feint-counter',
+  rocketpoweredtackle: 'rush-ko',
+  heatseekingmicromissiles: 'kite-zone',
+  empblast: 'corner-trap',
+  integratedbladecombo: 'clash-lock',
+  jetpackhoverharass: 'orbit-harass',
+  holographicdecoyburst: 'feint-counter',
+  feralpounce: 'rush-ko',
+  wallclingambush: 'feint-counter',
+  lowprofiledash: 'hit-and-run',
+  multislashjuggle: 'trade-chaos',
+  scenttrackingpursuit: 'corner-trap',
+  dominancedisplay: 'clash-lock',
+  desperationblitz: 'berserk-overextend',
+  calculatedretreat: 'kite-zone',
+  mutualrespectclash: 'clash-lock',
+  villainousmonologuestall: 'regen-attrition',
 }
 
 const clamp = (value: number) =>
@@ -901,12 +1109,119 @@ const normalizeToken = (value: string) =>
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '')
 
+const buildScenarioAliasCandidates = (value: string) => {
+  const raw = value.trim()
+  if (!raw) return []
+
+  const seedVariants = [
+    raw,
+    raw.replace(/^\s*\d+\s*\.\s*\d+\s*/, '').trim(),
+    raw.replace(/^\s*\d+\s*[\.\)]\s*/, '').trim(),
+  ]
+
+  const textVariants = new Set<string>()
+  seedVariants.forEach((variant) => {
+    if (!variant) return
+    textVariants.add(variant)
+    const tabCut = variant.split('\t')[0]?.trim()
+    if (tabCut) textVariants.add(tabCut)
+    const colonCut = variant.split(':')[0]?.trim()
+    if (colonCut) textVariants.add(colonCut)
+    const dashCut = variant.split(' - ')[0]?.trim()
+    if (dashCut) textVariants.add(dashCut)
+  })
+
+  return Array.from(new Set(Array.from(textVariants).map(normalizeToken).filter(Boolean)))
+}
+
+const extractScenarioLabelText = (value: string) => {
+  const raw = value.trim()
+  if (!raw) return ''
+  const noNumber = raw.replace(/^\s*\d+\s*\.\s*\d+\s*/, '').replace(/^\s*\d+\s*[\.\)]\s*/, '').trim()
+  if (!noNumber) return ''
+  const tabCut = noNumber.split('\t')[0]?.trim() || ''
+  const colonCut = tabCut.split(':')[0]?.trim() || ''
+  const dashCut = colonCut.split(' - ')[0]?.trim() || ''
+  return dashCut
+}
+
+const humanizeScenarioToken = (token: string) =>
+  token
+    .replace(/([a-z])([A-Z])/g, '$1 $2')
+    .replace(/[-_]+/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/\b\w/g, (char) => char.toUpperCase())
+
+const resolveFightScenarioSelection = (
+  value: string | undefined,
+  fallback: FightScenarioId,
+): { id: FightScenarioId; variantToken: string | null; label: string | null } => {
+  if (!value) return { id: fallback, variantToken: null, label: null }
+  const candidates = buildScenarioAliasCandidates(value)
+  const inputLabel = extractScenarioLabelText(value)
+
+  for (const token of candidates) {
+    const resolved = FIGHT_SCENARIO_ALIAS_TO_ID[token]
+    if (!resolved) continue
+    const isCanonical = FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID[token] === resolved
+    const isExtended = Boolean(FIGHT_SCENARIO_EXTENDED_LABELS_EN[token])
+    const variantToken = isExtended && !isCanonical ? token : null
+    const fallbackLabel = isExtended ? FIGHT_SCENARIO_EXTENDED_LABELS_EN[token] : null
+    const preferFallbackLabel = Boolean(fallbackLabel && normalizeToken(inputLabel) === token)
+    const label = preferFallbackLabel ? fallbackLabel : inputLabel || fallbackLabel
+    return { id: resolved, variantToken, label: label || null }
+  }
+
+  return { id: fallback, variantToken: null, label: inputLabel || null }
+}
+
 const AVERAGE_DRAW_THRESHOLD = 1
 
 const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
+const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[\.\-_ ]*/
+const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
+const stripTxtDecoratorSuffix = (value: string) =>
+  value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
+const normalizeFightFileBaseName = (value: string) => stripTxtDecoratorSuffix(stripFileExtension(value))
+
+const splitFightNameLocaleSuffix = (value: string): { base: string; locale: FightVariantLocale } => {
+  const normalized = value.replace(/[_]+/g, ' ').trim()
+  if (!normalized) return { base: '', locale: 'unknown' }
+  const match = normalized.match(FIGHT_LOCALE_SUFFIX_PATTERN)
+  if (!match) return { base: normalized, locale: 'unknown' }
+  const suffix = normalizeToken(match[1] || '')
+  const locale: FightVariantLocale = suffix === 'pl' || suffix === 'polski' ? 'pl' : 'en'
+  const base = normalized.slice(0, match.index ?? normalized.length).trim()
+  return { base: base || normalized, locale }
+}
+
+const toMatchupDisplayNameFromFileName = (fileName: string) => {
+  const raw = normalizeFightFileBaseName(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+  const split = splitFightNameLocaleSuffix(raw)
+  return split.base || raw
+}
+
+const resolveFightVariantLocaleFromFileName = (fileName: string): FightVariantLocale =>
+  splitFightNameLocaleSuffix(normalizeFightFileBaseName(fileName)).locale
+
+const resolveFightVariantLabel = (fileName: string, locale: FightVariantLocale) => {
+  const normalizedBase = normalizeFightFileBaseName(fileName)
+  const split = splitFightNameLocaleSuffix(normalizedBase)
+  if (split.base && split.base !== normalizedBase) {
+    const suffix = split.locale === 'pl' ? 'PL' : split.locale === 'en' ? 'EN' : split.locale.toUpperCase()
+    return suffix || normalizedBase
+  }
+  if (locale === 'pl') return 'PL'
+  if (locale === 'en') return 'EN'
+  return normalizedBase
+}
+
+const buildMatchupKeyFromNames = (leftName: string, rightName: string) =>
+  `${normalizeToken(leftName)}::${normalizeToken(rightName)}`
 
 const parseMatchupFromFileName = (fileName: string): { leftName: string; rightName: string } | null => {
-  const base = stripFileExtension(fileName).replace(/[_]+/g, ' ').trim()
+  const base = toMatchupDisplayNameFromFileName(fileName)
   const match = base.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   if (!match) return null
   const leftName = match[1]?.trim()
@@ -1061,19 +1376,33 @@ const enforceFileNameSideOrder = (payload: ParsedVsImport, fileName: string): Pa
   }
 }
 
-const findFightByQuery = (fights: FightRecord[], query: string): FightRecord | null => {
+const findFightByQuery = (
+  fights: FightRecord[],
+  query: string,
+  preferredVariantByMatchup: Record<string, string>,
+): FightRecord | null => {
   const cleaned = stripFileExtension(query).trim()
   if (!cleaned) return null
   const token = normalizeToken(cleaned)
   if (!token) return null
 
-  return (
-    fights.find(
-      (fight) =>
-        normalizeToken(stripFileExtension(fight.name)) === token ||
-        normalizeToken(stripFileExtension(fight.fileName)) === token,
-    ) || null
-  )
+  const candidates = fights.filter((fight) => {
+    const matchupFromFile = normalizeToken(toMatchupDisplayNameFromFileName(fight.fileName))
+    return (
+      normalizeToken(stripFileExtension(fight.name)) === token ||
+      matchupFromFile === token ||
+      normalizeToken(stripFileExtension(fight.fileName)) === token
+    )
+  })
+
+  if (!candidates.length) return null
+  if (candidates.length === 1) return candidates[0]
+
+  const preferredCandidate =
+    candidates.find((fight) => preferredVariantByMatchup[fight.matchupKey] === fight.id) || null
+  if (preferredCandidate) return preferredCandidate
+
+  return candidates[0]
 }
 
 const readFileAsDataUrl = (file: File) =>
@@ -1083,15 +1412,6 @@ const readFileAsDataUrl = (file: File) =>
     reader.onerror = () => reject(new Error('File read failed'))
     reader.readAsDataURL(file)
   })
-
-const resolveFightScenarioId = (
-  value: string | undefined,
-  fallback: FightScenarioId,
-): FightScenarioId => {
-  if (!value) return fallback
-  const token = normalizeToken(value)
-  return FIGHT_SCENARIO_ALIAS_TO_ID[token] || fallback
-}
 
 const resolveFightScenarioLead = (
   value: string | undefined,
@@ -1889,6 +2209,11 @@ const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord | null
   const folderKey = typeof raw.folderKey === 'string' ? raw.folderKey.trim() : ''
   const displayName = typeof raw.displayName === 'string' ? raw.displayName.trim() : ''
   const matchName = typeof raw.matchName === 'string' ? raw.matchName.trim() : ''
+  const matchupKeyRaw = typeof raw.matchupKey === 'string' ? raw.matchupKey.trim() : ''
+  const variantLocaleRaw = typeof raw.variantLocale === 'string' ? normalizeToken(raw.variantLocale) : ''
+  const variantLocale: FightVariantLocale =
+    variantLocaleRaw === 'pl' ? 'pl' : variantLocaleRaw === 'en' || variantLocaleRaw === 'eng' ? 'en' : 'unknown'
+  const variantLabel = typeof raw.variantLabel === 'string' ? raw.variantLabel.trim() : ''
   const txtFileName = typeof raw.txtFileName === 'string' ? raw.txtFileName.trim() : ''
   const txtContent = typeof raw.txtContent === 'string' ? raw.txtContent : ''
   const portraitAUrl = typeof raw.portraitAUrl === 'string' ? raw.portraitAUrl.trim() : ''
@@ -1901,10 +2226,20 @@ const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord | null
 
   if (!folderKey || !txtFileName || !txtContent || !portraitAUrl || !portraitBUrl) return null
 
+  const fallbackMatchup = parseMatchupFromFileName(txtFileName)
+  const matchupKey =
+    matchupKeyRaw ||
+    (fallbackMatchup
+      ? buildMatchupKeyFromNames(fallbackMatchup.leftName, fallbackMatchup.rightName)
+      : normalizeToken(matchName || toMatchupDisplayNameFromFileName(txtFileName)))
+
   return {
     folderKey,
     displayName,
     matchName,
+    matchupKey,
+    variantLocale,
+    variantLabel,
     txtFileName,
     txtContent,
     portraitAUrl,
@@ -1941,18 +2276,35 @@ const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[]; warn
     }
 
     const payloadOrdered = enforceFileNameSideOrder(parsed.data, record.txtFileName)
+    const fileMatchup = parseMatchupFromFileName(record.txtFileName)
+    const fallbackMatchName = fileMatchup
+      ? `${fileMatchup.leftName} vs ${fileMatchup.rightName}`
+      : toMatchupDisplayNameFromFileName(record.txtFileName)
     const name =
       record.matchName ||
+      fallbackMatchName ||
       stripFileExtension(record.txtFileName) ||
       record.displayName ||
       `${payloadOrdered.fighterAName} vs ${payloadOrdered.fighterBName}`
+    const matchupKey =
+      record.matchupKey ||
+      buildMatchupKeyFromNames(payloadOrdered.fighterAName, payloadOrdered.fighterBName)
+    const variantLocale =
+      record.variantLocale !== 'unknown'
+        ? record.variantLocale
+        : resolveFightVariantLocaleFromFileName(record.txtFileName)
+    const variantLabel =
+      record.variantLabel || resolveFightVariantLabel(record.txtFileName, variantLocale)
 
     fights.push({
-      id: `${FOLDER_FIGHT_ID_PREFIX}${record.folderKey}`,
+      id: `${FOLDER_FIGHT_ID_PREFIX}${record.folderKey}::${normalizeToken(record.txtFileName)}`,
       name,
       fileName: record.txtFileName,
       createdAt: Date.now() - index,
       source: 'folder',
+      matchupKey,
+      variantLocale,
+      variantLabel,
       folderKey: record.folderKey,
       payload: payloadOrdered,
       portraitADataUrl: record.portraitAUrl,
@@ -2057,8 +2409,30 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
   const rawFolderKey = typeof raw.folderKey === 'string' && raw.folderKey.trim() ? raw.folderKey.trim() : ''
   const folderKey =
     source === 'folder'
-      ? rawFolderKey || (id.startsWith(FOLDER_FIGHT_ID_PREFIX) ? id.slice(FOLDER_FIGHT_ID_PREFIX.length) : '')
+      ? rawFolderKey ||
+        (id.startsWith(FOLDER_FIGHT_ID_PREFIX)
+          ? id
+              .slice(FOLDER_FIGHT_ID_PREFIX.length)
+              .split('::')
+              .filter(Boolean)[0] || ''
+          : '')
       : ''
+  const rawMatchupKey = typeof raw.matchupKey === 'string' ? raw.matchupKey.trim() : ''
+  const inferredMatchup = parseMatchupFromFileName(fileName) || {
+    leftName: payload.fighterAName,
+    rightName: payload.fighterBName,
+  }
+  const matchupKey =
+    rawMatchupKey || buildMatchupKeyFromNames(inferredMatchup.leftName || payload.fighterAName, inferredMatchup.rightName || payload.fighterBName)
+  const variantLocaleRaw = typeof raw.variantLocale === 'string' ? normalizeToken(raw.variantLocale) : ''
+  const variantLocale: FightVariantLocale =
+    variantLocaleRaw === 'pl'
+      ? 'pl'
+      : variantLocaleRaw === 'en' || variantLocaleRaw === 'eng'
+        ? 'en'
+        : resolveFightVariantLocaleFromFileName(fileName)
+  const variantLabelRaw = typeof raw.variantLabel === 'string' ? raw.variantLabel.trim() : ''
+  const variantLabel = variantLabelRaw || resolveFightVariantLabel(fileName, variantLocale)
 
   if (!portraitADataUrl || !portraitBDataUrl) return null
 
@@ -2068,6 +2442,9 @@ const normalizePersistedFight = (value: unknown, index: number): FightRecord | n
     fileName,
     createdAt,
     source,
+    matchupKey,
+    variantLocale,
+    variantLabel,
     folderKey: source === 'folder' ? folderKey || undefined : undefined,
     payload,
     portraitADataUrl,
@@ -2180,6 +2557,56 @@ const idbSetActiveFightId = async (fightId: string | null) => {
   } finally {
     db.close()
   }
+}
+
+const idbGetMetaString = async (key: string): Promise<string | null> => {
+  const db = await openFightDatabase()
+  try {
+    const transaction = db.transaction(META_STORE_NAME, 'readonly')
+    const store = transaction.objectStore(META_STORE_NAME)
+    const request = store.get(key)
+    const payload = await new Promise<unknown>((resolve, reject) => {
+      request.onsuccess = () => resolve(request.result)
+      request.onerror = () => reject(request.error ?? new Error(`Failed to read meta key "${key}" from IndexedDB`))
+    })
+    await waitForTransaction(transaction)
+    if (payload && typeof payload === 'object') {
+      const value = (payload as Partial<FightMetaRecord>).value
+      return typeof value === 'string' && value.trim() ? value : null
+    }
+    return typeof payload === 'string' && payload.trim() ? payload : null
+  } finally {
+    db.close()
+  }
+}
+
+const idbSetMetaString = async (key: string, value: string | null) => {
+  const db = await openFightDatabase()
+  try {
+    const transaction = db.transaction(META_STORE_NAME, 'readwrite')
+    const store = transaction.objectStore(META_STORE_NAME)
+    if (value && value.trim()) {
+      const payload: FightMetaRecord = { key, value }
+      store.put(payload)
+    } else {
+      store.delete(key)
+    }
+    await waitForTransaction(transaction)
+  } finally {
+    db.close()
+  }
+}
+
+const normalizeVariantPrefsMap = (value: unknown): Record<string, string> => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+  const next: Record<string, string> = {}
+  Object.entries(value as Record<string, unknown>).forEach(([key, entry]) => {
+    const matchupKey = key.trim()
+    const fightId = typeof entry === 'string' ? entry.trim() : ''
+    if (!matchupKey || !fightId) return
+    next[matchupKey] = fightId
+  })
+  return next
 }
 
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
@@ -2792,12 +3219,165 @@ const rgbaFromHex = (value: string, alpha: number) => {
   return `rgba(226, 232, 240, ${clamp01(alpha)})`
 }
 
+const scenarioTokenHasAny = (token: string | null | undefined, parts: string[]) =>
+  Boolean(token && parts.some((part) => token.includes(part)))
+
+const applyFightScenarioVariant = (
+  frame: FightScenarioFrame,
+  variantToken: string | null,
+  p: number,
+  seconds: number,
+): FightScenarioFrame => {
+  if (!variantToken) return frame
+
+  const next: FightScenarioFrame = {
+    ...frame,
+    a: { ...frame.a },
+    b: { ...frame.b },
+    ghostsA: frame.ghostsA ? frame.ghostsA.map((point) => ({ ...point })) : undefined,
+    ghostsB: frame.ghostsB ? frame.ghostsB.map((point) => ({ ...point })) : undefined,
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['vortex', 'orbit', 'hover'])) {
+    const angle = seconds * 4.8
+    const radiusX = 0.24 + Math.sin(seconds * 0.8) * 0.05
+    const radiusY = 0.2 + Math.cos(seconds * 0.9) * 0.04
+    next.a.x = next.b.x + Math.cos(angle) * radiusX
+    next.a.y = next.b.y + Math.sin(angle) * radiusY
+    next.ghostsA = [
+      { x: next.b.x + Math.cos(angle - 0.65) * radiusX, y: next.b.y + Math.sin(angle - 0.65) * radiusY },
+      { x: next.b.x + Math.cos(angle - 1.25) * radiusX, y: next.b.y + Math.sin(angle - 1.25) * radiusY },
+      { x: next.b.x + Math.cos(angle - 1.85) * radiusX, y: next.b.y + Math.sin(angle - 1.85) * radiusY },
+    ]
+    next.beam = Math.max(next.beam, 0.45 + pulse01(seconds, 4.5) * 0.35)
+    next.impact = Math.max(next.impact, pulse01(seconds * 1.2, 5.4) * 0.45)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['teleport', 'flicker', 'attosecond', 'temporal', 'portal', 'astral', 'rewind'])) {
+    const jitterX = (Math.random() - 0.5) * 0.07
+    const jitterY = (Math.random() - 0.5) * 0.05
+    next.a.x += jitterX
+    next.a.y += jitterY
+    next.ghostsA = [
+      { x: next.a.x - 0.05, y: next.a.y - 0.03 },
+      { x: next.a.x + 0.05, y: next.a.y + 0.03 },
+      { x: next.a.x - 0.08, y: next.a.y + 0.02 },
+      { x: next.a.x + 0.08, y: next.a.y - 0.02 },
+    ]
+    next.beam = Math.max(next.beam, 0.5)
+    next.pulseA = Math.max(next.pulseA, 0.62 + pulse01(seconds, 10.2) * 0.25)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['beam', 'laser', 'volley', 'sniper', 'missile', 'orbital', 'siphon', 'suppression'])) {
+    next.beam = Math.max(next.beam, 0.66 + pulse01(seconds, 7.3) * 0.26)
+    next.impact = Math.max(next.impact, pulse01(seconds, 9.6) * 0.5)
+    next.a.x = Math.min(next.a.x, 0.44)
+    next.b.x = Math.max(next.b.x, 0.65)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['grapple', 'pin', 'hug', 'throw', 'launcher', 'levitation', 'lasso', 'pounce', 'grip'])) {
+    const centerX = mixNumber(next.a.x, next.b.x, 0.5)
+    const centerY = mixNumber(next.a.y, next.b.y, 0.5)
+    next.a.x = mixNumber(next.a.x, centerX - 0.03, 0.7)
+    next.a.y = mixNumber(next.a.y, centerY, 0.7)
+    next.b.x = mixNumber(next.b.x, centerX + 0.03, 0.7)
+    next.b.y = mixNumber(next.b.y, centerY, 0.7)
+    next.impact = Math.max(next.impact, 0.7 + pulse01(seconds, 8.5) * 0.25)
+    next.beam = Math.max(next.beam, 0.58)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['corner', 'trap', 'cage', 'anchor', 'singularity', 'crush', 'stun'])) {
+    next.b.x = mixNumber(next.b.x, 0.9, 0.5)
+    next.b.y = mixNumber(next.b.y, 0.26 + Math.sin(seconds * 1.7) * 0.08, 0.5)
+    next.a.x = mixNumber(next.a.x, 0.74, 0.3)
+    next.a.y = mixNumber(next.a.y, 0.45 + Math.sin(seconds * 2.1) * 0.1, 0.3)
+    next.impact = Math.max(next.impact, 0.55)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['regen', 'repair', 'healing', 'defiance', 'stall', 'monologue', 'attrition'])) {
+    next.pulseB = Math.max(next.pulseB, 0.6 + pulse01(seconds, 3.1) * 0.36)
+    next.impact = Math.max(0.12, next.impact * 0.72)
+    next.ghostsB = [
+      { x: next.b.x - 0.018, y: next.b.y - 0.015 },
+      { x: next.b.x + 0.018, y: next.b.y + 0.015 },
+      { x: next.b.x, y: next.b.y - 0.026 },
+    ]
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['berserk', 'blitz', 'chaos', 'wild', 'overload', 'desperation'])) {
+    next.a.x += (Math.random() - 0.5) * 0.05
+    next.a.y += (Math.random() - 0.5) * 0.05
+    next.b.x += (Math.random() - 0.5) * 0.03
+    next.b.y += (Math.random() - 0.5) * 0.03
+    next.impact = Math.max(next.impact, pulse01(seconds * 1.1, 12) * 0.95)
+    next.beam = Math.max(next.beam, 0.52 + pulse01(seconds, 12) * 0.25)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['smoke', 'stealth', 'afterimage', 'decoy', 'illusion', 'ambush', 'feint'])) {
+    next.ghostsA = [
+      { x: next.a.x - 0.09, y: next.a.y },
+      { x: next.a.x + 0.09, y: next.a.y },
+      { x: next.a.x, y: next.a.y - 0.07 },
+      { x: next.a.x, y: next.a.y + 0.07 },
+    ]
+    next.pulseA = Math.max(next.pulseA, 0.56 + pulse01(seconds, 6.2) * 0.28)
+  }
+
+  if (variantToken === 'dominancedisplay') {
+    next.a.x = 0.36
+    next.a.y = 0.5
+    next.b.x = 0.7 + Math.sin(seconds * 7.8) * 0.02
+    next.b.y = 0.5 + Math.cos(seconds * 8.3) * 0.03
+    next.impact = Math.max(next.impact, pulse01(seconds, 10.5) * 0.35)
+    next.beam = Math.min(next.beam, 0.2)
+  }
+
+  if (variantToken === 'mutualrespectclash') {
+    next.a.x = mixNumber(next.a.x, 0.43, 0.7)
+    next.b.x = mixNumber(next.b.x, 0.57, 0.7)
+    next.a.y = mixNumber(next.a.y, 0.5, 0.7)
+    next.b.y = mixNumber(next.b.y, 0.5, 0.7)
+    next.impact = Math.max(0.14, next.impact * 0.35)
+    next.beam = Math.max(0.12, next.beam * 0.4)
+  }
+
+  if (variantToken === 'villainousmonologuestall') {
+    next.a.x = 0.34
+    next.a.y = 0.5
+    next.b.x = 0.66
+    next.b.y = 0.5
+    next.impact = 0
+    next.beam = 0
+    next.pulseA = 0.2 + pulse01(seconds, 1.6) * 0.1
+    next.pulseB = 0.26 + pulse01(seconds, 1.3) * 0.16
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['boomb', 'thunderclap', 'shatter', 'slam'])) {
+    const quake = Math.sin(seconds * 22) * 0.012
+    next.a.y += quake
+    next.b.y -= quake * 0.7
+    next.impact = Math.max(next.impact, pulse01(seconds, 14) * 0.82)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['mirror', 'loop'])) {
+    const wrapX = wrap01((p * 1.8 + seconds * 0.08) % 1)
+    next.a.x = wrapX
+    next.b.x = 1 - wrapX
+    next.beam = Math.max(next.beam, 0.44)
+  }
+
+  return clampFightFrame(next)
+}
+
 const buildFightScenarioFrame = (
   scenario: FightScenarioId,
   t: number,
   seconds: number,
+  variantToken: string | null,
 ): FightScenarioFrame => {
   const p = clamp01(t)
+  const finishScenarioFrame = (frame: FightScenarioFrame) =>
+    applyFightScenarioVariant(clampFightFrame(frame), variantToken, p, seconds)
 
   if (scenario === 'orbit-harass') {
     const center = { x: 0.74, y: 0.5 }
@@ -2819,7 +3399,7 @@ const buildFightScenarioFrame = (
       a = mixPoint(strike, orbit, k)
     }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b: {
         x: center.x + Math.sin(seconds * 2.2) * 0.01,
@@ -2850,7 +3430,7 @@ const buildFightScenarioFrame = (
       ? { x: mixNumber(0.72, 0.83, k), y: mixNumber(0.48, 0.56, k) }
       : { x: mixNumber(0.83, 0.7, k), y: mixNumber(0.56, 0.52, k) }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b,
       impact: forward ? Math.max(0, 1 - Math.abs(cycle - 0.36) / 0.08) : 0,
@@ -2872,7 +3452,7 @@ const buildFightScenarioFrame = (
       y: mixNumber(0.5, 0.66, recoil),
     }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b,
       impact: Math.max(0, 1 - Math.abs(p - 0.34) / 0.07),
@@ -2885,7 +3465,7 @@ const buildFightScenarioFrame = (
   if (scenario === 'clash-lock') {
     if (p < 0.35) {
       const k = smoothStep(p / 0.35)
-      return clampFightFrame({
+      return finishScenarioFrame({
         a: { x: mixNumber(0.15, 0.48, k), y: mixNumber(0.52, 0.5, k) },
         b: { x: mixNumber(0.85, 0.52, k), y: mixNumber(0.48, 0.5, k) },
         impact: 0,
@@ -2896,7 +3476,7 @@ const buildFightScenarioFrame = (
     }
 
     const centerX = 0.5 + Math.sin(seconds * 1.2) * 0.02
-    return clampFightFrame({
+    return finishScenarioFrame({
       a: {
         x: centerX - 0.05 + Math.sin(seconds * 7.5) * 0.012,
         y: 0.5 + Math.sin(seconds * 4.2) * 0.04,
@@ -2928,7 +3508,7 @@ const buildFightScenarioFrame = (
     const dist = pointDistance(a, b)
     const impact = dist < 0.15 ? (0.15 - dist) / 0.15 : 0
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b,
       impact,
@@ -2964,7 +3544,7 @@ const buildFightScenarioFrame = (
       a = mixPoint(strike, nodes[next], k)
     }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b: {
         x: strike.x + Math.sin(seconds * 3.6) * 0.012,
@@ -2999,7 +3579,7 @@ const buildFightScenarioFrame = (
       b = mixPoint({ x: 0.47, y: 0.62 }, { x: 0.76, y: 0.5 }, k)
     }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b,
       impact: Math.max(0, 1 - Math.abs(p - 0.68) / 0.09),
@@ -3012,7 +3592,7 @@ const buildFightScenarioFrame = (
   if (scenario === 'grapple-pin') {
     if (p < 0.32) {
       const k = smoothStep(p / 0.32)
-      return clampFightFrame({
+      return finishScenarioFrame({
         a: mixPoint({ x: 0.16, y: 0.54 }, { x: 0.6, y: 0.52 }, k),
         b: mixPoint({ x: 0.8, y: 0.5 }, { x: 0.72, y: 0.52 }, k),
         impact: k * 0.45,
@@ -3022,7 +3602,7 @@ const buildFightScenarioFrame = (
       })
     }
     if (p < 0.6) {
-      return clampFightFrame({
+      return finishScenarioFrame({
         a: { x: 0.64 + Math.sin(seconds * 5) * 0.018, y: 0.49 + Math.sin(seconds * 6) * 0.05 },
         b: { x: 0.68 - Math.sin(seconds * 5) * 0.012, y: 0.51 - Math.sin(seconds * 6) * 0.05 },
         impact: 0.76 + pulse01(seconds, 9) * 0.24,
@@ -3033,7 +3613,7 @@ const buildFightScenarioFrame = (
     }
 
     const k = smoothStep((p - 0.6) / 0.4)
-    return clampFightFrame({
+    return finishScenarioFrame({
       a: mixPoint({ x: 0.64, y: 0.49 }, { x: 0.83, y: 0.58 }, k),
       b: mixPoint({ x: 0.68, y: 0.51 }, { x: 0.9, y: 0.67 }, k),
       impact: 0.42 + (1 - k) * 0.26,
@@ -3046,7 +3626,7 @@ const buildFightScenarioFrame = (
   if (scenario === 'corner-trap') {
     if (p < 0.55) {
       const k = smoothStep(p / 0.55)
-      return clampFightFrame({
+      return finishScenarioFrame({
         a: mixPoint({ x: 0.24, y: 0.52 }, { x: 0.74, y: 0.38 }, k),
         b: mixPoint({ x: 0.7, y: 0.5 }, { x: 0.9, y: 0.22 }, k),
         impact: k * 0.5,
@@ -3056,7 +3636,7 @@ const buildFightScenarioFrame = (
       })
     }
     const angle = seconds * 8
-    return clampFightFrame({
+    return finishScenarioFrame({
       a: {
         x: 0.84 + Math.cos(angle) * 0.08,
         y: 0.28 + Math.sin(angle) * 0.06,
@@ -3078,7 +3658,7 @@ const buildFightScenarioFrame = (
       x: 0.77 + Math.sin(seconds * 1.1) * 0.012,
       y: 0.5 + Math.sin(seconds * 2.4) * 0.03,
     }
-    return clampFightFrame({
+    return finishScenarioFrame({
       a: {
         x: 0.28 + strikeWave * 0.42,
         y: 0.5 + Math.sin(seconds * 3.1) * 0.08,
@@ -3112,7 +3692,7 @@ const buildFightScenarioFrame = (
       b = mixPoint({ x: 0.42, y: 0.74 }, { x: 0.84, y: 0.5 }, k)
     }
 
-    return clampFightFrame({
+    return finishScenarioFrame({
       a,
       b,
       impact: Math.max(0, 1 - Math.abs(p - 0.76) / 0.08),
@@ -3133,7 +3713,7 @@ const buildFightScenarioFrame = (
   const dist = pointDistance(a, b)
   const impact = dist < 0.2 ? (0.2 - dist) / 0.2 : 0
 
-  return clampFightFrame({
+  return finishScenarioFrame({
     a,
     b,
     impact,
@@ -3145,11 +3725,13 @@ const buildFightScenarioFrame = (
 
 function FightScenarioCanvas({
   scenario,
+  variantToken,
   colorA,
   colorB,
   lead = 'a',
 }: {
   scenario: FightScenarioId
+  variantToken?: string | null
   colorA: string
   colorB: string
   lead?: FightScenarioLead
@@ -3272,7 +3854,7 @@ function FightScenarioCanvas({
       const elapsedSeconds = (time - startTime) / 1000
       const cycle = wrap01(elapsedSeconds / 3.6)
       const scenarioFrame = orientFightScenarioFrame(
-        buildFightScenarioFrame(scenario, cycle, elapsedSeconds),
+        buildFightScenarioFrame(scenario, cycle, elapsedSeconds, variantToken || null),
         lead,
       )
       const pointA = toPixels(scenarioFrame.a)
@@ -3345,7 +3927,7 @@ function FightScenarioCanvas({
         host.removeChild(canvas)
       }
     }
-  }, [colorA, colorB, lead, scenario])
+  }, [colorA, colorB, lead, scenario, variantToken])
 
   return <div ref={hostRef} className="relative h-36 w-full overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/90" />
 }
@@ -3801,6 +4383,12 @@ function App() {
       folderWarningsTitle: t('Problemy ze skanem folderu', 'Folder scan warnings'),
       createFight: t('Zatwierdź i dodaj walkę', 'Confirm and add fight'),
       openFight: t('Otwórz walkę', 'Open fight'),
+      selectVariant: t('Wybierz wariant', 'Select variant'),
+      selectedVariant: t('Wybrany wariant', 'Selected variant'),
+      variantPl: t('Polski', 'Polish'),
+      variantEn: t('Angielski', 'English'),
+      variantUnknown: t('Wariant', 'Variant'),
+      bilingualGroup: t('Para językowa', 'Language pair'),
       deleteFight: t('Usuń', 'Delete'),
       deleteFightAria: t('Usuń walkę', 'Delete fight'),
       deleteFightConfirm: t('Czy na pewno usunąć tę walkę?', 'Are you sure you want to delete this fight?'),
@@ -3896,6 +4484,7 @@ function App() {
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
   const [folderScanWarnings, setFolderScanWarnings] = useState<string[]>([])
+  const [preferredVariantByMatchup, setPreferredVariantByMatchup] = useState<Record<string, string>>({})
   const [activeFightId, setActiveFightId] = useState<string | null>(null)
   const [storageReady, setStorageReady] = useState(false)
   const [draftPayload, setDraftPayload] = useState<ParsedVsImport | null>(null)
@@ -4103,6 +4692,66 @@ function App() {
   const averageB = useMemo(() => avg(rows, 'b'), [rows])
   const folderFights = useMemo(() => fights.filter((fight) => fight.source === 'folder'), [fights])
   const manualFights = useMemo(() => fights.filter((fight) => fight.source !== 'folder'), [fights])
+  const folderFightGroups = useMemo(() => {
+    const map = new Map<
+      string,
+      { matchupKey: string; title: string; sortIndex: number; fights: FightRecord[] }
+    >()
+    folderFights.forEach((fight, index) => {
+      const key = fight.matchupKey || normalizeToken(fight.name)
+      const current = map.get(key)
+      if (!current) {
+        map.set(key, {
+          matchupKey: key,
+          title: stripFileExtension(fight.name) || stripFileExtension(fight.fileName),
+          sortIndex: index,
+          fights: [fight],
+        })
+        return
+      }
+      current.fights.push(fight)
+      current.sortIndex = Math.min(current.sortIndex, index)
+    })
+
+    return Array.from(map.values())
+      .map((group) => ({
+        ...group,
+        fights: [...group.fights].sort((left, right) => {
+          const rank = (value: FightVariantLocale) => (value === 'pl' ? 0 : value === 'en' ? 1 : 2)
+          const localeRank = rank(left.variantLocale) - rank(right.variantLocale)
+          if (localeRank !== 0) return localeRank
+          return left.fileName.localeCompare(right.fileName, undefined, {
+            numeric: true,
+            sensitivity: 'base',
+          })
+        }),
+      }))
+      .sort((left, right) => {
+        if (left.sortIndex !== right.sortIndex) return left.sortIndex - right.sortIndex
+        return left.title.localeCompare(right.title, undefined, { numeric: true, sensitivity: 'base' })
+      })
+  }, [folderFights])
+
+  useEffect(() => {
+    const validById = new Set(fights.map((fight) => fight.id))
+    const validMatchups = new Set(fights.map((fight) => fight.matchupKey))
+    setPreferredVariantByMatchup((current) => {
+      let changed = false
+      const next: Record<string, string> = {}
+      Object.entries(current).forEach(([matchupKey, fightId]) => {
+        if (!validMatchups.has(matchupKey)) {
+          changed = true
+          return
+        }
+        if (!validById.has(fightId)) {
+          changed = true
+          return
+        }
+        next[matchupKey] = fightId
+      })
+      return changed ? next : current
+    })
+  }, [fights])
 
   const flashStatus = (text: string) => {
     void text
@@ -4495,8 +5144,16 @@ function App() {
     return true
   }
 
+  const resolveFightLanguage = (fight: FightRecord, fallback: Language): Language => {
+    if (fight.variantLocale === 'pl' || fight.variantLocale === 'en') return fight.variantLocale
+    const inferred = resolveFightVariantLocaleFromFileName(fight.fileName)
+    if (inferred === 'pl' || inferred === 'en') return inferred
+    return fallback
+  }
+
   const applyFightRecord = (fight: FightRecord, options?: { enterIntro?: boolean }) => {
     const payload = enforceFileNameSideOrder(fight.payload, fight.fileName || fight.name)
+    const targetLanguage = resolveFightLanguage(fight, language)
     const categoryPayload = createCategoryPayload(payload.statsA, payload.statsB)
     const importedOrder = ensureTemplateOrderHasFinal(
       payload.templateOrder.length ? payload.templateOrder : DEFAULT_TEMPLATE_ORDER,
@@ -4523,8 +5180,9 @@ function App() {
     setPortraitAAdjust(normalizePortraitAdjust(fight.portraitAAdjust))
     setPortraitBAdjust(normalizePortraitAdjust(fight.portraitBAdjust))
 
-    setFactsA(payload.factsA.length ? payload.factsA.slice(0, 5) : defaultFactsFor('a', language))
-    setFactsB(payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', language))
+    setLanguage(targetLanguage)
+    setFactsA(payload.factsA.length ? payload.factsA.slice(0, 5) : defaultFactsFor('a', targetLanguage))
+    setFactsB(payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', targetLanguage))
     setWinsA(payload.winsA.length ? payload.winsA.slice(0, 12) : DEFAULT_WINNER_CV_A)
     setWinsB(payload.winsB.length ? payload.winsB.slice(0, 12) : DEFAULT_WINNER_CV_B)
     setTemplateBlocks(payload.templateBlocks)
@@ -4731,12 +5389,22 @@ function App() {
 
       const fallbackName = `${draftPayload.fighterAName} vs ${draftPayload.fighterBName}`.trim()
       const derivedName = stripFileExtension(draftTxtFileName) || fallbackName || tr('Nowa Walka', 'New Fight')
+      const fileMatchup = parseMatchupFromFileName(draftTxtFileName)
+      const matchupKey = buildMatchupKeyFromNames(
+        fileMatchup?.leftName || draftPayload.fighterAName,
+        fileMatchup?.rightName || draftPayload.fighterBName,
+      )
+      const variantLocale = resolveFightVariantLocaleFromFileName(draftTxtFileName)
+      const variantLabel = resolveFightVariantLabel(draftTxtFileName || `${derivedName}.txt`, variantLocale)
       const fight: FightRecord = {
         id: `${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         name: derivedName,
         fileName: draftTxtFileName || `${derivedName}.txt`,
         createdAt: Date.now(),
         source: 'manual',
+        matchupKey,
+        variantLocale,
+        variantLabel,
         payload: draftPayload,
         portraitADataUrl,
         portraitBDataUrl,
@@ -4758,9 +5426,21 @@ function App() {
     }
   }
 
+  const rememberPreferredFightVariant = (fight: FightRecord) => {
+    if (!fight.matchupKey) return
+    setPreferredVariantByMatchup((current) => {
+      if (current[fight.matchupKey] === fight.id) return current
+      return {
+        ...current,
+        [fight.matchupKey]: fight.id,
+      }
+    })
+  }
+
   const openFight = (fightId: string) => {
     const match = fights.find((item) => item.id === fightId)
     if (!match) return
+    rememberPreferredFightVariant(match)
     applyFightRecord(match)
   }
 
@@ -4861,7 +5541,7 @@ function App() {
         return
       }
 
-      const match = findFightByQuery(fights, rawQuery)
+      const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup)
       if (!match) return
       startSearchFightTransition(match)
     }
@@ -4872,7 +5552,7 @@ function App() {
       clearFightViewRevealTimeout()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fights])
+  }, [fights, preferredVariantByMatchup])
 
   useEffect(() => {
     const localizedActive = localizedTemplates.find((item) => item.id === activeTemplate)
@@ -4887,12 +5567,21 @@ function App() {
     const restorePersistedFights = async () => {
       let restoredFights: FightRecord[] = []
       let restoredActiveFightId: string | null = null
+      let restoredVariantPrefs: Record<string, string> = {}
       let idbAvailable = typeof window !== 'undefined' && 'indexedDB' in window
 
       if (idbAvailable) {
         try {
           restoredFights = await idbReadAllFights()
           restoredActiveFightId = await idbGetActiveFightId()
+          const rawVariantPrefs = await idbGetMetaString(META_MATCHUP_VARIANT_PREFS_KEY)
+          if (rawVariantPrefs) {
+            try {
+              restoredVariantPrefs = normalizeVariantPrefsMap(JSON.parse(rawVariantPrefs))
+            } catch {
+              restoredVariantPrefs = {}
+            }
+          }
         } catch {
           idbAvailable = false
         }
@@ -4913,6 +5602,10 @@ function App() {
           if (savedActiveFightId && restoredFights.some((fight) => fight.id === savedActiveFightId)) {
             restoredActiveFightId = savedActiveFightId
           }
+          const savedVariantPrefs = localStorage.getItem(LEGACY_MATCHUP_VARIANT_PREFS_KEY)
+          if (savedVariantPrefs) {
+            restoredVariantPrefs = normalizeVariantPrefsMap(JSON.parse(savedVariantPrefs))
+          }
         } catch {
           // Ignore invalid legacy storage payloads.
         }
@@ -4921,8 +5614,13 @@ function App() {
           try {
             await idbSaveAllFights(restoredFights)
             await idbSetActiveFightId(restoredActiveFightId)
+            await idbSetMetaString(
+              META_MATCHUP_VARIANT_PREFS_KEY,
+              Object.keys(restoredVariantPrefs).length ? JSON.stringify(restoredVariantPrefs) : null,
+            )
             localStorage.removeItem(LEGACY_FIGHTS_STORAGE_KEY)
             localStorage.removeItem(LEGACY_ACTIVE_FIGHT_STORAGE_KEY)
+            localStorage.removeItem(LEGACY_MATCHUP_VARIANT_PREFS_KEY)
           } catch {
             // Ignore migration write failures.
           }
@@ -4941,8 +5639,21 @@ function App() {
         if (scanWarnings.length) console.warn('[vs-fights-scan]', scanWarnings)
 
         const persistedById = new Map(restoredFights.map((fight) => [fight.id, fight]))
+        const persistedFolderBySignature = new Map(
+          restoredFights
+            .filter((fight) => fight.source === 'folder' && fight.folderKey)
+            .map((fight) => [`${fight.folderKey}::${normalizeToken(fight.fileName)}`, fight]),
+        )
+        const persistedFolderByMatchup = new Map(
+          restoredFights
+            .filter((fight) => fight.source === 'folder' && fight.folderKey)
+            .map((fight) => [`${fight.folderKey}::${fight.matchupKey}`, fight]),
+        )
         const scannedFolderFights = scanned.fights.map((fight) => {
-          const persisted = persistedById.get(fight.id)
+          const persisted =
+            persistedById.get(fight.id) ||
+            persistedFolderBySignature.get(`${fight.folderKey || ''}::${normalizeToken(fight.fileName)}`) ||
+            persistedFolderByMatchup.get(`${fight.folderKey || ''}::${fight.matchupKey}`)
           if (!persisted) return fight
           return {
             ...fight,
@@ -4963,9 +5674,19 @@ function App() {
         restoredActiveFightId = null
       }
 
+      const existingById = new Set(mergedFights.map((fight) => fight.id))
+      const existingMatchups = new Set(mergedFights.map((fight) => fight.matchupKey))
+      const sanitizedVariantPrefs: Record<string, string> = {}
+      Object.entries(restoredVariantPrefs).forEach(([matchupKey, fightId]) => {
+        if (!existingMatchups.has(matchupKey)) return
+        if (!existingById.has(fightId)) return
+        sanitizedVariantPrefs[matchupKey] = fightId
+      })
+
       if (!mounted) return
       setFights(mergedFights)
       setFolderScanWarnings(scanWarnings)
+      setPreferredVariantByMatchup(sanitizedVariantPrefs)
       setActiveFightId(restoredActiveFightId)
       setStorageReady(true)
     }
@@ -5026,6 +5747,36 @@ function App() {
 
     void persistActiveFight()
   }, [activeFightId, storageReady])
+
+  useEffect(() => {
+    if (!storageReady) return
+
+    const persistVariantPrefs = async () => {
+      if (typeof window === 'undefined') return
+      const serialized =
+        Object.keys(preferredVariantByMatchup).length ? JSON.stringify(preferredVariantByMatchup) : null
+
+      if ('indexedDB' in window) {
+        try {
+          await idbSetMetaString(META_MATCHUP_VARIANT_PREFS_KEY, serialized)
+          return
+        } catch {
+          // Fall back to legacy storage.
+        }
+      }
+      try {
+        if (serialized) {
+          localStorage.setItem(LEGACY_MATCHUP_VARIANT_PREFS_KEY, serialized)
+          return
+        }
+        localStorage.removeItem(LEGACY_MATCHUP_VARIANT_PREFS_KEY)
+      } catch {
+        // Ignore storage write failures.
+      }
+    }
+
+    void persistVariantPrefs()
+  }, [preferredVariantByMatchup, storageReady])
 
   useEffect(() => {
     if (importFileName || Object.keys(templateBlocks).length) return
@@ -5164,53 +5915,80 @@ function App() {
   } as Record<string, string>
 
   const renderFightLibraryCard = (fight: FightRecord) => (
-    <div
-      key={fight.id}
-      className={clsx(
-        'flex items-stretch gap-2 rounded-xl border p-2 transition',
-        activeFightId === fight.id
-          ? 'border-cyan-300/55 bg-cyan-500/16'
-          : 'border-slate-600/70 bg-slate-900/60 hover:border-slate-400',
-      )}
-    >
-      <button type="button" onClick={() => openFight(fight.id)} className="min-w-0 flex-1 rounded-lg px-2 py-1 text-left">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <p className="truncate text-sm font-semibold text-slate-100">{fight.name}</p>
-            <p className="mt-1 truncate text-xs text-slate-300">
-              {fight.payload.fighterAName} vs {fight.payload.fighterBName}
-            </p>
-            <p className="mt-1 truncate text-[11px] text-slate-400">{fight.fileName}</p>
-          </div>
-          <span className="rounded-xl border border-cyan-300/45 bg-cyan-400/15 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
-            {ui.openFight}
-          </span>
-        </div>
-      </button>
-      <div className="flex shrink-0 items-center gap-2">
-        <button
-          type="button"
-          onClick={() => openSavedFightPortraitEditor(fight.id, 'a')}
-          className="flex h-10 items-center justify-center rounded-lg border border-sky-300/45 bg-sky-500/12 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-100 transition hover:bg-sky-500/24"
-          aria-label={ui.adjustPortraitsAria}
-          title={ui.adjustPortraits}
+    (() => {
+      const isActive = activeFightId === fight.id
+      const isPreferred = preferredVariantByMatchup[fight.matchupKey] === fight.id
+      const localeLabel =
+        fight.variantLocale === 'pl' ? ui.variantPl : fight.variantLocale === 'en' ? ui.variantEn : ui.variantUnknown
+
+      return (
+        <div
+          key={fight.id}
+          className={clsx(
+            'flex items-stretch gap-2 rounded-xl border p-2 transition',
+            isActive
+              ? 'border-cyan-300/55 bg-cyan-500/16'
+              : 'border-slate-600/70 bg-slate-900/60 hover:border-slate-400',
+          )}
         >
-          <Crosshair size={14} className="mr-1" />
-          {ui.adjustPortraits}
-        </button>
-        {fight.source === 'manual' ? (
-          <button
-            type="button"
-            onClick={() => deleteFight(fight.id)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-rose-300/45 bg-rose-500/12 text-rose-200 transition hover:bg-rose-500/24"
-            aria-label={ui.deleteFightAria}
-            title={ui.deleteFight}
-          >
-            <Trash2 size={16} />
+          <button type="button" onClick={() => openFight(fight.id)} className="min-w-0 flex-1 rounded-lg px-2 py-1 text-left">
+            <div className="flex items-start justify-between gap-3">
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-slate-100">{fight.name}</p>
+                <p className="mt-1 truncate text-xs text-slate-300">
+                  {fight.payload.fighterAName} vs {fight.payload.fighterBName}
+                </p>
+                <p className="mt-1 truncate text-[11px] text-slate-400">{fight.fileName}</p>
+              </div>
+              <div className="flex shrink-0 flex-col items-end gap-1">
+                <span className="rounded-xl border border-slate-500/65 bg-slate-800/70 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-100">
+                  {localeLabel}
+                </span>
+                <span className="rounded-xl border border-cyan-300/45 bg-cyan-400/15 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
+                  {ui.openFight}
+                </span>
+              </div>
+            </div>
           </button>
-        ) : null}
-      </div>
-    </div>
+          <div className="flex shrink-0 items-center gap-2">
+            <button
+              type="button"
+              onClick={() => rememberPreferredFightVariant(fight)}
+              className={clsx(
+                'flex h-10 items-center justify-center rounded-lg border px-3 text-[11px] font-semibold uppercase tracking-[0.12em] transition',
+                isPreferred
+                  ? 'border-emerald-300/50 bg-emerald-500/18 text-emerald-100 hover:bg-emerald-500/24'
+                  : 'border-emerald-300/40 bg-emerald-500/10 text-emerald-100 hover:bg-emerald-500/18',
+              )}
+              title={ui.selectVariant}
+            >
+              {isPreferred ? ui.selectedVariant : ui.selectVariant}
+            </button>
+            <button
+              type="button"
+              onClick={() => openSavedFightPortraitEditor(fight.id, 'a')}
+              className="flex h-10 items-center justify-center rounded-lg border border-sky-300/45 bg-sky-500/12 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-100 transition hover:bg-sky-500/24"
+              aria-label={ui.adjustPortraitsAria}
+              title={ui.adjustPortraits}
+            >
+              <Crosshair size={14} className="mr-1" />
+              {ui.adjustPortraits}
+            </button>
+            {fight.source === 'manual' ? (
+              <button
+                type="button"
+                onClick={() => deleteFight(fight.id)}
+                className="flex h-10 w-10 items-center justify-center rounded-lg border border-rose-300/45 bg-rose-500/12 text-rose-200 transition hover:bg-rose-500/24"
+                aria-label={ui.deleteFightAria}
+                title={ui.deleteFight}
+              >
+                <Trash2 size={16} />
+              </button>
+            ) : null}
+          </div>
+        </div>
+      )
+    })()
   )
 
   const searchMorphOverlay =
@@ -5577,8 +6355,25 @@ function App() {
                 <div className="mt-3 space-y-4">
                   <div>
                     <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200/90">{ui.folderFightsLibrary}</h3>
-                    {folderFights.length ? (
-                      <div className="mt-2 space-y-2">{folderFights.map((fight) => renderFightLibraryCard(fight))}</div>
+                    {folderFightGroups.length ? (
+                      <div className="mt-2 space-y-3">
+                        {folderFightGroups.map((group) => (
+                          <div
+                            key={`folder-group-${group.matchupKey}`}
+                            className="rounded-xl border border-cyan-300/25 bg-cyan-500/8 p-2.5"
+                          >
+                            <div className="mb-2 flex items-center justify-between gap-2 border-b border-cyan-300/20 pb-2">
+                              <p className="min-w-0 truncate text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
+                                {group.title}
+                              </p>
+                              <span className="rounded-lg border border-cyan-300/35 bg-cyan-500/12 px-2 py-1 text-[10px] uppercase tracking-[0.13em] text-cyan-100">
+                                {ui.bilingualGroup}: {group.fights.length}
+                              </span>
+                            </div>
+                            <div className="space-y-2">{group.fights.map((fight) => renderFightLibraryCard(fight))}</div>
+                          </div>
+                        ))}
+                      </div>
                     ) : (
                       <p className="mt-2 text-xs text-slate-400">{ui.noFolderFights}</p>
                     )}
@@ -6739,7 +7534,11 @@ function BlankTemplate({
       'simulationanimation',
     ])
 
-    const globalAnimationId = resolveFightScenarioId(globalAnimationValue, phaseDefaults[0]?.animation || 'orbit-harass')
+    const globalAnimationSelection = resolveFightScenarioSelection(
+      globalAnimationValue,
+      phaseDefaults[0]?.animation || 'orbit-harass',
+    )
+    const globalAnimationId = globalAnimationSelection.id
     const globalLeadValue = pickTemplateField(blockFields, ['phase_actor', 'phaseactor', 'actor', 'lead', 'aggressor', 'attacker'])
     const globalLead = resolveFightScenarioLead(globalLeadValue, phaseDefaults[0]?.lead || 'a')
 
@@ -6755,8 +7554,8 @@ function BlankTemplate({
       return parsePhaseMode(token || globalModeToken, fallback)
     }
 
-    const phaseAnimation = (index: number, fallback: FightScenarioId) =>
-      resolveFightScenarioId(
+    const phaseAnimation = (index: number, fallback: FightScenarioId) => {
+      const phaseAnimationValue =
         pickTemplateField(blockFields, [
           `phase_${index}_animation`,
           `phase${index}animation`,
@@ -6764,9 +7563,9 @@ function BlankTemplate({
           `phase${index}scenario`,
           `phase_${index}_preset`,
           `phase${index}preset`,
-        ]) || globalAnimationValue,
-        fallback || globalAnimationId,
-      )
+        ]) || globalAnimationValue
+      return resolveFightScenarioSelection(phaseAnimationValue, fallback || globalAnimationId)
+    }
 
     const phaseLead = (index: number, fallback: FightScenarioLead) =>
       resolveFightScenarioLead(
@@ -6785,9 +7584,16 @@ function BlankTemplate({
 
     const phaseData = [1, 2, 3].map((index) => {
       const defaults = phaseDefaults[index - 1]
+      const animationSelection = phaseAnimation(index, defaults.animation)
       return {
         mode: phaseMode(index, defaults.mode),
-        animation: phaseAnimation(index, defaults.animation),
+        animation: animationSelection.id,
+        animationVariantToken: animationSelection.variantToken,
+        animationLabel:
+          animationSelection.label ||
+          (animationSelection.variantToken
+            ? FIGHT_SCENARIO_EXTENDED_LABELS_EN[animationSelection.variantToken] || humanizeScenarioToken(animationSelection.variantToken)
+            : fightScenarioLabel(animationSelection.id, language)),
         lead: phaseLead(index, defaults.lead),
         title:
           pickTemplateField(blockFields, [
@@ -6878,10 +7684,16 @@ function BlankTemplate({
                 <p className="text-[20px] font-semibold leading-tight text-slate-100">{phase.title}</p>
 
                 <div className="mt-2 rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
-                  <FightScenarioCanvas scenario={phase.animation} colorA={fighterA.color} colorB={fighterB.color} lead={phase.lead} />
+                  <FightScenarioCanvas
+                    scenario={phase.animation}
+                    variantToken={phase.animationVariantToken}
+                    colorA={fighterA.color}
+                    colorB={fighterB.color}
+                    lead={phase.lead}
+                  />
                   <div className="mt-1 flex items-center justify-between rounded border border-slate-700/70 bg-slate-900/72 px-2 py-1">
                     <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{tr('Preset scenariusza', 'Scenario preset')}</span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-cyan-100">{fightScenarioLabel(phase.animation, language)}</span>
+                    <span className="text-[10px] uppercase tracking-[0.14em] text-cyan-100">{phase.animationLabel}</span>
                   </div>
                 </div>
 
@@ -7271,6 +8083,7 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
 }
 
 export default App
+
 
 
 

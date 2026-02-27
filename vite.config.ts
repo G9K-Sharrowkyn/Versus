@@ -10,12 +10,17 @@ const FIGHTS_DIR_CANDIDATES = [
 ]
 const IMAGE_FILE_PATTERN = /^([12])\.(jpe?g|png|webp|avif)$/i
 const ANY_IMAGE_FILE_PATTERN = /\.(jpe?g|png|webp|avif)$/i
-const TXT_FILE_PATTERN = /\.txt$/i
+const TXT_FILE_PATTERN = /\.txt(?:\s*(?:pl|en|eng|polski|english))?$/i
+const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[\.\-_ ]*/
+const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 
 type ScanFightRecord = {
   folderKey: string
   displayName: string
   matchName: string
+  matchupKey: string
+  variantLocale: 'pl' | 'en' | 'unknown'
+  variantLabel: string
   txtFileName: string
   txtContent: string
   portraitAUrl: string
@@ -25,6 +30,47 @@ type ScanFightRecord = {
 }
 
 const toPosixPath = (value: string) => value.split(path.sep).join('/')
+
+const normalizeToken = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '')
+
+const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
+const stripTxtDecoratorSuffix = (value: string) =>
+  value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
+const normalizeFightFileBaseName = (value: string) => stripTxtDecoratorSuffix(stripFileExtension(value))
+
+const splitFightNameLocaleSuffix = (value: string): { base: string; locale: 'pl' | 'en' | 'unknown' } => {
+  const normalized = value.replace(/[_]+/g, ' ').trim()
+  if (!normalized) return { base: '', locale: 'unknown' }
+  const match = normalized.match(FIGHT_LOCALE_SUFFIX_PATTERN)
+  if (!match) return { base: normalized, locale: 'unknown' }
+  const suffix = normalizeToken(match[1] || '')
+  const locale = suffix === 'pl' || suffix === 'polski' ? 'pl' : 'en'
+  const base = normalized.slice(0, match.index ?? normalized.length).trim()
+  return { base: base || normalized, locale }
+}
+
+const toMatchupDisplayNameFromFileName = (fileName: string) => {
+  const raw = normalizeFightFileBaseName(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+  const split = splitFightNameLocaleSuffix(raw)
+  return split.base || raw
+}
+
+const parseMatchupFromName = (value: string): { leftName: string; rightName: string } | null => {
+  const match = value.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
+  if (!match) return null
+  const leftName = match[1]?.trim()
+  const rightName = match[2]?.trim()
+  if (!leftName || !rightName) return null
+  return { leftName, rightName }
+}
+
+const buildMatchupKey = (leftName: string, rightName: string) =>
+  `${normalizeToken(leftName)}::${normalizeToken(rightName)}`
 
 const extractSortIndex = (value: string) => {
   const match = value.match(/^\s*(\d+)\s*[\.\-_ ]*/)
@@ -116,18 +162,11 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
       continue
     }
 
-    const txtCandidates = files.filter((file) => TXT_FILE_PATTERN.test(file))
-    const preferredTxt = `${matchName}.txt`.toLowerCase()
-    let txtFileName =
-      txtCandidates.find((file) => file.toLowerCase() === preferredTxt) ||
-      (txtCandidates.length === 1 ? txtCandidates[0] : '')
-
-    if (!txtFileName) {
-      folderWarnings.push(
-        txtCandidates.length
-          ? `Missing preferred TXT (${matchName}.txt) in folder "${folderName}".`
-          : `Missing TXT file in folder "${folderName}".`,
-      )
+    const txtCandidates = files
+      .filter((file) => TXT_FILE_PATTERN.test(file))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    if (!txtCandidates.length) {
+      folderWarnings.push(`Missing TXT file in folder "${folderName}".`)
     }
 
     const { portraitAFile, portraitBFile, fallbackUsed } = pickPortraitFiles(files)
@@ -140,35 +179,66 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     if (!portraitAFile) folderWarnings.push(`Missing portrait "1.*" in folder "${folderName}".`)
     if (!portraitBFile) folderWarnings.push(`Missing portrait "2.*" in folder "${folderName}".`)
 
-    if (!txtFileName || !portraitAFile || !portraitBFile) {
+    if (!txtCandidates.length || !portraitAFile || !portraitBFile) {
       warnings.push(...folderWarnings)
       continue
     }
 
-    let txtContent = ''
-    try {
-      txtContent = await fs.readFile(path.join(folderPath, txtFileName), 'utf8')
-    } catch {
-      warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
-      continue
-    }
+    const hasExplicitPlVariant = txtCandidates.some(
+      (file) => splitFightNameLocaleSuffix(stripFileExtension(file)).locale === 'pl',
+    )
 
-    fights.push({
-      folderKey,
-      displayName: folderName,
-      matchName,
-      txtFileName,
-      txtContent,
-      portraitAUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=1`,
-      portraitBUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=2`,
-      sortIndex,
-      warnings: folderWarnings,
-    })
+    for (const [txtIndex, txtFileName] of txtCandidates.entries()) {
+      let txtContent = ''
+      try {
+        txtContent = await fs.readFile(path.join(folderPath, txtFileName), 'utf8')
+      } catch {
+        warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
+        continue
+      }
+
+      const fileMatchName = toMatchupDisplayNameFromFileName(txtFileName) || matchName
+      const parsedFileMatchup = parseMatchupFromName(fileMatchName)
+      const parsedFolderMatchup = parsedFileMatchup ? null : parseMatchupFromName(matchName)
+      const matchupKey = parsedFileMatchup
+        ? buildMatchupKey(parsedFileMatchup.leftName, parsedFileMatchup.rightName)
+        : parsedFolderMatchup
+          ? buildMatchupKey(parsedFolderMatchup.leftName, parsedFolderMatchup.rightName)
+          : normalizeToken(fileMatchName || matchName || folderName)
+
+      let variantLocale = splitFightNameLocaleSuffix(stripFileExtension(txtFileName)).locale
+      if (variantLocale === 'unknown' && txtCandidates.length > 1 && hasExplicitPlVariant) {
+        variantLocale = 'en'
+      }
+      const variantLabel =
+        variantLocale === 'pl'
+          ? 'PL'
+          : variantLocale === 'en'
+            ? 'EN'
+            : stripFileExtension(txtFileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+
+      fights.push({
+        folderKey,
+        displayName: folderName,
+        matchName: fileMatchName,
+        matchupKey,
+        variantLocale,
+        variantLabel,
+        txtFileName,
+        txtContent,
+        portraitAUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=1`,
+        portraitBUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=2`,
+        sortIndex: sortIndex + txtIndex * 0.001,
+        warnings: txtIndex === 0 ? folderWarnings : [],
+      })
+    }
   }
 
   fights.sort((a, b) => {
     if (a.sortIndex !== b.sortIndex) return a.sortIndex - b.sortIndex
-    return a.displayName.localeCompare(b.displayName, undefined, { sensitivity: 'base', numeric: true })
+    const nameOrder = a.displayName.localeCompare(b.displayName, undefined, { sensitivity: 'base', numeric: true })
+    if (nameOrder !== 0) return nameOrder
+    return a.txtFileName.localeCompare(b.txtFileName, undefined, { sensitivity: 'base', numeric: true })
   })
   return { fights, warnings }
 }

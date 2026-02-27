@@ -21,23 +21,30 @@ Expected structure:
 Fights/
   1. Superman vs King Hyperion/
     Superman vs King Hyperion.txt
+    Superman vs King Hyperion PL.txt
     1.jpg   (or .jpeg/.png/.webp/.avif)
     2.jpg   (or .jpeg/.png/.webp/.avif)
   2. Knull vs Odin/
     Knull vs Odin.txt
+    Knull vs Odin PL.txt
     1.png
     2.png
 ```
 
 Rules:
 
-- Preferred TXT name: `<A> vs <B>.txt` (matching folder fight name without numeric prefix).
-- Fallback TXT selection works only when exactly one `.txt` exists in the folder.
+- Multiple `.txt` files per folder are supported.
+- Language variants are detected by filename suffix:
+  - `... PL.txt` -> Polish variant
+  - `... EN.txt` -> English variant
+  - no suffix -> auto (defaults to English when paired with `PL` file)
+- Folder variants are grouped by matchup in `Folder Fights` (for example EN + PL pair in one framed group).
 - Portrait A must be `1.*`, portrait B must be `2.*`.
 - If `1.*` / `2.*` are missing but there are at least 2 image files, app falls back to the first two images (alphabetical).
 - Folder fights are rebuilt from disk on refresh and shown in `Folder Fights`.
 - Manual fights stay in `Manual Fights`.
 - Portrait framing (`x/y/scale`) can be edited for both folder and manual fights and is persisted in local storage/IndexedDB.
+- Preferred matchup variant selection (EN/PL) is persisted. Search uses the selected variant for the matchup.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
