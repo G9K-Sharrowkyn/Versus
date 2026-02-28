@@ -5,8 +5,7 @@ import {
   PolarGrid,
   Radar,
   RadarChart,
-  ResponsiveContainer,
-  Tooltip,
+  ResponsiveContainer,
 } from 'recharts'
 import { createPortal } from 'react-dom'
 import {
@@ -346,7 +345,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'neon',
     theme: 'cosmic',
     title: 'PARAMETER COMPARISON',
-    subtitle: 'Tactical summary with radial profile',
+    subtitle: 'Favorite by stats',
   },
   {
     id: 'winner-cv',
@@ -355,8 +354,8 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     layout: 'winnerCv',
     frame: 'tech',
     theme: 'cosmic',
-    title: 'WINNERS CV REPORT',
-    subtitle: 'Defeated opponents archive',
+    title: 'WINNERS CV ARCHIVE',
+    subtitle: 'Records and average score snapshot',
   },
   {
     id: 'summary',
@@ -365,8 +364,8 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     layout: 'blankTemplate',
     frame: 'tech',
     theme: 'cosmic',
-    title: 'PODSUMOWANIE',
-    subtitle: 'Final summary block',
+    title: 'PODSUMOWANIE KOŃCOWE',
+    subtitle: '',
   },
   {
     id: 'battle-dynamics',
@@ -396,7 +395,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'tech',
     theme: 'steel',
     title: 'INTERPRETACJA',
-    subtitle: 'Meaning behind raw stats',
+    subtitle: 'Who wins the fight on paper?',
   },
   {
     id: 'fight-simulation',
@@ -406,7 +405,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'tech',
     theme: 'cosmic',
     title: 'SYMULACJA WALKI',
-    subtitle: 'Scenario timeline',
+    subtitle: '',
   },
   {
     id: 'stat-trap',
@@ -416,7 +415,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'tech',
     theme: 'steel',
     title: 'PUŁAPKA STATYSTYK',
-    subtitle: 'Why numbers can mislead',
+    subtitle: 'Why better stats do not guarantee victory',
   },
   {
     id: 'verdict-matrix',
@@ -527,28 +526,28 @@ const TEMPLATE_LOCALIZED_COPY: Record<TemplateId, Record<Language, LocalizedTemp
     pl: {
       name: 'CV Zwycięzców',
       description: 'Lista najważniejszych pokonanych rywali po obu stronach.',
-      title: 'RAPORT CV ZWYCIĘZCÓW',
-      subtitle: 'Archiwum pokonanych przeciwników',
+      title: 'ARCHIWUM CV ZWYCIĘSTW',
+      subtitle: 'Rekordy i migawka średniego wyniku',
     },
     en: {
       name: 'Winner CV',
       description: 'List of top beaten opponents for both fighters.',
-      title: 'WINNERS CV REPORT',
-      subtitle: 'Defeated opponents archive',
+      title: 'WINNERS CV ARCHIVE',
+      subtitle: 'Records and average score snapshot',
     },
   },
   summary: {
     pl: {
       name: 'Podsumowanie',
       description: 'Blok końcowego podsumowania z danych importu.',
-      title: 'PODSUMOWANIE',
-      subtitle: 'Końcowy blok syntezy',
+      title: 'PODSUMOWANIE KOŃCOWE',
+      subtitle: '',
     },
     en: {
       name: 'Summary',
       description: 'Summary card placeholder from imported template block.',
-      title: 'SUMMARY',
-      subtitle: 'Final summary block',
+      title: 'FINAL SUMMARY',
+      subtitle: '',
     },
   },
   'battle-dynamics': {
@@ -598,13 +597,13 @@ const TEMPLATE_LOCALIZED_COPY: Record<TemplateId, Record<Language, LocalizedTemp
       name: 'Symulacja Walki',
       description: 'Symulacja przebiegu starcia faza po fazie.',
       title: 'SYMULACJA WALKI',
-      subtitle: 'Oś scenariusza',
+      subtitle: '',
     },
     en: {
       name: 'Fight Simulation',
       description: 'Simulation placeholder for phase-by-phase scenario.',
       title: 'FIGHT SIMULATION',
-      subtitle: 'Scenario timeline',
+      subtitle: '',
     },
   },
   'stat-trap': {
@@ -1202,6 +1201,13 @@ const toMatchupDisplayNameFromFileName = (fileName: string) => {
   return split.base || raw
 }
 
+const stripFightLocaleSuffixFromLabel = (value: string) => {
+  const trimmed = value.trim()
+  if (!trimmed) return trimmed
+  const split = splitFightNameLocaleSuffix(trimmed)
+  return split.base || trimmed
+}
+
 const resolveFightVariantLocaleFromFileName = (fileName: string): FightVariantLocale =>
   splitFightNameLocaleSuffix(normalizeFightFileBaseName(fileName)).locale
 
@@ -1224,8 +1230,8 @@ const parseMatchupFromFileName = (fileName: string): { leftName: string; rightNa
   const base = toMatchupDisplayNameFromFileName(fileName)
   const match = base.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   if (!match) return null
-  const leftName = match[1]?.trim()
-  const rightName = match[2]?.trim()
+  const leftName = stripFightLocaleSuffixFromLabel(match[1]?.trim() || '')
+  const rightName = stripFightLocaleSuffixFromLabel(match[2]?.trim() || '')
   if (!leftName || !rightName) return null
   return { leftName, rightName }
 }
@@ -1371,8 +1377,8 @@ const enforceFileNameSideOrder = (payload: ParsedVsImport, fileName: string): Pa
 
   return {
     ...ordered,
-    fighterAName: matchup.leftName,
-    fighterBName: matchup.rightName,
+    fighterAName: stripFightLocaleSuffixFromLabel(matchup.leftName),
+    fighterBName: stripFightLocaleSuffixFromLabel(matchup.rightName),
   }
 }
 
@@ -4046,9 +4052,14 @@ function HudBarsTemplate({
       <div className="mt-3 min-h-0 flex-1">
         <div className="grid grid-cols-[190px_1fr] items-center gap-4 px-1 text-[11px] uppercase tracking-[0.15em] text-slate-400">
           <p>{tr('Parametr', 'Parameter')}</p>
-          <div className="flex items-center justify-between">
+          <div className="space-y-1">
             <span>{tr('Wynik (0-100)', 'Score (0-100)')}</span>
-            <span className="text-[10px]">25 50 75 100</span>
+            <div className="relative h-3 text-[10px] text-slate-500">
+              <span className="absolute left-1/4 top-0 -translate-x-1/2">25</span>
+              <span className="absolute left-1/2 top-0 -translate-x-1/2">50</span>
+              <span className="absolute left-3/4 top-0 -translate-x-1/2">75</span>
+              <span className="absolute right-0 top-0 translate-x-1/2">100</span>
+            </div>
           </div>
         </div>
         <div className="mt-2 space-y-2">
@@ -4157,22 +4168,14 @@ function RadarBriefTemplate({
           </div>
         </div>
 
-        <div className="rounded-xl border border-slate-500/50 bg-black/26 p-2">
-          <div className="h-[78%]">
+        <div className="rounded-xl border border-slate-500/50 bg-black/26 p-2 select-none">
+          <div className="h-[78%] pointer-events-none select-none">
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={rows} cx="50%" cy="44%" outerRadius="74%" margin={{ top: 12, right: 28, bottom: 38, left: 28 }}>
                 <PolarGrid stroke="rgba(148,163,184,0.35)" />
                 <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 12 }} />
                 <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} />
-                <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} />
-                <Tooltip
-                  contentStyle={{
-                    border: '1px solid rgba(148,163,184,0.4)',
-                    borderRadius: '12px',
-                    background: 'rgba(2,6,23,0.92)',
-                    color: '#F1F5F9',
-                  }}
-                />
+                <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} />
               </RadarChart>
             </ResponsiveContainer>
           </div>
@@ -4271,7 +4274,6 @@ function TacticalBoardTemplate({
   const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('Rzeczywistość walki', 'Combat reality')
   const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
   const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
-  const laneLabel = pickTemplateField(blockFields, ['lane', 'line_1', 'line1']) || tr('Aktywna linia taktyczna', 'Tactical lane active')
   const tiles = rows.slice(0, 9)
   const splitX = 50
   const linearStartX = 8
@@ -4346,9 +4348,7 @@ function TacticalBoardTemplate({
         </div>
       </div>
 
-      <div className="h-9 shrink-0 rounded border border-amber-300/45 bg-[linear-gradient(90deg,rgba(234,179,8,0.14),rgba(234,179,8,0.45),rgba(234,179,8,0.14))] px-4 py-2 text-center text-sm uppercase tracking-[0.22em] text-amber-100">
-        {laneLabel}
-      </div>
+
     </div>
   )
 }
@@ -5163,7 +5163,7 @@ function App() {
     setCategories(categoryPayload.categories)
     setFighterA({
       ...cloneFighter(FIGHTER_A),
-      name: payload.fighterAName,
+      name: stripFightLocaleSuffixFromLabel(payload.fighterAName),
       subtitle: FIGHTER_A.subtitle,
       color: FIGHTER_A_COLOR,
       imageUrl: fight.portraitADataUrl,
@@ -5171,7 +5171,7 @@ function App() {
     })
     setFighterB({
       ...cloneFighter(FIGHTER_B),
-      name: payload.fighterBName,
+      name: stripFightLocaleSuffixFromLabel(payload.fighterBName),
       subtitle: FIGHTER_B.subtitle,
       color: FIGHTER_B_COLOR,
       imageUrl: fight.portraitBDataUrl,
@@ -5688,6 +5688,14 @@ function App() {
       setFolderScanWarnings(scanWarnings)
       setPreferredVariantByMatchup(sanitizedVariantPrefs)
       setActiveFightId(restoredActiveFightId)
+
+      const restoredActiveFight = restoredActiveFightId
+        ? mergedFights.find((fight) => fight.id === restoredActiveFightId) || null
+        : null
+      if (restoredActiveFight) {
+        applyFightRecord(restoredActiveFight, { enterIntro: false })
+      }
+
       setStorageReady(true)
     }
 
@@ -6521,17 +6529,17 @@ function WinnerCvTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const archiveLabel = pickTemplateField(blockFields, ['archive_label']) || tr('Archiwum CV', 'CV Archive')
+  const archiveLabel = pickTemplateField(blockFields, ['archive_label']) || tr('ARCHIWUM', 'ARCHIVE')
   const avgLabel = pickTemplateField(blockFields, ['avg_label']) || tr('Średni wynik', 'Avg score')
   const winBadge = pickTemplateField(blockFields, ['win_badge']) || 'W'
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
   const leftTitle =
     pickTemplateField(blockFields, ['left_title']) ||
-    `${tr('Najważniejsze wygrane', 'Top wins')}: ${fighterAText}`
+    `${tr('REKORD', 'RECORD')} ${fighterAText}`
   const rightTitle =
     pickTemplateField(blockFields, ['right_title']) ||
-    `${tr('Najważniejsze wygrane', 'Top wins')}: ${fighterBText}`
+    `${tr('REKORD', 'RECORD')} ${fighterBText}`
   const leftWins = winsA.length ? winsA : DEFAULT_WINNER_CV_A
   const rightWins = winsB.length ? winsB : DEFAULT_WINNER_CV_B
 
@@ -6765,11 +6773,7 @@ function BlankTemplate({
 
   const winnerLabel =
     pickTemplateField(blockFields, ['winner', 'verdict']) ||
-    (Math.abs(averageA - averageB) < AVERAGE_DRAW_THRESHOLD
-      ? tr('Remis', 'Draw')
-      : averageA > averageB
-        ? `${fighterA.name || 'Fighter A'} ${Math.round(averageA)}`
-        : `${fighterB.name || 'Fighter B'} ${Math.round(averageB)}`)
+    tr('WERDYKT WARUNKOWY, BRAK ABSOLUTNEGO STOMPA', 'CONDITIONAL VERDICT, NO ABSOLUTE STOMP')
 
   if (activeTemplateId === 'fight-title') {
     const finalLabelRaw = line(
@@ -6779,8 +6783,8 @@ function BlankTemplate({
     )
     const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
     const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
-    const topName = (parsedLabel?.[1] || fighterA.name || 'Fighter A').trim()
-    const bottomName = (parsedLabel?.[2] || fighterB.name || 'Fighter B').trim()
+    const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
+    const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
     const topBasePalette = resolveFightTitlePalette(topName, 'a')
     const bottomBasePalette = resolveFightTitlePalette(bottomName, 'b')
     const topPalette: FightTitlePalette = {
@@ -6929,7 +6933,7 @@ function BlankTemplate({
     return (
       <div className="relative z-10 flex h-full flex-col text-slate-100">
         <h2 className="text-center text-3xl uppercase tracking-[0.08em] text-slate-50">{headerText}</h2>
-        <p className="mt-1 text-center text-sm uppercase tracking-[0.16em] text-slate-300">{subText}</p>
+        {subText ? <p className="mt-1 text-center text-sm uppercase tracking-[0.16em] text-slate-300">{subText}</p> : null}
 
         <div className="mt-3 grid min-h-0 flex-1 grid-cols-[1.05fr_1.2fr_1.05fr] gap-3">
           <div className="min-h-0 rounded-xl border p-2" style={{ borderColor: `${fighterA.color}88`, backgroundColor: `${fighterA.color}10` }}>
@@ -6965,7 +6969,7 @@ function BlankTemplate({
 
           <div className="min-h-0 rounded-xl border border-slate-500/45 bg-black/30 p-3">
             <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-center">
-              <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{tr('Migawka zwycięzcy', 'Winner snapshot')}</p>
+              <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{tr('Werdykt', 'Verdict')}</p>
               <p className="mt-1 text-4xl uppercase leading-none text-white">{winnerLabel}</p>
             </div>
 
@@ -7411,7 +7415,7 @@ function BlankTemplate({
           <h2 className="text-center text-[52px] uppercase leading-none tracking-[0.02em] text-slate-100" style={{ fontFamily: 'var(--font-display)' }}>
             {headerText}
           </h2>
-          <p className="mt-1 text-center text-[12px] uppercase tracking-[0.16em] text-slate-300">{subText}</p>
+          {subText ? <p className="mt-1 text-center text-[12px] uppercase tracking-[0.16em] text-slate-300">{subText}</p> : null}
 
           <div className="relative mt-2 rounded-md border border-cyan-300/25 bg-slate-950/70 p-2">
             <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:12%_33%]" />
@@ -7675,11 +7679,8 @@ function BlankTemplate({
           <div className="mt-2 grid min-h-0 flex-1 grid-cols-3 items-stretch gap-3 rounded-md border border-cyan-300/25 bg-slate-950/68 p-3">
             {phaseData.map((phase, index) => (
               <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] flex-col rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
-                <div className="mb-2 flex items-center justify-between">
+                <div className="mb-2 flex items-center">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{tr('Faza', 'Phase')} {index + 1}</p>
-                  <span className="rounded-full border border-cyan-300/45 bg-cyan-400/12 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
-                    {phase.mode === 'bars' ? tr('paski', 'bars') : phase.mode === 'split' ? tr('punkt zwrotny', 'turning point') : tr('animacja', 'animation')}
-                  </span>
                 </div>
                 <p className="text-[20px] font-semibold leading-tight text-slate-100">{phase.title}</p>
 
@@ -8083,6 +8084,7 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
 }
 
 export default App
+
 
 
 
