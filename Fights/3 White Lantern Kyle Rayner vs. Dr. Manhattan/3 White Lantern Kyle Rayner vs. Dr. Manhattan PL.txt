@@ -1,0 +1,249 @@
+﻿1. White Lantern Kyle Rayner
+
+2. Statystyki Postaci A
+- Siła: 90
+- Szybkość: 94
+- Wytrzymałość: 94
+- IQ bojowe: 86
+- Hax: 95
+- Kondycja: 93
+- Styl walki: 79
+- Doświadczenie: 86
+- Umiejętności bojowe: 76
+
+3. Featy Postaci A
+- Styl: Kreatywna presja, warstwowe konstrukty i metafizyczna adaptacja
+- Atut: Ścieżka przepisywania rzeczywistości przez Life Equation i szerszy aktywny toolkit
+- Mentalność: Wymusić prawdziwe okno, zanim preemption zamknie walkę
+
+4. Pokonani przez Postać A
+- Atrocitus
+- Wonder Woman
+- Parallax
+- Amazo
+- Oblivion
+- Major Force
+- Sinestro
+- Relic
+- Source Titans
+- Third Army
+- Nekron
+- Guardians of the Universe
+
+5. Dr. Manhattan
+
+6. Statystyki Postaci B
+- Siła: 82
+- Szybkość: 96
+- Wytrzymałość: 99
+- IQ bojowe: 95
+- Hax: 100
+- Kondycja: 100
+- Styl walki: 48
+- Doświadczenie: 86
+- Umiejętności bojowe: 44
+
+7. Featy Postaci B
+- Styl: Kwantowa kontrola pierwszego ruchu, obserwacja i natychmiastowe kasowanie
+- Atut: Nieliniowy pierwszy ruch i bezpośrednie niszczenie źródła mocy pierścienia
+- Mentalność: Zakończyć zagrożenie, zanim stanie się metafizycznym problemem
+
+8. Pokonani przez Postać B
+- Rorschach
+- Owlman
+- Pandora
+- Metron
+- Captain Atom
+- Wally West
+- Guy Gardner
+- Firestorm
+- Justice League
+- Shazam Family
+- Justice Society
+- Green Lantern Corps
+
+9. Kolejność templatek
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+- verdict-matrix
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: Białe Światło całego spektrum emocji i ogromna wszechstronność konstruktów.
+- Narzędzia: Life Equation, leczenie, wskrzeszanie i manipulacja życiem oraz duszą.
+- Słabości: Zależność od pierścienia jako focusu oraz od stabilności woli i emocji.
+
+11. Surowe Featy Postaci A
+- Przetrwał przejście przez Source Wall i wrócił z Life Equation.
+- Wypędził Source Titans i pokonał Obliviona.
+- Niszczył jednostki Third Army odporne na standardowe ataki Lanternów.
+- Potrafi leczyć lub przywracać do życia po skrajnych obrażeniach.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Kontrola atomowa, edycja linii czasu, samorekonstrukcja i przepisanie materii oraz energii.
+- Narzędzia: Nieliniowa percepcja czasu daje mu preempt, zanim walka ruszy liniowo.
+- Słabości: Tachiony, bierność-determinizm i słabszy odczyt sił metafizycznych.
+
+13. Surowe Featy Postaci B
+- Przesunął latarnię Alana Scotta i przepisał dekady historii DC.
+- Wymazał Pandorę, Metrona i Owlmana jednym gestem.
+- Zneutralizował Justice League-tierowych przeciwników bez wysiłku.
+- Odbudował się po dezintegracji przez Captain Atom.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // KYLE VS MANHATTAN
+- subtitle: Statystyki kontra pierwszy ruch
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: PRZEWAGA NA PAPIERZE
+- chaos_label: PRZEWAGA PREEMPTION
+- lane: Kreacja i przepisywanie życia vs kontrola linii czasu i atomowe kasowanie
+
+Template Character A:
+- header: KARTA POSTACI // NIEBIESKI
+- world: Szczyt White Lanterna w DC
+- style: Szybka presja konstruktami i warstwowe odpowiedzi energią życia
+- atut: Metafizyczna ścieżka przepisywania przez Life Equation
+- mentalnosc: Wymusić prawdziwe okno, zanim ktoś uderzy w źródło mocy
+- quote: Lepszy zestaw narzędzi, ale tylko jeśli dostanie czas, by go uruchomić.
+
+Template Character B:
+- header: KARTA POSTACI // CZERWONY
+- world: Rebirth / Doomsday Clock
+- style: Chłodne preemption i kwantowe sprzątanie
+- atut: Kontrola pierwszego ruchu poza liniowym czasem
+- mentalnosc: Rozwiązać zagrożenie, zanim stanie się walką
+- quote: Jeśli atak potrzebuje czasu, mogę być tam wcześniej niż on.
+
+Template HUD Bars:
+- headline: ANALITYKA KOSMICZNEGO MATCHUPU
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: KOSMICZNY
+- integrity: 99.2%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI KYLE'A
+- right_header: PRZEWAGI MANHATTANA
+- draw_header: STREFY REMISU
+- favorite: FAWORYT WEDŁUG STATYSTYK
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Kyle wygrywa papierowe porównanie szybkością, umiejętnościami i szerszym aktywnym zestawem narzędzi.
+- line_2: Manhattan nadal prowadzi, bo może uderzyć, zanim Kyle zbuduje swój najlepszy warunek zwycięstwa.
+- line_3: To najczystszy przykład tego, że lepsze statystyki nie gwarantują domyślnego zwycięzcy.
+- quote: Kyle ma lepszy profil. Manhattan ma lepszy pierwszy ruch.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- trap_top: LEPSZY PROFIL NA PAPIERZE >
+- trap_bottom: WOLNIEJSZY PIERWSZY RUCH PRZECIW PREEMPTION
+- example: Kyle może wyglądać lepiej w tabeli i nadal przegrać, jeśli jego win condition potrzebuje czasu na setup.
+- question: Czy Kyle zdąży wymusić okno na rewrite, zanim Manhattan skasuje setup?
+
+Template X-Factor:
+- headline: X-FACTOR: PREEMPTION VS REWRITE
+- subtitle: Jedyny czynnik, który może odwrócić walkę
+- factor: ASYMETRIA PIERWSZEGO RUCHU
+- a_value: 50
+- a_bonus: 16
+- a_bonus_label: PRZEWAGA
+- b_value: 50
+- b_bonus: 20
+- regen: PRZEWAGA
+- mechanika: Najlepszy warunek zwycięstwa Kyle'a potrzebuje czasu na manifestację, a Manhattan atakuje sam moment przygotowania.
+- implikacja: Walka odwraca się tylko wtedy, gdy Kyle dostanie prawdziwe okno na metafizyczne nadpisanie.
+- psychologia: Jeśli Manhattan czeka, Kyle dostaje miejsce do działania. Jeśli rusza pierwszy, Kyle może nie zdążyć zacząć.
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle:
+- archive_label:
+- avg_label: ŚREDNI WYNIK
+- left_title: REKORD KYLE'A
+- right_title: REKORD MANHATTANA
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle:
+- winner: Staty dla Kyle'a, werdykt dla Manhattana
+- line_1: Średnia statystyk faworyzuje Kyle'a, 88.1 vs 83.3.
+- line_2: Manhattan nadal prowadzi, bo może zadziałać, zanim Kyle w pełni uruchomi swój najlepszy warunek zwycięstwa.
+- line_3: Kyle odwraca wynik tylko wtedy, gdy Life Equation jest pełne i Manhattan nie rusza pierwszy.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
+- subtitle: Jak walka zmienia się od pierwszego ruchu Manhattana
+- opening: Kyle zaczyna szybkością, warstwowymi konstruktami i natychmiastową presją.
+- mid_fight: Manhattan atakuje źródło mocy pierścienia albo linię czasu samego ruchu zamiast uczciwie wymieniać ciosy.
+- late_fight: Jeśli Manhattan zwleka, Kyle może wymusić okno na metafizyczne przepisanie.
+- end_condition: Statystyki są po stronie Kyle'a. Kontrola pierwszego ruchu jest po stronie Manhattana.
+- phase_1_mode: bars
+- phase_1_animation: teleport-burst
+- phase_1_actor: b
+- phase_1_title: Pierwszy Ruch
+- phase_1_a_label: Setup
+- phase_1_b_label: Preemption
+- phase_1_a_value: 82
+- phase_1_b_value: 94
+- phase_2_mode: split
+- phase_2_animation: feint-counter
+- phase_2_actor: a
+- phase_2_title: Okno na Rewrite
+- phase_2_event: Pierwsze prawdziwe zakłócenie decyduje, czy walka w ogóle stanie się symetryczna.
+- phase_2_branch_a: Kyle oślepia linię czasu na tyle długo, by przepchnąć metafizyczne nadpisanie.
+- phase_2_branch_b: Manhattan niszczy źródło mocy pierścienia albo wymazuje atak, zanim ten zaistnieje.
+- phase_3_mode: animation
+- phase_3_animation: clash-lock
+- phase_3_actor: b
+- phase_3_title: Blokada Rzeczywistości
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Pierwszy ruch, czas na przygotowanie i punkty zwrotne
+- a_curve: 64,60,63,56,48
+- b_curve: 78,82,84,86,88
+- yellow_wave: 42,48,41,46,43,49,40,47
+- phase_1: Manhattan kontroluje pierwszy naprawdę znaczący ruch.
+- phase_2: Kyle jest groźny tylko wtedy, gdy kupi sobie prawdziwe okno na rewrite.
+- phase_3: Pasywny Manhattan tworzy jedyną gałąź, która odwraca wynik.
+- analysis: Jeśli Manhattan działa pierwszy, walka pozostaje jednostronna. Jeśli czeka, linia Kyle'a rośnie bardzo szybko.
+
+Template Verdict Matrix:
+- headline: MATRYCA WERDYKTU
+- subtitle: Dwie rzeczy, które decydują o walce
+- col_left: LIFE EQUATION: PEŁNE
+- col_right: LIFE EQUATION: OGRANICZONE
+- row_top: MANHATTAN: PROAKTYWNY
+- row_bottom: MANHATTAN: PASYWNY
+- case_1: Dr. Manhattan 6.5/10. Pełny rewrite pomaga Kyle'owi, ale proaktywne preemption nadal zabiera większość otwarć.
+- case_2: Dr. Manhattan 9/10. Ograniczony dostęp metafizyczny i zależność od pierścienia dają Manhattanowi najczystszą drogę do finishu.
+- case_3: Kyle 7/10. Jeśli Manhattan czeka, pełne Life Equation tworzy jedyną gałąź, w której Kyle może przepisać walkę.
+- case_4: Dr. Manhattan 6.5/10. Pasywność zwęża gap, ale ograniczony White Lantern output nadal zostawia przewagę Manhattanowi.
+
+Template Fight Title:
+- fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan
+- subtitle:
+- top_color_a: #f8fafc
+- top_color_b: #22c55e
+- bottom_color_a: #38bdf8
+- bottom_color_b: #1d4ed8
+
+
+

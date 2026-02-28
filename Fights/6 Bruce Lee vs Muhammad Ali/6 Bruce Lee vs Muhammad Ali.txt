@@ -1,0 +1,212 @@
+﻿1. Bruce Lee (Prime)
+
+2. Character A Stats
+- Strength: 70
+- Speed: 93
+- Durability: 70
+- Combat IQ: 86
+- Hax: 73
+- Stamina: 81
+- Fighting Style: 91
+- Experience: 60
+- Combat Skills: 86
+
+3. Character A Feats
+- Style: Explosive entry striking, angle changes, and low-line kicking
+- Advantage: Speed bursts, varied entries, and non-boxing options
+- Mentality: Break rhythm before the fight settles into range and weight
+
+4. Defeated by Character A
+- Gary Elms
+- Wong Jack Man
+- Uechi
+- Yoichi Nakachi
+
+5. Muhammad Ali (Prime)
+
+6. Character B Stats
+- Strength: 89
+- Speed: 89
+- Durability: 94
+- Combat IQ: 93
+- Hax: 48
+- Stamina: 95
+- Fighting Style: 90
+- Experience: 97
+- Combat Skills: 94
+
+7. Character B Feats
+- Style: Rangy heavyweight boxing with jab control and clinch pressure
+- Advantage: Size, reach, durability, and elite verified fight experience
+- Mentality: Make the smaller man pay a tax every time he enters
+
+8. Defeated by Character B
+- Sonny Liston
+- Joe Frazier
+- George Foreman
+- Ken Norton
+- Floyd Patterson
+- Leon Spinks
+- Ernie Terrell
+- Cleveland Williams
+- Henry Cooper
+- Archie Moore
+- George Chuvalo
+- Zora Folley
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Character A Powers / Tools / Weaknesses
+- Tools: Explosive footwork, intercepting side kicks, low-line kicks, and fast entry-exit striking.
+- Tools: Cross-style adaptation and precise timing.
+- Weaknesses: Huge mass-reach deficit and limited verified long-fight record under heavyweight pressure.
+
+11. Character A Raw Feats
+- Built Jeet Kune Do from cross-style sparring and practical adaptation.
+- Demonstrated one-inch punch, finger push-ups, and extreme body control.
+- Won a school boxing tournament and trained boxing seriously.
+- Dance background sharpened balance, rhythm, and directional changes.
+
+12. Character B Powers / Tools / Weaknesses
+- Tools: Elite jab, footwork, ring control, defensive reads, and punishment on entry.
+- Tools: Proven heavyweight endurance and calm tactical pacing.
+- Weaknesses: Open-rules kicking and clinch environments are less favorable than boxing.
+
+13. Character B Raw Feats
+- Finished with a 56-5 record and 37 knockouts against elite heavyweights.
+- Beat Liston, Frazier, Foreman, Patterson, and Quarry.
+- Used rope-a-dope as a high-level tactical conditioning weapon.
+- Stayed fast and mobile as a 200-plus-pound heavyweight.
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // BRUCE LEE VS ALI
+- subtitle: Speed and variety versus size and proven ring reality
+- left_header: CATEGORY GRID
+- right_header: FIGHT REALITY
+- linear_label: SPEED EDGE
+- chaos_label: SIZE EDGE
+- lane: Fast entries and low kicks vs reach, jab, clinch weight, and chin
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: Prime Bruce Lee
+- style: Fast angle entries and layered striking from outside boxing habits
+- atut: Mobility, low-line offense, and rhythm breaking
+- mentalnosc: Disrupt the range before the heavyweight settles
+- quote: Lee needs a fight that never becomes a clean heavyweight boxing exchange.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Prime Muhammad Ali
+- style: Range tax, jab control, and clean late counters
+- atut: Reach, weight, proven durability, and deep fight experience
+- mentalnosc: Make every entry cost more than it gives back
+- quote: Ali does not need more tools. He needs the smaller man to cross the distance.
+
+Template HUD Bars:
+- headline: LEGENDARY FIGHT ANALYTICS
+- subtitle: Two-profile stat readout
+- threat_level: ELITE
+- integrity: 98.9%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Average stat profile map
+- left_header: BRUCE LEE ADVANTAGES
+- right_header: ALI ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite: STAT-BASED FAVORITE
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Who wins the fight on paper?
+- line_1: Ali wins the paper fight because his biggest advantages are the ones that end human fights.
+- line_2: Lee is faster and more varied, but he has to solve mass, reach, and clinch weight at the same time.
+- line_3: This matchup changes in margin more than in winner identity.
+- quote: Lee has better tools for chaos. Ali has better tools for a real fight.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why better stats do not guarantee victory
+- trap_top: BETTER SPEED OR STYLE >
+- trap_bottom: CAN STILL LOSE TO MASS, REACH, AND CHIN
+- example: A faster, more varied fighter can still lose if every clean counter from the bigger man changes the fight more.
+- question: Can Lee keep the fight off Ali's jab line long enough to matter?
+
+Template Winner CV:
+- headline: Victory Archive
+- subtitle:
+- archive_label:
+- avg_label: AVG SCORE
+- left_title: BRUCE LEE RECORD
+- right_title: ALI RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle:
+- winner: Ali by size and ring reality
+- line_1: Stat average favors Ali, 87.7 vs 78.9.
+- line_2: Open rules give Lee more tools, but boxing rules widen Ali's edge even further.
+- line_3: The margin changes with rules. The winner does not.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: One winner, two different levels of difficulty
+- opening: Ali sets range with the jab while Lee tries to enter off angles and low kicks.
+- mid_fight: Once the distance compresses, Ali's weight, clinch control, and durability become harder to tax.
+- late_fight: If Lee has not already slowed the lead leg, Ali's clean counters and physical pressure take over.
+- end_condition: Lee needs a near-perfect mobility game. Ali can win by making the same entry cost too much every time.
+- phase_1_mode: bars
+- phase_1_animation: kite-zone
+- phase_1_actor: b
+- phase_1_title: Range Tax
+- phase_1_a_label: Entry Speed
+- phase_1_b_label: Distance Control
+- phase_1_a_value: 84
+- phase_1_b_value: 92
+- phase_2_mode: split
+- phase_2_animation: feint-counter
+- phase_2_actor: a
+- phase_2_title: Broken Rhythm
+- phase_2_event: Lee has to disrupt the jab pattern before Ali settles into clean heavyweight timing.
+- phase_2_branch_a: Lee tags the lead leg and steals a brief tempo swing.
+- phase_2_branch_b: Ali times the entry, frames the clinch, and punishes the middle.
+- phase_3_mode: animation
+- phase_3_animation: grapple-pin
+- phase_3_actor: b
+- phase_3_title: Clinch Weight
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Entry speed against size and ring craft
+- a_curve: 58,54,49,43,37
+- b_curve: 68,72,77,82,87
+- yellow_wave: 24,29,27,30,26,31,25,29
+- phase_1: Lee is quickest when the fight is still about entry and surprise.
+- phase_2: Ali gets stronger as the fight becomes about range, jab discipline, and clinch control.
+- phase_3: If the leg-kick route fails to change the map, Ali's finish routes take over.
+- analysis: Open rules help Lee more than boxing does. They still do not erase Ali's size and tested durability.
+
+Template Fight Title:
+- fight_title: Bruce Lee vs Muhammad Ali
+- subtitle:
+- top_color_a: #facc15
+- top_color_b: #111827
+- bottom_color_a: #f8fafc
+- bottom_color_b: #60a5fa
+
+

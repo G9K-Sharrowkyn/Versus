@@ -1,4 +1,4 @@
-1. Superman (New 52)
+﻿1. Superman (New 52)
 
 2. Character A Stats
 - Strength: 96
@@ -28,13 +28,9 @@
 - Ulysses
 - Orion
 - Apollo
-- Alpheus
 - Wraith
-- Helspont
-- Mazog
-- Raze
 
-5. Krol Hyperion (Earth-4023)
+5. King Hyperion (Earth-4023)
 
 6. Character B Stats
 - Strength: 92
@@ -65,12 +61,6 @@
 - Magneto
 - Juggernaut
 - Blue Marvel
-- Winter Guard
-- Rogue
-- Gambit
-- Exiles rosters
-- Sentry (claimed)
-- Galactus (claimed)
 
 9. Template Order
 - tactical-board
@@ -87,9 +77,31 @@
 - battle-dynamics
 - verdict-matrix
 
+10. Character A Powers / Tools / Weaknesses
+- Tools: Super speed, flight, heat vision, freeze breath, and Solar Flare.
+- Tools: Distance control, sensory tracking, and rapid tactical adaptation.
+- Weaknesses: Kryptonite, magic, and red-sun depowering.
+
+11. Character A Raw Feats
+- Bench-pressed the Earth''s mass for five straight days.
+- Defeated Doomsday, Brainiac, H'El, and other top New 52 threats.
+- Operates at very high travel and reaction speed on interplanetary scale.
+- Tanked extremely heavy physical and energy punishment against top-tier enemies.
+
+12. Character B Powers / Tools / Weaknesses
+- Tools: Atomic vision, extreme durability, and very fast regeneration.
+- Tools: Brutal close-range pressure and long-fight attrition advantage.
+- Weaknesses: Argonite, mental instability, and vulnerability to overload.
+
+13. Character B Raw Feats
+- Survived the nuclear destruction of his world.
+- Recovered from catastrophic body damage and returned to combat.
+- Killed Thor, Hulk, and other top Marvel heavyweights in his own reality.
+- Broke Juggernaut and tore through teams with raw force.
+
 Template Tactical Board:
 - headline: TACTICAL BOARD // SUPERMAN VS HYPERION
-- subtitle: Condition-based model with non-linear correction
+- subtitle: Speed control versus regeneration pressure
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: STAT LINE
@@ -114,7 +126,7 @@ Template Character B:
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
-- subtitle: Two-profile readout with scenario filters
+- subtitle: Two-profile stat readout
 - threat_level: EXTREME
 - integrity: 99.6%
 - profile_mode: VS
@@ -126,12 +138,12 @@ Template Radar Brief:
 - left_header: SUPERMAN ADVANTAGES
 - right_header: HYPERION ADVANTAGES
 - draw_header: DRAW ZONES
-- favorite: BASE MODEL FAVORITE
+- favorite: STAT-BASED FAVORITE
 
 Template Winner CV:
-- headline: WINNER CV ARCHIVE
-- subtitle: Records and average score snapshot
-- archive_label: ARCHIVE
+- headline: Victory Archive
+- subtitle: 
+- archive_label: 
 - avg_label: AVG SCORE
 - left_title: SUPERMAN RECORD
 - right_title: HYPERION RECORD
@@ -139,11 +151,11 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: One matchup, four rule-sets
-- winner: CONDITIONAL VERDICT, NO ABSOLUTE STOMP
+- subtitle: 
+- winner: Stats favor Superman, verdict stays conditional
 - line_1: Stat average favors Superman, 91.4 vs 87.8.
 - line_2: Key swing variables are attrition length and finisher availability.
-- line_3: Favorite changes with rules, then X-Factor explains why.
+- line_3: Favorite changes with rules and end-condition, not with stats alone.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
@@ -172,7 +184,7 @@ Template X-Factor:
 
 Template Interpretation:
 - headline: INTERPRETATION
-- subtitle: Why stats and verdict can diverge
+- subtitle: Who wins the fight on paper?
 - line_1: Superman leads most linear categories and controls tempo better.
 - line_2: Hyperion performs better in attrition-heavy kill-only scenarios.
 - line_3: Best all-around profile is not always best end-condition profile.
@@ -208,7 +220,7 @@ Template Fight Simulation:
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why better averages do not guarantee all conditions
+- subtitle: Why better stats do not guarantee victory
 - trap_top: LINEAR ADVANTAGE >
 - trap_bottom: NON-LINEAR REGEN IN KILL-ONLY
 - example: A small edge in several categories can collapse if damage keeps resetting.
@@ -226,39 +238,11 @@ Template Verdict Matrix:
 - case_3: Superman 5.5/10. Solar Flare keeps a finisher path but risk stays high if it fails.
 - case_4: Hyperion 6.5/10. Best environment for regen attrition and late-fight pressure.
 
-Template Phase 1:
-- headline: PHASE 1: OPENING
-- subtitle: Tempo and positioning race
-- line_1: Superman establishes speed-based control.
-- line_2: Hyperion tests durability and forward pressure.
-- line_3: Early exchanges decide map control trajectory.
+Template Fight Title:
+- fight_title: Superman vs King Hyperion
+- subtitle:
+- top_color_a: #2563eb
+- top_color_b: #93c5fd
+- bottom_color_a: #facc15
+- bottom_color_b: #dc2626
 
-Template Phase 2:
-- headline: PHASE 2: MID-FIGHT
-- subtitle: Technical control vs brute attrition
-- line_1: Superman seeks clean combinations and reset angles.
-- line_2: Hyperion accepts damage to force close exchanges.
-- line_3: Fight identity shifts toward condition-specific win paths.
-
-Template Turning Points:
-- headline: TURNING POINTS
-- subtitle: Moments that flip probability
-- turn_1: First successful ring-control sequence.
-- turn_2: First failed major finisher attempt.
-- turn_3: First long regen cycle after heavy damage.
-
-Template Blank Template:
-- headline: NEW TEMPLATE SLOT
-- subtitle: Reserved for custom extension
-- line_1: Add extra context block if needed.
-- line_2: Keep section aligned with selected template order.
-- line_3: Ready for next comparison variant.
-
-Template Methodology:
-- headline: METHODOLOGY
-- subtitle: Weighted synthesis and conditional verdict logic
-- list_label: METHOD LIST
-- reality_label: COMBAT REALITY
-- linear_label: LINEAR SEGMENT
-- chaos_label: CHAOS SEGMENT
-- closing_label: Better sheet does not always mean better condition result.

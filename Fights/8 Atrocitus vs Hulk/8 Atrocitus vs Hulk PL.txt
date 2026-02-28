@@ -1,0 +1,236 @@
+﻿1. Atrocitus (Butcher)
+
+2. Statystyki Postaci A
+- Strength: 87
+- Speed: 86
+- Durability: 88
+- Combat IQ: 84
+- Hax: 92
+- Stamina: 84
+- Fighting Style: 78
+- Experience: 91
+- Combat Skills: 80
+
+3. Featy Postaci A
+- Style: Zoning w locie, kontrola konstruktami i rytualna wojna gniewu
+- Advantage: Szerszy zestaw narzędzi i lepsza kontrola dystansu na starcie
+- Mentality: Utrzymać brutala na zewnątrz i wygrać, zanim kontakt zacznie się powtarzać
+
+4. Pokonani przez Postać A
+- Hal Jordan
+- Sinestro
+- Abin Sur
+- Martian Manhunter
+- Apollo
+- Bleez
+- Rankorr
+- Volthoom
+- Guy Gardner
+- Kyle Rayner
+- Midnighter
+- The Butcher Entity
+
+5. World Breaker Hulk
+
+6. Statystyki Postaci B
+- Strength: 95
+- Speed: 80
+- Durability: 95
+- Combat IQ: 81
+- Hax: 66
+- Stamina: 98
+- Fighting Style: 81
+- Experience: 78
+- Combat Skills: 81
+
+7. Featy Postaci B
+- Style: Nieustanna presja wejścia w kontakt, shockwave'y i rosnąca siła fizyczna
+- Advantage: Regeneracja, kondycja i gniew zamieniający obrażenia w jeszcze większy problem
+- Mentality: Przejść przez cały zestaw narzędzi przeciwnika, aż jedno czyste trafienie zakończy sprawę
+
+8. Pokonani przez Postać B
+- Sentry
+- Doctor Strange
+- Black Bolt
+- Iron Man
+- Hercules
+- Red Hulk
+- Red She-Hulk
+- Juggernaut
+- Bi-Beast
+- Wendigo
+- Fin Fang Foom
+- Arm'Cheddon
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: Rage plasma, hard-light constructs, blood magic, nekromancja i blood portals.
+- Narzędzia: Potrafi zamieniać gniew przeciwnika w paliwo i utrzymywać presję bez przerwy.
+- Słabości: Zależność od pierścienia i znana podatność na Blue Light.
+
+11. Surowe Featy Postaci A
+- Ranił lub powstrzymywał Spectre w kontekście aspektu gniewu.
+- Zabijał Strażników Wszechświata gołymi rękami.
+- Walczył dalej po wyrwaniu serca, bo pierścień go podtrzymywał.
+- Uwięził Butchera w baterii mocy i używał jego rage-entity power.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Nieskończony growth siły, aura gamma, regeneracja, thunderclap i czysta wytrzymałość.
+- Narzędzia: Skaluje się dalej w długich pętlach gniewu i przytłacza bezpośrednią siłą.
+- Słabości: Mało odpowiedzi na hax, a jego stan emocjonalno-biologiczny można wykorzystać lub przekierować.
+
+13. Surowe Featy Postaci B
+- Zniszczenia planety i księżyca pojawiały się jako efekt uboczny jego skali.
+- Wytrzymał moc Sentryego porównywaną do miliona eksplodujących słońc.
+- Regenerował się po niemal całkowitym zniszczeniu w skrajnych wersjach.
+- Zatrzymał unstoppable charge Juggernauta czystą siłą.
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // ATROCITUS VS HULK
+- subtitle: Kontrola gniewu kontra eskalacja gniewu
+- left_header: SIATKA KATEGORII
+- right_header: REALNOŚĆ WALKI
+- linear_label: PRZEWAGA NA PAPIERZE
+- chaos_label: PRZEWAGA GNIEWU
+- lane: Lot, konstrukty i hax gniewu kontra gamma-regeneracja i presja kontaktu, która wymyka się spod kontroli
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: DC New 52 / skala Butchera
+- style: Zoning w locie, kontrola konstruktami i rytualna wojna gniewu
+- atut: Szerszy zestaw narzędzi i lepsza kontrola dystansu na starcie
+- mentalnosc: Utrzymać brutala na zewnątrz i wygrać, zanim kontakt zacznie się powtarzać
+- quote: Atrocitus chce kontroli, nie uczciwej wymiany.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Marvel Earth-616 / World Breaker
+- style: Nieustanna presja wejścia w kontakt, shockwave'y i rosnąca siła fizyczna
+- atut: Regeneracja, kondycja i gniew zamieniający obrażenia w jeszcze większy problem
+- mentalnosc: Przejść przez cały zestaw narzędzi przeciwnika, aż jedno czyste trafienie zakończy sprawę
+- quote: Hulk nie potrzebuje większej liczby narzędzi. Potrzebuje jednego czystego otwarcia.
+
+Template HUD Bars:
+- headline: ANALITYKA GNIEWU MIĘDZY UNIWERSAMI
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: EXTREME
+- integrity: 98.4%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI ATROCITUSA
+- right_header: PRZEWAGI HULKA
+- draw_header: STREFY REMISU
+- favorite: FAWORYT WEDŁUG STATYSTYK
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Atrocitus wygrywa walkę na papierze szybkością, haxem, doświadczeniem i szerszym zestawem kontroli.
+- line_2: Hulk częściej wygrywa prawdziwą walkę, bo regeneracja i gniew karzą każdą nieudaną próbę zatrzymania go.
+- line_3: Tak wygląda starcie, w którym papierowa przewaga wpada na potwora zbudowanego do długiej wojny.
+- quote: Atrocitus ma więcej odpowiedzi. Hulk potrzebuje ich mniej.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- trap_top: LEPSZY PROFIL HAXU >
+- trap_bottom: NADAL MOŻE PRZEGRAĆ, JEŚLI GNIEW NAKRĘCA CEL
+- example: Mądrzejszy fighter kontroli nadal może przegrać, jeśli każda nieudana próba zatrzymania przeciwnika czyni go jeszcze trudniejszym do zatrzymania.
+- question: Czy Atrocitus może dopilnować, by kontakt nigdy nie zdarzył się drugi raz?
+
+Template X-Factor:
+- headline: X-FACTOR: RAGE FEEDBACK
+- subtitle: Ta sama emocja pomaga obu stronom
+- factor: PĘTLA FURII
+- a_value: 50
+- a_bonus: 15
+- a_bonus_label: PRZEWAGA
+- b_value: 50
+- b_bonus: 18
+- regen: PRZEWAGA
+- mechanika: Atrocitus próbuje użyć gniewu jako paliwa i narzędzia kontroli. Hulk zamienia przedłużone karanie w większą siłę, więcej gammy i większą presję.
+- implikacja: Jeśli Atrocitus utrzymuje dystans, pętla może pozostać po jego stronie. Jeśli Hulk tylko się wścieka i nie traci funkcji, pętla gwałtownie przechyla się na jego korzyść.
+- psychologia: Atrocitus chce kontroli. Hulk chce jednego otwarcia.
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle:
+- archive_label:
+- avg_label: ŚR. WYNIK
+- left_title: REKORD ATROCITUSA
+- right_title: REKORD HULKA
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle:
+- winner: Atrocitus wygrywa statystyki, Hulk częściej wygrywa walkę
+- line_1: Średnia statystyk faworyzuje Atrocitusa, 85.6 vs 83.9.
+- line_2: Hulk nadal częściej wygrywa większość wersji tej walki, bo regeneracja i eskalacja gniewu karzą długie walki.
+- line_3: Atrocitus odwraca wynik tylko wtedy, gdy kontrola dystansu pozostaje stabilna od początku do końca.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: Jedna droga powrotu przeciw brutalnemu domyślnemu wynikowi
+- opening: Atrocitus zaczyna od lotu, plazmy i presji konstruktami, podczas gdy Hulk przyjmuje burzę na siebie i skraca dystans.
+- mid_fight: Pętla robi się dziwna bardzo szybko. Manipulacja gniewem może pomóc Atrocitusowi albo nakarmić potwora, którego próbuje spowolnić.
+- late_fight: Jeśli Atrocitus nigdy nie wymusi prawdziwego warunku zwycięstwa przez kontrolę, gamma-presja i kontakt fizyczny Hulka przejmują walkę.
+- end_condition: Atrocitus potrzebuje kontroli bez dokarmiania potwora. Hulk potrzebuje kontaktu i czasu.
+- phase_1_mode: bars
+- phase_1_animation: kite-zone
+- phase_1_actor: a
+- phase_1_title: Podatek dystansu
+- phase_1_a_label: Kontrola
+- phase_1_b_label: Domknięcie
+- phase_1_a_value: 90
+- phase_1_b_value: 80
+- phase_2_mode: split
+- phase_2_animation: regen-attrition
+- phase_2_actor: a
+- phase_2_title: Pętla furii
+- phase_2_event: Każda nieudana próba zatrzymania ryzykuje zamianę najlepszej mechaniki Atrocitusa w najlepszą mechanikę Hulka.
+- phase_2_branch_a: Atrocitus utrzymuje dystans, wiąże ciało i kieruje pętlę gniewu w stronę kontroli.
+- phase_2_branch_b: Hulk zrzuca z siebie plazmę, rozbija linię shockwave'ami i zamienia pętlę w eskalację.
+- phase_3_mode: animation
+- phase_3_animation: rush-ko
+- phase_3_actor: b
+- phase_3_title: Pierwszy czysty chwyt
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Presja kontroli kontra eskalacja, która wymyka się spod kontroli
+- a_curve: 78,72,64,55,47
+- b_curve: 54,60,69,80,89
+- yellow_wave: 45,49,46,52,47,53,48,51
+- phase_1: Atrocitus ma najczystszy opening dzięki szybkości, lotowi i konstruktom.
+- phase_2: Hulk staje się silniejszy za każdym razem, gdy Atrocitus nie domyka gałęzi zwycięstwa.
+- phase_3: Gdy kontakt zaczyna się powtarzać, cała walka bardzo szybko przechyla się na stronę Hulka.
+- analysis: Atrocitus wygrywa czystszy opening. Hulk wygrywa brudniejszą, dłuższą walkę.
+
+Template Fight Title:
+- fight_title: Atrocitus vs Hulk
+- subtitle:
+- top_color_a: #7f1d1d
+- top_color_b: #ef4444
+- bottom_color_a: #166534
+- bottom_color_b: #84cc16
+
+
+

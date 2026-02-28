@@ -1,0 +1,236 @@
+﻿1. Atrocitus (Butcher)
+
+2. Character A Stats
+- Strength: 87
+- Speed: 86
+- Durability: 88
+- Combat IQ: 84
+- Hax: 92
+- Stamina: 84
+- Fighting Style: 78
+- Experience: 91
+- Combat Skills: 80
+
+3. Character A Feats
+- Style: Flight-based zoning, construct control, and ritual rage warfare
+- Advantage: Better toolkit plus early distance control
+- Mentality: Keep the brute outside and win before contact becomes repeatable
+
+4. Defeated by Character A
+- Hal Jordan
+- Sinestro
+- Abin Sur
+- Martian Manhunter
+- Apollo
+- Bleez
+- Rankorr
+- Volthoom
+- Guy Gardner
+- Kyle Rayner
+- Midnighter
+- The Butcher Entity
+
+5. World Breaker Hulk
+
+6. Character B Stats
+- Strength: 95
+- Speed: 80
+- Durability: 95
+- Combat IQ: 81
+- Hax: 66
+- Stamina: 98
+- Fighting Style: 81
+- Experience: 78
+- Combat Skills: 81
+
+7. Character B Feats
+- Style: Relentless contact pressure, shockwaves, and escalating physical force
+- Advantage: Regeneration, stamina, and rage that turns damage into more problem
+- Mentality: Walk through the kit until one clean touch ends it
+
+8. Defeated by Character B
+- Sentry
+- Doctor Strange
+- Black Bolt
+- Iron Man
+- Hercules
+- Red Hulk
+- Red She-Hulk
+- Juggernaut
+- Bi-Beast
+- Wendigo
+- Fin Fang Foom
+- Arm'Cheddon
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Character A Powers / Tools / Weaknesses
+- Tools: Rage plasma, hard-light constructs, blood magic, necromancy, and blood portals.
+- Tools: Can weaponize opponent rage as fuel and keep pressure rolling.
+- Weaknesses: Ring dependency and known vulnerability to Blue Light.
+
+11. Character A Raw Feats
+- Injured or restrained Spectre in rage-aspect context.
+- Killed Guardians of the Universe with his bare hands.
+- Kept fighting after heart removal because the ring sustained him.
+- Bound the Butcher inside his power battery and wielded its rage-entity power.
+
+12. Character B Powers / Tools / Weaknesses
+- Tools: Unlimited strength growth, gamma aura, regeneration, thunderclap, and raw durability.
+- Tools: Keeps scaling in prolonged anger loops and overwhelms with direct force.
+- Weaknesses: Limited hax answers, and his emotional-biological state can be exploited or redirected.
+
+13. Character B Raw Feats
+- Planet and moon devastation happened as collateral-scale output.
+- Endured Sentry-level power compared to a million exploding suns.
+- Regenerated from near-total destruction in extreme versions.
+- Stopped Juggernaut unstoppable charge through raw power.
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // ATROCITUS VS HULK
+- subtitle: Rage control versus rage escalation
+- left_header: CATEGORY GRID
+- right_header: FIGHT REALITY
+- linear_label: PAPER EDGE
+- chaos_label: RAGE EDGE
+- lane: Flight, constructs, and rage hax vs gamma regen and runaway contact pressure
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: DC New 52 / Butcher scale
+- style: Flight-based zoning, construct control, and ritual rage warfare
+- atut: Better toolkit plus early distance control
+- mentalnosc: Keep the brute outside and win before contact becomes repeatable
+- quote: Atrocitus wants control, not a fair trade.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Marvel Earth-616 / World Breaker
+- style: Relentless contact pressure, shockwaves, and escalating physical force
+- atut: Regeneration, stamina, and rage that turns damage into more problem
+- mentalnosc: Walk through the kit until one clean touch ends it
+- quote: Hulk does not need more tools. He needs one clean opening.
+
+Template HUD Bars:
+- headline: CROSS-UNIVERSE RAGE ANALYTICS
+- subtitle: Two-profile stat readout
+- threat_level: EXTREME
+- integrity: 98.4%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Average stat profile map
+- left_header: ATROCITUS ADVANTAGES
+- right_header: HULK ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite: STAT-BASED FAVORITE
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Who wins the fight on paper?
+- line_1: Atrocitus wins the paper fight through speed, hax, experience, and the broader control toolkit.
+- line_2: Hulk wins the real fight more often because regen and rage punish every failed stop.
+- line_3: This is what happens when a paper edge runs into a monster built for long wars.
+- quote: Atrocitus has more answers. Hulk needs fewer.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why better stats do not guarantee victory
+- trap_top: BETTER HAX PROFILE >
+- trap_bottom: CAN STILL LOSE IF RAGE FEEDS THE TARGET
+- example: A smarter control fighter can still lose if every failed stop makes the other side harder to stop.
+- question: Can Atrocitus keep contact from ever happening twice?
+
+Template X-Factor:
+- headline: X-FACTOR: RAGE FEEDBACK
+- subtitle: The same emotion helps both fighters
+- factor: FURY LOOP
+- a_value: 50
+- a_bonus: 15
+- a_bonus_label: EDGE
+- b_value: 50
+- b_bonus: 18
+- regen: EDGE
+- mechanika: Atrocitus tries to weaponize rage as fuel and control. Hulk turns prolonged punishment into more strength, more gamma, and more pressure.
+- implikacja: If Atrocitus keeps distance, the loop can stay in his hands. If Hulk keeps getting angrier without losing function, the loop flips hard.
+- psychologia: Atrocitus wants control. Hulk wants one opening.
+
+Template Winner CV:
+- headline: Victory Archive
+- subtitle:
+- archive_label:
+- avg_label: AVG SCORE
+- left_title: ATROCITUS RECORD
+- right_title: HULK RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle:
+- winner: Atrocitus wins the stats, Hulk wins the fight more often
+- line_1: Stat average favors Atrocitus, 85.6 vs 83.9.
+- line_2: Hulk still wins most versions of the fight because regen and rage escalation punish long fights.
+- line_3: Atrocitus flips the fight only if distance control stays stable from start to finish.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: One comeback route against a brutal default outcome
+- opening: Atrocitus opens with flight, plasma, and construct pressure while Hulk tanks the storm and closes distance.
+- mid_fight: The loop gets weird fast. Rage manipulation can help Atrocitus or feed the monster he is trying to slow.
+- late_fight: If Atrocitus never secures a real control win condition, Hulk's gamma pressure and physical contact take over.
+- end_condition: Atrocitus needs control without feeding the monster. Hulk needs contact plus time.
+- phase_1_mode: bars
+- phase_1_animation: kite-zone
+- phase_1_actor: a
+- phase_1_title: Range Tax
+- phase_1_a_label: Control
+- phase_1_b_label: Closure
+- phase_1_a_value: 90
+- phase_1_b_value: 80
+- phase_2_mode: split
+- phase_2_animation: regen-attrition
+- phase_2_actor: a
+- phase_2_title: Fury Loop
+- phase_2_event: Every failed stop risks turning Atrocitus' best mechanic into Hulk's best mechanic.
+- phase_2_branch_a: Atrocitus keeps range, binds the body, and steers the rage loop into control.
+- phase_2_branch_b: Hulk shrugs the plasma, cracks the lane with shockwaves, and turns the loop into escalation.
+- phase_3_mode: animation
+- phase_3_animation: rush-ko
+- phase_3_actor: b
+- phase_3_title: First Clean Grab
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Control pressure versus runaway escalation
+- a_curve: 78,72,64,55,47
+- b_curve: 54,60,69,80,89
+- yellow_wave: 45,49,46,52,47,53,48,51
+- phase_1: Atrocitus owns the cleanest opening stretch through speed, flight, and constructs.
+- phase_2: Hulk gets stronger every time Atrocitus fails to close the branch.
+- phase_3: Once contact becomes repeatable, the whole fight tilts toward Hulk fast.
+- analysis: Atrocitus wins the cleaner opening. Hulk wins the dirtier, longer fight.
+
+Template Fight Title:
+- fight_title: Atrocitus vs Hulk
+- subtitle:
+- top_color_a: #7f1d1d
+- top_color_b: #ef4444
+- bottom_color_a: #166534
+- bottom_color_b: #84cc16
+
+
+

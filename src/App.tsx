@@ -55,6 +55,8 @@ type LayoutMode =
   | 'methodology'
 type Language = 'pl' | 'en'
 type TemplateId =
+  | 'powers-tools'
+  | 'raw-feats'
   | 'hud-bars'
   | 'radar-brief'
   | 'tactical-board'
@@ -111,6 +113,10 @@ type ParsedVsImport = {
   statsB: ParsedStat[]
   factsA: FighterFact[]
   factsB: FighterFact[]
+  powersA: FighterFact[]
+  powersB: FighterFact[]
+  rawFeatsA: string[]
+  rawFeatsB: string[]
   winsA: string[]
   winsB: string[]
   templateOrder: TemplateId[]
@@ -156,6 +162,10 @@ type TemplatePreviewProps = {
   subtitle: string
   factsA: FighterFact[]
   factsB: FighterFact[]
+  powersA: FighterFact[]
+  powersB: FighterFact[]
+  rawFeatsA: string[]
+  rawFeatsB: string[]
   winsA: string[]
   winsB: string[]
   fightLabel: string
@@ -328,6 +338,26 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     subtitle: 'Archetype, style and tactical profile',
   },
   {
+    id: 'powers-tools',
+    name: 'Powers / Tools / Weaknesses',
+    description: 'Split dossier for both fighters with grouped tools and weaknesses.',
+    layout: 'blankTemplate',
+    frame: 'tech',
+    theme: 'cosmic',
+    title: 'POWERS / TOOLS / WEAKNESSES',
+    subtitle: 'Core matchup toolkit for both profiles',
+  },
+  {
+    id: 'raw-feats',
+    name: 'Raw Feats',
+    description: 'Side-by-side feat ledger sourced from the import file.',
+    layout: 'blankTemplate',
+    frame: 'tech',
+    theme: 'steel',
+    title: 'RAW FEATS',
+    subtitle: 'Concrete feats behind the matchup profile',
+  },
+  {
     id: 'hud-bars',
     name: 'HUD Bars',
     description: 'Military HUD look with long horizontal bars like output (1).',
@@ -492,6 +522,34 @@ const TEMPLATE_LOCALIZED_COPY: Record<TemplateId, Record<Language, LocalizedTemp
       description: 'Single full card for fighter B (more portrait space).',
       title: 'CHARACTER DOSSIER // RED',
       subtitle: 'Archetype, style and tactical profile',
+    },
+  },
+  'powers-tools': {
+    pl: {
+      name: 'Moce / Narzedzia / Slabosci',
+      description: 'Dwustronny panel narzedzi i slabosci obu postaci.',
+      title: 'MOCE / NARZEDZIA / SLABOSCI',
+      subtitle: 'Kluczowe narzedzia matchupowe obu profili',
+    },
+    en: {
+      name: 'Powers / Tools / Weaknesses',
+      description: 'Split dossier for both fighters with grouped tools and weaknesses.',
+      title: 'POWERS / TOOLS / WEAKNESSES',
+      subtitle: 'Core matchup toolkit for both profiles',
+    },
+  },
+  'raw-feats': {
+    pl: {
+      name: 'Surowe Featy',
+      description: 'Surowa lista featow obu postaci, bez interpretacji.',
+      title: 'SUROWE FEATY',
+      subtitle: 'Konkretne osiagniecia stojace za profilem walki',
+    },
+    en: {
+      name: 'Raw Feats',
+      description: 'Side-by-side feat ledger sourced from the import file.',
+      title: 'RAW FEATS',
+      subtitle: 'Concrete feats behind the matchup profile',
     },
   },
   'hud-bars': {
@@ -725,6 +783,43 @@ const ensureTemplateOrderHasFinal = (order: TemplateId[]) => {
   }
   normalized.push(FINAL_TEMPLATE_ID)
   return normalized
+}
+
+const insertTemplateAfterAnchor = (order: TemplateId[], templateId: TemplateId, anchors: TemplateId[]) => {
+  if (order.includes(templateId)) return order.slice()
+
+  const next = order.slice()
+  const anchorIndex = anchors
+    .map((anchor) => next.lastIndexOf(anchor))
+    .find((index) => index >= 0)
+
+  if (anchorIndex === undefined) {
+    const finalIndex = next.indexOf(FINAL_TEMPLATE_ID)
+    if (finalIndex >= 0) {
+      next.splice(finalIndex, 0, templateId)
+    } else {
+      next.push(templateId)
+    }
+    return next
+  }
+
+  next.splice(anchorIndex + 1, 0, templateId)
+  return next
+}
+
+const injectDerivedTemplates = (order: TemplateId[], payload: ParsedVsImport) => {
+  let next = ensureTemplateOrderHasFinal(order)
+  const hasPowers = payload.powersA.length > 0 || payload.powersB.length > 0
+  const hasRawFeats = payload.rawFeatsA.length > 0 || payload.rawFeatsB.length > 0
+
+  if (hasPowers) {
+    next = insertTemplateAfterAnchor(next, 'powers-tools', ['character-card-b', 'character-card-a', 'tactical-board'])
+  }
+  if (hasRawFeats) {
+    next = insertTemplateAfterAnchor(next, 'raw-feats', ['powers-tools', 'character-card-b', 'character-card-a', 'tactical-board'])
+  }
+
+  return ensureTemplateOrderHasFinal(next)
 }
 
 const THEME_OVERLAYS: Record<Theme, string> = {
@@ -1357,6 +1452,10 @@ const swapImportSides = (payload: ParsedVsImport): ParsedVsImport => ({
   statsB: payload.statsA,
   factsA: payload.factsB,
   factsB: payload.factsA,
+  powersA: payload.powersB,
+  powersB: payload.powersA,
+  rawFeatsA: payload.rawFeatsB,
+  rawFeatsB: payload.rawFeatsA,
   winsA: payload.winsB,
   winsB: payload.winsA,
 })
@@ -1550,6 +1649,13 @@ const pickNameFromSection = (
 }
 
 const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = {
+  powerstools: 'powers-tools',
+  powersweaknesses: 'powers-tools',
+  powertoolsweaknesses: 'powers-tools',
+  mocenarzedziaslabosci: 'powers-tools',
+  rawfeats: 'raw-feats',
+  featsledger: 'raw-feats',
+  surowefeaty: 'raw-feats',
   hudbars: 'hud-bars',
   hudbar: 'hud-bars',
   parametercomparison: 'radar-brief',
@@ -1673,6 +1779,34 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
       'atut | advantage',
       'mentalnosc | mentality',
       'quote | cytat',
+    ],
+  },
+  {
+    blockPl: 'Moce / Narzedzia / Slabosci',
+    blockEn: 'Powers / Tools / Weaknesses',
+    purposePl: 'Panel mocy, narzedzi i slabosci obu postaci.',
+    purposeEn: 'Panel for powers, tools, and weaknesses of both fighters.',
+    fields: [
+      'headline | header | title',
+      'subtitle | purpose | note',
+      'left_title',
+      'right_title',
+      'powers_label',
+      'tools_label',
+      'weaknesses_label',
+    ],
+  },
+  {
+    blockPl: 'Surowe Featy',
+    blockEn: 'Raw Feats',
+    purposePl: 'Panel surowych featow obu postaci.',
+    purposeEn: 'Panel for raw feats of both fighters.',
+    fields: [
+      'headline | header | title',
+      'subtitle | purpose | note',
+      'left_title',
+      'right_title',
+      'feat_label',
     ],
   },
   {
@@ -1930,6 +2064,91 @@ const buildImportTxtBlueprint = (language: Language) => {
     lines.push(`- ${template.id}`)
   })
   lines.push('')
+  lines.push(
+    pickLang(
+      language,
+      '10. (Moce / Narzędzia / Słabości Postaci A)',
+      '10. (Character A Powers / Tools / Weaknesses)',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Narzędzia: Kontrola pola walki, presja dystansowa, odpowiedzi na zwarcie',
+      '- Tools: Battlefield control, ranged pressure, answers to close range',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Słabości: Zależność od konkretnego źródła mocy lub wyraźny hard-counter',
+      '- Weaknesses: Dependence on a specific power source or a clear hard counter',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '11. (Surowe Featy Postaci A)',
+      '11. (Character A Raw Feats)',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Przetrwał atak skali planetarnej',
+      '- Survived a planet-level attack',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Zniszczył cel jednym ciosem lub pojedynczą techniką',
+      '- Destroyed a target with one strike or one technique',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '12. (Moce / Narzędzia / Słabości Postaci B)',
+      '12. (Character B Powers / Tools / Weaknesses)',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Narzędzia: Regeneracja, kontratak, przewaga zasięgu lub specjalna mechanika',
+      '- Tools: Regeneration, counterplay, range advantage, or a special mechanic',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Słabości: Luka taktyczna, limit zasobów albo konkretna podatność',
+      '- Weaknesses: Tactical gap, resource limit, or a specific vulnerability',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '13. (Surowe Featy Postaci B)',
+      '13. (Character B Raw Feats)',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Powstrzymał przeciwnika o dużo większej skali',
+      '- Stopped an opponent operating at a much larger scale',
+    ),
+  )
+  lines.push(
+    pickLang(
+      language,
+      '- Odbudował się po skrajnym zniszczeniu',
+      '- Rebuilt from catastrophic destruction',
+    ),
+  )
+  lines.push('')
   lines.push(pickLang(language, '# Template blocks (opcjonalne / rozszerzone)', '# Template blocks (optional / extended)'))
   TEMPLATE_BLOCK_REQUIREMENTS.forEach((item) => {
     const blockName = pickLang(language, item.blockPl, item.blockEn)
@@ -2053,6 +2272,8 @@ const getPlainTemplateLines = (lines: string[]) =>
 const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = {
   'character-card-a': ['character a', 'character card a', 'card a', 'postac a', 'karta postaci a'],
   'character-card-b': ['character b', 'character card b', 'card b', 'postac b', 'karta postaci b'],
+  'powers-tools': ['powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
+  'raw-feats': ['raw feats', 'surowe featy', 'feats ledger'],
   'tactical-board': ['tactical board', 'methodology', 'tablica taktyczna', 'metodologia'],
   'hud-bars': ['hud bars', 'paski hud'],
   'radar-brief': ['radar brief', 'parameter comparison', 'raport radarowy', 'porownanie parametrow'],
@@ -2159,6 +2380,10 @@ const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { 
   const section7 = sections.get(7)!
   const section8 = sections.get(8)!
   const section9 = sections.get(9)
+  const section10 = sections.get(10)
+  const section11 = sections.get(11)
+  const section12 = sections.get(12)
+  const section13 = sections.get(13)
 
   const fighterAName = pickNameFromSection(section1.title, section1.lines, 'Fighter A')
   const fighterBName = pickNameFromSection(section5.title, section5.lines, 'Fighter B')
@@ -2189,6 +2414,10 @@ const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { 
 
   const factsA = parseFactItems(section3.lines)
   const factsB = parseFactItems(section7.lines)
+  const powersA = section10 ? parseFactItems(section10.lines) : []
+  const rawFeatsA = section11 ? parseBulletItems(section11.lines) : []
+  const powersB = section12 ? parseFactItems(section12.lines) : []
+  const rawFeatsB = section13 ? parseBulletItems(section13.lines) : []
   const winsA = parseBulletItems(section4.lines)
   const winsB = parseBulletItems(winsBLines)
 
@@ -2201,6 +2430,10 @@ const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { 
       statsB,
       factsA,
       factsB,
+      powersA,
+      powersB,
+      rawFeatsA,
+      rawFeatsB,
       winsA,
       winsB,
       templateOrder,
@@ -2372,6 +2605,10 @@ const normalizePersistedImport = (value: unknown): ParsedVsImport | null => {
   const statsB = toParsedStatArray(raw.statsB)
   const factsA = toFactArray(raw.factsA)
   const factsB = toFactArray(raw.factsB)
+  const powersA = toFactArray(raw.powersA)
+  const powersB = toFactArray(raw.powersB)
+  const rawFeatsA = toStringArray(raw.rawFeatsA)
+  const rawFeatsB = toStringArray(raw.rawFeatsB)
   const winsA = toStringArray(raw.winsA)
   const winsB = toStringArray(raw.winsB)
   const templateOrder = parseTemplateOrderTokens(toStringArray(raw.templateOrder))
@@ -2386,6 +2623,10 @@ const normalizePersistedImport = (value: unknown): ParsedVsImport | null => {
     statsB,
     factsA,
     factsB,
+    powersA,
+    powersB,
+    rawFeatsA,
+    rawFeatsB,
     winsA,
     winsB,
     templateOrder,
@@ -4468,6 +4709,10 @@ function App() {
   const [fighterB, setFighterB] = useState<Fighter>(() => cloneFighter(FIGHTER_B))
   const [factsA, setFactsA] = useState<FighterFact[]>(() => defaultFactsFor('a', defaultLanguage))
   const [factsB, setFactsB] = useState<FighterFact[]>(() => defaultFactsFor('b', defaultLanguage))
+  const [powersA, setPowersA] = useState<FighterFact[]>([])
+  const [powersB, setPowersB] = useState<FighterFact[]>([])
+  const [rawFeatsA, setRawFeatsA] = useState<string[]>([])
+  const [rawFeatsB, setRawFeatsB] = useState<string[]>([])
   const [winsA, setWinsA] = useState<string[]>(DEFAULT_WINNER_CV_A)
   const [winsB, setWinsB] = useState<string[]>(DEFAULT_WINNER_CV_B)
   const [templateOrder, setTemplateOrder] = useState<TemplateId[]>(DEFAULT_TEMPLATE_ORDER)
@@ -5155,8 +5400,9 @@ function App() {
     const payload = enforceFileNameSideOrder(fight.payload, fight.fileName || fight.name)
     const targetLanguage = resolveFightLanguage(fight, language)
     const categoryPayload = createCategoryPayload(payload.statsA, payload.statsB)
-    const importedOrder = ensureTemplateOrderHasFinal(
+    const importedOrder = injectDerivedTemplates(
       payload.templateOrder.length ? payload.templateOrder : DEFAULT_TEMPLATE_ORDER,
+      payload,
     )
     const firstTemplate = importedOrder[0] || DEFAULT_TEMPLATE_ORDER[0]
 
@@ -5183,6 +5429,10 @@ function App() {
     setLanguage(targetLanguage)
     setFactsA(payload.factsA.length ? payload.factsA.slice(0, 5) : defaultFactsFor('a', targetLanguage))
     setFactsB(payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', targetLanguage))
+    setPowersA(payload.powersA.slice(0, 8))
+    setPowersB(payload.powersB.slice(0, 8))
+    setRawFeatsA(payload.rawFeatsA.slice(0, 8))
+    setRawFeatsB(payload.rawFeatsB.slice(0, 8))
     setWinsA(payload.winsA.length ? payload.winsA.slice(0, 12) : DEFAULT_WINNER_CV_A)
     setWinsB(payload.winsB.length ? payload.winsB.slice(0, 12) : DEFAULT_WINNER_CV_B)
     setTemplateBlocks(payload.templateBlocks)
@@ -5791,6 +6041,10 @@ function App() {
     setCategories(defaultCategoriesFor(language))
     setFactsA(defaultFactsFor('a', language))
     setFactsB(defaultFactsFor('b', language))
+    setPowersA([])
+    setPowersB([])
+    setRawFeatsA([])
+    setRawFeatsB([])
   }, [importFileName, language, templateBlocks])
 
   const renderTemplate = () => {
@@ -5811,10 +6065,20 @@ function App() {
       subtitle,
       factsA,
       factsB,
+      powersA,
+      powersB,
+      rawFeatsA,
+      rawFeatsB,
       winsA,
       winsB,
       fightLabel: currentFightLabel,
       templateBlocks,
+    }
+    if (activeTemplate === 'powers-tools') {
+      return <PowersToolsTemplate {...commonProps} />
+    }
+    if (activeTemplate === 'raw-feats') {
+      return <RawFeatsTemplate {...commonProps} />
     }
     switch (layoutMode) {
       case 'radarBrief':
@@ -6325,8 +6589,9 @@ function App() {
                 <p className="mt-1">
                   {ui.templateOrderLoaded}:{' '}
                   {draftPayload
-                    ? ensureTemplateOrderHasFinal(
+                    ? injectDerivedTemplates(
                         draftPayload.templateOrder.length ? draftPayload.templateOrder : DEFAULT_TEMPLATE_ORDER,
+                        draftPayload,
                       ).join(' -> ')
                     : ui.notLoaded}
                 </p>
@@ -6741,6 +7006,255 @@ function CharacterCardBTemplate({ fighterB, portraitBAdjust, title, factsB, temp
       quote={quote}
       language={language}
     />
+  )
+}
+
+const normalizeToolkitGroupKey = (title: string) => {
+  const token = normalizeToken(title)
+  if (!token) return 'other'
+  if (token.includes('weak') || token.includes('slab')) return 'weaknesses'
+  if (token.includes('tool') || token.includes('narzed')) return 'tools'
+  if (token.includes('power') || token.includes('moc')) return 'powers'
+  return token
+}
+
+const buildToolkitSections = (
+  facts: FighterFact[],
+  fields: Record<string, string>,
+  language: Language,
+) => {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const sectionMap = new Map<
+    string,
+    {
+      key: string
+      label: string
+      icon: IconType
+      items: string[]
+    }
+  >()
+
+  const register = (key: string, fallbackLabel: string, icon: IconType, text: string) => {
+    const label =
+      (key === 'powers' && pickTemplateField(fields, ['powers_label'])) ||
+      (key === 'tools' && pickTemplateField(fields, ['tools_label'])) ||
+      (key === 'weaknesses' && pickTemplateField(fields, ['weaknesses_label'])) ||
+      fallbackLabel
+    const existing = sectionMap.get(key)
+    if (existing) {
+      existing.items.push(text)
+      return
+    }
+    sectionMap.set(key, { key, label, icon, items: [text] })
+  }
+
+  facts.forEach((fact) => {
+    const key = normalizeToolkitGroupKey(fact.title)
+    if (key === 'powers') {
+      register(key, tr('Moce', 'Powers'), WandSparkles, fact.text)
+      return
+    }
+    if (key === 'tools') {
+      register(key, tr('Narzedzia', 'Tools'), Swords, fact.text)
+      return
+    }
+    if (key === 'weaknesses') {
+      register(key, tr('Slabosci', 'Weaknesses'), Crosshair, fact.text)
+      return
+    }
+    register(key, fact.title || tr('Dane', 'Data'), BookOpen, fact.text)
+  })
+
+  const orderedKeys = ['powers', 'tools', 'weaknesses']
+  const ordered = [
+    ...orderedKeys
+      .map((key) => sectionMap.get(key))
+      .filter(
+        (
+          section,
+        ): section is {
+          key: string
+          label: string
+          icon: IconType
+          items: string[]
+        } => Boolean(section),
+      ),
+    ...Array.from(sectionMap.values()).filter((section) => !orderedKeys.includes(section.key)),
+  ]
+
+  return ordered
+}
+
+function PowersToolsTemplate({
+  fighterA,
+  fighterB,
+  powersA,
+  powersB,
+  title,
+  subtitle,
+  templateBlocks,
+  language,
+}: TemplatePreviewProps) {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['powers-tools'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const leftTitle =
+    pickTemplateField(blockFields, ['left_title']) ||
+    `${fighterA.name || 'Fighter A'} ${tr('profil narzedzi', 'toolkit profile')}`
+  const rightTitle =
+    pickTemplateField(blockFields, ['right_title']) ||
+    `${fighterB.name || 'Fighter B'} ${tr('profil narzedzi', 'toolkit profile')}`
+  const leftSections = buildToolkitSections(powersA, blockFields, language)
+  const rightSections = buildToolkitSections(powersB, blockFields, language)
+
+  const renderColumn = (
+    fighter: Fighter,
+    columnTitle: string,
+    sections: ReturnType<typeof buildToolkitSections>,
+  ) => (
+    <div className="min-h-0 rounded-xl border border-white/20 bg-black/28 p-3">
+      <div
+        className="rounded-lg border px-3 py-2"
+        style={{ borderColor: `${fighter.color}88`, backgroundColor: `${fighter.color}18` }}
+      >
+        <p className="text-[11px] uppercase tracking-[0.18em] text-slate-300">
+          {fighter.name || 'Fighter'}
+        </p>
+        <p className="mt-1 text-[14px] uppercase tracking-[0.14em]" style={{ color: fighter.color }}>
+          {columnTitle}
+        </p>
+      </div>
+
+      <div className="mt-3 grid min-h-0 flex-1 grid-rows-[repeat(3,minmax(0,1fr))] gap-2">
+        {(sections.length ? sections : []).map((section) => {
+          const Icon = section.icon
+          return (
+            <div
+              key={`${fighter.name}-${section.key}`}
+              className="min-h-0 rounded-lg border border-slate-600/55 bg-slate-950/72 p-3"
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <Icon size={16} style={{ color: fighter.color }} />
+                <p className="text-[12px] uppercase tracking-[0.18em] text-slate-100">{section.label}</p>
+              </div>
+              <div className="space-y-2 text-sm leading-snug text-slate-200">
+                {section.items.map((item, index) => (
+                  <div
+                    key={`${section.key}-${index}-${item}`}
+                    className="rounded-md border border-slate-700/70 bg-slate-900/84 px-2 py-1.5"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        })}
+        {!sections.length ? (
+          <div className="flex items-center justify-center rounded-lg border border-dashed border-slate-600/55 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
+            {tr('Brak danych o mocach i slabosciach.', 'No powers / weaknesses data found.')}
+          </div>
+        ) : null}
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="relative z-10 flex h-full flex-col text-slate-100">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-slate-400/25 pb-2">
+        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-300">{tr('Dossier', 'Dossier')}</div>
+        <h2 className="text-2xl uppercase tracking-[0.08em] text-slate-50">{headerText}</h2>
+        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">{subText}</div>
+      </div>
+      <div className="mt-3 grid min-h-0 flex-1 grid-cols-2 gap-3">
+        {renderColumn(fighterA, leftTitle, leftSections)}
+        {renderColumn(fighterB, rightTitle, rightSections)}
+      </div>
+    </div>
+  )
+}
+
+function RawFeatsTemplate({
+  fighterA,
+  fighterB,
+  rawFeatsA,
+  rawFeatsB,
+  title,
+  subtitle,
+  templateBlocks,
+  language,
+}: TemplatePreviewProps) {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['raw-feats'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const leftTitle =
+    pickTemplateField(blockFields, ['left_title']) ||
+    `${fighterA.name || 'Fighter A'} ${tr('featy', 'feats')}`
+  const rightTitle =
+    pickTemplateField(blockFields, ['right_title']) ||
+    `${fighterB.name || 'Fighter B'} ${tr('featy', 'feats')}`
+  const featLabel = pickTemplateField(blockFields, ['feat_label']) || tr('Feat', 'Feat')
+
+  const renderColumn = (fighter: Fighter, items: string[], columnTitle: string) => (
+    <div className="min-h-0 rounded-xl border border-white/20 bg-black/28 p-3">
+      <div
+        className="rounded-lg border px-3 py-2"
+        style={{ borderColor: `${fighter.color}88`, backgroundColor: `${fighter.color}18` }}
+      >
+        <p className="text-[11px] uppercase tracking-[0.18em] text-slate-300">
+          {fighter.name || 'Fighter'}
+        </p>
+        <div className="mt-1 flex items-center justify-between gap-3">
+          <p className="text-[14px] uppercase tracking-[0.14em]" style={{ color: fighter.color }}>
+            {columnTitle}
+          </p>
+          <span className="rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-[0.16em]" style={{ borderColor: `${fighter.color}88`, color: fighter.color }}>
+            {items.length} {tr('wpisy', 'entries')}
+          </span>
+        </div>
+      </div>
+
+      <div className="mt-3 grid min-h-0 grid-cols-1 gap-2 overflow-y-auto pr-1">
+        {items.length ? (
+          items.map((item, index) => (
+            <div
+              key={`${fighter.name}-feat-${index}-${item}`}
+              className="rounded-lg border border-slate-600/60 bg-slate-950/78 p-3"
+            >
+              <div className="mb-2 flex items-center gap-2">
+                <Award size={15} style={{ color: fighter.color }} />
+                <p className="text-[11px] uppercase tracking-[0.18em]" style={{ color: fighter.color }}>
+                  {featLabel} {String(index + 1).padStart(2, '0')}
+                </p>
+              </div>
+              <p className="text-sm leading-snug text-slate-200">{item}</p>
+            </div>
+          ))
+        ) : (
+          <div className="flex items-center justify-center rounded-lg border border-dashed border-slate-600/55 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
+            {tr('Brak surowych featow.', 'No raw feats found.')}
+          </div>
+        )}
+      </div>
+    </div>
+  )
+
+  return (
+    <div className="relative z-10 flex h-full flex-col text-slate-100">
+      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-slate-400/25 pb-2">
+        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-300">{tr('Ledger', 'Ledger')}</div>
+        <h2 className="text-2xl uppercase tracking-[0.08em] text-slate-50">{headerText}</h2>
+        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">{subText}</div>
+      </div>
+      <div className="mt-3 grid min-h-0 flex-1 grid-cols-2 gap-3">
+        {renderColumn(fighterA, rawFeatsA, leftTitle)}
+        {renderColumn(fighterB, rawFeatsB, rightTitle)}
+      </div>
+    </div>
   )
 }
 

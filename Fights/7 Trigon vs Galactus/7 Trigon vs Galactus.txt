@@ -1,0 +1,248 @@
+﻿1. Trigon (Prime Earth)
+
+2. Character A Stats
+- Strength: 89
+- Speed: 84
+- Durability: 91
+- Combat IQ: 86
+- Hax: 93
+- Stamina: 94
+- Fighting Style: 80
+- Experience: 94
+- Combat Skills: 75
+
+3. Character A Feats
+- Style: Aggressive reality corruption, soul pressure, and dimensional lockdown attempts
+- Advantage: Early hax windows plus home-realm control
+- Mentality: End the fight before the enemy turns the field into fuel
+
+4. Defeated by Character A
+- The Divine
+- Phantom Stranger
+- Teen Titans
+- Justice League
+- Ares
+- Psimon
+- John Constantine
+- Zatanna
+- Wonder Girl
+- Superboy
+- Xynthia
+- Hell legions
+
+5. Galactus (Prime Earth-616)
+
+6. Character B Stats
+- Strength: 95
+- Speed: 94
+- Durability: 97
+- Combat IQ: 92
+- Hax: 98
+- Stamina: 96
+- Fighting Style: 85
+- Experience: 98
+- Combat Skills: 79
+
+7. Character B Feats
+- Style: Detached cosmic pressure, barriers, and conversion warfare
+- Advantage: Power Cosmic versatility plus mystic-energy consumption
+- Mentality: Reduce the demon to an energy problem and solve it at scale
+
+8. Defeated by Character B
+- Master Order
+- Lord Chaos
+- Abraxas
+- Mad Celestial
+- Silver Surfer
+- Thor
+- Thanos
+- Odin
+- Mephisto
+- Dormammu
+- Annihilus
+- In-Betweener
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+- verdict-matrix
+
+10. Character A Powers / Tools / Weaknesses
+- Tools: Telepathy, soul pressure, possession, illusions, and dimensional travel.
+- Tools: Hellfire-energy projection, matter warping, regeneration, and home-realm control.
+- Weaknesses: Holy ground and high-end counter-magic or anti-demon artifacts.
+
+11. Character A Raw Feats
+- Conquered or corrupted countless worlds across DC cosmology.
+- Threatened mass soul-drain and reality corruption on enormous scale.
+- Overwhelmed Teen Titans and pressured high-magic or Justice League-level opposition.
+- Recovered after massive bodily damage in high-end demonic showings.
+
+12. Character B Powers / Tools / Weaknesses
+- Tools: Power Cosmic, transmutation, barriers, telepathy, energy absorption, and cosmic awareness.
+- Tools: Can consume realms or mystical energy instead of only trading blows.
+- Weaknesses: Power level depends on satiation, and arrogance can slow optimal reactions.
+
+13. Character B Raw Feats
+- Consumed planets and dimensions as fuel.
+- Defeated Master Order, Lord Chaos, and other top cosmic entities.
+- Absorbed or exploited mystical realms and Dormammu-linked energy.
+- Operates on cosmic-scale destruction and survival benchmarks.
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // TRIGON VS GALACTUS
+- subtitle: Realm corruption versus cosmic consumption
+- left_header: CATEGORY GRID
+- right_header: FIGHT REALITY
+- linear_label: PAPER EDGE
+- chaos_label: REALM EDGE
+- lane: Demonic control windows vs Power Cosmic energy economy
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: DC Prime Earth
+- style: Aggressive reality corruption, soul pressure, and dimensional lockdown attempts
+- atut: Early hax windows plus home-realm control
+- mentalnosc: End the fight before the enemy turns the field into fuel
+- quote: Trigon wants the fight to become a prison before it becomes a meal.
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Marvel Earth-616, prime cosmic state
+- style: Detached cosmic pressure, barriers, and conversion warfare
+- atut: Power Cosmic versatility plus mystic-energy consumption
+- mentalnosc: Reduce the demon to an energy problem and solve it at scale
+- quote: Galactus does not need to break the realm if he can eat it.
+
+Template HUD Bars:
+- headline: COSMIC THREAT ANALYTICS
+- subtitle: Two-profile stat readout
+- threat_level: COSMIC
+- integrity: 98.7%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Average stat profile map
+- left_header: TRIGON ADVANTAGES
+- right_header: GALACTUS ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite: STAT-BASED FAVORITE
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Who wins the fight on paper?
+- line_1: Galactus wins the paper fight through scale, durability, and broader cosmic control.
+- line_2: Trigon is still dangerous because his best win routes attack the mind and the battlefield itself, not just toughness.
+- line_3: Galactus leads the normal fight, but hunger and realm control can still change the result.
+- quote: Trigon wants a corrupted world. Galactus wants a usable fuel source.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why better stats do not guarantee victory
+- trap_top: BETTER HAX OR HOME TURF >
+- trap_bottom: CAN STILL LOSE IF THE ENEMY EATS THE FUEL
+- example: A realm advantage stops mattering if the other side can convert the realm into power.
+- question: Does Trigon lock the fight first, or does Galactus turn the field into food?
+
+Template X-Factor:
+- headline: X-FACTOR: DEVOUR THE REALM
+- subtitle: The fight changes when Galactus can feed
+- factor: ENERGY ECONOMY
+- a_value: 50
+- a_bonus: 14
+- a_bonus_label: EDGE
+- b_value: 50
+- b_bonus: 18
+- regen: EDGE
+- mechanika: Trigon wants his demonic output to stay hostile. Galactus wants that same output to become fuel for barriers, blasts, and recovery.
+- implikacja: If the field stays corrupted, Trigon keeps his chances alive. If Galactus can feed on it, he takes over.
+- psychologia: Trigon overwhelms. Galactus solves.
+
+Template Winner CV:
+- headline: Victory Archive
+- subtitle:
+- archive_label:
+- avg_label: AVG SCORE
+- left_title: TRIGON RECORD
+- right_title: GALACTUS RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle:
+- winner: Galactus leads, but Trigon can still turn it around
+- line_1: Stat average favors Galactus, 92.7 vs 87.3.
+- line_2: On neutral ground, Galactus still leads because Power Cosmic stays reliable longer.
+- line_3: Trigon flips the fight whenever hunger enters the equation, and his best branch is hunger plus home-realm control.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: How hunger and battlefield control change the fight
+- opening: Trigon opens with portals, corruption, and soul pressure while Galactus stabilizes the field with barriers and cosmic awareness.
+- mid_fight: If the first hax window fails, Galactus shifts the fight from damage trading to energy conversion.
+- late_fight: Battlefield and feeding state decide whether Trigon keeps a hax zone or becomes fuel for a larger cosmic response.
+- end_condition: Trigon needs an early systemic lock. Galactus wants the fight to last long enough to change what the field means.
+- phase_1_mode: bars
+- phase_1_animation: teleport-burst
+- phase_1_actor: a
+- phase_1_title: First Corruption Window
+- phase_1_a_label: Control Setup
+- phase_1_b_label: Field Stability
+- phase_1_a_value: 90
+- phase_1_b_value: 84
+- phase_2_mode: split
+- phase_2_animation: trade-chaos
+- phase_2_actor: a
+- phase_2_title: Fuel Check
+- phase_2_event: The first successful conversion decides whether Trigon's hax stays live.
+- phase_2_branch_a: Trigon traps the fight in corrupted space before Galactus can metabolize it.
+- phase_2_branch_b: Galactus starts absorbing the realm and strips value out of Trigon's escalation.
+- phase_3_mode: animation
+- phase_3_animation: clash-lock
+- phase_3_actor: b
+- phase_3_title: Domain Consumption
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Early hax against steady cosmic pressure
+- a_curve: 70,64,58,49,41
+- b_curve: 72,76,81,86,90
+- yellow_wave: 41,46,42,47,43,48,44,46
+- phase_1: Trigon has live first windows because his best attacks target the rules of the fight.
+- phase_2: Once Galactus proves the energy is consumable, the whole matchup tilts.
+- phase_3: A corrupted realm helps Trigon only as long as it stays hostile instead of edible.
+- analysis: Trigon is dangerous early and at home. Galactus is more reliable everywhere else.
+
+Template Verdict Matrix:
+- headline: VERDICT MATRIX
+- subtitle: Two things that change the winner
+- col_left: BATTLEFIELD: NEUTRAL
+- col_right: BATTLEFIELD: TRIGON REALM
+- row_top: GALACTUS: WELL-FED
+- row_bottom: GALACTUS: STARVING
+- case_1: Galactus 8/10. Neutral space plus a full tank gives him the cleanest route to absorb and overwhelm.
+- case_2: Galactus 6.5/10. Trigon's realm creates better hax windows, but Galactus can still convert the field if he stabilizes.
+- case_3: Trigon 6/10. A hungry Galactus loses the safest version of his energy economy even on neutral ground.
+- case_4: Trigon 7.5/10. Starvation plus home-realm control is the best realistic branch for Trigon to close first.
+
+Template Fight Title:
+- fight_title: Trigon vs Galactus
+- subtitle:
+- top_color_a: #111827
+- top_color_b: #b91c1c
+- bottom_color_a: #7c3aed
+- bottom_color_b: #ec4899
+
+

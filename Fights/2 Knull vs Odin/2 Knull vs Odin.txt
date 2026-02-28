@@ -78,9 +78,31 @@
 - verdict-matrix
 - fight-title
 
+10. Character A Powers / Tools / Weaknesses
+- Tools: All-Black god-killer blade, symbiote hive control, and corruption/infection.
+- Tools: Extreme regeneration, darkness-field pressure, and attrition scaling.
+- Weaknesses: Counter-light effects and sufficiently strong anti-abyss energy.
+
+11. Character A Raw Feats
+- Decapitated a Celestial and forged All-Black into a god-killer.
+- Killed Sentry and absorbed the Void.
+- Covered Earth in living abyss and cut it off from sunlight.
+- Rebuilt after catastrophic damage, including massive destruction from King Thor.
+
+12. Character B Powers / Tools / Weaknesses
+- Tools: Odinforce, Destroyer Armor, Odinsword, barriers, and battlefield control.
+- Tools: Long-range energy projection, sealing options, and tactical versatility.
+- Weaknesses: Long wars drain resources, and extreme output can risk fatigue or Odinsleep.
+
+13. Character B Raw Feats
+- Fought Seth with cosmic-scale collateral.
+- Severed Nezarr arm in Destroyer plus Odinsword setup.
+- Imprisoned or neutralized Surtur-scale threats and sealed realms off Yggdrasil.
+- Reignited stars and matched other skyfather-tier forces.
+
 Template Tactical Board:
 - headline: TACTICAL BOARD // KNULL VS ODIN
-- subtitle: Four-source synthesis with conditional non-linear outcomes
+- subtitle: Regeneration versus solar pressure
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: STAT LINE
@@ -105,7 +127,7 @@ Template Character B:
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
-- subtitle: Two-profile readout with scenario filters
+- subtitle: Two-profile stat readout
 - threat_level: EXTREME
 - integrity: 99.7%
 - profile_mode: VS
@@ -113,7 +135,7 @@ Template HUD Bars:
 
 Template Radar Brief:
 - headline: PARAMETER COMPARISON
-- subtitle: Averaged 9-category profile
+- subtitle: Average stat profile map
 - left_header: KNULL ADVANTAGES
 - right_header: ODIN ADVANTAGES
 - draw_header: DRAW ZONES
@@ -122,15 +144,15 @@ Template Radar Brief:
 
 Template Interpretation:
 - headline: INTERPRETATION
-- subtitle: Why a baseline draw still needs scenario logic
-- line_1: Average gap is below 1 point, so parameter baseline is a draw.
-- line_2: Knull gains in long regen attrition; Odin gains with sustained light-control execution.
-- line_3: Final favorite must be selected by conditions, not by raw table values.
-- quote: Paper parity moves the verdict to conditions.
+- subtitle: Who wins the fight on paper?
+- line_1: The stat gap is below 1 point, so on paper this is a draw.
+- line_2: Knull gets stronger the longer the fight goes. Odin gets stronger if he keeps the light under control.
+- line_3: The winner depends more on rules and pace than on the stat table.
+- quote: Even stats push the verdict into the details of the fight.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Near draw averages can hide hard-counter pathways
+- subtitle: Near-equal stats can still hide matchup problems
 - trap_top: PAPER PARITY
 - trap_bottom: CONDITIONAL OUTCOME SHIFT
 - example: One stable counter interaction can outweigh small category leads.
@@ -138,22 +160,22 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR: ABYSS REGEN VS SOLAR COUNTER
-- subtitle: Joker-card interaction that changes outcome probability
-- factor: CONDITIONAL HARD-COUNTER ECONOMY
+- subtitle: The one factor that bends the fight
+- factor: REGENERATION VS LIGHT CONTROL
 - a_value: 50
 - a_bonus: 14
 - a_bonus_label: REGEN
 - b_value: 50
 - b_bonus: 12
 - regen: COUNTER
-- mechanika: Knull gains value as damage is reset; Odin gains value by sustained light suppression.
-- implikacja: Short controlled exchanges help Odin, extended exchanges help Knull.
+- mechanika: Knull benefits when damage keeps being erased. Odin benefits when he can keep the light pressure on.
+- implikacja: Short, controlled exchanges help Odin. Long, messy exchanges help Knull.
 - psychologia: Failed finish attempts increase pressure on the side with lower recovery economy.
 
 Template Winner CV:
-- headline: WINNER CV ARCHIVE
-- subtitle: Record scope and average profile snapshot
-- archive_label: ARCHIVE
+- headline: Victory Archive
+- subtitle:
+- archive_label:
 - avg_label: AVG SCORE
 - left_title: KNULL RECORD
 - right_title: ODIN RECORD
@@ -161,11 +183,11 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: Baseline plus conditional branches
-- winner: BASELINE DRAW (stats) | CONDITIONAL EDGE: KNULL 6/10 (4-source synthesis)
+- subtitle:
+- winner: Statistical draw, slight edge Knull
 - line_1: Overall averages are inside draw threshold (<1), Knull 90.97 vs Odin 91.06.
-- line_2: Knull leads attrition; Odin leads tactical conversion when light-control uptime is sustained.
-- line_3: Matrix is weighted, not 50/50; sustained control is rarer than disrupted control, so baseline remains slightly pro-Knull.
+- line_2: Knull is better in long wars. Odin is better if he keeps light control through the whole fight.
+- line_3: Not all scenarios are equally likely; broken light control is more common, so the overall lean stays slightly with Knull.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
@@ -180,7 +202,7 @@ Template Battle Dynamics:
 
 Template Fight Simulation:
 - headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Branching fight logic by condition
+- subtitle: How the fight changes with light control
 - opening: Knull starts with direct rush pressure, swarm volume, and close-range entries.
 - mid_fight: Odin shifts to controlled spacing, kite lanes, and high-value counter bursts.
 - late_fight: Fight collapses into heavy exchanges where resource economy decides.
@@ -231,3 +253,5 @@ Template Fight Title:
 - bottom_color_a: #B38A2A
 - bottom_color_b: #4f6f96
 - bottom_dark: false
+
+

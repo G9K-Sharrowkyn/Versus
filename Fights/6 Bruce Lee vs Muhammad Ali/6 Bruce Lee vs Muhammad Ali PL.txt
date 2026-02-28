@@ -1,0 +1,213 @@
+﻿1. Bruce Lee (Prime)
+
+2. Statystyki Postaci A
+- Siła: 70
+- Szybkość: 93
+- Wytrzymałość: 70
+- IQ bojowe: 86
+- Hax: 73
+- Kondycja: 81
+- Styl walki: 91
+- Doświadczenie: 60
+- Umiejętności bojowe: 86
+
+3. Featy Postaci A
+- Styl: Eksplozywne wejścia, zmiany kątów i niskie kopnięcia
+- Atut: Zrywy szybkości, różne wejścia i opcje wykraczające poza boks
+- Mentalność: Złamać rytm, zanim walka ustawi się pod zasięg i wagę
+
+4. Pokonani przez Postać A
+- Gary Elms
+- Wong Jack Man
+- Uechi
+- Yoichi Nakachi
+
+5. Muhammad Ali (Prime)
+
+6. Statystyki Postaci B
+- Siła: 89
+- Szybkość: 89
+- Wytrzymałość: 94
+- IQ bojowe: 93
+- Hax: 48
+- Kondycja: 95
+- Styl walki: 90
+- Doświadczenie: 97
+- Umiejętności bojowe: 94
+
+7. Featy Postaci B
+- Styl: Długi boks ciężkiej z kontrolą jabu i presją w klinczu
+- Atut: Rozmiar, zasięg, odporność i elitarne, zweryfikowane doświadczenie walki
+- Mentalność: Każde wejście mniejszego rywala ma kosztować więcej, niż daje
+
+8. Pokonani przez Postać B
+- Sonny Liston
+- Joe Frazier
+- George Foreman
+- Ken Norton
+- Floyd Patterson
+- Leon Spinks
+- Ernie Terrell
+- Cleveland Williams
+- Henry Cooper
+- Archie Moore
+- George Chuvalo
+- Zora Folley
+
+9. Kolejność templatek
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: Eksplozywna praca nóg, intercepting side kicks, low-line kicks i szybkie wejścia oraz wyjścia.
+- Narzędzia: Adaptacja między stylami i precyzyjny timing.
+- Słabości: Ogromny deficyt masy i zasięgu oraz ograniczony, twardo zweryfikowany rekord długich walk pod presją heavyweigha.
+
+11. Surowe Featy Postaci A
+- Zbudował Jeet Kune Do na bazie cross-style sparingu i praktycznej adaptacji.
+- Pokazywał one-inch punch, finger push-ups i skrajną kontrolę ciała.
+- Wygrał szkolny turniej bokserski i trenował boks na serio.
+- Tło taneczne poprawiło balans, rytm i zmiany kierunku.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Elitarny jab, praca nóg, kontrola ringu, defensywne odczyty i karanie wejść.
+- Narzędzia: Sprawdzona heavyweightowa kondycja i spokojne tempo taktyczne.
+- Słabości: Otwarte zasady z kopnięciami i klinczem są dla niego mniej korzystne niż czysty boks.
+
+13. Surowe Featy Postaci B
+- Zakończył karierę bilansem 56-5 i 37 nokautami przeciw elicie heavyweightów.
+- Pokonywał Listona, Fraziera, Foremana, Pattersona i Quarryego.
+- Używał rope-a-dope jako broni taktycznej do zużywania rywala.
+- Pozostawał szybki i mobilny jako heavyweight ważący ponad 200 funtów.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // BRUCE LEE VS ALI
+- subtitle: Szybkość i różnorodność kontra rozmiar i sprawdzona ringowa rzeczywistość
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: PRZEWAGA SZYBKOŚCI
+- chaos_label: PRZEWAGA ROZMIARU
+- lane: Szybkie wejścia i low kicki vs zasięg, jab, ciężar klinczu i szczęka
+
+Template Character A:
+- header: KARTA POSTACI // NIEBIESKI
+- world: Prime Bruce Lee
+- style: Szybkie wejścia po kątach i warstwowe striki poza bokserskimi nawykami
+- atut: Mobilność, low-line offense i łamanie rytmu
+- mentalnosc: Rozbić dystans, zanim ciężki bokser się ustawi
+- quote: Lee potrzebuje walki, która nigdy nie zamienia się w czystą bokserską wymianę ciężkich.
+
+Template Character B:
+- header: KARTA POSTACI // CZERWONY
+- world: Prime Muhammad Ali
+- style: Podatek od dystansu, kontrola jabu i czyste późne kontry
+- atut: Zasięg, waga, sprawdzona odporność i ogromne doświadczenie
+- mentalnosc: Sprawić, by każde wejście rywala kosztowało za dużo
+- quote: Ali nie potrzebuje większego arsenału. Potrzebuje tylko, by mniejszy rywal musiał wejść w dystans.
+
+Template HUD Bars:
+- headline: ANALITYKA LEGENDARNEGO STARCIA
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: ELITA
+- integrity: 98.9%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI BRUCE'A LEE
+- right_header: PRZEWAGI ALIEGO
+- draw_header: STREFY REMISU
+- favorite: FAWORYT WEDŁUG STATYSTYK
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Ali wygrywa papierową walkę, bo jego największe przewagi to te, które kończą ludzkie pojedynki.
+- line_2: Lee jest szybszy i bardziej wszechstronny, ale jednocześnie musi rozwiązać masę, zasięg i ciężar klinczu.
+- line_3: Ten matchup zmienia się bardziej w marginesie niż w tożsamości zwycięzcy.
+- quote: Lee ma lepsze narzędzia do chaosu. Ali ma lepsze narzędzia do prawdziwej walki.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- trap_top: LEPSZA SZYBKOŚĆ LUB STYL >
+- trap_bottom: MOGĄ I TAK PRZEGRAĆ Z MASĄ, ZASIĘGIEM I SZCZĘKĄ
+- example: Szybszy i bardziej różnorodny fighter wciąż może przegrać, jeśli każdy czysty counter większego rywala zmienia walkę bardziej.
+- question: Czy Lee potrafi trzymać walkę poza linią jabu Aliego wystarczająco długo, żeby to miało znaczenie?
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle:
+- archive_label:
+- avg_label: ŚREDNI WYNIK
+- left_title: REKORD BRUCE'A LEE
+- right_title: REKORD ALIEGO
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle:
+- winner: Ali przez rozmiar i ringową rzeczywistość
+- line_1: Średnia statystyk faworyzuje Aliego, 87.7 vs 78.9.
+- line_2: Otwarte zasady dają Lee więcej narzędzi, ale boks jeszcze mocniej poszerza przewagę Aliego.
+- line_3: Margines zmienia się wraz z zasadami. Zwycięzca nie.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
+- subtitle: Jeden zwycięzca, dwa poziomy trudności
+- opening: Ali ustawia dystans jabem, a Lee próbuje wejść po kątach i low kickach.
+- mid_fight: Gdy dystans zaczyna się zamykać, waga, klincz i odporność Aliego robią się coraz trudniejsze do opodatkowania.
+- late_fight: Jeśli Lee nie spowolnił wcześniej nogi wykrocznej, czyste kontry i fizyczna presja Aliego przejmują walkę.
+- end_condition: Lee potrzebuje niemal perfekcyjnej gry na mobilności. Ali może wygrać, po prostu sprawiając, że każde wejście kosztuje za dużo.
+- phase_1_mode: bars
+- phase_1_animation: kite-zone
+- phase_1_actor: b
+- phase_1_title: Podatek od Dystansu
+- phase_1_a_label: Szybkość Wejścia
+- phase_1_b_label: Kontrola Dystansu
+- phase_1_a_value: 84
+- phase_1_b_value: 92
+- phase_2_mode: split
+- phase_2_animation: feint-counter
+- phase_2_actor: a
+- phase_2_title: Złamany Rytm
+- phase_2_event: Lee musi rozbić rytm jabu, zanim Ali ustawi czysty timing ciężkiej wagi.
+- phase_2_branch_a: Lee trafia nogę wykroczną i kradnie krótki swing tempa.
+- phase_2_branch_b: Ali łapie timing wejścia, ramuje klincz i karze środek.
+- phase_3_mode: animation
+- phase_3_animation: grapple-pin
+- phase_3_actor: b
+- phase_3_title: Ciężar Klinczu
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Szybkość wejścia kontra rozmiar i ring craft
+- a_curve: 58,54,49,43,37
+- b_curve: 68,72,77,82,87
+- yellow_wave: 24,29,27,30,26,31,25,29
+- phase_1: Lee jest najgroźniejszy, gdy walka wciąż dotyczy wejścia i zaskoczenia.
+- phase_2: Ali staje się coraz lepszy, gdy walka przechodzi na zasięg, dyscyplinę jabu i kontrolę klinczu.
+- phase_3: Jeśli ścieżka przez low kicki nie zmieni mapy walki, przejmują ją finishe Aliego.
+- analysis: Otwarte zasady pomagają Lee bardziej niż boks. Nadal nie kasują rozmiaru i sprawdzonej odporności Aliego.
+
+Template Fight Title:
+- fight_title: Bruce Lee vs Muhammad Ali
+- subtitle:
+- top_color_a: #facc15
+- top_color_b: #111827
+- bottom_color_a: #f8fafc
+- bottom_color_b: #60a5fa
+
+
+

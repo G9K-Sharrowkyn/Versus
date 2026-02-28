@@ -23,6 +23,40 @@ OPTIONAL in content, not in section presence:
 - `## 11` can be `N/A: outcome stable across tested assumptions`.
 - `## 12` can be `N/A: linear and practical verdict are aligned`.
 
+## 1.2 Output contract (strict, machine-checkable)
+The generated answer must obey all constraints below.
+
+1. Output starts directly with `## 0. Hook`.
+2. Include only section headers `## 0` ... `## 13`, in exact order.
+3. Do not add extra top-level sections before, between, or after `0..13`.
+4. If section `9`, `11`, or `12` is not applicable, write the required `N/A` sentence under that section.
+5. Keep section names aligned with this blueprint (no custom renaming like `I.`, `Phase Alpha`, etc.).
+6. Keep subsection structure for section `2`, `6`, `8` (A/B split and step-by-step split).
+7. Include section `3` stat table with exactly 9 categories and both overall averages.
+8. In section `8.4`, each source verdict must be tagged `explicit` or `derived`.
+9. If `derived`, include confidence label (`high`/`medium`/`low`).
+10. Output only the final paper content; no meta comments.
+
+## 1.3 Forbidden output patterns
+The answer is invalid if any item below appears:
+- Freeform essay format that ignores `## 0..13`.
+- Roman numeral chaptering (`I.`, `II.`, `III.`) as primary structure.
+- Meta commentary like: `I corrected it`, `Here is your updated research`, `Let me know`.
+- Reference-only dump without the required stat table and verdict sections.
+- Invented citation markers as structure replacements for required sections.
+
+## 1.4 Self-check before returning answer (mandatory)
+Before returning the final answer, verify:
+- First line is `## 0. Hook`.
+- All section headers `## 0..13` exist exactly once.
+- No extra top-level section outside `0..13`.
+- Section `3` has exactly 9 stat categories.
+- Section `10` always has base verdict.
+- Section `11` is either valid scenarios or exact `N/A` line.
+- Section `8.4` includes `explicit/derived` tags and confidence for derived entries.
+
+If any check fails, regenerate the full answer before sending.
+
 ## 2. Required input package
 
 ### 2.1 Character A and B identity
@@ -307,3 +341,20 @@ Fixed section contract:
 - Default scoring scale: `X/10`.
 - Low-evidence cases must use confidence labels and ranges instead of fake precision.
 - If prompt does not request alternate loadouts/rules, keep baseline locked and scenario set minimal.
+
+## 10. LLM strict wrapper (copy before task prompt)
+Use this wrapper when prompting another model:
+
+```txt
+HARD FORMAT CONTRACT:
+Return only one markdown document that starts with:
+## 0. Hook
+
+You must output sections ## 0 through ## 13 in exact order, with no extra top-level sections.
+If section 9, 11, or 12 is not applicable, keep the header and write the required N/A line.
+Do not use Roman numeral chaptering.
+Do not add meta lines like "updated research" or "let me know".
+Section 3 must include a 9-category stat table + overall averages for both fighters.
+Section 8.4 must tag each source verdict as explicit or derived; every derived verdict must include confidence (high/medium/low).
+If any rule is violated, regenerate before final output.
+```

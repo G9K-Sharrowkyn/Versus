@@ -1,0 +1,231 @@
+﻿1. Jiren (Dragon Ball Super)
+
+2. Statystyki Postaci A
+- Siła: 96
+- Szybkość: 96
+- Wytrzymałość: 96
+- IQ bojowe: 88
+- Hax: 62
+- Kondycja: 91
+- Styl walki: 93
+- Doświadczenie: 91
+- Umiejętności bojowe: 94
+
+3. Featy Postaci A
+- Styl: Zdyscyplinowana presja, kontrola barier i wymiany nastawione na szybki finisz
+- Atut: Lepsza szybkość startowa, moc i techniczna kontrola
+- Mentalność: Złamać przeciwnika, zanim dziwne mechaniki dostaną czas na znaczenie
+
+4. Pokonani przez Postać A
+- Hit
+- Goku
+- Vegeta
+- Kale
+- Maji Kayo
+- Master Roshi
+- Golden Frieza
+- Android 17
+
+5. Saitama (One-Punch Man)
+
+6. Statystyki Postaci B
+- Siła: 91
+- Szybkość: 90
+- Wytrzymałość: 92
+- IQ bojowe: 70
+- Hax: 80
+- Kondycja: 98
+- Styl walki: 66
+- Doświadczenie: 74
+- Umiejętności bojowe: 70
+
+7. Featy Postaci B
+- Styl: Luźny brawl, który z każdą chwilą przechodzi w eskalację
+- Atut: Wykładniczy wzrost i niemal bezdenna kondycja
+- Mentalność: Przetrwać start, a potem pozwolić walce rosnąć
+
+8. Pokonani przez Postać B
+- Crablante
+- Vaccine Man
+- Speed-o'-Sound Sonic
+- Deep Sea King
+- Carnage Kabuto
+- Marugori
+- Boros
+- Orochi
+- Elder Centipede
+- Evil Ocean Water
+- Geryuganshoop
+- Garou
+
+9. Kolejność templatek
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: Elitarne ki offense, bariery, lot i przytłaczająca bezpośrednia presja.
+- Narzędzia: Potrafi łamać techniki oparte na czasie i przebijać top-tierowe umiejętności.
+- Słabości: Ma mało haxowych win-conów i czasem testuje rywala, zanim wejdzie na pełne obroty.
+
+11. Surowe Featy Postaci A
+- Skaluje się ponad benchmark Boga Zniszczenia własnego uniwersum.
+- Przełamywał time-based trap i wytrzymywał topowe ataki z Tournament of Power.
+- Dominował elitarnych zawodników barierami, presją i czystą siłą.
+- Utrzymywał kontrolę przeciw high-endowej opozycji z Dragon Ball Super.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Ekstremalne statystyki fizyczne, absurdalna kondycja i przytłaczająca siła w zwarciu.
+- Narzędzia: Interpretacja nieliniowego growth oraz rzadka gałąź time-tech.
+- Słabości: Prosta taktyka, mało opcji dystansowych i strata czasu przed wejściem na serio.
+
+13. Surowe Featy Postaci B
+- Zniszczył meteor jednym ciosem.
+- Serious Punch squared dał konsekwencje o kosmicznej skali.
+- Serious Sneeze zdewastował Jowisza na skali planetarnej.
+- Skopiował technikę i cofnął czas w finałowej gałęzi z Garou.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // JIREN VS SAITAMA
+- subtitle: Dominacja otwarcia kontra czas na rozwój
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: PRZEWAGA STARTOWA
+- chaos_label: PRZEWAGA GROWTH
+- lane: Lepsza presja startowa vs nieliniowa eskalacja w końcówce
+
+Template Character A:
+- header: KARTA POSTACI // NIEBIESKI
+- world: Dragon Ball Super
+- style: Minimalny ruch, maksymalna presja i brutalna efektywność
+- atut: Czystsze starty, czystsze odczyty, czystsze finisze
+- mentalnosc: Skończyć problem, zanim zrobi się dziwny
+- quote: Jiren wygrywa tę część walki, z której większość przeciwników nigdy nie wychodzi.
+
+Template Character B:
+- header: KARTA POSTACI // CZERWONY
+- world: One-Punch Man manga
+- style: Luźny brawl, który im dłużej żyje, tym bardziej rośnie
+- atut: Growth, które zamienia czas przetrwania w nowy sufit mocy
+- mentalnosc: Przyjąć presję, a potem stać się za dużym problemem dla tej presji
+- quote: Saitama nie potrzebuje lepszego startu. Potrzebuje wystarczająco dużo walki.
+
+Template HUD Bars:
+- headline: ANALITYKA HIGH-END SHONEN
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: KOSMICZNY
+- integrity: 99.1%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI JIRENA
+- right_header: PRZEWAGI SAITAMY
+- draw_header: STREFY REMISU
+- favorite: FAWORYT WEDŁUG STATYSTYK
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Jiren wygrywa papierową walkę czystszymi startami, lepszym skillem i bardziej niezawodną presją otwarcia.
+- line_2: Growth Saitamy zmienia walkę tylko wtedy, gdy starcie przeżyje tę część, którą Jiren jest zbudowany dominować.
+- line_3: Ten matchup ciągnie w dwie strony naraz: Jiren bierze otwarcie, Saitama grozi długą końcówką.
+- quote: Jiren bierze otwarcie. Saitama chce tylko zegara.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- trap_top: WYŻSZE STATY STARTOWE >
+- trap_bottom: MOGĄ PRZEGRAĆ Z WYSTARCZAJĄCO DŁUGĄ WALKĄ
+- example: Lepsza pierwsza minuta wciąż może przegrać, jeśli przeciwnik zamienia samo przetrwanie w wykładniczy wzrost.
+- question: Czy Jiren kończy walkę, zanim growth Saitamy stanie się prawdziwą walką?
+
+Template X-Factor:
+- headline: X-FACTOR: TIME TO GROWTH
+- subtitle: Im dłużej to trwa, tym groźniejszy staje się Saitama
+- factor: OKNO ESKALACJI
+- a_value: 50
+- a_bonus: 14
+- a_bonus_label: PRZEWAGA
+- b_value: 50
+- b_bonus: 18
+- regen: PRZEWAGA
+- mechanika: Jiren chce skończyć walkę, zanim ta zdąży się zmienić. Saitama staje się silniejszy, jeśli starcie daje mu czas.
+- implikacja: Jeśli Jiren nie skończy walki wcześnie, każda wymiana sprawia, że coraz trudniej to kontrolować.
+- psychologia: Jiren walczy, by skończyć problem. Saitama potrzebuje tylko powodu, by zacząć się naprawdę angażować.
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle:
+- archive_label:
+- avg_label: ŚREDNI WYNIK
+- left_title: REKORD JIRENA
+- right_title: REKORD SAITAMY
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle:
+- winner: Jiren prowadzi, ale Saitama robi się groźniejszy z czasem
+- line_1: Średnia statystyk faworyzuje Jirena, 89.7 vs 81.2.
+- line_2: Growth Saitamy to jedyny czynnik, który może oderwać walkę od matematyki otwarcia.
+- line_3: Jiren wygrywa krótką wersję. Saitama ma realne szanse dopiero wtedy, gdy walka dostaje oddech.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
+- subtitle: Jiren bierze start, Saitama chce czasu
+- opening: Jiren natychmiast narzuca tempo presją i ofensywą wspartą barierami.
+- mid_fight: Saitama przetrwa, dostosuje się i zaczyna wymuszać prawdziwe wymiany.
+- late_fight: Walka rozdziela się ostro: szybkie domknięcie zostaje przy Jirenie, długa eskalacja robi się bardzo niebezpieczna.
+- end_condition: To wyścig między pierwszym finishem Jirena a pierwszym prawdziwym skokiem growth Saitamy.
+- phase_1_mode: bars
+- phase_1_animation: rush-ko
+- phase_1_actor: a
+- phase_1_title: Pierwsza Minuta
+- phase_1_a_label: Domknięcie
+- phase_1_b_label: Przetrwanie
+- phase_1_a_value: 94
+- phase_1_b_value: 78
+- phase_2_mode: split
+- phase_2_animation: trade-chaos
+- phase_2_actor: a
+- phase_2_title: Trigger Growth
+- phase_2_event: Pierwsza wymiana, która nie kończy Saitamy, zmienia całe równanie.
+- phase_2_branch_a: Jiren utrzymuje wysokie tempo i kończy walkę, zanim adaptacja się nawarstwi.
+- phase_2_branch_b: Saitama zamienia wytrzymałość w czas na growth i wciąga Jirena w eskalację.
+- phase_3_mode: animation
+- phase_3_animation: clash-lock
+- phase_3_actor: b
+- phase_3_title: Spirala Eskalacji
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Wczesna kontrola kontra przyspieszenie w końcówce
+- a_curve: 86,78,68,56,45
+- b_curve: 38,44,57,71,84
+- yellow_wave: 31,36,34,39,35,40,33,38
+- phase_1: Jiren bierze pierwszy naprawdę znaczący odcinek walki.
+- phase_2: Każda nieudana próba finishu daje Saitamie lepszą przyszłą wymianę.
+- phase_3: Jeśli walka żyje wystarczająco długo, linia przechyla się w stronę Saitamy bardzo szybko.
+- analysis: Jiren bierze pierwszy stretch. Saitama robi się groźny dopiero po tym, jak walka udowodni, że Jiren nie domknął jej wcześnie.
+
+Template Fight Title:
+- fight_title: Jiren vs Saitama
+- subtitle:
+- top_color_a: #dc2626
+- top_color_b: #9ca3af
+- bottom_color_a: #facc15
+- bottom_color_b: #ef4444
+
+

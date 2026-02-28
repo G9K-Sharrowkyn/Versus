@@ -1,0 +1,220 @@
+﻿1. Darth Vader (Legends Prime)
+
+2. Statystyki Postaci A
+- Siła: 68
+- Szybkość: 79
+- Wytrzymałość: 68
+- IQ bojowe: 88
+- Hax: 82
+- Kondycja: 76
+- Styl walki: 91
+- Doświadczenie: 80
+- Umiejętności bojowe: 92
+
+3. Featy Postaci A
+- Styl: Opancerzony duelistyczny napór z telekinetyczną kontrolą i karzącymi kontrami
+- Atut: Precyzja techniczna, precognition i ścieżki ataku „od środka”
+- Mentalność: Ukraść otwarcie, zanim gap mocy stanie się nie do obejścia
+
+4. Pokonani przez Postać A
+- Galen Marek
+- Count Dooku
+- Darth Maul
+- Celeste Morne
+- Roan Shryne
+- Kai Hudorra
+- Dark Woman
+- Obi-Wan Kenobi
+- Sha Koon
+- Hylon
+- Sardoth
+- Aurra Sing
+
+5. Thanos (Earth-616)
+
+6. Statystyki Postaci B
+- Siła: 96
+- Szybkość: 78
+- Wytrzymałość: 97
+- IQ bojowe: 92
+- Hax: 92
+- Kondycja: 96
+- Styl walki: 84
+- Doświadczenie: 94
+- Umiejętności bojowe: 88
+
+7. Featy Postaci B
+- Styl: Kosmiczny bruiser z tarczami, beamami i bezlitosną kontrpresją
+- Atut: Poziom wytrzymałości, którego Vader naturalnie nie rozwiązuje
+- Mentalność: Przyjąć pierwszą próbę, a potem skończyć wymianę
+
+8. Pokonani przez Postać B
+- Hulk
+- Thor
+- Silver Surfer
+- Black Bolt
+- Beta Ray Bill
+- Ronan the Accuser
+- Super Skrull
+- Adam Warlock
+- Drax the Destroyer
+- Phyla-Vell
+- Galactus
+- Odin
+
+9. Kolejność templatek
+- tactical-board
+- character-card-a
+- character-card-b
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- winner-cv
+- summary
+- fight-simulation
+- battle-dynamics
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: Zabójczy lightsaber, telekineza, choke-crush, precognition i bariery.
+- Narzędzia: Tutaminis i kontrola Mocy dają odpowiedzi na wiele zwykłych ataków.
+- Słabości: Kombinezon podtrzymujący życie, przeciążenia elektryczne i dużo niższa skala wytrzymałości niż u kosmicznych przeciwników.
+
+11. Surowe Featy Postaci A
+- Miażdżył TIE i skalował się do telekinetycznych pokazów klasy Star Destroyera.
+- Reagował na blastery z absurdalną szybkością i przecinał dystans prawie jak teleportacją.
+- Przetrwał wybuch wieży Gwiazdy Śmierci i błyskawice Starkillera.
+- Tnie ciężkie materiały, jednocześnie kontrolując wiele wektorów walki Mocą.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Kosmiczna siła i wytrzymałość, projekcje energii oraz manipulacja materią.
+- Narzędzia: Telepatia, force fieldy, regeneracja i brutalne domykanie walki w zwarciu.
+- Słabości: Głównie psychologiczna pycha, bez realnej fizycznej luki w tym matchupie.
+
+13. Surowe Featy Postaci B
+- Fizycznie pokonywał Hulka i Thora.
+- Zniszczył planetę podczas walki z Draxem.
+- Wytrzymał czarną dziurę szeroką na dwa lata świetlne oraz blasty Odina i Galactusa.
+- Reagował na Silver Surfera i innych herald-tierowych speedsterów.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // VADER VS THANOS
+- subtitle: Precyzja kontra niemożliwa ściana wytrzymałości
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: PRZEWAGA TECHNICZNA
+- chaos_label: PRZEWAGA KOSMICZNA
+- lane: Precyzja Mocy i umiejętność miecza vs kosmiczna wytrzymałość i dominacja energią
+
+Template Character A:
+- header: KARTA POSTACI // NIEBIESKI
+- world: Star Wars Legends Prime
+- style: Ciasny pojedynek, telekinetyczna kontrola i wyrachowane karanie
+- atut: Czystsza technika i lepsza precyzja pierwszego kroku
+- mentalnosc: Znaleźć jedno okno, zanim walka zmieni się w czysty stat check
+- quote: Vader musi być perfekcyjny, zanim Thanos zdąży być Thanosem.
+
+Template Character B:
+- header: KARTA POSTACI // CZERWONY
+- world: Marvel Earth-616
+- style: Brutalna kosmiczna presja wsparta tarczami i beamami
+- atut: Poziom wytrzymałości, którego Vader nie przebija samą klasą walki
+- mentalnosc: Przyjąć pierwszy test i zmiażdżyć wymianę
+- quote: Jeśli twój najlepszy hit nic nie zmienia, reszta walki należy do mnie.
+
+Template HUD Bars:
+- headline: ANALITYKA KOSMICZNEGO MISMATCHU
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: APOKALIPTYCZNY
+- integrity: 99.5%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI VADERA
+- right_header: PRZEWAGI THANOSA
+- draw_header: STREFY REMISU
+- favorite: FAWORYT WEDŁUG STATYSTYK
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Vader jest czystszym technikiem, szybszym myślicielem i lepszym „czystym fighterem”.
+- line_2: Thanos i tak wygrywa papierową walkę, bo ofensywa Vadera nie skaluje do jego wytrzymałości.
+- line_3: Kiedy jedna strona może przeżyć najlepsze narzędzia drugiej, technika przestaje być statem rozstrzygającym.
+- quote: Vader potrzebuje perfekcyjnego otwarcia. Thanos potrzebuje tylko przeżyć ten moment.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- trap_top: LEPSZA TECHNIKA >
+- trap_bottom: NIE NAPRAWIA KOSMICZNEGO GAPU WYTRZYMAŁOŚCI
+- example: Wyższy skill score niewiele znaczy, jeśli przeciwnik może zignorować twój najlepszy hit i odpowiedzieć jednym czystym finishem.
+- question: Czy Vader ma prawdziwą ścieżkę do killu, zanim ściana wytrzymałości zamknie walkę?
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle:
+- archive_label:
+- avg_label: ŚREDNI WYNIK
+- left_title: REKORD VADERA
+- right_title: REKORD THANOSA
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle:
+- winner: Thanos przez wyraźną przewagę
+- line_1: Średnia statystyk faworyzuje Thanosa, 90.8 vs 80.4.
+- line_2: Przewaga umiejętności Vadera jest realna, ale nie przebija ściany wytrzymałości.
+- line_3: Żaden testowany standardowy warunek nie daje Vaderowi gałęzi z większością zwycięstw.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
+- subtitle: Jednostronnie od początku do końca
+- opening: Vader testuje walkę Force Gripem, kątami i technicznym pierwszym wejściem.
+- mid_fight: Thanos przyjmuje próbę i odpowiada tarczami, beamami albo brutalnym dociśnięciem.
+- late_fight: Gdy Thanos zaczyna trafiać czysto, zbroja Vadera i margines błędu szybko się kończą.
+- end_condition: Vader potrzebuje natychmiastowego, precyzyjnego finishu. Thanos wygrywa każdą normalną wymianę.
+- phase_1_mode: bars
+- phase_1_animation: feint-counter
+- phase_1_actor: a
+- phase_1_title: Techniczny Test
+- phase_1_a_label: Precyzja
+- phase_1_b_label: Ściana
+- phase_1_a_value: 88
+- phase_1_b_value: 84
+- phase_2_mode: split
+- phase_2_animation: corner-trap
+- phase_2_actor: b
+- phase_2_title: Załamanie Mid-Fight
+- phase_2_event: Vader musi udowodnić, że jego ofensywa coś znaczy, zanim Thanos obróci dystans na swoją korzyść.
+- phase_2_branch_a: Vader wymusza rzadkie okno na wewnętrzny hax, zanim Thanos się dostroi.
+- phase_2_branch_b: Thanos ignoruje obrażenia, zamyka przestrzeń i miażdży wymianę.
+- phase_3_mode: animation
+- phase_3_animation: rush-ko
+- phase_3_actor: b
+- phase_3_title: Kosmiczny Finish
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Presja przeciw ścianie wytrzymałości
+- a_curve: 44,38,31,22,12
+- b_curve: 64,70,78,86,93
+- yellow_wave: 28,30,29,31,30,32,29,31
+- phase_1: Vader jest na tyle ostry, by kontrolować pierwsze takty.
+- phase_2: Thanos absorbuje toolkit i zaczyna ściskać mapę.
+- phase_3: Gdy kosmiczny output zaczyna trafiać czysto, spirala porażki Vadera jest szybka.
+- analysis: Vader wygrywa małe momenty. Thanos wygrywa samą walkę.
+
+Template Fight Title:
+- fight_title: Darth Vader vs Thanos
+- subtitle:
+- top_color_a: #111827
+- top_color_b: #b91c1c
+- bottom_color_a: #7c3aed
+- bottom_color_b: #f5c542
+
+

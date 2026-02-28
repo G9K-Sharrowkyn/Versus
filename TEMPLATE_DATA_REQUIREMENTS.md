@@ -5,6 +5,11 @@ Use sections `1..8` always. Section `9` is optional.
 If section `9` is present, it defines which templates are used and in what order.
 If section `9` is missing, app uses the default full template order.
 
+Extended authoring sections:
+- Sections `10..13` are the recommended extended data layer for richer matchup files.
+- Current import logic still reads sections `1..9` as the functional minimum, so adding `10..13` is backward-safe.
+- For the curated fight library, sections `10..13` should be included whenever source material supports them.
+
 Filename side rule (priority):
 - File name should be in matchup format, e.g. `Superman vs King Hyperion.txt`.
 - Left side of file name (`Superman`) is forced as `Fighter A` (left / blue).
@@ -20,6 +25,10 @@ Filename side rule (priority):
 7. `Character B Feats` / `Featy Postaci B`
 8. `Defeated by Character B` / `Pokonani przez Postać B`
 9. `Template Order` / `Kolejność templatek` (optional)
+10. `Character A Powers / Tools / Weaknesses` / `Moce / Narzędzia / Słabości Postaci A` (recommended)
+11. `Character A Raw Feats` / `Surowe Featy Postaci A` (recommended)
+12. `Character B Powers / Tools / Weaknesses` / `Moce / Narzędzia / Słabości Postaci B` (recommended)
+13. `Character B Raw Feats` / `Surowe Featy Postaci B` (recommended)
 
 ## 2) Portrait inputs
 Upload 2 images in UI:
@@ -97,6 +106,31 @@ Rules:
 - You can use any accepted alias key listed below
 - Keys are normalized, so accents/case/spaces are tolerant
 
+Copywriting rule:
+- Prefer human, natural wording over technical meta-language.
+- Write labels as if they were shown directly to a viewer, not as internal analyst jargon.
+- Avoid phrases like `base model`, `scenario filters`, `weighted synthesis`, or other wording that sounds like internal methodology unless the panel is explicitly methodological.
+- If a subtitle or micro-label adds no real viewer value, leave it empty instead of forcing filler copy.
+- Do not add redundant UI words like `ARCHIVE`, `SNAPSHOT`, `MATCHUP`, `RULE-SETS` unless they communicate something the viewer actually needs.
+- Prefer clear viewer-facing wording like:
+- `STAT-BASED FAVORITE` instead of `BASE MODEL FAVORITE`
+- `Two-profile stat readout` instead of `Two-profile readout with scenario filters`
+- `Who wins the fight on paper?` instead of `Why stats and verdict can diverge`
+- `Why better stats do not guarantee victory` instead of `Why better averages do not guarantee all conditions`
+- `Estimated stats and conditional verdict logic` instead of `Weighted synthesis and conditional verdict logic`
+
+Section-writing rule:
+- Sections `3` and `7` are short profile summaries only.
+- Keep them compact and viewer-facing:
+- `Style`
+- `Advantage`
+- `Mentality`
+- Do not dump long raw feat lists into sections `3` and `7`.
+- Put concrete scale showings, destruction feats, survival feats, timeline feats, realm feats, and similar hard evidence into sections `11` and `13`.
+- Put matchup-relevant kits, special tools, resistances, counters, dependencies, and weaknesses into sections `10` and `12`.
+- In sections `10` and `12`, prefer bullets prefixed with `Tools:` or `Weaknesses:`.
+- In sections `11` and `13`, use direct feat bullets only; avoid commentary if a clean feat statement is possible.
+
 ## 5) Field map (all fillable fields)
 
 ### Character A
@@ -136,6 +170,11 @@ Accepted block names: `HUD Bars`, `Paski HUD`
 - `profile_mode`
 - `scale`
 
+Recommended subtitle style:
+- Use simple viewer-facing phrasing.
+- Recommended: `Two-profile stat readout`
+- Polish equivalent: `Odczyt statystyk dwóch profili`
+
 ### Radar Brief
 Accepted block names: `Radar Brief`, `Parameter Comparison`, `Raport Radarowy`, `Porównanie Parametrów`
 - `headline | header | title`
@@ -151,6 +190,9 @@ Baseline favorite rule:
 - If `|avgA - avgB| < 1.0`, baseline is a draw (not side A or side B).
 - In draw state, keep the stamp in the middle and use draw labeling.
 - `favorite_label` is used only for non-draw states; use `draw_favorite` for draw states.
+- Prefer viewer-facing label text.
+- Recommended non-draw label: `STAT-BASED FAVORITE`
+- Polish equivalent: `FAWORYT WEDŁUG STATYSTYK`
 
 ### Winner CV
 Accepted block names: `Winner CV`, `CV Zwycięzców`
@@ -166,6 +208,11 @@ Winner CV curation rules:
 - Keep entries unique (no duplicates in one side list).
 - Do not mix umbrella + member duplicates in the same list.
 - Example: avoid `Celestials (multiple)` together with `Arishem` in one list.
+- Prefer simple, human naming for this screen.
+- Recommended headline: `Victory Archive`
+- Polish equivalent: `Archiwum zwycięstw`
+- If `subtitle` adds nothing useful, leave it empty.
+- If `archive_label` only repeats the same idea as headline, leave it empty.
 
 ### Summary
 Accepted block names: `Summary`, `Podsumowanie`
@@ -175,6 +222,13 @@ Accepted block names: `Summary`, `Podsumowanie`
 - `line_1 | line1`
 - `line_2 | line2`
 - `line_3 | line3`
+
+Summary copy rule:
+- Do not force filler subtitles like `One matchup, four rule-sets` if they do not improve clarity.
+- If subtitle adds no value, leave it empty.
+- Keep `winner | verdict` short, natural, and viewer-facing.
+- Recommended example for close fights: `Statistical draw, conditional verdict`
+- Polish equivalent: `Statystyczny remis, werdykt warunkowy`
 
 ### Battle Dynamics
 Accepted block names: `Battle Dynamics`, `Dynamika Starcia`
@@ -223,6 +277,10 @@ X-Factor interpretation (recommended model):
 - `a_value` and `b_value` are the common baseline for joker-card comparison; use equal start (recommended `50/50`) when fighters are near overall parity.
 - `a_bonus` and `b_bonus` should represent only the extra impact of each fighter's unique joker-card trait under selected rules.
 - Use different base values only when you intentionally model a non-joker asymmetry.
+- X-Factor is optional and matchup-specific, not universal.
+- Do not frame X-Factor as something that always explains the winner.
+- Use X-Factor only when a special mechanic materially changes odds or fight flow.
+- If no such mechanic exists, skip X-Factor entirely.
 
 ### Interpretation
 Accepted block names: `Interpretation`, `Interpretacja`
@@ -237,6 +295,9 @@ Interpretation rule:
 - If average gap is `< 1.0`, frame this block as a draw analysis.
 - In draw analysis, explain why conditions/mechanics decide more than linear stat deltas.
 - If gap is `>= 1.0`, you can present a baseline side favorite.
+- Prefer subtitle phrasing that sounds like a direct question to the viewer.
+- Recommended subtitle: `Who wins the fight on paper?`
+- Polish equivalent: `Kto wygrywa walkę na papierze?`
 
 ### Fight Simulation
 Accepted block names: `Fight Simulation`, `Symulacja Walki`
@@ -280,6 +341,13 @@ Animation IDs:
 - `regen-attrition`
 - `berserk-overextend`
 - `trade-chaos`
+
+Extended aliases from `new.md`:
+- The app supports cinematic phase names from `new.md` (90 names from groups `1.1` to `10.5`).
+- Use clean phase names (recommended), for example: `Sonic Boom Blitz`.
+- Full copied rows are also accepted (with extra text after `:` or tab separators); parser extracts phase title automatically.
+- Each recognized phase now runs the base engine with extra motion modifiers matching its described behavior (not just plain name aliasing).
+- Actor behavior still follows `phase_actor` / `phase_<N>_actor` (`a`/`b`).
 
 Animation attacker direction:
 - Global default for all phases: `phase_actor`
@@ -376,6 +444,11 @@ Accepted block names: `Stat Trap`, `Pułapka Statystyk`
 - `example | line_3`
 - `question | line_4 | trap`
 
+Recommended subtitle style:
+- Explain the trap in plain language.
+- Recommended: `Why better stats do not guarantee victory`
+- Polish equivalent: `Dlaczego lepsze statystyki nie gwarantują wygranej`
+
 ### Verdict Matrix
 Accepted block names: `Verdict Matrix`, `Matryca Werdyktu`
 - `headline | header | title`
@@ -435,3 +508,8 @@ Accepted block names: `Methodology`, `Metodologia`
 - `linear_label`
 - `chaos_label`
 - `closing_label`
+
+Recommended subtitle style:
+- If this panel appears in viewer-facing output, keep wording simple and concrete.
+- Recommended: `Estimated stats and conditional verdict logic`
+- Polish equivalent: `Szacowane statystyki i logika werdyktu warunkowego`
