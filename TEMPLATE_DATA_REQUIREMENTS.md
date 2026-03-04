@@ -44,6 +44,8 @@ Available IDs (pick only what fits the current fight):
 - `tactical-board`
 - `character-card-a`
 - `character-card-b`
+- `powers-tools`
+- `raw-feats`
 - `hud-bars`
 - `radar-brief`
 - `winner-cv`
@@ -74,18 +76,20 @@ Part A: Intro and analytical framing
 1. `tactical-board`
 2. `character-card-a`
 3. `character-card-b`
-4. `hud-bars`
-5. `radar-brief`
-6. `interpretation`
-7. `stat-trap`
-8. `x-factor`
-9. `winner-cv`
-10. `summary`
+4. `powers-tools`
+5. `raw-feats`
+6. `hud-bars`
+7. `radar-brief`
+8. `interpretation`
+9. `stat-trap`
+10. `x-factor`
+11. `winner-cv`
+12. `summary`
 
 Part B: Fight simulation and conditional verdict
-11. `battle-dynamics`
-12. `fight-simulation`
-13. `verdict-matrix`
+13. `battle-dynamics`
+14. `fight-simulation`
+15. `verdict-matrix`
 
 Adaptation notes:
 - Remove any template that adds no value in a given matchup.
@@ -131,6 +135,19 @@ Section-writing rule:
 - In sections `10` and `12`, prefer bullets prefixed with `Tools:` or `Weaknesses:`.
 - In sections `11` and `13`, use direct feat bullets only; avoid commentary if a clean feat statement is possible.
 
+Defeated-opponent rule:
+- Sections `4` and `8` should prefer clean solo wins first.
+- If a fighter does not have enough strong solo wins to make the visible list useful, you may supplement with:
+- `team effort`
+- `assist-backed kill`
+- `temporary domination`
+- `group overpowering`
+- `internal conflict win`
+- Every non-solo or non-clean result must be labeled explicitly in the line itself.
+- Never hide a team result as if it were a clean solo victory.
+- Never add filler names just to reach a target count.
+- Version purity still overrides list length: do not use wrong-version wins to pad the archive.
+
 ## 5) Field map (all fillable fields)
 
 ### Character A
@@ -150,6 +167,34 @@ Accepted block names: `Character B`, `Character Card B`, `Card B`, `Postać B`, 
 - `atut | advantage`
 - `mentalnosc | mentality`
 - `quote | cytat`
+
+### Powers / Tools / Weaknesses
+Accepted block names: `Powers / Tools / Weaknesses`, `Moce / Narzędzia / Słabości`, `Powers Tools Weaknesses`, `Moce Narzędzia Słabości`
+- `headline | header | title`
+- `subtitle | purpose | note`
+- `left_title`
+- `right_title`
+- `powers_label`
+- `tools_label`
+- `weaknesses_label`
+
+Writing rule:
+- Sections `10` and `12` feed this screen.
+- Use short bullets grouped by `Powers:`, `Tools:`, `Weaknesses:`.
+- If you need custom labels on screen, override them with `powers_label`, `tools_label`, `weaknesses_label`.
+
+### Raw Feats
+Accepted block names: `Raw Feats`, `Surowe Featy`, `Feats Ledger`
+- `headline | header | title`
+- `subtitle | purpose | note`
+- `left_title`
+- `right_title`
+- `feat_label`
+
+Writing rule:
+- Sections `11` and `13` feed this screen.
+- Keep entries concrete and feat-only.
+- Avoid commentary if a clean feat statement is possible.
 
 ### Tactical Board
 Accepted block names: `Tactical Board`, `Methodology`, `Tablica Taktyczna`, `Metodologia`
@@ -208,6 +253,8 @@ Winner CV curation rules:
 - Keep entries unique (no duplicates in one side list).
 - Do not mix umbrella + member duplicates in the same list.
 - Example: avoid `Celestials (multiple)` together with `Arishem` in one list.
+- Prefer clean solo wins first.
+- If the list is too short, add clearly labeled non-solo/context wins rather than forcing unsupported names.
 - Prefer simple, human naming for this screen.
 - Recommended headline: `Victory Archive`
 - Polish equivalent: `Archiwum zwycięstw`

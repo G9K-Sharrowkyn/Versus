@@ -1,71 +1,59 @@
-﻿1. Knull (King in Black, Earth-616)
+1. Knull (Earth-616, with All-Black)
 
 2. Character A Stats
-- Strength: 96
-- Speed: 85
-- Durability: 94
-- Combat IQ: 80
-- Hax: 95
-- Stamina: 97
-- Fighting Style: 88
-- Experience: 95
-- Combat Skills: 90
+- Strength: 95
+- Speed: 84
+- Durability: 97
+- Combat IQ: 82
+- Hax: 98
+- Stamina: 99
+- Fighting Style: 89
+- Experience: 100
+- Combat Skills: 86
 
 3. Character A Feats
-- Style: Overwhelming pressure, swarm control, brutal close-range finish attempts
-- Advantage: Regeneration economy plus Necrosword deicide profile
-- Mentality: Force attrition, break structure, end by repeated high-value exchanges
+- Style: Cosmic executioner pressure, abyss control, and repeated high-value exchanges
+- Advantage: Cleaner attrition loop, blade lethality, and battlefield corruption
+- Mentality: Does not need a clean duel, only a messy field and one real opening
 
 4. Defeated by Character A
-- Arishem
-- Jemiah
-- Ziran
-- Eson
+- Celestial
 - Sentry
 - The Void
 - Silver Surfer
 - All-Father Thor
-- Venom (Eddie Brock)
-- Fin Fang Foom
-- Avengers rosters
-- God armies and pantheons
 
-5. Odin (Destroyer Armor + Odinsword, Earth-616)
+5. Odin (Earth-616, Full Odinforce + Destroyer Armor + Odinsword)
 
 6. Character B Stats
 - Strength: 92
-- Speed: 84
-- Durability: 94
-- Combat IQ: 94
-- Hax: 92
-- Stamina: 86
-- Fighting Style: 93
-- Experience: 95
-- Combat Skills: 91
+- Speed: 81
+- Durability: 95
+- Combat IQ: 96
+- Hax: 96
+- Stamina: 89
+- Fighting Style: 92
+- Experience: 99
+- Combat Skills: 93
 
 7. Character B Feats
-- Style: Tactical distance control, layered magic, selective burst finish windows
-- Advantage: Solar-class counter pressure plus high combat IQ execution
-- Mentality: Stabilize pace, deny clean Necrosword entries, convert counter windows
+- Style: Strategic king archetype, barriers, spacing, and controlled burst windows
+- Advantage: Better battlefield management, tempo reset, and divine-scale control
+- Mentality: Refuses the obvious slugfest and tries to keep the fight structured
 
 8. Defeated by Character B
-- Surtur
+- Infinity
 - Seth
-- Absorbing Man
-- Mangog
-- Loki
-- Hela
 - Thanos
 - Silver Surfer
-- Laufey
-- Frost Giants
-- Cul Borson (Serpent)
-- Nezarr (Celestial, severe damage)
+- Nezarr the Calculator (severe damage / temporary incapacitation only)
 
 9. Template Order
 - tactical-board
 - character-card-a
 - character-card-b
+- powers-tools
+- raw-feats
 - hud-bars
 - radar-brief
 - interpretation
@@ -79,57 +67,78 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: All-Black god-killer blade, symbiote hive control, and corruption/infection.
-- Tools: Extreme regeneration, darkness-field pressure, and attrition scaling.
-- Weaknesses: Counter-light effects and sufficiently strong anti-abyss energy.
+- Tools: All-Black, living abyss, symbiote hive control, infection pressure, regeneration, and anti-god lethality.
+- Tools: Battlefield corruption and repeated-contact pressure make every long exchange worse.
+- Weaknesses: True anti-abyss Light is the clearest canonical hard answer to his whole profile.
+- Weaknesses: Bright or divine energy can hurt him, but it is not automatically a hard cleanse.
 
 11. Character A Raw Feats
-- Decapitated a Celestial and forged All-Black into a god-killer.
-- Killed Sentry and absorbed the Void.
-- Covered Earth in living abyss and cut it off from sunlight.
-- Rebuilt after catastrophic damage, including massive destruction from King Thor.
+- Decapitates a Celestial and forges All-Black from the corpse.
+- Covers Earth in living abyss and blocks the sun.
+- Tanks Silver Surfer's star-spanning blast.
+- Regenerates his jaw after Thor blows it off.
+- Dodges Odinforce Thor and counters before he can reset.
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Odinforce, Destroyer Armor, Odinsword, barriers, and battlefield control.
-- Tools: Long-range energy projection, sealing options, and tactical versatility.
-- Weaknesses: Long wars drain resources, and extreme output can risk fatigue or Odinsleep.
+- Tools: Full Odinforce, Destroyer Armor, Odinsword, barriers, cosmic energy projection, and layered battlefield control.
+- Tools: This is a Celestial-war-scale battle configuration, not baseline court Odin.
+- Tools: He has more ways than Knull to manage space, reset tempo, and turn chaos back into structure.
+- Weaknesses: This setup is not explicitly proven to be Enigma-Force-equivalent.
+- Weaknesses: If his energy cannot keep Knull down for good, the fight becomes a resource and contact problem.
 
 13. Character B Raw Feats
-- Fought Seth with cosmic-scale collateral.
-- Severed Nezarr arm in Destroyer plus Odinsword setup.
-- Imprisoned or neutralized Surtur-scale threats and sealed realms off Yggdrasil.
-- Reignited stars and matched other skyfather-tier forces.
+- Absorbs Asgard's life-force and scales the Destroyer to Celestial size.
+- Severs Nezarr's arm with the Odinsword.
+- Battles Seth across multiple planes of reality.
+- Defeats Infinity and restores the damage afterward.
+- Simultaneously overpowers Thanos and Silver Surfer.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KNULL VS ODIN
-- subtitle: Regeneration versus solar pressure
+- subtitle: Abyss attrition versus divine battlefield control
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: STAT LINE
-- chaos_label: COUNTER LINE
-- lane: Regeneration economy vs solar counter control
+- linear_label: CONTROL AND STRUCTURE
+- chaos_label: REGEN AND CORRUPTION
+- lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
-- world: Earth-616, King in Black
-- style: Brutal pressure, abyss swarms, deicidal close-range entries
-- atut: Necrosword plus extreme regeneration and stamina
-- mentalnosc: Overwhelm and force long attrition
-- quote: If the fight goes long, the abyss keeps coming.
+- world: Earth-616 with All-Black
+- style: Cosmic executioner pressure with abyss control and repeated high-value exchanges
+- advantage: Cleaner attrition loop plus the more naturally lethal weapon
+- mentality: Does not need a clean duel, only a messy field and one real opening
+- quote: Knull does not need a clean duel. He needs a bad field and one real opening.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
-- world: Earth-616, Destroyer Armor + Odinsword
-- style: Strategic control, burst punishment, layered magical defense
-- atut: Solar-class counter tools and elite combat IQ
-- mentalnosc: Keep spacing, punish entries, finish through windows
-- quote: Survive the storm, then cut the core.
+- world: Earth-616, Full Odinforce + Destroyer Armor + Odinsword
+- style: Strategic king warfare with barriers, spacing, and controlled burst windows
+- advantage: Better battlefield management and more ways to reset tempo
+- mentality: Wins only if he keeps the fight structured long enough for control to matter
+- quote: Odin wins only if his control turns into lasting damage before the loop resets.
+
+Template Powers / Tools / Weaknesses:
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: What each side actually brings into the exchange
+- left_title: KNULL TOOLKIT
+- right_title: ODIN TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
+
+Template Raw Feats:
+- headline: RAW FEATS
+- subtitle: Clean showcase examples, not full archives
+- left_title: KNULL SHOWCASE
+- right_title: ODIN SHOWCASE
+- feat_label: FEAT
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
 - subtitle: Two-profile stat readout
-- threat_level: EXTREME
-- integrity: 99.7%
+- threat_level: COSMIC
+- integrity: 99.4%
 - profile_mode: VS
 - scale: 0-100
 
@@ -139,43 +148,42 @@ Template Radar Brief:
 - left_header: KNULL ADVANTAGES
 - right_header: ODIN ADVANTAGES
 - draw_header: DRAW ZONES
-- favorite: BASELINE DRAW
-- draw_favorite: BASELINE DRAW
+- draw_favorite: STATISTICAL DRAW
 
 Template Interpretation:
 - headline: INTERPRETATION
 - subtitle: Who wins the fight on paper?
-- line_1: The stat gap is below 1 point, so on paper this is a draw.
-- line_2: Knull gets stronger the longer the fight goes. Odin gets stronger if he keeps the light under control.
-- line_3: The winner depends more on rules and pace than on the stat table.
-- quote: Even stats push the verdict into the details of the fight.
+- line_1: On paper this is almost a draw, with Odin owning a microscopic edge in control categories.
+- line_2: In practice Knull still leads because his regeneration and blade loop are easier to convert into a finish.
+- line_3: The fight only flips cleanly if Odin's full-loadout output is the right kind of anti-abyss answer.
+- quote: Paper parity does not solve a matchup where the wrong damage can be perfect and still not stick.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Near-equal stats can still hide matchup problems
-- trap_top: PAPER PARITY
-- trap_bottom: CONDITIONAL OUTCOME SHIFT
-- example: One stable counter interaction can outweigh small category leads.
-- question: Who controls the fight condition before resources fall off?
+- subtitle: Why better stats do not guarantee victory
+- trap_top: PAPER PARITY DOES NOT TELL YOU WHAT KIND OF DAMAGE WORKS
+- trap_bottom: KNULL ONLY NEEDS ONE LOOP TO START PAYING FOR ITSELF
+- example: Odin can be equal on averages and still lose if the damage is impressive but not permanent.
+- question: Can Odin's control actually convert into the kind of finish Knull cannot regenerate through?
 
 Template X-Factor:
-- headline: X-FACTOR: ABYSS REGEN VS SOLAR COUNTER
-- subtitle: The one factor that bends the fight
-- factor: REGENERATION VS LIGHT CONTROL
+- headline: X-FACTOR
+- subtitle: The one variable that decides whether control matters
+- factor: ANTI-ABYSS COUNTER OR JUST DIVINE DAMAGE
 - a_value: 50
 - a_bonus: 14
-- a_bonus_label: REGEN
+- a_bonus_label: REGEN LOOP
 - b_value: 50
-- b_bonus: 12
-- regen: COUNTER
-- mechanika: Knull benefits when damage keeps being erased. Odin benefits when he can keep the light pressure on.
-- implikacja: Short, controlled exchanges help Odin. Long, messy exchanges help Knull.
-- psychologia: Failed finish attempts increase pressure on the side with lower recovery economy.
+- b_bonus: 15
+- regen: COUNTER PURGE
+- mechanika: Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.
+- implikacja: This is why the same stat table can point to parity while the practical baseline still leans Knull.
+- psychologia: Knull wants repetition. Odin wants one controlled exchange that finally stays solved.
 
 Template Winner CV:
 - headline: Victory Archive
-- subtitle:
-- archive_label:
+- subtitle: 
+- archive_label: 
 - avg_label: AVG SCORE
 - left_title: KNULL RECORD
 - right_title: ODIN RECORD
@@ -183,75 +191,69 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle:
-- winner: Statistical draw, slight edge Knull
-- line_1: Overall averages are inside draw threshold (<1), Knull 90.97 vs Odin 91.06.
-- line_2: Knull is better in long wars. Odin is better if he keeps light control through the whole fight.
-- line_3: Not all scenarios are equally likely; broken light control is more common, so the overall lean stays slightly with Knull.
+- subtitle: 
+- winner: Slight edge Knull, conditional matchup
+- line_1: On paper this is near-parity, with Odin holding a microscopic average edge at 92.56 to 92.22.
+- line_2: In practice Knull owns the cleaner attrition and finish loop once contact and regeneration start repeating.
+- line_3: Odin's real branch exists only if this full war configuration produces the right kind of anti-abyss answer.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Momentum shifts across phases
-- a_curve: 90,84,76,82,88
-- b_curve: 74,82,88,81,75
-- yellow_wave: 35,38,34,39,33,37,35,38
-- phase_1: Knull takes early initiative through swarm pressure and pace.
-- phase_2: Odin stabilizes with spacing, control tools, and counter windows.
-- phase_3: Attrition and resource economy decide late-fight direction.
-- analysis: Knull wins long damage loops. Odin wins controlled counter windows.
+- subtitle: Structure versus corruption over time
+- a_curve: 56,61,67,74,81
+- b_curve: 84,79,72,63,55
+- yellow_wave: 31,35,33,37,34,38,36,40
+- phase_1: Odin is strongest while the map stays structured and range still matters.
+- phase_2: Knull improves every time contact repeats and damage starts getting erased.
+- phase_3: The fight turns on whether control becomes purge or just another temporary reset.
+- analysis: Odin wins the cleanly managed version of the fight. Knull wins the one that keeps coming back.
 
 Template Fight Simulation:
 - headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: How the fight changes with light control
-- opening: Knull starts with direct rush pressure, swarm volume, and close-range entries.
-- mid_fight: Odin shifts to controlled spacing, kite lanes, and high-value counter bursts.
-- late_fight: Fight collapses into heavy exchanges where resource economy decides.
-- end_condition: Sustained light suppression favors Odin; broken control loops favor Knull attrition.
-- phase_actor: a
+- subtitle: One branch check, two real outcomes
+- opening: Knull takes initiative immediately and tests whether standard Odinforce pressure actually checks the abyss.
+- mid_fight: Odin answers with barriers, spacing, and layered energy, trying to stop the fight from collapsing into Necrosword attrition.
+- late_fight: The ending diverges on one point only: whether Odin's damage sticks or Knull's loop resets the exchange again.
+- end_condition: Near-paper parity does not matter if one side has the cleaner repeatable finish route.
 - phase_1_mode: bars
 - phase_1_animation: rush-ko
 - phase_1_actor: a
-- phase_1_title: Direct Entry Pressure
-- phase_1_a_label: Knull Tempo
-- phase_1_b_label: Odin Setup
-- phase_1_a_value: 92
-- phase_1_b_value: 84
+- phase_1_title: First Contact
+- phase_1_a_label: Pressure
+- phase_1_b_label: Structure
+- phase_1_a_value: 91
+- phase_1_b_value: 78
 - phase_2_mode: split
 - phase_2_animation: kite-zone
 - phase_2_actor: b
-- phase_2_title: Counter Window
-- phase_2_event: Odin attempts to establish solar-control lanes before clean Necrosword contact.
-- phase_2_branch_a: Knull breaks spacing and forces close attrition.
-- phase_2_branch_b: Odin keeps distance and applies sustained light pressure.
-- phase_3_mode: bars
-- phase_3_animation: clash-lock
+- phase_2_title: Control Check
+- phase_2_event: Odin tries to turn a bad field back into a managed cosmic lane.
+- phase_2_branch_a: Odinforce starts acting like a real anti-abyss counter.
+- phase_2_branch_b: Knull absorbs the tempo break and keeps the exchange dirty.
+- phase_3_mode: split
+- phase_3_animation: regen-attrition
 - phase_3_actor: a
-- phase_3_title: Attrition Lock
-- phase_3_a_label: Knull Recovery
-- phase_3_b_label: Odin Resources
-- phase_3_a_value: 93
-- phase_3_b_value: 78
+- phase_3_title: Loop Or Purge
+- phase_3_event: Either Odin finally creates lasting damage or Knull turns another good sequence into another round.
+- phase_3_branch_a: Odin's control becomes a real purge path.
+- phase_3_branch_b: Knull's regeneration and blade loop take over.
 
 Template Verdict Matrix:
-- headline: VERDICT MATRIX
-- subtitle: Condition-dependent outcomes
-- col_left: LIGHT CONTROL: SUSTAINED
-- col_right: LIGHT CONTROL: DISRUPTED
-- row_top: STANDARD KO/BFR/INCAP
-- row_bottom: KILL-ONLY DEATHMATCH
-- case_1: Odin 6.5/10. If light-control uptime is sustained through most phases, Odin converts safer with spacing and Destroyer durability.
-- case_2: Knull 6.5/10. If light control is disrupted, Knull closes distance and recovers value through regen loops.
-- case_3: Odin 5.5/10. Sustained control still helps, but kill-only raises finish requirements and attrition risk.
-- case_4: Knull 7/10. Disrupted control in kill-only most strongly favors Necrosword attrition and endurance economy.
+- headline: CONDITIONAL VERDICT
+- subtitle: Two real branches shown in a compatible matrix
+- col_left: ODINFORCE COUNTER HOLDS
+- col_right: ODINFORCE COUNTER FAILS
+- row_top: CONTROL MAINTAINED
+- row_bottom: CONTROL BROKEN
+- case_1: Odin 6.5/10. If the output is the right kind of anti-abyss counter, control finally means something permanent.
+- case_2: Knull 7/10. If the output is only huge divine damage, Knull's loop eventually wins the resource war.
+- case_3: Odin 6.5/10. The same real branch: if Odinforce truly purges the abyss, the map can still be brought back under control.
+- case_4: Knull 7/10. The same real branch: once control breaks without a true purge, Knull owns the cleaner finish route.
 
 Template Fight Title:
 - fight_title: Knull vs Odin
-- subtitle: Abyss pressure versus solar control
+- subtitle:
 - top_color_a: #08090c
 - top_color_b: #b91c1c
-- top_dark: true
-- bottom_color_a: #B38A2A
-- bottom_color_b: #4f6f96
-- bottom_dark: false
-
-
+- bottom_color_a: #f5c542
+- bottom_color_b: #38bdf8

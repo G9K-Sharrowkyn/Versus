@@ -1,4 +1,4 @@
-﻿1. Jiren (Dragon Ball Super)
+1. Jiren (Dragon Ball Super, anime + manga mix)
 
 2. Character A Stats
 - Strength: 96
@@ -12,21 +12,18 @@
 - Combat Skills: 94
 
 3. Character A Feats
-- Style: Disciplined pressure, barrier control, and finish-first exchanges
-- Advantage: Superior starting speed, power, and technical control
-- Mentality: Break the opponent before weird mechanics get time to matter
+- Style: Disciplined pressure, barriers, and finish-first exchanges
+- Advantage: Better opener, cleaner reads, and more reliable first-phase control
+- Mentality: End the fight before weirdness and escalation get room to breathe
 
 4. Defeated by Character A
 - Hit
-- Goku
-- Vegeta
-- Kale
 - Maji Kayo
-- Master Roshi
-- Golden Frieza
-- Android 17
+- Golden Frieza (overpowering)
+- Kale (temporary incapacitation)
+- Vegeta (Super Saiyan Blue) (context-heavy overpowering)
 
-5. Saitama (One-Punch Man)
+5. Saitama (One-Punch Man, Yusuke Murata manga version)
 
 6. Character B Stats
 - Strength: 91
@@ -40,28 +37,23 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Style: Casual brawling with explosive adaptation and late-fight escalation
-- Advantage: Exponential growth and almost bottomless stamina
-- Mentality: Survive the start, then let the fight scale upward
+- Style: Simple brawling, absurd force, and explosive late growth
+- Advantage: Better survivability into escalation and a much scarier long game
+- Mentality: Does not need the cleaner start; only enough fight to make the start irrelevant
 
 8. Defeated by Character B
-- Crablante
-- Vaccine Man
-- Speed-o'-Sound Sonic
-- Deep Sea King
-- Carnage Kabuto
-- Marugori
 - Boros
-- Orochi
 - Elder Centipede
-- Evil Ocean Water
-- Geryuganshoop
-- Garou
+- Orochi
+- Evil Ocean Water (neutralization)
+- Garou (Cosmic Fear Mode) (timeline-specific decisive result)
 
 9. Template Order
 - tactical-board
 - character-card-a
 - character-card-b
+- powers-tools
+- raw-feats
 - hud-bars
 - radar-brief
 - interpretation
@@ -69,61 +61,85 @@
 - x-factor
 - winner-cv
 - summary
-- fight-simulation
 - battle-dynamics
+- fight-simulation
+- fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Elite ki offense, barriers, flight, and overwhelming direct pressure.
-- Tools: Can break time-based restraints and overpower top-tier techniques.
-- Weaknesses: Few hax win-cons, and he sometimes tests opponents before fully escalating.
+- Tools: Overwhelming ki pressure, barriers, anti-time interaction, and elite reaction speed.
+- Tools: Raw force and low-motion control let him dominate the opening without wasting movement.
+- Tools: He is at his best when the fight stays inside the first clean finish window.
+- Weaknesses: He has few special backup win routes once the first control phase fails.
+- Weaknesses: If the opponent survives the intended finish, Jiren has to win a harder future fight than the one he started.
 
 11. Character A Raw Feats
-- Scaled above his universe God of Destruction benchmark.
-- Broke through time-based trapping and shrugged off top Tournament of Power attacks.
-- Dominated elite fighters with barriers, pressure, and raw force.
-- Maintained control against high-end Dragon Ball Super opposition.
+- Blocks Super Saiyan God Goku with one finger.
+- Breaks Hit's Cage of Time through raw power.
+- Repels Universe 7's Spirit Bomb with only a glare.
+- Maintains a passive barrier while meditating.
+- Sits above Belmod's benchmark (scaling-based tier anchor).
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Extreme physical stats, absurd stamina, and overwhelming close-range force.
-- Tools: Non-linear growth interpretation and the rare time-tech anomaly branch.
-- Weaknesses: Simple tactics, limited ranged options, and time wasted before going serious.
+- Tools: Absurd physical force, absurd survivability, and near-bottomless stamina.
+- Tools: Growth and escalation are real fight variables, not just flavor text.
+- Tools: The time-anomaly branch exists, but it is not a standard opener.
+- Weaknesses: Early simplicity and lack of layered setup tools make the start much cleaner for Jiren.
+- Weaknesses: He can lose the fight before the escalation branch becomes live.
+- Weaknesses: His baseline rhythm is easier to punish than his late-game ceiling is to survive.
 
 13. Character B Raw Feats
-- Destroyed a meteor with one punch.
-- Serious Punch squared produced cosmic-scale consequences.
-- Serious Sneeze devastated Jupiter on a planetary scale.
-- Copied a technique and reversed time in the Garou climax branch.
+- Serious Punch Squared carves a void through space.
+- Serious Sneeze strips Jupiter's gas layers.
+- Grabs and kicks hyperspace gates.
+- Survives Gamma Ray Burst and keeps fighting.
+- Copies Garou's technique and lands Zero Punch.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // JIREN VS SAITAMA
-- subtitle: Opening dominance versus time to grow
+- subtitle: Cleaner first minute versus scarier long game
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: STARTING EDGE
-- chaos_label: GROWTH EDGE
-- lane: Superior opening pressure vs late-fight non-linear escalation
+- linear_label: OPENING CONTROL
+- chaos_label: ESCALATION TIME
+- lane: Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
-- world: Dragon Ball Super
-- style: Minimal-motion pressure with brutal efficiency
-- atut: Cleaner starts, cleaner reads, cleaner finishes
-- mentalnosc: End the problem before it turns strange
-- quote: Jiren wins the part of the fight most opponents never escape.
+- world: Dragon Ball Super, anime + manga mix
+- style: Disciplined pressure, barriers, and finish-first exchanges
+- advantage: Better opener, cleaner reads, and more reliable first-phase control
+- mentality: End the fight before weirdness and escalation get room to breathe
+- quote: Jiren's best route is still the first route.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
-- world: One-Punch Man manga
-- style: Casual brawling that becomes exponential the longer it lives
-- atut: Growth that can turn survival time into a new power ceiling
-- mentalnosc: Take the pressure, then become too much for the pressure
-- quote: Saitama does not need the better start. He needs enough fight.
+- world: Murata manga
+- style: Simple brawling, absurd force, and explosive late growth
+- advantage: Better survivability into escalation and a much scarier long game
+- mentality: Does not need the cleaner start; only enough fight to make the start irrelevant
+- quote: Saitama does not need the better start. He needs enough fight to become the worse problem.
+
+Template Powers / Tools / Weaknesses:
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: What each side actually brings into the exchange
+- left_title: JIREN TOOLKIT
+- right_title: SAITAMA TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
+
+Template Raw Feats:
+- headline: RAW FEATS
+- subtitle: Clean showcase examples, not full archives
+- left_title: JIREN SHOWCASE
+- right_title: SAITAMA SHOWCASE
+- feat_label: FEAT
 
 Template HUD Bars:
-- headline: HIGH-END SHONEN ANALYTICS
+- headline: HIGH-END COMBAT ANALYTICS
 - subtitle: Two-profile stat readout
 - threat_level: COSMIC
-- integrity: 99.1%
+- integrity: 99.3%
 - profile_mode: VS
 - scale: 0-100
 
@@ -133,37 +149,37 @@ Template Radar Brief:
 - left_header: JIREN ADVANTAGES
 - right_header: SAITAMA ADVANTAGES
 - draw_header: DRAW ZONES
-- favorite: STAT-BASED FAVORITE
+- favorite_label: STAT-BASED FAVORITE
 
 Template Interpretation:
 - headline: INTERPRETATION
 - subtitle: Who wins the fight on paper?
-- line_1: Jiren wins the paper fight through cleaner starts, better skill, and more reliable opening pressure.
-- line_2: Saitama's growth changes the fight only if the battle survives the part Jiren is built to dominate.
-- line_3: This matchup points in two directions at once: Jiren owns the opening, Saitama threatens the long game.
-- quote: Jiren owns the opening. Saitama wants the clock.
+- line_1: Jiren owns the better start, cleaner reads, and more reliable opening finish structure.
+- line_2: Saitama keeps a real late branch only because his survivability can turn the future version of the fight into something worse.
+- line_3: On paper the edge is Jiren's, but the fight stops being a paper fight if survival turns into escalation.
+- quote: The start belongs to Jiren. The danger belongs to whatever survives it.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why better stats do not guarantee victory
-- trap_top: HIGHER STARTING STATS >
-- trap_bottom: CAN LOSE TO A LONG ENOUGH FIGHT
-- example: A better first minute can still lose if the opponent turns survival into exponential growth.
-- question: Does Jiren finish before Saitama's growth becomes the real fight?
+- subtitle: Why better starting stats do not guarantee the whole fight
+- trap_top: OPENING EDGE DECIDES THE FIRST VERSION OF THE FIGHT
+- trap_bottom: ESCALATION CAN CREATE A WORSE SECOND VERSION
+- example: Jiren can control the start and still lose the later exchange if the first finish never truly happens.
+- question: Can Jiren finish before survival turns into escalation?
 
 Template X-Factor:
-- headline: X-FACTOR: TIME TO GROWTH
-- subtitle: The longer it goes, the more dangerous Saitama gets
-- factor: SCALING WINDOW
+- headline: X-FACTOR
+- subtitle: The one variable that turns this into two different fights
+- factor: OPENING CONTROL VS ESCALATION TIME
 - a_value: 50
-- a_bonus: 14
-- a_bonus_label: EDGE
+- a_bonus: 15
+- a_bonus_label: EARLY FINISH WINDOW
 - b_value: 50
-- b_bonus: 18
-- regen: EDGE
-- mechanika: Jiren wants to end it before the fight changes. Saitama gets stronger if the fight keeps giving him time.
-- implikacja: If Jiren cannot end it early, every exchange makes the fight harder to control.
-- psychologia: Jiren fights to finish a problem. Saitama only needs a reason to start caring.
+- b_bonus: 14
+- regen: LATE-FIGHT ESCALATION
+- mechanika: Jiren's edge lives in the first clean finish window. Saitama's edge appears only if that window fails badly enough.
+- implikacja: If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.
+- psychologia: Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -177,48 +193,51 @@ Template Winner CV:
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle:
-- winner: Jiren leads, but Saitama gets scarier late
-- line_1: Stat average favors Jiren, 89.7 vs 81.2.
-- line_2: Saitama's growth is the one factor that can pull the fight away from the opening math.
-- line_3: Jiren wins the short version. Saitama gets real odds only if the fight breathes.
-
-Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Jiren owns the start, Saitama wants the clock
-- opening: Jiren sets the pace immediately with pressure and barrier-backed offense.
-- mid_fight: Saitama survives, adapts, and starts forcing real exchanges.
-- late_fight: The fight splits hard: fast closure stays Jiren, long escalation turns dangerous fast.
-- end_condition: This matchup is a race between Jiren's first finish and Saitama's first true growth spike.
-- phase_1_mode: bars
-- phase_1_animation: rush-ko
-- phase_1_actor: a
-- phase_1_title: First Minute
-- phase_1_a_label: Closure
-- phase_1_b_label: Survival
-- phase_1_a_value: 94
-- phase_1_b_value: 78
-- phase_2_mode: split
-- phase_2_animation: trade-chaos
-- phase_2_actor: a
-- phase_2_title: Growth Trigger
-- phase_2_event: The first exchange that fails to finish Saitama changes the whole equation.
-- phase_2_branch_a: Jiren keeps the pace high and ends it before adaptation compounds.
-- phase_2_branch_b: Saitama turns durability into growth time and drags Jiren into escalation.
-- phase_3_mode: animation
-- phase_3_animation: clash-lock
-- phase_3_actor: b
-- phase_3_title: Escalation Spiral
+- winner: Jiren leads, but Saitama has a live late branch
+- line_1: Jiren owns the paper comparison, 89.67 vs 81.22.
+- line_2: Jiren's baseline comes from better opening control and cleaner finish structure.
+- line_3: Saitama only flips the matchup if survival turns into real escalation and the anomaly branch becomes live.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Early control versus late-fight acceleration
-- a_curve: 86,78,68,56,45
-- b_curve: 38,44,57,71,84
-- yellow_wave: 31,36,34,39,35,40,33,38
-- phase_1: Jiren owns the first meaningful stretch of the fight.
-- phase_2: Every failed finish attempt gives Saitama a better future exchange.
-- phase_3: If the fight stays alive long enough, the line bends toward Saitama fast.
-- analysis: Jiren owns the first stretch. Saitama becomes dangerous only after the fight proves Jiren could not close it.
+- subtitle: Opening control versus future escalation
+- a_curve: 91,87,79,68,56
+- b_curve: 39,43,52,66,81
+- yellow_wave: 28,31,30,34,33,38,37,44
+- phase_1: Jiren starts high because pressure, barriers, and clean reads matter most early.
+- phase_2: Saitama's line rises only if the first real finish does not stick.
+- phase_3: Jiren loses leverage fast once the fight crosses from opening control into late escalation.
+- analysis: Jiren wins the cleaner start. Saitama wins the messier future version.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: One-factor conditional matchup
+- opening: Jiren takes immediate control through pressure, spacing, and efficiency.
+- mid_fight: Saitama survives rather than dictates and tries to stay alive long enough for the exchange to change.
+- late_fight: The fight diverges based on whether Jiren closes early or Saitama survives into escalation.
+- end_condition: Jiren wins by ending the first version of the fight. Saitama wins by surviving into a stronger second version.
+- phase_1_mode: bars
+- phase_1_animation: feint-counter
+- phase_1_actor: a
+- phase_1_title: Opening Control
+- phase_1_a_label: Pressure
+- phase_1_b_label: Survival
+- phase_1_a_value: 92
+- phase_1_b_value: 68
+- phase_2_mode: split
+- phase_2_animation: clash-lock
+- phase_2_actor: a
+- phase_2_title: First Failure
+- phase_2_event: The fight changes the first time Jiren's clean finish sequence fails to cash out.
+- phase_2_branch_a: Jiren keeps the fight structured and denies real growth time.
+- phase_2_branch_b: Saitama survives long enough for the exchange to become a worse future problem.
+- phase_3_mode: split
+- phase_3_animation: trade-chaos
+- phase_3_actor: b
+- phase_3_title: Escalation Branch
+- phase_3_event: Once the opening window slips, the question stops being who started better and becomes who the fight is becoming.
+- phase_3_branch_a: Jiren still closes before the future branch fully forms.
+- phase_3_branch_b: Saitama reaches the late-fight engine and the baseline math stops holding.
 
 Template Fight Title:
 - fight_title: Jiren vs Saitama
@@ -227,5 +246,3 @@ Template Fight Title:
 - top_color_b: #9ca3af
 - bottom_color_a: #facc15
 - bottom_color_b: #ef4444
-
-

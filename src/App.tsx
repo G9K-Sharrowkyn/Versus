@@ -345,7 +345,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'tech',
     theme: 'cosmic',
     title: 'POWERS / TOOLS / WEAKNESSES',
-    subtitle: 'Core matchup toolkit for both profiles',
+    subtitle: '',
   },
   {
     id: 'raw-feats',
@@ -355,7 +355,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     frame: 'tech',
     theme: 'steel',
     title: 'RAW FEATS',
-    subtitle: 'Concrete feats behind the matchup profile',
+    subtitle: '',
   },
   {
     id: 'hud-bars',
@@ -529,27 +529,27 @@ const TEMPLATE_LOCALIZED_COPY: Record<TemplateId, Record<Language, LocalizedTemp
       name: 'Moce / Narzedzia / Slabosci',
       description: 'Dwustronny panel narzedzi i slabosci obu postaci.',
       title: 'MOCE / NARZEDZIA / SLABOSCI',
-      subtitle: 'Kluczowe narzedzia matchupowe obu profili',
+      subtitle: '',
     },
     en: {
       name: 'Powers / Tools / Weaknesses',
       description: 'Split dossier for both fighters with grouped tools and weaknesses.',
       title: 'POWERS / TOOLS / WEAKNESSES',
-      subtitle: 'Core matchup toolkit for both profiles',
+      subtitle: '',
     },
   },
   'raw-feats': {
     pl: {
-      name: 'Surowe Featy',
-      description: 'Surowa lista featow obu postaci, bez interpretacji.',
-      title: 'SUROWE FEATY',
-      subtitle: 'Konkretne osiagniecia stojace za profilem walki',
+      name: 'Dokonania',
+      description: 'Lista konkretnych dokonan obu postaci, bez interpretacji.',
+      title: 'DOKONANIA',
+      subtitle: '',
     },
     en: {
       name: 'Raw Feats',
       description: 'Side-by-side feat ledger sourced from the import file.',
       title: 'RAW FEATS',
-      subtitle: 'Concrete feats behind the matchup profile',
+      subtitle: '',
     },
   },
   'hud-bars': {
@@ -1595,6 +1595,11 @@ const parseBulletItems = (lines: string[]) =>
     .map((line) => extractBullet(line))
     .filter(Boolean)
 
+const trimSectionAtTemplateBlock = (lines: string[]) => {
+  const templateStart = lines.findIndex((line) => /^\s*Template\b/i.test(line.trim()))
+  return templateStart >= 0 ? lines.slice(0, templateStart) : lines
+}
+
 const parseStatItems = (lines: string[]): ParsedStat[] => {
   const stats: ParsedStat[] = []
   for (const item of parseBulletItems(lines)) {
@@ -2414,10 +2419,10 @@ const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { 
 
   const factsA = parseFactItems(section3.lines)
   const factsB = parseFactItems(section7.lines)
-  const powersA = section10 ? parseFactItems(section10.lines) : []
-  const rawFeatsA = section11 ? parseBulletItems(section11.lines) : []
-  const powersB = section12 ? parseFactItems(section12.lines) : []
-  const rawFeatsB = section13 ? parseBulletItems(section13.lines) : []
+  const powersA = section10 ? parseFactItems(trimSectionAtTemplateBlock(section10.lines)) : []
+  const rawFeatsA = section11 ? parseBulletItems(trimSectionAtTemplateBlock(section11.lines)) : []
+  const powersB = section12 ? parseFactItems(trimSectionAtTemplateBlock(section12.lines)) : []
+  const rawFeatsB = section13 ? parseBulletItems(trimSectionAtTemplateBlock(section13.lines)) : []
   const winsA = parseBulletItems(section4.lines)
   const winsB = parseBulletItems(winsBLines)
 
@@ -4729,6 +4734,8 @@ function App() {
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
   const [fights, setFights] = useState<FightRecord[]>([])
   const [folderScanWarnings, setFolderScanWarnings] = useState<string[]>([])
+  const activeTemplateLabel =
+    localizedTemplates.find((item) => item.id === activeTemplate)?.name || activeTemplate
   const [preferredVariantByMatchup, setPreferredVariantByMatchup] = useState<Record<string, string>>({})
   const [activeFightId, setActiveFightId] = useState<string | null>(null)
   const [storageReady, setStorageReady] = useState(false)
@@ -6727,7 +6734,7 @@ function App() {
                 {ui.sequence} {templateCursor + 1}/{templateOrder.length}
               </span>
               <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-                {ui.active}: {activeTemplate}
+                {ui.active}: {activeTemplateLabel}
               </span>
               <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
                 {stripFileExtension(importFileName) || ui.notLoaded}
@@ -7164,9 +7171,11 @@ function PowersToolsTemplate({
   return (
     <div className="relative z-10 flex h-full flex-col text-slate-100">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-slate-400/25 pb-2">
-        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-300">{tr('Dossier', 'Dossier')}</div>
+        <div />
         <h2 className="text-2xl uppercase tracking-[0.08em] text-slate-50">{headerText}</h2>
-        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">{subText}</div>
+        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">
+          {subText}
+        </div>
       </div>
       <div className="mt-3 grid min-h-0 flex-1 grid-cols-2 gap-3">
         {renderColumn(fighterA, leftTitle, leftSections)}
@@ -7246,9 +7255,11 @@ function RawFeatsTemplate({
   return (
     <div className="relative z-10 flex h-full flex-col text-slate-100">
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-3 border-b border-slate-400/25 pb-2">
-        <div className="text-[11px] uppercase tracking-[0.18em] text-slate-300">{tr('Ledger', 'Ledger')}</div>
+        <div />
         <h2 className="text-2xl uppercase tracking-[0.08em] text-slate-50">{headerText}</h2>
-        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">{subText}</div>
+        <div className="text-right text-[11px] uppercase tracking-[0.18em] text-slate-300">
+          {subText}
+        </div>
       </div>
       <div className="mt-3 grid min-h-0 flex-1 grid-cols-2 gap-3">
         {renderColumn(fighterA, rawFeatsA, leftTitle)}

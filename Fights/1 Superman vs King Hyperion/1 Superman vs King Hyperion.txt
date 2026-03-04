@@ -12,24 +12,16 @@
 - Combat Skills: 91
 
 3. Character A Feats
-- Style: High-tempo control, distance management, technical adaptation
-- Advantage: Superior speed plus cleaner tactical entries
-- Mentality: Close the fight before attrition becomes dominant
+- Style: High-tempo control, spacing, technical adaptation
+- Advantage: Better opener, better closure toolkit, stronger speed control
+- Mentality: Solve the fight before attrition becomes the real game
 
 4. Defeated by Character A
 - Doomsday
-- Brainiac
-- H'El
-- Rogol Zaar
-- Vandal Savage
-- Pariah
-- Mongul
-- Anti-Monitor
-- Ulysses
-- Orion
-- Apollo
 - Wraith
-
+- Parasite
+- Mongul
+- Apollo
 5. King Hyperion (Earth-4023)
 
 6. Character B Stats
@@ -44,23 +36,16 @@
 - Combat Skills: 83
 
 7. Character B Feats
-- Style: Brutal pressure, direct collision game, attrition focus
-- Advantage: Regeneration loops and extreme damage tolerance
-- Mentality: Extend the fight and break the opponent physically
+- Style: Brutal pressure, collision game, regen-driven attrition
+- Advantage: Survivability and stickiness once the fight stops closing cleanly
+- Mentality: Ruthless enough to drag every unfinished exchange into something uglier
 
 8. Defeated by Character B
-- Thor
-- Hercules
-- Hulk
-- Firestar
-- Magik
-- Vision
-- Colossus
-- Holocaust
-- Namora
-- Magneto
-- Juggernaut
-- Blue Marvel
+- Alternate Magneto
+- Wolverine
+- Weapon X Vision
+- Thor (context-heavy conquest result)
+- Hulk (Earth-4400) (aftermath-confirmed kill)
 
 9. Template Order
 - tactical-board
@@ -70,59 +55,68 @@
 - radar-brief
 - interpretation
 - stat-trap
+- powers-tools
+- raw-feats
 - x-factor
 - winner-cv
 - summary
 - fight-simulation
 - battle-dynamics
 - verdict-matrix
+- fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Super speed, flight, heat vision, freeze breath, and Solar Flare.
-- Tools: Distance control, sensory tracking, and rapid tactical adaptation.
-- Weaknesses: Kryptonite, magic, and red-sun depowering.
+- Powers: Flight, heat vision, freeze breath, and a full Kryptonian physical kit.
+- Tools: Superior speed, sensory processing, and instant battlefield repositioning.
+- Tools: Can stack movement, pressure, and ring-out or incap routes in the same exchange.
+- Tools: Solar Flare is a real native finisher path for this version.
+- Weaknesses: Solar Flare is costly if it does not end the fight.
+- Weaknesses: If Hyperion keeps surviving clean sequences, the fight starts rewarding attrition over tempo.
 
 11. Character A Raw Feats
-- Bench-pressed the Earth''s mass for five straight days.
-- Defeated Doomsday, Brainiac, H'El, and other top New 52 threats.
-- Operates at very high travel and reaction speed on interplanetary scale.
-- Tanked extremely heavy physical and energy punishment against top-tier enemies.
-
+- Bench-presses the Earth-equivalent weight for five straight days.
+- Punches Wraith through the Moon in a peer-level combat finish.
+- Searches globally for Doomsday at one-thousand miles per second.
+- Survives black-hole-level punishment without losing control.
+- Keeps control under heavy-endurance pressure instead of letting the exchange collapse.
 12. Character B Powers / Tools / Weaknesses
-- Tools: Atomic vision, extreme durability, and very fast regeneration.
-- Tools: Brutal close-range pressure and long-fight attrition advantage.
-- Weaknesses: Argonite, mental instability, and vulnerability to overload.
+- Powers: Brute force, atomic vision, and extreme regeneration.
+- Tools: Thrives in repeated contact and unfinished exchanges.
+- Tools: Secondary vibration or phasing utility matters only as a survival wrinkle, not the main route.
+- Tools: Local Exiles evidence also shows him overwhelming two alternate Hyperions.
+- Weaknesses: The safest wins still require him to live long enough for attrition to matter.
+- Weaknesses: The Thor, Hercules, and Galactus line is a statement-backed ceiling note, not a clean on-panel win set.
 
 13. Character B Raw Feats
-- Survived the nuclear destruction of his world.
-- Recovered from catastrophic body damage and returned to combat.
-- Killed Thor, Hulk, and other top Marvel heavyweights in his own reality.
-- Broke Juggernaut and tore through teams with raw force.
-
+- Survives the destruction of Earth-4023.
+- Recovers after Namora twists his neck one-hundred-eighty degrees.
+- Regenerates after catastrophic damage instead of staying down.
+- Disintegrates Weapon X Vision with atomic vision.
+- Overwhelms two alternate Hyperions.
 Template Tactical Board:
-- headline: TACTICAL BOARD // SUPERMAN VS HYPERION
-- subtitle: Speed control versus regeneration pressure
+- headline: TACTICAL BOARD // SUPERMAN VS KING HYPERION
+- subtitle: Cleaner opener versus stickier survival profile
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: STAT LINE
-- chaos_label: ATTRITION LINE
-- lane: Speed and control vs regeneration and brutality
+- linear_label: SPEED AND CONTROL
+- chaos_label: REGEN AND ATTRITION
+- lane: Superman wins by closure. Hyperion wins by making closure fail.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52
-- style: Technical pressure with range and tempo control
-- atut: Speed plus combat IQ
-- mentalnosc: Win clean before attrition phase
-- quote: Better toolkit, better tempo, better openings.
+- style: High-tempo control with speed, spacing, and technical adaptation
+- advantage: Better opener plus better closure toolkit
+- mentality: End the fight before attrition rewrites the exchange
+- quote: Better tempo only matters if it turns into a real finish.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Earth-4023
-- style: Brutal pressure and sustained collision exchanges
-- atut: Regeneration in long-fight conditions
-- mentalnosc: Drag fight into exhaustion and finish late
-- quote: If it goes long, I recover faster than you break me.
+- style: Brutal pressure, collision exchanges, and regeneration attrition
+- advantage: Survives long enough to make every unfinished sequence matter less
+- mentality: Drag the fight into ugly repeated contact
+- quote: If you do not close it cleanly, I get another turn.
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
@@ -138,7 +132,53 @@ Template Radar Brief:
 - left_header: SUPERMAN ADVANTAGES
 - right_header: HYPERION ADVANTAGES
 - draw_header: DRAW ZONES
-- favorite: STAT-BASED FAVORITE
+- favorite_label: STAT-BASED FAVORITE
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Who wins the fight on paper?
+- line_1: Superman owns the cleaner all-around profile and the cleaner first minute.
+- line_2: Hyperion stays dangerous because regeneration can erase the value of good exchanges.
+- line_3: On paper the edge is Clark's, but the fight only stays simple if he actually closes it.
+- quote: Better stats are only half the job. The rest is ending the fight.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why better stats do not guarantee victory
+- trap_top: SPEED AND CONTROL WIN EXCHANGES
+- trap_bottom: REGENERATION CHANGES WHAT AN EXCHANGE IS WORTH
+- example: A sequence that ends most bricks may only reset Hyperion and restart the problem.
+- question: Can Superman turn tempo into closure before attrition rewrites the fight?
+
+Template Powers / Tools / Weaknesses:
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: What each side actually brings into the exchange
+- left_title: SUPERMAN TOOLKIT
+- right_title: HYPERION TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
+
+Template Raw Feats:
+- headline: RAW FEATS
+- subtitle: Clean showcase examples, not full archives
+- left_title: SUPERMAN SHOWCASE
+- right_title: HYPERION SHOWCASE
+- feat_label: FEAT
+
+Template X-Factor:
+- headline: X-FACTOR
+- subtitle: The non-linear variable that decides how clean the ending is
+- factor: CLOSURE QUALITY VS REGENERATION ECONOMY
+- a_value: 50
+- a_bonus: 14
+- a_bonus_label: FINISH WINDOW
+- b_value: 50
+- b_bonus: 12
+- regen: REGEN LOOP
+- mechanika: Superman gets the cleaner finish path, but Hyperion keeps turning damage into another round.
+- implikacja: If Clark does not end the fight with a real stop condition, Hyperion's branch grows every cycle.
+- psychologia: Hyperion can stay reckless because survival itself is part of his win condition.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -152,91 +192,63 @@ Template Winner CV:
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: 
-- winner: Stats favor Superman, verdict stays conditional
-- line_1: Stat average favors Superman, 91.4 vs 87.8.
-- line_2: Key swing variables are attrition length and finisher availability.
-- line_3: Favorite changes with rules and end-condition, not with stats alone.
-
-Template Battle Dynamics:
-- headline: BATTLE DYNAMICS
-- subtitle: Pace, pressure, and attrition over time
-- a_curve: 90,80,68,56,46
-- b_curve: 46,52,60,67,73
-- yellow_wave: 34,37,33,36,35,38,34,37
-- phase_1: Superman controls opening through speed and distance.
-- phase_2: Hyperion absorbs damage and narrows the gap.
-- phase_3: Attrition pressure rises as regen loops repeat.
-- analysis: Superman wins early tempo. Hyperion improves as fight extends.
-
-Template X-Factor:
-- headline: X-FACTOR: REGENERATION PRESSURE
-- subtitle: Non-linear variable that can flip outcomes
-- factor: REGENERATION ECONOMY
-- a_value: 50
-- a_bonus: 8
-- a_bonus_label: BONUS
-- b_value: 50
-- b_bonus: 14
-- regen: REGEN
-- mechanika: Hyperion recovers meaningful damage in short combat windows.
-- implikacja: Superman must convert momentum into a decisive finish.
-- psychologia: Failed finish attempts increase pressure on Superman.
-
-Template Interpretation:
-- headline: INTERPRETATION
-- subtitle: Who wins the fight on paper?
-- line_1: Superman leads most linear categories and controls tempo better.
-- line_2: Hyperion performs better in attrition-heavy kill-only scenarios.
-- line_3: Best all-around profile is not always best end-condition profile.
-- quote: Stats are linear. Fight is not linear.
+- winner: Superman leads, but Hyperion stays live
+- line_1: Stat average favors Superman, 91.40 vs 87.78.
+- line_2: Speed and control point to Clark, but regeneration turns every unfinished exchange into a new problem.
+- line_3: Solar Flare and kill-only rules decide how much Hyperion can drag the fight back.
 
 Template Fight Simulation:
 - headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Branching outcomes by condition
-- opening: Superman starts with movement, timing, and clean first contacts.
-- mid_fight: Hyperion trades damage for position and keeps advancing.
-- late_fight: Regeneration value rises if no decisive finisher lands.
-- end_condition: KO/BFR favors control game, kill-only favors attrition game.
-- phase_actor: a
+- subtitle: Branching outcomes by finish quality
+- opening: Superman opens with speed, spacing, and cleaner reads.
+- mid_fight: Hyperion survives, closes distance, and tries to turn the exchange into attrition.
+- late_fight: The endgame depends on whether Clark escalates to a real finisher before regen resets the value of damage.
+- end_condition: Standard rules favor control and removal. Kill-only fights reward whoever survives the unfinished sequence.
 - phase_1_mode: bars
-- phase_1_animation: orbit-harass
+- phase_1_animation: kite-zone
 - phase_1_actor: a
 - phase_1_title: Opening Tempo
 - phase_1_a_label: Control
-- phase_1_b_label: Absorption
+- phase_1_b_label: Pressure
 - phase_1_a_value: 93
-- phase_1_b_value: 81
+- phase_1_b_value: 79
 - phase_2_mode: split
 - phase_2_animation: clash-lock
 - phase_2_actor: b
 - phase_2_title: Mid-Fight Pivot
-- phase_2_event: First sustained exchange decides momentum.
-- phase_2_branch_a: Superman resets range and keeps technical edge.
-- phase_2_branch_b: Hyperion forces close-range attrition.
-- phase_3_mode: animation
-- phase_3_animation: regen-attrition
-- phase_3_actor: b
-- phase_3_title: Late Attrition
+- phase_2_event: The fight changes the first time Hyperion survives what should have closed it.
+- phase_2_branch_a: Superman resets range and keeps the fight technical.
+- phase_2_branch_b: Hyperion keeps contact and drags the fight into attrition.
+- phase_3_mode: split
+- phase_3_animation: teleport-burst
+- phase_3_actor: a
+- phase_3_title: Finish Window
+- phase_3_event: Clark either converts tempo into a real finish or watches the same problem stand back up.
+- phase_3_branch_a: Solar Flare or a clean incap route finally ends it.
+- phase_3_branch_b: Hyperion survives again and the fight gets worse every cycle.
 
-Template Stat Trap:
-- headline: STAT TRAP
-- subtitle: Why better stats do not guarantee victory
-- trap_top: LINEAR ADVANTAGE >
-- trap_bottom: NON-LINEAR REGEN IN KILL-ONLY
-- example: A small edge in several categories can collapse if damage keeps resetting.
-- question: Does the fight end before regeneration becomes dominant?
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Pace, pressure, and attrition over time
+- a_curve: 92,84,73,61,52
+- b_curve: 44,50,59,69,77
+- yellow_wave: 31,34,32,36,33,37,35,39
+- phase_1: Superman owns the first minute through speed and spacing.
+- phase_2: Hyperion improves every time a clean sequence fails to end the fight.
+- phase_3: Attrition pressure becomes the real danger if Clark does not escalate.
+- analysis: Superman wins the cleaner fight. Hyperion wins the messier one.
 
 Template Verdict Matrix:
 - headline: VERDICT MATRIX
-- subtitle: Rule-set dependent outcomes
-- col_left: SOLAR FLARE: YES
-- col_right: SOLAR FLARE: NO
-- row_top: STANDARD KO/BFR/INCAP
-- row_bottom: KILL-ONLY DEATHMATCH
-- case_1: Superman 6/10. Speed plus control closes by KO/BFR without needing permanent kill.
-- case_2: Hyperion 5.5/10. No Solar Flare reduces quick closure and increases regen value.
-- case_3: Superman 5.5/10. Solar Flare keeps a finisher path but risk stays high if it fails.
-- case_4: Hyperion 6.5/10. Best environment for regen attrition and late-fight pressure.
+- subtitle: Matchup shifts with finisher access and end condition
+- col_left: STANDARD KO/BFR/INCAP
+- col_right: KILL-ONLY DEATHMATCH
+- row_top: SOLAR FLARE YES
+- row_bottom: SOLAR FLARE NO
+- case_1: Superman 7/10. This is Clark's cleanest branch: speed, control, and a legal finisher path all point the same way.
+- case_2: Superman 5.5/10. Solar Flare keeps a kill path alive, but kill-only still forces him to solve regeneration permanently.
+- case_3: Superman 6/10. Clark still owns tempo and better non-lethal closure, but the margin narrows without the nastiest built-in finisher.
+- case_4: King Hyperion 6/10. This is Hyperion's best branch because every unfinished exchange feeds the attrition economy.
 
 Template Fight Title:
 - fight_title: Superman vs King Hyperion

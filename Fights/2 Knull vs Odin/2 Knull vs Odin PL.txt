@@ -1,0 +1,259 @@
+1. Knull (Earth-616, with All-Black)
+
+2. Statystyki Postaci A
+- Siła: 95
+- Szybkość: 84
+- Wytrzymałość: 97
+- IQ bojowe: 82
+- Hax: 98
+- Kondycja: 99
+- Styl walki: 89
+- Doświadczenie: 100
+- Umiejętności bojowe: 86
+
+3. Featy Postaci A
+- Styl: Kosmiczna presja kata, kontrola abyss i wymiany o wysokiej wartości
+- Atut: Czystsza pętla wyniszczenia, większa śmiercionośność ostrza i korupcja pola walki
+- Mentalność: Nie potrzebuje czystego pojedynku, tylko złego pola walki i jednego prawdziwego otwarcia
+
+4. Pokonani przez Postać A
+- Celestial
+- Sentry
+- The Void
+- Silver Surfer
+- All-Father Thor
+
+5. Odin (Earth-616, Full Odinforce + Destroyer Armor + Odinsword)
+
+6. Statystyki Postaci B
+- Siła: 92
+- Szybkość: 81
+- Wytrzymałość: 95
+- IQ bojowe: 96
+- Hax: 96
+- Kondycja: 89
+- Styl walki: 92
+- Doświadczenie: 99
+- Umiejętności bojowe: 93
+
+7. Featy Postaci B
+- Styl: Archetyp strategicznego króla, bariery, dystans i kontrolowane okna burstu
+- Atut: Lepsze zarządzanie polem walki, reset tempa i kontrola w boskiej skali
+- Mentalność: Odrzuca oczywisty slugfest i próbuje utrzymać walkę w uporządkowanej strukturze
+
+8. Pokonani przez Postać B
+- Infinity
+- Seth
+- Thanos
+- Silver Surfer
+- Nezarr the Calculator (poważne obrażenia / tylko chwilowe unieszkodliwienie)
+
+9. Kolejność Templatek
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- verdict-matrix
+- fight-title
+
+10. Moce / Narzędzia / Słabości Postaci A
+- Narzędzia: All-Black, living abyss, kontrola symbiotycznego ula, presja infekcji, regeneracja i śmiercionośność przeciw bogom.
+- Narzędzia: Korupcja pola walki i presja powtarzalnego kontaktu sprawiają, że każda długa wymiana wygląda gorzej.
+- Słabości: Prawdziwe anti-abyss Light pozostaje najczystszą kanoniczną odpowiedzią na jego cały profil.
+- Słabości: Jasna albo boska energia może go ranić, ale nie jest automatycznie twardym cleanse'em.
+
+11. Surowe Featy Postaci A
+- Ścina Celestiala i kuje All-Black z jego zwłok.
+- Pokrywa Ziemię living abyss i zasłania słońce.
+- Wytrzymuje gwiezdny blast Silver Surfera.
+- Regeneruje szczękę po tym, jak Thor ją odstrzelił.
+- Unika Odinforce Thor i kontruje, zanim ten zdąży się zresetować.
+
+12. Moce / Narzędzia / Słabości Postaci B
+- Narzędzia: Full Odinforce, Destroyer Armor, Odinsword, bariery, kosmiczna projekcja energii i warstwowa kontrola pola walki.
+- Narzędzia: To konfiguracja wojenna w skali wojny z Celestialami, a nie zwykły dworski Odin.
+- Narzędzia: Ma więcej sposobów niż Knull, by zarządzać dystansem, resetować tempo i zamieniać chaos z powrotem w strukturę.
+- Słabości: Ten setup nie jest explicite pokazany jako odpowiednik Enigma Force.
+- Słabości: Jeśli jego energia nie potrafi zatrzymać Knulla na dobre, walka staje się problemem zasobów i kontaktu.
+
+13. Surowe Featy Postaci B
+- Pochłania życiową siłę Asgardu i skaluje Destroyera do rozmiaru Celestiala.
+- Odcina rękę Nezarrowi Odinswordem.
+- Walczy z Sethem na wielu planach rzeczywistości.
+- Pokonuje Infinity i od razu naprawia wyrządzone szkody.
+- Jednocześnie obezwładnia Thanosa i Silver Surfera.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // KNULL VS ODIN
+- subtitle: Abyssalne wyniszczenie kontra boska kontrola pola walki
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: KONTROLA I STRUKTURA
+- chaos_label: REGENERACJA I KORUPCJA
+- lane: Odin musi zamienić chaos w strukturę, zanim Knull zamieni strukturę w wyniszczenie.
+
+Template Character A:
+- header: DOSSIER POSTACI // NIEBIESKI
+- world: Earth-616 with All-Black
+- style: Kosmiczna presja kata z kontrolą abyss i powtarzalnymi wymianami o wysokiej wartości
+- advantage: Czystsza pętla wyniszczenia plus bardziej naturalnie śmiercionośna broń
+- mentality: Nie potrzebuje czystego pojedynku, tylko złego pola walki i jednego prawdziwego otwarcia
+- quote: Knull nie potrzebuje czystego pojedynku. Potrzebuje złego pola i jednego prawdziwego otwarcia.
+
+Template Character B:
+- header: DOSSIER POSTACI // CZERWONY
+- world: Earth-616, Full Odinforce + Destroyer Armor + Odinsword
+- style: Strategiczna wojna króla z barierami, dystansem i kontrolowanymi oknami burstu
+- advantage: Lepsze zarządzanie polem walki i więcej sposobów na reset tempa
+- mentality: Wygrywa tylko wtedy, gdy utrzyma walkę w strukturze wystarczająco długo, by kontrola zaczęła mieć znaczenie
+- quote: Odin wygrywa tylko wtedy, gdy jego kontrola zamienia się w trwałe obrażenia, zanim pętla się zresetuje.
+
+Template Powers / Tools / Weaknesses:
+- headline: MOCE, NARZĘDZIA I SŁABOŚCI
+- subtitle: Co każda strona naprawdę wnosi do wymiany
+- left_title: ZESTAW KNULLA
+- right_title: ZESTAW ODINA
+- powers_label: MOCE
+- tools_label: NARZĘDZIA
+- weaknesses_label: SŁABOŚCI
+
+Template Raw Feats:
+- headline: SUROWE FEATY
+- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- left_title: POKAZ KNULLA
+- right_title: POKAZ ODINA
+- feat_label: FEAT
+
+Template HUD Bars:
+- headline: ANALITYKA WALKI HIGH-END
+- subtitle: Odczyt statystyk dwóch profili
+- threat_level: KOSMICZNY
+- integrity: 99.4%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
+- left_header: PRZEWAGI KNULLA
+- right_header: PRZEWAGI ODINA
+- draw_header: STREFY REMISU
+- draw_favorite: STATYSTYCZNY REMIS
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa walkę na papierze?
+- line_1: Na papierze to niemal remis, z mikroskopijną przewagą Odina w kategoriach kontroli.
+- line_2: W praktyce Knull dalej prowadzi, bo jego regeneracja i pętla ostrza łatwiej zamieniają się w realny finish.
+- line_3: Walka odwraca się czysto tylko wtedy, gdy pełny output Odina jest właściwym rodzajem anti-abyss answer.
+- quote: Parzystość na papierze nie rozwiązuje starcia, w którym idealne obrażenia mogą dalej nie być tymi właściwymi.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
+- trap_top: PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA
+- trap_bottom: KNULL POTRZEBUJE TYLKO JEDNEJ PĘTLI, ŻEBY ZACZĘŁA SIĘ OPŁACAĆ
+- example: Odin może być równy albo minimalnie wyżej w średnich i dalej przegrać, jeśli jego obrażenia są imponujące, ale nie trwałe.
+- question: Czy kontrola Odina naprawdę potrafi zamienić się w finish, którego Knull nie zregeneruje?
+
+Template X-Factor:
+- headline: X-FACTOR
+- subtitle: Jedna zmienna, która decyduje o tym, czy kontrola w ogóle coś znaczy
+- factor: ANTY-ABYSS COUNTER CZY TYLKO BOSKIE OBRAŻENIA
+- a_value: 50
+- a_bonus: 14
+- a_bonus_label: PĘTLA REGENERACJI
+- b_value: 50
+- b_bonus: 15
+- regen: KONTR-PURGE
+- mechanika: Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli działa jak właściwy rodzaj odpowiedzi na abyss.
+- implikacja: Właśnie dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny baseline i tak lekko przechyla się ku Knullowi.
+- psychologia: Knull chce powtórzeń. Odin chce jednej kontrolowanej wymiany, która wreszcie zostaje rozwiązana na stałe.
+
+Template Winner CV:
+- headline: Archiwum zwycięstw
+- subtitle: 
+- archive_label: 
+- avg_label: ŚREDNI WYNIK
+- left_title: REKORD KNULLA
+- right_title: REKORD ODINA
+- win_badge: W
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle: 
+- winner: Lekka przewaga Knulla, warunkowy matchup
+- line_1: Na papierze to prawie parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.
+- line_2: W praktyce Knull ma czystszą pętlę wyniszczenia i finishu, gdy kontakt i regeneracja zaczynają się powtarzać.
+- line_3: Prawdziwa gałąź Odina istnieje tylko wtedy, gdy ta pełna konfiguracja wojenna daje mu właściwy rodzaj odpowiedzi na abyss.
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Struktura kontra korupcja w czasie
+- a_curve: 56,61,67,74,81
+- b_curve: 84,79,72,63,55
+- yellow_wave: 31,35,33,37,34,38,36,40
+- phase_1: Odin jest najmocniejszy, gdy mapa walki pozostaje uporządkowana i dystans wciąż ma znaczenie.
+- phase_2: Knull poprawia swoją pozycję za każdym razem, gdy kontakt się powtarza, a obrażenia zaczynają być wymazywane.
+- phase_3: Walka zależy od tego, czy kontrola zamienia się w purge, czy tylko w kolejny tymczasowy reset.
+- analysis: Odin wygrywa czysto zarządzaną wersję tej walki. Knull wygrywa tę, która ciągle wraca.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
+- subtitle: Jeden branch check, dwa prawdziwe wyniki
+- opening: Knull od razu bierze inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie zatrzymuje abyss.
+- mid_fight: Odin odpowiada barierami, dystansem i warstwową energią, próbując powstrzymać walkę przed zsunięciem się w attrition Necrosworda.
+- late_fight: Końcówka rozchodzi się w jednym punkcie: czy obrażenia Odina zostają, czy pętla Knulla znowu resetuje wymianę.
+- end_condition: Parzystość na papierze nic nie znaczy, jeśli jedna strona ma czystszą, powtarzalną ścieżkę finishu.
+- phase_1_mode: bars
+- phase_1_animation: rush-ko
+- phase_1_actor: a
+- phase_1_title: Pierwszy Kontakt
+- phase_1_a_label: Presja
+- phase_1_b_label: Struktura
+- phase_1_a_value: 91
+- phase_1_b_value: 78
+- phase_2_mode: split
+- phase_2_animation: kite-zone
+- phase_2_actor: b
+- phase_2_title: Test Kontroli
+- phase_2_event: Odin próbuje zamienić złe pole walki z powrotem w zarządzalną kosmiczną linię starcia.
+- phase_2_branch_a: Odinforce zaczyna zachowywać się jak prawdziwy anti-abyss counter.
+- phase_2_branch_b: Knull absorbuje próbę resetu tempa i utrzymuje walkę w brudnym trybie.
+- phase_3_mode: split
+- phase_3_animation: regen-attrition
+- phase_3_actor: a
+- phase_3_title: Pętla albo Purge
+- phase_3_event: Albo Odin wreszcie tworzy trwałe obrażenia, albo Knull zamienia kolejną dobrą sekwencję w następną rundę.
+- phase_3_branch_a: Kontrola Odina staje się prawdziwą ścieżką purge.
+- phase_3_branch_b: Regeneracja i pętla ostrza Knulla przejmują walkę.
+
+Template Verdict Matrix:
+- headline: WERDYKT WARUNKOWY
+- subtitle: Dwie prawdziwe gałęzie pokazane w kompatybilnej matrycy
+- col_left: KONTR-ODINFORCE TRZYMA
+- col_right: KONTR-ODINFORCE ZAWODZI
+- row_top: KONTROLA UTRZYMANA
+- row_bottom: KONTROLA ZŁAMANA
+- case_1: Odin 6.5/10. Jeśli output jest właściwym rodzajem odpowiedzi na abyss, kontrola wreszcie zaczyna znaczyć coś trwałego.
+- case_2: Knull 7/10. Jeśli output jest tylko ogromnym boskim damage'em, pętla Knulla ostatecznie wygrywa wojnę zasobów.
+- case_3: Odin 6.5/10. To ta sama prawdziwa gałąź: jeśli Odinforce naprawdę purge'uje abyss, mapa walki wciąż może zostać przywrócona pod kontrolę.
+- case_4: Knull 7/10. To ta sama prawdziwa gałąź: gdy kontrola pęka bez prawdziwego purge'u, Knull ma czystszą ścieżkę finishu.
+
+Template Fight Title:
+- fight_title: Knull vs Odin
+- subtitle:
+- top_color_a: #08090c
+- top_color_b: #b91c1c
+- bottom_color_a: #f5c542
+- bottom_color_b: #38bdf8

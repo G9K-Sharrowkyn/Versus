@@ -1,248 +1,237 @@
-﻿1. Trigon (Prime Earth)
+﻿1. Character A
+Trigon (Prime Earth)
 
-2. Statystyki Postaci A
-- Strength: 89
-- Speed: 84
-- Durability: 91
-- Combat IQ: 86
-- Hax: 93
-- Stamina: 94
-- Fighting Style: 80
-- Experience: 94
-- Combat Skills: 75
+2. Character A Stats
+Strength: 89
+Speed: 84
+Durability: 91
+Combat IQ: 86
+Hax: 93
+Stamina: 94
+Fighting Style: 80
+Experience: 94
+Combat Skills: 75
 
-3. Featy Postaci A
-- Style: Agresywne psucie rzeczywistości, presja duszy i próby zamknięcia walki wymiarowo
-- Advantage: Wczesne okna na hax i przewaga we własnej domenie
-- Mentality: Zakończyć walkę, zanim przeciwnik zamieni pole bitwy w paliwo
+3. Character A Feats
+Style: agresywna korupcja, presja duszy i domenowa wojna oparta na opętaniu
+Advantage: pole walki staje się groźniejsze, im bardziej zaczyna działać jak jego własna domena
+Mentality: nie potrzebuje uczciwej wymiany; potrzebuje przestrzeni, która staje się wroga
 
-4. Pokonani przez Postać A
-- The Divine
-- Phantom Stranger
-- Teen Titans
-- Justice League
-- Ares
-- Psimon
-- John Constantine
-- Zatanna
-- Wonder Girl
-- Superboy
-- Xynthia
-- Hell legions
+4. Defeated by Character A
+The Divine
+Teen Titans (korupcja drużynowa / przytłoczenie)
+Superboy
+Wonder Girl
+Psimon (wygnanie / BFR)
 
-5. Galactus (Prime Earth-616)
+5. Character B
+Galactus (Earth-616, standardowy Devourer of Worlds)
 
-6. Statystyki Postaci B
-- Strength: 95
-- Speed: 94
-- Durability: 97
-- Combat IQ: 92
-- Hax: 98
-- Stamina: 96
-- Fighting Style: 85
-- Experience: 98
-- Combat Skills: 79
+6. Character B Stats
+Strength: 95
+Speed: 94
+Durability: 97
+Combat IQ: 92
+Hax: 98
+Stamina: 96
+Fighting Style: 85
+Experience: 98
+Combat Skills: 79
 
-7. Featy Postaci B
-- Style: Zdystansowana presja kosmiczna, bariery i walka przez konwersję energii
-- Advantage: Wszechstronność Power Cosmic i możliwość pożerania energii mistycznej
-- Mentality: Zredukować demona do problemu energetycznego i rozwiązać go skalą
+7. Character B Feats
+Style: zdystansowana kosmiczna presja, konwersja energii i kontrola pola walki oparta na skali
+Advantage: większy i stabilniejszy silnik, gdy pole walki staje się czymś, co może rozwiązać
+Mentality: wygrywa, normalizując chaos do roli paliwa, a nie respektując preferowane zasady przeciwnika
 
-8. Pokonani przez Postać B
-- Master Order
-- Lord Chaos
-- Abraxas
-- Mad Celestial
-- Silver Surfer
-- Thor
-- Thanos
-- Odin
-- Mephisto
-- Dormammu
-- Annihilus
-- In-Betweener
+8. Defeated by Character B
+Silver Surfer (uwięzienie / bariera)
+Sphinx (rozwiązanie przez pętlę czasu)
+Poppup / the Poppupians (rezultat pożarcia świata)
+Imperium Skrulli / Tarnax IV
+Mad Celestials (wynik kontekstowy)
 
 9. Template Order
-- tactical-board
-- character-card-a
-- character-card-b
-- hud-bars
-- radar-brief
-- interpretation
-- stat-trap
-- x-factor
-- winner-cv
-- summary
-- fight-simulation
-- battle-dynamics
-- verdict-matrix
+tactical-board
+character-card-a
+character-card-b
+powers-tools
+raw-feats
+hud-bars
+radar-brief
+interpretation
+stat-trap
+x-factor
+winner-cv
+summary
+battle-dynamics
+fight-simulation
+verdict-matrix
+fight-title
 
-10. Moce / Narzędzia / Słabości Postaci A
-- Narzędzia: Telepatia, presja duszy, opętanie, iluzje i podróże międzywymiarowe.
-- Narzędzia: Hellfire, projekcje energii, warping materii, regeneracja i kontrola własnej domeny.
-- Słabości: Holy ground oraz high-endowa counter-magic albo artefakty antydemoniczne.
+10. Character A Powers / Tools / Weaknesses
+Tools: wzmocnienie Sercem Ciemności, korupcja, opętanie i podróż międzywymiarowa
+Tools: kontrola domeny i presja wrogiego pola walki
+Tools: regeneracja i wsparcie zmartwychwstania
+Weaknesses: najsilniejszy jest wtedy, gdy pole walki już mu sprzyja
+Weaknesses: neutralna przestrzeń utrudnia domknięcie jego najlepszej gałęzi kontroli
 
-11. Surowe Featy Postaci A
-- Podbijał lub korumpował niezliczone światy w kosmologii DC.
-- Zagrażał masowym soul-drainem i korupcją rzeczywistości na ogromnej skali.
-- Przytłaczał Teen Titans i naciskał opozycję klasy high-magic lub Justice League.
-- Wracał po potężnych uszkodzeniach ciała w wysokoskalowych pokazach demonicznych.
+11. Character A Raw Feats
+pochłonął Heart of Darkness
+podbił i skaził niezliczone światy
+zmartwychwstał po wyrwaniu serca
+zregenerował uszkodzenie oka w czasie walki
+przemienił Teen Titans w Dark Titans
 
-12. Moce / Narzędzia / Słabości Postaci B
-- Narzędzia: Power Cosmic, transmutacja, bariery, telepatia, absorpcja energii i cosmic awareness.
-- Narzędzia: Potrafi pożerać domeny albo energię mistyczną zamiast tylko wymieniać ciosy.
-- Słabości: Poziom mocy zależy od nasycenia, a pycha może spowalniać optymalne decyzje.
+12. Character B Powers / Tools / Weaknesses
+Tools: Power Cosmic, transmutacja, bariery i projekcja energii
+Tools: absorpcja / konwersja energii i normalizacja pola walki
+Tools: większy kosmiczny silnik kontroli, gdy pole walki staje się rozwiązywalne
+Weaknesses: poziom nasycenia ma znaczenie
+Weaknesses: stany głodu osłabiają jego najbezpieczniejsze odpowiedzi
+Weaknesses: wroga domena własna przeciwnika może zepchnąć go do gorszych gałęzi
 
-13. Surowe Featy Postaci B
-- Pożerał planety i całe domeny jako paliwo.
-- Pokonywał Master Order, Lord Chaos i inne topowe byty kosmiczne.
-- Absorbował albo wykorzystywał domeny mistyczne i energię powiązaną z Dormammu.
-- Operuje na benchmarkach zniszczenia i przeżywalności w skali kosmicznej.
+13. Character B Raw Feats
+zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym
+wytrzymał Agamotto w jego własnej domenie
+uwięził Silver Surfera na Ziemi niewykrywalną barierą
+pożarł Poppup zamiast Ziemi
+pokonał Sphinxa, zamykając go w wiecznej pętli czasu
 
 Template Tactical Board:
-- headline: TACTICAL BOARD // TRIGON VS GALACTUS
-- subtitle: Skażenie domeny kontra kosmiczna konsumpcja
-- left_header: SIATKA KATEGORII
-- right_header: REALNOŚĆ WALKI
-- linear_label: PRZEWAGA NA PAPIERZE
-- chaos_label: PRZEWAGA DOMENY
-- lane: Demoniczne okna kontroli kontra ekonomia energii Power Cosmic
+headline: TABLICA TAKTYCZNA // TRIGON VS GALACTUS
+subtitle: Korupcja domeny kontra kosmiczna konsumpcja
+lane: Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-- world: DC Prime Earth
-- style: Agresywne psucie rzeczywistości, presja duszy i próby zamknięcia walki wymiarowo
-- atut: Wczesne okna na hax i przewaga we własnej domenie
-- mentalnosc: Zakończyć walkę, zanim przeciwnik zamieni pole bitwy w paliwo
-- quote: Trigon chce, żeby walka stała się więzieniem, zanim stanie się posiłkiem.
+name: Trigon
+world: Prime Earth
+style: agresywna korupcja, presja duszy i domenowa wojna oparta na opętaniu
+advantage: pole walki staje się groźniejsze, im bardziej zaczyna działać jak jego własna domena
+mentality: nie potrzebuje uczciwej wymiany; potrzebuje przestrzeni, która staje się wroga
+quote: Trigon nie potrzebuje czystszego pojedynku. Potrzebuje pola walki, które przestaje działać normalnie.
 
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-- world: Marvel Earth-616, stan prime
-- style: Zdystansowana presja kosmiczna, bariery i walka przez konwersję energii
-- atut: Wszechstronność Power Cosmic i możliwość pożerania energii mistycznej
-- mentalnosc: Zredukować demona do problemu energetycznego i rozwiązać go skalą
-- quote: Galactus nie musi łamać domeny, jeśli może ją po prostu zjeść.
+name: Galactus
+world: Earth-616, standardowy Devourer of Worlds
+style: zdystansowana kosmiczna presja, konwersja energii i kontrola pola walki oparta na skali
+advantage: większy i stabilniejszy silnik, gdy pole walki staje się czymś, co może rozwiązać
+mentality: wygrywa, normalizując chaos do roli paliwa, a nie respektując preferowane zasady przeciwnika
+quote: Galactus wygrywa, gdy pole walki staje się problemem energetycznym, a nie demonicznym.
+
+Template Powers / Tools / Weaknesses:
+headline: MOCE, NARZĘDZIA I SŁABOŚCI
+subtitle: Co każda strona naprawdę wnosi do tej walki
+left_title: ARSENAŁ TRIGONA
+right_title: ARSENAŁ GALACTUSA
+powers_label: MOCE
+tools_label: NARZĘDZIA
+weaknesses_label: SŁABOŚCI
+
+Template Raw Feats:
+headline: SUROWE FEATY
+subtitle: Najczystsze przykłady, nie pełne archiwum
+left_title: POKAZ TRIGONA
+right_title: POKAZ GALACTUSA
+feat_label: FEAT
 
 Template HUD Bars:
-- headline: ANALITYKA KOSMICZNEGO ZAGROŻENIA
-- subtitle: Odczyt statystyk dwóch profili
-- threat_level: COSMIC
-- integrity: 98.7%
-- profile_mode: VS
-- scale: 0-100
+headline: ANALITYKA WALKI Z WYŻSZEJ PÓŁKI
+subtitle: Odczyt statystyk dwóch profili
+threat_level: KOSMICZNY
+integrity: 99.4%
+profile_mode: VS
+scale: 0-100
 
 Template Radar Brief:
-- headline: PARAMETER COMPARISON
-- subtitle: Mapa średniego profilu statystyk
-- left_header: PRZEWAGI TRIGONA
-- right_header: PRZEWAGI GALACTUSA
-- draw_header: STREFY REMISU
-- favorite: FAWORYT WEDŁUG STATYSTYK
+favorite_label: FAWORYT WEDŁUG STATYSTYK
+favorite: Galactus
+left_header: PRZEWAGI TRIGONA
+right_header: PRZEWAGI GALACTUSA
+draw_header: STREFY REMISOWE
+left_average: 87.33
+right_average: 92.67
+left_summary: Trigon ugina pole walki najmocniej wtedy, gdy korupcja zastępuje normalne zasady starcia.
+right_summary: Galactus ma szerszy profil i czystszą odpowiedź na neutralnym polu.
+draw_summary: Walka zwęża się dopiero wtedy, gdy głód i własna domena wypaczają mapę starcia.
 
 Template Interpretation:
-- headline: INTERPRETATION
-- subtitle: Kto wygrywa walkę na papierze?
-- line_1: Galactus wygrywa walkę na papierze skalą, odpornością i szerszą kontrolą kosmiczną.
-- line_2: Trigon nadal jest groźny, bo jego najlepsze drogi do zwycięstwa atakują umysł i samo pole walki, a nie tylko wytrzymałość.
-- line_3: Galactus prowadzi w normalnym przebiegu walki, ale głód i kontrola domeny nadal mogą zmienić wynik.
-- quote: Trigon chce skażonego świata. Galactus chce użytecznego źródła paliwa.
+headline: KTO WYGRYWA WALKĘ NA PAPIERZE?
+subtitle: Galactus na papierze, ale nie na tyle, by wymazać logikę domeny
+winner: Galactus
+body: Galactus ma szerszy surowy profil, ale Trigon pozostaje groźny, bo jego wartość jest nieliniowa i zależy od pola walki. Przy neutralnych założeniach nadal prowadzi Galactus.
 
 Template Stat Trap:
-- headline: STAT TRAP
-- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
-- trap_top: LEPSZY HAX LUB HOME TURF >
-- trap_bottom: NADAL MOŻE PRZEGRAĆ, JEŚLI WRÓG ZJE PALIWO
-- example: Przewaga domeny przestaje mieć znaczenie, jeśli druga strona potrafi zamienić ją w moc.
-- question: Czy Trigon zamknie walkę pierwszy, czy Galactus zamieni pole bitwy w pożywienie?
+headline: DLACZEGO LEPSZE STATYSTYKI NIE GWARANTUJĄ ZWYCIĘSTWA
+subtitle: Stan pola walki ma tu większe znaczenie niż w zwykłej kosmicznej bijatyce
+question: Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?
+body: Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten matchup zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń.
 
 Template X-Factor:
-- headline: X-FACTOR: DEVOUR THE REALM
-- subtitle: Ta walka zmienia się, gdy Galactus może się pożywić
-- factor: EKONOMIA ENERGII
-- a_value: 50
-- a_bonus: 14
-- a_bonus_label: PRZEWAGA
-- b_value: 50
-- b_bonus: 18
-- regen: PRZEWAGA
-- mechanika: Trigon chce, by jego demoniczna moc pozostała wroga. Galactus chce, by ta sama moc stała się paliwem dla barier, projekcji i odbudowy.
-- implikacja: Jeśli pole bitwy pozostaje skażone, Trigon nadal ma szanse. Jeśli Galactus może się tym karmić, zaczyna przejmować walkę.
-- psychologia: Trigon przytłacza. Galactus rozwiązuje problem.
+headline: X-FACTOR
+subtitle: Jedyny warunek, który wygina całą walkę
+factor: TOKSYCZNA DOMENA VS EKONOMIA ENERGII
+left_case: Jeśli pole walki pozostaje demoniczne, Trigon pozostaje realny.
+right_case: Jeśli staje się paliwem, Galactus odzyskuje walkę.
+implication: Kto kontroluje znaczenie pola walki, kontroluje gałąź całego starcia.
 
 Template Winner CV:
-- headline: Archiwum zwycięstw
-- subtitle:
-- archive_label:
-- avg_label: ŚR. WYNIK
-- left_title: REKORD TRIGONA
-- right_title: REKORD GALACTUSA
-- win_badge: W
+headline: Archiwum zwycięstw
+subtitle:
+archive_label:
+avg_label: ŚR. WYNIK
+left_title: REKORD TRIGONA
+right_title: REKORD GALACTUSA
 
 Template Summary:
-- headline: PODSUMOWANIE KOŃCOWE
-- subtitle:
-- winner: Galactus prowadzi, ale Trigon nadal może to odwrócić
-- line_1: Średnia statystyk faworyzuje Galactusa, 92.7 vs 87.3.
-- line_2: Na neutralnym terenie Galactus nadal prowadzi, bo Power Cosmic dłużej pozostaje niezawodne.
-- line_3: Trigon odwraca walkę, gdy w grę wchodzi głód Galactusa, a jego najlepsza gałąź to głód plus kontrola własnej domeny.
-
-Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Jak głód i kontrola pola walki zmieniają wynik
-- opening: Trigon zaczyna od portali, skażenia i presji na duszę, podczas gdy Galactus stabilizuje pole barierami i kosmiczną świadomością.
-- mid_fight: Jeśli pierwsze okno na hax nie zadziała, Galactus przełącza walkę z wymiany obrażeń na konwersję energii.
-- late_fight: O tym, czy Trigon zachowa strefę haxu, czy sam stanie się paliwem dla większej odpowiedzi kosmicznej, decydują pole walki i poziom nasycenia Galactusa.
-- end_condition: Trigon potrzebuje wczesnego, systemowego zamknięcia walki. Galactus chce, by walka trwała do momentu zmiany znaczenia samego pola bitwy.
-- phase_1_mode: bars
-- phase_1_animation: teleport-burst
-- phase_1_actor: a
-- phase_1_title: Pierwsze okno skażenia
-- phase_1_a_label: Setup kontroli
-- phase_1_b_label: Stabilność pola
-- phase_1_a_value: 90
-- phase_1_b_value: 84
-- phase_2_mode: split
-- phase_2_animation: trade-chaos
-- phase_2_actor: a
-- phase_2_title: Test paliwa
-- phase_2_event: Pierwsza skuteczna konwersja decyduje, czy hax Trigona pozostaje aktywny.
-- phase_2_branch_a: Trigon zamyka walkę w skażonej przestrzeni, zanim Galactus ją zmetabolizuje.
-- phase_2_branch_b: Galactus zaczyna pochłaniać domenę i odbiera wartość eskalacji Trigona.
-- phase_3_mode: animation
-- phase_3_animation: clash-lock
-- phase_3_actor: b
-- phase_3_title: Konsumpcja domeny
+headline: PODSUMOWANIE
+subtitle:
+winner: Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa
+line_1: Galactus wygrywa porównanie na papierze, 92.67 vs 87.33.
+line_2: Trigon pozostaje groźny, gdy korupcja i logika domeny zastępują normalną symetrię walki.
+line_3: Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten matchup.
 
 Template Battle Dynamics:
-- headline: BATTLE DYNAMICS
-- subtitle: Wczesny hax kontra stabilna kosmiczna presja
-- a_curve: 70,64,58,49,41
-- b_curve: 72,76,81,86,90
-- yellow_wave: 41,46,42,47,43,48,44,46
-- phase_1: Trigon ma żywe pierwsze okna, bo jego najlepsze ataki uderzają w zasady walki.
-- phase_2: Gdy Galactus udowodni, że ta energia jest konsumowalna, cały matchup przechyla się na jego stronę.
-- phase_3: Skażona domena pomaga Trigonowi tylko tak długo, jak długo pozostaje wroga, a nie jadalna.
-- analysis: Trigon jest najgroźniejszy wcześnie i u siebie. Galactus jest bardziej niezawodny wszędzie indziej.
+headline: DYNAMIKA WALKI
+subtitle: Jak presja przesuwa się wraz ze zmianą pola
+left_curve_label: PRESJA DOMENY TRIGONA
+right_curve_label: KONTROLA ENERGII GALACTUSA
+left_curve: 62,68,77,86,91
+right_curve: 88,90,87,83,78
+left_note: Trigon rośnie, gdy pole walki zachowuje się bardziej jak demoniczna domena.
+right_note: Galactus jest najsilniejszy, gdy może normalizować i metabolizować przestrzeń.
+
+Template Fight Simulation:
+headline: SYMULACJA WALKI
+subtitle: Trzy fazy, jeden spór o znaczenie pola walki
+phase_1_title: Zatruć otwarcie
+phase_1_body: Trigon próbuje zamienić pierwszą wymianę w korupcję, presję opętania i anty-symetrię.
+phase_1_animation: trade-chaos
+phase_1_actor: a
+phase_2_title: Znormalizować mapę
+phase_2_body: Galactus odpowiada stabilizacją skali, kontrolą barier i ekonomią energii zamiast respektować preferowane zasady Trigona.
+phase_2_animation: kite-zone
+phase_2_actor: b
+phase_3_title: Paliwo albo trucizna
+phase_3_body: Finał zależy od tego, czy pole walki pozostaje toksyczne i demoniczne, czy zostaje znormalizowane do czegoś, co Galactus może metabolizować.
+phase_3_animation: clash-lock
+phase_3_actor: b
 
 Template Verdict Matrix:
-- headline: VERDICT MATRIX
-- subtitle: Dwie rzeczy, które zmieniają zwycięzcę
-- col_left: POLE WALKI: NEUTRALNE
-- col_right: POLE WALKI: DOMENA TRIGONA
-- row_top: GALACTUS: NAJEDZONY
-- row_bottom: GALACTUS: WYGŁODNIAŁY
-- case_1: Galactus 8/10. Neutralna przestrzeń i pełny bak dają mu najczystszą drogę do absorpcji i dominacji.
-- case_2: Galactus 6.5/10. Domena Trigona tworzy lepsze okna na hax, ale Galactus nadal może przejąć pole bitwy, jeśli je ustabilizuje.
-- case_3: Trigon 6/10. Głodny Galactus traci najbezpieczniejszą wersję swojej ekonomii energii nawet na neutralnym terenie.
-- case_4: Trigon 7.5/10. Głód plus kontrola własnej domeny to najlepsza realistyczna gałąź dla Trigona.
+headline: WERDYKT WARUNKOWY
+subtitle: Stan nasycenia i stan pola walki decydują o gałęzi
+col_left: NEUTRAL
+col_right: DOMENA TRIGONA
+row_top: DOBRZE NAKARMIONY
+row_bottom: WYGŁODNIAŁY
+case_1: Galactus 8/10
+case_2: Galactus 6.5/10
+case_3: Trigon 6/10
+case_4: Trigon 7.5/10
 
 Template Fight Title:
-- fight_title: Trigon vs Galactus
-- subtitle:
-- top_color_a: #111827
-- top_color_b: #b91c1c
-- bottom_color_a: #7c3aed
-- bottom_color_b: #ec4899
-
-
+fight_title: Trigon vs Galactus
+subtitle:
+top_color_a: #7f1d1d
+top_color_b: #ef4444
+bottom_color_a: #6d28d9
+bottom_color_b: #facc15
