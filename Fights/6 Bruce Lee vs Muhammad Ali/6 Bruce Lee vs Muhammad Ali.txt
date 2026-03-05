@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Bruce Lee (Prime / Historical Version, 1940-1973)
 
 2. Character A Stats
@@ -13,9 +13,9 @@ Experience: 60
 Combat Skills: 86
 
 3. Character A Feats
-Style: Explosive entry striking, rhythm disruption, and low-line attack emphasis
-Advantage: Faster entries, better chaos creation, and more ways to break rhythm
-Mentality: Needs to stop the fight from hardening into a settled heavyweight exchange
+- Style: Explosive interception style built on timing, low-line attacks, and footwork.
+- Advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
+- Mentality: Highly analytical and adaptive, prioritizing efficient action.
 
 4. Defeated by Character A
 Gary Elms (boxing decision victory)
@@ -36,9 +36,9 @@ Experience: 97
 Combat Skills: 94
 
 7. Character B Feats
-Style: Range tax, jab control, footwork, and defensive pacing
-Advantage: Proven heavyweight durability, ring management, and repeatable punishment
-Mentality: Make every entry cost more than it gives back, then let size and time do the rest
+- Style: Elite boxing control through jab, footwork, timing, and ring management.
+- Advantage: Proven heavyweight durability and championship-level pace control.
+- Mentality: Confident and tactical, comfortable in long, high-pressure fights.
 
 8. Defeated by Character B
 George Foreman
@@ -64,12 +64,10 @@ fight-simulation
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: Fast entry-exit striking, low-line kicking, and rhythm disruption
-Tools: Cross-style adaptation and real boxing training
-Tools: Open-rules variety is his best practical swing resource
-Weaknesses: Mass and reach deficit
-Weaknesses: Limited verified heavyweight fight record
-Weaknesses: If the fight settles into Ali's preferred range structure, his best edges shrink fast
+- Powers: Elite human speed, reflexes, coordination, and precision striking.
+- Tools: JKD interception timing, low-line kicking, rhythm disruption, and cross-style adaptation.
+- Weaknesses: Significant size and reach deficit versus heavyweight specialists.
+- Weaknesses: Human durability ceiling under prolonged heavyweight punishment.
 
 11. Character A Raw Feats
 One-inch punch demonstration at Long Beach
@@ -78,11 +76,10 @@ Two-finger push-up and body-control demonstration
 Built Jeet Kune Do from practical cross-style adaptation
 
 12. Character B Powers / Tools / Weaknesses
-Tools: Jab and range management
-Tools: Footwork, clinch/ring control, and heavyweight durability
-Tools: Proven pacing across elite long fights
-Weaknesses: Open-rules environments help Bruce more than pure boxing does
-Weaknesses: Ali is not meaningfully weak here, but boxing structure loosening is Bruce's only real help
+- Powers: Elite heavyweight boxing speed, timing, durability, and ring IQ.
+- Tools: Jab control, footwork, defensive movement, clinch management, and pacing control.
+- Weaknesses: Primarily boxing-centric toolkit compared with broad open-rule combat sets.
+- Weaknesses: Less specialized for leg-line attacks and mixed-range engagement outside boxing rules.
 
 13. Character B Raw Feats
 Rope-a-dope against George Foreman
@@ -94,25 +91,25 @@ headline: TACTICAL BOARD // BRUCE VS ALI
 subtitle: Speed and disruption versus reach and ring reality
 left_header: BRUCE PLAN
 right_header: ALI PLAN
-linear_label: RANGE TAX
-chaos_label: BROKEN RHYTHM
+linear_label: ODCINEK LINIOWY
+chaos_label: ODCINEK CHAOSU
 lane: Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.
 
 Template Character A:
 name: Bruce Lee
 world: Prime / Historical Version
-style: Explosive entry striking and low-line disruption
-advantage: Faster entries and better rhythm breaking
-mentality: Needs to stop the fight from hardening into a settled heavyweight exchange
-quote: Bruce needs the fight to stay broken, angled, and fast.
+- style: Explosive interception style built on timing, low-line attacks, and footwork.
+- advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
+- mentality: Highly analytical and adaptive, prioritizing efficient action.
+- quote: Be water, my friend.
 
 Template Character B:
 name: Muhammad Ali
 world: Prime
-style: Range tax, jab control, and defensive pacing
-advantage: Proven heavyweight durability and repeatable punishment
-mentality: Make every entry cost more than it gives back, then let size and time do the rest
-quote: Ali wins once the fight becomes repeatable.
+- style: Elite boxing control through jab, footwork, timing, and ring management.
+- advantage: Proven heavyweight durability and championship-level pace control.
+- mentality: Confident and tactical, comfortable in long, high-pressure fights.
+- quote: Float like a butterfly, sting like a bee.
 
 Template Powers / Tools / Weaknesses:
 headline: POWERS, TOOLS, AND WEAKNESSES

@@ -12,9 +12,9 @@
 - Combat Skills: 86
 
 3. Character A Feats
-- Style: Cosmic executioner pressure, abyss control, and repeated high-value exchanges
-- Advantage: Cleaner attrition loop, blade lethality, and battlefield corruption
-- Mentality: Does not need a clean duel, only a messy field and one real opening
+- Style: Cosmic predation through living abyss control, necrosword pressure, and symbiote influence.
+- Advantage: All-Black lethality combined with high-end regeneration and corruption pressure.
+- Mentality: Overwhelm the field and finish through sustained existential pressure.
 
 4. Defeated by Character A
 - Celestial
@@ -37,9 +37,9 @@
 - Combat Skills: 93
 
 7. Character B Feats
-- Style: Strategic king archetype, barriers, spacing, and controlled burst windows
-- Advantage: Better battlefield management, tempo reset, and divine-scale control
-- Mentality: Refuses the obvious slugfest and tries to keep the fight structured
+- Style: Strategic cosmic warfare using Odinforce control, barriers, and precision bursts.
+- Advantage: Vast experience plus layered magical and energy options at cosmic scale.
+- Mentality: He prefers control and structure over reckless trading.
 
 8. Defeated by Character B
 - Infinity
@@ -67,10 +67,10 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: All-Black, living abyss, symbiote hive control, infection pressure, regeneration, and anti-god lethality.
-- Tools: Battlefield corruption and repeated-contact pressure make every long exchange worse.
-- Weaknesses: True anti-abyss Light is the clearest canonical hard answer to his whole profile.
-- Weaknesses: Bright or divine energy can hurt him, but it is not automatically a hard cleanse.
+- Powers: All-Black necrosword lethality, living abyss manipulation, symbiote hive control, and high-end regeneration.
+- Tools: Battlefield corruption, symbiote conversion pressure, and persistent close-range threat.
+- Weaknesses: Strong anti-abyss or high-intensity light counters can disrupt his core advantages.
+- Weaknesses: Broad cosmic energy control can force him to spend more effort on recovery and tempo reset.
 
 11. Character A Raw Feats
 - Decapitates a Celestial and forges All-Black from the corpse.
@@ -80,11 +80,10 @@
 - Dodges Odinforce Thor and counters before he can reset.
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Full Odinforce, Destroyer Armor, Odinsword, barriers, cosmic energy projection, and layered battlefield control.
-- Tools: This is a Celestial-war-scale battle configuration, not baseline court Odin.
-- Tools: He has more ways than Knull to manage space, reset tempo, and turn chaos back into structure.
-- Weaknesses: This setup is not explicitly proven to be Enigma-Force-equivalent.
-- Weaknesses: If his energy cannot keep Knull down for good, the fight becomes a resource and contact problem.
+- Powers: Full Odinforce, large-scale energy projection, barriers, transmutation, and divine sorcery.
+- Tools: Destroyer Armor and Odinsword for top-tier cosmic warfare.
+- Weaknesses: Output and precision can vary with context, burden, and prolonged conflict.
+- Weaknesses: Strategic overconfidence can create openings against persistent opponents.
 
 13. Character B Raw Feats
 - Absorbs Asgard's life-force and scales the Destroyer to Celestial size.
@@ -98,29 +97,29 @@ Template Tactical Board:
 - subtitle: Abyss attrition versus divine battlefield control
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: CONTROL AND STRUCTURE
-- chaos_label: REGEN AND CORRUPTION
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: Earth-616 with All-Black
-- style: Cosmic executioner pressure with abyss control and repeated high-value exchanges
-- advantage: Cleaner attrition loop plus the more naturally lethal weapon
-- mentality: Does not need a clean duel, only a messy field and one real opening
-- quote: Knull does not need a clean duel. He needs a bad field and one real opening.
+- style: Cosmic predation through living abyss control, necrosword pressure, and symbiote influence.
+- advantage: All-Black lethality combined with high-end regeneration and corruption pressure.
+- mentality: Overwhelm the field and finish through sustained existential pressure.
+- quote: I am Knull, god of the abyss.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Earth-616, Full Odinforce + Destroyer Armor + Odinsword
-- style: Strategic king warfare with barriers, spacing, and controlled burst windows
-- advantage: Better battlefield management and more ways to reset tempo
-- mentality: Wins only if he keeps the fight structured long enough for control to matter
-- quote: Odin wins only if his control turns into lasting damage before the loop resets.
+- style: Strategic cosmic warfare using Odinforce control, barriers, and precision bursts.
+- advantage: Vast experience plus layered magical and energy options at cosmic scale.
+- mentality: He prefers control and structure over reckless trading.
+- quote: I am Odin, All-Father of Asgard.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: What each side actually brings into the exchange
+- subtitle: Core powers, tools, and weaknesses
 - left_title: KNULL TOOLKIT
 - right_title: ODIN TOOLKIT
 - powers_label: POWERS

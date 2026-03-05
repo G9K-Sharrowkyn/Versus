@@ -117,3 +117,27 @@ export default defineConfig([
   },
 ])
 ```
+
+## Encoding + i18n quality gate
+
+Project is hardened for bilingual PL/EN rendering:
+
+- Source files are expected to be UTF-8.
+- TXT import decoder uses:
+  1. UTF-8 (fatal),
+  2. fallback `windows-1250`,
+  3. quality heuristic + Unicode NFC normalization.
+
+Run checks locally:
+
+```bash
+npm run i18n:audit
+npm run i18n:keys
+```
+
+What each script does:
+
+- `i18n:audit` scans project text files for mojibake markers and replacement chars.
+- `i18n:keys` verifies parity of `src/i18n/en.ts` and `src/i18n/pl.ts` keys.
+
+Build runs both checks automatically via `prebuild`, and CI runs the same gate in `.github/workflows/quality.yml`.

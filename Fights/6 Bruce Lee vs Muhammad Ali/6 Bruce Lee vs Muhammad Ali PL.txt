@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Bruce Lee (Prime / wersja historyczna, 1940-1973)
 
 2. Character A Stats
@@ -13,12 +13,12 @@ Experience: 60
 Combat Skills: 86
 
 3. Character A Feats
-Style: Eksplozywne wejścia, łamanie rytmu i nacisk na ataki niską linią
-Advantage: Szybsze wejścia, lepsze tworzenie chaosu i więcej sposobów na rozbijanie rytmu
-Mentality: Musi powstrzymać walkę przed stwardnieniem w uporządkowaną wymianę z ciężkim pięściarzem
+- Styl: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
+- Atut: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
+- Mentalność: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
 
 4. Defeated by Character A
-Gary Elms (zwycięstwo przez decyzję w boksie)
+Gary Elms (zwyci?stwo przez decyzj? w boksie)
 Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
 
 5. Character B
@@ -36,9 +36,9 @@ Experience: 97
 Combat Skills: 94
 
 7. Character B Feats
-Style: Podatek z dystansu, kontrola jabu, praca nóg i defensywne tempo
-Advantage: Potwierdzona wytrzymałość ciężkiego, zarządzanie ringiem i powtarzalne karanie wejść
-Mentality: Sprawić, by każde wejście kosztowało więcej, niż daje, a potem pozwolić rozmiarowi i czasowi zrobić resztę
+- Styl: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
+- Atut: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
+- Mentalność: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
 
 8. Defeated by Character B
 George Foreman
@@ -64,75 +64,72 @@ fight-simulation
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: Szybkie wejścia i wyjścia, kopnięcia na niską linię i łamanie rytmu
-Tools: Adaptacja między stylami i realny trening bokserski
-Tools: Różnorodność w otwartych zasadach jest jego najlepszym praktycznym zasobem swingującym
-Weaknesses: Deficyt masy i zasięgu
-Weaknesses: Ograniczony zweryfikowany rekord przeciw ciężkim
-Weaknesses: Jeśli walka ustawi się w preferowanej przez Alego strukturze dystansu, jego najlepsze przewagi szybko maleją
+- Moce: Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń.
+- Narzędzia: Intercepcja w duchu JKD, kopnięcia na niską linię, łamanie rytmu i adaptacja między stylami.
+- Słabości: Wyraźny deficyt masy i zasięgu wobec specjalistów wagi ciężkiej.
+- Słabości: Ludzki limit wytrzymałości przy długotrwałym karaniu przez ciężkiego.
 
 11. Character A Raw Feats
 Demonstracja one-inch punch w Long Beach
-Demonstracja dwupalcowych pompek i kontroli ciała
-Szkolny tytuł bokserski z 1958 roku przeciw Gary'emu Elmsowi
-Stworzył Jeet Kune Do dzięki praktycznej adaptacji między stylami
+Demonstracja dwupalcowych pompek i kontroli cia?a
+Szkolny tytu? bokserski z 1958 roku przeciw Gary'emu Elmsowi
+Stworzy? Jeet Kune Do dzi?ki praktycznej adaptacji mi?dzy stylami
 
 12. Character B Powers / Tools / Weaknesses
-Tools: Jab i zarządzanie dystansem
-Tools: Praca nóg, kontrola klinczu/ringu i wytrzymałość ciężkiego
-Tools: Potwierdzone tempo na przestrzeni długich walk z elitą
-Weaknesses: Otwarte zasady pomagają Bruce'owi bardziej niż czysty boks
-Weaknesses: Ali nie ma tu realnej słabości, ale poluzowanie bokserskiej struktury jest największą koncesją na rzecz Bruce'a
+- Moce: Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa.
+- Narzędzia: Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa.
+- Słabości: Zestaw narzędzi skupiony głównie na boksie wobec szerokich zasad otwartych.
+- Słabości: Mniejsza specjalizacja pod ataki na nogi i mieszany dystans poza regułami boksu.
 
 13. Character B Raw Feats
 Rope-a-dope przeciw George'owi Foremanowi
-Szczytowa szybkość i precyzja ciężkiego przeciw Clevelandowi Williamsowi
-Wytrzymałość i tolerancja na karanie z wojen z Frazierem
+Szczytowa szybko?? i precyzja ci?kiego przeciw Clevelandowi Williamsowi
+Wytrzyma?o?? i tolerancja na karanie z wojen z Frazierem
 
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // BRUCE VS ALI
-subtitle: Szybkość i chaos kontra zasięg i ringowa rzeczywistość
+subtitle: Szybko?? i chaos kontra zasi?g i ringowa rzeczywisto??
 left_header: PLAN BRUCE'A
 right_header: PLAN ALEGO
-linear_label: PODATEK DYSTANSU
-chaos_label: ZŁAMANY RYTM
-lane: Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich.
+linear_label: ODCINEK LINIOWY
+chaos_label: ODCINEK CHAOSU
+lane: Bruce wygrywa, je?li utrzyma walk? w niestabilnym stanie. Ali wygrywa, je?li ka?da wymiana zaczyna wygl?da? jak rzeczywisto?? walki ci?kich.
 
 Template Character A:
 name: Bruce Lee
 world: Prime / wersja historyczna
-style: Eksplozywne wejścia i niskie łamanie rytmu
-advantage: Szybsze wejścia i lepsze rozbijanie rytmu
-mentality: Musi powstrzymać walkę przed stwardnieniem w uporządkowaną wymianę z ciężkim pięściarzem
-quote: Bruce potrzebuje, żeby walka była połamana, kanciasta i szybka.
+- style: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
+- advantage: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
+- mentality: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
+- quote: Be water, my friend.
 
 Template Character B:
 name: Muhammad Ali
 world: Prime
-style: Podatek z dystansu, kontrola jabu i defensywne tempo
-advantage: Potwierdzona wytrzymałość ciężkiego i powtarzalne karanie wejść
-mentality: Sprawić, by każde wejście kosztowało więcej, niż daje, a potem pozwolić rozmiarowi i czasowi zrobić resztę
-quote: Ali wygrywa, kiedy walka staje się powtarzalna.
+- style: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
+- advantage: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
+- mentality: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
+- quote: Float like a butterfly, sting like a bee.
 
 Template Powers / Tools / Weaknesses:
-headline: MOCE, NARZĘDZIA I SŁABOŚCI
+headline: MOCE, NARZ?DZIA I S?ABO?CI
 subtitle:
 left_title: ZESTAW BRUCE'A
 right_title: ZESTAW ALEGO
 powers_label: MOCE
-tools_label: NARZĘDZIA
-weaknesses_label: SŁABOŚCI
+tools_label: NARZ?DZIA
+weaknesses_label: S?ABO?CI
 
 Template Raw Feats:
 headline: SUROWE FEATY
-subtitle: Czyste przykłady pokazowe, nie pełne archiwum
+subtitle: Czyste przyk?ady pokazowe, nie pe?ne archiwum
 left_title: POKAZ BRUCE'A
 right_title: POKAZ ALEGO
 feat_label: FEAT
 
 Template HUD Bars:
 headline: WYSOKIEJ KLASY ANALIZA BOJOWA
-subtitle: Odczyt statystyk dwóch profili
+subtitle: Odczyt statystyk dw?ch profili
 threat_level: HUMAN
 integrity: 98.7%
 profile_mode: VS
@@ -148,25 +145,25 @@ left_avg: 78.89
 right_avg: 87.67
 left_avg_round: 79
 right_avg_round: 88
-favorite_label: FAWORYT WEDŁUG STATYSTYK
+favorite_label: FAWORYT WED?UG STATYSTYK
 favorite: Muhammad Ali
-left_notes: Wejścia, łamanie rytmu i zmiana kątów
-right_notes: Zasięg, wytrzymałość, tempo i powtarzalna kontrola ringu
-draw_notes: Obaj dobrze czytają timing, ale Ali zamienia powtarzalne wymiany w swoją walkę
+left_notes: Wej?cia, ?amanie rytmu i zmiana k?t?w
+right_notes: Zasi?g, wytrzyma?o??, tempo i powtarzalna kontrola ringu
+draw_notes: Obaj dobrze czytaj? timing, ale Ali zamienia powtarzalne wymiany w swoj? walk?
 
 Template Interpretation:
-headline: KTO WYGRYWA WALKĘ NA PAPIERZE?
+headline: KTO WYGRYWA WALK? NA PAPIERZE?
 subtitle:
-body: Muhammad Ali. Bruce ma szybkość, chaos i brudniejszą teksturę otwarcia, ale Ali ma kategorie, które rozstrzygają powtarzalne ludzkie wymiany: zasięg, wytrzymałość, tempo i zarządzanie ringiem. Bruce zawęża matchup tylko wtedy, gdy nie pozwala walce ustawić się w preferowanej przez Alego grze dystansu.
+body: Muhammad Ali. Bruce ma szybko??, chaos i brudniejsz? tekstur? otwarcia, ale Ali ma kategorie, kt?re rozstrzygaj? powtarzalne ludzkie wymiany: zasi?g, wytrzyma?o??, tempo i zarz?dzanie ringiem. Bruce zaw?a pojedynek tylko wtedy, gdy nie pozwala walce ustawi? si? w preferowanej przez Alego grze dystansu.
 
 Template Stat Trap:
-headline: DLACZEGO LEPSZE KRAWĘDZIE NIE GWARANTUJĄ WALKI
+headline: DLACZEGO LEPSZE KRAW?DZIE NIE GWARANTUJ? WALKI
 subtitle:
-question: Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?
-body: Najlepsze przewagi Bruce'a zmieniają bardziej teksturę walki niż samą tożsamość zwycięzcy. Szybkość i styl mogą wygrywać momenty, ale to udowodniona odporność Alego pod długą presją ciężkich jest prawdziwym separatorem.
+question: Czy Bruce zdo?a powstrzyma? walk? przed wej?ciem w schemat dystansu i podatku Alego?
+body: Najlepsze przewagi Bruce'a zmieniaj? bardziej tekstur? walki ni? sam? to?samo?? zwyci?zcy. Szybko?? i styl mog? wygrywa? momenty, ale to udowodniona odporno?? Alego pod d?ug? presj? ci?kich jest prawdziwym separatorem.
 
 Template Winner CV:
-headline: Archiwum zwycięstw
+headline: Archiwum zwyci?stw
 subtitle:
 archive_label:
 avg_label: AVG SCORE
@@ -176,33 +173,33 @@ right_title: REKORD ALEGO
 Template Summary:
 headline: OSTATECZNY ODCZYT
 subtitle:
-winner: Muhammad Ali z wyraźną przewagą
-line_1: Ali wygrywa porównanie na papierze, 87.67 vs 78.89.
-line_2: Bruce zmienia bardziej teksturę walki niż tożsamość zwycięzcy.
-line_3: Otwarte zasady zawężają matchup, ale nie odwracają bazowego wyniku.
+winner: Muhammad Ali z wyra?n? przewag?
+line_1: Ali wygrywa por?wnanie na papierze, 87.67 vs 78.89.
+line_2: Bruce zmienia bardziej tekstur? walki ni? to?samo?? zwyci?zcy.
+line_3: Otwarte zasady zaw?aj? pojedynek, ale nie odwracaj? bazowego wyniku.
 
 Template Battle Dynamics:
 headline: DYNAMIKA WALKI
 subtitle:
-left_curve_label: WCZESNE ZAKŁÓCENIA BRUCE'A
-right_curve_label: PÓŹNA KONTROLA ALEGO
+left_curve_label: WCZESNE ZAK??CENIA BRUCE'A
+right_curve_label: P?NA KONTROLA ALEGO
 left_curve: 78,74,68,61,54
 right_curve: 62,70,79,88,94
-notes: Bruce jest groźny wcześnie, bo szybkość i zakłócenie rytmu mają największą wartość, zanim walka się ustawi. Ali rośnie, gdy zasięg, tempo i wytrzymałość zaczynają się kumulować.
+notes: Bruce jest gro?ny wcze?nie, bo szybko?? i zak??cenie rytmu maj? najwi?ksz? warto??, zanim walka si? ustawi. Ali ro?nie, gdy zasi?g, tempo i wytrzyma?o?? zaczynaj? si? kumulowa?.
 
 Template Fight Simulation:
 headline: SYMULACJA WALKI
-subtitle: Stabilny matchup, w którym zasady zmieniają margines bardziej niż zwycięzcę
-phase_1_title: Wojna o wejście i rytm
-phase_1_desc: Bruce atakuje rytm szybkimi wejściami i niskimi zakłóceniami, zanim Ali ustawi geografię ringu.
+subtitle: Stabilny pojedynek, w kt?rym zasady zmieniaj? margines bardziej ni? zwyci?zc?
+phase_1_title: Wojna o wej?cie i rytm
+phase_1_desc: Bruce atakuje rytm szybkimi wej?ciami i niskimi zak??ceniami, zanim Ali ustawi geografi? ringu.
 phase_1_anim: feint-counter
 phase_1_actor: a
 phase_2_title: Podatek dystansu
-phase_2_desc: Ali opodatkowuje dystans jabem, nogami i kontrolą ringu, zmuszając Bruce'a do płacenia za każde ponowne wejście.
+phase_2_desc: Ali opodatkowuje dystans jabem, nogami i kontrol? ringu, zmuszaj?c Bruce'a do p?acenia za ka?de ponowne wej?cie.
 phase_2_anim: kite-zone
 phase_2_actor: b
-phase_3_title: Rzeczywistość ciężkich
-phase_3_desc: Walka albo pozostaje brudna i wąska dla Bruce'a, albo ustawia się w powtarzalnym dystansie ciężkich, gdzie tempo i wytrzymałość Alego przejmują kontrolę.
+phase_3_title: Rzeczywisto?? ci?kich
+phase_3_desc: Walka albo pozostaje brudna i w?ska dla Bruce'a, albo ustawia si? w powtarzalnym dystansie ci?kich, gdzie tempo i wytrzyma?o?? Alego przejmuj? kontrol?.
 phase_3_anim: corner-trap
 phase_3_actor: b
 

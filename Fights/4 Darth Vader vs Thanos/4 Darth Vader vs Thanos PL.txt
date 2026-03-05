@@ -12,9 +12,9 @@
 - Combat Skills: 92
 
 3. Character A Feats
-- Style: Technik presji, kontrola Mocy i œmiercionoœna konwersja w bliskim dystansie
-- Advantage: Lepsza technika walki, ostrzejszy pierwszy odczyt i jedyna realna œcie¿ka bypassu
-- Mentality: Musi rozwi¹zaæ walkê chirurgicznie, zanim luka skali stanie siê fizyczna
+- Styl: Techniczny styl presji Å‚Ä…czÄ…cy precyzjÄ™ miecza Å›wietlnego z kontrolÄ… Mocy.
+- Atut: Elitarne umiejÄ™tnoÅ›ci bojowe i groÅºny, precyzyjny atak MocÄ….
+- MentalnoÅ›Ä‡: DziaÅ‚a kalkulacyjnie i cierpliwie, a potem koÅ„czy bez wahania.
 
 4. Defeated by Character A
 - Dark Woman
@@ -23,7 +23,7 @@
 - Celeste Morne
 - Kai Hudorra
 
-5. Thanos (Earth-616, bez Kamieni Nieskoñczonoœci)
+5. Thanos (Earth-616, bez Kamieni Niesko?czono?ci)
 
 6. Character B Stats
 - Strength: 96
@@ -37,16 +37,16 @@
 - Combat Skills: 88
 
 7. Character B Feats
-- Style: Presja kosmicznego wata¿ki, warstwowa wytrzyma³oœæ i brutalna kontraeskalacja
-- Advantage: Zbyt du¿a wytrzyma³oœæ, zbyt wiele odpowiedzi i zbyt du¿o doœwiadczenia ponad normalny tier Vadera
-- Mentality: Wystarczy mu przetrwaæ pierwsz¹ chirurgiczn¹ próbê i zamieniæ mapê walki w test statystyk
+- Styl: Metodyczny styl kosmicznej wojny oparty na przytÅ‚aczajÄ…cej sile i kontroli taktycznej.
+- Atut: WyjÄ…tkowa wytrzymaÅ‚oÅ›Ä‡, moc i zdolnoÅ›Ä‡ adaptacji strategicznej.
+- MentalnoÅ›Ä‡: ChÅ‚odny strateg, ktÃ³ry zamienia dÅ‚ugie starcie w nieuchronny wynik.
 
 8. Defeated by Character B
 - Silver Surfer
 - Hulk
 - Beta Ray Bill and Ronan the Accuser
 - Adam Warlock (wynik kontekstowy / wsparty artefaktem)
-- Thor with the Power Gem (strategiczne zwyciêstwo)
+- Thor with the Power Gem (strategiczne zwyci?stwo)
 
 9. Template Order
 - tactical-board
@@ -65,106 +65,103 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Œmiercionoœny miecz œwietlny, telekineza, Force choke/crush i mocna prekognicja.
-- Tools: Obrona przed energi¹ i kontrola walki wieloma wektorami pozwalaj¹ mu szybko ukszta³towaæ pierwsz¹ wymianê.
-- Tools: Atak wewnêtrzny Moc¹ jest tu jedyn¹ wiarygodn¹ œcie¿k¹ upsetu.
-- Weaknesses: Zale¿noœæ od systemu podtrzymywania ¿ycia sprawia, ¿e ka¿dy ciê¿ki cios boli bardziej.
-- Weaknesses: Jego skala wytrzyma³oœci jest du¿o ni¿sza od Thanosa, gdy pierwszy bypass zawiedzie.
-- Weaknesses: Jeœli pierwsza próba rozwi¹zania walki nie koñczy starcia, mapa robi siê statystycznie przegrana.
+- Moce: Telekineza Mocy, prekognicja, techniki duszenia/miaÅ¼dÅ¼enia i Å›miercionoÅ›na biegÅ‚oÅ›Ä‡ miecza Å›wietlnego.
+- NarzÄ™dzia: Defensywna dyscyplina szermiercza, odbijanie blasterÃ³w/energii i kontrola pola walki przez Moc.
+- SÅ‚aboÅ›ci: ZaleÅ¼noÅ›Ä‡ od cybernetycznego podtrzymania Å¼ycia i podatnoÅ›Ä‡ na dÅ‚ugie uszkadzanie systemÃ³w.
+- SÅ‚aboÅ›ci: NiÅ¼sza surowa wytrzymaÅ‚oÅ›Ä‡ fizyczna i skala niÅ¼ u czoÅ‚owych bytÃ³w kosmicznych.
 
 11. Character A Raw Feats
 - Podnosi i ciska bombowcem Y-Wing.
-- Rozbija o siebie dwa statki kosmiczne telekinez¹.
-- Idzie przez alejkê, odbijaj¹c ogieñ z blasterów.
-- Blokuje d³oni¹ atak energetyczny.
-- Prze¿ywa gigantyczn¹ eksplozjê, która niszczy kasyno.
+- Rozbija o siebie dwa statki kosmiczne telekinez?.
+- Idzie przez alejk?, odbijaj?c ogie? z blaster?w.
+- Blokuje d?oni? atak energetyczny.
+- Prze?ywa gigantyczn? eksplozj?, kt?ra niszczy kasyno.
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Si³a na poziomie kosmicznym, wytrzyma³oœæ, projekcja energii i pola si³owe.
-- Tools: Odpornoœæ telepatyczna, manipulacja materi¹ i kontrola pola bitwy.
-- Tools: Warstwowa wytrzyma³oœæ daje mu wiêcej ni¿ jedn¹ odpowiedŸ, gdy pierwszy bypass Vadera zawiedzie.
-- Weaknesses: Arogancja ma tu wiêksze znaczenie ni¿ jakakolwiek realna luka fizyczna.
-- Weaknesses: Ma bardzo ma³o prawdziwych s³aboœci, wiêc margines Vadera ¿yje prawie wy³¹cznie w otwarciu.
+- Moce: Ogromna siÅ‚a i wytrzymaÅ‚oÅ›Ä‡, kosmiczna projekcja energii, pola siÅ‚owe i manipulacja materiÄ….
+- NarzÄ™dzia: Strategiczny intelekt, adaptacja bojowa i szeroki profil odpornoÅ›ci.
+- SÅ‚aboÅ›ci: Pycha i skÅ‚onnoÅ›Ä‡ do testowania przeciwnika mogÄ… otwieraÄ‡ wczesne okna bÅ‚Ä™du.
+- SÅ‚aboÅ›ci: Bez Kamieni NieskoÅ„czonoÅ›ci pozostaje elitarny, ale nie ma natychmiastowej dominacji poziomu RÄ™kawicy.
 
 13. Character B Raw Feats
-- Niszczy planetê podczas walki z Draxem.
-- Prze¿ywa czarn¹ dziurê o œrednicy dwóch lat œwietlnych.
-- Tankuje energiê na poziomie Odina.
+- Niszczy planet? podczas walki z Draxem.
+- Prze?ywa czarn? dziur? o ?rednicy dw?ch lat ?wietlnych.
+- Tankuje energi? na poziomie Odina.
 - Wychodzi bez szwanku z eksplozji gazowego giganta.
-- Wykonuje manipulacjê materi¹ na poziomie molekularnym.
+- Wykonuje manipulacj? materi? na poziomie molekularnym.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // VADER VS THANOS
-- subtitle: Precyzyjne otwarcie kontra kosmiczna œciana wytrzyma³oœci
+- subtitle: Precyzyjne otwarcie kontra kosmiczna ?ciana wytrzyma?o?ci
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
-- linear_label: CHIRURGICZNE OTWARCIE
-- chaos_label: KOSMICZNA ŒCIANA
-- lane: Vader musi rozwi¹zaæ walkê szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
+- lane: Vader musi rozwi?za? walk? szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.
 
 Template Character A:
 - header: DOSSIER POSTACI // BLUE
 - world: Legends Prime
-- style: Technik presji z kontrol¹ Mocy i œmiercionoœn¹ konwersj¹ w bliskim dystansie
-- advantage: Lepsza technika walki i jedyna realna œcie¿ka bypassu
-- mentality: Rozwi¹zaæ walkê chirurgicznie, zanim luka skali stanie siê fizyczna
-- quote: Jedyna realna œcie¿ka upsetu jest chirurgiczna, natychmiastowa i bezlitosna.
+- style: Techniczny styl presji Å‚Ä…czÄ…cy precyzjÄ™ miecza Å›wietlnego z kontrolÄ… Mocy.
+- advantage: Elitarne umiejÄ™tnoÅ›ci bojowe i groÅºny, precyzyjny atak MocÄ….
+- mentality: DziaÅ‚a kalkulacyjnie i cierpliwie, a potem koÅ„czy bez wahania.
+- quote: I find your lack of faith disturbing.
 
 Template Character B:
 - header: DOSSIER POSTACI // RED
-- world: Earth-616, bez Kamieni Nieskoñczonoœci
-- style: Presja kosmicznego wata¿ki z warstwow¹ wytrzyma³oœci¹ i brutaln¹ kontraeskalacj¹
-- advantage: Zbyt du¿a wytrzyma³oœæ, zbyt wiele odpowiedzi i zbyt du¿a skala
-- mentality: Przetrwaæ pierwsz¹ próbê rozwi¹zania walki i zamieniæ starcie w test statystyk
-- quote: Jeœli pierwsza odpowiedŸ go nie koñczy, walka nale¿y do Thanosa.
+- world: Earth-616, bez Kamieni Niesko?czono?ci
+- style: Metodyczny styl kosmicznej wojny oparty na przytÅ‚aczajÄ…cej sile i kontroli taktycznej.
+- advantage: WyjÄ…tkowa wytrzymaÅ‚oÅ›Ä‡, moc i zdolnoÅ›Ä‡ adaptacji strategicznej.
+- mentality: ChÅ‚odny strateg, ktÃ³ry zamienia dÅ‚ugie starcie w nieuchronny wynik.
+- quote: Dread it. Run from it. Destiny arrives all the same.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZÊDZIA I S£ABOŒCI
-- subtitle: Co ka¿da strona naprawdê wnosi do wymiany
+- headline: MOCE, NARZ?DZIA I S?ABO?CI
+- subtitle: Co ka?da strona naprawd? wnosi do wymiany
 - left_title: ZESTAW VADERA
 - right_title: ZESTAW THANOSA
 - powers_label: MOCE
-- tools_label: NARZÊDZIA
-- weaknesses_label: S£ABOŒCI
+- tools_label: NARZ?DZIA
+- weaknesses_label: S?ABO?CI
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Czyste przyk³ady pokazowe, nie pe³ne archiwa
+- subtitle: Czyste przyk?ady pokazowe, nie pe?ne archiwa
 - left_title: POKAZ VADERA
 - right_title: POKAZ THANOSA
 - feat_label: FEAT
 
 Template HUD Bars:
 - headline: ZAAWANSOWANA ANALITYKA BOJOWA
-- subtitle: Odczyt statystyk dwóch profili
+- subtitle: Odczyt statystyk dw?ch profili
 - threat_level: COSMIC
 - integrity: 99.4%
 - profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
-- headline: PORÓWNANIE PARAMETRÓW
-- subtitle: Mapa œredniego profilu statystycznego
+- headline: POR?WNANIE PARAMETR?W
+- subtitle: Mapa ?redniego profilu statystycznego
 - left_header: PRZEWAGI VADERA
 - right_header: PRZEWAGI THANOSA
 - draw_header: STREFY REMISU
-- favorite_label: FAWORYT WED£UG STATYSTYK
+- favorite_label: FAWORYT WED?UG STATYSTYK
 
 Template Interpretation:
 - headline: INTERPRETACJA
-- subtitle: Kto wygrywa walkê na papierze?
-- line_1: Na papierze wygrywa Thanos, bo kontroluje kategorie decyduj¹ce o tym, czy Vader w ogóle mo¿e domkn¹æ walkê.
-- line_2: Vader nadal ma groŸn¹ pierwsz¹ minutê, bo jego techniczne otwarcie jest du¿o czystsze ni¿ otwarcie Thanosa.
-- line_3: To otwarcie jest realne, ale ca³a walka i tak nale¿y do Thanosa, gdy tylko przetrwa pierwsz¹ chirurgiczn¹ próbê.
-- quote: Lepsza technika nie wystarcza, jeœli nigdy nie zamienia siê w realn¹ œcie¿kê finiszu.
+- subtitle: Kto wygrywa walk? na papierze?
+- line_1: Na papierze wygrywa Thanos, bo kontroluje kategorie decyduj?ce o tym, czy Vader w og?le mo?e domkn?? walk?.
+- line_2: Vader nadal ma gro?n? pierwsz? minut?, bo jego techniczne otwarcie jest du?o czystsze ni? otwarcie Thanosa.
+- line_3: To otwarcie jest realne, ale ca?a walka i tak nale?y do Thanosa, gdy tylko przetrwa pierwsz? chirurgiczn? pr?b?.
+- quote: Lepsza technika nie wystarcza, je?li nigdy nie zamienia si? w realn? ?cie?k? finiszu.
 
 Template Stat Trap:
-- headline: PU£APKA STATYSTYK
-- subtitle: Dlaczego lepsza technika nie gwarantuje zwyciêstwa
+- headline: PU?APKA STATYSTYK
+- subtitle: Dlaczego lepsza technika nie gwarantuje zwyci?stwa
 - trap_top: PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE
-- trap_bottom: WYTRZYMA£OŒÆ THANOSA DECYDUJE O MATCHUPIE
-- example: Vader mo¿e wygraæ pierwszy odczyt i nadal przegraæ walkê, bo cel jest zbudowany tak, by ten odczyt prze¿yæ.
-- question: Czy Vader mo¿e stworzyæ œmiertelny bypass, zanim Thanos zrozumie, ¿e nie musi respektowaæ pojedynku?
+- trap_bottom: WYTRZYMA?O?? THANOSA DECYDUJE O POJEDYNKU
+- example: Vader mo?e wygra? pierwszy odczyt i nadal przegra? walk?, bo cel jest zbudowany tak, by ten odczyt prze?y?.
+- question: Czy Vader mo?e stworzy? ?miertelny bypass, zanim Thanos zrozumie, ?e nie musi respektowa? pojedynku?
 
 Template Winner CV:
 - headline: Victory Archive
@@ -176,53 +173,53 @@ Template Winner CV:
 - win_badge: W
 
 Template Summary:
-- headline: PODSUMOWANIE KOÑCOWE
+- headline: PODSUMOWANIE KO?COWE
 - subtitle: 
-- winner: Thanos z wyraŸn¹ przewag¹
-- line_1: Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, które naprawdê decyduj¹ o finiszu.
-- line_2: Otwarcie Vadera pozostaje groŸne, ale luka w wytrzyma³oœci i skali jest zbyt du¿a, by rozwi¹zaæ j¹ konsekwentnie.
-- line_3: To stabilny matchup, a nie walka oparta na wielu ga³êziach.
+- winner: Thanos z wyra?n? przewag?
+- line_1: Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, kt?re naprawd? decyduj? o finiszu.
+- line_2: Otwarcie Vadera pozostaje gro?ne, ale luka w wytrzyma?o?ci i skali jest zbyt du?a, by rozwi?za? j? konsekwentnie.
+- line_3: To stabilny pojedynek, a nie walka oparta na wielu ga??ziach.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Precyzyjne otwarcie kontra póŸna nieuchronnoœæ
+- subtitle: Precyzyjne otwarcie kontra p?na nieuchronno??
 - a_curve: 86,79,66,52,39
 - b_curve: 58,66,78,88,94
 - yellow_wave: 26,31,29,35,33,39,37,43
-- phase_1: Vader zaczyna wy¿ej, bo jego kontrola i timing czyni¹ pierwsz¹ wymianê groŸn¹.
-- phase_2: Thanos staje siê silniejszy, gdy tylko pierwszy bypass zawiedzie i walka robi siê fizyczna.
-- phase_3: Linia Vadera za³amuje siê, gdy musi wielokrotnie przyjmowaæ kary na poziomie kosmicznym.
-- analysis: Vader kontroluje momenty. Thanos kontroluje to, czym walka siê staje.
+- phase_1: Vader zaczyna wy?ej, bo jego kontrola i timing czyni? pierwsz? wymian? gro?n?.
+- phase_2: Thanos staje si? silniejszy, gdy tylko pierwszy bypass zawiedzie i walka robi si? fizyczna.
+- phase_3: Linia Vadera za?amuje si?, gdy musi wielokrotnie przyjmowa? kary na poziomie kosmicznym.
+- analysis: Vader kontroluje momenty. Thanos kontroluje to, czym walka si? staje.
 
 Template Fight Simulation:
 - headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Stabilny mismatch z jednym groŸnym oknem otwarcia
-- opening: Vader otwiera walkê telekinez¹, prekognicj¹ i œmiercionoœnoœci¹ w bliskim dystansie.
-- mid_fight: Thanos prze¿ywa pierwsz¹ chirurgiczn¹ próbê i przestaje traktowaæ wymianê jak techniczny pojedynek.
-- late_fight: Walka zamienia siê w tarcze, promienie, brutalne kontry i obra¿enia cia³a, których Vader nie mo¿e przyjmowaæ w kó³ko.
-- end_condition: Jeœli pierwszy bypass zawiedzie, walka natychmiast staje siê walk¹ Thanosa.
+- subtitle: Stabilny mismatch z jednym gro?nym oknem otwarcia
+- opening: Vader otwiera walk? telekinez?, prekognicj? i ?mierciono?no?ci? w bliskim dystansie.
+- mid_fight: Thanos prze?ywa pierwsz? chirurgiczn? pr?b? i przestaje traktowa? wymian? jak techniczny pojedynek.
+- late_fight: Walka zamienia si? w tarcze, promienie, brutalne kontry i obra?enia cia?a, kt?rych Vader nie mo?e przyjmowa? w k?ko.
+- end_condition: Je?li pierwszy bypass zawiedzie, walka natychmiast staje si? walk? Thanosa.
 - phase_1_mode: bars
 - phase_1_animation: feint-counter
 - phase_1_actor: a
 - phase_1_title: Chirurgiczne Otwarcie
 - phase_1_a_label: Kontrola
-- phase_1_b_label: Wytrzyma³oœæ
+- phase_1_b_label: Wytrzyma?o??
 - phase_1_a_value: 90
 - phase_1_b_value: 71
 - phase_2_mode: split
 - phase_2_animation: clash-lock
 - phase_2_actor: b
-- phase_2_title: Pierwsza Pora¿ka
-- phase_2_event: Thanos prze¿ywa pierwsz¹ realn¹ próbê rozwi¹zania walki i przestaje respektowaæ pojedynek.
-- phase_2_branch_a: Vader próbuje utrzymaæ walkê w technicznym re¿imie przez kolejn¹ presjê Mocy i k¹ty wejœcia.
-- phase_2_branch_b: Thanos zamienia mapê w tarcze, promienie i bezpoœrednie karanie cia³a.
+- phase_2_title: Pierwsza Pora?ka
+- phase_2_event: Thanos prze?ywa pierwsz? realn? pr?b? rozwi?zania walki i przestaje respektowa? pojedynek.
+- phase_2_branch_a: Vader pr?buje utrzyma? walk? w technicznym re?imie przez kolejn? presj? Mocy i k?ty wej?cia.
+- phase_2_branch_b: Thanos zamienia map? w tarcze, promienie i bezpo?rednie karanie cia?a.
 - phase_3_mode: split
 - phase_3_animation: trade-chaos
 - phase_3_actor: b
-- phase_3_title: Luka Skali Siê Wyp³aca
-- phase_3_event: Vader wci¹¿ mo¿e groziæ pojedynczymi momentami, ale wymiana ju¿ do niego nie nale¿y.
-- phase_3_branch_a: Cudowny bypass musia³by skoñczyæ walkê natychmiast.
-- phase_3_branch_b: Thanos absorbuje, kontruje i koñczy walkê si³¹.
+- phase_3_title: Luka Skali Si? Wyp?aca
+- phase_3_event: Vader wci?? mo?e grozi? pojedynczymi momentami, ale wymiana ju? do niego nie nale?y.
+- phase_3_branch_a: Cudowny bypass musia?by sko?czy? walk? natychmiast.
+- phase_3_branch_b: Thanos absorbuje, kontruje i ko?czy walk? si??.
 
 Template Fight Title:
 - fight_title: Darth Vader vs Thanos

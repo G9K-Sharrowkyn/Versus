@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Trigon (Prime Earth)
 
 2. Character A Stats
@@ -13,9 +13,9 @@ Experience: 94
 Combat Skills: 75
 
 3. Character A Feats
-Style: aggressive corruption, soul pressure, and possession-heavy domain warfare
-Advantage: the battlefield becomes more dangerous the more it starts behaving like his realm
-Mentality: he does not need a fair exchange; he needs the space to become hostile
+- Style: Demonic domination through corruption, possession, and realm influence.
+- Advantage: High-end mystical power with regeneration and dimensional control.
+- Mentality: Overwhelm opponents by turning space and conditions hostile.
 
 4. Defeated by Character A
 The Divine
@@ -39,9 +39,9 @@ Experience: 98
 Combat Skills: 79
 
 7. Character B Feats
-Style: detached cosmic pressure, energy conversion, and scale-based battlefield control
-Advantage: the larger and steadier engine once the field becomes something he can solve
-Mentality: he wins by normalizing chaos into fuel, not by respecting the opponent's preferred rules
+- Style: Cosmic control through energy manipulation, transmutation, and scale dominance.
+- Advantage: Power Cosmic with vast endurance and battlefield-wide influence.
+- Mentality: Treat conflict as an energy and inevitability problem.
 
 8. Defeated by Character B
 Silver Surfer (containment / barrier imprisonment)
@@ -69,11 +69,10 @@ verdict-matrix
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: Heart of Darkness empowerment, corruption, possession, and dimensional travel
-Tools: realm control and hostile-field pressure
-Tools: regeneration and resurrection support
-Weaknesses: strongest when the battlefield already favors him
-Weaknesses: neutral space makes his best control branch harder to lock
+- Powers: Demonic energy projection, corruption, possession, dimensional travel, and regeneration/resurrection traits.
+- Tools: Realm shaping/control and soul-pressure effects.
+- Weaknesses: Peak control is strongest inside favorable demonic environments.
+- Weaknesses: Broad cosmic resistance can slow his corruption tempo in neutral space.
 
 11. Character A Raw Feats
 consumed the Heart of Darkness
@@ -83,12 +82,10 @@ regenerated eye damage in combat time
 converted the Teen Titans into Dark Titans
 
 12. Character B Powers / Tools / Weaknesses
-Tools: Power Cosmic, transmutation, barriers, and energy projection
-Tools: energy absorption / conversion and battlefield normalization
-Tools: larger cosmic control engine once the field becomes solvable
-Weaknesses: satiation dependence matters
-Weaknesses: lower-fed states make his safest answers less reliable
-Weaknesses: hostile home-realm conditions can force him into worse branches
+- Powers: Power Cosmic, transmutation, large-scale energy projection, barriers, and matter/energy control.
+- Tools: Planetary or cosmic energy absorption and battlefield-scale normalization.
+- Weaknesses: Performance varies with feeding state.
+- Weaknesses: In low-fed states, response speed and margin for error decrease.
 
 13. Character B Raw Feats
 destroyed at least three solar systems while still weakened
@@ -100,27 +97,29 @@ defeated Sphinx by locking him into an eternal time loop
 Template Tactical Board:
 headline: TACTICAL BOARD // TRIGON VS GALACTUS
 subtitle: Realm corruption versus cosmic consumption
+linear_label: ODCINEK LINIOWY
+chaos_label: ODCINEK CHAOSU
 lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
 
 Template Character A:
 name: Trigon
 world: Prime Earth
-style: aggressive corruption, soul pressure, and possession-heavy domain warfare
-advantage: the battlefield becomes more dangerous the more it starts behaving like his realm
-mentality: he does not need a fair exchange; he needs the space to become hostile
-quote: Trigon does not need the cleaner duel. He needs the field to stop behaving normally.
+- style: Demonic domination through corruption, possession, and realm influence.
+- advantage: High-end mystical power with regeneration and dimensional control.
+- mentality: Overwhelm opponents by turning space and conditions hostile.
+- quote: I am Trigon.
 
 Template Character B:
 name: Galactus
 world: Earth-616, standard Devourer of Worlds
-style: detached cosmic pressure, energy conversion, and scale-based battlefield control
-advantage: the larger and steadier engine once the field becomes something he can solve
-mentality: he wins by normalizing chaos into fuel, not by respecting the opponent's preferred rules
-quote: Galactus wins once the battlefield becomes an energy problem instead of a demonic one.
+- style: Cosmic control through energy manipulation, transmutation, and scale dominance.
+- advantage: Power Cosmic with vast endurance and battlefield-wide influence.
+- mentality: Treat conflict as an energy and inevitability problem.
+- quote: I hunger.
 
 Template Powers / Tools / Weaknesses:
 headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle: What each side actually brings into the exchange
+subtitle: Core powers, tools, and weaknesses
 left_title: TRIGON TOOLKIT
 right_title: GALACTUS TOOLKIT
 powers_label: POWERS

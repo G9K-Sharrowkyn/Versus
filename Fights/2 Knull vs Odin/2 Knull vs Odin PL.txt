@@ -12,9 +12,9 @@
 - Umiejętności bojowe: 86
 
 3. Featy Postaci A
-- Styl: Kosmiczna presja kata, kontrola abyss i wymiany o wysokiej wartości
-- Atut: Czystsza pętla wyniszczenia, większa śmiercionośność ostrza i korupcja pola walki
-- Mentalność: Nie potrzebuje czystego pojedynku, tylko złego pola walki i jednego prawdziwego otwarcia
+- Styl: Kosmiczny styl drapieżny: kontrola Otchłani, presja miecza i wpływ symbiotów.
+- Atut: Śmiercionośność All-Black połączona z wysoką regeneracją i korupcją pola walki.
+- Mentalność: Przytłaczać przestrzeń i kończyć starcie narastającą presją egzystencjalną.
 
 4. Pokonani przez Postać A
 - Celestial
@@ -37,9 +37,9 @@
 - Umiejętności bojowe: 93
 
 7. Featy Postaci B
-- Styl: Archetyp strategicznego króla, bariery, dystans i kontrolowane okna burstu
-- Atut: Lepsze zarządzanie polem walki, reset tempa i kontrola w boskiej skali
-- Mentalność: Odrzuca oczywisty slugfest i próbuje utrzymać walkę w uporządkowanej strukturze
+- Styl: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
+- Atut: Ogromne doświadczenie i warstwowy zestaw magii oraz energii w skali kosmicznej.
+- Mentalność: Woli kontrolę i strukturę zamiast chaotycznej wymiany ciosów.
 
 8. Pokonani przez Postać B
 - Infinity
@@ -67,10 +67,10 @@
 - fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Narzędzia: All-Black, living abyss, kontrola symbiotycznego ula, presja infekcji, regeneracja i śmiercionośność przeciw bogom.
-- Narzędzia: Korupcja pola walki i presja powtarzalnego kontaktu sprawiają, że każda długa wymiana wygląda gorzej.
-- Słabości: Prawdziwe anti-abyss Light pozostaje najczystszą kanoniczną odpowiedzią na jego cały profil.
-- Słabości: Jasna albo boska energia może go ranić, ale nie jest automatycznie twardym cleanse'em.
+- Moce: Śmiercionośność All-Black, kontrola żywej Otchłani, kontrola roju symbiotów i wysoka regeneracja.
+- Narzędzia: Korupcja pola walki, presja konwersji symbiotycznej i stałe zagrożenie w bliskim kontakcie.
+- Słabości: Silne kontry na Otchłań lub bardzo intensywne światło mogą osłabiać jego główne atuty.
+- Słabości: Szeroka kosmiczna kontrola energii może zmuszać go do większych kosztów regeneracji i resetu tempa.
 
 11. Surowe Featy Postaci A
 - Ścina Celestiala i kuje All-Black z jego zwłok.
@@ -80,11 +80,10 @@
 - Unika Odinforce Thor i kontruje, zanim ten zdąży się zresetować.
 
 12. Moce / Narzędzia / Słabości Postaci B
-- Narzędzia: Full Odinforce, Destroyer Armor, Odinsword, bariery, kosmiczna projekcja energii i warstwowa kontrola pola walki.
-- Narzędzia: To konfiguracja wojenna w skali wojny z Celestialami, a nie zwykły dworski Odin.
-- Narzędzia: Ma więcej sposobów niż Knull, by zarządzać dystansem, resetować tempo i zamieniać chaos z powrotem w strukturę.
-- Słabości: Ten setup nie jest explicite pokazany jako odpowiednik Enigma Force.
-- Słabości: Jeśli jego energia nie potrafi zatrzymać Knulla na dobre, walka staje się problemem zasobów i kontaktu.
+- Moce: Pełny Odinforce, wielkoskalowa projekcja energii, bariery, transmutacja i boska magia.
+- Narzędzia: Destroyer Armor i Odinsword do walki na najwyższym poziomie kosmicznym.
+- Słabości: Skuteczność i precyzja potrafią się zmieniać zależnie od kontekstu, obciążenia i długości starcia.
+- Słabości: Strategiczna pycha może otwierać przeciwnikowi okna kontrataku.
 
 13. Surowe Featy Postaci B
 - Pochłania życiową siłę Asgardu i skaluje Destroyera do rozmiaru Celestiala.
@@ -98,29 +97,29 @@ Template Tactical Board:
 - subtitle: Abyssalne wyniszczenie kontra boska kontrola pola walki
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
-- linear_label: KONTROLA I STRUKTURA
-- chaos_label: REGENERACJA I KORUPCJA
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Odin musi zamienić chaos w strukturę, zanim Knull zamieni strukturę w wyniszczenie.
 
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: Earth-616 with All-Black
-- style: Kosmiczna presja kata z kontrolą abyss i powtarzalnymi wymianami o wysokiej wartości
-- advantage: Czystsza pętla wyniszczenia plus bardziej naturalnie śmiercionośna broń
-- mentality: Nie potrzebuje czystego pojedynku, tylko złego pola walki i jednego prawdziwego otwarcia
-- quote: Knull nie potrzebuje czystego pojedynku. Potrzebuje złego pola i jednego prawdziwego otwarcia.
+- style: Kosmiczny styl drapieżny: kontrola Otchłani, presja miecza i wpływ symbiotów.
+- advantage: Śmiercionośność All-Black połączona z wysoką regeneracją i korupcją pola walki.
+- mentality: Przytłaczać przestrzeń i kończyć starcie narastającą presją egzystencjalną.
+- quote: I am Knull, god of the abyss.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
 - world: Earth-616, Full Odinforce + Destroyer Armor + Odinsword
-- style: Strategiczna wojna króla z barierami, dystansem i kontrolowanymi oknami burstu
-- advantage: Lepsze zarządzanie polem walki i więcej sposobów na reset tempa
-- mentality: Wygrywa tylko wtedy, gdy utrzyma walkę w strukturze wystarczająco długo, by kontrola zaczęła mieć znaczenie
-- quote: Odin wygrywa tylko wtedy, gdy jego kontrola zamienia się w trwałe obrażenia, zanim pętla się zresetuje.
+- style: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
+- advantage: Ogromne doświadczenie i warstwowy zestaw magii oraz energii w skali kosmicznej.
+- mentality: Woli kontrolę i strukturę zamiast chaotycznej wymiany ciosów.
+- quote: I am Odin, All-Father of Asgard.
 
 Template Powers / Tools / Weaknesses:
 - headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Co każda strona naprawdę wnosi do wymiany
+- subtitle: Ogólne moce, narzędzia i słabości
 - left_title: ZESTAW KNULLA
 - right_title: ZESTAW ODINA
 - powers_label: MOCE
@@ -154,8 +153,8 @@ Template Interpretation:
 - headline: INTERPRETACJA
 - subtitle: Kto wygrywa walkę na papierze?
 - line_1: Na papierze to niemal remis, z mikroskopijną przewagą Odina w kategoriach kontroli.
-- line_2: W praktyce Knull dalej prowadzi, bo jego regeneracja i pętla ostrza łatwiej zamieniają się w realny finish.
-- line_3: Walka odwraca się czysto tylko wtedy, gdy pełny output Odina jest właściwym rodzajem anti-abyss answer.
+- line_2: W praktyce Knull dalej prowadzi, bo jego regeneracja i pętla ostrza łatwiej zamieniają się w realne zakończenie.
+- line_3: Walka odwraca się czysto tylko wtedy, gdy pełny output Odina jest właściwym rodzajem odpowiedzi na Otchłań.
 - quote: Parzystość na papierze nie rozwiązuje starcia, w którym idealne obrażenia mogą dalej nie być tymi właściwymi.
 
 Template Stat Trap:
@@ -164,7 +163,7 @@ Template Stat Trap:
 - trap_top: PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA
 - trap_bottom: KNULL POTRZEBUJE TYLKO JEDNEJ PĘTLI, ŻEBY ZACZĘŁA SIĘ OPŁACAĆ
 - example: Odin może być równy albo minimalnie wyżej w średnich i dalej przegrać, jeśli jego obrażenia są imponujące, ale nie trwałe.
-- question: Czy kontrola Odina naprawdę potrafi zamienić się w finish, którego Knull nie zregeneruje?
+- question: Czy kontrola Odina naprawdę potrafi zamienić się w zakończenie, którego Knull nie zregeneruje?
 
 Template X-Factor:
 - headline: X-FACTOR
@@ -175,9 +174,9 @@ Template X-Factor:
 - a_bonus_label: PĘTLA REGENERACJI
 - b_value: 50
 - b_bonus: 15
-- regen: KONTR-PURGE
+- regen: KONTR-OCZYSZCZENIE
 - mechanika: Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli działa jak właściwy rodzaj odpowiedzi na abyss.
-- implikacja: Właśnie dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny baseline i tak lekko przechyla się ku Knullowi.
+- implikacja: Właśnie dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny domyślny układ i tak lekko przechyla się ku Knullowi.
 - psychologia: Knull chce powtórzeń. Odin chce jednej kontrolowanej wymiany, która wreszcie zostaje rozwiązana na stałe.
 
 Template Winner CV:
@@ -192,9 +191,9 @@ Template Winner CV:
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: 
-- winner: Lekka przewaga Knulla, warunkowy matchup
+- winner: Lekka przewaga Knulla, warunkowy pojedynek
 - line_1: Na papierze to prawie parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.
-- line_2: W praktyce Knull ma czystszą pętlę wyniszczenia i finishu, gdy kontakt i regeneracja zaczynają się powtarzać.
+- line_2: W praktyce Knull ma czystszą pętlę wyniszczenia i zakończenia, gdy kontakt i regeneracja zaczynają się powtarzać.
 - line_3: Prawdziwa gałąź Odina istnieje tylko wtedy, gdy ta pełna konfiguracja wojenna daje mu właściwy rodzaj odpowiedzi na abyss.
 
 Template Battle Dynamics:
@@ -205,16 +204,16 @@ Template Battle Dynamics:
 - yellow_wave: 31,35,33,37,34,38,36,40
 - phase_1: Odin jest najmocniejszy, gdy mapa walki pozostaje uporządkowana i dystans wciąż ma znaczenie.
 - phase_2: Knull poprawia swoją pozycję za każdym razem, gdy kontakt się powtarza, a obrażenia zaczynają być wymazywane.
-- phase_3: Walka zależy od tego, czy kontrola zamienia się w purge, czy tylko w kolejny tymczasowy reset.
+- phase_3: Walka zależy od tego, czy kontrola zamienia się w oczyszczenie, czy tylko w kolejny tymczasowy reset.
 - analysis: Odin wygrywa czysto zarządzaną wersję tej walki. Knull wygrywa tę, która ciągle wraca.
 
 Template Fight Simulation:
 - headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Jeden branch check, dwa prawdziwe wyniki
+- subtitle: Jeden test gałęzi, dwa realne wyniki
 - opening: Knull od razu bierze inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie zatrzymuje abyss.
-- mid_fight: Odin odpowiada barierami, dystansem i warstwową energią, próbując powstrzymać walkę przed zsunięciem się w attrition Necrosworda.
+- mid_fight: Odin odpowiada barierami, dystansem i warstwową energią, próbując powstrzymać walkę przed zsunięciem się w wyniszczenie Necrosworda.
 - late_fight: Końcówka rozchodzi się w jednym punkcie: czy obrażenia Odina zostają, czy pętla Knulla znowu resetuje wymianę.
-- end_condition: Parzystość na papierze nic nie znaczy, jeśli jedna strona ma czystszą, powtarzalną ścieżkę finishu.
+- end_condition: Parzystość na papierze nic nie znaczy, jeśli jedna strona ma czystszą, powtarzalną ścieżkę zakończenia.
 - phase_1_mode: bars
 - phase_1_animation: rush-ko
 - phase_1_actor: a
@@ -228,14 +227,14 @@ Template Fight Simulation:
 - phase_2_actor: b
 - phase_2_title: Test Kontroli
 - phase_2_event: Odin próbuje zamienić złe pole walki z powrotem w zarządzalną kosmiczną linię starcia.
-- phase_2_branch_a: Odinforce zaczyna zachowywać się jak prawdziwy anti-abyss counter.
+- phase_2_branch_a: Odinforce zaczyna zachowywać się jak prawdziwa kontra na Otchłań.
 - phase_2_branch_b: Knull absorbuje próbę resetu tempa i utrzymuje walkę w brudnym trybie.
 - phase_3_mode: split
 - phase_3_animation: regen-attrition
 - phase_3_actor: a
-- phase_3_title: Pętla albo Purge
+- phase_3_title: Pętla albo Oczyszczenie
 - phase_3_event: Albo Odin wreszcie tworzy trwałe obrażenia, albo Knull zamienia kolejną dobrą sekwencję w następną rundę.
-- phase_3_branch_a: Kontrola Odina staje się prawdziwą ścieżką purge.
+- phase_3_branch_a: Kontrola Odina staje się prawdziwą ścieżką oczyszczenia.
 - phase_3_branch_b: Regeneracja i pętla ostrza Knulla przejmują walkę.
 
 Template Verdict Matrix:
@@ -247,8 +246,8 @@ Template Verdict Matrix:
 - row_bottom: KONTROLA ZŁAMANA
 - case_1: Odin 6.5/10. Jeśli output jest właściwym rodzajem odpowiedzi na abyss, kontrola wreszcie zaczyna znaczyć coś trwałego.
 - case_2: Knull 7/10. Jeśli output jest tylko ogromnym boskim damage'em, pętla Knulla ostatecznie wygrywa wojnę zasobów.
-- case_3: Odin 6.5/10. To ta sama prawdziwa gałąź: jeśli Odinforce naprawdę purge'uje abyss, mapa walki wciąż może zostać przywrócona pod kontrolę.
-- case_4: Knull 7/10. To ta sama prawdziwa gałąź: gdy kontrola pęka bez prawdziwego purge'u, Knull ma czystszą ścieżkę finishu.
+- case_3: Odin 6.5/10. To ta sama prawdziwa gałąź: jeśli Odinforce naprawdę oczyszcza Otchłań, mapa walki wciąż może zostać przywrócona pod kontrolę.
+- case_4: Knull 7/10. To ta sama prawdziwa gałąź: gdy kontrola pęka bez prawdziwego oczyszczenia, Knull ma czystszą ścieżkę zakończenia.
 
 Template Fight Title:
 - fight_title: Knull vs Odin

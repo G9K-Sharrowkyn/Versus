@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Trigon (Prime Earth)
 
 2. Character A Stats
@@ -13,9 +13,9 @@ Experience: 94
 Combat Skills: 75
 
 3. Character A Feats
-Style: agresywna korupcja, presja duszy i domenowa wojna oparta na opętaniu
-Advantage: pole walki staje się groźniejsze, im bardziej zaczyna działać jak jego własna domena
-Mentality: nie potrzebuje uczciwej wymiany; potrzebuje przestrzeni, która staje się wroga
+- Styl: Demoniczna dominacja przez korupcję, opętanie i wpływ domeny.
+- Atut: Wysokopoziomowa moc mistyczna, regeneracja i kontrola wymiarowa.
+- Mentalność: Przytłacza przeciwnika, zamieniając przestrzeń i warunki w środowisko wrogie.
 
 4. Defeated by Character A
 The Divine
@@ -39,9 +39,9 @@ Experience: 98
 Combat Skills: 79
 
 7. Character B Feats
-Style: zdystansowana kosmiczna presja, konwersja energii i kontrola pola walki oparta na skali
-Advantage: większy i stabilniejszy silnik, gdy pole walki staje się czymś, co może rozwiązać
-Mentality: wygrywa, normalizując chaos do roli paliwa, a nie respektując preferowane zasady przeciwnika
+- Styl: Kosmiczna kontrola przez manipulację energią, transmutację i przewagę skali.
+- Atut: Power Cosmic, ogromna wydolność i wpływ na całe pole walki.
+- Mentalność: Traktuje starcie jako problem energii i nieuchronności.
 
 8. Defeated by Character B
 Silver Surfer (uwięzienie / bariera)
@@ -69,11 +69,10 @@ verdict-matrix
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: wzmocnienie Sercem Ciemności, korupcja, opętanie i podróż międzywymiarowa
-Tools: kontrola domeny i presja wrogiego pola walki
-Tools: regeneracja i wsparcie zmartwychwstania
-Weaknesses: najsilniejszy jest wtedy, gdy pole walki już mu sprzyja
-Weaknesses: neutralna przestrzeń utrudnia domknięcie jego najlepszej gałęzi kontroli
+- Moce: Demoniczna projekcja energii, korupcja, opętanie, podróże międzywymiarowe oraz cechy regeneracji i zmartwychwstania.
+- Narzędzia: Kształtowanie i kontrola domeny oraz presja na poziomie duszy.
+- Słabości: Szczytowa kontrola działa najlepiej w środowisku sprzyjającym demonicznej domenie.
+- Słabości: Szeroka odporność kosmiczna może spowalniać tempo jego korupcji na neutralnym polu.
 
 11. Character A Raw Feats
 pochłonął Heart of Darkness
@@ -83,12 +82,10 @@ zregenerował uszkodzenie oka w czasie walki
 przemienił Teen Titans w Dark Titans
 
 12. Character B Powers / Tools / Weaknesses
-Tools: Power Cosmic, transmutacja, bariery i projekcja energii
-Tools: absorpcja / konwersja energii i normalizacja pola walki
-Tools: większy kosmiczny silnik kontroli, gdy pole walki staje się rozwiązywalne
-Weaknesses: poziom nasycenia ma znaczenie
-Weaknesses: stany głodu osłabiają jego najbezpieczniejsze odpowiedzi
-Weaknesses: wroga domena własna przeciwnika może zepchnąć go do gorszych gałęzi
+- Moce: Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii/energii.
+- Narzędzia: Absorpcja energii planetarnej lub kosmicznej oraz normalizacja pola walki.
+- Słabości: Skuteczność zależy od poziomu nasycenia.
+- Słabości: W stanie głodu spada szybkość odpowiedzi i margines błędu.
 
 13. Character B Raw Feats
 zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym
@@ -100,27 +97,29 @@ pokonał Sphinxa, zamykając go w wiecznej pętli czasu
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // TRIGON VS GALACTUS
 subtitle: Korupcja domeny kontra kosmiczna konsumpcja
+linear_label: ODCINEK LINIOWY
+chaos_label: ODCINEK CHAOSU
 lane: Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.
 
 Template Character A:
 name: Trigon
 world: Prime Earth
-style: agresywna korupcja, presja duszy i domenowa wojna oparta na opętaniu
-advantage: pole walki staje się groźniejsze, im bardziej zaczyna działać jak jego własna domena
-mentality: nie potrzebuje uczciwej wymiany; potrzebuje przestrzeni, która staje się wroga
-quote: Trigon nie potrzebuje czystszego pojedynku. Potrzebuje pola walki, które przestaje działać normalnie.
+- style: Demoniczna dominacja przez korupcję, opętanie i wpływ domeny.
+- advantage: Wysokopoziomowa moc mistyczna, regeneracja i kontrola wymiarowa.
+- mentality: Przytłacza przeciwnika, zamieniając przestrzeń i warunki w środowisko wrogie.
+- quote: I am Trigon.
 
 Template Character B:
 name: Galactus
 world: Earth-616, standardowy Devourer of Worlds
-style: zdystansowana kosmiczna presja, konwersja energii i kontrola pola walki oparta na skali
-advantage: większy i stabilniejszy silnik, gdy pole walki staje się czymś, co może rozwiązać
-mentality: wygrywa, normalizując chaos do roli paliwa, a nie respektując preferowane zasady przeciwnika
-quote: Galactus wygrywa, gdy pole walki staje się problemem energetycznym, a nie demonicznym.
+- style: Kosmiczna kontrola przez manipulację energią, transmutację i przewagę skali.
+- advantage: Power Cosmic, ogromna wydolność i wpływ na całe pole walki.
+- mentality: Traktuje starcie jako problem energii i nieuchronności.
+- quote: I hunger.
 
 Template Powers / Tools / Weaknesses:
 headline: MOCE, NARZĘDZIA I SŁABOŚCI
-subtitle: Co każda strona naprawdę wnosi do tej walki
+subtitle: Ogólne moce, narzędzia i słabości
 left_title: ARSENAŁ TRIGONA
 right_title: ARSENAŁ GALACTUSA
 powers_label: MOCE
@@ -164,7 +163,7 @@ Template Stat Trap:
 headline: DLACZEGO LEPSZE STATYSTYKI NIE GWARANTUJĄ ZWYCIĘSTWA
 subtitle: Stan pola walki ma tu większe znaczenie niż w zwykłej kosmicznej bijatyce
 question: Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?
-body: Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten matchup zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń.
+body: Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten pojedynek zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń.
 
 Template X-Factor:
 headline: X-FACTOR
@@ -188,7 +187,7 @@ subtitle:
 winner: Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa
 line_1: Galactus wygrywa porównanie na papierze, 92.67 vs 87.33.
 line_2: Trigon pozostaje groźny, gdy korupcja i logika domeny zastępują normalną symetrię walki.
-line_3: Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten matchup.
+line_3: Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten pojedynek.
 
 Template Battle Dynamics:
 headline: DYNAMIKA WALKI

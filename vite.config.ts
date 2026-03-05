@@ -84,6 +84,56 @@ const normalizeMatchName = (folderName: string) =>
 
 const asJson = (response: unknown) => JSON.stringify(response, null, 2)
 
+const MOJIBAKE_PATTERN = /[\u00C3\u00C4\u00C5\u0139\u0102\u00C2\u00E2\uFFFD]/g
+const POLISH_CHAR_PATTERN = /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g
+const INVALID_TEXT_ENCODING_ERROR = 'INVALID_TEXT_ENCODING'
+
+const scoreDecodedImportText = (value: string) => {
+  const polish = (value.match(POLISH_CHAR_PATTERN) || []).length
+  const bad = (value.match(MOJIBAKE_PATTERN) || []).length
+  return polish * 2 - bad * 3
+}
+
+const decodeImportTextBuffer = (payload: Buffer) => {
+  const bytes = new Uint8Array(payload)
+  const candidates: string[] = []
+
+  try {
+    candidates.push(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
+  } catch {
+    // Fallback handled below.
+  }
+
+  try {
+    candidates.push(new TextDecoder('windows-1250').decode(bytes))
+  } catch {
+    // Optional fallback.
+  }
+
+  if (!candidates.length) {
+    candidates.push(new TextDecoder('utf-8').decode(bytes))
+  }
+
+  let best = candidates[0] || ''
+  let bestScore = scoreDecodedImportText(best)
+
+  for (let index = 1; index < candidates.length; index += 1) {
+    const candidate = candidates[index] || ''
+    const score = scoreDecodedImportText(candidate)
+    if (score > bestScore) {
+      best = candidate
+      bestScore = score
+    }
+  }
+
+  const normalized = best.replace(/\r\n?/g, '\n').normalize('NFC')
+  const badCount = (normalized.match(MOJIBAKE_PATTERN) || []).length
+  if (badCount > 0 && bestScore < 0) {
+    throw new Error(INVALID_TEXT_ENCODING_ERROR)
+  }
+  return normalized
+}
+
 const contentTypeForImage = (fileName: string) => {
   const lower = fileName.toLowerCase()
   if (lower.endsWith('.png')) return 'image/png'
@@ -191,8 +241,13 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     for (const [txtIndex, txtFileName] of txtCandidates.entries()) {
       let txtContent = ''
       try {
-        txtContent = await fs.readFile(path.join(folderPath, txtFileName), 'utf8')
-      } catch {
+        const txtPayload = await fs.readFile(path.join(folderPath, txtFileName))
+        txtContent = decodeImportTextBuffer(txtPayload)
+      } catch (error) {
+        if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
+          warnings.push(`TXT \"${txtFileName}\" in folder \"${folderName}\" has unsupported encoding (use UTF-8 or Windows-1250).`)
+          continue
+        }
         warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
         continue
       }
@@ -340,6 +395,52 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
 
     if (requestUrl.pathname === '/api/fights/asset') {
       await handleFightsAssetRequest(requestUrl, res)
+      return
+    }
+
+    if (requestUrl.pathname === '/api/fights/image') {
+      const key = String(requestUrl.searchParams.get('key') || '').trim()
+      const fileName = String(requestUrl.searchParams.get('file') || '').trim()
+      if (!key || !fileName) {
+        res.statusCode = 400
+        res.end(asJson({ error: 'Invalid parameters' }))
+        return
+      }
+      const fightsDir = await resolveFightsDir()
+      if (!fightsDir) {
+        res.statusCode = 404
+        res.end(asJson({ error: 'Fights dir not found' }))
+        return
+      }
+      const normalizedKey = key.replace(/\\/g, '/')
+      const candidateFolder = path.resolve(fightsDir, normalizedKey)
+      const relativeFolder = path.relative(fightsDir, candidateFolder)
+      if (relativeFolder.startsWith('..') || path.isAbsolute(relativeFolder)) {
+        res.statusCode = 403
+        res.end(asJson({ error: 'Forbidden' }))
+        return
+      }
+
+      const candidates = [path.join(candidateFolder, 'img', fileName), path.join(candidateFolder, fileName)]
+      for (const candidatePath of candidates) {
+        const relativePath = path.relative(fightsDir, candidatePath)
+        if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
+          continue
+        }
+        try {
+          const payload = await fs.readFile(candidatePath)
+          res.statusCode = 200
+          res.setHeader('Content-Type', contentTypeForImage(fileName))
+          res.setHeader('Cache-Control', 'no-store')
+          res.end(payload)
+          return
+        } catch {
+          // Try next candidate.
+        }
+      }
+
+      res.statusCode = 404
+      res.end(asJson({ error: 'Image not found' }))
       return
     }
 

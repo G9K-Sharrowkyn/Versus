@@ -1,4 +1,4 @@
-﻿1. Superman (New 52)
+1. Superman (New 52)
 
 2. Statystyki Postaci A
 - Siła: 96
@@ -12,9 +12,9 @@
 - Umiejętności bojowe: 91
 
 3. Featy Postaci A
-- Styl: Kontrola wysokiego tempa, zarządzanie dystansem, adaptacja techniczna
-- Atut: Lepsze otwarcie, lepszy zestaw do domykania walki i lepsza kontrola szybkości
-- Mentalność: Rozwiązać walkę, zanim wyniszczenie stanie się prawdziwym problemem
+- Styl: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
+- Atut: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
+- Mentalność: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 
 4. Pokonani przez Postać A
 - Doomsday
@@ -37,9 +37,9 @@
 - Umiejętności bojowe: 83
 
 7. Featy Postaci B
-- Styl: Brutalna presja, gra na zderzeniach i wyniszczenie napędzane regeneracją
-- Atut: Przeżywalność i lepkość walki, gdy nie da się jej domknąć czysto
-- Mentalność: Wciągnąć każdą niedomkniętą wymianę w coś jeszcze brudniejszego
+- Styl: Brutalna agresja w zwarciu oparta na kolizjach, atomic vision i nieustannym pościgu.
+- Atut: Katastrofalna siła oraz regeneracja, które utrzymują zagrożenie mimo skrajnych obrażeń.
+- Mentalność: Bezwzględny i nieustępliwy; wymusza wynik stałą presją.
 
 8. Pokonani przez Postać B
 - Alternate Magneto
@@ -67,27 +67,25 @@
 - fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Lot, heat vision, freeze breath i pełny kryptoniański zestaw fizyczny.
-- Narzędzia: Wyższa szybkość, przetwarzanie sensoryczne i natychmiastowe przestawianie pozycji na polu walki.
-- Narzędzia: Może łączyć ruch, presję i ścieżki BFR lub incap w tej samej wymianie.
-- Narzędzia: Solar Flare jest prawdziwą, natywną ścieżką finishu dla tej wersji.
-- Słabości: Solar Flare jest kosztowny, jeśli nie kończy walki.
-- Słabości: Jeśli Hyperion dalej przeżywa czyste sekwencje, walka zaczyna premiować wyniszczenie zamiast tempa.
+- Moce: Kryptoniańska siła, szybkość, lot, wizja cieplna, mroźny oddech i wzmocniona percepcja zmysłowa.
+- Narzędzia: Taktyczny ruch, kontrola dystansu i błyskawiczne namierzanie celu.
+- Narzędzia: Solar Flare jako kosztowna opcja kończąca dla New 52 Supermana.
+- Słabości: Ekspozycja na kryptonit, podatność na magię i utrata mocy pod czerwonym słońcem.
+- Słabości: Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki.
 
 11. Surowe Featy Postaci A
 - Wyciska ciężar równy masie Ziemi przez pięć kolejnych dni.
-- Wbija Wraitha w Księżyc w peer-level finisherze bojowym.
+- Wbija Wraitha w Księżyc w uderzeniu kończącym na poziomie równorzędnego przeciwnika.
 - Przeszukuje globalnie Ziemię w poszukiwaniu Doomsdaya z prędkością tysiąca mil na sekundę.
 - Przetrzymuje obrażenia na poziomie black-hole bez utraty kontroli.
 - Zachowuje kontrolę pod ekstremalną presją wytrzymałościową zamiast pozwolić, by wymiana się załamała.
 
 12. Moce / Narzędzia / Słabości Postaci B
-- Moce: Brutalna siła, atomic vision i ekstremalna regeneracja.
-- Narzędzia: Najlepiej działa w powtarzalnym kontakcie i niedomkniętych wymianach.
-- Narzędzia: Wibracja lub fazowanie mają znaczenie tylko jako dodatkowy trik przetrwania, nie główna ścieżka wygranej.
-- Narzędzia: Lokalne dowody z Exiles pokazują też, że zdominował dwóch alternatywnych Hyperionów.
-- Słabości: Najpewniejsze zwycięstwa wciąż wymagają, by przeżył wystarczająco długo, żeby wyniszczenie zaczęło mieć znaczenie.
-- Słabości: Linia o Thorze, Herculesie i Galactusie jest statement-backed ceiling note, nie czystym zestawem on-panel winów.
+- Moce: Ekstremalna siła, wytrzymałość, lot, wizja atomowa i szybka regeneracja.
+- Narzędzia: Bezpośredni styl presji i wysokoenergetyczny atak promieniami.
+- Narzędzia: Wibracja/fazowanie molekularne do obchodzenia obrony i wychodzenia z pułapek (w wybranych pokazaniach).
+- Słabości: Wrażliwość na Argonite i niestabilność psychiczna w części wersji.
+- Słabości: Skrajna pycha może otwierać luki taktyczne przeciw zdyscyplinowanym rywalom.
 
 13. Surowe Featy Postaci B
 - Przetrwał zniszczenie Earth-4023.
@@ -98,28 +96,28 @@
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // SUPERMAN VS KING HYPERION
-- subtitle: Czyściejsze otwarcie kontra bardziej lepki profil przetrwania
+- subtitle: Lepsze otwarcie kontra trudniejsza do przełamania przeżywalność
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
-- linear_label: SZYBKOŚĆ I KONTROLA
-- chaos_label: REGENERACJA I WYNISZCZENIE
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Superman wygrywa przez domknięcie. Hyperion wygrywa, gdy domknięcie zawodzi.
 
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: New 52
-- style: Kontrola wysokiego tempa oparta na szybkości, dystansie i adaptacji technicznej
-- advantage: Lepsze otwarcie plus lepszy zestaw do domykania walki
-- mentality: Zakończyć walkę, zanim wyniszczenie przepisze wymianę
-- quote: Lepsze tempo liczy się tylko wtedy, gdy prowadzi do prawdziwego finishu.
+- style: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
+- advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
+- mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
+- quote: This looks like a job for Superman.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
 - world: Earth-4023
-- style: Brutalna presja, wymiany na zderzeniach i regeneracyjne wyniszczenie
-- advantage: Przeżywa wystarczająco długo, by każda niedomknięta sekwencja była mniej warta
-- mentality: Wciągnąć walkę w brzydki, powtarzalny kontakt
-- quote: Jeśli nie domkniesz tego czysto, dostanę kolejną turę.
+- style: Brutalna agresja w zwarciu oparta na kolizjach, atomic vision i nieustannym pościgu.
+- advantage: Katastrofalna siła oraz regeneracja, które utrzymują zagrożenie mimo skrajnych obrażeń.
+- mentality: Bezwzględny i nieustępliwy; wymusza wynik stałą presją.
+- quote: Właśnie tak, skarbie... Hyperion.
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
@@ -151,11 +149,11 @@ Template Stat Trap:
 - trap_top: SZYBKOŚĆ I KONTROLA WYGRYWAJĄ WYMIANY
 - trap_bottom: REGENERACJA ZMIENIA TO, ILE WARTA JEST WYMIANA
 - example: Sekwencja, która kończy większość bricków, może tylko zresetować Hyperiona i uruchomić problem od nowa.
-- question: Czy Superman zamieni tempo w domknięcie, zanim wyniszczenie przepisze walkę?
+- question: Czy Superman zamieni przewagę tempa w realne zakończenie, zanim regeneracja Hyperiona zacznie niwelować kolejne trafienia?
 
 Template Powers / Tools / Weaknesses:
 - headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Co każda strona naprawdę wnosi do wymiany
+- subtitle: Ogólne moce, narzędzia i słabości
 - left_title: ZESTAW SUPERMANA
 - right_title: ZESTAW HYPERIONA
 - powers_label: MOCE
@@ -168,6 +166,26 @@ Template Raw Feats:
 - left_title: POKAZ SUPERMANA
 - right_title: POKAZ HYPERIONA
 - feat_label: FEAT
+- left_item_1: Wyciska ciężar równy masie Ziemi przez pięć kolejnych dni.
+- left_image_1: 01_6_1_superman_bench_press_earth_equivalent.jpg
+- left_item_2: Wbija Wraitha w Księżyc w uderzeniu kończącym na poziomie równorzędnego przeciwnika.
+- left_image_2: 03_6_1_superman_punches_wraith_through_the_moon.jpg
+- left_item_3: Przeszukuje globalnie Ziemię w poszukiwaniu Doomsdaya z prędkością tysiąca mil na sekundę.
+- left_image_3: 04_6_1_superman_searches_globally_for_doomsday.jpeg
+- left_item_4: Przetrzymuje obrażenia na poziomie black-hole bez utraty kontroli.
+- left_image_4: 02_6_1_superman_survives_black_hole_level_punishment.jpg
+- left_item_5: Zachowuje kontrolę pod ekstremalną presją wytrzymałościową.
+- left_image_5: 05_6_1_superman_high_end_endurance_control.jpg
+- right_item_1: Przetrwał zniszczenie Earth-4023.
+- right_image_1: 06_6_2_hyperion_survives_world_destruction.png
+- right_item_2: Otrząsnął się po skręceniu karku o sto osiemdziesiąt stopni przez Namorę.
+- right_image_2: 07_6_2_hyperion_recovers_after_neck_snap.png
+- right_item_3: Regeneruje się po katastrofalnych obrażeniach zamiast po prostu paść.
+- right_image_3: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
+- right_item_4: Dezintegruje Weapon X Vision swoim atomic vision.
+- right_image_4: 10_6_2_hyperion_disintegrates_weapon_x_vision.jpg
+- right_item_5: Dominuje dwóch alternatywnych Hyperionów.
+- right_image_5: 08_6_2_hyperion_overwhelms_two_alternate_hyperions.png
 
 Template X-Factor:
 - headline: X-FACTOR
@@ -175,13 +193,13 @@ Template X-Factor:
 - factor: JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI
 - a_value: 50
 - a_bonus: 14
-- a_bonus_label: OKNO FINISHU
+- a_bonus_label: OKNO ZAKOŃCZENIA
 - b_value: 50
 - b_bonus: 12
 - regen: PĘTLA REGENERACJI
-- mechanika: Superman ma czystszą ścieżkę finishu, ale Hyperion potrafi zamienić obrażenia w kolejną rundę.
-- implikacja: Jeśli Clark nie skończy walki prawdziwym stop condition, branch Hyperiona rośnie z każdym cyklem.
-- psychologia: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie jest częścią jego win condition.
+- mechanika: Superman ma czystszą ścieżkę zakończenia, ale Hyperion potrafi zamienić obrażenia w kolejną rundę.
+- implikacja: Jeśli Clark nie skończy walki prawdziwym warunkiem zatrzymania, wariant Hyperiona rośnie z każdym cyklem.
+- psychologia: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie jest częścią jego warunku zwycięstwa.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw
@@ -190,7 +208,27 @@ Template Winner CV:
 - avg_label: ŚREDNI WYNIK
 - left_title: REKORD SUPERMANA
 - right_title: REKORD HYPERIONA
-- win_badge: W
+- win_badge: Wf
+- left_item_1: Doomsday
+- left_image_1: 11_7_1_superman_doomsday_finish.jpg
+- left_item_2: Wraith
+- left_image_2: 12_7_1_superman_beats_wraith.jpg
+- left_item_3: Parasite
+- left_image_3: 13_7_1_superman_blitzes_parasite.jpg
+- left_item_4: Mongul
+- left_image_4: 14_7_1_superman_blitzes_mongul.jpg
+- left_item_5: Apollo
+- left_image_5: 15_7_1_superman_beats_apollo.jpg
+- right_item_1: Alternate Magneto
+- right_image_1: 16_7_2_hyperion_kills_magneto.png
+- right_item_2: Wolverine
+- right_image_2: 17_7_2_hyperion_kills_wolverine.png
+- right_item_3: Weapon X Vision
+- right_image_3: 18_7_2_hyperion_kills_weapon_x_vision.jpg
+- right_item_4: Thor
+- right_image_4: 19_7_2_hyperion_beats_thor.png
+- right_item_5: Hulk (Earth-4400)
+- right_image_5: 20_7_2_hyperion_kills_hulk_and_others.png
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
@@ -205,7 +243,7 @@ Template Fight Simulation:
 - subtitle: Rozgałęzione wyniki zależnie od jakości domknięcia
 - opening: Superman otwiera walkę szybkością, dystansem i czystszymi odczytami.
 - mid_fight: Hyperion przeżywa, skraca dystans i próbuje zamienić wymianę w wyniszczenie.
-- late_fight: Końcówka zależy od tego, czy Clark eskaluje do prawdziwego finishera, zanim regeneracja zresetuje wartość obrażeń.
+- late_fight: Końcówka zależy od tego, czy Clark eskaluje do prawdziwego uderzenia kończącego, zanim regeneracja zresetuje wartość obrażeń.
 - end_condition: Standardowe zasady premiują kontrolę i usuwanie z walki. Kill-only premiuje tego, kto przeżyje niedomkniętą sekwencję.
 - phase_1_mode: bars
 - phase_1_animation: kite-zone
@@ -225,9 +263,9 @@ Template Fight Simulation:
 - phase_3_mode: split
 - phase_3_animation: teleport-burst
 - phase_3_actor: a
-- phase_3_title: Okno Finishu
+- phase_3_title: Okno Zakończenia
 - phase_3_event: Clark albo zamienia tempo w prawdziwe zakończenie, albo patrzy, jak ten sam problem znowu staje na nogi.
-- phase_3_branch_a: Solar Flare albo czysta ścieżka incap wreszcie kończy walkę.
+- phase_3_branch_a: Solar Flare albo czysta ścieżka obezwładnienia wreszcie kończy walkę.
 - phase_3_branch_b: Hyperion przeżywa jeszcze raz i walka robi się gorsza z każdym cyklem.
 
 Template Battle Dynamics:
@@ -243,14 +281,14 @@ Template Battle Dynamics:
 
 Template Verdict Matrix:
 - headline: MATRYCA WERDYKTU
-- subtitle: Matchup zmienia się wraz z dostępem do finishu i warunkiem końcowym
+- subtitle: Pojedynek zmienia się wraz z dostępem do domknięcia i warunkiem końcowym
 - col_left: STANDARD KO/BFR/INCAP
 - col_right: KILL-ONLY DEATHMATCH
 - row_top: SOLAR FLARE TAK
 - row_bottom: SOLAR FLARE NIE
-- case_1: Superman 7/10. To najczystsza gałąź Clarka: szybkość, kontrola i legalna ścieżka finishu idą w tym samym kierunku.
-- case_2: Superman 5.5/10. Solar Flare utrzymuje kill path przy życiu, ale kill-only wciąż zmusza go do trwałego rozwiązania regeneracji.
-- case_3: Superman 6/10. Clark dalej kontroluje tempo i lepiej domyka non-lethal, ale margines zawęża się bez najmocniejszego wbudowanego finishera.
+- case_1: Superman 7/10. To najczystsza gałąź Clarka: szybkość, kontrola i legalna ścieżka domknięcia idą w tym samym kierunku.
+- case_2: Superman 5.5/10. Solar Flare utrzymuje ścieżkę śmiertelnego zakończenia przy życiu, ale kill-only wciąż zmusza go do trwałego rozwiązania regeneracji.
+- case_3: Superman 6/10. Clark dalej kontroluje tempo i lepiej domyka nieśmiercionośne, ale margines zawęża się bez najmocniejszego wbudowanego uderzenia kończącego.
 - case_4: King Hyperion 6/10. To najlepsza gałąź Hyperiona, bo każda niedomknięta wymiana dokarmia ekonomię wyniszczenia.
 
 Template Fight Title:
@@ -260,3 +298,4 @@ Template Fight Title:
 - top_color_b: #93c5fd
 - bottom_color_a: #facc15
 - bottom_color_b: #dc2626
+

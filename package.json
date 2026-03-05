@@ -5,9 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "prebuild": "npm run i18n:audit && npm run i18n:keys",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "i18n:audit": "node scripts/audit-text-encoding.mjs",
+    "i18n:keys": "node scripts/i18n-keys-check.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",

@@ -12,9 +12,9 @@
 - Combat Skills: 92
 
 3. Character A Feats
-- Style: Pressure technician, Force control, and lethal close-range conversion
-- Advantage: Better technical fighting, sharper first read, and the only real bypass route
-- Mentality: Needs to solve the fight surgically before the scale gap turns physical
+- Style: Technical pressure fighting that combines saber precision with Force control.
+- Advantage: Elite combat skill with dangerous precision-targeting Force offense.
+- Mentality: Calculated and patient, then lethal when openings appear.
 
 4. Defeated by Character A
 - Dark Woman
@@ -37,9 +37,9 @@
 - Combat Skills: 88
 
 7. Character B Feats
-- Style: Cosmic warlord pressure, layered durability, and brutal counter-escalation
-- Advantage: Too much durability, too many answers, and too much experience above Vader's normal tier
-- Mentality: Only needs to survive the first surgical attempt and then turn the map into a stat check
+- Style: Methodical cosmic warfighting with overwhelming force and tactical control.
+- Advantage: Exceptional durability, power output, and strategic adaptability.
+- Mentality: Cold strategist who turns prolonged conflict into certainty.
 
 8. Defeated by Character B
 - Silver Surfer
@@ -65,12 +65,10 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Lightsaber lethality, telekinesis, Force choke/crush, and strong precognition.
-- Tools: Energy defense and multi-vector combat control let him shape the first exchange fast.
-- Tools: Internal-force offense is the only credible upset path in this matchup.
-- Weaknesses: Life-support dependence makes every heavy hit matter more.
-- Weaknesses: His durability scale is far below Thanos once the first bypass fails.
-- Weaknesses: If the opening solve attempt does not finish the fight, the map becomes a losing stat war.
+- Powers: Force telekinesis, precognition, choke/crush techniques, and elite lightsaber lethality.
+- Tools: Defensive saber discipline, blaster/energy deflection, and Force-based battlefield control.
+- Weaknesses: Cybernetic life-support dependence and vulnerability to sustained system disruption.
+- Weaknesses: Lower raw physical durability and scale than top cosmic entities.
 
 11. Character A Raw Feats
 - Picks up and slams down a Y-Wing bomber.
@@ -80,11 +78,10 @@
 - Survives a giant explosion that destroys a casino.
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Cosmic-tier strength, durability, energy projection, and force fields.
-- Tools: Telepathy resistance, matter manipulation, and battlefield control.
-- Tools: Layered durability gives him more than one answer once Vader's first bypass fails.
-- Weaknesses: Arrogance matters more here than any real physical gap.
-- Weaknesses: He has very few true vulnerabilities, so Vader's margin lives almost entirely in the opening.
+- Powers: Massive strength and durability, cosmic energy projection, force fields, and matter manipulation.
+- Tools: Strategic intellect, combat adaptability, and broad resistance profile.
+- Weaknesses: Arrogance and tendency to test opponents can create early openings.
+- Weaknesses: Without Infinity Stones, he remains elite but lacks Gauntlet-level instant authority.
 
 13. Character B Raw Feats
 - Destroys a planet during a fight with Drax.
@@ -98,29 +95,29 @@ Template Tactical Board:
 - subtitle: Precision opening versus cosmic durability wall
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: SURGICAL OPENING
-- chaos_label: COSMIC WALL
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Vader must solve the fight fast. Thanos only needs the opening to fail once.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: Legends Prime
-- style: Pressure technician with Force control and lethal close-range conversion
-- advantage: Better technical fighting and the only real bypass route
-- mentality: Solve the fight surgically before the scale gap turns physical
-- quote: The only real upset route is surgical, immediate, and unforgiving.
+- style: Technical pressure fighting that combines saber precision with Force control.
+- advantage: Elite combat skill with dangerous precision-targeting Force offense.
+- mentality: Calculated and patient, then lethal when openings appear.
+- quote: I find your lack of faith disturbing.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Earth-616, no Infinity Stones
-- style: Cosmic warlord pressure with layered durability and brutal counter-escalation
-- advantage: Too much durability, too many answers, and too much scale
-- mentality: Survive the first solve attempt and turn the fight into a stat check
-- quote: If the first answer does not finish him, the fight belongs to Thanos.
+- style: Methodical cosmic warfighting with overwhelming force and tactical control.
+- advantage: Exceptional durability, power output, and strategic adaptability.
+- mentality: Cold strategist who turns prolonged conflict into certainty.
+- quote: Dread it. Run from it. Destiny arrives all the same.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: What each side actually brings into the exchange
+- subtitle: Core powers, tools, and weaknesses
 - left_title: VADER TOOLKIT
 - right_title: THANOS TOOLKIT
 - powers_label: POWERS

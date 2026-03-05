@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Atrocitus (Butcher)
 
 2. Character A Stats
@@ -13,9 +13,9 @@ Experience: 91
 Combat Skills: 80
 
 3. Character A Feats
-Style: ranged pressure, blood-ritual warfare, and ring-backed control
-Advantage: better speed, hax, and cleaner early control
-Mentality: wants the fight structured and externalized before Hulk turns it into a loop
+- Style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
+- Advantage: Powerful emotional-spectrum offense with strong ranged pressure.
+- Mentality: Direct and violent, aiming to break resistance early.
 
 4. Defeated by Character A
 The Butcher Entity
@@ -39,9 +39,9 @@ Experience: 78
 Combat Skills: 81
 
 7. Character B Feats
-Style: relentless contact pressure, direct physical escalation, regeneration, and stamina
-Advantage: better repeat contact, regeneration, and cleaner long-fight finish route
-Mentality: wants the fight simpler, dirtier, and more repetitive
+- Style: Relentless close-range destruction with escalating strength and durability.
+- Advantage: Extreme regeneration, stamina, and compounding physical force.
+- Mentality: Keep pressing until resistance collapses.
 
 8. Defeated by Character B
 Sentry
@@ -68,12 +68,10 @@ fight-simulation
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: rage plasma, blood magic, ritual control, and ranged punishment
-Tools: flight, space control, and ring-backed battlefield management
-Tools: Butcher containment and entity logic give him a stronger early control layer
-Weaknesses: ring dependence matters once the fight becomes messy and repetitive
-Weaknesses: his safest win routes are front-loaded, not infinite
-Weaknesses: if Hulk turns rage control into fuel, the control plan backfires
+- Powers: Red Lantern plasma output, constructs, blood magic/rituals, flight, and Butcher-linked rage dynamics.
+- Tools: Emotional-spectrum manipulation and high-pressure ranged offense.
+- Weaknesses: Ring or construct-output dependence and front-loaded control windows.
+- Weaknesses: Prolonged direct brawls can reduce his tactical edge.
 
 11. Character A Raw Feats
 Bound the Butcher inside his power battery
@@ -83,12 +81,10 @@ Burned through the fabric of space with rage plasma
 Overpowered Saint Walker, Indigo-1, and Star Sapphire together
 
 12. Character B Powers / Tools / Weaknesses
-Tools: gamma escalation, regeneration, and relentless contact pressure
-Tools: shockwaves, thunderclaps, and brute-force re-entry once distance collapses
-Tools: absurd stamina and a cleaner late-fight loop than Atrocitus
-Weaknesses: limited non-physical answer set if he cannot force contact
-Weaknesses: early ranged control is the phase where he is most vulnerable
-Weaknesses: he gets stronger the longer the control plan fails
+- Powers: Gamma-based strength growth, regeneration, thunderclap/shockwave output, and extreme stamina.
+- Tools: Relentless close-range pressure and escalating damage loops.
+- Weaknesses: Limited precision utility at long range versus dedicated control users.
+- Weaknesses: Strategy set is narrower when denied sustained contact.
 
 13. Character B Raw Feats
 Planet and moon collateral output from World Breaker scale
@@ -104,21 +100,21 @@ lane: Atrocitus wins by keeping the fight structured. Hulk wins by turning struc
 
 Template Character A:
 world: Butcher-locked Red Lantern host
-style: Ranged pressure and ritual control
-advantage: Better speed, hax, and first-phase control
-mentality: Wants the fight structured before it becomes a loop
-quote: Atrocitus wins by managing rage from the outside, not by brawling inside it.
+- style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
+- advantage: Powerful emotional-spectrum offense with strong ranged pressure.
+- mentality: Direct and violent, aiming to break resistance early.
+- quote: With blood and rage...
 
 Template Character B:
 world: World War Hulk / World Breaker era
-style: Contact pressure and physical escalation
-advantage: Cleaner long-fight finish route
-mentality: Wants the fight simpler, dirtier, and more repetitive
-quote: Hulk does not need the better toolkit. He needs one loop he can survive.
+- style: Relentless close-range destruction with escalating strength and durability.
+- advantage: Extreme regeneration, stamina, and compounding physical force.
+- mentality: Keep pressing until resistance collapses.
+- quote: Hulk is strongest there is.
 
 Template Powers / Tools / Weaknesses:
 headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle: What each side actually brings into the exchange
+subtitle: Core powers, tools, and weaknesses
 left_title: ATROCITUS TOOLKIT
 right_title: HULK TOOLKIT
 powers_label: POWERS

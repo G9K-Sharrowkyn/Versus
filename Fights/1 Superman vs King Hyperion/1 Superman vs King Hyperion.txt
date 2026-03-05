@@ -12,9 +12,9 @@
 - Combat Skills: 91
 
 3. Character A Feats
-- Style: High-tempo control, spacing, technical adaptation
-- Advantage: Better opener, better closure toolkit, stronger speed control
-- Mentality: Solve the fight before attrition becomes the real game
+- Style: Direct Kryptonian combat centered on overwhelming physical force, speed bursts, and heavy striking.
+- Advantage: Massive statistical superiority in strength, speed, and durability versus most opponents.
+- Mentality: He holds back by default and escalates only when lives or stakes force him to.
 
 4. Defeated by Character A
 - Doomsday
@@ -36,9 +36,9 @@
 - Combat Skills: 83
 
 7. Character B Feats
-- Style: Brutal pressure, collision game, regen-driven attrition
-- Advantage: Survivability and stickiness once the fight stops closing cleanly
-- Mentality: Ruthless enough to drag every unfinished exchange into something uglier
+- Style: Brutal close-quarters aggression with collision attacks, atomic vision, and relentless pursuit.
+- Advantage: Catastrophic power plus regeneration that keeps him dangerous after extreme damage.
+- Mentality: Ruthless and uncompromising; he forces decisive outcomes through pressure.
 
 8. Defeated by Character B
 - Alternate Magneto
@@ -66,12 +66,11 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Flight, heat vision, freeze breath, and a full Kryptonian physical kit.
-- Tools: Superior speed, sensory processing, and instant battlefield repositioning.
-- Tools: Can stack movement, pressure, and ring-out or incap routes in the same exchange.
-- Tools: Solar Flare is a real native finisher path for this version.
-- Weaknesses: Solar Flare is costly if it does not end the fight.
-- Weaknesses: If Hyperion keeps surviving clean sequences, the fight starts rewarding attrition over tempo.
+- Powers: Kryptonian strength, speed, flight, heat vision, freeze breath, and enhanced sensory perception.
+- Tools: Tactical movement, range control, and rapid target acquisition.
+- Tools: Solar Flare as a high-cost finishing option for New 52 Superman.
+- Weaknesses: Kryptonite exposure, magic susceptibility, and red-sun power loss.
+- Weaknesses: Solar Flare leaves a temporary vulnerability window if it does not end the fight.
 
 11. Character A Raw Feats
 - Bench-presses the Earth-equivalent weight for five straight days.
@@ -80,12 +79,11 @@
 - Survives black-hole-level punishment without losing control.
 - Keeps control under heavy-endurance pressure instead of letting the exchange collapse.
 12. Character B Powers / Tools / Weaknesses
-- Powers: Brute force, atomic vision, and extreme regeneration.
-- Tools: Thrives in repeated contact and unfinished exchanges.
-- Tools: Secondary vibration or phasing utility matters only as a survival wrinkle, not the main route.
-- Tools: Local Exiles evidence also shows him overwhelming two alternate Hyperions.
-- Weaknesses: The safest wins still require him to live long enough for attrition to matter.
-- Weaknesses: The Thor, Hercules, and Galactus line is a statement-backed ceiling note, not a clean on-panel win set.
+- Powers: Extreme strength, durability, flight, atomic vision, and rapid regeneration.
+- Tools: Direct pressure fighting and high-output beam offense.
+- Tools: Molecular vibration/phasing for bypass and escape in select showings.
+- Weaknesses: Argonite vulnerability and psychological instability in some portrayals.
+- Weaknesses: Extreme arrogance can open tactical gaps against disciplined opponents.
 
 13. Character B Raw Feats
 - Survives the destruction of Earth-4023.
@@ -95,28 +93,28 @@
 - Overwhelms two alternate Hyperions.
 Template Tactical Board:
 - headline: TACTICAL BOARD // SUPERMAN VS KING HYPERION
-- subtitle: Cleaner opener versus stickier survival profile
+- subtitle: Better opening versus harder-to-break survival
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: SPEED AND CONTROL
-- chaos_label: REGEN AND ATTRITION
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Superman wins by closure. Hyperion wins by making closure fail.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52
-- style: High-tempo control with speed, spacing, and technical adaptation
-- advantage: Better opener plus better closure toolkit
-- mentality: End the fight before attrition rewrites the exchange
-- quote: Better tempo only matters if it turns into a real finish.
+- style: Direct Kryptonian combat centered on overwhelming physical force, speed bursts, and heavy striking.
+- advantage: Massive statistical superiority in strength, speed, and durability versus most opponents.
+- mentality: He holds back by default and escalates only when lives or stakes force him to.
+- quote: This looks like a job for Superman.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Earth-4023
-- style: Brutal pressure, collision exchanges, and regeneration attrition
-- advantage: Survives long enough to make every unfinished sequence matter less
-- mentality: Drag the fight into ugly repeated contact
-- quote: If you do not close it cleanly, I get another turn.
+- style: Brutal close-quarters aggression with collision attacks, atomic vision, and relentless pursuit.
+- advantage: Catastrophic power plus regeneration that keeps him dangerous after extreme damage.
+- mentality: Ruthless and uncompromising; he forces decisive outcomes through pressure.
+- quote: That's right, baby... Hyperion.
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
@@ -152,7 +150,7 @@ Template Stat Trap:
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: What each side actually brings into the exchange
+- subtitle: Core powers, tools, and weaknesses
 - left_title: SUPERMAN TOOLKIT
 - right_title: HYPERION TOOLKIT
 - powers_label: POWERS
@@ -165,6 +163,26 @@ Template Raw Feats:
 - left_title: SUPERMAN SHOWCASE
 - right_title: HYPERION SHOWCASE
 - feat_label: FEAT
+- left_item_1: Bench-presses the Earth-equivalent weight for five straight days.
+- left_image_1: 01_6_1_superman_bench_press_earth_equivalent.jpg
+- left_item_2: Punches Wraith through the Moon in a peer-level combat finish.
+- left_image_2: 03_6_1_superman_punches_wraith_through_the_moon.jpg
+- left_item_3: Searches globally for Doomsday at one-thousand miles per second.
+- left_image_3: 04_6_1_superman_searches_globally_for_doomsday.jpeg
+- left_item_4: Survives black-hole-level punishment without losing control.
+- left_image_4: 02_6_1_superman_survives_black_hole_level_punishment.jpg
+- left_item_5: Keeps control under heavy-endurance pressure.
+- left_image_5: 05_6_1_superman_high_end_endurance_control.jpg
+- right_item_1: Survives the destruction of Earth-4023.
+- right_image_1: 06_6_2_hyperion_survives_world_destruction.png
+- right_item_2: Recovers after Namora twists his neck one-hundred-eighty degrees.
+- right_image_2: 07_6_2_hyperion_recovers_after_neck_snap.png
+- right_item_3: Regenerates after catastrophic damage instead of staying down.
+- right_image_3: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
+- right_item_4: Disintegrates Weapon X Vision with atomic vision.
+- right_image_4: 10_6_2_hyperion_disintegrates_weapon_x_vision.jpg
+- right_item_5: Overwhelms two alternate Hyperions.
+- right_image_5: 08_6_2_hyperion_overwhelms_two_alternate_hyperions.png
 
 Template X-Factor:
 - headline: X-FACTOR
@@ -188,6 +206,26 @@ Template Winner CV:
 - left_title: SUPERMAN RECORD
 - right_title: HYPERION RECORD
 - win_badge: W
+- left_item_1: Doomsday
+- left_image_1: 11_7_1_superman_doomsday_finish.jpg
+- left_item_2: Wraith
+- left_image_2: 12_7_1_superman_beats_wraith.jpg
+- left_item_3: Parasite
+- left_image_3: 13_7_1_superman_blitzes_parasite.jpg
+- left_item_4: Mongul
+- left_image_4: 14_7_1_superman_blitzes_mongul.jpg
+- left_item_5: Apollo
+- left_image_5: 15_7_1_superman_beats_apollo.jpg
+- right_item_1: Alternate Magneto
+- right_image_1: 16_7_2_hyperion_kills_magneto.png
+- right_item_2: Wolverine
+- right_image_2: 17_7_2_hyperion_kills_wolverine.png
+- right_item_3: Weapon X Vision
+- right_image_3: 18_7_2_hyperion_kills_weapon_x_vision.jpg
+- right_item_4: Thor
+- right_image_4: 19_7_2_hyperion_beats_thor.png
+- right_item_5: Hulk (Earth-4400)
+- right_image_5: 20_7_2_hyperion_kills_hulk_and_others.png
 
 Template Summary:
 - headline: FINAL SUMMARY

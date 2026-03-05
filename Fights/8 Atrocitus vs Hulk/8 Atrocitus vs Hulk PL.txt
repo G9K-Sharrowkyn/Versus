@@ -1,4 +1,4 @@
-﻿1. Character A
+1. Character A
 Atrocitus (Butcher)
 
 2. Character A Stats
@@ -13,9 +13,9 @@ Experience: 91
 Combat Skills: 80
 
 3. Character A Feats
-Style: dystansowa presja, wojna rytuałów krwi i kontrola wspierana pierścieniem
-Advantage: lepsza szybkość, hax i czystsza kontrola w pierwszej fazie
-Mentality: chce utrzymać walkę w ryzach, zanim Hulk zamieni ją w pętlę
+- Styl: Agresywna wojna gniewu oparta na plazmie, konstruktach i rytualnej magii.
+- Atut: Bardzo mocny atak spektrum emocji i silna presja dystansowa.
+- Mentalność: Bezpośredni i brutalny; dąży do szybkiego złamania oporu.
 
 4. Defeated by Character A
 The Butcher Entity
@@ -39,9 +39,9 @@ Experience: 78
 Combat Skills: 81
 
 7. Character B Feats
-Style: nieustanna presja kontaktowa, bezpośrednia eskalacja fizyczna, regeneracja i stamina
-Advantage: lepszy powtarzalny kontakt, regeneracja i czystsza ścieżka kończenia w długiej walce
-Mentality: chce, żeby walka była prostsza, brudniejsza i bardziej powtarzalna
+- Styl: Nieustanna destrukcja w zwarciu z narastającą siłą i wytrzymałością.
+- Atut: Ekstremalna regeneracja, kondycja i kumulująca się siła fizyczna.
+- Mentalność: Napiera bez przerwy, aż opór przeciwnika się załamie.
 
 8. Defeated by Character B
 Sentry
@@ -68,12 +68,10 @@ fight-simulation
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-Tools: plazma furii, magia krwi, kontrola rytualna i karanie na dystans
-Tools: lot, kontrola przestrzeni i zarządzanie polem walki wspierane pierścieniem
-Tools: relacja z Butcherem i logika bytu dają mu mocniejszą warstwę wczesnej kontroli
-Weaknesses: zależność od pierścienia ma znaczenie, gdy walka robi się brudna i powtarzalna
-Weaknesses: jego najbezpieczniejsze ścieżki zwycięstwa są front-loaded, nie nieskończone
-Weaknesses: jeśli kontrola gniewu zaczyna karmić Hulka, plan kontroli obraca się przeciw niemu
+- Moce: Czerwona plazmowa emisja Pierścienia, konstrukty, magia krwi/rytuały, lot i dynamika gniewu powiązana z Butcherem.
+- Narzędzia: Manipulacja spektrum emocjonalnym i silna presja dystansowa.
+- Słabości: Zależność od pierścienia i wczesne okna kontroli.
+- Słabości: Długie bezpośrednie bijatyki mogą osłabiać jego przewagę taktyczną.
 
 11. Character A Raw Feats
 Uwięził Butchera w swojej baterii mocy
@@ -83,12 +81,10 @@ Przepalił plazmą furii samą strukturę przestrzeni
 Przytłoczył jednocześnie Saint Walkera, Indigo-1 i Star Sapphire
 
 12. Character B Powers / Tools / Weaknesses
-Tools: eskalacja gamma, regeneracja i nieustanna presja kontaktowa
-Tools: fale uderzeniowe, thunderclapy i brutalny powrót do zasięgu po złamaniu dystansu
-Tools: absurdalna stamina i czystsza pętla późnej walki niż u Atrocitusa
-Weaknesses: ograniczony zestaw nie-fizycznych odpowiedzi, jeśli nie może wymusić kontaktu
-Weaknesses: wczesna walka na dystans to faza, w której jest najbardziej podatny
-Weaknesses: staje się groźniejszy, im dłużej plan kontroli zawodzi
+- Moce: Wzrost siły oparty na gammie, regeneracja, fale uderzeniowe i ekstremalna kondycja.
+- Narzędzia: Nieustanna presja w zwarciu i eskalujące pętle obrażeń.
+- Słabości: Ograniczona precyzyjna użyteczność na dystans wobec wyspecjalizowanych kontrolerów.
+- Słabości: Zestaw strategii wyraźnie się zawęża, gdy nie może utrzymać stałego kontaktu.
 
 13. Character B Raw Feats
 Skala World Breakera daje mu kolateralne zniszczenie planety i księżyca
@@ -104,21 +100,21 @@ lane: Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli za
 
 Template Character A:
 world: Butcher-locked Red Lantern host
-style: Presja na dystans i kontrola rytualna
-advantage: Lepsza szybkość, hax i kontrola pierwszej fazy
-mentality: Chce utrzymać walkę w ryzach, zanim zamieni się w pętlę
-quote: Atrocitus wygrywa, zarządzając gniewem z zewnątrz, a nie bijąc się w jego środku.
+- style: Agresywna wojna gniewu oparta na plazmie, konstruktach i rytualnej magii.
+- advantage: Bardzo mocny atak spektrum emocji i silna presja dystansowa.
+- mentality: Bezpośredni i brutalny; dąży do szybkiego złamania oporu.
+- quote: With blood and rage...
 
 Template Character B:
 world: Era World War Hulk / World Breaker
-style: Presja kontaktowa i fizyczna eskalacja
-advantage: Czystsza ścieżka kończenia długiej walki
-mentality: Chce, żeby walka była prostsza, brudniejsza i bardziej powtarzalna
-quote: Hulk nie potrzebuje lepszego arsenału. Potrzebuje jednej pętli, którą przeżyje.
+- style: Nieustanna destrukcja w zwarciu z narastającą siłą i wytrzymałością.
+- advantage: Ekstremalna regeneracja, kondycja i kumulująca się siła fizyczna.
+- mentality: Napiera bez przerwy, aż opór przeciwnika się załamie.
+- quote: Hulk is strongest there is.
 
 Template Powers / Tools / Weaknesses:
 headline: MOCE, NARZĘDZIA I SŁABOŚCI
-subtitle: Co każda strona naprawdę wnosi do tej walki
+subtitle: Ogólne moce, narzędzia i słabości
 left_title: ARSENAŁ ATROCITUSA
 right_title: ARSENAŁ HULKA
 powers_label: MOCE
@@ -155,8 +151,8 @@ Template Interpretation:
 headline: INTERPRETACJA
 subtitle: Kto wygrywa na papierze?
 question: Kto wygrywa na papierze?
-answer: Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk.
-body: Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli. Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny. To matchup, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.
+odpowiedzią: Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk.
+body: Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli. Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny. To pojedynek, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.
 
 Template Stat Trap:
 headline: PUŁAPKA STATYSTYK
@@ -188,7 +184,7 @@ subtitle:
 winner: World Breaker Hulk 6.5/10
 line_1: Atrocitus wygrywa porównanie na papierze, 85.6 vs 83.9.
 line_2: Hulk wygrywa więcej realnych walk, bo powtarzalny kontakt i regeneracja tworzą czystszą ścieżkę kończenia.
-line_3: Atrocitus odwraca ten matchup tylko wtedy, gdy dystans i kontrola utrzymują się od początku do końca.
+line_3: Atrocitus odwraca ten pojedynek tylko wtedy, gdy dystans i kontrola utrzymują się od początku do końca.
 
 Template Battle Dynamics:
 headline: DYNAMIKA WALKI
@@ -200,7 +196,7 @@ right_curve_body: Zaczyna niżej, potem szybko rośnie, gdy regeneracja i wejśc
 
 Template Fight Simulation:
 headline: SYMULACJA WALKI
-subtitle: Jak ten matchup naprawdę się rozwija
+subtitle: Jak ten pojedynek naprawdę się rozwija
 phase_1_title: Atrocitus zaczyna poza zasięgiem
 phase_1_body: Atrocitus otwiera walkę lotem, plazmą i kontrolą gniewu, żeby nie pozwolić Hulkowi zbudować prostego rytmu.
 phase_1_animation: kite-zone

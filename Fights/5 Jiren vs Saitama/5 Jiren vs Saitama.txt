@@ -12,9 +12,9 @@
 - Combat Skills: 94
 
 3. Character A Feats
-- Style: Disciplined pressure, barriers, and finish-first exchanges
-- Advantage: Better opener, cleaner reads, and more reliable first-phase control
-- Mentality: End the fight before weirdness and escalation get room to breathe
+- Style: Minimal-motion efficiency with overwhelming ki pressure and clean counters.
+- Advantage: Top-tier reactions, durability, and consistency under pressure.
+- Mentality: End fights directly and avoid unnecessary risk.
 
 4. Defeated by Character A
 - Hit
@@ -37,9 +37,9 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Style: Simple brawling, absurd force, and explosive late growth
-- Advantage: Better survivability into escalation and a much scarier long game
-- Mentality: Does not need the cleaner start; only enough fight to make the start irrelevant
+- Style: Direct close-range striking with absurd physical output and simple mechanics.
+- Advantage: Extreme stamina, durability, and growth potential in prolonged exchanges.
+- Mentality: Unfazed and straightforward, escalating naturally with the fight.
 
 8. Defeated by Character B
 - Boros
@@ -66,11 +66,10 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Overwhelming ki pressure, barriers, anti-time interaction, and elite reaction speed.
-- Tools: Raw force and low-motion control let him dominate the opening without wasting movement.
-- Tools: He is at his best when the fight stays inside the first clean finish window.
-- Weaknesses: He has few special backup win routes once the first control phase fails.
-- Weaknesses: If the opponent survives the intended finish, Jiren has to win a harder future fight than the one he started.
+- Powers: Extreme ki output, barrier techniques, anti-time interaction, and elite speed/reactions.
+- Tools: Efficient minimal-motion striking and opening-phase pressure control.
+- Weaknesses: Limited exotic utility compared with heavy hax specialists.
+- Weaknesses: If early control fails, he can be pulled into less favorable escalation loops.
 
 11. Character A Raw Feats
 - Blocks Super Saiyan God Goku with one finger.
@@ -80,12 +79,10 @@
 - Sits above Belmod's benchmark (scaling-based tier anchor).
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Absurd physical force, absurd survivability, and near-bottomless stamina.
-- Tools: Growth and escalation are real fight variables, not just flavor text.
-- Tools: The time-anomaly branch exists, but it is not a standard opener.
-- Weaknesses: Early simplicity and lack of layered setup tools make the start much cleaner for Jiren.
-- Weaknesses: He can lose the fight before the escalation branch becomes live.
-- Weaknesses: His baseline rhythm is easier to punish than his late-game ceiling is to survive.
+- Powers: Extreme physical power, durability, stamina, and growth under prolonged conflict.
+- Tools: Direct close-range offense and rapid adaptation through repeated exchanges.
+- Weaknesses: Minimal formal technique variety and fewer layered utility options.
+- Weaknesses: Relies heavily on direct engagement rather than ranged control frameworks.
 
 13. Character B Raw Feats
 - Serious Punch Squared carves a void through space.
@@ -99,29 +96,29 @@ Template Tactical Board:
 - subtitle: Cleaner first minute versus scarier long game
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: OPENING CONTROL
-- chaos_label: ESCALATION TIME
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: Dragon Ball Super, anime + manga mix
-- style: Disciplined pressure, barriers, and finish-first exchanges
-- advantage: Better opener, cleaner reads, and more reliable first-phase control
-- mentality: End the fight before weirdness and escalation get room to breathe
-- quote: Jiren's best route is still the first route.
+- style: Minimal-motion efficiency with overwhelming ki pressure and clean counters.
+- advantage: Top-tier reactions, durability, and consistency under pressure.
+- mentality: End fights directly and avoid unnecessary risk.
+- quote: Strength is absolute.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Murata manga
-- style: Simple brawling, absurd force, and explosive late growth
-- advantage: Better survivability into escalation and a much scarier long game
-- mentality: Does not need the cleaner start; only enough fight to make the start irrelevant
-- quote: Saitama does not need the better start. He needs enough fight to become the worse problem.
+- style: Direct close-range striking with absurd physical output and simple mechanics.
+- advantage: Extreme stamina, durability, and growth potential in prolonged exchanges.
+- mentality: Unfazed and straightforward, escalating naturally with the fight.
+- quote: I am just a guy who is a hero for fun.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: What each side actually brings into the exchange
+- subtitle: Core powers, tools, and weaknesses
 - left_title: JIREN TOOLKIT
 - right_title: SAITAMA TOOLKIT
 - powers_label: POWERS

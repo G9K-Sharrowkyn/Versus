@@ -1,4 +1,4 @@
-﻿1. Jiren (Dragon Ball Super, miks anime + mangi)
+1. Jiren (Dragon Ball Super, miks anime + mangi)
 
 2. Character A Stats
 - Strength: 96
@@ -12,9 +12,9 @@
 - Combat Skills: 94
 
 3. Character A Feats
-- Style: Zdyscyplinowana presja, bariery i wymiany kończone jak najwcześniej
-- Advantage: Lepsze otwarcie, czystsze odczyty i bardziej niezawodna kontrola pierwszej fazy
-- Mentality: Zakończyć walkę, zanim dziwne mechaniki i eskalacja dostaną miejsce do pracy
+- Styl: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
+- Atut: Topowy refleks, wytrzymałość i powtarzalność pod presją.
+- Mentalność: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
 
 4. Defeated by Character A
 - Hit
@@ -37,16 +37,16 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Style: Prosta bijatyka, absurdalna siła i wybuchowa późna eskalacja
-- Advantage: Lepsze przeżycie do fazy eskalacji i znacznie groźniejsza długa gra
-- Mentality: Nie potrzebuje lepszego startu; potrzebuje tylko tyle walki, by start przestał mieć znaczenie
+- Styl: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
+- Atut: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
+- Mentalność: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
 
 8. Defeated by Character B
 - Boros
 - Elder Centipede
 - Orochi
 - Evil Ocean Water (neutralizacja)
-- Garou (Cosmic Fear Mode) (decydujący wynik zależny od linii czasu)
+- Garou (Cosmic Fear Mode) (decyduj?cy wynik zale?ny od linii czasu)
 
 9. Template Order
 - tactical-board
@@ -66,156 +66,153 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: Przytłaczająca presja ki, bariery, interakcja anty-czasowa i elitarna szybkość reakcji.
-- Tools: Surowa siła i kontrola otwarcia przy minimalnym ruchu pozwalają mu zdominować początek walki.
-- Tools: Jest najgroźniejszy wtedy, gdy walka mieści się w jego pierwszym czystym oknie finiszu.
-- Weaknesses: Ma niewiele specjalnych dróg zapasowych, jeśli pierwsza faza kontroli zawiedzie.
-- Weaknesses: Jeśli przeciwnik przeżyje planowany finisz, Jiren musi wygrać trudniejszą przyszłą walkę niż tę, którą rozpoczął.
+- Moce: Ekstremalna emisja ki, techniki barierowe, interakcja z efektami czasu oraz elitarna szybkość i refleks.
+- Narzędzia: Bardzo wydajny styl uderzeń przy minimalnym ruchu i kontrola presji w fazie otwarcia.
+- Słabości: Ograniczona egzotyczna użyteczność względem specjalistów od ciężkiego haksu.
+- Słabości: Jeśli kontrola otwarcia pęknie, może zostać wciągnięty w mniej korzystną pętlę eskalacji.
 
 11. Character A Raw Feats
 - Blokuje Super Saiyan God Goku jednym palcem.
-- Rozbija Cage of Time Hita samą surową siłą.
+- Rozbija Cage of Time Hita sam? surow? si??.
 - Odpiera Spirit Bomb Universe 7 samym spojrzeniem.
-- Utrzymuje pasywną barierę podczas medytacji.
+- Utrzymuje pasywn? barier? podczas medytacji.
 - Stoi ponad benchmarkiem Belmoda (kotwica tieru oparta na skalowaniu).
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Absurdalna siła fizyczna, absurdalna przeżywalność i niemal bezdenna wytrzymałość.
-- Tools: Wzrost i eskalacja są realnymi zmiennymi walki, a nie tylko ozdobnikiem.
-- Tools: Gałąź anomalii czasowej istnieje, ale nie jest standardowym otwarciem.
-- Weaknesses: Wczesna prostota i brak warstwowych setupów sprawiają, że start jest znacznie czystszy dla Jirena.
-- Weaknesses: Może przegrać walkę, zanim gałąź eskalacji w ogóle stanie się aktywna.
-- Weaknesses: Jego bazowy rytm jest łatwiejszy do karania niż jego późny sufit do przetrwania.
+- Moce: Ekstremalna siła fizyczna, wytrzymałość, kondycja i wzrost mocy w długim starciu.
+- Narzędzia: Bezpośredni atak z bliska i szybka adaptacja przez powtarzane wymiany.
+- Słabości: Mało formalnej różnorodności technicznej i mniej warstwowych narzędzi użytkowych.
+- Słabości: Silnie opiera się na bezpośrednim kontakcie, a nie na ramach kontroli dystansowej.
 
 13. Character B Raw Feats
-- Serious Punch Squared wycina pustkę w przestrzeni.
+- Serious Punch Squared wycina pustk? w przestrzeni.
 - Serious Sneeze zdziera gazowe warstwy Jowisza.
 - Chwyta i kopie hyperspace gates.
-- Przeżywa Gamma Ray Burst i dalej walczy.
-- Kopiuje technikę Garou i trafia Zero Punchem.
+- Prze?ywa Gamma Ray Burst i dalej walczy.
+- Kopiuje technik? Garou i trafia Zero Punchem.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // JIREN VS SAITAMA
-- subtitle: Czystsza pierwsza minuta kontra groźniejsza długa gra
+- subtitle: Czystsza pierwsza minuta kontra gro?niejsza d?uga gra
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
-- linear_label: KONTROLA OTWARCIA
-- chaos_label: CZAS NA ESKALACJĘ
-- lane: Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie.
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
+- lane: Jiren wygrywa, je?li ko?czy wczesn? walk?. Saitama wygrywa, je?li przetrwa na tyle d?ugo, ?e wczesna walka przestaje mie? znaczenie.
 
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: Dragon Ball Super, miks anime + mangi
-- style: Zdyscyplinowana presja, bariery i wymiany kończone jak najwcześniej
-- advantage: Lepsze otwarcie, czystsze odczyty i bardziej niezawodna kontrola pierwszej fazy
-- mentality: Zakończyć walkę, zanim dziwne mechaniki i eskalacja dostaną miejsce do pracy
-- quote: Najlepsza droga Jirena to wciąż ta pierwsza.
+- style: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
+- advantage: Topowy refleks, wytrzymałość i powtarzalność pod presją.
+- mentality: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
+- quote: Strength is absolute.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
 - world: manga Muraty
-- style: Prosta bijatyka, absurdalna siła i wybuchowa późna eskalacja
-- advantage: Lepsze przeżycie do fazy eskalacji i znacznie groźniejsza długa gra
-- mentality: Nie potrzebuje lepszego startu; potrzebuje tylko tyle walki, by stać się gorszym problemem
-- quote: Saitama nie potrzebuje lepszego startu. Potrzebuje tylko tyle walki, by stać się gorszym problemem.
+- style: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
+- advantage: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
+- mentality: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
+- quote: I am just a guy who is a hero for fun.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Co każda strona naprawdę wnosi do wymiany
+- headline: MOCE, NARZ?DZIA I S?ABO?CI
+- subtitle: Co ka?da strona naprawd? wnosi do wymiany
 - left_title: ZESTAW JIRENA
 - right_title: ZESTAW SAITAMY
 - powers_label: MOCE
-- tools_label: NARZĘDZIA
-- weaknesses_label: SŁABOŚCI
+- tools_label: NARZ?DZIA
+- weaknesses_label: S?ABO?CI
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- subtitle: Czyste przyk?ady pokazowe, nie pe?ne archiwa
 - left_title: POKAZ JIRENA
 - right_title: POKAZ SAITAMY
 - feat_label: FEAT
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI WYSOKIEGO POZIOMU
-- subtitle: Odczyt statystyk dwóch profili
+- subtitle: Odczyt statystyk dw?ch profili
 - threat_level: COSMIC
 - integrity: 99.3%
 - profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
-- headline: PORÓWNANIE PARAMETRÓW
-- subtitle: Mapa średniego profilu statystyk
+- headline: POR?WNANIE PARAMETR?W
+- subtitle: Mapa ?redniego profilu statystyk
 - left_header: PRZEWAGI JIRENA
 - right_header: PRZEWAGI SAITAMY
 - draw_header: STREFY REMISU
-- favorite_label: FAWORYT WEDŁUG STATYSTYK
+- favorite_label: FAWORYT WED?UG STATYSTYK
 
 Template Interpretation:
 - headline: INTERPRETACJA
-- subtitle: Kto wygrywa walkę na papierze?
-- line_1: Jiren ma czystszy start, lepsze odczyty i bardziej niezawodną strukturę wczesnego finiszu.
-- line_2: Saitama zachowuje realną późną gałąź tylko dlatego, że jego przeżywalność może zamienić przyszłą wersję walki w coś gorszego.
-- line_3: Na papierze przewaga należy do Jirena, ale walka przestaje być papierowa, jeśli przetrwanie zamienia się w eskalację.
-- quote: Początek należy do Jirena. Zagrożenie należy do tego, co go przeżyje.
+- subtitle: Kto wygrywa walk? na papierze?
+- line_1: Jiren ma czystszy start, lepsze odczyty i bardziej niezawodn? struktur? wczesnego finiszu.
+- line_2: Saitama zachowuje realn? p?n? ga??? tylko dlatego, ?e jego prze?ywalno?? mo?e zamieni? przysz?? wersj? walki w co? gorszego.
+- line_3: Na papierze przewaga nale?y do Jirena, ale walka przestaje by? papierowa, je?li przetrwanie zamienia si? w eskalacj?.
+- quote: Pocz?tek nale?y do Jirena. Zagro?enie nale?y do tego, co go prze?yje.
 
 Template Stat Trap:
-- headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego lepsze statystyki startowe nie gwarantują całej walki
+- headline: PU?APKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki startowe nie gwarantuj? ca?ej walki
 - trap_top: PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI
-- trap_bottom: ESKALACJA MOŻE STWORZYĆ GORSZĄ DRUGĄ WERSJĘ
-- example: Jiren może kontrolować start i nadal przegrać późniejszą wymianę, jeśli pierwszy finisz nigdy naprawdę nie nastąpi.
-- question: Czy Jiren zdoła skończyć walkę, zanim przetrwanie zamieni się w eskalację?
+- trap_bottom: ESKALACJA MO?E STWORZY? GORSZ? DRUG? WERSJ?
+- example: Jiren mo?e kontrolowa? start i nadal przegra? p?niejsz? wymian?, je?li pierwszy finisz nigdy naprawd? nie nast?pi.
+- question: Czy Jiren zdo?a sko?czy? walk?, zanim przetrwanie zamieni si? w eskalacj??
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która zamienia to w dwie różne walki
-- factor: KONTROLA OTWARCIA VS CZAS NA ESKALACJĘ
+- subtitle: Jedna zmienna, kt?ra zamienia to w dwie r?ne walki
+- factor: KONTROLA OTWARCIA VS CZAS NA ESKALACJ?
 - a_value: 50
 - a_bonus: 15
 - a_bonus_label: WCZESNE OKNO FINISZU
 - b_value: 50
 - b_bonus: 14
-- regen: PÓŹNA ESKALACJA WALKI
-- mechanika: Przewaga Jirena żyje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia się dopiero wtedy, gdy to okno zawiedzie wystarczająco mocno.
-- implikacja: Jeśli Jiren utrzyma walkę we wczesnej fazie, wygrywa czysto. Jeśli walka się wymknie, Saitama staje się groźniejszym silnikiem przyszłej walki.
-- psychologia: Jiren chce rozwiązać walkę, zanim stanie się dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwność się wydarzyła.
+- regen: P?NA ESKALACJA WALKI
+- mechanika: Przewaga Jirena ?yje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia si? dopiero wtedy, gdy to okno zawiedzie wystarczaj?co mocno.
+- implikacja: Je?li Jiren utrzyma walk? we wczesnej fazie, wygrywa czysto. Je?li walka si? wymknie, Saitama staje si? gro?niejszym silnikiem przysz?ej walki.
+- psychologia: Jiren chce rozwi?za? walk?, zanim stanie si? dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwno?? si? wydarzy?a.
 
 Template Winner CV:
-- headline: Archiwum zwycięstw
+- headline: Archiwum zwyci?stw
 - subtitle:
 - archive_label:
-- avg_label: ŚR. WYNIK
+- avg_label: ?R. WYNIK
 - left_title: REKORD JIRENA
 - right_title: REKORD SAITAMY
 - win_badge: W
 
 Template Summary:
-- headline: PODSUMOWANIE KOŃCOWE
+- headline: PODSUMOWANIE KO?COWE
 - subtitle:
-- winner: Jiren prowadzi, ale Saitama ma żywą późną gałąź
-- line_1: Jiren wygrywa porównanie na papierze, 89.67 vs 81.22.
-- line_2: Jego baseline bierze się z lepszej kontroli otwarcia i czystszej struktury finiszu.
-- line_3: Saitama odwraca walkę tylko wtedy, gdy przetrwanie zmienia się w prawdziwą eskalację i gałąź anomalii staje się aktywna.
+- winner: Jiren prowadzi, ale Saitama ma ?yw? p?n? ga???
+- line_1: Jiren wygrywa por?wnanie na papierze, 89.67 vs 81.22.
+- line_2: Jego domyślny układ bierze si? z lepszej kontroli otwarcia i czystszej struktury finiszu.
+- line_3: Saitama odwraca walk? tylko wtedy, gdy przetrwanie zmienia si? w prawdziw? eskalacj? i ga??? anomalii staje si? aktywna.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Kontrola otwarcia kontra przyszła eskalacja
+- subtitle: Kontrola otwarcia kontra przysz?a eskalacja
 - a_curve: 91,87,79,68,56
 - b_curve: 39,43,52,66,81
 - yellow_wave: 28,31,30,34,33,38,37,44
-- phase_1: Jiren zaczyna wysoko, bo presja, bariery i czyste odczyty mają największe znaczenie na początku.
-- phase_2: Linia Saitamy rośnie tylko wtedy, gdy pierwszy prawdziwy finisz nie trzyma.
-- phase_3: Jiren szybko traci przewagę, gdy walka przechodzi z kontroli otwarcia do późnej eskalacji.
-- analysis: Jiren wygrywa czystszy start. Saitama wygrywa bardziej brudną przyszłą wersję walki.
+- phase_1: Jiren zaczyna wysoko, bo presja, bariery i czyste odczyty maj? najwi?ksze znaczenie na pocz?tku.
+- phase_2: Linia Saitamy ro?nie tylko wtedy, gdy pierwszy prawdziwy finisz nie trzyma.
+- phase_3: Jiren szybko traci przewag?, gdy walka przechodzi z kontroli otwarcia do p?nej eskalacji.
+- analysis: Jiren wygrywa czystszy start. Saitama wygrywa bardziej brudn? przysz?? wersj? walki.
 
 Template Fight Simulation:
 - headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Matchup warunkowy z jedną główną osią
-- opening: Jiren od razu przejmuje kontrolę przez presję, spacing i efektywność.
-- mid_fight: Saitama bardziej przetrwa niż dyktuje i próbuje wytrzymać na tyle długo, by wymiana zaczęła się zmieniać.
-- late_fight: Walka rozdziela się w zależności od tego, czy Jiren kończy wcześnie, czy Saitama przetrwa do eskalacji.
-- end_condition: Jiren wygrywa, jeśli kończy pierwszą wersję walki. Saitama wygrywa, jeśli przetrwa do silniejszej drugiej wersji.
+- subtitle: Warunkowy pojedynek z jedną główną osią
+- opening: Jiren od razu przejmuje kontrol? przez presj?, spacing i efektywno??.
+- mid_fight: Saitama bardziej przetrwa ni? dyktuje i pr?buje wytrzyma? na tyle d?ugo, by wymiana zacz?a si? zmienia?.
+- late_fight: Walka rozdziela si? w zale?no?ci od tego, czy Jiren ko?czy wcze?nie, czy Saitama przetrwa do eskalacji.
+- end_condition: Jiren wygrywa, je?li ko?czy pierwsz? wersj? walki. Saitama wygrywa, je?li przetrwa do silniejszej drugiej wersji.
 - phase_1_mode: bars
 - phase_1_animation: feint-counter
 - phase_1_actor: a
@@ -227,17 +224,17 @@ Template Fight Simulation:
 - phase_2_mode: split
 - phase_2_animation: clash-lock
 - phase_2_actor: a
-- phase_2_title: Pierwsza Porażka Planu
-- phase_2_event: Walka zmienia się w chwili, gdy czysta sekwencja finiszu Jirena nie domyka sprawy.
-- phase_2_branch_a: Jiren utrzymuje walkę w ryzach i nie daje czasu na prawdziwy wzrost.
-- phase_2_branch_b: Saitama przetrwa na tyle długo, że wymiana staje się gorszym przyszłym problemem.
+- phase_2_title: Pierwsza Pora?ka Planu
+- phase_2_event: Walka zmienia si? w chwili, gdy czysta sekwencja finiszu Jirena nie domyka sprawy.
+- phase_2_branch_a: Jiren utrzymuje walk? w ryzach i nie daje czasu na prawdziwy wzrost.
+- phase_2_branch_b: Saitama przetrwa na tyle d?ugo, ?e wymiana staje si? gorszym przysz?ym problemem.
 - phase_3_mode: split
 - phase_3_animation: trade-chaos
 - phase_3_actor: b
-- phase_3_title: Gałąź Eskalacji
-- phase_3_event: Gdy okno otwarcia się wymyka, pytanie przestaje brzmieć, kto zaczął lepiej, a zaczyna, czym ta walka się staje.
-- phase_3_branch_a: Jiren nadal domyka walkę, zanim przyszła gałąź w pełni się uformuje.
-- phase_3_branch_b: Saitama wchodzi w silnik późnej gry i bazowa matematyka przestaje działać.
+- phase_3_title: Ga??? Eskalacji
+- phase_3_event: Gdy okno otwarcia si? wymyka, pytanie przestaje brzmie?, kto zacz?? lepiej, a zaczyna, czym ta walka si? staje.
+- phase_3_branch_a: Jiren nadal domyka walk?, zanim przysz?a ga??? w pe?ni si? uformuje.
+- phase_3_branch_b: Saitama wchodzi w silnik p?nej gry i bazowa matematyka przestaje dzia?a?.
 
 Template Fight Title:
 - fight_title: Jiren vs Saitama

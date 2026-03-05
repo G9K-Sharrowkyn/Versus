@@ -1,0 +1,36 @@
+﻿name: quality
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: VS/App/vs-graphic-studio/package-lock.json
+
+      - name: Install dependencies
+        working-directory: VS/App/vs-graphic-studio
+        run: npm ci
+
+      - name: Encoding audit
+        working-directory: VS/App/vs-graphic-studio
+        run: npm run i18n:audit
+
+      - name: i18n keys parity
+        working-directory: VS/App/vs-graphic-studio
+        run: npm run i18n:keys
+
+      - name: Build
+        working-directory: VS/App/vs-graphic-studio
+        run: npm run build

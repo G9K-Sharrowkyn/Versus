@@ -12,9 +12,9 @@
 - Combat Skills: 76
 
 3. Character A Feats
-- Style: Creative construct pressure, White Light versatility, and active rewrite setup
-- Advantage: Better all-around profile and a broader toolkit once he gets room to work
-- Mentality: Needs a real action window to turn flexibility into a decisive rewrite
+- Style: Creative spectrum warfare with constructs, support utility, and reality-adjacent options.
+- Advantage: Broad active toolkit with healing, restoration, and top-end ring versatility.
+- Mentality: Adaptive problem-solver who builds win conditions through preparation.
 
 4. Defeated by Character A
 - Relic
@@ -37,9 +37,9 @@
 - Combat Skills: 44
 
 7. Character B Feats
-- Style: Detached preemption, quantum control, and setup denial
-- Advantage: Better first move and a cleaner ability to attack the state of the fight
-- Mentality: Acts before normal combat symmetry forms and collapses the setup itself
+- Style: Non-linear intervention focused on causality, state control, and preemptive action.
+- Advantage: Atomic-level reality control with self-reassembly and timeline perception.
+- Mentality: Detached and decisive when he chooses to act.
 
 8. Defeated by Character B
 - Rorschach (direct kill)
@@ -67,12 +67,10 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Tools: White Lantern spectrum access, construct versatility, battlefield reach, and teleportation.
-- Tools: Life Equation rewrite path and large-scale restoration or life manipulation.
-- Tools: Healing and recovery support give him more ways to reset a damaged field than a normal Lantern.
-- Weaknesses: The best win condition is setup-dependent rather than instant.
-- Weaknesses: Ring dependence and action-window dependence matter in this matchup.
-- Weaknesses: If Manhattan hits the setup first, Kyle's broader toolkit never cashes out.
+- Powers: White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation.
+- Tools: Life Equation access and wide ring-based utility for offense, defense, and restoration.
+- Weaknesses: Ring dependence and concentration dependence for top-end effects.
+- Weaknesses: The strongest outcomes still require setup time and execution window.
 
 11. Character A Raw Feats
 - Survives the Source Wall and returns with the Life Equation.
@@ -82,12 +80,10 @@
 - Teleports and disarms the Godkillers across worlds.
 
 12. Character B Powers / Tools / Weaknesses
-- Tools: Atomic control, timeline editing, self-reassembly, and non-linear perception.
-- Tools: Direct disintegration and deconstruction let him end fights without a normal exchange.
-- Tools: He attacks the setup, source, or timing of a move instead of just the final attack.
-- Weaknesses: His conventional combat profile is lower than the raw averages of his hax package imply.
-- Weaknesses: If he becomes passive and allows a real rewrite window, Kyle's toolkit becomes live.
-- Weaknesses: His edge depends on preemption, not on beating Kyle in a straightforward exchange.
+- Powers: Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and timeline-level perception.
+- Tools: Space-time intervention and causal interference before standard exchanges form.
+- Weaknesses: In some portrayals, passivity or detachment delays decisive action.
+- Weaknesses: Traditional close-quarters combat expression is narrower than his raw reality-control profile.
 
 13. Character B Raw Feats
 - Experiences all moments at once.
@@ -101,29 +97,29 @@ Template Tactical Board:
 - subtitle: Setup-dependent rewrite versus preemptive control
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: BROADER TOOLKIT
-- chaos_label: FIRST-MOVE DENIAL
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
 - lane: Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52 / Prime Earth
-- style: Creative construct pressure with White Light versatility and active rewrite setup
-- advantage: Better paper profile and more ways to build a winning sequence
-- mentality: Needs a real action window before the matchup becomes a preemption problem
-- quote: The better toolkit only matters if it gets time to exist.
+- style: Creative spectrum warfare with constructs, support utility, and reality-adjacent options.
+- advantage: Broad active toolkit with healing, restoration, and top-end ring versatility.
+- mentality: Adaptive problem-solver who builds win conditions through preparation.
+- quote: In brightest day, in blackest night...
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Watchmen / Rebirth / Doomsday Clock
-- style: Detached preemption through quantum control and setup denial
-- advantage: Better first move and a cleaner route to killing the mechanism of a plan
-- mentality: Acts before normal combat symmetry forms and collapses the setup itself
-- quote: Manhattan does not need to win the exchange. He only needs to erase the setup.
+- style: Non-linear intervention focused on causality, state control, and preemptive action.
+- advantage: Atomic-level reality control with self-reassembly and timeline perception.
+- mentality: Detached and decisive when he chooses to act.
+- quote: Nothing ever ends.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: What each side actually brings into the exchange
+- subtitle: Core powers, tools, and weaknesses
 - left_title: KYLE TOOLKIT
 - right_title: MANHATTAN TOOLKIT
 - powers_label: POWERS
