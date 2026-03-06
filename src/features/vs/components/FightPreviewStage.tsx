@@ -9,6 +9,8 @@ type FightPreviewStageProps = {
   activeTemplateLabel: string
   templateCursor: number
   templateOrderLength: number
+  canStepTemplateBackward: boolean
+  canStepTemplateForward: boolean
   importFileName: string
   fightViewVisible: boolean
   onBackToLibrary: () => void
@@ -29,6 +31,8 @@ export function FightPreviewStage({
   activeTemplateLabel,
   templateCursor,
   templateOrderLength,
+  canStepTemplateBackward,
+  canStepTemplateForward,
   importFileName,
   fightViewVisible,
   onBackToLibrary,
@@ -45,7 +49,9 @@ export function FightPreviewStage({
 }: FightPreviewStageProps) {
   const toolbarItemClass =
     'flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
-  const buttonItemClass = `${toolbarItemClass} border-white/15 bg-white/5 text-slate-100 transition-colors hover:bg-white/10`
+  const buttonItemClass =
+    `${toolbarItemClass} border-white/15 bg-white/5 text-slate-100 transition-colors hover:bg-white/10 ` +
+    'disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white/5'
   const statusItemClass = `${toolbarItemClass} border-white/15 bg-transparent text-slate-200`
 
   return (
@@ -60,10 +66,22 @@ export function FightPreviewStage({
         <button className={buttonItemClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
           {ui.backToLibrary}
         </button>
-        <button className={buttonItemClass} type="button" onClick={() => onStepTemplateOrder(-1)} title={ui.prevTemplate}>
+        <button
+          className={buttonItemClass}
+          type="button"
+          onClick={() => onStepTemplateOrder(-1)}
+          title={ui.prevTemplate}
+          disabled={!canStepTemplateBackward}
+        >
           {ui.prevTemplate}
         </button>
-        <button className={buttonItemClass} type="button" onClick={() => onStepTemplateOrder(1)} title={ui.nextTemplate}>
+        <button
+          className={buttonItemClass}
+          type="button"
+          onClick={() => onStepTemplateOrder(1)}
+          title={ui.nextTemplate}
+          disabled={!canStepTemplateForward}
+        >
           {ui.nextTemplate}
         </button>
         <span className={`${statusItemClass} flex-col`} title={`${ui.sequence} ${templateCursor + 1}/${templateOrderLength}`}>

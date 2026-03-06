@@ -141,15 +141,15 @@ Template Interpretation:
 - line_1: Superman ma czystszy profil ogólny i czyściejszą pierwszą minutę walki.
 - line_2: Hyperion pozostaje groźny, bo regeneracja może wymazać wartość dobrych wymian.
 - line_3: Na papierze przewaga jest po stronie Clarka, ale walka pozostaje prosta tylko wtedy, gdy naprawdę ją domyka.
-- quote: Lepsze statystyki to tylko połowa roboty. Reszta to zakończenie walki.
+- quote: Statystki dają teoretyczną przewagę, nie gwarancję wygranej.
 
 Template Stat Trap:
 - headline: PUŁAPKA STATYSTYK
 - subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 - trap_top: SZYBKOŚĆ I KONTROLA WYGRYWAJĄ WYMIANY
 - trap_bottom: REGENERACJA ZMIENIA TO, ILE WARTA JEST WYMIANA
-- example: Sekwencja, która kończy większość bricków, może tylko zresetować Hyperiona i uruchomić problem od nowa.
-- question: Czy Superman zamieni przewagę tempa w realne zakończenie, zanim regeneracja Hyperiona zacznie niwelować kolejne trafienia?
+- example: Sekwencja, która kończy większość siłowych przeciwników, może tylko zresetować Hyperiona i uruchomić problem od nowa.
+- question: Kluczowe pytanie: Czy Superman zamieni przewagę tempa w realne zakończenie, zanim regeneracja Hyperiona zacznie niwelować kolejne trafienia?
 
 Template Powers / Tools / Weaknesses:
 - headline: MOCE, NARZĘDZIA I SŁABOŚCI

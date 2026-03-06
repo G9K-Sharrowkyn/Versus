@@ -14,7 +14,7 @@ import {
 import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { HIGH_END_BACKGROUND_CLASS } from '../../shared/highEnd'
+import { HIGH_END_BACKGROUND_CLASS, HIGH_END_HEADER_CLASS, HIGH_END_SUBTEXT_CLASS } from '../../shared/highEnd'
 
 export function FightTitleTemplate({
   fighterA,
@@ -31,12 +31,22 @@ export function FightTitleTemplate({
   const plainLines = getPlainTemplateLines(blockLines)
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || tr('KARTA WALKI', 'FIGHT CARD')
   const finalLabelRaw = line(
     0,
     ['fight_title', 'match_title', 'title_text', 'line_1', 'line1'],
     fightLabel || `${fighterA.name || 'Fighter A'} vs ${fighterB.name || 'Fighter B'}`,
   )
   const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || normalizedLabel
+  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const threatLevel = tr('ekstremalny', 'extreme')
+  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const integrity = '99.6%'
+  const rightTopLabel = 'VersusVerseVault'
+  const profileMode = '/assets/VS2.png'
+  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
+  const scale = 'VersusVerseVault badge'
   const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
   const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
@@ -162,6 +172,29 @@ export function FightTitleTemplate({
           </filter>
         </defs>
       </svg>
+      <div className="pointer-events-none absolute left-4 right-4 top-4 z-20">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 rounded-[18px] border border-cyan-300/25 bg-slate-950/38 px-4 pb-3 pt-2 text-[11px] text-slate-200 backdrop-blur-[8px]">
+          <div className="min-w-[238px] space-y-1 pt-1 text-left">
+            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
+            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+          </div>
+          <div className="text-center">
+            <h2 className={`${HIGH_END_HEADER_CLASS} text-[32px]`} style={{ fontFamily: 'var(--font-display)' }}>
+              {headerText}
+            </h2>
+            {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
+          </div>
+          <div className="flex items-start justify-end pt-1">
+  <div
+    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)]"
+    title={rightBottomLabel}
+    aria-label={scale}
+  >
+    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+  </div>
+</div>
+        </div>
+      </div>
       <div className="vvv-fight-title-split relative z-10 h-full w-full overflow-visible">
         {renderFightTitlePortrait(fighterA, topName, topPalette, 'left')}
         {renderFightTitlePortrait(fighterB, bottomName, bottomPalette, 'right')}
@@ -172,3 +205,4 @@ export function FightTitleTemplate({
     </div>
   )
 }
+

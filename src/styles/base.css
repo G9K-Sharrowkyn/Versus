@@ -30,6 +30,7 @@
   opacity: 1;
   will-change: transform, opacity;
   transition: none;
+  isolation: isolate;
 }
 
 .vvv-animated-cursor-layer.is-visible {

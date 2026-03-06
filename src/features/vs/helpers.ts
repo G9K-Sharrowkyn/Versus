@@ -93,14 +93,17 @@ export const buildAdjustableTemplateImageStyle = (
   const x = clampPortraitPosition(adjust.x)
   const y = clampPortraitPosition(adjust.y)
   if (geometry) {
+    const translateX = (-geometry.overflowX * x) / 100
+    const translateY = (-geometry.overflowY * y) / 100
     return {
-      left: `${(-geometry.overflowX * x) / 100}px`,
-      top: `${(-geometry.overflowY * y) / 100}px`,
+      left: 0,
+      top: 0,
       width: `${geometry.width}px`,
       height: `${geometry.height}px`,
       maxWidth: 'none',
       maxHeight: 'none',
-      willChange: 'left, top, width, height',
+      transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
+      willChange: 'transform, width, height',
     }
   }
 

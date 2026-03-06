@@ -19,7 +19,7 @@ export function AdjustableTemplateImage({
   imageUrl: string
   alt: string
   fallbackLabel: string
-  hintLabel: string
+  hintLabel?: string
   adjustKey: string
   baseAdjust?: PortraitAdjust
   adjustments: Record<string, PortraitAdjust>
@@ -39,6 +39,7 @@ export function AdjustableTemplateImage({
     moved: boolean
   } | null>(null)
   const latestAdjustRef = useRef<PortraitAdjust>(PORTRAIT_ADJUST_DEFAULT)
+  const isDraggingRef = useRef(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const [imageNaturalSizeState, setImageNaturalSizeState] = useState({ key: '', width: 0, height: 0 })
   const imageNaturalSize = useMemo(
@@ -49,9 +50,10 @@ export function AdjustableTemplateImage({
     [imageNaturalSizeState.height, imageNaturalSizeState.key, imageNaturalSizeState.width, imageUrl],
   )
 
-  const currentAdjust = normalizeTemplateImageAdjust(
+  const committedAdjust = normalizeTemplateImageAdjust(
     normalizePortraitAdjust(adjustments[adjustKey] ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
   )
+  const [liveAdjust, setLiveAdjust] = useState<PortraitAdjust>(committedAdjust)
   const imageGeometry = useMemo(
     () =>
       getTemplateImageGeometry(
@@ -59,14 +61,20 @@ export function AdjustableTemplateImage({
         containerSize.height,
         imageNaturalSize.width,
         imageNaturalSize.height,
-        currentAdjust.scale,
+        liveAdjust.scale,
       ),
-    [containerSize.height, containerSize.width, currentAdjust.scale, imageNaturalSize.height, imageNaturalSize.width],
+    [containerSize.height, containerSize.width, imageNaturalSize.height, imageNaturalSize.width, liveAdjust.scale],
   )
 
   useEffect(() => {
-    latestAdjustRef.current = currentAdjust
-  }, [currentAdjust])
+    latestAdjustRef.current = liveAdjust
+  }, [liveAdjust])
+
+  useEffect(() => {
+    if (isDraggingRef.current) return
+    setLiveAdjust(committedAdjust)
+    latestAdjustRef.current = committedAdjust
+  }, [adjustKey, committedAdjust.scale, committedAdjust.x, committedAdjust.y])
 
   useEffect(() => {
     imageMetricsRef.current = imageNaturalSize
@@ -90,14 +98,17 @@ export function AdjustableTemplateImage({
   const commitAdjust = (nextAdjust: PortraitAdjust) => {
     const normalized = normalizeTemplateImageAdjust(normalizePortraitAdjust(nextAdjust))
     latestAdjustRef.current = normalized
+    setLiveAdjust(normalized)
     onAdjustChange(adjustKey, normalized)
     onAdjustCommit(adjustKey, normalized)
+    return normalized
   }
 
   const updateAdjust = (nextAdjust: PortraitAdjust) => {
     const normalized = normalizeTemplateImageAdjust(normalizePortraitAdjust(nextAdjust))
     latestAdjustRef.current = normalized
-    onAdjustChange(adjustKey, normalized)
+    setLiveAdjust(normalized)
+    return normalized
   }
 
   const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -115,6 +126,7 @@ export function AdjustableTemplateImage({
       base: latestAdjustRef.current,
       moved: false,
     }
+    isDraggingRef.current = true
     container.setPointerCapture(event.pointerId)
   }
 
@@ -145,12 +157,18 @@ export function AdjustableTemplateImage({
         geometry && geometry.overflowY > 0
           ? drag.base.y - (dy / geometry.overflowY) * 100
           : drag.base.y
-      updateAdjust({ x: nextX, y: nextY, scale: drag.base.scale })
+      const normalized = updateAdjust({ x: nextX, y: nextY, scale: drag.base.scale })
+      drag.base = normalized
+      drag.startX = event.clientX
+      drag.startY = event.clientY
       return
     }
 
     const zoomDelta = (-dy / Math.max(1, container.clientHeight)) * 1.6
-    updateAdjust({ x: drag.base.x, y: drag.base.y, scale: drag.base.scale + zoomDelta })
+    const normalized = updateAdjust({ x: drag.base.x, y: drag.base.y, scale: drag.base.scale + zoomDelta })
+    drag.base = normalized
+    drag.startX = event.clientX
+    drag.startY = event.clientY
   }
 
   const finalizePointer = (event: ReactPointerEvent<HTMLDivElement>) => {
@@ -163,6 +181,7 @@ export function AdjustableTemplateImage({
       container.releasePointerCapture(event.pointerId)
     }
     dragRef.current = null
+    isDraggingRef.current = false
     commitAdjust(latestAdjustRef.current)
     if (!drag.moved && drag.mode === 'pan') {
       onActivate?.()
@@ -200,7 +219,7 @@ export function AdjustableTemplateImage({
           alt={alt}
           className="absolute block select-none"
           draggable={false}
-          style={buildAdjustableTemplateImageStyle(currentAdjust, imageGeometry)}
+          style={buildAdjustableTemplateImageStyle(liveAdjust, imageGeometry)}
           onLoad={(event) => {
             const target = event.currentTarget
             const nextMetrics = {
@@ -224,9 +243,11 @@ export function AdjustableTemplateImage({
         <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.75))]" />
       )}
       {plain ? null : (
-        <div className="pointer-events-none absolute bottom-2 left-2 rounded border border-cyan-300/35 bg-black/50 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100 opacity-0 transition-opacity group-hover:opacity-100">
-          {hintLabel}
-        </div>
+        hintLabel ? (
+          <div className="pointer-events-none absolute bottom-2 left-2 rounded border border-cyan-300/35 bg-black/50 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100 opacity-0 transition-opacity group-hover:opacity-100">
+            {hintLabel}
+          </div>
+        ) : null
       )}
     </div>
   )

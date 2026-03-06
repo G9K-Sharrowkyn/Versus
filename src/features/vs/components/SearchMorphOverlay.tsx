@@ -34,7 +34,7 @@ export function SearchMorphOverlay({
   return createPortal(
     <div
       className={clsx(
-        'vvv-morph-stage is-running pointer-events-none fixed inset-0 z-[2147483647]',
+        'vvv-morph-stage is-running pointer-events-none fixed inset-0',
         direction === 'reverse' && 'is-reverse',
       )}
     >

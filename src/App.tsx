@@ -239,6 +239,9 @@ function App() {
 
   const averageA = useMemo(() => avg(rows, 'a'), [rows])
   const averageB = useMemo(() => avg(rows, 'b'), [rows])
+  const maxTemplateCursor = Math.max(templateOrder.length - 1, 0)
+  const canStepTemplateBackward = templateOrder.length > 0 && templateCursor > 0
+  const canStepTemplateForward = templateOrder.length > 0 && templateCursor < maxTemplateCursor
 
   const applyTemplateById = (templateId: TemplateId, shouldFlash = true) => {
     const preset = localizedTemplates.find((template) => template.id === templateId)
@@ -251,7 +254,8 @@ function App() {
 
   const stepTemplateOrder = (direction: 1 | -1) => {
     if (!templateOrder.length) return
-    const nextTemplateCursor = (templateCursor + direction + templateOrder.length) % templateOrder.length
+    const nextTemplateCursor = templateCursor + direction
+    if (nextTemplateCursor < 0 || nextTemplateCursor >= templateOrder.length) return
     setTemplateCursor(nextTemplateCursor)
     applyTemplateById(templateOrder[nextTemplateCursor], false)
   }
@@ -442,6 +446,46 @@ function App() {
     portraitEditor?.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB),
   )
 
+  useEffect(() => {
+    if (!isTemplateView || !fightViewVisible || portraitEditor) return
+
+    const isTypingTarget = (target: EventTarget | null) =>
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      (target instanceof HTMLElement && target.isContentEditable)
+
+    const handleTemplateKeydown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
+      if (isTypingTarget(event.target)) return
+
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault()
+        if (canStepTemplateBackward) {
+          stepTemplateOrder(-1)
+        }
+        return
+      }
+
+      if (event.key === 'ArrowRight') {
+        event.preventDefault()
+        if (canStepTemplateForward) {
+          stepTemplateOrder(1)
+        }
+      }
+    }
+
+    window.addEventListener('keydown', handleTemplateKeydown)
+    return () => window.removeEventListener('keydown', handleTemplateKeydown)
+  }, [
+    canStepTemplateBackward,
+    canStepTemplateForward,
+    fightViewVisible,
+    isTemplateView,
+    portraitEditor,
+    stepTemplateOrder,
+  ])
+
   return (
     <main
       data-reverse-stage={reverseStage}
@@ -533,6 +577,8 @@ function App() {
             activeTemplateLabel={activeTemplateLabel}
             templateCursor={templateCursor}
             templateOrderLength={templateOrder.length}
+            canStepTemplateBackward={canStepTemplateBackward}
+            canStepTemplateForward={canStepTemplateForward}
             importFileName={importFileName}
             fightViewVisible={fightViewVisible}
             onBackToLibrary={goBackToLibrary}
