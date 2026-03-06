@@ -9,8 +9,13 @@ import {
 import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { decodeImportTextBytes, INVALID_TEXT_ENCODING_ERROR } from './shared/textDecoding'
-import { createPortal } from 'react-dom'
-import { Crosshair, Trash2 } from 'lucide-react'
+import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
+import { HomeView } from './features/vs/components/HomeView'
+import { PortraitEditorModal } from './features/vs/components/PortraitEditorModal'
+import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
+import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
+import { useAnimatedCursor } from './features/vs/hooks/useAnimatedCursor'
+import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import type {
   Category,
   Fighter,
@@ -22,19 +27,15 @@ import type {
   Language,
   LayoutMode,
   ParsedVsImport,
-  PointerRelayPayload,
-  PointerRelaySource,
   PortraitAdjust,
   PortraitEditorState,
   ReverseStage,
   ScoreRow,
   SearchMorphHandoff,
   TemplateId,
-  TemplatePreviewProps,
   Theme,
 } from './features/vs/types'
 import {
-  DEFAULT_MORPH_SIZE,
   DEFAULT_TEMPLATE_ORDER,
   DEFAULT_WINNER_CV_A,
   DEFAULT_WINNER_CV_B,
@@ -43,15 +44,11 @@ import {
   FIGHTER_B,
   FIGHTER_B_COLOR,
   FINAL_TEMPLATE_ID,
-  FRAME_CLASSES,
   LEGACY_ACTIVE_FIGHT_STORAGE_KEY,
   LEGACY_FIGHTS_STORAGE_KEY,
   LEGACY_MATCHUP_VARIANT_PREFS_KEY,
   META_MATCHUP_VARIANT_PREFS_KEY,
-  MORPH_ORIGIN_SIZE_SHRINK_PX,
   TEMPLATE_PRESETS,
-  THEME_CLASSES,
-  THEME_OVERLAYS,
   defaultCategoriesFor,
   defaultFactsFor,
   injectDerivedTemplates,
@@ -59,19 +56,14 @@ import {
   pickLang,
 } from './features/vs/presets'
 import {
-  FIGHT_TITLE_PORTRAIT_ASPECT,
   PORTRAIT_ADJUST_DEFAULT,
-  PORTRAIT_SCALE_MAX,
-  PORTRAIT_SCALE_MIN,
   avg,
   buildMatchupKeyFromNames,
-  buildPortraitImageStyle,
   clamp,
   cloneFighter,
   enforceFileNameSideOrder,
   findFightByQuery,
   getViewportCenterHandoff,
-  normalizePointerRelayPayload,
   normalizePortraitAdjust,
   normalizeSearchMorphHandoff,
   normalizeSlideImageAdjustments,
@@ -98,9 +90,6 @@ import {
   normalizeVariantPrefsMap,
   sanitizePreferredVariantPrefs,
 } from './features/vs/storage'
-import { HudBarsTemplate, MethodologyTemplate, RadarBriefTemplate, TacticalBoardTemplate } from './features/vs/templates/statTemplates'
-import { CharacterCardATemplate, CharacterCardBTemplate, WinnerCvTemplate } from './features/vs/templates/cardTemplates'
-import { BlankTemplate, PowersToolsTemplate, RawFeatsTemplate } from './features/vs/templates/contentTemplates'
 
 function App() {
   const defaultLanguage: Language = 'en'
@@ -195,7 +184,6 @@ function App() {
   const portraitEditorPreviewRef = useRef<string | null>(null)
   const fightViewRevealTimeoutRef = useRef<number | null>(null)
   const reverseStageRef = useRef<ReverseStage>('idle')
-  const [previewScale, setPreviewScale] = useState(1)
   const PREVIEW_BASE_WIDTH = 1400
   const PREVIEW_BASE_HEIGHT = 787.5
   const PREVIEW_MIN_SCALE = 0.62
@@ -211,6 +199,17 @@ function App() {
   const FIGHTS_SCAN_POLL_MS = 1200
   const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
   const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
+
+  useAnimatedCursor({ searchFrameRef, introFrameRef })
+
+  const previewScale = usePreviewScale({
+    shellRef: previewShellRef,
+    viewMode,
+    baseWidth: PREVIEW_BASE_WIDTH,
+    baseHeight: PREVIEW_BASE_HEIGHT,
+    minScale: PREVIEW_MIN_SCALE,
+    maxScale: PREVIEW_MAX_SCALE,
+  })
 
   useEffect(() => {
     fightsRef.current = fights
@@ -230,136 +229,6 @@ function App() {
   useEffect(() => {
     folderScanWarningsRef.current = folderScanWarnings
   }, [folderScanWarnings])
-
-  useEffect(() => {
-    if (window.matchMedia && window.matchMedia('(pointer: coarse)').matches) return
-
-    const root = document.documentElement
-    root.classList.add('vvv-animated-cursor')
-
-    const layer = document.createElement('div')
-    layer.className = 'vvv-animated-cursor-layer'
-    layer.setAttribute('aria-hidden', 'true')
-
-    const glow = document.createElement('span')
-    glow.className = 'vvv-animated-cursor-glow'
-    const core = document.createElement('span')
-    core.className = 'vvv-animated-cursor-core'
-    layer.append(glow, core)
-    document.body.appendChild(layer)
-
-    let targetX = window.innerWidth * 0.5
-    let targetY = window.innerHeight * 0.5
-    let currentX = targetX
-    let currentY = targetY
-    let rafId = 0
-    let relayRafId = 0
-    let queuedRelay: PointerRelayPayload | null = null
-    let activeRelaySource: PointerRelaySource | null = null
-    let relayPriorityUntil = 0
-    layer.style.transform = `translate3d(${currentX - 2}px, ${currentY - 2}px, 0)`
-    layer.classList.add('is-visible')
-
-    const resolveRelayFrame = (source: PointerRelaySource): HTMLIFrameElement | null => {
-      if (source === 'search') return searchFrameRef.current
-      return introFrameRef.current
-    }
-
-    const mapRelayPosition = (relay: PointerRelayPayload): { x: number; y: number } | null => {
-      const frame = resolveRelayFrame(relay.source)
-      if (!frame) return null
-      const rect = frame.getBoundingClientRect()
-      return {
-        x: rect.left + relay.x,
-        y: rect.top + relay.y,
-      }
-    }
-
-    const render = () => {
-      currentX += (targetX - currentX) * 0.42
-      currentY += (targetY - currentY) * 0.42
-      layer.style.transform = `translate3d(${currentX - 2}px, ${currentY - 2}px, 0)`
-
-      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-        rafId = window.requestAnimationFrame(render)
-      } else {
-        rafId = 0
-      }
-    }
-
-    const schedule = () => {
-      if (!rafId) rafId = window.requestAnimationFrame(render)
-    }
-
-    const applyTarget = (x: number, y: number, source?: PointerRelaySource) => {
-      targetX = x
-      targetY = y
-      layer.classList.add('is-visible')
-      if (source) {
-        activeRelaySource = source
-        relayPriorityUntil = performance.now() + 96
-      }
-      schedule()
-    }
-
-    const flushRelay = () => {
-      relayRafId = 0
-      const relay = queuedRelay
-      queuedRelay = null
-      if (!relay) return
-      const mapped = mapRelayPosition(relay)
-      if (!mapped) return
-
-      applyTarget(mapped.x, mapped.y, relay.source)
-      if (relay.event === 'down' || relay.down === true) {
-        layer.classList.add('is-down')
-        return
-      }
-      if (relay.event === 'up' || relay.event === 'leave' || relay.down === false) {
-        layer.classList.remove('is-down')
-      }
-    }
-
-    const onPointerMove = (event: PointerEvent) => {
-      const now = performance.now()
-      if (activeRelaySource && now < relayPriorityUntil) return
-      activeRelaySource = null
-      relayPriorityUntil = 0
-      applyTarget(event.clientX, event.clientY)
-    }
-
-    const onPointerRelayMessage = (event: MessageEvent) => {
-      if (event.origin !== window.location.origin) return
-      const relay = normalizePointerRelayPayload(event.data)
-      if (!relay) return
-      queuedRelay = relay
-      if (!relayRafId) relayRafId = window.requestAnimationFrame(flushRelay)
-    }
-
-    const onPointerDown = () => {
-      layer.classList.add('is-visible')
-      layer.classList.add('is-down')
-    }
-    const onPointerUp = () => layer.classList.remove('is-down')
-
-    window.addEventListener('pointermove', onPointerMove, { passive: true })
-    window.addEventListener('pointerdown', onPointerDown, { passive: true })
-    window.addEventListener('pointerup', onPointerUp, { passive: true })
-    window.addEventListener('pointercancel', onPointerUp, { passive: true })
-    window.addEventListener('message', onPointerRelayMessage)
-
-    return () => {
-      window.removeEventListener('pointermove', onPointerMove)
-      window.removeEventListener('pointerdown', onPointerDown)
-      window.removeEventListener('pointerup', onPointerUp)
-      window.removeEventListener('pointercancel', onPointerUp)
-      window.removeEventListener('message', onPointerRelayMessage)
-      if (rafId) window.cancelAnimationFrame(rafId)
-      if (relayRafId) window.cancelAnimationFrame(relayRafId)
-      layer.remove()
-      root.classList.remove('vvv-animated-cursor')
-    }
-  }, [])
 
   const rows = useMemo<ScoreRow[]>(
     () =>
@@ -1602,90 +1471,40 @@ function App() {
     () => fights.find((fight) => fight.id === activeFightId) || null,
     [fights, activeFightId],
   )
-
-  const renderTemplate = () => {
-    const currentFightLabel =
-      stripFileExtension(importFileName) ||
-      `${fighterA.name || tr('Postac A', 'Fighter A')} vs ${fighterB.name || tr('Postac B', 'Fighter B')}`
-    const commonProps: TemplatePreviewProps = {
-      activeTemplateId: activeTemplate,
-      language,
-      rows,
-      fighterA,
-      fighterB,
-      portraitAAdjust,
-      portraitBAdjust,
-      averageA,
-      averageB,
-      title,
-      subtitle,
-      factsA,
-      factsB,
-      powersA,
-      powersB,
-      rawFeatsA,
-      rawFeatsB,
-      winsA,
-      winsB,
-      fightLabel: currentFightLabel,
-      templateBlocks,
-      activeFightId,
-      activeFightFolderKey: activeFightRecord?.folderKey,
-      slideImageAdjustments,
-      onSlideImageAdjustChange: handleSlideImageAdjustChange,
-      onSlideImageAdjustCommit: handleSlideImageAdjustCommit,
-    }
-    if (activeTemplate === 'powers-tools') {
-      return <PowersToolsTemplate {...commonProps} />
-    }
-    if (activeTemplate === 'raw-feats') {
-      return <RawFeatsTemplate {...commonProps} />
-    }
-    switch (layoutMode) {
-      case 'radarBrief':
-        return <RadarBriefTemplate {...commonProps} />
-      case 'tacticalBoard':
-        return <TacticalBoardTemplate {...commonProps} />
-      case 'winnerCv':
-        return <WinnerCvTemplate {...commonProps} />
-      case 'characterCardA':
-        return <CharacterCardATemplate {...commonProps} />
-      case 'characterCardB':
-        return <CharacterCardBTemplate {...commonProps} />
-      case 'blankTemplate':
-        return <BlankTemplate {...commonProps} />
-      case 'methodology':
-        return <MethodologyTemplate {...commonProps} />
-      default:
-        return <HudBarsTemplate {...commonProps} />
-    }
-  }
-
-  useEffect(() => {
-    const shell = previewShellRef.current
-    if (!shell) return
-
-    const updateScale = () => {
-      const availableWidth = Math.max(320, shell.clientWidth - 24)
-      const availableHeight = Math.max(320, shell.clientHeight - 24)
-      const scaleFromWidth = availableWidth / PREVIEW_BASE_WIDTH
-      const scaleFromHeight = availableHeight / PREVIEW_BASE_HEIGHT
-      const boundedScale = Math.min(scaleFromWidth, scaleFromHeight)
-      const nextScale = Math.max(PREVIEW_MIN_SCALE, Math.min(PREVIEW_MAX_SCALE, boundedScale))
-      setPreviewScale((previous) => (Math.abs(previous - nextScale) > 0.001 ? nextScale : previous))
-    }
-
-    updateScale()
-
-    const observer = new ResizeObserver(updateScale)
-    observer.observe(shell)
-    window.addEventListener('resize', updateScale)
-
-    return () => {
-      observer.disconnect()
-      window.removeEventListener('resize', updateScale)
-    }
-  }, [PREVIEW_BASE_HEIGHT, PREVIEW_BASE_WIDTH, PREVIEW_MAX_SCALE, PREVIEW_MIN_SCALE, viewMode])
+  const currentFightLabel =
+    stripFileExtension(importFileName) ||
+    `${fighterA.name || tr('Postac A', 'Fighter A')} vs ${fighterB.name || tr('Postac B', 'Fighter B')}`
+  const renderedTemplate = (
+    <TemplateRenderer
+      layoutMode={layoutMode}
+      activeTemplateId={activeTemplate}
+      language={language}
+      rows={rows}
+      fighterA={fighterA}
+      fighterB={fighterB}
+      portraitAAdjust={portraitAAdjust}
+      portraitBAdjust={portraitBAdjust}
+      averageA={averageA}
+      averageB={averageB}
+      title={title}
+      subtitle={subtitle}
+      factsA={factsA}
+      factsB={factsB}
+      powersA={powersA}
+      powersB={powersB}
+      rawFeatsA={rawFeatsA}
+      rawFeatsB={rawFeatsB}
+      winsA={winsA}
+      winsB={winsB}
+      fightLabel={currentFightLabel}
+      templateBlocks={templateBlocks}
+      activeFightId={activeFightId}
+      activeFightFolderKey={activeFightRecord?.folderKey}
+      slideImageAdjustments={slideImageAdjustments}
+      onSlideImageAdjustChange={handleSlideImageAdjustChange}
+      onSlideImageAdjustCommit={handleSlideImageAdjustCommit}
+    />
+  )
 
   useEffect(
     () => () => {
@@ -1733,232 +1552,9 @@ function App() {
   const isTemplateView = viewMode === 'fight'
   const isFightFlow = isIntroView || isTemplateView
   const isEmbeddedFullscreenView = isSearchView || isIntroView
-  const morphHandoff = searchMorphHandoff ?? getViewportCenterHandoff()
-  const morphOriginSize = Math.max(
-    28,
-    Math.min(
-      120,
-      ((morphHandoff.width + morphHandoff.height) / 2 || DEFAULT_MORPH_SIZE) - MORPH_ORIGIN_SIZE_SHRINK_PX,
-    ),
+  const canSwitchPortraitEditorSide = Boolean(
+    portraitEditor?.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB),
   )
-  const searchMorphAnchorStyle = {
-    '--vvv-origin-x': `${morphHandoff.x}px`,
-    '--vvv-origin-y': `${morphHandoff.y}px`,
-    '--vvv-origin-size': `${morphOriginSize}px`,
-  } as Record<string, string>
-
-  const renderFightLibraryCard = (fight: FightRecord) => (
-    (() => {
-      const isActive = activeFightId === fight.id
-      const isPreferred = preferredVariantByMatchup[fight.matchupKey] === fight.id
-      const localeLabel =
-        fight.variantLocale === 'pl' ? ui.variantPl : fight.variantLocale === 'en' ? ui.variantEn : ui.variantUnknown
-
-      return (
-        <div
-          key={fight.id}
-          className={clsx(
-            'flex items-stretch gap-2 rounded-xl border p-2 transition',
-            isActive
-              ? 'border-cyan-300/55 bg-cyan-500/16'
-              : 'border-slate-600/70 bg-slate-900/60 hover:border-slate-400',
-          )}
-        >
-          <button type="button" onClick={() => openFight(fight.id)} className="min-w-0 flex-1 rounded-lg px-2 py-1 text-left">
-            <div className="flex items-start justify-between gap-3">
-              <div className="min-w-0 flex-1">
-                <p className="truncate text-sm font-semibold text-slate-100">{fight.name}</p>
-                <p className="mt-1 truncate text-xs text-slate-300">
-                  {fight.payload.fighterAName} vs {fight.payload.fighterBName}
-                </p>
-                <p className="mt-1 truncate text-[11px] text-slate-400">{fight.fileName}</p>
-              </div>
-              <div className="flex shrink-0 flex-col items-end gap-1">
-                <span className="rounded-xl border border-slate-500/65 bg-slate-800/70 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-slate-100">
-                  {localeLabel}
-                </span>
-                <span className="rounded-xl border border-cyan-300/45 bg-cyan-400/15 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100">
-                  {ui.openFight}
-                </span>
-              </div>
-            </div>
-          </button>
-          <div className="flex shrink-0 items-center gap-2">
-            <button
-              type="button"
-              onClick={() => rememberPreferredFightVariant(fight)}
-              className={clsx(
-                'flex h-10 items-center justify-center rounded-lg border px-3 text-[11px] font-semibold uppercase tracking-[0.12em] transition',
-                isPreferred
-                  ? 'border-emerald-300/50 bg-emerald-500/18 text-emerald-100 hover:bg-emerald-500/24'
-                  : 'border-emerald-300/40 bg-emerald-500/10 text-emerald-100 hover:bg-emerald-500/18',
-              )}
-              title={ui.selectVariant}
-            >
-              {isPreferred ? ui.selectedVariant : ui.selectVariant}
-            </button>
-            <button
-              type="button"
-              onClick={() => openSavedFightPortraitEditor(fight.id, 'a')}
-              className="flex h-10 items-center justify-center rounded-lg border border-sky-300/45 bg-sky-500/12 px-3 text-[11px] font-semibold uppercase tracking-[0.12em] text-sky-100 transition hover:bg-sky-500/24"
-              aria-label={ui.adjustPortraitsAria}
-              title={ui.adjustPortraits}
-            >
-              <Crosshair size={14} className="mr-1" />
-              {ui.adjustPortraits}
-            </button>
-            {fight.source === 'manual' ? (
-              <button
-                type="button"
-                onClick={() => deleteFight(fight.id)}
-                className="flex h-10 w-10 items-center justify-center rounded-lg border border-rose-300/45 bg-rose-500/12 text-rose-200 transition hover:bg-rose-500/24"
-                aria-label={ui.deleteFightAria}
-                title={ui.deleteFight}
-              >
-                <Trash2 size={16} />
-              </button>
-            ) : null}
-          </div>
-        </div>
-      )
-    })()
-  )
-
-  const searchMorphOverlay =
-    searchMorphVisible && typeof document !== 'undefined'
-      ? createPortal(
-          <div
-            className={clsx(
-              'vvv-morph-stage is-running pointer-events-none fixed inset-0 z-[2147483647]',
-              searchMorphDirection === 'reverse' && 'is-reverse',
-            )}
-          >
-            <div className="vvv-logo-morph-anchor" style={searchMorphAnchorStyle}>
-              <div
-                className={clsx('vvv-logo-morph is-running', searchMorphDirection === 'reverse' && 'is-reverse')}
-                aria-hidden="true"
-              >
-                <div className="vvv-logo-morph__electric" />
-                <div className="vvv-logo-morph__ring" />
-                <div className="vvv-logo-morph__core" />
-                <div className="vvv-logo-morph__logo" />
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )
-      : null
-
-  const portraitEditorOverlay =
-    portraitEditor && typeof document !== 'undefined'
-      ? createPortal(
-          <div className="fixed inset-0 z-[2147483646] flex items-center justify-center bg-black/72 p-4 backdrop-blur-sm">
-            <div className="w-full max-w-3xl rounded-2xl border border-cyan-300/35 bg-slate-950/96 p-4 shadow-[0_24px_80px_rgba(0,0,0,0.62)]">
-              <div className="mb-3 flex items-center justify-between gap-3 border-b border-slate-700/70 pb-3">
-                <div>
-                  <p className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-100">{ui.portraitEditorTitle}</p>
-                  <p className="mt-1 text-xs text-slate-300">{ui.portraitEditorHint}</p>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span
-                    className={clsx(
-                      'rounded-md border px-2 py-1 text-[11px] uppercase tracking-[0.14em]',
-                      portraitEditor.side === 'a'
-                        ? 'border-sky-300/55 bg-sky-500/15 text-sky-200'
-                        : 'border-rose-300/55 bg-rose-500/15 text-rose-200',
-                    )}
-                  >
-                    {portraitEditor.side === 'a' ? ui.portraitA : ui.portraitB}
-                  </span>
-                  {(portraitEditor.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB)) ? (
-                    <button type="button" className="button-soft" onClick={togglePortraitEditorSide}>
-                      {ui.portraitSwitchSide}
-                    </button>
-                  ) : null}
-                </div>
-              </div>
-
-              <div className="grid gap-4 lg:grid-cols-[1.25fr_1fr]">
-                <div className="rounded-xl border border-slate-700/80 bg-black/55 p-3">
-                  <div
-                    className="relative mx-auto w-full max-w-[430px] overflow-hidden rounded-lg border border-slate-600/70 bg-slate-900/80"
-                    style={{ aspectRatio: `${FIGHT_TITLE_PORTRAIT_ASPECT}` }}
-                  >
-                    <img
-                      src={portraitEditor.previewUrl}
-                      alt="portrait-editor-preview"
-                      className="h-full w-full object-cover"
-                      style={buildPortraitImageStyle(portraitEditor.adjust)}
-                    />
-                    <div className="pointer-events-none absolute inset-0 border-2 border-white/15" />
-                    <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.18)_1px,transparent_1px)] [background-size:28px_28px]" />
-                  </div>
-                </div>
-
-                <div className="space-y-3 rounded-xl border border-slate-700/80 bg-slate-900/70 p-3">
-                  <label className="block">
-                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
-                      {ui.portraitPosX}: {Math.round(portraitEditor.adjust.x)}%
-                    </p>
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      step={1}
-                      value={portraitEditor.adjust.x}
-                      onChange={(event) => updatePortraitEditorAdjust({ x: Number(event.target.value) })}
-                      className="w-full accent-cyan-400"
-                    />
-                  </label>
-
-                  <label className="block">
-                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
-                      {ui.portraitPosY}: {Math.round(portraitEditor.adjust.y)}%
-                    </p>
-                    <input
-                      type="range"
-                      min={0}
-                      max={100}
-                      step={1}
-                      value={portraitEditor.adjust.y}
-                      onChange={(event) => updatePortraitEditorAdjust({ y: Number(event.target.value) })}
-                      className="w-full accent-cyan-400"
-                    />
-                  </label>
-
-                  <label className="block">
-                    <p className="mb-1 text-[11px] uppercase tracking-[0.16em] text-slate-300">
-                      {ui.portraitZoom}: {portraitEditor.adjust.scale.toFixed(2)}x
-                    </p>
-                    <input
-                      type="range"
-                      min={PORTRAIT_SCALE_MIN}
-                      max={PORTRAIT_SCALE_MAX}
-                      step={0.01}
-                      value={portraitEditor.adjust.scale}
-                      onChange={(event) => updatePortraitEditorAdjust({ scale: Number(event.target.value) })}
-                      className="w-full accent-cyan-400"
-                    />
-                  </label>
-
-                  <div className="flex flex-wrap gap-2 pt-2">
-                    <button type="button" className="button-soft" onClick={resetPortraitEditorAdjust}>
-                      {ui.portraitReset}
-                    </button>
-                    <button type="button" className="button-soft" onClick={() => closePortraitEditor()}>
-                      {ui.portraitCancel}
-                    </button>
-                    <button type="button" className="button-soft" onClick={applyPortraitEditor}>
-                      {ui.portraitApply}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>,
-          document.body,
-        )
-      : null
 
   return (
     <main
@@ -1974,31 +1570,42 @@ function App() {
     >
       <div className={clsx('max-w-none', isFightFlow || isSearchView ? 'flex h-full min-h-0 flex-col' : '')}>
         {viewMode === 'home' ? (
-          <header className="relative mb-4 overflow-hidden rounded-2xl border border-cyan-300/35 bg-slate-950/70 p-4 backdrop-blur-xl sm:mb-5">
-            <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(34,211,238,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(34,211,238,0.22)_1px,transparent_1px)] [background-size:24px_24px]" />
-            <div className="pointer-events-none absolute left-3 top-3 h-3 w-3 border-l-2 border-t-2 border-cyan-300/70" />
-            <div className="pointer-events-none absolute right-3 top-3 h-3 w-3 border-r-2 border-t-2 border-cyan-300/70" />
-            <div className="pointer-events-none absolute bottom-3 left-3 h-3 w-3 border-b-2 border-l-2 border-cyan-300/70" />
-            <div className="pointer-events-none absolute bottom-3 right-3 h-3 w-3 border-b-2 border-r-2 border-cyan-300/70" />
-            <div className="relative z-10 rounded-xl border border-cyan-300/30 bg-black/25 px-4 py-3">
-              <button
-                type="button"
-                onClick={() => setLanguage((current) => (current === 'pl' ? 'en' : 'pl'))}
-                className="mx-auto flex items-center gap-3 rounded-lg border border-cyan-300/35 bg-cyan-400/10 px-4 py-2 transition hover:bg-cyan-300/20"
-                title={ui.languageHint}
-              >
-                <h1
-                  className="text-center text-3xl uppercase tracking-[0.08em] text-cyan-100 sm:text-4xl"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  VersusVerseVault
-                </h1>
-                <span className="rounded border border-cyan-200/55 px-2 py-0.5 text-xs font-semibold uppercase tracking-[0.16em] text-cyan-100">
-                  {ui.languageBadge}
-                </span>
-              </button>
-            </div>
-          </header>
+          <HomeView
+            ui={ui}
+            activeDropTarget={activeDropTarget}
+            draftTxtInputRef={draftTxtInputRef}
+            draftPortraitInputRefA={draftPortraitInputRefA}
+            draftPortraitInputRefB={draftPortraitInputRefB}
+            draftTxtFileName={draftTxtFileName}
+            draftPayload={draftPayload}
+            draftPortraitFileA={draftPortraitFileA}
+            draftPortraitFileB={draftPortraitFileB}
+            draftPortraitPreviewA={draftPortraitPreviewA}
+            draftPortraitPreviewB={draftPortraitPreviewB}
+            draftPortraitAdjustA={draftPortraitAdjustA}
+            draftPortraitAdjustB={draftPortraitAdjustB}
+            folderFights={folderFights}
+            manualFights={manualFights}
+            folderFightGroups={folderFightGroups}
+            folderScanWarnings={folderScanWarnings}
+            importTxtBlueprint={importTxtBlueprint}
+            activeFightId={activeFightId}
+            preferredVariantByMatchup={preferredVariantByMatchup}
+            onToggleLanguage={() => setLanguage((current) => (current === 'pl' ? 'en' : 'pl'))}
+            onDropZoneDragEnter={handleDropZoneDragEnter}
+            onDropZoneDragOver={handleDropZoneDragOver}
+            onDropZoneDragLeave={handleDropZoneDragLeave}
+            onTxtDrop={handleTxtDrop}
+            onPortraitDrop={handlePortraitDrop}
+            onDraftPortraitUpload={handleDraftPortraitUpload}
+            onDraftImportFile={handleDraftImportFile}
+            onCopyImportBlueprint={copyImportBlueprint}
+            onCreateFightFromDraft={createFightFromDraft}
+            onOpenFight={openFight}
+            onRememberPreferredFightVariant={rememberPreferredFightVariant}
+            onOpenSavedFightPortraitEditor={openSavedFightPortraitEditor}
+            onDeleteFight={deleteFight}
+          />
         ) : null}
 
         {viewMode === 'search' ? (
@@ -2010,233 +1617,7 @@ function App() {
               className="relative z-0 h-full w-full border-0"
             />
           </section>
-        ) : viewMode === 'home' ? (
-          <div className="grid gap-4 xl:grid-cols-[1.05fr_1fr]">
-            <section className="panel">
-              <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-slate-100">{ui.homeTitle}</h2>
-              <p className="mt-2 text-sm text-slate-300">{ui.homeSubtitle}</p>
-              <p className="mt-2 text-sm text-slate-300">{ui.uploadHelp}</p>
-
-              <label
-                className={clsx(
-                  'mt-3 block rounded-xl border p-3 transition-colors',
-                  activeDropTarget === 'txt'
-                    ? 'border-cyan-300/70 bg-cyan-500/14'
-                    : 'border-slate-700/70 bg-slate-950/55',
-                )}
-                onDragEnter={handleDropZoneDragEnter('txt')}
-                onDragOver={handleDropZoneDragOver('txt')}
-                onDragLeave={handleDropZoneDragLeave('txt')}
-                onDrop={handleTxtDrop}
-              >
-                <span className="section-label">{ui.matchTxt}</span>
-                <p className="mt-1 text-xs text-slate-300">{ui.dropTxtHint}</p>
-                <div className="mt-2 flex items-center gap-2">
-                  <button
-                    type="button"
-                    className="rounded-lg border border-cyan-300/45 bg-cyan-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-cyan-100 transition hover:bg-cyan-300/28"
-                    onClick={(event) => {
-                      event.preventDefault()
-                      draftTxtInputRef.current?.click()
-                    }}
-                  >
-                    {ui.pickTxtButton}
-                  </button>
-                  <span className="truncate text-xs text-slate-300">{draftTxtFileName || ui.noFileSelected}</span>
-                </div>
-                <input
-                  ref={draftTxtInputRef}
-                  type="file"
-                  accept=".txt,text/plain"
-                  className="hidden"
-                  onChange={handleDraftImportFile}
-                />
-                <p className={clsx('mt-2 text-xs', draftTxtFileName ? 'text-emerald-200' : 'text-slate-400')}>
-                  {draftTxtFileName ? `${ui.txtLoadedLabel}: ${draftTxtFileName}` : ui.txtNotLoadedLabel}
-                </p>
-              </label>
-
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                <label
-                  className={clsx(
-                    'rounded-xl border p-2 transition-colors',
-                    activeDropTarget === 'a'
-                      ? 'border-sky-300/70 bg-sky-500/12'
-                      : 'border-slate-700/70 bg-slate-950/55',
-                  )}
-                  onDragEnter={handleDropZoneDragEnter('a')}
-                  onDragOver={handleDropZoneDragOver('a')}
-                  onDragLeave={handleDropZoneDragLeave('a')}
-                  onDrop={handlePortraitDrop('a')}
-                >
-                  <span className="section-label">{ui.portraitA}</span>
-                  <p className="mt-1 text-xs text-slate-300">{ui.dropImageHint}</p>
-                  <div className="mt-2 flex items-center gap-2">
-                    <button
-                      type="button"
-                      className="rounded-lg border border-sky-300/45 bg-sky-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-sky-100 transition hover:bg-sky-300/28"
-                      onClick={(event) => {
-                        event.preventDefault()
-                        draftPortraitInputRefA.current?.click()
-                      }}
-                    >
-                      {ui.pickImageButton}
-                    </button>
-                    <span className="truncate text-xs text-slate-300">{draftPortraitFileA?.name || ui.noFileSelected}</span>
-                  </div>
-                  <input
-                    ref={draftPortraitInputRefA}
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleDraftPortraitUpload('a')}
-                  />
-                  {draftPortraitPreviewA ? (
-                    <img
-                      src={draftPortraitPreviewA}
-                      alt="portrait-a-preview"
-                      className="mt-2 h-20 w-full rounded-md object-cover"
-                      style={buildPortraitImageStyle(draftPortraitAdjustA)}
-                    />
-                  ) : null}
-                </label>
-                <label
-                  className={clsx(
-                    'rounded-xl border p-2 transition-colors',
-                    activeDropTarget === 'b'
-                      ? 'border-rose-300/70 bg-rose-500/12'
-                      : 'border-slate-700/70 bg-slate-950/55',
-                  )}
-                  onDragEnter={handleDropZoneDragEnter('b')}
-                  onDragOver={handleDropZoneDragOver('b')}
-                  onDragLeave={handleDropZoneDragLeave('b')}
-                  onDrop={handlePortraitDrop('b')}
-                >
-                  <span className="section-label">{ui.portraitB}</span>
-                  <p className="mt-1 text-xs text-slate-300">{ui.dropImageHint}</p>
-                  <div className="mt-2 flex items-center gap-2">
-                    <button
-                      type="button"
-                      className="rounded-lg border border-rose-300/45 bg-rose-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-rose-100 transition hover:bg-rose-300/28"
-                      onClick={(event) => {
-                        event.preventDefault()
-                        draftPortraitInputRefB.current?.click()
-                      }}
-                    >
-                      {ui.pickImageButton}
-                    </button>
-                    <span className="truncate text-xs text-slate-300">{draftPortraitFileB?.name || ui.noFileSelected}</span>
-                  </div>
-                  <input
-                    ref={draftPortraitInputRefB}
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={handleDraftPortraitUpload('b')}
-                  />
-                  {draftPortraitPreviewB ? (
-                    <img
-                      src={draftPortraitPreviewB}
-                      alt="portrait-b-preview"
-                      className="mt-2 h-20 w-full rounded-md object-cover"
-                      style={buildPortraitImageStyle(draftPortraitAdjustB)}
-                    />
-                  ) : null}
-                </label>
-              </div>
-
-              <div className="mt-3 rounded-xl border border-slate-700/70 bg-slate-950/55 p-2 text-xs text-slate-300">
-                <p>{ui.importFile}: {draftTxtFileName || ui.notLoaded}</p>
-                <p className="mt-1">
-                  {ui.templateOrderLoaded}:{' '}
-                  {draftPayload
-                    ? injectDerivedTemplates(
-                        draftPayload.templateOrder.length ? draftPayload.templateOrder : DEFAULT_TEMPLATE_ORDER,
-                        draftPayload,
-                      ).join(' -> ')
-                    : ui.notLoaded}
-                </p>
-                <p className="mt-1">{ui.blocksDetected}: {draftPayload ? Object.keys(draftPayload.templateBlocks).length : 0}</p>
-              </div>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                <button type="button" className="button-soft" onClick={copyImportBlueprint}>
-                  {ui.copyBlueprint}
-                </button>
-                <button type="button" className="button-soft" onClick={createFightFromDraft}>
-                  {ui.createFight}
-                </button>
-              </div>
-
-              <details className="mt-3 rounded-xl border border-slate-700/70 bg-slate-950/55 p-2">
-                <summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.14em] text-slate-200">
-                  {ui.templateRequirements}
-                </summary>
-                <p className="mt-2 text-xs text-slate-300">
-                  {ui.requirementsHelp}
-                </p>
-                <textarea
-                  readOnly
-                  value={importTxtBlueprint}
-                  className="mt-2 h-56 w-full rounded-lg border border-slate-700/80 bg-slate-950/85 px-3 py-2 font-mono text-[11px] text-slate-100"
-                />
-              </details>
-            </section>
-
-            <section className="panel">
-              <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-slate-100">{ui.fightsLibrary}</h2>
-              {folderFights.length || manualFights.length ? (
-                <div className="mt-3 space-y-4">
-                  <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-cyan-200/90">{ui.folderFightsLibrary}</h3>
-                    {folderFightGroups.length ? (
-                      <div className="mt-2 space-y-3">
-                        {folderFightGroups.map((group) => (
-                          <div
-                            key={`folder-group-${group.matchupKey}`}
-                            className="rounded-xl border border-cyan-300/25 bg-cyan-500/8 p-2.5"
-                          >
-                            <div className="mb-2 flex items-center justify-between gap-2 border-b border-cyan-300/20 pb-2">
-                              <p className="min-w-0 truncate text-xs font-semibold uppercase tracking-[0.14em] text-cyan-100">
-                                {group.title}
-                              </p>
-                              <span className="rounded-lg border border-cyan-300/35 bg-cyan-500/12 px-2 py-1 text-[10px] uppercase tracking-[0.13em] text-cyan-100">
-                                {ui.bilingualGroup}: {group.fights.length}
-                              </span>
-                            </div>
-                            <div className="space-y-2">{group.fights.map((fight) => renderFightLibraryCard(fight))}</div>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="mt-2 text-xs text-slate-400">{ui.noFolderFights}</p>
-                    )}
-                    {folderScanWarnings.length ? (
-                      <div className="mt-2 rounded-lg border border-amber-300/35 bg-amber-500/10 p-2">
-                        <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-amber-200">{ui.folderWarningsTitle}</p>
-                        <div className="mt-1 max-h-24 overflow-y-auto space-y-1 text-[11px] text-amber-100/90">
-                          {folderScanWarnings.map((warning, index) => (
-                            <p key={`${warning}-${index}`}>{warning}</p>
-                          ))}
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-                  <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-200">{ui.manualFightsLibrary}</h3>
-                    {manualFights.length ? (
-                      <div className="mt-2 space-y-2">{manualFights.map((fight) => renderFightLibraryCard(fight))}</div>
-                    ) : (
-                      <p className="mt-2 text-xs text-slate-400">{ui.noManualFights}</p>
-                    )}
-                  </div>
-                </div>
-              ) : (
-                <p className="mt-3 text-sm text-slate-300">{ui.noFights}</p>
-              )}
-            </section>
-          </div>
-        ) : viewMode === 'fight-intro' ? (
+        ) : viewMode === 'home' ? null : viewMode === 'fight-intro' ? (
           <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <div
               className="relative z-0 h-full w-full transition-opacity duration-[1200ms] ease-out"
@@ -2267,73 +1648,46 @@ function App() {
             </div>
           </section>
         ) : (
-          <section
-            className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
-            style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
+          <FightPreviewStage
+            ui={ui}
+            activeTemplateLabel={activeTemplateLabel}
+            templateCursor={templateCursor}
+            templateOrderLength={templateOrder.length}
+            importFileName={importFileName}
+            fightViewVisible={fightViewVisible}
+            onBackToLibrary={goBackToLibrary}
+            onStepTemplateOrder={stepTemplateOrder}
+            previewShellRef={previewShellRef}
+            previewRef={previewRef}
+            scaledPreviewWidth={scaledPreviewWidth}
+            scaledPreviewHeight={scaledPreviewHeight}
+            previewBaseWidth={PREVIEW_BASE_WIDTH}
+            previewBaseHeight={PREVIEW_BASE_HEIGHT}
+            previewScale={previewScale}
+            frame={frame}
+            theme={theme}
+            activeTemplate={activeTemplate}
+            layoutMode={layoutMode}
           >
-            <div className="shrink-0 flex flex-wrap items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl">
-              <span className="rounded-xl border border-cyan-300/50 bg-cyan-400/15 px-3 py-2 text-sm font-semibold text-cyan-100">
-                {ui.liveMode}
-              </span>
-              <button className="button-soft" type="button" onClick={goBackToLibrary}>
-                {ui.backToLibrary}
-              </button>
-              <button className="button-soft" type="button" onClick={() => stepTemplateOrder(-1)}>
-                {ui.prevTemplate}
-              </button>
-              <button className="button-soft" type="button" onClick={() => stepTemplateOrder(1)}>
-                {ui.nextTemplate}
-              </button>
-              <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-                {ui.sequence} {templateCursor + 1}/{templateOrder.length}
-              </span>
-              <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-                {ui.active}: {activeTemplateLabel}
-              </span>
-              <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-                {stripFileExtension(importFileName) || ui.notLoaded}
-              </span>
-            </div>
-
-            <div ref={previewShellRef} className="min-h-0 flex-1 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/55 p-3 backdrop-blur-xl">
-              <div
-                className="mx-auto"
-                style={{
-                  width: `${scaledPreviewWidth}px`,
-                  height: `${scaledPreviewHeight}px`,
-                }}
-              >
-                <div
-                  ref={previewRef}
-                  className={clsx(
-                    'relative overflow-hidden rounded-[34px] border p-4 sm:p-5',
-                    FRAME_CLASSES[frame],
-                    THEME_CLASSES[theme],
-                  )}
-                  style={{
-                    width: `${PREVIEW_BASE_WIDTH}px`,
-                    height: `${PREVIEW_BASE_HEIGHT}px`,
-                    transform: `scale(${previewScale})`,
-                    transformOrigin: 'top left',
-                  }}
-                >
-                  {activeTemplate === 'fight-title' ? null : (
-                    <div className={clsx('pointer-events-none absolute inset-0', THEME_OVERLAYS[theme])} />
-                  )}
-                  <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:34px_34px]" />
-                  <div className="pointer-events-none absolute inset-3 rounded-[26px] border border-white/12" />
-                  {activeTemplate === 'fight-title' ? null : <div className="scan-sweep" />}
-                  <div key={layoutMode} className="template-fade h-full">
-                    {renderTemplate()}
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
+            {renderedTemplate}
+          </FightPreviewStage>
         )}
       </div>
-      {portraitEditorOverlay}
-      {searchMorphOverlay}
+      <PortraitEditorModal
+        portraitEditor={portraitEditor}
+        ui={ui}
+        canSwitchSide={canSwitchPortraitEditorSide}
+        onToggleSide={togglePortraitEditorSide}
+        onUpdateAdjust={updatePortraitEditorAdjust}
+        onResetAdjust={resetPortraitEditorAdjust}
+        onClose={closePortraitEditor}
+        onApply={applyPortraitEditor}
+      />
+      <SearchMorphOverlay
+        visible={searchMorphVisible}
+        direction={searchMorphDirection}
+        handoff={searchMorphHandoff}
+      />
     </main>
   )
 }

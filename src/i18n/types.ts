@@ -1,4 +1,5 @@
 import { translationsEn } from './en'
+import { translationsPl } from './pl'
 
-export type TranslationDictionary = typeof translationsEn
-export type TranslationKey = keyof TranslationDictionary
+export type TranslationDictionary = typeof translationsEn | typeof translationsPl
+export type TranslationKey = keyof typeof translationsEn
