@@ -1,0 +1,227 @@
+import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import clsx from 'clsx'
+import type { PortraitAdjust } from '../types'
+import { PORTRAIT_ADJUST_DEFAULT, buildAdjustableTemplateImageStyle, getTemplateImageGeometry, normalizePortraitAdjust, normalizeTemplateImageAdjust } from '../helpers'
+
+export function AdjustableTemplateImage({
+  imageUrl,
+  alt,
+  fallbackLabel,
+  hintLabel,
+  adjustKey,
+  baseAdjust,
+  adjustments,
+  onAdjustChange,
+  onAdjustCommit,
+  onActivate,
+  plain,
+}: {
+  imageUrl: string
+  alt: string
+  fallbackLabel: string
+  hintLabel: string
+  adjustKey: string
+  baseAdjust?: PortraitAdjust
+  adjustments: Record<string, PortraitAdjust>
+  onAdjustChange: (key: string, adjust: PortraitAdjust) => void
+  onAdjustCommit: (key: string, adjust: PortraitAdjust) => void
+  onActivate?: () => void
+  plain?: boolean
+}) {
+  const containerRef = useRef<HTMLDivElement | null>(null)
+  const imageMetricsRef = useRef({ width: 0, height: 0 })
+  const dragRef = useRef<{
+    pointerId: number
+    mode: 'pan' | 'zoom'
+    startX: number
+    startY: number
+    base: PortraitAdjust
+    moved: boolean
+  } | null>(null)
+  const latestAdjustRef = useRef<PortraitAdjust>(PORTRAIT_ADJUST_DEFAULT)
+  const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
+  const [imageNaturalSize, setImageNaturalSize] = useState({ width: 0, height: 0 })
+
+  const currentAdjust = normalizeTemplateImageAdjust(
+    normalizePortraitAdjust(adjustments[adjustKey] ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
+  )
+  const imageGeometry = useMemo(
+    () =>
+      getTemplateImageGeometry(
+        containerSize.width,
+        containerSize.height,
+        imageNaturalSize.width,
+        imageNaturalSize.height,
+        currentAdjust.scale,
+      ),
+    [containerSize.height, containerSize.width, currentAdjust.scale, imageNaturalSize.height, imageNaturalSize.width],
+  )
+
+  useEffect(() => {
+    latestAdjustRef.current = currentAdjust
+  }, [currentAdjust.x, currentAdjust.y, currentAdjust.scale, adjustKey])
+
+  useEffect(() => {
+    imageMetricsRef.current = imageNaturalSize
+  }, [imageNaturalSize.height, imageNaturalSize.width])
+
+  useEffect(() => {
+    setImageNaturalSize({ width: 0, height: 0 })
+  }, [imageUrl])
+
+  useEffect(() => {
+    const container = containerRef.current
+    if (!container) return
+    const updateSize = () => {
+      setContainerSize({
+        width: container.clientWidth,
+        height: container.clientHeight,
+      })
+    }
+    updateSize()
+    const observer = new ResizeObserver(updateSize)
+    observer.observe(container)
+    return () => observer.disconnect()
+  }, [])
+
+  const commitAdjust = (nextAdjust: PortraitAdjust) => {
+    const normalized = normalizeTemplateImageAdjust(normalizePortraitAdjust(nextAdjust))
+    latestAdjustRef.current = normalized
+    onAdjustChange(adjustKey, normalized)
+    onAdjustCommit(adjustKey, normalized)
+  }
+
+  const updateAdjust = (nextAdjust: PortraitAdjust) => {
+    const normalized = normalizeTemplateImageAdjust(normalizePortraitAdjust(nextAdjust))
+    latestAdjustRef.current = normalized
+    onAdjustChange(adjustKey, normalized)
+  }
+
+  const handlePointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.button !== 0 && event.button !== 2) return
+    const container = containerRef.current
+    if (!container) return
+    event.preventDefault()
+    event.stopPropagation()
+
+    dragRef.current = {
+      pointerId: event.pointerId,
+      mode: event.button === 2 ? 'zoom' : 'pan',
+      startX: event.clientX,
+      startY: event.clientY,
+      base: latestAdjustRef.current,
+      moved: false,
+    }
+    container.setPointerCapture(event.pointerId)
+  }
+
+  const handlePointerMove = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current
+    const container = containerRef.current
+    if (!drag || drag.pointerId !== event.pointerId || !container) return
+    event.preventDefault()
+    event.stopPropagation()
+
+    const dx = event.clientX - drag.startX
+    const dy = event.clientY - drag.startY
+    if (Math.abs(dx) + Math.abs(dy) > 2) drag.moved = true
+
+    if (drag.mode === 'pan') {
+      const geometry = getTemplateImageGeometry(
+        container.clientWidth,
+        container.clientHeight,
+        imageMetricsRef.current.width,
+        imageMetricsRef.current.height,
+        drag.base.scale,
+      )
+      const nextX =
+        geometry && geometry.overflowX > 0
+          ? drag.base.x - (dx / geometry.overflowX) * 100
+          : drag.base.x
+      const nextY =
+        geometry && geometry.overflowY > 0
+          ? drag.base.y - (dy / geometry.overflowY) * 100
+          : drag.base.y
+      updateAdjust({ x: nextX, y: nextY, scale: drag.base.scale })
+      return
+    }
+
+    const zoomDelta = (-dy / Math.max(1, container.clientHeight)) * 1.6
+    updateAdjust({ x: drag.base.x, y: drag.base.y, scale: drag.base.scale + zoomDelta })
+  }
+
+  const finalizePointer = (event: ReactPointerEvent<HTMLDivElement>) => {
+    const drag = dragRef.current
+    const container = containerRef.current
+    if (!drag || drag.pointerId !== event.pointerId || !container) return
+    event.preventDefault()
+    event.stopPropagation()
+    if (container.hasPointerCapture(event.pointerId)) {
+      container.releasePointerCapture(event.pointerId)
+    }
+    dragRef.current = null
+    commitAdjust(latestAdjustRef.current)
+    if (!drag.moved && drag.mode === 'pan') {
+      onActivate?.()
+    }
+  }
+
+  const handleContextMenu = (event: ReactMouseEvent<HTMLDivElement>) => {
+    event.preventDefault()
+  }
+
+  return (
+    <div
+      ref={containerRef}
+      className={clsx(
+        'group relative min-h-0 flex-1 cursor-grab touch-none overflow-hidden select-none active:cursor-grabbing',
+        plain ? 'h-full w-full' : 'rounded-lg border border-slate-500/50 bg-slate-950/70',
+      )}
+      onPointerDown={handlePointerDown}
+      onPointerMove={handlePointerMove}
+      onPointerUp={finalizePointer}
+      onPointerCancel={finalizePointer}
+      onContextMenu={handleContextMenu}
+      role="button"
+      tabIndex={0}
+      onKeyDown={(event: ReactKeyboardEvent<HTMLDivElement>) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault()
+          onActivate?.()
+        }
+      }}
+    >
+      {imageUrl ? (
+        <img
+          src={imageUrl}
+          alt={alt}
+          className="absolute block select-none"
+          draggable={false}
+          style={buildAdjustableTemplateImageStyle(currentAdjust, imageGeometry)}
+          onLoad={(event) => {
+            const target = event.currentTarget
+            const nextMetrics = {
+              width: target.naturalWidth,
+              height: target.naturalHeight,
+            }
+            imageMetricsRef.current = nextMetrics
+            setImageNaturalSize(nextMetrics)
+          }}
+        />
+      ) : (
+        <div className="flex h-full w-full items-center justify-center px-4 text-center text-sm text-slate-400">
+          {fallbackLabel}
+        </div>
+      )}
+      {plain ? null : <div className="pointer-events-none absolute inset-0 border-[2px] border-black/35" />}
+      {plain ? null : (
+        <div className="pointer-events-none absolute inset-0 opacity-0 transition-opacity group-hover:opacity-100 bg-[linear-gradient(180deg,transparent,rgba(2,6,23,0.75))]" />
+      )}
+      {plain ? null : (
+        <div className="pointer-events-none absolute bottom-2 left-2 rounded border border-cyan-300/35 bg-black/50 px-2 py-1 text-[10px] uppercase tracking-[0.14em] text-cyan-100 opacity-0 transition-opacity group-hover:opacity-100">
+          {hintLabel}
+        </div>
+      )}
+    </div>
+  )
+}
