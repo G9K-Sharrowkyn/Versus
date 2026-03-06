@@ -248,7 +248,6 @@ document.addEventListener("DOMContentLoaded", () => {
       if (!PERF.enabled) return;
       console.warn('[VS-PERF]', event, payload);
     };
-    let relayMoveRaf = 0;
     let relayMoveX = window.innerWidth * 0.5;
     let relayMoveY = window.innerHeight * 0.5;
     let disposePointerRelay = () => {};
@@ -274,15 +273,10 @@ document.addEventListener("DOMContentLoaded", () => {
       const root = document.documentElement;
       root.classList.add('vvv-parent-cursor');
 
-      const flushMoveRelay = () => {
-        relayMoveRaf = 0;
-        postPointerRelay('move', relayMoveX, relayMoveY);
-      };
-
       const onPointerMove = (event) => {
         relayMoveX = event.clientX;
         relayMoveY = event.clientY;
-        if (!relayMoveRaf) relayMoveRaf = window.requestAnimationFrame(flushMoveRelay);
+        postPointerRelay('move', relayMoveX, relayMoveY);
       };
 
       const onPointerDown = (event) => {
@@ -316,10 +310,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.removeEventListener('pointerleave', onPointerLeave);
         window.removeEventListener('blur', onPointerLeave);
         root.classList.remove('vvv-parent-cursor');
-        if (relayMoveRaf) {
-          window.cancelAnimationFrame(relayMoveRaf);
-          relayMoveRaf = 0;
-        }
       };
     };
     window.addEventListener('beforeunload', () => {

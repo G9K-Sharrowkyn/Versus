@@ -27,14 +27,9 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
 
     let targetX = window.innerWidth * 0.5
     let targetY = window.innerHeight * 0.5
-    let currentX = targetX
-    let currentY = targetY
-    let rafId = 0
-    let relayRafId = 0
-    let queuedRelay: PointerRelayPayload | null = null
     let activeRelaySource: PointerRelaySource | null = null
     let relayPriorityUntil = 0
-    layer.style.transform = `translate3d(${currentX - 2}px, ${currentY - 2}px, 0)`
+    layer.style.transform = `translate3d(${targetX - 2}px, ${targetY - 2}px, 0)`
     layer.classList.add('is-visible')
 
     const resolveRelayFrame = (source: PointerRelaySource): HTMLIFrameElement | null => {
@@ -52,20 +47,8 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
       }
     }
 
-    const render = () => {
-      currentX += (targetX - currentX) * 0.42
-      currentY += (targetY - currentY) * 0.42
-      layer.style.transform = `translate3d(${currentX - 2}px, ${currentY - 2}px, 0)`
-
-      if (Math.abs(targetX - currentX) > 0.05 || Math.abs(targetY - currentY) > 0.05) {
-        rafId = window.requestAnimationFrame(render)
-      } else {
-        rafId = 0
-      }
-    }
-
-    const schedule = () => {
-      if (!rafId) rafId = window.requestAnimationFrame(render)
+    const syncPosition = (x: number, y: number) => {
+      layer.style.transform = `translate3d(${x - 2}px, ${y - 2}px, 0)`
     }
 
     const applyTarget = (x: number, y: number, source?: PointerRelaySource) => {
@@ -74,27 +57,9 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
       layer.classList.add('is-visible')
       if (source) {
         activeRelaySource = source
-        relayPriorityUntil = performance.now() + 96
+        relayPriorityUntil = performance.now() + 48
       }
-      schedule()
-    }
-
-    const flushRelay = () => {
-      relayRafId = 0
-      const relay = queuedRelay
-      queuedRelay = null
-      if (!relay) return
-      const mapped = mapRelayPosition(relay)
-      if (!mapped) return
-
-      applyTarget(mapped.x, mapped.y, relay.source)
-      if (relay.event === 'down' || relay.down === true) {
-        layer.classList.add('is-down')
-        return
-      }
-      if (relay.event === 'up' || relay.event === 'leave' || relay.down === false) {
-        layer.classList.remove('is-down')
-      }
+      syncPosition(x, y)
     }
 
     const onPointerMove = (event: PointerEvent) => {
@@ -109,8 +74,17 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
       if (event.origin !== window.location.origin) return
       const relay = normalizePointerRelayPayload(event.data)
       if (!relay) return
-      queuedRelay = relay
-      if (!relayRafId) relayRafId = window.requestAnimationFrame(flushRelay)
+      const mapped = mapRelayPosition(relay)
+      if (!mapped) return
+
+      applyTarget(mapped.x, mapped.y, relay.source)
+      if (relay.event === 'down' || relay.down === true) {
+        layer.classList.add('is-down')
+        return
+      }
+      if (relay.event === 'up' || relay.event === 'leave' || relay.down === false) {
+        layer.classList.remove('is-down')
+      }
     }
 
     const onPointerDown = () => {
@@ -132,8 +106,6 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
       window.removeEventListener('pointerup', onPointerUp)
       window.removeEventListener('pointercancel', onPointerUp)
       window.removeEventListener('message', onPointerRelayMessage)
-      if (rafId) window.cancelAnimationFrame(rafId)
-      if (relayRafId) window.cancelAnimationFrame(relayRafId)
       layer.remove()
       root.classList.remove('vvv-animated-cursor')
     }
