@@ -141,6 +141,12 @@ export function AdjustableTemplateImage({
     const dy = event.clientY - drag.startY
     if (Math.abs(dx) + Math.abs(dy) > 2) drag.moved = true
 
+    const rect = container.getBoundingClientRect()
+    const scaleX = rect.width > 0 && container.clientWidth > 0 ? rect.width / container.clientWidth : 1
+    const scaleY = rect.height > 0 && container.clientHeight > 0 ? rect.height / container.clientHeight : 1
+    const localDx = dx / Math.max(scaleX, 0.0001)
+    const localDy = dy / Math.max(scaleY, 0.0001)
+
     if (drag.mode === 'pan') {
       const geometry = getTemplateImageGeometry(
         container.clientWidth,
@@ -151,11 +157,11 @@ export function AdjustableTemplateImage({
       )
       const nextX =
         geometry && geometry.overflowX > 0
-          ? drag.base.x - (dx / geometry.overflowX) * 100
+          ? drag.base.x - (localDx / geometry.overflowX) * 100
           : drag.base.x
       const nextY =
         geometry && geometry.overflowY > 0
-          ? drag.base.y - (dy / geometry.overflowY) * 100
+          ? drag.base.y - (localDy / geometry.overflowY) * 100
           : drag.base.y
       const normalized = updateAdjust({ x: nextX, y: nextY, scale: drag.base.scale })
       drag.base = normalized
@@ -164,7 +170,7 @@ export function AdjustableTemplateImage({
       return
     }
 
-    const zoomDelta = (-dy / Math.max(1, container.clientHeight)) * 1.6
+    const zoomDelta = (-localDy / Math.max(1, container.clientHeight)) * 1.6
     const normalized = updateAdjust({ x: drag.base.x, y: drag.base.y, scale: drag.base.scale + zoomDelta })
     drag.base = normalized
     drag.startX = event.clientX

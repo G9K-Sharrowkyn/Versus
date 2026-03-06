@@ -1,7 +1,8 @@
-import { buildPortraitImageStyle, fighterMonogram } from '../../../helpers'
+import { fighterMonogram } from '../../../helpers'
 import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import {
   HIGH_END_CARD_CLASS,
   HIGH_END_FRAME_CLASS,
@@ -25,6 +26,9 @@ export function SummaryTemplate({
   title,
   subtitle,
   templateBlocks,
+  slideImageAdjustments,
+  onSlideImageAdjustChange,
+  onSlideImageAdjustCommit,
   language,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
@@ -43,6 +47,7 @@ export function SummaryTemplate({
   const profileMode = '/assets/VS2.png'
   const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
   const scale = 'VersusVerseVault badge'
+  const portraitHint = tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')
   const winnerLabel =
     pickTemplateField(blockFields, ['winner', 'verdict']) ||
     tr('WERDYKT WARUNKOWY, BRAK ABSOLUTNEGO STOMPA', 'CONDITIONAL VERDICT, NO ABSOLUTE STOMP')
@@ -89,11 +94,17 @@ export function SummaryTemplate({
               </div>
               <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterA.color}88` }}>
                 {fighterA.imageUrl ? (
-                  <img
-                    src={fighterA.imageUrl}
+                  <AdjustableTemplateImage
+                    imageUrl={fighterA.imageUrl}
                     alt={fighterA.name || 'Fighter A'}
-                    className="h-full w-full object-cover"
-                    style={buildPortraitImageStyle(portraitAAdjust)}
+                    fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
+                    hintLabel={portraitHint}
+                    adjustKey="summary:portrait-a"
+                    baseAdjust={portraitAAdjust}
+                    adjustments={slideImageAdjustments}
+                    onAdjustChange={onSlideImageAdjustChange}
+                    onAdjustCommit={onSlideImageAdjustCommit}
+                    plain
                   />
                 ) : (
                   <div
@@ -158,11 +169,17 @@ export function SummaryTemplate({
               </div>
               <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterB.color}88` }}>
                 {fighterB.imageUrl ? (
-                  <img
-                    src={fighterB.imageUrl}
+                  <AdjustableTemplateImage
+                    imageUrl={fighterB.imageUrl}
                     alt={fighterB.name || 'Fighter B'}
-                    className="h-full w-full object-cover"
-                    style={buildPortraitImageStyle(portraitBAdjust)}
+                    fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
+                    hintLabel={portraitHint}
+                    adjustKey="summary:portrait-b"
+                    baseAdjust={portraitBAdjust}
+                    adjustments={slideImageAdjustments}
+                    onAdjustChange={onSlideImageAdjustChange}
+                    onAdjustCommit={onSlideImageAdjustCommit}
+                    plain
                   />
                 ) : (
                   <div
