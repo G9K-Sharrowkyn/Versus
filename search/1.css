@@ -53,7 +53,8 @@ input[type='search'] {
 
 .gemini {
   --f: url(#electric-flow-hue);
-  --electric-y-offset: -3px;
+  --electric-x-offset: -5px;
+  --electric-y-offset: -5px;
   --electric-border-color: DodgerBlue;
   --electric-light-color: oklch(from var(--electric-border-color) l c h);
   --gradient-color: oklch(from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4);
@@ -154,7 +155,7 @@ body.search-collapsing .gemini .border-outer {
   opacity: 0.95;
   mix-blend-mode: screen;
   filter: var(--f) blur(0.45px);
-  transform: translateY(var(--electric-y-offset));
+  transform: translate(var(--electric-x-offset), var(--electric-y-offset));
   pointer-events: none;
   animation: none;
   transition: opacity 220ms linear, filter 220ms linear;
@@ -187,7 +188,7 @@ body.search-collapsing .gemini .border-outer {
   position: absolute;
   inset: 0;
   filter: var(--f) blur(0.8px);
-  transform: translateY(var(--electric-y-offset));
+  transform: translate(var(--electric-x-offset), var(--electric-y-offset));
   pointer-events: none;
   animation: none;
   transition: opacity 220ms linear, filter 220ms linear;
@@ -199,7 +200,7 @@ body.search-collapsing .gemini .border-outer {
   position: absolute;
   inset: 0;
   filter: var(--f) blur(1.2px);
-  transform: translateY(var(--electric-y-offset));
+  transform: translate(var(--electric-x-offset), var(--electric-y-offset));
   pointer-events: none;
   animation: none;
   transition: opacity 220ms linear, filter 220ms linear;
