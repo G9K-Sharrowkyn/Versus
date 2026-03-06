@@ -43,32 +43,40 @@ export function FightPreviewStage({
   activeTemplate,
   children,
 }: FightPreviewStageProps) {
+  const toolbarItemClass =
+    'flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
+  const buttonItemClass = `${toolbarItemClass} border-white/15 bg-white/5 text-slate-100 transition-colors hover:bg-white/10`
+  const statusItemClass = `${toolbarItemClass} border-white/15 bg-transparent text-slate-200`
+
   return (
     <section
       className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
       style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
     >
-      <div className="shrink-0 flex flex-wrap items-center gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl">
-        <span className="rounded-xl border border-cyan-300/50 bg-cyan-400/15 px-3 py-2 text-sm font-semibold text-cyan-100">
+      <div className="shrink-0 grid grid-cols-1 gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl sm:grid-cols-2 xl:grid-cols-7">
+        <span className={`${toolbarItemClass} border-cyan-300/50 bg-cyan-400/15 font-semibold text-cyan-100`} title={ui.liveMode}>
           {ui.liveMode}
         </span>
-        <button className="button-soft" type="button" onClick={onBackToLibrary}>
+        <button className={buttonItemClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
           {ui.backToLibrary}
         </button>
-        <button className="button-soft" type="button" onClick={() => onStepTemplateOrder(-1)}>
+        <button className={buttonItemClass} type="button" onClick={() => onStepTemplateOrder(-1)} title={ui.prevTemplate}>
           {ui.prevTemplate}
         </button>
-        <button className="button-soft" type="button" onClick={() => onStepTemplateOrder(1)}>
+        <button className={buttonItemClass} type="button" onClick={() => onStepTemplateOrder(1)} title={ui.nextTemplate}>
           {ui.nextTemplate}
         </button>
-        <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-          {ui.sequence} {templateCursor + 1}/{templateOrderLength}
+        <span className={`${statusItemClass} flex-col`} title={`${ui.sequence} ${templateCursor + 1}/${templateOrderLength}`}>
+          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.sequence}</span>
+          <span className="mt-0.5">{templateCursor + 1}/{templateOrderLength}</span>
         </span>
-        <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-          {ui.active}: {activeTemplateLabel}
+        <span className={`${statusItemClass} flex-col`} title={`${ui.active}: ${activeTemplateLabel}`}>
+          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.active}</span>
+          <span className="mt-0.5 w-full truncate">{activeTemplateLabel}</span>
         </span>
-        <span className="rounded-xl border border-white/15 px-3 py-2 text-sm text-slate-200">
-          {stripFileExtension(importFileName) || ui.notLoaded}
+        <span className={`${statusItemClass} flex-col`} title={stripFileExtension(importFileName) || ui.notLoaded}>
+          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.importFile}</span>
+          <span className="mt-0.5 w-full truncate">{stripFileExtension(importFileName) || ui.notLoaded}</span>
         </span>
       </div>
 

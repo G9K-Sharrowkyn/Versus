@@ -109,7 +109,7 @@ Template Character A:
 - style: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
-- quote: This looks like a job for Superman.
+- quote: To wygląda na robotę dla Supermana.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY

@@ -1,8 +1,8 @@
-import { pickLang } from '../../presets'
+import { LightningCanvas } from '../../components/LightningCanvas'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
+import { pickLang } from '../../presets'
 import type { TemplatePreviewProps } from '../../types'
-import { LightningCanvas } from '../../components/LightningCanvas'
 import {
   HIGH_END_FRAME_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -12,6 +12,8 @@ import {
   HIGH_END_ROOT_CLASS,
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
+
+const MATCHUP_SEPARATOR_RE = /^(.*?)(?:\s*\/\/\s*|\s+\|\s+|\s+-\s+)(.+\b(?:vs\.?|versus|kontra|v)\b.+)$/i
 
 export function TacticalBoardTemplate({
   rows,
@@ -28,9 +30,13 @@ export function TacticalBoardTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const boardHeader = pickTemplateField(blockFields, ['left_header', 'categories_header']) || tr('Kategorie', 'Categories')
-  const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('Rzeczywistość walki', 'Combat reality')
+  const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('Rzeczywistosc walki', 'Combat reality')
   const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
   const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
+  const fallbackMatchup = `${fighterA.name || 'Fighter A'} VS ${fighterB.name || 'Fighter B'}`
+  const parsedHeader = headerText.trim().match(MATCHUP_SEPARATOR_RE)
+  const mainHeaderText = parsedHeader?.[1]?.trim() || headerText
+  const matchupText = pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) || parsedHeader?.[2]?.trim() || ''
   const tiles = rows.slice(0, 9)
   const splitX = 50
   const linearStartX = 8
@@ -46,8 +52,23 @@ export function TacticalBoardTemplate({
         <div className="relative z-10 flex h-full min-h-0 flex-col gap-3">
           <div className="border-b border-cyan-300/25 pb-2">
             <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
-              {headerText}
+              {mainHeaderText}
             </h2>
+            {matchupText ? (
+              <p
+                className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {matchupText}
+              </p>
+            ) : headerText === fallbackMatchup ? (
+              <p
+                className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {fallbackMatchup}
+              </p>
+            ) : null}
             <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p>
           </div>
 
