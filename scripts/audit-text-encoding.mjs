@@ -1,4 +1,4 @@
-﻿import fs from 'node:fs/promises'
+import fs from 'node:fs/promises'
 import path from 'node:path'
 
 const PROJECT_ROOT = process.cwd()
@@ -7,6 +7,7 @@ const IGNORE_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '.vite', '
 const IGNORE_FILES = new Set(['package-lock.json'])
 
 const MOJIBAKE_PATTERN = /[\u00C3\u00C4\u00C5\u0139\u0102\u00C2\u00E2\uFFFD]/g
+const UTF8_BOM = '\uFEFF'
 
 const shouldIgnorePath = (relativePath) => {
   const normalized = relativePath.replaceAll('\\', '/')
@@ -56,13 +57,14 @@ const run = async () => {
   const issues = []
   for (const file of files) {
     const content = await fs.readFile(file.absolutePath, 'utf8')
-    if (!MOJIBAKE_PATTERN.test(content)) {
-      MOJIBAKE_PATTERN.lastIndex = 0
+    const hasBom = content.startsWith(UTF8_BOM)
+    const hasMojibake = MOJIBAKE_PATTERN.test(content)
+    MOJIBAKE_PATTERN.lastIndex = 0
+    if (!hasBom && !hasMojibake) {
       continue
     }
-    MOJIBAKE_PATTERN.lastIndex = 0
     const matches = collectLineMatches(content)
-    issues.push({ file: file.relativePath, matches })
+    issues.push({ file: file.relativePath, hasBom, matches })
   }
 
   if (!issues.length) {
@@ -73,6 +75,9 @@ const run = async () => {
   console.error(`[i18n:audit] FAIL: found mojibake markers in ${issues.length} file(s).`)
   for (const issue of issues) {
     console.error(`\n- ${issue.file}`)
+    if (issue.hasBom) {
+      console.error('  BOM: file starts with UTF-8 BOM.')
+    }
     for (const match of issue.matches.slice(0, 25)) {
       console.error(`  L${match.lineNumber}: ${match.preview}`)
     }

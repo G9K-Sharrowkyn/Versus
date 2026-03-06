@@ -1,4 +1,4 @@
-﻿# VS Graphic Studio - Template Data Requirements
+# VS Graphic Studio - Template Data Requirements
 
 ## 1) Core `.txt` import sections (required)
 Use sections `1..8` always. Section `9` is optional.

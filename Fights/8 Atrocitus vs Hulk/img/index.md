@@ -1,4 +1,4 @@
-﻿# Image Index
+# Image Index
 
 - section: `6.1`
   title: `Bound the Butcher inside his power battery`

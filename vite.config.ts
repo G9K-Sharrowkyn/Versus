@@ -3,6 +3,7 @@ import type { ServerResponse } from 'node:http'
 import path from 'node:path'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { decodeImportTextBytes, INVALID_TEXT_ENCODING_ERROR } from './src/shared/textDecoding'
 
 const FIGHTS_DIR_CANDIDATES = [
   path.resolve(__dirname, 'Fights'),
@@ -83,56 +84,6 @@ const normalizeMatchName = (folderName: string) =>
   folderName.replace(/^\s*\d+\s*[\.\-_ ]*/, '').trim() || folderName.trim()
 
 const asJson = (response: unknown) => JSON.stringify(response, null, 2)
-
-const MOJIBAKE_PATTERN = /[\u00C3\u00C4\u00C5\u0139\u0102\u00C2\u00E2\uFFFD]/g
-const POLISH_CHAR_PATTERN = /[ąćęłńóśźżĄĆĘŁŃÓŚŹŻ]/g
-const INVALID_TEXT_ENCODING_ERROR = 'INVALID_TEXT_ENCODING'
-
-const scoreDecodedImportText = (value: string) => {
-  const polish = (value.match(POLISH_CHAR_PATTERN) || []).length
-  const bad = (value.match(MOJIBAKE_PATTERN) || []).length
-  return polish * 2 - bad * 3
-}
-
-const decodeImportTextBuffer = (payload: Buffer) => {
-  const bytes = new Uint8Array(payload)
-  const candidates: string[] = []
-
-  try {
-    candidates.push(new TextDecoder('utf-8', { fatal: true }).decode(bytes))
-  } catch {
-    // Fallback handled below.
-  }
-
-  try {
-    candidates.push(new TextDecoder('windows-1250').decode(bytes))
-  } catch {
-    // Optional fallback.
-  }
-
-  if (!candidates.length) {
-    candidates.push(new TextDecoder('utf-8').decode(bytes))
-  }
-
-  let best = candidates[0] || ''
-  let bestScore = scoreDecodedImportText(best)
-
-  for (let index = 1; index < candidates.length; index += 1) {
-    const candidate = candidates[index] || ''
-    const score = scoreDecodedImportText(candidate)
-    if (score > bestScore) {
-      best = candidate
-      bestScore = score
-    }
-  }
-
-  const normalized = best.replace(/\r\n?/g, '\n').normalize('NFC')
-  const badCount = (normalized.match(MOJIBAKE_PATTERN) || []).length
-  if (badCount > 0 && bestScore < 0) {
-    throw new Error(INVALID_TEXT_ENCODING_ERROR)
-  }
-  return normalized
-}
 
 const contentTypeForImage = (fileName: string) => {
   const lower = fileName.toLowerCase()
@@ -242,7 +193,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
       let txtContent = ''
       try {
         const txtPayload = await fs.readFile(path.join(folderPath, txtFileName))
-        txtContent = decodeImportTextBuffer(txtPayload)
+        txtContent = decodeImportTextBytes(new Uint8Array(txtPayload))
       } catch (error) {
         if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
           warnings.push(`TXT \"${txtFileName}\" in folder \"${folderName}\" has unsupported encoding (use UTF-8 or Windows-1250).`)

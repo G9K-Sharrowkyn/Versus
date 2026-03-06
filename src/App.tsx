@@ -1,4 +1,4 @@
-﻿import {
+import {
   useEffect,
   useMemo,
   useRef,
@@ -11,6 +11,8 @@
   type PointerEvent as ReactPointerEvent,
 } from 'react'
 import clsx from 'clsx'
+import { getTranslations } from './i18n'
+import { decodeImportTextBytes, INVALID_TEXT_ENCODING_ERROR } from './shared/textDecoding'
 import {
   PolarAngleAxis,
   PolarGrid,
@@ -93,13 +95,6 @@ type TemplatePreset = {
   layout: LayoutMode
   frame: Frame
   theme: Theme
-  title: string
-  subtitle: string
-}
-
-type LocalizedTemplateCopy = {
-  name: string
-  description: string
   title: string
   subtitle: string
 }
@@ -273,20 +268,8 @@ const DEFAULT_CATEGORIES: Category[] = [
   { id: 'skills', label: 'Combat Skills' },
 ]
 
-const DEFAULT_CATEGORIES_PL: Category[] = [
-  { id: 'strength', label: 'SiĹ‚a' },
-  { id: 'speed', label: 'SzybkoĹ›Ä‡' },
-  { id: 'durability', label: 'WytrzymaĹ‚oĹ›Ä‡' },
-  { id: 'battleIq', label: 'IQ Bojowe' },
-  { id: 'hax', label: 'Hax' },
-  { id: 'stamina', label: 'Kondycja' },
-  { id: 'style', label: 'Styl Walki' },
-  { id: 'experience', label: 'DoĹ›wiadczenie' },
-  { id: 'skills', label: 'UmiejÄ™tnoĹ›ci' },
-]
-
 const defaultCategoriesFor = (language: Language): Category[] =>
-  (language === 'pl' ? DEFAULT_CATEGORIES_PL : DEFAULT_CATEGORIES).map((item) => ({ ...item }))
+  Object.entries(getTranslations(language).categories).map(([id, label]) => ({ id, label }))
 
 const FIGHTER_A: Fighter = {
   name: 'Superman',
@@ -412,7 +395,7 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
     layout: 'blankTemplate',
     frame: 'tech',
     theme: 'cosmic',
-    title: 'PODSUMOWANIE KOĹCOWE',
+    title: 'PODSUMOWANIE KOŃCOWE',
     subtitle: '',
   },
   {
@@ -457,12 +440,12 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
   },
   {
     id: 'stat-trap',
-    name: 'PuĹ‚apka Statystyk',
+    name: 'Pułapka Statystyk',
     description: 'Non-linear trap placeholder.',
     layout: 'blankTemplate',
     frame: 'tech',
     theme: 'steel',
-    title: 'PUĹAPKA STATYSTYK',
+    title: 'PUŁAPKA STATYSTYK',
     subtitle: 'Why better stats do not guarantee victory',
   },
   {
@@ -499,263 +482,8 @@ const TEMPLATE_PRESETS: TemplatePreset[] = [
 
 const pickLang = (language: Language, pl: string, en: string) => (language === 'pl' ? pl : en)
 
-const TEMPLATE_LOCALIZED_COPY: Record<TemplateId, Record<Language, LocalizedTemplateCopy>> = {
-  'tactical-board': {
-    pl: {
-      name: 'Tablica Taktyczna / Metodologia',
-      description: 'PĂłĹ‚ planszy kategorii i pĂłĹ‚ panelu nieliniowoĹ›ci walki.',
-      title: 'TABLICA TAKTYCZNA // METODOLOGIA',
-      subtitle: 'Tabela kategorii i nieliniowa rzeczywistoĹ›Ä‡ starcia',
-    },
-    en: {
-      name: 'Tactical Board / Methodology',
-      description: 'Half category board, half combat-reality lightning screen.',
-      title: 'TACTICAL BOARD // METHODOLOGY',
-      subtitle: 'Category table and non-linear combat reality',
-    },
-  },
-  'character-card-a': {
-    pl: {
-      name: 'Karta Postaci A',
-      description: 'PeĹ‚na karta lewej postaci z wiÄ™kszym miejscem na portret.',
-      title: 'DOSSIER POSTACI // NIEBIESKI',
-      subtitle: 'Archetyp, styl i profil taktyczny',
-    },
-    en: {
-      name: 'Character Card A',
-      description: 'Single full card for fighter A (more portrait space).',
-      title: 'CHARACTER DOSSIER // BLUE',
-      subtitle: 'Archetype, style and tactical profile',
-    },
-  },
-  'character-card-b': {
-    pl: {
-      name: 'Karta Postaci B',
-      description: 'PeĹ‚na karta prawej postaci z wiÄ™kszym miejscem na portret.',
-      title: 'DOSSIER POSTACI // CZERWONY',
-      subtitle: 'Archetyp, styl i profil taktyczny',
-    },
-    en: {
-      name: 'Character Card B',
-      description: 'Single full card for fighter B (more portrait space).',
-      title: 'CHARACTER DOSSIER // RED',
-      subtitle: 'Archetype, style and tactical profile',
-    },
-  },
-  'powers-tools': {
-    pl: {
-      name: 'Moce / Narzedzia / Slabosci',
-      description: 'Dwustronny panel narzedzi i slabosci obu postaci.',
-      title: 'MOCE / NARZEDZIA / SLABOSCI',
-      subtitle: '',
-    },
-    en: {
-      name: 'Powers / Tools / Weaknesses',
-      description: 'Split dossier for both fighters with grouped tools and weaknesses.',
-      title: 'POWERS / TOOLS / WEAKNESSES',
-      subtitle: '',
-    },
-  },
-  'raw-feats': {
-    pl: {
-      name: 'Dokonania',
-      description: 'Lista konkretnych dokonan obu postaci, bez interpretacji.',
-      title: 'DOKONANIA',
-      subtitle: '',
-    },
-    en: {
-      name: 'Raw Feats',
-      description: 'Side-by-side feat ledger sourced from the import file.',
-      title: 'RAW FEATS',
-      subtitle: '',
-    },
-  },
-  'hud-bars': {
-    pl: {
-      name: 'Paski HUD',
-      description: 'Militarna plansza z poziomymi paskami statystyk.',
-      title: 'SZACOWANIE STATYSTYK POSTACI',
-      subtitle: '',
-    },
-    en: {
-      name: 'HUD Bars',
-      description: 'Military HUD look with long horizontal bars like output (1).',
-      title: 'CHARACTER STAT ESTIMATION',
-      subtitle: '',
-    },
-  },
-  'radar-brief': {
-    pl: {
-      name: 'Raport Radarowy',
-      description: 'Radar w centrum, przewagi po bokach, pasek wyniku na dole.',
-      title: 'PORĂ“WNANIE PARAMETRĂ“W',
-      subtitle: 'Podsumowanie taktyczne z profilem radialnym',
-    },
-    en: {
-      name: 'Radar Brief',
-      description: 'Center radar, side winner notes, bottom score strip.',
-      title: 'PARAMETER COMPARISON',
-      subtitle: 'Tactical summary with radial profile',
-    },
-  },
-  'winner-cv': {
-    pl: {
-      name: 'CV ZwyciÄ™zcĂłw',
-      description: 'Lista najwaĹĽniejszych pokonanych rywali po obu stronach.',
-      title: 'ARCHIWUM CV ZWYCIÄSTW',
-      subtitle: 'Rekordy i migawka Ĺ›redniego wyniku',
-    },
-    en: {
-      name: 'Winner CV',
-      description: 'List of top beaten opponents for both fighters.',
-      title: 'WINNERS CV ARCHIVE',
-      subtitle: 'Records and average score snapshot',
-    },
-  },
-  summary: {
-    pl: {
-      name: 'Podsumowanie',
-      description: 'Blok koĹ„cowego podsumowania z danych importu.',
-      title: 'PODSUMOWANIE KOĹCOWE',
-      subtitle: '',
-    },
-    en: {
-      name: 'Summary',
-      description: 'Summary card placeholder from imported template block.',
-      title: 'FINAL SUMMARY',
-      subtitle: '',
-    },
-  },
-  'battle-dynamics': {
-    pl: {
-      name: 'Dynamika Starcia',
-      description: 'Tempo, momentum i presja w czasie.',
-      title: 'DYNAMIKA STARCIA',
-      subtitle: 'Tempo, momentum i presja',
-    },
-    en: {
-      name: 'Battle Dynamics',
-      description: 'Battle dynamics placeholder for custom data.',
-      title: 'BATTLE DYNAMICS',
-      subtitle: 'Tempo, momentum and pressure',
-    },
-  },
-  'x-factor': {
-    pl: {
-      name: 'X-Factor',
-      description: 'Najbardziej krytyczna zmienna pojedynku.',
-      title: 'X-FACTOR',
-      subtitle: 'Jedna zmienna o najwyĹĽszym wpĹ‚ywie',
-    },
-    en: {
-      name: 'X-Factor',
-      description: 'Critical variable placeholder panel.',
-      title: 'X-FACTOR',
-      subtitle: 'Single variable with highest impact',
-    },
-  },
-  interpretation: {
-    pl: {
-      name: 'Interpretacja',
-      description: 'Ekspercka interpretacja samych statystyk.',
-      title: 'INTERPRETACJA',
-      subtitle: 'Znaczenie surowych danych',
-    },
-    en: {
-      name: 'Interpretation',
-      description: 'Interpretation placeholder for narrative readout.',
-      title: 'INTERPRETATION',
-      subtitle: 'Meaning behind raw stats',
-    },
-  },
-  'fight-simulation': {
-    pl: {
-      name: 'Symulacja Walki',
-      description: 'Symulacja przebiegu starcia faza po fazie.',
-      title: 'SYMULACJA WALKI',
-      subtitle: '',
-    },
-    en: {
-      name: 'Fight Simulation',
-      description: 'Simulation placeholder for phase-by-phase scenario.',
-      title: 'FIGHT SIMULATION',
-      subtitle: '',
-    },
-  },
-  'stat-trap': {
-    pl: {
-      name: 'PuĹ‚apka Statystyk',
-      description: 'Nieliniowa puĹ‚apka interpretacji liczb.',
-      title: 'PUĹAPKA STATYSTYK',
-      subtitle: 'Dlaczego liczby potrafiÄ… zmyliÄ‡',
-    },
-    en: {
-      name: 'Stat Trap',
-      description: 'Non-linear trap placeholder.',
-      title: 'STAT TRAP',
-      subtitle: 'Why numbers can mislead',
-    },
-  },
-  'verdict-matrix': {
-    pl: {
-      name: 'Matryca Werdyktu',
-      description: 'Werdykt zaleĹĽny od warunkĂłw walki.',
-      title: 'MATRYCA WERDYKTU',
-      subtitle: 'Siatka werdyktu zaleĹĽna od warunkĂłw',
-    },
-    en: {
-      name: 'Verdict Matrix',
-      description: 'Decision matrix placeholder.',
-      title: 'VERDICT MATRIX',
-      subtitle: 'Condition-based verdict grid',
-    },
-  },
-  'blank-template': {
-    pl: {
-      name: 'Nowy Template',
-      description: 'Puste pole pod kolejny layout.',
-      title: 'NOWY TEMPLATE',
-      subtitle: 'Pole placeholder',
-    },
-    en: {
-      name: 'New Template',
-      description: 'Empty placeholder field for the next layout.',
-      title: 'NEW TEMPLATE',
-      subtitle: 'Placeholder area',
-    },
-  },
-  'fight-title': {
-    pl: {
-      name: 'Napis Koncowy Walki',
-      description: 'Animowany ekran koncowy z nazwa pojedynku.',
-      title: 'NAPIS KONCOWY',
-      subtitle: 'Animowany finalowy tekst walki',
-    },
-    en: {
-      name: 'Fight Title Outro',
-      description: 'Animated final screen with matchup name.',
-      title: 'FIGHT TITLE',
-      subtitle: 'Animated final matchup text',
-    },
-  },
-  methodology: {
-    pl: {
-      name: 'Metodologia',
-      description: 'Plansza metodologii i nieliniowoĹ›ci.',
-      title: 'METODOLOGIA STARCIA',
-      subtitle: 'Analiza ĹşrĂłdeĹ‚ i dynamiki',
-    },
-    en: {
-      name: 'Methodology',
-      description: 'Methodology board and non-linear combat card.',
-      title: 'METHODOLOGY',
-      subtitle: 'Data source and combat dynamics',
-    },
-  },
-}
-
 const localizeTemplatePreset = (preset: TemplatePreset, language: Language): TemplatePreset => {
-  const copy = TEMPLATE_LOCALIZED_COPY[preset.id][language]
+  const copy = getTranslations(language).templates.presets[preset.id]
   return {
     ...preset,
     name: copy.name,
@@ -868,21 +596,6 @@ const DEFAULT_TEMPLATE_ORDER: TemplateId[] = ensureTemplateOrderHasFinal(
 const DEFAULT_MORPH_SIZE = 66
 const MORPH_ORIGIN_SIZE_SHRINK_PX = 0
 
-const FIGHT_SCENARIO_LABELS: Record<FightScenarioId, Record<Language, string>> = {
-  'orbit-harass': { pl: 'Orbita i nÄ™kanie', en: 'Orbit Harass' },
-  'hit-and-run': { pl: 'Uderz i odejdĹş', en: 'Hit and Run' },
-  'rush-ko': { pl: 'Szturm KO', en: 'Rush KO' },
-  'clash-lock': { pl: 'Ĺ»elazny klincz', en: 'Clash Lock' },
-  'kite-zone': { pl: 'Kiting i strefa', en: 'Kite Zone' },
-  'teleport-burst': { pl: 'Teleport i zryw', en: 'Teleport Burst' },
-  'feint-counter': { pl: 'ZwĂłd i kontra', en: 'Feint Counter' },
-  'grapple-pin': { pl: 'Chwyt i dociĹ›niÄ™cie', en: 'Grapple Pin' },
-  'corner-trap': { pl: 'PuĹ‚apka naroĹĽna', en: 'Corner Trap' },
-  'regen-attrition': { pl: 'Regen i wyniszczenie', en: 'Regen Attrition' },
-  'berserk-overextend': { pl: 'Berserk i przestrzaĹ‚', en: 'Berserk Overextend' },
-  'trade-chaos': { pl: 'Chaotyczna wymiana', en: 'Trade Chaos' },
-}
-
 const FIGHT_SCENARIO_EXTENDED_LABELS_EN: Record<string, string> = {
   sonicboomblitz: 'Sonic Boom Blitz',
   flickerdisplacement: 'Flicker Displacement',
@@ -992,7 +705,7 @@ const FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID: Record<string, FightScenarioId> = {
 }
 
 const fightScenarioLabel = (scenario: FightScenarioId, language: Language) =>
-  FIGHT_SCENARIO_LABELS[scenario]?.[language] || FIGHT_SCENARIO_LABELS[scenario]?.en || scenario
+  getTranslations(language).scenarios[scenario] || getTranslations('en').scenarios[scenario] || scenario
 
 const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   orbitharass: 'orbit-harass',
@@ -1688,7 +1401,7 @@ const fighterMonogram = (name: string) => {
     .join('')
 }
 
-const extractBullet = (line: string) => line.trim().replace(/^[-*â€˘]\s*/, '').trim()
+const extractBullet = (line: string) => line.trim().replace(/^[-*?]\s*/, '').trim()
 
 const parseBulletItems = (lines: string[]) =>
   lines
@@ -1859,9 +1572,9 @@ type TemplateBlockRequirement = {
 
 const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
-    blockPl: 'PostaÄ‡ A',
+    blockPl: 'Postać A',
     blockEn: 'Character A',
-    purposePl: 'Karta lewej postaci (niebieski naroĹĽnik).',
+    purposePl: 'Karta lewej postaci (niebieski narożnik).',
     purposeEn: 'Card for the left fighter (blue corner).',
     fields: [
       'header | title | headline',
@@ -1873,9 +1586,9 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'PostaÄ‡ B',
+    blockPl: 'Postać B',
     blockEn: 'Character B',
-    purposePl: 'Karta prawej postaci (czerwony naroĹĽnik).',
+    purposePl: 'Karta prawej postaci (czerwony narożnik).',
     purposeEn: 'Card for the right fighter (red corner).',
     fields: [
       'header | title | headline',
@@ -1932,7 +1645,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'Paski HUD',
     blockEn: 'HUD Bars',
-    purposePl: 'DĹ‚ugi panel statystyk poziomych.',
+    purposePl: 'Długi panel statystyk poziomych.',
     purposeEn: 'Long horizontal statistics panel.',
     fields: [
       'headline | header | title',
@@ -1959,9 +1672,9 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'CV ZwyciÄ™zcĂłw',
+    blockPl: 'CV Zwycięzców',
     blockEn: 'Winner CV',
-    purposePl: 'Lista pokonanych przeciwnikĂłw.',
+    purposePl: 'Lista pokonanych przeciwników.',
     purposeEn: 'List of defeated opponents.',
     fields: [
       'headline | header | title',
@@ -1976,7 +1689,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'Podsumowanie',
     blockEn: 'Summary',
-    purposePl: 'KoĹ„cowe streszczenie starcia.',
+    purposePl: 'Końcowe streszczenie starcia.',
     purposeEn: 'Final fight summary.',
     fields: [
       'headline | header | title',
@@ -2007,7 +1720,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'X-Factor',
     blockEn: 'X-Factor',
-    purposePl: 'NajwaĹĽniejsza zmienna decydujÄ…ca.',
+    purposePl: 'Najważniejsza zmienna decydująca.',
     purposeEn: 'Most decisive variable.',
     fields: [
       'headline | header | title',
@@ -2041,7 +1754,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'Symulacja Walki',
     blockEn: 'Fight Simulation',
-    purposePl: 'Symulacja etapĂłw walki.',
+    purposePl: 'Symulacja etapów walki.',
     purposeEn: 'Three-phase simulation board.',
     fields: [
       'headline | header | title',
@@ -2067,9 +1780,9 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'PuĹ‚apka Statystyk',
+    blockPl: 'Pułapka Statystyk',
     blockEn: 'Stat Trap',
-    purposePl: 'WyjaĹ›nienie nieliniowoĹ›ci starcia.',
+    purposePl: 'Wyjaśnienie nieliniowości starcia.',
     purposeEn: 'Explains non-linear outcome mechanics.',
     fields: [
       'headline | header | title',
@@ -2083,7 +1796,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'Matryca Werdyktu',
     blockEn: 'Verdict Matrix',
-    purposePl: 'Werdykt zaleĹĽny od warunkĂłw.',
+    purposePl: 'Werdykt zależny od warunków.',
     purposeEn: 'Condition-based verdict matrix.',
     fields: [
       'headline | header | title',
@@ -2124,7 +1837,7 @@ const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
     blockPl: 'Metodologia',
     blockEn: 'Methodology',
-    purposePl: 'Plansza metodologii i nieliniowoĹ›ci walki.',
+    purposePl: 'Plansza metodologii i nieliniowości walki.',
     purposeEn: 'Method board and non-linear combat panel.',
     fields: [
       'headline | header | title',
@@ -2142,29 +1855,29 @@ const buildImportTxtBlueprint = (language: Language) => {
   const lines: string[] = []
   lines.push(pickLang(language, '1. (Nazwa Postaci A)', '1. (Character A Name)'))
   lines.push(pickLang(language, '2. (Staty Postaci A)', '2. (Character A Stats)'))
-  lines.push(pickLang(language, '- SiĹ‚a: 96', '- Strength: 96'))
-  lines.push(pickLang(language, '- SzybkoĹ›Ä‡: 95', '- Speed: 95'))
-  lines.push(pickLang(language, '- WytrzymaĹ‚oĹ›Ä‡: 94', '- Durability: 94'))
+  lines.push(pickLang(language, '- Siła: 96', '- Strength: 96'))
+  lines.push(pickLang(language, '- Szybkość: 95', '- Speed: 95'))
+  lines.push(pickLang(language, '- Wytrzymałość: 94', '- Durability: 94'))
   lines.push(pickLang(language, '3. (Featy Postaci A)', '3. (Character A Feats)'))
   lines.push(pickLang(language, '- Styl: Kontrola dystansu i tempa', '- Style: Range control and pace control'))
   lines.push(pickLang(language, '- Atut: Dyscyplina taktyczna', '- Advantage: Tactical discipline'))
-  lines.push(pickLang(language, '- Mentalnosc: WygraÄ‡ decyzjÄ…, uniknÄ…Ä‡ zniszczeĹ„', '- Mentality: Win by decision, avoid collateral damage'))
-  lines.push(pickLang(language, '4. (Pokonani przez PostaÄ‡ A)', '4. (Defeated by Character A)'))
+  lines.push(pickLang(language, '- Mentalnosc: Wygrać decyzją, uniknąć zniszczeń', '- Mentality: Win by decision, avoid collateral damage'))
+  lines.push(pickLang(language, '4. (Pokonani przez Postać A)', '4. (Defeated by Character A)'))
   lines.push('- Doomsday')
   lines.push('- Brainiac')
   lines.push(pickLang(language, '5. (Nazwa Postaci B)', '5. (Character B Name)'))
   lines.push(pickLang(language, '6. (Staty Postaci B)', '6. (Character B Stats)'))
-  lines.push(pickLang(language, '- SiĹ‚a: 92', '- Strength: 92'))
-  lines.push(pickLang(language, '- SzybkoĹ›Ä‡: 84', '- Speed: 84'))
-  lines.push(pickLang(language, '- WytrzymaĹ‚oĹ›Ä‡: 95', '- Durability: 95'))
+  lines.push(pickLang(language, '- Siła: 92', '- Strength: 92'))
+  lines.push(pickLang(language, '- Szybkość: 84', '- Speed: 84'))
+  lines.push(pickLang(language, '- Wytrzymałość: 95', '- Durability: 95'))
   lines.push(pickLang(language, '7. (Featy Postaci B)', '7. (Character B Feats)'))
   lines.push(pickLang(language, '- Styl: Agresywne skracanie dystansu', '- Style: Aggressive distance closing'))
   lines.push(pickLang(language, '- Atut: Nieludzka regeneracja', '- Advantage: Extreme regeneration'))
-  lines.push(pickLang(language, '- Mentalnosc: ZĹ‚amaÄ‡ przeciwnika za wszelkÄ… cenÄ™', '- Mentality: Break the opponent at any cost'))
-  lines.push(pickLang(language, '8. (Pokonani przez PostaÄ‡ B)', '8. (Defeated by Character B)'))
+  lines.push(pickLang(language, '- Mentalnosc: Złamać przeciwnika za wszelką cenę', '- Mentality: Break the opponent at any cost'))
+  lines.push(pickLang(language, '8. (Pokonani przez Postać B)', '8. (Defeated by Character B)'))
   lines.push('- Thor')
   lines.push('- Hulk')
-  lines.push(pickLang(language, '9. (KolejnoĹ›Ä‡ templatek uĹĽytych w tej walce)', '9. (Template Order Used In This Fight)'))
+  lines.push(pickLang(language, '9. (Kolejność templatek użytych w tej walce)', '9. (Template Order Used In This Fight)'))
   TEMPLATE_PRESETS.forEach((template) => {
     lines.push(`- ${template.id}`)
   })
@@ -2172,21 +1885,21 @@ const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '10. (Moce / NarzÄ™dzia / SĹ‚aboĹ›ci Postaci A)',
+      '10. (Moce / Narzędzia / Słabości Postaci A)',
       '10. (Character A Powers / Tools / Weaknesses)',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- NarzÄ™dzia: Kontrola pola walki, presja dystansowa, odpowiedzi na zwarcie',
+      '- Narzędzia: Kontrola pola walki, presja dystansowa, odpowiedzi na zwarcie',
       '- Tools: Battlefield control, ranged pressure, answers to close range',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- SĹ‚aboĹ›ci: ZaleĹĽnoĹ›Ä‡ od konkretnego ĹşrĂłdĹ‚a mocy lub wyraĹşny hard-counter',
+      '- Słabości: Zależność od konkretnego źródła mocy lub wyraźny hard-counter',
       '- Weaknesses: Dependence on a specific power source or a clear hard counter',
     ),
   )
@@ -2200,35 +1913,35 @@ const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '- PrzetrwaĹ‚ atak skali planetarnej',
+      '- Przetrwał atak skali planetarnej',
       '- Survived a planet-level attack',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- ZniszczyĹ‚ cel jednym ciosem lub pojedynczÄ… technikÄ…',
+      '- Zniszczył cel jednym ciosem lub pojedynczą techniką',
       '- Destroyed a target with one strike or one technique',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '12. (Moce / NarzÄ™dzia / SĹ‚aboĹ›ci Postaci B)',
+      '12. (Moce / Narzędzia / Słabości Postaci B)',
       '12. (Character B Powers / Tools / Weaknesses)',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- NarzÄ™dzia: Regeneracja, kontratak, przewaga zasiÄ™gu lub specjalna mechanika',
+      '- Narzędzia: Regeneracja, kontratak, przewaga zasięgu lub specjalna mechanika',
       '- Tools: Regeneration, counterplay, range advantage, or a special mechanic',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- SĹ‚aboĹ›ci: Luka taktyczna, limit zasobĂłw albo konkretna podatnoĹ›Ä‡',
+      '- Słabości: Luka taktyczna, limit zasobów albo konkretna podatność',
       '- Weaknesses: Tactical gap, resource limit, or a specific vulnerability',
     ),
   )
@@ -2242,14 +1955,14 @@ const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '- PowstrzymaĹ‚ przeciwnika o duĹĽo wiÄ™kszej skali',
+      '- Powstrzymał przeciwnika o dużo większej skali',
       '- Stopped an opponent operating at a much larger scale',
     ),
   )
   lines.push(
     pickLang(
       language,
-      '- OdbudowaĹ‚ siÄ™ po skrajnym zniszczeniu',
+      '- Odbudował się po skrajnym zniszczeniu',
       '- Rebuilt from catastrophic destruction',
     ),
   )
@@ -2318,7 +2031,7 @@ const buildCardFacts = (fallbackFacts: FighterFact[], fields: Record<string, str
     { title: pickLang(language, 'Styl', 'Style'), text: pickTemplateField(fields, ['style']) || styleDefault },
     { title: pickLang(language, 'Atut', 'Advantage'), text: pickTemplateField(fields, ['atut', 'advantage']) || atutDefault },
     {
-      title: pickLang(language, 'MentalnoĹ›Ä‡', 'Mentality'),
+      title: pickLang(language, 'Mentalność', 'Mentality'),
       text: pickTemplateField(fields, ['mentalnosc', 'mentality']) || mentalDefault,
     },
   ]
@@ -2382,13 +2095,13 @@ const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = {
   'tactical-board': ['tactical board', 'methodology', 'tablica taktyczna', 'metodologia'],
   'hud-bars': ['hud bars', 'paski hud'],
   'radar-brief': ['radar brief', 'parameter comparison', 'raport radarowy', 'porownanie parametrow'],
-  'winner-cv': ['winner cv', 'cv zwyciezcow', 'cv zwyciezcĂłw', 'zwyciezcy cv'],
+  'winner-cv': ['winner cv', 'cv zwyciezcow', 'cv zwyciezców', 'zwyciezcy cv'],
   summary: ['podsumowanie', 'summary'],
   'battle-dynamics': ['dynamika starcia', 'battle dynamics'],
   'x-factor': ['x-factor', 'xfactor'],
   interpretation: ['interpretacja', 'interpretation'],
   'fight-simulation': ['symulacja walki', 'fight simulation'],
-  'stat-trap': ['pulapka statystyk', 'puĹ‚apka statystyk', 'stat trap'],
+  'stat-trap': ['pulapka statystyk', 'pułapka statystyk', 'stat trap'],
   'verdict-matrix': ['matryca werdyktu', 'verdict matrix'],
   'blank-template': ['new template', 'blank template', 'nowy template'],
   'fight-title': ['fight title', 'final title', 'ending title', 'napis koncowy'],
@@ -4376,41 +4089,8 @@ const DEFAULT_WINNER_CV_B = [
   'Gambit',
 ]
 
-const DEFAULT_PROFILE_FACTS_A: FighterFact[] = [
-  { title: 'Style', text: 'Range control and pace control' },
-  { title: 'Advantage', text: 'Tactical discipline' },
-  { title: 'Mentality', text: 'Win by decision, avoid collateral damage' },
-]
-
-const DEFAULT_PROFILE_FACTS_B: FighterFact[] = [
-  { title: 'Style', text: 'Aggressive distance closing' },
-  { title: 'Advantage', text: 'Extreme regeneration' },
-  { title: 'Mentality', text: 'Break the opponent at any cost' },
-]
-
-const DEFAULT_PROFILE_FACTS_A_PL: FighterFact[] = [
-  { title: 'Styl', text: 'Kontrola dystansu i tempa' },
-  { title: 'Atut', text: 'Dyscyplina taktyczna' },
-  { title: 'MentalnoĹ›Ä‡', text: 'WygraÄ‡ decyzjÄ…, uniknÄ…Ä‡ zniszczeĹ„' },
-]
-
-const DEFAULT_PROFILE_FACTS_B_PL: FighterFact[] = [
-  { title: 'Styl', text: 'Agresywne skracanie dystansu' },
-  { title: 'Atut', text: 'Nieludzka regeneracja' },
-  { title: 'MentalnoĹ›Ä‡', text: 'ZĹ‚amaÄ‡ przeciwnika za wszelkÄ… cenÄ™' },
-]
-
-const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] => {
-  const source =
-    language === 'pl'
-      ? side === 'a'
-        ? DEFAULT_PROFILE_FACTS_A_PL
-        : DEFAULT_PROFILE_FACTS_B_PL
-      : side === 'a'
-        ? DEFAULT_PROFILE_FACTS_A
-        : DEFAULT_PROFILE_FACTS_B
-  return source.map((item) => ({ ...item }))
-}
+const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
+  getTranslations(language).defaults.profileFacts[side].map((item) => ({ ...item }))
 
 function HudBarsTemplate({
   rows,
@@ -4541,8 +4221,8 @@ function RadarBriefTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftHeader = pickTemplateField(blockFields, ['left_header']) || tr('NIEBIESKI NAROĹ»NIK', 'BLUE CORNER')
-  const rightHeader = pickTemplateField(blockFields, ['right_header']) || tr('CZERWONY NAROĹ»NIK', 'RED CORNER')
+  const leftHeader = pickTemplateField(blockFields, ['left_header']) || tr('NIEBIESKI NAROŻNIK', 'BLUE CORNER')
+  const rightHeader = pickTemplateField(blockFields, ['right_header']) || tr('CZERWONY NAROŻNIK', 'RED CORNER')
   const drawHeader = pickTemplateField(blockFields, ['draw_header']) || tr('Kategorie remisowe', 'Draw categories')
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
@@ -4630,7 +4310,7 @@ function RadarBriefTemplate({
                 ))}
               </div>
             ) : (
-              <p className="mt-1 text-[12px] text-slate-400">{tr('Brak remisĂłw w bieĹĽÄ…cym ukĹ‚adzie.', 'No draws in current setup.')}</p>
+              <p className="mt-1 text-[12px] text-slate-400">{tr('Brak remisów w bieżącym układzie.', 'No draws in current setup.')}</p>
             )}
           </div>
         </div>
@@ -4705,7 +4385,7 @@ function TacticalBoardTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const boardHeader = pickTemplateField(blockFields, ['left_header', 'categories_header']) || tr('Kategorie', 'Categories')
-  const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('RzeczywistoĹ›Ä‡ walki', 'Combat reality')
+  const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('Rzeczywistość walki', 'Combat reality')
   const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
   const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
   const tiles = rows.slice(0, 9)
@@ -4791,107 +4471,14 @@ function App() {
   const defaultLanguage: Language = 'en'
   const [language, setLanguage] = useState<Language>(defaultLanguage)
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const translations = useMemo(() => getTranslations(language), [language])
   const initialTemplate = localizeTemplatePreset(TEMPLATE_PRESETS[0], defaultLanguage)
   const localizedTemplates = useMemo(
     () => TEMPLATE_PRESETS.map((template) => localizeTemplatePreset(template, language)),
     [language],
   )
   const importTxtBlueprint = useMemo(() => buildImportTxtBlueprint(language), [language])
-  const ui = useMemo(() => {
-    const t = (pl: string, en: string) => pickLang(language, pl, en)
-    return {
-      readyTemplates: t('Gotowe Templaty', 'Ready Templates'),
-      title: t('TytuĹ‚', 'Title'),
-      subtitle: t('PodtytuĹ‚', 'Subtitle'),
-      frame: t('Ramka', 'Frame'),
-      theme: t('Motyw', 'Theme'),
-      dataSource: t('ĹąrĂłdĹ‚o Danych', 'Data Source'),
-      homeTitle: t('Panel Walk', 'Fight Hub'),
-      homeSubtitle: t('Wgraj dane walki, zatwierdĹş i wybierz pojedynek z listy.', 'Upload fight data, confirm, then pick a matchup from the list.'),
-      fightsLibrary: t('Lista Walk', 'Fight List'),
-      folderFightsLibrary: t('Walki z folderu Fights', 'Folder Fights'),
-      manualFightsLibrary: t('Walki dodane rÄ™cznie', 'Manual Fights'),
-      noFights: t('Brak zapisanych walk. Dodaj pierwszÄ… poniĹĽej.', 'No saved fights yet. Add your first one below.'),
-      noFolderFights: t('Brak walk znalezionych w folderze `Fights`.', 'No fights found in the `Fights` folder.'),
-      noManualFights: t('Brak rÄ™cznie dodanych walk.', 'No manually added fights.'),
-      folderWarningsTitle: t('Problemy ze skanem folderu', 'Folder scan warnings'),
-      createFight: t('ZatwierdĹş i dodaj walkÄ™', 'Confirm and add fight'),
-      openFight: t('OtwĂłrz walkÄ™', 'Open fight'),
-      selectVariant: t('Wybierz wariant', 'Select variant'),
-      selectedVariant: t('Wybrany wariant', 'Selected variant'),
-      variantPl: t('Polski', 'Polish'),
-      variantEn: t('Angielski', 'English'),
-      variantUnknown: t('Wariant', 'Variant'),
-      bilingualGroup: t('Para jÄ™zykowa', 'Language pair'),
-      deleteFight: t('UsuĹ„', 'Delete'),
-      deleteFightAria: t('UsuĹ„ walkÄ™', 'Delete fight'),
-      deleteFightConfirm: t('Czy na pewno usunÄ…Ä‡ tÄ™ walkÄ™?', 'Are you sure you want to delete this fight?'),
-      adjustPortraits: t('Ustaw kadry', 'Adjust portraits'),
-      adjustPortraitsAria: t('Ustaw kadry portretĂłw dla tej walki', 'Adjust portrait framing for this fight'),
-      backToLibrary: t('PowrĂłt do listy walk', 'Back to fight list'),
-      draftNeedTxt: t('Najpierw wgraj poprawny plik TXT.', 'Upload a valid TXT file first.'),
-      draftNeedPortraits: t('Dodaj oba portrety (A i B), potem zatwierdĹş.', 'Add both portraits (A and B) before confirming.'),
-      fightAdded: t('Walka dodana do listy.', 'Fight added to the list.'),
-      fightLoaded: t('Walka zaĹ‚adowana.', 'Fight loaded.'),
-      uploadHelp: t(
-        'Wgraj jeden plik `.txt` (sekcje 1-8 + opcjonalna 9 kolejnoĹ›Ä‡ templatek) oraz dwa portrety poniĹĽej.',
-        'Upload one `.txt` with sections 1-8 (+ optional 9 template order) and two portraits below.',
-      ),
-      matchTxt: t('Plik Walki TXT', 'Match TXT'),
-      portraitA: t('Portret A (lewy)', 'Portrait A (left)'),
-      portraitB: t('Portret B (prawy)', 'Portrait B (right)'),
-      dropTxtHint: t('PrzeciÄ…gnij plik TXT tutaj lub kliknij, aby wybraÄ‡.', 'Drag a TXT file here or click to browse.'),
-      dropImageHint: t('PrzeciÄ…gnij obraz tutaj lub kliknij, aby wybraÄ‡.', 'Drag an image here or click to browse.'),
-      portraitEditorTitle: t('Ustaw kadr portretu', 'Adjust portrait framing'),
-      portraitEditorHint: t('Ustaw pozycjÄ™ i skalÄ™. Te ustawienia zostanÄ… zapisane dla tej walki.', 'Set position and zoom. These settings will be saved for this fight.'),
-      portraitPosX: t('Pozycja X', 'Position X'),
-      portraitPosY: t('Pozycja Y', 'Position Y'),
-      portraitZoom: t('Skala', 'Zoom'),
-      portraitReset: t('Reset', 'Reset'),
-      portraitSwitchSide: t('PrzeĹ‚Ä…cz A/B', 'Switch A/B'),
-      portraitCancel: t('Anuluj', 'Cancel'),
-      portraitApply: t('Zastosuj', 'Apply'),
-      invalidTxtType: t('Niepoprawny plik. Wymagany format .txt.', 'Invalid file. A .txt file is required.'),
-      invalidImageType: t('Niepoprawny plik obrazu. Wymagany format graficzny.', 'Invalid image file. A graphic format is required.'),
-      txtLoadedLabel: t('Plik zaĹ‚adowany', 'File loaded'),
-      txtNotLoadedLabel: t('Plik jeszcze niezaĹ‚adowany', 'No file loaded yet'),
-      pickTxtButton: t('Wybierz TXT', 'Choose TXT'),
-      pickImageButton: t('Wybierz obraz', 'Choose image'),
-      noFileSelected: t('Brak wybranego pliku', 'No file selected'),
-      importFile: t('Plik importu', 'Import file'),
-      notLoaded: t('jeszcze nie wczytano', 'not loaded yet'),
-      templateOrderLoaded: t('Wczytana kolejnoĹ›Ä‡ templatek', 'Template order loaded'),
-      blocksDetected: t('Wykryte bloki templatek', 'Template blocks detected'),
-      copyBlueprint: t('Kopiuj blueprint', 'Copy blueprint'),
-      templateRequirements: t('Wymagania danych templatek', 'Template data requirements'),
-      requirementsHelp: t(
-        'To jest wzĂłr blokĂłw `Template ...`. WypeĹ‚nij tylko te bloki, ktĂłre wystÄ™pujÄ… w sekcji 9.',
-        'Use this as a master template for `Template ...` blocks. Fill only blocks used in section 9 order.',
-      ),
-      liveMode: t('Tryb prezentacji live', 'Live presentation mode'),
-      prevTemplate: t('Poprzedni template', 'Previous template'),
-      nextTemplate: t('NastÄ™pny template', 'Next template'),
-      sequence: t('Sekwencja', 'Sequence'),
-      active: t('Aktywny', 'Active'),
-      resetStarter: t('Reset startera', 'Reset starter'),
-      languageBadge: t('PL', 'EN'),
-      languageHint: t('Kliknij aby zmieniÄ‡ jÄ™zyk', 'Click to change language'),
-      templateLoaded: t('Template zaĹ‚adowany', 'Template loaded'),
-      templateStep: t('Krok templatek', 'Template step'),
-      portraitLoaded: t('Portret', 'Portrait'),
-      importLoaded: t('Import wczytany', 'Import loaded'),
-      importFailed: t('Import nieudany: nie moĹĽna odczytaÄ‡ pliku.', 'Import failed: could not read file.'),
-      blueprintCopied: t('Blueprint importu skopiowany.', 'Import blueprint copied.'),
-      clipboardBlocked: t('Schowek zablokowany. Skopiuj rÄ™cznie z pola poniĹĽej.', 'Clipboard blocked. Copy manually from guide box.'),
-      starterRestored: t('PrzywrĂłcono preset startowy.', 'Starter preset restored.'),
-      neon: t('Neon', 'Neon'),
-      gold: t('ZĹ‚oto', 'Gold'),
-      tech: t('Tech', 'Tech'),
-      cosmic: t('Kosmiczny', 'Cosmic'),
-      ember: t('Ĺ»ar', 'Ember'),
-      steel: t('Stal', 'Steel'),
-    }
-  }, [language])
+  const ui = translations.ui
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
   const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialTemplate.layout)
@@ -5230,10 +4817,10 @@ function App() {
     if (language === 'en') return error
     const missingSection = error.match(/missing section\s+(\d+)/i)
     if (missingSection?.[1]) {
-      return `BĹ‚Ä…d importu: brak sekcji ${missingSection[1]}.`
+      return translations.errors.importMissingSection.replace('{section}', missingSection[1])
     }
     if (/need stat lines/i.test(error)) {
-      return 'BĹ‚Ä…d importu: sekcje 2 i 6 muszÄ… zawieraÄ‡ linie statystyk, np. "- Strength: 96".'
+      return translations.errors.importNeedStatLines
     }
     return error
   }
@@ -5476,7 +5063,8 @@ function App() {
 
   const parseDraftImportFromFile = async (file: File) => {
     try {
-      const raw = await file.text()
+      const buffer = await file.arrayBuffer()
+      const raw = decodeImportTextBytes(new Uint8Array(buffer))
       const parsed = parseVsImportText(raw)
       if (!parsed.ok) {
         flashStatus(localizeImportError(parsed.error))
@@ -5486,7 +5074,11 @@ function App() {
       const payload = enforceFileNameSideOrder(parsed.data, file.name)
       setDraftPayload(payload)
       setDraftTxtFileName(file.name)
-    } catch {
+    } catch (error) {
+      if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
+        flashStatus(translations.encoding.invalidEncoding)
+        return
+      }
       flashStatus(ui.importFailed)
     }
   }
@@ -7406,7 +6998,7 @@ function WinnerCvTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const archiveLabel = pickTemplateField(blockFields, ['archive_label']) || tr('ARCHIWUM', 'ARCHIVE')
-  const avgLabel = pickTemplateField(blockFields, ['avg_label']) || tr('Ĺšredni wynik', 'Avg score')
+  const avgLabel = pickTemplateField(blockFields, ['avg_label']) || tr('Średni wynik', 'Avg score')
   const winBadge = pickTemplateField(blockFields, ['win_badge']) || 'W'
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
@@ -7613,7 +7205,7 @@ function CharacterCardATemplate({
   const cardTitle = pickTemplateField(blockFields, ['header', 'title', 'headline']) || title
   const quote =
     pickTemplateField(blockFields, ['quote', 'cytat']) ||
-    tr('Zawodnik kontrolujÄ…cy tempo i dystans.', 'Fighter who controls pace and distance.')
+    tr('Zawodnik kontrolujący tempo i dystans.', 'Fighter who controls pace and distance.')
   return (
     <CharacterCardTemplate
       title={cardTitle}
@@ -7621,7 +7213,7 @@ function CharacterCardATemplate({
       portraitAdjust={portraitAAdjust}
       portraitAdjustKey="character-card-a:portrait"
       fighterText={fighterAText}
-      corner={tr('Niebieski naroĹĽnik', 'Blue corner')}
+      corner={tr('Niebieski narożnik', 'Blue corner')}
       facts={cardFacts}
       quote={quote}
       slideImageAdjustments={slideImageAdjustments}
@@ -7664,7 +7256,7 @@ function CharacterCardBTemplate({
       portraitAdjust={portraitBAdjust}
       portraitAdjustKey="character-card-b:portrait"
       fighterText={fighterBText}
-      corner={tr('Czerwony naroĹĽnik', 'Red corner')}
+      corner={tr('Czerwony narożnik', 'Red corner')}
       facts={cardFacts}
       quote={quote}
       slideImageAdjustments={slideImageAdjustments}
@@ -8144,9 +7736,9 @@ function BlankTemplate({
 
   if (activeTemplateId === 'summary') {
     const summaryLines = [
-      line(0, ['line_1', 'line1'], tr('Tempo > obraĹĽenia na otwarciu.', 'Tempo > damage in opening.')),
-      line(1, ['line_2', 'line2'], tr('Regeneracja zmienia pĂłĹşnÄ… fazÄ™ starcia.', 'Regeneration changes late game.')),
-      line(2, ['line_3', 'line3'], tr('Zasady walki mogÄ… odwrĂłciÄ‡ werdykt.', 'Rules can flip the verdict.')),
+      line(0, ['line_1', 'line1'], tr('Tempo > obrażenia na otwarciu.', 'Tempo > damage in opening.')),
+      line(1, ['line_2', 'line2'], tr('Regeneracja zmienia późną fazę starcia.', 'Regeneration changes late game.')),
+      line(2, ['line_3', 'line3'], tr('Zasady walki mogą odwrócić werdykt.', 'Rules can flip the verdict.')),
     ]
 
     return (
@@ -8157,7 +7749,7 @@ function BlankTemplate({
         <div className="mt-3 grid min-h-0 flex-1 grid-cols-[1.05fr_1.2fr_1.05fr] gap-3">
           <div className="min-h-0 rounded-xl border p-2" style={{ borderColor: `${fighterA.color}88`, backgroundColor: `${fighterA.color}10` }}>
             <div className="mb-2 rounded-md border border-white/20 bg-black/35 px-3 py-2">
-              <p className="text-[10px] uppercase tracking-[0.16em] text-slate-300">{tr('Niebieski naroĹĽnik', 'Blue corner')}</p>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-slate-300">{tr('Niebieski narożnik', 'Blue corner')}</p>
               <p className="text-lg uppercase leading-none" style={{ color: fighterA.color }}>
                 {fighterA.name || 'Fighter A'}
               </p>
@@ -8221,7 +7813,7 @@ function BlankTemplate({
 
           <div className="min-h-0 rounded-xl border p-2" style={{ borderColor: `${fighterB.color}88`, backgroundColor: `${fighterB.color}10` }}>
             <div className="mb-2 rounded-md border border-white/20 bg-black/35 px-3 py-2">
-              <p className="text-[10px] uppercase tracking-[0.16em] text-slate-300">{tr('Czerwony naroĹĽnik', 'Red corner')}</p>
+              <p className="text-[10px] uppercase tracking-[0.16em] text-slate-300">{tr('Czerwony narożnik', 'Red corner')}</p>
               <p className="text-lg uppercase leading-none" style={{ color: fighterB.color }}>
                 {fighterB.name || 'Fighter B'}
               </p>
@@ -8259,7 +7851,7 @@ function BlankTemplate({
       0,
       ['phase_1', 'phase1'],
       tr(
-        `${fighterA.name || 'Fighter A'} narzuca tempo szybkoĹ›ciÄ….`,
+        `${fighterA.name || 'Fighter A'} narzuca tempo szybko?ci?.`,
         `${fighterA.name || 'Fighter A'} sets the pace with speed.`,
       ),
     )
@@ -8267,7 +7859,7 @@ function BlankTemplate({
       1,
       ['phase_2', 'phase2'],
       tr(
-        `${fighterB.name || 'Fighter B'} ignoruje obraĹĽenia i skraca dystans.`,
+        `${fighterB.name || 'Fighter B'} ignoruje obra?enia i skraca dystans.`,
         `${fighterB.name || 'Fighter B'} absorbs damage and closes distance.`,
       ),
     )
@@ -8275,7 +7867,7 @@ function BlankTemplate({
       2,
       ['phase_3', 'phase3'],
       tr(
-        `${fighterB.name || 'Fighter B'} zyskuje przewagÄ™ kondycyjnÄ….`,
+        `${fighterB.name || 'Fighter B'} zyskuje przewag? kondycyjn?.`,
         `${fighterB.name || 'Fighter B'} gains late stamina advantage.`,
       ),
     )
@@ -8404,7 +7996,7 @@ function BlankTemplate({
       1,
       ['mechanika', 'mechanics'],
       tr(
-        `${fighterB.name || 'Fighter B'} posiada potÄ™ĹĽny czynnik regeneracyjny.`,
+        `${fighterB.name || 'Fighter B'} posiada pot??ny czynnik regeneracyjny.`,
         `${fighterB.name || 'Fighter B'} has a major regeneration factor.`,
       ),
     )
@@ -8412,14 +8004,14 @@ function BlankTemplate({
       2,
       ['implikacja', 'implication'],
       tr(
-        `${fighterB.name || 'Fighter B'} nie musi wygraÄ‡ kaĹĽdej wymiany. Wystarczy, ĹĽe przetrwa.`,
+        `${fighterB.name || 'Fighter B'} nie musi wygra? ka?dej wymiany. Wystarczy, ?e przetrwa.`,
         `${fighterB.name || 'Fighter B'} does not need to win every exchange. Surviving is enough.`,
       ),
     )
     const psychology = line(
       3,
       ['psychologia', 'psychology'],
-      tr('Styl survival i walka na wyniszczenie zwiÄ™kszajÄ… jego szanse.', 'Survival mindset and attrition fighting raise his odds.'),
+      tr('Styl survival i walka na wyniszczenie zwiększają jego szanse.', 'Survival mindset and attrition fighting raise his odds.'),
     )
     const superBonusLabel = pickTemplateField(blockFields, ['a_bonus_label', 'left_bonus_label']) || '+ BOOST'
     const regenLabel = pickTemplateField(blockFields, ['regen', 'regen_label']) || '+ REGEN'
@@ -8686,9 +8278,9 @@ function BlankTemplate({
 
   if (activeTemplateId === 'fight-simulation') {
     const opening = line(0, ['opening'], tr('Otwarcie: szybka kontrola dystansu.', 'Opening: fast range control.'))
-    const midFight = line(1, ['mid_fight', 'midfight'], tr('Ĺšrodek walki: presja i pÄ™tle regeneracji.', 'Mid fight: pressure and recovery loops.'))
-    const lateFight = line(2, ['late_fight', 'latefight'], tr('KoĹ„cowa faza: test wyniszczenia.', 'Late fight: attrition checks.'))
-    const endCondition = line(3, ['end_condition', 'endcondition'], tr('Warunek koĹ„ca: KO/BFR kontra kill-only.', 'End condition: KO/BFR vs kill-only.'))
+    const midFight = line(1, ['mid_fight', 'midfight'], tr('Środek walki: presja i pętle regeneracji.', 'Mid fight: pressure and recovery loops.'))
+    const lateFight = line(2, ['late_fight', 'latefight'], tr('Końcowa faza: test wyniszczenia.', 'Late fight: attrition checks.'))
+    const endCondition = line(3, ['end_condition', 'endcondition'], tr('Warunek końca: KO/BFR kontra kill-only.', 'End condition: KO/BFR vs kill-only.'))
     const fallbackRows = [rows[0], rows[1], rows[5] || rows[2]].filter(Boolean) as ScoreRow[]
 
     const phaseDefaults = [
@@ -8702,8 +8294,8 @@ function BlankTemplate({
         aValue: fallbackRows[0]?.a ?? 96,
         bValue: fallbackRows[0]?.b ?? 84,
         event: tr(`${fighterA.name || 'Fighter A'} narzuca tempo.`, `${fighterA.name || 'Fighter A'} sets the pace.`),
-        branchA: tr(`${fighterA.name || 'Fighter A'} utrzymuje kontrolÄ™ dystansu.`, `${fighterA.name || 'Fighter A'} keeps range control.`),
-        branchB: tr(`${fighterB.name || 'Fighter B'} przeĹ‚amuje dystans.`, `${fighterB.name || 'Fighter B'} breaks the distance.`),
+        branchA: tr(`${fighterA.name || 'Fighter A'} utrzymuje kontrol? dystansu.`, `${fighterA.name || 'Fighter A'} keeps range control.`),
+        branchB: tr(`${fighterB.name || 'Fighter B'} prze?amuje dystans.`, `${fighterB.name || 'Fighter B'} breaks the distance.`),
       },
       {
         mode: 'split' as const,
@@ -8715,7 +8307,7 @@ function BlankTemplate({
         aValue: fallbackRows[1]?.a ?? 92,
         bValue: fallbackRows[1]?.b ?? 88,
         event: tr('Punkt zwrotny: pierwsza wymiana zmienia warunki starcia.', 'Turning point: first exchange shifts the conditions.'),
-        branchA: tr(`${fighterA.name || 'Fighter A'} buduje przewagÄ™ technikÄ….`, `${fighterA.name || 'Fighter A'} builds advantage with technique.`),
+        branchA: tr(`${fighterA.name || 'Fighter A'} buduje przewag? technik?.`, `${fighterA.name || 'Fighter A'} builds advantage with technique.`),
         branchB: tr(`${fighterB.name || 'Fighter B'} wymusza chaos i wyniszczenie.`, `${fighterB.name || 'Fighter B'} forces chaos and attrition.`),
       },
       {
@@ -8727,9 +8319,9 @@ function BlankTemplate({
         bLabel: fallbackRows[2]?.label || 'Stamina',
         aValue: fallbackRows[2]?.a ?? 90,
         bValue: fallbackRows[2]?.b ?? 93,
-        event: tr('KoĹ„cowy punkt zwrotny.', 'Final turning point.'),
-        branchA: tr(`${fighterA.name || 'Fighter A'} domyka walkÄ™ decyzjÄ….`, `${fighterA.name || 'Fighter A'} closes the fight by decision.`),
-        branchB: tr(`${fighterB.name || 'Fighter B'} przeĹ‚amuje rywala pĂłĹşno.`, `${fighterB.name || 'Fighter B'} breaks the rival late.`),
+        event: tr('Końcowy punkt zwrotny.', 'Final turning point.'),
+        branchA: tr(`${fighterA.name || 'Fighter A'} domyka walk? decyzj?.`, `${fighterA.name || 'Fighter A'} closes the fight by decision.`),
+        branchB: tr(`${fighterB.name || 'Fighter B'} prze?amuje rywala p??no.`, `${fighterB.name || 'Fighter B'} breaks the rival late.`),
       },
     ]
 
@@ -8980,20 +8572,20 @@ function BlankTemplate({
   if (activeTemplateId === 'stat-trap') {
     const trapTop =
       pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) ||
-      tr('REGEN I BRUTALNOĹšÄ† >', 'REGEN AND BRUTALITY >')
+      tr('REGEN I BRUTALNOŚĆ >', 'REGEN AND BRUTALITY >')
     const trapBottom =
       pickTemplateField(blockFields, ['trap_bottom', 'bottom', 'line_2']) ||
-      tr('TECHNIKA W DĹUGIEJ WALCE', 'TECHNIQUE IN A LONG FIGHT')
+      tr('TECHNIKA W DŁUGIEJ WALCE', 'TECHNIQUE IN A LONG FIGHT')
     const example =
       pickTemplateField(blockFields, ['example', 'line_3']) ||
       tr(
-        'RĂłĹĽnica 2-3 punktĂłw w umiejÄ™tnoĹ›ciach zanika, gdy przeciwnik leczy siÄ™ natychmiastowo po kaĹĽdym ciosie.',
+        'Różnica 2-3 punktów w umiejętnościach zanika, gdy przeciwnik leczy się natychmiastowo po każdym ciosie.',
         'A 2-3 point skill edge disappears when the opponent heals immediately after each hit.',
       )
     const questionLine =
       pickTemplateField(blockFields, ['question', 'line_4', 'trap']) ||
       tr(
-        "KLUCZOWE PYTANIE: W trybie 'Kill-Only' regeneracja przeciwnika waĹĽy wiÄ™cej niĹĽ statystyki all-around.",
+        "KLUCZOWE PYTANIE: W trybie 'Kill-Only' regeneracja przeciwnika waży więcej niż statystyki all-around.",
         "KEY QUESTION: In 'Kill-Only' rules, opponent regeneration matters more than all-around stats.",
       )
 
@@ -9058,24 +8650,24 @@ function BlankTemplate({
       0,
       ['case_1', 'case1'],
       tr(
-        `${fighterA.name || 'Fighter A'} (6/10). SzybkoĹ›Ä‡ i technika koĹ„czÄ… walkÄ™ przed czasem.`,
-        `${fighterA.name || 'Fighter A'} (6/10). Speed and technique end the fight before attrition.`,
+        `${fighterA.name || 'Fighter A'} (6/10). Szybkość i technika kończą walkę przed czasem.`,
+        `${fighterA.name || 'Fighter A'} (6/10). Speed and technique finish the fight before time runs out.`,
       ),
     )
     const case2 = line(
       1,
       ['case_2', 'case2'],
       tr(
-        `${fighterB.name || 'Fighter B'} (5.5/10). Trudniej o szybkie domkniÄ™cie. Regen daje przewagÄ™.`,
-        `${fighterB.name || 'Fighter B'} (5.5/10). Quick closure is harder. Regen gives edge.`,
+        `${fighterB.name || 'Fighter B'} (5.5/10). Trudniej o szybkie domknięcie. Regen daje przewagę.`,
+        `${fighterB.name || 'Fighter B'} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
       ),
     )
     const case3 = line(
       2,
       ['case_3', 'case3'],
       tr(
-        `${fighterA.name || 'Fighter A'} (5.5/10). Ryzyko roĹ›nie. JeĹ›li szybki finisher nie wejdzie, rywal wraca.`,
-        `${fighterA.name || 'Fighter A'} (5.5/10). Risk grows. If early finish fails, the rival recovers.`,
+        `${fighterA.name || 'Fighter A'} (5.5/10). Ryzyko rośnie. Jeśli szybki finisher nie wejdzie, rywal wraca.`,
+        `${fighterA.name || 'Fighter A'} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
       ),
     )
     const case4 = line(
@@ -9201,7 +8793,7 @@ function BlankTemplate({
       <div className="mt-3 flex min-h-0 flex-1 items-center justify-center rounded-xl border-2 border-dashed border-slate-400/45 bg-black/26">
         {renderedLines.length ? (
           <div className="w-[88%] rounded-xl border border-slate-500/45 bg-slate-950/60 p-4">
-            <p className="text-center text-xs uppercase tracking-[0.18em] text-slate-300">{tr('PodglÄ…d bloku template', 'Template block preview')}</p>
+            <p className="text-center text-xs uppercase tracking-[0.18em] text-slate-300">{tr('Podgląd bloku template', 'Template block preview')}</p>
             <div className="mt-3 max-h-[320px] space-y-1 overflow-y-auto pr-1 text-sm text-slate-100">
               {renderedLines.map((line, index) => (
                 <div key={`blank-line-${index}-${line}`} className="rounded border border-slate-700/55 bg-black/35 px-2 py-1">
@@ -9225,10 +8817,10 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const listLabel = pickTemplateField(blockFields, ['list_label']) || tr('Lista metod', 'Method list')
-  const realityLabel = pickTemplateField(blockFields, ['reality_label']) || tr('RzeczywistoĹ›Ä‡ walki', 'Combat reality')
+  const realityLabel = pickTemplateField(blockFields, ['reality_label']) || tr('Rzeczywistość walki', 'Combat reality')
   const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
   const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
-  const closingLabel = pickTemplateField(blockFields, ['closing_label']) || tr('Statystyki sÄ… liniowe. Walka nie jest.', 'Stats are linear. Fight is not.')
+  const closingLabel = pickTemplateField(blockFields, ['closing_label']) || tr('Statystyki są liniowe. Walka nie jest.', 'Stats are linear. Fight is not.')
   const safeRows = rows.length
     ? rows
     : [{ id: 'fallback', label: tr('Bazowy', 'Baseline'), a: 50, b: 50, delta: 0, winner: 'draw' as const }]
@@ -9303,8 +8895,6 @@ function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language }
 }
 
 export default App
-
-
 
 
 

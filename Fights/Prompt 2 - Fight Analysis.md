@@ -1,4 +1,4 @@
-﻿# Prompt 2 - Fight Analysis
+# Prompt 2 - Fight Analysis
 
 Create the final fight paper from a finished `character_research.md`. This prompt is for matchup analysis only, not for rebuilding the research dossier.
 

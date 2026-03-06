@@ -1,4 +1,4 @@
-﻿# Image Index
+# Image Index
 
 - Section: 6.1
   Title: Decapitates a Celestial and forges All-Black

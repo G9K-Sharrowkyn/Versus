@@ -1,4 +1,4 @@
-﻿# Image Index
+# Image Index
 
 - Section: 6.1
   Title: Bench-presses the Earth-equivalent weight for five days

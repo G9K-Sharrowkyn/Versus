@@ -1,4 +1,4 @@
-﻿Write a paper on a fight: Superman (New52) vs King Hyperion (Earth-4023)
+Write a paper on a fight: Superman (New52) vs King Hyperion (Earth-4023)
 
 Use this template to create one complete paper for any matchup: one-sided, close, rules-sensitive, or ability-sensitive.
 

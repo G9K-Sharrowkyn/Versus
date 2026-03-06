@@ -1,4 +1,4 @@
-﻿Write a paper on a fight: Superman (New52) vs King Hyperion (Earth-4023)
+Write a paper on a fight: Superman (New52) vs King Hyperion (Earth-4023)
 
 Create one scan-first dossier for a matchup. This prompt is for character research only, not for the final fight verdict.
 
