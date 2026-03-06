@@ -18,17 +18,6 @@ export type Fighter = {
   stats: Record<string, number>
 }
 
-export type Frame = 'neon' | 'gold' | 'tech'
-export type Theme = 'cosmic' | 'ember' | 'steel'
-export type LayoutMode =
-  | 'hudBars'
-  | 'radarBrief'
-  | 'tacticalBoard'
-  | 'winnerCv'
-  | 'characterCardA'
-  | 'characterCardB'
-  | 'blankTemplate'
-  | 'methodology'
 export type Language = 'pl' | 'en'
 export type TemplateId =
   | 'powers-tools'
@@ -54,9 +43,6 @@ export type TemplatePreset = {
   id: TemplateId
   name: string
   description: string
-  layout: LayoutMode
-  frame: Frame
-  theme: Theme
   title: string
   subtitle: string
 }

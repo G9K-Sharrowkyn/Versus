@@ -1,0 +1,110 @@
+import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
+import { defaultFactsFor, pickLang } from '../../presets'
+import { TEMPLATE_BLOCK_ALIASES, buildCardFacts, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
+import type { TemplatePreviewProps } from '../../types'
+import {
+  HIGH_END_CARD_CLASS,
+  HIGH_END_FRAME_CLASS,
+  HIGH_END_GRID_OVERLAY_CLASS,
+  HIGH_END_HEADER_CLASS,
+  HIGH_END_INSET_CLASS,
+  HIGH_END_PANEL_CLASS,
+  HIGH_END_ROOT_CLASS,
+  HIGH_END_SMALL_TEXT_CLASS,
+} from '../shared/highEnd'
+
+export function CharacterCardATemplate({
+  fighterA,
+  portraitAAdjust,
+  title,
+  factsA,
+  templateBlocks,
+  slideImageAdjustments,
+  onSlideImageAdjustChange,
+  onSlideImageAdjustCommit,
+  language,
+}: TemplatePreviewProps) {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const fighterText = fighterA.name || 'Fighter A'
+  const safeFacts = factsA.length ? factsA : defaultFactsFor('a', language)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-card-a'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const fighterForCard = {
+    ...fighterA,
+    subtitle: pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterA.subtitle,
+  }
+  const cardFacts = buildCardFacts(safeFacts, blockFields, language)
+  const cardTitle = pickTemplateField(blockFields, ['header', 'title', 'headline']) || title
+  const quote =
+    pickTemplateField(blockFields, ['quote', 'cytat']) ||
+    tr('Fighter who controls pace and distance.', 'Fighter who controls pace and distance.')
+
+  return (
+    <div className={HIGH_END_ROOT_CLASS}>
+      <div className={HIGH_END_PANEL_CLASS}>
+        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className="relative z-10 flex h-full flex-col">
+          <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
+            {cardTitle}
+          </h2>
+          <div
+            className={`mt-3 min-h-0 flex-1 ${HIGH_END_FRAME_CLASS} p-3`}
+            style={{ boxShadow: `0 0 0 1px ${fighterForCard.color}33 inset` }}
+          >
+            <div className="grid h-full grid-cols-[1.06fr_1.4fr] gap-3">
+              <div
+                className="relative overflow-hidden rounded-lg border bg-slate-950/80"
+                style={{ borderColor: `${fighterForCard.color}88` }}
+              >
+                <AdjustableTemplateImage
+                  imageUrl={fighterForCard.imageUrl}
+                  alt={fighterText}
+                  fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
+                  hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
+                  adjustKey="character-card-a:portrait"
+                  baseAdjust={portraitAAdjust}
+                  adjustments={slideImageAdjustments}
+                  onAdjustChange={onSlideImageAdjustChange}
+                  onAdjustCommit={onSlideImageAdjustCommit}
+                  plain
+                />
+                <div className="pointer-events-none absolute inset-0 border-[3px] border-black/35" />
+                <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.22)_1px,transparent_1px)] [background-size:28px_28px]" />
+                <div className="pointer-events-none absolute left-2 top-2 h-4 w-4 border-l-2 border-t-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className="pointer-events-none absolute right-2 top-2 h-4 w-4 border-r-2 border-t-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className="pointer-events-none absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className="pointer-events-none absolute bottom-2 right-2 h-4 w-4 border-b-2 border-r-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
+              </div>
+
+              <div className={`flex h-full flex-col ${HIGH_END_CARD_CLASS} p-3`}>
+                <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
+                  <p className={HIGH_END_SMALL_TEXT_CLASS}>{tr('Niebieski naroznik', 'Blue corner')}</p>
+                  <h3
+                    className="text-2xl uppercase leading-none"
+                    style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}
+                  >
+                    {fighterText}
+                  </h3>
+                  <p className="mt-1 text-sm text-slate-300">{fighterForCard.subtitle}</p>
+                </div>
+
+                <div className="flex-1 space-y-1.5">
+                  {cardFacts.map((fact) => (
+                    <div key={`${fighterText}-${fact.title}`} className="rounded-md border border-white/15 bg-black/28 px-3 py-1.5">
+                      <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: fighterForCard.color }}>
+                        {fact.title}
+                      </p>
+                      <p className="mt-0.5 text-sm leading-tight text-slate-100">{fact.text}</p>
+                    </div>
+                  ))}
+                </div>
+
+                <p className="mt-2 text-lg italic leading-tight text-slate-100">"{quote}"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}

@@ -11,8 +11,10 @@ import {
   resolveFightTitleStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
-import { pickTemplateField } from '../../../importer'
-import type { BlankTemplateVariantProps } from './context'
+import { pickLang } from '../../../presets'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import type { TemplatePreviewProps } from '../../../types'
+import { HIGH_END_BACKGROUND_CLASS } from '../../shared/highEnd'
 
 export function FightTitleTemplate({
   fighterA,
@@ -20,9 +22,15 @@ export function FightTitleTemplate({
   portraitAAdjust,
   portraitBAdjust,
   fightLabel,
-  context,
-}: BlankTemplateVariantProps) {
-  const { tr, blockFields, line } = context
+  templateBlocks,
+  language,
+}: TemplatePreviewProps) {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-title'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const plainLines = getPlainTemplateLines(blockLines)
+  const line = (position: number, keys: string[], fallback = '') =>
+    pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const finalLabelRaw = line(
     0,
     ['fight_title', 'match_title', 'title_text', 'line_1', 'line1'],
@@ -136,7 +144,7 @@ export function FightTitleTemplate({
   )
 
   return (
-    <div className="relative z-10 flex h-full min-h-0 overflow-visible rounded-[20px] border border-cyan-300/25 bg-[linear-gradient(180deg,#051224_0%,#0a1f36_50%,#051022_100%)] px-2 py-2 text-center text-slate-200">
+    <div className={`relative z-10 flex h-full min-h-0 overflow-visible rounded-[20px] px-2 py-2 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
       <svg className="vvv-fight-title-svg-defs" aria-hidden="true">
         <defs>
           <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">

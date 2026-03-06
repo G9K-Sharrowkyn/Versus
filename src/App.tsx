@@ -41,13 +41,10 @@ import type {
   Fighter,
   FighterFact,
   FightRecord,
-  Frame,
   Language,
-  LayoutMode,
   PortraitAdjust,
   ScoreRow,
   TemplateId,
-  Theme,
 } from './features/vs/types'
 
 type ApplyFightRecord = (fight: FightRecord, options?: ApplyFightRecordOptions) => void
@@ -81,7 +78,6 @@ function App() {
   const importTxtBlueprint = useMemo(() => buildImportTxtBlueprint(language), [language])
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
-  const [layoutMode, setLayoutMode] = useState<LayoutMode>(initialTemplate.layout)
   const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(DEFAULT_LANGUAGE))
   const [fighterA, setFighterA] = useState<Fighter>(() => cloneFighter(FIGHTER_A))
   const [fighterB, setFighterB] = useState<Fighter>(() => cloneFighter(FIGHTER_B))
@@ -100,8 +96,6 @@ function App() {
   const [portraitAAdjust, setPortraitAAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [portraitBAdjust, setPortraitBAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [slideImageAdjustments, setSlideImageAdjustments] = useState<Record<string, PortraitAdjust>>({})
-  const [frame, setFrame] = useState<Frame>(initialTemplate.frame)
-  const [theme, setTheme] = useState<Theme>(initialTemplate.theme)
 
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
@@ -250,9 +244,6 @@ function App() {
     const preset = localizedTemplates.find((template) => template.id === templateId)
     if (!preset) return
     setActiveTemplate(preset.id)
-    setLayoutMode(preset.layout)
-    setFrame(preset.frame)
-    setTheme(preset.theme)
     if (shouldFlash) {
       flashStatus(`${ui.templateLoaded}: ${preset.name}`)
     }
@@ -411,7 +402,6 @@ function App() {
 
   const renderedTemplate = (
     <TemplateRenderer
-      layoutMode={layoutMode}
       activeTemplateId={activeTemplate}
       language={language}
       rows={rows}
@@ -554,10 +544,7 @@ function App() {
             previewBaseWidth={PREVIEW_BASE_WIDTH}
             previewBaseHeight={PREVIEW_BASE_HEIGHT}
             previewScale={previewScale}
-            frame={frame}
-            theme={theme}
             activeTemplate={activeTemplate}
-            layoutMode={layoutMode}
           >
             {renderedTemplate}
           </FightPreviewStage>

@@ -1,14 +1,36 @@
 import { fighterMonogram } from '../../../helpers'
-import { pickTemplateField } from '../../../importer'
-import type { BlankTemplateVariantProps } from './context'
+import { pickLang } from '../../../presets'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import type { TemplatePreviewProps } from '../../../types'
+import {
+  HIGH_END_GRID_OVERLAY_CLASS,
+  HIGH_END_HEADER_CLASS,
+  HIGH_END_PANEL_CLASS,
+  HIGH_END_ROOT_CLASS,
+  HIGH_END_SUBTEXT_CLASS,
+} from '../../shared/highEnd'
 
-export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemplateVariantProps) {
-  const { tr, headerText, subText, blockFields, line } = context
+export function VerdictMatrixTemplate({
+  fighterA,
+  fighterB,
+  title,
+  subtitle,
+  templateBlocks,
+  language,
+}: TemplatePreviewProps) {
+  const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const plainLines = getPlainTemplateLines(blockLines)
+  const line = (position: number, keys: string[], fallback = '') =>
+    pickTemplateField(blockFields, keys) || plainLines[position] || fallback
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const case1 = line(
     0,
     ['case_1', 'case1'],
     tr(
-      `${fighterA.name || 'Fighter A'} (6/10). Szybkosc i technika koncza walke przed czasem.`,
+      `${fighterA.name || 'Fighter A'} (6/10). Speed and technique finish the fight before time runs out.`,
       `${fighterA.name || 'Fighter A'} (6/10). Speed and technique finish the fight before time runs out.`,
     ),
   )
@@ -16,7 +38,7 @@ export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemp
     1,
     ['case_2', 'case2'],
     tr(
-      `${fighterB.name || 'Fighter B'} (5.5/10). Trudniej o szybkie domkniecie. Regen daje przewage.`,
+      `${fighterB.name || 'Fighter B'} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
       `${fighterB.name || 'Fighter B'} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
     ),
   )
@@ -24,7 +46,7 @@ export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemp
     2,
     ['case_3', 'case3'],
     tr(
-      `${fighterA.name || 'Fighter A'} (5.5/10). Ryzyko rosnie. Jesli szybki finisher nie wejdzie, rywal wraca.`,
+      `${fighterA.name || 'Fighter A'} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
       `${fighterA.name || 'Fighter A'} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
     ),
   )
@@ -32,7 +54,7 @@ export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemp
     3,
     ['case_4', 'case4'],
     tr(
-      `${fighterB.name || 'Fighter B'} (6.5/10). Wojna na wyniszczenie faworyzuje regen.`,
+      `${fighterB.name || 'Fighter B'} (6.5/10). Attrition war favors regen.`,
       `${fighterB.name || 'Fighter B'} (6.5/10). Attrition war favors regen.`,
     ),
   )
@@ -46,9 +68,9 @@ export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemp
   }
 
   const colLeftHeader =
-    pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) || tr('SOLAR FLARE: TAK', 'SOLAR FLARE: YES')
+    pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) || tr('SOLAR FLARE: YES', 'SOLAR FLARE: YES')
   const colRightHeader =
-    pickTemplateField(blockFields, ['col_right', 'solar_flare_no', 'solarflare_no']) || tr('SOLAR FLARE: NIE', 'SOLAR FLARE: NO')
+    pickTemplateField(blockFields, ['col_right', 'solar_flare_no', 'solarflare_no']) || tr('SOLAR FLARE: NO', 'SOLAR FLARE: NO')
   const rowTopHeader = pickTemplateField(blockFields, ['row_top', 'standard', 'standard_ko']) || 'STANDARD KO'
   const rowBottomHeader = pickTemplateField(blockFields, ['row_bottom', 'deathmatch', 'kill_only']) || 'DEATHMATCH'
 
@@ -80,15 +102,15 @@ export function VerdictMatrixTemplate({ fighterA, fighterB, context }: BlankTemp
   ]
 
   return (
-    <div className="relative z-10 flex h-full flex-col text-slate-100">
-      <div className="relative mt-1 min-h-0 flex-1 overflow-hidden rounded-xl border border-cyan-300/35 bg-[linear-gradient(180deg,#06172a_0%,#0a2036_52%,#061325_100%)] p-3">
-        <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.2)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.2)_1px,transparent_1px)] [background-size:7%_13%]" />
+    <div className={HIGH_END_ROOT_CLASS}>
+      <div className={HIGH_END_PANEL_CLASS}>
+        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
 
         <div className="relative z-10 flex h-full flex-col">
-          <h2 className="text-center text-[58px] uppercase leading-none tracking-[0.02em] text-slate-100" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
             {headerText}
           </h2>
-          <p className="mt-1 text-center text-[12px] uppercase tracking-[0.16em] text-slate-300">{subText}</p>
+          <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p>
 
           <div className="mt-2 grid min-h-0 flex-1 grid-cols-[96px_1fr] grid-rows-[56px_1fr]">
             <div />

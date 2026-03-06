@@ -1,6 +1,6 @@
 import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
 import { getTranslations } from '../../i18n'
-import type { Category, Fighter, FighterFact, FightScenarioId, Frame, Language, ParsedVsImport, TemplateId, TemplatePreset, Theme } from './types'
+import type { Category, Fighter, FighterFact, FightScenarioId, Language, ParsedVsImport, TemplateId, TemplatePreset } from './types'
 
 type IconType = LucideIcon
 
@@ -63,9 +63,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'tactical-board',
     name: 'Tactical Board / Methodology',
     description: 'Half category board, half combat-reality lightning screen.',
-    layout: 'tacticalBoard',
-    frame: 'gold',
-    theme: 'steel',
     title: 'TACTICAL BOARD // METHODOLOGY',
     subtitle: 'Category table and non-linear combat reality',
   },
@@ -73,9 +70,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'character-card-a',
     name: 'Character Card A',
     description: 'Single full card for fighter A (more portrait space).',
-    layout: 'characterCardA',
-    frame: 'neon',
-    theme: 'cosmic',
     title: 'CHARACTER DOSSIER // BLUE',
     subtitle: 'Archetype, style and tactical profile',
   },
@@ -83,9 +77,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'character-card-b',
     name: 'Character Card B',
     description: 'Single full card for fighter B (more portrait space).',
-    layout: 'characterCardB',
-    frame: 'neon',
-    theme: 'cosmic',
     title: 'CHARACTER DOSSIER // RED',
     subtitle: 'Archetype, style and tactical profile',
   },
@@ -93,9 +84,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'powers-tools',
     name: 'Powers / Tools / Weaknesses',
     description: 'Split dossier for both fighters with grouped tools and weaknesses.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'POWERS / TOOLS / WEAKNESSES',
     subtitle: '',
   },
@@ -103,9 +91,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'raw-feats',
     name: 'Raw Feats',
     description: 'Side-by-side feat ledger sourced from the import file.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'steel',
     title: 'RAW FEATS',
     subtitle: '',
   },
@@ -113,9 +98,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'hud-bars',
     name: 'HUD Bars',
     description: 'Military HUD look with long horizontal bars like output (1).',
-    layout: 'hudBars',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'CHARACTER STAT ESTIMATION',
     subtitle: '',
   },
@@ -123,9 +105,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'radar-brief',
     name: 'Radar Brief',
     description: 'Center radar, side winner notes, bottom score strip.',
-    layout: 'radarBrief',
-    frame: 'neon',
-    theme: 'cosmic',
     title: 'PARAMETER COMPARISON',
     subtitle: 'Favorite by stats',
   },
@@ -133,9 +112,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'winner-cv',
     name: 'Winner CV',
     description: 'List of top beaten opponents for both fighters.',
-    layout: 'winnerCv',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'WINNERS CV ARCHIVE',
     subtitle: 'Records and average score snapshot',
   },
@@ -143,9 +119,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'summary',
     name: 'Podsumowanie',
     description: 'Summary card placeholder from imported template block.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'PODSUMOWANIE KOŃCOWE',
     subtitle: '',
   },
@@ -153,9 +126,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'battle-dynamics',
     name: 'Dynamika Starcia',
     description: 'Battle dynamics placeholder for custom data.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'steel',
     title: 'DYNAMIKA STARCIA',
     subtitle: 'Tempo, momentum and pressure',
   },
@@ -163,9 +133,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'x-factor',
     name: 'X-Factor',
     description: 'Critical variable placeholder panel.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'X-FACTOR',
     subtitle: 'Single variable with highest impact',
   },
@@ -173,9 +140,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'interpretation',
     name: 'Interpretacja',
     description: 'Interpretation placeholder for narrative readout.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'steel',
     title: 'INTERPRETACJA',
     subtitle: 'Who wins the fight on paper?',
   },
@@ -183,9 +147,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'fight-simulation',
     name: 'Symulacja Walki',
     description: 'Simulation placeholder for phase-by-phase scenario.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'SYMULACJA WALKI',
     subtitle: '',
   },
@@ -193,9 +154,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'stat-trap',
     name: 'Pułapka Statystyk',
     description: 'Non-linear trap placeholder.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'steel',
     title: 'PUŁAPKA STATYSTYK',
     subtitle: 'Why better stats do not guarantee victory',
   },
@@ -203,9 +161,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'verdict-matrix',
     name: 'Matryca Werdyktu',
     description: 'Decision matrix placeholder.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'MATRYCA WERDYKTU',
     subtitle: 'Condition-based verdict grid',
   },
@@ -213,9 +168,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'blank-template',
     name: 'New Template',
     description: 'Empty placeholder field for the next layout.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'NEW TEMPLATE',
     subtitle: 'Placeholder area',
   },
@@ -223,9 +175,6 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     id: 'fight-title',
     name: 'Fight Title Outro',
     description: 'Animated title card rendered as the final screen.',
-    layout: 'blankTemplate',
-    frame: 'tech',
-    theme: 'cosmic',
     title: 'FIGHT TITLE',
     subtitle: 'Animated final matchup text',
   },
@@ -242,20 +191,6 @@ export const localizeTemplatePreset = (preset: TemplatePreset, language: Languag
     title: copy.title,
     subtitle: copy.subtitle,
   }
-}
-
-export const FRAME_CLASSES: Record<Frame, string> = {
-  neon:
-    'border-cyan-300/70 shadow-[0_0_0_1px_rgba(125,211,252,0.4),0_0_42px_rgba(34,211,238,0.3)]',
-  gold:
-    'border-amber-300/70 shadow-[0_0_0_1px_rgba(251,191,36,0.45),inset_0_0_0_1px_rgba(251,191,36,0.2)]',
-  tech: 'border-slate-300/60 shadow-[0_0_0_1px_rgba(148,163,184,0.45),0_0_36px_rgba(15,23,42,0.8)]',
-}
-
-export const THEME_CLASSES: Record<Theme, string> = {
-  cosmic: 'bg-[linear-gradient(145deg,#020617_0%,#0f172a_55%,#172554_100%)]',
-  ember: 'bg-[linear-gradient(145deg,#1f0805_0%,#451a03_55%,#111827_100%)]',
-  steel: 'bg-[linear-gradient(145deg,#0f172a_0%,#1e293b_55%,#0f172a_100%)]',
 }
 
 export const LEGACY_FIGHTS_STORAGE_KEY = 'versus-verse-vault:fights:v1'
@@ -317,15 +252,6 @@ export const injectDerivedTemplates = (order: TemplateId[], payload: ParsedVsImp
   }
 
   return ensureTemplateOrderHasFinal(next)
-}
-
-export const THEME_OVERLAYS: Record<Theme, string> = {
-  cosmic:
-    'bg-[radial-gradient(circle_at_8%_10%,rgba(56,189,248,0.24),transparent_35%),radial-gradient(circle_at_86%_88%,rgba(59,130,246,0.20),transparent_35%)]',
-  ember:
-    'bg-[radial-gradient(circle_at_8%_10%,rgba(249,115,22,0.3),transparent_35%),radial-gradient(circle_at_86%_88%,rgba(244,63,94,0.22),transparent_35%)]',
-  steel:
-    'bg-[radial-gradient(circle_at_8%_10%,rgba(148,163,184,0.2),transparent_35%),radial-gradient(circle_at_86%_88%,rgba(34,211,238,0.18),transparent_35%)]',
 }
 
 export const ICON_BY_CATEGORY: Record<string, IconType> = {
@@ -602,3 +528,4 @@ export const DEFAULT_WINNER_CV_B = [
 
 export const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
   getTranslations(language).defaults.profileFacts[side].map((item) => ({ ...item }))
+
