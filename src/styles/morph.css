@@ -316,6 +316,17 @@
   animation: none;
 }
 
+.vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__core {
+  background:
+    radial-gradient(circle at 34% 28%, rgba(114, 148, 185, 0.12), transparent 42%),
+    linear-gradient(165deg, #1f232a, #171b22);
+  border-color: rgba(148, 163, 184, 0.38);
+  box-shadow:
+    inset 0 0 12px rgba(10, 17, 31, 0.62),
+    0 0 0 1px rgba(148, 163, 184, 0.08);
+  animation: none;
+}
+
 .vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__logo {
   animation: vvv-morph-logo-reveal 2000ms linear 2000ms reverse both;
 }
