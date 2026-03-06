@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
 import type { LightningPoint } from '../types'
 
-export const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
-export const clampLightningXRatio = (value: number) => Math.max(-0.2, Math.min(1.45, value))
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
+const clampLightningXRatio = (value: number) => Math.max(-0.2, Math.min(1.45, value))
 
-export type LightningOptions = {
+type LightningOptions = {
   points: LightningPoint[]
   Hh835tKjwqe: 'fade' | 'none'
   fadeDelay: number
@@ -24,7 +24,7 @@ export type LightningOptions = {
   canvasStyle: Partial<CSSStyleDeclaration>
 }
 
-export const LIGHTNING_BASE_OPTIONS = {
+const LIGHTNING_BASE_OPTIONS = {
   Hh835tKjwqe: 'none',
   fadeDelay: 900,
   Betwjg67687: false,
@@ -40,7 +40,7 @@ export const LIGHTNING_BASE_OPTIONS = {
   euygwebfBBbbf: 3,
 } as const
 
-export const buildLightningBolt = (
+const buildLightningBolt = (
   start: LightningPoint,
   end: LightningPoint,
   maxDifference: number,
@@ -99,7 +99,7 @@ export const buildLightningBolt = (
   })
 }
 
-export const varyBoltPoints = (points: LightningPoint[], intensity: number) =>
+const varyBoltPoints = (points: LightningPoint[], intensity: number) =>
   points.map((point, index) => {
     if (index === 0 || index === points.length - 1) return point
     const prev = points[index - 1]
@@ -120,7 +120,7 @@ export const varyBoltPoints = (points: LightningPoint[], intensity: number) =>
     }
   })
 
-export const buildSplitStrands = (
+const buildSplitStrands = (
   points: LightningPoint[],
   splitRatio: number,
   strandCount: number,
@@ -174,7 +174,7 @@ export const buildSplitStrands = (
   })
 }
 
-export const extendStrandsTowardRightEdge = (
+const extendStrandsTowardRightEdge = (
   strands: LightningPoint[][],
   rightStart: number,
   rightEnd: number,
@@ -235,7 +235,7 @@ export const extendStrandsTowardRightEdge = (
     return out
   })
 
-export const drawLightningBolt = (
+const drawLightningBolt = (
   context: CanvasRenderingContext2D,
   points: LightningPoint[],
   lineWidth: number,
@@ -516,15 +516,4 @@ export function LightningCanvas({
       <div ref={lightningRef} className="lightning" />
     </div>
   )
-}
-
-export type FightScenarioFrame = {
-  a: LightningPoint
-  b: LightningPoint
-  impact: number
-  beam: number
-  pulseA: number
-  pulseB: number
-  ghostsA?: LightningPoint[]
-  ghostsB?: LightningPoint[]
 }

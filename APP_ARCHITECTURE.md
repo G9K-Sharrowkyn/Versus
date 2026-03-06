@@ -40,11 +40,9 @@ Najwazniejsze skrypty:
 ### Root
 
 - `src/App.tsx`
-  Glowny kontener aplikacji. Nadal trzyma stan i logike przeplywu, ale render duzych sekcji jest juz wyniesiony.
+  Glowny kontener aplikacji. Po ostatnim refaktorze jest cienkim kontenerem, ktory skleja hooki, domene i widoki.
 - `aaa.html`
   Wrapper dla intro fight flow.
-- `bbb.html`
-  Dodatkowy standalone wrapper. W obecnym repo wyglada na nieuzywany.
 - `APP_ARCHITECTURE.md`
   Ten plik.
 
@@ -64,7 +62,9 @@ Najwazniejsze skrypty:
 ### `src/features/vs/components`
 
 - `HomeView.tsx`
-  Ekran `home`: import `.txt`, upload portretow, biblioteka walk.
+  Ekran `home`: kompozycja sekcji importu i biblioteki walk.
+- `components/home/*`
+  Atomowe sekcje `home`: header, panel draft importu, panel biblioteki i karta walki.
 - `FightPreviewStage.tsx`
   Shell podgladu fight view: toolbar + skalowany preview frame.
 - `TemplateRenderer.tsx`
@@ -86,6 +86,23 @@ Najwazniejsze skrypty:
   Efekt kursora i relay pozycji kursora z iframe'ow.
 - `usePreviewScale.ts`
   Skalowanie preview do dostepnej przestrzeni.
+- `useVsDraftImport.ts`
+  Caly flow draft importu, drag/drop i edytora portretow.
+- `useVsPersistence.ts`
+  Restore, persistence i live refresh walk.
+- `useVsTransitions.ts`
+  Przejscia `search -> intro -> fight -> search` oraz bridge `postMessage`.
+- `useScopedCycleIndex.ts`
+  Lokalny helper do cyklicznych par slajdow bez efektow resetujacych.
+
+### `src/features/vs/domain`
+
+- `fightState.ts`
+  Mapowanie `FightRecord -> runtime state` pod template'y.
+- `fightFactory.ts`
+  Tworzenie rekordow walk manualnych z draftu importu.
+- `fightLibrary.ts`
+  Selektory biblioteki i grupowanie walk folderowych.
 
 ### `src/features/vs/templates`
 
@@ -94,7 +111,11 @@ Najwazniejsze skrypty:
 - `cardTemplates.tsx`
   Template'y kart i winner CV.
 - `contentTemplates.tsx`
-  Template'y content-heavy. To nadal najwiekszy modul i glowny kandydat do dalszego dzielenia.
+  Cienki barrel eksportujacy template'y content-heavy.
+- `templates/content/*`
+  Osobne implementacje `PowersToolsTemplate`, `RawFeatsTemplate` i dispatcher `BlankTemplate`.
+- `templates/content/blank/*`
+  Warianty `BlankTemplate` rozbite per ekran (`fight-title`, `summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `verdict-matrix`).
 
 ### Inne katalogi
 
@@ -103,11 +124,11 @@ Najwazniejsze skrypty:
 - `public/assets`
   Statyczne assety graficzne.
 - `public/standalone`
-  CSS/JS dla `aaa.html` i `bbb.html`.
+  CSS/JS dla `aaa.html`.
 
 ## Jak plynie stan
 
-`App.tsx` nadal trzyma glowny stan runtime:
+`App.tsx` sklada glowny stan runtime z hookow i domeny:
 
 - aktywna walka,
 - aktywny template i kolejnosc template'ow,
@@ -120,10 +141,11 @@ Przeplyw w skrocie:
 
 1. Uzytkownik laduje `.txt` i dwa portrety na `home`.
 2. `importer.ts` buduje `ParsedVsImport`.
-3. Po utworzeniu lub otwarciu walki `App.tsx` sklada stan domenowy pod template'y.
-4. `TemplateRenderer.tsx` wybiera konkretny widok z `templates/`.
-5. `FightPreviewStage.tsx` renderuje preview i toolbar.
-6. `storage.ts` zapisuje walki i odczytuje dane z IndexedDB / legacy storage.
+3. `useVsDraftImport.ts` tworzy rekord draftu albo `useVsPersistence.ts` odtwarza zapisane walki.
+4. `fightState.ts` sklada runtime state pod template'y.
+5. `TemplateRenderer.tsx` wybiera konkretny widok z `templates/`.
+6. `FightPreviewStage.tsx` renderuje preview i toolbar.
+7. `storage.ts` zapisuje walki i odczytuje dane z IndexedDB / legacy storage.
 
 ## Gdzie co zmieniac
 
@@ -132,6 +154,7 @@ Przeplyw w skrocie:
 Edytuj:
 
 - `src/features/vs/components/HomeView.tsx`
+- `src/features/vs/components/home/*`
 
 ### Chcesz zmienic shell preview / toolbar
 
@@ -146,29 +169,29 @@ Edytuj:
 - `src/features/vs/presets.ts` - definicja template'u i preset.
 - `src/features/vs/components/TemplateRenderer.tsx` - routing do komponentu.
 - odpowiedni plik w `src/features/vs/templates/`.
+- dla `BlankTemplate` najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
 
 ### Chcesz zmienic import `.txt`
 
 Edytuj:
 
 - `src/features/vs/importer.ts`
+- ewentualnie podmoduly w `src/features/vs/templates/content/` gdy template korzysta z dodatkowych pol blokowych.
 
 ### Chcesz zmienic storage lub skan folderu
 
 Edytuj:
 
 - `src/features/vs/storage.ts`
+- `src/features/vs/hooks/useVsPersistence.ts`
 
 ### Chcesz zmienic intro / standalone animacje
 
 Edytuj:
 
 - `aaa.html`
-- `bbb.html`
 - `public/standalone/aaa.css`
 - `public/standalone/aaa.js`
-- `public/standalone/bbb.css`
-- `public/standalone/bbb.js`
 
 ## Persistence
 
@@ -189,5 +212,5 @@ Najbardziej sensowne kolejne kroki:
 
 1. wyniesc efekty persistence z `App.tsx` do osobnego hooka,
 2. wyniesc logike przejsc search/intro/fight do osobnego hooka,
-3. pociac `contentTemplates.tsx` na mniejsze moduly per template,
+3. rozbic `aaa.html` / `public/standalone/aaa.*` na mniejsze moduly,
 4. rozwazyc code-splitting dla ciezszych template'ow i canvasow.

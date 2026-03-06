@@ -40,7 +40,14 @@ export function AdjustableTemplateImage({
   } | null>(null)
   const latestAdjustRef = useRef<PortraitAdjust>(PORTRAIT_ADJUST_DEFAULT)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
-  const [imageNaturalSize, setImageNaturalSize] = useState({ width: 0, height: 0 })
+  const [imageNaturalSizeState, setImageNaturalSizeState] = useState({ key: '', width: 0, height: 0 })
+  const imageNaturalSize = useMemo(
+    () =>
+      imageNaturalSizeState.key === imageUrl
+        ? { width: imageNaturalSizeState.width, height: imageNaturalSizeState.height }
+        : { width: 0, height: 0 },
+    [imageNaturalSizeState.height, imageNaturalSizeState.key, imageNaturalSizeState.width, imageUrl],
+  )
 
   const currentAdjust = normalizeTemplateImageAdjust(
     normalizePortraitAdjust(adjustments[adjustKey] ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
@@ -59,15 +66,11 @@ export function AdjustableTemplateImage({
 
   useEffect(() => {
     latestAdjustRef.current = currentAdjust
-  }, [currentAdjust.x, currentAdjust.y, currentAdjust.scale, adjustKey])
+  }, [currentAdjust])
 
   useEffect(() => {
     imageMetricsRef.current = imageNaturalSize
-  }, [imageNaturalSize.height, imageNaturalSize.width])
-
-  useEffect(() => {
-    setImageNaturalSize({ width: 0, height: 0 })
-  }, [imageUrl])
+  }, [imageNaturalSize])
 
   useEffect(() => {
     const container = containerRef.current
@@ -205,7 +208,10 @@ export function AdjustableTemplateImage({
               height: target.naturalHeight,
             }
             imageMetricsRef.current = nextMetrics
-            setImageNaturalSize(nextMetrics)
+            setImageNaturalSizeState({
+              key: imageUrl,
+              ...nextMetrics,
+            })
           }}
         />
       ) : (

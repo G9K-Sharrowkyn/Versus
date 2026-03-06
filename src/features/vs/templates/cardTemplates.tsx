@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
 import { DEFAULT_WINNER_CV_A, DEFAULT_WINNER_CV_B, defaultFactsFor, pickLang } from '../presets'
 import { TEMPLATE_BLOCK_ALIASES, buildCardFacts, buildTemplateImageEntries, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField, resolveFightTemplateImageUrl, type TemplateImageEntry } from '../importer'
 import type { Fighter, Language, PortraitAdjust, TemplatePreviewProps } from '../types'
 import { AdjustableTemplateImage } from '../components/AdjustableTemplateImage'
+import { useScopedCycleIndex } from '../hooks/useScopedCycleIndex'
 
 export function WinnerCvTemplate({
   fighterA,
@@ -41,16 +41,8 @@ export function WinnerCvTemplate({
   const leftEntries = buildTemplateImageEntries(blockFields, 'left', leftWins)
   const rightEntries = buildTemplateImageEntries(blockFields, 'right', rightWins)
   const pairCount = Math.max(1, leftEntries.length, rightEntries.length)
-  const [pairIndex, setPairIndex] = useState(0)
-
-  useEffect(() => {
-    setPairIndex(0)
-  }, [leftEntries.length, rightEntries.length, activeFightFolderKey])
-
-  const nextPair = () => {
-    if (pairCount <= 1) return
-    setPairIndex((current) => (current + 1) % pairCount)
-  }
+  const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
+  const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
 
   const leftEntry = leftEntries.length ? leftEntries[pairIndex % leftEntries.length] : null
   const rightEntry = rightEntries.length ? rightEntries[pairIndex % rightEntries.length] : null

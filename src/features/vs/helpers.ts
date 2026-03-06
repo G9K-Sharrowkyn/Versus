@@ -199,7 +199,7 @@ export const buildScenarioAliasCandidates = (value: string) => {
   const seedVariants = [
     raw,
     raw.replace(/^\s*\d+\s*\.\s*\d+\s*/, '').trim(),
-    raw.replace(/^\s*\d+\s*[\.\)]\s*/, '').trim(),
+    raw.replace(/^\s*\d+\s*[.)]\s*/, '').trim(),
   ]
 
   const textVariants = new Set<string>()
@@ -220,7 +220,7 @@ export const buildScenarioAliasCandidates = (value: string) => {
 export const extractScenarioLabelText = (value: string) => {
   const raw = value.trim()
   if (!raw) return ''
-  const noNumber = raw.replace(/^\s*\d+\s*\.\s*\d+\s*/, '').replace(/^\s*\d+\s*[\.\)]\s*/, '').trim()
+  const noNumber = raw.replace(/^\s*\d+\s*\.\s*\d+\s*/, '').replace(/^\s*\d+\s*[.)]\s*/, '').trim()
   if (!noNumber) return ''
   const tabCut = noNumber.split('\t')[0]?.trim() || ''
   const colonCut = tabCut.split(':')[0]?.trim() || ''
@@ -262,7 +262,7 @@ export const resolveFightScenarioSelection = (
 export const AVERAGE_DRAW_THRESHOLD = 1
 
 export const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
-export const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[\.\-_ ]*/
+export const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 export const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 export const stripTxtDecoratorSuffix = (value: string) =>
   value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()

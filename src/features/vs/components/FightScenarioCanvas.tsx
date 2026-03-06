@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 import type { FightScenarioId, FightScenarioLead, LightningPoint } from '../types'
 
-export const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
 
-export type FightScenarioFrame = {
+type FightScenarioFrame = {
   a: LightningPoint
   b: LightningPoint
   impact: number
@@ -14,32 +14,32 @@ export type FightScenarioFrame = {
   ghostsB?: LightningPoint[]
 }
 
-export const mixNumber = (from: number, to: number, t: number) => from + (to - from) * clamp01(t)
+const mixNumber = (from: number, to: number, t: number) => from + (to - from) * clamp01(t)
 
-export const mixPoint = (from: LightningPoint, to: LightningPoint, t: number): LightningPoint => ({
+const mixPoint = (from: LightningPoint, to: LightningPoint, t: number): LightningPoint => ({
   x: mixNumber(from.x, to.x, t),
   y: mixNumber(from.y, to.y, t),
 })
 
-export const smoothStep = (value: number) => {
+const smoothStep = (value: number) => {
   const t = clamp01(value)
   return t * t * (3 - 2 * t)
 }
 
-export const wrap01 = (value: number) => value - Math.floor(value)
+const wrap01 = (value: number) => value - Math.floor(value)
 
-export const pulse01 = (seconds: number, frequency: number) =>
+const pulse01 = (seconds: number, frequency: number) =>
   (Math.sin(seconds * Math.PI * 2 * frequency) + 1) / 2
 
-export const pointDistance = (left: LightningPoint, right: LightningPoint) =>
+const pointDistance = (left: LightningPoint, right: LightningPoint) =>
   Math.hypot(right.x - left.x, right.y - left.y)
 
-export const clampFightPoint = (point: LightningPoint): LightningPoint => ({
+const clampFightPoint = (point: LightningPoint): LightningPoint => ({
   x: Math.max(0.06, Math.min(0.94, point.x)),
   y: Math.max(0.12, Math.min(0.88, point.y)),
 })
 
-export const clampFightFrame = (frame: FightScenarioFrame): FightScenarioFrame => {
+const clampFightFrame = (frame: FightScenarioFrame): FightScenarioFrame => {
   const a = clampFightPoint(frame.a)
   const b = clampFightPoint(frame.b)
   const naturalImpact = Math.max(0, (0.16 - pointDistance(a, b)) / 0.16)
@@ -59,7 +59,7 @@ export const clampFightFrame = (frame: FightScenarioFrame): FightScenarioFrame =
   }
 }
 
-export const orientFightScenarioFrame = (
+const orientFightScenarioFrame = (
   frame: FightScenarioFrame,
   lead: FightScenarioLead,
 ): FightScenarioFrame => {
@@ -75,7 +75,7 @@ export const orientFightScenarioFrame = (
   }
 }
 
-export const rgbaFromHex = (value: string, alpha: number) => {
+const rgbaFromHex = (value: string, alpha: number) => {
   const normalized = value.trim().toLowerCase()
   const short = normalized.match(/^#([0-9a-f]{3})$/i)
   if (short) {
@@ -96,10 +96,10 @@ export const rgbaFromHex = (value: string, alpha: number) => {
   return `rgba(226, 232, 240, ${clamp01(alpha)})`
 }
 
-export const scenarioTokenHasAny = (token: string | null | undefined, parts: string[]) =>
+const scenarioTokenHasAny = (token: string | null | undefined, parts: string[]) =>
   Boolean(token && parts.some((part) => token.includes(part)))
 
-export const applyFightScenarioVariant = (
+const applyFightScenarioVariant = (
   frame: FightScenarioFrame,
   variantToken: string | null,
   p: number,
@@ -246,7 +246,7 @@ export const applyFightScenarioVariant = (
   return clampFightFrame(next)
 }
 
-export const buildFightScenarioFrame = (
+const buildFightScenarioFrame = (
   scenario: FightScenarioId,
   t: number,
   seconds: number,
@@ -808,25 +808,3 @@ export function FightScenarioCanvas({
 
   return <div ref={hostRef} className="relative h-36 w-full overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/90" />
 }
-
-export const DEFAULT_WINNER_CV_A = [
-  'Doomsday',
-  'Brainiac',
-  "Mongul",
-  'Pariah',
-  "H'el",
-  'Rogol Zaar',
-  'Ulysses',
-  'Wraith',
-]
-
-export const DEFAULT_WINNER_CV_B = [
-  'Thor',
-  'Hulk',
-  'Blue Marvel',
-  'Juggernaut',
-  'Namora',
-  'Winter Guard',
-  'Rogue',
-  'Gambit',
-]

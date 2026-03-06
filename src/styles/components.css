@@ -1,0 +1,25 @@
+@layer components {
+  .panel {
+    @apply rounded-2xl border border-white/10 bg-slate-900/65 p-4 backdrop-blur-xl;
+  }
+
+  .section-label {
+    @apply mb-2 block text-[11px] uppercase tracking-[0.16em] text-slate-300/80;
+  }
+
+  .input-ui {
+    @apply w-full rounded-xl border border-slate-700/80 bg-slate-950/65 px-3 py-2 text-sm text-slate-100 transition focus:border-cyan-300 focus:outline-none focus:ring-2 focus:ring-cyan-300/40;
+  }
+
+  .button-main {
+    @apply inline-flex items-center gap-2 rounded-xl border border-cyan-300/60 bg-cyan-400/20 px-3 py-2 text-sm font-semibold text-cyan-100 transition hover:bg-cyan-300/30;
+  }
+
+  .button-soft {
+    @apply inline-flex items-center gap-2 rounded-xl border border-slate-600/70 bg-slate-800/70 px-3 py-2 text-sm text-slate-100 transition hover:border-slate-400 hover:bg-slate-700/70;
+  }
+
+  .chip {
+    @apply rounded-full border border-white/15 px-2 py-1 text-xs text-slate-200;
+  }
+}

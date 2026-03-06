@@ -12,7 +12,7 @@ const FIGHTS_DIR_CANDIDATES = [
 const IMAGE_FILE_PATTERN = /^([12])\.(jpe?g|png|webp|avif)$/i
 const ANY_IMAGE_FILE_PATTERN = /\.(jpe?g|png|webp|avif)$/i
 const TXT_FILE_PATTERN = /\.txt(?:\s*(?:pl|en|eng|polski|english))?$/i
-const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[\.\-_ ]*/
+const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 
 type ScanFightRecord = {
@@ -74,14 +74,14 @@ const buildMatchupKey = (leftName: string, rightName: string) =>
   `${normalizeToken(leftName)}::${normalizeToken(rightName)}`
 
 const extractSortIndex = (value: string) => {
-  const match = value.match(/^\s*(\d+)\s*[\.\-_ ]*/)
+  const match = value.match(/^\s*(\d+)\s*[._ -]*/)
   if (!match) return Number.MAX_SAFE_INTEGER
   const parsed = Number(match[1])
   return Number.isFinite(parsed) ? parsed : Number.MAX_SAFE_INTEGER
 }
 
 const normalizeMatchName = (folderName: string) =>
-  folderName.replace(/^\s*\d+\s*[\.\-_ ]*/, '').trim() || folderName.trim()
+  folderName.replace(/^\s*\d+\s*[._ -]*/, '').trim() || folderName.trim()
 
 const asJson = (response: unknown) => JSON.stringify(response, null, 2)
 
@@ -196,7 +196,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         txtContent = decodeImportTextBytes(new Uint8Array(txtPayload))
       } catch (error) {
         if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
-          warnings.push(`TXT \"${txtFileName}\" in folder \"${folderName}\" has unsupported encoding (use UTF-8 or Windows-1250).`)
+          warnings.push(`TXT "${txtFileName}" in folder "${folderName}" has unsupported encoding (use UTF-8 or Windows-1250).`)
           continue
         }
         warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
