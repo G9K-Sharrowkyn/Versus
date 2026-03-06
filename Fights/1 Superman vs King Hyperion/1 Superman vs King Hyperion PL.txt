@@ -42,9 +42,9 @@
 - Mentalność: Bezwzględny i nieustępliwy; wymusza wynik stałą presją.
 
 8. Pokonani przez Postać B
-- Alternate Magneto
+- Magneto
 - Wolverine
-- Weapon X Vision
+- Vision
 - Thor (wynik kontekstowy z podboju)
 - Hulk (Earth-4400) (zabójstwo potwierdzone w aftermath)
 
@@ -74,11 +74,11 @@
 - Słabości: Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki.
 
 11. Surowe Featy Postaci A
-- Wyciska ciężar równy masie Ziemi przez pięć kolejnych dni.
-- Wbija Wraitha w Księżyc w uderzeniu kończącym na poziomie równorzędnego przeciwnika.
-- Przeszukuje globalnie Ziemię w poszukiwaniu Doomsdaya z prędkością tysiąca mil na sekundę.
-- Przetrzymuje obrażenia na poziomie black-hole bez utraty kontroli.
-- Zachowuje kontrolę pod ekstremalną presją wytrzymałościową zamiast pozwolić, by wymiana się załamała.
+- Wyciska ciężar równy masie Ziemi przez pięć dni.
+- Czyta każdy opublikowany tekst medyczny w kilka sekund.
+- Udaje mu się trafić Flasha.
+- Wylatuje z czarnej dziury, nie odnosząc obrażeń.
+- Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Ekstremalna siła, wytrzymałość, lot, wizja atomowa i szybka regeneracja.
@@ -88,10 +88,10 @@
 - Słabości: Skrajna pycha może otwierać luki taktyczne przeciw zdyscyplinowanym rywalom.
 
 13. Surowe Featy Postaci B
-- Przetrwał zniszczenie Earth-4023.
-- Otrząsnął się po skręceniu karku o sto osiemdziesiąt stopni przez Namorę.
-- Regeneruje się po katastrofalnych obrażeniach zamiast po prostu paść.
-- Dezintegruje Weapon X Vision swoim atomic vision.
+- Przetrwał zniszczenie Ziemi na Earth-4023.
+- Wraca do życia chwilę po skręceniu karku o sto osiemdziesiąt stopni przez Namorę.
+- Regeneruje się po katastrofalnych obrażeniach.
+- Zabija Visiona jednym uderzeniem swojego Atomic Vision.
 - Dominuje dwóch alternatywnych Hyperionów.
 
 Template Tactical Board:
@@ -166,30 +166,30 @@ Template Raw Feats:
 - left_title: POKAZ SUPERMANA
 - right_title: POKAZ HYPERIONA
 - feat_label: FEAT
-- left_item_1: Wyciska ciężar równy masie Ziemi przez pięć kolejnych dni.
+- left_item_1: Wyciska ciężar równy masie Ziemi przez pięć dni.
 - left_image_1: 01_6_1_superman_bench_press_earth_equivalent.jpg
-- left_item_2: Wbija Wraitha w Księżyc w uderzeniu kończącym na poziomie równorzędnego przeciwnika.
-- left_image_2: 03_6_1_superman_punches_wraith_through_the_moon.jpg
-- left_item_3: Przeszukuje globalnie Ziemię w poszukiwaniu Doomsdaya z prędkością tysiąca mil na sekundę.
-- left_image_3: 04_6_1_superman_searches_globally_for_doomsday.jpeg
-- left_item_4: Przetrzymuje obrażenia na poziomie black-hole bez utraty kontroli.
+- left_item_2: Czyta każdy opublikowany tekst medyczny w kilka sekund.
+- left_image_2: Superman_read.jpeg
+- left_item_3: Udaje mu się trafić Flasha.
+- left_image_3: Superman_flash.jpeg
+- left_item_4: Wylatuje z czarnej dziury, nie odnosząc obrażeń.
 - left_image_4: 02_6_1_superman_survives_black_hole_level_punishment.jpg
-- left_item_5: Zachowuje kontrolę pod ekstremalną presją wytrzymałościową.
+- left_item_5: Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
 - left_image_5: 05_6_1_superman_high_end_endurance_control.jpg
-- right_item_1: Przetrwał zniszczenie Earth-4023.
+- right_item_1: Przetrwał zniszczenie Ziemi na Earth-4023.
 - right_image_1: 06_6_2_hyperion_survives_world_destruction.png
-- right_item_2: Otrząsnął się po skręceniu karku o sto osiemdziesiąt stopni przez Namorę.
+- right_item_2: Wraca do życia chwilę po skręceniu karku o sto osiemdziesiąt stopni przez Namorę.
 - right_image_2: 07_6_2_hyperion_recovers_after_neck_snap.png
-- right_item_3: Regeneruje się po katastrofalnych obrażeniach zamiast po prostu paść.
+- right_item_3: Regeneruje się po katastrofalnych obrażeniach.
 - right_image_3: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
-- right_item_4: Dezintegruje Weapon X Vision swoim atomic vision.
+- right_item_4: Zabija Visiona jednym uderzeniem swojego Atomic Vision.
 - right_image_4: 10_6_2_hyperion_disintegrates_weapon_x_vision.jpg
 - right_item_5: Dominuje dwóch alternatywnych Hyperionów.
 - right_image_5: 08_6_2_hyperion_overwhelms_two_alternate_hyperions.png
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Nieliniowa zmienna, która decyduje o tym, jak czyste będzie zakończenie
+- subtitle: Zmienna, która wpływa na werdykt bardziej, niż zwykłe statystyki.
 - factor: JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI
 - a_value: 50
 - a_bonus: 14
@@ -197,9 +197,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 12
 - regen: PĘTLA REGENERACJI
-- mechanika: Superman ma czystszą ścieżkę zakończenia, ale Hyperion potrafi zamienić obrażenia w kolejną rundę.
-- implikacja: Jeśli Clark nie skończy walki prawdziwym warunkiem zatrzymania, wariant Hyperiona rośnie z każdym cyklem.
-- psychologia: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie jest częścią jego warunku zwycięstwa.
+- mechanika: Superman ma przewagę w statystykach, ale Hyperion nie zatrzymuje się pod naporem żadnego przeciwnika.
+- implikacja: Jeśli walka toczy się trybem turniejowym, a nie na śmierć i życie, przewaga Hyperiona rośnie z każdą minutą walki.
+- psychologia: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie zbliża go do zwycięstwa.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw
@@ -219,11 +219,11 @@ Template Winner CV:
 - left_image_4: 14_7_1_superman_blitzes_mongul.jpg
 - left_item_5: Apollo
 - left_image_5: 15_7_1_superman_beats_apollo.jpg
-- right_item_1: Alternate Magneto
+- right_item_1: Magneto
 - right_image_1: 16_7_2_hyperion_kills_magneto.png
 - right_item_2: Wolverine
 - right_image_2: 17_7_2_hyperion_kills_wolverine.png
-- right_item_3: Weapon X Vision
+- right_item_3: Vision
 - right_image_3: 18_7_2_hyperion_kills_weapon_x_vision.jpg
 - right_item_4: Thor
 - right_image_4: 19_7_2_hyperion_beats_thor.png
@@ -233,10 +233,10 @@ Template Winner CV:
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: 
-- winner: Superman prowadzi, ale Hyperion pozostaje realnym zagrożeniem
-- line_1: Średnia statystyk faworyzuje Supermana, 91.40 vs 87.78.
-- line_2: Szybkość i kontrola wskazują na Clarka, ale regeneracja zmienia każdą niedomkniętą wymianę w nowy problem.
-- line_3: Solar Flare i zasady kill-only decydują o tym, jak bardzo Hyperion może wciągnąć walkę z powrotem.
+- winner: Superman ma przewagę. Hyperion wciąż może wygrać.
+- line_1: Superman lepiej narzuca warunki walki od pierwszych sekund starcia.
+- line_2: Superman lepiej kontroluje walkę, ale regeneracja Hyperiona daje mu przewagę wraz z każdą chwilą trwającej walki.
+- line_3: Jeśli Superman nie pójdzie na całość od początku, Hyperion w końcu go przytłoczy.
 
 Template Fight Simulation:
 - headline: SYMULACJA WALKI // MODEL TRZECH FAZ

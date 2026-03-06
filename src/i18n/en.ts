@@ -87,7 +87,7 @@ export const translationsEn = {
         name: 'Winner CV',
         description: 'List of top beaten opponents for both fighters.',
         title: 'WINNERS CV ARCHIVE',
-        subtitle: 'Records and average score snapshot',
+        subtitle: 'Records of both fighters.',
       },
       summary: {
         name: 'Summary',

@@ -111,32 +111,35 @@ export function SummaryTemplate({
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-3`}>
-              <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-center">
+            <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-3`}>
+              <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-left">
                 <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{tr('Werdykt', 'Verdict')}</p>
-                <p className="mt-1 text-4xl uppercase leading-none text-white" style={{ fontFamily: 'var(--font-display)' }}>
+                <p
+                  className="mt-2 max-w-[18ch] text-[clamp(1.6rem,2.2vw,2.8rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
+                  style={{ fontFamily: 'var(--font-display)', textWrap: 'balance' }}
+                >
                   {winnerLabel}
                 </p>
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
+              <div className="mt-2 grid shrink-0 grid-cols-2 gap-2">
+                <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
                   <p className="text-xs uppercase tracking-[0.16em]">{fighterA.name || 'Fighter A'}</p>
-                  <p className="text-2xl font-semibold" style={{ color: fighterA.color }}>
+                  <p className="text-[1.75rem] font-semibold leading-none" style={{ color: fighterA.color }}>
                     {Math.round(averageA)}
                   </p>
                 </div>
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
+                <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
                   <p className="text-xs uppercase tracking-[0.16em]">{fighterB.name || 'Fighter B'}</p>
-                  <p className="text-2xl font-semibold" style={{ color: fighterB.color }}>
+                  <p className="text-[1.75rem] font-semibold leading-none" style={{ color: fighterB.color }}>
                     {Math.round(averageB)}
                   </p>
                 </div>
               </div>
 
-              <div className={`mt-3 ${HIGH_END_CARD_CLASS} p-2`}>
+              <div className={`mt-2 flex min-h-0 flex-1 flex-col ${HIGH_END_CARD_CLASS} p-2`}>
                 <p className={HIGH_END_LABEL_CLASS}>{tr('Linie podsumowania', 'Summary lines')}</p>
-                <div className="mt-2 max-h-[220px] space-y-1.5 overflow-y-auto pr-1 text-sm text-slate-100">
+                <div className="mt-2 min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1 text-sm text-slate-100">
                   {summaryLines.map((item, index) => (
                     <div key={`summary-line-${index}-${item}`} className="rounded border border-slate-700/60 bg-black/35 px-2 py-1">
                       {index + 1}. {item}

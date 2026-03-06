@@ -87,7 +87,7 @@ export const translationsPl = {
         name: 'CV Zwycięzców',
         description: 'Lista najważniejszych pokonanych rywali po obu stronach.',
         title: 'ARCHIWUM CV ZWYCIĘSTW',
-        subtitle: 'Rekordy i migawka średniego wyniku',
+        subtitle: 'Rekordy obu zawodnikow.',
       },
       summary: {
         name: 'Podsumowanie',

@@ -17,7 +17,6 @@ import {
   HIGH_END_GRID_OVERLAY_CLASS,
   HIGH_END_HEADER_CLASS,
   HIGH_END_INSET_CLASS,
-  HIGH_END_LABEL_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
   HIGH_END_SMALL_TEXT_CLASS,
@@ -27,8 +26,8 @@ import {
 export function WinnerCvTemplate({
   fighterA,
   fighterB,
-  averageA,
-  averageB,
+  averageA: _averageA,
+  averageB: _averageB,
   title,
   subtitle,
   winsA,
@@ -54,8 +53,6 @@ export function WinnerCvTemplate({
   const profileMode = '/assets/VS2.png'
   const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
   const scale = 'VersusVerseVault badge'
-  const avgLabel = pickTemplateField(blockFields, ['avg_label']) || tr('Sredni wynik', 'Avg score')
-  const winBadge = pickTemplateField(blockFields, ['win_badge']) || 'W'
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
   const leftTitle = pickTemplateField(blockFields, ['left_title']) || `${tr('REKORD', 'RECORD')} ${fighterAText}`
@@ -99,23 +96,17 @@ export function WinnerCvTemplate({
             imageUrl={imageUrl}
             alt={entry?.text || columnTitle}
             fallbackLabel={tr('Brak obrazu', 'No image')}
-            hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
+            hintLabel=""
             adjustKey={adjustKey}
             adjustments={slideImageAdjustments}
             onAdjustChange={onSlideImageAdjustChange}
             onAdjustCommit={onSlideImageAdjustCommit}
             onActivate={nextPair}
           />
-          <div className={`${HIGH_END_CARD_CLASS} p-3`}>
-            <div className="mb-2 flex items-center justify-between gap-2">
-              <p className={HIGH_END_LABEL_CLASS} style={{ color: fighter.color }}>
-                {winBadge} {String((pairIndex % pairCount) + 1).padStart(2, '0')}
-              </p>
-              <span className={HIGH_END_SMALL_TEXT_CLASS}>
-                {avgLabel}: {(fighter === fighterA ? averageA : averageB).toFixed(1)}
-              </span>
-            </div>
-            <p className="text-sm leading-snug text-slate-200">{entry?.text || tr('Brak wpisu.', 'No entry.')}</p>
+          <div className={`${HIGH_END_CARD_CLASS} flex h-[18px] items-start overflow-hidden px-3 pt-[3px]`}>
+            <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-[11px] leading-[1.1] text-slate-200">
+              {entry?.text || tr('Brak wpisu.', 'No entry.')}
+            </p>
           </div>
         </div>
       </div>
@@ -146,11 +137,6 @@ export function WinnerCvTemplate({
   </div>
 </div>
           </div>
-
-          <div className="mt-2 text-center text-[11px] uppercase tracking-[0.16em] text-slate-400">
-            {tr('Kliknij obraz aby przejsc do kolejnej pary.', 'Click an image to switch to the next pair.')}
-          </div>
-
           <div className="mt-2 grid min-h-0 flex-1 grid-cols-2 gap-3">
             {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
             {renderColumn(fighterB, rightTitle, rightEntry, 'right')}

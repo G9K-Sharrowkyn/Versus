@@ -70,9 +70,6 @@ export function XFactorTemplate({
     ['psychologia', 'psychology'],
     tr('Survival mindset and attrition fighting raise his odds.', 'Survival mindset and attrition fighting raise his odds.'),
   )
-  const superBonusLabel = pickTemplateField(blockFields, ['a_bonus_label', 'left_bonus_label']) || '+ BOOST'
-  const regenLabel = pickTemplateField(blockFields, ['regen', 'regen_label']) || '+ REGEN'
-
   return (
     <div className={HIGH_END_ROOT_CLASS}>
       <div className={HIGH_END_PANEL_CLASS}>
@@ -124,8 +121,8 @@ export function XFactorTemplate({
                   <div className="flex h-14 w-[168px] flex-col items-center justify-center rounded-md border-2 border-cyan-300/55 bg-slate-950/92 px-3 leading-none text-sky-300">
                     <span className={superBonusPct > 0 ? 'text-[34px]' : 'text-[42px]'}>{Math.round(superPct)}%</span>
                     {superBonusPct > 0 ? (
-                      <span className="text-[12px] uppercase tracking-[0.1em] text-cyan-100">
-                        +{Math.round(superBonusPct)}% {superBonusLabel}
+                      <span className="text-[14px] uppercase tracking-[0.08em] text-cyan-100">
+                        +{Math.round(superBonusPct)}%
                       </span>
                     ) : null}
                   </div>
@@ -154,12 +151,10 @@ export function XFactorTemplate({
                   <div className="flex h-14 w-[168px] flex-col items-center justify-center rounded-md border-2 border-rose-300/55 bg-slate-950/92 px-3 leading-none text-rose-200">
                     <span className={hyperBonusPct > 0 ? 'text-[34px]' : 'text-[36px]'}>{Math.round(hyperPct)}%</span>
                     {hyperBonusPct > 0 ? (
-                      <span className="text-[12px] uppercase tracking-[0.1em] text-rose-100">
-                        +{Math.round(hyperBonusPct)}% {regenLabel}
+                      <span className="text-[14px] uppercase tracking-[0.08em] text-rose-100">
+                        +{Math.round(hyperBonusPct)}%
                       </span>
-                    ) : (
-                      <span className="text-[13px] uppercase tracking-[0.12em] text-rose-100">{regenLabel}</span>
-                    )}
+                    ) : null}
                   </div>
                 </div>
               </div>

@@ -88,8 +88,8 @@ export function RawFeatsTemplate({
             onAdjustCommit={onSlideImageAdjustCommit}
             onActivate={nextPair}
           />
-          <div className={`${HIGH_END_CARD_CLASS} flex h-[28px] items-center px-3`}>
-            <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-[13px] leading-none text-slate-200">
+          <div className={`${HIGH_END_CARD_CLASS} flex h-[18px] items-start overflow-hidden px-3 pt-[3px]`}>
+            <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-[11px] leading-[1.1] text-slate-200">
               {entry?.text || tr('Brak wpisu.', 'No entry.')}
             </p>
           </div>
