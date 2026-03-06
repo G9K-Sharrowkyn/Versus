@@ -168,7 +168,7 @@ export function FightTitleTemplate({
   }
 
   return (
-    <div className={`relative z-10 flex h-full min-h-0 overflow-hidden rounded-[20px] px-2 py-2 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
+    <div className={`relative z-10 flex h-full min-h-0 overflow-hidden rounded-[20px] px-2 pt-2 pb-1 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
       <svg className="vvv-fight-title-svg-defs" aria-hidden="true">
         <defs>
           <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
@@ -186,8 +186,8 @@ export function FightTitleTemplate({
           </filter>
         </defs>
       </svg>
-      <div className="pointer-events-none absolute left-4 right-4 top-4 z-20">
-        <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 rounded-[18px] border border-cyan-300/25 bg-slate-950/38 px-4 pb-3 pt-2 text-[11px] text-slate-200 backdrop-blur-[8px]">
+      <div className="pointer-events-none absolute left-4 right-4 top-3 z-20">
+        <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 rounded-[18px] border border-cyan-300/25 bg-slate-950/38 px-4 pb-2 pt-2 text-[11px] text-slate-200 backdrop-blur-[8px]">
           <div className="min-w-[238px] space-y-1 pt-1 text-left">
             <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
             <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>

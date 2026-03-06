@@ -441,7 +441,6 @@ function App() {
   const isIntroView = viewMode === 'fight-intro'
   const isTemplateView = viewMode === 'fight'
   const isFightFlow = isIntroView || isTemplateView
-  const isEmbeddedFullscreenView = isSearchView || isIntroView
   const canSwitchPortraitEditorSide = Boolean(
     portraitEditor?.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB),
   )
@@ -491,9 +490,11 @@ function App() {
       data-reverse-stage={reverseStage}
       className={clsx(
         'text-slate-100',
-        isEmbeddedFullscreenView
-          ? 'h-screen overflow-hidden p-0'
-          : isTemplateView
+        isSearchView
+          ? 'h-screen overflow-visible p-0'
+          : isIntroView
+            ? 'h-screen overflow-hidden p-0'
+            : isTemplateView
             ? 'h-screen overflow-hidden px-2 py-2 sm:px-3 sm:py-3'
             : 'min-h-screen px-3 py-4 sm:px-4 sm:py-6',
       )}
