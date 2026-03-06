@@ -31,7 +31,7 @@ body {
   background-color: #111418;
   background: linear-gradient(180deg, #111418 0%, #0d1117 55%, #090c11 100%);
   background-repeat: no-repeat;
-  overflow: hidden;
+  overflow: visible;
   cursor: var(--vvv-cursor-default) 2 2, auto;
 }
 

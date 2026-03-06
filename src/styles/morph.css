@@ -225,7 +225,7 @@
   border-radius: inherit;
   border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.88);
   filter: blur(1.05px);
-  opacity: 0.86;
+  opacity: 0;
   mix-blend-mode: screen;
   pointer-events: none;
   transform: translateY(-1px);
@@ -236,7 +236,7 @@
   inset: 1px;
   border-radius: inherit;
   border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.32);
-  opacity: 0.34;
+  opacity: 0;
   box-shadow:
     0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.12),
     0 0 7px rgba(var(--vvv-electric-blue-rgb), 0.14);
@@ -274,13 +274,11 @@
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__electric {
-  animation:
-    vvv-morph-electric-flicker 280ms linear infinite,
-    vvv-morph-electric-off 1000ms linear forwards;
+  animation: none;
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__ring {
-  animation: vvv-morph-ring-on 1000ms ease 1000ms forwards;
+  animation: none;
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__core {
@@ -311,13 +309,11 @@
 
 .vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__electric {
   opacity: 0;
-  animation:
-    vvv-morph-electric-flicker 280ms linear 3000ms infinite,
-    vvv-morph-electric-off 1000ms linear 3000ms reverse both;
+  animation: none;
 }
 
 .vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__ring {
-  animation: vvv-morph-ring-on 1000ms ease 3000ms reverse both;
+  animation: none;
 }
 
 .vvv-logo-morph.is-running.is-reverse .vvv-logo-morph__logo {

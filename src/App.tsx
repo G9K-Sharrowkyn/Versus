@@ -543,7 +543,7 @@ function App() {
         ) : null}
 
         {viewMode === 'search' ? (
-          <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
+          <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
               src="/search/1.html"
