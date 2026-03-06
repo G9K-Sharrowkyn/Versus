@@ -236,59 +236,61 @@ Template Summary:
 - line_3: If Superman does not go all out from the start, Hyperion will eventually overwhelm him.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Branching outcomes by finish quality
-- opening: Superman opens with speed, spacing, and cleaner reads.
-- mid_fight: Hyperion survives, closes distance, and tries to turn the exchange into attrition.
-- late_fight: The endgame depends on whether Clark escalates to a real finisher before regen resets the value of damage.
-- end_condition: Standard rules favor control and removal. Kill-only fights reward whoever survives the unfinished sequence.
+- headline: FIGHT SIMULATION
+- subtitle: How the matchup changes across three phases.
+- opening: Superman starts with speed, spacing, and cleaner control of the fight.
+- mid_fight: If Hyperion survives the first wave, the fight turns into attrition.
+- late_fight: The endgame depends on whether Clark truly closes the fight before Hyperion regains ground through regeneration.
+- end_condition: Under standard rules, control carries the edge. In kill-only, simple survival becomes more valuable.
 - phase_1_mode: bars
 - phase_1_animation: kite-zone
 - phase_1_actor: a
-- phase_1_title: Opening Tempo
+- phase_1_title: Opening
+- phase_1_event: Superman sets the pace early and keeps Hyperion at range.
 - phase_1_a_label: Control
-- phase_1_b_label: Pressure
+- phase_1_b_label: Forward Pressure
 - phase_1_a_value: 93
 - phase_1_b_value: 79
 - phase_2_mode: split
 - phase_2_animation: clash-lock
 - phase_2_actor: b
-- phase_2_title: Mid-Fight Pivot
-- phase_2_event: The fight changes the first time Hyperion survives what should have closed it.
-- phase_2_branch_a: Superman resets range and keeps the fight technical.
-- phase_2_branch_b: Hyperion keeps contact and drags the fight into attrition.
+- phase_2_title: Turning Point
+- phase_2_event: The turning point can come when Hyperion wounds a Superman who cannot regenerate.
+- phase_2_branch_a: Superman reclaims distance and keeps the fight on his terms.
+- phase_2_branch_b: Hyperion gets inside and turns the matchup into attrition.
 - phase_3_mode: split
 - phase_3_animation: teleport-burst
 - phase_3_actor: a
-- phase_3_title: Finish Window
-- phase_3_event: Clark either converts tempo into a real finish or watches the same problem stand back up.
-- phase_3_branch_a: Solar Flare or a clean incap route finally ends it.
-- phase_3_branch_b: Hyperion survives again and the fight gets worse every cycle.
+- phase_3_title: Endgame
+- phase_3_event: Superman either abandons his moral code, or gets killed by a Hyperion who keeps coming back.
+- phase_3_branch_a: Solar Flare or a clean incap route finally closes the matchup.
+- phase_3_branch_b: Hyperion survives again, and every extra minute improves his chance to flip the fight.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Pace, pressure, and attrition over time
+- subtitle: How the fight changes from one phase to the next.
 - a_curve: 92,84,73,61,52
 - b_curve: 44,50,59,69,77
 - yellow_wave: 31,34,32,36,33,37,35,39
-- phase_1: Superman owns the first minute through speed and spacing.
-- phase_2: Hyperion improves every time a clean sequence fails to end the fight.
-- phase_3: Attrition pressure becomes the real danger if Clark does not escalate.
-- analysis: Superman wins the cleaner fight. Hyperion wins the messier one.
+- phase_1: Early on, Superman controls the pace through speed and spacing.
+- phase_2: If Hyperion survives the first heavy push, he starts working his way back into the fight.
+- phase_3: The longer the fight lasts, the more Hyperion's regeneration starts working in his favor.
+- analysis: Superman has the better opening. Hyperion gets more dangerous with every extra minute.
 
 Template Verdict Matrix:
 - headline: VERDICT MATRIX
-- subtitle: Matchup shifts with finisher access and end condition
+- subtitle: Victory depends on the rules.
 - col_left: STANDARD KO/BFR/INCAP
 - col_right: KILL-ONLY DEATHMATCH
 - row_top: SOLAR FLARE YES
 - row_bottom: SOLAR FLARE NO
-- case_1: Superman 7/10. This is Clark's cleanest branch: speed, control, and a legal finisher path all point the same way.
-- case_2: Superman 5.5/10. Solar Flare keeps a kill path alive, but kill-only still forces him to solve regeneration permanently.
-- case_3: Superman 6/10. Clark still owns tempo and better non-lethal closure, but the margin narrows without the nastiest built-in finisher.
-- case_4: King Hyperion 6/10. This is Hyperion's best branch because every unfinished exchange feeds the attrition economy.
+- case_1: Superman 7/10. Under standard rules and with Solar Flare, he has the clearest path to victory.
+- case_2: Superman 5.5/10. Solar Flare gives Superman the win, but a fight to the death still favors Hyperion.
+- case_3: Superman 6/10. Without Solar Flare, Superman still has the edge if he can control the fight the whole way and avoid an attrition war with Hyperion.
+- case_4: King Hyperion 6/10. Without Solar Flare in a fight to the death, Hyperion's regeneration starts to tilt the odds.
 
 Template Fight Title:
+- headline: Fight #1 complete
 - fight_title: Superman vs King Hyperion
 - subtitle:
 - top_color_a: #2563eb

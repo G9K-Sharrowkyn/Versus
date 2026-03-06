@@ -239,59 +239,61 @@ Template Summary:
 - line_3: Jeśli Superman nie pójdzie na całość od początku, Hyperion w końcu go przytłoczy.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Rozgałęzione wyniki zależnie od jakości domknięcia
-- opening: Superman otwiera walkę szybkością, dystansem i czystszymi odczytami.
-- mid_fight: Hyperion przeżywa, skraca dystans i próbuje zamienić wymianę w wyniszczenie.
-- late_fight: Końcówka zależy od tego, czy Clark eskaluje do prawdziwego uderzenia kończącego, zanim regeneracja zresetuje wartość obrażeń.
-- end_condition: Standardowe zasady premiują kontrolę i usuwanie z walki. Kill-only premiuje tego, kto przeżyje niedomkniętą sekwencję.
+- headline: SYMULACJA WALKI
+- subtitle: Przebieg starcia w trzech fazach.
+- opening: Superman zaczyna od szybkości, dystansu i pełniejszej kontroli walki.
+- mid_fight: Jeśli Hyperion wytrzyma pierwszy napór, walka przechodzi w wyniszczenie.
+- late_fight: Końcówka zależy od tego, czy Clark naprawdę domknie walkę, zanim Hyperion odrobi straty regeneracją.
+- end_condition: Przy zwykłych zasadach przewagę daje kontrola. W kill-only rośnie wartość samego przetrwania.
 - phase_1_mode: bars
 - phase_1_animation: kite-zone
 - phase_1_actor: a
-- phase_1_title: Tempo Otwarcia
+- phase_1_title: Otwarcie walki
+- phase_1_event: Superman od początku narzuca tempo i trzyma Hyperiona na dystans.
 - phase_1_a_label: Kontrola
-- phase_1_b_label: Presja
+- phase_1_b_label: Napór
 - phase_1_a_value: 93
 - phase_1_b_value: 79
 - phase_2_mode: split
 - phase_2_animation: clash-lock
 - phase_2_actor: b
-- phase_2_title: Mid-Fight Pivot
-- phase_2_event: Walka zmienia się przy pierwszym przetrwaniu sekwencji, która powinna była ją domknąć.
-- phase_2_branch_a: Superman resetuje dystans i utrzymuje walkę w technicznym trybie.
-- phase_2_branch_b: Hyperion utrzymuje kontakt i wciąga walkę w wyniszczenie.
+- phase_2_title: Punkt zwrotny
+- phase_2_event: Punkt zwrotny może nastąpić, gdy Hyperion rani Supermana, który nie może się regenerować.
+- phase_2_branch_a: Superman odzyskuje dystans i dalej prowadzi walkę na swoich warunkach.
+- phase_2_branch_b: Hyperion wchodzi w półdystans i zamienia pojedynek w wyniszczenie.
 - phase_3_mode: split
 - phase_3_animation: teleport-burst
 - phase_3_actor: a
-- phase_3_title: Okno Zakończenia
-- phase_3_event: Clark albo zamienia tempo w prawdziwe zakończenie, albo patrzy, jak ten sam problem znowu staje na nogi.
-- phase_3_branch_a: Solar Flare albo czysta ścieżka obezwładnienia wreszcie kończy walkę.
-- phase_3_branch_b: Hyperion przeżywa jeszcze raz i walka robi się gorsza z każdym cyklem.
+- phase_3_title: Końcówka
+- phase_3_event: Superman albo zapomni o zasadach moralnych, albo zostanie zabity przez ciągle powracającego Hyperiona.
+- phase_3_branch_a: Solar Flare albo czyste obezwładnienie wreszcie zamyka pojedynek.
+- phase_3_branch_b: Hyperion znów wraca i z każdą minutą rośnie jego szansa na odwrócenie walki.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Tempo, presja i wyniszczenie w czasie
+- subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 92,84,73,61,52
 - b_curve: 44,50,59,69,77
 - yellow_wave: 31,34,32,36,33,37,35,39
-- phase_1: Superman kontroluje pierwszą minutę dzięki szybkości i dystansowi.
-- phase_2: Hyperion poprawia swoją pozycję za każdym razem, gdy czysta sekwencja nie kończy walki.
-- phase_3: Presja wyniszczenia staje się prawdziwym zagrożeniem, jeśli Clark nie eskaluje.
-- analysis: Superman wygrywa czystszą walkę. Hyperion wygrywa brudniejszą.
+- phase_1: Na początku Superman kontroluje tempo dzięki szybkości i dystansowi.
+- phase_2: Jeśli Hyperion przetrwa pierwszy mocny napór, zaczyna stopniowo odrabiać straty.
+- phase_3: Im dłużej trwa walka, tym bardziej regeneracja Hyperiona zaczyna pracować na jego korzyść.
+- analysis: Superman ma lepsze otwarcie. Hyperion robi się groźniejszy z każdą kolejną minutą.
 
 Template Verdict Matrix:
 - headline: MATRYCA WERDYKTU
-- subtitle: Pojedynek zmienia się wraz z dostępem do domknięcia i warunkiem końcowym
+- subtitle: Wygrana zależy od zasad walki.
 - col_left: STANDARD KO/BFR/INCAP
 - col_right: KILL-ONLY DEATHMATCH
 - row_top: SOLAR FLARE TAK
 - row_bottom: SOLAR FLARE NIE
-- case_1: Superman 7/10. To najczystsza gałąź Clarka: szybkość, kontrola i legalna ścieżka domknięcia idą w tym samym kierunku.
-- case_2: Superman 5.5/10. Solar Flare utrzymuje ścieżkę śmiertelnego zakończenia przy życiu, ale kill-only wciąż zmusza go do trwałego rozwiązania regeneracji.
-- case_3: Superman 6/10. Clark dalej kontroluje tempo i lepiej domyka nieśmiercionośne, ale margines zawęża się bez najmocniejszego wbudowanego uderzenia kończącego.
-- case_4: King Hyperion 6/10. To najlepsza gałąź Hyperiona, bo każda niedomknięta wymiana dokarmia ekonomię wyniszczenia.
+- case_1: Superman 7/10. Przy zwykłych zasadach i z Solar Flare ma najprostszą drogę do wygranej.
+- case_2: Superman 5.5/10. Solar Flare daje Supermanowi zwycięstwo, ale walka na śmierć i życie faworyzuje Hyperiona.
+- case_3: Superman 6/10. Bez Solar Flare Superman nadal ma przewagę, jeśli tylko zdoła utrzymać kontrolę przez cały czas walki i nie wejdzie w wojnę na wyniszczenie z Hyperionem.
+- case_4: King Hyperion 6/10. Gdy nie ma Solar Flare i walka trwa do śmierci, regeneracja Hyperiona zaczyna przechylać szalę.
 
 Template Fight Title:
+- headline: Walka #1 skończona
 - fight_title: Superman vs King Hyperion
 - subtitle:
 - top_color_a: #2563eb

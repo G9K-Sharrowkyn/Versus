@@ -35,18 +35,18 @@
 
 @keyframes vvv-morph-ring-on {
   from {
-    opacity: 0;
-    border-color: rgba(var(--vvv-electric-blue-rgb), 0.18);
+    opacity: 0.34;
+    border-color: rgba(var(--vvv-electric-blue-rgb), 0.32);
     box-shadow:
-      0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.08),
-      0 0 6px rgba(var(--vvv-electric-blue-rgb), 0.12);
+      0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.12),
+      0 0 7px rgba(var(--vvv-electric-blue-rgb), 0.14);
   }
   to {
-    opacity: 1;
-    border-color: rgba(var(--vvv-electric-blue-rgb), 0.95);
+    opacity: 0.56;
+    border-color: rgba(var(--vvv-electric-blue-rgb), 0.52);
     box-shadow:
-      0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.28),
-      0 0 18px rgba(var(--vvv-electric-blue-rgb), 0.42);
+      0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.2),
+      0 0 12px rgba(var(--vvv-electric-blue-rgb), 0.22);
   }
 }
 
@@ -235,11 +235,11 @@
   position: absolute;
   inset: 1px;
   border-radius: inherit;
-  border: 2px solid rgba(var(--vvv-electric-blue-soft-rgb), 0.46);
-  opacity: 0;
+  border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.32);
+  opacity: 0.34;
   box-shadow:
-    0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.18),
-    0 0 12px rgba(var(--vvv-electric-blue-rgb), 0.34);
+    0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.12),
+    0 0 7px rgba(var(--vvv-electric-blue-rgb), 0.14);
   pointer-events: none;
 }
 
@@ -247,8 +247,11 @@
   position: absolute;
   inset: 2px;
   border-radius: inherit;
-  border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.95);
+  border: 2px solid rgba(var(--vvv-electric-blue-rgb), 0.88);
   background: #1a1c1e;
+  box-shadow:
+    inset 0 0 12px rgba(10, 17, 31, 0.62),
+    0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.12);
 }
 
 .vvv-logo-morph__logo {
@@ -281,7 +284,7 @@
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__core {
-  animation: none;
+  animation: vvv-morph-core 2000ms linear 2000ms forwards;
 }
 
 .vvv-logo-morph.is-running .vvv-logo-morph__logo {

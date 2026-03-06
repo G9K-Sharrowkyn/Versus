@@ -1,8 +1,8 @@
 import { type CSSProperties } from 'react'
 import clsx from 'clsx'
+import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import {
   type FightTitlePalette,
-  buildPortraitImageStyle,
   fighterMonogram,
   normalizeHexColor,
   parseBooleanFlag,
@@ -23,6 +23,9 @@ export function FightTitleTemplate({
   portraitBAdjust,
   fightLabel,
   templateBlocks,
+  slideImageAdjustments,
+  onSlideImageAdjustChange,
+  onSlideImageAdjustCommit,
   language,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
@@ -105,7 +108,11 @@ export function FightTitleTemplate({
     nameText: string,
     palette: FightTitlePalette,
     side: 'left' | 'right',
-  ) => (
+  ) => {
+    const fighterAdjust = side === 'left' ? portraitAAdjust : portraitBAdjust
+    const adjustKey = side === 'left' ? 'fight-title:portrait-a' : 'fight-title:portrait-b'
+
+    return (
     <div
       className={clsx(
         'vvv-fight-title-portrait',
@@ -125,11 +132,17 @@ export function FightTitleTemplate({
         <div className="vvv-fight-title-portrait__border-outer">
           <div className="vvv-fight-title-portrait__inner">
             {fighter.imageUrl ? (
-              <img
-                src={fighter.imageUrl}
+              <AdjustableTemplateImage
+                imageUrl={fighter.imageUrl}
                 alt={fighter.name || 'Fighter'}
-                className="h-full w-full object-cover"
-                style={buildPortraitImageStyle(side === 'left' ? portraitAAdjust : portraitBAdjust)}
+                fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
+                hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
+                adjustKey={adjustKey}
+                baseAdjust={fighterAdjust}
+                adjustments={slideImageAdjustments}
+                onAdjustChange={onSlideImageAdjustChange}
+                onAdjustCommit={onSlideImageAdjustCommit}
+                plain
               />
             ) : (
               <div
@@ -152,9 +165,10 @@ export function FightTitleTemplate({
       </div>
     </div>
   )
+  }
 
   return (
-    <div className={`relative z-10 flex h-full min-h-0 overflow-visible rounded-[20px] px-2 py-2 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
+    <div className={`relative z-10 flex h-full min-h-0 overflow-hidden rounded-[20px] px-2 py-2 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
       <svg className="vvv-fight-title-svg-defs" aria-hidden="true">
         <defs>
           <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
@@ -195,7 +209,7 @@ export function FightTitleTemplate({
 </div>
         </div>
       </div>
-      <div className="vvv-fight-title-split relative z-10 h-full w-full overflow-visible">
+      <div className="vvv-fight-title-split relative z-10 h-full w-full">
         {renderFightTitlePortrait(fighterA, topName, topPalette, 'left')}
         {renderFightTitlePortrait(fighterB, bottomName, bottomPalette, 'right')}
         <span className="vvv-fight-title-split__vs">

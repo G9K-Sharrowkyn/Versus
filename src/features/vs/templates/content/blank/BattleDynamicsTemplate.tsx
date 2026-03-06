@@ -154,11 +154,11 @@ export function BattleDynamicsTemplate({
                 <p>{phase1}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#64748b] bg-[#111827]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(71,85,105,0.45)]">
-                <p className="font-semibold">{tr('Faza 2: Mid-Fight.', 'Phase 2: Mid-Fight.')}</p>
+                <p className="font-semibold">{tr('Faza 2: Srodek walki.', 'Phase 2: Midfight.')}</p>
                 <p>{phase2}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#f43f5e] bg-[#2b101b]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(244,63,94,0.45)]">
-                <p className="font-semibold">{tr('Faza 3: Attrition.', 'Phase 3: Attrition.')}</p>
+                <p className="font-semibold">{tr('Faza 3: Koncowka.', 'Phase 3: Endgame.')}</p>
                 <p>{phase3}</p>
               </div>
             </div>

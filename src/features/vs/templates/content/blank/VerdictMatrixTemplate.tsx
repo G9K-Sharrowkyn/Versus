@@ -74,6 +74,32 @@ export function VerdictMatrixTemplate({
     if (!match) return { lead: clean, body: '' }
     return { lead: match[1].trim(), body: match[2].trim() }
   }
+  const normalizeName = (value: string) =>
+    value
+      .normalize('NFD')
+      .replace(/\p{Diacritic}/gu, '')
+      .toLocaleLowerCase()
+      .trim()
+  const fighterAName = fighterA.name || 'Fighter A'
+  const fighterBName = fighterB.name || 'Fighter B'
+  const fighterAKey = normalizeName(fighterAName)
+  const fighterBKey = normalizeName(fighterBName)
+  const winnerBlueBackground = 'bg-[linear-gradient(135deg,rgba(14,116,144,0.34),rgba(30,64,175,0.3))]'
+  const winnerRedBackground = 'bg-[linear-gradient(135deg,rgba(220,38,38,0.34),rgba(127,29,29,0.3))]'
+  const resolveWinnerSide = (value: string, fallback: 'a' | 'b') => {
+    const normalized = normalizeName(value)
+    if (fighterAKey && normalized.startsWith(fighterAKey)) return 'a'
+    if (fighterBKey && normalized.startsWith(fighterBKey)) return 'b'
+    return fallback
+  }
+  const resolveWinnerMark = (value: string, fallback: 'a' | 'b') => {
+    const winnerSide = resolveWinnerSide(value, fallback)
+    return winnerSide === 'a' ? fighterMonogram(fighterAName) : fighterMonogram(fighterBName)
+  }
+  const winnerBackground = (value: string, fallback: 'a' | 'b') => {
+    const winnerSide = resolveWinnerSide(value, fallback)
+    return winnerSide === 'a' ? winnerBlueBackground : winnerRedBackground
+  }
 
   const colLeftHeader =
     pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) || tr('SOLAR FLARE: YES', 'SOLAR FLARE: YES')
@@ -86,26 +112,26 @@ export function VerdictMatrixTemplate({
     {
       id: 'tl',
       ...splitCase(case1),
-      bg: 'bg-[linear-gradient(135deg,rgba(14,116,144,0.34),rgba(30,64,175,0.28))]',
-      mark: fighterMonogram(fighterA.name || 'A'),
+      bg: winnerBackground(case1, 'a'),
+      mark: resolveWinnerMark(case1, 'a'),
     },
     {
       id: 'tr',
       ...splitCase(case2),
-      bg: 'bg-[linear-gradient(135deg,rgba(146,64,14,0.26),rgba(161,98,7,0.22))]',
-      mark: fighterMonogram(fighterB.name || 'B'),
+      bg: winnerBackground(case2, 'b'),
+      mark: resolveWinnerMark(case2, 'b'),
     },
     {
       id: 'bl',
       ...splitCase(case3),
-      bg: 'bg-[linear-gradient(135deg,rgba(8,47,73,0.5),rgba(30,58,138,0.36))]',
-      mark: fighterMonogram(fighterA.name || 'A'),
+      bg: winnerBackground(case3, 'a'),
+      mark: resolveWinnerMark(case3, 'a'),
     },
     {
       id: 'br',
       ...splitCase(case4),
-      bg: 'bg-[linear-gradient(135deg,rgba(120,53,15,0.4),rgba(133,77,14,0.3))]',
-      mark: fighterMonogram(fighterB.name || 'B'),
+      bg: winnerBackground(case4, 'b'),
+      mark: resolveWinnerMark(case4, 'b'),
     },
   ]
 

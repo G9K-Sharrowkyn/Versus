@@ -288,7 +288,7 @@ export function FightSimulationTemplate({
 
           <div className="mt-2 grid min-h-0 flex-1 grid-cols-3 items-stretch gap-3 rounded-md border border-cyan-300/25 bg-slate-950/68 p-3">
             {phaseData.map((phase, index) => (
-              <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] flex-col rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
+              <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] min-w-0 flex-col overflow-hidden rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
                 <div className="mb-2 flex items-center">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{tr('Faza', 'Phase')} {index + 1}</p>
                 </div>
@@ -309,34 +309,37 @@ export function FightSimulationTemplate({
                 </div>
 
                 {phase.mode === 'bars' ? (
-                  <div className="mt-2 flex flex-1 items-stretch">
-                    <div className="flex w-full items-end justify-center gap-10 rounded-md border border-slate-600/70 bg-slate-950/75 p-3">
-                      {[
-                        {
-                          id: 'a',
-                          label: phase.aLabel,
-                          value: phase.aValue,
-                          color: 'bg-[linear-gradient(180deg,#22d3ee,#1d4ed8)]',
-                          textColor: 'text-sky-200',
-                        },
-                        {
-                          id: 'b',
-                          label: phase.bLabel,
-                          value: phase.bValue,
-                          color: 'bg-[linear-gradient(180deg,#fb7185,#b91c1c)]',
-                          textColor: 'text-rose-200',
-                        },
-                      ].map((entry) => (
-                        <div key={`phase-bar-${index}-${entry.id}`} className="flex h-full w-[44%] flex-col items-center justify-end">
-                          <p className={`mb-2 text-[18px] font-semibold leading-none ${entry.textColor}`}>{Math.round(entry.value)}</p>
-                          <div className="relative h-[170px] w-14 overflow-hidden rounded border border-slate-500/75 bg-slate-900/95">
-                            <div className={`absolute bottom-0 left-0 right-0 ${entry.color}`} style={{ height: `${entry.value}%` }} />
+                  <div className="mt-2 flex min-h-0 flex-1 flex-col">
+                    <p className="text-[13px] leading-snug text-slate-200">{phase.event}</p>
+                    <div className="mt-2 flex min-h-0 flex-1 items-stretch overflow-hidden">
+                      <div className="flex w-full items-end justify-center gap-6 overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/75 px-3 py-2">
+                        {[
+                          {
+                            id: 'a',
+                            label: phase.aLabel,
+                            value: phase.aValue,
+                            color: 'bg-[linear-gradient(180deg,#22d3ee,#1d4ed8)]',
+                            textColor: 'text-sky-200',
+                          },
+                          {
+                            id: 'b',
+                            label: phase.bLabel,
+                            value: phase.bValue,
+                            color: 'bg-[linear-gradient(180deg,#fb7185,#b91c1c)]',
+                            textColor: 'text-rose-200',
+                          },
+                        ].map((entry) => (
+                          <div key={`phase-bar-${index}-${entry.id}`} className="flex h-full w-[42%] min-h-0 flex-col items-center justify-end overflow-hidden">
+                            <p className={`mb-1 text-[15px] font-semibold leading-none ${entry.textColor}`}>{Math.round(entry.value)}</p>
+                            <div className="relative h-[132px] w-12 overflow-hidden rounded border border-slate-500/75 bg-slate-900/95">
+                              <div className={`absolute bottom-0 left-0 right-0 ${entry.color}`} style={{ height: `${entry.value}%` }} />
+                            </div>
+                            <p className={`mt-1 text-center text-[10px] uppercase leading-tight tracking-[0.1em] ${entry.textColor}`}>
+                              {entry.label}
+                            </p>
                           </div>
-                          <p className={`mt-2 text-center text-[11px] uppercase leading-tight tracking-[0.12em] ${entry.textColor}`}>
-                            {entry.label}
-                          </p>
-                        </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
                 ) : (
