@@ -12,6 +12,10 @@ dist
 dist-ssr
 *.local
 
+# ComfyUI
+ComfyUI/
+ComfyUI — kopia/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
