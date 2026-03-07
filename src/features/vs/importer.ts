@@ -864,13 +864,38 @@ export const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport
 
 export type TemplateImageEntry = {
   id: string
+  slot: number
   text: string
   imageFile: string
 }
 
-export const resolveFightTemplateImageUrl = (folderKey: string | undefined, imageFile: string) => {
-  if (!folderKey || !imageFile.trim()) return ''
-  return `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(imageFile.trim())}`
+export type AutoTemplateImageRequest = {
+  templateId: 'raw-feats' | 'winner-cv'
+  side: 'left' | 'right'
+  slot: number
+}
+
+const resolveAutoTemplateImageSection = (
+  request: AutoTemplateImageRequest,
+): string => {
+  if (request.templateId === 'raw-feats') {
+    return request.side === 'left' ? '6.1' : '6.2'
+  }
+  return request.side === 'left' ? '7.1' : '7.2'
+}
+
+export const resolveFightTemplateImageUrl = (
+  folderKey: string | undefined,
+  imageFile: string,
+  autoRequest?: AutoTemplateImageRequest,
+) => {
+  if (!folderKey) return ''
+  const trimmed = imageFile.trim()
+  if (trimmed) {
+    return `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(trimmed)}`
+  }
+  if (!autoRequest || autoRequest.slot < 1) return ''
+  return `/api/fights/image?key=${encodeURIComponent(folderKey)}&section=${encodeURIComponent(resolveAutoTemplateImageSection(autoRequest))}&index=${encodeURIComponent(String(autoRequest.slot))}`
 }
 
 export const buildTemplateImageEntries = (
@@ -893,6 +918,7 @@ export const buildTemplateImageEntries = (
     if (!itemText.trim() && !imageFile.trim()) continue
     entries.push({
       id: `${side}-${index}`,
+      slot: index,
       text: itemText.trim(),
       imageFile: imageFile.trim(),
     })
@@ -903,6 +929,7 @@ export const buildTemplateImageEntries = (
       if (!item.trim()) return
       entries.push({
         id: `${side}-fallback-${index + 1}`,
+        slot: index + 1,
         text: item.trim(),
         imageFile: '',
       })

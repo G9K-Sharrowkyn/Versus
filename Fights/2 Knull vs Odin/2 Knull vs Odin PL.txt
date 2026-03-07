@@ -19,7 +19,6 @@
 4. Pokonani przez Postać A
 - Celestial
 - Sentry
-- The Void
 - Silver Surfer
 - All-Father Thor
 
@@ -46,7 +45,7 @@
 - Seth
 - Thanos
 - Silver Surfer
-- Nezarr the Calculator (poważne obrażenia / tylko chwilowe unieszkodliwienie)
+- Drax
 
 9. Kolejność Templatek
 - tactical-board
@@ -73,11 +72,11 @@
 - Słabości: Szeroka kosmiczna kontrola energii może zmuszać go do większych wydatków na regenerację i odzyskanie tempa.
 
 11. Surowe Featy Postaci A
-- Ścina Celestiala i kuje z jego zwłok All-Black.
-- Pokrywa Ziemię żywą Otchłanią i zasłania słońce.
-- Wytrzymuje atak Silver Surfera o skali gwiezdnej.
-- Regeneruje szczękę po tym, jak Thor ją odstrzelił.
-- Unika ataku Thora wzmocnionego przez Odinforce i kontruje, zanim ten zdąży się przegrupować.
+- Ścina Celestiala i kuje All-Black.
+- Podporządkowuje Celestiali i zmusza ich do służby.
+- Przetrwał Wielki Wybuch.
+- Zabija niezliczonych bogów swoim Necroswordem.
+- Pokrywa Ziemię Otchłanią i gasi słońce.
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Pełny Odinforce, wielkoskalowa projekcja energii, bariery, transmutacja i boska magia.
@@ -86,11 +85,11 @@
 - Słabości: Zbyt duża wiara we własną kontrolę może otwierać przeciwnikowi okna kontrataku.
 
 13. Surowe Featy Postaci B
-- Pochłania życiową siłę Asgardu i powiększa Destroyera do rozmiaru Celestiala.
-- Mieczem Odyna odcina rękę Nezarrowi.
-- Walczy z Sethem na wielu planach rzeczywistości.
-- Pokonuje Infinity i od razu naprawia wyrządzone szkody.
-- Jednocześnie obezwładnia Thanosa i Silver Surfera.
+- Pochłania siłę życiową Asgardu i skaluje Destroyera.
+- Odcina Nezarrowi ramię Mieczem Odyna.
+- Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
+- Gromadzi moc wszystkich bogów Ziemi.
+- Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // KNULL VS ODIN
@@ -132,6 +131,26 @@ Template Raw Feats:
 - left_title: POKAZ KNULLA
 - right_title: POKAZ ODINA
 - feat_label: FEAT
+- left_item_1: Ścina Celestiala i kuje All-Black.
+- left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
+- left_item_2: Podporządkowuje Celestiali i zmusza ich do służby.
+- left_image_2: Knull_Knulled.jpg
+- left_item_3: Przetrwał Wielki Wybuch.
+- left_image_3: Knull_BigBang.webp
+- left_item_4: Zabija niezliczonych bogów swoim Necroswordem.
+- left_image_4: Knull_gods.jpg
+- left_item_5: Pokrywa Ziemię Otchłanią i gasi słońce.
+- left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
+- right_item_1: Pochłania siłę życiową Asgardu i skaluje Destroyera.
+- right_image_1: Odin_Life2.jpg
+- right_item_2: Odcina Nezarrowi ramię Mieczem Odyna.
+- right_image_2: Odin_ArmCut.jpg
+- right_item_3: Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
+- right_image_3: Odin_Dome.jpg
+- right_item_4: Gromadzi moc wszystkich bogów Ziemi.
+- right_image_4: Odin_PowerOfGods.jpg
+- right_item_5: Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów.
+- right_image_5: Odin_Surtur.jpg
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
@@ -187,6 +206,26 @@ Template Winner CV:
 - left_title: REKORD KNULLA
 - right_title: REKORD ODINA
 - win_badge: W
+- left_item_1: Celestial
+- left_image_1: Knull_Celestial.jpg
+- left_item_2: Sentry
+- left_image_2: Knull_Sentry.jpg
+- left_item_3: Silver Surfer
+- left_image_3: Knull_Surfer.jpg
+- left_item_4: All-Father Thor
+- left_image_4: Knull_Jaw2.jpg
+- left_item_5: Storm
+- left_image_5: Knull_Storm.jpg
+- right_item_1: Infinity
+- right_image_1: Odin_Infinity.jpg
+- right_item_2: Seth
+- right_image_2: Odin_Seth.jpg
+- right_item_3: Thanos
+- right_image_3: Odin_Thanos.jpg
+- right_item_4: Silver Surfer
+- right_image_4: Odin_SS.jpg
+- right_item_5: Drax
+- right_image_5: Odin_Drax.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

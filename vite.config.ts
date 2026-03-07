@@ -3,6 +3,7 @@ import type { ServerResponse } from 'node:http'
 import path from 'node:path'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
+import { parseFightImageIndex } from './scripts/fightImageIndex.js'
 import { decodeImportTextBytes, INVALID_TEXT_ENCODING_ERROR } from './src/shared/textDecoding'
 
 const FIGHTS_DIR_CANDIDATES = [
@@ -91,6 +92,39 @@ const contentTypeForImage = (fileName: string) => {
   if (lower.endsWith('.webp')) return 'image/webp'
   if (lower.endsWith('.avif')) return 'image/avif'
   return 'image/jpeg'
+}
+
+const resolveIndexedFightImageFile = async (
+  candidateFolder: string,
+  section: string,
+  entryIndex: number,
+) => {
+  if (entryIndex < 1) return ''
+
+  try {
+    const indexPayload = await fs.readFile(path.join(candidateFolder, 'img', 'index.md'), 'utf8')
+    const indexedEntries = parseFightImageIndex(indexPayload).filter(
+      (entry) => entry.section === section && entry.fileName,
+    )
+    if (indexedEntries[entryIndex - 1]?.fileName) {
+      return indexedEntries[entryIndex - 1].fileName
+    }
+  } catch {
+    // Fall through to filename-based inference.
+  }
+
+  const match = section.match(/^(\d+)\.(\d+)$/)
+  if (!match) return ''
+
+  try {
+    const imageFiles = (await fs.readdir(path.join(candidateFolder, 'img')))
+      .filter((file) => ANY_IMAGE_FILE_PATTERN.test(file))
+      .filter((file) => file.includes(`_${match[1]}_${match[2]}_`))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    return imageFiles[entryIndex - 1] || ''
+  } catch {
+    return ''
+  }
 }
 
 const pickPortraitFiles = (
@@ -352,7 +386,9 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
     if (requestUrl.pathname === '/api/fights/image') {
       const key = String(requestUrl.searchParams.get('key') || '').trim()
       const fileName = String(requestUrl.searchParams.get('file') || '').trim()
-      if (!key || !fileName) {
+      const section = String(requestUrl.searchParams.get('section') || '').trim()
+      const entryIndex = Number(String(requestUrl.searchParams.get('index') || '').trim())
+      if (!key || (!fileName && (!section || !Number.isInteger(entryIndex) || entryIndex < 1))) {
         res.statusCode = 400
         res.end(asJson({ error: 'Invalid parameters' }))
         return
@@ -372,7 +408,14 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         return
       }
 
-      const candidates = [path.join(candidateFolder, 'img', fileName), path.join(candidateFolder, fileName)]
+      const resolvedFileName = fileName || await resolveIndexedFightImageFile(candidateFolder, section, entryIndex)
+      if (!resolvedFileName) {
+        res.statusCode = 404
+        res.end(asJson({ error: 'Image not found' }))
+        return
+      }
+
+      const candidates = [path.join(candidateFolder, 'img', resolvedFileName), path.join(candidateFolder, resolvedFileName)]
       for (const candidatePath of candidates) {
         const relativePath = path.relative(fightsDir, candidatePath)
         if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
@@ -381,7 +424,7 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         try {
           const payload = await fs.readFile(candidatePath)
           res.statusCode = 200
-          res.setHeader('Content-Type', contentTypeForImage(fileName))
+          res.setHeader('Content-Type', contentTypeForImage(resolvedFileName))
           res.setHeader('Cache-Control', 'no-store')
           res.end(payload)
           return

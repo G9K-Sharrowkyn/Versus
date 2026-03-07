@@ -74,7 +74,13 @@ export function WinnerCvTemplate({
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
-    const imageUrl = entry ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile) : ''
+    const imageUrl = entry
+      ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
+          templateId: 'winner-cv',
+          side,
+          slot: entry.slot,
+        })
+      : ''
     const adjustKey = `winner-cv:${side}:${entry?.id || 'empty'}`
 
     return (

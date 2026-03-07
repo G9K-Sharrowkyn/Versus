@@ -126,8 +126,8 @@ export function SummaryTemplate({
               <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-left">
                 <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{tr('Werdykt', 'Verdict')}</p>
                 <p
-                  className="mt-2 max-w-[18ch] text-[clamp(1.6rem,2.2vw,2.8rem)] font-semibold leading-[0.95] tracking-[-0.02em] text-white"
-                  style={{ fontFamily: 'var(--font-display)', textWrap: 'balance' }}
+                  className="mt-2 max-w-[20ch] text-[clamp(1.6rem,2.2vw,2.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white"
+                  style={{ fontFamily: 'var(--font-display)' }}
                 >
                   {winnerLabel}
                 </p>

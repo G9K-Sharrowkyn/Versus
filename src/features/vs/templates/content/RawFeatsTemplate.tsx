@@ -60,7 +60,13 @@ export function RawFeatsTemplate({
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
-    const imageUrl = entry ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile) : ''
+    const imageUrl = entry
+      ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
+          templateId: 'raw-feats',
+          side,
+          slot: entry.slot,
+        })
+      : ''
     const adjustKey = `raw-feats:${side}:${entry?.id || 'empty'}`
 
     return (
