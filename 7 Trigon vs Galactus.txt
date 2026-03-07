@@ -1,0 +1,236 @@
+1. Character A
+Trigon (Prime Earth)
+
+2. Character A Stats
+Strength: 89
+Speed: 84
+Durability: 91
+Combat IQ: 86
+Hax: 93
+Stamina: 94
+Fighting Style: 80
+Experience: 94
+Combat Skills: 75
+
+3. Character A Feats
+- Style: Demonic domination through corruption, possession, and realm influence.
+- Advantage: High-end mystical power with regeneration and dimensional control.
+- Mentality: Overwhelm opponents by turning space and conditions hostile.
+
+4. Defeated by Character A
+The Divine
+Teen Titans (team corruption / overwhelm)
+Superboy
+Wonder Girl
+Psimon (banishment / BFR)
+
+5. Character B
+Galactus (Earth-616, standard Devourer of Worlds)
+
+6. Character B Stats
+Strength: 95
+Speed: 94
+Durability: 97
+Combat IQ: 92
+Hax: 98
+Stamina: 96
+Fighting Style: 85
+Experience: 98
+Combat Skills: 79
+
+7. Character B Feats
+- Style: Cosmic control through energy manipulation, transmutation, and scale dominance.
+- Advantage: Power Cosmic with vast endurance and battlefield-wide influence.
+- Mentality: Treat conflict as an energy and inevitability problem.
+
+8. Defeated by Character B
+Silver Surfer (containment / barrier imprisonment)
+Sphinx (time-loop resolution)
+Poppup / the Poppupians (world-devouring result)
+Skrull Empire / Tarnax IV
+Mad Celestials (context-heavy)
+
+9. Template Order
+tactical-board
+character-card-a
+character-card-b
+powers-tools
+raw-feats
+hud-bars
+radar-brief
+interpretation
+stat-trap
+x-factor
+winner-cv
+summary
+battle-dynamics
+fight-simulation
+verdict-matrix
+fight-title
+
+10. Character A Powers / Tools / Weaknesses
+- Powers: Demonic energy projection, corruption, possession, dimensional travel, and regeneration/resurrection traits.
+- Tools: Realm shaping/control and soul-pressure effects.
+- Weaknesses: Peak control is strongest inside favorable demonic environments.
+- Weaknesses: Broad cosmic resistance can slow his corruption tempo in neutral space.
+
+11. Character A Raw Feats
+consumed the Heart of Darkness
+conquered and corrupted countless worlds
+resurrected after heart extraction
+regenerated eye damage in combat time
+converted the Teen Titans into Dark Titans
+
+12. Character B Powers / Tools / Weaknesses
+- Powers: Power Cosmic, transmutation, large-scale energy projection, barriers, and matter/energy control.
+- Tools: Planetary or cosmic energy absorption and battlefield-scale normalization.
+- Weaknesses: Performance varies with feeding state.
+- Weaknesses: In low-fed states, response speed and margin for error decrease.
+
+13. Character B Raw Feats
+destroyed at least three solar systems while still weakened
+withstood Agamotto in Agamotto's own realm
+imprisoned Silver Surfer on Earth with an undetectable barrier
+devoured Poppup instead of Earth
+defeated Sphinx by locking him into an eternal time loop
+
+Template Tactical Board:
+headline: TACTICAL BOARD // TRIGON VS GALACTUS
+subtitle: Realm corruption versus cosmic consumption
+linear_label: ODCINEK LINIOWY
+chaos_label: ODCINEK CHAOSU
+lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
+
+Template Character A:
+name: Trigon
+world: Prime Earth
+- style: Demonic domination through corruption, possession, and realm influence.
+- advantage: High-end mystical power with regeneration and dimensional control.
+- mentality: Overwhelm opponents by turning space and conditions hostile.
+- quote: I am Trigon.
+
+Template Character B:
+name: Galactus
+world: Earth-616, standard Devourer of Worlds
+- style: Cosmic control through energy manipulation, transmutation, and scale dominance.
+- advantage: Power Cosmic with vast endurance and battlefield-wide influence.
+- mentality: Treat conflict as an energy and inevitability problem.
+- quote: I hunger.
+
+Template Powers / Tools / Weaknesses:
+headline: POWERS, TOOLS, AND WEAKNESSES
+subtitle: Core powers, tools, and weaknesses
+left_title: TRIGON TOOLKIT
+right_title: GALACTUS TOOLKIT
+powers_label: POWERS
+tools_label: TOOLS
+weaknesses_label: WEAKNESSES
+
+Template Raw Feats:
+headline: RAW FEATS
+subtitle: Clean showcase examples, not full archives
+left_title: TRIGON SHOWCASE
+right_title: GALACTUS SHOWCASE
+feat_label: FEAT
+
+Template HUD Bars:
+headline: HIGH-END COMBAT ANALYTICS
+subtitle: Two-profile stat readout
+threat_level: COSMIC
+integrity: 99.4%
+profile_mode: VS
+scale: 0-100
+
+Template Radar Brief:
+favorite_label: STAT-BASED FAVORITE
+favorite: Galactus
+left_header: TRIGON ADVANTAGES
+right_header: GALACTUS ADVANTAGES
+draw_header: DRAW ZONES
+left_average: 87.33
+right_average: 92.67
+left_summary: Trigon bends the field hardest when corruption starts replacing normal combat rules.
+right_summary: Galactus owns the broader profile and the cleaner neutral-space answer set.
+draw_summary: The fight tightens only when starvation and home-realm logic distort the map.
+
+Template Interpretation:
+headline: WHO WINS THE FIGHT ON PAPER?
+subtitle: Galactus on paper, but not by enough to erase domain logic
+winner: Galactus
+body: Galactus owns the broader raw profile, but Trigon stays dangerous because his value is nonlinear and field-dependent. Neutral assumptions still favor Galactus.
+
+Template Stat Trap:
+headline: WHY BETTER STATS DO NOT GUARANTEE VICTORY
+subtitle: Field state matters more here than in a normal cosmic slugfest
+question: Can Trigon keep the field poisonous before Galactus turns it into fuel?
+body: Bigger averages do not erase domain logic. Galactus still keeps the baseline answer set, but this matchup changes sharply once the battlefield stops behaving like neutral space.
+
+Template X-Factor:
+headline: X-FACTOR
+subtitle: The single condition that bends the whole fight
+factor: POISONOUS REALM VS ENERGY ECONOMY
+left_case: If the field stays demonic, Trigon stays live.
+right_case: If the field becomes fuel, Galactus takes the fight back.
+implication: Whoever controls the battlefield's meaning controls the fight's branch logic.
+
+Template Winner CV:
+headline: Victory Archive
+subtitle:
+archive_label:
+avg_label: AVG SCORE
+left_title: TRIGON RECORD
+right_title: GALACTUS RECORD
+
+Template Summary:
+headline: SUMMARY
+subtitle:
+winner: Galactus leads, but Trigon has live branch equity
+line_1: Galactus owns the paper comparison, 92.67 vs 87.33.
+line_2: Trigon stays dangerous when corruption and field logic replace normal combat symmetry.
+line_3: Starvation and home-realm control are the two conditions that let Trigon flip the matchup.
+
+Template Battle Dynamics:
+headline: BATTLE DYNAMICS
+subtitle: How the pressure shifts as the field changes
+left_curve_label: TRIGON REALM PRESSURE
+right_curve_label: GALACTUS ENERGY CONTROL
+left_curve: 62,68,77,86,91
+right_curve: 88,90,87,83,78
+left_note: Trigon rises when the field behaves more like a demonic domain.
+right_note: Galactus is strongest when space can be normalized and metabolized.
+
+Template Fight Simulation:
+headline: FIGHT SIMULATION
+subtitle: Three phases, one battlefield argument
+phase_1_title: Poison the opening
+phase_1_body: Trigon tries to convert the first exchange into corruption, possession pressure, and anti-symmetry.
+phase_1_animation: trade-chaos
+phase_1_actor: a
+phase_2_title: Normalize the map
+phase_2_body: Galactus answers with scale stabilization, barrier control, and energy economy instead of respecting Trigon's preferred rules.
+phase_2_animation: kite-zone
+phase_2_actor: b
+phase_3_title: Fuel or poison
+phase_3_body: The finish depends on whether the battlefield stays toxic and demonic or gets normalized into something Galactus can metabolize.
+phase_3_animation: clash-lock
+phase_3_actor: b
+
+Template Verdict Matrix:
+headline: CONDITIONAL VERDICT
+subtitle: Feeding state and battlefield state decide the branch
+col_left: NEUTRAL
+col_right: TRIGON REALM
+row_top: WELL-FED
+row_bottom: STARVING
+case_1: Galactus 8/10
+case_2: Galactus 6.5/10
+case_3: Trigon 6/10
+case_4: Trigon 7.5/10
+
+Template Fight Title:
+fight_title: Trigon vs Galactus
+subtitle:
+top_color_a: #7f1d1d
+top_color_b: #ef4444
+bottom_color_a: #6d28d9
+bottom_color_b: #facc15

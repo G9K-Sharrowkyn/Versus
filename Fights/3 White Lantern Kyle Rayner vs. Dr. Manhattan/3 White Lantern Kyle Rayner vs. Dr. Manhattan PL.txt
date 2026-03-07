@@ -4,49 +4,49 @@
 - Strength: 90
 - Speed: 94
 - Durability: 94
-- Combat IQ: 86
-- Hax: 95
+- Combat IQ: 92
+- Hax: 100
 - Stamina: 93
 - Fighting Style: 79
 - Experience: 86
 - Combat Skills: 76
 
 3. Character A Feats
-- Styl: Kreatywna walka spektralna: konstrukty, wsparcie i narzędzia bliskie przepisywaniu rzeczywistości.
-- Atut: Szeroki aktywny arsenał z leczeniem, odtwarzaniem i wysoką wszechstronnością pierścienia.
-- Mentalność: Adaptacyjny rozwiązywacz problemów, który buduje warunki zwycięstwa przez przygotowanie.
+- Styl: Meta-walka na poziomie Kodu Źródłowego (The Source). Kyle operuje na poziomie fundamentów istnienia, potrafiąc "odpisać" (unmake) siebie i przeciwnika z rzeczywistości.
+- Atut: Manipulacja Source Code. Przekroczył bariery, które Guardians uważali za absolutne, i nagiął wszechświat tak, by "dał mu to, czego potrzebuje".
+- Mentalność: Niezłomny Architekt. Kyle nie walczy z przeszkodami – on je przepisuje. Jego wola potrafi przełamać kontrolę istot emocjonalnych (Entities).
 
 4. Defeated by Character A
-- Relic
+- Relic (wciągnięty za Source Wall)
 - Third Army
-- Guardians of the Universe (tymczasowa transformacja / dominacja)
-- Godkillers (masowe rozbrojenie i neutralizacja przez teleportację)
-- Carol Ferris (tymczasowe przepisanie rzeczywistości)
+- Guardians of the Universe
+- Oblivion (całkowite wymazanie koncepcyjne)
+- Source Titans (wygnanie poza rzeczywistość)
 
 5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock continuity role)
 
 6. Character B Stats
 - Strength: 82
-- Speed: 96
-- Durability: 99
-- Combat IQ: 95
+- Speed: 98
+- Durability: 100
+- Combat IQ: 98
 - Hax: 100
 - Stamina: 100
 - Fighting Style: 48
-- Experience: 86
+- Experience: 90
 - Combat Skills: 44
 
 7. Character B Feats
-- Styl: Nieliniowa interwencja oparta na przyczynowości, kontroli stanu i działaniu wyprzedzającym.
-- Atut: Kontrola rzeczywistości na poziomie atomowym, samoodbudowa i percepcja linii czasu.
-- Mentalność: Zdystansowany i zdecydowany, gdy przechodzi do działania.
+- Styl: "Bóg Mechanizmu". Widzi czas i multiwersum jak statyczne obrazy. Nie walczy – on dokonuje "korekt" w tkance rzeczywistości, usuwając lata historii i całe legiony bohaterów.
+- Atut: Wszechmoc Metaversalna. Skaluje się powyżej 5-wymiarowych istot (Mxy), posiada odporność na wymazanie i uderza w koncepty takie jak Speed Force.
+- Mentalność: Chłodny obserwator. Działa z absolutną pewnością autora, który wie, jak skończy się rozdział, chyba że zakłócą go Tachiony.
 
 8. Defeated by Character B
-- Rorschach (bezpośrednie zabójstwo)
-- Metron (natychmiastowe odparowanie)
-- Owlman (natychmiastowe odparowanie)
-- Ozymandias (nieśmiercionośna kontrola konfrontacji)
-- Silk Spectre / Laurie (lokalny przymus rzeczywistości, nieśmiercionośny)
+- Mr. Mxyzptlk (przyznaje, że potęga Manhattana jest poza jego pojmowaniem)
+- Cała Liga Sprawiedliwości (pokonani bez wysiłku na Marsie)
+- Alan Scott / JSA (wymazani z historii przez przesunięcie latarni)
+- Legion of Superheroes (wymazani z osi czasu w 3019 roku)
+- Pandora (całkowita dezintegracja koncepcyjna)
 
 9. Template Order
 - tactical-board
@@ -67,59 +67,59 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Moce: Dostęp do pełnego spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja.
-- Narzędzia: Dostęp do Life Equation i szeroka użyteczność pierścienia w ataku, obronie i odtwarzaniu.
-- Słabości: Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.
-- Słabości: Najmocniejsze rezultaty wymagają czasu przygotowania i realnego okna wykonania.
+- Moce: Life Equation, White Light (suma wszystkich kolorów), manipulacja Source Code, wskrzeszanie.
+- Narzędzia: Pierścień White Lantern – pozwala na edytowanie rzeczywistości "to give what he needs". Może generować fale Tachionowe.
+- Słabości: Emocjonalna stabilność. Skala mocy Kyle'a rośnie wraz z jego pewnością siebie i woli.
+- Słabości: Skrajne manipulowanie Source destabilizuje lokalną rzeczywistość.
 
 11. Character A Raw Feats
-- Przetrwał Source Wall i wrócił z Life Equation.
-- Zniszczył jednostki Third Army odporne na standardowe ataki Lanternów.
-- Pokazał wielkoskalowe tworzenie i przywracanie życia.
-- Przepisał Carol Ferris i Guardians pod wpływem Life Equation.
-- Teleportował i rozbroił Godkillers na różnych światach.
+- Manipuluje Kodem Źródłowym (Source Code), "odpisując" siebie i Obliviona z istnienia.
+- Przekształcił wszechświat tak, by możliwe było wyjście za Source Wall i powrót.
+- Banicja Source Titans – istot potężniejszych niż bogowie.
+- Walka z Oblivionem destabilizowała fundamenty rzeczywistości.
+- Przełamał kontrolę istot emocjonalnych (Entities), co uznawano za niemożliwe.
 
 12. Character B Powers / Tools / Weaknesses
-- Moce: Manipulacja atomowa, dezintegracja/rekonstrukcja materii, samoodbudowa i percepcja na poziomie linii czasu.
-- Narzędzia: Interwencja czasoprzestrzenna i ingerencja przyczynowa zanim powstanie standardowa wymiana.
-- Słabości: W części ujęć pasywność lub emocjonalny dystans opóźniają decyzję o domknięciu starcia.
-- Słabości: Klasyczna walka wręcz jest u niego węższa niż sugeruje sam profil kontroli rzeczywistości.
+- Moce: Wszechczas, manipulacja Metaversum, kradzież czasu, uderzenie w Speed Force, odporność na wymazanie.
+- Narzędzia: Brak. Manhattan jest architektem własnej rzeczywistości.
+- Słabości: Tachiony ("Static") blokują mu wzrok w przyszłość i tworzą martwe punkty.
+- Słabości: Pasywność. Czasem pozwala na akcję, bo "tak widzi", co Kyle może wykorzystać do oślepienia go.
 
 13. Character B Raw Feats
-- Doświadcza wszystkich momentów jednocześnie.
-- Utrzymuje działanie w wielu stanach czasoprzestrzeni.
-- Nagina lokalną rzeczywistość i przestrzeń wyników wokół celów.
-- Odparowuje Metrona i Owlmana oraz usuwa Mobius Chair z gry.
-- Dezintegruje Rorschacha na poziomie molekularnym.
+- Mxyzptlk przyznaje, że potęga Manhattana wykracza poza jego 5-wymiarowe pojmowanie.
+- Stworzył New 52, wymazując 10 lat historii całego DC Universe.
+- Przesunął latarnię Alana Scotta w 1940, co natychmiast wymazało Legion Superbohaterów w 3019.
+- Uderzył bezpośrednio w Speed Force (byt wszechobecny).
+- Zresetował całą linię czasową DC Metaverse jedną myślą.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KYLE VS MANHATTAN
-- subtitle: Przygotowanie do przepisywania kontra działanie wyprzedzające
+- subtitle: Programista Source vs Architekt Metaversum
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: ODCINEK LINIOWY
 - chaos_label: ODCINEK CHAOSU
-- lane: Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.
+- lane: Manhattan widzi wynik, zanim Kyle zacznie pisać kod. Kyle musi oślepić Boga, by nadpisać jego scenariusz.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52 / Prime Earth
-- style: Kreatywna walka spektralna: konstrukty, wsparcie i narzędzia bliskie przepisywaniu rzeczywistości.
-- advantage: Szeroki aktywny arsenał z leczeniem, odtwarzaniem i wysoką wszechstronnością pierścienia.
-- mentality: Adaptacyjny rozwiązywacz problemów, który buduje warunki zwycięstwa przez przygotowanie.
-- quote: In brightest day, in blackest night...
+- style: Meta-walka na poziomie Kodu Źródłowego. Kyle edytuje fundamenty istnienia, potrafiąc "odpisać" (unmake) siebie i przeciwnika z rzeczywistości.
+- advantage: Life Equation (Równanie Życia) – zdolność do generowania dowolnego efektu, w tym fal tachionowych, które oślepiają Manhattana.
+- mentality: "Toruje drogę". Kyle wierzy, że każdą barierę (nawet Source Wall) da się przekroczyć lub zmienić. Nie akceptuje "niemożliwego".
+- quote: I can sense the death of a planet... and I can rewrite its past.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
-- world: Watchmen / Rebirth / Doomsday Clock
-- style: Nieliniowa interwencja oparta na przyczynowości, kontroli stanu i działaniu wyprzedzającym.
-- advantage: Kontrola rzeczywistości na poziomie atomowym, samoodbudowa i percepcja linii czasu.
-- mentality: Zdystansowany i zdecydowany, gdy przechodzi do działania.
-- quote: Nothing ever ends.
+- world: Watchmen / Doomsday Clock
+- style: "Bóg Mechanizmu". Widzi czas i multiwersum jak statyczne obrazy. Nie walczy – on dokonuje "korekt" w tkance rzeczywistości.
+- advantage: Wszechmoc Metaversalna. Skaluje się powyżej 5-wymiarowych istot (Mxy), posiada odporność na wymazanie i uderza w koncepty takie jak Speed Force.
+- mentality: Chłodny obserwator. Działa z absolutną pewnością autora, który wie, jak skończy się rozdział, chyba że zakłócą go Tachiony.
+- quote: I am the most powerful being in the known universe. I can do anything.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Ogólne moce, narzędzia i słabości
+- subtitle: Starcie Edytorów
 - left_title: ARSENAŁ KYLE'A
 - right_title: ARSENAŁ MANHATTANA
 - powers_label: POWERS
@@ -128,16 +128,36 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: RAW FEATS
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- subtitle: Dowody na "niemożliwe"
 - left_title: POKAZ KYLE'A
 - right_title: POKAZ MANHATTANA
 - feat_label: FEAT
+- left_item_1: Edytuje Source Code ("Unmaking").
+- left_image_1: Kyle_source.jpeg
+- left_item_2: Zmienił wszechświat (Source Wall return).
+- left_image_2: Kyle_Reshape.jpeg
+- left_item_3: Banicja Source Titans.
+- left_image_3: Kyle_Banish.jpg
+- left_item_4: Walka destabilizująca rzeczywistość.
+- left_image_4: Kyle_Destabilize.jpeg
+- left_item_5: Przełamanie Emotional Entities.
+- left_image_5: Kyle_Vessel.jpeg
+- right_item_1: Wykładniczo silniejszy od Mxyzptlka.
+- right_image_1: Manhattan_Mxy1.jpeg
+- right_item_2: Reset całej linii czasowej DC.
+- right_image_2: Manhattan_Reset.jpeg
+- right_item_3: Wymazanie 10 lat historii (New 52).
+- right_image_3: Manhattan_10years.jpeg
+- right_item_4: Uderzenie w Speed Force.
+- right_image_4: Manhattan_SpeedForce.jpeg
+- right_item_5: Wymazanie Legionu (Alan Scott 1940).
+- right_image_5: Manhattan_ring.jpeg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
-- subtitle: Odczyt statystyk dwóch profili
-- threat_level: COSMIC
-- integrity: 99.5%
+- subtitle: Metaversal War
+- threat_level: META-CRISIS
+- integrity: 100%
 - profile_mode: VS
 - scale: 0-100
 
@@ -152,32 +172,32 @@ Template Radar Brief:
 Template Interpretation:
 - headline: INTERPRETATION
 - subtitle: Kto wygrywa walkę na papierze?
-- line_1: Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał.
-- line_2: Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować sam przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie.
-- line_3: Przewaga na papierze nie przetrwa, jeśli walka nigdy nie osiągnie symetrycznych warunków wymiany.
-- quote: Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna.
+- line_1: To starcie dwóch "Administratorów". Manhattan operuje globalnie (Metaversum), Kyle operuje lokalnie ale głębiej (Source Code).
+- line_2: Manhattan zazwyczaj wygrywa przez sam fakt bycia "poza czasem", ale Kyle posiada Life Equation – "Cheat Code" na determinizm.
+- line_3: Kluczem jest martwy punkt Manhattana (Tachiony), które Kyle może wygenerować z Białego Światła.
+- quote: Kiedy Bóg traci wzrok, programista przejmuje serwer.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
-- trap_top: LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE
-- trap_bottom: MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL
-- example: Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.
-- question: Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje sam przygotowanie?
+- subtitle: Dlaczego liczby kłamią
+- trap_top: WSZECHCZAS MANHATTANA MOŻE ZOSTAĆ NADPISANY PRZEZ SOURCE EDIT
+- trap_bottom: MANHATTAN JEST ODPORNY NA WYMAZANIE, ALE MOŻE ZOSTAĆ UWIĘZIONY
+- example: Manhattan nie może zostać "usunięty", bo przetrwał własną dezintegrację. Ale Kyle może zmienić "Source", by Manhattan nigdy nie chciał walczyć.
+- question: Czy Kyle zdoła oślepić Manhattana Tachionami, zanim ten "wymaże" go z 1940 roku?
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która decyduje, czy przewaga na papierze stanie się realna
-- factor: OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE
+- subtitle: Decydująca zmienna
+- factor: TACHIONOWE ZAKŁÓCENIE (ŚLEPOTA CZASU)
 - a_value: 50
-- a_bonus: 15
-- a_bonus_label: OKNO PRZEPISYWANIA
+- a_bonus: 25
+- a_bonus_label: OŚLEPIENIE
 - b_value: 50
-- b_bonus: 17
-- regen: PRZEWAGA PREEMPCJI
-- mechanika: Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.
-- implikacja: Jeśli Kyle dostanie pełny przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.
-- psychologia: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.
+- b_bonus: 20
+- regen: PREKOGNICJA
+- mechanika: Manhattan jest wszechmocny, dopóki widzi "ścieżkę". Tachiony (White Light) tworzą Static, który zmusza go do improwizacji.
+- implikacja: W stanie "Static", Kyle (z Source Code Edit) może nadpisać historię Manhattana, zanim ten ją przewidzi.
+- psychologia: Manhattan akceptuje los. Kyle go zmienia. To daje Kyle'owi przewagę aktywnej woli.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -191,68 +211,68 @@ Template Winner CV:
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: 
-- winner: Dr. Manhattan prowadzi, ale walka jest warunkowa
-- line_1: Kyle wygrywa porównanie na papierze, 88.11 do 83.33.
-- line_2: Manhattan prowadzi w domyślnej wersji walki, bo ma lepszy pierwszy ruch i atakuje sam przygotowanie.
-- line_3: Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie.
+- winner: Remis / Dr. Manhattan (Minimalna przewaga)
+- line_1: Manhattan operuje na poziomie Metaversum, kradnąc czas i resetując wszechświaty jedną ręką.
+- line_2: Kyle z Life Equation jest jedynym błędem w systemie, który może negować determinizm Boga Tachionami.
+- line_3: Walka prawdopodobnie skończyłaby się destabilizacją rzeczywistości do poziomu "Zero", zanim jeden pokonałby drugiego.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Jakość przygotowania kontra odmowa pierwszego ruchu
-- a_curve: 62,66,71,78,86
-- b_curve: 90,84,72,59,47
-- yellow_wave: 29,34,31,36,32,38,34,40
-- phase_1: Manhattan jest najsilniejszy, zanim powstanie symetria i zanim przygotowanie przestanie być kruchy.
-- phase_2: Kyle zaczyna spieniężać lepszy arsenał dopiero wtedy, gdy warstwowa presja naprawdę zostaje na planszy.
-- phase_3: Jeśli przepisywanie nigdy nie otworzy się w pełni, praktyczna przewaga Manhattana trwa od początku do końca.
-- analysis: Kyle ma pełniejszy profil. Manhattan ma czystszy pierwszy ruch.
+- subtitle: Przebieg starcia w czasie
+- a_curve: 50,60,75,85,95
+- b_curve: 100,95,85,75,60
+- yellow_wave: 50,50,50,50,50,50,50,50
+- phase_1: Manhattan próbuje "usunąć" Kyle'a z osi czasu. Kyle używa Source Wall anchors, by przetrwać poza czasem.
+- phase_2: Kyle generuje Tachiony. Manhattan traci wzrok. Kyle zaczyna edytować lokalny "Source Code", by ograniczyć moc Manhattana.
+- phase_3: Rzeczywistość pęka. Obaj edytują się nawzajem. Kyle próbuje "wybaczyć" (unmake) konflikt, Manhattan próbuje go "zaobserwować" jako sen.
+- analysis: Manhattan zaczyna od wszechmocy. Kyle musi go oślepić i sprowadzić do Source, by wygrać.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Wyścig przygotowania pod presją preempcji
-- opening: Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.
-- mid_fight: Manhattan odrzuca logikę normalnej wymiany i atakuje przygotowanie, timing pierścienia albo lokalny stan ruchu.
-- late_fight: Walka rozchodzi się tylko na jednym pytaniu: czy Kyle dostaje prawdziwe okno Life Equation, zanim spadnie preempcja.
-- end_condition: O tej walce decyduje to, czy symetria w ogóle zdąży się uformować.
+- headline: FIGHT SIMULATION // SCENARIUSZE
+- subtitle: Metaversal War
+- opening: Manhattan pstryka palcami. Całe DC Universe wokół Kyle'a znika. Kyle zostaje sam w pustce, trzymany przez Life Equation.
+- mid_fight: Kyle zalewa pustkę Białym Światłem (Tachiony). Manhattan przestaje widzieć przyszłość. Kyle uderza konstruktem Obliviona.
+- late_fight: Kyle sięga do 1940 roku, by chronić latarnię Alana Scotta przed Manhattanem. Ich wola ściera się w samym sercu Metaversum.
+- end_condition: Destabilizacja Rzeczywistości. Rzeczywistość rozpada się do "niczego" (less than nothing), co przewidział Guardian.
 - phase_1_mode: bars
 - phase_1_animation: teleport-burst
-- phase_1_actor: a
-- phase_1_title: Otwarcie Przygotowania
-- phase_1_a_label: Pressure
-- phase_1_b_label: Preemption
-- phase_1_a_value: 86
-- phase_1_b_value: 89
+- phase_1_actor: b
+- phase_1_title: Crisis Level Attack
+- phase_1_a_label: Source Shield
+- phase_1_b_label: Meta Erasure
+- phase_1_a_value: 92
+- phase_1_b_value: 100
 - phase_2_mode: split
 - phase_2_animation: feint-counter
-- phase_2_actor: b
-- phase_2_title: Odmowa Przygotowania
-- phase_2_event: Manhattan atakuje mechanizm akcji zamiast handlować się z gotowym atakiem.
-- phase_2_branch_a: Kyle utrzymuje dość planszy przy życiu, by budować przepisywanie.
-- phase_2_branch_b: Manhattan usuwa przygotowanie, zanim ten zamieni się w prawdziwą sekwencję.
+- phase_2_actor: a
+- phase_2_title: Tachyon Static
+- phase_2_event: Kyle zalewa pole walki energią tachionową.
+- phase_2_branch_a: Manhattan traci wzrok (Static).
+- phase_2_branch_b: Manhattan adaptuje się do nowej osi.
 - phase_3_mode: split
 - phase_3_animation: teleport-burst
 - phase_3_actor: a
-- phase_3_title: Okno Przepisywania
-- phase_3_event: Albo Kyle osiąga pełną ekspresję Life Equation, albo Manhattan utrzymuje walkę w stanie permanentnego niedokończenia.
-- phase_3_branch_a: Pełny dostęp do przepisywania zamienia szerszy arsenał w realną ścieżkę zwycięstwa.
-- phase_3_branch_b: Preempcja zatrzymuje lepszy arsenał w sferze teorii, a walka zostaje po stronie Manhattana.
+- phase_3_title: Unmaking reality
+- phase_3_event: Starcie deweloperów.
+- phase_3_branch_a: Kyle nadpisuje istnienie Manhattana.
+- phase_3_branch_b: Manhattan resetuje całe Metaverse.
 
 Template Verdict Matrix:
 - headline: CONDITIONAL VERDICT
-- subtitle: Głębokość przygotowania kontra zachowanie wyprzedzające
-- col_left: LIFE EQUATION FULL
-- col_right: LIFE EQUATION LIMITED
+- subtitle: Możliwe zakończenia
+- col_left: TACHYONS + SOURCE FULL
+- col_right: STANDARD POWER
 - row_top: MANHATTAN PROACTIVE
 - row_bottom: MANHATTAN PASSIVE
-- case_1: Dr. Manhattan 6.5/10. Pełny przepisywanie utrzymuje Kyle'a w grze, ale proaktywna preempcja nadal kradnie dość otwarć, by zostać minimalnie z przodu.
-- case_2: Dr. Manhattan 9/10. Ograniczony przepisywanie plus proaktywna preempcja usuwa jedyną gałąź, która naprawdę zmienia ten pojedynek.
-- case_3: Kyle 7/10. Jeśli Manhattan robi się pasywny, a Kyle dochodzi do pełnej ekspresji, szerszy arsenał wreszcie się spienięża.
-- case_4: Dr. Manhattan 6.5/10. Pasywność zmniejsza przewagę, ale ograniczony dostęp do Life Equation nadal zostawia Kyle'a z przygotowanieem, który Manhattan potrafi rozplątać.
+- case_1: Remis/Kyle 6/10. Kyle ma narzędzia, by przełamać wszechmoc Manhattana, jeśli Manhattan nie wymaże go natychmiast.
+- case_2: Manhattan 10/10. Bez pełnej mocy Source, Kyle jest tylko kolejnym herosem, którego Manhattan usuwa z historii.
+- case_3: Kyle 8/10. Pasywny Manhattan daje Kyle'owi czas na "nadpisanie" praw fizyki i odcięcie Boga od jego mocy.
+- case_4: Manhattan 10/10. Bezwzględna dominacja Architekta nad zwykłym użytkownikiem Spektrum.
 
 Template Fight Title:
 - fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan
-- subtitle:
-- top_color_a: #f8fafc
-- top_color_b: #22c55e
-- bottom_color_a: #38bdf8
+- subtitle: SOURCE CODE VS METAVERSE ARCHITECT
+- top_color_a: #ffffff
+- top_color_b: #38bdf8
+- bottom_color_a: #22c55e
 - bottom_color_b: #1d4ed8

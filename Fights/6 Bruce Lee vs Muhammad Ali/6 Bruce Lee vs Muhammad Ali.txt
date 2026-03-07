@@ -1,212 +1,249 @@
-1. Character A
-Bruce Lee (Prime / Historical Version, 1940-1973)
+1. Bruce Lee (Prime / Historical version, 1940-1973)
 
 2. Character A Stats
-Strength: 70
-Speed: 93
-Durability: 70
-Combat IQ: 86
-Hax: 73
-Stamina: 81
-Fighting Style: 91
-Experience: 60
-Combat Skills: 86
+- Strength: 70
+- Speed: 93
+- Durability: 70
+- Combat IQ: 86
+- Hax: 73
+- Stamina: 81
+- Fighting Style: 91
+- Experience: 60
+- Combat Skills: 86
 
 3. Character A Feats
-- Style: Explosive interception style built on timing, low-line attacks, and footwork.
-- Advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
-- Mentality: Highly analytical and adaptive, prioritizing efficient action.
+- Style: Explosive Interception. Bruce relied on eliminating unnecessary movements, low-line attacks (knee kicks), and lightning-fast distance closing.
+- Advantage: Superhuman Speed and Adaptation. He could modify his style mid-fight, adjusting to the opponent's rhythm and breaking it with unexpected entries.
+- Mentality: "Be Like Water." An extremely analytical approach to combat—he sought the shortest path to the goal, giving the opponent no time to react.
 
 4. Defeated by Character A
-Gary Elms (boxing decision victory)
-Yoichi Nakachi (witness-backed rapid challenge-fight knockout)
+- Gary Elms (victory by decision in boxing, 1958)
+- Yoichi Nakachi (rapid knockout in a challenge fight)
+- Wong Jack Man (victory in a controversial duel)
+- Jesse Glover (sparring partner and student dominated by speed)
 
-5. Character B
-Muhammad Ali (Prime)
+5. Muhammad Ali (Prime, 1964-1975)
 
 6. Character B Stats
-Strength: 89
-Speed: 89
-Durability: 94
-Combat IQ: 93
-Hax: 48
-Stamina: 95
-Fighting Style: 90
-Experience: 97
-Combat Skills: 94
+- Strength: 89
+- Speed: 89
+- Durability: 94
+- Combat IQ: 93
+- Hax: 48
+- Stamina: 95
+- Fighting Style: 90
+- Experience: 97
+- Combat Skills: 94
 
 7. Character B Feats
-- Style: Elite boxing control through jab, footwork, timing, and ring management.
-- Advantage: Proven heavyweight durability and championship-level pace control.
-- Mentality: Confident and tactical, comfortable in long, high-pressure fights.
+- Style: Elite Out-boxer. "Float like a butterfly, sting like a bee." Utilized range, masterful footwork, and the jab to control the fight and tire out opponents.
+- Advantage: Heavyweight Durability and Timing. Capable of taking monstrous hits (Rope-a-dope) and responding with surgical precision without losing speed.
+- Mentality: Master of Psychology and Pacing. Ali didn't just fight physically; he broke the opponent's will, dictating terms in the ring for dozens of rounds.
 
 8. Defeated by Character B
-George Foreman
-Joe Frazier
-Sonny Liston
-Cleveland Williams
-Ernie Terrell
+- George Foreman (Rumble in the Jungle)
+- Joe Frazier (Thrilla in Manila)
+- Sonny Liston
+- Cleveland Williams
+- Ernie Terrell
 
 9. Template Order
-tactical-board
-character-card-a
-character-card-b
-powers-tools
-raw-feats
-hud-bars
-radar-brief
-interpretation
-stat-trap
-winner-cv
-summary
-battle-dynamics
-fight-simulation
-fight-title
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Elite human speed, reflexes, coordination, and precision striking.
-- Tools: JKD interception timing, low-line kicking, rhythm disruption, and cross-style adaptation.
-- Weaknesses: Significant size and reach deficit versus heavyweight specialists.
-- Weaknesses: Human durability ceiling under prolonged heavyweight punishment.
+- Powers: Explosive starting speed, reflex ahead of sight, total body coordination.
+- Tools: Jeet Kune Do (Interception concept), low kicks, finger strikes, breaking the opponent's leg structure.
+- Weaknesses: Massive mass deficit (approx. 60kg vs Ali's 100kg) and reach.
+- Weaknesses: Lack of experience in multi-round wars of attrition with elite heavyweights.
 
 11. Character A Raw Feats
-One-inch punch demonstration at Long Beach
-Two-finger push-up and body-control demonstration
-1958 inter-school boxing title over Gary Elms
-Built Jeet Kune Do from practical cross-style adaptation
+- "One-Inch Punch" demonstration at Long Beach (generating massive force from minimal distance).
+- Two-finger push-ups and superhuman body control.
+- 1958 inter-school boxing title (confirmed technical base).
+- Creation of Jeet Kune Do as a system based on practical effectiveness over tradition.
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Elite heavyweight boxing speed, timing, durability, and ring IQ.
-- Tools: Jab control, footwork, defensive movement, clinch management, and pacing control.
-- Weaknesses: Primarily boxing-centric toolkit compared with broad open-rule combat sets.
-- Weaknesses: Less specialized for leg-line attacks and mixed-range engagement outside boxing rules.
+- Powers: Lightweight speed in a giant's body, incredible punch resistance (granite chin).
+- Tools: Range-controlling jab, "Ali Shuffle," Rope-a-dope technique, elite clinch.
+- Weaknesses: Toolkit limited to boxing—Ali never had to defend against knee kicks or takedowns.
+- Weaknesses: Confidence bordering on bravado, which Bruce could exploit for a counter.
 
 13. Character B Raw Feats
-Rope-a-dope against George Foreman
-Peak heavyweight speed and precision against Cleveland Williams
-Frazier-era endurance and punishment tolerance
+- "Rope-a-dope" against Foreman (absorbing lethal punches and surviving the onslaught).
+- Peak speed and precision against Williams (the fastest hands in heavyweight history).
+- Endurance in the Frazier wars (fighting to the limit in extreme conditions).
+- Footwork allowing him to dodge dozens of punches without a guard.
 
 Template Tactical Board:
-headline: TACTICAL BOARD // BRUCE VS ALI
-subtitle: Speed and disruption versus reach and ring reality
-left_header: BRUCE PLAN
-right_header: ALI PLAN
-linear_label: ODCINEK LINIOWY
-chaos_label: ODCINEK CHAOSU
-lane: Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.
+- headline: TACTICAL BOARD // BRUCE VS ALI
+- subtitle: Speed and Chaos vs. Mass and Ring Reality
+- left_header: BRUCE'S PLAN
+- right_header: ALI'S PLAN
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
+- lane: Bruce wins if he destroys Ali's legs. Ali wins if he lands even one clean jab on Bruce.
 
 Template Character A:
-name: Bruce Lee
-world: Prime / Historical Version
-- style: Explosive interception style built on timing, low-line attacks, and footwork.
-- advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
-- mentality: Highly analytical and adaptive, prioritizing efficient action.
-- quote: Be water, my friend.
+- name: Bruce Lee
+- world: Historical / Prime
+- style: Explosive JKD Interception. Focus on speed, low-line attacks, and eliminating wasted motion.
+- advantage: Sight-defying speed and the ability to fight in every plane (beyond boxing).
+- mentality: "Be Water." Complete adaptation to the opponent's style and hunting for blind spots.
+- quote: Be water, my friend. Emptiness is the starting point.
 
 Template Character B:
-name: Muhammad Ali
-world: Prime
-- style: Elite boxing control through jab, footwork, timing, and ring management.
-- advantage: Proven heavyweight durability and championship-level pace control.
-- mentality: Confident and tactical, comfortable in long, high-pressure fights.
-- quote: Float like a butterfly, sting like a bee.
+- name: Muhammad Ali
+- world: Historical / Prime
+- style: Elite "Float and Sting" style. Jab range control and untouchable footwork.
+- advantage: Colossal reach, mass, and heavyweight durability advantage.
+- mentality: King of the Ring. Unshakable self-confidence and the ability to survive the greatest hell.
+- quote: I am the greatest. I said that even before I knew I was.
 
 Template Powers / Tools / Weaknesses:
-headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle:
-left_title: BRUCE TOOLKIT
-right_title: ALI TOOLKIT
-powers_label: POWERS
-tools_label: TOOLS
-weaknesses_label: WEAKNESSES
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: Technique vs. Physicality
+- left_title: BRUCE TOOLKIT
+- right_title: ALI TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
 
 Template Raw Feats:
-headline: RAW FEATS
-subtitle: Clean showcase examples, not full archives
-left_title: BRUCE SHOWCASE
-right_title: ALI SHOWCASE
-feat_label: FEAT
+- headline: RAW FEATS
+- subtitle: Proof of the Legend
+- left_title: BRUCE SHOWCASE
+- right_title: ALI SHOWCASE
+- feat_label: FEAT
+- left_item_1: One-Inch Punch (Force).
+- left_image_1: 01_6_1_bruce_one_inch_punch.jpg
+- left_item_2: Gary Elms (Boxing base).
+- left_image_2: 03_6_1_bruce_gary_elms_record.jpg
+- left_item_3: Finger push-ups (Control).
+- left_image_3: finger push-ups.webp
+- left_item_4: JKD (Style evolution).
+- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
+- left_item_5: Reaction speed.
+- left_image_5: Jeet Kune Do.webp
+- right_item_1: Rope-a-dope (Foreman).
+- right_image_1: 05_6_2_ali_rope_a_dope.jpg
+- right_item_2: Heavyweight speed (Williams).
+- right_image_2: 06_6_2_ali_cleveland_speed.jpg
+- right_item_3: Endurance (Frazier).
+- right_image_3: 07_6_2_ali_frazier_endurance.jpg
+- right_item_4: KO Sonny Liston.
+- right_image_4: 12_7_2_ali_sonny_liston.jpg
+- right_item_5: Footwork (Ali Dance).
+- right_image_5: Dance.jpg
 
 Template HUD Bars:
-headline: HIGH-END COMBAT ANALYTICS
-subtitle: Two-profile stat readout
-threat_level: HUMAN
-integrity: 98.7%
-profile_mode: VS
-scale: 0-100
+- headline: BIOMECHANICAL ANALYSIS
+- subtitle: Physical parameter readout
+- threat_level: HUMAN LEGEND
+- integrity: 98.7%
+- profile_mode: VS
+- scale: 0-100
 
 Template Radar Brief:
-headline: STAT SNAPSHOT
-subtitle:
-left_header: BRUCE ADVANTAGES
-right_header: ALI ADVANTAGES
-draw_header: DRAW ZONES
-left_avg: 78.89
-right_avg: 87.67
-left_avg_round: 79
-right_avg_round: 88
-favorite_label: STAT-BASED FAVORITE
-favorite: Muhammad Ali
-left_notes: Entry speed, rhythm disruption, and angle changes
-right_notes: Reach, durability, pacing, and repeatable ring control
-draw_notes: Both read timing well, but Ali turns repeated exchanges into his fight
+- headline: STATISTICAL SNAPSHOT
+- subtitle: Potential comparison
+- left_header: BRUCE ADVANTAGES
+- right_header: ALI ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite_label: STAT-BASED FAVORITE
+- favorite: Muhammad Ali
+- left_notes: Speed advantage, low kicks, no boxing rules
+- right_notes: Range, 40kg mass advantage, knockout resistance, stamina
+- draw_notes: Both have elite timing, but Ali's mass is a "tax" Bruce may not survive
 
 Template Interpretation:
-headline: WHO WINS THE FIGHT ON PAPER?
-subtitle:
-body: Muhammad Ali. Bruce owns speed, disruption, and the uglier opening texture, but Ali owns the categories that settle repeated human exchanges: reach, durability, pacing, and ring management. Bruce only narrows the matchup if he prevents the fight from hardening into Ali's preferred distance game.
+- headline: INTERPRETATION
+- subtitle: Who wins on paper?
+- line_1: This is a classic "Technique vs. Mass" dilemma. Bruce Lee is faster and more versatile, but Ali is a heavyweight giant.
+- line_2: In a boxing match, Ali crushes Bruce. In a no-rules fight, Bruce can attack Ali's legs, which a boxer is not used to.
+- line_3: However, Ali survived hits from the strongest men in the world (Foreman). Bruce would have to fight perfectly to even daze him.
+- quote: Bruce's speed is poetry, but Ali's range is the brutal prose of life.
 
 Template Stat Trap:
-headline: WHY BETTER EDGES DO NOT GUARANTEE THE FIGHT
-subtitle:
-question: Can Bruce stop the fight from turning into Ali's range-and-tax pattern?
-body: Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator.
+- headline: STAT TRAP
+- subtitle: Why Ali leads
+- trap_top: MASS ADVANTAGE EXCEEDS 40 KILOGRAMS
+- trap_bottom: ALI'S DURABILITY IS PROVEN AGAINST THE STRONGEST
+- example: Bruce Lee can hit Ali 5 times before he can blink, but one hit from Ali can end the fight definitively.
+- question: Can Bruce Lee generate enough force to knock out someone George Foreman couldn't put down?
 
 Template Winner CV:
-headline: Victory Archive
-subtitle:
-archive_label:
-avg_label: AVG SCORE
-left_title: BRUCE RECORD
-right_title: ALI RECORD
+- headline: Victory Archive
+- subtitle: Major Results
+- archive_label: 
+- avg_label: Legend Rank
+- left_title: BRUCE RECORD
+- right_title: ALI RECORD
+- win_badge: WIN
+- left_item_1: Gary Elms (Boxing)
+- left_image_1: Gary Elms.jpg
+- left_item_2: Yoichi Nakachi (KO)
+- left_image_2: Yoichi Nakachi.jpg
+- left_item_3: Wong Jack Man
+- left_image_3: 09_7_1_bruce_yoichi_nakachi.jpg
+- left_item_4: Chuck Norris (Sparring)
+- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
+- left_item_5: Jesse Glover
+- left_image_5: 03_6_1_bruce_gary_elms_record.jpg
+- right_item_1: George Foreman
+- right_image_1: 05_6_2_ali_rope_a_dope.jpg
+- right_item_2: Joe Frazier
+- right_image_2: 07_6_2_ali_frazier_endurance.jpg
+- right_item_3: Sonny Liston
+- right_image_3: 12_7_2_ali_sonny_liston.jpg
+- right_item_4: Cleveland Williams
+- right_image_4: 06_6_2_ali_cleveland_speed.jpg
+- right_item_5: Ernie Terrell
+- right_image_5: 14_7_2_ali_ernie_terrell.jpg
 
 Template Summary:
-headline: FINAL READ
-subtitle:
-winner: Muhammad Ali by clear margin
-line_1: Ali owns the paper comparison, 87.67 vs 78.89.
-line_2: Bruce changes the texture of the fight more than the winner identity.
-line_3: Open rules narrow the matchup, but do not flip the baseline result.
+- headline: FINAL SUMMARY
+- subtitle: Verdict
+- winner: Muhammad Ali (Clear Advantage)
+- line_1: Ali wins through physicality. A 40kg mass advantage and range management via the jab create an almost insurmountable barrier.
+- line_2: Bruce Lee is the most dangerous "lightweight" in history, but fighting an elite heavyweight is a different category of physics.
+- line_3: In a no-rules fight, Bruce has a 2/10 chance (destroying Ali's knee at the start). In every other scenario—Ali wins by TKO.
 
 Template Battle Dynamics:
-headline: BATTLE DYNAMICS
-subtitle:
-left_curve_label: BRUCE EARLY DISRUPTION
-right_curve_label: ALI LATE CONTROL
-left_curve: 78,74,68,61,54
-right_curve: 62,70,79,88,94
-notes: Bruce is live early because speed and disruption matter most before the fight settles. Ali grows stronger as range, pacing, and durability compound over repeated exchanges.
+- headline: BATTLE DYNAMICS
+- subtitle: Clash Progression
+- a_curve: 90,75,50,30,10
+- b_curve: 60,70,85,95,100
+- yellow_wave: 20,20,20,20,20,20,20,20
+- phase_1: Bruce enters aggressively using low kicks and fast JKD entries. Ali is surprised by the tempo and unusual angles.
+- phase_2: Ali begins to find his range. His jab starts to "sting" Bruce with every attempt to close in. Bruce loses momentum.
+- phase_3: Bruce is exhausted by the physical pressure. Ali traps him against the ropes (or the edge of the battlefield) and finishes with a series of combinations.
+- analysis: Bruce is most dangerous in the first minute. With every subsequent round, Ali's physical advantage grows exponentially.
 
 Template Fight Simulation:
-headline: FIGHT SIMULATION
-subtitle: Stable matchup, margin shifts with rules more than winner identity
-phase_1_title: Entry and rhythm war
-phase_1_desc: Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.
-phase_1_anim: feint-counter
-phase_1_actor: a
-phase_2_title: Range tax
-phase_2_desc: Ali taxes distance with the jab, feet, and ring control, forcing Bruce to pay for every re-entry.
-phase_2_anim: kite-zone
-phase_2_actor: b
-phase_3_title: Heavyweight reality
-phase_3_desc: The fight either stays ugly and narrow for Bruce or settles into repeatable heavyweight distance, where Ali's durability and pace take over.
-phase_3_anim: corner-trap
-phase_3_actor: b
+- headline: FIGHT SIMULATION // SCENARIOS
+- subtitle: How would it look?
+- opening: Bruce Lee moves like a shadow, Ali dances. Bruce delivers a low side kick to Ali's knee. Ali retracts his leg and responds with a lightning-fast jab.
+- mid_fight: Bruce tries to intercept Ali's fist (Interception), but the force and mass of Ali's punch knock him back even when blocked.
+- late_fight: Ali begins to dictate a murderous pace. Bruce tries a One-Inch Punch in the clinch, but Ali absorbs it with his body mass and counters with a hook.
+- end_condition: Bruce falls after a series of punches he can no longer avoid. Ali stands over him, showing that mass and range are the truth of the ring.
 
 Template Fight Title:
-fight_title: Bruce Lee vs Muhammad Ali
-subtitle:
-top_color_a: #facc15
-top_color_b: #111827
-bottom_color_a: #f8fafc
-bottom_color_b: #60a5fa
+- fight_title: Bruce Lee vs Muhammad Ali
+- subtitle: THE DRAGON VS THE GREATEST
+- top_color_a: #facc15
+- top_color_b: #111827
+- bottom_color_a: #f8fafc
+- bottom_color_b: #60a5fa

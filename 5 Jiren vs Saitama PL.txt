@@ -1,0 +1,298 @@
+1. Jiren (Dragon Ball Super, Prime)
+
+2. Character A Stats
+- Strength: 96
+- Speed: 96
+- Durability: 96
+- Combat IQ: 92
+- Hax: 65
+- Stamina: 91
+- Fighting Style: 93
+- Experience: 91
+- Combat Skills: 94
+
+3. Character A Feats
+- Styl: Bezwzględna wydajność i potęga Ki. Jiren to szczyt dyscypliny. Każdy jego ruch jest idealny, każda kontra niszczycielska. Emituje taką presję, że samo jego spojrzenie jest bronią.
+- Atut: Transcendencja Czasu i Przestrzeni. Jego siła wykracza poza koncepcję czasu. Potrafi wykrywać ataki z innych wymiarów i poruszać się szybciej niż statki kosmiczne.
+- Mentalność: Absolutna Siła to Jedyna Prawda. Nie wierzy w emocje. Dla niego walka to matematyczne potwierdzenie dominacji. Nie lekceważy wrogów – miażdży ich natychmiast.
+
+4. Defeated by Character A
+- Hit (pokonany mimo manipulacji czasem)
+- Maji Kayo (wyrzucony z ringu samą falą uderzeniową ciosu)
+- Golden Frieza (całkowita dominacja)
+- Kale Berserker (unieszkodliwiona jednym strzałem)
+- Belmod (skalowanie – Jiren jest silniejszy od Boga Zniszczenia)
+
+5. Saitama (One-Punch Man, Manga Muraty)
+
+6. Character B Stats
+- Strength: 95
+- Speed: 95
+- Durability: 96
+- Combat IQ: 70
+- Hax: 85
+- Stamina: 100
+- Fighting Style: 66
+- Experience: 74
+- Combat Skills: 70
+
+7. Character B Feats
+- Styl: Absolutne przełamanie limitów. Saitama nie posiada techniki – jego ruchy ignorują prawa fizyki. Walczy z nonszalancją kogoś, dla kogo nic nie jest wyzwaniem.
+- Atut: Wykładniczy Wzrost (Limit Breaker). W obliczu godnego przeciwnika jego moc rośnie w tempie wykładniczym. Potrafi kopiować techniki bogów i uderzać z przeszłości (Zero Punch).
+- Mentalność: Znudzony Bóg. Szuka dreszczyku emocji, ale zazwyczaj kończy walkę jednym ciosem. W starciu z Jirenem jego ekscytacja mogłaby doprowadzić do katastrofalnej eskalacji.
+
+8. Defeated by Character B
+- Boros (pokonany Serious Punchem)
+- Cosmic Garou (zdominowany wzrostem mocy)
+- Orochi (Król Potworów)
+- Elder Centipede
+- Evil Ocean Water
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- verdict-matrix
+- fight-title
+
+10. Character A Powers / Tools / Weaknesses
+- Moce: Bariery Ki, transcendencja czasu, ataki wzrokowe, detekcja międzywymiarowa, Shaking the Void.
+- Narzędzia: Brak – jego ciało i Ki są jedyną bronią.
+- Słabości: Brak backupu w przypadku złamania jego wiary w siłę absolutną.
+- Słabości: Polega na surowej mocy, co może być zgubne przeciwko komuś, kto ciągle adaptuje się w górę.
+
+11. Character A Raw Feats
+- Shakes the World of Void – jego obecność zatrzęsła nieskończoną pustką.
+- Wykrywa i kontruje ataki z innych wymiarów.
+- Blokuje ataki Goku (Instant Transmission) bez patrzenia.
+- No-sell na Kamehameha SSJB Goku oraz autodestrukcję Androida 17.
+- Stoi ponad mocą Bogów Zniszczenia (Belmod).
+
+12. Character B Powers / Tools / Weaknesses
+- Moce: Nieskończony potencjał wzrostu, interakcja z portalami, Serious Sneeze, Zero Punch (Causality Reversal).
+- Narzędzia: Brak – "just a guy who is a hero for fun".
+- Słabości: Brak formalnego wyszkolenia (nadrabiane instynktem i szybkością).
+- Słabości: Początkowa nonszalancja może pozwolić Jirenowi na zadanie poważnych obrażeń przed eskalacją.
+
+13. Character B Raw Feats
+- Serious Punch Squared wycina pustkę w przestrzeni (Multi-Solar System/Galaxy).
+- Serious Sneeze zdziera gazowe warstwy Jowisza.
+- Chwyta i kopie hyperspace gates (manipulacja portalami).
+- Przeżywa Gamma Ray Burst bez żadnych obrażeń.
+- Zero Punch – trafia przeciwnika, zanim cios zostanie wyprowadzony.
+
+Template Tactical Board:
+- headline: TABLICA TAKTYCZNA // JIREN VS SAITAMA
+- subtitle: Siła Absolutna kontra Nieskończony Wzrost
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
+- lane: Jiren musi wygrać walkę w pierwszej minucie. Saitama wygrywa, jeśli Jiren pozwoli mu na eskalację.
+
+Template Character A:
+- header: DOSSIER POSTACI // NIEBIESKI
+- world: Dragon Ball Super
+- style: Maksymalna wydajność Ki. Każdy ruch jest idealną kontrą. Emituje presję, która miażdży wolę słabych.
+- advantage: Transcendencja czasu i przestrzeni. Potrafi kontrować ataki międzywymiarowe i ignorować prawa fizyki.
+- mentality: Bezwzględna dominacja. Nie daje wrogowi czasu na oddech ani naukę.
+- quote: Strength is absolute. Strength forgives all. Even justice.
+
+Template Character B:
+- header: DOSSIER POSTACI // CZERWONY
+- world: Manga (Yusuke Murata)
+- style: Absolutne przełamanie limitów. Walczy z nonszalancją, nadrabiając brak techniki nieskończoną siłą fizyczną.
+- advantage: Wykładniczy wzrost. W walce z kimś takim jak Jiren, Saitama staje się potężniejszy z sekundy na sekundę.
+- mentality: Znudzony bohater. Szuka walki, która go poruszy, ale zazwyczaj jest po prostu zbyt silny.
+- quote: I'm just a guy who's a hero for fun.
+
+Template Powers / Tools / Weaknesses:
+- headline: MOCE, NARZĘDZIA I SŁABOŚCI
+- subtitle: Boska dyscyplina vs Naturalna anomalia
+- left_title: ZESTAW JIRENA
+- right_title: ZESTAW SAITAMY
+- powers_label: MOCE
+- tools_label: NARZĘDZIA
+- weaknesses_label: SŁABOŚCI
+
+Template Raw Feats:
+- headline: SUROWE FEATY
+- subtitle: Dowody na "niemożliwe"
+- left_title: POKAZ JIRENA
+- right_title: POKAZ SAITAMY
+- feat_label: FEAT
+- left_item_1: Wstrząsa nieskończoną Pustką.
+- left_image_1: Shakes the World of The Void .jpg
+- left_item_2: Kontruje ataki międzywymiarowe.
+- left_image_2: Detects and Counters attacks coming from a different dimension.jpg
+- left_item_3: Blokuje ataki bez patrzenia.
+- left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
+- left_item_4: No-sell na potężne eksplozje.
+- left_image_4: Unaffected by Android 17's Self-Destruction.png
+- left_item_5: Silniejszy od Bogów Zniszczenia.
+- left_image_5: Belmod.png
+- right_item_1: Serious Punch Squared (Void).
+- right_image_1: 06_6_2_saitama_serious_punch_squared.jpg
+- right_item_2: Serious Sneeze (Jupiter).
+- right_image_2: 07_6_2_saitama_serious_sneeze.jpg
+- right_item_3: Manipulacja portalami (Hyperspace).
+- right_image_3: 08_6_2_saitama_hyperspace_gate_grab.jpg
+- right_item_4: Przeżycie Gamma Ray Burst.
+- right_image_4: 09_6_2_saitama_gamma_ray_burst.jpg
+- right_item_5: Zero Punch (Causality Reversal).
+- right_image_5: 10_6_2_saitama_zero_punch.jpg
+
+Template HUD Bars:
+- headline: ANALITYKA WALKI HIGH-END
+- subtitle: Odczyt dwóch anomalii mocy
+- threat_level: MULTI-UNIVERSAL
+- integrity: 100%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa potencjału bojowego
+- left_header: PRZEWAGI JIRENA
+- right_header: PRZEWAGI SAITAMY
+- draw_header: STREFY REMISU
+- favorite_label: STATYSTYCZNY FAWORYT
+
+Template Interpretation:
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa na papierze?
+- line_1: Jiren dominuje start – jego zdolność detekcji międzywymiarowej i refleks są poza skalą Saitamy.
+- line_2: Saitama posiada jednak unikalną mechanikę wzrostu, która czyni go nieprzewidywalnym w długim starciu.
+- line_3: To starcie "Technicznego Boga" z "Anomalią Systemu". Wynik zależy od czasu trwania pojedynku.
+- quote: Jiren wygrywa walkę. Saitama wygrywa scenariusz.
+
+Template Stat Trap:
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego liczby mogą kłamać
+- trap_top: JIREN MA WYŻSZE STATY STARTOWE
+- trap_bottom: WZROST SAITAMY JEST WYKŁADNICZY
+- example: Jiren zaczyna z poziomu 100, Saitama z poziomu 90. Po minucie walki Saitama jest na poziomie 200.
+- question: Czy Jiren posiada cios, który znokautuje Saitamę, zanim ten zacznie rosnąć?
+
+Template X-Factor:
+- headline: X-FACTOR
+- subtitle: Decydująca zmienna
+- factor: WYKŁADNICZA ESKALACJA MOCY
+- a_value: 96
+- a_bonus: +KONTRA
+- a_bonus_label: KI MASTERY
+- b_value: 95
+- b_bonus: +NIESKOŃCZONOŚĆ
+- regen: LIMIT BREAKER
+- mechanika: Saitama rośnie w siłę w odpowiedzi na siłę przeciwnika. Jiren to idealne paliwo dla tego wzrostu.
+- implikacja: Im bardziej Jiren naciska, tym szybciej Saitama go przegania. Jiren musiałby zabić Saitamę jednym atakiem.
+- psychologia: Jiren walczy z powagą, Saitama z ciekawością. Ten brak stresu pozwala mu na łamanie praw fizyki.
+
+Template Winner CV:
+- headline: Archiwum Zwycięstw
+- subtitle: 
+- archive_label: 
+- avg_label: POZIOM ZAGROŻENIA
+- left_title: REKORD JIRENA
+- right_title: REKORD SAITAMY
+- win_badge: W
+- left_item_1: Hit
+- left_image_1: 11_7_1_jiren_hit.jpg
+- left_item_2: Maji Kayo (Shockwave)
+- left_image_2: 12_7_1_jiren_maji_kayo.jpg
+- left_item_3: Golden Frieza
+- left_image_3: 13_7_1_jiren_golden_frieza.jpg
+- left_item_4: Kale
+- left_image_4: 14_7_1_jiren_kale.jpg
+- left_item_5: Belmod (Scaling)
+- left_image_5: Belmod.png
+- right_item_1: Boros
+- right_image_1: 16_7_2_saitama_boros.jpg
+- right_item_2: Elder Centipede
+- right_image_2: 17_7_2_saitama_elder_centipede.jpg
+- right_item_3: Orochi
+- right_image_3: 18_7_2_saitama_orochi.jpg
+- right_item_4: Evil Ocean Water
+- right_image_4: 19_7_2_saitama_evil_ocean_water.jpg
+- right_item_5: Cosmic Garou
+- right_image_5: 20_7_2_saitama_garou_zero_punch.jpg
+
+Template Summary:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle: Wynik starcia
+- winner: Saitama (Wysoka Eskalacja)
+- line_1: Jiren zdominuje otwarcie. Jego szybkość i technika pozwolą mu obijać Saitamę bez odpowiedzi przez pierwszą fazę walki.
+- line_2: Jednak Saitama to "Limit Breaker". Jego wytrzymałość pozwoli mu przetrwać napór, a jego moc zacznie rosnąć, by dorównać Jirenowi.
+- line_3: W chwili, gdy Saitama osiągnie poziom Jirena, walka jest skończona. Jiren nie ma narzędzi, by wygrać z kimś, kto rośnie szybciej niż on sam.
+
+Template Battle Dynamics:
+- headline: DYNAMIKA WALKI
+- subtitle: Przebieg starcia w czasie
+- a_curve: 98,95,85,60,30
+- b_curve: 80,85,95,105,120
+- yellow_wave: 40,40,40,40,40,40,40,40
+- phase_1: Jiren kontroluje walkę. Saitama jest wyrzucany w kosmos, obijany falami Ki, ale ciągle wstaje.
+- phase_2: Saitama zaczyna nadążać wzrokiem za Jirenem. Jego ciosy zaczynają budzić respekt u Szarego Wojownika.
+- phase_3: Punkt krytyczny. Saitama kopiuje styl Jirena lub po prostu uderza z taką siłą, że bariery Ki pękają jak szkło.
+- analysis: Jiren wygrywa sprint. Saitama wygrywa maraton.
+
+Template Fight Simulation:
+- headline: SYMULACJA WALKI // ETAPY
+- subtitle: Jak to by wyglądało?
+- opening: Jiren atakuje spojrzeniem, odrzucając Saitamę. Następnie w ułamku sekundy zadaje tysiące ciosów, które Saitama przyjmuje na klatkę.
+- mid_fight: Saitama uśmiecha się: "Are you strong?". Zaczyna wyprowadzać Serious Punche. Jiren musi użyć pełnej mocy, by je blokować. Planety w okolicy parują.
+- late_fight: Jiren widzi, że Saitama staje się coraz szybszy. Próbuje ostatecznego ataku, ale Saitama kontruje Zero Punchem, trafiając Jirena przed wyprowadzeniem ataku.
+- end_condition: Jiren pada na kolana, jego wiara w siłę absolutną zostaje złamana przez kogoś, kto jest "silny dla zabawy".
+- phase_1_mode: bars
+- phase_1_animation: rush-ko
+- phase_1_actor: a
+- phase_1_title: Absolutna Presja
+- phase_1_a_label: Wytrzymałość
+- phase_1_b_label: Atak Ki
+- phase_1_a_value: 96
+- phase_1_b_value: 98
+- phase_2_mode: split
+- phase_2_animation: clash-lock
+- phase_2_actor: b
+- phase_2_title: Przełamanie Limitu
+- phase_2_event: Moc Saitamy zaczyna rosnąć wykładniczo.
+- phase_2_branch_a: Jiren kończy walkę (Niska szansa).
+- phase_2_branch_b: Saitama dogania Jirena (Wysoka szansa).
+- phase_3_mode: split
+- phase_3_animation: teleport-burst
+- phase_3_actor: b
+- phase_3_title: Zero Punch
+- phase_3_event: Saitama łamie przyczynowość.
+- phase_3_branch_a: Jiren paruje (Niemożliwe).
+- phase_3_branch_b: Saitama kończy walkę.
+
+Template Verdict Matrix:
+- headline: MATRYCA WERDYKTU
+- subtitle: Scenariusze zakończenia
+- col_left: KRÓTKA WALKA
+- col_right: DŁUGA WALKA
+- row_top: JIREN FULL POWER
+- row_bottom: JIREN MEDYTUJĄCY
+- case_1: Jiren 6/10. Ma małe okno, by wyrzucić Saitamę z rzeczywistości lub znokautować go przed eskalacją.
+- case_2: Saitama 10/10. Im dłużej to trwa, tym Jiren ma mniej do powiedzenia.
+- case_3: Saitama 7/10. Saitama ma czas, by się rozgrzać i dogonić Jirena bez presji.
+- case_4: Saitama 10/10. Saitama jednym ciosiem przerywa medytację i domyka walkę.
+
+Template Fight Title:
+- fight_title: Jiren vs Saitama
+- subtitle: THE ABSOLUTE STRENGTH VS THE LIMIT BREAKER
+- top_color_a: #dc2626
+- top_color_b: #9ca3af
+- bottom_color_a: #facc15
+- bottom_color_b: #ef4444

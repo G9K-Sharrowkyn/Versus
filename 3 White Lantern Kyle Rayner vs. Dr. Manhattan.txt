@@ -1,0 +1,258 @@
+1. White Lantern Kyle Rayner (New 52 / Prime Earth)
+
+2. Character A Stats
+- Strength: 90
+- Speed: 94
+- Durability: 94
+- Combat IQ: 86
+- Hax: 95
+- Stamina: 93
+- Fighting Style: 79
+- Experience: 86
+- Combat Skills: 76
+
+3. Character A Feats
+- Style: Creative spectrum warfare with constructs, support utility, and reality-adjacent options.
+- Advantage: Broad active toolkit with healing, restoration, and top-end ring versatility.
+- Mentality: Adaptive problem-solver who builds win conditions through preparation.
+
+4. Defeated by Character A
+- Relic
+- Third Army
+- Guardians of the Universe (temporary transformation / dominance)
+- Godkillers (mass disarm and teleport neutralization)
+- Carol Ferris (temporary reality overwrite)
+
+5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock continuity role)
+
+6. Character B Stats
+- Strength: 82
+- Speed: 96
+- Durability: 99
+- Combat IQ: 95
+- Hax: 100
+- Stamina: 100
+- Fighting Style: 48
+- Experience: 86
+- Combat Skills: 44
+
+7. Character B Feats
+- Style: Non-linear intervention focused on causality, state control, and preemptive action.
+- Advantage: Atomic-level reality control with self-reassembly and timeline perception.
+- Mentality: Detached and decisive when he chooses to act.
+
+8. Defeated by Character B
+- Rorschach (direct kill)
+- Metron (instant vaporization)
+- Owlman (instant vaporization)
+- Ozymandias (non-lethal confrontation control)
+- Silk Spectre / Laurie (localized reality coercion, non-lethal)
+
+9. Template Order
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- verdict-matrix
+- fight-title
+
+10. Character A Powers / Tools / Weaknesses
+- Powers: White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation.
+- Tools: Life Equation access and wide ring-based utility for offense, defense, and restoration.
+- Weaknesses: Ring dependence and concentration dependence for top-end effects.
+- Weaknesses: The strongest outcomes still require setup time and execution window.
+
+11. Character A Raw Feats
+- Survives the Source Wall and returns with the Life Equation.
+- Destroys Third Army units resistant to standard Lantern attacks.
+- Demonstrates large-scale life creation and restoration.
+- Warps Carol Ferris and the Guardians under the Life Equation.
+- Teleports and disarms the Godkillers across worlds.
+
+12. Character B Powers / Tools / Weaknesses
+- Powers: Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and timeline-level perception.
+- Tools: Space-time intervention and causal interference before standard exchanges form.
+- Weaknesses: In some portrayals, passivity or detachment delays decisive action.
+- Weaknesses: Traditional close-quarters combat expression is narrower than his raw reality-control profile.
+
+13. Character B Raw Feats
+- Experiences all moments at once.
+- Maintains action across space-time states.
+- Bends local reality and outcome-space around targets.
+- Vaporizes Metron and Owlman and removes the Mobius Chair from play.
+- Disintegrates Rorschach at the molecular level.
+
+Template Tactical Board:
+- headline: TACTICAL BOARD // KYLE VS MANHATTAN
+- subtitle: Setup-dependent rewrite versus preemptive control
+- left_header: CATEGORY GRID
+- right_header: FIGHT REALITY
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
+- lane: Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.
+
+Template Character A:
+- header: CHARACTER DOSSIER // BLUE
+- world: New 52 / Prime Earth
+- style: Creative spectrum warfare with constructs, support utility, and reality-adjacent options.
+- advantage: Broad active toolkit with healing, restoration, and top-end ring versatility.
+- mentality: Adaptive problem-solver who builds win conditions through preparation.
+- quote: In brightest day, in blackest night...
+
+Template Character B:
+- header: CHARACTER DOSSIER // RED
+- world: Watchmen / Rebirth / Doomsday Clock
+- style: Non-linear intervention focused on causality, state control, and preemptive action.
+- advantage: Atomic-level reality control with self-reassembly and timeline perception.
+- mentality: Detached and decisive when he chooses to act.
+- quote: Nothing ever ends.
+
+Template Powers / Tools / Weaknesses:
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: Core powers, tools, and weaknesses
+- left_title: KYLE TOOLKIT
+- right_title: MANHATTAN TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
+
+Template Raw Feats:
+- headline: RAW FEATS
+- subtitle: Clean showcase examples, not full archives
+- left_title: KYLE SHOWCASE
+- right_title: MANHATTAN SHOWCASE
+- feat_label: FEAT
+
+Template HUD Bars:
+- headline: HIGH-END COMBAT ANALYTICS
+- subtitle: Two-profile stat readout
+- threat_level: COSMIC
+- integrity: 99.5%
+- profile_mode: VS
+- scale: 0-100
+
+Template Radar Brief:
+- headline: PARAMETER COMPARISON
+- subtitle: Average stat profile map
+- left_header: KYLE ADVANTAGES
+- right_header: MANHATTAN ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite_label: STAT-BASED FAVORITE
+
+Template Interpretation:
+- headline: INTERPRETATION
+- subtitle: Who wins the fight on paper?
+- line_1: Kyle owns the broader profile, better fighting rhythm, and the more complete active toolkit.
+- line_2: Manhattan still leads the default fight because he can attack the setup itself before Kyle's best route fully exists.
+- line_3: Paper advantage does not survive if the fight never reaches symmetrical exchange terms.
+- quote: Kyle wins the categories. Manhattan wins the part where the fight becomes real.
+
+Template Stat Trap:
+- headline: STAT TRAP
+- subtitle: Why better stats do not guarantee victory
+- trap_top: BETTER STATS DO NOT MATTER IF THE SETUP NEVER FULLY FORMS
+- trap_bottom: MANHATTAN WINS BY DENYING THE BOARD, NOT BY WINNING A NORMAL DUEL
+- example: Kyle can be better on paper and still lose the default fight if Manhattan erases the action before rewrite comes online.
+- question: Can Kyle force a real rewrite window before Manhattan attacks the setup itself?
+
+Template X-Factor:
+- headline: X-FACTOR
+- subtitle: The one variable that decides whether the paper edge becomes real
+- factor: SETUP WINDOW VS PREEMPTION
+- a_value: 50
+- a_bonus: 15
+- a_bonus_label: REWRITE WINDOW
+- b_value: 50
+- b_bonus: 17
+- regen: PREEMPTION EDGE
+- mechanika: Kyle only needs one real Life Equation window, but Manhattan's whole game is stopping that window before it exists.
+- implikacja: If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.
+- psychologia: Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.
+
+Template Winner CV:
+- headline: Victory Archive
+- subtitle: 
+- archive_label: 
+- avg_label: AVG SCORE
+- left_title: KYLE RECORD
+- right_title: MANHATTAN RECORD
+- win_badge: W
+
+Template Summary:
+- headline: FINAL SUMMARY
+- subtitle: 
+- winner: Dr. Manhattan leads, but the fight is conditional
+- line_1: Kyle wins the paper comparison, 88.11 to 83.33.
+- line_2: Manhattan leads the default fight because he owns the better first move and attacks the setup itself.
+- line_3: Kyle flips the matchup only if Life Equation access is full and Manhattan does not proactively collapse the setup.
+
+Template Battle Dynamics:
+- headline: BATTLE DYNAMICS
+- subtitle: Setup quality versus first-move denial
+- a_curve: 62,66,71,78,86
+- b_curve: 90,84,72,59,47
+- yellow_wave: 29,34,31,36,32,38,34,40
+- phase_1: Manhattan is strongest before symmetry forms and while the setup still looks fragile.
+- phase_2: Kyle only starts cashing out the better toolkit once layered pressure actually stays on the board.
+- phase_3: If rewrite never fully opens, the practical edge stays with Manhattan from start to finish.
+- analysis: Kyle owns the fuller profile. Manhattan owns the cleaner first move.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION // THREE PHASE MODEL
+- subtitle: Setup race under preemptive pressure
+- opening: Kyle tries to seize initiative through speed, constructs, and layered White Light pressure.
+- mid_fight: Manhattan refuses normal exchange logic and attacks the setup, ring timing, or local state of the move.
+- late_fight: The fight diverges on one question only: whether Kyle gets a real Life Equation window before preemption lands.
+- end_condition: This fight is decided by whether symmetry ever forms at all.
+- phase_1_mode: bars
+- phase_1_animation: teleport-burst
+- phase_1_actor: a
+- phase_1_title: Opening Setup
+- phase_1_a_label: Pressure
+- phase_1_b_label: Preemption
+- phase_1_a_value: 86
+- phase_1_b_value: 89
+- phase_2_mode: split
+- phase_2_animation: feint-counter
+- phase_2_actor: b
+- phase_2_title: Setup Denial
+- phase_2_event: Manhattan attacks the mechanism of the action instead of trading into the finished attack.
+- phase_2_branch_a: Kyle keeps enough of the board alive to build toward rewrite.
+- phase_2_branch_b: Manhattan deletes the setup before it becomes a real sequence.
+- phase_3_mode: split
+- phase_3_animation: teleport-burst
+- phase_3_actor: a
+- phase_3_title: Rewrite Window
+- phase_3_event: Either Kyle reaches full Life Equation expression or Manhattan keeps the fight permanently unfinished.
+- phase_3_branch_a: Full rewrite access turns the broader toolkit into a live finishing route.
+- phase_3_branch_b: Preemption keeps the better toolkit theoretical and the fight stays Manhattan's.
+
+Template Verdict Matrix:
+- headline: CONDITIONAL VERDICT
+- subtitle: Setup depth versus preemptive behavior
+- col_left: LIFE EQUATION FULL
+- col_right: LIFE EQUATION LIMITED
+- row_top: MANHATTAN PROACTIVE
+- row_bottom: MANHATTAN PASSIVE
+- case_1: Dr. Manhattan 6.5/10. Full rewrite keeps Kyle live, but proactive preemption still steals enough openings to stay slightly ahead.
+- case_2: Dr. Manhattan 9/10. Limited rewrite plus proactive preemption removes the only branch that really changes the matchup.
+- case_3: Kyle 7/10. If Manhattan becomes passive and Kyle reaches full expression, the broader toolkit finally cashes out.
+- case_4: Dr. Manhattan 6.5/10. Passivity narrows the gap, but limited Life Equation access still leaves Kyle too dependent on a setup Manhattan can unravel.
+
+Template Fight Title:
+- fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan
+- subtitle:
+- top_color_a: #f8fafc
+- top_color_b: #22c55e
+- bottom_color_a: #38bdf8
+- bottom_color_b: #1d4ed8

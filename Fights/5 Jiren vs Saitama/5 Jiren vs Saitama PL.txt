@@ -1,52 +1,52 @@
-1. Jiren (Dragon Ball Super, miks anime + mangi)
+1. Jiren (Dragon Ball Super, Prime)
 
 2. Character A Stats
 - Strength: 96
 - Speed: 96
 - Durability: 96
-- Combat IQ: 88
-- Hax: 62
+- Combat IQ: 92
+- Hax: 65
 - Stamina: 91
 - Fighting Style: 93
 - Experience: 91
 - Combat Skills: 94
 
 3. Character A Feats
-- Styl: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
-- Atut: Topowy refleks, wytrzymałość i powtarzalność pod presją.
-- Mentalność: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
+- Styl: Bezwzględna wydajność i potęga Ki. Jiren to szczyt dyscypliny. Każdy jego ruch jest idealną kontrą, każda kontra niszczycielska. Emituje taką presję, że samo jego spojrzenie jest bronią.
+- Atut: Transcendencja Czasu i Przestrzeni. Jego siła wykracza poza koncepcję czasu. Potrafi wykrywać ataki z innych wymiarów i poruszać się szybciej niż statki kosmiczne.
+- Mentalność: Absolutna Siła to Jedyna Prawda. Nie wierzy w emocje. Dla niego walka to matematyczne potwierdzenie dominacji. Nie lekceważy wrogów – miażdży ich natychmiast.
 
 4. Defeated by Character A
-- Hit
-- Maji Kayo
-- Golden Frieza (zdominowany)
-- Kale (tymczasowe unieszkodliwienie)
-- Vegeta (Super Saiyan Blue) (kontekstowe zdominowanie)
+- Hit (pokonany mimo manipulacji czasem)
+- Maji Kayo (wyrzucony z ringu samą falą uderzeniową ciosu)
+- Golden Frieza (całkowita dominacja)
+- Kale Berserker (unieszkodliwiona jednym strzałem)
+- Belmod (skalowanie – Jiren jest silniejszy od Boga Zniszczenia)
 
-5. Saitama (One-Punch Man, wersja mangi Yusuke Muraty)
+5. Saitama (One-Punch Man, Manga Muraty)
 
 6. Character B Stats
-- Strength: 91
-- Speed: 90
-- Durability: 92
+- Strength: 98
+- Speed: 98
+- Durability: 100
 - Combat IQ: 70
-- Hax: 80
-- Stamina: 98
+- Hax: 95
+- Stamina: 100
 - Fighting Style: 66
 - Experience: 74
 - Combat Skills: 70
 
 7. Character B Feats
-- Styl: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
-- Atut: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
-- Mentalność: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
+- Styl: Absolutne przełamanie limitów (Gag/Toon Force). Saitama nie posiada techniki – jego ruchy ignorują prawa fizyki i logiki. Walczy z nonszalancją kogoś, dla kogo multiwersalne zagrożenia to "zabawa".
+- Atut: Wykładniczy Wzrost i Manipulacja Przyczynowością. Jego moc rośnie wykładniczo w każdym ułamku sekundy. Potrafi chwytać portale jak fizyczne obiekty i uderzać z przeszłości (Zero Punch).
+- Mentalność: Znudzony Bóg / Gag Character. Szuka dreszczyku emocji, ale jego sama natura sprawia, że jest niepokonany. W starciu z Jirenem jego "dziwność" po prostu nadpisuje reguły walki Dragon Ball.
 
 8. Defeated by Character B
-- Boros
-- Elder Centipede
-- Orochi
-- Evil Ocean Water (neutralizacja)
-- Garou (Cosmic Fear Mode) (decyduj?cy wynik zale?ny od linii czasu)
+- Cosmic Garou (zdominowany wykładniczym wzrostem mocy)
+- Boros (pokonany Serious Punchem)
+- Monster King Orochi (one-shot)
+- Elder Centipede (totalna dezintegracja)
+- Evil Ocean Water (neutralizacja jednym uderzeniem)
 
 9. Template Order
 - tactical-board
@@ -63,182 +63,223 @@
 - summary
 - battle-dynamics
 - fight-simulation
+- verdict-matrix
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Moce: Ekstremalna emisja ki, techniki barierowe, interakcja z efektami czasu oraz elitarna szybkość i refleks.
-- Narzędzia: Bardzo wydajny styl uderzeń przy minimalnym ruchu i kontrola presji w fazie otwarcia.
-- Słabości: Ograniczona egzotyczna użyteczność względem specjalistów od ciężkiego haksu.
-- Słabości: Jeśli kontrola otwarcia pęknie, może zostać wciągnięty w mniej korzystną pętlę eskalacji.
+- Moce: Bariery Ki, transcendencja czasu, ataki wzrokowe, detekcja międzywymiarowa, Shaking the Void.
+- Narzędzia: Brak – jego ciało i Ki są jedyną bronią.
+- Słabości: Brak backupu w przypadku złamania jego wiary w siłę absolutną.
+- Słabości: Polega na surowej mocy, co może być zgubne przeciwko komuś, kto ciągle adaptuje się w górę.
 
 11. Character A Raw Feats
-- Blokuje Super Saiyan God Goku jednym palcem.
-- Rozbija Cage of Time Hita sam? surow? si??.
-- Odpiera Spirit Bomb Universe 7 samym spojrzeniem.
-- Utrzymuje pasywn? barier? podczas medytacji.
-- Stoi ponad benchmarkiem Belmoda (kotwica tieru oparta na skalowaniu).
+- Shakes the World of Void – jego obecność zatrzęsła nieskończoną pustką.
+- Wykrywa i kontruje ataki z innych wymiarów.
+- Blokuje ataki Goku (Instant Transmission) bez patrzenia.
+- No-sell na Kamehameha SSJB Goku oraz autodestrukcję Androida 17.
+- Stoi ponad mocą Bogów Zniszczenia (Belmod).
 
 12. Character B Powers / Tools / Weaknesses
-- Moce: Ekstremalna siła fizyczna, wytrzymałość, kondycja i wzrost mocy w długim starciu.
-- Narzędzia: Bezpośredni atak z bliska i szybka adaptacja przez powtarzane wymiany.
-- Słabości: Mało formalnej różnorodności technicznej i mniej warstwowych narzędzi użytkowych.
-- Słabości: Silnie opiera się na bezpośrednim kontakcie, a nie na ramach kontroli dystansowej.
+- Moce: Wykładniczy wzrost (Limiter removed), Zero Punch (Causality Reversal), Toon Force (chwytanie portali), Serious Sneeze.
+- Narzędzia: Brak – "just a guy who is a hero for fun".
+- Słabości: Brak formalnego wyszkolenia (nadrabiane instynktem ignorującym logikę).
+- Słabości: Odporny na ataki wewnętrzne i promieniowanie kosmiczne.
 
 13. Character B Raw Feats
-- Serious Punch Squared wycina pustk? w przestrzeni.
-- Serious Sneeze zdziera gazowe warstwy Jowisza.
-- Chwyta i kopie hyperspace gates.
-- Prze?ywa Gamma Ray Burst i dalej walczy.
-- Kopiuje technik? Garou i trafia Zero Punchem.
+- Serious Punch Squared tworzy dziurę w uniwersum, wymazując niezliczone gwiazdy i galaktyki.
+- Serious Sneeze zdmuchuje gazowe warstwy Jowisza (kichnięcie silniejsze niż finalne ataki).
+- Chwyta i kopie hyperspace gates (pęknięcia w czasoprzestrzeni) jak fizyczne przedmioty.
+- Zero Punch – cofa się w czasie, by uderzyć przeciwnika, zanim ten w ogóle wyprowadzi cios.
+- Odporny na ataki omijające wytrzymałość i celujące w organy wewnętrzne.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // JIREN VS SAITAMA
-- subtitle: Czystsza pierwsza minuta kontra gro?niejsza d?uga gra
+- subtitle: Siła Absolutna kontra Niepowstrzymana Anomalia
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
 - chaos_label: ODCINEK CHAOSU
-- lane: Jiren wygrywa, je?li ko?czy wczesn? walk?. Saitama wygrywa, je?li przetrwa na tyle d?ugo, ?e wczesna walka przestaje mie? znaczenie.
+- lane: Jiren musi wygrać walkę w pierwszej milisekundzie. Saitama wygrywa, bo sama jego obecność łamie strukturę walki.
 
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
-- world: Dragon Ball Super, miks anime + mangi
-- style: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
-- advantage: Topowy refleks, wytrzymałość i powtarzalność pod presją.
-- mentality: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
-- quote: Strength is absolute.
+- world: Dragon Ball Super
+- style: Maksymalna wydajność Ki. Każdy ruch jest idealną kontrą. Emituje presję, która miażdży wolę słabych.
+- advantage: Transcendencja czasu i przestrzeni. Potrafi kontrować ataki międzywymiarowe i ignorować prawa fizyki.
+- mentality: Bezwzględna dominacja. Nie daje wrogowi czasu na oddech ani naukę.
+- quote: Strength is absolute. Strength forgives all. Even justice.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
-- world: manga Muraty
-- style: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
-- advantage: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
-- mentality: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
-- quote: I am just a guy who is a hero for fun.
+- world: Manga (Yusuke Murata)
+- style: Absolutne przełamanie limitów (Gag nature). Walczy z nonszalancją, ignorując prawa fizyki i logiki.
+- advantage: Wykładniczy wzrost i Toon Force. Saitama nie ma limitu i może manipulować przyczynowością (Zero Punch).
+- mentality: Znudzony bohater. Szuka walki, która go poruszy, ale jego natura "one-punch" zawsze wygrywa.
+- quote: I'm just a guy who's a hero for fun.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZ?DZIA I S?ABO?CI
-- subtitle: Co ka?da strona naprawd? wnosi do wymiany
+- headline: MOCE, NARZĘDZIA I SŁABOŚCI
+- subtitle: Boska dyscyplina vs Zepsuta anomalia
 - left_title: ZESTAW JIRENA
 - right_title: ZESTAW SAITAMY
 - powers_label: MOCE
-- tools_label: NARZ?DZIA
-- weaknesses_label: S?ABO?CI
+- tools_label: NARZĘDZIA
+- weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Czyste przyk?ady pokazowe, nie pe?ne archiwa
+- subtitle: Dowody na "niemożliwe"
 - left_title: POKAZ JIRENA
 - right_title: POKAZ SAITAMY
 - feat_label: FEAT
+- left_item_1: Wstrząsa nieskończoną Pustką.
+- left_image_1: Shakes the World of The Void .jpg
+- left_item_2: Kontruje ataki międzywymiarowe.
+- left_image_2: Detects and Counters attacks coming from a different dimension.jpg
+- left_item_3: Blokuje ataki bez patrzenia.
+- left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
+- left_item_4: No-sell na potężne eksplozje.
+- left_image_4: Unaffected by Android 17's Self-Destruction.png
+- left_item_5: Silniejszy od Bogów Zniszczenia.
+- left_image_5: Belmod.png
+- right_item_1: Serious Punch Squared (Dziura w gwiazdach).
+- right_image_1: Serious Punch Squared... generates an explosion that.png
+- right_item_2: Serious Sneeze (Demolka Jowisza).
+- right_image_2: A Serious Sneeze blows away the gas surrounding Jupiter's.png
+- right_item_3: Toon Force (Chwytanie portali).
+- right_image_3: Can freely grab and move hyperspace.png
+- right_item_4: Zero Punch (Manipulacja czasem).
+- right_image_4: Saitama time travels to reverse causality.png
+- right_item_5: Odporność na ataki wewnętrzne.
+- right_image_5: Saitama is immune to attacks.png
 
 Template HUD Bars:
-- headline: ANALITYKA WALKI WYSOKIEGO POZIOMU
-- subtitle: Odczyt statystyk dw?ch profili
-- threat_level: COSMIC
-- integrity: 99.3%
+- headline: ANALITYKA WALKI HIGH-END
+- subtitle: Odczyt dwóch anomalii mocy
+- threat_level: MULTI-UNIVERSAL
+- integrity: 100%
 - profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
-- headline: POR?WNANIE PARAMETR?W
-- subtitle: Mapa ?redniego profilu statystyk
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa potencjału bojowego
 - left_header: PRZEWAGI JIRENA
 - right_header: PRZEWAGI SAITAMY
 - draw_header: STREFY REMISU
-- favorite_label: FAWORYT WED?UG STATYSTYK
+- favorite_label: STATYSTYCZNY FAWORYT
 
 Template Interpretation:
 - headline: INTERPRETACJA
-- subtitle: Kto wygrywa walk? na papierze?
-- line_1: Jiren ma czystszy start, lepsze odczyty i bardziej niezawodn? struktur? wczesnego finiszu.
-- line_2: Saitama zachowuje realn? p?n? ga??? tylko dlatego, ?e jego prze?ywalno?? mo?e zamieni? przysz?? wersj? walki w co? gorszego.
-- line_3: Na papierze przewaga nale?y do Jirena, ale walka przestaje by? papierowa, je?li przetrwanie zamienia si? w eskalacj?.
-- quote: Pocz?tek nale?y do Jirena. Zagro?enie nale?y do tego, co go prze?yje.
+- subtitle: Kto wygrywa na papierze?
+- line_1: Jiren to szczyt "legalnej" potęgi w świecie anime (Transcendencja).
+- line_2: Saitama to postać typu "Gag/Parody", której sama natura polega na byciu silniejszym od wszystkiego.
+- line_3: To nie jest walka dwóch wojowników. To walka najsilniejszego wojownika z koncepcją "zwycięstwa".
+- quote: Jiren to bóg systemu. Saitama to administrator, który wyłącza serwer.
 
 Template Stat Trap:
-- headline: PU?APKA STATYSTYK
-- subtitle: Dlaczego lepsze statystyki startowe nie gwarantuj? ca?ej walki
-- trap_top: PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI
-- trap_bottom: ESKALACJA MO?E STWORZY? GORSZ? DRUG? WERSJ?
-- example: Jiren mo?e kontrolowa? start i nadal przegra? p?niejsz? wymian?, je?li pierwszy finisz nigdy naprawd? nie nast?pi.
-- question: Czy Jiren zdo?a sko?czy? walk?, zanim przetrwanie zamieni si? w eskalacj??
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego liczby nie mają tu znaczenia
+- trap_top: JIREN MA PERFEKCYJNĄ TECHNIKĘ
+- trap_bottom: SAITAMA IGNORUJE LOGIKĘ WALKI
+- example: Jiren wykonuje idealny blok. Saitama używa Zero Punch i trafia go w przeszłości, zanim blok w ogóle powstał.
+- question: Czy transcendencja Jirena pozwala mu na walkę z kimś, kto operuje na poziomie fizyki gagów?
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, kt?ra zamienia to w dwie r?ne walki
-- factor: KONTROLA OTWARCIA VS CZAS NA ESKALACJ?
-- a_value: 50
-- a_bonus: 15
-- a_bonus_label: WCZESNE OKNO FINISZU
-- b_value: 50
-- b_bonus: 14
-- regen: P?NA ESKALACJA WALKI
-- mechanika: Przewaga Jirena ?yje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia si? dopiero wtedy, gdy to okno zawiedzie wystarczaj?co mocno.
-- implikacja: Je?li Jiren utrzyma walk? we wczesnej fazie, wygrywa czysto. Je?li walka si? wymknie, Saitama staje si? gro?niejszym silnikiem przysz?ej walki.
-- psychologia: Jiren chce rozwi?za? walk?, zanim stanie si? dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwno?? si? wydarzy?a.
+- subtitle: Decydująca zmienna
+- factor: WYKŁADNICZA ESKALACJA I GAG NATURE
+- a_value: 96
+- a_bonus: +KONTRA
+- a_bonus_label: KI MASTERY
+- b_value: 98
+- b_bonus: +NIESKOŃCZONOŚĆ
+- regen: LIMIT BREAKER
+- mechanika: Saitama rośnie wykładniczo. Jeśli Jiren uderzy go z siłą 100, Saitama w następnej sekundzie uderzy z siłą 1000.
+- implikacja: Jiren nie może "wygrać przez zmęczenie" ani "przez technologię". Saitama po prostu nadpisuje statystyki w locie.
+- psychologia: Jiren walczy o życie. Saitama myśli o promocji w supermarkecie. Ten brak szacunku dla skali walki to jego największa broń.
 
 Template Winner CV:
-- headline: Archiwum zwyci?stw
-- subtitle:
-- archive_label:
-- avg_label: ?R. WYNIK
+- headline: Archiwum Zwycięstw
+- subtitle: 
+- archive_label: 
+- avg_label: POZIOM ZAGROŻENIA
 - left_title: REKORD JIRENA
 - right_title: REKORD SAITAMY
 - win_badge: W
+- left_item_1: Hit
+- left_image_1: 11_7_1_jiren_hit.jpg
+- left_item_2: Maji Kayo (Shockwave)
+- left_image_2: 12_7_1_jiren_maji_kayo.jpg
+- left_item_3: Golden Frieza
+- left_image_3: 13_7_1_jiren_golden_frieza.jpg
+- left_item_4: Kale
+- left_image_4: 14_7_1_jiren_kale.jpg
+- left_item_5: Belmod (Scaling)
+- left_image_5: Belmod.png
+- right_item_1: Boros
+- right_image_1: 16_7_2_saitama_boros.jpg
+- right_item_2: Cosmic Garou
+- right_image_2: 20_7_2_saitama_garou_zero_punch.jpg
+- right_item_3: Orochi
+- right_image_3: 18_7_2_saitama_orochi.jpg
+- right_item_4: Elder Centipede
+- right_image_4: 17_7_2_saitama_elder_centipede.jpg
+- right_item_5: Evil Ocean Water
+- right_image_5: 19_7_2_saitama_evil_ocean_water.jpg
 
 Template Summary:
-- headline: PODSUMOWANIE KO?COWE
-- subtitle:
-- winner: Jiren prowadzi, ale Saitama ma ?yw? p?n? ga???
-- line_1: Jiren wygrywa por?wnanie na papierze, 89.67 vs 81.22.
-- line_2: Jego domyślny układ bierze si? z lepszej kontroli otwarcia i czystszej struktury finiszu.
-- line_3: Saitama odwraca walk? tylko wtedy, gdy przetrwanie zmienia si? w prawdziw? eskalacj? i ga??? anomalii staje si? aktywna.
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle: Wynik starcia
+- winner: Saitama (Absolutna Eskalacja)
+- line_1: Jiren jest potężniejszy niż cokolwiek, co Saitama spotkał (z wyjątkiem Garou w szczycie eskalacji).
+- line_2: Jednak Saitama posiada mechanizm wykładniczego wzrostu i fizykę gagu, która pozwala mu ignorować techniki Jirena.
+- line_3: Jiren może wygrać tylko wtedy, gdy Saitama pozwoli mu na wyrzucenie z ringu na samym początku. W każdej innej wersji – Saitama go przegania i kończy walkę.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Kontrola otwarcia kontra przysz?a eskalacja
-- a_curve: 91,87,79,68,56
-- b_curve: 39,43,52,66,81
-- yellow_wave: 28,31,30,34,33,38,37,44
-- phase_1: Jiren zaczyna wysoko, bo presja, bariery i czyste odczyty maj? najwi?ksze znaczenie na pocz?tku.
-- phase_2: Linia Saitamy ro?nie tylko wtedy, gdy pierwszy prawdziwy finisz nie trzyma.
-- phase_3: Jiren szybko traci przewag?, gdy walka przechodzi z kontroli otwarcia do p?nej eskalacji.
-- analysis: Jiren wygrywa czystszy start. Saitama wygrywa bardziej brudn? przysz?? wersj? walki.
+- subtitle: Przebieg starcia w czasie
+- a_curve: 98,90,70,40,10
+- b_curve: 85,95,110,150,200
+- yellow_wave: 40,40,40,40,40,40,40,40
+- phase_1: Jiren uderza falami Ki, które niszczą galaktyki. Saitama przelatuje przez nie i wraca, korzystając z "Serious Fart" jako napędu. Jiren jest zszokowany.
+- phase_2: Jiren używa pełnej mocy (Limit Breaker). Saitama cieszy się z dobrej walki. Jego moc zaczyna rosnąć pionowo w górę.
+- phase_3: Saitama chwyta portale Jirena i wyrzuca je w kosmos. Następnie używa Zero Punch, kończąc walkę w przeszłości.
+- analysis: Jiren walczy na poziomie Bogów. Saitama walczy na poziomie Autora Mangy.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Warunkowy pojedynek z jedną główną osią
-- opening: Jiren od razu przejmuje kontrol? przez presj?, spacing i efektywno??.
-- mid_fight: Saitama bardziej przetrwa ni? dyktuje i pr?buje wytrzyma? na tyle d?ugo, by wymiana zacz?a si? zmienia?.
-- late_fight: Walka rozdziela si? w zale?no?ci od tego, czy Jiren ko?czy wcze?nie, czy Saitama przetrwa do eskalacji.
-- end_condition: Jiren wygrywa, je?li ko?czy pierwsz? wersj? walki. Saitama wygrywa, je?li przetrwa do silniejszej drugiej wersji.
+- headline: SYMULACJA WALKI // ETAPY
+- subtitle: Jak to by wyglądało?
+- opening: Jiren próbuje uwięzić Saitamę w klatce czasu. Saitama po prostu przez nią przechodzi, kopiąc bariery czasowe.
+- mid_fight: Saitama kicha, zdmuchując gazowe warstwy pobliskiego Jowisza. Jiren musi postawić barierę życia, by przetrwać samo kichnięcie przeciwnika.
+- late_fight: Jiren widzi wykres mocy Saitamy i uświadamia sobie, że przegrał. Saitama uderza Serious Punchem, który rozdziera nieskończoną Pustkę.
+- end_condition: Jiren zostaje znokautowany jednym ciosiem, który trafił go, zanim zdążył pomyśleć o walce.
 - phase_1_mode: bars
-- phase_1_animation: feint-counter
+- phase_1_animation: rush-ko
 - phase_1_actor: a
-- phase_1_title: Kontrola Otwarcia
-- phase_1_a_label: Presja
-- phase_1_b_label: Przetrwanie
-- phase_1_a_value: 92
-- phase_1_b_value: 68
+- phase_1_title: Transcendencja
+- phase_1_a_label: Wytrzymałość
+- phase_1_b_label: Atak Ki
+- phase_1_a_value: 98
+- phase_1_b_value: 99
 - phase_2_mode: split
 - phase_2_animation: clash-lock
-- phase_2_actor: a
-- phase_2_title: Pierwsza Pora?ka Planu
-- phase_2_event: Walka zmienia si? w chwili, gdy czysta sekwencja finiszu Jirena nie domyka sprawy.
-- phase_2_branch_a: Jiren utrzymuje walk? w ryzach i nie daje czasu na prawdziwy wzrost.
-- phase_2_branch_b: Saitama przetrwa na tyle d?ugo, ?e wymiana staje si? gorszym przysz?ym problemem.
+- phase_2_actor: b
+- phase_2_title: Eskalacja Gagu
+- phase_2_event: Saitama chwyta portale wymiarowe.
+- phase_2_branch_a: Jiren próbuje haxu (Zawodzi).
+- phase_2_branch_b: Saitama łamie logikę (Sukces).
 - phase_3_mode: split
-- phase_3_animation: trade-chaos
+- phase_3_animation: teleport-burst
 - phase_3_actor: b
-- phase_3_title: Ga??? Eskalacji
-- phase_3_event: Gdy okno otwarcia si? wymyka, pytanie przestaje brzmie?, kto zacz?? lepiej, a zaczyna, czym ta walka si? staje.
-- phase_3_branch_a: Jiren nadal domyka walk?, zanim przysz?a ga??? w pe?ni si? uformuje.
-- phase_3_branch_b: Saitama wchodzi w silnik p?nej gry i bazowa matematyka przestaje dzia?a?.
+- phase_3_title: Zero Punch
+- phase_3_event: Uderzenie z przeszłości.
+- phase_3_branch_a: Jiren paruje (Impossible).
+- phase_3_branch_b: Saitama kończy multiwersum.
 
 Template Fight Title:
 - fight_title: Jiren vs Saitama
-- subtitle:
+- subtitle: THE ABSOLUTE STRENGTH VS THE BEYOND-LIMIT ANOMALY
 - top_color_a: #dc2626
 - top_color_b: #9ca3af
 - bottom_color_a: #facc15

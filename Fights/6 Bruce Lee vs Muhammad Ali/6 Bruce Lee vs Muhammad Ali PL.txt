@@ -1,212 +1,249 @@
-1. Character A
-Bruce Lee (Prime / wersja historyczna, 1940-1973)
+1. Bruce Lee (Prime / wersja historyczna, 1940-1973)
 
 2. Character A Stats
-Strength: 70
-Speed: 93
-Durability: 70
-Combat IQ: 86
-Hax: 73
-Stamina: 81
-Fighting Style: 91
-Experience: 60
-Combat Skills: 86
+- Strength: 70
+- Speed: 93
+- Durability: 70
+- Combat IQ: 86
+- Hax: 73
+- Stamina: 81
+- Fighting Style: 91
+- Experience: 60
+- Combat Skills: 86
 
 3. Character A Feats
-- Styl: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
-- Atut: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
-- Mentalność: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
+- Styl: Eksplozywny styl przechwycenia (Interception). Bruce opierał się na eliminacji zbędnych ruchów, atakach na niską linię (kopnięcia w kolana) i błyskawicznym skracaniu dystansu.
+- Atut: Nieludzka Szybkość i Adaptacja. Potrafił modyfikować swój styl w trakcie walki, dostosowując się do rytmu przeciwnika i łamiąc go nieoczekiwanymi wejściami.
+- Mentalność: "Bądź jak woda". Skrajnie analityczne podejście do walki – szukał najkrótszej drogi do celu, nie dając przeciwnikowi czasu na reakcję.
 
 4. Defeated by Character A
-Gary Elms (zwyci?stwo przez decyzj? w boksie)
-Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
+- Gary Elms (zwycięstwo przez decyzję w boksie, 1958)
+- Yoichi Nakachi (szybki nokaut w walce wyzwaniowej)
+- Wong Jack Man (zwycięstwo w kontrowersyjnym pojedynku)
+- Jesse Glover (sparringowy partner i uczeń, nad którym dominował szybkością)
 
-5. Character B
-Muhammad Ali (Prime)
+5. Muhammad Ali (Prime, 1964-1975)
 
 6. Character B Stats
-Strength: 89
-Speed: 89
-Durability: 94
-Combat IQ: 93
-Hax: 48
-Stamina: 95
-Fighting Style: 90
-Experience: 97
-Combat Skills: 94
+- Strength: 89
+- Speed: 89
+- Durability: 94
+- Combat IQ: 93
+- Hax: 48
+- Stamina: 95
+- Fighting Style: 90
+- Experience: 97
+- Combat Skills: 94
 
 7. Character B Feats
-- Styl: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
-- Atut: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
-- Mentalność: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
+- Styl: Elitarny "Out-boxer". "Latał jak motyl, żądlił jak pszczoła". Wykorzystywał zasięg, mistrzowską pracę nóg i jab, by kontrolować przebieg walki i męczyć przeciwników.
+- Atut: Wytrzymałość Wagi Ciężkiej i Timing. Potrafił przyjąć potworne ciosy (Rope-a-dope) i odpowiedzieć z chirurgiczną precyzją, nie tracąc przy tym szybkości.
+- Mentalność: Mistrz Psychologii i Kontroli Tempa. Ali nie tylko walczył fizycznie, ale łamał wolę przeciwnika, dyktując warunki w ringu przez dziesiątki rund.
 
 8. Defeated by Character B
-George Foreman
-Joe Frazier
-Sonny Liston
-Cleveland Williams
-Ernie Terrell
+- George Foreman (Rumble in the Jungle)
+- Joe Frazier (Thrilla in Manila)
+- Sonny Liston
+- Cleveland Williams
+- Ernie Terrell
 
 9. Template Order
-tactical-board
-character-card-a
-character-card-b
-powers-tools
-raw-feats
-hud-bars
-radar-brief
-interpretation
-stat-trap
-winner-cv
-summary
-battle-dynamics
-fight-simulation
-fight-title
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Moce: Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń.
-- Narzędzia: Intercepcja w duchu JKD, kopnięcia na niską linię, łamanie rytmu i adaptacja między stylami.
-- Słabości: Wyraźny deficyt masy i zasięgu wobec specjalistów wagi ciężkiej.
-- Słabości: Ludzki limit wytrzymałości przy długotrwałym karaniu przez ciężkiego.
+- Moce: Eksplozywna szybkość startowa, refleks wyprzedzający wzrok, koordynacja totalna.
+- Narzędzia: Jeet Kune Do (koncepcja przechwycenia), niskie kopnięcia, ataki palcami, łamanie struktury nóg przeciwnika.
+- Słabości: Ogromny deficyt masy (ok. 60kg vs 100kg Alego) i zasięgu.
+- Słabości: Brak doświadczenia w wielorundowych wojnach na wyniszczenie z zawodnikami wagi ciężkiej.
 
 11. Character A Raw Feats
-Demonstracja one-inch punch w Long Beach
-Demonstracja dwupalcowych pompek i kontroli cia?a
-Szkolny tytu? bokserski z 1958 roku przeciw Gary'emu Elmsowi
-Stworzy? Jeet Kune Do dzi?ki praktycznej adaptacji mi?dzy stylami
+- Demonstracja "One-Inch Punch" w Long Beach (generowanie ogromnej siły z minimalnego dystansu).
+- Pompki na dwóch palcach i nieludzka kontrola ciała.
+- Tytuł bokserski szkół średnich z 1958 roku (potwierdzenie bazy technicznej).
+- Stworzenie Jeet Kune Do jako systemu opartego na praktycznej skuteczności ponad tradycję.
 
 12. Character B Powers / Tools / Weaknesses
-- Moce: Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa.
-- Narzędzia: Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa.
-- Słabości: Zestaw narzędzi skupiony głównie na boksie wobec szerokich zasad otwartych.
-- Słabości: Mniejsza specjalizacja pod ataki na nogi i mieszany dystans poza regułami boksu.
+- Moce: Szybkość wagi lekkiej w ciele olbrzyma, niesamowita odporność na ciosy (szczęka z granitu).
+- Narzędzia: Jab kontrolujący dystans, "Ali Shuffle", technika Rope-a-dope, elitarny klincz.
+- Słabości: Zestaw narzędzi ograniczony do boksu – Ali nigdy nie musiał bronić kopnięć na kolana czy obaleń.
+- Słabości: Pewność siebie granicząca z brawurą, co Bruce mógłby wykorzystać do kontry.
 
 13. Character B Raw Feats
-Rope-a-dope przeciw George'owi Foremanowi
-Szczytowa szybko?? i precyzja ci?kiego przeciw Clevelandowi Williamsowi
-Wytrzyma?o?? i tolerancja na karanie z wojen z Frazierem
+- "Rope-a-dope" przeciwko Foremanowi (przyjmowanie morderczych ciosów i przetrwanie nawałnicy).
+- Szczytowa szybkość i precyzja przeciwko Williamsowi (najszybsze ręce w historii wagi ciężkiej).
+- Wytrzymałość w wojnach z Frazierem (walka do upadłego w skrajnych warunkach).
+- Praca nóg pozwalająca na unikanie dziesiątek ciosów bez gardy.
 
 Template Tactical Board:
-headline: TABLICA TAKTYCZNA // BRUCE VS ALI
-subtitle: Szybko?? i chaos kontra zasi?g i ringowa rzeczywisto??
-left_header: PLAN BRUCE'A
-right_header: PLAN ALEGO
-linear_label: ODCINEK LINIOWY
-chaos_label: ODCINEK CHAOSU
-lane: Bruce wygrywa, je?li utrzyma walk? w niestabilnym stanie. Ali wygrywa, je?li ka?da wymiana zaczyna wygl?da? jak rzeczywisto?? walki ci?kich.
+- headline: TABLICA TAKTYCZNA // BRUCE VS ALI
+- subtitle: Szybkość i Chaos kontra Masa i Rzeczywistość Ringu
+- left_header: PLAN BRUCE'A
+- right_header: PLAN ALEGO
+- linear_label: ODCINEK LINIOWY
+- chaos_label: ODCINEK CHAOSU
+- lane: Bruce wygrywa, jeśli zniszczy nogi Alego. Ali wygrywa, jeśli trafi Bruce'a chociaż raz czystym jabem.
 
 Template Character A:
-name: Bruce Lee
-world: Prime / wersja historyczna
-- style: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
-- advantage: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
-- mentality: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
-- quote: Be water, my friend.
+- name: Bruce Lee
+- world: Historyczny / Prime
+- style: Eksplozywna intercepcja JKD. Skupienie na szybkości, atakach na niską linię i eliminacji zbędnego ruchu.
+- advantage: Szybkość wyprzedzająca oko i zdolność do walki w każdej płaszczyźnie (poza boksem).
+- mentality: "Bądź wodą". Całkowita adaptacja do stylu przeciwnika i szukanie jego martwych punktów.
+- quote: Be water, my friend. Emptiness is the starting point.
 
 Template Character B:
-name: Muhammad Ali
-world: Prime
-- style: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
-- advantage: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
-- mentality: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
-- quote: Float like a butterfly, sting like a bee.
+- name: Muhammad Ali
+- world: Historyczny / Prime
+- style: Elitarny styl "Float and Sting". Kontrola dystansu jabem i nieosiągalna praca nóg.
+- advantage: Kolosalna przewaga zasięgu, masy i wytrzymałości wagi ciężkiej.
+- mentality: Król Ringu. Niewzruszona pewność siebie i zdolność do przetrwania największego piekła.
+- quote: I am the greatest. I said that even before I knew I was.
 
 Template Powers / Tools / Weaknesses:
-headline: MOCE, NARZ?DZIA I S?ABO?CI
-subtitle:
-left_title: ZESTAW BRUCE'A
-right_title: ZESTAW ALEGO
-powers_label: MOCE
-tools_label: NARZ?DZIA
-weaknesses_label: S?ABO?CI
+- headline: MOCE, NARZĘDZIA I SŁABOŚCI
+- subtitle: Technika vs Fizyczność
+- left_title: ZESTAW BRUCE'A
+- right_title: ZESTAW ALEGO
+- powers_label: MOCE
+- tools_label: NARZĘDZIA
+- weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-headline: SUROWE FEATY
-subtitle: Czyste przyk?ady pokazowe, nie pe?ne archiwum
-left_title: POKAZ BRUCE'A
-right_title: POKAZ ALEGO
-feat_label: FEAT
+- headline: SUROWE FEATY
+- subtitle: Dowody legendy
+- left_title: POKAZ BRUCE'A
+- right_title: POKAZ ALEGO
+- feat_label: FEAT
+- left_item_1: One-Inch Punch (Siła).
+- left_image_1: 01_6_1_bruce_one_inch_punch.jpg
+- left_item_2: Gary Elms (Baza bokserska).
+- left_image_2: 03_6_1_bruce_gary_elms_record.jpg
+- left_item_3: Pompki na palcach (Kontrola).
+- left_image_3: finger push-ups.webp
+- left_item_4: JKD (Ewolucja stylu).
+- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
+- left_item_5: Szybkość reakcji.
+- left_image_5: Jeet Kune Do.webp
+- right_item_1: Rope-a-dope (Foreman).
+- right_image_1: 05_6_2_ali_rope_a_dope.jpg
+- right_item_2: Szybkość heavy (Williams).
+- right_image_2: 06_6_2_ali_cleveland_speed.jpg
+- right_item_3: Wytrzymałość (Frazier).
+- right_image_3: 07_6_2_ali_frazier_endurance.jpg
+- right_item_4: KO Sonny Liston.
+- right_image_4: 12_7_2_ali_sonny_liston.jpg
+- right_item_5: Praca nóg (Taniec Alego).
+- right_image_5: Dance.jpg
 
 Template HUD Bars:
-headline: WYSOKIEJ KLASY ANALIZA BOJOWA
-subtitle: Odczyt statystyk dw?ch profili
-threat_level: HUMAN
-integrity: 98.7%
-profile_mode: VS
-scale: 0-100
+- headline: ANALIZA BIOMECHANICZNA
+- subtitle: Odczyt parametrów fizycznych
+- threat_level: HUMAN LEGEND
+- integrity: 98.7%
+- profile_mode: VS
+- scale: 0-100
 
 Template Radar Brief:
-headline: MIGAWKA STATYSTYCZNA
-subtitle:
-left_header: PRZEWAGI BRUCE'A
-right_header: PRZEWAGI ALEGO
-draw_header: STREFY REMISOWE
-left_avg: 78.89
-right_avg: 87.67
-left_avg_round: 79
-right_avg_round: 88
-favorite_label: FAWORYT WED?UG STATYSTYK
-favorite: Muhammad Ali
-left_notes: Wej?cia, ?amanie rytmu i zmiana k?t?w
-right_notes: Zasi?g, wytrzyma?o??, tempo i powtarzalna kontrola ringu
-draw_notes: Obaj dobrze czytaj? timing, ale Ali zamienia powtarzalne wymiany w swoj? walk?
+- headline: MIGAWKA STATYSTYCZNA
+- subtitle: Porównanie potencjału
+- left_header: PRZEWAGI BRUCE'A
+- right_header: PRZEWAGI ALEGO
+- draw_header: STREFY REMISOWE
+- favorite_label: STATYSTYCZNY FAWORYT
+- favorite: Muhammad Ali
+- left_notes: Przewaga szybkości, niskie kopnięcia, brak zasad bokserskich
+- right_notes: Zasięg, 40kg przewagi masy, odporność na nokaut, kondycja
+- draw_notes: Obaj mają elitarny timing, ale masa Alego to "podatek", którego Bruce może nie przetrwać
 
 Template Interpretation:
-headline: KTO WYGRYWA WALK? NA PAPIERZE?
-subtitle:
-body: Muhammad Ali. Bruce ma szybko??, chaos i brudniejsz? tekstur? otwarcia, ale Ali ma kategorie, kt?re rozstrzygaj? powtarzalne ludzkie wymiany: zasi?g, wytrzyma?o??, tempo i zarz?dzanie ringiem. Bruce zaw?a pojedynek tylko wtedy, gdy nie pozwala walce ustawi? si? w preferowanej przez Alego grze dystansu.
+- headline: INTERPRETACJA
+- subtitle: Kto wygrywa na papierze?
+- line_1: To klasyczny dylemat "Technika vs Masa". Bruce Lee jest szybszy i bardziej wszechstronny, ale Ali to gigant wagi ciężkiej.
+- line_2: W walce bokserskiej Ali miażdży Bruce'a. W walce bez zasad Bruce może atakować nogi Alego, do czego bokser nie jest przyzwyczajony.
+- line_3: Jednak Ali przetrwał ciosy od najsilniejszych ludzi na świecie (Foreman). Bruce musiałby walczyć perfekcyjnie, by go choćby zamroczyć.
+- quote: Szybkość Bruce'a to poezja, ale zasięg Alego to brutalna proza życia.
 
 Template Stat Trap:
-headline: DLACZEGO LEPSZE KRAW?DZIE NIE GWARANTUJ? WALKI
-subtitle:
-question: Czy Bruce zdo?a powstrzyma? walk? przed wej?ciem w schemat dystansu i podatku Alego?
-body: Najlepsze przewagi Bruce'a zmieniaj? bardziej tekstur? walki ni? sam? to?samo?? zwyci?zcy. Szybko?? i styl mog? wygrywa? momenty, ale to udowodniona odporno?? Alego pod d?ug? presj? ci?kich jest prawdziwym separatorem.
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego Ali prowadzi
+- trap_top: PRZEWAGA MASY TO PONAD 40 KILOGRAMÓW
+- trap_bottom: WYTRZYMAŁOŚĆ ALEGO JEST UDOWODNIONA PRZECIWKO NAJSILNIEJSZYM
+- example: Bruce Lee może trafić Alego 5 razy, zanim ten zdąży mrugnąć, ale jedno trafienie Alego może zakończyć walkę definitywnie.
+- question: Czy Bruce Lee jest w stanie wygenerować dość siły, by znokautować kogoś, kogo nie potrafił powalić George Foreman?
 
 Template Winner CV:
-headline: Archiwum zwyci?stw
-subtitle:
-archive_label:
-avg_label: AVG SCORE
-left_title: REKORD BRUCE'A
-right_title: REKORD ALEGO
+- headline: Archiwum Zwycięstw
+- subtitle: Najważniejsze wyniki
+- archive_label: 
+- avg_label: Ranga Legendy
+- left_title: REKORD BRUCE'A
+- right_title: REKORD ALEGO
+- win_badge: WIN
+- left_item_1: Gary Elms (Boks)
+- left_image_1: Gary Elms.jpg
+- left_item_2: Yoichi Nakachi (KO)
+- left_image_2: Yoichi Nakachi.jpg
+- left_item_3: Wong Jack Man
+- left_image_3: 09_7_1_bruce_yoichi_nakachi.jpg
+- left_item_4: Chuck Norris (Sparring)
+- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
+- left_item_5: Jesse Glover
+- left_image_5: 03_6_1_bruce_gary_elms_record.jpg
+- right_item_1: George Foreman
+- right_image_1: 05_6_2_ali_rope_a_dope.jpg
+- right_item_2: Joe Frazier
+- right_image_2: 07_6_2_ali_frazier_endurance.jpg
+- right_item_3: Sonny Liston
+- right_image_3: 12_7_2_ali_sonny_liston.jpg
+- right_item_4: Cleveland Williams
+- right_image_4: 06_6_2_ali_cleveland_speed.jpg
+- right_item_5: Ernie Terrell
+- right_image_5: 14_7_2_ali_ernie_terrell.jpg
 
 Template Summary:
-headline: OSTATECZNY ODCZYT
-subtitle:
-winner: Muhammad Ali z wyra?n? przewag?
-line_1: Ali wygrywa por?wnanie na papierze, 87.67 vs 78.89.
-line_2: Bruce zmienia bardziej tekstur? walki ni? to?samo?? zwyci?zcy.
-line_3: Otwarte zasady zaw?aj? pojedynek, ale nie odwracaj? bazowego wyniku.
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle: Werdykt
+- winner: Muhammad Ali (Wyraźna Przewaga)
+- line_1: Ali wygrywa fizycznością. 40kg przewagi masy i granie na dystansie jabem to zapora niemal nie do przejścia.
+- line_2: Bruce Lee to najbardziej niebezpieczny "lekki" w historii, ale walka z elitarnym ciężkim to inna kategoria fizyki.
+- line_3: W walce bez zasad Bruce ma 2/10 szans (zniszczenie kolana Alego na starcie). W każdym innym scenariuszu – Ali wygrywa przez TKO.
 
 Template Battle Dynamics:
-headline: DYNAMIKA WALKI
-subtitle:
-left_curve_label: WCZESNE ZAK??CENIA BRUCE'A
-right_curve_label: P?NA KONTROLA ALEGO
-left_curve: 78,74,68,61,54
-right_curve: 62,70,79,88,94
-notes: Bruce jest gro?ny wcze?nie, bo szybko?? i zak??cenie rytmu maj? najwi?ksz? warto??, zanim walka si? ustawi. Ali ro?nie, gdy zasi?g, tempo i wytrzyma?o?? zaczynaj? si? kumulowa?.
+- headline: DYNAMIKA WALKI
+- subtitle: Przebieg starcia
+- a_curve: 90,75,50,30,10
+- b_curve: 60,70,85,95,100
+- yellow_wave: 20,20,20,20,20,20,20,20
+- phase_1: Bruce wchodzi agresywnie, używając niskich kopnięć i szybkich wejść JKD. Ali jest zaskoczony tempem i nietypowymi kątami.
+- phase_2: Ali zaczyna łapać dystans. Jego jab zaczyna "kąsać" Bruce'a przy każdej próbie zbliżenia. Bruce traci impet.
+- phase_3: Bruce jest wyczerpany naporem fizycznym. Ali zamyka go przy linach (lub krawędzi pola walki) i kończy serią kombinacji.
+- analysis: Bruce jest najgroźniejszy w pierwszej minucie. Z każdą kolejną rundą przewaga fizyczna Alego rośnie wykładniczo.
 
 Template Fight Simulation:
-headline: SYMULACJA WALKI
-subtitle: Stabilny pojedynek, w kt?rym zasady zmieniaj? margines bardziej ni? zwyci?zc?
-phase_1_title: Wojna o wej?cie i rytm
-phase_1_desc: Bruce atakuje rytm szybkimi wej?ciami i niskimi zak??ceniami, zanim Ali ustawi geografi? ringu.
-phase_1_anim: feint-counter
-phase_1_actor: a
-phase_2_title: Podatek dystansu
-phase_2_desc: Ali opodatkowuje dystans jabem, nogami i kontrol? ringu, zmuszaj?c Bruce'a do p?acenia za ka?de ponowne wej?cie.
-phase_2_anim: kite-zone
-phase_2_actor: b
-phase_3_title: Rzeczywisto?? ci?kich
-phase_3_desc: Walka albo pozostaje brudna i w?ska dla Bruce'a, albo ustawia si? w powtarzalnym dystansie ci?kich, gdzie tempo i wytrzyma?o?? Alego przejmuj? kontrol?.
-phase_3_anim: corner-trap
-phase_3_actor: b
+- headline: SYMULACJA WALKI // SCENARIUSZE
+- subtitle: Jak to by wyglądało?
+- opening: Bruce Lee porusza się jak cień, Ali tańczy. Bruce wyprowadza niskie boczne kopnięcie w kolano Alego. Ali cofa nogę i odpowiada błyskawicznym jabem.
+- mid_fight: Bruce próbuje przechwycić pięść Alego (Interception), ale siła i masa uderzenia Alego odrzucają go w tył nawet przy bloku.
+- late_fight: Ali zaczyna narzucać mordercze tempo. Bruce próbuje One-Inch Punch w klinczu, ale Ali amortyzuje to masą swojego ciała i kontruje hakiem.
+- end_condition: Bruce pada po serii ciosów, których nie jest w stanie już unikać. Ali stoi nad nim, pokazując, że masa i zasięg są prawdą ringu.
 
 Template Fight Title:
-fight_title: Bruce Lee vs Muhammad Ali
-subtitle:
-top_color_a: #facc15
-top_color_b: #111827
-bottom_color_a: #f8fafc
-bottom_color_b: #60a5fa
+- fight_title: Bruce Lee vs Muhammad Ali
+- subtitle: THE DRAGON VS THE GREATEST
+- top_color_a: #facc15
+- top_color_b: #111827
+- bottom_color_a: #f8fafc
+- bottom_color_b: #60a5fa

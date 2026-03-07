@@ -1,52 +1,52 @@
-1. Darth Vader (Legends Prime)
+1. Darth Vader (Star Wars Legends / Prime)
 
 2. Character A Stats
-- Strength: 68
-- Speed: 79
-- Durability: 68
-- Combat IQ: 88
-- Hax: 82
-- Stamina: 76
-- Fighting Style: 91
-- Experience: 80
-- Combat Skills: 92
+- Strength: 72
+- Speed: 89
+- Durability: 75
+- Combat IQ: 92
+- Hax: 90
+- Stamina: 85
+- Fighting Style: 94
+- Experience: 88
+- Combat Skills: 95
 
 3. Character A Feats
-- Style: Technical pressure fighting that combines saber precision with Force control.
-- Advantage: Elite combat skill with dangerous precision-targeting Force offense.
-- Mentality: Calculated and patient, then lethal when openings appear.
+- Style: Absolute Force dominance and precision swordsmanship. In Legends, Vader is a speed demon who compensates for his armor's limitations with a massive Force aura and brutal kinetic power.
+- Advantage: Force Crush and Tutaminis. He can crush an opponent's internal organs directly and absorb pure energy with his bare hands.
+- Mentality: Cold executioner. He does not play at duels—he seeks the fastest possible elimination of threats through paralyzing fear and lethal Force attacks.
 
 4. Defeated by Character A
-- Dark Woman
+- Darth Maul (Resurrection)
+- Celeste Morne (Ancient Jedi/Sith)
+- Dark Woman (Jedi Master)
 - Sha Koon
-- Hylon
-- Celeste Morne
 - Kai Hudorra
 
-5. Thanos (Earth-616, no Infinity Stones)
+5. Thanos (Marvel Earth-616, Base / No Stones)
 
 6. Character B Stats
-- Strength: 96
+- Strength: 98
 - Speed: 78
-- Durability: 97
-- Combat IQ: 92
-- Hax: 92
-- Stamina: 96
+- Durability: 100
+- Combat IQ: 96
+- Hax: 95
+- Stamina: 98
 - Fighting Style: 84
-- Experience: 94
+- Experience: 96
 - Combat Skills: 88
 
 7. Character B Feats
-- Style: Methodical cosmic warfighting with overwhelming force and tactical control.
-- Advantage: Exceptional durability, power output, and strategic adaptability.
-- Mentality: Cold strategist who turns prolonged conflict into certainty.
+- Style: "Trans-Godlike" (Zeus/Odin level). Methodical cosmic warfare based on matter manipulation, energy projection, and absolute durability.
+- Advantage: Invulnerability and Cosmic Hax. Thanos doesn't just take hits; he ignores the laws of physics, regenerating from his skeleton and manipulating atoms.
+- Mentality: Architect of Armageddon. Views combat as an equation where his victory is the only logical outcome.
 
 8. Defeated by Character B
-- Silver Surfer
-- Hulk
-- Beta Ray Bill and Ronan the Accuser
-- Adam Warlock (artifact-assisted / context-heavy result)
-- Thor with the Power Gem (strategic defeat)
+- Silver Surfer (beaten near death)
+- Hulk (total physical domination)
+- The Annihilators (defeated the most powerful cosmic team simultaneously)
+- Beta Ray Bill
+- The One Above All (negotiated his goals successfully)
 
 9. Template Order
 - tactical-board
@@ -58,66 +58,68 @@
 - radar-brief
 - interpretation
 - stat-trap
+- x-factor
 - winner-cv
 - summary
 - battle-dynamics
 - fight-simulation
+- verdict-matrix
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Force telekinesis, precognition, choke/crush techniques, and elite lightsaber lethality.
-- Tools: Defensive saber discipline, blaster/energy deflection, and Force-based battlefield control.
-- Weaknesses: Cybernetic life-support dependence and vulnerability to sustained system disruption.
-- Weaknesses: Lower raw physical durability and scale than top cosmic entities.
+- Powers: Force Crush (internal crushing), Tutaminis (energy absorption), precognition, Force Scream.
+- Tools: Lightsaber (Kyber-focus), armor with pulse generators augmenting movements.
+- Weaknesses: Dependence on life-support systems. Thanos can use EMP or matter manipulation to disable them.
+- Weaknesses: Power scale limited to galactic tier (cannot destroy planets with bare hands).
 
 11. Character A Raw Feats
-- Picks up and slams down a Y-Wing bomber.
-- Slams two starships together with telekinesis.
-- Walks through an alley while deflecting blaster fire.
-- Blocks an energy blast with his hand.
-- Survives a giant explosion that destroys a casino.
+- Picks up and slams down a Y-Wing bomber with the Force.
+- Telekinetically slams two starships together.
+- Absorbs and blocks powerful turret energy with his palm (Tutaminis).
+- Survived an explosion destroying a casino and days under cathedral rubble without life support.
+- Moves so fast he is invisible to the eyes of experienced Jedi.
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Massive strength and durability, cosmic energy projection, force fields, and matter manipulation.
-- Tools: Strategic intellect, combat adaptability, and broad resistance profile.
-- Weaknesses: Arrogance and tendency to test opponents can create early openings.
-- Weaknesses: Without Infinity Stones, he remains elite but lacks Gauntlet-level instant authority.
+- Powers: Matter manipulation (transmutation), cosmic energy, force fields, and soul manipulation.
+- Tools: Intellect far exceeding human standards, immunity to telepathy and erasure.
+- Weaknesses: Tendency for self-sabotage due to a subconscious sense of unworthiness.
+- Weaknesses: Extreme hubris.
 
 13. Character B Raw Feats
-- Destroys a planet during a fight with Drax.
-- Survives a two-light-year black hole.
-- Tanks Odin-level energy.
-- Walks out of a gas-giant explosion unharmed.
-- Performs molecular-level matter manipulation.
+- Destroys a planet during a fight with Drax (Base).
+- Blocks Mjolnir mid-flight and tanks Black Bolt's scream without flinching.
+- Turns a Skrull to stone (matter manipulation).
+- Regenerates from his charred skeleton after total disintegration.
+- Withstands Odin's attacks, surprising the All-Father himself.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // VADER VS THANOS
-- subtitle: Precision opening versus cosmic durability wall
+- subtitle: Force Precision vs. Cosmic Inevitability
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: ODCINEK LINIOWY
-- chaos_label: ODCINEK CHAOSU
-- lane: Vader must solve the fight fast. Thanos only needs the opening to fail once.
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
+- lane: Vader must crush Thanos's soul or organs instantly. Every second of delay is a death sentence for the Sith Lord.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
-- world: Legends Prime
-- style: Technical pressure fighting that combines saber precision with Force control.
-- advantage: Elite combat skill with dangerous precision-targeting Force offense.
-- mentality: Calculated and patient, then lethal when openings appear.
+- world: Star Wars Legends (Prime)
+- style: Absolute Force dominance and precision swordsmanship. In Legends, Vader is a speed demon.
+- advantage: Force Crush and Tutaminis – can attack internals and absorb energy.
+- mentality: Cold executioner. Seeks immediate elimination of the target.
 - quote: I find your lack of faith disturbing.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
-- world: Earth-616, no Infinity Stones
-- style: Methodical cosmic warfighting with overwhelming force and tactical control.
-- advantage: Exceptional durability, power output, and strategic adaptability.
-- mentality: Cold strategist who turns prolonged conflict into certainty.
-- quote: Dread it. Run from it. Destiny arrives all the same.
+- world: Marvel Earth-616 (Base)
+- style: "Trans-Godlike" - methodical cosmic warfare. Thanos is a living bastion of energy.
+- advantage: Absurd durability and atomic manipulation. Withstands blows from gods.
+- mentality: Cold strategist. Turns the clash into an inevitable outcome.
+- quote: Fools taking up arms against omnipotence...
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Core powers, tools, and weaknesses
+- subtitle: What each side brings to the exchange
 - left_title: VADER TOOLKIT
 - right_title: THANOS TOOLKIT
 - powers_label: POWERS
@@ -126,105 +128,137 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: RAW FEATS
-- subtitle: Clean showcase examples, not full archives
+- subtitle: Showcase of Power (Legends vs 616)
 - left_title: VADER SHOWCASE
 - right_title: THANOS SHOWCASE
 - feat_label: FEAT
+- left_item_1: Slams down a Y-Wing bomber.
+- left_image_1: Ciskanie bombowcem Y-Wing.jpeg
+- left_item_2: Slams two starships together.
+- left_image_2: Slams two starships together.jpeg
+- left_item_3: Blocks energy with his hand.
+- left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
+- left_item_4: Survived cathedral collapse.
+- left_image_4: Survives a giant explosion that destroyed a casino.jpeg
+- left_item_5: Invisible-fast movements.
+- left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
+- right_item_1: Destroys a planet in combat.
+- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
+- right_item_2: Stops Mjolnir mid-flight.
+- right_image_2: Stops Mjolnir mid-flight.jpeg
+- right_item_3: Transmuting enemies to stone.
+- right_image_3: Turns a Skrull to stone.jpeg
+- right_item_4: Surviving disintegration.
+- right_image_4: Gets disintegrated down to his skeleton.jpeg
+- right_item_5: Resistance to Odin's power.
+- right_image_5: No-sells Odin's blast.jpeg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
-- subtitle: Two-profile stat readout
+- subtitle: Stats readout (Legends vs Base)
 - threat_level: COSMIC
-- integrity: 99.4%
+- integrity: 100%
 - profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
 - headline: PARAMETER COMPARISON
-- subtitle: Average stat profile map
+- subtitle: Combat potential map
 - left_header: VADER ADVANTAGES
 - right_header: THANOS ADVANTAGES
-- draw_header: DRAW ZONES
+- draw_header: ST zones
 - favorite_label: STAT-BASED FAVORITE
 
 Template Interpretation:
 - headline: INTERPRETATION
-- subtitle: Who wins the fight on paper?
-- line_1: On paper Thanos wins because he owns the categories that decide whether Vader can finish at all.
-- line_2: Vader still has a dangerous first minute because his technical opening is much cleaner than Thanos's.
-- line_3: The opening is real, but the overall fight stays Thanos's once he survives the first surgical attempt.
-- quote: Better technique is not enough if it never becomes a finish route.
+- subtitle: Who wins on paper?
+- line_1: Thanos operates on a different physical scale—Planetary/Cosmic Tier.
+- line_2: Vader (Legends) possesses surgical tools (Force Crush) that could theoretically bypass physical durability.
+- line_3: However, Thanos has immense resistance to molecular manipulation and hax, making Vader's attack less effective.
+- quote: It's a fight of an ant with the venom of gods against a titan who crushes planets for fun.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why better technique does not guarantee victory
-- trap_top: TECHNICAL EDGE CHANGES THE OPENING
-- trap_bottom: THANO'S DURABILITY DECIDES THE MATCHUP
-- example: Vader can win the first read and still lose the fight because the target is built to survive that read.
-- question: Can Vader create a lethal bypass before Thanos learns he does not need to respect the duel?
+- subtitle: Why numbers can be misleading
+- trap_top: THANOS'S REGENERATION IS TOTAL
+- trap_bottom: VADER'S ATTACK IS INTERNAL
+- example: Even if Vader crushes Thanos's heart, the Titan can reconstruct himself from ashes. Vader has no such luxury.
+- question: Can Vader maintain Force concentration long enough to overcome the regeneration of a being who survived a black hole?
+
+Template X-Factor:
+- headline: X-FACTOR
+- subtitle: The Deciding Variable
+- factor: REGENERATION FROM OBLIVION VS FORCE CRUSH
+- a_value: 50
+- a_bonus: 25
+- a_bonus_label: BYPASS
+- b_value: 50
+- b_bonus: 40
+- regen: CURSE OF IMMORTALITY
+- mechanika: Thanos was banned from Death's domain. His regeneration allows him to return after disintegration. Vader is tough, but mortal.
+- implikacja: Even an "ideal" strike from Vader doesn't end the fight permanently. Thanos's counter-attack ends him in a millisecond.
+- psychologia: Thanos feels no fear of death. Vader lives in eternal pain and fear of failure.
 
 Template Winner CV:
 - headline: Victory Archive
-- subtitle: 
+- subtitle: Major Triumphs
 - archive_label: 
-- avg_label: AVG SCORE
+- avg_label: THREAT LEVEL
 - left_title: VADER RECORD
 - right_title: THANOS RECORD
 - win_badge: W
+- left_item_1: Darth Maul
+- left_image_1: Impales himself to kill Maul.jpeg
+- left_item_2: Celeste Morne
+- left_image_2: Vader vs Celeste Morne.jpeg
+- left_item_3: Sha Koon
+- left_image_3: Vader vs Sha Koon.jpeg
+- left_item_4: Dark Woman
+- left_image_4: Duels the Dark Woman.jpeg
+- left_item_5: Kai Hudorra
+- left_image_5: vader-vs-master-kai-hudorra.jpeg
+- right_item_1: Silver Surfer
+- right_image_1: Thanos beats Silver Surfer.jpeg
+- right_item_2: Beta Ray Bill
+- right_image_2: Beat up Beta Ray.jpg
+- right_item_3: Hulk & Thing
+- right_image_3: Manhandles Hulk and Thing.jpeg
+- right_item_4: Galactus (Helmet Damage)
+- right_image_4: Blasts Galactus.jpeg
+- right_item_5: The One Above All
+- right_image_5: Bargained with The One.jpg
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: 
-- winner: Thanos by clear margin
-- line_1: Vader wins precision categories, but Thanos wins the categories that actually decide the finish.
-- line_2: Vader's opening remains dangerous, yet the durability and scale gap are too large to solve consistently.
-- line_3: This is a stable matchup, not a branch-heavy one.
+- subtitle: Final Verdict
+- winner: Thanos (High Dominance)
+- line_1: Despite Vader being more powerful in Legends than any movie Jedi, Thanos is a being operating at the level of Marvel's cosmic deities.
+- line_2: The scale gap (Planetary vs City) is insurmountable. Thanos can tank everything Vader throws and answer with an ecosystem-destroying attack.
+- line_3: Thanos wins 9.5/10. The remaining 0.5 is a scenario where Vader uses the Force to escape.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Opening precision versus late-fight inevitability
-- a_curve: 86,79,66,52,39
-- b_curve: 58,66,78,88,94
-- yellow_wave: 26,31,29,35,33,39,37,43
-- phase_1: Vader starts higher because his control and timing make the first exchange dangerous.
-- phase_2: Thanos grows stronger as soon as the first bypass fails and the fight turns physical.
-- phase_3: Vader's line collapses once he has to absorb cosmic-level punishment repeatedly.
-- analysis: Vader can control moments. Thanos controls what the fight becomes.
+- subtitle: Clash progression over time
+- a_curve: 95,70,40,15,5
+- b_curve: 60,85,95,100,100
+- yellow_wave: 20,20,20,20,20,20,20,20
+- phase_1: Vader strikes with superhuman speed, paralyzing Thanos with the Force and attempting a surgical Force Crush.
+- phase_2: Thanos, unfazed by the pain, activates his cosmic aura, which begins to melt Vader's armor and destabilize the battlefield.
+- phase_3: Vader loses momentum. Thanos grabs him via matter manipulation or physically and ends the Sith Lord's existence.
+- analysis: Vader has a chance only in the split second of surprise. After that, he is crushed by cosmic might.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Stable mismatch with one dangerous opening window
-- opening: Vader opens with telekinesis, precognition, and close-range lethality.
-- mid_fight: Thanos survives the first surgical attempt and stops treating the exchange like a technical duel.
-- late_fight: The fight becomes shields, beams, brute-force counters, and body punishment that Vader cannot absorb repeatedly.
-- end_condition: If the first bypass fails, the fight becomes Thanos's immediately.
-- phase_1_mode: bars
-- phase_1_animation: feint-counter
-- phase_1_actor: a
-- phase_1_title: Surgical Opening
-- phase_1_a_label: Control
-- phase_1_b_label: Durability
-- phase_1_a_value: 90
-- phase_1_b_value: 71
-- phase_2_mode: split
-- phase_2_animation: clash-lock
-- phase_2_actor: b
-- phase_2_title: First Failure
-- phase_2_event: Thanos survives the first real solve attempt and stops respecting the duel.
-- phase_2_branch_a: Vader tries to keep the fight technical with more Force pressure and angles.
-- phase_2_branch_b: Thanos turns the map into shields, beams, and direct body punishment.
-- phase_3_mode: split
-- phase_3_animation: trade-chaos
-- phase_3_actor: b
-- phase_3_title: Scale Gap Pays Out
-- phase_3_event: Vader can still threaten moments, but the exchange no longer belongs to him.
-- phase_3_branch_a: A miracle bypass would have to end the fight immediately.
-- phase_3_branch_b: Thanos absorbs, counters, and ends the fight by force.
+- headline: FIGHT SIMULATION // SCENARIOS
+- subtitle: How would it look?
+- opening: Vader appears like a dark omen, his blade just a red blur. Thanos smiles, taking a Force Crush directly to the heart.
+- mid_fight: Thanos says: "Insignificant." With a gesture, he turns the air around Vader into heavy lead, then strikes with eye-beams that shatter Force shields.
+- late_fight: Vader attempts one final Force Scream, but Thanos silences him, grabbing his throat and tearing out a cybernetic lung.
+- end_condition: Thanos leaves Vader drifting in the cosmic void as a pile of scrap metal. "Destiny arrives all the same."
 
 Template Fight Title:
 - fight_title: Darth Vader vs Thanos
-- subtitle:
-- top_color_a: #111827
+- subtitle: THE CHOSEN ONE VS THE MAD TITAN
+- top_color_a: #000000
 - top_color_b: #b91c1c
 - bottom_color_a: #7c3aed
 - bottom_color_b: #f5c542

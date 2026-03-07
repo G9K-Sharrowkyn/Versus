@@ -12,9 +12,9 @@
 - Umiejętności bojowe: 86
 
 3. Featy Postaci A
-- Styl: Kosmiczny styl drapieżny oparty na kontroli żywej Otchłani, presji All-Black i wpływie symbiotów.
-- Atut: Śmiercionośność All-Black połączona z potężną regeneracją i stopniowym przejmowaniem pola walki.
-- Mentalność: Dąży do tego, by zalać pole walki swoją obecnością i domknąć starcie narastającą presją.
+- Styl: Brutalna szermierka Necroswordem. Knull nie bawi się w finezję – dąży do dekapitacji i fizycznego zdominowania ofiary siłą, która rozrywa herosów na strzępy.
+- Atut: All-Black the Necrosword – broń stworzona do zabijania nieśmiertelnych. Jego ataki ignorują boską wytrzymałość, a sam Knull jest niemal niemożliwy do trwałego zranienia.
+- Mentalność: Sadystyczny Nihilizm. Nie szuka wyzwania, szuka egzekucji. Czerpie przyjemność z łamania woli przeciwnika i gaszenia "światła" jednym, ostatecznym ciosem.
 
 4. Pokonani przez Postać A
 - Celestial
@@ -36,9 +36,9 @@
 - Umiejętności bojowe: 93
 
 7. Featy Postaci B
-- Styl: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
-- Atut: Ogromne doświadczenie oraz szeroki, warstwowy arsenał magii i energii w skali kosmicznej.
-- Mentalność: Woli utrzymywać kontrolę i porządek, niż wdawać się w chaotyczną wymianę ciosów.
+- Styl: Majestat Wszechojca. Połączenie niszczycielskiej magii runicznej z brutalną siłą fizyczną. Odyn nie tylko czaruje – on nagina rzeczywistość swoją wolą.
+- Atut: Arsenał Końca Świata. Połączenie nieskończonej magii Odinforce z fizyczną niezniszczalnością. Pancerz Destroyera (zasilany duszami Asgardu) czyni go niemal niewrażliwym, a Odinsword to broń, która konceptualnie może przeciąć wszystko – nawet samą Otchłań.
+- Mentalność: Nieustępliwy Władca. Odyn nie "walczy" o przetrwanie, on wymierza sprawiedliwość. Dąży do szybkiego, zdecydowanego zwycięstwa, by przywrócić porządek we wszechświecie.
 
 8. Pokonani przez Postać B
 - Infinity
@@ -66,59 +66,59 @@
 - fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Śmiercionośność All-Black, kontrola żywej Otchłani, władza nad rojem symbiotów i potężna regeneracja.
-- Narzędzia: Zatruwanie pola walki, presja symbiotycznego przejęcia i stałe zagrożenie w bliskim kontakcie.
-- Słabości: Silne kontry na Otchłań lub bardzo intensywne światło mogą osłabiać jego główne atuty.
-- Słabości: Szeroka kosmiczna kontrola energii może zmuszać go do większych wydatków na regenerację i odzyskanie tempa.
+- Moce: Absolutna nieśmiertelność, siła zdolna rozerwać Sentry'ego, kontrola nad żywą Otchłanią (symbiontami).
+- Narzędzia: All-Black the Necrosword (zabójca bogów), armia smoków-symbiontów.
+- Słabości: "Światło" (The Enigma Force / Uni-Power) jest jego antytezą, choć zwykłe słońca po prostu gasi.
+- Słabości: Arogancja – Knull często lekceważy przeciwników, pozwalając im na pierwszy ruch, bo wierzy, że i tak nie mogą go zranić.
 
 11. Surowe Featy Postaci A
-- Ścina Celestiala i kuje All-Black.
-- Podporządkowuje Celestiali i zmusza ich do służby.
-- Przetrwał Wielki Wybuch.
-- Zabija niezliczonych bogów swoim Necroswordem.
-- Pokrywa Ziemię Otchłanią i gasi słońce.
+- Ścina głowę Celestiala jednym ciosem i przekuwa ją w kuźnię.
+- Rozrywa Sentry'ego (najpotężniejszego herosa Ziemi) na pół gołymi rękami.
+- Przetrwał Wielki Wybuch bez draśnięcia.
+- Wymordował panteony bogów w całym wszechświecie.
+- Pokrywa całą Ziemię rojem symbiotów w kilka minut.
 
 12. Moce / Narzędzia / Słabości Postaci B
-- Moce: Pełny Odinforce, wielkoskalowa projekcja energii, bariery, transmutacja i boska magia.
-- Narzędzia: Pancerz Destroyera i Miecz Odyna do walki na najwyższym kosmicznym poziomie.
-- Słabości: Siła rażenia i precyzja potrafią się zmieniać zależnie od kontekstu, obciążenia i długości starcia.
-- Słabości: Zbyt duża wiara we własną kontrolę może otwierać przeciwnikowi okna kontrataku.
+- Moce: Odinforce (manipulacja materią, czasem, energią, duszami), Błogosławieństwa, Magia Asgardu.
+- Narzędzia: Pancerz Destroyera (odporność na poziomie Celestian), Miecz Odyna (Odinsword).
+- Słabości: Odin Sleep – nadużycie Odinforce zmusza go do zapadnięcia w sen regeneracyjny.
+- Słabości: Pycha – Odyn bywa uparty i przekonany o swojej nieomylności, co Knull może wykorzystać.
 
 13. Surowe Featy Postaci B
-- Pochłania siłę życiową Asgardu i skaluje Destroyera.
-- Odcina Nezarrowi ramię Mieczem Odyna.
-- Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
-- Gromadzi moc wszystkich bogów Ziemi.
-- Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów.
+- Narrator określa Odyna jako "Żyjącą Wszechmoc" (Living Omni-potence).
+- Powstrzymuje płomień Surtura, który mógł spalić Yggdrasil (9 Krain = 9 Wszechświatów).
+- Wymieniony jako byt zdolny zakończyć istnienie Multiwersum lub stworzyć nowe.
+- Walka z Sethem wstrząsa wszystkimi planami rzeczywistości, niszcząc galaktyki jako efekt uboczny.
+- Zatrzymuje czas, rozdziera tkankę wieczności i rzuca zaklęcie na drugi koniec wszechświata.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // KNULL VS ODIN
-- subtitle: Wyniszczenie Otchłani kontra boska kontrola pola walki
+- subtitle: Rzeźnik Bogów kontra Ojciec Wszechrzeczy
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
 - chaos_label: ODCINEK CHAOSU
-- lane: Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.
+- lane: Odyn musi zniszczyć Knulla totalnie, zanim Necrosword przebije jego boską nieśmiertelność.
 
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
-- world: Earth-616 z All-Black
-- style: Kosmiczny styl drapieżny oparty na kontroli żywej Otchłani, presji All-Black i wpływie symbiotów.
-- advantage: Śmiercionośność All-Black połączona z potężną regeneracją i stopniowym przejmowaniem pola walki.
-- mentality: Dąży do tego, by zalać pole walki swoją obecnością i domknąć starcie narastającą presją.
-- quote: Jestem Knullem, bogiem Otchłani.
+- world: Earth-616 (King in Black)
+- style: Brutalna szermierka Necroswordem. Knull nie bawi się w finezję – dąży do dekapitacji i fizycznego zdominowania ofiary siłą, która rozrywa herosów na strzępy.
+- advantage: All-Black the Necrosword – broń stworzona do zabijania nieśmiertelnych. Jego ataki ignorują boską wytrzymałość, a sam Knull jest niemal niemożliwy do trwałego zranienia.
+- mentality: Sadystyczny Nihilizm. Nie szuka wyzwania, szuka egzekucji. Czerpie przyjemność z łamania woli przeciwnika i gaszenia "światła" jednym, ostatecznym ciosem.
+- quote: Byłem tu przed Światłem. I będę, gdy zgaśnie.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
-- world: Earth-616, pełny Odinforce + Pancerz Destroyera + Miecz Odyna
-- style: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
-- advantage: Ogromne doświadczenie oraz szeroki, warstwowy arsenał magii i energii w skali kosmicznej.
-- mentality: Woli utrzymywać kontrolę i porządek, niż wdawać się w chaotyczną wymianę ciosów.
-- quote: Jestem Odynem, Wszechojcem Asgardu.
+- world: Earth-616 (Odinforce + Destroyer)
+- style: Majestat Wszechojca. Połączenie niszczycielskiej magii runicznej z brutalną siłą fizyczną. Odyn nie tylko czaruje – on nagina rzeczywistość swoją wolą.
+- advantage: Arsenał Końca Świata. Połączenie nieskończonej magii Odinforce z fizyczną niezniszczalnością. Pancerz Destroyera (zasilany duszami Asgardu) czyni go niemal niewrażliwym, a Odinsword to broń, która konceptualnie może przeciąć wszystko – nawet samą Otchłań.
+- mentality: Nieustępliwy Władca. Odyn nie "walczy" o przetrwanie, on wymierza sprawiedliwość. Dąży do szybkiego, zdecydowanego zwycięstwa, by przywrócić porządek we wszechświecie.
+- quote: Jestem Odynem. A Ty nie masz tu władzy.
 
 Template Powers / Tools / Weaknesses:
 - headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Ogólne moce, narzędzia i słabości
+- subtitle: Arsenał zagłady vs Boski majestat
 - left_title: ZESTAW KNULLA
 - right_title: ZESTAW ODINA
 - powers_label: MOCE
@@ -127,42 +127,42 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- subtitle: Dowody potęgi
 - left_title: POKAZ KNULLA
 - right_title: POKAZ ODINA
 - feat_label: FEAT
-- left_item_1: Ścina Celestiala i kuje All-Black.
+- left_item_1: Ścina Celestiala jednym ciosem.
 - left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
-- left_item_2: Podporządkowuje Celestiali i zmusza ich do służby.
-- left_image_2: Knull_Knulled.jpg
+- left_item_2: Rozrywa Sentry'ego na pół.
+- left_image_2: Knull_Sentry.jpg
 - left_item_3: Przetrwał Wielki Wybuch.
 - left_image_3: Knull_BigBang.webp
-- left_item_4: Zabija niezliczonych bogów swoim Necroswordem.
+- left_item_4: Wymordował miliardy bogów.
 - left_image_4: Knull_gods.jpg
-- left_item_5: Pokrywa Ziemię Otchłanią i gasi słońce.
+- left_item_5: Gasi słońca i pokrywa Ziemię mrokiem.
 - left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
-- right_item_1: Pochłania siłę życiową Asgardu i skaluje Destroyera.
-- right_image_1: Odin_Life2.jpg
-- right_item_2: Odcina Nezarrowi ramię Mieczem Odyna.
-- right_image_2: Odin_ArmCut.jpg
-- right_item_3: Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
-- right_image_3: Odin_Dome.jpg
-- right_item_4: Gromadzi moc wszystkich bogów Ziemi.
-- right_image_4: Odin_PowerOfGods.jpg
-- right_item_5: Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów.
-- right_image_5: Odin_Surtur.jpg
+- right_item_1: Narrator określa go jako "Żyjącą Wszechmoc".
+- right_image_1: Odin_AllPowerful.jpg
+- right_item_2: Powstrzymuje ogień zdolny spalić 9 Wszechświatów (Yggdrasil).
+- right_image_2: Odin_Flame.jpg
+- right_item_3: Może zakończyć istnienie Multiwersum.
+- right_image_3: Odin_Multiverse.jpg
+- right_item_4: Walka z Sethem niszczy galaktyki w tle.
+- right_image_4: Odin_Plane2.jpg
+- right_item_5: Zatrzymuje czas i zagina rzeczywistość.
+- right_image_5: Odin_Time.jpg
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
-- subtitle: Odczyt statystyk dwóch profili
+- subtitle: Starcie Tytanów
 - threat_level: KOSMICZNY
-- integrity: 99.4%
+- integrity: 100%
 - profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
 - headline: PORÓWNANIE PARAMETRÓW
-- subtitle: Mapa średniego profilu statystyk
+- subtitle: Mapa potencjału bojowego
 - left_header: PRZEWAGI KNULLA
 - right_header: PRZEWAGI ODINA
 - draw_header: STREFY REMISU
@@ -171,41 +171,41 @@ Template Radar Brief:
 Template Interpretation:
 - headline: INTERPRETACJA
 - subtitle: Kto wygrywa walkę na papierze?
-- line_1: Na papierze to niemal remis, z minimalną przewagą Odina w kategoriach kontroli.
-- line_2: W praktyce Knull nadal lekko prowadzi, bo jego regenerację i pętlę ostrza łatwiej przekuć w realne zakończenie walki.
-- line_3: Walka wyraźnie przechyla się dopiero wtedy, gdy pełna konfiguracja Odina okazuje się właściwą kontrą na Otchłań.
-- quote: Sam parytet statystyk nie rozwiązuje walki, jeśli nawet idealne obrażenia mogą nie zostać na stałe.
+- line_1: Statystyki są mylące. Odyn ma więcej "opcji" (magia, runy), ale Knull ma lepsze "narzędzie kończące" (Necrosword).
+- line_2: Odyn dominuje w kontroli dystansu i skali zniszczeń, ale Knull jest ekspertem w przetrwaniu końca świata.
+- line_3: Walka sprowadza się do tego: Czy Odinforce może wymazać Knulla szybciej, niż Necrosword odetnie głowę Odyna?
+- quote: To nie jest walka na punkty. To walka o to, kto pierwszy trafi krytycznie.
 
 Template Stat Trap:
 - headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
-- trap_top: PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA
-- trap_bottom: KNULL POTRZEBUJE TYLKO JEDNEJ PĘTLI, ŻEBY WALKA ZACZĘŁA IŚĆ PO JEGO MYŚLI
-- example: Odin może być równy albo minimalnie lepszy w średnich i nadal przegrać, jeśli jego obrażenia są imponujące, ale nie zostają na stałe.
-- question: Kluczowe pytanie: czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?
+- subtitle: Dlaczego liczby kłamią
+- trap_top: SIŁA RAŻENIA ODINA MOŻE NIE WYSTARCZYĆ NA REGENERACJĘ KNULLA
+- trap_bottom: KNULL POTRZEBUJE TYLKO JEDNEGO CZYSTEGO CIĘCIA
+- example: Odyn może niszczyć galaktyki, ale Knull przeżył Wielki Wybuch. Czysta energia to za mało.
+- question: Czy Odyn ma zaklęcie, które ostatecznie zniszczy istotę zrobioną z samej Otchłani?
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która decyduje, czy kontrola naprawdę ma znaczenie
-- factor: PRAWDZIWA KONTRA NA OTCHŁAŃ CZY TYLKO BOSKIE OBRAŻENIA
-- a_value: 50
-- a_bonus: 14
-- a_bonus_label: PĘTLA REGENERACJI
-- b_value: 50
-- b_bonus: 15
-- regen: PRAWDZIWE OCZYSZCZENIE
-- mechanika: Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.
-- implikacja: Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.
-- psychologia: Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe.
+- subtitle: Decydujący czynnik
+- factor: ALL-BLACK THE NECROSWORD
+- a_value: 99
+- a_bonus: +KRYTYK
+- a_bonus_label: GOD SLAYER
+- b_value: 90
+- b_bonus: +WSZECHMOC
+- regen: MAGIA ASGARDU
+- mechanika: Miecz Knulla jest konceptualnie stworzony do zabijania takich bytów jak Odyn. Odynforce jest potężny, ale Necrosword to twarda kontra na bóstwa.
+- implikacja: Odyn musi walczyć perfekcyjnie. Knull może popełniać błędy, bo się zregeneruje. Odyn po jednym błędzie ginie.
+- psychologia: Knull nie czuje strachu, Odyn czuje odpowiedzialność. To daje Knull owi przewagę agresji.
 
 Template Winner CV:
-- headline: Archiwum zwycięstw
-- subtitle: 
+- headline: Archiwum Zwycięstw
+- subtitle: Kogo pokonali?
 - archive_label: 
-- avg_label: ŚREDNI WYNIK
-- left_title: REKORD KNULLA
-- right_title: REKORD ODINA
-- win_badge: W
+- avg_label: POZIOM ZAGROŻENIA
+- left_title: OFIARY KNULLA
+- right_title: OFIARY ODINA
+- win_badge: WIN
 - left_item_1: Celestial
 - left_image_1: Knull_Celestial.jpg
 - left_item_2: Sentry
@@ -214,7 +214,7 @@ Template Winner CV:
 - left_image_3: Knull_Surfer.jpg
 - left_item_4: All-Father Thor
 - left_image_4: Knull_Jaw2.jpg
-- left_item_5: Storm
+- left_item_5: Całe panteony
 - left_image_5: Knull_Storm.jpg
 - right_item_1: Infinity
 - right_image_1: Odin_Infinity.jpg
@@ -222,76 +222,76 @@ Template Winner CV:
 - right_image_2: Odin_Seth.jpg
 - right_item_3: Thanos
 - right_image_3: Odin_Thanos.jpg
-- right_item_4: Silver Surfer
+- right_item_4: Surtur
 - right_image_4: Odin_SS.jpg
 - right_item_5: Drax
 - right_image_5: Odin_Drax.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
-- subtitle: 
-- winner: Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy.
-- line_1: Na papierze to niemal parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.
-- line_2: W praktyce Knull ma czystszą ścieżkę wyniszczenia i domykania walki, gdy kontakt i regeneracja zaczynają się powtarzać.
-- line_3: Prawdziwa droga Odina istnieje tylko wtedy, gdy ta pełna konfiguracja daje mu właściwą kontrę na Otchłań.
+- subtitle: Wynik starcia
+- winner: Knull (Wysokie Ryzyko)
+- line_1: Odyn w zbroi Destroyera to potęga, która mogłaby zmiażdżyć Knulla w dłuższej walce na wyczerpanie.
+- line_2: Jednak Necrosword to "cheat code" na bogów. Knull jest zbyt wytrzymały i zbyt zabójczy w zwarciu.
+- line_3: Odyn by wygrać, musiałby użyć czegoś spoza standardowego arsenału, co wymazałoby Otchłań z istnienia. W bezpośredniej wymianie ciosów – Knull ucina mu głowę.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Porządek kontra korupcja z upływem czasu
-- a_curve: 56,61,67,74,81
-- b_curve: 84,79,72,63,55
-- yellow_wave: 31,35,33,37,34,38,36,40
-- phase_1: Odin jest najmocniejszy, gdy pole walki pozostaje uporządkowane, a dystans nadal ma znaczenie.
-- phase_2: Knull zyskuje za każdym razem, gdy kontakt się powtarza, a obrażenia zaczynają być wymazywane.
-- phase_3: Walka zależy od tego, czy kontrola zamieni się w prawdziwe oczyszczenie, czy tylko w kolejny tymczasowy reset.
-- analysis: Odin wygrywa uporządkowaną wersję tej walki. Knull wygrywa tę, która ciągle wraca.
+- subtitle: Przebieg starcia w czasie
+- a_curve: 50,60,70,85,95
+- b_curve: 90,85,75,60,40
+- yellow_wave: 40,40,40,40,40,40,40,40
+- phase_1: Odyn otwiera walkę potężną salwą energii, dominując pole walki i trzymając Knulla na dystans.
+- phase_2: Knull regeneruje się i przebija przez bariery Odyna, skracając dystans i wprowadzając chaos.
+- phase_3: W zwarciu przewaga Odyna topnieje. Necrosword zaczyna przełamywać pancerz Destroyera.
+- analysis: Czas działa na korzyść Knulla. Im dłużej trwa walka, tym słabszy jest Odyn, a Knull bliższy ostatecznego ciosu.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Jeden punkt podziału, dwa realne scenariusze
-- opening: Knull od razu przejmuje inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie potrafi zatrzymać Otchłań.
-- mid_fight: Odin odpowiada barierami, dystansem i warstwową energią, próbując nie dopuścić do tego, by walka zsunęła się w wyniszczenie narzucone przez All-Black.
-- late_fight: Końcówka sprowadza się do jednego pytania: czy obrażenia Odina zostają na stałe, czy pętla Knulla znowu resetuje wymianę.
-- end_condition: Prawie remis na papierze nie ma znaczenia, jeśli jedna strona ma czystszą, powtarzalną drogę do finiszu.
+- headline: SYMULACJA WALKI // ETAPY
+- subtitle: Jak to by wyglądało?
+- opening: Odyn uderza pełną mocą Odinforce. Niebo płonie, galaktyki drżą. Knull zostaje odrzucony, może nawet rozerwany, ale jego ciało natychmiast się scala.
+- mid_fight: Knull przyzywa smoki i atakuje z cienia, zmuszając Odyna do defensywy. Odyn używa Miecza, by parować ataki Necrosworda. Iskry z ich starcia niszczą pobliskie planety.
+- late_fight: Odyn słabnie, zużywając energię. Knull, niewzruszony, wyprowadza serię ciosów All-Blackiem. Pancerz Destroyera pęka.
+- end_condition: Jeden błąd w parowaniu. Necrosword przechodzi przez obronę Odyna. Koniec.
 - phase_1_mode: bars
 - phase_1_animation: rush-ko
-- phase_1_actor: a
-- phase_1_title: Pierwszy Kontakt
-- phase_1_a_label: Presja
-- phase_1_b_label: Struktura
-- phase_1_a_value: 91
-- phase_1_b_value: 78
+- phase_1_actor: b
+- phase_1_title: Gniew Wszechojca
+- phase_1_a_label: Regeneracja
+- phase_1_b_label: Atak Energii
+- phase_1_a_value: 80
+- phase_1_b_value: 95
 - phase_2_mode: split
 - phase_2_animation: kite-zone
-- phase_2_actor: b
-- phase_2_title: Test Kontroli
-- phase_2_event: Odin próbuje zamienić niekorzystne pole walki z powrotem w uporządkowany kosmiczny układ starcia.
-- phase_2_branch_a: Odinforce zaczyna działać jak prawdziwa kontra na Otchłań.
-- phase_2_branch_b: Knull przetrzymuje próbę odzyskania tempa i utrzymuje walkę w brudnej, wyniszczającej formie.
+- phase_2_actor: a
+- phase_2_title: Nieuchronność
+- phase_2_event: Knull ignoruje ból i skraca dystans.
+- phase_2_branch_a: Odyn utrzymuje dystans (Mała szansa).
+- phase_2_branch_b: Knull wchodzi w zwarcie (Duża szansa).
 - phase_3_mode: split
 - phase_3_animation: regen-attrition
 - phase_3_actor: a
-- phase_3_title: Pętla albo Oczyszczenie
-- phase_3_event: Albo Odin wreszcie zadaje trwałe obrażenia, albo Knull zamienia kolejną dobrą sekwencję w następną rundę.
-- phase_3_branch_a: Kontrola Odina staje się prawdziwą ścieżką oczyszczenia.
-- phase_3_branch_b: Regeneracja i pętla ostrza Knulla przejmują walkę.
+- phase_3_title: Egzekucja
+- phase_3_event: Necrosword kontra Odinsword.
+- phase_3_branch_a: Magia Odyna pęta Knulla.
+- phase_3_branch_b: Knull dekapituje Odyna.
 
 Template Verdict Matrix:
-- headline: WERDYKT WARUNKOWY
-- subtitle: Dwa realne scenariusze pokazane w jednej matrycy
-- col_left: ODINFORCE KONTRUJE
-- col_right: ODINFORCE ZAWODZI
-- row_top: KONTROLA UTRZYMANA
-- row_bottom: KONTROLA ZŁAMANA
-- case_1: Odin 6.5/10. Jeśli jego moc jest właściwą kontrą na Otchłań, kontrola wreszcie zaczyna dawać trwały efekt.
-- case_2: Knull 7/10. Jeśli to tylko ogromne boskie obrażenia, pętla Knulla ostatecznie wygrywa wojnę zasobów.
-- case_3: Odin 6.5/10. To wciąż ta sama prawdziwa ścieżka: jeśli Odinforce naprawdę oczyszcza Otchłań, pole walki da się jeszcze przywrócić pod kontrolę.
-- case_4: Knull 7/10. To wciąż ta sama prawdziwa ścieżka: jeśli kontrola pęka bez prawdziwego oczyszczenia, Knull ma czystszą drogę do finiszu.
+- headline: WERDYKT
+- subtitle: Możliwe zakończenia
+- col_left: DYSTANS
+- col_right: ZWARCIE
+- row_top: ODINFORCE STABILNY
+- row_bottom: ODINFORCE WYCZERPANY
+- case_1: Odyn 6/10. Jeśli utrzyma Knulla na dystans i spali go słońcami, ma szansę.
+- case_2: Knull 9/10. W zwarciu Odyn nie ma szans z Necroswordem na dłuższą metę.
+- case_3: Remis/Knull. Nawet z energią, Odyn ryzykuje życie przy każdym parowaniu miecza.
+- case_4: Knull 10/10. Bez energii Odyn jest martwy w sekundy.
 
 Template Fight Title:
 - fight_title: Knull vs Odin
-- subtitle:
-- top_color_a: #08090c
-- top_color_b: #b91c1c
-- bottom_color_a: #f5c542
-- bottom_color_b: #38bdf8
+- subtitle: GOD OF VOID VS ALL-FATHER
+- top_color_a: #000000
+- top_color_b: #bf9b30
+- bottom_color_a: #8a0e0e
+- bottom_color_b: #7d1818

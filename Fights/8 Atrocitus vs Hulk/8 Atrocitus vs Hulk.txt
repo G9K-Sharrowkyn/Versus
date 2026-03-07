@@ -1,219 +1,267 @@
 1. Character A
-Atrocitus (Butcher)
+Atrocitus (Butcher Host)
 
 2. Character A Stats
-Strength: 87
-Speed: 86
-Durability: 88
-Combat IQ: 84
-Hax: 92
-Stamina: 84
-Fighting Style: 78
-Experience: 91
-Combat Skills: 80
+- Strength: 88
+- Speed: 86
+- Durability: 90
+- Combat IQ: 88
+- Hax: 96
+- Stamina: 92
+- Fighting Style: 82
+- Experience: 95
+- Combat Skills: 84
 
 3. Character A Feats
-- Style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
-- Advantage: Powerful emotional-spectrum offense with strong ranged pressure.
-- Mentality: Direct and violent, aiming to break resistance early.
+- Style: Surgical fury and blood magic. Atrocitus combines brutal physical strength with the lethal plasma of the Red Lanterns and ancient rituals from the Empire of Tears.
+- Advantage: Rage Concept Control. As the host of the Butcher entity, Atrocitus wields rage at a fundamental level. His plasma ignores conventional durability, burning through the fabric of matter.
+- Mentality: Ruthless Inquisitor. He doesn't seek a fight; he seeks punishment. He aims for total dominance over the opponent's soul and body through pain and hatred.
 
 4. Defeated by Character A
-The Butcher Entity
-The Butcher's human host
-Saint Walker, Indigo-1, and Star Sapphire (group overpowering)
-Multiple Manhunters
-Bleez (internal dominance)
+- The Butcher Entity (imprisoned and dominated)
+- Martian Manhunter and Apollo (clash in "Red Lanterns")
+- Saint Walker, Indigo-1, and Star Sapphire (simultaneous overpowering)
+- Volthoom (First Lantern - survived his attacks)
+- Legions of Manhunters
 
 5. Character B
-World Breaker Hulk
+World Breaker Hulk (Green Scar / World War Hulk peak)
 
 6. Character B Stats
-Strength: 95
-Speed: 80
-Durability: 95
-Combat IQ: 81
-Hax: 66
-Stamina: 98
-Fighting Style: 81
-Experience: 78
-Combat Skills: 81
+- Strength: 100
+- Speed: 82
+- Durability: 98
+- Combat IQ: 85
+- Hax: 70
+- Stamina: 100
+- Fighting Style: 84
+- Experience: 82
+- Combat Skills: 86
 
 7. Character B Feats
-- Style: Relentless close-range destruction with escalating strength and durability.
-- Advantage: Extreme regeneration, stamina, and compounding physical force.
-- Mentality: Keep pressing until resistance collapses.
+- Style: Nuclear cataclysm. Hulk in this form emits constant gamma radiation that turns planets into dust. He fights with the precision of a gladiator master (Green Scar) and the force of a natural disaster.
+- Advantage: Infinite Escalation and Regeneration. The more Atrocitus wounds him and feeds his rage, the stronger Hulk becomes. His regeneration allows him to return from ashes in seconds.
+- Mentality: Broken King. Fights with cold, calculated fury. He is not a mindless beast—he is a general seeking to destroy the world that betrayed him.
 
 8. Defeated by Character B
-Sentry
-Doctor Strange
-Iron Man
-Juggernaut
-Arm'Cheddon
+- Sentry (clash ended in a mutual knockout in human form)
+- Doctor Strange (in Zom-Strange form)
+- Juggernaut (neutralized momentum)
+- Bi-Beast and Wendigo (simultaneous stomp)
+- Arm'Cheddon
 
 9. Template Order
-tactical-board
-character-card-a
-character-card-b
-powers-tools
-raw-feats
-hud-bars
-radar-brief
-interpretation
-stat-trap
-x-factor
-winner-cv
-summary
-battle-dynamics
-fight-simulation
-fight-title
+- tactical-board
+- character-card-a
+- character-card-b
+- powers-tools
+- raw-feats
+- hud-bars
+- radar-brief
+- interpretation
+- stat-trap
+- x-factor
+- winner-cv
+- summary
+- battle-dynamics
+- fight-simulation
+- verdict-matrix
+- fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Red Lantern plasma output, constructs, blood magic/rituals, flight, and Butcher-linked rage dynamics.
-- Tools: Emotional-spectrum manipulation and high-pressure ranged offense.
-- Weaknesses: Ring or construct-output dependence and front-loaded control windows.
-- Weaknesses: Prolonged direct brawls can reduce his tactical edge.
+- Powers: Red Lantern plasma (burning blood), blood magic, construct creation, flight, conceptual rage projection.
+- Tools: Red Power Ring, Power Battery with the imprisoned Butcher.
+- Weaknesses: Dependency on the ring heart (it replaces his biological heart).
+- Weaknesses: The Blue Light of Hope can neutralize his plasma.
 
 11. Character A Raw Feats
-Bound the Butcher inside his power battery
-Kept fighting after his heart was removed
-Used blood magic to read the future and track rage paths
-Burned through the fabric of space with rage plasma
-Overpowered Saint Walker, Indigo-1, and Star Sapphire together
+- Imprisoned the rage entity (The Butcher) inside his own power battery.
+- Continued fighting with his heart ripped out, relying solely on ring energy.
+- Burned through the fabric of reality and space itself with plasma.
+- Survived attacks from Volthoom, who was manipulating all of reality.
+- Predicted the future via blood ritual, tracking "paths of fury."
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Gamma-based strength growth, regeneration, thunderclap/shockwave output, and extreme stamina.
-- Tools: Relentless close-range pressure and escalating damage loops.
-- Weaknesses: Limited precision utility at long range versus dedicated control users.
-- Weaknesses: Strategy set is narrower when denied sustained contact.
+- Powers: Gamma Emission (World Breaker), superhuman strength and durability, atomic regeneration, shockwaves.
+- Tools: None – he is a weapon of mass destruction himself.
+- Weaknesses: Extreme gamma draining can revert him to Banner form.
+- Weaknesses: Remains a physical being, susceptible to high-level magical/spiritual hax.
 
 13. Character B Raw Feats
-Planet and moon collateral output from World Breaker scale
-Endured Sentry-level output
-Regenerated after extreme damage
-Redirected Juggernaut's charge through tactical strength
-Overpowered Bi-Beast and Wendigo together
+- Cracked a continent with a single step, causing global earthquakes.
+- Destroyed a planet and a moon as collateral during a World Breaker clash.
+- Endured the full power of the Sentry ("Power of a thousand suns").
+- Redirected the charge of the unstoppable Juggernaut with sheer technique and force.
+- Regenerated from total tissue disintegration.
 
 Template Tactical Board:
-headline: TACTICAL BOARD // ATROCITUS VS HULK
-subtitle: Rage control versus rage escalation
-lane: Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.
+- headline: TACTICAL BOARD // ATROCITUS VS HULK
+- subtitle: Rage Programming vs. Nuclear Escalation
+- left_header: BLOOD RITUAL
+- right_header: GAMMA RADIATION
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
+- lane: Atrocitus must "shut down" Hulk's emotional heart. Hulk simply needs to crush Atrocitus before blood magic binds him.
 
 Template Character A:
-world: Butcher-locked Red Lantern host
-- style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
-- advantage: Powerful emotional-spectrum offense with strong ranged pressure.
-- mentality: Direct and violent, aiming to break resistance early.
-- quote: With blood and rage...
+- name: Atrocitus
+- world: DC (Butcher Host)
+- style: Blood Magic and Fury Plasma. Atrocitus is a master of rage manipulation who turns pain into destructive energy.
+- advantage: Conceptual Hax. Attacks not just the body, but the very essence of the opponent's rage.
+- mentality: Cold Executioner. Treats the opponent as a sinner to be erased from existence.
+- quote: With blood and rage of crimson red... ripped from a corpse so freshly dead...
 
 Template Character B:
-world: World War Hulk / World Breaker era
-- style: Relentless close-range destruction with escalating strength and durability.
-- advantage: Extreme regeneration, stamina, and compounding physical force.
-- mentality: Keep pressing until resistance collapses.
-- quote: Hulk is strongest there is.
+- name: Hulk
+- world: Marvel (World Breaker)
+- style: Brutal physicality and nuclear aura. Hulk is a walking gamma reactor, destroying the world's foundations with every punch.
+- advantage: Infinite strength and regeneration. He is "The Strongest There Is" on a physical scale.
+- mentality: Broken King. Seeks an end to his fight, crushing everything in his path.
+- quote: HULK SMASH PUNY RED MAN!
 
 Template Powers / Tools / Weaknesses:
-headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle: Core powers, tools, and weaknesses
-left_title: ATROCITUS TOOLKIT
-right_title: HULK TOOLKIT
-powers_label: POWERS
-tools_label: TOOLS
-weaknesses_label: WEAKNESSES
+- headline: POWERS, TOOLS, AND WEAKNESSES
+- subtitle: Emotional Spectrum vs. Gamma Energy
+- left_title: ATROCITUS TOOLKIT
+- right_title: HULK TOOLKIT
+- powers_label: POWERS
+- tools_label: TOOLS
+- weaknesses_label: WEAKNESSES
 
 Template Raw Feats:
-headline: RAW FEATS
-subtitle: Clean showcase examples, not full archives
-left_title: ATROCITUS SHOWCASE
-right_title: HULK SHOWCASE
-feat_label: FEAT
+- headline: RAW FEATS
+- subtitle: Evidence of Planetary Destruction
+- left_title: ATROCITUS SHOWCASE
+- right_title: HULK SHOWCASE
+- feat_label: FEAT
+- left_item_1: Imprisoning the Butcher.
+- left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
+- left_item_2: Fighting heartless.
+- left_image_2: 02_6_1_atrocitus_heart_removed.jpg
+- left_item_3: Blood Magic (Foresight).
+- left_image_3: 03_6_1_atrocitus_blood_magic_foresight.jpg
+- left_item_4: Burning through space.
+- left_image_4: 04_6_1_atrocitus_burns_through_space.jpg
+- left_item_5: Dominating the Corps.
+- left_image_5: 05_6_1_atrocitus_group_overpowering.jpg
+- right_item_1: Planetary Destruction (Collateral).
+- right_image_1: 06_6_2_hulk_planet_moon_collateral.jpg
+- right_item_2: Enduring the Sentry.
+- right_image_2: 07_6_2_hulk_endured_sentry.jpg
+- right_item_3: Atomic Regeneration.
+- right_image_3: 08_6_2_hulk_regeneration.jpg
+- right_item_4: Neutralizing Juggernaut.
+- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
+- right_item_5: Stomping Bi-Beast & Wendigo.
+- right_image_5: 10_6_2_hulk_bi_beast_wendigo.jpg
 
 Template HUD Bars:
-headline: HIGH-END COMBAT ANALYTICS
-subtitle: Two-profile stat readout
-threat_level: COSMIC
-integrity: 99.2%
-profile_mode: VS
-scale: 0-100
+- headline: DESTRUCTION ANALYTICS
+- subtitle: Rage Parameter Readout
+- threat_level: PLANETARY+
+- integrity: 100%
+- profile_mode: VS
+- scale: 0-100
 
 Template Radar Brief:
-headline: RADAR BRIEF
-subtitle: Average stat profile map
-left_header: ATROCITUS ADVANTAGES
-right_header: HULK ADVANTAGES
-draw_header: DRAW ZONES
-left_average: 85.60
-right_average: 83.90
-favorite_label: STAT-BASED FAVORITE
-favorite: Atrocitus
+- headline: PARAMETER COMPARISON
+- subtitle: Controlled Fury vs. Pure Fury
+- left_header: ATROCITUS ADVANTAGES
+- right_header: HULK ADVANTAGES
+- draw_header: DRAW ZONES
+- favorite_label: STAT-BASED FAVORITE
+- favorite: Atrocitus (Paper), Hulk (Practice)
 
 Template Interpretation:
-headline: INTERPRETATION
-subtitle: Who wins the fight on paper?
-question: Who wins the fight on paper?
-answer: Atrocitus wins the paper comparison, but Hulk still wins more real fights.
-body: Atrocitus owns the cleaner early toolkit, better speed, and stronger control options. Hulk owns the cleaner finish route once contact becomes repeatable. This is a matchup where the paper edge belongs to the more versatile side, but the practical edge belongs to the side whose loop gets stronger every time the control plan slips.
+- headline: INTERPRETACJA
+- subtitle: Who wins on paper?
+- line_1: Atrocitus wins through versatility—flight and blood magic give him control over the battlefield.
+- line_2: However, World Breaker Hulk is a "wall" that cannot be breached by standard energy attacks.
+- line_3: This is a "Hax vs. Scale" clash. Victory depends on whether Atrocitus's plasma can burn Hulk's cells faster than they regenerate.
+- quote: Atrocitus's rage has a purpose. Hulk's rage only has a direction.
 
 Template Stat Trap:
-headline: STAT TRAP
-subtitle: Why better stats do not guarantee victory
-question: Can Atrocitus keep Hulk's rage external, or does he end up feeding the loop himself?
-body: Better averages do not matter if they do not create a finish route. Atrocitus has more ways to shape the opening, but Hulk gets more dangerous every time the fight resets into contact. This is not about who has more tools. It is about whose win condition stays intact after the first plan fails.
+- headline: STAT TRAP
+- subtitle: Why numbers lie with the Hulk
+- trap_top: HULK'S STRENGTH IS LIMITLESS
+- trap_bottom: ATROCITUS'S HAX CAN WEAKEN HIM
+- example: Atrocitus has higher IQ and Hax, but a single Thunderclap from Hulk generates a shockwave that douses plasma and shatters constructs.
+- question: Can Atrocitus keep Hulk at a distance before a single stomp shatters the planet beneath their feet?
 
 Template X-Factor:
-headline: X-FACTOR
-subtitle: The one variable that changes the whole fight
-factor: RAGE CONTROL VS GAMMA LOOP
-left_title: ATROCITUS BRANCH
-right_title: HULK BRANCH
-left_body: If Atrocitus keeps Hulk at range and manages the fight from the outside, his plasma, rituals, and flight can stay ahead of the escalation curve.
-right_body: If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange.
-implication: The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation.
+- headline: X-FACTOR
+- subtitle: The Deciding Variable
+- factor: RAGE FEEDBACK LOOP
+- a_value: 92
+- a_bonus: +CONTROL
+- a_bonus_label: BUTCHER
+- b_value: 100
+- b_bonus: +ESCALATION
+- regen: GAMMA REACTOR
+- mechanika: Atrocitus feeds on rage. Hulk produces rage. This theoretically makes Atrocitus stronger in Hulk's presence.
+- implikacja: There is a critical point, however. World Breaker Hulk emits so much energy that he might simply "overload" Atrocitus's ring, causing it to explode.
+- psychologia: Atrocitus wants Hulk to be angry. This is his greatest mistake.
 
 Template Winner CV:
-headline: Victory Archive
-subtitle:
-archive_label:
-avg_label: AVG SCORE
-left_title: ATROCITUS RECORD
-right_title: HULK RECORD
+- headline: Victory Archive
+- subtitle: Greatest Triumphs
+- archive_label: 
+- avg_label: Threat Level
+- left_title: ATROCITUS RECORD
+- right_title: HULK RECORD
+- win_badge: WIN
+- left_item_1: Butcher Entity
+- left_image_1: Atrocitus_ButcherBound.jpg
+- left_item_2: Martian Manhunter
+- left_image_2: Atrocitus_Martian_Apollo.jpeg
+- left_item_3: Bleez (Dominance)
+- left_image_3: Atrocitus_Bleez.jpeg
+- left_item_4: Volthoom (Survival)
+- left_image_4: Atrocitus_Voolthom.jpeg
+- left_item_5: Guardians (Attack)
+- left_image_5: Atrocitus.webp
+- right_item_1: Sentry
+- right_image_1: 07_6_2_hulk_endured_sentry.jpg
+- right_item_2: Doctor Strange
+- right_image_2: 08_6_2_hulk_regeneration.jpg
+- right_item_3: Iron Man (Hulkbuster)
+- right_image_3: 14_7_2_hulk_iron_man.jpg
+- right_item_4: Juggernaut
+- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
+- right_item_5: Arm'Cheddon
+- right_image_5: 15_7_2_hulk_armcheddon.jpg
 
 Template Summary:
-headline: SUMMARY
-subtitle:
-winner: World Breaker Hulk 6.5/10
-line_1: Atrocitus wins the paper comparison, 85.6 vs 83.9.
-line_2: Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.
-line_3: Atrocitus only flips the matchup if distance and control hold from start to finish.
+- headline: FINAL SUMMARY
+- subtitle: Verdict
+- winner: World Breaker Hulk (Slight Advantage)
+- line_1: This is one of the hardest fights to call. Atrocitus has the tools to kill the Hulk (Force Crush, heart burning).
+- line_2: But the World Breaker form is too resilient. Hulk's collateral damage scale and infinite stamina will eventually exhaust the Lantern.
+- line_3: Hulk wins 6/10 encounters through sheer durability. Atrocitus wins 4/10 if his blood magic ritual succeeds.
 
 Template Battle Dynamics:
-headline: BATTLE DYNAMICS
-subtitle: How the fight shifts over time
-left_curve_label: ATROCITUS CONTROL
-right_curve_label: HULK LOOP
-left_curve_body: Stronger early, then weaker every time contact becomes repeatable.
-right_curve_body: Starts lower, then rises fast once regeneration and re-entry stop caring about partial damage.
+- headline: BATTLE DYNAMICS
+- subtitle: Clash progression over time
+- a_curve: 95,90,80,60,40
+- b_curve: 70,85,95,100,105
+- yellow_wave: 40,40,40,40,40,40,40,40
+- phase_1: Atrocitus floods the field with plasma while staying airborne. Hulk takes the hits, his body steaming, but keeps moving forward.
+- phase_2: Hulk unleashes a Thunderclap, shattering Atrocitus's aura. Atrocitus uses Butcher constructs to pin down the Titan.
+- phase_3: Hulk enters World Breaker state. The planet cracks. Atrocitus loses flight stability. Hulk catches him in a lethal grip.
+- analysis: Atrocitus must finish the fight fast. The longer it lasts, the more unstoppable Hulk becomes.
 
 Template Fight Simulation:
-headline: FIGHT SIMULATION
-subtitle: How the matchup actually unfolds
-phase_1_title: Atrocitus starts outside the pocket
-phase_1_body: Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.
-phase_1_animation: kite-zone
-phase_1_actor: a
-phase_2_title: Hulk refuses to stay managed
-phase_2_body: Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.
-phase_2_animation: clash-lock
-phase_2_actor: b
-phase_3_title: The loop decides it
-phase_3_body: If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.
-phase_3_animation: trade-chaos
-phase_3_actor: b
+- headline: FIGHT SIMULATION // PHASES
+- subtitle: How would it look?
+- opening: Atrocitus vomits plasma directly into Hulk's face. Hulk roars, his skin regenerating as it burns.
+- mid_fight: Atrocitus drives constructs into Hulk's chest, aiming for the heart. Hulk grabs the constructs and rips them apart with bare hands, emitting a gamma wave.
+- late_fight: Atrocitus attempts a ritual to drain the rage from Hulk. Hulk responds with such a burst of fury that the ring energy flickers.
+- end_condition: Hulk strikes with tectonic-shattering force. Atrocitus is driven into the planet's core. Hulk stands on the world's ruins. "HULK IS STRONGEST!".
 
 Template Fight Title:
-fight_title: Atrocitus vs Hulk
-subtitle:
-top_color_a: #8b1e1e
-top_color_b: #ff5a36
-bottom_color_a: #4ade80
-bottom_color_b: #14532d
+- fight_title: Atrocitus vs Hulk
+- subtitle: RAGE OF THE LANTERN VS THE WORLD BREAKER
+- top_color_a: #8b1e1e
+- top_color_b: #ff5a36
+- bottom_color_a: #4ade80
+- bottom_color_b: #14532d
