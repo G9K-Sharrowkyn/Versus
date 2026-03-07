@@ -42,6 +42,7 @@ export function AdjustableTemplateImage({
   const isDraggingRef = useRef(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const [imageNaturalSizeState, setImageNaturalSizeState] = useState({ key: '', width: 0, height: 0 })
+  const [isImageReady, setIsImageReady] = useState(false)
   const imageNaturalSize = useMemo(
     () =>
       imageNaturalSizeState.key === imageUrl
@@ -79,6 +80,12 @@ export function AdjustableTemplateImage({
   useEffect(() => {
     imageMetricsRef.current = imageNaturalSize
   }, [imageNaturalSize])
+
+  useEffect(() => {
+    imageMetricsRef.current = { width: 0, height: 0 }
+    setImageNaturalSizeState({ key: '', width: 0, height: 0 })
+    setIsImageReady(false)
+  }, [imageUrl])
 
   useEffect(() => {
     const container = containerRef.current
@@ -221,11 +228,15 @@ export function AdjustableTemplateImage({
     >
       {imageUrl ? (
         <img
+          key={imageUrl}
           src={imageUrl}
           alt={alt}
           className="absolute block select-none"
           draggable={false}
-          style={buildAdjustableTemplateImageStyle(liveAdjust, imageGeometry)}
+          style={{
+            ...buildAdjustableTemplateImageStyle(liveAdjust, imageGeometry),
+            opacity: isImageReady ? 1 : 0,
+          }}
           onLoad={(event) => {
             const target = event.currentTarget
             const nextMetrics = {
@@ -237,6 +248,7 @@ export function AdjustableTemplateImage({
               key: imageUrl,
               ...nextMetrics,
             })
+            setIsImageReady(true)
           }}
         />
       ) : (
