@@ -133,32 +133,21 @@ Template Raw Feats:
 - right_title: POKAZ THANOSA
 - feat_label: FEAT
 - left_item_1: Ciskanie bombowcem Y-Wing.
-- left_image_1: Ciskanie bombowcem Y-Wing.jpeg
 - left_item_2: Zderzenie statków kosmicznych.
-- left_image_2: Slams two starships together.jpeg
 - left_item_3: Blokowanie energii dłonią.
-- left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
 - left_item_4: Przetrwanie wybuchu kasyna.
-- left_image_4: Survives a giant explosion that destroyed a casino.jpeg
 - left_item_5: Szybkość większa niż myśl.
-- left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
 - right_item_1: Zniszczenie planety w walce.
-- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
 - right_item_2: Zatrzymanie Mjolnira w locie.
-- right_image_2: Stops Mjolnir mid-flight.jpeg
 - right_item_3: Skamienienie przeciwnika.
-- right_image_3: Turns a Skrull to stone.jpeg
 - right_item_4: Przeżycie dezintegracji.
-- right_image_4: Gets disintegrated down to his skeleton.jpeg
 - right_item_5: Odporność na moc Odina.
-- right_image_5: No-sells Odin's blast.jpeg
 
 Template HUD Bars:
 - headline: ZAAWANSOWANA ANALITYKA BOJOWA
 - subtitle: Odczyt statystyk (Legends vs Base)
 - threat_level: KOSMICZNY
 - integrity: 100%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -208,25 +197,15 @@ Template Winner CV:
 - right_title: REKORD THANOSA
 - win_badge: W
 - left_item_1: Darth Maul
-- left_image_1: Impales himself to kill Maul.jpeg
 - left_item_2: Celeste Morne
-- left_image_2: Vader vs Celeste Morne.jpeg
 - left_item_3: Sha Koon
-- left_image_3: Vader vs Sha Koon.jpeg
 - left_item_4: Dark Woman
-- left_image_4: Duels the Dark Woman.jpeg
 - left_item_5: Kai Hudorra
-- left_image_5: vader-vs-master-kai-hudorra.jpeg
 - right_item_1: Silver Surfer
-- right_image_1: Thanos beats Silver Surfer.jpeg
 - right_item_2: Beta Ray Bill
-- right_image_2: Beat up Beta Ray.jpg
 - right_item_3: Hulk i Thing
-- right_image_3: Manhandles Hulk and Thing.jpeg
 - right_item_4: Galactus (Helm Damage)
-- right_image_4: Blasts Galactus.jpeg
 - right_item_5: The One Above All
-- right_image_5: Bargained with The One.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

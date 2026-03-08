@@ -1,0 +1,26 @@
+Template Raw Feats:
+- left_image_1: Shakes the World of The Void .jpg
+- left_image_2: Detects and Counters attacks coming from a different dimension.jpg
+- left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
+- left_image_4: Unaffected by Android 17's Self-Destruction.png
+- left_image_5: Belmod.png
+- right_image_1: Serious Punch Squared... generates an explosion that.png
+- right_image_2: A Serious Sneeze blows away the gas surrounding Jupiter's.png
+- right_image_3: Can freely grab and move hyperspace.png
+- right_image_4: Saitama time travels to reverse causality.png
+- right_image_5: Saitama is immune to attacks.png
+
+Template HUD Bars:
+- profile_mode: VS
+
+Template Winner CV:
+- left_image_1: 11_7_1_jiren_hit.jpg
+- left_image_2: 12_7_1_jiren_maji_kayo.jpg
+- left_image_3: 13_7_1_jiren_golden_frieza.jpg
+- left_image_4: 14_7_1_jiren_kale.jpg
+- left_image_5: Belmod.png
+- right_image_1: 16_7_2_saitama_boros.jpg
+- right_image_2: 20_7_2_saitama_garou_zero_punch.jpg
+- right_image_3: 18_7_2_saitama_orochi.jpg
+- right_image_4: 17_7_2_saitama_elder_centipede.jpg
+- right_image_5: 19_7_2_saitama_evil_ocean_water.jpg

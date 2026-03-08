@@ -132,15 +132,11 @@ Template Raw Feats:
 - right_title: POKAZ ODINA
 - feat_label: FEAT
 - left_item_1: Ścina Celestiala jednym ciosem.
-- left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
 - left_item_2: Rozrywa Sentry'ego na pół.
 - left_image_2: Knull_Sentry.jpg
 - left_item_3: Przetrwał Wielki Wybuch.
-- left_image_3: Knull_BigBang.webp
 - left_item_4: Wymordował miliardy bogów.
-- left_image_4: Knull_gods.jpg
 - left_item_5: Gasi słońca i pokrywa Ziemię mrokiem.
-- left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
 - right_item_1: Narrator określa go jako "Żyjącą Wszechmoc".
 - right_image_1: Odin_AllPowerful.jpg
 - right_item_2: Powstrzymuje ogień zdolny spalić 9 Wszechświatów (Yggdrasil).
@@ -157,7 +153,6 @@ Template HUD Bars:
 - subtitle: Starcie Tytanów
 - threat_level: KOSMICZNY
 - integrity: 100%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -207,25 +202,16 @@ Template Winner CV:
 - right_title: OFIARY ODINA
 - win_badge: WIN
 - left_item_1: Celestial
-- left_image_1: Knull_Celestial.jpg
 - left_item_2: Sentry
-- left_image_2: Knull_Sentry.jpg
 - left_item_3: Silver Surfer
-- left_image_3: Knull_Surfer.jpg
 - left_item_4: All-Father Thor
-- left_image_4: Knull_Jaw2.jpg
 - left_item_5: Całe panteony
 - left_image_5: Knull_Storm.jpg
 - right_item_1: Infinity
-- right_image_1: Odin_Infinity.jpg
 - right_item_2: Seth
-- right_image_2: Odin_Seth.jpg
 - right_item_3: Thanos
-- right_image_3: Odin_Thanos.jpg
 - right_item_4: Surtur
-- right_image_4: Odin_SS.jpg
 - right_item_5: Drax
-- right_image_5: Odin_Drax.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

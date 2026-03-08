@@ -132,15 +132,11 @@ Template Raw Feats:
 - right_title: ODIN SHOWCASE
 - feat_label: FEAT
 - left_item_1: Decapitates a Celestial and forges All-Black.
-- left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
 - left_item_2: Knulls Celestials and makes them serve.
 - left_image_2: Knull_Knulled.jpg
 - left_item_3: Survives Big Bang.
-- left_image_3: Knull_BigBang.webp
 - left_item_4: Kills countless gods with his Necrosword.
-- left_image_4: Knull_gods.jpg
 - left_item_5: Covers the Earth in Abyss and shuts the sun off.
-- left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
 - right_item_1: Absorbs Asgard life-force and scales Destroyer.
 - right_image_1: Odin_Life2.jpg
 - right_item_2: Severs Nezarr arm with Odinsword.
@@ -157,7 +153,6 @@ Template HUD Bars:
 - subtitle: Two-profile stat readout
 - threat_level: COSMIC
 - integrity: 99.4%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -207,23 +202,14 @@ Template Winner CV:
 - right_title: ODIN RECORD
 - win_badge: W
 - left_item_1: Celestial
-- left_image_1: Knull_Celestial.jpg
 - left_item_2: Sentry
-- left_image_2: Knull_Sentry.jpg
 - left_item_3: Silver Surfer
-- left_image_3: Knull_Surfer.jpg
 - left_item_4: All-Father Thor
-- left_image_4: Knull_Jaw2.jpg
 - right_item_1: Infinity
-- right_image_1: Odin_Infinity.jpg
 - right_item_2: Seth
-- right_image_2: Odin_Seth.jpg
 - right_item_3: Thanos
-- right_image_3: Odin_Thanos.jpg
 - right_item_4: Silver Surfer
-- right_image_4: Odin_SS.jpg
 - right_item_5: Drax
-- right_image_5: Odin_Drax.jpg
 
 Template Summary:
 - headline: FINAL SUMMARY

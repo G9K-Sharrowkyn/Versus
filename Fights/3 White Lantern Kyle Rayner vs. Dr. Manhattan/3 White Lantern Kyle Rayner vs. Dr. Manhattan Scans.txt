@@ -1,0 +1,14 @@
+Template Raw Feats:
+- left_image_1: Kyle_source.jpeg
+- left_image_2: Kyle_Reshape.jpeg
+- left_image_3: Kyle_Banish.jpg
+- left_image_4: Kyle_Destabilize.jpeg
+- left_image_5: Kyle_Vessel.jpeg
+- right_image_1: Manhattan_Mxy1.jpeg
+- right_image_2: Manhattan_Reset.jpeg
+- right_image_3: Manhattan_10years.jpeg
+- right_image_4: Manhattan_SpeedForce.jpeg
+- right_image_5: Manhattan_ring.jpeg
+
+Template HUD Bars:
+- profile_mode: VS

@@ -13,6 +13,7 @@ const FIGHTS_DIR_CANDIDATES = [
 const IMAGE_FILE_PATTERN = /^([12])\.(jpe?g|png|webp|avif)$/i
 const ANY_IMAGE_FILE_PATTERN = /\.(jpe?g|png|webp|avif)$/i
 const TXT_FILE_PATTERN = /\.txt(?:\s*(?:pl|en|eng|polski|english))?$/i
+const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 
@@ -44,6 +45,11 @@ const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim
 const stripTxtDecoratorSuffix = (value: string) =>
   value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
 const normalizeFightFileBaseName = (value: string) => stripTxtDecoratorSuffix(stripFileExtension(value))
+const isSharedScansFile = (fileName: string) => {
+  if (!TXT_FILE_PATTERN.test(fileName)) return false
+  const normalizedBase = normalizeFightFileBaseName(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+  return SHARED_SCANS_FILE_PATTERN.test(normalizedBase)
+}
 
 const splitFightNameLocaleSuffix = (value: string): { base: string; locale: 'pl' | 'en' | 'unknown' } => {
   const normalized = value.replace(/[_]+/g, ' ').trim()
@@ -198,10 +204,18 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     }
 
     const txtCandidates = files
-      .filter((file) => TXT_FILE_PATTERN.test(file))
+      .filter((file) => TXT_FILE_PATTERN.test(file) && !isSharedScansFile(file))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    const sharedScansCandidates = files
+      .filter((file) => isSharedScansFile(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
     if (!txtCandidates.length) {
       folderWarnings.push(`Missing TXT file in folder "${folderName}".`)
+    }
+    if (sharedScansCandidates.length > 1) {
+      folderWarnings.push(
+        `Multiple shared scans TXT files detected in folder "${folderName}"; using "${sharedScansCandidates[0]}".`,
+      )
     }
 
     const { portraitAFile, portraitBFile, fallbackUsed } = pickPortraitFiles(files)
@@ -217,6 +231,22 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     if (!txtCandidates.length || !portraitAFile || !portraitBFile) {
       warnings.push(...folderWarnings)
       continue
+    }
+
+    let sharedScansContent = ''
+    if (sharedScansCandidates[0]) {
+      try {
+        const sharedScansPayload = await fs.readFile(path.join(folderPath, sharedScansCandidates[0]))
+        sharedScansContent = decodeImportTextBytes(new Uint8Array(sharedScansPayload)).trim()
+      } catch (error) {
+        if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
+          folderWarnings.push(
+            `Shared scans TXT "${sharedScansCandidates[0]}" in folder "${folderName}" has unsupported encoding (use UTF-8 or Windows-1250).`,
+          )
+        } else {
+          folderWarnings.push(`Failed to read shared scans TXT "${sharedScansCandidates[0]}" in folder "${folderName}".`)
+        }
+      }
     }
 
     const hasExplicitPlVariant = txtCandidates.some(
@@ -235,6 +265,10 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         }
         warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
         continue
+      }
+
+      if (sharedScansContent) {
+        txtContent = `${sharedScansContent}\n\n${txtContent}`
       }
 
       const fileMatchName = toMatchupDisplayNameFromFileName(txtFileName) || matchName

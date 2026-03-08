@@ -135,32 +135,21 @@ Template Raw Feats:
 - right_title: POKAZ HULKA
 - feat_label: FEAT
 - left_item_1: Rani i oszołamia Spectre.
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
 - left_item_2: Przepala dziurę w rzeczywistości.
-- left_image_2: Tears a hole through reality.jpeg
 - left_item_3: Dominacja nad Apollo i MMH.
-- left_image_3: Throws around Apollo.jpeg
 - left_item_4: Odporność na telepatię MMH.
-- left_image_4: Martian Manhunter can't telepathically.jpeg
 - left_item_5: Ugryzienie raniące Kronę.
-- left_image_5: He hurts Krona by biting him.jpeg
 - right_item_1: Planet-Busting Shockwave.
-- right_image_1: Worldbreaker Red She-Hulk and WBH clashing.jpg
 - right_item_2: Continental Footstep.
-- right_image_2: Nearly sank the entire east coast with a single step.jpg
 - right_item_3: Powalenie Dormammu.
-- right_image_3: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
 - right_item_4: Regeneracja ze szkieletu.
-- right_image_4: Explodes with only a skeleton left, and has seemingly healed immediately..jpg
 - right_item_5: Wytrzymałość (133 ciosy Herculesa).
-- right_image_5: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
 
 Template HUD Bars:
 - headline: ANALITYKA ZNISZCZENIA
 - subtitle: Odczyt parametrów Gniewu
 - threat_level: OMNIVERSAL THREAT
 - integrity: 100%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -211,25 +200,15 @@ Template Winner CV:
 - right_title: REKORD HULKA
 - win_badge: WIN
 - left_item_1: Spectre (Stagger)
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
 - left_item_2: Apollo & MMH
-- left_image_2: Throws around Apollo.jpeg
 - left_item_3: Krona (Bite)
-- left_image_3: He hurts Krona by biting him.jpeg
 - left_item_4: Butcher Entity
-- left_image_4: Atrocitus_ButcherBound.jpg
 - left_item_5: Divine Rod (Power Drain)
-- left_image_5: Built a cosmic Divining.jpeg
 - right_item_1: Sentry (Full Power)
-- right_image_1: Sentry.jpg
 - right_item_2: Dr. Strange (Mystic Shield)
-- right_image_2: Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG
 - right_item_3: Juggernaut (Defeat)
-- right_image_3: Defeated the Unstoppable Juggernaut.jpg
 - right_item_4: Nuclear Core (Lift)
-- right_image_4: Closed the door of a nuclear core that the combined efforts of Thor and the Thing couldn't budge..jpg
 - right_item_5: 90% Mass Regen
-- right_image_5: Healed around 90% of his body mass within seconds, including his eyes..jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

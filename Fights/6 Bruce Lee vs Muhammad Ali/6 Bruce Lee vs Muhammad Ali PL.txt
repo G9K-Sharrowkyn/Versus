@@ -128,32 +128,21 @@ Template Raw Feats:
 - right_title: POKAZ ALEGO
 - feat_label: FEAT
 - left_item_1: One-Inch Punch (Siła).
-- left_image_1: 01_6_1_bruce_one_inch_punch.jpg
 - left_item_2: Gary Elms (Baza bokserska).
-- left_image_2: 03_6_1_bruce_gary_elms_record.jpg
 - left_item_3: Pompki na palcach (Kontrola).
-- left_image_3: finger push-ups.webp
 - left_item_4: JKD (Ewolucja stylu).
-- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
 - left_item_5: Szybkość reakcji.
-- left_image_5: Jeet Kune Do.webp
 - right_item_1: Rope-a-dope (Foreman).
-- right_image_1: 05_6_2_ali_rope_a_dope.jpg
 - right_item_2: Szybkość heavy (Williams).
-- right_image_2: 06_6_2_ali_cleveland_speed.jpg
 - right_item_3: Wytrzymałość (Frazier).
-- right_image_3: 07_6_2_ali_frazier_endurance.jpg
 - right_item_4: KO Sonny Liston.
-- right_image_4: 12_7_2_ali_sonny_liston.jpg
 - right_item_5: Praca nóg (Taniec Alego).
-- right_image_5: Dance.jpg
 
 Template HUD Bars:
 - headline: ANALIZA BIOMECHANICZNA
 - subtitle: Odczyt parametrów fizycznych
 - threat_level: HUMAN LEGEND
 - integrity: 98.7%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -193,25 +182,15 @@ Template Winner CV:
 - right_title: REKORD ALEGO
 - win_badge: WIN
 - left_item_1: Gary Elms (Boks)
-- left_image_1: Gary Elms.jpg
 - left_item_2: Yoichi Nakachi (KO)
-- left_image_2: Yoichi Nakachi.jpg
 - left_item_3: Wong Jack Man
-- left_image_3: 09_7_1_bruce_yoichi_nakachi.jpg
 - left_item_4: Chuck Norris (Sparring)
-- left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
 - left_item_5: Jesse Glover
-- left_image_5: 03_6_1_bruce_gary_elms_record.jpg
 - right_item_1: George Foreman
-- right_image_1: 05_6_2_ali_rope_a_dope.jpg
 - right_item_2: Joe Frazier
-- right_image_2: 07_6_2_ali_frazier_endurance.jpg
 - right_item_3: Sonny Liston
-- right_image_3: 12_7_2_ali_sonny_liston.jpg
 - right_item_4: Cleveland Williams
-- right_image_4: 06_6_2_ali_cleveland_speed.jpg
 - right_item_5: Ernie Terrell
-- right_image_5: 14_7_2_ali_ernie_terrell.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

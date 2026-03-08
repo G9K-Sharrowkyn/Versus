@@ -133,32 +133,21 @@ Template Raw Feats:
 - right_title: POKAZ SAITAMY
 - feat_label: FEAT
 - left_item_1: Wstrząsa nieskończoną Pustką.
-- left_image_1: Shakes the World of The Void .jpg
 - left_item_2: Kontruje ataki międzywymiarowe.
-- left_image_2: Detects and Counters attacks coming from a different dimension.jpg
 - left_item_3: Blokuje ataki bez patrzenia.
-- left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
 - left_item_4: No-sell na potężne eksplozje.
-- left_image_4: Unaffected by Android 17's Self-Destruction.png
 - left_item_5: Silniejszy od Bogów Zniszczenia.
-- left_image_5: Belmod.png
 - right_item_1: Serious Punch Squared (Dziura w gwiazdach).
-- right_image_1: Serious Punch Squared... generates an explosion that.png
 - right_item_2: Serious Sneeze (Demolka Jowisza).
-- right_image_2: A Serious Sneeze blows away the gas surrounding Jupiter's.png
 - right_item_3: Toon Force (Chwytanie portali).
-- right_image_3: Can freely grab and move hyperspace.png
 - right_item_4: Zero Punch (Manipulacja czasem).
-- right_image_4: Saitama time travels to reverse causality.png
 - right_item_5: Odporność na ataki wewnętrzne.
-- right_image_5: Saitama is immune to attacks.png
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt dwóch anomalii mocy
 - threat_level: MULTI-UNIVERSAL
 - integrity: 100%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
@@ -208,25 +197,15 @@ Template Winner CV:
 - right_title: REKORD SAITAMY
 - win_badge: W
 - left_item_1: Hit
-- left_image_1: 11_7_1_jiren_hit.jpg
 - left_item_2: Maji Kayo (Shockwave)
-- left_image_2: 12_7_1_jiren_maji_kayo.jpg
 - left_item_3: Golden Frieza
-- left_image_3: 13_7_1_jiren_golden_frieza.jpg
 - left_item_4: Kale
-- left_image_4: 14_7_1_jiren_kale.jpg
 - left_item_5: Belmod (Scaling)
-- left_image_5: Belmod.png
 - right_item_1: Boros
-- right_image_1: 16_7_2_saitama_boros.jpg
 - right_item_2: Cosmic Garou
-- right_image_2: 20_7_2_saitama_garou_zero_punch.jpg
 - right_item_3: Orochi
-- right_image_3: 18_7_2_saitama_orochi.jpg
 - right_item_4: Elder Centipede
-- right_image_4: 17_7_2_saitama_elder_centipede.jpg
 - right_item_5: Evil Ocean Water
-- right_image_5: 19_7_2_saitama_evil_ocean_water.jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

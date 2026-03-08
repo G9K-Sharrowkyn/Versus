@@ -1,0 +1,26 @@
+Template Raw Feats:
+- left_image_1: Ciskanie bombowcem Y-Wing.jpeg
+- left_image_2: Slams two starships together.jpeg
+- left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
+- left_image_4: Survives a giant explosion that destroyed a casino.jpeg
+- left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
+- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
+- right_image_2: Stops Mjolnir mid-flight.jpeg
+- right_image_3: Turns a Skrull to stone.jpeg
+- right_image_4: Gets disintegrated down to his skeleton.jpeg
+- right_image_5: No-sells Odin's blast.jpeg
+
+Template HUD Bars:
+- profile_mode: VS
+
+Template Winner CV:
+- left_image_1: Impales himself to kill Maul.jpeg
+- left_image_2: Vader vs Celeste Morne.jpeg
+- left_image_3: Vader vs Sha Koon.jpeg
+- left_image_4: Duels the Dark Woman.jpeg
+- left_image_5: vader-vs-master-kai-hudorra.jpeg
+- right_image_1: Thanos beats Silver Surfer.jpeg
+- right_image_2: Beat up Beta Ray.jpg
+- right_image_3: Manhandles Hulk and Thing.jpeg
+- right_image_4: Blasts Galactus.jpeg
+- right_image_5: Bargained with The One.jpg

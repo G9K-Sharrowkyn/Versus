@@ -133,32 +133,21 @@ Template Raw Feats:
 - right_title: POKAZ MANHATTANA
 - feat_label: FEAT
 - left_item_1: Edytuje Source Code ("Unmaking").
-- left_image_1: Kyle_source.jpeg
 - left_item_2: Zmienił wszechświat (Source Wall return).
-- left_image_2: Kyle_Reshape.jpeg
 - left_item_3: Banicja Source Titans.
-- left_image_3: Kyle_Banish.jpg
 - left_item_4: Walka destabilizująca rzeczywistość.
-- left_image_4: Kyle_Destabilize.jpeg
 - left_item_5: Przełamanie Emotional Entities.
-- left_image_5: Kyle_Vessel.jpeg
 - right_item_1: Wykładniczo silniejszy od Mxyzptlka.
-- right_image_1: Manhattan_Mxy1.jpeg
 - right_item_2: Reset całej linii czasowej DC.
-- right_image_2: Manhattan_Reset.jpeg
 - right_item_3: Wymazanie 10 lat historii (New 52).
-- right_image_3: Manhattan_10years.jpeg
 - right_item_4: Uderzenie w Speed Force.
-- right_image_4: Manhattan_SpeedForce.jpeg
 - right_item_5: Wymazanie Legionu (Alan Scott 1940).
-- right_image_5: Manhattan_ring.jpeg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
 - subtitle: Metaversal War
 - threat_level: META-CRISIS
 - integrity: 100%
-- profile_mode: VS
 - scale: 0-100
 
 Template Radar Brief:
