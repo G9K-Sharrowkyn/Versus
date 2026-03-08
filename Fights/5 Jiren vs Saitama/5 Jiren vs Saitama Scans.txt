@@ -1,14 +1,14 @@
 Template Raw Feats:
-- left_image_1: Shakes the World of The Void .jpg
-- left_image_2: Detects and Counters attacks coming from a different dimension.jpg
-- left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
-- left_image_4: Unaffected by Android 17's Self-Destruction.png
-- left_image_5: Belmod.png
-- right_image_1: Serious Punch Squared... generates an explosion that.png
-- right_image_2: A Serious Sneeze blows away the gas surrounding Jupiter's.png
-- right_image_3: Can freely grab and move hyperspace.png
-- right_image_4: Saitama time travels to reverse causality.png
-- right_image_5: Saitama is immune to attacks.png
+- left_image_1: 01_6_1_jiren_one_finger_block.jpg
+- left_image_2: 02_6_1_jiren_breaks_time_cage.jpg
+- left_image_3: 03_6_1_jiren_spirit_bomb_glare.jpg
+- left_image_4: 04_6_1_jiren_meditation_barrier.jpg
+- left_image_5: 05_6_1_jiren_belmod_scaling.jpg
+- right_image_1: 06_6_2_saitama_serious_punch_squared.jpg
+- right_image_2: 07_6_2_saitama_serious_sneeze.jpg
+- right_image_3: 08_6_2_saitama_hyperspace_gate_grab.jpg
+- right_image_4: 09_6_2_saitama_gamma_ray_burst.jpg
+- right_image_5: 10_6_2_saitama_zero_punch.jpg
 
 Template HUD Bars:
 - profile_mode: VS
@@ -18,9 +18,9 @@ Template Winner CV:
 - left_image_2: 12_7_1_jiren_maji_kayo.jpg
 - left_image_3: 13_7_1_jiren_golden_frieza.jpg
 - left_image_4: 14_7_1_jiren_kale.jpg
-- left_image_5: Belmod.png
+- left_image_5: 15_7_1_jiren_vegeta.jpg
 - right_image_1: 16_7_2_saitama_boros.jpg
-- right_image_2: 20_7_2_saitama_garou_zero_punch.jpg
+- right_image_2: 17_7_2_saitama_elder_centipede.jpg
 - right_image_3: 18_7_2_saitama_orochi.jpg
-- right_image_4: 17_7_2_saitama_elder_centipede.jpg
-- right_image_5: 19_7_2_saitama_evil_ocean_water.jpg
+- right_image_4: 19_7_2_saitama_evil_ocean_water.jpg
+- right_image_5: 20_7_2_saitama_garou_zero_punch.jpg

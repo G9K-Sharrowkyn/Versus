@@ -1,26 +1,26 @@
 Template Raw Feats:
-- left_image_1: Ciskanie bombowcem Y-Wing.jpeg
-- left_image_2: Slams two starships together.jpeg
-- left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
-- left_image_4: Survives a giant explosion that destroyed a casino.jpeg
-- left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
-- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
-- right_image_2: Stops Mjolnir mid-flight.jpeg
-- right_image_3: Turns a Skrull to stone.jpeg
-- right_image_4: Gets disintegrated down to his skeleton.jpeg
-- right_image_5: No-sells Odin's blast.jpeg
+- left_image_1: 01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg
+- left_image_2: 02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg
+- left_image_3: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
+- left_image_4: 04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg
+- left_image_5: 05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg
+- right_image_1: 06_6_2_thanos_showcase_feats_destroys_a_planet_during_a_fight_with_drax.jpg
+- right_image_2: 07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg
+- right_image_3: 08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg
+- right_image_4: 09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg
+- right_image_5: 10_6_2_thanos_showcase_feats_performs_molecular_level_matter_manipulation.jpg
 
 Template HUD Bars:
 - profile_mode: VS
 
 Template Winner CV:
-- left_image_1: Impales himself to kill Maul.jpeg
-- left_image_2: Vader vs Celeste Morne.jpeg
-- left_image_3: Vader vs Sha Koon.jpeg
-- left_image_4: Duels the Dark Woman.jpeg
-- left_image_5: vader-vs-master-kai-hudorra.jpeg
-- right_image_1: Thanos beats Silver Surfer.jpeg
-- right_image_2: Beat up Beta Ray.jpg
-- right_image_3: Manhandles Hulk and Thing.jpeg
-- right_image_4: Blasts Galactus.jpeg
-- right_image_5: Bargained with The One.jpg
+- left_image_1: 11_7_1_darth_vader_showcase_wins_dark_woman.jpg
+- left_image_2: 12_7_1_darth_vader_showcase_wins_sha_koon.jpg
+- left_image_3: 13_7_1_darth_vader_showcase_wins_hylon.jpg
+- left_image_4: 14_7_1_darth_vader_showcase_wins_celeste_morne.jpg
+- left_image_5: 15_7_1_darth_vader_showcase_wins_kai_hudorra.jpg
+- right_image_1: 16_7_2_thanos_showcase_wins_silver_surfer.jpg
+- right_image_2: 17_7_2_thanos_showcase_wins_hulk.jpg
+- right_image_3: 18_7_2_thanos_showcase_wins_beta_ray_bill_and_ronan_the_accuser.jpg
+- right_image_4: 19_7_2_thanos_showcase_wins_adam_warlock.jpg
+- right_image_5: 20_7_2_thanos_showcase_wins_thor_with_the_power_gem.jpg
