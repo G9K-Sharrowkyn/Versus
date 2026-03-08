@@ -2,11 +2,11 @@
 Atrocitus (Butcher Host)
 
 2. Character A Stats
-- Strength: 88
+- Strength: 90
 - Speed: 86
-- Durability: 90
-- Combat IQ: 88
-- Hax: 96
+- Durability: 92
+- Combat IQ: 90
+- Hax: 97
 - Stamina: 92
 - Fighting Style: 82
 - Experience: 95
@@ -14,41 +14,41 @@ Atrocitus (Butcher Host)
 
 3. Character A Feats
 - Styl: Chirurgiczna furia i magia krwi. Atrocitus łączy brutalną siłę fizyczną z morderczą plazmą Red Lanternów oraz starożytnymi rytuałami Imperium Łez.
-- Atut: Kontrola Konceptu Gniewu. Dzięki esencji Butchera, Atrocitus włada gniewem na poziomie fundamentalnym. Jego plazma ignoruje konwencjonalną wytrzymałość, przepalając się przez strukturę materii.
-- Mentalność: Bezwzględny Inkwizytor. Nie szuka walki, szuka kary. Dąży do totalnej dominacji nad duszą i ciałem przeciwnika poprzez ból i nienawiść.
+- Atut: Kontrola Konceptu Gniewu i Skalowanie Kosmiczne. Jako host Butchera rani byty takie jak Spectre czy Krona. Jego plazma przepala bariery międzywymiarowe i ignoruje boskie odporności.
+- Mentalność: Bezwzględny Inkwizytor. Jego umysł jest tak pełen nienawiści, że odpiera ataki najsilniejszych telepatów (MMH), zostawiając ich z psychicznymi bliznami.
 
 4. Defeated by Character A
-- The Butcher Entity (uwięziony i zdominowany)
-- Martian Manhunter i Apollo (starcie w "Red Lanterns")
-- Saint Walker, Indigo-1 i Star Sapphire (jednoczesne przytłoczenie)
-- Volthoom (First Lantern - przetrwał jego ataki)
-- Legiony Manhunterów
+- Spectre ( Jim Corrigan - zdołał go zranić i oszołomić)
+- Apollo i Martian Manhunter (jednoczesna dominacja w walce fizycznej)
+- The Butcher Entity (uwięziony i zdominowany w baterii)
+- Krona (Strażnik Wszechświata - zmuszony do krzyku z bólu)
+- Volthoom (First Lantern - przetrwał jego manipulacje rzeczywistością)
 
 5. Character B
 World Breaker Hulk (Green Scar / World War Hulk peak)
 
 6. Character B Stats
 - Strength: 100
-- Speed: 82
-- Durability: 98
+- Speed: 85
+- Durability: 100
 - Combat IQ: 85
-- Hax: 70
+- Hax: 80
 - Stamina: 100
 - Fighting Style: 84
 - Experience: 82
 - Combat Skills: 86
 
 7. Character B Feats
-- Styl: Nuklearny kataklizm. Hulk w tej formie emituje stałe promieniowanie gamma, które obraca planety w pył. Walczy z precyzją mistrza areny (Green Scar) i siłą siły natury.
-- Atut: Nieskończona Eskalacja i Regeneracja. Im bardziej Atrocitus go rani i podsyca jego gniew, tym silniejszy staje się Hulk. Jego regeneracja pozwala mu wrócić z popiołów w sekundy.
-- Mentalność: Złamany Król. Walczy z zimną, wyrachowaną furią. Nie jest bezmyślną bestią – jest generałem, który chce zniszczyć świat, który go zdradził.
+- Styl: Nuklearny kataklizm. Hulk w tej formie emituje stałe promieniowanie gamma, które obraca planety w pył. Walczy z precyzją mistrza areny i siłą zdolną powalać istoty wymiarowe.
+- Atut: Nieśmiertelność i Eskalacja Gamma. Posiada dostęp do "Green Door", co pozwala mu na natychmiastowy powrót z martwych. Jego siła i regeneracja rosną wykładniczo wraz z gniewem.
+- Mentalność: Złamany Król. Walczy z zimną, wyrachowaną furią. Nie jest bezmyślną bestią – jest generałem, którego gniew nadpisuje prawa fizyki.
 
 8. Defeated by Character B
-- Sentry (starcie zakończone wzajemnym nokautem w formie ludzkiej)
-- Doctor Strange (w formie Zom-Strange)
-- Juggernaut (neutralizacja pędu)
-- Bi-Beast i Wendigo (jednoczesny stomp)
-- Arm'Cheddon
+- Sentry (najpotężniejszy heros Ziemi)
+- Doctor Strange (przełamanie barier mistycznych)
+- Dormammu (powalony falą uderzeniową klaśnięcia)
+- Juggernaut (neutralizacja pędu niepowstrzymanej siły)
+- Thor i Thing (przewyższył ich połączoną siłę przy nuklearnym rdzeniu)
 
 9. Template Order
 - tactical-board
@@ -69,59 +69,59 @@ World Breaker Hulk (Green Scar / World War Hulk peak)
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Moce: Plazma Red Lantern (płonąca krew), magia krwi, tworzenie konstruktów, lot, projekcja konceptualna gniewu.
-- Narzędzia: Czerwony Pierścień Mocy, Bateria Mocy z uwięzionym Butcherem.
-- Słabości: Zależność od serca pierścienia (zastępuje on jego biologiczne serce).
-- Słabości: Niebieskie światło Nadziei może zneutralizować jego plazmę.
+- Moce: Plazma Red Lantern, magia krwi, detekcja międzywymiarowa, odporność telepatyczna, tworzenie armii (Manhunters).
+- Narzędzia: Czerwony Pierścień, Divine Rod (wysysanie mocy), Bateria z Butcherem.
+- Słabości: Zależność od pierścienia (zastępuje on jego serce).
+- Słabości: Skrajne użycie magii krwi wyczerpuje jego siły życiowe.
 
 11. Character A Raw Feats
-- Uwięził esencję gniewu (Butchera) we własnej baterii mocy.
-- Walczył dalej z wyrwanym sercem, polegając wyłącznie na energii pierścienia.
-- Przepalił plazmą samą tkankę rzeczywistości i przestrzeni.
-- Przetrwał ataki Volthooma, który manipulował całą rzeczywistością.
-- Przewidział przyszłość poprzez rytuał krwi, śledząc "ścieżki furii".
+- Rani i oszołamia Spectre'a swoimi atakami plazmowymi.
+- Przepala dziurę w samej rzeczywistości, by dostać się do innych wymiarów.
+- Dominacja fizyczna nad Apollo i Martian Manhunterem jednocześnie.
+- Całkowita odporność na telepatię (MMH odnosi rany psychiczne przy próbie ataku).
+- Ugryzienie Krony przebija jego boską wytrzymałość, powodując ból.
 
 12. Character B Powers / Tools / Weaknesses
-- Moce: Emisja Gamma (World Breaker), nadludzka siła i wytrzymałość, regeneracja atomowa, fale uderzeniowe.
-- Narzędzia: Brak – on sam jest bronią masowej zagłady.
+- Moce: Emisja Gamma (World Breaker), nieśmiertelność (Green Door), regeneracja atomowa, Thunderclap powalający byty wymiarowe.
+- Narzędzia: Brak – on sam jest bronią ostateczną.
 - Słabości: Ekstremalne wysysanie energii gamma może go cofnąć do formy Bannera.
-- Słabości: Pozostaje istotą fizyczną, podatną na wysokopoziomowy hax magiczny/duchowy.
+- Słabości: Ataki celujące bezpośrednio w duszę mogą go spowolnić, choć rzadko zatrzymać.
 
 13. Character B Raw Feats
-- Krokiem wywołał trzęsienia ziemi na całym kontynencie.
-- Zniszczył planetę i księżyc jako efekt uboczny starcia w formie World Breaker.
-- Wytrzymał pełną moc Sentry'ego ("Moc tysiąca słońc").
-- Przekierował szarżę niepowstrzymanego Juggernauta czystą techniką i siłą.
-- Zregenerował się po całkowitej dezintegracji tkanek.
+- Rozbił planetę i uszkodził księżyc samym zderzeniem z Red She-Hulk.
+- Niemal zatopił wschodnie wybrzeże USA wykonując jeden krok.
+- Powalił Dormammu – byt istniejący poza czasem i przestrzenią.
+- Zregenerował 90% masy ciała i oczy w kilka sekund po wybuchu.
+- Wytrzymał energię mistyczną równą 133 ciosom Herculesa z pełną siłą.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // ATROCITUS VS HULK
-- subtitle: Programowanie Gniewu kontra Nuklearna Eskalacja
+- subtitle: Meta-Furia kontra Nuklearna Eskalacja
 - left_header: RYTUAŁ KRWI
 - right_header: PROMIENIOWANIE GAMMA
 - linear_label: ODCINEK LINIOWY
 - chaos_label: ODCINEK CHAOSU
-- lane: Atrocitus musi "wyłączyć" emocjonalne serce Hulka. Hulk musi po prostu zmiażdżyć Atrocitusa, zanim magia krwi go spęta.
+- lane: Atrocitus musi skorumpować serce Hulka lub spalić jego duszę. Hulk musi zmiażdżyć Atrocitusa, zanim rzeczywistość bielejąca od Gamma się rozpadnie.
 
 Template Character A:
 - name: Atrocitus
 - world: DC (Butcher Host)
-- style: Magia Krwi i Plazma Furii. Atrocitus to mistrz manipulacji gniewem, który zamienia ból w niszczycielską energię.
-- advantage: Hax konceptualny. Atakuje nie tylko ciało, ale samą esencję gniewu przeciwnika.
-- mentality: Zimny Egzekutor. Traktuje przeciwnika jak grzesznika, którego trzeba wymazać z istnienia.
-- quote: With blood and rage of crimson red... ripped from a corpse so freshly dead...
+- style: Chirurgiczna Furia. Atrocitus to mistrz manipulacji gniewem, który rani nawet byty kosmiczne.
+- advantage: Hax i Odporność. Jego umysł jest fortecą, a krew przepala wymiary.
+- mentality: Zimny Inkwizytor. Nie walczy – on wymierza karę całemu wszechświatowi.
+- quote: With blood and rage of crimson red... I will burn the very fabric of space!
 
 Template Character B:
 - name: Hulk
 - world: Marvel (World Breaker)
-- style: Brutalna fizyczność i nuklearna aura. Hulk to chodzący reaktor gamma, który z każdym ciosem niszczy fundamenty świata.
-- advantage: Nieskończona siła i regeneracja. Jest "Najsilniejszym, jaki istnieje" w skali fizycznej.
-- mentality: Zniszczony Król. Szuka końca swojej walki, miażdżąc wszystko na swojej drodze.
-- quote: HULK SMASH PUNY RED MAN!
+- style: Brutalna fizyczność i aura zniszczenia. Hulk to chodzący koniec świata, który ignoruje śmierć.
+- advantage: Nieśmiertelność i Skala. Jest "Najsilniejszym, jaki istnieje" w skali fizycznej.
+- mentality: Złamany Król. Walczy z precyzją i bezgranicznym gniewem.
+- quote: HULK IS STRONGEST THERE IS!
 
 Template Powers / Tools / Weaknesses:
 - headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Spektrum Emocjonalne vs Energia Gamma
+- subtitle: Plazma Międzywymiarowa vs Energia Gamma
 - left_title: ARSENAŁ ATROCITUSA
 - right_title: ARSENAŁ HULKA
 - powers_label: MOCE
@@ -130,35 +130,35 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Dowody na planetarną destrukcję
+- subtitle: Dowody na łamanie praw fizyki
 - left_title: POKAZ ATROCITUSA
 - right_title: POKAZ HULKA
 - feat_label: FEAT
-- left_item_1: Uwięzienie Butchera.
-- left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
-- left_item_2: Walka bez serca.
-- left_image_2: 02_6_1_atrocitus_heart_removed.jpg
-- left_item_3: Magia Krwi (Foresight).
-- left_image_3: 03_6_1_atrocitus_blood_magic_foresight.jpg
-- left_item_4: Przepalenie Przestrzeni.
-- left_image_4: 04_6_1_atrocitus_burns_through_space.jpg
-- left_item_5: Dominacja nad Lanternami.
-- left_image_5: 05_6_1_atrocitus_group_overpowering.jpg
-- right_item_1: Destrukcja Planetarna (Collateral).
-- right_image_1: 06_6_2_hulk_planet_moon_collateral.jpg
-- right_item_2: Wytrzymałość na Sentry'ego.
-- right_image_2: 07_6_2_hulk_endured_sentry.jpg
-- right_item_3: Regeneracja Atomowa.
-- right_image_3: 08_6_2_hulk_regeneration.jpg
-- right_item_4: Neutralizacja Juggernauta.
-- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
-- right_item_5: Pogrom Bi-Beasta i Wendigo.
-- right_image_5: 10_6_2_hulk_bi_beast_wendigo.jpg
+- left_item_1: Rani i oszołamia Spectre.
+- left_image_1: The Butcher could draw blood from the Spectre.jpeg
+- left_item_2: Przepala dziurę w rzeczywistości.
+- left_image_2: Tears a hole through reality.jpeg
+- left_item_3: Dominacja nad Apollo i MMH.
+- left_image_3: Throws around Apollo.jpeg
+- left_item_4: Odporność na telepatię MMH.
+- left_image_4: Martian Manhunter can't telepathically.jpeg
+- left_item_5: Ugryzienie raniące Kronę.
+- left_image_5: He hurts Krona by biting him.jpeg
+- right_item_1: Planet-Busting Shockwave.
+- right_image_1: Worldbreaker Red She-Hulk and WBH clashing.jpg
+- right_item_2: Continental Footstep.
+- right_image_2: Nearly sank the entire east coast with a single step.jpg
+- right_item_3: Powalenie Dormammu.
+- right_image_3: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
+- right_item_4: Regeneracja ze szkieletu.
+- right_image_4: Explodes with only a skeleton left, and has seemingly healed immediately..jpg
+- right_item_5: Wytrzymałość (133 ciosy Herculesa).
+- right_image_5: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
 
 Template HUD Bars:
 - headline: ANALITYKA ZNISZCZENIA
 - subtitle: Odczyt parametrów Gniewu
-- threat_level: PLANETARY+
+- threat_level: OMNIVERSAL THREAT
 - integrity: 100%
 - profile_mode: VS
 - scale: 0-100
@@ -170,97 +170,97 @@ Template Radar Brief:
 - right_header: PRZEWAGI HULKA
 - draw_header: STREFY REMISU
 - favorite_label: STATYSTYCZNY FAWORYT
-- favorite: Atrocitus (Papier), Hulk (Praktyka)
+- favorite: World Breaker Hulk
 
 Template Interpretation:
 - headline: INTERPRETACJA
 - subtitle: Kto wygrywa na papierze?
-- line_1: Atrocitus wygrywa wszechstronnością – lot i magia krwi dają mu kontrolę nad polem walki.
-- line_2: Jednak World Breaker Hulk to "ściana", której nie da się przebić standardowymi atakami energii.
-- line_3: To starcie typu "Hax vs Scale". Wygrana zależy od tego, czy plazma Atrocitusa zdoła spalić komórki Hulka szybciej, niż te się zregenerują.
-- quote: Gniew Atrocitusa ma cel. Gniew Hulka ma tylko kierunek.
+- line_1: Atrocitus posiada narzędzia do walki z bytami wykraczającymi poza fizyczność (Spectre, Krona).
+- line_2: Hulk w tej formie jest jednak fizycznym punktem krytycznym wszechświata – nieśmiertelnym i stale rosnącym w siłę.
+- line_3: To starcie "Chirurga Gniewu" z "Nuklearnym Bogiem". Wygrana zależy od tego, czy magia Atrocitusa spęta duszę Hulka.
+- quote: Atrocitus próbuje okiełznać słońce, które nie chce zgasnąć.
 
 Template Stat Trap:
 - headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego liczby kłamią przy Hulku
-- trap_top: SIŁA HULKA JEST NIEOGRANICZONA
-- trap_bottom: HAX ATROCITUSA MOŻE GO OSŁABIĆ
-- example: Atrocitus ma wyższe IQ i Hax, ale Hulk jednym klaśnięciem generuje falę uderzeniową, która gasi plazmę i niszczy konstrukty.
-- question: Czy Atrocitus zdoła utrzymać Hulka na dystans, zanim ten tupnięciem rozbije planetę pod ich stopami?
+- subtitle: Dlaczego liczby kłamią przy tej skali
+- trap_top: HULK IGNORUJE ŚMIERĆ (GREEN DOOR)
+- trap_bottom: ATROCITUS PRZEPALA WYMIARY
+- example: Atrocitus może spalić Hulka do kości, ale grafika udowadnia, że Hulk wraca z formy szkieletowej natychmiast.
+- question: Czy plazma Atrocitusa, która rani Spectre, zdoła spalić "Green Door" i odciąć Hulka od jego źródła?
 
 Template X-Factor:
 - headline: X-FACTOR
 - subtitle: Decydująca zmienna
 - factor: PĘTLA SPRZĘŻENIA GNIEWU
-- a_value: 92
-- a_bonus: +KONTROLA
+- a_value: 95
+- a_bonus: +KONTRA
 - a_bonus_label: BUTCHER
 - b_value: 100
-- b_bonus: +ESKALACJA
-- regen: REAKTOR GAMMA
-- mechanika: Atrocitus żywi się gniewem. Hulk produkuje gniew. To sprawia, że Atrocitus jest teoretycznie silniejszy w obecności Hulka.
-- implikacja: Istnieje jednak punkt krytyczny. Hulk World Breaker emituje tyle energii, że może po prostu "przeładować" pierścień Atrocitusa, doprowadzając do jego eksplozji.
-- psychologia: Atrocitus chce, by Hulk był wściekły. To jego największy błąd.
+- b_bonus: +IMMORTAL
+- regen: GREEN DOOR
+- mechanika: Atrocitus żywi się gniewem, co czyni go silniejszym w walce z Hulkiem. Jednak World Breaker emituje tyle energii, że pierścień Atrocitusa może zostać przeciążony.
+- implikacja: "Green Door" gwarantuje, że Hulk zawsze wróci. Atrocitus musi wygrać przez BFR (wyrzucenie poza rzeczywistość), co potrafi.
+- psychologia: Atrocitus chce kary. Hulk chce zniszczenia. To zderzenie dwóch nieustępliwych woli.
 
 Template Winner CV:
-- headline: Archiwum Zwycięstw
+- headline: Victory Archive
 - subtitle: Największe triumfy
 - archive_label: 
 - avg_label: Poziom Zagrożenia
 - left_title: REKORD ATROCITUSA
 - right_title: REKORD HULKA
 - win_badge: WIN
-- left_item_1: Butcher Entity
-- left_image_1: Atrocitus_ButcherBound.jpg
-- left_item_2: Martian Manhunter
-- left_image_2: Atrocitus_Martian_Apollo.jpeg
-- left_item_3: Bleez (Dominacja)
-- left_image_3: Atrocitus_Bleez.jpeg
-- left_item_4: Volthoom (Survival)
-- left_image_4: Atrocitus_Voolthom.jpeg
-- left_item_5: Guardians (Attack)
-- left_image_5: Atrocitus.webp
-- right_item_1: Sentry
-- right_image_1: 07_6_2_hulk_endured_sentry.jpg
-- right_item_2: Doctor Strange
-- right_image_2: 08_6_2_hulk_regeneration.jpg
-- right_item_3: Iron Man (Hulkbuster)
-- right_image_3: 14_7_2_hulk_iron_man.jpg
-- right_item_4: Juggernaut
-- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
-- right_item_5: Arm'Cheddon
-- right_image_5: 15_7_2_hulk_armcheddon.jpg
+- left_item_1: Spectre (Stagger)
+- left_image_1: The Butcher could draw blood from the Spectre.jpeg
+- left_item_2: Apollo & MMH
+- left_image_2: Throws around Apollo.jpeg
+- left_item_3: Krona (Bite)
+- left_image_3: He hurts Krona by biting him.jpeg
+- left_item_4: Butcher Entity
+- left_image_4: Atrocitus_ButcherBound.jpg
+- left_item_5: Divine Rod (Power Drain)
+- left_image_5: Built a cosmic Divining.jpeg
+- right_item_1: Sentry (Full Power)
+- right_image_1: Sentry.jpg
+- right_item_2: Dr. Strange (Mystic Shield)
+- right_image_2: Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG
+- right_item_3: Juggernaut (Defeat)
+- right_image_3: Defeated the Unstoppable Juggernaut.jpg
+- right_item_4: Nuclear Core (Lift)
+- right_image_4: Closed the door of a nuclear core that the combined efforts of Thor and the Thing couldn't budge..jpg
+- right_item_5: 90% Mass Regen
+- right_image_5: Healed around 90% of his body mass within seconds, including his eyes..jpg
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: Werdykt
-- winner: World Breaker Hulk (Minimalna Przewaga)
-- line_1: To jedna z najtrudniejszych walk do rozstrzygnięcia. Atrocitus ma narzędzia, by zabić Hulka (Force Crush, spalenie serca).
-- line_2: Jednak forma World Breaker jest zbyt odporna. Skala zniszczeń kolateralnych Hulka i jego nieskończona stamina ostatecznie zmęczą latarnika.
-- line_3: Hulk wygrywa 6/10 starć przez czystą wytrzymałość. Atrocitus wygrywa 4/10, jeśli uda mu się rytuał magii krwi.
+- winner: World Breaker Hulk (Wysoka Przewaga)
+- line_1: To starcie dwóch potęg gniewu kończy się zwycięstwem Hulka dzięki jego nieskończonej eskalacji i nieśmiertelności.
+- line_2: Atrocitus ma narzędzia, by ranić i torturować Hulka, ale nie ma sposobu, by go ostatecznie zatrzymać.
+- line_3: Hulk wygrywa 8/10 starć przez totalne zniszczenie pola walki. Atrocitus wygrywa tylko przez BFR lub rytuał krwi.
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Przebieg starcia w czasie
-- a_curve: 95,90,80,60,40
-- b_curve: 70,85,95,100,105
+- subtitle: Przebieg starcia
+- a_curve: 95,90,85,75,60
+- b_curve: 80,90,100,115,130
 - yellow_wave: 40,40,40,40,40,40,40,40
-- phase_1: Atrocitus zalewa pole walki plazmą, utrzymując się w powietrzu. Hulk przyjmuje ciosy, jego ciało paruje, ale idzie naprzód.
-- phase_2: Hulk uderza klasśnięciem (Thunderclap), rozbijając aurę Atrocitusa. Atrocitus używa konstrukcji Butchera, by unieruchomić Tytana.
-- phase_3: Hulk wchodzi w stan World Breaker. Planeta pęka. Atrocitus traci stabilność lotu. Hulk chwyta go w morderczym uścisku.
-- analysis: Atrocitus musi skończyć walkę szybko. Im dłużej ona trwa, tym bardziej Hulk staje się nie do powstrzymania.
+- phase_1: Atrocitus przepala rzeczywistość, by uderzyć Hulka z niespodziewanych kątów. Hulk przyjmuje ciosy, stając się "żywym słońcem Gamma".
+- phase_2: Atrocitus gryzie i rozrywa tkanki Hulka, raniąc go na poziomie boskim. Hulk odpowiada Thunderclapem, niszcząc pobliskie konstrukty.
+- phase_3: Hulk wchodzi w stan "Infinite World Breaker". Planeta paruje. Atrocitus używa Divine Rod, by wyssać Gammę, ale skala emisji jest zbyt duża.
+- analysis: Atrocitus musi usunąć Hulka z rzeczywistości natychmiast. Każda sekunda czyni Hulka silniejszym.
 
 Template Fight Simulation:
 - headline: SYMULACJA WALKI // ETAPY
 - subtitle: Jak by to wyglądało?
-- opening: Atrocitus wymiotuje plazmą prosto w twarz Hulka. Hulk ryczy, a jego skóra regeneruje się w trakcie palenia.
-- mid_fight: Atrocitus wbija konstrukty w klatkę piersiową Hulka, celując w serce. Hulk łapie konstrukty i rozrywa je gołymi rękami, emitując falę gamma.
-- late_fight: Atrocitus próbuje rytuału, by wyssać gniew z Hulka. Hulk odpowiada takim wybuchem furii, że energia pierścienia Atrocitusa zaczyna migotać.
-- end_condition: Hulk uderza z siłą niszczącą tektonikę. Atrocitus zostaje wbity w jądro planety. Hulk stoi na gruzach świata. "HULK IS STRONGEST!".
+- opening: Atrocitus zalewa Hulka plazmą, która raniła Spectre. Hulk ryczy, a jego ciało regeneruje się szybciej niż płonie.
+- mid_fight: Atrocitus próbuje rytuału, by przejąć kontrolę nad gniewem Hulka. Hulk uderza z taką siłą, że fala uderzeniowa rozrywa konstrukcje magii krwi.
+- late_fight: Atrocitus otwiera dziurę w rzeczywistości, by wyrzucić Hulka (BFR). Hulk chwyta krawędzie wyrwy i rozdziera ją gołymi rękami.
+- end_condition: Hulk uderza Atrocitusa ciosiem, który niszczy planety. Atrocitus zostaje zmiażdżony, a jego pierścień gaśnie pod naporem energii Gamma.
 
 Template Fight Title:
 - fight_title: Atrocitus vs Hulk
-- subtitle: RAGE OF THE LANTERN VS THE WORLD BREAKER
+- subtitle: OMNIVERSAL RAGE VS NUCLEAR INEVITABILITY
 - top_color_a: #8b1e1e
 - top_color_b: #ff5a36
 - bottom_color_a: #4ade80
