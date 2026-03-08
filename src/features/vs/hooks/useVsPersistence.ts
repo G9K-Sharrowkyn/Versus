@@ -1,10 +1,12 @@
 import { useEffect, useRef, useState, type MutableRefObject, type RefObject } from 'react'
+import type { ApplyFightRecordOptions } from '../domain/fightState'
 import {
   LEGACY_ACTIVE_FIGHT_STORAGE_KEY,
   LEGACY_FIGHTS_STORAGE_KEY,
   LEGACY_MATCHUP_VARIANT_PREFS_KEY,
   META_MATCHUP_VARIANT_PREFS_KEY,
 } from '../presets'
+import { synchronizeFightVisualAdjustments } from '../domain/fightVariants'
 import {
   buildFightRefreshSignature,
   fetchFolderFightsFromApi,
@@ -23,7 +25,7 @@ import type { FightRecord } from '../types'
 
 type ApplyFightRecord = (
   fight: FightRecord,
-  options?: { enterIntro?: boolean; preserveTemplateSelection?: boolean },
+  options?: ApplyFightRecordOptions,
 ) => void
 
 type UseVsPersistenceOptions = {
@@ -182,6 +184,7 @@ export function useVsPersistence({
         restoredActiveFightId = null
       }
 
+      mergedFights = synchronizeFightVisualAdjustments(mergedFights)
       const sanitizedVariantPrefs = sanitizePreferredVariantPrefs(mergedFights, restoredVariantPrefs)
 
       if (!mounted) return
@@ -224,7 +227,7 @@ export function useVsPersistence({
         if (disposed) return
 
         const currentFights = fightsRef.current
-        const mergedFights = mergeScannedFolderFights(currentFights, scanned.fights)
+        const mergedFights = synchronizeFightVisualAdjustments(mergeScannedFolderFights(currentFights, scanned.fights))
         const nextWarnings = scanned.warnings
         const currentWarningsSignature = JSON.stringify(folderScanWarningsRef.current)
         const nextWarningsSignature = JSON.stringify(nextWarnings)

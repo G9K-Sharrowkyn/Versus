@@ -7,7 +7,8 @@ import { PortraitEditorModal } from './features/vs/components/PortraitEditorModa
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
-import { buildFightStudioState, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
+import { findFightVariantByLanguage, applySharedFightVisualAdjustments } from './features/vs/domain/fightVariants'
+import { buildFightStudioState, resolveFightLanguage, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
 import {
   DEFAULT_TEMPLATE_ORDER,
   DEFAULT_WINNER_CV_A,
@@ -274,30 +275,31 @@ function App() {
     if (!normalizedKey) return
 
     const normalizedAdjust = normalizePortraitAdjust(adjust)
+    const nextSlideImageAdjustments = {
+      ...normalizeSlideImageAdjustments(slideImageAdjustments),
+      [normalizedKey]: normalizedAdjust,
+    }
+
     setSlideImageAdjustments((current) => ({
       ...current,
       [normalizedKey]: normalizedAdjust,
     }))
 
     if (!activeFightId) return
-    setFights((current) =>
-      current.map((fight) => {
-        if (fight.id !== activeFightId) return fight
-        return {
-          ...fight,
-          slideImageAdjustments: {
-            ...normalizeSlideImageAdjustments(fight.slideImageAdjustments),
-            [normalizedKey]: normalizedAdjust,
-          },
-        }
-      }),
-    )
+    setFights((current) => {
+      const activeFight = current.find((fight) => fight.id === activeFightId)
+      if (!activeFight) return current
+      return applySharedFightVisualAdjustments(current, activeFight, {
+        slideImageAdjustments: nextSlideImageAdjustments,
+      })
+    })
   }
 
   const applyFightRecord: ApplyFightRecord = (fight, options) => {
+    const fightLanguage = resolveFightLanguage(fight, language)
     const nextState = buildFightStudioState({
       fight,
-      language,
+      language: options?.targetLanguage ?? fightLanguage,
       activeTemplate,
       templateCursor,
       preserveTemplateSelection: options?.preserveTemplateSelection ?? false,
@@ -339,20 +341,35 @@ function App() {
   })
 
   const toggleLanguage = () => {
-    setLanguage((current) => {
-      const nextLanguage = current === 'pl' ? 'en' : 'pl'
-      if (!importFileName && !Object.keys(templateBlocks).length) {
-        setCategories(defaultCategoriesFor(nextLanguage))
-        setFactsA(defaultFactsFor('a', nextLanguage))
-        setFactsB(defaultFactsFor('b', nextLanguage))
-        setPowersA([])
-        setPowersB([])
-        setRawFeatsA([])
-        setRawFeatsB([])
-        setSlideImageAdjustments({})
+    const nextLanguage = language === 'pl' ? 'en' : 'pl'
+    setLanguage(nextLanguage)
+
+    if (activeFightId) {
+      const currentFight = fights.find((fight) => fight.id === activeFightId)
+      if (currentFight) {
+        const otherVariant = findFightVariantByLanguage(fights, currentFight, nextLanguage)
+        if (otherVariant) {
+          rememberPreferredFightVariant(otherVariant)
+          applyFightRecord(otherVariant, {
+            enterIntro: false,
+            preserveTemplateSelection: true,
+            targetLanguage: nextLanguage,
+          })
+          return
+        }
       }
-      return nextLanguage
-    })
+    }
+
+    if (!importFileName && !Object.keys(templateBlocks).length) {
+      setCategories(defaultCategoriesFor(nextLanguage))
+      setFactsA(defaultFactsFor('a', nextLanguage))
+      setFactsB(defaultFactsFor('b', nextLanguage))
+      setPowersA([])
+      setPowersB([])
+      setRawFeatsA([])
+      setRawFeatsB([])
+      setSlideImageAdjustments({})
+    }
   }
 
   const rememberPreferredFightVariant = (fight: FightRecord) => {
@@ -432,6 +449,7 @@ function App() {
       slideImageAdjustments={slideImageAdjustments}
       onSlideImageAdjustChange={handleSlideImageAdjustChange}
       onSlideImageAdjustCommit={handleSlideImageAdjustCommit}
+      onToggleLanguage={toggleLanguage}
     />
   )
 

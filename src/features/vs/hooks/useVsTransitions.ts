@@ -1,11 +1,12 @@
 import { useEffect, useRef, useState, type MutableRefObject, type RefObject } from 'react'
+import type { ApplyFightRecordOptions } from '../domain/fightState'
 import { FINAL_TEMPLATE_ID } from '../presets'
 import { findFightByQuery, getViewportCenterHandoff, normalizeSearchMorphHandoff, normalizeToken } from '../helpers'
 import type { FightRecord, ReverseStage, SearchMorphHandoff, TemplateId } from '../types'
 
 type ApplyFightRecord = (
   fight: FightRecord,
-  options?: { enterIntro?: boolean; preserveTemplateSelection?: boolean },
+  options?: ApplyFightRecordOptions,
 ) => void
 
 type ViewMode = 'search' | 'home' | 'fight-intro' | 'fight'

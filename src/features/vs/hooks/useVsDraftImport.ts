@@ -7,6 +7,7 @@ import {
   normalizePortraitAdjust,
   readFileAsDataUrl,
 } from '../helpers'
+import { applySharedFightVisualAdjustments } from '../domain/fightVariants'
 import { parseVsImportText } from '../importer'
 import { createManualFightRecord, insertManualFightRecord } from '../domain/fightFactory'
 import type {
@@ -154,21 +155,17 @@ export function useVsDraftImport({
     }
 
     const nextAdjust = normalizePortraitAdjust(portraitEditor.adjust)
-    setFights((current) =>
-      current.map((fight) => {
-        if (fight.id !== portraitEditor.fightId) return fight
-        if (portraitEditor.side === 'a') {
-          return {
-            ...fight,
-            portraitAAdjust: nextAdjust,
-          }
-        }
-        return {
-          ...fight,
-          portraitBAdjust: nextAdjust,
-        }
-      }),
-    )
+    setFights((current) => {
+      const referenceFight = current.find((fight) => fight.id === portraitEditor.fightId)
+      if (!referenceFight) return current
+      return applySharedFightVisualAdjustments(
+        current,
+        referenceFight,
+        portraitEditor.side === 'a'
+          ? { portraitAAdjust: nextAdjust }
+          : { portraitBAdjust: nextAdjust },
+      )
+    })
 
     if (activeFightId === portraitEditor.fightId) {
       if (portraitEditor.side === 'a') setPortraitAAdjust(nextAdjust)
