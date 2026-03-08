@@ -20,7 +20,7 @@ Trigon (Post-Crisis / New 52)
 4. Defeated by Character A
 - The Divine (trójca kosmicznych bytów, które go stworzyły – nosi ich skórę jako szatę)
 - JLA + Teen Titans (pokonani jednocześnie, gdy Trigon był w innym wymiarze)
-- Spectre ( Jim Corrigan – skalowanie jako równorzędny byt)
+- Spectre (Jim Corrigan – skalowanie jako równorzędny byt)
 - Ares (Bóg Wojny – rozszarpany w mgnieniu oka)
 - Miliardy światów i całe uniwersa
 
@@ -75,24 +75,24 @@ Galactus (Earth-616, Cosmic Entity / Abstract)
 - Słabości: Potrzebuje miliardów dusz, aby fizycznie przekroczyć bariery międzywymiarowe w pełni mocy.
 
 11. Character A Raw Feats
-- Stompuje JLA i Teen Titans jednocześnie, przebywając w innym wymiarze.
-- Monitor ocenia jego potęgę na równi ze Spectre (Duch Zemsty Boga).
 - Rządził planetą w wieku 1 roku, zniszczył ją w wieku 6 lat, podbił wymiar w wieku 30 lat.
-- Zabił swoich stwórców (The Divine) i przerobił ich ciała na swoje szaty.
-- Posiada Trofea z największych bohaterów DC (peleryna Supermana, hełm Fate'a).
+- Death Stare – spojrzenie zdolne do natychmiastowej anihilacji planety.
+- Zmiana całej ludzkości w posągi z gliny/kamienia (Reality Warping).
+- Wchłonięcie "Heart of Darkness" – esencji zła z ponad 100 galaktyk.
+- Manipulacja rozmiarem pozwalająca na deifikację własnej formy w skali kosmicznej.
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Power Cosmic (manipulacja materią, energią, czasem), telepatia wyższa niż u Odina, nieśmiertelność.
 - Narzędzia: Ultimate Nullifier (broń wymazująca istnienie), Worldship Taa II (wielkości układu słonecznego).
 - Słabości: Głód – jego moc drastycznie spada, jeśli nie spożywa energii planetarnej regularnie.
-- Słabości: Pycha – często ignoruje ataki, uważając je za nieznaczące, co Trigon może wykorzystać.
+- Słabości: Pycha – często ignoruje ataki, uważając je za nieznaczące.
 
 13. Character B Raw Feats
-- Zabija Celestiana (Kosmicznego Boga) jednym strzałem, gdy jest najedzony.
-- Jego walka ze Scrierem i Other groziła zniszczeniem wszystkich wszechświatów.
-- Przyjmuje headbutt od Odina i natychmiast się regeneruje (Odin zapada w sen).
-- Ultimate Nullifier wymazuje istoty z samej tkanki historii (Timeline Erasure).
-- Musi istnieć, aby uniwersum nie zapadło się w niebyt (brat Eternity).
+- Dominacja telepatyczna nad bytami klasy Odina czy Thanosa.
+- Emisja energii kosmicznej obejmująca całe systemy gwiezdne jednocześnie.
+- Prędkość pochłaniania światów liczona w sekundach (World Devouring).
+- Wykorzystanie Worldship Taa II jako broni o skali układu słonecznego.
+- Manipulacja materią na poziomie subatomowym (zmiana wrogów w robaki/energię).
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // TRIGON VS GALACTUS
@@ -106,15 +106,15 @@ Template Tactical Board:
 Template Character A:
 - name: Trigon
 - world: DC Multiverse
-- style: Demoniczna dominacja i korupcja dusz. Trigon zmienia rzeczywistość w koszmar, w którym jest absolutnym bogiem.
+- style: Demoniczna dominacja i korupcja dusz. Trigon zmienia rzeczywistość w koszmar.
 - advantage: Skalowanie do Spectre i Heart of Darkness. Jego moc jest duchowa i nieliniowa.
-- mentality: Sadystyczny Egzekutor. Chce upodlić i zdominować każdego, kto mu się sprzeciwi.
+- mentality: Sadystyczny Egzekutor. Chce upodlić i zdominować każdego.
 - quote: Universe after universe has fallen before my might. I am Power. I am Death.
 
 Template Character B:
 - name: Galactus
 - world: Marvel 616
-- style: Kosmiczna kontrola i metaboliczna konsumpcja. Galactus to siła natury, która przetwarza istnienie w energię.
+- style: Kosmiczna kontrola i metaboliczna konsumpcja. Galactus przetwarza istnienie w energię.
 - advantage: Status Abstracta i Ultimate Nullifier. Jest niezbędną częścią maszyny wszechświata.
 - mentality: Chłodna Konieczność. Nie nienawidzi Trigona – on po prostu widzi w nim potężny posiłek.
 - quote: I was present at the birth of the Universe, and I shall be there at its end.
@@ -134,26 +134,26 @@ Template Raw Feats:
 - left_title: POKAZ TRIGONA
 - right_title: POKAZ GALACTUSA
 - feat_label: FEAT
-- left_item_1: Stomp na JLA + Titans (Interdimensional).
-- left_image_1: Stomps the JLA + Teen.jpeg
-- left_item_2: Skalowanie do Spectre (Tier 1).
-- left_image_2: Monitor ranks him on the same threat level.jpg
-- left_item_3: Zniszczenie planety jako 6-latek.
-- left_image_3: At Age One he ruled his planet and at age 6 he destroyed it, at age 30 he ruled his entire dimension.jpeg
-- left_item_4: Rzeźnia na kosmicznych Divine.
-- left_image_4: Slaughters the Divine.jpeg
-- left_item_5: Trofea z pokonanych bohaterów.
-- left_image_5: Trophy Room includes Superman's Suit.jpeg
-- right_item_1: One-shot na Celestiana.
-- right_image_1: One shots a Celestial.webp
-- right_item_2: Multiversal Clash (Scrier/Other).
+- left_item_1: Death Stare (Planetary).
+- left_image_1: Dissipates Psimon's Atoms across.jpeg
+- left_item_2: Władca Wymiaru (Age 30).
+- left_image_2: At Age One he ruled his planet and at age 6 he destroyed it, at age 30 he ruled his entire dimension.jpeg
+- left_item_3: Klątwa Kamienia (Ziemia).
+- left_image_3: Turns DC Earth and everyone in it into stone.jpg
+- left_item_4: Heart of Darkness (Scaling).
+- left_image_4: 01_6_1_trigon_heart_of_darkness.jpg
+- left_item_5: Manipulacja Rozmiarem.
+- left_image_5: Universe after Universe has fallen before his.jpeg
+- right_item_1: Telepatia (Higher Tier).
+- right_image_1: Galactus battles Mephisto.jpg
+- right_item_2: Emisja Energii (Star System).
 - right_image_2: The whole multiverse risked being destroyed when Galactus.jpg
-- right_item_3: Przetrwanie ataku Odina.
-- right_image_3: Odin charges at Galactus and headbutts.jpg
-- right_item_4: Potęga Ultimate Nullifier.
-- right_image_4: The Ultimate Nullifier.jpg
-- right_item_5: Niezbędność dla Egzystencji.
-- right_image_5: Galactus must exist or eternity.jpg
+- right_item_3: World Devouring Speed.
+- right_image_3: 01_6_2_galactus_showcase_feats_one_shots_a_celestial.webp
+- right_item_4: Worldship Taa II (Scale).
+- right_image_4: Galactus must exist or eternity.jpg
+- right_item_5: Subatomowa Transmutacja.
+- right_image_5: Turns Terrax into a Worm and then Energy.jpg
 
 Template HUD Bars:
 - headline: ANALITYKA KONCEPTUALNA
@@ -179,7 +179,7 @@ Template Interpretation:
 - headline: INTERPRETACJA
 - subtitle: Kto wygrywa na papierze?
 - line_1: Galactus operuje na poziomie Abstracta – fundamentalnej zasady fizyki wszechświata. Trigon to interwymiarowy wirus.
-- line_2: Trigon posiada "Cheat Code" w postaci magii chaosu i korupcji, ale Galactus zjada energię, nawet demoniczną.
+- line_2: Trigon posiada "Cheat Code" in chaos magic and corruption, but Galactus zjada energię, nawet demoniczną.
 - line_3: Na papierze przewagę ma Galactus dzięki Ultimate Nullifier, który może wymazać koncept "Trigona" z Multiwersum.
 - quote: Śmierć Galactusa to koniec wszystkiego. Śmierć Trigona to tylko oczyszczenie wymiaru.
 

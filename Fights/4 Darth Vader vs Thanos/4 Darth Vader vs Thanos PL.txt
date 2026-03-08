@@ -69,7 +69,7 @@
 10. Character A Powers / Tools / Weaknesses
 - Moce: Force Crush (zmiażdżenie wewnętrzne), Tutaminis (absorpcja energii), prekognicja, Force Scream.
 - Narzędzia: Miecz świetlny (Kyber-focus), zbroja z generatorami impulsów wzmacniającymi ruchy.
-- Słabości: Zależność od systemów podtrzymywania życia. Thanos może użyć EMP lub manipulacji materią, by je wyłączyć.
+- Słabości: Zależność od systemów podtrzymywania życia.
 - Słabości: Skala mocy ograniczona do poziomu galaktycznego (brak niszczenia planet gołymi rękami).
 
 11. Character A Raw Feats
@@ -77,7 +77,7 @@
 - Telekinetycznie zderza ze sobą dwa statki kosmiczne.
 - Absorbuje i blokuje gołą dłonią potężną energię (Tutaminis).
 - Przetrwał wybuch niszczący kasyno i dni pod gruzami katedry bez systemów.
-- Porusza się tak szybko, że jest niewidoczny dla oczu doświadczonych Jedi.
+- Szybkość większa niż myśl – porusza się jako niewidoczna smuga dla mistrzów Jedi.
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Manipulacja materią (transmutacja), energią kosmiczną, polami siłowymi i duszami.
@@ -86,9 +86,9 @@
 - Słabości: Skrajna pycha.
 
 13. Character B Raw Feats
-- Niszczy planetę podczas walki z Draxem (Base).
-- Blokuje Mjolnir w locie i tankuje krzyk Black Bolta bez flinchu.
-- Zamienia Skrulla w kamień (manipulacja materią).
+- Zatrzymanie Mjolnira w locie siłą woli i energii kosmicznej.
+- Tankuje krzyk Black Bolta (zdolny niszczyć planety) bez mrugnięcia okiem.
+- Zamienia Skrulla w kamień (manipulacja materią na poziomie molekularnym).
 - Regeneruje się z samego szkieletu po całkowitej dezintegracji.
 - Wytrzymuje ataki Odyna, co zaskakuje samego Wszechojca.
 
@@ -142,16 +142,16 @@ Template Raw Feats:
 - left_image_4: Survives a giant explosion that destroyed a casino.jpeg
 - left_item_5: Szybkość większa niż myśl.
 - left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
-- right_item_1: Zniszczenie planety w walce.
-- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
-- right_item_2: Zatrzymanie Mjolnira w locie.
-- right_image_2: Stops Mjolnir mid-flight.jpeg
-- right_item_3: Skamienienie przeciwnika.
-- right_image_3: Turns a Skrull to stone.jpeg
-- right_item_4: Przeżycie dezintegracji.
-- right_image_4: Gets disintegrated down to his skeleton.jpeg
-- right_item_5: Odporność na moc Odina.
-- right_image_5: No-sells Odin's blast.jpeg
+- right_item_1: Zatrzymanie Mjolnira w locie.
+- right_image_1: Stops Mjolnir mid-flight.jpeg
+- right_item_2: Skamienienie przeciwnika.
+- right_image_2: Turns a Skrull to stone.jpeg
+- right_item_3: Przeżycie dezintegracji.
+- right_image_3: Gets disintegrated down to his skeleton.jpeg
+- right_item_4: Odporność na moc Odina.
+- right_image_4: No-sells Odin's blast.jpeg
+- right_item_5: Tankowanie Black Bolta.
+- right_image_5: 08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg
 
 Template HUD Bars:
 - headline: ZAAWANSOWANA ANALITYKA BOJOWA

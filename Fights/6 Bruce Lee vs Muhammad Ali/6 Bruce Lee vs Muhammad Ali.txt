@@ -21,6 +21,7 @@
 - Yoichi Nakachi (rapid knockout in a challenge fight)
 - Wong Jack Man (victory in a controversial duel)
 - Jesse Glover (sparring partner and student dominated by speed)
+- Chuck Norris (sparrings confirming technical superiority)
 
 5. Muhammad Ali (Prime, 1964-1975)
 
@@ -43,9 +44,9 @@
 8. Defeated by Character B
 - George Foreman (Rumble in the Jungle)
 - Joe Frazier (Thrilla in Manila)
-- Sonny Liston
-- Cleveland Williams
-- Ernie Terrell
+- Sonny Liston (winning the championship title)
+- Cleveland Williams (pinnacle of speed and precision)
+- Ernie Terrell (total technical dominance)
 
 9. Template Order
 - tactical-board
@@ -72,8 +73,9 @@
 11. Character A Raw Feats
 - "One-Inch Punch" demonstration at Long Beach (generating massive force from minimal distance).
 - Two-finger push-ups and superhuman body control.
-- 1958 inter-school boxing title (confirmed technical base).
+- Punching speed – documented 9 strikes per second.
 - Creation of Jeet Kune Do as a system based on practical effectiveness over tradition.
+- Reflexes allowing the interception of a coin from an opponent's hand before they can close it.
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Lightweight speed in a giant's body, incredible punch resistance (granite chin).
@@ -82,10 +84,11 @@
 - Weaknesses: Confidence bordering on bravado, which Bruce could exploit for a counter.
 
 13. Character B Raw Feats
-- "Rope-a-dope" against Foreman (absorbing lethal punches and surviving the onslaught).
-- Peak speed and precision against Williams (the fastest hands in heavyweight history).
-- Endurance in the Frazier wars (fighting to the limit in extreme conditions).
-- Footwork allowing him to dodge dozens of punches without a guard.
+- "Rope-a-dope" – technique for absorbing and cushioning destructive blows.
+- Hand speed allowing for a jab in less than the blink of an eye (0.04 seconds).
+- Stamina allowing for a dancing pace over 15 rounds of heavyweight combat.
+- Footwork (Ali Shuffle) preventing static opponents from tracking the target.
+- Reflexes allowing for dodging 21 punches in 10 seconds without a guard.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // BRUCE VS ALI
@@ -129,23 +132,23 @@ Template Raw Feats:
 - feat_label: FEAT
 - left_item_1: One-Inch Punch (Force).
 - left_image_1: 01_6_1_bruce_one_inch_punch.jpg
-- left_item_2: Gary Elms (Boxing base).
+- left_item_2: Reflex (Interception).
 - left_image_2: 03_6_1_bruce_gary_elms_record.jpg
 - left_item_3: Finger push-ups (Control).
 - left_image_3: finger push-ups.webp
 - left_item_4: JKD (Style evolution).
 - left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
-- left_item_5: Reaction speed.
+- left_item_5: Striking speed.
 - left_image_5: Jeet Kune Do.webp
-- right_item_1: Rope-a-dope (Foreman).
+- right_item_1: Rope-a-dope technique.
 - right_image_1: 05_6_2_ali_rope_a_dope.jpg
-- right_item_2: Heavyweight speed (Williams).
+- right_item_2: Jab speed (0.04s).
 - right_image_2: 06_6_2_ali_cleveland_speed.jpg
-- right_item_3: Endurance (Frazier).
+- right_item_3: Stamina (15 rounds).
 - right_image_3: 07_6_2_ali_frazier_endurance.jpg
-- right_item_4: KO Sonny Liston.
+- right_item_4: No-guard reflexes.
 - right_image_4: 12_7_2_ali_sonny_liston.jpg
-- right_item_5: Footwork (Ali Dance).
+- right_item_5: Footwork (Ali Shuffle).
 - right_image_5: Dance.jpg
 
 Template HUD Bars:

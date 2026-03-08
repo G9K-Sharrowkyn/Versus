@@ -75,11 +75,11 @@ World Breaker Hulk (Green Scar / World War Hulk peak)
 - Słabości: Skrajne użycie magii krwi wyczerpuje jego siły życiowe.
 
 11. Character A Raw Feats
-- Rani i oszołamia Spectre'a swoimi atakami plazmowymi.
 - Przepala dziurę w samej rzeczywistości, by dostać się do innych wymiarów.
-- Dominacja fizyczna nad Apollo i Martian Manhunterem jednocześnie.
+- Divine Rod – zbudowanie urządzenia zdolnego do wysysania mocy z pierścieni innych Lanternów.
+- Tworzenie armii Red Lanternów z Manhunterów przy użyciu nekromancji krwi.
 - Całkowita odporność na telepatię (MMH odnosi rany psychiczne przy próbie ataku).
-- Ugryzienie Krony przebija jego boską wytrzymałość, powodując ból.
+- Przewidzenie przyszłości poprzez rytuał krwi, śledząc "ścieżki furii".
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Emisja Gamma (World Breaker), nieśmiertelność (Green Door), regeneracja atomowa, Thunderclap powalający byty wymiarowe.
@@ -90,9 +90,9 @@ World Breaker Hulk (Green Scar / World War Hulk peak)
 13. Character B Raw Feats
 - Rozbił planetę i uszkodził księżyc samym zderzeniem z Red She-Hulk.
 - Niemal zatopił wschodnie wybrzeże USA wykonując jeden krok.
-- Powalił Dormammu – byt istniejący poza czasem i przestrzenią.
-- Zregenerował 90% masy ciała i oczy w kilka sekund po wybuchu.
 - Wytrzymał energię mistyczną równą 133 ciosom Herculesa z pełną siłą.
+- Absorpcja energii – wchłonięcie 5 bomb gamma naraz bez przeciążenia organizmu.
+- Szybkość reakcji MFTL+ pozwalająca na walkę z Sentrym i Thorem.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // ATROCITUS VS HULK
@@ -134,26 +134,26 @@ Template Raw Feats:
 - left_title: POKAZ ATROCITUSA
 - right_title: POKAZ HULKA
 - feat_label: FEAT
-- left_item_1: Rani i oszołamia Spectre.
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
-- left_item_2: Przepala dziurę w rzeczywistości.
-- left_image_2: Tears a hole through reality.jpeg
-- left_item_3: Dominacja nad Apollo i MMH.
-- left_image_3: Throws around Apollo.jpeg
-- left_item_4: Odporność na telepatię MMH.
+- left_item_1: Przepalanie Wymiarów.
+- left_image_1: Tears a hole through reality.jpeg
+- left_item_2: Divine Rod (Power Drain).
+- left_image_2: Built a cosmic Divining.jpeg
+- left_item_3: Armia Manhunterów.
+- left_image_3: 05_6_1_atrocitus_group_overpowering.jpg
+- left_item_4: Odporność telepatyczna.
 - left_image_4: Martian Manhunter can't telepathically.jpeg
-- left_item_5: Ugryzienie raniące Kronę.
-- left_image_5: He hurts Krona by biting him.jpeg
+- left_item_5: Magia Krwi (Foresight).
+- left_image_5: 03_6_1_atrocitus_blood_magic_foresight.jpg
 - right_item_1: Planet-Busting Shockwave.
 - right_image_1: Worldbreaker Red She-Hulk and WBH clashing.jpg
 - right_item_2: Continental Footstep.
 - right_image_2: Nearly sank the entire east coast with a single step.jpg
-- right_item_3: Powalenie Dormammu.
-- right_image_3: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
-- right_item_4: Regeneracja ze szkieletu.
-- right_image_4: Explodes with only a skeleton left, and has seemingly healed immediately..jpg
-- right_item_5: Wytrzymałość (133 ciosy Herculesa).
-- right_image_5: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
+- right_item_3: Wytrzymałość Magiczna (133).
+- right_image_3: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
+- right_item_4: Absorpcja Bomby Gamma.
+- right_image_4: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
+- right_item_5: Szybkość Bojowa MFTL+.
+- right_image_5: 07_6_2_hulk_endured_sentry.jpg
 
 Template HUD Bars:
 - headline: ANALITYKA ZNISZCZENIA
@@ -185,7 +185,7 @@ Template Stat Trap:
 - subtitle: Dlaczego liczby kłamią przy tej skali
 - trap_top: HULK IGNORUJE ŚMIERĆ (GREEN DOOR)
 - trap_bottom: ATROCITUS PRZEPALA WYMIARY
-- example: Atrocitus może spalić Hulka do kości, ale grafika udowadnia, że Hulk wraca z formy szkieletowej natychmiast.
+- example: Atrocitus może spalić Hulka do kości, ale Hulk wraca z formy szkieletowej natychmiast.
 - question: Czy plazma Atrocitusa, która rani Spectre, zdoła spalić "Green Door" i odciąć Hulka od jego źródła?
 
 Template X-Factor:
@@ -218,8 +218,8 @@ Template Winner CV:
 - left_image_3: He hurts Krona by biting him.jpeg
 - left_item_4: Butcher Entity
 - left_image_4: Atrocitus_ButcherBound.jpg
-- left_item_5: Divine Rod (Power Drain)
-- left_image_5: Built a cosmic Divining.jpeg
+- left_item_5: Volthoom (Survival)
+- left_image_5: Atrocitus_Voolthom.jpeg
 - right_item_1: Sentry (Full Power)
 - right_image_1: Sentry.jpg
 - right_item_2: Dr. Strange (Mystic Shield)

@@ -21,6 +21,7 @@
 - Yoichi Nakachi (szybki nokaut w walce wyzwaniowej)
 - Wong Jack Man (zwycięstwo w kontrowersyjnym pojedynku)
 - Jesse Glover (sparringowy partner i uczeń, nad którym dominował szybkością)
+- Chuck Norris (sparringi potwierdzające technologiczną przewagę)
 
 5. Muhammad Ali (Prime, 1964-1975)
 
@@ -43,9 +44,9 @@
 8. Defeated by Character B
 - George Foreman (Rumble in the Jungle)
 - Joe Frazier (Thrilla in Manila)
-- Sonny Liston
-- Cleveland Williams
-- Ernie Terrell
+- Sonny Liston (zdobycie tytułu mistrza)
+- Cleveland Williams (szczyt szybkości i precyzji)
+- Ernie Terrell (całkowita techniczna dominacja)
 
 9. Template Order
 - tactical-board
@@ -72,8 +73,9 @@
 11. Character A Raw Feats
 - Demonstracja "One-Inch Punch" w Long Beach (generowanie ogromnej siły z minimalnego dystansu).
 - Pompki na dwóch palcach i nieludzka kontrola ciała.
-- Tytuł bokserski szkół średnich z 1958 roku (potwierdzenie bazy technicznej).
+- Szybkość zadawania ciosów – udokumentowane 9 uderzeń na sekundę.
 - Stworzenie Jeet Kune Do jako systemu opartego na praktycznej skuteczności ponad tradycję.
+- Refleks pozwalający na przechwycenie monety z dłoni przeciwnika, zanim ten zdąży ją zamknąć.
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Szybkość wagi lekkiej w ciele olbrzyma, niesamowita odporność na ciosy (szczęka z granitu).
@@ -82,10 +84,11 @@
 - Słabości: Pewność siebie granicząca z brawurą, co Bruce mógłby wykorzystać do kontry.
 
 13. Character B Raw Feats
-- "Rope-a-dope" przeciwko Foremanowi (przyjmowanie morderczych ciosów i przetrwanie nawałnicy).
-- Szczytowa szybkość i precyzja przeciwko Williamsowi (najszybsze ręce w historii wagi ciężkiej).
-- Wytrzymałość w wojnach z Frazierem (walka do upadłego w skrajnych warunkach).
-- Praca nóg pozwalająca na unikanie dziesiątek ciosów bez gardy.
+- "Rope-a-dope" – technika przyjmowania i amortyzowania ciosów o sile niszczącej.
+- Prędkość rąk pozwalająca na wyprowadzenie jaba w czasie krótszym niż mrugnięcie oka (0.04 sekundy).
+- Stamina pozwalająca na utrzymanie tanecznego tempa przez 15 rund walki wagi ciężkiej.
+- Praca nóg (Ali Shuffle) uniemożliwiająca namierzenie celu przez statycznych przeciwników.
+- Refleks pozwalający na uniknięcie 21 ciosów w ciągu 10 sekund bez gardy.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // BRUCE VS ALI
@@ -129,23 +132,23 @@ Template Raw Feats:
 - feat_label: FEAT
 - left_item_1: One-Inch Punch (Siła).
 - left_image_1: 01_6_1_bruce_one_inch_punch.jpg
-- left_item_2: Gary Elms (Baza bokserska).
+- left_item_2: Refleks (Przechwycenie).
 - left_image_2: 03_6_1_bruce_gary_elms_record.jpg
 - left_item_3: Pompki na palcach (Kontrola).
 - left_image_3: finger push-ups.webp
 - left_item_4: JKD (Ewolucja stylu).
 - left_image_4: 04_6_1_bruce_jkd_adaptation.jpg
-- left_item_5: Szybkość reakcji.
+- left_item_5: Szybkość zadawania ciosów.
 - left_image_5: Jeet Kune Do.webp
-- right_item_1: Rope-a-dope (Foreman).
+- right_item_1: Technika Rope-a-dope.
 - right_image_1: 05_6_2_ali_rope_a_dope.jpg
-- right_item_2: Szybkość heavy (Williams).
+- right_item_2: Szybkość jaba (0.04s).
 - right_image_2: 06_6_2_ali_cleveland_speed.jpg
-- right_item_3: Wytrzymałość (Frazier).
+- right_item_3: Kondycja (15 rund).
 - right_image_3: 07_6_2_ali_frazier_endurance.jpg
-- right_item_4: KO Sonny Liston.
+- right_item_4: Refleks bez gardy.
 - right_image_4: 12_7_2_ali_sonny_liston.jpg
-- right_item_5: Praca nóg (Taniec Alego).
+- right_item_5: Praca nóg (Ali Shuffle).
 - right_image_5: Dance.jpg
 
 Template HUD Bars:
@@ -181,7 +184,7 @@ Template Stat Trap:
 - subtitle: Dlaczego Ali prowadzi
 - trap_top: PRZEWAGA MASY TO PONAD 40 KILOGRAMÓW
 - trap_bottom: WYTRZYMAŁOŚĆ ALEGO JEST UDOWODNIONA PRZECIWKO NAJSILNIEJSZYM
-- example: Bruce Lee może trafić Alego 5 razy, zanim ten zdąży mrugnąć, ale jedno trafienie Alego może zakończyć walkę definitywnie.
+- example: Bruce Lee może trafić Alego 5 razy, zanim ten zdąży mrugnięcie, ale jedno trafienie Alego może zakończyć walkę definitywnie.
 - question: Czy Bruce Lee jest w stanie wygenerować dość siły, by znokautować kogoś, kogo nie potrafił powalić George Foreman?
 
 Template Winner CV:
@@ -237,7 +240,7 @@ Template Fight Simulation:
 - subtitle: Jak to by wyglądało?
 - opening: Bruce Lee porusza się jak cień, Ali tańczy. Bruce wyprowadza niskie boczne kopnięcie w kolano Alego. Ali cofa nogę i odpowiada błyskawicznym jabem.
 - mid_fight: Bruce próbuje przechwycić pięść Alego (Interception), ale siła i masa uderzenia Alego odrzucają go w tył nawet przy bloku.
-- late_fight: Ali zaczyna narzucać mordercze tempo. Bruce próbuje One-Inch Punch w klinczu, ale Ali amortyzuje to masą swojego ciała i kontruje hakiem.
+- late_fight: Ali zaczyna narzucać mordercze tempo. Bruce próbuje One-Inch Punch in clinch, ale Ali amortyzuje to masą swojego ciała i kontruje hakiem.
 - end_condition: Bruce pada po serii ciosów, których nie jest w stanie już unikać. Ali stoi nad nim, pokazując, że masa i zasięg są prawdą ringu.
 
 Template Fight Title:

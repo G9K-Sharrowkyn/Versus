@@ -69,15 +69,15 @@
 10. Character A Powers / Tools / Weaknesses
 - Powers: Force Crush (internal crushing), Tutaminis (energy absorption), precognition, Force Scream.
 - Tools: Lightsaber (Kyber-focus), armor with pulse generators augmenting movements.
-- Weaknesses: Dependence on life-support systems. Thanos can use EMP or matter manipulation to disable them.
+- Weaknesses: Dependence on life-support systems.
 - Weaknesses: Power scale limited to galactic tier (cannot destroy planets with bare hands).
 
 11. Character A Raw Feats
 - Picks up and slams down a Y-Wing bomber with the Force.
 - Telekinetically slams two starships together.
-- Absorbs and blocks powerful turret energy with his palm (Tutaminis).
-- Survived an explosion destroying a casino and days under cathedral rubble without life support.
-- Moves so fast he is invisible to the eyes of experienced Jedi.
+- Absorbs and blocks powerful energy with his palm (Tutaminis).
+- Survived a casino explosion and days under cathedral rubble without life support.
+- Faster than thought – moves as an invisible blur to Jedi Masters.
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Matter manipulation (transmutation), cosmic energy, force fields, and soul manipulation.
@@ -86,9 +86,9 @@
 - Weaknesses: Extreme hubris.
 
 13. Character B Raw Feats
-- Destroys a planet during a fight with Drax (Base).
-- Blocks Mjolnir mid-flight and tanks Black Bolt's scream without flinching.
-- Turns a Skrull to stone (matter manipulation).
+- Stopping Mjolnir mid-flight using willpower and cosmic energy.
+- Tanks Black Bolt's scream (planet-destroying level) without flinching.
+- Turns a Skrull to stone (molecular-level matter manipulation).
 - Regenerates from his charred skeleton after total disintegration.
 - Withstands Odin's attacks, surprising the All-Father himself.
 
@@ -140,18 +140,18 @@ Template Raw Feats:
 - left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
 - left_item_4: Survived cathedral collapse.
 - left_image_4: Survives a giant explosion that destroyed a casino.jpeg
-- left_item_5: Invisible-fast movements.
+- left_item_5: Faster than thought.
 - left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
-- right_item_1: Destroys a planet in combat.
-- right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
-- right_item_2: Stops Mjolnir mid-flight.
-- right_image_2: Stops Mjolnir mid-flight.jpeg
-- right_item_3: Transmuting enemies to stone.
-- right_image_3: Turns a Skrull to stone.jpeg
-- right_item_4: Surviving disintegration.
-- right_image_4: Gets disintegrated down to his skeleton.jpeg
-- right_item_5: Resistance to Odin's power.
-- right_image_5: No-sells Odin's blast.jpeg
+- right_item_1: Stopping Mjolnir mid-flight.
+- right_image_1: Stops Mjolnir mid-flight.jpeg
+- right_item_2: Transmuting enemies to stone.
+- right_image_2: Turns a Skrull to stone.jpeg
+- right_item_3: Surviving disintegration.
+- right_image_3: Gets disintegrated down to his skeleton.jpeg
+- right_item_4: Resistance to Odin's power.
+- right_image_4: No-sells Odin's blast.jpeg
+- right_item_5: Tanking Black Bolt.
+- right_image_5: 08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
@@ -166,7 +166,7 @@ Template Radar Brief:
 - subtitle: Combat potential map
 - left_header: VADER ADVANTAGES
 - right_header: THANOS ADVANTAGES
-- draw_header: ST zones
+- draw_header: DRAW ZONES
 - favorite_label: STAT-BASED FAVORITE
 
 Template Interpretation:

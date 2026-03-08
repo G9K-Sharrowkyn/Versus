@@ -12,15 +12,15 @@
 - Combat Skills: 76
 
 3. Character A Feats
-- Style: Meta-combat at the Source Code level. Kyle operates at the foundations of existence, capable of "unmaking" himself and his opponent from reality.
+- Style: Meta-combat at the Source Code level. Kyle operates at the foundations of existence, capable of "unmaking" matter and opponents from reality.
 - Advantage: Source Code Manipulation. He crossed barriers that the Guardians deemed absolute and bent the universe to "give him what he needs."
 - Mentality: Indomitable Architect. Kyle doesn't fight obstacles—he rewrites them. His will can break the control of Emotional Entities.
 
 4. Defeated by Character A
 - Relic (pulled beyond the Source Wall)
-- Third Army
-- Guardians of the Universe
-- Oblivion (total conceptual erasure)
+- Third Army (annihilation of a lantern-resistant army)
+- Guardians of the Universe (defeating the oldest beings)
+- Oblivion (total conceptual erasure of his own darkness)
 - Source Titans (banished beyond reality)
 
 5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock continuity role)
@@ -37,15 +37,15 @@
 - Combat Skills: 44
 
 7. Character B Feats
-- Style: "God of the Mechanism." Views time and the multiverse as static images. He doesn't fight—he performs "corrections" in the fabric of reality, erasing years of history and entire legions of heroes.
-- Advantage: Metaversal Omnipotence. Scales exponentially above 5th-dimensional beings (Mxyzptlk), possesses immunity to existence erasure, and strikes at concepts like the Speed Force.
-- Mentality: Cold Observer. Experiences time simultaneously (past, present, future). Acts with the absolute certainty of an author who knows how the chapter ends, unless Tachyons intervene.
+- Style: "God of the Mechanism." Views time and the multiverse as static images. He doesn't fight—he performs "corrections" in the fabric of reality, removing years of history.
+- Advantage: Metaversal Omnipotence. Scales exponentially above 5th-dimensional beings (Mxyzptlk), possesses immunity to existence erasure, and strikes at concepts.
+- Mentality: Cold Observer. Experiences time simultaneously. Acts with the absolute certainty of an author, unless Tachyons intervene.
 
 8. Defeated by Character B
-- Mr. Mxyzptlk (admits Manhattan's power is beyond his comprehension)
+- Mr. Mxyzptlk (acknowledgement of Manhattan's superiority over 5D)
 - The entire Justice League (defeated effortlessly on Mars)
-- Alan Scott / JSA (erased from history by moving the lantern)
-- Legion of Superheroes (erased from the 3019 timeline)
+- Alan Scott / JSA (erased from history)
+- Legion of Superheroes (erased from the timeline)
 - Pandora (total conceptual disintegration)
 
 9. Template Order
@@ -67,30 +67,30 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Life Equation, White Light (sum of all colors), Source Code manipulation, resurrection.
+- Powers: Life Equation, White Light, Source Code manipulation, resurrection.
 - Tools: White Lantern Ring – allows for editing reality "to give him what he needs." Can generate Tachyon waves.
 - Weaknesses: Emotional stability. Kyle's power scale grows with his confidence and will.
 - Weaknesses: Extreme manipulation of the Source destabilizes local reality.
 
 11. Character A Raw Feats
-- Manipulates the Source Code, "unmaking" himself and Oblivion from existence.
 - Reshaped the universe so that it was possible to go beyond the Source Wall and return.
-- Banished the Source Titans – beings more powerful than gods.
-- Fight with Oblivion destabilized the foundations of reality.
+- Creating planet-sized and star-scale constructs.
+- Manipulates the Source Code, capable of "unmaking" matter from existence.
+- Resurrected billions of lives simultaneously during Blackest Night.
 - Broke the control of the Emotional Entities, which was considered impossible.
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Simultaneous time perception, Metaversal manipulation, time theft, Speed Force strike, immunity to existence erasure.
 - Tools: None. Manhattan is the architect of his own reality.
 - Weaknesses: Tachyons ("Static") block his vision of the future and create blind spots.
-- Weaknesses: Passivity. Sometimes allows an action because "that's how he sees it," which Kyle can exploit to blind him.
+- Weaknesses: Passivity. Sometimes allows an action because "that's how he sees it," which Kyle can exploit.
 
 13. Character B Raw Feats
-- Mxyzptlk admits Manhattan's power goes beyond his 5th-dimensional understanding.
+- Conversion of all matter and energy into pure information (Quantum Observation).
 - Created the New 52, erasing 10 years of history from the entire DC Universe.
-- Moved Alan Scott's lantern in 1940, which instantly erased the Legion of Superheroes in 3019.
 - Struck directly into the Speed Force (an omnipresent entity).
 - Reset the entire DC Metaverse timeline with a single thought.
+- Reconstructed himself from nothing after total physical disintegration.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KYLE VS MANHATTAN
@@ -104,17 +104,17 @@ Template Tactical Board:
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52 / Prime Earth
-- style: Meta-combat at the Source Code level. Kyle edits the foundations of existence, capable of "unmaking" himself and his opponent.
-- advantage: Life Equation – the ability to generate any effect, including Tachyon bursts that blind Manhattan.
-- mentality: "Paving the way." Kyle believes any barrier (even the Source Wall) can be crossed or changed. He does not accept "impossible."
+- style: Meta-combat at the Source Code level. Kyle edits the foundations of existence.
+- advantage: Life Equation – the ability to generate any effect, including Tachyon bursts.
+- mentality: "Paving the way." Kyle believes any barrier (even the Source Wall) can be crossed.
 - quote: I can sense the death of a planet... and I can rewrite its past.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Watchmen / Doomsday Clock
-- style: "God of the Mechanism." He doesn't fight—he edits the structure of reality. His scale exceeds standard understandings of power.
-- advantage: Metaversal Omnipotence. Can change the history of the entire Multiverse by affecting its starting point.
-- mentality: Cold Observer. Sees time simultaneously. Acts with absolute certainty unless something disrupts his vision.
+- style: "God of the Mechanism." He doesn't fight—he edits the structure of reality.
+- advantage: Metaversal Omnipotence. Possesses immunity to erasure and strikes at concepts.
+- mentality: Cold Observer. Sees time simultaneously. Acts with absolute certainty.
 - quote: I am the most powerful being in the known universe. I can do anything.
 
 Template Powers / Tools / Weaknesses:
@@ -132,26 +132,26 @@ Template Raw Feats:
 - left_title: KYLE SHOWCASE
 - right_title: MANHATTAN SHOWCASE
 - feat_label: FEAT
-- left_item_1: Edits Source Code ("Unmaking").
-- left_image_1: Kyle_source.jpeg
-- left_item_2: Reshaped the universe (Source Wall return).
-- left_image_2: Kyle_Reshape.jpeg
-- left_item_3: Banished the Source Titans.
-- left_image_3: Kyle_Banish.jpg
-- left_item_4: Reality-destabilizing combat.
-- left_image_4: Kyle_Destabilize.jpeg
-- left_item_5: Breaking Emotional Entities.
+- left_item_1: Source Wall Return.
+- left_image_1: Kyle_Reshape.jpeg
+- left_item_2: Planetary Constructs.
+- left_image_2: Kyle_Banish.jpg
+- left_item_3: Source Code Edition.
+- left_image_3: Kyle_source.jpeg
+- left_item_4: Resurrecting Billions.
+- left_image_4: 02_6_1_kyle_third_army_white_light.jpg
+- left_item_5: Breaking Entities.
 - left_image_5: Kyle_Vessel.jpeg
-- right_item_1: Exponentially stronger than Mxyzptlk.
-- right_image_1: Manhattan_Mxy1.jpeg
-- right_item_2: Resetting the entire DC timeline.
+- right_item_1: Quantum Matter Conversion.
+- right_image_1: Manhattan_Anything.jpg
+- right_item_2: DC Timeline Reset.
 - right_image_2: Manhattan_Reset.jpeg
-- right_item_3: Erased 10 years of history (New 52).
+- right_item_3: Erased 10 Years.
 - right_image_3: Manhattan_10years.jpeg
-- right_item_4: Striking the Speed Force.
+- right_item_4: Speed Force Strike.
 - right_image_4: Manhattan_SpeedForce.jpeg
-- right_item_5: Erasing the Legion (Alan Scott 1940).
-- right_image_5: Manhattan_ring.jpeg
+- right_item_5: Reconstruction from Void.
+- right_image_5: Manhattan_Resurrection.jpeg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
@@ -207,6 +207,26 @@ Template Winner CV:
 - left_title: KYLE RECORD
 - right_title: MANHATTAN RECORD
 - win_badge: W
+- left_item_1: Relic
+- left_image_1: Kyle_wall.jpeg
+- left_item_2: Oblivion (Erasure)
+- left_image_2: Kyle_source.jpeg
+- left_item_3: Guardians
+- left_image_3: 03_6_1_kyle_guardians_dominance.jpg
+- left_item_4: Source Titans
+- left_image_4: Kyle_Banish.jpg
+- left_item_5: Third Army
+- left_image_5: 02_6_1_kyle_third_army_white_light.jpg
+- right_item_1: Mr. Mxyzptlk
+- right_image_1: Manhattan_Mxy1.jpeg
+- right_item_2: Justice League
+- right_image_2: Manhattan_JL.jpeg
+- right_item_3: Alan Scott
+- right_image_3: Manhattan_Lantern.jpeg
+- right_item_4: Legion of Superheroes
+- right_image_4: Manhattan_ring.jpeg
+- right_item_5: Pandora
+- right_image_5: Manhattan_Pandora.jpg
 
 Template Summary:
 - headline: FINAL SUMMARY

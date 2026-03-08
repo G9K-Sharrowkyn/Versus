@@ -75,11 +75,11 @@ World Breaker Hulk (Green Scar / World War Hulk peak)
 - Weaknesses: Extreme use of blood magic exhausts his life force.
 
 11. Character A Raw Feats
-- Wounded and staggered the Spectre (Spirit of Vengeance) with plasma attacks.
-- Burned a hole through reality itself to access other dimensions.
-- Physically dominated Apollo and Martian Manhunter simultaneously.
+- Burning a hole through reality itself to access other dimensions.
+- Divine Rod – constructing a device capable of siphoning power from other Lantern rings.
+- Creating a Red Lantern army from Manhunters using blood necromancy.
 - Complete immunity to MMH's telepathy (MMH takes psychic damage upon attempt).
-- Bit Krona, piercing his divine durability and causing agonizing pain.
+- Predicting the future via blood ritual, tracking "paths of fury."
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Gamma Emission (World Breaker), immortality (Green Door), atomic regeneration, Thunderclap affecting dimensional beings.
@@ -90,9 +90,9 @@ World Breaker Hulk (Green Scar / World War Hulk peak)
 13. Character B Raw Feats
 - Smashed a planet and damaged a moon simply by colliding with Red She-Hulk.
 - Nearly sank the US East Coast with a single step.
-- Toppled Dormammu – a being existing beyond time and space.
-- Regenerated 90% body mass and eyes within seconds after an explosion.
 - Withstood mystical energy equivalent to 133 maximum-force blows from Hercules.
+- Energy Absorption – absorbing 5 gamma bombs simultaneously without overload.
+- MFTL+ reaction speed allowing him to contend with Sentry and Thor.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // ATROCITUS VS HULK
@@ -134,26 +134,26 @@ Template Raw Feats:
 - left_title: ATROCITUS SHOWCASE
 - right_title: HULK SHOWCASE
 - feat_label: FEAT
-- left_item_1: Wounding the Spectre.
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
-- left_item_2: Burning a hole in reality.
-- left_image_2: Tears a hole through reality.jpeg
-- left_item_3: Dominating Apollo & MMH.
-- left_image_3: Throws around Apollo.jpeg
-- left_item_4: Immunity to MMH's telepathy.
+- left_item_1: Burning Reality Rifts.
+- left_image_1: Tears a hole through reality.jpeg
+- left_item_2: Divine Rod (Power Drain).
+- left_image_2: Built a cosmic Divining.jpeg
+- left_item_3: Manhunter Army.
+- left_image_3: 05_6_1_atrocitus_group_overpowering.jpg
+- left_item_4: Telepathic Immunity.
 - left_image_4: Martian Manhunter can't telepathically.jpeg
-- left_item_5: Biting Krona.
-- left_image_5: He hurts Krona by biting him.jpeg
+- left_item_5: Blood Magic (Foresight).
+- left_image_5: 03_6_1_atrocitus_blood_magic_foresight.jpg
 - right_item_1: Planet-Busting Shockwave.
 - right_image_1: Worldbreaker Red She-Hulk and WBH clashing.jpg
 - right_item_2: Continental Footstep.
 - right_image_2: Nearly sank the entire east coast with a single step.jpg
-- right_item_3: Toppling Dormammu.
-- right_image_3: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
-- right_item_4: Skeleton Regeneration.
-- right_image_4: Explodes with only a skeleton left, and has seemingly healed immediately..jpg
-- right_item_5: Durability (133 Hercules Blows).
-- right_image_5: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
+- right_item_3: Mystic Durability (133).
+- right_image_3: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
+- right_item_4: Gamma Bomb Absorption.
+- right_image_4: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
+- right_item_5: MFTL+ Combat Speed.
+- right_image_5: 07_6_2_hulk_endured_sentry.jpg
 
 Template HUD Bars:
 - headline: DESTRUCTION ANALYTICS
@@ -173,7 +173,7 @@ Template Radar Brief:
 - favorite: World Breaker Hulk
 
 Template Interpretation:
-- headline: INTERPRETACJA
+- headline: INTERPRETATION
 - subtitle: Who wins on paper?
 - line_1: Atrocitus has the tools to fight beings beyond physicality (Spectre, Krona).
 - line_2: However, Hulk in this form is the universe's physical critical point—immortal and constantly scaling.
@@ -218,8 +218,8 @@ Template Winner CV:
 - left_image_3: He hurts Krona by biting him.jpeg
 - left_item_4: Butcher Entity
 - left_image_4: Atrocitus_ButcherBound.jpg
-- left_item_5: Divine Rod (Power Drain)
-- left_image_5: Built a cosmic Divining.jpeg
+- left_item_5: Volthoom (Survival)
+- left_image_5: Atrocitus_Voolthom.jpeg
 - right_item_1: Sentry (Full Power)
 - right_image_1: Sentry.jpg
 - right_item_2: Dr. Strange (Mystic Shield)
