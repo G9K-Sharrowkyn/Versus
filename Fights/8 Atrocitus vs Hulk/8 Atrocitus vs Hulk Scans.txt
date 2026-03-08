@@ -1,26 +1,26 @@
 Template Raw Feats:
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
-- left_image_2: Tears a hole through reality.jpeg
-- left_image_3: Throws around Apollo.jpeg
-- left_image_4: Martian Manhunter can't telepathically.jpeg
-- left_image_5: He hurts Krona by biting him.jpeg
-- right_image_1: Worldbreaker Red She-Hulk and WBH clashing.jpg
-- right_image_2: Nearly sank the entire east coast with a single step.jpg
-- right_image_3: Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg
-- right_image_4: Explodes with only a skeleton left, and has seemingly healed immediately..jpg
-- right_image_5: Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg
+- left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
+- left_image_2: 02_6_1_atrocitus_heart_removed.jpg
+- left_image_3: 03_6_1_atrocitus_blood_magic_foresight.jpg
+- left_image_4: 04_6_1_atrocitus_burns_through_space.jpg
+- left_image_5: 05_6_1_atrocitus_group_overpowering.jpg
+- right_image_1: 06_6_2_hulk_planet_moon_collateral.jpg
+- right_image_2: 07_6_2_hulk_endured_sentry.jpg
+- right_image_3: 08_6_2_hulk_regeneration.jpg
+- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
+- right_image_5: 10_6_2_hulk_bi_beast_wendigo.jpg
 
 Template HUD Bars:
 - profile_mode: VS
 
 Template Winner CV:
-- left_image_1: The Butcher could draw blood from the Spectre.jpeg
-- left_image_2: Throws around Apollo.jpeg
-- left_image_3: He hurts Krona by biting him.jpeg
-- left_image_4: Atrocitus_ButcherBound.jpg
-- left_image_5: Built a cosmic Divining.jpeg
-- right_image_1: Sentry.jpg
-- right_image_2: Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG
-- right_image_3: Defeated the Unstoppable Juggernaut.jpg
-- right_image_4: Closed the door of a nuclear core that the combined efforts of Thor and the Thing couldn't budge..jpg
-- right_image_5: Healed around 90% of his body mass within seconds, including his eyes..jpg
+- left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
+- left_image_2: 11_7_1_atrocitus_butcher_host.jpg
+- left_image_3: 12_7_1_atrocitus_group_overpowering.jpg
+- left_image_4: 03_6_1_atrocitus_blood_magic_foresight.jpg
+- left_image_5: 13_7_1_atrocitus_bleez_internal_dominance.jpg
+- right_image_1: 07_6_2_hulk_endured_sentry.jpg
+- right_image_2: 08_6_2_hulk_regeneration.jpg
+- right_image_3: 14_7_2_hulk_iron_man.jpg
+- right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
+- right_image_5: 15_7_2_hulk_armcheddon.jpg
