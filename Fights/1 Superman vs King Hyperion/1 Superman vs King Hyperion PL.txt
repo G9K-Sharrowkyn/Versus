@@ -12,10 +12,9 @@
 - Umiejętności bojowe: 91
 
 3. Featy Postaci A
-- Styl: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
+- Styl: Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - Atut: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - Mentalność: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
-
 4. Pokonani przez Postać A
 - Doomsday
 - Wraith
@@ -37,17 +36,15 @@
 - Umiejętności bojowe: 83
 
 7. Featy Postaci B
-- Styl: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny – używa Atomic Vision (gorętszego od słońca) i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
-- Atut: Nieludzka regeneracja i przeżywalność. Przetrwał zniszczenie dwóch wszechświatów. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
+- Styl: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
+- Atut: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - Mentalność: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
-
 8. Pokonani przez Postać B
-- Thor (Earth-4023)
-- Hulk (Earth-4023)
-- Sentry (Earth-4023)
-- Galactus (Earth-4023)
-- Vision (Earth-4023)
-
+- Magneto
+- Wolverine
+- Vision
+- Thor
+- Hulk
 9. Kolejność Templatek
 - tactical-board
 - character-card-a
@@ -67,33 +64,29 @@
 - fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Kryptoniańska siła, szybkość, lot, wizja cieplna, mroźny oddech i wzmocniona percepcja zmysłowa.
-- Narzędzia: Taktyczny ruch, kontrola dystansu i błyskawiczne namierzanie celu.
-- Narzędzia: Solar Flare jako kosztowna opcja kończąca dla New 52 Supermana.
+- Moce: Kryptoniańska siła, szybkość, lot i wzmocniona percepcja zmysłowa.
+- Narzędzia: Heat vision i freeze breath.
+- Narzędzia: Solar Flare jako kosztowna opcja kończąca.
 - Słabości: Ekspozycja na kryptonit, podatność na magię i utrata mocy pod czerwonym słońcem.
 - Słabości: Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki.
-
 11. Surowe Featy Postaci A
 - Wyciska ciężar równy masie Ziemi przez pięć dni.
 - Czyta każdy opublikowany tekst medyczny w kilka sekund.
 - Udaje mu się trafić Flasha.
 - Wylatuje z czarnej dziury, nie odnosząc obrażeń.
-- Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
-
+- Jako jedyny przeżywa aurę śmierci Doomsdaya.
 12. Moce / Narzędzia / Słabości Postaci B
-- Moce: Ekstremalna siła, wytrzymałość, lot, Atomic Vision i niemal natychmiastowa regeneracja.
-- Narzędzia: Atomic Vision – promienie o temperaturze 12,000 stopni, zdolne przepalić adamantium i zabić Visiona jednym strzałem.
+- Moce: Ekstremalna siła, wytrzymałość, lot i niemal natychmiastowa regeneracja.
+- Narzędzia: Atomic Vision.
 - Narzędzia: Doświadczenie w zabijaniu Supermanów (Exiles). Zna słabości i psychologię herosów.
 - Słabości: Wrażliwość na Argonite (odpowiednik Kryptonitu w jego świecie).
 - Słabości: Skrajna arogancja. Często lekceważy przeciwników, pozwalając im zadać pierwszy cios, co może być błędem przy kimś klasy Supermana.
-
 13. Surowe Featy Postaci B
-- Wymordował wszystkich herosów swojego świata (Thor, Hulk, Sentry, Galactus).
-- Przetrwał zniszczenie dwóch wszechświatów.
-- Wraca do życia chwilę po skręceniu karku i dekapitacji.
+- Przetrwał zniszczenie Ziemi na Earth-4023.
+- Wraca do życia chwilę po tym, jak Namora skręca mu kark o sto osiemdziesiąt stopni.
+- Regeneruje się po katastrofalnych obrażeniach.
 - Jego Atomic Vision topi adamantium i zabija Visiona na miejscu.
 - Walczył z dwoma innymi Hyperionami naraz i dominował w starciu.
-
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // SUPERMAN VS KING HYPERION
 - subtitle: Bohater kontra Tyran
@@ -106,19 +99,17 @@ Template Tactical Board:
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: New 52
-- style: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
+- style: Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 - quote: To wygląda na robotę dla Supermana.
-
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
-- world: Earth-4023 (Exiles)
-- style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny – używa Atomic Vision (gorętszego od słońca) i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
-- advantage: Nieludzka regeneracja i przeżywalność. Przetrwał zniszczenie dwóch wszechświatów. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
+- world: Earth-4023
+- style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
+- advantage: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - mentality: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
 - quote: Właśnie tak, skarbie... Hyperion.
-
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
@@ -129,11 +120,10 @@ Template HUD Bars:
 Template Radar Brief:
 - headline: PORÓWNANIE PARAMETRÓW
 - subtitle: Mapa średniego profilu statystyk
-- left_header: PRZEWAGI SUPERMANA
-- right_header: PRZEWAGI HYPERIONA
+- left_header: Przewaga Supermana
+- right_header: Przewaga Hyperiona
 - draw_header: STREFY REMISU
 - favorite_label: FAWORYT WEDŁUG STATYSTYK
-
 Template Interpretation:
 - headline: INTERPRETACJA
 - subtitle: Kto wygrywa walkę na papierze?
@@ -151,17 +141,16 @@ Template Stat Trap:
 - question: Czy Superman przełamie swoją moralność, by zabić kogoś, kto ciągle wstaje z martwych?
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Ogólne moce, narzędzia i słabości
-- left_title: ZESTAW SUPERMANA
-- right_title: ZESTAW HYPERIONA
+- headline: PROFIL POSTACI
+- subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
+- left_title: Superman
+- right_title: Hyperion
 - powers_label: MOCE
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
-
 Template Raw Feats:
-- headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 - left_title: POKAZ SUPERMANA
 - right_title: POKAZ HYPERIONA
 - feat_label: FEAT
@@ -169,27 +158,25 @@ Template Raw Feats:
 - left_item_2: Czyta każdy opublikowany tekst medyczny w kilka sekund.
 - left_item_3: Udaje mu się trafić Flasha.
 - left_item_4: Wylatuje z czarnej dziury, nie odnosząc obrażeń.
-- left_item_5: Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
-- right_item_1: Wymordował herosów swojego świata (Thor, Hulk, Sentry).
-- right_item_2: Wraca do życia po skręceniu karku i dekapitacji.
-- right_item_3: Regeneruje się po rozerwaniu na strzępy.
+- left_item_5: Jako jedyny przeżywa aurę śmierci Doomsdaya.
+- right_item_1: Przetrwał zniszczenie Ziemi na Earth-4023.
+- right_item_2: Wraca do życia chwilę po tym, jak Namora skręca mu kark o sto osiemdziesiąt stopni.
+- right_item_3: Regeneruje się po katastrofalnych obrażeniach.
 - right_item_4: Zabija Visiona jednym strzałem Atomic Vision.
 - right_item_5: Dominuje dwóch alternatywnych Hyperionów.
-
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Zmienna decydująca
-- factor: HAMULEC MORALNY VS ŻĄDZA MORDU
+- subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.
+- factor: JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI
 - a_value: 50
 - a_bonus: 10
 - a_bonus_label: KONTROLA
 - b_value: 50
 - b_bonus: 20
 - regen: BRAK ZASAD
-- mechanika: Superman walczy, by powstrzymać. Hyperion walczy, by zabić.
-- implikacja: W krytycznym momencie Superman może się zawahać przed zadaniem śmiertelnego ciosu. Hyperion wykorzysta ten ułamek sekundy, by go zabić.
-- psychologia: Hyperion nie boi się śmierci, bo wraca. Superman boi się stać mordercą.
-
+- mechanika: Superman ma przewagę statystyczną, ale Hyperion nie zatrzymuje się pod presją żadnego przeciwnika.
+- implikacja: Jeśli walka przebiega w trybie turniejowym zamiast na śmierć, przewaga Hyperiona rośnie z każdą minutą starcia.
+- psychologia: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie przybliża go do zwycięstwa.
 Template Winner CV:
 - headline: Archiwum zwycięstw
 - subtitle: 
@@ -203,43 +190,39 @@ Template Winner CV:
 - left_item_3: Parasite
 - left_item_4: Mongul
 - left_item_5: Apollo
-- right_item_1: Thor (Earth-4023)
-- right_item_2: Hulk (Earth-4023)
-- right_item_3: Sentry (Earth-4023)
-- right_item_4: Galactus (Earth-4023)
-- right_item_5: Vision (Earth-4023)
-
+- right_item_1: Magneto
+- right_item_2: Wolverine
+- right_item_3: Vision
+- right_item_4: Thor
+- right_item_5: Hulk
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
-- subtitle: 
-- winner: Superman (Techniczne KO), Hyperion (Śmierć)
-- line_1: W walce na punkty/nokaut Superman wygrywa szybkością i techniką.
-- line_2: W walce na śmierć Hyperion zyskuje przewagę dzięki regeneracji i braku moralności.
-- line_3: Superman musiałby użyć Solar Flare lub wrzucić Hyperiona do słońca, by wygrać definitywnie.
-
+- subtitle: Podsumowanie
+- winner: Superman ma przewagę. Hyperion wciąż może wygrać.
+- line_1: Superman czyściej narzuca warunki walki już od pierwszych sekund.
+- line_2: Superman lepiej kontroluje walkę, ale regeneracja Hyperiona daje mu coraz większą przewagę z każdą dodatkową chwilą starcia.
+- line_3: Jeśli Superman nie wejdzie na pełną moc od samego początku, Hyperion ostatecznie go przełamie.
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
 - subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 92,84,73,61,52
 - b_curve: 44,50,59,69,77
 - yellow_wave: 31,34,32,36,33,37,35,39
-- phase_1: Superman dominuje szybkością, unikając Atomic Vision i zadając potężne ciosy.
-- phase_2: Hyperion wstaje po każdym knockdownie, coraz bardziej wściekły i agresywny. Superman zaczyna się męczyć.
-- phase_3: Walka zamienia się w krwawą łaźnię. Jeśli Superman nie skończy tego szybko, Hyperion przejmie inicjatywę.
-- analysis: Czas jest sojusznikiem Hyperiona. Szybkość jest sojusznikiem Supermana.
-
+- phase_1: Na początku Superman kontroluje tempo dzięki szybkości i dystansowi.
+- phase_2: Jeśli Hyperion przetrwa pierwszy ciężki napór, zaczyna stopniowo odrabiać różnicę.
+- phase_3: Im dłużej trwa walka, tym bardziej regeneracja Hyperiona zaczyna pracować na jego korzyść.
+- analysis: Superman ma lepsze otwarcie. Hyperion staje się groźniejszy z każdą dodatkową minutą.
 Template Verdict Matrix:
 - headline: MATRYCA WERDYKTU
 - subtitle: Wygrana zależy od zasad walki.
 - col_left: STANDARD KO/BFR/INCAP
 - col_right: KILL-ONLY DEATHMATCH
-- row_top: SOLAR FLARE TAK
-- row_bottom: SOLAR FLARE NIE
-- case_1: Superman 8/10. Z pełną mocą i opcją nokautu Clark wygrywa dość łatwo.
-- case_2: Hyperion 6/10. W walce na śmierć Superman może się wahać, a Hyperion nie.
-- case_3: Superman 7/10. Bez Solar Flare Superman musi liczyć na wyrzucenie wroga w kosmos (BFR).
-- case_4: Hyperion 7/10. Bez ostatecznej broni Supermana, regeneracja Hyperiona w końcu przeważy.
-
+- row_top: Solar Flare
+- row_bottom: No Solar Flare
+- case_1: Superman 7/10. Przy standardowych zasadach i z Solar Flare ma najczystszą drogę do zwycięstwa.
+- case_2: Superman 5.5/10. Solar Flare daje Supermanowi drogę do wygranej, ale walka na śmierć nadal sprzyja Hyperionowi.
+- case_3: Superman 6/10. Bez Solar Flare Superman wciąż ma przewagę, jeśli potrafi kontrolować walkę od początku do końca i uniknie wojny na wyniszczenie.
+- case_4: King Hyperion 6/10. Bez Solar Flare w walce na śmierć regeneracja Hyperiona zaczyna przechylać szalę.
 Template Fight Title:
 - headline: Walka #1 skończona
 - fight_title: Superman vs King Hyperion
@@ -248,3 +231,4 @@ Template Fight Title:
 - top_color_b: #93c5fd
 - bottom_color_a: #facc15
 - bottom_color_b: #dc2626
+

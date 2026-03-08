@@ -5,6 +5,7 @@ import {
   buildTemplateImageEntries,
   findTemplateBlockLines,
   parseTemplateFieldMap,
+  pickTemplateField,
   resolveFightTemplateImageUrl,
   type TemplateImageEntry,
 } from '../../importer'
@@ -37,11 +38,11 @@ export function RawFeatsTemplate({
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['raw-feats'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const headerText = tr('Najwazniejsze wyczyny', 'Key feats')
-  const subText = ''
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || tr('Najważniejsze wyczyny', 'Key feats')
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || ''
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -115,7 +116,7 @@ export function RawFeatsTemplate({
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
             </div>
-            <div className="text-center">
+            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>{headerText}</h2>
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>

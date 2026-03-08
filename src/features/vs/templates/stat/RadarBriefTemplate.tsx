@@ -30,16 +30,18 @@ export function RadarBriefTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
   const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
   const scale = 'VersusVerseVault badge'
-  const leftHeader = pickTemplateField(blockFields, ['left_header']) || tr('NIEBIESKI NAROZNIK', 'BLUE CORNER')
-  const rightHeader = pickTemplateField(blockFields, ['right_header']) || tr('CZERWONY NAROZNIK', 'RED CORNER')
+  const customLeftHeader = pickTemplateField(blockFields, ['left_header'])
+  const customRightHeader = pickTemplateField(blockFields, ['right_header'])
+  const leftHeader = customLeftHeader || tr('NIEBIESKI NAROŻNIK', 'BLUE CORNER')
+  const rightHeader = customRightHeader || tr('CZERWONY NAROŻNIK', 'RED CORNER')
   const drawHeader = pickTemplateField(blockFields, ['draw_header']) || tr('Kategorie remisowe', 'Draw categories')
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
@@ -69,7 +71,7 @@ export function RadarBriefTemplate({
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
             </div>
-            <div className="text-center">
+            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
                 {headerText}
               </h2>
@@ -91,7 +93,7 @@ export function RadarBriefTemplate({
           <div className="mt-3 grid flex-1 grid-cols-[1fr_1.3fr_1fr] gap-3">
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`}>
               <p className="text-[12px] uppercase tracking-[0.16em]" style={{ color: fighterA.color }}>
-                {leftHeader} // {fighterAText}
+                {customLeftHeader ? leftHeader : `${leftHeader} // ${fighterAText}`}
               </p>
               <div className="mt-2 max-h-full space-y-2 overflow-y-auto pr-1">
                 {leftAdvantages.length ? (
@@ -142,14 +144,14 @@ export function RadarBriefTemplate({
                     ))}
                   </div>
                 ) : (
-                  <p className="mt-1 text-[12px] text-slate-400">{tr('Brak remisow w biezacym ukladzie.', 'No draws in current setup.')}</p>
+                  <p className="mt-1 text-[12px] text-slate-400">{tr('Brak remisów w bieżącym układzie.', 'No draws in current setup.')}</p>
                 )}
               </div>
             </div>
 
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`}>
               <p className="text-[12px] uppercase tracking-[0.16em]" style={{ color: fighterB.color }}>
-                {rightHeader} // {fighterBText}
+                {customRightHeader ? rightHeader : `${rightHeader} // ${fighterBText}`}
               </p>
               <div className="mt-2 max-h-full space-y-2 overflow-y-auto pr-1">
                 {rightAdvantages.length ? (

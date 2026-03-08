@@ -61,7 +61,7 @@ export const FIGHTER_B: Fighter = {
 export const TEMPLATE_PRESETS: TemplatePreset[] = [
   {
     id: 'tactical-board',
-    name: 'Tactical Board / Methodology',
+    name: 'Tactical Board',
     description: 'Half category board, half combat-reality lightning screen.',
     title: 'TACTICAL BOARD // METHODOLOGY',
     subtitle: 'Category table and non-linear combat reality',

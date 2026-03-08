@@ -20,10 +20,10 @@ export function HudBarsTemplate({
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const headerText = tr('analityka walki', 'fight analytics')
-  const subText = tr('statystyki obu zawodnikow', 'stats of both fighters')
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const subText = tr('statystyki obu zawodników', 'stats of both fighters')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -44,7 +44,7 @@ export function HudBarsTemplate({
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
             </div>
-            <div className="text-center">
+            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
                 {headerText}
               </h2>
@@ -67,13 +67,13 @@ export function HudBarsTemplate({
             <div className={`${HIGH_END_CARD_CLASS} px-3 ${isDense ? 'py-1.5' : 'py-2'}`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
               <p className="uppercase tracking-[0.16em] text-slate-300">{fighterA.name}</p>
               <p className="font-semibold" style={{ color: fighterA.color }}>
-                {tr('Sr.', 'Avg')} {averageA.toFixed(1)}
+                {tr('Śr.', 'Avg')} {averageA.toFixed(1)}
               </p>
             </div>
             <div className={`${HIGH_END_CARD_CLASS} px-3 ${isDense ? 'py-1.5' : 'py-2'}`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
               <p className="uppercase tracking-[0.16em] text-slate-300">{fighterB.name}</p>
               <p className="font-semibold" style={{ color: fighterB.color }}>
-                {tr('Sr.', 'Avg')} {averageB.toFixed(1)}
+                {tr('Śr.', 'Avg')} {averageB.toFixed(1)}
               </p>
             </div>
           </div>

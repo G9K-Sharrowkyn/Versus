@@ -64,11 +64,11 @@ const buildToolkitSections = (
       return
     }
     if (key === 'tools') {
-      register(key, tr('Narzedzia', 'Tools'), Swords, fact.text)
+      register(key, tr('Narzędzia', 'Tools'), Swords, fact.text)
       return
     }
     if (key === 'weaknesses') {
-      register(key, tr('Slabosci', 'Weaknesses'), Crosshair, fact.text)
+      register(key, tr('Słabości', 'Weaknesses'), Crosshair, fact.text)
       return
     }
     register(key, fact.title || tr('Dane', 'Data'), BookOpen, fact.text)
@@ -107,13 +107,13 @@ const getToolkitSectionMeta = (
   }
   if (key === 'tools') {
     return {
-      label: pickTemplateField(fields, ['tools_label']) || tr('Narzedzia', 'Tools'),
+      label: pickTemplateField(fields, ['tools_label']) || tr('Narzędzia', 'Tools'),
       icon: Swords,
     }
   }
   if (key === 'weaknesses') {
     return {
-      label: pickTemplateField(fields, ['weaknesses_label']) || tr('Slabosci', 'Weaknesses'),
+      label: pickTemplateField(fields, ['weaknesses_label']) || tr('Słabości', 'Weaknesses'),
       icon: Crosshair,
     }
   }
@@ -139,9 +139,9 @@ export function PowersToolsTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = ''
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -149,10 +149,10 @@ export function PowersToolsTemplate({
   const scale = 'VersusVerseVault badge'
   const leftTitle =
     pickTemplateField(blockFields, ['left_title']) ||
-    `${fighterA.name || 'Fighter A'} ${tr('profil narzedzi', 'toolkit profile')}`
+    `${fighterA.name || 'Fighter A'} ${tr('profil narzędzi', 'toolkit profile')}`
   const rightTitle =
     pickTemplateField(blockFields, ['right_title']) ||
-    `${fighterB.name || 'Fighter B'} ${tr('profil narzedzi', 'toolkit profile')}`
+    `${fighterB.name || 'Fighter B'} ${tr('profil narzędzi', 'toolkit profile')}`
   const leftSections = buildToolkitSections(powersA, blockFields, language)
   const rightSections = buildToolkitSections(powersB, blockFields, language)
   const leftSectionMap = new Map(leftSections.map((section) => [section.key, section]))
@@ -225,7 +225,7 @@ export function PowersToolsTemplate({
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
             </div>
-            <div className="text-center">
+            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>{headerText}</h2>
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>
@@ -258,10 +258,10 @@ export function PowersToolsTemplate({
             ) : (
               <div className="grid grid-cols-2 gap-3">
                 <div className="flex min-h-[180px] items-center justify-center rounded-lg border border-dashed border-cyan-300/25 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
-                  {tr('Brak danych o mocach i slabosciach.', 'No powers / weaknesses data found.')}
+                  {tr('Brak danych o mocach i słabościach.', 'No powers / weaknesses data found.')}
                 </div>
                 <div className="flex min-h-[180px] items-center justify-center rounded-lg border border-dashed border-cyan-300/25 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
-                  {tr('Brak danych o mocach i slabosciach.', 'No powers / weaknesses data found.')}
+                  {tr('Brak danych o mocach i słabościach.', 'No powers / weaknesses data found.')}
                 </div>
               </div>
             )}

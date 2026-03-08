@@ -42,19 +42,19 @@ export const translationsPl = {
   templates: {
     presets: {
       'tactical-board': {
-        name: 'Tablica Taktyczna / Metodologia',
+        name: 'Tablica Taktyczna',
         description: 'Pół planszy kategorii i pół panelu nieliniowości walki.',
-        title: 'TABLICA TAKTYCZNA // METODOLOGIA',
+        title: 'TABLICA TAKTYCZNA',
         subtitle: 'Tabela kategorii i nieliniowa rzeczywistość starcia',
       },
       'character-card-a': {
-        name: 'Karta Postaci A',
+        name: 'Karta Postaci Niebieskiej',
         description: 'Pełna karta lewej postaci z większym miejscem na portret.',
         title: 'DOSSIER POSTACI // NIEBIESKI',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
       'character-card-b': {
-        name: 'Karta Postaci B',
+        name: 'Karta Postaci Czerwonej',
         description: 'Pełna karta prawej postaci z większym miejscem na portret.',
         title: 'DOSSIER POSTACI // CZERWONY',
         subtitle: 'Archetyp, styl i profil taktyczny',

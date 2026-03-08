@@ -40,9 +40,9 @@ export function SummaryTemplate({
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -68,7 +68,7 @@ export function SummaryTemplate({
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
               <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
             </div>
-            <div className="text-center">
+            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
                 {headerText}
               </h2>
@@ -90,7 +90,7 @@ export function SummaryTemplate({
           <div className="mt-2 grid min-h-0 flex-1 grid-cols-[1.05fr_1.2fr_1.05fr] gap-3">
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
               <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                <p className={HIGH_END_SMALL_TEXT_CLASS}>{tr('Niebieski naroznik', 'Blue corner')}</p>
+                <p className={HIGH_END_SMALL_TEXT_CLASS}>{tr('Niebieski narożnik', 'Blue corner')}</p>
                 <p className="text-lg uppercase leading-none" style={{ color: fighterA.color, fontFamily: 'var(--font-display)' }}>
                   {fighterA.name || 'Fighter A'}
                 </p>
@@ -152,7 +152,7 @@ export function SummaryTemplate({
               </div>
 
               <div className={`mt-2 flex min-h-0 flex-1 flex-col ${HIGH_END_CARD_CLASS} p-2`}>
-                <p className={HIGH_END_LABEL_CLASS}>{tr('Linie podsumowania', 'Summary lines')}</p>
+                <p className={HIGH_END_LABEL_CLASS}>{tr('Podsumowanie', 'Summary')}</p>
                 <div className="mt-2 min-h-0 flex-1 space-y-1.5 overflow-y-auto pr-1 text-sm text-slate-100">
                   {summaryLines.map((item, index) => (
                     <div key={`summary-line-${index}-${item}`} className="rounded border border-slate-700/60 bg-black/35 px-2 py-1">
@@ -165,7 +165,7 @@ export function SummaryTemplate({
 
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
               <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                <p className={HIGH_END_SMALL_TEXT_CLASS}>{tr('Czerwony naroznik', 'Red corner')}</p>
+                <p className={HIGH_END_SMALL_TEXT_CLASS}>{tr('Czerwony narożnik', 'Red corner')}</p>
                 <p className="text-lg uppercase leading-none" style={{ color: fighterB.color, fontFamily: 'var(--font-display)' }}>
                   {fighterB.name || 'Fighter B'}
                 </p>
