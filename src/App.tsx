@@ -295,9 +295,10 @@ function App() {
   }
 
   const applyFightRecord: ApplyFightRecord = (fight, options) => {
+    const fightLanguage = resolveFightLanguage(fight, language)
     const nextState = buildFightStudioState({
       fight,
-      language,
+      language: options?.targetLanguage ?? fightLanguage,
       activeTemplate,
       templateCursor,
       preserveTemplateSelection: options?.preserveTemplateSelection ?? false,
@@ -339,20 +340,35 @@ function App() {
   })
 
   const toggleLanguage = () => {
-    setLanguage((current) => {
-      const nextLanguage = current === 'pl' ? 'en' : 'pl'
-      if (!importFileName && !Object.keys(templateBlocks).length) {
-        setCategories(defaultCategoriesFor(nextLanguage))
-        setFactsA(defaultFactsFor('a', nextLanguage))
-        setFactsB(defaultFactsFor('b', nextLanguage))
-        setPowersA([])
-        setPowersB([])
-        setRawFeatsA([])
-        setRawFeatsB([])
-        setSlideImageAdjustments({})
+    const nextLanguage = language === 'pl' ? 'en' : 'pl'
+    setLanguage(nextLanguage)
+
+    if (activeFightId) {
+      const currentFight = fights.find((f) => f.id === activeFightId)
+      if (currentFight?.matchupKey) {
+        const otherVariant = fights.find(
+          (f) => f.matchupKey === currentFight.matchupKey && f.variantLocale === nextLanguage,
+        )
+        if (otherVariant) {
+          applyFightRecord(otherVariant, {
+            enterIntro: false,
+            preserveTemplateSelection: true,
+            targetLanguage: nextLanguage,
+          })
+        }
       }
-      return nextLanguage
-    })
+    }
+
+    if (!importFileName && !Object.keys(templateBlocks).length) {
+      setCategories(defaultCategoriesFor(nextLanguage))
+      setFactsA(defaultFactsFor('a', nextLanguage))
+      setFactsB(defaultFactsFor('b', nextLanguage))
+      setPowersA([])
+      setPowersB([])
+      setRawFeatsA([])
+      setRawFeatsB([])
+      setSlideImageAdjustments({})
+    }
   }
 
   const rememberPreferredFightVariant = (fight: FightRecord) => {
@@ -432,6 +448,7 @@ function App() {
       slideImageAdjustments={slideImageAdjustments}
       onSlideImageAdjustChange={handleSlideImageAdjustChange}
       onSlideImageAdjustCommit={handleSlideImageAdjustCommit}
+      onToggleLanguage={toggleLanguage}
     />
   )
 
