@@ -7,7 +7,7 @@ import { PortraitEditorModal } from './features/vs/components/PortraitEditorModa
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
-import { buildFightStudioState, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
+import { buildFightStudioState, resolveFightLanguage, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
 import {
   DEFAULT_TEMPLATE_ORDER,
   DEFAULT_WINNER_CV_A,
@@ -111,6 +111,7 @@ function App() {
     setPreferredVariantByMatchup,
     activeFightId,
     setActiveFightId,
+    storageReady,
     activeFightSignatureRef,
   } = useVsPersistence({
     applyFightRecordRef,
@@ -137,6 +138,7 @@ function App() {
     handleIntroFrameLoad,
   } = useVsTransitions({
     fights,
+    fightsReady: storageReady,
     preferredVariantByMatchup,
     activeTemplate,
     activeFightId,

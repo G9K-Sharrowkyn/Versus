@@ -17,11 +17,11 @@
 - Mentalność: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 
 4. Pokonani przez Postać A
-- Doomsday (zwycięstwo nad ucieleśnieniem śmierci)
-- Wraith (pokonanie potężniejszego fizycznie przeciwnika)
-- Parasite (neutralizacja mimo wysysania mocy)
-- Mongul (dominacja nad władcą Warworld)
-- Apollo (pokonanie innego solarno-zależnego bytu)
+- Doomsday
+- Wraith
+- Parasite
+- Mongul
+- Apollo
 
 5. King Hyperion (Earth-4023)
 
@@ -37,7 +37,7 @@
 - Umiejętności bojowe: 83
 
 7. Featy Postaci B
-- Styl: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny – używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
+- Styl: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny – używa Atomic Vision (gorętszego od słońca) i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
 - Atut: Nieludzka regeneracja i przeżywalność. Przetrwał zniszczenie dwóch wszechświatów. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - Mentalność: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
 
@@ -74,24 +74,24 @@
 - Słabości: Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki.
 
 11. Surowe Featy Postaci A
-- Wyciska ciężar równy masie Ziemi przez pięć dni bez przerwy.
-- Reads every published medical text in seconds – nieludzkie tempo przetwarzania informacji.
-- Porusza się i reaguje z prędkością wielokrotnie przekraczającą prędkość światła.
-- Wylatuje z czarnej dziury, nie odnosząc żadnych obrażeń fizycznych.
-- Przetrwał bez szwanku eksplozję o skali supernowej.
+- Wyciska ciężar równy masie Ziemi przez pięć dni.
+- Czyta każdy opublikowany tekst medyczny w kilka sekund.
+- Udaje mu się trafić Flasha.
+- Wylatuje z czarnej dziury, nie odnosząc obrażeń.
+- Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Ekstremalna siła, wytrzymałość, lot, Atomic Vision i niemal natychmiastowa regeneracja.
-- Narzędzia: Atomic Vision – promienie o temperaturze 12,000 stopni, zdolne przepalać najtwardsze metale kosmiczne.
+- Narzędzia: Atomic Vision – promienie o temperaturze 12,000 stopni, zdolne przepalić adamantium i zabić Visiona jednym strzałem.
 - Narzędzia: Doświadczenie w zabijaniu Supermanów (Exiles). Zna słabości i psychologię herosów.
 - Słabości: Wrażliwość na Argonite (odpowiednik Kryptonitu w jego świecie).
-- Słabości: Skrajna arogancja – często pozwala przeciwnikom na pierwszy ruch.
+- Słabości: Skrajna arogancja. Często lekceważy przeciwników, pozwalając im zadać pierwszy cios, co może być błędem przy kimś klasy Supermana.
 
 13. Surowe Featy Postaci B
-- Przetrwał w samym sercu zapadającego się wszechświata.
-- Regeneruje się po całkowitym rozerwaniu na poziomie molekularnym.
+- Wymordował wszystkich herosów swojego świata (Thor, Hulk, Sentry, Galactus).
+- Przetrwał zniszczenie dwóch wszechświatów.
 - Wraca do życia chwilę po skręceniu karku i dekapitacji.
-- Wytrzymałość termiczna pozwalająca na przebywanie wewnątrz jądra gwiazdy.
+- Jego Atomic Vision topi adamantium i zabija Visiona na miejscu.
 - Walczył z dwoma innymi Hyperionami naraz i dominował w starciu.
 
 Template Tactical Board:
@@ -106,17 +106,17 @@ Template Tactical Board:
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: New 52
-- style: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej i zrywach szybkości.
-- advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości.
-- mentality: Zwykle się ogranicza i eskaluje dopiero pod wpływem ekstremalnego zagrożenia.
+- style: Bezpośredni styl kryptoniański oparty na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
+- advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
+- mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 - quote: To wygląda na robotę dla Supermana.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
 - world: Earth-4023 (Exiles)
-- style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, dążąc do upokorzenia wroga.
-- advantage: Nieludzka regeneracja i przeżywalność po katastrofalnych obrażeniach.
-- mentality: Megalo-psychopata z kompleksem boga. Nie zna litości ani wahania.
+- style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny – używa Atomic Vision (gorętszego od słońca) i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
+- advantage: Nieludzka regeneracja i przeżywalność. Przetrwał zniszczenie dwóch wszechświatów. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
+- mentality: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
 - quote: Właśnie tak, skarbie... Hyperion.
 
 Template HUD Bars:
@@ -162,29 +162,29 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe
+- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
 - left_title: POKAZ SUPERMANA
 - right_title: POKAZ HYPERIONA
 - feat_label: FEAT
-- left_item_1: Wyciskanie masy Ziemi.
+- left_item_1: Wyciska ciężar równy masie Ziemi przez pięć dni.
 - left_image_1: 01_6_1_superman_bench_press_earth_equivalent.jpg
-- left_item_2: Szybkość reakcji (Flash).
-- left_image_2: Superman_flash.jpeg
-- left_item_3: Prędkość przetwarzania.
-- left_image_3: Superman_read.jpeg
-- left_item_4: Wylot z czarnej dziury.
+- left_item_2: Czyta każdy opublikowany tekst medyczny w kilka sekund.
+- left_image_2: Superman_read.jpeg
+- left_item_3: Udaje mu się trafić Flasha.
+- left_image_3: Superman_flash.jpeg
+- left_item_4: Wylatuje z czarnej dziury, nie odnosząc obrażeń.
 - left_image_4: 02_6_1_superman_survives_black_hole_level_punishment.jpg
-- left_item_5: Odporność na aurę śmierci.
+- left_item_5: Jako jedyny wytrzymuje aurę śmierci Doomsdaya.
 - left_image_5: 05_6_1_superman_high_end_endurance_control.jpg
-- right_item_1: Przeżycie destrukcji świata.
+- right_item_1: Wymordował herosów swojego świata (Thor, Hulk, Sentry).
 - right_image_1: 06_6_2_hyperion_survives_world_destruction.png
-- right_item_2: Regeneracja ze szkieletu.
-- right_image_2: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
-- right_item_3: Powrót po dekapitacji.
-- right_image_3: 07_6_2_hyperion_recovers_after_neck_snap.png
-- right_item_4: Wytrzymałość wewnątrz gwiazdy.
+- right_item_2: Wraca do życia po skręceniu karku i dekapitacji.
+- right_image_2: 07_6_2_hyperion_recovers_after_neck_snap.png
+- right_item_3: Regeneruje się po rozerwaniu na strzępy.
+- right_image_3: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
+- right_item_4: Zabija Visiona jednym strzałem Atomic Vision.
 - right_image_4: 10_6_2_hyperion_disintegrates_weapon_x_vision.jpg
-- right_item_5: Dominacja dwóch Hyperionów.
+- right_item_5: Dominuje dwóch alternatywnych Hyperionów.
 - right_image_5: 08_6_2_hyperion_overwhelms_two_alternate_hyperions.png
 
 Template X-Factor:
@@ -198,7 +198,7 @@ Template X-Factor:
 - b_bonus: 20
 - regen: BRAK ZASAD
 - mechanika: Superman walczy, by powstrzymać. Hyperion walczy, by zabić.
-- implikacja: W krytycznym momencie Superman może się zawahać przed zadaniem śmiertelnego ciosu. Hyperion wykorzysta ten ułamek sekundy.
+- implikacja: W krytycznym momencie Superman może się zawahać przed zadaniem śmiertelnego ciosu. Hyperion wykorzysta ten ułamek sekundy, by go zabić.
 - psychologia: Hyperion nie boi się śmierci, bo wraca. Superman boi się stać mordercą.
 
 Template Winner CV:
@@ -220,15 +220,15 @@ Template Winner CV:
 - left_item_5: Apollo
 - left_image_5: 15_7_1_superman_beats_apollo.jpg
 - right_item_1: Thor (Earth-4023)
-- right_image_1: 19_7_2_hyperion_beats_thor.png
+- right_image_1: 16_7_2_hyperion_kills_magneto.png
 - right_item_2: Hulk (Earth-4023)
-- right_image_2: 20_7_2_hyperion_kills_hulk_and_others.png
+- right_image_2: 17_7_2_hyperion_kills_wolverine.png
 - right_item_3: Sentry (Earth-4023)
 - right_image_3: 18_7_2_hyperion_kills_weapon_x_vision.jpg
 - right_item_4: Galactus (Earth-4023)
-- right_image_4: 16_7_2_hyperion_kills_magneto.png
+- right_image_4: 19_7_2_hyperion_beats_thor.png
 - right_item_5: Vision (Earth-4023)
-- right_image_5: 17_7_2_hyperion_kills_wolverine.png
+- right_image_5: 20_7_2_hyperion_kills_hulk_and_others.png
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
@@ -264,8 +264,9 @@ Template Verdict Matrix:
 Template Fight Title:
 - headline: Walka #1 skończona
 - fight_title: Superman vs King Hyperion
-- subtitle: HERO VS TYRANT
+- subtitle:
 - top_color_a: #2563eb
 - top_color_b: #93c5fd
 - bottom_color_a: #facc15
 - bottom_color_b: #dc2626
+

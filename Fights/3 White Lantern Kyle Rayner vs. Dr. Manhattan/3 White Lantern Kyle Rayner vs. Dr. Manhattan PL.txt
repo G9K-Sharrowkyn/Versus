@@ -18,9 +18,9 @@
 
 4. Defeated by Character A
 - Relic (wciągnięty za Source Wall)
-- Third Army (anihilacja armii odpornej na latarnie)
-- Guardians of the Universe (pokonanie najstarszych bytów)
-- Oblivion (całkowite wymazanie koncepcyjne własnego mroku)
+- Third Army
+- Guardians of the Universe
+- Oblivion (całkowite wymazanie koncepcyjne)
 - Source Titans (wygnanie poza rzeczywistość)
 
 5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock continuity role)
@@ -42,10 +42,10 @@
 - Mentalność: Chłodny obserwator. Działa z absolutną pewnością autora, który wie, jak skończy się rozdział, chyba że zakłócą go Tachiony.
 
 8. Defeated by Character B
-- Mr. Mxyzptlk (uznanie wyższości Manhattana nad 5D)
+- Mr. Mxyzptlk (przyznaje, że potęga Manhattana jest poza jego pojmowaniem)
 - Cała Liga Sprawiedliwości (pokonani bez wysiłku na Marsie)
-- Alan Scott / JSA (wymazani z historii)
-- Legion of Superheroes (wymazani z osi czasu)
+- Alan Scott / JSA (wymazani z historii przez przesunięcie latarni)
+- Legion of Superheroes (wymazani z osi czasu w 3019 roku)
 - Pandora (całkowita dezintegracja koncepcyjna)
 
 9. Template Order
@@ -73,24 +73,24 @@
 - Słabości: Skrajne manipulowanie Source destabilizuje lokalną rzeczywistość.
 
 11. Character A Raw Feats
+- Manipuluje Kodem Źródłowym (Source Code), "odpisując" siebie i Obliviona z istnienia.
 - Przekształcił wszechświat tak, by możliwe było wyjście za Source Wall i powrót.
-- Tworzenie konstrukcji o skali planetarnej i gwiezdnej.
-- Manipuluje Kodem Źródłowym (Source Code), potrafiąc "odpisać" materię z istnienia.
-- Wskrzesił miliardy istnień jednocześnie podczas Blackest Night.
+- Banicja Source Titans – istot potężniejszych niż bogowie.
+- Walka z Oblivionem destabilizowała fundamenty rzeczywistości.
 - Przełamał kontrolę istot emocjonalnych (Entities), co uznawano za niemożliwe.
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Wszechczas, manipulacja Metaversum, kradzież czasu, uderzenie w Speed Force, odporność na wymazanie.
 - Narzędzia: Brak. Manhattan jest architektem własnej rzeczywistości.
 - Słabości: Tachiony ("Static") blokują mu wzrok w przyszłość i tworzą martwe punkty.
-- Słabości: Pasywność. Czasem pozwala na akcję, bo "tak widzi", co Kyle może wykorzystać.
+- Słabości: Pasywność. Czasem pozwala na akcję, bo "tak widzi", co Kyle może wykorzystać do oślepienia go.
 
 13. Character B Raw Feats
-- Konwersja całej materii i energii w czystą informację (Quantum Observation).
+- Mxyzptlk przyznaje, że potęga Manhattana wykracza poza jego 5-wymiarowe pojmowanie.
 - Stworzył New 52, wymazując 10 lat historii całego DC Universe.
+- Przesunął latarnię Alana Scotta w 1940, co natychmiast wymazało Legion Superbohaterów w 3019.
 - Uderzył bezpośrednio w Speed Force (byt wszechobecny).
 - Zresetował całą linię czasową DC Metaverse jedną myślą.
-- Odtworzył się z niczego po całkowitej dezintegracji fizycznej.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KYLE VS MANHATTAN
@@ -104,17 +104,17 @@ Template Tactical Board:
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52 / Prime Earth
-- style: Meta-walka na poziomie Kodu Źródłowego. Kyle edytuje fundamenty istnienia.
-- advantage: Life Equation (Równanie Życia) – zdolność do generowania dowolnego efektu, w tym fal tachionowych.
-- mentality: "Toruje drogę". Kyle wierzy, że każdą barierę (nawet Source Wall) da się przekroczyć.
+- style: Meta-walka na poziomie Kodu Źródłowego. Kyle edytuje fundamenty istnienia, potrafiąc "odpisać" (unmake) siebie i przeciwnika z rzeczywistości.
+- advantage: Life Equation (Równanie Życia) – zdolność do generowania dowolnego efektu, w tym fal tachionowych, które oślepiają Manhattana.
+- mentality: "Toruje drogę". Kyle wierzy, że każdą barierę (nawet Source Wall) da się przekroczyć lub zmienić. Nie akceptuje "niemożliwego".
 - quote: I can sense the death of a planet... and I can rewrite its past.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Watchmen / Doomsday Clock
-- style: "Bóg Mechanizmu". Widzi czas i multiwersum jak statyczne obrazy.
-- advantage: Wszechmoc Metaversalna. Posiada odporność na wymazanie i uderza w koncepty.
-- mentality: Chłodny obserwator. Działa z absolutną pewnością autora.
+- style: "Bóg Mechanizmu". Widzi czas i multiwersum jak statyczne obrazy. Nie walczy – on dokonuje "korekt" w tkance rzeczywistości.
+- advantage: Wszechmoc Metaversalna. Skaluje się powyżej 5-wymiarowych istot (Mxy), posiada odporność na wymazanie i uderza w koncepty takie jak Speed Force.
+- mentality: Chłodny obserwator. Działa z absolutną pewnością autora, który wie, jak skończy się rozdział, chyba że zakłócą go Tachiony.
 - quote: I am the most powerful being in the known universe. I can do anything.
 
 Template Powers / Tools / Weaknesses:
@@ -127,34 +127,34 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: WEAKNESSES
 
 Template Raw Feats:
-- headline: SUROWE FEATY
+- headline: RAW FEATS
 - subtitle: Dowody na "niemożliwe"
 - left_title: POKAZ KYLE'A
 - right_title: POKAZ MANHATTANA
 - feat_label: FEAT
-- left_item_1: Powrót z Source Wall.
-- left_image_1: Kyle_Reshape.jpeg
-- left_item_2: Planetarne Konstrukcje.
-- left_image_2: Kyle_Banish.jpg
-- left_item_3: Edycja Source Code.
-- left_image_3: Kyle_source.jpeg
-- left_item_4: Wskrzeszanie miliardów.
-- left_image_4: 02_6_1_kyle_third_army_white_light.jpg
-- left_item_5: Przełamanie Entities.
+- left_item_1: Edytuje Source Code ("Unmaking").
+- left_image_1: Kyle_source.jpeg
+- left_item_2: Zmienił wszechświat (Source Wall return).
+- left_image_2: Kyle_Reshape.jpeg
+- left_item_3: Banicja Source Titans.
+- left_image_3: Kyle_Banish.jpg
+- left_item_4: Walka destabilizująca rzeczywistość.
+- left_image_4: Kyle_Destabilize.jpeg
+- left_item_5: Przełamanie Emotional Entities.
 - left_image_5: Kyle_Vessel.jpeg
-- right_item_1: Kwantowa Konwersja Materii.
-- right_image_1: Manhattan_Anything.jpg
-- right_item_2: Reset linii czasowej DC.
+- right_item_1: Wykładniczo silniejszy od Mxyzptlka.
+- right_image_1: Manhattan_Mxy1.jpeg
+- right_item_2: Reset całej linii czasowej DC.
 - right_image_2: Manhattan_Reset.jpeg
-- right_item_3: Wymazanie 10 lat historii.
+- right_item_3: Wymazanie 10 lat historii (New 52).
 - right_image_3: Manhattan_10years.jpeg
 - right_item_4: Uderzenie w Speed Force.
 - right_image_4: Manhattan_SpeedForce.jpeg
-- right_item_5: Odtworzenie z niebytu.
-- right_image_5: Manhattan_Resurrection.jpeg
+- right_item_5: Wymazanie Legionu (Alan Scott 1940).
+- right_image_5: Manhattan_ring.jpeg
 
 Template HUD Bars:
-- headline: ANALITYKA WALKI HIGH-END
+- headline: HIGH-END COMBAT ANALYTICS
 - subtitle: Metaversal War
 - threat_level: META-CRISIS
 - integrity: 100%
@@ -162,7 +162,7 @@ Template HUD Bars:
 - scale: 0-100
 
 Template Radar Brief:
-- headline: PORÓWNANIE PARAMETRÓW
+- headline: PARAMETER COMPARISON
 - subtitle: Mapa średniego profilu statystycznego
 - left_header: PRZEWAGI KYLE'A
 - right_header: PRZEWAGI MANHATTANA
@@ -170,7 +170,7 @@ Template Radar Brief:
 - favorite_label: FAWORYT WEDŁUG STATYSTYK
 
 Template Interpretation:
-- headline: INTERPRETACJA
+- headline: INTERPRETATION
 - subtitle: Kto wygrywa walkę na papierze?
 - line_1: To starcie dwóch "Administratorów". Manhattan operuje globalnie (Metaversum), Kyle operuje lokalnie ale głębiej (Source Code).
 - line_2: Manhattan zazwyczaj wygrywa przez sam fakt bycia "poza czasem", ale Kyle posiada Life Equation – "Cheat Code" na determinizm.
@@ -207,32 +207,12 @@ Template Winner CV:
 - left_title: REKORD KYLE'A
 - right_title: REKORD MANHATTANA
 - win_badge: W
-- left_item_1: Relic
-- left_image_1: Kyle_wall.jpeg
-- left_item_2: Oblivion (Erasure)
-- left_image_2: Kyle_source.jpeg
-- left_item_3: Guardians
-- left_image_3: 03_6_1_kyle_guardians_dominance.jpg
-- left_item_4: Source Titans
-- left_image_4: Kyle_Banish.jpg
-- left_item_5: Third Army
-- left_image_5: 02_6_1_kyle_third_army_white_light.jpg
-- right_item_1: Mr. Mxyzptlk
-- right_image_1: Manhattan_Mxy1.jpeg
-- right_item_2: Justice League
-- right_image_2: Manhattan_JL.jpeg
-- right_item_3: Alan Scott
-- right_image_3: Manhattan_Lantern.jpeg
-- right_item_4: Legion of Superheroes
-- right_image_4: Manhattan_ring.jpeg
-- right_item_5: Pandora
-- right_image_5: Manhattan_Pandora.jpg
 
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: 
 - winner: Remis / Dr. Manhattan (Minimalna przewaga)
-- line_1: Manhattan operuje na poziomie Metaversum, kradząc czas i resetując wszechświaty jedną ręką.
+- line_1: Manhattan operuje na poziomie Metaversum, kradnąc czas i resetując wszechświaty jedną ręką.
 - line_2: Kyle z Life Equation jest jedynym błędem w systemie, który może negować determinizm Boga Tachionami.
 - line_3: Walka prawdopodobnie skończyłaby się destabilizacją rzeczywistości do poziomu "Zero", zanim jeden pokonałby drugiego.
 

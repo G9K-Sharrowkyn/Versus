@@ -12,16 +12,15 @@
 - Combat Skills: 86
 
 3. Character A Feats
-- Style: Brutal Necrosword swordsmanship. Knull doesn't play with finesse—he seeks decapitation and physical domination with strength that tears heroes to shreds.
-- Advantage: All-Black the Necrosword – a weapon created to kill immortals. His attacks ignore divine durability, and Knull himself is nearly impossible to permanently harm.
-- Mentality: Sadistic Nihilism. He doesn't seek a challenge; he seeks an execution. Takes pleasure in breaking the opponent's will and extinguishing "light" with one final blow.
+- Style: Brutal Necrosword swordsmanship. Knull does not bother with finesse, he aims for decapitation and the physical domination of his victim with strength that tears heroes to shreds.
+- Advantage: All-Black the Necrosword, a weapon created to kill immortals. His attacks ignore divine durability, and Knull himself is almost impossible to injure permanently.
+- Mentality: Sadistic nihilism. He does not seek a challenge, he seeks an execution. He takes pleasure in breaking the opponent's will and extinguishing "light" with one final blow.
 
 4. Defeated by Character A
-- Celestial (death at the hands of the symbiote god)
-- Sentry (torn in half with bare hands)
-- Silver Surfer (beaten and corrupted by darkness)
-- All-Father Thor (dominated in direct combat)
-- Pantheons of gods (total annihilation of many worlds)
+- Celestial
+- Sentry
+- Silver Surfer
+- All-Father Thor
 
 5. Odin (Earth-616, Full Odinforce + Destroyer Armor + Odinsword)
 
@@ -37,16 +36,16 @@
 - Combat Skills: 93
 
 7. Character B Feats
-- Style: Majesty of the All-Father. A combination of destructive runic magic and brutal physical strength. Odin doesn't just cast spells—he bends reality to his will.
-- Advantage: Arsenal of the End of the World. Combining infinite Odinforce magic with physical invulnerability. The Destroyer Armor (powered by Asgardian souls) makes him nearly invincible, and the Odinsword is a weapon that conceptually can cut through anything—even the Abyss itself.
-- Mentality: Relentless Ruler. Odin doesn't "fight" for survival; he metes out justice. He seeks a quick, decisive victory to restore order to the universe.
+- Style: The majesty of the All-Father. A combination of destructive runic magic and brutal physical strength. Odin does not merely cast spells, he bends reality with his will.
+- Advantage: Arsenal of the End of the World. The union of the infinite magic of the Odinforce with physical invulnerability. The Destroyer Armor, powered by the souls of Asgard, makes him almost invulnerable, and the Odinsword is a weapon that can conceptually cut through anything, even the Abyss itself.
+- Mentality: A relentless ruler. Odin does not "fight" to survive, he dispenses justice. He seeks a quick, decisive victory to restore order to the universe.
 
 8. Defeated by Character B
-- Infinity (contained a universal-scale entity)
-- Seth (victory in a war that shook galaxies)
-- Thanos (dominated the Mad Titan)
-- Surtur (imprisoned the fire demon and stopped Ragnarok)
-- Drax (physical domination)
+- Infinity
+- Seth
+- Thanos
+- Silver Surfer
+- Drax
 
 9. Template Order
 - tactical-board
@@ -67,30 +66,30 @@
 - fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Absolute immortality, strength capable of tearing Sentry apart, control over the living Abyss (symbiotes).
-- Tools: All-Black the Necrosword (god-slayer), army of symbiote dragons.
-- Weaknesses: "Light" (The Enigma Force / Uni-Power) is his antithesis, though ordinary suns he simply extinguishes.
-- Weaknesses: Arrogance – Knull often underestimates opponents, allowing them the first move.
+- Powers: Absolute immortality, strength capable of tearing Sentry apart, and control over the living Abyss through symbiotes.
+- Tools: All-Black the Necrosword, a god-slaying blade, and an army of symbiote dragons.
+- Weaknesses: "Light" (the Enigma Force / Uni-Power) is his antithesis, though ordinary suns he simply extinguishes.
+- Weaknesses: Arrogance. Knull often underestimates opponents and allows them the first move because he believes they cannot hurt him anyway.
 
 11. Character A Raw Feats
-- Forging a Celestial's head into a furnace for his army.
-- Survived the Big Bang without any lasting harm.
-- Covers the entire Earth in a symbiote swarm in just minutes.
-- Living Abyss Armor – total resistance to conventional magic.
-- Control of billions of symbiotes simultaneously through a hive mind.
+- Beheads a Celestial in one stroke and turns its head into a forge.
+- Tears Sentry, Earth's mightiest hero, in half with his bare hands.
+- Survived the Big Bang without a scratch.
+- Slaughtered pantheons of gods across the universe.
+- Covers the entire Earth in a symbiote swarm within minutes.
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Odinforce (manipulation of matter, time, energy, souls), Blessings, Asgardian Magic.
-- Tools: Destroyer Armor (Celestial-level resilience), Odin's Sword (Odinsword).
-- Weaknesses: Odin Sleep – overusing the Odinforce forces him into a regenerative slumber.
-- Weaknesses: Pride – Odin can be stubborn and convinced of his infallibility.
+- Powers: The Odinforce, manipulation of matter, time, energy, and souls, blessings, and Asgardian magic.
+- Tools: Destroyer Armor, with Celestial-level durability, and Odin's sword, the Odinsword.
+- Weaknesses: Odin Sleep. Overusing the Odinforce forces him into a regenerative slumber.
+- Weaknesses: Pride. Odin can be stubborn and too convinced of his own infallibility, which Knull may exploit.
 
 13. Character B Raw Feats
-- Narrator describes Odin as "Living Omni-potence."
-- Holds back Surtur's flame, capable of burning Yggdrasil (9 Realms).
-- Listed as a being capable of ending the Multiverse or creating a new one.
-- Establishing Laws of Magic – enchantment on Mjolnir giving it conceptual properties.
-- Drawing pure energy directly from the fabric of the Cosmos.
+- The narrator describes Odin as "Living Omnipotence."
+- Holds back Surtur's flame, which could burn Yggdrasil (9 Realms = 9 universes).
+- Is cited as a being capable of ending the Multiverse or creating a new one.
+- His battle with Seth shakes every plane of reality, destroying galaxies as collateral damage.
+- Stops time, tears the fabric of eternity, and casts a spell to the far end of the universe.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KNULL VS ODIN
@@ -99,27 +98,27 @@ Template Tactical Board:
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
 - chaos_label: CHAOS SEGMENT
-- lane: Odin must destroy Knull totally before the Necrosword pierces his divine immortality.
+- lane: Odin must destroy Knull completely before the Necrosword pierces his divine immortality.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
 - world: Earth-616 (King in Black)
-- style: Brutal Necrosword swordsmanship. Knull seeks decapitation and physical domination of the victim.
-- advantage: All-Black the Necrosword – a weapon ignoring divine durability and preventing regeneration.
-- mentality: Sadistic Nihilism. He doesn't seek a challenge; he seeks an execution and the extinguishing of all light.
-- quote: I was here before the Light. And I will be here when it fades.
+- style: Brutal Necrosword swordsmanship. Knull does not bother with finesse, he aims for decapitation and the physical domination of his victim with strength that tears heroes to shreds.
+- advantage: All-Black the Necrosword, a weapon created to kill immortals. His attacks ignore divine durability, and Knull himself is almost impossible to injure permanently.
+- mentality: Sadistic nihilism. He does not seek a challenge, he seeks an execution. He takes pleasure in breaking the opponent's will and extinguishing "light" with one final blow.
+- quote: I was here before the Light. And I will be here when it goes out.
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Earth-616 (Odinforce + Destroyer)
-- style: Majesty of the All-Father. A combination of destructive runic magic and brutal physical strength.
-- advantage: Arsenal of the End of the World. Full Odinforce and Destroyer Armor powered by Asgardian souls.
-- mentality: Relentless Ruler. Odin metes out justice, seeking a quick, decisive victory to restore order.
+- style: The majesty of the All-Father. A combination of destructive runic magic and brutal physical strength. Odin does not merely cast spells, he bends reality with his will.
+- advantage: Arsenal of the End of the World. The union of the infinite magic of the Odinforce with physical invulnerability. The Destroyer Armor, powered by the souls of Asgard, makes him almost invulnerable, and the Odinsword is a weapon that can conceptually cut through anything, even the Abyss itself.
+- mentality: A relentless ruler. Odin does not "fight" to survive, he dispenses justice. He seeks a quick, decisive victory to restore order to the universe.
 - quote: I am Odin. And you have no power here.
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Arsenal of Doom vs. Divine Majesty
+- subtitle: Arsenal of annihilation vs. divine majesty
 - left_title: KNULL TOOLKIT
 - right_title: ODIN TOOLKIT
 - powers_label: POWERS
@@ -128,27 +127,27 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: RAW FEATS
-- subtitle: Proof of Power
+- subtitle: Proof of power
 - left_title: KNULL SHOWCASE
 - right_title: ODIN SHOWCASE
 - feat_label: FEAT
-- left_item_1: Celestial Head Forge.
+- left_item_1: Beheads a Celestial in one strike.
 - left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
-- left_item_2: Big Bang Survival.
-- left_image_2: Knull_BigBang.webp
-- left_item_3: Living Abyss Armor.
-- left_image_3: Knull_gods.jpg
-- left_item_4: Hive Mind Control.
-- left_image_4: Knull_Sentry.jpg
-- left_item_5: Suns Extinguished.
+- left_item_2: Tears Sentry in half.
+- left_image_2: Knull_Sentry.jpg
+- left_item_3: Survives the Big Bang.
+- left_image_3: Knull_BigBang.webp
+- left_item_4: Slaughtered billions of gods.
+- left_image_4: Knull_gods.jpg
+- left_item_5: Extinguishes suns and covers Earth in darkness.
 - left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
-- right_item_1: "Living Omni-potence" Status.
+- right_item_1: The narrator calls him "Living Omnipotence."
 - right_image_1: Odin_AllPowerful.jpg
-- right_item_2: Holding back Yggdrasil fire.
+- right_item_2: Holds back flames capable of burning 9 universes (Yggdrasil).
 - right_image_2: Odin_Flame.jpg
-- right_item_3: Multiversal Creative Power.
+- right_item_3: Can end the existence of the Multiverse.
 - right_image_3: Odin_Multiverse.jpg
-- right_item_4: Establishing Laws (Mjolnir).
+- right_item_4: His fight with Seth destroys galaxies in the background.
 - right_image_4: Odin_Plane2.jpg
 - right_item_5: Stops time and bends reality.
 - right_image_5: Odin_Time.jpg
@@ -163,7 +162,7 @@ Template HUD Bars:
 
 Template Radar Brief:
 - headline: PARAMETER COMPARISON
-- subtitle: Map of combat potential
+- subtitle: Average stat profile map
 - left_header: KNULL ADVANTAGES
 - right_header: ODIN ADVANTAGES
 - draw_header: DRAW ZONES
@@ -172,22 +171,22 @@ Template Radar Brief:
 Template Interpretation:
 - headline: INTERPRETATION
 - subtitle: Who wins the fight on paper?
-- line_1: Statistics are misleading. Odin has more "options" (magic, runes), but Knull has the better "finishing tool" (Necrosword).
-- line_2: Odin dominates in range control and scale of destruction, but Knull is an expert in surviving the end of the world.
-- line_3: The fight boils down to this: Can Odinforce erase Knull faster than the Necrosword can behead Odin?
-- quote: This is not a points fight. It's a fight for who lands the critical hit first.
+- line_1: The stats are misleading. Odin has more "options" (magic, runes), but Knull has the better "finishing tool" (the Necrosword).
+- line_2: Odin dominates range control and scale of destruction, but Knull is an expert at surviving the end of the world.
+- line_3: The fight comes down to this: Can the Odinforce erase Knull faster than the Necrosword can take Odin's head?
+- quote: This is not a fight decided on points. It is a fight over who lands the critical hit first.
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why numbers lie
-- trap_top: ODIN'S DAMAGE OUTPUT MAY NOT BE ENOUGH FOR KNULL'S REGEN
+- subtitle: Why the numbers lie
+- trap_top: ODIN'S DAMAGE OUTPUT MAY NOT BE ENOUGH TO OVERCOME KNULL'S REGENERATION
 - trap_bottom: KNULL ONLY NEEDS ONE CLEAN CUT
 - example: Odin can destroy galaxies, but Knull survived the Big Bang. Pure energy is not enough.
-- question: Does Odin have a spell that will finally destroy a being made of the Abyss itself?
+- question: Does Odin have a spell that can finally destroy a being made from the Abyss itself?
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The Deciding Factor
+- subtitle: The deciding factor
 - factor: ALL-BLACK THE NECROSWORD
 - a_value: 99
 - a_bonus: +CRITICAL
@@ -195,17 +194,17 @@ Template X-Factor:
 - b_value: 90
 - b_bonus: +OMNIPOTENCE
 - regen: ASGARDIAN MAGIC
-- mechanics: Knull's sword is conceptually designed to kill beings like Odin. Odinforce is powerful, but the Necrosword is a hard counter to deities.
-- implication: Odin must fight perfectly. Knull can make mistakes because he will regenerate. Odin dies after one mistake.
-- psychology: Knull feels no fear; Odin feels responsibility. This gives Knull the edge in aggression.
+- mechanics: Knull's sword is conceptually designed to kill beings like Odin. The Odinforce is powerful, but the Necrosword is a hard counter to godhood.
+- implication: Odin must fight perfectly. Knull can make mistakes because he will regenerate. Odin dies after a single mistake.
+- psychology: Knull feels no fear, while Odin feels responsibility. That gives Knull the edge in aggression.
 
 Template Winner CV:
 - headline: Victory Archive
-- subtitle: Whom have they defeated?
+- subtitle: Who have they defeated?
 - archive_label: 
 - avg_label: THREAT LEVEL
-- left_title: KNULL VICTIMS
-- right_title: ODIN VICTIMS
+- left_title: KNULL'S VICTIMS
+- right_title: ODIN'S VICTIMS
 - win_badge: WIN
 - left_item_1: Celestial
 - left_image_1: Knull_Celestial.jpg
@@ -230,36 +229,36 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: Fight Outcome
+- subtitle: Fight outcome
 - winner: Knull (High Risk)
-- line_1: Odin in the Destroyer armor is a power that could crush Knull in a long fight of attrition.
-- line_2: However, the Necrosword is a "cheat code" against gods. Knull is too durable and too lethal in close quarters.
-- line_3: To win, Odin would have to use something outside his standard arsenal that would erase the Abyss from existence. In a direct exchange—Knull beheads him.
+- line_1: Odin in the Destroyer Armor is a force powerful enough to crush Knull in a longer battle of attrition.
+- line_2: However, the Necrosword is a cheat code against gods. Knull is too durable and too lethal in close quarters.
+- line_3: To win, Odin would need something outside his standard arsenal, something that would erase the Abyss from existence. In a direct exchange of blows, Knull cuts off his head.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Clash progression over time
+- subtitle: The course of the clash over time
 - a_curve: 50,60,70,85,95
 - b_curve: 90,85,75,60,40
 - yellow_wave: 40,40,40,40,40,40,40,40
-- phase_1: Odin opens the fight with a massive energy volley, dominating the field and keeping Knull at range.
-- phase_2: Knull regenerates and breaks through Odin's barriers, closing the distance and introducing chaos.
-- phase_3: In close quarters, Odin's advantage melts away. The Necrosword begins to breach the Destroyer armor.
-- analysis: Time works in Knull's favor. The longer the fight lasts, the weaker Odin becomes, and the closer Knull gets to the final blow.
+- phase_1: Odin opens the fight with a massive energy volley, dominating the battlefield and keeping Knull at range.
+- phase_2: Knull regenerates and breaks through Odin's barriers, closing the distance and unleashing chaos.
+- phase_3: In close quarters, Odin's advantage melts away. The Necrosword starts to break through the Destroyer Armor.
+- analysis: Time works in Knull's favor. The longer the fight lasts, the weaker Odin becomes, and the closer Knull comes to the final blow.
 
 Template Fight Simulation:
 - headline: FIGHT SIMULATION // PHASES
 - subtitle: How would it look?
-- opening: Odin strikes with the full power of the Odinforce. The sky burns, galaxies tremble. Knull is blasted back, perhaps even torn apart, but his body immediately knits back together.
-- mid_fight: Knull summons dragons and attacks from the shadows, forcing Odin onto the defensive. Odin uses his Sword to parry the Necrosword's strikes. Sparks from their clash destroy nearby planets.
-- late_fight: Odin weakens, consuming energy. Knull, unmoved, launches a series of blows with All-Black. The Destroyer armor cracks.
-- end_condition: One parry mistake. The Necrosword passes through Odin's defense. The end.
+- opening: Odin strikes with the full power of the Odinforce. The sky burns, galaxies tremble. Knull is hurled back, perhaps even torn apart, but his body immediately knits itself back together.
+- mid_fight: Knull summons dragons and attacks from the shadows, forcing Odin onto the defensive. Odin uses his sword to parry the Necrosword's attacks. Sparks from their clash destroy nearby planets.
+- late_fight: Odin weakens as he burns through energy. Knull, unshaken, unleashes a flurry of blows with All-Black. The Destroyer Armor cracks.
+- end_condition: One mistake in a parry. The Necrosword breaks through Odin's defense. The end.
 - phase_1_mode: bars
 - phase_1_animation: rush-ko
 - phase_1_actor: b
 - phase_1_title: All-Father's Wrath
 - phase_1_a_label: Regeneration
-- phase_1_b_label: Energy Strike
+- phase_1_b_label: Energy Attack
 - phase_1_a_value: 80
 - phase_1_b_value: 95
 - phase_2_mode: split
@@ -267,27 +266,27 @@ Template Fight Simulation:
 - phase_2_actor: a
 - phase_2_title: Inevitability
 - phase_2_event: Knull ignores the pain and closes the distance.
-- phase_2_branch_a: Odin maintains distance (Small chance).
-- phase_2_branch_b: Knull enters melee (High chance).
+- phase_2_branch_a: Odin maintains distance (small chance).
+- phase_2_branch_b: Knull gets into close combat (high chance).
 - phase_3_mode: split
 - phase_3_animation: regen-attrition
 - phase_3_actor: a
 - phase_3_title: Execution
-- phase_3_event: Necrosword vs. Odinsword.
+- phase_3_event: Necrosword versus Odinsword.
 - phase_3_branch_a: Odin's magic binds Knull.
 - phase_3_branch_b: Knull decapitates Odin.
 
 Template Verdict Matrix:
-- headline: VERDICT MATRIX
-- subtitle: Possible outcomes
+- headline: VERDICT
+- subtitle: Possible endings
 - col_left: RANGE
 - col_right: CLOSE QUARTERS
 - row_top: ODINFORCE STABLE
 - row_bottom: ODINFORCE DEPLETED
 - case_1: Odin 6/10. If he keeps Knull at range and burns him with suns, he has a chance.
-- case_2: Knull 9/10. In close quarters, Odin has no chance against the Necrosword in the long run.
+- case_2: Knull 9/10. In close quarters Odin has no chance against the Necrosword over the long run.
 - case_3: Draw/Knull. Even with energy, Odin risks his life with every sword parry.
-- case_4: Knull 10/10. Without energy, Odin is dead in seconds.
+- case_4: Knull 10/10. Without energy, Odin is dead within seconds.
 
 Template Fight Title:
 - fight_title: Knull vs Odin

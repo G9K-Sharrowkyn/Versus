@@ -48,7 +48,7 @@ Galactus (Earth-616, Cosmic Entity / Abstract)
 - Odin (the All-Father fell into Odinsleep after a headbutt; Galactus stood up a second later)
 - Mad Celestial (killed with a single powerful attack)
 - Scrier and The Other (their clash threatened to destroy the Multiverse)
-- Silver Surfer and the Herald hosts
+- Silver Surfer and hordes of Heralds
 
 9. Template Order
 - tactical-board
@@ -75,24 +75,24 @@ Galactus (Earth-616, Cosmic Entity / Abstract)
 - Weaknesses: Needs billions of souls to physically cross interdimensional barriers at full power.
 
 11. Character A Raw Feats
+- Stomps the JLA and Teen Titans simultaneously while residing in another dimension.
+- Monitor ranks his power on par with the Spectre (God's Spirit of Vengeance).
 - Ruled a planet at age 1, destroyed it at age 6, conquered a dimension at age 30.
-- Death Stare – gaze capable of immediate planetary annihilation.
-- Reshaping Earth and its inhabitants into statues of clay/stone (Reality Warping).
-- Absorbing the "Heart of Darkness" – essence of evil from over 100 galaxies.
-- Size manipulation allowing the deification of his own form on a cosmic scale.
+- Killed his creators (The Divine) and crafted their bodies into his robes.
+- Possesses Trophies from DC's greatest heroes (Superman's cape, Fate's helmet).
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Power Cosmic (manipulation of matter, energy, time), telepathy superior to Odin's, immortality.
 - Tools: Ultimate Nullifier (existence-erasing weapon), Worldship Taa II (solar system-sized).
 - Weaknesses: Hunger—his power drops drastically if he doesn't consume planetary energy regularly.
-- Weaknesses: Hubris—often ignores attacks as insignificant.
+- Weaknesses: Hubris—often ignores attacks as insignificant, which Trigon can exploit.
 
 13. Character B Raw Feats
-- Telepathic dominance over entities of Odin or Thanos's class.
-- Cosmic energy emission encompassing entire star systems simultaneously.
-- World devouring speed measured in seconds.
-- Utilizing the Worldship Taa II as a weapon on a solar system scale.
-- Subatomic matter manipulation (turning foes into worms/energy).
+- Kills a Celestial (Cosmic God) with a single shot when well-fed.
+- His battle with Scrier and the Other threatened the destruction of all universes.
+- Takes a headbutt from Odin and regenerates instantly (Odin falls into sleep).
+- Ultimate Nullifier erases beings from the very fabric of history (Timeline Erasure).
+- Must exist for the universe not to collapse into non-existence (brother of Eternity).
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // TRIGON VS GALACTUS
@@ -106,15 +106,15 @@ Template Tactical Board:
 Template Character A:
 - name: Trigon
 - world: DC Multiverse
-- style: Demonic dominance and soul corruption. Trigon turns reality into a nightmare.
+- style: Demonic dominance and soul corruption. Trigon turns reality into a nightmare where he is the absolute god.
 - advantage: Scaling to Spectre and the Heart of Darkness. His power is spiritual and non-linear.
-- mentality: Sadistic Executioner. Wants to humiliate and dominate anyone.
+- mentality: Sadistic Executioner. Wants to humiliate and dominate anyone who opposes him.
 - quote: Universe after universe has fallen before my might. I am Power. I am Death.
 
 Template Character B:
 - name: Galactus
 - world: Marvel 616
-- style: Cosmic control and metabolic consumption. Galactus processes existence into energy.
+- style: Cosmic control and metabolic consumption. Galactus is a force of nature that processes existence into energy.
 - advantage: Abstract Status and the Ultimate Nullifier. He is a vital part of the universe's machinery.
 - mentality: Cold Necessity. Does not hate Trigon—he simply sees a massive meal.
 - quote: I was present at the birth of the Universe, and I shall be there at its end.
@@ -134,26 +134,26 @@ Template Raw Feats:
 - left_title: TRIGON SHOWCASE
 - right_title: GALACTUS SHOWCASE
 - feat_label: FEAT
-- left_item_1: Death Stare (Planetary).
-- left_image_1: Dissipates Psimon's Atoms across.jpeg
-- left_item_2: Ruler of Dimension (Age 30).
-- left_image_2: At Age One he ruled his planet and at age 6 he destroyed it, at age 30 he ruled his entire dimension.jpeg
-- left_item_3: Stone Curse (Earth).
-- left_image_3: Turns DC Earth and everyone in it into stone.jpg
-- left_item_4: Heart of Darkness (Scaling).
-- left_image_4: 01_6_1_trigon_heart_of_darkness.jpg
-- left_item_5: Size Manipulation.
-- left_image_5: Universe after Universe has fallen before his.jpeg
-- right_item_1: Telepathy (Higher Tier).
-- right_image_1: Galactus battles Mephisto.jpg
-- right_item_2: Energy Emission (Star System).
+- left_item_1: JLA + Titans Stomp (Interdimensional).
+- left_image_1: Stomps the JLA + Teen.jpeg
+- left_item_2: Scaling to Spectre (Tier 1).
+- left_image_2: Monitor ranks him on the same threat level.jpg
+- left_item_3: Planet destruction at age 6.
+- left_image_3: At Age One he ruled his planet and at age 6 he destroyed it, at age 30 he ruled his entire dimension.jpeg
+- left_item_4: Slaughter of the cosmic Divine.
+- left_image_4: Slaughters the Divine.jpeg
+- left_item_5: Trophies from defeated heroes.
+- left_image_5: Trophy Room includes Superman's Suit.jpeg
+- right_item_1: One-shotting a Celestial.
+- right_image_1: One shots a Celestial.webp
+- right_item_2: Multiversal Clash (Scrier/Other).
 - right_image_2: The whole multiverse risked being destroyed when Galactus.jpg
-- right_item_3: World Devouring Speed.
-- right_image_3: 01_6_2_galactus_showcase_feats_one_shots_a_celestial.webp
-- right_item_4: Worldship Taa II (Scale).
-- right_image_4: Galactus must exist or eternity.jpg
-- right_item_5: Subatomic Transmutation.
-- right_image_5: Turns Terrax into a Worm and then Energy.jpg
+- right_item_3: Surviving Odin's attack.
+- right_image_3: Odin charges at Galactus and headbutts.jpg
+- right_item_4: Power of the Ultimate Nullifier.
+- right_image_4: The Ultimate Nullifier.jpg
+- right_item_5: Essentiality to Existence.
+- right_image_5: Galactus must exist or eternity.jpg
 
 Template HUD Bars:
 - headline: CONCEPTUAL ANALYTICS
@@ -201,9 +201,9 @@ Template X-Factor:
 - b_value: 100
 - b_bonus: +RESTART
 - regen: METAPHYSICAL
-- mechanika: The Ultimate Nullifier can erase Trigon as if he was never born. Trigon must destroy Galactus before he reaches for the weapon.
-- implikacja: If Galactus is fed, Trigon has no chance of breaking his shields. If he's hungry—Trigon's corruption takes over the Abstract.
-- psychologia: Galactus has no emotions. Trigon feeds on emotions. This makes Galactus an "empty vessel" that Trigon cannot easily control.
+- mechanics: The Ultimate Nullifier can erase Trigon as if he was never born. Trigon must destroy Galactus before he reaches for the weapon.
+- implication: If Galactus is fed, Trigon has no chance of breaking his shields. If he's hungry, Trigon's corruption takes over the Abstract.
+- psychology: Galactus has no emotions. Trigon feeds on emotions. This makes Galactus an "empty vessel" that Trigon cannot easily control.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -236,7 +236,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: Fight Result
+- subtitle: Clash Result
 - winner: Galactus (High Advantage)
 - line_1: Galactus stands higher in the hierarchy of beings—he is a part of the fabric of reality, while Trigon is its invader.
 - line_2: The Ultimate Nullifier is the final argument that wins against any form of Trigon's hax.

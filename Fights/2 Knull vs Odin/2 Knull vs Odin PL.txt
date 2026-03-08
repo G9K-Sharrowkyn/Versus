@@ -17,11 +17,10 @@
 - Mentalność: Sadystyczny Nihilizm. Nie szuka wyzwania, szuka egzekucji. Czerpie przyjemność z łamania woli przeciwnika i gaszenia "światła" jednym, ostatecznym ciosem.
 
 4. Pokonani przez Postać A
-- Celestial (śmierć z rąk boga symbiotów)
-- Sentry (rozszarpany na pół gołymi rękami)
-- Silver Surfer (pobity i skorumpowany mrokiem)
-- All-Father Thor (zdominowany w bezpośrednim starciu)
-- Panteony bogów (całkowita anihilacja wielu światów)
+- Celestial
+- Sentry
+- Silver Surfer
+- All-Father Thor
 
 5. Odin (Earth-616, pełny Odinforce + Pancerz Destroyera + Miecz Odyna)
 
@@ -42,11 +41,11 @@
 - Mentalność: Nieustępliwy Władca. Odyn nie "walczy" o przetrwanie, on wymierza sprawiedliwość. Dąży do szybkiego, zdecydowanego zwycięstwa, by przywrócić porządek we wszechświecie.
 
 8. Pokonani przez Postać B
-- Infinity (powstrzymanie bytu o skali uniwersalnej)
-- Seth (zwycięstwo w wojnie trzęsącej galaktykami)
-- Thanos (dominacja nad Szalonym Tytanem)
-- Surtur (uwięzienie demona ognia i powstrzymanie Ragnaroku)
-- Drax (fizyczna dominacja)
+- Infinity
+- Seth
+- Thanos
+- Silver Surfer
+- Drax
 
 9. Kolejność Templatek
 - tactical-board
@@ -70,27 +69,27 @@
 - Moce: Absolutna nieśmiertelność, siła zdolna rozerwać Sentry'ego, kontrola nad żywą Otchłanią (symbiontami).
 - Narzędzia: All-Black the Necrosword (zabójca bogów), armia smoków-symbiontów.
 - Słabości: "Światło" (The Enigma Force / Uni-Power) jest jego antytezą, choć zwykłe słońca po prostu gasi.
-- Słabości: Arogancja – Knull często lekceważy przeciwników, pozwalając im na pierwszy ruch.
+- Słabości: Arogancja – Knull często lekceważy przeciwników, pozwalając im na pierwszy ruch, bo wierzy, że i tak nie mogą go zranić.
 
 11. Surowe Featy Postaci A
-- Przekucie głowy Celestiala w kuźnię dla swojej armii.
-- Przetrwał Wielki Wybuch bez żadnego uszczerbku na zdrowiu.
-- Pokrywa całą Ziemię rojem symbiotów w zaledwie kilka minut.
-- Pancerz z Żywej Otchłani – całkowita odporność na magię konwencjonalną.
-- Kontrola miliardów symbiotów jednocześnie poprzez umysł roju.
+- Ścina głowę Celestiala jednym ciosem i przekuwa ją w kuźnię.
+- Rozrywa Sentry'ego (najpotężniejszego herosa Ziemi) na pół gołymi rękami.
+- Przetrwał Wielki Wybuch bez draśnięcia.
+- Wymordował panteony bogów w całym wszechświecie.
+- Pokrywa całą Ziemię rojem symbiotów w kilka minut.
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Odinforce (manipulacja materią, czasem, energią, duszami), Błogosławieństwa, Magia Asgardu.
 - Narzędzia: Pancerz Destroyera (odporność na poziomie Celestian), Miecz Odyna (Odinsword).
 - Słabości: Odin Sleep – nadużycie Odinforce zmusza go do zapadnięcia w sen regeneracyjny.
-- Słabości: Pycha – Odyn bywa uparty i przekonany o swojej nieomylności.
+- Słabości: Pycha – Odyn bywa uparty i przekonany o swojej nieomylności, co Knull może wykorzystać.
 
 13. Surowe Featy Postaci B
 - Narrator określa Odyna jako "Żyjącą Wszechmoc" (Living Omni-potence).
-- Powstrzymuje płomień Surtura, który mógł spalić Yggdrasil (9 Krain).
+- Powstrzymuje płomień Surtura, który mógł spalić Yggdrasil (9 Krain = 9 Wszechświatów).
 - Wymieniony jako byt zdolny zakończyć istnienie Multiwersum lub stworzyć nowe.
-- Ustanawianie Praw Magii – zaklęcie na Mjolnirze nadające mu cechy konceptualne.
-- Czerpanie czystej energii bezpośrednio z tkanki Kosmosu.
+- Walka z Sethem wstrząsa wszystkimi planami rzeczywistości, niszcząc galaktyki jako efekt uboczny.
+- Zatrzymuje czas, rozdziera tkankę wieczności i rzuca zaklęcie na drugi koniec wszechświata.
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // KNULL VS ODIN
@@ -104,17 +103,17 @@ Template Tactical Board:
 Template Character A:
 - header: DOSSIER POSTACI // NIEBIESKI
 - world: Earth-616 (King in Black)
-- style: Brutalna szermierka Necroswordem. Knull dąży do dekapitacji i fizycznego zdominowania ofiary.
-- advantage: All-Black the Necrosword – broń ignorująca boską wytrzymałość i uniemożliwiająca regenerację.
-- mentality: Sadystyczny Nihilizm. Nie szuka wyzwania, szuka egzekucji i zgaszenia wszelkiego światła.
+- style: Brutalna szermierka Necroswordem. Knull nie bawi się w finezję – dąży do dekapitacji i fizycznego zdominowania ofiary siłą, która rozrywa herosów na strzępy.
+- advantage: All-Black the Necrosword – broń stworzona do zabijania nieśmiertelnych. Jego ataki ignorują boską wytrzymałość, a sam Knull jest niemal niemożliwy do trwałego zranienia.
+- mentality: Sadystyczny Nihilizm. Nie szuka wyzwania, szuka egzekucji. Czerpie przyjemność z łamania woli przeciwnika i gaszenia "światła" jednym, ostatecznym ciosem.
 - quote: Byłem tu przed Światłem. I będę, gdy zgaśnie.
 
 Template Character B:
 - header: DOSSIER POSTACI // CZERWONY
 - world: Earth-616 (Odinforce + Destroyer)
-- style: Majestat Wszechojca. Połączenie niszczycielskiej magii runicznej z brutalną siłą fizyczną.
-- advantage: Arsenał Końca Świata. Pełny Odinforce i Pancerz Destroyera zasilany duszami Asgardu.
-- mentality: Nieustępliwy Władca. Odyn wymierza sprawiedliwość, dążąc do szybkiego, zdecydowanego zwycięstwa.
+- style: Majestat Wszechojca. Połączenie niszczycielskiej magii runicznej z brutalną siłą fizyczną. Odyn nie tylko czaruje – on nagina rzeczywistość swoją wolą.
+- advantage: Arsenał Końca Świata. Połączenie nieskończonej magii Odinforce z fizyczną niezniszczalnością. Pancerz Destroyera (zasilany duszami Asgardu) czyni go niemal niewrażliwym, a Odinsword to broń, która konceptualnie może przeciąć wszystko – nawet samą Otchłań.
+- mentality: Nieustępliwy Władca. Odyn nie "walczy" o przetrwanie, on wymierza sprawiedliwość. Dąży do szybkiego, zdecydowanego zwycięstwa, by przywrócić porządek we wszechświecie.
 - quote: Jestem Odynem. A Ty nie masz tu władzy.
 
 Template Powers / Tools / Weaknesses:
@@ -132,23 +131,23 @@ Template Raw Feats:
 - left_title: POKAZ KNULLA
 - right_title: POKAZ ODINA
 - feat_label: FEAT
-- left_item_1: Kuźnia z głowy Celestiala.
+- left_item_1: Ścina Celestiala jednym ciosem.
 - left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
-- left_item_2: Przeżycie Wielkiego Wybuchu.
-- left_image_2: Knull_BigBang.webp
-- left_item_3: Pancerz z Żywej Otchłani.
-- left_image_3: Knull_gods.jpg
-- left_item_4: Kontrola Umysłu Roju.
-- left_image_4: Knull_Sentry.jpg
+- left_item_2: Rozrywa Sentry'ego na pół.
+- left_image_2: Knull_Sentry.jpg
+- left_item_3: Przetrwał Wielki Wybuch.
+- left_image_3: Knull_BigBang.webp
+- left_item_4: Wymordował miliardy bogów.
+- left_image_4: Knull_gods.jpg
 - left_item_5: Gasi słońca i pokrywa Ziemię mrokiem.
 - left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
-- right_item_1: Status "Żyjącej Wszechmocy".
+- right_item_1: Narrator określa go jako "Żyjącą Wszechmoc".
 - right_image_1: Odin_AllPowerful.jpg
-- right_item_2: Powstrzymanie ognia Yggdrasil.
+- right_item_2: Powstrzymuje ogień zdolny spalić 9 Wszechświatów (Yggdrasil).
 - right_image_2: Odin_Flame.jpg
-- right_item_3: Moc Twórcza Multiwersum.
+- right_item_3: Może zakończyć istnienie Multiwersum.
 - right_image_3: Odin_Multiverse.jpg
-- right_item_4: Ustanawianie Praw (Mjolnir).
+- right_item_4: Walka z Sethem niszczy galaktyki w tle.
 - right_image_4: Odin_Plane2.jpg
 - right_item_5: Zatrzymuje czas i zagina rzeczywistość.
 - right_image_5: Odin_Time.jpg
@@ -197,7 +196,7 @@ Template X-Factor:
 - regen: MAGIA ASGARDU
 - mechanika: Miecz Knulla jest konceptualnie stworzony do zabijania takich bytów jak Odyn. Odynforce jest potężny, ale Necrosword to twarda kontra na bóstwa.
 - implikacja: Odyn musi walczyć perfekcyjnie. Knull może popełniać błędy, bo się zregeneruje. Odyn po jednym błędzie ginie.
-- psychologia: Knull nie czuje strachu, Odyn feel responsibility. To daje Knull owi przewagę agresji.
+- psychologia: Knull nie czuje strachu, Odyn czuje odpowiedzialność. To daje Knull owi przewagę agresji.
 
 Template Winner CV:
 - headline: Archiwum Zwycięstw
@@ -253,7 +252,7 @@ Template Fight Simulation:
 - opening: Odyn uderza pełną mocą Odinforce. Niebo płonie, galaktyki drżą. Knull zostaje odrzucony, może nawet rozerwany, ale jego ciało natychmiast się scala.
 - mid_fight: Knull przyzywa smoki i atakuje z cienia, zmuszając Odyna do defensywy. Odyn używa Miecza, by parować ataki Necrosworda. Iskry z ich starcia niszczą pobliskie planety.
 - late_fight: Odyn słabnie, zużywając energię. Knull, niewzruszony, wyprowadza serię ciosów All-Blackiem. Pancerz Destroyera pęka.
-- end_condition: Jeden błąd in parrying. Necrosword przechodzi przez obronę Odyna. Koniec.
+- end_condition: Jeden błąd w parowaniu. Necrosword przechodzi przez obronę Odyna. Koniec.
 - phase_1_mode: bars
 - phase_1_animation: rush-ko
 - phase_1_actor: b

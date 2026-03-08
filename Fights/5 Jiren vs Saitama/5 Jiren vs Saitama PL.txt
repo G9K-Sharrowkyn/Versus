@@ -77,7 +77,7 @@
 - Wykrywa i kontruje ataki z innych wymiarów.
 - Blokuje ataki Goku (Instant Transmission) bez patrzenia.
 - No-sell na Kamehameha SSJB Goku oraz autodestrukcję Androida 17.
-- Prędkość międzyplanetarna – lot szybszy niż statki kosmiczne.
+- Stoi ponad mocą Bogów Zniszczenia (Belmod).
 
 12. Character B Powers / Tools / Weaknesses
 - Moce: Wykładniczy wzrost (Limiter removed), Zero Punch (Causality Reversal), Toon Force (chwytanie portali), Serious Sneeze.
@@ -140,8 +140,8 @@ Template Raw Feats:
 - left_image_3: Blocks blows from SSJB Goku using Instant Transmission without looking.png
 - left_item_4: No-sell na potężne eksplozje.
 - left_image_4: Unaffected by Android 17's Self-Destruction.png
-- left_item_5: Lot międzyplanetarny.
-- left_image_5: 05_6_1_jiren_belmod_scaling.jpg
+- left_item_5: Silniejszy od Bogów Zniszczenia.
+- left_image_5: Belmod.png
 - right_item_1: Serious Punch Squared (Dziura w gwiazdach).
 - right_image_1: Serious Punch Squared... generates an explosion that.png
 - right_item_2: Serious Sneeze (Demolka Jowisza).
