@@ -26,6 +26,3 @@ ComfyUI — kopia/
 *.njsproj
 *.sln
 *.sw?
-
-# Comfy backup
-_comfy_backup/

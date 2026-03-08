@@ -37,16 +37,16 @@
 - Combat Skills: 83
 
 7. Character B Feats
-- Style: Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision hotter than the sun and unimaginable strength to physically destroy and humiliate opponents.
-- Advantage: Inhuman regeneration and survivability. He survived the destruction of two universes. He returns to the fight even after decapitation or being torn to shreds.
-- Mentality: A megalo-psychopath with a god complex. He slaughtered the heroes of his world not out of necessity, but for pleasure and power. He knows neither mercy nor hesitation.
+- Style: Brutal close-quarters aggression with collision attacks, atomic vision, and relentless pursuit.
+- Advantage: Catastrophic power plus regeneration that keeps him dangerous after extreme damage.
+- Mentality: Ruthless and relentless; he forces the result through constant pressure.
 
 8. Defeated by Character B
-- Thor (Earth-4023)
-- Hulk (Earth-4023)
-- Sentry (Earth-4023)
-- Galactus (Earth-4023)
-- Vision (Earth-4023)
+- Magneto
+- Wolverine
+- Vision
+- Thor (context-dependent result from the conquest)
+- Hulk (Earth-4400) (kill confirmed in the aftermath)
 
 9. Template Order
 - tactical-board
@@ -81,27 +81,27 @@
 - The only person who endured Doomsday's death aura.
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Extreme strength, durability, flight, Atomic Vision, and near-instant regeneration.
-- Tools: Atomic Vision, 12,000-degree beams capable of burning through adamantium and killing Vision in a single shot.
-- Tools: Experience in killing Supermen (Exiles). He knows the weaknesses and psychology of heroes.
-- Weaknesses: Vulnerability to Argonite, the Kryptonite equivalent in his world.
-- Weaknesses: Extreme arrogance. He often underestimates opponents and lets them land the first blow, which can be a mistake against someone in Superman's class.
+- Powers: Extreme strength, durability, flight, atomic vision, and rapid regeneration.
+- Tools: Direct pressure fighting and high-output beam offense.
+- Tools: Molecular vibration/phasing for bypassing defenses and escaping traps in select showings.
+- Weaknesses: Argonite vulnerability and psychological instability in some portrayals.
+- Weaknesses: Extreme arrogance can open tactical gaps against disciplined opponents.
 
 13. Character B Raw Feats
-- Massacres all the heroes of his world (Thor, Hulk, Sentry, Galactus).
-- Survives the destruction of two universes.
-- Returns to life moments after a snapped neck and decapitation.
-- His Atomic Vision melts adamantium and kills Vision on the spot.
-- Fought two other Hyperions at once and dominated the clash.
+- Survives Earth's destruction on Earth-4023.
+- Comes back to life moments after Namora twists his neck one hundred and eighty degrees.
+- Regenerates after catastrophic injuries.
+- Kills Vision with a single hit from his Atomic Vision.
+- Overwhelms two alternate Hyperions.
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // SUPERMAN VS KING HYPERION
-- subtitle: Hero vs. Tyrant
+- subtitle: Better opening versus harder-to-break survivability
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
 - chaos_label: CHAOS SEGMENT
-- lane: Superman has to knock Hyperion out quickly. In a long fight to the death, Hyperion's madness gives him the edge.
+- lane: Superman wins by closing it out. Hyperion wins when the closeout fails.
 
 Template Character A:
 - header: CHARACTER DOSSIER // BLUE
@@ -113,10 +113,10 @@ Template Character A:
 
 Template Character B:
 - header: CHARACTER DOSSIER // RED
-- world: Earth-4023 (Exiles)
-- style: Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision hotter than the sun and unimaginable strength to physically destroy and humiliate opponents.
-- advantage: Inhuman regeneration and survivability. He survived the destruction of two universes. He returns to the fight even after decapitation or being torn to shreds.
-- mentality: A megalo-psychopath with a god complex. He slaughtered the heroes of his world not out of necessity, but for pleasure and power. He knows neither mercy nor hesitation.
+- world: Earth-4023
+- style: Brutal close-quarters aggression with collision attacks, atomic vision, and relentless pursuit.
+- advantage: Catastrophic power plus regeneration that keeps him dangerous after extreme damage.
+- mentality: Ruthless and relentless; he forces the result through constant pressure.
 - quote: That's right, baby... Hyperion.
 
 Template HUD Bars:
@@ -138,22 +138,22 @@ Template Radar Brief:
 Template Interpretation:
 - headline: INTERPRETATION
 - subtitle: Who wins the fight on paper?
-- line_1: New 52 Superman is faster and has better control of the fight in the air.
-- line_2: Hyperion has the advantage in brutality and regeneration, which let him come back from finishing blows.
-- line_3: On paper Superman wins by knockout, but in a fight to the death Hyperion is more dangerous.
-- quote: Speed gives the edge, but the lack of morality ends the fight.
+- line_1: Superman has the cleaner overall profile and the cleaner first minute of the fight.
+- line_2: Hyperion stays dangerous because regeneration can erase the value of good exchanges.
+- line_3: On paper the edge is Clark's, but the fight only stays simple if he actually closes it.
+- quote: Stats provide a theoretical edge, not a guaranteed win.
 
 Template Stat Trap:
 - headline: STAT TRAP
 - subtitle: Why better stats do not guarantee victory
 - trap_top: SPEED AND CONTROL WIN EXCHANGES
 - trap_bottom: REGENERATION CHANGES WHAT AN EXCHANGE IS WORTH
-- example: Superman can pound on Hyperion for hours, but one mistake and Atomic Vision can seriously injure him.
-- question: Will Superman break his moral code to kill someone who keeps getting back up from the dead?
+- example: A sequence that ends most powerhouse opponents may only reset Hyperion and restart the problem.
+- question: Key question: Can Superman turn his tempo edge into a real finish before Hyperion's regeneration starts erasing one hit after another?
 
 Template Powers / Tools / Weaknesses:
 - headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: General powers, tools, and weaknesses
+- subtitle: Core powers, tools, and weaknesses
 - left_title: SUPERMAN TOOLKIT
 - right_title: HYPERION TOOLKIT
 - powers_label: POWERS
@@ -176,39 +176,39 @@ Template Raw Feats:
 - left_image_4: 02_6_1_superman_survives_black_hole_level_punishment.jpg
 - left_item_5: The only person who endured Doomsday's death aura.
 - left_image_5: 05_6_1_superman_high_end_endurance_control.jpg
-- right_item_1: Massacres the heroes of his world (Thor, Hulk, Sentry).
+- right_item_1: Survives Earth's destruction on Earth-4023.
 - right_image_1: 06_6_2_hyperion_survives_world_destruction.png
-- right_item_2: Returns to life after neck snapping and decapitation.
+- right_item_2: Comes back to life moments after Namora twists his neck one hundred and eighty degrees.
 - right_image_2: 07_6_2_hyperion_recovers_after_neck_snap.png
-- right_item_3: Regenerates after being torn to shreds.
+- right_item_3: Regenerates after catastrophic injuries.
 - right_image_3: 09_6_2_hyperion_regenerates_after_catastrophic_damage.png
-- right_item_4: Kills Vision with a single Atomic Vision shot.
+- right_item_4: Kills Vision with a single hit from his Atomic Vision.
 - right_image_4: 10_6_2_hyperion_disintegrates_weapon_x_vision.jpg
-- right_item_5: Dominates two alternate Hyperions.
+- right_item_5: Overwhelms two alternate Hyperions.
 - right_image_5: 08_6_2_hyperion_overwhelms_two_alternate_hyperions.png
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The decisive variable
-- factor: MORAL BRAKE VS BLOODLUST
+- subtitle: The variable that affects the verdict more than ordinary stats.
+- factor: CLOSURE QUALITY VS REGENERATION ECONOMY
 - a_value: 50
-- a_bonus: 10
-- a_bonus_label: CONTROL
+- a_bonus: 14
+- a_bonus_label: FINISH WINDOW
 - b_value: 50
-- b_bonus: 20
-- regen: NO RULES
-- mechanics: Superman fights to stop. Hyperion fights to kill.
-- implication: In a critical moment Superman may hesitate before delivering a lethal blow. Hyperion will exploit that fraction of a second to kill him.
-- psychology: Hyperion does not fear death because he comes back. Superman fears becoming a murderer.
+- b_bonus: 12
+- regen: REGEN LOOP
+- mechanics: Superman has the statistical edge, but Hyperion does not stop under any opponent's pressure.
+- implication: If the fight runs in tournament mode instead of to the death, Hyperion's advantage grows with every minute of the fight.
+- psychology: Hyperion can fight recklessly because mere survival brings him closer to victory.
 
 Template Winner CV:
 - headline: Victory Archive
 - subtitle: 
 - archive_label: 
-- avg_label: AVERAGE SCORE
+- avg_label: AVG SCORE
 - left_title: SUPERMAN RECORD
 - right_title: HYPERION RECORD
-- win_badge: Wf
+- win_badge: W
 - left_item_1: Doomsday
 - left_image_1: 11_7_1_superman_doomsday_finish.jpg
 - left_item_2: Wraith
@@ -219,24 +219,55 @@ Template Winner CV:
 - left_image_4: 14_7_1_superman_blitzes_mongul.jpg
 - left_item_5: Apollo
 - left_image_5: 15_7_1_superman_beats_apollo.jpg
-- right_item_1: Thor (Earth-4023)
+- right_item_1: Magneto
 - right_image_1: 16_7_2_hyperion_kills_magneto.png
-- right_item_2: Hulk (Earth-4023)
+- right_item_2: Wolverine
 - right_image_2: 17_7_2_hyperion_kills_wolverine.png
-- right_item_3: Sentry (Earth-4023)
+- right_item_3: Vision
 - right_image_3: 18_7_2_hyperion_kills_weapon_x_vision.jpg
-- right_item_4: Galactus (Earth-4023)
+- right_item_4: Thor
 - right_image_4: 19_7_2_hyperion_beats_thor.png
-- right_item_5: Vision (Earth-4023)
+- right_item_5: Hulk (Earth-4400)
 - right_image_5: 20_7_2_hyperion_kills_hulk_and_others.png
 
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: 
-- winner: Superman (Technical KO), Hyperion (Death)
-- line_1: In a points or knockout fight, Superman wins through speed and technique.
-- line_2: In a fight to the death, Hyperion gains the edge through regeneration and the lack of morality.
-- line_3: Superman would have to use Solar Flare or throw Hyperion into the sun to win definitively.
+- winner: Superman holds the edge. Hyperion can still win.
+- line_1: Superman sets the terms of the fight more cleanly from the opening seconds.
+- line_2: Superman controls the fight better, but Hyperion's regeneration gives him more of an edge with every extra moment the fight lasts.
+- line_3: If Superman does not go all out from the start, Hyperion will eventually overwhelm him.
+
+Template Fight Simulation:
+- headline: FIGHT SIMULATION
+- subtitle: The course of the fight across three phases.
+- opening: Superman starts with speed, spacing, and cleaner control of the fight.
+- mid_fight: If Hyperion survives the first wave, the fight turns into attrition.
+- late_fight: The endgame depends on whether Clark truly closes the fight before Hyperion regains ground through regeneration.
+- end_condition: Under standard rules, control carries the edge. In kill-only, simple survival becomes more valuable.
+- phase_1_mode: bars
+- phase_1_animation: kite-zone
+- phase_1_actor: a
+- phase_1_title: Opening
+- phase_1_event: Superman sets the pace early and keeps Hyperion at range.
+- phase_1_a_label: Control
+- phase_1_b_label: Forward Pressure
+- phase_1_a_value: 93
+- phase_1_b_value: 79
+- phase_2_mode: split
+- phase_2_animation: clash-lock
+- phase_2_actor: b
+- phase_2_title: Turning Point
+- phase_2_event: The turning point can come when Hyperion wounds a Superman who cannot regenerate.
+- phase_2_branch_a: Superman reclaims distance and keeps the fight on his terms.
+- phase_2_branch_b: Hyperion gets into mid-range and turns the matchup into attrition.
+- phase_3_mode: split
+- phase_3_animation: teleport-burst
+- phase_3_actor: a
+- phase_3_title: Endgame
+- phase_3_event: Superman either abandons his moral code, or gets killed by a Hyperion who keeps coming back.
+- phase_3_branch_a: Solar Flare or a clean incap route finally closes the matchup.
+- phase_3_branch_b: Hyperion comes back again, and with every extra minute his chance to turn the fight around grows.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
@@ -244,22 +275,22 @@ Template Battle Dynamics:
 - a_curve: 92,84,73,61,52
 - b_curve: 44,50,59,69,77
 - yellow_wave: 31,34,32,36,33,37,35,39
-- phase_1: Superman dominates with speed, dodging Atomic Vision and landing heavy blows.
-- phase_2: Hyperion gets up after every knockdown, growing angrier and more aggressive. Superman starts to tire.
-- phase_3: The fight turns into a bloodbath. If Superman does not finish it quickly, Hyperion seizes the initiative.
-- analysis: Time is Hyperion's ally. Speed is Superman's ally.
+- phase_1: Early on, Superman controls the pace through speed and spacing.
+- phase_2: If Hyperion survives the first heavy push, he starts gradually making up the difference.
+- phase_3: The longer the fight lasts, the more Hyperion's regeneration starts working in his favor.
+- analysis: Superman has the better opening. Hyperion gets more dangerous with every extra minute.
 
 Template Verdict Matrix:
 - headline: VERDICT MATRIX
-- subtitle: Victory depends on the rules of the fight.
+- subtitle: Victory depends on the rules.
 - col_left: STANDARD KO/BFR/INCAP
 - col_right: KILL-ONLY DEATHMATCH
 - row_top: SOLAR FLARE YES
 - row_bottom: SOLAR FLARE NO
-- case_1: Superman 8/10. With full power and the knockout option, Clark wins fairly easily.
-- case_2: Hyperion 6/10. In a fight to the death Superman may hesitate, and Hyperion will not.
-- case_3: Superman 7/10. Without Solar Flare Superman has to rely on BFR, throwing the enemy into space.
-- case_4: Hyperion 7/10. Without Superman's ultimate weapon, Hyperion's regeneration eventually prevails.
+- case_1: Superman 7/10. Under standard rules and with Solar Flare, he has the clearest path to victory.
+- case_2: Superman 5.5/10. Solar Flare gives Superman the win, but a fight to the death still favors Hyperion.
+- case_3: Superman 6/10. Without Solar Flare, Superman still has the edge if he can control the fight the whole way and avoid an attrition war with Hyperion.
+- case_4: King Hyperion 6/10. Without Solar Flare in a fight to the death, Hyperion's regeneration starts to tilt the odds.
 
 Template Fight Title:
 - headline: Fight #1 finished
@@ -269,3 +300,4 @@ Template Fight Title:
 - top_color_b: #93c5fd
 - bottom_color_a: #facc15
 - bottom_color_b: #dc2626
+

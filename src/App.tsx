@@ -7,7 +7,7 @@ import { PortraitEditorModal } from './features/vs/components/PortraitEditorModa
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
-import { buildFightStudioState, resolveFightLanguage, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
+import { buildFightStudioState, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
 import {
   DEFAULT_TEMPLATE_ORDER,
   DEFAULT_WINNER_CV_A,
@@ -111,7 +111,6 @@ function App() {
     setPreferredVariantByMatchup,
     activeFightId,
     setActiveFightId,
-    storageReady,
     activeFightSignatureRef,
   } = useVsPersistence({
     applyFightRecordRef,
@@ -138,7 +137,6 @@ function App() {
     handleIntroFrameLoad,
   } = useVsTransitions({
     fights,
-    fightsReady: storageReady,
     preferredVariantByMatchup,
     activeTemplate,
     activeFightId,
@@ -297,10 +295,9 @@ function App() {
   }
 
   const applyFightRecord: ApplyFightRecord = (fight, options) => {
-    const fightLanguage = resolveFightLanguage(fight, language)
     const nextState = buildFightStudioState({
       fight,
-      language: options?.targetLanguage ?? fightLanguage,
+      language,
       activeTemplate,
       templateCursor,
       preserveTemplateSelection: options?.preserveTemplateSelection ?? false,
@@ -342,35 +339,20 @@ function App() {
   })
 
   const toggleLanguage = () => {
-    const nextLanguage = language === 'pl' ? 'en' : 'pl'
-    setLanguage(nextLanguage)
-
-    if (activeFightId) {
-      const currentFight = fights.find((f) => f.id === activeFightId)
-      if (currentFight?.matchupKey) {
-        const otherVariant = fights.find(
-          (f) => f.matchupKey === currentFight.matchupKey && f.variantLocale === nextLanguage,
-        )
-        if (otherVariant) {
-          applyFightRecord(otherVariant, {
-            enterIntro: false,
-            preserveTemplateSelection: true,
-            targetLanguage: nextLanguage,
-          })
-        }
+    setLanguage((current) => {
+      const nextLanguage = current === 'pl' ? 'en' : 'pl'
+      if (!importFileName && !Object.keys(templateBlocks).length) {
+        setCategories(defaultCategoriesFor(nextLanguage))
+        setFactsA(defaultFactsFor('a', nextLanguage))
+        setFactsB(defaultFactsFor('b', nextLanguage))
+        setPowersA([])
+        setPowersB([])
+        setRawFeatsA([])
+        setRawFeatsB([])
+        setSlideImageAdjustments({})
       }
-    }
-
-    if (!importFileName && !Object.keys(templateBlocks).length) {
-      setCategories(defaultCategoriesFor(nextLanguage))
-      setFactsA(defaultFactsFor('a', nextLanguage))
-      setFactsB(defaultFactsFor('b', nextLanguage))
-      setPowersA([])
-      setPowersB([])
-      setRawFeatsA([])
-      setRawFeatsB([])
-      setSlideImageAdjustments({})
-    }
+      return nextLanguage
+    })
   }
 
   const rememberPreferredFightVariant = (fight: FightRecord) => {
@@ -450,7 +432,6 @@ function App() {
       slideImageAdjustments={slideImageAdjustments}
       onSlideImageAdjustChange={handleSlideImageAdjustChange}
       onSlideImageAdjustCommit={handleSlideImageAdjustCommit}
-      onToggleLanguage={toggleLanguage}
     />
   )
 

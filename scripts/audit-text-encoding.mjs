@@ -3,19 +3,8 @@ import path from 'node:path'
 
 const PROJECT_ROOT = process.cwd()
 const TEXT_EXTENSIONS = new Set(['.ts', '.tsx', '.js', '.jsx', '.mjs', '.cjs', '.css', '.html', '.md', '.txt', '.json', '.yml', '.yaml'])
-// Skip generated/vendor trees that are not part of the app's editable source
-// and contain third-party tokenizers or binary-like text payloads.
-const IGNORE_DIRS = new Set([
-  'node_modules',
-  '.git',
-  'dist',
-  'build',
-  '.vite',
-  '.cache',
-  'ComfyUI',
-  '_comfy_backup',
-])
-const IGNORE_FILES = new Set(['package-lock.json', 'custom_nodes_backup.txt'])
+const IGNORE_DIRS = new Set(['node_modules', '.git', 'dist', 'build', '.vite', '.cache'])
+const IGNORE_FILES = new Set(['package-lock.json'])
 
 const MOJIBAKE_PATTERN = /[\u00C3\u00C4\u00C5\u0139\u0102\u00C2\u00E2\uFFFD]/g
 const UTF8_BOM = '\uFEFF'

@@ -106,7 +106,7 @@ Template Tactical Board:
 Template Character A:
 - name: Atrocitus
 - world: DC (Butcher Host)
-- style: Surgical Fury. Atrocitus is a master of rage manipulation who wounds even cosmic beings.
+- style: Surgical Fury. A master of rage manipulation capable of wounding even cosmic abstracts.
 - advantage: Hax and Resistance. His mind is a fortress, and his blood burns through dimensions.
 - mentality: Cold Inquisitor. He does not fight—he metes out punishment to the entire universe.
 - quote: With blood and rage of crimson red... I will burn the very fabric of space!
@@ -130,7 +130,7 @@ Template Powers / Tools / Weaknesses:
 
 Template Raw Feats:
 - headline: RAW FEATS
-- subtitle: Evidence of breaking the laws of physics
+- subtitle: Evidence of Physics-Breaking Power
 - left_title: ATROCITUS SHOWCASE
 - right_title: HULK SHOWCASE
 - feat_label: FEAT
@@ -165,7 +165,7 @@ Template HUD Bars:
 
 Template Radar Brief:
 - headline: PARAMETER COMPARISON
-- subtitle: Controlled Rage vs. Pure Rage
+- subtitle: Map of cosmic and hellish power
 - left_header: ATROCITUS ADVANTAGES
 - right_header: HULK ADVANTAGES
 - draw_header: DRAW ZONES
@@ -173,7 +173,7 @@ Template Radar Brief:
 - favorite: World Breaker Hulk
 
 Template Interpretation:
-- headline: INTERPRETATION
+- headline: INTERPRETACJA
 - subtitle: Who wins on paper?
 - line_1: Atrocitus has the tools to fight beings beyond physicality (Spectre, Krona).
 - line_2: However, Hulk in this form is the universe's physical critical point—immortal and constantly scaling.
@@ -198,9 +198,9 @@ Template X-Factor:
 - b_value: 100
 - b_bonus: +IMMORTAL
 - regen: GREEN DOOR
-- mechanics: Atrocitus feeds on rage, which makes him stronger in a fight with Hulk. However, the World Breaker emits so much energy that Atrocitus's ring can be overloaded.
-- implication: "Green Door" ensures Hulk always returns. Atrocitus must win via BFR (throwing him out of reality), which he is capable of.
-- psychology: Atrocitus seeks retribution. Hulk seeks destruction. A collision of two unyielding wills.
+- mechanika: Atrocitus feeds on rage, growing stronger against Hulk. However, the World Breaker emits so much energy he could simply "overload" the ring.
+- implikacja: "Green Door" ensures Hulk always returns. Atrocitus must win via BFR (throwing him out of reality), which he is capable of.
+- psychologia: Atrocitus seeks retribution. Hulk seeks destruction. A collision of two unyielding wills.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -235,8 +235,8 @@ Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: Verdict
 - winner: World Breaker Hulk (High Advantage)
-- line_1: This clash of two powers of rage ends with Hulk's victory thanks to his infinite escalation and immortality.
-- line_2: Atrocitus has the tools to wound and torture Hulk, but he has no way to stop him permanently.
+- line_1: This is one of the closest matchups. Atrocitus wounds beings like the Spectre, giving him a real chance to kill the Hulk.
+- line_2: However, Hulk's immortality (Green Door) and infinite escalation make him the favorite in a prolonged clash.
 - line_3: Hulk wins 8/10 encounters through total battlefield destruction. Atrocitus wins only via BFR or blood ritual.
 
 Template Battle Dynamics:

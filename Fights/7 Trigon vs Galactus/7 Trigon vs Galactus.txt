@@ -48,7 +48,7 @@ Galactus (Earth-616, Cosmic Entity / Abstract)
 - Odin (the All-Father fell into Odinsleep after a headbutt; Galactus stood up a second later)
 - Mad Celestial (killed with a single powerful attack)
 - Scrier and The Other (their clash threatened to destroy the Multiverse)
-- Silver Surfer and hordes of Heralds
+- Silver Surfer and the Herald hosts
 
 9. Template Order
 - tactical-board
@@ -201,9 +201,9 @@ Template X-Factor:
 - b_value: 100
 - b_bonus: +RESTART
 - regen: METAPHYSICAL
-- mechanics: The Ultimate Nullifier can erase Trigon as if he was never born. Trigon must destroy Galactus before he reaches for the weapon.
-- implication: If Galactus is fed, Trigon has no chance of breaking his shields. If he's hungry, Trigon's corruption takes over the Abstract.
-- psychology: Galactus has no emotions. Trigon feeds on emotions. This makes Galactus an "empty vessel" that Trigon cannot easily control.
+- mechanika: The Ultimate Nullifier can erase Trigon as if he was never born. Trigon must destroy Galactus before he reaches for the weapon.
+- implikacja: If Galactus is fed, Trigon has no chance of breaking his shields. If he's hungry—Trigon's corruption takes over the Abstract.
+- psychologia: Galactus has no emotions. Trigon feeds on emotions. This makes Galactus an "empty vessel" that Trigon cannot easily control.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -236,7 +236,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: Clash Result
+- subtitle: Fight Result
 - winner: Galactus (High Advantage)
 - line_1: Galactus stands higher in the hierarchy of beings—he is a part of the fabric of reality, while Trigon is its invader.
 - line_2: The Ultimate Nullifier is the final argument that wins against any form of Trigon's hax.

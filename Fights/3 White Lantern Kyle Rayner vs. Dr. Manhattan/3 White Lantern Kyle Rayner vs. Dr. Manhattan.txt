@@ -38,8 +38,8 @@
 
 7. Character B Feats
 - Style: "God of the Mechanism." Views time and the multiverse as static images. He doesn't fight—he performs "corrections" in the fabric of reality, erasing years of history and entire legions of heroes.
-- Advantage: Metaversal Omnipotence. Scales above 5th-dimensional beings (Mxyzptlk), possesses immunity to existence erasure, and strikes at concepts like the Speed Force.
-- Mentality: Cold Observer. Acts with the absolute certainty of an author who knows how the chapter ends, unless Tachyons disrupt him.
+- Advantage: Metaversal Omnipotence. Scales exponentially above 5th-dimensional beings (Mxyzptlk), possesses immunity to existence erasure, and strikes at concepts like the Speed Force.
+- Mentality: Cold Observer. Experiences time simultaneously (past, present, future). Acts with the absolute certainty of an author who knows how the chapter ends, unless Tachyons intervene.
 
 8. Defeated by Character B
 - Mr. Mxyzptlk (admits Manhattan's power is beyond his comprehension)
@@ -112,9 +112,9 @@ Template Character A:
 Template Character B:
 - header: CHARACTER DOSSIER // RED
 - world: Watchmen / Doomsday Clock
-- style: "God of the Mechanism." He sees time and the multiverse as static images. He does not fight—he performs "corrections" in the fabric of reality.
-- advantage: Metaversal Omnipotence. Scales above 5th-dimensional beings (Mxy), possesses immunity to erasure, and strikes concepts like the Speed Force.
-- mentality: Cold Observer. Acts with the absolute certainty of an author who knows how the chapter ends, unless Tachyons disrupt him.
+- style: "God of the Mechanism." He doesn't fight—he edits the structure of reality. His scale exceeds standard understandings of power.
+- advantage: Metaversal Omnipotence. Can change the history of the entire Multiverse by affecting its starting point.
+- mentality: Cold Observer. Sees time simultaneously. Acts with absolute certainty unless something disrupts his vision.
 - quote: I am the most powerful being in the known universe. I can do anything.
 
 Template Powers / Tools / Weaknesses:
@@ -195,9 +195,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 20
 - regen: PRECOGNITION
-- mechanics: Manhattan is omnipotent as long as he sees the "path." Tachyons (White Light) create Static that forces him to improvise.
-- implication: In a "Static" state, Kyle (with Source Code Edit) can overwrite Manhattan's history before he predicts it.
-- psychology: Manhattan accepts fate. Kyle changes it. This gives Kyle the advantage of active will.
+- mechanika: Manhattan is omnipotent as long as he sees the "path." Tachyons (White Light) create Static that forces him to improvise.
+- implikacja: In a "Static" state, Kyle (with Source Code Edit) can overwrite Manhattan's history before he predicts it.
+- psychologia: Manhattan accepts fate. Kyle changes it. This gives Kyle the advantage of active will.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -211,10 +211,10 @@ Template Winner CV:
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: 
-- winner: Draw / Dr. Manhattan (Minimal Advantage)
+- winner: Draw / Dr. Manhattan (Slight Advantage)
 - line_1: Manhattan operates at the Metaversal level, stealing time and resetting universes with one hand.
-- line_2: Kyle with the Life Equation is the only error in the system that can negate God's determinism with Tachyons.
-- line_3: The fight would most likely end with reality destabilizing to the level of "Zero" before either one defeats the other.
+- line_2: Kyle with the Life Equation is the only bug in the system who can negate the God's determinism with Tachyons.
+- line_3: The fight would likely end in reality destabilizing to "Zero" before one could defeat the other.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
@@ -267,7 +267,7 @@ Template Verdict Matrix:
 - case_1: Draw/Kyle 6/10. Kyle has the tools to break Manhattan's omnipotence if Manhattan doesn't erase him instantly.
 - case_2: Manhattan 10/10. Without full Source power, Kyle is just another hero Manhattan removes from history.
 - case_3: Kyle 8/10. A passive Manhattan gives Kyle time to rewrite the laws of physics and cut the God off from his power.
-- case_4: Manhattan 10/10. Absolute dominance of the Architect over an ordinary Spectrum user.
+- case_4: Manhattan 10/10. Absolute dominance of the Architect over a standard Spectrum user.
 
 Template Fight Title:
 - fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan

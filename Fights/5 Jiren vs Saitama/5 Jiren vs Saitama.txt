@@ -37,7 +37,7 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Style: Absolute Limit Breaking (Gag/Toon Force). Saitama possesses no formal technique—his movements ignore the laws of physics and logic. He fights with the nonchalance of someone for whom multi-universal threats are "fun."
+- Style: Absolute Limit Breaking (Gag/Toon Force). Saitama possesses no formal technique—his movements ignore the laws of physics and logic. He fights with the nonchalance of someone for whom multi-universal threats are a "joke."
 - Advantage: Exponential Growth and Causality Manipulation. His power grows exponentially every split second. He can grab portals like physical objects and strike from the past (Zero Punch).
 - Mentality: Bored God / Gag Character. Seeks the thrill of battle but his very nature makes him undefeated. In a clash with Jiren, his "strangeness" simply overwrites the rules of Dragon Ball combat.
 
@@ -142,7 +142,7 @@ Template Raw Feats:
 - left_image_4: Unaffected by Android 17's Self-Destruction.png
 - left_item_5: Stronger than Gods of Destruction.
 - left_image_5: Belmod.png
-- right_item_1: Serious Punch Squared (Hole in the stars).
+- right_item_1: Serious Punch Squared (Void Hole).
 - right_image_1: Serious Punch Squared... generates an explosion that.png
 - right_item_2: Serious Sneeze (Jupiter Demolition).
 - right_image_2: A Serious Sneeze blows away the gas surrounding Jupiter's.png
@@ -195,9 +195,9 @@ Template X-Factor:
 - b_value: 98
 - b_bonus: +INFINITY
 - regen: LIMIT BREAKER
-- mechanics: Saitama grows exponentially. If Jiren hits him with a force of 100, Saitama will hit back with a force of 1000 in the next second.
-- implication: Jiren cannot win through attrition or technique. Saitama simply overwrites stats on the fly.
-- psychology: Jiren fights for his life. Saitama thinks about a supermarket sale. This lack of respect for the scale of battle is his greatest weapon.
+- mechanika: Saitama grows exponentially. If Jiren hits him with a force of 100, Saitama will hit back with a force of 1000 in the next second.
+- implikacja: Jiren cannot win through attrition or technique. Saitama simply overwrites stats on the fly.
+- psychologia: Jiren fights for his life. Saitama thinks about a supermarket sale. This lack of respect for the scale of battle is his greatest weapon.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -232,9 +232,9 @@ Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: Final Result
 - winner: Saitama (Absolute Escalation)
-- line_1: Jiren is more powerful than anything Saitama has faced (except Garou at the peak of escalation).
+- line_1: Jiren is more powerful than anything Saitama has faced (except peak Garou).
 - line_2: However, Saitama possesses an exponential growth mechanism and gag physics that allow him to ignore Jiren's techniques.
-- line_3: Jiren can only win if Saitama lets himself be thrown out of the ring at the very beginning. In any other version—Saitama overtakes him and ends the fight.
+- line_3: Jiren can only win if Saitama allows a ring-out at the very beginning. In any other version—Saitama overtakes him and ends the fight.
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS

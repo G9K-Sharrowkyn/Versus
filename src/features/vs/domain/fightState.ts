@@ -31,7 +31,6 @@ import type {
 export type ApplyFightRecordOptions = {
   enterIntro?: boolean
   preserveTemplateSelection?: boolean
-  targetLanguage?: Language
 }
 
 export type FightStudioState = {
@@ -108,7 +107,7 @@ export const buildFightStudioState = ({
     fighterA: {
       ...cloneFighter(FIGHTER_A),
       name: stripFightLocaleSuffixFromLabel(payload.fighterAName),
-      subtitle: targetLanguage === 'pl' ? 'Profil Postaci' : 'Character Profile',
+      subtitle: FIGHTER_A.subtitle,
       color: FIGHTER_A_COLOR,
       imageUrl: fight.portraitADataUrl,
       stats: categoryPayload.statsRecordA,
@@ -116,7 +115,7 @@ export const buildFightStudioState = ({
     fighterB: {
       ...cloneFighter(FIGHTER_B),
       name: stripFightLocaleSuffixFromLabel(payload.fighterBName),
-      subtitle: targetLanguage === 'pl' ? 'Profil Postaci' : 'Character Profile',
+      subtitle: FIGHTER_B.subtitle,
       color: FIGHTER_B_COLOR,
       imageUrl: fight.portraitBDataUrl,
       stats: categoryPayload.statsRecordB,

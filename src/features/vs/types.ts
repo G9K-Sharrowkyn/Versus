@@ -131,7 +131,6 @@ export type TemplatePreviewProps = {
   slideImageAdjustments: Record<string, PortraitAdjust>
   onSlideImageAdjustChange: (imageKey: string, adjust: PortraitAdjust) => void
   onSlideImageAdjustCommit: (imageKey: string, adjust: PortraitAdjust) => void
-  onToggleLanguage?: () => void
 }
 
 export type IconType = LucideIcon

@@ -18,8 +18,8 @@
 
 4. Defeated by Character A
 - Darth Maul (Resurrection)
-- Celeste Morne (Ancient Jedi Master)
-- Dark Woman
+- Celeste Morne (Ancient Jedi/Sith)
+- Dark Woman (Jedi Master)
 - Sha Koon
 - Kai Hudorra
 
@@ -94,7 +94,7 @@
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // VADER VS THANOS
-- subtitle: Power of the Force vs. Cosmic Inevitability
+- subtitle: Force Precision vs. Cosmic Inevitability
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
@@ -132,13 +132,13 @@ Template Raw Feats:
 - left_title: VADER SHOWCASE
 - right_title: THANOS SHOWCASE
 - feat_label: FEAT
-- left_item_1: Throwing a Y-Wing bomber.
+- left_item_1: Slams down a Y-Wing bomber.
 - left_image_1: Ciskanie bombowcem Y-Wing.jpeg
 - left_item_2: Slams two starships together.
 - left_image_2: Slams two starships together.jpeg
 - left_item_3: Blocks energy with his hand.
 - left_image_3: Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg
-- left_item_4: Surviving a casino explosion.
+- left_item_4: Survived cathedral collapse.
 - left_image_4: Survives a giant explosion that destroyed a casino.jpeg
 - left_item_5: Invisible-fast movements.
 - left_image_5: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
@@ -146,7 +146,7 @@ Template Raw Feats:
 - right_image_1: Drax and Thanos destroy a planet in their fight.jpeg
 - right_item_2: Stops Mjolnir mid-flight.
 - right_image_2: Stops Mjolnir mid-flight.jpeg
-- right_item_3: Turning an opponent to stone.
+- right_item_3: Transmuting enemies to stone.
 - right_image_3: Turns a Skrull to stone.jpeg
 - right_item_4: Surviving disintegration.
 - right_image_4: Gets disintegrated down to his skeleton.jpeg
@@ -166,7 +166,7 @@ Template Radar Brief:
 - subtitle: Combat potential map
 - left_header: VADER ADVANTAGES
 - right_header: THANOS ADVANTAGES
-- draw_header: DRAW ZONES
+- draw_header: ST zones
 - favorite_label: STAT-BASED FAVORITE
 
 Template Interpretation:
@@ -181,7 +181,7 @@ Template Stat Trap:
 - headline: STAT TRAP
 - subtitle: Why numbers can be misleading
 - trap_top: THANOS'S REGENERATION IS TOTAL
-- trap_bottom: FORCE CRUSH CAN BE BLOCKED BY COSMIC ENERGY
+- trap_bottom: VADER'S ATTACK IS INTERNAL
 - example: Even if Vader crushes Thanos's heart, the Titan can reconstruct himself from ashes. Vader has no such luxury.
 - question: Can Vader maintain Force concentration long enough to overcome the regeneration of a being who survived a black hole?
 
@@ -195,9 +195,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 40
 - regen: CURSE OF IMMORTALITY
-- mechanics: Thanos was banned from Death's domain. His regeneration allows him to return after disintegration. Vader is tough, but mortal.
-- implication: Even an "ideal" strike from Vader doesn't end the fight permanently. Thanos's counter-attack ends him in a millisecond.
-- psychology: Thanos feels no fear of death. Vader lives in eternal pain and fear of failure.
+- mechanika: Thanos was banned from Death's domain. His regeneration allows him to return after disintegration. Vader is tough, but mortal.
+- implikacja: Even an "ideal" strike from Vader doesn't end the fight permanently. Thanos's counter-attack ends him in a millisecond.
+- psychologia: Thanos feels no fear of death. Vader lives in eternal pain and fear of failure.
 
 Template Winner CV:
 - headline: Victory Archive
@@ -221,7 +221,7 @@ Template Winner CV:
 - right_image_1: Thanos beats Silver Surfer.jpeg
 - right_item_2: Beta Ray Bill
 - right_image_2: Beat up Beta Ray.jpg
-- right_item_3: Hulk and Thing
+- right_item_3: Hulk & Thing
 - right_image_3: Manhandles Hulk and Thing.jpeg
 - right_item_4: Galactus (Helmet Damage)
 - right_image_4: Blasts Galactus.jpeg
@@ -231,9 +231,9 @@ Template Winner CV:
 Template Summary:
 - headline: FINAL SUMMARY
 - subtitle: Final Verdict
-- winner: Thanos (Absolute Dominance)
+- winner: Thanos (High Dominance)
 - line_1: Despite Vader being more powerful in Legends than any movie Jedi, Thanos is a being operating at the level of Marvel's cosmic deities.
-- line_2: The difference in scale (Planetary vs City) is impossible to overcome. Thanos can take everything Vader throws at him and answer with an ecosystem-destroying attack.
+- line_2: The scale gap (Planetary vs City) is insurmountable. Thanos can tank everything Vader throws and answer with an ecosystem-destroying attack.
 - line_3: Thanos wins 9.5/10. The remaining 0.5 is a scenario where Vader uses the Force to escape.
 
 Template Battle Dynamics:

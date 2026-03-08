@@ -12,7 +12,6 @@ type ViewMode = 'search' | 'home' | 'fight-intro' | 'fight'
 
 type UseVsTransitionsOptions = {
   fights: FightRecord[]
-  fightsReady: boolean
   preferredVariantByMatchup: Record<string, string>
   activeTemplate: TemplateId
   activeFightId: string | null
@@ -34,7 +33,6 @@ type UseVsTransitionsOptions = {
 
 export function useVsTransitions({
   fights,
-  fightsReady,
   preferredVariantByMatchup,
   activeTemplate,
   activeFightId,
@@ -76,7 +74,6 @@ export function useVsTransitions({
   const introRevealPendingRef = useRef(false)
   const fightViewRevealTimeoutRef = useRef<number | null>(null)
   const reverseStageRef = useRef<ReverseStage>('idle')
-  const pendingSearchQueryRef = useRef<string | null>(null)
 
   const morphTotalMs = morphPowerOffMs + morphRingOnMs + morphFinalMs
 
@@ -209,18 +206,6 @@ export function useVsTransitions({
     }, searchCollapseWatchdogMs)
 
     searchTransitionTimeoutsRef.current.push(collapseWatchdogTimeout)
-  }
-
-  const startSearchFightTransitionForQuery = (rawQuery: string) => {
-    const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup)
-    if (!match) {
-      pendingSearchQueryRef.current = fightsReady ? null : rawQuery
-      return false
-    }
-
-    pendingSearchQueryRef.current = null
-    startSearchFightTransition(match)
-    return true
   }
 
   const completeReverseMorphToSearch = (handoff?: SearchMorphHandoff | null) => {
@@ -425,7 +410,6 @@ export function useVsTransitions({
 
       const token = normalizeToken(rawQuery)
       if (token === 'add' || token === 'dodaj') {
-        pendingSearchQueryRef.current = null
         clearSearchTransitionQueue()
         setIntroVisible(true)
         setViewMode('home')
@@ -433,7 +417,9 @@ export function useVsTransitions({
         return
       }
 
-      startSearchFightTransitionForQuery(rawQuery)
+      const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup)
+      if (!match) return
+      startSearchFightTransition(match)
     }
 
     window.addEventListener('message', onMessage)
@@ -444,27 +430,6 @@ export function useVsTransitions({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [fights, preferredVariantByMatchup])
-
-  useEffect(() => {
-    if (!fightsReady) return
-    if (searchTransitioningRef.current || returnTransitioningRef.current) return
-
-    const pendingQuery = pendingSearchQueryRef.current?.trim() || ''
-    if (!pendingQuery) return
-
-    const match = findFightByQuery(fights, pendingQuery, preferredVariantByMatchup)
-    pendingSearchQueryRef.current = null
-    if (!match) return
-
-    startSearchFightTransition(match)
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [
-    fights,
-    fightsReady,
-    preferredVariantByMatchup,
-    returnTransitioningRef,
-    searchTransitioningRef,
-  ])
 
   useEffect(
     () => () => {
