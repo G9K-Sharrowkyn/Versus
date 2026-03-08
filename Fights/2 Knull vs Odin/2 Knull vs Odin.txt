@@ -133,20 +133,14 @@ Template Raw Feats:
 - feat_label: FEAT
 - left_item_1: Decapitates a Celestial and forges All-Black.
 - left_item_2: Knulls Celestials and makes them serve.
-- left_image_2: Knull_Knulled.jpg
 - left_item_3: Survives Big Bang.
 - left_item_4: Kills countless gods with his Necrosword.
 - left_item_5: Covers the Earth in Abyss and shuts the sun off.
 - right_item_1: Absorbs Asgard life-force and scales Destroyer.
-- right_image_1: Odin_Life2.jpg
 - right_item_2: Severs Nezarr arm with Odinsword.
-- right_image_2: Odin_ArmCut.jpg
 - right_item_3: Breaches impenetrable Dome made by Celestials.
-- right_image_3: Odin_Dome.jpg
 - right_item_4: Gathers power from all of the Earth gods.
-- right_image_4: Odin_PowerOfGods.jpg
 - right_item_5: Absorbs Surtur, whose destiny is to destroy Asgard and kill gods.
-- right_image_5: Odin_Surtur.jpg
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
@@ -205,6 +199,7 @@ Template Winner CV:
 - left_item_2: Sentry
 - left_item_3: Silver Surfer
 - left_item_4: All-Father Thor
+- left_item_5: Storm
 - right_item_1: Infinity
 - right_item_2: Seth
 - right_item_3: Thanos

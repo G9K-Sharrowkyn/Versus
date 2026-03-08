@@ -1,8 +1,14 @@
 Template Raw Feats:
 - left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
+- left_image_2: Knull_Knulled.jpg
 - left_image_3: Knull_BigBang.webp
 - left_image_4: Knull_gods.jpg
 - left_image_5: 02_6_1_knull_covers_earth_in_abyss.jpg
+- right_image_1: Odin_Life2.jpg
+- right_image_2: Odin_ArmCut.jpg
+- right_image_3: Odin_Dome.jpg
+- right_image_4: Odin_PowerOfGods.jpg
+- right_image_5: Odin_Surtur.jpg
 
 Template HUD Bars:
 - profile_mode: VS
@@ -12,6 +18,7 @@ Template Winner CV:
 - left_image_2: Knull_Sentry.jpg
 - left_image_3: Knull_Surfer.jpg
 - left_image_4: Knull_Jaw2.jpg
+- left_image_5: Knull_Storm.jpg
 - right_image_1: Odin_Infinity.jpg
 - right_image_2: Odin_Seth.jpg
 - right_image_3: Odin_Thanos.jpg
