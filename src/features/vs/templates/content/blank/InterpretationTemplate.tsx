@@ -10,6 +10,10 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../../shared/highEnd'
 
+const INTERPRETATION_BAR_MAX_DELTA = 40
+const INTERPRETATION_BAR_MIN_FILL = 18
+const INTERPRETATION_BAR_FILL_RANGE = 62
+
 export function InterpretationTemplate({
   fighterA,
   fighterB,
@@ -66,13 +70,13 @@ export function InterpretationTemplate({
         { label: 'COMBAT IQ', delta: 2 },
       ]
   const bars = edgeRows.length ? edgeRows : fallbackEdges
-  const maxDelta = bars.length ? Math.max(...bars.map((bar) => bar.delta), 1) : 1
   const formatDelta = (value: number) => (Number.isInteger(value) ? `${value}` : value.toFixed(1))
   const barGradient = isAverageDraw
     ? 'linear-gradient(90deg,#334155,#94a3b8)'
     : leaderSide === 'a'
       ? 'linear-gradient(90deg,#0b69ad,#1377b9)'
       : 'linear-gradient(90deg,#8b1e1e,#dc2626)'
+  const labelColumnWidth = '19rem'
 
   const bullet1 = line(
     0,
@@ -172,13 +176,18 @@ export function InterpretationTemplate({
 
               <div className="max-h-[286px] space-y-2 overflow-y-auto py-2 pr-1">
                 {bars.map((bar, index) => {
-                  const width = 26 + (bar.delta / Math.max(maxDelta, 1)) * 50
+                  const normalizedDelta = Math.min(bar.delta, INTERPRETATION_BAR_MAX_DELTA) / INTERPRETATION_BAR_MAX_DELTA
+                  const fillWidth = INTERPRETATION_BAR_MIN_FILL + normalizedDelta * INTERPRETATION_BAR_FILL_RANGE
                   return (
-                    <div key={`interp-bar-${index}-${bar.label}`} className="grid grid-cols-[1fr_auto] items-center gap-2">
+                    <div
+                      key={`interp-bar-${index}-${bar.label}`}
+                      className="grid items-center gap-2"
+                      style={{ gridTemplateColumns: `minmax(0,1fr) ${labelColumnWidth}` }}
+                    >
                       <div className="h-8 overflow-hidden rounded-sm border border-slate-500/70 bg-slate-900/85">
-                        <div className="h-full" style={{ width: `${width}%`, background: barGradient }} />
+                        <div className="h-full" style={{ width: `${fillWidth}%`, background: barGradient }} />
                       </div>
-                      <p className="text-[20px] font-semibold uppercase leading-none text-slate-100">
+                      <p className="whitespace-nowrap text-[20px] font-semibold uppercase leading-none text-slate-100">
                         {isAverageDraw ? `${bar.label} (d${formatDelta(bar.delta)})` : `${bar.label} (+${formatDelta(bar.delta)})`}
                       </p>
                     </div>
