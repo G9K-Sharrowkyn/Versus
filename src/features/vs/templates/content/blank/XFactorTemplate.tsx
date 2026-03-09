@@ -19,6 +19,8 @@ export function XFactorTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
+  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['x-factor'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
@@ -56,20 +58,20 @@ export function XFactorTemplate({
   const mechanics = line(
     1,
     ['mechanika', 'mechanics'],
-    tr(`${fighterB.name || 'Fighter B'} has a major regeneration factor.`, `${fighterB.name || 'Fighter B'} has a major regeneration factor.`),
+    tr(`${fighterBName} ma znaczący czynnik regeneracji.`, `${fighterBName} has a major regeneration factor.`),
   )
   const implication = line(
     2,
     ['implikacja', 'implication'],
     tr(
-      `${fighterB.name || 'Fighter B'} does not need to win every exchange. Surviving is enough.`,
-      `${fighterB.name || 'Fighter B'} does not need to win every exchange. Surviving is enough.`,
+      `${fighterBName} nie musi wygrywać każdej wymiany. Wystarczy, że przetrwa.`,
+      `${fighterBName} does not need to win every exchange. Surviving is enough.`,
     ),
   )
   const psychology = line(
     3,
     ['psychologia', 'psychology'],
-    tr('Survival mindset and attrition fighting raise his odds.', 'Survival mindset and attrition fighting raise his odds.'),
+    tr('Mentalność przetrwania i walka na wyniszczenie zwiększają jego szanse.', 'Survival mindset and attrition fighting raise his odds.'),
   )
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -104,7 +106,7 @@ export function XFactorTemplate({
             <div className="space-y-6">
               <div>
                 <p className="text-[58px] font-semibold uppercase leading-none tracking-[0.01em]" style={{ color: '#38bdf8', fontFamily: 'var(--font-display)' }}>
-                  {fighterA.name || 'Fighter A'}
+                  {fighterAName}
                 </p>
                 <div className="mt-2 grid grid-cols-[1fr_168px] items-center gap-2">
                   <div className="relative h-14 overflow-hidden rounded-md border-2 border-slate-500/70 bg-slate-900/85 shadow-[0_0_0_1px_rgba(125,211,252,0.12)]">
@@ -134,7 +136,7 @@ export function XFactorTemplate({
 
               <div>
                 <p className="text-[58px] font-semibold uppercase leading-none tracking-[0.01em]" style={{ color: '#f87171', fontFamily: 'var(--font-display)' }}>
-                  {fighterB.name || 'Fighter B'}
+                  {fighterBName}
                 </p>
                 <div className="mt-2 grid grid-cols-[1fr_168px] items-center gap-2">
                   <div className="relative h-14 overflow-hidden rounded-md border-2 border-slate-500/70 bg-slate-900/85 shadow-[0_0_0_1px_rgba(248,113,113,0.12)]">

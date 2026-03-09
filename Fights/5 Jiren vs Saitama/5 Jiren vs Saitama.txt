@@ -169,9 +169,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 14
 - regen: LATE-FIGHT ESCALATION
-- mechanika: Jiren's edge lives in the first clean finish window. Saitama's edge appears only if that window fails badly enough.
-- implikacja: If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.
-- psychologia: Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen.
+- mechanics: Jiren's edge lives in the first clean finish window. Saitama's edge appears only if that window fails badly enough.
+- implication: If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.
+- psychology: Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen.
 
 Template Winner CV:
 - headline: Victory Archive

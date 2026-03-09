@@ -53,9 +53,9 @@ export function SummaryTemplate({
     pickTemplateField(blockFields, ['winner', 'verdict']) ||
     tr('WERDYKT WARUNKOWY, BRAK ABSOLUTNEGO STOMPA', 'CONDITIONAL VERDICT, NO ABSOLUTE STOMP')
   const summaryLines = [
-    line(0, ['line_1', 'line1'], tr('Tempo > obrazenia na otwarciu.', 'Tempo > damage in opening.')),
-    line(1, ['line_2', 'line2'], tr('Regeneracja zmienia pozna faze starcia.', 'Regeneration changes late game.')),
-    line(2, ['line_3', 'line3'], tr('Zasady walki moga odwrocic werdykt.', 'Rules can flip the verdict.')),
+    line(0, ['line_1', 'line1'], tr('Tempo > obrażenia na otwarciu.', 'Tempo > damage in opening.')),
+    line(1, ['line_2', 'line2'], tr('Regeneracja zmienia późną fazę starcia.', 'Regeneration changes late game.')),
+    line(2, ['line_3', 'line3'], tr('Zasady walki mogą odwrócić werdykt.', 'Rules can flip the verdict.')),
   ]
 
   return (

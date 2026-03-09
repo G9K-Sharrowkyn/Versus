@@ -1,54 +1,54 @@
-1. Character A
+1. Postać A
 Atrocitus (New 52 / Prime Earth)
 
-2. Character A Stats
-Strength: 87
-Speed: 86
-Durability: 88
-Combat IQ: 84
+2. Statystyki Postaci A
+Siła: 87
+Szybkość: 86
+Wytrzymałość: 88
+IQ bojowe: 84
 Hax: 92
-Stamina: 84
-Fighting Style: 78
-Experience: 91
-Combat Skills: 80
+Kondycja: 84
+Styl walki: 78
+Doświadczenie: 91
+Umiejętności bojowe: 80
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.
 - Atut: Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.
 - Mentalność: Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 The Butcher Entity
 The Butcher's human host
 Saint Walker, Indigo-1 i Star Sapphire (przytłoczenie grupowe)
 Multiple Manhunters
 Bleez (wewnętrzna dominacja)
 
-5. Character B
+5. Postać B
 World Breaker Hulk
 
-6. Character B Stats
-Strength: 95
-Speed: 80
-Durability: 95
-Combat IQ: 81
+6. Statystyki Postaci B
+Siła: 95
+Szybkość: 80
+Wytrzymałość: 95
+IQ bojowe: 81
 Hax: 66
-Stamina: 98
-Fighting Style: 81
-Experience: 78
-Combat Skills: 81
+Kondycja: 98
+Styl walki: 81
+Doświadczenie: 78
+Umiejętności bojowe: 81
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.
 - Atut: Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.
 - Mentalność: Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 Sentry
 Doctor Strange
 Iron Man
 Juggernaut
 Arm'Cheddon
 
-9. Template Order
+9. Kolejność Templatek
 tactical-board
 character-card-a
 character-card-b
@@ -65,26 +65,26 @@ battle-dynamics
 fight-simulation
 fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Czerwona plazmowa emisja Pierścienia, konstrukty, magia krwi i rytuały, lot oraz dynamika gniewu powiązana z Butcherem.
 - Narzędzia: Manipulacja spektrum emocjonalnym i silna presja dystansowa.
 - Słabości: Zależność od pierścienia i wczesne okna kontroli.
 - Słabości: Długie bezpośrednie bijatyki mogą osłabiać jego przewagę taktyczną.
 
-11. Character A Raw Feats
+11. Najważniejsze Wyczyny Postaci A
 Uwięził Butchera w swojej baterii mocy
 Walczył dalej po wyrwaniu serca
 Użył magii krwi, by czytać przyszłość i śledzić ścieżki gniewu
 Przepalił plazmą furii samą strukturę przestrzeni
 Przytłoczył jednocześnie Saint Walkera, Indigo-1 i Star Sapphire
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Wzrost siły oparty na gammie, regeneracja, fale uderzeniowe i ekstremalna kondycja.
 - Narzędzia: Nieustanna presja w zwarciu i eskalujące pętle obrażeń.
 - Słabości: Ograniczona precyzyjna użyteczność na dystans wobec wyspecjalizowanych kontrolerów.
 - Słabości: Zestaw strategii wyraźnie się zawęża, gdy nie może utrzymać stałego kontaktu.
 
-13. Character B Raw Feats
+13. Najważniejsze Wyczyny Postaci B
 Skala World Breakera daje mu kolateralne zniszczenie planety i księżyca
 Wytrzymał poziom wyjścia Sentry'ego
 Zregenerował się po skrajnych obrażeniach
@@ -124,8 +124,8 @@ tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-headline: SUROWE FEATY
-subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 left_title: POKAZ ATROCITUSA
 right_title: POKAZ HULKA
 feat_label: FEAT
@@ -162,14 +162,14 @@ Template Interpretation:
 headline: INTERPRETACJA
 subtitle: Kto wygrywa walkę na papierze?
 question: Kto wygrywa walkę na papierze?
-odpowiedzią: Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk.
+answer: Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk.
 body: Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli. Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny. To pojedynek, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.
 
 Template Stat Trap:
 headline: PUŁAPKA STATYSTYK
 subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 question: Czy Atrocitus utrzyma gniew Hulka na zewnątrz, czy sam zacznie karmić tę pętlę?
-body: Lepsze średnie nic nie znaczą, jeśli nie tworzą prawdziwej ścieżki kończenia. Atrocitus ma więcej sposobów, by ułożyć początek walki, ale Hulk staje się groźniejszy za każdym razem, gdy walka wraca do kontaktu. To nie jest pytanie o to, kto ma więcej narzędzi. To pytanie o to, czyj win-con zostaje nienaruszony po porażce pierwszego planu.
+body: Lepsze średnie nic nie znaczą, jeśli nie tworzą prawdziwej ścieżki kończenia. Atrocitus ma więcej sposobów, by ułożyć początek walki, ale Hulk staje się groźniejszy za każdym razem, gdy walka wraca do kontaktu. To nie jest pytanie o to, kto ma więcej narzędzi. To pytanie o to, czyj warunek zwycięstwa zostaje nienaruszony po porażce pierwszego planu.
 
 Template X-Factor:
 headline: X-FACTOR

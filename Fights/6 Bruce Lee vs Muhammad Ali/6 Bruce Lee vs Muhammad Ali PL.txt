@@ -1,51 +1,51 @@
-1. Character A
+1. Postać A
 Bruce Lee (Prime / wersja historyczna)
 
-2. Character A Stats
-Strength: 70
-Speed: 93
-Durability: 70
-Combat IQ: 86
+2. Statystyki Postaci A
+Siła: 70
+Szybkość: 93
+Wytrzymałość: 70
+IQ bojowe: 86
 Hax: 73
-Stamina: 81
-Fighting Style: 91
-Experience: 60
-Combat Skills: 86
+Kondycja: 81
+Styl walki: 91
+Doświadczenie: 60
+Umiejętności bojowe: 86
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.
 - Atut: Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.
 - Mentalność: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 Gary Elms (zwycięstwo przez decyzję w boksie)
 Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
 
-5. Character B
+5. Postać B
 Muhammad Ali (Prime)
 
-6. Character B Stats
-Strength: 89
-Speed: 89
-Durability: 94
-Combat IQ: 93
+6. Statystyki Postaci B
+Siła: 89
+Szybkość: 89
+Wytrzymałość: 94
+IQ bojowe: 93
 Hax: 48
-Stamina: 95
-Fighting Style: 90
-Experience: 97
-Combat Skills: 94
+Kondycja: 95
+Styl walki: 90
+Doświadczenie: 97
+Umiejętności bojowe: 94
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.
 - Atut: Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.
 - Mentalność: Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 George Foreman
 Joe Frazier
 Sonny Liston
 Cleveland Williams
 Ernie Terrell
 
-9. Template Order
+9. Kolejność Templatek
 tactical-board
 character-card-a
 character-card-b
@@ -61,28 +61,28 @@ battle-dynamics
 fight-simulation
 fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń.
 - Narzędzia: Intercepcja w duchu JKD, kopnięcia na niską linię, łamanie rytmu i adaptacja między stylami.
 - Słabości: Wyraźny deficyt masy i zasięgu wobec specjalistów wagi ciężkiej.
 - Słabości: Ludzki limit wytrzymałości przy długotrwałym karaniu przez ciężkiego.
 
-11. Character A Raw Feats
-One-inch punch demonstration at Long Beach
-Two-finger push-up and body-control demonstration
-1958 inter-school boxing title over Gary Elms
-Built Jeet Kune Do from practical cross-style adaptation
+11. Najważniejsze Wyczyny Postaci A
+Demonstracja one-inch punch na Long Beach
+Pompki na dwóch palcach i pokaz kontroli ciała
+Międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem
+Zbudowanie Jeet Kune Do z praktycznej adaptacji między stylami
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa.
 - Narzędzia: Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa.
 - Słabości: Zestaw narzędzi skupiony głównie na boksie wobec szerokich zasad otwartych.
 - Słabości: Mniejsza specjalizacja pod ataki na nogi i mieszany dystans poza regułami boksu.
 
-13. Character B Raw Feats
-Rope-a-dope against George Foreman
-Peak heavyweight speed and precision against Cleveland Williams
-Frazier-era endurance and punishment tolerance
+13. Najważniejsze Wyczyny Postaci B
+Rope-a-dope przeciw George'owi Foremanowi
+Szybkość i precyzja wagi ciężkiej przeciw Clevelandowi Williamsowi
+Wytrzymałość i tolerancja karania z ery Fraziera
 
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // BRUCE VS ALI
@@ -99,14 +99,14 @@ Template Character A:
 - style: Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.
 - advantage: Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.
 - mentality: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
-- quote: Be water, my friend.
+- quote: Bądź jak woda, mój przyjacielu.
 Template Character B:
 - header: POSTAĆ CZERWONA
 - world: Prime
 - style: Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.
 - advantage: Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.
 - mentality: Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.
-- quote: Float like a butterfly, sting like a bee.
+- quote: Fruwaj jak motyl, żądl jak pszczoła.
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
@@ -117,25 +117,25 @@ tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-headline: SUROWE FEATY
-subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 left_title: POKAZ BRUCE'A
 right_title: POKAZ ALEGO
 feat_label: FEAT
-- left_item_1: One-inch punch (Long Beach).
-- left_item_2: Two-finger push-ups.
-- left_item_3: Gary Elms title.
-- left_item_4: Jeet Kune Do adaptation.
-- right_item_1: Rope-a-dope vs Foreman.
-- right_item_2: Cleveland Williams speed.
-- right_item_3: Frazier endurance.
-- right_item_4: Sonny Liston stoppage.
-- right_item_5: Ali footwork.
+- left_item_1: One-inch punch na Long Beach.
+- left_item_2: Pompki na dwóch palcach.
+- left_item_3: Tytuł nad Garym Elmsem.
+- left_item_4: Adaptacja Jeet Kune Do.
+- right_item_1: Rope-a-dope przeciw Foremanowi.
+- right_item_2: Szybkość przeciw Clevelandowi Williamsowi.
+- right_item_3: Wytrzymałość z ery Fraziera.
+- right_item_4: Zatrzymanie Sonny'ego Listona.
+- right_item_5: Praca nóg Alego.
 
 Template HUD Bars:
 headline: ANALITYKA WALKI HIGH-END
 subtitle: Odczyt statystyk dwóch profili
-threat_level: HUMAN
+threat_level: LUDZKI
 integrity: 98.7%
 scale: 0-100
 

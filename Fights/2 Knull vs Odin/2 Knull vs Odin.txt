@@ -180,9 +180,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 15
 - regen: COUNTER PURGE
-- mechanika: Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.
-- implikacja: This is why the same stat table can point to parity while the practical baseline still leans Knull.
-- psychologia: Knull wants repetition. Odin wants one controlled exchange that finally stays solved.
+- mechanics: Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.
+- implication: This is why the same stat table can point to parity while the practical baseline still leans Knull.
+- psychology: Knull wants repetition. Odin wants one controlled exchange that finally stays solved.
 
 Template Winner CV:
 - headline: Victory Archive

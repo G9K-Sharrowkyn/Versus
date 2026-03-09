@@ -179,9 +179,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 22
 - regen: SCALE EDGE
-- mechanika: Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.
-- implikacja: If Thanos survives the first real bypass, the fight immediately shifts onto his terms.
-- psychologia: Vader wants a controlled duel. Thanos wants the fight to become a long execution.
+- mechanics: Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.
+- implication: If Thanos survives the first real bypass, the fight immediately shifts onto his terms.
+- psychology: Vader wants a controlled duel. Thanos wants the fight to become a long execution.
 
 Template Winner CV:
 - headline: Victory Archive

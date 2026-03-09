@@ -20,6 +20,8 @@ export function VerdictMatrixTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
+  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
@@ -27,9 +29,9 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -39,32 +41,32 @@ export function VerdictMatrixTemplate({
     0,
     ['case_1', 'case1'],
     tr(
-      `${fighterA.name || 'Fighter A'} (6/10). Speed and technique finish the fight before time runs out.`,
-      `${fighterA.name || 'Fighter A'} (6/10). Speed and technique finish the fight before time runs out.`,
+      `${fighterAName} (6/10). Szybkość i technika kończą walkę, zanim skończy się czas.`,
+      `${fighterAName} (6/10). Speed and technique finish the fight before time runs out.`,
     ),
   )
   const case2 = line(
     1,
     ['case_2', 'case2'],
     tr(
-      `${fighterB.name || 'Fighter B'} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
-      `${fighterB.name || 'Fighter B'} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
+      `${fighterBName} (5.5/10). Szybkie domknięcie jest trudniejsze. Regen daje przewagę.`,
+      `${fighterBName} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
     ),
   )
   const case3 = line(
     2,
     ['case_3', 'case3'],
     tr(
-      `${fighterA.name || 'Fighter A'} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
-      `${fighterA.name || 'Fighter A'} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
+      `${fighterAName} (5.5/10). Ryzyko rośnie. Jeśli szybki finisz nie wejdzie, przeciwnik wraca do walki.`,
+      `${fighterAName} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
     ),
   )
   const case4 = line(
     3,
     ['case_4', 'case4'],
     tr(
-      `${fighterB.name || 'Fighter B'} (6.5/10). Attrition war favors regen.`,
-      `${fighterB.name || 'Fighter B'} (6.5/10). Attrition war favors regen.`,
+      `${fighterBName} (6.5/10). Wojna na wyniszczenie faworyzuje regen.`,
+      `${fighterBName} (6.5/10). Attrition war favors regen.`,
     ),
   )
 
@@ -81,8 +83,6 @@ export function VerdictMatrixTemplate({
       .replace(/\p{Diacritic}/gu, '')
       .toLocaleLowerCase()
       .trim()
-  const fighterAName = fighterA.name || 'Fighter A'
-  const fighterBName = fighterB.name || 'Fighter B'
   const fighterAKey = normalizeName(fighterAName)
   const fighterBKey = normalizeName(fighterBName)
   const winnerBlueBackground = 'bg-[linear-gradient(135deg,rgba(14,116,144,0.34),rgba(30,64,175,0.3))]'
@@ -103,11 +103,11 @@ export function VerdictMatrixTemplate({
   }
 
   const colLeftHeader =
-    pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) || tr('SOLAR FLARE: YES', 'SOLAR FLARE: YES')
+    pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) || tr('SOLAR FLARE: TAK', 'SOLAR FLARE: YES')
   const colRightHeader =
-    pickTemplateField(blockFields, ['col_right', 'solar_flare_no', 'solarflare_no']) || tr('SOLAR FLARE: NO', 'SOLAR FLARE: NO')
-  const rowTopHeader = pickTemplateField(blockFields, ['row_top', 'standard', 'standard_ko']) || 'STANDARD KO'
-  const rowBottomHeader = pickTemplateField(blockFields, ['row_bottom', 'deathmatch', 'kill_only']) || 'DEATHMATCH'
+    pickTemplateField(blockFields, ['col_right', 'solar_flare_no', 'solarflare_no']) || tr('SOLAR FLARE: NIE', 'SOLAR FLARE: NO')
+  const rowTopHeader = pickTemplateField(blockFields, ['row_top', 'standard', 'standard_ko']) || tr('STANDARD KO', 'STANDARD KO')
+  const rowBottomHeader = pickTemplateField(blockFields, ['row_bottom', 'deathmatch', 'kill_only']) || tr('WALKA NA ŚMIERĆ', 'DEATHMATCH')
 
   const cells = [
     {

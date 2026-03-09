@@ -69,7 +69,7 @@
 - Słabości: Silne kontry na Otchłań lub bardzo intensywne światło mogą osłabiać jego główne atuty.
 - Słabości: Szeroka kosmiczna kontrola energii może zmuszać go do większych wydatków na regenerację i odzyskanie tempa.
 
-11. Surowe Featy Postaci A
+11. Najważniejsze Wyczyny Postaci A
 - Ścina Celestiala i kuje All-Black.
 - Podporządkowuje Celestiali i zmusza ich do służby.
 - Przetrwał Wielki Wybuch.
@@ -82,7 +82,7 @@
 - Słabości: Siła rażenia i precyzja potrafią się zmieniać zależnie od kontekstu, obciążenia i długości starcia.
 - Słabości: Zbyt duża wiara we własną kontrolę może otwierać przeciwnikowi okna kontrataku.
 
-13. Surowe Featy Postaci B
+13. Najważniejsze Wyczyny Postaci B
 - Pochłania siłę życiową Asgardu i skaluje Destroyera.
 - Odcina Nezarrowi ramię Mieczem Odyna.
 - Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
@@ -122,8 +122,8 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-- headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 - left_title: POKAZ KNULLA
 - right_title: POKAZ ODINA
 - feat_label: FEAT
@@ -180,9 +180,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 15
 - regen: PRAWDZIWE OCZYSZCZENIE
-- mechanika: Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.
-- implikacja: Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.
-- psychologia: Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe.
+- mechanics: Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.
+- implication: Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.
+- psychology: Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw

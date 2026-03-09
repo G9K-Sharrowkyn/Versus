@@ -623,6 +623,38 @@ export const pickTemplateField = (fields: Record<string, string>, keys: string[]
   return ''
 }
 
+const STAT_CATEGORY_ID_BY_TOKEN: Record<string, string> = {
+  strength: 'strength',
+  sila: 'strength',
+  speed: 'speed',
+  szybkosc: 'speed',
+  durability: 'durability',
+  wytrzymalosc: 'durability',
+  combatiq: 'battleIq',
+  battleiq: 'battleIq',
+  iqbojowe: 'battleIq',
+  iq: 'battleIq',
+  hax: 'hax',
+  stamina: 'stamina',
+  kondycja: 'stamina',
+  style: 'style',
+  styl: 'style',
+  stylwalki: 'style',
+  fightingstyle: 'style',
+  experience: 'experience',
+  doswiadczenie: 'experience',
+  skills: 'skills',
+  combatskills: 'skills',
+  fightingskills: 'skills',
+  umiejetnosci: 'skills',
+  umiejetnoscibojowe: 'skills',
+}
+
+const resolveStatCategoryKey = (label: string) => {
+  const normalized = normalizeToken(label)
+  return STAT_CATEGORY_ID_BY_TOKEN[normalized] || normalized
+}
+
 export const buildCardFacts = (fallbackFacts: FighterFact[], fields: Record<string, string>, language: Language) => {
   const styleDefault = fallbackFacts[0]?.text || '-'
   const atutDefault = fallbackFacts[1]?.text || '-'
@@ -714,7 +746,7 @@ export const createCategoryPayload = (statsA: ParsedStat[], statsB: ParsedStat[]
   const firstLabelByKey = new Map<string, string>()
 
   const register = (label: string) => {
-    const key = normalizeToken(label)
+    const key = resolveStatCategoryKey(label)
     if (!key || firstLabelByKey.has(key)) return
     orderedKeys.push(key)
     firstLabelByKey.set(key, label)
@@ -733,7 +765,7 @@ export const createCategoryPayload = (statsA: ParsedStat[], statsB: ParsedStat[]
   const usedIds = new Set<string>()
   const categories: Category[] = orderedKeys.map((key, index) => {
     const label = firstLabelByKey.get(key) || `Stat ${index + 1}`
-    const baseId = slug(label) || `stat-${index + 1}`
+    const baseId = DEFAULT_CATEGORIES.some((category) => category.id === key) ? key : slug(label) || `stat-${index + 1}`
     let id = baseId
     let suffix = 2
     while (usedIds.has(id)) {
@@ -751,12 +783,12 @@ export const createCategoryPayload = (statsA: ParsedStat[], statsB: ParsedStat[]
   const statsRecordB = Object.fromEntries(categories.map((category) => [category.id, 50]))
 
   statsA.forEach((stat) => {
-    const id = keyToId.get(normalizeToken(stat.label))
+    const id = keyToId.get(resolveStatCategoryKey(stat.label))
     if (id) statsRecordA[id] = clamp(stat.value)
   })
 
   statsB.forEach((stat) => {
-    const id = keyToId.get(normalizeToken(stat.label))
+    const id = keyToId.get(resolveStatCategoryKey(stat.label))
     if (id) statsRecordB[id] = clamp(stat.value)
   })
 

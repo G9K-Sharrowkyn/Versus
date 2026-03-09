@@ -44,9 +44,9 @@ export function WinnerCvTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const archiveLabel = pickTemplateField(blockFields, ['archive_label']) || tr('ARCHIWUM', 'ARCHIVE')
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || archiveLabel
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'

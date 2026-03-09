@@ -26,7 +26,7 @@ export function CharacterCardATemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const fighterText = fighterA.name || 'Fighter A'
+  const fighterText = fighterA.name || tr('Postać A', 'Fighter A')
   const safeFacts = factsA.length ? factsA : defaultFactsFor('a', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-card-a'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
@@ -53,7 +53,7 @@ export function CharacterCardATemplate({
     .trim()
   const quote =
     pickTemplateField(blockFields, ['quote', 'cytat']) ||
-    tr('Fighter who controls pace and distance.', 'Fighter who controls pace and distance.')
+    tr('Walka oparta na kontroli tempa i dystansu.', 'Fighter who controls pace and distance.')
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>

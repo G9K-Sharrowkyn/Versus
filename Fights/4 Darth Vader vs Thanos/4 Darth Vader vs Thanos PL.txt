@@ -1,21 +1,21 @@
 1. Darth Vader (Legends Prime)
 
-2. Character A Stats
-- Strength: 68
-- Speed: 79
-- Durability: 68
-- Combat IQ: 88
+2. Statystyki Postaci A
+- Siła: 68
+- Szybkość: 79
+- Wytrzymałość: 68
+- IQ bojowe: 88
 - Hax: 82
-- Stamina: 76
-- Fighting Style: 91
-- Experience: 80
-- Combat Skills: 92
+- Kondycja: 76
+- Styl walki: 91
+- Doświadczenie: 80
+- Umiejętności bojowe: 92
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.
 - Atut: Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.
 - Mentalność: Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 - Dark Woman
 - Sha Koon
 - Hylon
@@ -24,29 +24,29 @@
 
 5. Thanos (Earth-616)
 
-6. Character B Stats
-- Strength: 96
-- Speed: 78
-- Durability: 97
-- Combat IQ: 92
+6. Statystyki Postaci B
+- Siła: 96
+- Szybkość: 78
+- Wytrzymałość: 97
+- IQ bojowe: 92
 - Hax: 92
-- Stamina: 96
-- Fighting Style: 84
-- Experience: 94
-- Combat Skills: 88
+- Kondycja: 96
+- Styl walki: 84
+- Doświadczenie: 94
+- Umiejętności bojowe: 88
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.
 - Atut: Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.
 - Mentalność: Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 - Silver Surfer
 - Hulk
-- Beta Ray Bill and Ronan the Accuser
+- Beta Ray Bill i Ronan Oskarżyciel
 - Adam Warlock (wynik kontekstowy / wsparty artefaktem)
-- Thor with the Power Gem (strategiczne zwycięstwo)
+- Thor z Power Gem (strategiczne zwycięstwo)
 
-9. Template Order
+9. Kolejność Templatek
 - tactical-board
 - character-card-a
 - character-card-b
@@ -63,26 +63,26 @@
 - fight-simulation
 - fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Telekineza Mocy, prekognicja, techniki duszenia i miażdżenia oraz śmiercionośna biegłość miecza świetlnego.
 - Narzędzia: Defensywna dyscyplina szermiercza, odbijanie blasterów i energii oraz kontrola pola walki przez Moc.
 - Słabości: Zależność od cybernetycznego podtrzymania życia i podatność na długie uszkadzanie systemów.
 - Słabości: Niższa surowa wytrzymałość fizyczna i skala niż u czołowych bytów kosmicznych.
 
-11. Character A Raw Feats
+11. Najważniejsze Wyczyny Postaci A
 - Podnosi i ciska bombowcem Y-Wing.
 - Rozbija o siebie dwa statki kosmiczne telekinezą.
 - Idzie przez alejkę, odbijając ogień z blasterów.
 - Blokuje dłonią atak energetyczny.
 - Przeżywa gigantyczną eksplozję, która niszczy kasyno.
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Ogromna siła i wytrzymałość, kosmiczna projekcja energii, pola siłowe i manipulacja materią.
 - Narzędzia: Strategiczny intelekt, adaptacja bojowa i szeroki profil odporności.
 - Słabości: Pycha i skłonność do testowania przeciwnika mogą otwierać wczesne okna błędu.
 - Słabości: Bez Kamieni Nieskończoności pozostaje elitarny, ale nie ma natychmiastowej dominacji poziomu Rękawicy.
 
-13. Character B Raw Feats
+13. Najważniejsze Wyczyny Postaci B
 - Niszczy planetę podczas walki z Draxem.
 - Przeżywa czarną dziurę o średnicy dwóch lat świetlnych.
 - Tankuje energię na poziomie Odina.
@@ -122,8 +122,8 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-- headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 - left_title: POKAZ VADERA
 - right_title: POKAZ THANOSA
 - feat_label: FEAT
@@ -141,7 +141,7 @@ Template Raw Feats:
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
-- threat_level: COSMIC
+- threat_level: KOSMICZNY
 - integrity: 99.4%
 - scale: 0-100
 
@@ -179,9 +179,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 22
 - regen: PRZEWAGA SKALI
-- mechanika: Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.
-- implikacja: Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.
-- psychologia: Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.
+- mechanics: Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.
+- implication: Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.
+- psychology: Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw
@@ -198,9 +198,9 @@ Template Winner CV:
 - left_item_5: Kai Hudorra
 - right_item_1: Silver Surfer
 - right_item_2: Hulk
-- right_item_3: Beta Ray Bill and Ronan the Accuser
+- right_item_3: Beta Ray Bill i Ronan Oskarżyciel
 - right_item_4: Adam Warlock
-- right_item_5: Thor with the Power Gem
+- right_item_5: Thor z Power Gem
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE

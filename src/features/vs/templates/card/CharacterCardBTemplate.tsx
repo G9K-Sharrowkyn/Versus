@@ -26,7 +26,7 @@ export function CharacterCardBTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const fighterText = fighterB.name || 'Fighter B'
+  const fighterText = fighterB.name || tr('Postać B', 'Fighter B')
   const safeFacts = factsB.length ? factsB : defaultFactsFor('b', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-card-b'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
@@ -53,7 +53,7 @@ export function CharacterCardBTemplate({
     .trim()
   const quote =
     pickTemplateField(blockFields, ['quote', 'cytat']) ||
-    tr('He does not seek a clean fight. He seeks destruction.', 'He does not seek a clean fight. He seeks destruction.')
+    tr('Nie szuka czystej walki. Szuka zniszczenia.', 'He does not seek a clean fight. He seeks destruction.')
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>

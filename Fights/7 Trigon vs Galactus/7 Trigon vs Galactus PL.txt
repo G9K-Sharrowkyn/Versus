@@ -1,54 +1,54 @@
-1. Character A
+1. Postać A
 Trigon (Prime Earth)
 
-2. Character A Stats
-Strength: 89
-Speed: 84
-Durability: 91
-Combat IQ: 86
+2. Statystyki Postaci A
+Siła: 89
+Szybkość: 84
+Wytrzymałość: 91
+IQ bojowe: 86
 Hax: 93
-Stamina: 94
-Fighting Style: 80
-Experience: 94
-Combat Skills: 75
+Kondycja: 94
+Styl walki: 80
+Doświadczenie: 94
+Umiejętności bojowe: 75
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika.
 - Atut: Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.
 - Mentalność: Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 The Divine
 Teen Titans (korupcja drużynowa / przytłoczenie)
 Superboy
 Wonder Girl
 Psimon (wygnanie / BFR)
 
-5. Character B
+5. Postać B
 Galactus (Earth-616)
 
-6. Character B Stats
-Strength: 95
-Speed: 94
-Durability: 97
-Combat IQ: 92
+6. Statystyki Postaci B
+Siła: 95
+Szybkość: 94
+Wytrzymałość: 97
+IQ bojowe: 92
 Hax: 98
-Stamina: 96
-Fighting Style: 85
-Experience: 98
-Combat Skills: 79
+Kondycja: 96
+Styl walki: 85
+Doświadczenie: 98
+Umiejętności bojowe: 79
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.
 - Atut: Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.
 - Mentalność: Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 Silver Surfer (uwięzienie / bariera)
 Sphinx (rozwiązanie przez pętlę czasu)
-Poppup / the Poppupians (rezultat pożarcia świata)
+Poppup / Poppupianie (rezultat pożarcia świata)
 Imperium Skrulli / Tarnax IV
 Mad Celestials (wynik kontekstowy)
 
-9. Template Order
+9. Kolejność Templatek
 tactical-board
 character-card-a
 character-card-b
@@ -66,26 +66,26 @@ fight-simulation
 verdict-matrix
 fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Demoniczna projekcja energii, korupcja, opętanie, podróże międzywymiarowe oraz cechy regeneracji i zmartwychwstania.
 - Narzędzia: Kształtowanie i kontrola domeny oraz presja na poziomie duszy.
 - Słabości: Szczytowa kontrola działa najlepiej w środowisku sprzyjającym demonicznej domenie.
 - Słabości: Szeroka odporność kosmiczna może spowalniać tempo jego korupcji na neutralnym polu.
 
-11. Character A Raw Feats
+11. Najważniejsze Wyczyny Postaci A
 pochłonął Heart of Darkness
 podbił i skaził niezliczone światy
 zmartwychwstał po wyrwaniu serca
 zregenerował uszkodzenie oka w czasie walki
 przemienił Teen Titans w Dark Titans
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii/energii.
 - Narzędzia: Absorpcja energii planetarnej lub kosmicznej oraz normalizacja pola walki.
 - Słabości: Skuteczność zależy od poziomu nasycenia.
 - Słabości: W stanie głodu spada szybkość odpowiedzi i margines błędu.
 
-13. Character B Raw Feats
+13. Najważniejsze Wyczyny Postaci B
 zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym
 wytrzymał Agamotto w jego własnej domenie
 uwięził Silver Surfera na Ziemi niewykrywalną barierą
@@ -125,8 +125,8 @@ tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-headline: SUROWE FEATY
-subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 left_title: POKAZ TRIGONA
 right_title: POKAZ GALACTUSA
 feat_label: FEAT
@@ -196,7 +196,7 @@ right_title: REKORD GALACTUSA
 - left_item_5: Psimon
 - right_item_1: Silver Surfer
 - right_item_2: Sphinx
-- right_item_3: Poppup / the Poppupians
+- right_item_3: Poppup / Poppupianie
 - right_item_4: Imperium Skrulli / Tarnax IV
 - right_item_5: Mad Celestials
 
@@ -237,7 +237,7 @@ phase_3_actor: b
 Template Verdict Matrix:
 headline: MATRYCA WERDYKTU
 subtitle: Wygrana zależy od zasad walki.
-col_left: NEUTRAL
+col_left: NEUTRALNE POLE
 col_right: DOMENA TRIGONA
 row_top: DOBRZE NAKARMIONY
 row_bottom: WYGŁODNIAŁY

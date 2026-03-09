@@ -227,16 +227,17 @@ function App() {
         const a = clamp(fighterA.stats[category.id] ?? 0)
         const b = clamp(fighterB.stats[category.id] ?? 0)
         const delta = a - b
+        const localizedLabel = translations.categories[category.id as keyof typeof translations.categories] || category.label
         return {
           id: category.id,
-          label: category.label,
+          label: localizedLabel,
           a,
           b,
           delta,
           winner: delta === 0 ? 'draw' : delta > 0 ? 'a' : 'b',
         }
       }),
-    [categories, fighterA.stats, fighterB.stats],
+    [categories, fighterA.stats, fighterB.stats, translations.categories],
   )
 
   const averageA = useMemo(() => avg(rows, 'a'), [rows])
@@ -420,7 +421,7 @@ function App() {
 
   const currentFightLabel =
     stripFileExtension(importFileName) ||
-    `${fighterA.name || tr('Postac A', 'Fighter A')} vs ${fighterB.name || tr('Postac B', 'Fighter B')}`
+    `${fighterA.name || tr('Postać A', 'Fighter A')} vs ${fighterB.name || tr('Postać B', 'Fighter B')}`
 
   const renderedTemplate = (
     <TemplateRenderer

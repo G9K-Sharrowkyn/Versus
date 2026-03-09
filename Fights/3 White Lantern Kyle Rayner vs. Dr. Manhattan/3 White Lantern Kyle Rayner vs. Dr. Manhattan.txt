@@ -170,9 +170,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 17
 - regen: PREEMPTION EDGE
-- mechanika: Kyle only needs one real Life Equation window, but Manhattan's whole game is stopping that window before it exists.
-- implikacja: If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.
-- psychologia: Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.
+- mechanics: Kyle only needs one real Life Equation window, but Manhattan's whole game is stopping that window before it exists.
+- implication: If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.
+- psychology: Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.
 
 Template Winner CV:
 - headline: Victory Archive

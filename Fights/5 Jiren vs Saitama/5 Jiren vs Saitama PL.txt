@@ -1,21 +1,21 @@
 1. Jiren (Dragon Ball Super)
 
-2. Character A Stats
-- Strength: 96
-- Speed: 96
-- Durability: 96
-- Combat IQ: 88
+2. Statystyki Postaci A
+- Siła: 96
+- Szybkość: 96
+- Wytrzymałość: 96
+- IQ bojowe: 88
 - Hax: 62
-- Stamina: 91
-- Fighting Style: 93
-- Experience: 91
-- Combat Skills: 94
+- Kondycja: 91
+- Styl walki: 93
+- Doświadczenie: 91
+- Umiejętności bojowe: 94
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Ultraefektywna walka czystej siły i ki. Polega na minimalnym ruchu i niszczycielskich kontrach, które kończą starcie, zanim przeciwnik zdąży zareagować.
 - Atut: Przytłaczająca bariera energetyczna i refleks. Jego ki jest tak potężne, że samo w sobie stanowi nieprzeniknioną obronę i ostateczną ofensywę.
 - Mentalność: Stoicki absolutysta. Walczy bez zbędnych słów i emocji, idąc najkrótszą drogą do całkowitej dominacji nad przeciwnikiem.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 - Hit
 - Maji Kayo
 - Golden Frieza (zdominowany)
@@ -24,29 +24,29 @@
 
 5. Saitama (One Punch Man)
 
-6. Character B Stats
-- Strength: 91
-- Speed: 90
-- Durability: 92
-- Combat IQ: 70
+6. Statystyki Postaci B
+- Siła: 91
+- Szybkość: 90
+- Wytrzymałość: 92
+- IQ bojowe: 70
 - Hax: 80
-- Stamina: 98
-- Fighting Style: 66
-- Experience: 74
-- Combat Skills: 70
+- Kondycja: 98
+- Styl walki: 66
+- Doświadczenie: 74
+- Umiejętności bojowe: 70
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Prosty, bezpośredni atak pięścią. Jego styl opiera się na tak gigantycznej przewadze fizycznej, że technika staje się dla niego zbędna.
 - Atut: Niezmierzona siła i odporność. Nie posiada limitów – każde jego uderzenie ma potencjał kończący, a on sam pozostaje niewrażliwy na większość ataków.
 - Mentalność: Znudzony i beztroski profesjonalista. Nie traktuje walki poważnie, dopóki ktoś nie zmusi go do wysiłku, na który czeka z nadzieją.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 - Boros
 - Elder Centipede
 - Orochi
 - Evil Ocean Water (neutralizacja)
 - Garou (Cosmic Fear Mode) (decydujący wynik zależny od linii czasu)
 
-9. Template Order
+9. Kolejność Templatek
 - tactical-board
 - character-card-a
 - character-card-b
@@ -63,26 +63,26 @@
 - fight-simulation
 - fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Ekstremalna emisja ki, techniki barierowe, interakcja z efektami czasu oraz elitarna szybkość i refleks.
 - Narzędzia: Bardzo wydajny styl uderzeń przy minimalnym ruchu i kontrola presji w fazie otwarcia.
 - Słabości: Ograniczona egzotyczna użyteczność względem specjalistów od ciężkiego haksu.
 - Słabości: Jeśli kontrola otwarcia pęknie, może zostać wciągnięty w mniej korzystną pętlę eskalacji.
 
-11. Character A Raw Feats
+11. Najważniejsze Wyczyny Postaci A
 - Blokuje Super Saiyan God Goku jednym palcem.
 - Rozbija Cage of Time Hita samą surową siłą.
 - Odpiera Spirit Bomb Universe 7 samym spojrzeniem.
 - Utrzymuje pasywną barierę podczas medytacji.
 - Stoi ponad benchmarkiem Belmoda (kotwica tieru oparta na skalowaniu).
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Ekstremalna siła fizyczna, wytrzymałość, kondycja i wzrost mocy w długim starciu.
 - Narzędzia: Bezpośredni atak z bliska i szybka adaptacja przez powtarzane wymiany.
 - Słabości: Mało formalnej różnorodności technicznej i mniej warstwowych narzędzi użytkowych.
 - Słabości: Silnie opiera się na bezpośrednim kontakcie, a nie na ramach kontroli dystansowej.
 
-13. Character B Raw Feats
+13. Najważniejsze Wyczyny Postaci B
 - Serious Punch Squared wycina pustkę w przestrzeni.
 - Serious Sneeze zdziera gazowe warstwy Jowisza.
 - Chwyta i kopie hyperspace gates.
@@ -122,8 +122,8 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-- headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 - left_title: POKAZ JIRENA
 - right_title: POKAZ SAITAMY
 - feat_label: FEAT
@@ -131,7 +131,7 @@ Template Raw Feats:
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
-- threat_level: COSMIC
+- threat_level: KOSMICZNY
 - integrity: 99.3%
 - scale: 0-100
 
@@ -169,9 +169,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 14
 - regen: PÓŹNA ESKALACJA WALKI
-- mechanika: Przewaga Jirena żyje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia się dopiero wtedy, gdy to okno zawiedzie wystarczająco mocno.
-- implikacja: Jeśli Jiren utrzyma walkę we wczesnej fazie, wygrywa czysto. Jeśli walka się wymknie, Saitama staje się groźniejszym silnikiem przyszłej walki.
-- psychologia: Jiren chce rozwiązać walkę, zanim stanie się dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwność się wydarzyła.
+- mechanics: Przewaga Jirena żyje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia się dopiero wtedy, gdy to okno zawiedzie wystarczająco mocno.
+- implication: Jeśli Jiren utrzyma walkę we wczesnej fazie, wygrywa czysto. Jeśli walka się wymknie, Saitama staje się groźniejszym silnikiem przyszłej walki.
+- psychology: Jiren chce rozwiązać walkę, zanim stanie się dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwność się wydarzyła.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw

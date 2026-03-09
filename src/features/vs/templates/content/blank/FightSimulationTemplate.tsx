@@ -38,6 +38,8 @@ export function FightSimulationTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
+  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-simulation'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
@@ -53,17 +55,17 @@ export function FightSimulationTemplate({
   const profileMode = '/assets/VS2.png'
   const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
   const scale = 'VersusVerseVault badge'
-  const opening = line(0, ['opening'], tr('Opening: fast range control.', 'Opening: fast range control.'))
+  const opening = line(0, ['opening'], tr('Otwarcie: szybka kontrola dystansu.', 'Opening: fast range control.'))
   const midFight = line(
     1,
     ['mid_fight', 'midfight'],
-    tr('Mid fight: pressure and recovery loops.', 'Mid fight: pressure and recovery loops.'),
+    tr('Środek walki: presja i pętle odzyskiwania tempa.', 'Mid fight: pressure and recovery loops.'),
   )
-  const lateFight = line(2, ['late_fight', 'latefight'], tr('Late fight: attrition checks.', 'Late fight: attrition checks.'))
+  const lateFight = line(2, ['late_fight', 'latefight'], tr('Końcówka: test wyniszczenia.', 'Late fight: attrition checks.'))
   const endCondition = line(
     3,
     ['end_condition', 'endcondition'],
-    tr('End condition: KO/BFR vs kill-only.', 'End condition: KO/BFR vs kill-only.'),
+    tr('Warunek końcowy: KO/BFR kontra kill-only.', 'End condition: KO/BFR vs kill-only.'),
   )
   const fallbackRows = [rows[0], rows[1], rows[5] || rows[2]].filter(Boolean) as ScoreRow[]
 
@@ -77,9 +79,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[0]?.label || 'Strength',
       aValue: fallbackRows[0]?.a ?? 96,
       bValue: fallbackRows[0]?.b ?? 84,
-      event: tr(`${fighterA.name || 'Fighter A'} sets the pace.`, `${fighterA.name || 'Fighter A'} sets the pace.`),
-      branchA: tr(`${fighterA.name || 'Fighter A'} keeps range control.`, `${fighterA.name || 'Fighter A'} keeps range control.`),
-      branchB: tr(`${fighterB.name || 'Fighter B'} breaks the distance.`, `${fighterB.name || 'Fighter B'} breaks the distance.`),
+      event: tr(`${fighterAName} narzuca tempo.`, `${fighterAName} sets the pace.`),
+      branchA: tr(`${fighterAName} utrzymuje kontrolę dystansu.`, `${fighterAName} keeps range control.`),
+      branchB: tr(`${fighterBName} przełamuje dystans.`, `${fighterBName} breaks the distance.`),
     },
     {
       mode: 'split' as const,
@@ -90,9 +92,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[1]?.label || 'Speed',
       aValue: fallbackRows[1]?.a ?? 92,
       bValue: fallbackRows[1]?.b ?? 88,
-      event: tr('Turning point: first exchange shifts the conditions.', 'Turning point: first exchange shifts the conditions.'),
-      branchA: tr(`${fighterA.name || 'Fighter A'} builds advantage with technique.`, `${fighterA.name || 'Fighter A'} builds advantage with technique.`),
-      branchB: tr(`${fighterB.name || 'Fighter B'} forces chaos and attrition.`, `${fighterB.name || 'Fighter B'} forces chaos and attrition.`),
+      event: tr('Punkt zwrotny: pierwsza wymiana zmienia warunki walki.', 'Turning point: first exchange shifts the conditions.'),
+      branchA: tr(`${fighterAName} buduje przewagę techniką.`, `${fighterAName} builds advantage with technique.`),
+      branchB: tr(`${fighterBName} wymusza chaos i wyniszczenie.`, `${fighterBName} forces chaos and attrition.`),
     },
     {
       mode: 'bars' as const,
@@ -103,9 +105,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[2]?.label || 'Stamina',
       aValue: fallbackRows[2]?.a ?? 90,
       bValue: fallbackRows[2]?.b ?? 93,
-      event: tr('Final turning point.', 'Final turning point.'),
-      branchA: tr(`${fighterA.name || 'Fighter A'} closes the fight by decision.`, `${fighterA.name || 'Fighter A'} closes the fight by decision.`),
-      branchB: tr(`${fighterB.name || 'Fighter B'} breaks the rival late.`, `${fighterB.name || 'Fighter B'} breaks the rival late.`),
+      event: tr('Ostatni punkt zwrotny.', 'Final turning point.'),
+      branchA: tr(`${fighterAName} domyka walkę decyzją.`, `${fighterAName} closes the fight by decision.`),
+      branchB: tr(`${fighterBName} łamie rywala w końcówce.`, `${fighterBName} breaks the rival late.`),
     },
   ]
 

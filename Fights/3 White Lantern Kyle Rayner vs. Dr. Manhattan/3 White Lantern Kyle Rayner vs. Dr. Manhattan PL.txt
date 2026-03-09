@@ -1,21 +1,21 @@
 1. White Lantern Kyle Rayner (New 52 / Prime Earth)
 
-2. Character A Stats
-- Strength: 90
-- Speed: 94
-- Durability: 94
-- Combat IQ: 86
+2. Statystyki Postaci A
+- Siła: 90
+- Szybkość: 94
+- Wytrzymałość: 94
+- IQ bojowe: 86
 - Hax: 95
-- Stamina: 93
-- Fighting Style: 79
-- Experience: 86
-- Combat Skills: 76
+- Kondycja: 93
+- Styl walki: 79
+- Doświadczenie: 86
+- Umiejętności bojowe: 76
 
-3. Character A Feats
+3. Featy Postaci A
 - Styl: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.
 - Atut: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.
 - Mentalność: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.
-4. Defeated by Character A
+4. Pokonani przez Postać A
 - Relic
 - Third Army
 - Guardians of the Universe (tymczasowa transformacja / dominacja)
@@ -24,29 +24,29 @@
 
 5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock)
 
-6. Character B Stats
-- Strength: 82
-- Speed: 96
-- Durability: 99
-- Combat IQ: 95
+6. Statystyki Postaci B
+- Siła: 82
+- Szybkość: 96
+- Wytrzymałość: 99
+- IQ bojowe: 95
 - Hax: 100
-- Stamina: 100
-- Fighting Style: 48
-- Experience: 86
-- Combat Skills: 44
+- Kondycja: 100
+- Styl walki: 48
+- Doświadczenie: 86
+- Umiejętności bojowe: 44
 
-7. Character B Feats
+7. Featy Postaci B
 - Styl: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.
 - Atut: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.
 - Mentalność: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.
-8. Defeated by Character B
+8. Pokonani przez Postać B
 - Rorschach (bezpośrednie zabójstwo)
 - Metron (natychmiastowe odparowanie)
 - Owlman (natychmiastowe odparowanie)
 - Ozymandias (nieśmiercionośna kontrola konfrontacji)
 - Silk Spectre / Laurie (lokalny przymus rzeczywistości, nieśmiercionośny)
 
-9. Template Order
+9. Kolejność Templatek
 - tactical-board
 - character-card-a
 - character-card-b
@@ -64,26 +64,26 @@
 - verdict-matrix
 - fight-title
 
-10. Character A Powers / Tools / Weaknesses
+10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Dostęp do pełnego spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja.
 - Narzędzia: Dostęp do Life Equation i szeroka użyteczność pierścienia w ataku, obronie i odtwarzaniu.
 - Słabości: Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.
 - Słabości: Najmocniejsze rezultaty wymagają czasu przygotowania i realnego okna wykonania.
 
-11. Character A Raw Feats
+11. Najważniejsze Wyczyny Postaci A
 - Przetrwał Source Wall i wrócił z Life Equation.
 - Zniszczył jednostki Third Army odporne na standardowe ataki Lanternów.
 - Pokazał wielkoskalowe tworzenie i przywracanie życia.
 - Przepisał Carol Ferris i Guardians pod wpływem Life Equation.
 - Teleportował i rozbroił Godkillers na różnych światach.
 
-12. Character B Powers / Tools / Weaknesses
+12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Manipulacja atomowa, dezintegracja/rekonstrukcja materii, samoodbudowa i percepcja na poziomie linii czasu.
 - Narzędzia: Interwencja czasoprzestrzenna i ingerencja przyczynowa zanim powstanie standardowa wymiana.
 - Słabości: W części ujęć pasywność lub emocjonalny dystans opóźniają decyzję o domknięciu starcia.
 - Słabości: Klasyczna walka wręcz jest u niego węższa niż sugeruje sam profil kontroli rzeczywistości.
 
-13. Character B Raw Feats
+13. Najważniejsze Wyczyny Postaci B
 - Doświadcza wszystkich momentów jednocześnie.
 - Utrzymuje działanie w wielu stanach czasoprzestrzeni.
 - Nagina lokalną rzeczywistość i przestrzeń wyników wokół celów.
@@ -91,7 +91,7 @@
 - Dezintegruje Rorschacha na poziomie molekularnym.
 
 Template Tactical Board:
-- headline: TACTICAL BOARD // KYLE VS MANHATTAN
+- headline: TABLICA TAKTYCZNA // KYLE VS MANHATTAN
 - subtitle: Wola kontra Przyczynowość
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
@@ -123,8 +123,8 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-- headline: SUROWE FEATY
-- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
+- headline: NAJWAŻNIEJSZE WYCZYNY
+- subtitle: Skalowanie postaci poprzez osiągnięcia.
 - left_title: POKAZ KYLE'A
 - right_title: POKAZ MANHATTANA
 - feat_label: FEAT
@@ -132,7 +132,7 @@ Template Raw Feats:
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
-- threat_level: COSMIC
+- threat_level: KOSMICZNY
 - integrity: 99.5%
 - scale: 0-100
 
@@ -170,9 +170,9 @@ Template X-Factor:
 - b_value: 50
 - b_bonus: 17
 - regen: PRZEWAGA PREEMPCJI
-- mechanika: Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.
-- implikacja: Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.
-- psychologia: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.
+- mechanics: Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.
+- implication: Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.
+- psychology: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.
 
 Template Winner CV:
 - headline: Archiwum zwycięstw
@@ -213,8 +213,8 @@ Template Fight Simulation:
 - phase_1_animation: teleport-burst
 - phase_1_actor: a
 - phase_1_title: Otwarcie Przygotowania
-- phase_1_a_label: Pressure
-- phase_1_b_label: Preemption
+- phase_1_a_label: Presja
+- phase_1_b_label: Wyprzedzenie
 - phase_1_a_value: 86
 - phase_1_b_value: 89
 - phase_2_mode: split
@@ -235,10 +235,10 @@ Template Fight Simulation:
 Template Verdict Matrix:
 - headline: MATRYCA WERDYKTU
 - subtitle: Wygrana zależy od zasad walki.
-- col_left: LIFE EQUATION FULL
-- col_right: LIFE EQUATION LIMITED
-- row_top: MANHATTAN PROACTIVE
-- row_bottom: MANHATTAN PASSIVE
+- col_left: PEŁNA LIFE EQUATION
+- col_right: OGRANICZONA LIFE EQUATION
+- row_top: MANHATTAN PROAKTYWNY
+- row_bottom: MANHATTAN PASYWNY
 - case_1: Dr. Manhattan 6.5/10. Pełne przepisywanie utrzymuje Kyle'a w grze, ale proaktywna preempcja nadal kradnie dość otwarć, by zostać minimalnie z przodu.
 - case_2: Dr. Manhattan 9/10. Ograniczone przepisywanie plus proaktywna preempcja usuwa jedyną gałąź, która naprawdę zmienia ten pojedynek.
 - case_3: Kyle 7/10. Jeśli Manhattan robi się pasywny, a Kyle dochodzi do pełnej ekspresji, szerszy arsenał wreszcie się spienięża.

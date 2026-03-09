@@ -34,9 +34,9 @@ export function InterpretationTemplate({
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -45,7 +45,7 @@ export function InterpretationTemplate({
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const leaderSide: 'a' | 'b' = averageA >= averageB ? 'a' : 'b'
-  const leaderName = leaderSide === 'a' ? fighterA.name || 'Fighter A' : fighterB.name || 'Fighter B'
+  const leaderName = leaderSide === 'a' ? fighterA.name || tr('Postać A', 'Fighter A') : fighterB.name || tr('Postać B', 'Fighter B')
   const cardTitleText = isAverageDraw ? tr('REMIS', 'DRAW') : leaderName
   const leaderColor = isAverageDraw ? '#94a3b8' : leaderSide === 'a' ? '#0b69ad' : '#b91c1c'
 
@@ -60,14 +60,14 @@ export function InterpretationTemplate({
 
   const fallbackEdges = isAverageDraw
     ? [
-        { label: 'TEMPO CONTROL', delta: 0.8 },
-        { label: 'RESOURCE ECONOMY', delta: 0.7 },
-        { label: 'FINISH WINDOWS', delta: 0.6 },
+        { label: tr('KONTROLA TEMPA', 'TEMPO CONTROL'), delta: 0.8 },
+        { label: tr('EKONOMIA ZASOBÓW', 'RESOURCE ECONOMY'), delta: 0.7 },
+        { label: tr('OKNA FINISZU', 'FINISH WINDOWS'), delta: 0.6 },
       ]
     : [
-        { label: 'POWER WINDOW', delta: 4 },
-        { label: 'PACE CONTROL', delta: 3 },
-        { label: 'COMBAT IQ', delta: 2 },
+        { label: tr('OKNO MOCY', 'POWER WINDOW'), delta: 4 },
+        { label: tr('KONTROLA TEMPA', 'PACE CONTROL'), delta: 3 },
+        { label: tr('IQ BOJOWE', 'COMBAT IQ'), delta: 2 },
       ]
   const bars = edgeRows.length ? edgeRows : fallbackEdges
   const formatDelta = (value: number) => (Number.isInteger(value) ? `${value}` : value.toFixed(1))
@@ -83,11 +83,11 @@ export function InterpretationTemplate({
     ['line_1', 'line1', 'thesis'],
     isAverageDraw
       ? tr(
-          'Averages are inside the draw threshold (<1 point), so baseline reads as a draw.',
+          'Średnie mieszczą się w progu remisu (<1 punkt), więc bazowy odczyt wskazuje remis.',
           'Averages are inside the draw threshold (<1 point), so baseline reads as a draw.',
         )
       : tr(
-          `${leaderName} has a measurable edge in the linear model.`,
+          `${leaderName} ma mierzalną przewagę w modelu liniowym.`,
           `${leaderName} has a measurable edge in the linear model.`,
         ),
   )
@@ -96,11 +96,11 @@ export function InterpretationTemplate({
     ['line_2', 'line2', 'antithesis'],
     isAverageDraw
       ? tr(
-          'There is no stable paper favorite. Conditions and execution decide the winner.',
+          'Nie ma stabilnego papierowego faworyta. O wyniku decydują warunki i wykonanie.',
           'There is no stable paper favorite. Conditions and execution decide the winner.',
         )
       : tr(
-          'Even with a stat edge, counter-mechanics can flip individual scenarios.',
+          'Nawet przy przewadze statystyk kontrmechaniki mogą odwracać poszczególne scenariusze.',
           'Even with a stat edge, counter-mechanics can flip individual scenarios.',
         ),
   )
@@ -109,11 +109,11 @@ export function InterpretationTemplate({
     ['line_3', 'line3', 'conclusion'],
     isAverageDraw
       ? tr(
-          'Final verdict must come from condition matrix, not from stats table alone.',
+          'Końcowy werdykt musi wynikać z matrycy warunków, a nie z samej tabeli statystyk.',
           'Final verdict must come from condition matrix, not from stats table alone.',
         )
       : tr(
-          `Baseline favors ${leaderName}, but only while maintaining preferred fight conditions.`,
+          `Bazowy odczyt faworyzuje ${leaderName}, ale tylko przy utrzymaniu preferowanych warunków walki.`,
           `Baseline favors ${leaderName}, but only while maintaining preferred fight conditions.`,
         ),
   )
@@ -121,11 +121,11 @@ export function InterpretationTemplate({
     pickTemplateField(blockFields, ['quote', 'line_4', 'line4']) ||
     (isAverageDraw
       ? tr(
-          'Near-equal stats move decisions from numbers to fight conditions.',
+          'Przy niemal równych statystykach decyzja przechodzi z liczb na warunki walki.',
           'Near-equal stats move decisions from numbers to fight conditions.',
         )
       : tr(
-          'Stats set direction, but fight conditions decide outcome.',
+          'Statystyki wyznaczają kierunek, ale wynik ustalają warunki walki.',
           'Stats set direction, but fight conditions decide outcome.',
         ))
 

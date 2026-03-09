@@ -19,6 +19,8 @@ export function BattleDynamicsTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
+  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
@@ -26,9 +28,9 @@ export function BattleDynamicsTemplate({
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopien zagrozenia', 'Threat level')
+  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralnosc danych', 'Data integrity')
+  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
   const integrity = '99.6%'
   const rightTopLabel = 'VersusVerseVault'
   const profileMode = '/assets/VS2.png'
@@ -37,26 +39,26 @@ export function BattleDynamicsTemplate({
   const phase1 = line(
     0,
     ['phase_1', 'phase1'],
-    tr(`${fighterA.name || 'Fighter A'} sets the pace with speed.`, `${fighterA.name || 'Fighter A'} sets the pace with speed.`),
+    tr(`${fighterAName} narzuca tempo dzięki szybkości.`, `${fighterAName} sets the pace with speed.`),
   )
   const phase2 = line(
     1,
     ['phase_2', 'phase2'],
     tr(
-      `${fighterB.name || 'Fighter B'} absorbs damage and closes distance.`,
-      `${fighterB.name || 'Fighter B'} absorbs damage and closes distance.`,
+      `${fighterBName} przyjmuje obrażenia i skraca dystans.`,
+      `${fighterBName} absorbs damage and closes distance.`,
     ),
   )
   const phase3 = line(
     2,
     ['phase_3', 'phase3'],
-    tr(`${fighterB.name || 'Fighter B'} gains late stamina advantage.`, `${fighterB.name || 'Fighter B'} gains late stamina advantage.`),
+    tr(`${fighterBName} zyskuje przewagę kondycyjną w końcówce.`, `${fighterBName} gains late stamina advantage.`),
   )
   const analysisLine =
     pickTemplateField(blockFields, ['analysis', 'note', 'line_4', 'line4']) ||
     tr(
-      `Analysis: ${fighterA.name || 'Fighter A'} wins the sprint. ${fighterB.name || 'Fighter B'} wins the marathon.`,
-      `Analysis: ${fighterA.name || 'Fighter A'} wins the sprint. ${fighterB.name || 'Fighter B'} wins the marathon.`,
+      `Analiza: ${fighterAName} wygrywa sprint. ${fighterBName} wygrywa maraton.`,
+      `Analysis: ${fighterAName} wins the sprint. ${fighterBName} wins the marathon.`,
     )
   const curveAValues = parseCurveValues(
     pickTemplateField(blockFields, ['a_curve', 'curve_a', 'blue_curve', 'left_curve']),
@@ -123,13 +125,13 @@ export function BattleDynamicsTemplate({
               <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.35" markerEnd="url(#arrow-dark)" />
 
               <text x="4.5" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
-                {tr('START', 'START')}
+                {tr('POCZĄTEK', 'START')}
               </text>
               <text x="45" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
                 {tr('CZAS WALKI', 'FIGHT TIME')}
               </text>
               <text x="90.8" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
-                END
+                {tr('KONIEC', 'END')}
               </text>
 
               <text x="3" y="30" fontSize="2.7" fill="#e2e8f0" fontWeight="700" transform="rotate(-90 3 30)">
@@ -157,11 +159,11 @@ export function BattleDynamicsTemplate({
                 <p>{phase1}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#64748b] bg-[#111827]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(71,85,105,0.45)]">
-                <p className="font-semibold">{tr('Faza 2: Srodek walki.', 'Phase 2: Midfight.')}</p>
+                <p className="font-semibold">{tr('Faza 2: Środek walki.', 'Phase 2: Midfight.')}</p>
                 <p>{phase2}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#f43f5e] bg-[#2b101b]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(244,63,94,0.45)]">
-                <p className="font-semibold">{tr('Faza 3: Koncowka.', 'Phase 3: Endgame.')}</p>
+                <p className="font-semibold">{tr('Faza 3: Końcówka.', 'Phase 3: Endgame.')}</p>
                 <p>{phase3}</p>
               </div>
             </div>
