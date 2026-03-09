@@ -49,17 +49,17 @@
 - tactical-board
 - character-card-a
 - character-card-b
+- powers-tools
+- raw-feats
 - hud-bars
 - radar-brief
 - interpretation
 - stat-trap
-- powers-tools
-- raw-feats
 - x-factor
 - winner-cv
 - summary
-- fight-simulation
 - battle-dynamics
+- fight-simulation
 - verdict-matrix
 - fight-title
 
