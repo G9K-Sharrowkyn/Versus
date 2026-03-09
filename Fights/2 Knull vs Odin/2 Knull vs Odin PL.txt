@@ -127,16 +127,16 @@ Template Raw Feats:
 - left_title: Knull
 - right_title: Odin
 - feat_label: FEAT
-- left_item_1: Ścina Celestiala i kuje All-Black.
-- left_item_2: Podporządkowuje Celestiali i zmusza ich do służby.
+- left_item_1: Kuje All-Black z Otchłani.
+- left_item_2: Podporządkowuje sobie Celestiali.
 - left_item_3: Przetrwał Wielki Wybuch.
 - left_item_4: Zabija niezliczonych bogów swoim Necroswordem.
-- left_item_5: Pokrywa Ziemię Otchłanią i gasi słońce.
-- right_item_1: Pochłania siłę życiową Asgardu i skaluje Destroyera.
+- left_item_5: Pokrywa Ziemię symbiontem.
+- right_item_1: Pochłania siłę życiową wszystkich Asgardian.
 - right_item_2: Odcina Nezarrowi ramię Mieczem Odyna.
 - right_item_3: Przebija nieprzenikalną kopułę stworzoną przez Celestiali.
 - right_item_4: Gromadzi moc wszystkich bogów Ziemi.
-- right_item_5: Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów.
+- right_item_5: Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabić bogów.
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END

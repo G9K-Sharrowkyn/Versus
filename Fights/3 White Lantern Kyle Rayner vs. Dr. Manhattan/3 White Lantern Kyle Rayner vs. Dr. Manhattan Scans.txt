@@ -3,16 +3,16 @@ Template Portraits:
 - portrait_b: Manhattan_Observing.jpeg
 
 Template Raw Feats:
-- left_image_1: 01_6_1_kyle_source_wall_life_equation.jpg
-- left_image_2: 02_6_1_kyle_third_army_white_light.jpg
-- left_image_3: 03_6_1_kyle_life_creation_restoration.jpg
-- left_image_4: 04_6_1_kyle_reality_warp_guardians_carol.jpg
-- left_image_5: 05_6_1_kyle_godkillers_teleport_disarm.jpg
+- left_image_1: Kyle_source.jpeg
+- left_image_2: Kyle_Resurrection1.jpeg
+- left_image_3: Kyle_Destabilize.jpeg
+- left_image_4: Kyle_Life.jpeg
+- left_image_5: Kyle_Oblivion.jpeg
 - right_image_1: 06_6_2_manhattan_non_linear_perception.jpg
 - right_image_2: 07_6_2_manhattan_self_consistency_across_time.jpg
-- right_image_3: 08_6_2_manhattan_local_reality_bending.jpg
+- right_image_3: Manhattan_Resurrection.jpeg
 - right_image_4: 09_6_2_manhattan_metron_owlman_mobius.jpg
-- right_image_5: 10_6_2_manhattan_rorschach_disintegration.jpg
+- right_image_5: Manhattan_End.jpg
 
 Template HUD Bars:
 - profile_mode: VS

@@ -72,7 +72,7 @@
 11. Najważniejsze Wyczyny Postaci A
 - Podnosi i ciska bombowcem Y-Wing.
 - Rozbija o siebie dwa statki kosmiczne telekinezą.
-- Idzie przez alejkę, odbijając ogień z blasterów.
+- Przebija samego siebie, by zabić odrodzonego Darth'a Maul'a.
 - Blokuje dłonią atak energetyczny.
 - Przeżywa gigantyczną eksplozję, która niszczy kasyno.
 
@@ -85,8 +85,8 @@
 13. Najważniejsze Wyczyny Postaci B
 - Niszczy planetę podczas walki z Draxem.
 - Przeżywa czarną dziurę o średnicy dwóch lat świetlnych.
-- Tankuje energię na poziomie Odina.
-- Wychodzi bez szwanku z eksplozji gazowego giganta.
+- Przeżywa śmiertelny atak Galactusa.
+- Przeżywa bez szwanku eksplozję gazowego giganta.
 - Wykonuje manipulację materią na poziomie molekularnym.
 
 Template Tactical Board:
@@ -129,14 +129,14 @@ Template Raw Feats:
 - feat_label: FEAT
 - left_item_1: Podnosi i ciska bombowcem Y-Wing.
 - left_item_2: Rozbija o siebie dwa statki kosmiczne.
-- left_item_3: Idzie przez alejkę, odbijając ogień z blasterów.
+- left_item_3: Przebija samego siebie, by zabić odrodzonego Darth'a Maul'a.
 - left_item_4: Blokuje dłonią atak energetyczny.
 - left_item_5: Przeżywa gigantyczną eksplozję kasyna.
 - right_item_1: Niszczy planetę podczas walki.
-- right_item_2: Przeżywa czarną dziurę.
-- right_item_3: Tankuje energię na poziomie Odina.
+- right_item_2: Przeżywa wessanie do czarnej dziury.
+- right_item_3: Przeżywa śmiertelny atak Galactusa.
 - right_item_4: Wychodzi z eksplozji gazowego giganta.
-- right_item_5: Manipuluje materią molekularnie.
+- right_item_5: Zamienia Skrulla w kamień.
 
 Template HUD Bars:
 - headline: ANALITYKA WALKI HIGH-END

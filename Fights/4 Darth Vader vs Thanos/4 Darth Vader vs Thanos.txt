@@ -133,10 +133,10 @@ Template Raw Feats:
 - left_item_4: Blocks an energy blast with his hand.
 - left_item_5: Survives a giant explosion that destroys a casino.
 - right_item_1: Destroys a planet during a fight.
-- right_item_2: Survives a two-light-year black hole.
+- right_item_2: Survives being sucked into a black hole.
 - right_item_3: Tanks Odin-level energy.
 - right_item_4: Walks out of a gas-giant explosion.
-- right_item_5: Performs molecular-level matter manipulation.
+- right_item_5: Turns Skrull into stone.
 
 Template HUD Bars:
 - headline: HIGH-END COMBAT ANALYTICS
