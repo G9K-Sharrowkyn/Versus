@@ -3,16 +3,16 @@ Template Portraits:
 - portrait_b: Saitama can achieve flight.jpg
 
 Template Raw Feats:
-- left_image_1: 01_6_1_jiren_one_finger_block.jpg
-- left_image_2: 02_6_1_jiren_breaks_time_cage.jpg
-- left_image_3: 03_6_1_jiren_spirit_bomb_glare.jpg
-- left_image_4: 04_6_1_jiren_meditation_barrier.jpg
-- left_image_5: 05_6_1_jiren_belmod_scaling.jpg
-- right_image_1: 06_6_2_saitama_serious_punch_squared.jpg
-- right_image_2: 07_6_2_saitama_serious_sneeze.jpg
-- right_image_3: 08_6_2_saitama_hyperspace_gate_grab.jpg
-- right_image_4: 09_6_2_saitama_gamma_ray_burst.jpg
-- right_image_5: 10_6_2_saitama_zero_punch.jpg
+- left_image_1: Tags UI Goku a few times.jpeg
+- left_image_2: Unaffected by Android 17's Self-Destruction.png
+- left_image_3: No sells a Kamehameha from SSB Goku.jpeg
+- left_image_4: Detects and Counters attacks coming from a different dimension.jpg
+- left_image_5: Belmod.png
+- right_image_1: Serious Punch Squared... generates an explosion that.png
+- right_image_2: Saitama time travels to reverse causality.png
+- right_image_3: Can freely grab and move hyperspace.png
+- right_image_4: Saitama can achieve flight.jpg
+- right_image_5: A Serious Sneeze blows away the gas surrounding Jupiter's.png
 
 Template HUD Bars:
 - profile_mode: VS
