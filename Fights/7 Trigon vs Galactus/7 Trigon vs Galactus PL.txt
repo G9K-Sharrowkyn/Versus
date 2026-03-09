@@ -24,7 +24,7 @@ Wonder Girl
 Psimon (wygnanie / BFR)
 
 5. Postać B
-Galactus (Earth-616)
+Galactus (Ziemia-616)
 
 6. Statystyki Postaci B
 Siła: 95
@@ -110,7 +110,7 @@ Template Character A:
 - quote: Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!
 Template Character B:
 - header: Dossier postaci
-- world: Earth-616
+- world: Ziemia-616
 - style: Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.
 - advantage: Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.
 - mentality: Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.

@@ -21,7 +21,7 @@ Gary Elms (zwycięstwo przez decyzję w boksie)
 Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
 
 5. Postać B
-Muhammad Ali (Prime)
+Muhammad Ali (Historyczny Prime)
 
 6. Statystyki Postaci B
 Siła: 89
@@ -102,7 +102,7 @@ Template Character A:
 - quote: Bądź jak woda, mój przyjacielu.
 Template Character B:
 - header: Dossier postaci
-- world: Prime
+- world: Historyczny Prime
 - style: Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.
 - advantage: Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.
 - mentality: Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.

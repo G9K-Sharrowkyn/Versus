@@ -1,4 +1,4 @@
-1. White Lantern Kyle Rayner (New 52 / Prime Earth)
+1. White Lantern Kyle Rayner (New 52)
 
 2. Statystyki Postaci A
 - Siła: 90
@@ -101,7 +101,7 @@ Template Tactical Board:
 
 Template Character A:
 - header: Dossier postaci
-- world: New 52 / Prime Earth
+- world: New 52
 - style: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.
 - advantage: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.
 - mentality: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.
@@ -112,7 +112,7 @@ Template Character B:
 - style: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.
 - advantage: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.
 - mentality: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.
-- quote: Tak. Teraz już widzę. Wszystko się kończy.
+- quote: Tak. Już rozumiem. Wszystko się kończy.
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

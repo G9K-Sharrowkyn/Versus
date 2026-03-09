@@ -21,7 +21,7 @@ Gary Elms (boxing decision victory)
 Yoichi Nakachi (witness-backed rapid challenge-fight knockout)
 
 5. Character B
-Muhammad Ali (Prime)
+Muhammad Ali (Historical Prime)
 
 6. Character B Stats
 Strength: 89
@@ -102,7 +102,7 @@ Template Character A:
 - quote: Be water, my friend.
 Template Character B:
 - header: CHARACTER DOSSIER
-- world: Prime
+- world: Historical Prime
 - style: Masterful control of distance and rhythm. Uses legendary footwork and a fast jab to frustrate enemies and score points from a safe distance.
 - advantage: Heavyweight endurance and ring intelligence. Can take a punch, but his true strength lies in avoiding them and dictating the pace of the fight.
 - mentality: Charismatic showman with a will of steel. Provokes the opponent to throw them off balance and methodically break their self-confidence.

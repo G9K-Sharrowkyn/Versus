@@ -1,4 +1,4 @@
-1. White Lantern Kyle Rayner (New 52 / Prime Earth)
+1. White Lantern Kyle Rayner (New 52)
 
 2. Character A Stats
 - Strength: 90
@@ -101,7 +101,7 @@ Template Tactical Board:
 
 Template Character A:
 - header: CHARACTER DOSSIER
-- world: New 52 / Prime Earth
+- world: New 52
 - style: Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions.
 - advantage: Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.
 - mentality: Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.

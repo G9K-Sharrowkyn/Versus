@@ -1,5 +1,5 @@
 1. Postać A
-Atrocitus (New 52 / Prime Earth)
+Atrocitus (New 52)
 
 2. Statystyki Postaci A
 Siła: 87
@@ -102,14 +102,14 @@ lane: Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli za
 
 Template Character A:
 - header: Dossier postaci
-- world: New 52 / Prime Earth
+- world: New 52
 - style: Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.
 - advantage: Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.
 - mentality: Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.
 - quote: Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!
 Template Character B:
 - header: Dossier postaci
-- world: Era World War Hulk / World Breaker
+- world: Ziemia-616
 - style: Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.
 - advantage: Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.
 - mentality: Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.
