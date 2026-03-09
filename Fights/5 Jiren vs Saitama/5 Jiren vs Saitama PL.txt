@@ -99,14 +99,14 @@ Template Tactical Board:
 - lane: Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie.
 
 Template Character A:
-- header: POSTAĆ NIEBIESKA
+- header: Dossier postaci
 - world: Dragon Ball Super
 - style: Ultraefektywna walka czystej siły i ki. Polega na minimalnym ruchu i niszczycielskich kontrach, które kończą starcie, zanim przeciwnik zdąży zareagować.
 - advantage: Przytłaczająca bariera energetyczna i refleks. Jego ki jest tak potężne, że samo w sobie stanowi nieprzeniknioną obronę i ostateczną ofensywę.
 - mentality: Stoicki absolutysta. Walczy bez zbędnych słów i emocji, idąc najkrótszą drogą do całkowitej dominacji nad przeciwnikiem.
 - quote: Nie ma znaczenia, jak wielu słabeuszy zbierze się razem. Jesteście niczym przed absolutną siłą.
 Template Character B:
-- header: POSTAĆ CZERWONA
+- header: Dossier postaci
 - world: One Punch Man
 - style: Prosty, bezpośredni atak pięścią. Jego styl opiera się na tak gigantycznej przewadze fizycznej, że technika staje się dla niego zbędna.
 - advantage: Niezmierzona siła i odporność. Nie posiada limitów – każde jego uderzenie ma potencjał kończący, a on sam pozostaje niewrażliwy na większość ataków.

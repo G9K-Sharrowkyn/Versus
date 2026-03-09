@@ -97,14 +97,14 @@ Template Tactical Board:
 - lane: Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.
 
 Template Character A:
-- header: POSTAĆ NIEBIESKA
+- header: Dossier postaci
 - world: New 52
 - style: Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 - quote: To wygląda na robotę dla Supermana.
 Template Character B:
-- header: POSTAĆ CZERWONA
+- header: Dossier postaci
 - world: Earth-4023
 - style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
 - advantage: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.

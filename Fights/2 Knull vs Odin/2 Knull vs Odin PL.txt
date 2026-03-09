@@ -99,14 +99,14 @@ Template Tactical Board:
 - lane: Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.
 
 Template Character A:
-- header: POSTAĆ NIEBIESKA
+- header: Dossier postaci
 - world: Earth-616
 - style: Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika.
 - advantage: All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.
 - mentality: Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.
 - quote: Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat.
 Template Character B:
-- header: POSTAĆ CZERWONA
+- header: Dossier postaci
 - world: Earth-616
 - style: Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia.
 - advantage: Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.
