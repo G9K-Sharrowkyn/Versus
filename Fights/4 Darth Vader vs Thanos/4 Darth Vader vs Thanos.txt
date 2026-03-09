@@ -101,16 +101,16 @@ Template Tactical Board:
 Template Character A:
 - header: CHARACTER DOSSIER
 - world: Legends
-- style: Technical pressure fighting with the Force. He combines perfect lightsaber swordsmanship with brutal telekinesis to choke and crush opponents in close quarters.
-- advantage: Elite precision and an iron defense. His mastery of the Force allows him to control the environment and the enemy's body, preventing effective counterattacks.
-- mentality: Cold, patient, and ruthless. He waits for the smallest mistake from the opponent to end the fight with a single, vengeful strike.
+- style: Brutal swordsmanship with Djem So form. Vader uses cybernetic strength to overwhelm the opponent and break any defense with pure physical pressure.
+- advantage: Cybernetic endurance and the power of the Force. Armor allows him to ignore most attacks, while telekinesis serves to paralyze and crush enemies.
+- mentality: Cold, vengeful inevitability. Knows neither mercy nor fear – presses on relentlessly until he completely breaks the opponent's resistance and will.
 - quote: All I am surrounded by is fear. And dead men.
 Template Character B:
 - header: CHARACTER DOSSIER
 - world: Earth-616
-- style: Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.
-- advantage: Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.
-- mentality: Arrogant nihilist with iron discipline. He fights with absolute certainty of his superiority, seeking to ruthlessly crush anyone who stands in his way.
+- style: Brutal, precise power fighting. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.
+- advantage: Near-absolute invulnerability and tactical genius. Possesses a body capable of surviving god-tier attacks and a mind that instantly turns an enemy's mistake into their inevitable defeat.
+- mentality: Arrogant nihilist with iron discipline. Fights with absolute certainty of his superiority, seeking the ruthless suppression of anyone who stands in his way.
 - quote: I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos.
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE

@@ -101,16 +101,16 @@ Template Tactical Board:
 Template Character A:
 - header: CHARACTER DOSSIER
 - world: Dragon Ball Super
-- style: Ultra-efficient fighting of pure strength and Ki. He relies on minimal movement and devastating counters that end the fight before the opponent can react.
-- advantage: Overwhelming energy barrier and reflexes. His Ki is so powerful that it serves as both an impenetrable defense and the ultimate offense.
-- mentality: A stoic absolutist. He fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
+- style: Ultra-efficient combat of pure strength and ki. Relies on minimal movement and devastating counters that end the clash before the opponent can react.
+- advantage: Overwhelming energy barrier and reflexes. His ki is so powerful that it serves as both impenetrable defense and ultimate offense.
+- mentality: Stoic absolutist. Fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
 - quote: It matters not how many weaklings band together. You are nothing before absolute strength.
 Template Character B:
 - header: CHARACTER DOSSIER
 - world: One Punch Man
-- style: Simple, direct punch attacks. His style relies on such massive physical superiority that technique becomes redundant for him.
-- advantage: Immeasurable strength and resilience. He has no limits – every strike has finishing potential, and he remains immune to most attacks.
-- mentality: A bored and carefree professional. He doesn't take the fight seriously until someone forces him to exert effort, which he waits for with hope.
+- style: Simple, direct punch attack. His style is based on such a gigantic physical advantage that technique becomes redundant for him.
+- advantage: Immeasurable strength and resilience. Has no limits – every one of his hits has finishing potential, and he remains immune to most attacks.
+- mentality: Bored and carefree professional. Does not take the fight seriously until someone forces him to exert effort, which he waits for with hope.
 - quote: 100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE

@@ -97,15 +97,15 @@ Template Character A:
 - header: CHARACTER DOSSIER
 - world: Historical Prime
 - style: Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.
-- advantage: Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.
-- mentality: Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.
+- advantage: Extremely trained body and inhuman speed. Possesses total muscle control, allowing him to deliver powerful strikes from zero distance.
+- mentality: Instant adaptation and instinctive precision. Reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without sticking to rigid patterns.
 - quote: Be water, my friend.
 Template Character B:
 - header: CHARACTER DOSSIER
 - world: Prime
-- style: Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance.
-- advantage: Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.
-- mentality: A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.
+- style: Masterful control of distance and rhythm. Uses legendary footwork and a fast jab to frustrate enemies and score points from a safe distance.
+- advantage: Heavyweight endurance and ring intelligence. Can take a punch, but his true strength lies in avoiding them and dictating the pace of the fight.
+- mentality: Charismatic showman with a will of steel. Provokes the opponent to throw them off balance and methodically break their self-confidence.
 - quote: Float like a butterfly, sting like a bee.
 Template Powers / Tools / Weaknesses:
 headline: CHARACTER PROFILE

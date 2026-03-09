@@ -12,9 +12,9 @@
 - Combat Skills: 76
 
 3. Character A Feats
-- Style: Creative ring warfare with white-light constructs. He harnesses the power of the Seven Spectrums to create endless offensive and defensive solutions.
-- Advantage: Absolute versatility and regeneration. The White Light allows him to heal wounds, restore matter, and adapt to any threat.
-- Mentality: Resilient and imaginative. He doesn't panic under pressure, but constantly looks for a creative opening in the opponent's defense, escalating power as needed.
+- Style: Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions.
+- Advantage: Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.
+- Mentality: Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.
 4. Defeated by Character A
 - Relic
 - Third Army
@@ -36,9 +36,9 @@
 - Combat Skills: 44
 
 7. Character B Feats
-- Style: Total control over matter and atoms. He doesn't fight in a traditional sense – he simply disintegrates enemies or erases them from reality with a single gesture.
-- Advantage: Omnipresence and temporal awareness. He sees the fight's future before it begins, which combined with molecular manipulation makes him untouchable.
-- Mentality: A detached observer with mathematical coldness. He acts without emotion, treating the encounter as an inevitable process with a predetermined outcome.
+- Style: Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture.
+- Advantage: Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.
+- Mentality: Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.
 8. Defeated by Character B
 - Rorschach (direct kill)
 - Metron (instant vaporization)
@@ -102,16 +102,16 @@ Template Tactical Board:
 Template Character A:
 - header: CHARACTER DOSSIER
 - world: New 52 / Prime Earth
-- style: Creative ring warfare with white-light constructs. He harnesses the power of the Seven Spectrums to create endless offensive and defensive solutions.
-- advantage: Absolute versatility and regeneration. The White Light allows him to heal wounds, restore matter, and adapt to any threat.
-- mentality: Resilient and imaginative. He doesn't panic under pressure, but constantly looks for a creative opening in the opponent's defense, escalating power as needed.
+- style: Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions.
+- advantage: Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.
+- mentality: Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.
 - quote: In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!
 Template Character B:
 - header: CHARACTER DOSSIER
 - world: Watchmen / Rebirth / Doomsday Clock
-- style: Total control over matter and atoms. He doesn't fight in a traditional sense – he simply disintegrates enemies or erases them from reality with a single gesture.
-- advantage: Omnipresence and temporal awareness. He sees the fight's future before it begins, which combined with molecular manipulation makes him untouchable.
-- mentality: A detached observer with mathematical coldness. He acts without emotion, treating the encounter as an inevitable process with a predetermined outcome.
+- style: Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture.
+- advantage: Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.
+- mentality: Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.
 - quote: Yes. I see now. Everything ends.
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE

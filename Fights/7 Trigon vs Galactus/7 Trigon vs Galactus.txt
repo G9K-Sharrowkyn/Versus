@@ -13,7 +13,7 @@ Experience: 94
 Combat Skills: 75
 
 3. Character A Feats
-- Style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for omnidirectional hellfire blasts and his divine brute force to effortlessly smash and repel any opponent.
+- Style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for hellfire blasts and his divine brute force to effortlessly smash any opponent.
 - Advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.
 - Mentality: A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.
 4. Defeated by Character A
@@ -104,16 +104,16 @@ lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning
 Template Character A:
 - header: CHARACTER DOSSIER
 - world: Prime Earth
-- style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for omnidirectional hellfire blasts and his divine brute force to effortlessly smash and repel any opponent.
-- advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.
-- mentality: A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.
+- style: Static dominance and destructive energy projection. Trigon uses six eyes for multi-directional hellfire blasts and the brutal strength of a deity to effortlessly shatter and repel any opponent.
+- advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies gives him almost infinite magic resources and the ability to instantly regenerate from the very essence of darkness.
+- mentality: Sadistic tyrant seeking total conquest. Does not seek a challenge, but revels in the despair and slow breaking of the opponent's spirit before their ultimate annihilation.
 - quote: In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!
 Template Character B:
 - header: CHARACTER DOSSIER
 - world: Earth-616
-- style: Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
-- advantage: Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.
-- mentality: A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.
+- style: Direct dominance of the Power Cosmic. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
+- advantage: Absolute power absorption and the Ultimate Nullifier. Can absorb energy directed against him (even from deities), and if necessary, use the Nullifier to erase entire galaxies or timelines from existence.
+- mentality: Detached, eternally hungry force of nature. Feels no anger or hatred – perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.
 - quote: Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end.
 Template Powers / Tools / Weaknesses:
 headline: CHARACTER PROFILE

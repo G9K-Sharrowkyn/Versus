@@ -104,7 +104,7 @@ lane: Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wy
 Template Character A:
 - header: Dossier postaci
 - world: Prime Earth
-- style: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika.
+- style: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu by uderzać piekielnym ogniem oraz brutalną siłę bóstwa, by bez wysiłku rozbić  każdego przeciwnika.
 - advantage: Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.
 - mentality: Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.
 - quote: Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!
