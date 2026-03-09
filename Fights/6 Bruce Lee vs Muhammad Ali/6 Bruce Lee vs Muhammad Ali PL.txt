@@ -1,5 +1,5 @@
 1. Character A
-Bruce Lee (Prime / wersja historyczna, 1940-1973)
+Bruce Lee (Prime / wersja historyczna)
 
 2. Character A Stats
 Strength: 70
@@ -13,10 +13,9 @@ Experience: 60
 Combat Skills: 86
 
 3. Character A Feats
-- Styl: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
-- Atut: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
-- Mentalność: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
-
+- Styl: Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.
+- Atut: Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.
+- Mentalność: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
 4. Defeated by Character A
 Gary Elms (zwycięstwo przez decyzję w boksie)
 Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
@@ -36,10 +35,9 @@ Experience: 97
 Combat Skills: 94
 
 7. Character B Feats
-- Styl: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
-- Atut: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
-- Mentalność: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
-
+- Styl: Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.
+- Atut: Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.
+- Mentalność: Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.
 8. Defeated by Character B
 George Foreman
 Joe Frazier
@@ -88,7 +86,7 @@ Frazier-era endurance and punishment tolerance
 
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // BRUCE VS ALI
-subtitle: Szybkość i zakłócenie kontra zasięg i ringowa rzeczywistość
+subtitle: Artysta kontra Bokser
 left_header: SIATKA KATEGORII
 right_header: REALIA WALKI
 linear_label: ODCINEK LINIOWY
@@ -96,23 +94,19 @@ chaos_label: ODCINEK CHAOSU
 lane: Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
-name: Bruce Lee
-world: Prime / wersja historyczna
-- style: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
-- advantage: Wyjątkowa szybkość, łamanie rytmu i adaptacja między stylami.
-- mentality: Mocno analityczny i adaptacyjny; stawia na skuteczność ruchu.
+- header: POSTAĆ NIEBIESKA
+- world: Prime / wersja historyczna
+- style: Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.
+- advantage: Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.
+- mentality: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
 - quote: Be water, my friend.
-
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-name: Muhammad Ali
-world: Prime
-- style: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
-- advantage: Sprawdzona wytrzymałość wagi ciężkiej i mistrzowska kontrola tempa.
-- mentality: Pewny siebie i taktyczny, dobrze czuje się w długich walkach pod presją.
+- header: POSTAĆ CZERWONA
+- world: Prime
+- style: Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.
+- advantage: Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.
+- mentality: Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.
 - quote: Float like a butterfly, sting like a bee.
-
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

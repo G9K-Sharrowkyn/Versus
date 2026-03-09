@@ -12,10 +12,9 @@
 - Combat Skills: 92
 
 3. Character A Feats
-- Style: Technical pressure fighting that combines saber precision with Force control.
-- Advantage: Elite combat skill with dangerous precision-targeting Force offense.
-- Mentality: Calculated and patient, then lethal when openings appear.
-
+- Style: Technical pressure fighting with the Force. He combines perfect lightsaber swordsmanship with brutal telekinesis to choke and crush opponents in close quarters.
+- Advantage: Elite precision and an iron defense. His mastery of the Force allows him to control the environment and the enemy's body, preventing effective counterattacks.
+- Mentality: Cold, patient, and ruthless. He waits for the smallest mistake from the opponent to end the fight with a single, vengeful strike.
 4. Defeated by Character A
 - Dark Woman
 - Sha Koon
@@ -23,7 +22,7 @@
 - Celeste Morne
 - Kai Hudorra
 
-5. Thanos (Earth-616, no Infinity Stones)
+5. Thanos (Earth-616)
 
 6. Character B Stats
 - Strength: 96
@@ -37,10 +36,9 @@
 - Combat Skills: 88
 
 7. Character B Feats
-- Style: Methodical cosmic warfighting with overwhelming force and tactical control.
-- Advantage: Exceptional durability, power output, and strategic adaptability.
-- Mentality: Cold strategist who turns prolonged conflict into certainty.
-
+- Style: Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.
+- Advantage: Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.
+- Mentality: Arrogant nihilist with iron discipline. He fights with absolute certainty of his superiority, seeking to ruthlessly crush anyone who stands in his way.
 8. Defeated by Character B
 - Silver Surfer
 - Hulk
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // VADER VS THANOS
-- subtitle: Precision opening versus cosmic durability wall
+- subtitle: Sith Lord versus Titan
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Vader must solve the fight fast. Thanos only needs the opening to fail once.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
+- header: CHARACTER BLUE
 - world: Legends Prime
-- style: Technical pressure fighting that combines saber precision with Force control.
-- advantage: Elite combat skill with dangerous precision-targeting Force offense.
-- mentality: Calculated and patient, then lethal when openings appear.
-- quote: I find your lack of faith disturbing.
-
+- style: Technical pressure fighting with the Force. He combines perfect lightsaber swordsmanship with brutal telekinesis to choke and crush opponents in close quarters.
+- advantage: Elite precision and an iron defense. His mastery of the Force allows him to control the environment and the enemy's body, preventing effective counterattacks.
+- mentality: Cold, patient, and ruthless. He waits for the smallest mistake from the opponent to end the fight with a single, vengeful strike.
+- quote: All I am surrounded by is fear. And dead men.
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-- world: Earth-616, no Infinity Stones
-- style: Methodical cosmic warfighting with overwhelming force and tactical control.
-- advantage: Exceptional durability, power output, and strategic adaptability.
-- mentality: Cold strategist who turns prolonged conflict into certainty.
-- quote: Dread it. Run from it. Destiny arrives all the same.
-
+- header: CHARACTER RED
+- world: Earth-616
+- style: Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.
+- advantage: Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.
+- mentality: Arrogant nihilist with iron discipline. He fights with absolute certainty of his superiority, seeking to ruthlessly crush anyone who stands in his way.
+- quote: I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos.
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES

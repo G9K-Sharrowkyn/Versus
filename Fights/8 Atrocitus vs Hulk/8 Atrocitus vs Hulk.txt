@@ -1,5 +1,5 @@
 1. Character A
-Atrocitus (Butcher)
+Atrocitus (New 52 / Prime Earth)
 
 2. Character A Stats
 Strength: 87
@@ -13,10 +13,9 @@ Experience: 91
 Combat Skills: 80
 
 3. Character A Feats
-- Style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
-- Advantage: Powerful emotional-spectrum offense with strong ranged pressure.
-- Mentality: Direct and violent, aiming to break resistance early.
-
+- Style: Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma that burns through matter and space itself.
+- Advantage: Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.
+- Mentality: A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful the more hatred and anger the enemy shows him.
 4. Defeated by Character A
 The Butcher Entity
 The Butcher's human host
@@ -39,10 +38,9 @@ Experience: 78
 Combat Skills: 81
 
 7. Character B Feats
-- Style: Relentless close-range destruction with escalating strength and durability.
-- Advantage: Extreme regeneration, stamina, and compounding physical force.
-- Mentality: Keep pressing until resistance collapses.
-
+- Style: Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.
+- Advantage: Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.
+- Mentality: A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.
 8. Defeated by Character B
 Sentry
 Doctor Strange
@@ -99,25 +97,23 @@ linear_label: LINEAR SEGMENT
 right_header: FIGHT REALITY
 left_header: CATEGORY GRID
 headline: TACTICAL BOARD // ATROCITUS VS HULK
-subtitle: Rage control versus rage escalation
+subtitle: Butcher versus Worldbreaker
 lane: Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-world: Butcher-locked Red Lantern host
-- style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
-- advantage: Powerful emotional-spectrum offense with strong ranged pressure.
-- mentality: Direct and violent, aiming to break resistance early.
-- quote: With blood and rage...
-
+- header: CHARACTER BLUE
+- world: New 52 / Prime Earth
+- style: Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma that burns through matter and space itself.
+- advantage: Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.
+- mentality: A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful the more hatred and anger the enemy shows him.
+- quote: I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-world: World War Hulk / World Breaker era
-- style: Relentless close-range destruction with escalating strength and durability.
-- advantage: Extreme regeneration, stamina, and compounding physical force.
-- mentality: Keep pressing until resistance collapses.
-- quote: Hulk is strongest there is.
-
+- header: CHARACTER RED
+- world: World War Hulk / World Breaker era
+- style: Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.
+- advantage: Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.
+- mentality: A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.
+- quote: Hulk smash!
 Template Powers / Tools / Weaknesses:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES

@@ -97,49 +97,19 @@ Template Tactical Board:
 - lane: Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
+- header: POSTAĆ NIEBIESKA
 - world: New 52
 - style: Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 - quote: To wygląda na robotę dla Supermana.
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
+- header: POSTAĆ CZERWONA
 - world: Earth-4023
 - style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
 - advantage: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - mentality: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
 - quote: Właśnie tak, skarbie... Hyperion.
-Template HUD Bars:
-- headline: ANALITYKA WALKI HIGH-END
-- subtitle: Odczyt statystyk dwóch profili
-- threat_level: EKSTREMALNY
-- integrity: 99.6%
-- scale: 0-100
-
-Template Radar Brief:
-- headline: PORÓWNANIE PARAMETRÓW
-- subtitle: Mapa średniego profilu statystyk
-- left_header: Przewaga Supermana
-- right_header: Przewaga Hyperiona
-- draw_header: STREFY REMISU
-- favorite_label: FAWORYT WEDŁUG STATYSTYK
-Template Interpretation:
-- headline: INTERPRETACJA
-- subtitle: Kto wygrywa walkę na papierze?
-- line_1: Superman New 52 jest szybszy i ma lepszą kontrolę walki w powietrzu.
-- line_2: Hyperion ma przewagę w brutalności i regeneracji, która pozwala mu wracać po ciosach kończących.
-- line_3: Na papierze Superman wygrywa przez nokaut, ale w walce na śmierć Hyperion jest groźniejszy.
-- quote: Szybkość daje przewagę, ale to brak moralności kończy walki.
-
-Template Stat Trap:
-- headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
-- trap_top: SZYBKOŚĆ I KONTROLA WYGRYWAJĄ WYMIANY
-- trap_bottom: REGENERACJA ZMIENIA TO, ILE WARTA JEST WYMIANA
-- example: Superman może obijać Hyperiona godzinami, ale jeden błąd i Atomic Vision może go poważnie zranić.
-- question: Czy Superman przełamie swoją moralność, by zabić kogoś, kto ciągle wstaje z martwych?
-
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

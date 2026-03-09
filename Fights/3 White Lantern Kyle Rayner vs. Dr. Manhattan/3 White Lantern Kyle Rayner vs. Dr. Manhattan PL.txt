@@ -12,10 +12,9 @@
 - Combat Skills: 76
 
 3. Character A Feats
-- Styl: Kreatywna walka spektralna: konstrukty, wsparcie i narzędzia bliskie przepisywaniu rzeczywistości.
-- Atut: Szeroki aktywny arsenał z leczeniem, odtwarzaniem i wysoką wszechstronnością pierścienia.
-- Mentalność: Adaptacyjny rozwiązywacz problemów, który buduje warunki zwycięstwa przez przygotowanie.
-
+- Styl: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.
+- Atut: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.
+- Mentalność: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.
 4. Defeated by Character A
 - Relic
 - Third Army
@@ -23,7 +22,7 @@
 - Godkillers (masowe rozbrojenie i neutralizacja przez teleportację)
 - Carol Ferris (tymczasowe przepisanie rzeczywistości)
 
-5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock continuity role)
+5. Dr. Manhattan (Watchmen / Rebirth / Doomsday Clock)
 
 6. Character B Stats
 - Strength: 82
@@ -37,10 +36,9 @@
 - Combat Skills: 44
 
 7. Character B Feats
-- Styl: Nieliniowa interwencja oparta na przyczynowości, kontroli stanu i działaniu wyprzedzającym.
-- Atut: Kontrola rzeczywistości na poziomie atomowym, samoodbudowa i percepcja linii czasu.
-- Mentalność: Zdystansowany i zdecydowany, gdy przechodzi do działania.
-
+- Styl: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.
+- Atut: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.
+- Mentalność: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.
 8. Defeated by Character B
 - Rorschach (bezpośrednie zabójstwo)
 - Metron (natychmiastowe odparowanie)
@@ -94,7 +92,7 @@
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KYLE VS MANHATTAN
-- subtitle: Przygotowanie do przepisywania kontra działanie wyprzedzające
+- subtitle: Wola kontra Przyczynowość
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
@@ -102,21 +100,19 @@ Template Tactical Board:
 - lane: Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
+- header: POSTAĆ NIEBIESKA
 - world: New 52 / Prime Earth
-- style: Kreatywna walka spektralna: konstrukty, wsparcie i narzędzia bliskie przepisywaniu rzeczywistości.
-- advantage: Szeroki aktywny arsenał z leczeniem, odtwarzaniem i wysoką wszechstronnością pierścienia.
-- mentality: Adaptacyjny rozwiązywacz problemów, który buduje warunki zwycięstwa przez przygotowanie.
-- quote: In brightest day, in blackest night...
-
+- style: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.
+- advantage: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.
+- mentality: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.
+- quote: W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
+- header: POSTAĆ CZERWONA
 - world: Watchmen / Rebirth / Doomsday Clock
-- style: Nieliniowa interwencja oparta na przyczynowości, kontroli stanu i działaniu wyprzedzającym.
-- advantage: Kontrola rzeczywistości na poziomie atomowym, samoodbudowa i percepcja linii czasu.
-- mentality: Zdystansowany i zdecydowany, gdy przechodzi do działania.
-- quote: Nothing ever ends.
-
+- style: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.
+- advantage: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.
+- mentality: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.
+- quote: Tak. Teraz już widzę. Wszystko się kończy.
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

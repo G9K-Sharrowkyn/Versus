@@ -13,10 +13,9 @@ Experience: 94
 Combat Skills: 75
 
 3. Character A Feats
-- Styl: Demoniczna dominacja przez korupcję, opętanie i wpływ domeny.
-- Atut: Wysokopoziomowa moc mistyczna, regeneracja i kontrola wymiarowa.
-- Mentalność: Przytłacza przeciwnika, zamieniając przestrzeń i warunki w środowisko wrogie.
-
+- Styl: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika.
+- Atut: Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.
+- Mentalność: Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.
 4. Defeated by Character A
 The Divine
 Teen Titans (korupcja drużynowa / przytłoczenie)
@@ -25,7 +24,7 @@ Wonder Girl
 Psimon (wygnanie / BFR)
 
 5. Character B
-Galactus (Earth-616, standardowy Devourer of Worlds)
+Galactus (Earth-616)
 
 6. Character B Stats
 Strength: 95
@@ -39,10 +38,9 @@ Experience: 98
 Combat Skills: 79
 
 7. Character B Feats
-- Styl: Kosmiczna kontrola przez manipulację energią, transmutację i przewagę skali.
-- Atut: Power Cosmic, ogromna wydolność i wpływ na całe pole walki.
-- Mentalność: Traktuje starcie jako problem energii i nieuchronności.
-
+- Styl: Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.
+- Atut: Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.
+- Mentalność: Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.
 8. Defeated by Character B
 Silver Surfer (uwięzienie / bariera)
 Sphinx (rozwiązanie przez pętlę czasu)
@@ -96,7 +94,7 @@ pokonał Sphinxa, zamykając go w wiecznej pętli czasu
 
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // TRIGON VS GALACTUS
-subtitle: Korupcja domeny kontra kosmiczna konsumpcja
+subtitle: Demon kontra Pożeracz
 left_header: SIATKA KATEGORII
 right_header: REALIA WALKI
 linear_label: ODCINEK LINIOWY
@@ -104,23 +102,19 @@ chaos_label: ODCINEK CHAOSU
 lane: Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
-name: Trigon
-world: Prime Earth
-- style: Demoniczna dominacja przez korupcję, opętanie i wpływ domeny.
-- advantage: Wysokopoziomowa moc mistyczna, regeneracja i kontrola wymiarowa.
-- mentality: Przytłacza przeciwnika, zamieniając przestrzeń i warunki w środowisko wrogie.
-- quote: I am Trigon.
-
+- header: POSTAĆ NIEBIESKA
+- world: Prime Earth
+- style: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika.
+- advantage: Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.
+- mentality: Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.
+- quote: Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-name: Galactus
-world: Earth-616, standardowy Devourer of Worlds
-- style: Kosmiczna kontrola przez manipulację energią, transmutację i przewagę skali.
-- advantage: Power Cosmic, ogromna wydolność i wpływ na całe pole walki.
-- mentality: Traktuje starcie jako problem energii i nieuchronności.
-- quote: I hunger.
-
+- header: POSTAĆ CZERWONA
+- world: Earth-616
+- style: Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.
+- advantage: Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.
+- mentality: Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.
+- quote: Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

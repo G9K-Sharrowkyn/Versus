@@ -1,4 +1,4 @@
-1. Knull (Earth-616, with All-Black)
+1. Knull (Earth-616)
 
 2. Character A Stats
 - Strength: 95
@@ -12,17 +12,16 @@
 - Combat Skills: 86
 
 3. Character A Feats
-- Style: Cosmic predation through living abyss control, necrosword pressure, and symbiote influence.
-- Advantage: All-Black lethality combined with high-end regeneration and corruption pressure.
-- Mentality: Overwhelm the field and finish through sustained existential pressure.
-
+- Style: Brutal close-quarters dominance with All-Black. He uses monstrous strength to decapitate and tear through gods with a single, decisive strike.
+- Advantage: Devastating power of All-Black and death immunity. The sword cuts through any matter and kills cosmic beings, while Knull himself ignores most physical damage.
+- Mentality: Sadistic confidence and total fearlessness. He revels in his overwhelming power, aiming for a swift and ruthless execution of every opponent.
 4. Defeated by Character A
 - Celestial
 - Sentry
 - Silver Surfer
 - All-Father Thor
 
-5. Odin (Earth-616, Full Odinforce + Destroyer Armor + Odinsword)
+5. Odin (Earth-616)
 
 6. Character B Stats
 - Strength: 92
@@ -36,10 +35,9 @@
 - Combat Skills: 93
 
 7. Character B Feats
-- Style: Strategic cosmic warfare using Odinforce control, barriers, and precision bursts.
-- Advantage: Vast experience plus layered magical and energy options at cosmic scale.
-- Mentality: He prefers control and structure over reckless trading.
-
+- Style: Versatile divine warfare. He combines the destructive magic of the Odinforce with brutal physical strength and precision strikes from his spear, Gungnir.
+- Advantage: Odinforce – near-infinite manipulation of energy and matter. It allows him to shatter galaxies and control the engagement at any distance.
+- Mentality: A majestic but hot-headed god of war. He fights with dignity, but once provoked, he strikes with a fury that accepts no compromise.
 8. Defeated by Character B
 - Infinity
 - Seth
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // KNULL VS ODIN
-- subtitle: Abyss attrition versus divine battlefield control
+- subtitle: God Butcher versus All-Father
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-- world: Earth-616 with All-Black
-- style: Cosmic predation through living abyss control, necrosword pressure, and symbiote influence.
-- advantage: All-Black lethality combined with high-end regeneration and corruption pressure.
-- mentality: Overwhelm the field and finish through sustained existential pressure.
-- quote: I am Knull, god of the abyss.
-
+- header: CHARACTER BLUE
+- world: Earth-616
+- style: Brutal close-quarters dominance with All-Black. He uses monstrous strength to decapitate and tear through gods with a single, decisive strike.
+- advantage: Devastating power of All-Black and death immunity. The sword cuts through any matter and kills cosmic beings, while Knull himself ignores most physical damage.
+- mentality: Sadistic confidence and total fearlessness. He revels in his overwhelming power, aiming for a swift and ruthless execution of every opponent.
+- quote: Ah... I see my reputation precedes me... so I won't waste your time... I am going to kill your world.
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-- world: Earth-616, Full Odinforce + Destroyer Armor + Odinsword
-- style: Strategic cosmic warfare using Odinforce control, barriers, and precision bursts.
-- advantage: Vast experience plus layered magical and energy options at cosmic scale.
-- mentality: He prefers control and structure over reckless trading.
-- quote: I am Odin, All-Father of Asgard.
-
+- header: CHARACTER RED
+- world: Earth-616
+- style: Versatile divine warfare. He combines the destructive magic of the Odinforce with brutal physical strength and precision strikes from his spear, Gungnir.
+- advantage: Odinforce – near-infinite manipulation of energy and matter. It allows him to shatter galaxies and control the engagement at any distance.
+- mentality: A majestic but hot-headed god of war. He fights with dignity, but once provoked, he strikes with a fury that accepts no compromise.
+- quote: Odin is the Sun and the stars and the Moon and more. Odin is the way and the wrath and the wonder! Odin is he who speaks while galaxies obey!
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES

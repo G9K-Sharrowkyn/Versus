@@ -1,5 +1,5 @@
 1. Character A
-Atrocitus (Butcher)
+Atrocitus (New 52 / Prime Earth)
 
 2. Character A Stats
 Strength: 87
@@ -13,10 +13,9 @@ Experience: 91
 Combat Skills: 80
 
 3. Character A Feats
-- Styl: Agresywna wojna gniewu oparta na plazmie, konstruktach i rytualnej magii.
-- Atut: Bardzo mocny atak spektrum emocji i silna presja dystansowa.
-- Mentalność: Bezpośredni i brutalny; dąży do szybkiego złamania oporu.
-
+- Styl: Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.
+- Atut: Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.
+- Mentalność: Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.
 4. Defeated by Character A
 The Butcher Entity
 The Butcher's human host
@@ -39,10 +38,9 @@ Experience: 78
 Combat Skills: 81
 
 7. Character B Feats
-- Styl: Nieustanna destrukcja w zwarciu z narastającą siłą i wytrzymałością.
-- Atut: Ekstremalna regeneracja, kondycja i kumulująca się siła fizyczna.
-- Mentalność: Napiera bez przerwy, aż opór przeciwnika się załamie.
-
+- Styl: Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.
+- Atut: Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.
+- Mentalność: Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.
 8. Defeated by Character B
 Sentry
 Doctor Strange
@@ -99,25 +97,23 @@ linear_label: ODCINEK LINIOWY
 right_header: REALIA WALKI
 left_header: SIATKA KATEGORII
 headline: TABLICA TAKTYCZNA // ATROCITUS VS HULK
-subtitle: Kontrola gniewu kontra eskalacja gniewu
+subtitle: Rzeźnik kontra Worldbreaker
 lane: Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli zamieni tę strukturę w pętlę powtarzalnego kontaktu.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
-world: Butcher-locked Red Lantern host
-- style: Agresywna wojna gniewu oparta na plazmie, konstruktach i rytualnej magii.
-- advantage: Bardzo mocny atak spektrum emocji i silna presja dystansowa.
-- mentality: Bezpośredni i brutalny; dąży do szybkiego złamania oporu.
-- quote: With blood and rage...
-
+- header: POSTAĆ NIEBIESKA
+- world: New 52 / Prime Earth
+- style: Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.
+- advantage: Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.
+- mentality: Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.
+- quote: Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-world: Era World War Hulk / World Breaker
-- style: Nieustanna destrukcja w zwarciu z narastającą siłą i wytrzymałością.
-- advantage: Ekstremalna regeneracja, kondycja i kumulująca się siła fizyczna.
-- mentality: Napiera bez przerwy, aż opór przeciwnika się załamie.
-- quote: Hulk is strongest there is.
-
+- header: POSTAĆ CZERWONA
+- world: Era World War Hulk / World Breaker
+- style: Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.
+- advantage: Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.
+- mentality: Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.
+- quote: Hulk miażdżyć!
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

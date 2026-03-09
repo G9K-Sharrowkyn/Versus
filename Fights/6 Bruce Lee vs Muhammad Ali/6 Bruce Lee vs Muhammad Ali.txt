@@ -1,5 +1,5 @@
 1. Character A
-Bruce Lee (Prime / Historical Version, 1940-1973)
+Bruce Lee (Prime / Historical Version)
 
 2. Character A Stats
 Strength: 70
@@ -13,10 +13,9 @@ Experience: 60
 Combat Skills: 86
 
 3. Character A Feats
-- Style: Explosive interception style built on timing, low-line attacks, and footwork.
-- Advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
-- Mentality: Highly analytical and adaptive, prioritizing efficient action.
-
+- Style: Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.
+- Advantage: Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.
+- Mentality: Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.
 4. Defeated by Character A
 Gary Elms (boxing decision victory)
 Yoichi Nakachi (witness-backed rapid challenge-fight knockout)
@@ -36,10 +35,9 @@ Experience: 97
 Combat Skills: 94
 
 7. Character B Feats
-- Style: Elite boxing control through jab, footwork, timing, and ring management.
-- Advantage: Proven heavyweight durability and championship-level pace control.
-- Mentality: Confident and tactical, comfortable in long, high-pressure fights.
-
+- Style: Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance.
+- Advantage: Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.
+- Mentality: A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.
 8. Defeated by Character B
 George Foreman
 Joe Frazier
@@ -88,7 +86,7 @@ Frazier-era endurance and punishment tolerance
 
 Template Tactical Board:
 headline: TACTICAL BOARD // BRUCE VS ALI
-subtitle: Speed and disruption versus reach and ring reality
+subtitle: Artist versus Boxer
 left_header: CATEGORY GRID
 right_header: FIGHT REALITY
 linear_label: LINEAR SEGMENT
@@ -96,23 +94,19 @@ chaos_label: CHAOS SEGMENT
 lane: Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-name: Bruce Lee
-world: Prime / Historical Version
-- style: Explosive interception style built on timing, low-line attacks, and footwork.
-- advantage: Exceptional speed, rhythm disruption, and cross-style adaptability.
-- mentality: Highly analytical and adaptive, prioritizing efficient action.
+- header: CHARACTER BLUE
+- world: Prime / Historical Version
+- style: Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.
+- advantage: Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.
+- mentality: Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.
 - quote: Be water, my friend.
-
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-name: Muhammad Ali
-world: Prime
-- style: Elite boxing control through jab, footwork, timing, and ring management.
-- advantage: Proven heavyweight durability and championship-level pace control.
-- mentality: Confident and tactical, comfortable in long, high-pressure fights.
+- header: CHARACTER RED
+- world: Prime
+- style: Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance.
+- advantage: Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.
+- mentality: A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.
 - quote: Float like a butterfly, sting like a bee.
-
 Template Powers / Tools / Weaknesses:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES

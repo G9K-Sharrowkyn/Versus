@@ -1,4 +1,4 @@
-1. Jiren (Dragon Ball Super, anime + manga mix)
+1. Jiren (Dragon Ball Super)
 
 2. Character A Stats
 - Strength: 96
@@ -12,10 +12,9 @@
 - Combat Skills: 94
 
 3. Character A Feats
-- Style: Minimal-motion efficiency with overwhelming ki pressure and clean counters.
-- Advantage: Top-tier reactions, durability, and consistency under pressure.
-- Mentality: End fights directly and avoid unnecessary risk.
-
+- Style: Ultra-efficient fighting of pure strength and Ki. He relies on minimal movement and devastating counters that end the fight before the opponent can react.
+- Advantage: Overwhelming energy barrier and reflexes. His Ki is so powerful that it serves as both an impenetrable defense and the ultimate offense.
+- Mentality: A stoic absolutist. He fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
 4. Defeated by Character A
 - Hit
 - Maji Kayo
@@ -23,7 +22,7 @@
 - Kale (temporary incapacitation)
 - Vegeta (Super Saiyan Blue) (context-heavy overpowering)
 
-5. Saitama (One-Punch Man, Yusuke Murata manga version)
+5. Saitama (One Punch Man)
 
 6. Character B Stats
 - Strength: 91
@@ -37,10 +36,9 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Style: Direct close-range striking with absurd physical output and simple mechanics.
-- Advantage: Extreme stamina, durability, and growth potential in prolonged exchanges.
-- Mentality: Unfazed and straightforward, escalating naturally with the fight.
-
+- Style: Simple, direct punch attacks. His style relies on such massive physical superiority that technique becomes redundant for him.
+- Advantage: Immeasurable strength and resilience. He has no limits – every strike has finishing potential, and he remains immune to most attacks.
+- Mentality: A bored and carefree professional. He doesn't take the fight seriously until someone forces him to exert effort, which he waits for with hope.
 8. Defeated by Character B
 - Boros
 - Elder Centipede
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // JIREN VS SAITAMA
-- subtitle: Cleaner first minute versus scarier long game
+- subtitle: Discipline versus Limitlessness
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
 - linear_label: LINEAR SEGMENT
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-- world: Dragon Ball Super, anime + manga mix
-- style: Minimal-motion efficiency with overwhelming ki pressure and clean counters.
-- advantage: Top-tier reactions, durability, and consistency under pressure.
-- mentality: End fights directly and avoid unnecessary risk.
-- quote: Strength is absolute.
-
+- header: CHARACTER BLUE
+- world: Dragon Ball Super
+- style: Ultra-efficient fighting of pure strength and Ki. He relies on minimal movement and devastating counters that end the fight before the opponent can react.
+- advantage: Overwhelming energy barrier and reflexes. His Ki is so powerful that it serves as both an impenetrable defense and the ultimate offense.
+- mentality: A stoic absolutist. He fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
+- quote: It matters not how many weaklings band together. You are nothing before absolute strength.
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-- world: Murata manga
-- style: Direct close-range striking with absurd physical output and simple mechanics.
-- advantage: Extreme stamina, durability, and growth potential in prolonged exchanges.
-- mentality: Unfazed and straightforward, escalating naturally with the fight.
-- quote: I am just a guy who is a hero for fun.
-
+- header: CHARACTER RED
+- world: One Punch Man
+- style: Simple, direct punch attacks. His style relies on such massive physical superiority that technique becomes redundant for him.
+- advantage: Immeasurable strength and resilience. He has no limits – every strike has finishing potential, and he remains immune to most attacks.
+- mentality: A bored and carefree professional. He doesn't take the fight seriously until someone forces him to exert effort, which he waits for with hope.
+- quote: 100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES

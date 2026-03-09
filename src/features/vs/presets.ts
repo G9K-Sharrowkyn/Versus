@@ -62,22 +62,22 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
   {
     id: 'tactical-board',
     name: 'Tactical Board',
-    description: 'Half category board, half combat-reality lightning screen.',
-    title: 'TACTICAL BOARD // METHODOLOGY',
+    description: 'Category board and combat-reality screen.',
+    title: 'TACTICAL BOARD',
     subtitle: 'Category table and non-linear combat reality',
   },
   {
     id: 'character-card-a',
     name: 'Character Blue',
     description: 'Single full card for fighter A (more portrait space).',
-    title: 'CHARACTER DOSSIER // BLUE',
+    title: 'CHARACTER BLUE',
     subtitle: 'Archetype, style and tactical profile',
   },
   {
     id: 'character-card-b',
     name: 'Character Red',
     description: 'Single full card for fighter B (more portrait space).',
-    title: 'CHARACTER DOSSIER // RED',
+    title: 'CHARACTER RED',
     subtitle: 'Archetype, style and tactical profile',
   },
   {

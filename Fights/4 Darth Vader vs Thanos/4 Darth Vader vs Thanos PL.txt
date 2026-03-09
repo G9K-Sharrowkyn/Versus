@@ -12,10 +12,9 @@
 - Combat Skills: 92
 
 3. Character A Feats
-- Styl: Techniczny styl presji łączący precyzję miecza świetlnego z kontrolą Mocy.
-- Atut: Elitarne umiejętności bojowe i groźny, precyzyjny atak Mocą.
-- Mentalność: Działa kalkulacyjnie i cierpliwie, a potem kończy bez wahania.
-
+- Styl: Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.
+- Atut: Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.
+- Mentalność: Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.
 4. Defeated by Character A
 - Dark Woman
 - Sha Koon
@@ -23,7 +22,7 @@
 - Celeste Morne
 - Kai Hudorra
 
-5. Thanos (Earth-616, bez Kamieni Nieskończoności)
+5. Thanos (Earth-616)
 
 6. Character B Stats
 - Strength: 96
@@ -37,10 +36,9 @@
 - Combat Skills: 88
 
 7. Character B Feats
-- Styl: Metodyczny styl kosmicznej wojny oparty na przytłaczającej sile i kontroli taktycznej.
-- Atut: Wyjątkowa wytrzymałość, moc i zdolność adaptacji strategicznej.
-- Mentalność: Chłodny strateg, który zamienia długie starcie w nieuchronny wynik.
-
+- Styl: Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.
+- Atut: Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.
+- Mentalność: Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.
 8. Defeated by Character B
 - Silver Surfer
 - Hulk
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // VADER VS THANOS
-- subtitle: Precyzyjne otwarcie kontra kosmiczna ściana wytrzymałości
+- subtitle: Lord Sith kontra Tytan
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
+- header: POSTAĆ NIEBIESKA
 - world: Legends Prime
-- style: Techniczny styl presji łączący precyzję miecza świetlnego z kontrolą Mocy.
-- advantage: Elitarne umiejętności bojowe i groźny, precyzyjny atak Mocą.
-- mentality: Działa kalkulacyjnie i cierpliwie, a potem kończy bez wahania.
-- quote: I find your lack of faith disturbing.
-
+- style: Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.
+- advantage: Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.
+- mentality: Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.
+- quote: Otacza mnie tylko strach. I martwi ludzie.
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-- world: Earth-616, bez Kamieni Nieskończoności
-- style: Metodyczny styl kosmicznej wojny oparty na przytłaczającej sile i kontroli taktycznej.
-- advantage: Wyjątkowa wytrzymałość, moc i zdolność adaptacji strategicznej.
-- mentality: Chłodny strateg, który zamienia długie starcie w nieuchronny wynik.
-- quote: Dread it. Run from it. Destiny arrives all the same.
-
+- header: POSTAĆ CZERWONA
+- world: Earth-616
+- style: Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.
+- advantage: Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.
+- mentality: Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.
+- quote: Nie zmusiłem cię do walki ze mną. Sam mnie do tego zmusiłeś. Musiałem pozostać wierny swojej naturze. Bo w końcu... jestem Thanosem.
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

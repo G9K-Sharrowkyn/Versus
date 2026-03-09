@@ -1,4 +1,4 @@
-1. Jiren (Dragon Ball Super, miks anime + mangi)
+1. Jiren (Dragon Ball Super)
 
 2. Character A Stats
 - Strength: 96
@@ -12,10 +12,9 @@
 - Combat Skills: 94
 
 3. Character A Feats
-- Styl: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
-- Atut: Topowy refleks, wytrzymałość i powtarzalność pod presją.
-- Mentalność: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
-
+- Styl: Ultraefektywna walka czystej siły i ki. Polega na minimalnym ruchu i niszczycielskich kontrach, które kończą starcie, zanim przeciwnik zdąży zareagować.
+- Atut: Przytłaczająca bariera energetyczna i refleks. Jego ki jest tak potężne, że samo w sobie stanowi nieprzeniknioną obronę i ostateczną ofensywę.
+- Mentalność: Stoicki absolutysta. Walczy bez zbędnych słów i emocji, idąc najkrótszą drogą do całkowitej dominacji nad przeciwnikiem.
 4. Defeated by Character A
 - Hit
 - Maji Kayo
@@ -23,7 +22,7 @@
 - Kale (tymczasowe unieszkodliwienie)
 - Vegeta (Super Saiyan Blue) (kontekstowe zdominowanie)
 
-5. Saitama (One-Punch Man, wersja mangi Yusuke Muraty)
+5. Saitama (One Punch Man)
 
 6. Character B Stats
 - Strength: 91
@@ -37,10 +36,9 @@
 - Combat Skills: 70
 
 7. Character B Feats
-- Styl: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
-- Atut: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
-- Mentalność: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
-
+- Styl: Prosty, bezpośredni atak pięścią. Jego styl opiera się na tak gigantycznej przewadze fizycznej, że technika staje się dla niego zbędna.
+- Atut: Niezmierzona siła i odporność. Nie posiada limitów – każde jego uderzenie ma potencjał kończący, a on sam pozostaje niewrażliwy na większość ataków.
+- Mentalność: Znudzony i beztroski profesjonalista. Nie traktuje walki poważnie, dopóki ktoś nie zmusi go do wysiłku, na który czeka z nadzieją.
 8. Defeated by Character B
 - Boros
 - Elder Centipede
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // JIREN VS SAITAMA
-- subtitle: Czystsza pierwsza minuta kontra groźniejsza długa gra
+- subtitle: Dyscyplina kontra Bezgraniczność
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
-- world: Dragon Ball Super, miks anime + mangi
-- style: Maksymalna wydajność ruchu, przytłaczająca presja ki i czyste kontry.
-- advantage: Topowy refleks, wytrzymałość i powtarzalność pod presją.
-- mentality: Dąży do szybkiego, bezpośredniego zakończenia bez zbędnego ryzyka.
-- quote: Strength is absolute.
-
+- header: POSTAĆ NIEBIESKA
+- world: Dragon Ball Super
+- style: Ultraefektywna walka czystej siły i ki. Polega na minimalnym ruchu i niszczycielskich kontrach, które kończą starcie, zanim przeciwnik zdąży zareagować.
+- advantage: Przytłaczająca bariera energetyczna i refleks. Jego ki jest tak potężne, że samo w sobie stanowi nieprzeniknioną obronę i ostateczną ofensywę.
+- mentality: Stoicki absolutysta. Walczy bez zbędnych słów i emocji, idąc najkrótszą drogą do całkowitej dominacji nad przeciwnikiem.
+- quote: Nie ma znaczenia, jak wielu słabeuszy zbierze się razem. Jesteście niczym przed absolutną siłą.
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-- world: manga Muraty
-- style: Bezpośredni styl zwarciowy oparty na absurdalnej sile fizycznej i prostych mechanikach.
-- advantage: Ekstremalna kondycja, wytrzymałość i potencjał wzrostu w długiej wymianie.
-- mentality: Niewzruszony i prostolinijny; rośnie wraz z czasem trwania walki.
-- quote: I am just a guy who is a hero for fun.
-
+- header: POSTAĆ CZERWONA
+- world: One Punch Man
+- style: Prosty, bezpośredni atak pięścią. Jego styl opiera się na tak gigantycznej przewadze fizycznej, że technika staje się dla niego zbędna.
+- advantage: Niezmierzona siła i odporność. Nie posiada limitów – każde jego uderzenie ma potencjał kończący, a on sam pozostaje niewrażliwy na większość ataków.
+- mentality: Znudzony i beztroski profesjonalista. Nie traktuje walki poważnie, dopóki ktoś nie zmusi go do wysiłku, na który czeka z nadzieją.
+- quote: 100 pompek, 100 brzuszków, 100 przysiadów i 10 kilometrów biegu KAŻDEGO DNIA!!!
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

@@ -15,7 +15,6 @@
 - Style: Direct powerhouse combat centered on overwhelming physical force, speed bursts, and heavy striking.
 - Advantage: Massive statistical superiority in strength, speed, and durability versus most opponents.
 - Mentality: He holds back by default and escalates only when lives or stakes force him to.
-
 4. Defeated by Character A
 - Doomsday
 - Wraith
@@ -40,7 +39,6 @@
 - Style: Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision and overwhelming strength to physically destroy and humiliate opponents.
 - Advantage: Inhuman regeneration and survivability. He returns to the fight even after decapitation or being torn to pieces.
 - Mentality: A megalomaniacal psychopath with a god complex. He slaughtered the heroes of his world not out of necessity, but for pleasure and power. He knows neither mercy nor hesitation.
-
 8. Defeated by Character B
 - Magneto
 - Wolverine
@@ -104,52 +102,19 @@ Template Tactical Board:
 - lane: Superman wins by closing it out. Hyperion wins when the closeout fails.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
+- header: CHARACTER BLUE
 - world: New 52
 - style: Direct powerhouse combat centered on overwhelming physical force, speed bursts, and heavy striking.
 - advantage: Massive statistical superiority in strength, speed, and durability versus most opponents.
 - mentality: He holds back by default and escalates only when lives or stakes force him to.
 - quote: This looks like a job for Superman.
-
 Template Character B:
-- header: CHARACTER DOSSIER // RED
+- header: CHARACTER RED
 - world: Earth-4023
 - style: Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision and overwhelming strength to physically destroy and humiliate opponents.
 - advantage: Inhuman regeneration and survivability. He returns to the fight even after decapitation or being torn to pieces.
 - mentality: A megalomaniacal psychopath with a god complex. He slaughtered the heroes of his world not out of necessity, but for pleasure and power. He knows neither mercy nor hesitation.
 - quote: That's right, baby... Hyperion.
-
-Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
-- subtitle: Two-profile stat readout
-- threat_level: EXTREME
-- integrity: 99.6%
-- scale: 0-100
-
-Template Radar Brief:
-- headline: PARAMETER COMPARISON
-- subtitle: Average stat profile map
-- left_header: SUPERMAN ADVANTAGES
-- right_header: HYPERION ADVANTAGES
-- draw_header: DRAW ZONES
-- favorite_label: STAT-BASED FAVORITE
-
-Template Interpretation:
-- headline: INTERPRETATION
-- subtitle: Who wins the fight on paper?
-- line_1: Superman has the cleaner overall profile and the cleaner first minute of the fight.
-- line_2: Hyperion stays dangerous because regeneration can erase the value of good exchanges.
-- line_3: On paper the edge is Clark's, but the fight only stays simple if he actually closes it.
-- quote: Stats provide a theoretical edge, not a guaranteed win.
-
-Template Stat Trap:
-- headline: STAT TRAP
-- subtitle: Why better stats do not guarantee victory
-- trap_top: SPEED AND CONTROL WIN EXCHANGES
-- trap_bottom: REGENERATION CHANGES WHAT AN EXCHANGE IS WORTH
-- example: A sequence that ends most powerhouse opponents may only reset Hyperion and restart the problem.
-- question: Key question: Can Superman turn his tempo edge into a real finish before Hyperion's regeneration starts erasing one hit after another?
-
 Template Powers / Tools / Weaknesses:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES

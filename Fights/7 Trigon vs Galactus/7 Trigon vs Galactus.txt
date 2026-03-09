@@ -13,10 +13,9 @@ Experience: 94
 Combat Skills: 75
 
 3. Character A Feats
-- Style: Demonic domination through corruption, possession, and realm influence.
-- Advantage: High-end mystical power with regeneration and dimensional control.
-- Mentality: Overwhelm opponents by turning space and conditions hostile.
-
+- Style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for omnidirectional hellfire blasts and his divine brute force to effortlessly smash and repel any opponent.
+- Advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.
+- Mentality: A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.
 4. Defeated by Character A
 The Divine
 Teen Titans (team corruption / overwhelm)
@@ -25,7 +24,7 @@ Wonder Girl
 Psimon (banishment / BFR)
 
 5. Character B
-Galactus (Earth-616, standard Devourer of Worlds)
+Galactus (Earth-616)
 
 6. Character B Stats
 Strength: 95
@@ -39,10 +38,9 @@ Experience: 98
 Combat Skills: 79
 
 7. Character B Feats
-- Style: Cosmic control through energy manipulation, transmutation, and scale dominance.
-- Advantage: Power Cosmic with vast endurance and battlefield-wide influence.
-- Mentality: Treat conflict as an energy and inevitability problem.
-
+- Style: Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
+- Advantage: Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.
+- Mentality: A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.
 8. Defeated by Character B
 Silver Surfer (containment / barrier imprisonment)
 Sphinx (time-loop resolution)
@@ -96,7 +94,7 @@ defeated Sphinx by locking him into an eternal time loop
 
 Template Tactical Board:
 headline: TACTICAL BOARD // TRIGON VS GALACTUS
-subtitle: Realm corruption versus cosmic consumption
+subtitle: Demon versus Devourer
 left_header: CATEGORY GRID
 right_header: FIGHT REALITY
 linear_label: LINEAR SEGMENT
@@ -104,23 +102,19 @@ chaos_label: CHAOS SEGMENT
 lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
-name: Trigon
-world: Prime Earth
-- style: Demonic domination through corruption, possession, and realm influence.
-- advantage: High-end mystical power with regeneration and dimensional control.
-- mentality: Overwhelm opponents by turning space and conditions hostile.
-- quote: I am Trigon.
-
+- header: CHARACTER BLUE
+- world: Prime Earth
+- style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for omnidirectional hellfire blasts and his divine brute force to effortlessly smash and repel any opponent.
+- advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.
+- mentality: A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.
+- quote: In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!
 Template Character B:
-- header: CHARACTER DOSSIER // RED
-name: Galactus
-world: Earth-616, standard Devourer of Worlds
-- style: Cosmic control through energy manipulation, transmutation, and scale dominance.
-- advantage: Power Cosmic with vast endurance and battlefield-wide influence.
-- mentality: Treat conflict as an energy and inevitability problem.
-- quote: I hunger.
-
+- header: CHARACTER RED
+- world: Earth-616
+- style: Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
+- advantage: Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.
+- mentality: A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.
+- quote: Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end.
 Template Powers / Tools / Weaknesses:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES

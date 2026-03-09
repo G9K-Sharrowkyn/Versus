@@ -1,4 +1,4 @@
-1. Knull (Earth-616, z All-Black)
+1. Knull (Earth-616)
 
 2. Statystyki Postaci A
 - Siła: 95
@@ -12,17 +12,16 @@
 - Umiejętności bojowe: 86
 
 3. Featy Postaci A
-- Styl: Kosmiczny styl drapieżny oparty na kontroli żywej Otchłani, presji All-Black i wpływie symbiotów.
-- Atut: Śmiercionośność All-Black połączona z potężną regeneracją i stopniowym przejmowaniem pola walki.
-- Mentalność: Dąży do tego, by zalać pole walki swoją obecnością i domknąć starcie narastającą presją.
-
+- Styl: Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika.
+- Atut: All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.
+- Mentalność: Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.
 4. Pokonani przez Postać A
 - Celestial
 - Sentry
 - Silver Surfer
 - All-Father Thor
 
-5. Odin (Earth-616, pełny Odinforce + Pancerz Destroyera + Miecz Odyna)
+5. Odin (Earth-616)
 
 6. Statystyki Postaci B
 - Siła: 92
@@ -36,10 +35,9 @@
 - Umiejętności bojowe: 93
 
 7. Featy Postaci B
-- Styl: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
-- Atut: Ogromne doświadczenie oraz szeroki, warstwowy arsenał magii i energii w skali kosmicznej.
-- Mentalność: Woli utrzymywać kontrolę i porządek, niż wdawać się w chaotyczną wymianę ciosów.
-
+- Styl: Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia.
+- Atut: Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.
+- Mentalność: Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.
 8. Pokonani przez Postać B
 - Infinity
 - Seth
@@ -93,7 +91,7 @@
 
 Template Tactical Board:
 - headline: TABLICA TAKTYCZNA // KNULL VS ODIN
-- subtitle: Wyniszczenie Otchłani kontra boska kontrola pola walki
+- subtitle: Rzeźnik Bogów kontra Wszechojciec
 - left_header: SIATKA KATEGORII
 - right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
@@ -101,21 +99,19 @@ Template Tactical Board:
 - lane: Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.
 
 Template Character A:
-- header: DOSSIER POSTACI // NIEBIESKI
-- world: Earth-616 z All-Black
-- style: Kosmiczny styl drapieżny oparty na kontroli żywej Otchłani, presji All-Black i wpływie symbiotów.
-- advantage: Śmiercionośność All-Black połączona z potężną regeneracją i stopniowym przejmowaniem pola walki.
-- mentality: Dąży do tego, by zalać pole walki swoją obecnością i domknąć starcie narastającą presją.
-- quote: Jestem Knullem, bogiem Otchłani.
-
+- header: POSTAĆ NIEBIESKA
+- world: Earth-616
+- style: Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika.
+- advantage: All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.
+- mentality: Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.
+- quote: Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat.
 Template Character B:
-- header: DOSSIER POSTACI // CZERWONY
-- world: Earth-616, pełny Odinforce + Pancerz Destroyera + Miecz Odyna
-- style: Strategiczna walka kosmiczna oparta na kontroli Odinforce, barierach i precyzyjnych wyładowaniach.
-- advantage: Ogromne doświadczenie oraz szeroki, warstwowy arsenał magii i energii w skali kosmicznej.
-- mentality: Woli utrzymywać kontrolę i porządek, niż wdawać się w chaotyczną wymianę ciosów.
-- quote: Jestem Odynem, Wszechojcem Asgardu.
-
+- header: POSTAĆ CZERWONA
+- world: Earth-616
+- style: Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia.
+- advantage: Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.
+- mentality: Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.
+- quote: Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, gdy galaktyki słuchają!
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI

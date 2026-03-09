@@ -43,20 +43,20 @@ export const translationsPl = {
     presets: {
       'tactical-board': {
         name: 'Tablica Taktyczna',
-        description: 'Pół planszy kategorii i pół panelu nieliniowości walki.',
+        description: 'Plansza kategorii i ekran realiów walki.',
         title: 'TABLICA TAKTYCZNA',
         subtitle: 'Tabela kategorii i nieliniowa rzeczywistość starcia',
       },
       'character-card-a': {
-        name: 'Karta Postaci Niebieskiej',
+        name: 'Postać Niebieska',
         description: 'Pełna karta lewej postaci z większym miejscem na portret.',
-        title: 'DOSSIER POSTACI // NIEBIESKI',
+        title: 'POSTAĆ NIEBIESKA',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
       'character-card-b': {
-        name: 'Karta Postaci Czerwonej',
+        name: 'Postać Czerwona',
         description: 'Pełna karta prawej postaci z większym miejscem na portret.',
-        title: 'DOSSIER POSTACI // CZERWONY',
+        title: 'POSTAĆ CZERWONA',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
       'powers-tools': {
