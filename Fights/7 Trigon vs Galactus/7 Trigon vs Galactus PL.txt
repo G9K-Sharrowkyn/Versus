@@ -67,8 +67,8 @@ verdict-matrix
 fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Demoniczna projekcja energii, korupcja, opętanie, podróże międzywymiarowe oraz cechy regeneracji i zmartwychwstania.
-- Narzędzia: Kształtowanie i kontrola domeny oraz presja na poziomie duszy.
+- Moce: Demoniczna projekcja energii, korupcja, opętanie, regeneracja, podróże międzywymiarowe.
+- Narzędzia: Kształtowanie i kontrola domeny oraz presja na dusze.
 - Słabości: Szczytowa kontrola działa najlepiej w środowisku sprzyjającym demonicznej domenie.
 - Słabości: Szeroka odporność kosmiczna może spowalniać tempo jego korupcji na neutralnym polu.
 
@@ -80,10 +80,10 @@ zregenerował uszkodzenie oka w czasie walki
 przemienił Teen Titans w Dark Titans
 
 12. Moce / Narzędzia / Słabości Postaci B
-- Moce: Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii/energii.
-- Narzędzia: Absorpcja energii planetarnej lub kosmicznej oraz normalizacja pola walki.
+- Moce: Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii.
+- Narzędzia: Absorpcja energii planetarnej lub kosmicznej.
 - Słabości: Skuteczność zależy od poziomu nasycenia.
-- Słabości: W stanie głodu spada szybkość odpowiedzi i margines błędu.
+- Słabości: W stanie głodu spada szybkość reakcji i margines błędu.
 
 13. Najważniejsze Wyczyny Postaci B
 zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym

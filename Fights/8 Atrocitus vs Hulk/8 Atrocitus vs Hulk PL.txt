@@ -66,9 +66,9 @@ fight-simulation
 fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Czerwona plazmowa emisja Pierścienia, konstrukty, magia krwi i rytuały, lot oraz dynamika gniewu powiązana z Butcherem.
+- Moce: Czerwona, plazmowa emisja Pierścienia. Konstrukty, magia krwi i rytuały. Lot oraz dynamika gniewu powiązana z Butcherem.
 - Narzędzia: Manipulacja spektrum emocjonalnym i silna presja dystansowa.
-- Słabości: Zależność od pierścienia i wczesne okna kontroli.
+- Słabości: Zależność od pierścienia.
 - Słabości: Długie bezpośrednie bijatyki mogą osłabiać jego przewagę taktyczną.
 
 11. Najważniejsze Wyczyny Postaci A
@@ -79,9 +79,9 @@ Przepalił plazmą furii samą strukturę przestrzeni
 Przytłoczył jednocześnie Saint Walkera, Indigo-1 i Star Sapphire
 
 12. Moce / Narzędzia / Słabości Postaci B
-- Moce: Wzrost siły oparty na gammie, regeneracja, fale uderzeniowe i ekstremalna kondycja.
-- Narzędzia: Nieustanna presja w zwarciu i eskalujące pętle obrażeń.
-- Słabości: Ograniczona precyzyjna użyteczność na dystans wobec wyspecjalizowanych kontrolerów.
+- Moce: Wzrost siły oparty na gniewie. Regeneracja, fale uderzeniowe i ekstremalna kondycja.
+- Narzędzia: Nieustanna presja w zwarciu.
+- Słabości: Ograniczone narzędzia na dystans wobec wyspecjalizowanych kontrolerów.
 - Słabości: Zestaw strategii wyraźnie się zawęża, gdy nie może utrzymać stałego kontaktu.
 
 13. Najważniejsze Wyczyny Postaci B

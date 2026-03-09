@@ -67,7 +67,7 @@ verdict-matrix
 fight-title
 
 10. Character A Powers / Tools / Weaknesses
-- Powers: Demonic energy projection, corruption, possession, dimensional travel, and regeneration/resurrection traits.
+- Powers: Demonic energy projection, corruption, possession, regeneration, dimensional travel.
 - Tools: Realm shaping/control and soul-pressure effects.
 - Weaknesses: Peak control is strongest inside favorable demonic environments.
 - Weaknesses: Broad cosmic resistance can slow his corruption tempo in neutral space.
@@ -80,8 +80,8 @@ regenerated eye damage in combat time
 converted the Teen Titans into Dark Titans
 
 12. Character B Powers / Tools / Weaknesses
-- Powers: Power Cosmic, transmutation, large-scale energy projection, barriers, and matter/energy control.
-- Tools: Planetary or cosmic energy absorption and battlefield-scale normalization.
+- Powers: Power Cosmic, transmutation, large-scale energy projection, barriers, and matter control.
+- Tools: Planetary or cosmic energy absorption.
 - Weaknesses: Performance varies with feeding state.
 - Weaknesses: In low-fed states, response speed and margin for error decrease.
 

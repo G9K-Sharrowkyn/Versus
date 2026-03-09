@@ -64,10 +64,9 @@
 - fight-title
 
 10. Moce / Narzędzia / Słabości Postaci A
-- Moce: Ekstremalna emisja ki, techniki barierowe, interakcja z efektami czasu oraz elitarna szybkość i refleks.
-- Narzędzia: Bardzo wydajny styl uderzeń przy minimalnym ruchu i kontrola presji w fazie otwarcia.
-- Słabości: Ograniczona egzotyczna użyteczność względem specjalistów od ciężkiego haksu.
-- Słabości: Jeśli kontrola otwarcia pęknie, może zostać wciągnięty w mniej korzystną pętlę eskalacji.
+- Moce: Ekstremalna emisja ki, techniki barierowe oraz elitarna szybkość i refleks.
+- Narzędzia: Bardzo wydajny styl uderzeń przy minimalnym ruchu.
+- Słabości: Ograniczone narzędzia względem specjalistów od hax.
 
 11. Najważniejsze Wyczyny Postaci A
 - Blokuje Super Saiyan God Goku jednym palcem.
@@ -78,9 +77,8 @@
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Ekstremalna siła fizyczna, wytrzymałość, kondycja i wzrost mocy w długim starciu.
-- Narzędzia: Bezpośredni atak z bliska i szybka adaptacja przez powtarzane wymiany.
-- Słabości: Mało formalnej różnorodności technicznej i mniej warstwowych narzędzi użytkowych.
-- Słabości: Silnie opiera się na bezpośrednim kontakcie, a nie na ramach kontroli dystansowej.
+- Narzędzia: Bezpośredni atak z bliska i szybka adaptacja w ciągu walki.
+- Słabości: Mało formalnej różnorodności technicznej. Silnie opiera się na bezpośrednim kontakcie.
 
 13. Najważniejsze Wyczyny Postaci B
 - Serious Punch Squared wycina pustkę w przestrzeni.
