@@ -122,8 +122,8 @@ Template Powers / Tools / Weaknesses:
 - weaknesses_label: WEAKNESSES
 
 Template Raw Feats:
-- headline: RAW FEATS
-- subtitle: Clean showcase examples, not full archives
+- headline: CRUCIAL FEATS
+- subtitle: Character scaling through achievements.
 - left_title: VADER SHOWCASE
 - right_title: THANOS SHOWCASE
 - feat_label: FEAT

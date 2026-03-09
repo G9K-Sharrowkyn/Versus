@@ -125,8 +125,8 @@ tools_label: TOOLS
 weaknesses_label: WEAKNESSES
 
 Template Raw Feats:
-headline: RAW FEATS
-subtitle: Clean showcase examples, not full archives
+headline: CRUCIAL FEATS
+subtitle: Character scaling through achievements.
 left_title: TRIGON SHOWCASE
 right_title: GALACTUS SHOWCASE
 feat_label: FEAT
