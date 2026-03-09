@@ -117,8 +117,8 @@ Template Character B:
 - quote: I am just a guy who is a hero for fun.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Co każda strona naprawdę wnosi do wymiany
+- headline: PROFIL POSTACI
+- subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: ZESTAW JIRENA
 - right_title: ZESTAW SAITAMY
 - powers_label: MOCE
@@ -133,7 +133,7 @@ Template Raw Feats:
 - feat_label: FEAT
 
 Template HUD Bars:
-- headline: ANALITYKA WALKI WYSOKIEGO POZIOMU
+- headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: COSMIC
 - integrity: 99.3%
@@ -157,7 +157,7 @@ Template Interpretation:
 
 Template Stat Trap:
 - headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego lepsze statystyki startowe nie gwarantują całej walki
+- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 - trap_top: PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI
 - trap_bottom: ESKALACJA MOŻE STWORZYĆ GORSZĄ DRUGĄ WERSJĘ
 - example: Jiren może kontrolować start i nadal przegrać późniejszą wymianę, jeśli pierwszy finisz nigdy naprawdę nie nastąpi.
@@ -165,7 +165,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która zamienia to w dwie różne walki
+- subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.
 - factor: KONTROLA OTWARCIA VS CZAS NA ESKALACJĘ
 - a_value: 50
 - a_bonus: 15
@@ -181,7 +181,7 @@ Template Winner CV:
 - headline: Archiwum zwycięstw
 - subtitle:
 - archive_label:
-- avg_label: ŚR. WYNIK
+- avg_label: ŚREDNI WYNIK
 - left_title: REKORD JIRENA
 - right_title: REKORD SAITAMY
 - win_badge: W
@@ -198,7 +198,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
-- subtitle:
+- subtitle: Podsumowanie
 - winner: Jiren prowadzi, ale Saitama ma żywą późną gałąź
 - line_1: Jiren wygrywa porównanie na papierze, 89.67 vs 81.22.
 - line_2: Jego domyślny układ bierze się z lepszej kontroli otwarcia i czystszej struktury finiszu.
@@ -206,7 +206,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Kontrola otwarcia kontra przyszła eskalacja
+- subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 91,87,79,68,56
 - b_curve: 39,43,52,66,81
 - yellow_wave: 28,31,30,34,33,38,37,44
@@ -216,8 +216,8 @@ Template Battle Dynamics:
 - analysis: Jiren wygrywa czystszy start. Saitama wygrywa bardziej brudną przyszłą wersję walki.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Warunkowy pojedynek z jedną główną osią
+- headline: SYMULACJA WALKI
+- subtitle: Przebieg walki przez trzy fazy.
 - opening: Jiren od razu przejmuje kontrolę przez presję, spacing i efektywność.
 - mid_fight: Saitama bardziej przetrwa niż dyktuje i próbuje wytrzymać na tyle długo, by wymiana zaczęła się zmieniać.
 - late_fight: Walka rozdziela się w zależności od tego, czy Jiren kończy wcześnie, czy Saitama przetrwa do eskalacji.

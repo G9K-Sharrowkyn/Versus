@@ -42,7 +42,7 @@ export function RadarBriefTemplate({
   const customRightHeader = pickTemplateField(blockFields, ['right_header'])
   const leftHeader = customLeftHeader || tr('NIEBIESKI NAROŻNIK', 'BLUE CORNER')
   const rightHeader = customRightHeader || tr('CZERWONY NAROŻNIK', 'RED CORNER')
-  const drawHeader = pickTemplateField(blockFields, ['draw_header']) || tr('Kategorie remisowe', 'Draw categories')
+  const drawHeader = pickTemplateField(blockFields, ['draw_header']) || tr('Strefy remisu', 'Draw zones')
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')

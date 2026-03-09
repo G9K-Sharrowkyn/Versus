@@ -149,8 +149,8 @@ Template Powers / Tools / Weaknesses:
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
 Template Raw Feats:
-- headline: NAJWAŻNIEJSZE WYCZYNY
-- subtitle: Skalowanie postaci poprzez osiągnięcia.
+- headline: SUROWE FEATY
+- subtitle: Czyste przykłady pokazowe, nie pełne archiwa
 - left_title: POKAZ SUPERMANA
 - right_title: POKAZ HYPERIONA
 - feat_label: FEAT

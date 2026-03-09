@@ -24,7 +24,7 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
     ? raw.warnings.filter((item): item is string => typeof item === 'string')
     : []
 
-  if (!folderKey || !txtFileName || !txtContent || !portraitAUrl || !portraitBUrl) return null
+  if (!folderKey || !txtFileName || !txtContent) return null
 
   const fallbackMatchup = parseMatchupFromFileName(txtFileName)
   const matchupKey =
@@ -310,8 +310,6 @@ export const normalizePersistedFight = (value: unknown, index: number): FightRec
         : resolveFightVariantLocaleFromFileName(fileName)
   const variantLabelRaw = typeof raw.variantLabel === 'string' ? raw.variantLabel.trim() : ''
   const variantLabel = variantLabelRaw || resolveFightVariantLabel(fileName, variantLocale)
-
-  if (!portraitADataUrl || !portraitBDataUrl) return null
 
   return {
     id,

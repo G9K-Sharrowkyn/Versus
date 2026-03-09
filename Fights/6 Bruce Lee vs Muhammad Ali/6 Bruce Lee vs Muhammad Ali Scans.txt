@@ -1,3 +1,7 @@
+Template Portraits:
+- portrait_a: one-inch punch.avif
+- portrait_b: Dance.jpg
+
 Template Raw Feats:
 - left_image_1: 01_6_1_bruce_one_inch_punch.jpg
 - left_image_2: finger push-ups.webp

@@ -117,8 +117,8 @@ Template Character B:
 - quote: I am just a guy who is a hero for fun.
 
 Template Powers / Tools / Weaknesses:
-- headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Core powers, tools, and weaknesses
+- headline: CHARACTER PROFILE
+- subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: JIREN TOOLKIT
 - right_title: SAITAMA TOOLKIT
 - powers_label: POWERS
@@ -157,7 +157,7 @@ Template Interpretation:
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why better starting stats do not guarantee the whole fight
+- subtitle: Why better stats do not guarantee victory
 - trap_top: OPENING EDGE DECIDES THE FIRST VERSION OF THE FIGHT
 - trap_bottom: ESCALATION CAN CREATE A WORSE SECOND VERSION
 - example: Jiren can control the start and still lose the later exchange if the first finish never truly happens.
@@ -165,7 +165,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The one variable that turns this into two different fights
+- subtitle: The variable that affects the verdict more than ordinary stats.
 - factor: OPENING CONTROL VS ESCALATION TIME
 - a_value: 50
 - a_bonus: 15
@@ -198,7 +198,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle:
+- subtitle: Summary
 - winner: Jiren leads, but Saitama has a live late branch
 - line_1: Jiren owns the paper comparison, 89.67 vs 81.22.
 - line_2: Jiren's baseline comes from better opening control and cleaner finish structure.
@@ -206,7 +206,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Opening control versus future escalation
+- subtitle: How the fight changes minute by minute.
 - a_curve: 91,87,79,68,56
 - b_curve: 39,43,52,66,81
 - yellow_wave: 28,31,30,34,33,38,37,44
@@ -216,8 +216,8 @@ Template Battle Dynamics:
 - analysis: Jiren wins the cleaner start. Saitama wins the messier future version.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: One-factor conditional matchup
+- headline: FIGHT SIMULATION
+- subtitle: The course of the fight across three phases.
 - opening: Jiren takes immediate control through pressure, spacing, and efficiency.
 - mid_fight: Saitama survives rather than dictates and tries to stay alive long enough for the exchange to change.
 - late_fight: The fight diverges based on whether Jiren closes early or Saitama survives into escalation.

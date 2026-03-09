@@ -89,13 +89,14 @@ Frazier-era endurance and punishment tolerance
 Template Tactical Board:
 headline: TACTICAL BOARD // BRUCE VS ALI
 subtitle: Speed and disruption versus reach and ring reality
-left_header: BRUCE PLAN
-right_header: ALI PLAN
-linear_label: ODCINEK LINIOWY
-chaos_label: ODCINEK CHAOSU
+left_header: CATEGORY GRID
+right_header: FIGHT REALITY
+linear_label: LINEAR SEGMENT
+chaos_label: CHAOS SEGMENT
 lane: Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.
 
 Template Character A:
+- header: CHARACTER DOSSIER // BLUE
 name: Bruce Lee
 world: Prime / Historical Version
 - style: Explosive interception style built on timing, low-line attacks, and footwork.
@@ -104,6 +105,7 @@ world: Prime / Historical Version
 - quote: Be water, my friend.
 
 Template Character B:
+- header: CHARACTER DOSSIER // RED
 name: Muhammad Ali
 world: Prime
 - style: Elite boxing control through jab, footwork, timing, and ring management.
@@ -112,8 +114,8 @@ world: Prime
 - quote: Float like a butterfly, sting like a bee.
 
 Template Powers / Tools / Weaknesses:
-headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle:
+headline: CHARACTER PROFILE
+subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: BRUCE TOOLKIT
 right_title: ALI TOOLKIT
 powers_label: POWERS
@@ -144,8 +146,8 @@ integrity: 98.7%
 scale: 0-100
 
 Template Radar Brief:
-headline: STAT SNAPSHOT
-subtitle:
+headline: PARAMETER COMPARISON
+subtitle: Average stat profile map
 left_header: BRUCE ADVANTAGES
 right_header: ALI ADVANTAGES
 draw_header: DRAW ZONES
@@ -160,13 +162,13 @@ right_notes: Reach, durability, pacing, and repeatable ring control
 draw_notes: Both read timing well, but Ali turns repeated exchanges into his fight
 
 Template Interpretation:
-headline: WHO WINS THE FIGHT ON PAPER?
-subtitle:
+headline: INTERPRETATION
+subtitle: Who wins the fight on paper?
 body: Muhammad Ali. Bruce owns speed, disruption, and the uglier opening texture, but Ali owns the categories that settle repeated human exchanges: reach, durability, pacing, and ring management. Bruce only narrows the matchup if he prevents the fight from hardening into Ali's preferred distance game.
 
 Template Stat Trap:
-headline: WHY BETTER EDGES DO NOT GUARANTEE THE FIGHT
-subtitle:
+headline: STAT TRAP
+subtitle: Why better stats do not guarantee victory
 question: Can Bruce stop the fight from turning into Ali's range-and-tax pattern?
 body: Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator.
 
@@ -179,8 +181,8 @@ left_title: BRUCE RECORD
 right_title: ALI RECORD
 
 Template Summary:
-headline: FINAL READ
-subtitle:
+headline: FINAL SUMMARY
+subtitle: Summary
 winner: Muhammad Ali by clear margin
 line_1: Ali owns the paper comparison, 87.67 vs 78.89.
 line_2: Bruce changes the texture of the fight more than the winner identity.
@@ -188,7 +190,7 @@ line_3: Open rules narrow the matchup, but do not flip the baseline result.
 
 Template Battle Dynamics:
 headline: BATTLE DYNAMICS
-subtitle:
+subtitle: How the fight changes minute by minute.
 left_curve_label: BRUCE EARLY DISRUPTION
 right_curve_label: ALI LATE CONTROL
 left_curve: 78,74,68,61,54
@@ -197,7 +199,7 @@ notes: Bruce is live early because speed and disruption matter most before the f
 
 Template Fight Simulation:
 headline: FIGHT SIMULATION
-subtitle: Stable matchup, margin shifts with rules more than winner identity
+subtitle: The course of the fight across three phases.
 phase_1_title: Entry and rhythm war
 phase_1_desc: Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.
 phase_1_anim: feint-counter

@@ -118,8 +118,8 @@ Template Character B:
 - quote: Nothing ever ends.
 
 Template Powers / Tools / Weaknesses:
-- headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Core powers, tools, and weaknesses
+- headline: CHARACTER PROFILE
+- subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: KYLE TOOLKIT
 - right_title: MANHATTAN TOOLKIT
 - powers_label: POWERS
@@ -166,7 +166,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The one variable that decides whether the paper edge becomes real
+- subtitle: The variable that affects the verdict more than ordinary stats.
 - factor: SETUP WINDOW VS PREEMPTION
 - a_value: 50
 - a_bonus: 15
@@ -189,7 +189,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle:
+- subtitle: Summary
 - winner: Dr. Manhattan leads, but the fight is conditional
 - line_1: Kyle wins the paper comparison, 88.11 to 83.33.
 - line_2: Manhattan leads the default fight because he owns the better first move and attacks the setup itself.
@@ -197,7 +197,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Setup quality versus first-move denial
+- subtitle: How the fight changes minute by minute.
 - a_curve: 62,66,71,78,86
 - b_curve: 90,84,72,59,47
 - yellow_wave: 29,34,31,36,32,38,34,40
@@ -207,8 +207,8 @@ Template Battle Dynamics:
 - analysis: Kyle owns the fuller profile. Manhattan owns the cleaner first move.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Setup race under preemptive pressure
+- headline: FIGHT SIMULATION
+- subtitle: The course of the fight across three phases.
 - opening: Kyle tries to seize initiative through speed, constructs, and layered White Light pressure.
 - mid_fight: Manhattan refuses normal exchange logic and attacks the setup, ring timing, or local state of the move.
 - late_fight: The fight diverges on one question only: whether Kyle gets a real Life Equation window before preemption lands.
@@ -237,8 +237,8 @@ Template Fight Simulation:
 - phase_3_branch_b: Preemption keeps the better toolkit theoretical and the fight stays Manhattan's.
 
 Template Verdict Matrix:
-- headline: CONDITIONAL VERDICT
-- subtitle: Setup depth versus preemptive behavior
+- headline: VERDICT MATRIX
+- subtitle: Victory depends on the rules.
 - col_left: LIFE EQUATION FULL
 - col_right: LIFE EQUATION LIMITED
 - row_top: MANHATTAN PROACTIVE

@@ -96,8 +96,8 @@ Template Tactical Board:
 - subtitle: Abyss attrition versus divine battlefield control
 - left_header: CATEGORY GRID
 - right_header: FIGHT REALITY
-- linear_label: ODCINEK LINIOWY
-- chaos_label: ODCINEK CHAOSU
+- linear_label: LINEAR SEGMENT
+- chaos_label: CHAOS SEGMENT
 - lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
 Template Character A:
@@ -117,8 +117,8 @@ Template Character B:
 - quote: I am Odin, All-Father of Asgard.
 
 Template Powers / Tools / Weaknesses:
-- headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Core powers, tools, and weaknesses
+- headline: CHARACTER PROFILE
+- subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: KNULL TOOLKIT
 - right_title: ODIN TOOLKIT
 - powers_label: POWERS
@@ -150,6 +150,7 @@ Template HUD Bars:
 - scale: 0-100
 
 Template Radar Brief:
+- favorite_label: STAT-BASED FAVORITE
 - headline: PARAMETER COMPARISON
 - subtitle: Average stat profile map
 - left_header: KNULL ADVANTAGES
@@ -175,7 +176,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The one variable that decides whether control matters
+- subtitle: The variable that affects the verdict more than ordinary stats.
 - factor: ANTI-ABYSS COUNTER OR JUST DIVINE DAMAGE
 - a_value: 50
 - a_bonus: 14
@@ -208,7 +209,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle: 
+- subtitle: Summary
 - winner: Slight edge Knull, conditional matchup
 - line_1: On paper this is near-parity, with Odin holding a microscopic average edge at 92.56 to 92.22.
 - line_2: In practice Knull owns the cleaner attrition and finish loop once contact and regeneration start repeating.
@@ -216,7 +217,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Structure versus corruption over time
+- subtitle: How the fight changes minute by minute.
 - a_curve: 56,61,67,74,81
 - b_curve: 84,79,72,63,55
 - yellow_wave: 31,35,33,37,34,38,36,40
@@ -226,8 +227,8 @@ Template Battle Dynamics:
 - analysis: Odin wins the cleanly managed version of the fight. Knull wins the one that keeps coming back.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: One branch check, two real outcomes
+- headline: FIGHT SIMULATION
+- subtitle: The course of the fight across three phases.
 - opening: Knull takes initiative immediately and tests whether standard Odinforce pressure actually checks the abyss.
 - mid_fight: Odin answers with barriers, spacing, and layered energy, trying to stop the fight from collapsing into Necrosword attrition.
 - late_fight: The ending diverges on one point only: whether Odin's damage sticks or Knull's loop resets the exchange again.
@@ -256,8 +257,8 @@ Template Fight Simulation:
 - phase_3_branch_b: Knull's regeneration and blade loop take over.
 
 Template Verdict Matrix:
-- headline: CONDITIONAL VERDICT
-- subtitle: Two real branches shown in a compatible matrix
+- headline: VERDICT MATRIX
+- subtitle: Victory depends on the rules.
 - col_left: ODINFORCE COUNTER HOLDS
 - col_right: ODINFORCE COUNTER FAILS
 - row_top: CONTROL MAINTAINED

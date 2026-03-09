@@ -1,3 +1,7 @@
+Template Portraits:
+- portrait_a: Kyle_source.jpeg
+- portrait_b: Manhattan_Observing.jpeg
+
 Template Raw Feats:
 - left_image_1: 01_6_1_kyle_source_wall_life_equation.jpg
 - left_image_2: 02_6_1_kyle_third_army_white_light.jpg

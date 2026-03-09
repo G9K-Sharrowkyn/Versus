@@ -101,7 +101,7 @@ Template Tactical Board:
 - lane: Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.
 
 Template Character A:
-- header: DOSSIER POSTACI // BLUE
+- header: DOSSIER POSTACI // NIEBIESKI
 - world: Legends Prime
 - style: Techniczny styl presji łączący precyzję miecza świetlnego z kontrolą Mocy.
 - advantage: Elitarne umiejętności bojowe i groźny, precyzyjny atak Mocą.
@@ -109,7 +109,7 @@ Template Character A:
 - quote: I find your lack of faith disturbing.
 
 Template Character B:
-- header: DOSSIER POSTACI // RED
+- header: DOSSIER POSTACI // CZERWONY
 - world: Earth-616, bez Kamieni Nieskończoności
 - style: Metodyczny styl kosmicznej wojny oparty na przytłaczającej sile i kontroli taktycznej.
 - advantage: Wyjątkowa wytrzymałość, moc i zdolność adaptacji strategicznej.
@@ -117,8 +117,8 @@ Template Character B:
 - quote: Dread it. Run from it. Destiny arrives all the same.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Co każda strona naprawdę wnosi do wymiany
+- headline: PROFIL POSTACI
+- subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: ZESTAW VADERA
 - right_title: ZESTAW THANOSA
 - powers_label: MOCE
@@ -143,7 +143,7 @@ Template Raw Feats:
 - right_item_5: Manipuluje materią molekularnie.
 
 Template HUD Bars:
-- headline: ZAAWANSOWANA ANALITYKA BOJOWA
+- headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: COSMIC
 - integrity: 99.4%
@@ -151,7 +151,7 @@ Template HUD Bars:
 
 Template Radar Brief:
 - headline: PORÓWNANIE PARAMETRÓW
-- subtitle: Mapa średniego profilu statystycznego
+- subtitle: Mapa średniego profilu statystyk
 - left_header: PRZEWAGI VADERA
 - right_header: PRZEWAGI THANOSA
 - draw_header: STREFY REMISU
@@ -167,7 +167,7 @@ Template Interpretation:
 
 Template Stat Trap:
 - headline: PUŁAPKA STATYSTYK
-- subtitle: Dlaczego lepsza technika nie gwarantuje zwycięstwa
+- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 - trap_top: PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE
 - trap_bottom: WYTRZYMAŁOŚĆ THANOSA DECYDUJE O POJEDYNKU
 - example: Vader może wygrać pierwszy odczyt i nadal przegrać walkę, bo cel jest zbudowany tak, by ten odczyt przeżyć.
@@ -175,7 +175,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która decyduje, czy otwarcie Vadera ma znaczenie
+- subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.
 - factor: PIERWSZY BYPASS VS PRÓG WYTRZYMAŁOŚCI
 - a_value: 50
 - a_bonus: 14
@@ -188,10 +188,10 @@ Template X-Factor:
 - psychologia: Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.
 
 Template Winner CV:
-- headline: Victory Archive
+- headline: Archiwum zwycięstw
 - subtitle:
 - archive_label:
-- avg_label: AVG SCORE
+- avg_label: ŚREDNI WYNIK
 - left_title: REKORD VADERA
 - right_title: REKORD THANOSA
 - win_badge: W
@@ -208,7 +208,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
-- subtitle:
+- subtitle: Podsumowanie
 - winner: Thanos z wyraźną przewagą
 - line_1: Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, które naprawdę decydują o finiszu.
 - line_2: Otwarcie Vadera pozostaje groźne, ale luka w wytrzymałości i skali jest zbyt duża, by rozwiązać ją konsekwentnie.
@@ -216,7 +216,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Precyzyjne otwarcie kontra późna nieuchronność
+- subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 86,79,66,52,39
 - b_curve: 58,66,78,88,94
 - yellow_wave: 26,31,29,35,33,39,37,43
@@ -226,8 +226,8 @@ Template Battle Dynamics:
 - analysis: Vader kontroluje momenty. Thanos kontroluje to, czym walka się staje.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Stabilny mismatch z jednym groźnym oknem otwarcia
+- headline: SYMULACJA WALKI
+- subtitle: Przebieg walki przez trzy fazy.
 - opening: Vader otwiera walkę telekinezą, prekognicją i śmiercionośnością w bliskim dystansie.
 - mid_fight: Thanos przeżywa pierwszą chirurgiczną próbę i przestaje traktować wymianę jak techniczny pojedynek.
 - late_fight: Walka zamienia się w tarcze, promienie, brutalne kontry i obrażenia ciała, których Vader nie może przyjmować w kółko.

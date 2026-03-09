@@ -117,8 +117,8 @@ Template Character B:
 - quote: Jestem Odynem, Wszechojcem Asgardu.
 
 Template Powers / Tools / Weaknesses:
-- headline: MOCE, NARZĘDZIA I SŁABOŚCI
-- subtitle: Ogólne moce, narzędzia i słabości
+- headline: PROFIL POSTACI
+- subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: ZESTAW KNULLA
 - right_title: ZESTAW ODINA
 - powers_label: MOCE
@@ -150,6 +150,7 @@ Template HUD Bars:
 - scale: 0-100
 
 Template Radar Brief:
+- favorite_label: FAWORYT WEDŁUG STATYSTYK
 - headline: PORÓWNANIE PARAMETRÓW
 - subtitle: Mapa średniego profilu statystyk
 - left_header: PRZEWAGI KNULLA
@@ -175,7 +176,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która decyduje, czy kontrola naprawdę ma znaczenie
+- subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.
 - factor: PRAWDZIWA KONTRA NA OTCHŁAŃ CZY TYLKO BOSKIE OBRAŻENIA
 - a_value: 50
 - a_bonus: 14
@@ -208,7 +209,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: PODSUMOWANIE KOŃCOWE
-- subtitle: 
+- subtitle: Podsumowanie
 - winner: Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy.
 - line_1: Na papierze to niemal parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.
 - line_2: W praktyce Knull ma czystszą ścieżkę wyniszczenia i domykania walki, gdy kontakt i regeneracja zaczynają się powtarzać.
@@ -216,7 +217,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: DYNAMIKA WALKI
-- subtitle: Porządek kontra korupcja z upływem czasu
+- subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 56,61,67,74,81
 - b_curve: 84,79,72,63,55
 - yellow_wave: 31,35,33,37,34,38,36,40
@@ -226,8 +227,8 @@ Template Battle Dynamics:
 - analysis: Odin wygrywa uporządkowaną wersję tej walki. Knull wygrywa tę, która ciągle wraca.
 
 Template Fight Simulation:
-- headline: SYMULACJA WALKI // MODEL TRZECH FAZ
-- subtitle: Jeden punkt podziału, dwa realne scenariusze
+- headline: SYMULACJA WALKI
+- subtitle: Przebieg walki przez trzy fazy.
 - opening: Knull od razu przejmuje inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie potrafi zatrzymać Otchłań.
 - mid_fight: Odin odpowiada barierami, dystansem i warstwową energią, próbując nie dopuścić do tego, by walka zsunęła się w wyniszczenie narzucone przez All-Black.
 - late_fight: Końcówka sprowadza się do jednego pytania: czy obrażenia Odina zostają na stałe, czy pętla Knulla znowu resetuje wymianę.
@@ -256,8 +257,8 @@ Template Fight Simulation:
 - phase_3_branch_b: Regeneracja i pętla ostrza Knulla przejmują walkę.
 
 Template Verdict Matrix:
-- headline: WERDYKT WARUNKOWY
-- subtitle: Dwa realne scenariusze pokazane w jednej matrycy
+- headline: MATRYCA WERDYKTU
+- subtitle: Wygrana zależy od zasad walki.
 - col_left: ODINFORCE KONTRUJE
 - col_right: ODINFORCE ZAWODZI
 - row_top: KONTROLA UTRZYMANA

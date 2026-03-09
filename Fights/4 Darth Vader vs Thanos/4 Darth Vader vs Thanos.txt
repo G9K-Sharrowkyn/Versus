@@ -117,8 +117,8 @@ Template Character B:
 - quote: Dread it. Run from it. Destiny arrives all the same.
 
 Template Powers / Tools / Weaknesses:
-- headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Core powers, tools, and weaknesses
+- headline: CHARACTER PROFILE
+- subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: VADER TOOLKIT
 - right_title: THANOS TOOLKIT
 - powers_label: POWERS
@@ -167,7 +167,7 @@ Template Interpretation:
 
 Template Stat Trap:
 - headline: STAT TRAP
-- subtitle: Why better technique does not guarantee victory
+- subtitle: Why better stats do not guarantee victory
 - trap_top: TECHNICAL EDGE CHANGES THE OPENING
 - trap_bottom: THANOS'S DURABILITY DECIDES THE MATCHUP
 - example: Vader can win the first read and still lose the fight because the target is built to survive that read.
@@ -175,7 +175,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: The one variable that decides whether Vader's opening matters
+- subtitle: The variable that affects the verdict more than ordinary stats.
 - factor: FIRST BYPASS VS DURABILITY FLOOR
 - a_value: 50
 - a_bonus: 14
@@ -208,7 +208,7 @@ Template Winner CV:
 
 Template Summary:
 - headline: FINAL SUMMARY
-- subtitle:
+- subtitle: Summary
 - winner: Thanos by clear margin
 - line_1: Vader wins precision categories, but Thanos wins the categories that actually decide the finish.
 - line_2: Vader's opening remains dangerous, yet the durability and scale gap are too large to solve consistently.
@@ -216,7 +216,7 @@ Template Summary:
 
 Template Battle Dynamics:
 - headline: BATTLE DYNAMICS
-- subtitle: Opening precision versus late-fight inevitability
+- subtitle: How the fight changes minute by minute.
 - a_curve: 86,79,66,52,39
 - b_curve: 58,66,78,88,94
 - yellow_wave: 26,31,29,35,33,39,37,43
@@ -226,8 +226,8 @@ Template Battle Dynamics:
 - analysis: Vader can control moments. Thanos controls what the fight becomes.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Stable mismatch with one dangerous opening window
+- headline: FIGHT SIMULATION
+- subtitle: The course of the fight across three phases.
 - opening: Vader opens with telekinesis, precognition, and close-range lethality.
 - mid_fight: Thanos survives the first surgical attempt and stops treating the exchange like a technical duel.
 - late_fight: The fight becomes shields, beams, brute-force counters, and body punishment that Vader cannot absorb repeatedly.

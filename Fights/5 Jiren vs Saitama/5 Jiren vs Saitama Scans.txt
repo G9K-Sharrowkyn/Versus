@@ -1,3 +1,7 @@
+Template Portraits:
+- portrait_a: Tags UI Goku a few times.jpeg
+- portrait_b: Saitama can achieve flight.jpg
+
 Template Raw Feats:
 - left_image_1: 01_6_1_jiren_one_finger_block.jpg
 - left_image_2: 02_6_1_jiren_breaks_time_cage.jpg

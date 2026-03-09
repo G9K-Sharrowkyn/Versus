@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState, type MutableRefObject, type RefObject } from 'react'
 import type { ApplyFightRecordOptions } from '../domain/fightState'
+import { buildFolderFightGroups } from '../domain/fightLibrary'
 import { FINAL_TEMPLATE_ID } from '../presets'
 import { findFightByQuery, getViewportCenterHandoff, normalizeSearchMorphHandoff, normalizeToken } from '../helpers'
-import type { FightRecord, ReverseStage, SearchMorphHandoff, TemplateId } from '../types'
+import type { FightRecord, Language, ReverseStage, SearchMorphHandoff, TemplateId } from '../types'
 
 type ApplyFightRecord = (
   fight: FightRecord,
@@ -14,6 +15,7 @@ type ViewMode = 'search' | 'home' | 'fight-intro' | 'fight'
 type UseVsTransitionsOptions = {
   fights: FightRecord[]
   preferredVariantByMatchup: Record<string, string>
+  language: Language
   activeTemplate: TemplateId
   activeFightId: string | null
   templateCursor: number
@@ -35,6 +37,7 @@ type UseVsTransitionsOptions = {
 export function useVsTransitions({
   fights,
   preferredVariantByMatchup,
+  language,
   activeTemplate,
   activeFightId,
   templateCursor,
@@ -207,6 +210,33 @@ export function useVsTransitions({
     }, searchCollapseWatchdogMs)
 
     searchTransitionTimeoutsRef.current.push(collapseWatchdogTimeout)
+  }
+
+  const openFightImmediately = (fight: FightRecord) => {
+    clearReturnTransitionQueue()
+    clearSearchTransitionQueue()
+    applyFightRecordRef.current?.(fight, { enterIntro: false })
+    setFightViewVisible(true)
+    setIntroVisible(true)
+    setViewMode('fight')
+  }
+
+  const findFightByShortcutNumber = (query: string) => {
+    if (!/^\d+$/.test(query)) return null
+
+    const shortcutIndex = Number.parseInt(query, 10)
+    if (!Number.isFinite(shortcutIndex) || shortcutIndex < 1) return null
+
+    const group = buildFolderFightGroups(fights.filter((fight) => fight.source === 'folder'))[shortcutIndex - 1]
+    if (!group) return null
+
+    const languageMatch = group.fights.find((fight) => fight.variantLocale === language)
+    if (languageMatch) return languageMatch
+
+    const preferredMatch = group.fights.find((fight) => preferredVariantByMatchup[group.matchupKey] === fight.id)
+    if (preferredMatch) return preferredMatch
+
+    return group.fights[0] || null
   }
 
   const completeReverseMorphToSearch = (handoff?: SearchMorphHandoff | null) => {
@@ -418,6 +448,12 @@ export function useVsTransitions({
         return
       }
 
+      const shortcutMatch = findFightByShortcutNumber(rawQuery)
+      if (shortcutMatch) {
+        openFightImmediately(shortcutMatch)
+        return
+      }
+
       const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup)
       if (!match) return
       startSearchFightTransition(match)
@@ -430,7 +466,7 @@ export function useVsTransitions({
       clearFightViewRevealTimeout()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [fights, preferredVariantByMatchup])
+  }, [fights, language, preferredVariantByMatchup])
 
   useEffect(
     () => () => {

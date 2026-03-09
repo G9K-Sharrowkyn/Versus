@@ -97,13 +97,14 @@ defeated Sphinx by locking him into an eternal time loop
 Template Tactical Board:
 headline: TACTICAL BOARD // TRIGON VS GALACTUS
 subtitle: Realm corruption versus cosmic consumption
-left_header: TRIGON REALM
-right_header: GALACTUS ECONOMY
+left_header: CATEGORY GRID
+right_header: FIGHT REALITY
 linear_label: LINEAR SEGMENT
 chaos_label: CHAOS SEGMENT
 lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
 
 Template Character A:
+- header: CHARACTER DOSSIER // BLUE
 name: Trigon
 world: Prime Earth
 - style: Demonic domination through corruption, possession, and realm influence.
@@ -112,6 +113,7 @@ world: Prime Earth
 - quote: I am Trigon.
 
 Template Character B:
+- header: CHARACTER DOSSIER // RED
 name: Galactus
 world: Earth-616, standard Devourer of Worlds
 - style: Cosmic control through energy manipulation, transmutation, and scale dominance.
@@ -120,8 +122,8 @@ world: Earth-616, standard Devourer of Worlds
 - quote: I hunger.
 
 Template Powers / Tools / Weaknesses:
-headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle: Core powers, tools, and weaknesses
+headline: CHARACTER PROFILE
+subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: TRIGON TOOLKIT
 right_title: GALACTUS TOOLKIT
 powers_label: POWERS
@@ -153,6 +155,8 @@ integrity: 99.4%
 scale: 0-100
 
 Template Radar Brief:
+subtitle: Average stat profile map
+headline: PARAMETER COMPARISON
 favorite_label: STAT-BASED FAVORITE
 favorite: Galactus
 left_header: TRIGON ADVANTAGES
@@ -165,20 +169,20 @@ right_summary: Galactus owns the broader profile and the cleaner neutral-space a
 draw_summary: The fight tightens only when starvation and home-realm logic distort the map.
 
 Template Interpretation:
-headline: WHO WINS THE FIGHT ON PAPER?
-subtitle: Galactus on paper, but not by enough to erase domain logic
+headline: INTERPRETATION
+subtitle: Who wins the fight on paper?
 winner: Galactus
 body: Galactus owns the broader raw profile, but Trigon stays dangerous because his value is nonlinear and field-dependent. Neutral assumptions still favor Galactus.
 
 Template Stat Trap:
-headline: WHY BETTER STATS DO NOT GUARANTEE VICTORY
-subtitle: Field state matters more here than in a normal cosmic slugfest
+headline: STAT TRAP
+subtitle: Why better stats do not guarantee victory
 question: Can Trigon keep the field poisonous before Galactus turns it into fuel?
 body: Bigger averages do not erase domain logic. Galactus still keeps the baseline answer set, but this matchup changes sharply once the battlefield stops behaving like neutral space.
 
 Template X-Factor:
 headline: X-FACTOR
-subtitle: The single condition that bends the whole fight
+subtitle: The variable that affects the verdict more than ordinary stats.
 factor: POISONOUS REALM VS ENERGY ECONOMY
 left_case: If the field stays demonic, Trigon stays live.
 right_case: If the field becomes fuel, Galactus takes the fight back.
@@ -203,8 +207,8 @@ right_title: GALACTUS RECORD
 - right_item_5: Mad Celestials
 
 Template Summary:
-headline: SUMMARY
-subtitle:
+headline: FINAL SUMMARY
+subtitle: Summary
 winner: Galactus leads, but Trigon has live branch equity
 line_1: Galactus owns the paper comparison, 92.67 vs 87.33.
 line_2: Trigon stays dangerous when corruption and field logic replace normal combat symmetry.
@@ -212,7 +216,7 @@ line_3: Starvation and home-realm control are the two conditions that let Trigon
 
 Template Battle Dynamics:
 headline: BATTLE DYNAMICS
-subtitle: How the pressure shifts as the field changes
+subtitle: How the fight changes minute by minute.
 left_curve_label: TRIGON REALM PRESSURE
 right_curve_label: GALACTUS ENERGY CONTROL
 left_curve: 62,68,77,86,91
@@ -222,7 +226,7 @@ right_note: Galactus is strongest when space can be normalized and metabolized.
 
 Template Fight Simulation:
 headline: FIGHT SIMULATION
-subtitle: Three phases, one battlefield argument
+subtitle: The course of the fight across three phases.
 phase_1_title: Poison the opening
 phase_1_body: Trigon tries to convert the first exchange into corruption, possession pressure, and anti-symmetry.
 phase_1_animation: trade-chaos
@@ -237,8 +241,8 @@ phase_3_animation: clash-lock
 phase_3_actor: b
 
 Template Verdict Matrix:
-headline: CONDITIONAL VERDICT
-subtitle: Feeding state and battlefield state decide the branch
+headline: VERDICT MATRIX
+subtitle: Victory depends on the rules.
 col_left: NEUTRAL
 col_right: TRIGON REALM
 row_top: WELL-FED

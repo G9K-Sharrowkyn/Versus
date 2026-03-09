@@ -89,13 +89,14 @@ Frazier-era endurance and punishment tolerance
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // BRUCE VS ALI
 subtitle: Szybkość i zakłócenie kontra zasięg i ringowa rzeczywistość
-left_header: PLAN BRUCE'A
-right_header: PLAN ALEGO
+left_header: SIATKA KATEGORII
+right_header: REALIA WALKI
 linear_label: ODCINEK LINIOWY
 chaos_label: ODCINEK CHAOSU
 lane: Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich.
 
 Template Character A:
+- header: DOSSIER POSTACI // NIEBIESKI
 name: Bruce Lee
 world: Prime / wersja historyczna
 - style: Eksplozywny styl przechwycenia oparty na timingu, atakach na niską linię i pracy nóg.
@@ -104,6 +105,7 @@ world: Prime / wersja historyczna
 - quote: Be water, my friend.
 
 Template Character B:
+- header: DOSSIER POSTACI // CZERWONY
 name: Muhammad Ali
 world: Prime
 - style: Elitarny styl kontroli bokserskiej przez jab, pracę nóg, timing i zarządzanie ringiem.
@@ -112,8 +114,8 @@ world: Prime
 - quote: Float like a butterfly, sting like a bee.
 
 Template Powers / Tools / Weaknesses:
-headline: MOCE, NARZĘDZIA I SŁABOŚCI
-subtitle:
+headline: PROFIL POSTACI
+subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 left_title: ZESTAW BRUCE'A
 right_title: ZESTAW ALEGO
 powers_label: MOCE
@@ -122,7 +124,7 @@ weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
 headline: SUROWE FEATY
-subtitle: Czyste przykłady pokazowe, nie pełne archiwum
+subtitle: Czyste przykłady pokazowe, nie pełne archiwa
 left_title: POKAZ BRUCE'A
 right_title: POKAZ ALEGO
 feat_label: FEAT
@@ -137,18 +139,18 @@ feat_label: FEAT
 - right_item_5: Ali footwork.
 
 Template HUD Bars:
-headline: WYSOKIEJ KLASY ANALIZA BOJOWA
+headline: ANALITYKA WALKI HIGH-END
 subtitle: Odczyt statystyk dwóch profili
 threat_level: HUMAN
 integrity: 98.7%
 scale: 0-100
 
 Template Radar Brief:
-headline: MIGAWKA STATYSTYCZNA
-subtitle:
+headline: PORÓWNANIE PARAMETRÓW
+subtitle: Mapa średniego profilu statystyk
 left_header: PRZEWAGI BRUCE'A
 right_header: PRZEWAGI ALEGO
-draw_header: STREFY REMISOWE
+draw_header: STREFY REMISU
 left_avg: 78.89
 right_avg: 87.67
 left_avg_round: 79
@@ -160,13 +162,13 @@ right_notes: Zasięg, wytrzymałość, tempo i powtarzalna kontrola ringu
 draw_notes: Obaj dobrze czytają timing, ale Ali zamienia powtarzalne wymiany w swoją walkę
 
 Template Interpretation:
-headline: KTO WYGRYWA WALKĘ NA PAPIERZE?
-subtitle:
+headline: INTERPRETACJA
+subtitle: Kto wygrywa walkę na papierze?
 body: Muhammad Ali. Bruce ma szybkość, chaos i brudniejszą teksturę otwarcia, ale Ali ma kategorie, które rozstrzygają powtarzalne ludzkie wymiany: zasięg, wytrzymałość, tempo i zarządzanie ringiem. Bruce zawęża pojedynek tylko wtedy, gdy nie pozwala walce ustawić się w preferowanej przez Alego grze dystansu.
 
 Template Stat Trap:
-headline: DLACZEGO LEPSZE KRAWĘDZIE NIE GWARANTUJĄ WALKI
-subtitle:
+headline: PUŁAPKA STATYSTYK
+subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 question: Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?
 body: Najlepsze przewagi Bruce'a zmieniają bardziej teksturę walki niż samą tożsamość zwycięzcy. Szybkość i styl mogą wygrywać momenty, ale to udowodniona odporność Alego pod długą presją ciężkich jest prawdziwym separatorem.
 
@@ -174,13 +176,13 @@ Template Winner CV:
 headline: Archiwum zwycięstw
 subtitle:
 archive_label:
-avg_label: AVG SCORE
+avg_label: ŚREDNI WYNIK
 left_title: REKORD BRUCE'A
 right_title: REKORD ALEGO
 
 Template Summary:
-headline: OSTATECZNY ODCZYT
-subtitle:
+headline: PODSUMOWANIE KOŃCOWE
+subtitle: Podsumowanie
 winner: Muhammad Ali z wyraźną przewagą
 line_1: Ali wygrywa porównanie na papierze, 87.67 vs 78.89.
 line_2: Bruce zmienia bardziej teksturę walki niż tożsamość zwycięzcy.
@@ -188,7 +190,7 @@ line_3: Otwarte zasady zawężają pojedynek, ale nie odwracają bazowego wyniku
 
 Template Battle Dynamics:
 headline: DYNAMIKA WALKI
-subtitle:
+subtitle: Jak walka zmienia się z minuty na minutę.
 left_curve_label: WCZESNE ZAKŁÓCENIA BRUCE'A
 right_curve_label: PÓŹNA KONTROLA ALEGO
 left_curve: 78,74,68,61,54
@@ -197,7 +199,7 @@ notes: Bruce jest groźny wcześnie, bo szybkość i zakłócenie rytmu mają na
 
 Template Fight Simulation:
 headline: SYMULACJA WALKI
-subtitle: Stabilny pojedynek, w którym zasady zmieniają margines bardziej niż zwycięzcę
+subtitle: Przebieg walki przez trzy fazy.
 phase_1_title: Wojna o wejście i rytm
 phase_1_desc: Bruce atakuje rytm szybkimi wejściami i niskimi zakłóceniami, zanim Ali ustawi geografię ringu.
 phase_1_anim: feint-counter

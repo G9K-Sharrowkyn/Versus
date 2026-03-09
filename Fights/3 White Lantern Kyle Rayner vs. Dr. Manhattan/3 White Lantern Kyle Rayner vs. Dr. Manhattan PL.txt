@@ -95,14 +95,14 @@
 Template Tactical Board:
 - headline: TACTICAL BOARD // KYLE VS MANHATTAN
 - subtitle: Przygotowanie do przepisywania kontra działanie wyprzedzające
-- left_header: CATEGORY GRID
-- right_header: FIGHT REALITY
+- left_header: SIATKA KATEGORII
+- right_header: REALIA WALKI
 - linear_label: ODCINEK LINIOWY
 - chaos_label: ODCINEK CHAOSU
 - lane: Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.
 
 Template Character A:
-- header: CHARACTER DOSSIER // BLUE
+- header: DOSSIER POSTACI // NIEBIESKI
 - world: New 52 / Prime Earth
 - style: Kreatywna walka spektralna: konstrukty, wsparcie i narzędzia bliskie przepisywaniu rzeczywistości.
 - advantage: Szeroki aktywny arsenał z leczeniem, odtwarzaniem i wysoką wszechstronnością pierścienia.
@@ -110,7 +110,7 @@ Template Character A:
 - quote: In brightest day, in blackest night...
 
 Template Character B:
-- header: CHARACTER DOSSIER // RED
+- header: DOSSIER POSTACI // CZERWONY
 - world: Watchmen / Rebirth / Doomsday Clock
 - style: Nieliniowa interwencja oparta na przyczynowości, kontroli stanu i działaniu wyprzedzającym.
 - advantage: Kontrola rzeczywistości na poziomie atomowym, samoodbudowa i percepcja linii czasu.
@@ -118,38 +118,38 @@ Template Character B:
 - quote: Nothing ever ends.
 
 Template Powers / Tools / Weaknesses:
-- headline: POWERS, TOOLS, AND WEAKNESSES
-- subtitle: Ogólne moce, narzędzia i słabości
+- headline: PROFIL POSTACI
+- subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: ARSENAŁ KYLE'A
 - right_title: ARSENAŁ MANHATTANA
-- powers_label: POWERS
-- tools_label: TOOLS
-- weaknesses_label: WEAKNESSES
+- powers_label: MOCE
+- tools_label: NARZĘDZIA
+- weaknesses_label: SŁABOŚCI
 
 Template Raw Feats:
-- headline: RAW FEATS
+- headline: SUROWE FEATY
 - subtitle: Czyste przykłady pokazowe, nie pełne archiwa
 - left_title: POKAZ KYLE'A
 - right_title: POKAZ MANHATTANA
 - feat_label: FEAT
 
 Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
+- headline: ANALITYKA WALKI HIGH-END
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: COSMIC
 - integrity: 99.5%
 - scale: 0-100
 
 Template Radar Brief:
-- headline: PARAMETER COMPARISON
-- subtitle: Mapa średniego profilu statystycznego
+- headline: PORÓWNANIE PARAMETRÓW
+- subtitle: Mapa średniego profilu statystyk
 - left_header: PRZEWAGI KYLE'A
 - right_header: PRZEWAGI MANHATTANA
 - draw_header: STREFY REMISU
 - favorite_label: FAWORYT WEDŁUG STATYSTYK
 
 Template Interpretation:
-- headline: INTERPRETATION
+- headline: INTERPRETACJA
 - subtitle: Kto wygrywa walkę na papierze?
 - line_1: Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał.
 - line_2: Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować samo przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie.
@@ -157,8 +157,8 @@ Template Interpretation:
 - quote: Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna.
 
 Template Stat Trap:
-- headline: STAT TRAP
-- subtitle: Dlaczego lepsze statystyki nie gwarantują wygranej
+- headline: PUŁAPKA STATYSTYK
+- subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa
 - trap_top: LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE
 - trap_bottom: MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL
 - example: Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.
@@ -166,7 +166,7 @@ Template Stat Trap:
 
 Template X-Factor:
 - headline: X-FACTOR
-- subtitle: Jedna zmienna, która decyduje, czy przewaga na papierze stanie się realna
+- subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.
 - factor: OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE
 - a_value: 50
 - a_bonus: 15
@@ -179,25 +179,25 @@ Template X-Factor:
 - psychologia: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.
 
 Template Winner CV:
-- headline: Victory Archive
+- headline: Archiwum zwycięstw
 - subtitle:
 - archive_label:
-- avg_label: AVG SCORE
+- avg_label: ŚREDNI WYNIK
 - left_title: REKORD KYLE'A
 - right_title: REKORD MANHATTANA
 - win_badge: W
 
 Template Summary:
-- headline: FINAL SUMMARY
-- subtitle:
+- headline: PODSUMOWANIE KOŃCOWE
+- subtitle: Podsumowanie
 - winner: Dr. Manhattan prowadzi, ale walka jest warunkowa
 - line_1: Kyle wygrywa porównanie na papierze, 88.11 do 83.33.
 - line_2: Manhattan prowadzi w domyślnej wersji walki, bo ma lepszy pierwszy ruch i atakuje samo przygotowanie.
 - line_3: Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie.
 
 Template Battle Dynamics:
-- headline: BATTLE DYNAMICS
-- subtitle: Jakość przygotowania kontra odmowa pierwszego ruchu
+- headline: DYNAMIKA WALKI
+- subtitle: Jak walka zmienia się z minuty na minutę.
 - a_curve: 62,66,71,78,86
 - b_curve: 90,84,72,59,47
 - yellow_wave: 29,34,31,36,32,38,34,40
@@ -207,8 +207,8 @@ Template Battle Dynamics:
 - analysis: Kyle ma pełniejszy profil. Manhattan ma czystszy pierwszy ruch.
 
 Template Fight Simulation:
-- headline: FIGHT SIMULATION // THREE PHASE MODEL
-- subtitle: Wyścig przygotowania pod presją preempcji
+- headline: SYMULACJA WALKI
+- subtitle: Przebieg walki przez trzy fazy.
 - opening: Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.
 - mid_fight: Manhattan odrzuca logikę normalnej wymiany i atakuje przygotowanie, timing pierścienia albo lokalny stan ruchu.
 - late_fight: Walka rozchodzi się tylko na jednym pytaniu: czy Kyle dostaje prawdziwe okno Life Equation, zanim spadnie preempcja.
@@ -237,8 +237,8 @@ Template Fight Simulation:
 - phase_3_branch_b: Preempcja zatrzymuje lepszy arsenał w sferze teorii, a walka zostaje po stronie Manhattana.
 
 Template Verdict Matrix:
-- headline: CONDITIONAL VERDICT
-- subtitle: Głębokość przygotowania kontra zachowanie wyprzedzające
+- headline: MATRYCA WERDYKTU
+- subtitle: Wygrana zależy od zasad walki.
 - col_left: LIFE EQUATION FULL
 - col_right: LIFE EQUATION LIMITED
 - row_top: MANHATTAN PROACTIVE

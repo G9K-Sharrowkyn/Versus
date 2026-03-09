@@ -1,3 +1,7 @@
+Template Portraits:
+- portrait_a: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
+- portrait_b: No-sells Odin's blast.jpeg
+
 Template Raw Feats:
 - left_image_1: 01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg
 - left_image_2: 02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg

@@ -139,6 +139,7 @@ function App() {
   } = useVsTransitions({
     fights,
     preferredVariantByMatchup,
+    language,
     activeTemplate,
     activeFightId,
     templateCursor,

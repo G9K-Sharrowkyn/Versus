@@ -1,3 +1,7 @@
+Template Portraits:
+- portrait_a: 1.webp
+- portrait_b: 2.jpg
+
 Template HUD Bars:
 - profile_mode: VS
 

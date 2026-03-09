@@ -94,11 +94,16 @@ Redirected Juggernaut's charge through tactical strength
 Overpowered Bi-Beast and Wendigo together
 
 Template Tactical Board:
+chaos_label: CHAOS SEGMENT
+linear_label: LINEAR SEGMENT
+right_header: FIGHT REALITY
+left_header: CATEGORY GRID
 headline: TACTICAL BOARD // ATROCITUS VS HULK
 subtitle: Rage control versus rage escalation
 lane: Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.
 
 Template Character A:
+- header: CHARACTER DOSSIER // BLUE
 world: Butcher-locked Red Lantern host
 - style: Aggressive rage warfare using plasma output, constructs, and ritual magic.
 - advantage: Powerful emotional-spectrum offense with strong ranged pressure.
@@ -106,6 +111,7 @@ world: Butcher-locked Red Lantern host
 - quote: With blood and rage...
 
 Template Character B:
+- header: CHARACTER DOSSIER // RED
 world: World War Hulk / World Breaker era
 - style: Relentless close-range destruction with escalating strength and durability.
 - advantage: Extreme regeneration, stamina, and compounding physical force.
@@ -113,8 +119,8 @@ world: World War Hulk / World Breaker era
 - quote: Hulk is strongest there is.
 
 Template Powers / Tools / Weaknesses:
-headline: POWERS, TOOLS, AND WEAKNESSES
-subtitle: Core powers, tools, and weaknesses
+headline: CHARACTER PROFILE
+subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: ATROCITUS TOOLKIT
 right_title: HULK TOOLKIT
 powers_label: POWERS
@@ -146,7 +152,7 @@ integrity: 99.2%
 scale: 0-100
 
 Template Radar Brief:
-headline: RADAR BRIEF
+headline: PARAMETER COMPARISON
 subtitle: Average stat profile map
 left_header: ATROCITUS ADVANTAGES
 right_header: HULK ADVANTAGES
@@ -171,7 +177,7 @@ body: Better averages do not matter if they do not create a finish route. Atroci
 
 Template X-Factor:
 headline: X-FACTOR
-subtitle: The one variable that changes the whole fight
+subtitle: The variable that affects the verdict more than ordinary stats.
 factor: RAGE CONTROL VS GAMMA LOOP
 left_title: ATROCITUS BRANCH
 right_title: HULK BRANCH
@@ -198,8 +204,8 @@ right_item_4: Juggernaut
 right_item_5: Arm'Cheddon
 
 Template Summary:
-headline: SUMMARY
-subtitle:
+headline: FINAL SUMMARY
+subtitle: Summary
 winner: World Breaker Hulk 6.5/10
 line_1: Atrocitus wins the paper comparison, 85.6 vs 83.9.
 line_2: Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.
@@ -207,7 +213,7 @@ line_3: Atrocitus only flips the matchup if distance and control hold from start
 
 Template Battle Dynamics:
 headline: BATTLE DYNAMICS
-subtitle: How the fight shifts over time
+subtitle: How the fight changes minute by minute.
 left_curve_label: ATROCITUS CONTROL
 right_curve_label: HULK LOOP
 left_curve_body: Stronger early, then weaker every time contact becomes repeatable.
@@ -215,7 +221,7 @@ right_curve_body: Starts lower, then rises fast once regeneration and re-entry s
 
 Template Fight Simulation:
 headline: FIGHT SIMULATION
-subtitle: How the matchup actually unfolds
+subtitle: The course of the fight across three phases.
 phase_1_title: Atrocitus starts outside the pocket
 phase_1_body: Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.
 phase_1_animation: kite-zone

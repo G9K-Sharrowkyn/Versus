@@ -100,6 +100,59 @@ const contentTypeForImage = (fileName: string) => {
   return 'image/jpeg'
 }
 
+const parseTemplateBlockFields = (raw: string, blockName: string) => {
+  const lines = raw.replace(/\r/g, '').split('\n')
+  const blockHeading = `Template ${blockName}:`
+  const fields: Record<string, string> = {}
+  let collecting = false
+
+  for (const line of lines) {
+    const trimmed = line.trim()
+    if (!trimmed) {
+      if (collecting) break
+      continue
+    }
+    if (/^Template .+:$/.test(trimmed)) {
+      if (collecting) break
+      collecting = trimmed.toLowerCase() === blockHeading.toLowerCase()
+      continue
+    }
+    if (!collecting) continue
+    const match = trimmed.match(/^(?:-\s*)?([^:=]+)\s*[:=]\s*(.+)$/)
+    if (!match) continue
+    fields[normalizeToken(match[1] || '')] = (match[2] || '').trim()
+  }
+
+  return fields
+}
+
+const pickFieldValue = (fields: Record<string, string>, keys: string[]) => {
+  for (const key of keys) {
+    const value = fields[normalizeToken(key)]
+    if (value) return value
+  }
+  return ''
+}
+
+const resolvePortraitRefsFromScans = (raw: string) => {
+  if (!raw.trim()) return { portraitAFile: '', portraitBFile: '' }
+
+  const portraitFields = parseTemplateBlockFields(raw, 'Portraits')
+  const portraitAFile =
+    pickFieldValue(portraitFields, ['portrait_a', 'portrait_left', 'left_portrait', 'left_image', 'image_a']) ||
+    pickFieldValue(parseTemplateBlockFields(raw, 'Character A'), ['portrait_image', 'portrait', 'image']) ||
+    ''
+  const portraitBFile =
+    pickFieldValue(portraitFields, ['portrait_b', 'portrait_right', 'right_portrait', 'right_image', 'image_b']) ||
+    pickFieldValue(parseTemplateBlockFields(raw, 'Character B'), ['portrait_image', 'portrait', 'image']) ||
+    ''
+
+  return {
+    portraitAFile: portraitAFile.trim(),
+    portraitBFile: portraitBFile.trim(),
+  }
+}
+
 const resolveIndexedFightImageFile = async (
   candidateFolder: string,
   section: string,
@@ -218,26 +271,21 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
       )
     }
 
-    const { portraitAFile, portraitBFile, fallbackUsed } = pickPortraitFiles(files)
-    if (fallbackUsed) {
-      folderWarnings.push(
-        `Using fallback portraits in folder "${folderName}" (first two image files; preferred names are 1.* and 2.*).`,
-      )
-    }
-
-    if (!portraitAFile) folderWarnings.push(`Missing portrait "1.*" in folder "${folderName}".`)
-    if (!portraitBFile) folderWarnings.push(`Missing portrait "2.*" in folder "${folderName}".`)
-
-    if (!txtCandidates.length || !portraitAFile || !portraitBFile) {
+    if (!txtCandidates.length) {
       warnings.push(...folderWarnings)
       continue
     }
 
     let sharedScansContent = ''
+    let scansPortraitAFile = ''
+    let scansPortraitBFile = ''
     if (sharedScansCandidates[0]) {
       try {
         const sharedScansPayload = await fs.readFile(path.join(folderPath, sharedScansCandidates[0]))
         sharedScansContent = decodeImportTextBytes(new Uint8Array(sharedScansPayload)).trim()
+        const portraitRefs = resolvePortraitRefsFromScans(sharedScansContent)
+        scansPortraitAFile = portraitRefs.portraitAFile
+        scansPortraitBFile = portraitRefs.portraitBFile
       } catch (error) {
         if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
           folderWarnings.push(
@@ -248,6 +296,18 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         }
       }
     }
+
+    const { portraitAFile: rootPortraitAFile, portraitBFile: rootPortraitBFile, fallbackUsed } = pickPortraitFiles(files)
+    const portraitAFile = scansPortraitAFile || rootPortraitAFile
+    const portraitBFile = scansPortraitBFile || rootPortraitBFile
+    if (!scansPortraitAFile && !scansPortraitBFile && fallbackUsed) {
+      folderWarnings.push(
+        `Using fallback portraits in folder "${folderName}" (first two image files; preferred names are 1.* and 2.*).`,
+      )
+    }
+
+    if (!portraitAFile) folderWarnings.push(`Missing portrait A in folder "${folderName}".`)
+    if (!portraitBFile) folderWarnings.push(`Missing portrait B in folder "${folderName}".`)
 
     const hasExplicitPlVariant = txtCandidates.some(
       (file) => splitFightNameLocaleSuffix(stripFileExtension(file)).locale === 'pl',
@@ -300,8 +360,8 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         variantLabel,
         txtFileName,
         txtContent,
-        portraitAUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=1`,
-        portraitBUrl: `/api/fights/asset?key=${encodeURIComponent(folderKey)}&slot=2`,
+        portraitAUrl: portraitAFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitAFile)}` : '',
+        portraitBUrl: portraitBFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitBFile)}` : '',
         sortIndex: sortIndex + txtIndex * 0.001,
         warnings: txtIndex === 0 ? folderWarnings : [],
       })
