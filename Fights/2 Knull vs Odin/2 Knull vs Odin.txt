@@ -99,14 +99,14 @@ Template Tactical Board:
 - lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
 Template Character A:
-- header: CHARACTER BLUE
+- header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Brutal close-quarters dominance with All-Black. He uses monstrous strength to decapitate and tear through gods with a single, decisive strike.
 - advantage: Devastating power of All-Black and death immunity. The sword cuts through any matter and kills cosmic beings, while Knull himself ignores most physical damage.
 - mentality: Sadistic confidence and total fearlessness. He revels in his overwhelming power, aiming for a swift and ruthless execution of every opponent.
 - quote: Ah... I see my reputation precedes me... so I won't waste your time... I am going to kill your world.
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Versatile divine warfare. He combines the destructive magic of the Odinforce with brutal physical strength and precision strikes from his spear, Gungnir.
 - advantage: Odinforce – near-infinite manipulation of energy and matter. It allows him to shatter galaxies and control the engagement at any distance.

@@ -69,7 +69,7 @@ export function WinnerCvTemplate({
 
   const renderColumn = (
     fighter: Fighter,
-    columnTitle: string,
+    _columnTitle: string,
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
@@ -85,10 +85,9 @@ export function WinnerCvTemplate({
     return (
       <div className={`flex h-full min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
         <div className={`${HIGH_END_INSET_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighter.color}33 inset` }}>
-          <p className={HIGH_END_SMALL_TEXT_CLASS}>{fighter.name || 'Fighter'}</p>
           <div className="mt-1 flex items-center justify-between gap-3">
-            <p className="text-[14px] uppercase tracking-[0.14em]" style={{ color: fighter.color, fontFamily: 'var(--font-display)' }}>
-              {columnTitle}
+            <p className="text-[28px] uppercase leading-none tracking-[0.03em]" style={{ color: fighter.color, fontFamily: 'var(--font-display)' }}>
+              {fighter.name || 'Fighter'}
             </p>
             <span className="rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-[0.16em]" style={{ borderColor: `${fighter.color}88`, color: fighter.color }}>
               {pairCount} {tr('wpisow', 'entries')}

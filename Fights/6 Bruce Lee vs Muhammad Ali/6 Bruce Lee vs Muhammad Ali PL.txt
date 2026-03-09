@@ -1,5 +1,5 @@
 1. Postać A
-Bruce Lee (Prime / wersja historyczna)
+Bruce Lee (Historyczny Prime)
 
 2. Statystyki Postaci A
 Siła: 70
@@ -95,7 +95,7 @@ lane: Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, j
 
 Template Character A:
 - header: Dossier postaci
-- world: Prime / wersja historyczna
+- world: Historyczny Prime
 - style: Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.
 - advantage: Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.
 - mentality: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
@@ -110,8 +110,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-left_title: ZESTAW BRUCE'A
-right_title: ZESTAW ALEGO
+left_title: Bruce Lee
+right_title: Muhammad Ali
 powers_label: MOCE
 tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
@@ -119,8 +119,8 @@ weaknesses_label: SŁABOŚCI
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-left_title: POKAZ BRUCE'A
-right_title: POKAZ ALEGO
+left_title: Bruce Lee
+right_title: Muhammad Ali
 feat_label: FEAT
 - left_item_1: One-inch punch na Long Beach.
 - left_item_2: Pompki na dwóch palcach.
@@ -171,8 +171,8 @@ headline: Archiwum zwycięstw
 subtitle:
 archive_label:
 avg_label: ŚREDNI WYNIK
-left_title: REKORD BRUCE'A
-right_title: REKORD ALEGO
+left_title: Bruce Lee
+right_title: Muhammad Ali
 
 Template Summary:
 headline: PODSUMOWANIE KOŃCOWE

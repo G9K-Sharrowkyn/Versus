@@ -100,14 +100,14 @@ Template Tactical Board:
 - lane: Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.
 
 Template Character A:
-- header: CHARACTER BLUE
+- header: CHARACTER DOSSIER
 - world: New 52 / Prime Earth
 - style: Creative ring warfare with white-light constructs. He harnesses the power of the Seven Spectrums to create endless offensive and defensive solutions.
 - advantage: Absolute versatility and regeneration. The White Light allows him to heal wounds, restore matter, and adapt to any threat.
 - mentality: Resilient and imaginative. He doesn't panic under pressure, but constantly looks for a creative opening in the opponent's defense, escalating power as needed.
 - quote: In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: Watchmen / Rebirth / Doomsday Clock
 - style: Total control over matter and atoms. He doesn't fight in a traditional sense – he simply disintegrates enemies or erases them from reality with a single gesture.
 - advantage: Omnipresence and temporal awareness. He sees the fight's future before it begins, which combined with molecular manipulation makes him untouchable.

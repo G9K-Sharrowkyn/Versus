@@ -99,14 +99,14 @@ Template Tactical Board:
 - lane: Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.
 
 Template Character A:
-- header: CHARACTER BLUE
+- header: CHARACTER DOSSIER
 - world: Dragon Ball Super
 - style: Ultra-efficient fighting of pure strength and Ki. He relies on minimal movement and devastating counters that end the fight before the opponent can react.
 - advantage: Overwhelming energy barrier and reflexes. His Ki is so powerful that it serves as both an impenetrable defense and the ultimate offense.
 - mentality: A stoic absolutist. He fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
 - quote: It matters not how many weaklings band together. You are nothing before absolute strength.
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: One Punch Man
 - style: Simple, direct punch attacks. His style relies on such massive physical superiority that technique becomes redundant for him.
 - advantage: Immeasurable strength and resilience. He has no limits – every strike has finishing potential, and he remains immune to most attacks.

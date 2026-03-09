@@ -1,4 +1,4 @@
-1. Darth Vader (Legends Prime)
+1. Darth Vader (Legends)
 
 2. Character A Stats
 - Strength: 68
@@ -99,14 +99,14 @@ Template Tactical Board:
 - lane: Vader must solve the fight fast. Thanos only needs the opening to fail once.
 
 Template Character A:
-- header: CHARACTER BLUE
-- world: Legends Prime
+- header: CHARACTER DOSSIER
+- world: Legends
 - style: Technical pressure fighting with the Force. He combines perfect lightsaber swordsmanship with brutal telekinesis to choke and crush opponents in close quarters.
 - advantage: Elite precision and an iron defense. His mastery of the Force allows him to control the environment and the enemy's body, preventing effective counterattacks.
 - mentality: Cold, patient, and ruthless. He waits for the smallest mistake from the opponent to end the fight with a single, vengeful strike.
 - quote: All I am surrounded by is fear. And dead men.
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.
 - advantage: Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.

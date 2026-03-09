@@ -116,8 +116,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-- left_title: ARSENAŁ KYLE'A
-- right_title: ARSENAŁ MANHATTANA
+- left_title: Kyle Rayner
+- right_title: Dr. Manhattan
 - powers_label: MOCE
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
@@ -125,8 +125,8 @@ Template Powers / Tools / Weaknesses:
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-- left_title: POKAZ KYLE'A
-- right_title: POKAZ MANHATTANA
+- left_title: Kyle Rayner
+- right_title: Dr. Manhattan
 - feat_label: FEAT
 
 Template HUD Bars:
@@ -179,8 +179,8 @@ Template Winner CV:
 - subtitle:
 - archive_label:
 - avg_label: ŚREDNI WYNIK
-- left_title: REKORD KYLE'A
-- right_title: REKORD MANHATTANA
+- left_title: Kyle Rayner
+- right_title: Dr. Manhattan
 - win_badge: W
 
 Template Summary:

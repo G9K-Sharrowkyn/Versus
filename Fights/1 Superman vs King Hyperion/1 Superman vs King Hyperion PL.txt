@@ -22,7 +22,7 @@
 - Mongul
 - Apollo
 
-5. King Hyperion (Earth-4023)
+5. King Hyperion (Ziemia-4023)
 
 6. Statystyki Postaci B
 - Siła: 92
@@ -105,7 +105,7 @@ Template Character A:
 - quote: To wygląda na robotę dla Supermana.
 Template Character B:
 - header: Dossier postaci
-- world: Earth-4023
+- world: Ziemia-4023
 - style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
 - advantage: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - mentality: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
@@ -121,8 +121,8 @@ Template Powers / Tools / Weaknesses:
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-- left_title: POKAZ SUPERMANA
-- right_title: POKAZ HYPERIONA
+- left_title: Superman
+- right_title: Hyperion
 - feat_label: FEAT
 - left_item_1: Wyciska ciężar równy masie Ziemi przez pięć dni.
 - left_item_2: Czyta każdy opublikowany tekst medyczny w kilka sekund.
@@ -152,8 +152,8 @@ Template Winner CV:
 - subtitle: 
 - archive_label: 
 - avg_label: ŚREDNI WYNIK
-- left_title: REKORD SUPERMANA
-- right_title: REKORD HYPERIONA
+- left_title: Superman
+- right_title: Hyperion
 - win_badge: W
 - left_item_1: Doomsday
 - left_item_2: Wraith

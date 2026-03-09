@@ -102,14 +102,14 @@ Template Tactical Board:
 - lane: Superman wins by closing it out. Hyperion wins when the closeout fails.
 
 Template Character A:
-- header: CHARACTER BLUE
+- header: CHARACTER DOSSIER
 - world: New 52
 - style: Direct powerhouse combat centered on overwhelming physical force, speed bursts, and heavy striking.
 - advantage: Massive statistical superiority in strength, speed, and durability versus most opponents.
 - mentality: He holds back by default and escalates only when lives or stakes force him to.
 - quote: This looks like a job for Superman.
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: Earth-4023
 - style: Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision and overwhelming strength to physically destroy and humiliate opponents.
 - advantage: Inhuman regeneration and survivability. He returns to the fight even after decapitation or being torn to pieces.

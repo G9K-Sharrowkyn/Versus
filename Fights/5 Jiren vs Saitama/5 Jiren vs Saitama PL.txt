@@ -115,8 +115,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-- left_title: ZESTAW JIRENA
-- right_title: ZESTAW SAITAMY
+- left_title: Jiren
+- right_title: Saitama
 - powers_label: MOCE
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
@@ -124,8 +124,8 @@ Template Powers / Tools / Weaknesses:
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-- left_title: POKAZ JIRENA
-- right_title: POKAZ SAITAMY
+- left_title: Jiren
+- right_title: Saitama
 - feat_label: FEAT
 
 Template HUD Bars:
@@ -178,8 +178,8 @@ Template Winner CV:
 - subtitle:
 - archive_label:
 - avg_label: ŚREDNI WYNIK
-- left_title: REKORD JIRENA
-- right_title: REKORD SAITAMY
+- left_title: Jiren
+- right_title: Saitama
 - win_badge: W
 - left_item_1: Hit
 - left_item_2: Maji Kayo

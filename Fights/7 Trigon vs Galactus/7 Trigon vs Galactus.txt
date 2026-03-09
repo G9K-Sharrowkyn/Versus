@@ -102,14 +102,14 @@ chaos_label: CHAOS SEGMENT
 lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
 
 Template Character A:
-- header: CHARACTER BLUE
+- header: CHARACTER DOSSIER
 - world: Prime Earth
 - style: Static dominance and devastating energy projection. Trigon utilizes his six eyes for omnidirectional hellfire blasts and his divine brute force to effortlessly smash and repel any opponent.
 - advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.
 - mentality: A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.
 - quote: In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!
 Template Character B:
-- header: CHARACTER RED
+- header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
 - advantage: Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.

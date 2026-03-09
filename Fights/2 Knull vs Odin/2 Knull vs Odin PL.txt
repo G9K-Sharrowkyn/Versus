@@ -100,14 +100,14 @@ Template Tactical Board:
 
 Template Character A:
 - header: Dossier postaci
-- world: Earth-616
+- world: Ziemia-616
 - style: Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika.
 - advantage: All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.
 - mentality: Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.
 - quote: Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat.
 Template Character B:
 - header: Dossier postaci
-- world: Earth-616
+- world: Ziemia-616
 - style: Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia.
 - advantage: Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.
 - mentality: Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.
@@ -115,8 +115,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-- left_title: ZESTAW KNULLA
-- right_title: ZESTAW ODINA
+- left_title: Knull
+- right_title: Odin
 - powers_label: MOCE
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
@@ -124,8 +124,8 @@ Template Powers / Tools / Weaknesses:
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-- left_title: POKAZ KNULLA
-- right_title: POKAZ ODINA
+- left_title: Knull
+- right_title: Odin
 - feat_label: FEAT
 - left_item_1: Ścina Celestiala i kuje All-Black.
 - left_item_2: Podporządkowuje Celestiali i zmusza ich do służby.
@@ -189,8 +189,8 @@ Template Winner CV:
 - subtitle: 
 - archive_label: 
 - avg_label: ŚREDNI WYNIK
-- left_title: REKORD KNULLA
-- right_title: REKORD ODINA
+- left_title: Knull
+- right_title: Odin
 - win_badge: W
 - left_item_1: Celestial
 - left_item_2: Sentry

@@ -166,17 +166,18 @@ export function PowersToolsTemplate({
 
   const renderColumnHeader = (
     fighter: Fighter,
-    columnTitle: string,
+    _columnTitle: string,
   ) => (
     <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-3`}>
       <div
         className={`${HIGH_END_INSET_CLASS} px-3 py-2`}
         style={{ boxShadow: `0 0 0 1px ${fighter.color}33 inset` }}
       >
-        <p className={HIGH_END_SMALL_TEXT_CLASS}>{fighter.name || 'Fighter'}</p>
-        <p className="mt-1 text-[14px] uppercase tracking-[0.14em]" style={{ color: fighter.color, fontFamily: 'var(--font-display)' }}>
-          {columnTitle}
-        </p>
+        <div className="mt-1">
+          <p className="text-[28px] uppercase leading-none tracking-[0.03em]" style={{ color: fighter.color, fontFamily: 'var(--font-display)' }}>
+            {fighter.name || 'Fighter'}
+          </p>
+        </div>
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-1. Darth Vader (Legends Prime)
+1. Darth Vader (Legends)
 
 2. Statystyki Postaci A
 - Siła: 68
@@ -100,7 +100,7 @@ Template Tactical Board:
 
 Template Character A:
 - header: Dossier postaci
-- world: Legends Prime
+- world: Legends
 - style: Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.
 - advantage: Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.
 - mentality: Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.
@@ -115,8 +115,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-- left_title: ZESTAW VADERA
-- right_title: ZESTAW THANOSA
+- left_title: Darth Vader
+- right_title: Thanos
 - powers_label: MOCE
 - tools_label: NARZĘDZIA
 - weaknesses_label: SŁABOŚCI
@@ -124,8 +124,8 @@ Template Powers / Tools / Weaknesses:
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-- left_title: POKAZ VADERA
-- right_title: POKAZ THANOSA
+- left_title: Darth Vader
+- right_title: Thanos
 - feat_label: FEAT
 - left_item_1: Podnosi i ciska bombowcem Y-Wing.
 - left_item_2: Rozbija o siebie dwa statki kosmiczne.
@@ -188,8 +188,8 @@ Template Winner CV:
 - subtitle:
 - archive_label:
 - avg_label: ŚREDNI WYNIK
-- left_title: REKORD VADERA
-- right_title: REKORD THANOSA
+- left_title: Darth Vader
+- right_title: Thanos
 - win_badge: W
 - left_item_1: Dark Woman
 - left_item_2: Sha Koon

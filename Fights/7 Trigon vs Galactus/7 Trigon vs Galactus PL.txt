@@ -118,8 +118,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-left_title: ARSENAŁ TRIGONA
-right_title: ARSENAŁ GALACTUSA
+left_title: Trigon
+right_title: Galactus
 powers_label: MOCE
 tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
@@ -127,8 +127,8 @@ weaknesses_label: SŁABOŚCI
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-left_title: POKAZ TRIGONA
-right_title: POKAZ GALACTUSA
+left_title: Trigon
+right_title: Galactus
 feat_label: FEAT
 - left_item_1: Heart of Darkness.
 - left_item_2: Niezliczone skażone światy.
@@ -187,8 +187,8 @@ headline: Archiwum zwycięstw
 subtitle:
 archive_label:
 avg_label: ŚREDNI WYNIK
-left_title: REKORD TRIGONA
-right_title: REKORD GALACTUSA
+left_title: Trigon
+right_title: Galactus
 - left_item_1: The Divine
 - left_item_2: Teen Titans
 - left_item_3: Superboy

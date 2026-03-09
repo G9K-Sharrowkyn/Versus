@@ -117,8 +117,8 @@ Template Character B:
 Template Powers / Tools / Weaknesses:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
-left_title: ARSENAŁ ATROCITUSA
-right_title: ARSENAŁ HULKA
+left_title: Atrocitus
+right_title: Hulk
 powers_label: MOCE
 tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
@@ -126,8 +126,8 @@ weaknesses_label: SŁABOŚCI
 Template Raw Feats:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
-left_title: POKAZ ATROCITUSA
-right_title: POKAZ HULKA
+left_title: Atrocitus
+right_title: Hulk
 feat_label: FEAT
 left_item_1: Uwięził Butchera w baterii mocy.
 left_item_2: Walczył dalej po wyrwaniu serca.
@@ -186,8 +186,8 @@ headline: Archiwum zwycięstw
 subtitle:
 archive_label:
 avg_label: ŚREDNI WYNIK
-left_title: REKORD ATROCITUSA
-right_title: REKORD HULKA
+left_title: Atrocitus
+right_title: Hulk
 left_item_1: The Butcher Entity
 left_item_2: The Butcher's human host
 left_item_3: Saint Walker, Indigo-1 i Star Sapphire
