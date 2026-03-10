@@ -474,6 +474,30 @@ const buildTemplateBlockLinesFromJson = (
   }
 }
 
+const buildDossierSupplementBlock = (
+  templateBlock: FightLocaleJsonTemplateBlock | undefined,
+  version: unknown,
+  quote: unknown,
+): FightLocaleJsonTemplateBlock => {
+  const supplement: FightLocaleJsonTemplateBlock = {}
+
+  if (!toString(templateBlock?.world)) {
+    const fallbackWorld = toString(version)
+    if (fallbackWorld) {
+      supplement.world = fallbackWorld
+    }
+  }
+
+  if (!toString(templateBlock?.quote)) {
+    const fallbackQuote = toString(quote)
+    if (fallbackQuote) {
+      supplement.quote = fallbackQuote
+    }
+  }
+
+  return supplement
+}
+
 const buildTemplateBlocksFromJson = (
   localeJson: FightLocaleJsonV1,
   scansJson: FightScansJsonV1,
@@ -483,14 +507,16 @@ const buildTemplateBlocksFromJson = (
   const scansTemplates = normalizeTemplateJsonMap(scansJson.templates)
 
   const supplementByTemplate: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>> = {
-    'character-dossier-a': {
-      world: toString(localeJson.fighterA.version),
-      quote: toString(localeJson.fighterA.dossier?.quote),
-    },
-    'character-dossier-b': {
-      world: toString(localeJson.fighterB.version),
-      quote: toString(localeJson.fighterB.dossier?.quote),
-    },
+    'character-dossier-a': buildDossierSupplementBlock(
+      localeTemplates['character-dossier-a'],
+      localeJson.fighterA.version,
+      localeJson.fighterA.dossier?.quote,
+    ),
+    'character-dossier-b': buildDossierSupplementBlock(
+      localeTemplates['character-dossier-b'],
+      localeJson.fighterB.version,
+      localeJson.fighterB.dossier?.quote,
+    ),
   }
 
   const allTemplateIds = new Set<TemplateId>([
@@ -503,9 +529,7 @@ const buildTemplateBlocksFromJson = (
     const built = buildTemplateBlockLinesFromJson(
       templateId,
       localeJson.locale,
-      templateId === 'character-dossier-a' || templateId === 'character-dossier-b'
-        ? {}
-        : localeTemplates[templateId] || {},
+      localeTemplates[templateId] || {},
       scansTemplates[templateId] || {},
       supplementByTemplate[templateId] || {},
     )

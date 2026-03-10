@@ -17,19 +17,19 @@ export const HIGH_END_PANEL_CLASS = `relative mt-1 min-h-0 flex-1 overflow-hidde
 export const HIGH_END_GRID_OVERLAY_CLASS =
   'pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:7%_13%]'
 
-export const HIGH_END_HEADER_CLASS = 'text-center text-[44px] uppercase leading-[1.02] tracking-[0.02em] text-slate-100'
+export const HIGH_END_HEADER_CLASS = 'text-center text-[40px] uppercase leading-[0.98] tracking-[0.02em] text-slate-100'
 
-export const HIGH_END_SUBTEXT_CLASS = 'mt-2 text-center text-[12px] uppercase leading-[1.2] tracking-[0.16em] text-slate-300'
+export const HIGH_END_SUBTEXT_CLASS = 'mt-1 text-center text-[11px] uppercase leading-[1.12] tracking-[0.16em] text-slate-300'
 
 export const HIGH_END_TEMPLATE_HEADER_SHELL_CLASS =
-  'grid grid-cols-[1fr_auto_1fr] items-stretch gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300'
+  'grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-2 text-[11px] text-slate-300'
 
-export const HIGH_END_TEMPLATE_HEADER_META_CLASS = 'flex min-w-[238px] flex-col justify-center space-y-1 text-left'
+export const HIGH_END_TEMPLATE_HEADER_META_CLASS = 'min-w-[238px] space-y-1 pt-1 text-left'
 
 export const HIGH_END_TEMPLATE_HEADER_CENTER_CLASS =
-  'flex h-[148px] min-h-[148px] max-h-[148px] flex-col items-center justify-center px-3 py-2 text-center'
+  'flex h-[102px] min-h-[102px] max-h-[102px] flex-col items-center justify-start px-3 pt-1 text-center'
 
-export const HIGH_END_TEMPLATE_HEADER_LOGO_WRAP_CLASS = 'flex items-start justify-end pt-2'
+export const HIGH_END_TEMPLATE_HEADER_LOGO_WRAP_CLASS = 'flex items-start justify-end pt-1'
 
 export const HIGH_END_FRAME_CLASS =
   'rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))]'
@@ -47,7 +47,7 @@ export const HIGH_END_FIGHTER_BANNER_CLASS = `${HIGH_END_FRAME_CLASS} h-[80px] m
 
 export const HIGH_END_FIGHTER_BANNER_INSET_CLASS = `${HIGH_END_INSET_CLASS} flex h-full items-center justify-between gap-3 px-3 py-2`
 
-export const HIGH_END_BODY_GAP_CLASS = 'mt-3'
+export const HIGH_END_BODY_GAP_CLASS = 'mt-2'
 
 export const HIGH_END_LABEL_CLASS = 'text-[11px] uppercase tracking-[0.18em] text-slate-300'
 
