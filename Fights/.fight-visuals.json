@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T14:28:39.363Z",
+  "updatedAt": "2026-03-10T22:39:33.445Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -143,6 +143,16 @@
           "x": 39.81003502019006,
           "y": 47.1414364819922,
           "scale": 1
+        },
+        "crucial-feats:left:file:01_6_1_superman_bench_press_earth_equivalent.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:superman_read.jpeg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
         }
       }
     },
@@ -236,6 +246,11 @@
         "crucial-feats:right:right-2": {
           "x": 50,
           "y": 79.50735391585646,
+          "scale": 1
+        },
+        "crucial-feats:right:file:odin_life2.jpg": {
+          "x": 50,
+          "y": 50,
           "scale": 1
         }
       }

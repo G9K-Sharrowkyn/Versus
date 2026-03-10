@@ -6,7 +6,7 @@
   min-height: 0;
   padding-top: 0;
   padding-bottom: clamp(0.2rem, 0.8vh, 0.6rem);
-  overflow: hidden;
+  overflow: visible;
   gap: clamp(0.6rem, 1.1vw, 1rem);
   align-items: stretch;
   box-sizing: border-box;
@@ -61,19 +61,12 @@
   max-height: 100%;
   border-radius: 20px;
   padding: 0;
-  overflow: hidden;
-  background:
-    linear-gradient(
-      -30deg,
-      color-mix(in srgb, var(--vvv-portrait-color) 34%, rgba(30, 144, 255, 0.5)),
-      transparent,
-      color-mix(in srgb, var(--vvv-portrait-color) 34%, rgba(30, 144, 255, 0.5))
-    ),
-    linear-gradient(to bottom, #111418, #111418);
+  overflow: visible;
+  background: linear-gradient(180deg, rgba(3, 11, 22, 0.96), rgba(2, 8, 23, 0.92));
   box-shadow:
-    0 0 0 1px rgba(var(--vvv-electric-blue-rgb), 0.24),
-    0 0 26px rgba(var(--vvv-electric-blue-rgb), 0.2),
-    inset 0 0 12px rgba(var(--vvv-electric-blue-rgb), 0.18);
+    0 0 0 1px color-mix(in srgb, var(--vvv-portrait-color) 24%, rgba(148, 163, 184, 0.22)),
+    0 0 22px color-mix(in srgb, var(--vvv-portrait-color) 12%, transparent),
+    inset 0 0 8px color-mix(in srgb, var(--vvv-portrait-color) 10%, transparent);
 }
 
 .vvv-fight-card-portrait__inner-container {
@@ -81,6 +74,7 @@
   border-radius: inherit;
   height: 100%;
   min-height: 0;
+  overflow: visible;
 }
 
 .vvv-fight-card-portrait__border-outer {
@@ -89,6 +83,7 @@
   padding: 0;
   height: 100%;
   min-height: 0;
+  overflow: visible;
 }
 
 .vvv-fight-card-portrait__border-outer::after {
@@ -151,18 +146,6 @@
   overflow: hidden;
   box-sizing: border-box;
   padding: 0 clamp(0.4rem, 0.8vw, 0.7rem);
-  border-radius: 14px;
-  border: 1px solid color-mix(in srgb, var(--vvv-portrait-color) 72%, #e2e8f0 28%);
-  background: linear-gradient(
-    120deg,
-    color-mix(in srgb, var(--vvv-portrait-color) 24%, rgba(2, 6, 23, 0.92)) 0%,
-    rgba(2, 6, 23, 0.78) 100%
-  );
-  box-shadow:
-    0 0 0 1px rgba(2, 6, 23, 0.5),
-    inset 0 0 16px color-mix(in srgb, var(--vvv-portrait-color) 24%, transparent 76%),
-    0 8px 24px rgba(2, 6, 23, 0.45);
-  backdrop-filter: blur(3px);
   font-size: clamp(6rem, 10vw, 6rem);
   line-height: 0.78;
   pointer-events: none;
@@ -177,17 +160,3 @@
   pointer-events: none;
   background: linear-gradient(0deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.26) 56%, transparent 100%);
 }
-
-.vvv-fight-card-portrait__scan {
-  position: absolute;
-  inset: 0;
-  z-index: 6;
-  pointer-events: none;
-  background-image:
-    linear-gradient(to right, rgba(148, 163, 184, 0.18) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(148, 163, 184, 0.18) 1px, transparent 1px);
-  background-size: 28px 28px;
-  mix-blend-mode: screen;
-  opacity: 0.32;
-}
-

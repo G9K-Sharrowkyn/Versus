@@ -120,7 +120,7 @@ export function FightCardTemplate({
             '--vvv-portrait-color': fighter.color,
             '--f': 'url(#vvv-electric-flow-hue)',
             '--electric-y-offset': '-3px',
-            '--electric-border-color': 'DodgerBlue',
+            '--electric-border-color': fighter.color,
             '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
           } as CSSProperties
         }
@@ -154,7 +154,6 @@ export function FightCardTemplate({
               )}
               <div className="vvv-fight-card-portrait__name">{renderStaticLine(nameText, palette)}</div>
               <div className="vvv-fight-card-portrait__name-fade" />
-              <div className="vvv-fight-card-portrait__scan" />
             </div>
           </div>
           <div className="vvv-fight-card-portrait__glow-layer-1" />
