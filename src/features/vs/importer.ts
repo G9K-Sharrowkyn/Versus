@@ -901,6 +901,25 @@ export type TemplateImageEntry = {
   imageFile: string
 }
 
+const toTemplateImageAdjustIdentity = (entry: TemplateImageEntry | null) => {
+  if (!entry) return 'empty'
+  const imageFile = entry.imageFile.trim()
+  if (imageFile) return `file:${imageFile.toLowerCase()}`
+  return `slot:${entry.slot}`
+}
+
+export const buildTemplateImageAdjustKey = (
+  templateId: 'raw-feats' | 'winner-cv',
+  side: 'left' | 'right',
+  entry: TemplateImageEntry | null,
+) => `${templateId}:${side}:${toTemplateImageAdjustIdentity(entry)}`
+
+export const buildLegacyTemplateImageAdjustKey = (
+  templateId: 'raw-feats' | 'winner-cv',
+  side: 'left' | 'right',
+  entry: TemplateImageEntry | null,
+) => `${templateId}:${side}:${entry?.id || 'empty'}`
+
 export type AutoTemplateImageRequest = {
   templateId: 'raw-feats' | 'winner-cv'
   side: 'left' | 'right'

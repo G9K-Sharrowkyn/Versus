@@ -9,6 +9,7 @@ export function AdjustableTemplateImage({
   fallbackLabel,
   hintLabel,
   adjustKey,
+  legacyAdjustKeys = [],
   baseAdjust,
   adjustments,
   onAdjustChange,
@@ -21,6 +22,7 @@ export function AdjustableTemplateImage({
   fallbackLabel: string
   hintLabel?: string
   adjustKey: string
+  legacyAdjustKeys?: string[]
   baseAdjust?: PortraitAdjust
   adjustments: Record<string, PortraitAdjust>
   onAdjustChange: (key: string, adjust: PortraitAdjust) => void
@@ -51,8 +53,11 @@ export function AdjustableTemplateImage({
     [imageNaturalSizeState.height, imageNaturalSizeState.key, imageNaturalSizeState.width, imageUrl],
   )
 
+  const fallbackLegacyAdjust = legacyAdjustKeys
+    .map((key) => adjustments[key])
+    .find((entry): entry is PortraitAdjust => Boolean(entry))
   const committedAdjust = normalizeTemplateImageAdjust(
-    normalizePortraitAdjust(adjustments[adjustKey] ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
+    normalizePortraitAdjust(adjustments[adjustKey] ?? fallbackLegacyAdjust ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
   )
   const [liveAdjust, setLiveAdjust] = useState<PortraitAdjust>(committedAdjust)
   const imageGeometry = useMemo(

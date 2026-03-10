@@ -2,6 +2,8 @@ import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import { pickLang } from '../../presets'
 import {
   TEMPLATE_BLOCK_ALIASES,
+  buildLegacyTemplateImageAdjustKey,
+  buildTemplateImageAdjustKey,
   buildTemplateImageEntries,
   findTemplateBlockLines,
   parseTemplateFieldMap,
@@ -69,7 +71,8 @@ export function RawFeatsTemplate({
           slot: entry.slot,
         })
       : ''
-    const adjustKey = `raw-feats:${side}:${entry?.id || 'empty'}`
+    const adjustKey = buildTemplateImageAdjustKey('raw-feats', side, entry)
+    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('raw-feats', side, entry)]
 
     return (
       <div className={`flex h-full min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
@@ -91,6 +94,7 @@ export function RawFeatsTemplate({
             fallbackLabel={tr('Brak obrazu', 'No image')}
             hintLabel=""
             adjustKey={adjustKey}
+            legacyAdjustKeys={legacyAdjustKeys}
             adjustments={slideImageAdjustments}
             onAdjustChange={onSlideImageAdjustChange}
             onAdjustCommit={onSlideImageAdjustCommit}

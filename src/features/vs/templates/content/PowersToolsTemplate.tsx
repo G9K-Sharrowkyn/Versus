@@ -12,7 +12,6 @@ import {
   HIGH_END_LABEL_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SMALL_TEXT_CLASS,
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
@@ -130,6 +129,7 @@ export function PowersToolsTemplate({
   powersA,
   powersB,
   title,
+  subtitle,
   templateBlocks,
   language,
   onToggleLanguage,
@@ -138,7 +138,7 @@ export function PowersToolsTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['powers-tools'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = ''
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || ''
   const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
   const threatLevel = tr('ekstremalny', 'extreme')
   const leftBottomLabel = tr('Integralność danych', 'Data integrity')

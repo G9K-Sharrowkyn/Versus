@@ -10,6 +10,7 @@ import {
 import { applySharedFightVisualAdjustments } from '../domain/fightVariants'
 import { parseVsImportText } from '../importer'
 import { createManualFightRecord, insertManualFightRecord } from '../domain/fightFactory'
+import { collectPersistableFolderFightVisuals, saveFolderFightVisualsToApi } from '../storage'
 import type {
   FightRecord,
   ImportDropTarget,
@@ -155,17 +156,26 @@ export function useVsDraftImport({
     }
 
     const nextAdjust = normalizePortraitAdjust(portraitEditor.adjust)
+    let nextFightsSnapshot: FightRecord[] | null = null
     setFights((current) => {
       const referenceFight = current.find((fight) => fight.id === portraitEditor.fightId)
       if (!referenceFight) return current
-      return applySharedFightVisualAdjustments(
+      const nextFights = applySharedFightVisualAdjustments(
         current,
         referenceFight,
         portraitEditor.side === 'a'
           ? { portraitAAdjust: nextAdjust }
           : { portraitBAdjust: nextAdjust },
       )
+      nextFightsSnapshot = nextFights
+      return nextFights
     })
+
+    if (nextFightsSnapshot) {
+      void saveFolderFightVisualsToApi(collectPersistableFolderFightVisuals(nextFightsSnapshot)).catch((error) => {
+        console.warn('[vs-fights-visuals] Failed to save portrait adjustments.', error)
+      })
+    }
 
     if (activeFightId === portraitEditor.fightId) {
       if (portraitEditor.side === 'a') setPortraitAAdjust(nextAdjust)

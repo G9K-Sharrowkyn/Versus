@@ -193,6 +193,9 @@ export type FolderFightScanRecord = {
   txtContent: string
   portraitAUrl: string
   portraitBUrl: string
+  portraitAAdjust?: PortraitAdjust
+  portraitBAdjust?: PortraitAdjust
+  slideImageAdjustments?: Record<string, PortraitAdjust>
   sortIndex: number
   warnings?: string[]
 }
@@ -200,4 +203,11 @@ export type FolderFightScanRecord = {
 export type FolderFightsScanResponse = {
   fights?: FolderFightScanRecord[]
   warnings?: string[]
+}
+
+export type FolderFightVisualPayload = {
+  folderKey: string
+  portraitAAdjust: PortraitAdjust
+  portraitBAdjust: PortraitAdjust
+  slideImageAdjustments: Record<string, PortraitAdjust>
 }

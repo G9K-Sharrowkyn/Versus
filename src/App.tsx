@@ -36,7 +36,7 @@ import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import { useVsDraftImport } from './features/vs/hooks/useVsDraftImport'
 import { useVsPersistence } from './features/vs/hooks/useVsPersistence'
 import { useVsTransitions } from './features/vs/hooks/useVsTransitions'
-import { buildFightRefreshSignature } from './features/vs/storage'
+import { buildFightRefreshSignature, collectPersistableFolderFightVisuals, saveFolderFightVisualsToApi } from './features/vs/storage'
 import type {
   Category,
   Fighter,
@@ -288,13 +288,21 @@ function App() {
     }))
 
     if (!activeFightId) return
+    let nextFightsSnapshot: FightRecord[] | null = null
     setFights((current) => {
       const activeFight = current.find((fight) => fight.id === activeFightId)
       if (!activeFight) return current
-      return applySharedFightVisualAdjustments(current, activeFight, {
+      const nextFights = applySharedFightVisualAdjustments(current, activeFight, {
         slideImageAdjustments: nextSlideImageAdjustments,
       })
+      nextFightsSnapshot = nextFights
+      return nextFights
     })
+    if (nextFightsSnapshot) {
+      void saveFolderFightVisualsToApi(collectPersistableFolderFightVisuals(nextFightsSnapshot)).catch((error) => {
+        console.warn('[vs-fights-visuals] Failed to save image adjustments.', error)
+      })
+    }
   }
 
   const applyFightRecord: ApplyFightRecord = (fight, options) => {

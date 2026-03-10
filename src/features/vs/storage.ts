@@ -1,7 +1,40 @@
-import type { FightMetaRecord, FightRecord, FightSource, FightVariantLocale, FolderFightScanRecord, FolderFightsScanResponse, ParsedStat, ParsedVsImport, FighterFact } from './types'
+import type {
+  FightMetaRecord,
+  FightRecord,
+  FightSource,
+  FightVariantLocale,
+  FolderFightScanRecord,
+  FolderFightVisualPayload,
+  FolderFightsScanResponse,
+  ParsedStat,
+  ParsedVsImport,
+  FighterFact,
+} from './types'
 import { FIGHTS_DB_NAME, FIGHTS_DB_VERSION, FIGHTS_STORE_NAME, FOLDER_FIGHT_ID_PREFIX, META_ACTIVE_FIGHT_KEY, META_STORE_NAME } from './presets'
 import { PORTRAIT_ADJUST_DEFAULT, buildMatchupKeyFromNames, clamp, enforceFileNameSideOrder, normalizePortraitAdjust, normalizeSlideImageAdjustments, normalizeToken, parseMatchupFromFileName, resolveFightVariantLabel, resolveFightVariantLocaleFromFileName, stripFileExtension, toMatchupDisplayNameFromFileName } from './helpers'
 import { parseTemplateOrderTokens, parseVsImportText } from './importer'
+import { resolveSharedFightVisualAdjustments } from './domain/fightVariants'
+
+const isDefaultPortraitAdjust = (value: ReturnType<typeof normalizePortraitAdjust>) =>
+  value.x === PORTRAIT_ADJUST_DEFAULT.x &&
+  value.y === PORTRAIT_ADJUST_DEFAULT.y &&
+  value.scale === PORTRAIT_ADJUST_DEFAULT.scale
+
+const mergeFightVisualState = (persisted: FightRecord, scanned: FightRecord) => {
+  const persistedPortraitA = normalizePortraitAdjust(persisted.portraitAAdjust)
+  const persistedPortraitB = normalizePortraitAdjust(persisted.portraitBAdjust)
+  const scannedPortraitA = normalizePortraitAdjust(scanned.portraitAAdjust)
+  const scannedPortraitB = normalizePortraitAdjust(scanned.portraitBAdjust)
+
+  return {
+    portraitAAdjust: isDefaultPortraitAdjust(persistedPortraitA) ? scannedPortraitA : persistedPortraitA,
+    portraitBAdjust: isDefaultPortraitAdjust(persistedPortraitB) ? scannedPortraitB : persistedPortraitB,
+    slideImageAdjustments: {
+      ...normalizeSlideImageAdjustments(scanned.slideImageAdjustments),
+      ...normalizeSlideImageAdjustments(persisted.slideImageAdjustments),
+    },
+  }
+}
 
 export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord | null => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
@@ -18,6 +51,9 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
   const txtContent = typeof raw.txtContent === 'string' ? raw.txtContent : ''
   const portraitAUrl = typeof raw.portraitAUrl === 'string' ? raw.portraitAUrl.trim() : ''
   const portraitBUrl = typeof raw.portraitBUrl === 'string' ? raw.portraitBUrl.trim() : ''
+  const portraitAAdjust = normalizePortraitAdjust(raw.portraitAAdjust)
+  const portraitBAdjust = normalizePortraitAdjust(raw.portraitBAdjust)
+  const slideImageAdjustments = normalizeSlideImageAdjustments(raw.slideImageAdjustments)
   const sortIndexRaw = typeof raw.sortIndex === 'number' ? raw.sortIndex : Number(raw.sortIndex)
   const sortIndex = Number.isFinite(sortIndexRaw) ? sortIndexRaw : Number.MAX_SAFE_INTEGER
   const warnings = Array.isArray(raw.warnings)
@@ -44,6 +80,9 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
     txtContent,
     portraitAUrl,
     portraitBUrl,
+    portraitAAdjust,
+    portraitBAdjust,
+    slideImageAdjustments,
     sortIndex,
     warnings,
   }
@@ -109,9 +148,9 @@ export const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[
       payload: payloadOrdered,
       portraitADataUrl: record.portraitAUrl,
       portraitBDataUrl: record.portraitBUrl,
-      portraitAAdjust: { ...PORTRAIT_ADJUST_DEFAULT },
-      portraitBAdjust: { ...PORTRAIT_ADJUST_DEFAULT },
-      slideImageAdjustments: {},
+      portraitAAdjust: normalizePortraitAdjust(record.portraitAAdjust),
+      portraitBAdjust: normalizePortraitAdjust(record.portraitBAdjust),
+      slideImageAdjustments: normalizeSlideImageAdjustments(record.slideImageAdjustments),
     })
   })
 
@@ -137,12 +176,13 @@ export const mergeScannedFolderFights = (existingFights: FightRecord[], scannedF
       persistedFolderBySignature.get(`${fight.folderKey || ''}::${normalizeToken(fight.fileName)}`) ||
       persistedFolderByMatchup.get(`${fight.folderKey || ''}::${fight.matchupKey}`)
     if (!persisted) return fight
+    const mergedVisuals = mergeFightVisualState(persisted, fight)
     return {
       ...fight,
       createdAt: persisted.createdAt,
-      portraitAAdjust: normalizePortraitAdjust(persisted.portraitAAdjust),
-      portraitBAdjust: normalizePortraitAdjust(persisted.portraitBAdjust),
-      slideImageAdjustments: normalizeSlideImageAdjustments(persisted.slideImageAdjustments),
+      portraitAAdjust: mergedVisuals.portraitAAdjust,
+      portraitBAdjust: mergedVisuals.portraitBAdjust,
+      slideImageAdjustments: mergedVisuals.slideImageAdjustments,
     }
   })
 
@@ -184,6 +224,45 @@ export const buildFightRefreshSignature = (fight: FightRecord | null) =>
         slideImageAdjustments: normalizeSlideImageAdjustments(fight.slideImageAdjustments),
       })
     : ''
+
+export const collectPersistableFolderFightVisuals = (fights: FightRecord[]): FolderFightVisualPayload[] => {
+  const folderKeys = new Set<string>()
+  const payloads: FolderFightVisualPayload[] = []
+
+  fights.forEach((fight) => {
+    const folderKey = fight.folderKey?.trim()
+    if (!folderKey || folderKeys.has(folderKey) || fight.source !== 'folder') return
+    folderKeys.add(folderKey)
+
+    const shared = resolveSharedFightVisualAdjustments(fights, fight)
+    payloads.push({
+      folderKey,
+      portraitAAdjust: shared.portraitAAdjust,
+      portraitBAdjust: shared.portraitBAdjust,
+      slideImageAdjustments: shared.slideImageAdjustments,
+    })
+  })
+
+  payloads.sort((left, right) => left.folderKey.localeCompare(right.folderKey, undefined, { numeric: true, sensitivity: 'base' }))
+  return payloads
+}
+
+export const saveFolderFightVisualsToApi = async (payloads: FolderFightVisualPayload[]) => {
+  if (typeof window === 'undefined' || !payloads.length) return
+
+  const response = await fetch('/api/fights/visuals', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ folders: payloads }),
+    cache: 'no-store',
+  })
+
+  if (!response.ok) {
+    throw new Error(`Folder visuals save failed (${response.status})`)
+  }
+}
 
 export const toStringArray = (value: unknown) =>
   Array.isArray(value) ? value.filter((item): item is string => typeof item === 'string') : []

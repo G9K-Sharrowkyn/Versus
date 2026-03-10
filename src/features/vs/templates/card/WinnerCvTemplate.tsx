@@ -3,6 +3,8 @@ import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import { DEFAULT_WINNER_CV_A, DEFAULT_WINNER_CV_B, pickLang } from '../../presets'
 import {
   TEMPLATE_BLOCK_ALIASES,
+  buildLegacyTemplateImageAdjustKey,
+  buildTemplateImageAdjustKey,
   buildTemplateImageEntries,
   findTemplateBlockLines,
   parseTemplateFieldMap,
@@ -19,7 +21,6 @@ import {
   HIGH_END_INSET_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SMALL_TEXT_CLASS,
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
@@ -80,7 +81,8 @@ export function WinnerCvTemplate({
           slot: entry.slot,
         })
       : ''
-    const adjustKey = `winner-cv:${side}:${entry?.id || 'empty'}`
+    const adjustKey = buildTemplateImageAdjustKey('winner-cv', side, entry)
+    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('winner-cv', side, entry)]
 
     return (
       <div className={`flex h-full min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
@@ -98,10 +100,11 @@ export function WinnerCvTemplate({
         <div className="mt-3 flex min-h-0 flex-1 flex-col gap-2">
           <AdjustableTemplateImage
             imageUrl={imageUrl}
-            alt={entry?.text || columnTitle}
+            alt={entry?.text || _columnTitle}
             fallbackLabel={tr('Brak obrazu', 'No image')}
             hintLabel=""
             adjustKey={adjustKey}
+            legacyAdjustKeys={legacyAdjustKeys}
             adjustments={slideImageAdjustments}
             onAdjustChange={onSlideImageAdjustChange}
             onAdjustCommit={onSlideImageAdjustCommit}

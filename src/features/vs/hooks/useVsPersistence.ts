@@ -9,6 +9,7 @@ import {
 import { synchronizeFightVisualAdjustments } from '../domain/fightVariants'
 import {
   buildFightRefreshSignature,
+  collectPersistableFolderFightVisuals,
   fetchFolderFightsFromApi,
   idbGetActiveFightId,
   idbGetMetaString,
@@ -19,6 +20,7 @@ import {
   mergeScannedFolderFights,
   normalizePersistedFight,
   normalizeVariantPrefsMap,
+  saveFolderFightVisualsToApi,
   sanitizePreferredVariantPrefs,
 } from '../storage'
 import type { FightRecord } from '../types'
@@ -202,6 +204,10 @@ export function useVsPersistence({
         applyFightRecordRef.current?.(restoredActiveFight, { enterIntro: false })
       }
 
+      void saveFolderFightVisualsToApi(collectPersistableFolderFightVisuals(mergedFights)).catch((error) => {
+        console.warn('[vs-fights-visuals] Failed to backfill folder visuals.', error)
+      })
+
       setStorageReady(true)
     }
 
@@ -217,6 +223,7 @@ export function useVsPersistence({
 
     let disposed = false
     let inFlight = false
+    const hot = import.meta.hot
 
     const refreshFolderFights = async () => {
       if (disposed || inFlight || searchTransitioningRef.current || returnTransitioningRef.current) return
@@ -280,10 +287,15 @@ export function useVsPersistence({
 
     void refreshFolderFights()
     const intervalId = window.setInterval(refreshFolderFights, fightScanPollMs)
+    const handleImmediateRefresh = () => {
+      void refreshFolderFights()
+    }
+    hot?.on('vs-fights-changed', handleImmediateRefresh)
 
     return () => {
       disposed = true
       window.clearInterval(intervalId)
+      hot?.off('vs-fights-changed', handleImmediateRefresh)
     }
   }, [applyFightRecordRef, fightScanPollMs, returnTransitioningRef, searchTransitioningRef, storageReady])
 

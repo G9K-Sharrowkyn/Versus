@@ -1,5 +1,5 @@
 import { promises as fs } from 'node:fs'
-import type { ServerResponse } from 'node:http'
+import type { IncomingMessage, ServerResponse } from 'node:http'
 import path from 'node:path'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
@@ -16,6 +16,7 @@ const TXT_FILE_PATTERN = /\.txt(?:\s*(?:pl|en|eng|polski|english))?$/i
 const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
+const FIGHT_VISUALS_FILE_NAME = '.fight-visuals.json'
 
 type ScanFightRecord = {
   folderKey: string
@@ -28,11 +29,31 @@ type ScanFightRecord = {
   txtContent: string
   portraitAUrl: string
   portraitBUrl: string
+  portraitAAdjust: { x: number; y: number; scale: number }
+  portraitBAdjust: { x: number; y: number; scale: number }
+  slideImageAdjustments: Record<string, { x: number; y: number; scale: number }>
   sortIndex: number
   warnings: string[]
 }
 
+type PersistedPortraitAdjust = { x: number; y: number; scale: number }
+type PersistedFolderFightVisuals = {
+  portraitAAdjust: PersistedPortraitAdjust
+  portraitBAdjust: PersistedPortraitAdjust
+  slideImageAdjustments: Record<string, PersistedPortraitAdjust>
+}
+type PersistedFightVisualsStore = {
+  version: 1
+  updatedAt: string
+  folders: Record<string, PersistedFolderFightVisuals>
+}
+
 const toPosixPath = (value: string) => value.split(path.sep).join('/')
+const normalizeFsPath = (value: string) => toPosixPath(path.resolve(value)).toLowerCase()
+const isPathInsideDirectory = (filePath: string, directoryPath: string) => {
+  const relative = path.relative(directoryPath, filePath)
+  return Boolean(relative) && !relative.startsWith('..') && !path.isAbsolute(relative)
+}
 
 const normalizeToken = (value: string) =>
   value
@@ -99,6 +120,83 @@ const contentTypeForImage = (fileName: string) => {
   if (lower.endsWith('.avif')) return 'image/avif'
   return 'image/jpeg'
 }
+
+const clampPercent = (value: unknown) => {
+  const numeric = typeof value === 'number' ? value : Number(value)
+  if (!Number.isFinite(numeric)) return 50
+  return Math.max(0, Math.min(100, numeric))
+}
+
+const clampScale = (value: unknown) => {
+  const numeric = typeof value === 'number' ? value : Number(value)
+  if (!Number.isFinite(numeric)) return 1
+  return Math.max(0.6, Math.min(2.4, numeric))
+}
+
+const normalizePersistedPortraitAdjust = (value: unknown): PersistedPortraitAdjust => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return { x: 50, y: 50, scale: 1 }
+  }
+  const raw = value as Record<string, unknown>
+  return {
+    x: clampPercent(raw.x),
+    y: clampPercent(raw.y),
+    scale: clampScale(raw.scale),
+  }
+}
+
+const normalizePersistedSlideImageAdjustments = (value: unknown) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+
+  const normalized: Record<string, PersistedPortraitAdjust> = {}
+  Object.entries(value as Record<string, unknown>).forEach(([key, entry]) => {
+    const normalizedKey = key.trim()
+    if (!normalizedKey) return
+    normalized[normalizedKey] = normalizePersistedPortraitAdjust(entry)
+  })
+  return normalized
+}
+
+const normalizePersistedFolderFightVisuals = (value: unknown): PersistedFolderFightVisuals => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) {
+    return {
+      portraitAAdjust: normalizePersistedPortraitAdjust(null),
+      portraitBAdjust: normalizePersistedPortraitAdjust(null),
+      slideImageAdjustments: {},
+    }
+  }
+
+  const raw = value as Record<string, unknown>
+  return {
+    portraitAAdjust: normalizePersistedPortraitAdjust(raw.portraitAAdjust),
+    portraitBAdjust: normalizePersistedPortraitAdjust(raw.portraitBAdjust),
+    slideImageAdjustments: normalizePersistedSlideImageAdjustments(raw.slideImageAdjustments),
+  }
+}
+
+const readJsonBody = async (req: IncomingMessage) =>
+  new Promise<unknown>((resolve, reject) => {
+    const chunks: Uint8Array[] = []
+    req.on('data', (chunk: Buffer | string) => {
+      if (typeof chunk === 'string') {
+        chunks.push(Buffer.from(chunk))
+        return
+      }
+      chunks.push(chunk)
+    })
+    req.on('end', () => {
+      if (!chunks.length) {
+        resolve({})
+        return
+      }
+      try {
+        resolve(JSON.parse(Buffer.concat(chunks).toString('utf8')))
+      } catch (error) {
+        reject(error)
+      }
+    })
+    req.on('error', reject)
+  })
 
 const parseTemplateBlockFields = (raw: string, blockName: string) => {
   const lines = raw.replace(/\r/g, '').split('\n')
@@ -226,6 +324,65 @@ const resolveFightsDir = async (): Promise<string | null> => {
   return null
 }
 
+const resolveFightVisualsFilePath = (fightsDir: string) => path.join(fightsDir, FIGHT_VISUALS_FILE_NAME)
+
+const readFightVisualsStore = async (fightsDir: string): Promise<PersistedFightVisualsStore> => {
+  try {
+    const payload = await fs.readFile(resolveFightVisualsFilePath(fightsDir), 'utf8')
+    const parsed = JSON.parse(payload) as { folders?: unknown; updatedAt?: unknown }
+    const normalizedFolders: Record<string, PersistedFolderFightVisuals> = {}
+
+    if (parsed.folders && typeof parsed.folders === 'object' && !Array.isArray(parsed.folders)) {
+      Object.entries(parsed.folders as Record<string, unknown>).forEach(([folderKey, visuals]) => {
+        const normalizedKey = folderKey.trim()
+        if (!normalizedKey) return
+        normalizedFolders[normalizedKey] = normalizePersistedFolderFightVisuals(visuals)
+      })
+    }
+
+    return {
+      version: 1,
+      updatedAt: typeof parsed.updatedAt === 'string' ? parsed.updatedAt : new Date(0).toISOString(),
+      folders: normalizedFolders,
+    }
+  } catch {
+    return {
+      version: 1,
+      updatedAt: new Date(0).toISOString(),
+      folders: {},
+    }
+  }
+}
+
+const writeFightVisualsStore = async (
+  fightsDir: string,
+  folders: Record<string, PersistedFolderFightVisuals>,
+) => {
+  const nextStore: PersistedFightVisualsStore = {
+    version: 1,
+    updatedAt: new Date().toISOString(),
+    folders,
+  }
+  await fs.writeFile(resolveFightVisualsFilePath(fightsDir), `${JSON.stringify(nextStore, null, 2)}\n`, 'utf8')
+}
+
+const normalizeFightVisualsWritePayload = (value: unknown) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  const rawFolders = (value as { folders?: unknown }).folders
+  if (!Array.isArray(rawFolders)) return null
+
+  const folders: Record<string, PersistedFolderFightVisuals> = {}
+  rawFolders.forEach((entry) => {
+    if (!entry || typeof entry !== 'object' || Array.isArray(entry)) return
+    const raw = entry as Record<string, unknown>
+    const folderKey = typeof raw.folderKey === 'string' ? raw.folderKey.trim() : ''
+    if (!folderKey) return
+    folders[folderKey] = normalizePersistedFolderFightVisuals(raw)
+  })
+
+  return folders
+}
+
 const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warnings: string[] }> => {
   const warnings: string[] = []
   const fights: ScanFightRecord[] = []
@@ -236,6 +393,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
   if (fightsDir !== FIGHTS_DIR_CANDIDATES[0]) {
     warnings.push(`Using fallback fights directory: ${fightsDir}`)
   }
+  const fightVisualsStore = await readFightVisualsStore(fightsDir)
 
   const entries = await fs.readdir(fightsDir, { withFileTypes: true })
   for (const entry of entries) {
@@ -246,6 +404,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     const matchName = normalizeMatchName(folderName)
     const sortIndex = extractSortIndex(folderName)
     const folderWarnings: string[] = []
+    const persistedVisuals = fightVisualsStore.folders[folderKey] || normalizePersistedFolderFightVisuals(null)
 
     let files: string[] = []
     try {
@@ -362,6 +521,9 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         txtContent,
         portraitAUrl: portraitAFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitAFile)}` : '',
         portraitBUrl: portraitBFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitBFile)}` : '',
+        portraitAAdjust: persistedVisuals.portraitAAdjust,
+        portraitBAdjust: persistedVisuals.portraitBAdjust,
+        slideImageAdjustments: persistedVisuals.slideImageAdjustments,
         sortIndex: sortIndex + txtIndex * 0.001,
         warnings: txtIndex === 0 ? folderWarnings : [],
       })
@@ -450,10 +612,43 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
       next()
       return
     }
-    if (req.method !== 'GET') {
+    const isVisualsWriteRequest = requestUrl.pathname === '/api/fights/visuals' && req.method === 'POST'
+    if (req.method !== 'GET' && !isVisualsWriteRequest) {
       res.statusCode = 405
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(asJson({ error: 'Method not allowed.' }))
+      return
+    }
+
+    if (isVisualsWriteRequest) {
+      const fightsDir = await resolveFightsDir()
+      if (!fightsDir) {
+        res.statusCode = 404
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(asJson({ error: 'Fights directory not found.' }))
+        return
+      }
+
+      try {
+        const payload = await readJsonBody(req)
+        const normalizedFolders = normalizeFightVisualsWritePayload(payload)
+        if (!normalizedFolders) {
+          res.statusCode = 400
+          res.setHeader('Content-Type', 'application/json; charset=utf-8')
+          res.end(asJson({ error: 'Invalid visuals payload.' }))
+          return
+        }
+
+        await writeFightVisualsStore(fightsDir, normalizedFolders)
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.setHeader('Cache-Control', 'no-store')
+        res.end(asJson({ ok: true }))
+      } catch (error) {
+        res.statusCode = 500
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(asJson({ error: 'Failed to save fight visuals.', details: String(error) }))
+      }
       return
     }
 
@@ -542,6 +737,30 @@ const fightsApiPlugin = (): Plugin => ({
   name: 'vs-fights-api',
   configureServer(server) {
     server.middlewares.use(createFightsApiMiddleware())
+    const watchedDirs = FIGHTS_DIR_CANDIDATES.map((directory) => path.resolve(directory))
+    const normalizedWatchedDirs = watchedDirs.map(normalizeFsPath)
+    server.watcher.add(watchedDirs)
+
+    const handleFightFileEvent = (eventName: string, changedPath: string) => {
+      if (!changedPath || !['add', 'change', 'unlink'].includes(eventName)) return
+
+      const normalizedChangedPath = normalizeFsPath(changedPath)
+      const matchesFightsTree = normalizedWatchedDirs.some((directory) =>
+        isPathInsideDirectory(normalizedChangedPath, directory),
+      )
+      if (!matchesFightsTree) return
+
+      server.ws.send({
+        type: 'custom',
+        event: 'vs-fights-changed',
+        data: {
+          event: eventName,
+          path: normalizedChangedPath,
+        },
+      })
+    }
+
+    server.watcher.on('all', handleFightFileEvent)
   },
   configurePreviewServer(server) {
     server.middlewares.use(createFightsApiMiddleware())
