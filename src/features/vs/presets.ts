@@ -1,4 +1,4 @@
-﻿import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
+import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
 import { getTranslations } from '../../i18n'
 import {
   getFightDefaultCategories,

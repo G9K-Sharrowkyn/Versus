@@ -5,10 +5,11 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run i18n:audit && npm run i18n:keys",
+    "prebuild": "npm run fights:guard && npm run i18n:audit && npm run i18n:keys",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "fights:guard": "node scripts/guard-fight-json-integrity.mjs",
     "i18n:audit": "node scripts/audit-text-encoding.mjs",
     "i18n:keys": "node scripts/i18n-keys-check.mjs"
   },

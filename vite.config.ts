@@ -357,6 +357,8 @@ const normalizeFightVisualsWritePayload = (value: unknown) => {
   return folders
 }
 
+// Canonical fight files may only be written from schema-validated JSON payloads.
+// ParsedVsImport is a lossy viewer model and must never be accepted here.
 const normalizeFightScaffoldWritePayload = (value: unknown) => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const raw = value as Record<string, unknown>

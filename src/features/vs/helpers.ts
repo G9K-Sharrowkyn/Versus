@@ -1,4 +1,4 @@
-﻿import type { CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
 import type { FightRecord, FightScenarioId, FightScenarioLead, FightVariantLocale, Fighter, ParsedVsImport, PointerRelayPayload, PortraitAdjust, ScoreRow, SearchMorphHandoff, TemplateId } from './types'
 import { DEFAULT_MORPH_SIZE, FALLBACK_ICONS, FIGHT_SCENARIO_ALIAS_TO_ID, FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID, FIGHT_SCENARIO_EXTENDED_LABELS_EN, ICON_BY_CATEGORY } from './presets'
 

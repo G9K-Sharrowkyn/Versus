@@ -1,4 +1,4 @@
-﻿ComfyMath | https://github.com/evanspearman/ComfyMath
+ComfyMath | https://github.com/evanspearman/ComfyMath
 comfyui-custom-scripts | https://github.com/Comfy-Org/ComfyUI.git
 comfyui-easy-use | https://github.com/Comfy-Org/ComfyUI.git
 comfyui-kjnodes | https://github.com/Comfy-Org/ComfyUI.git

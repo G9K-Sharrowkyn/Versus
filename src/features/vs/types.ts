@@ -119,6 +119,9 @@ export type FightScansJsonV1 = {
   templates: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>
 }
 
+// Lossy runtime payload used only by the viewer layer.
+// Canonical fight files must always be written from FightLocaleJsonV1/FightScansJsonV1,
+// never reconstructed from this parsed shape.
 export type ParsedVsImport = {
   fighterAName: string
   fighterBName: string

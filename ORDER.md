@@ -1,4 +1,4 @@
-﻿# Kolejność szablonów w walkach
+# Kolejność szablonów w walkach
 
 ## 1. Superman vs King Hyperion
 1. tactical-board

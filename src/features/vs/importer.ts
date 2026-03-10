@@ -1,4 +1,4 @@
-﻿import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
+import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
 import type {
   FightLocaleJsonTemplateBlock,
   FightLocaleJsonTemplateValue,
@@ -520,6 +520,8 @@ export const parseFightJsonFiles = (
   localeJson: FightLocaleJsonV1,
   scansJson: FightScansJsonV1,
 ): ParsedVsImport => {
+  // One-way transform from canonical fight JSON to the viewer payload.
+  // Do not use ParsedVsImport as a persistence or migration source of truth.
   if (!localeJson || localeJson.schemaVersion !== 1) {
     throw new Error('Import error: invalid locale fight JSON.')
   }

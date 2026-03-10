@@ -1,28 +1,76 @@
 import fs from 'node:fs/promises'
+import fsSync from 'node:fs'
+import { createRequire } from 'node:module'
 import path from 'node:path'
 import ts from 'typescript'
 
 const PROJECT_ROOT = process.cwd()
+const moduleCache = new Map()
+const nodeRequire = createRequire(import.meta.url)
 
-const loadTsObject = async (filePath, exportName) => {
-  const source = await fs.readFile(filePath, 'utf8')
+const resolveLocalModulePathSync = (fromFilePath, specifier) => {
+  const basePath = path.resolve(path.dirname(fromFilePath), specifier)
+  const candidates = [
+    basePath,
+    `${basePath}.ts`,
+    `${basePath}.tsx`,
+    `${basePath}.js`,
+    `${basePath}.mjs`,
+    path.join(basePath, 'index.ts'),
+    path.join(basePath, 'index.tsx'),
+    path.join(basePath, 'index.js'),
+    path.join(basePath, 'index.mjs'),
+  ]
+
+  for (const candidate of candidates) {
+    if (fsSync.existsSync(candidate)) {
+      return candidate
+    }
+  }
+
+  throw new Error(`Cannot resolve module "${specifier}" from ${fromFilePath}`)
+}
+
+const loadTsModuleSync = (filePath) => {
+  const normalizedPath = path.resolve(filePath)
+  if (moduleCache.has(normalizedPath)) {
+    return moduleCache.get(normalizedPath)
+  }
+
+  const source = fsSync.readFileSync(normalizedPath, 'utf8')
   const transpiled = ts.transpileModule(source, {
     compilerOptions: {
       module: ts.ModuleKind.CommonJS,
       target: ts.ScriptTarget.ES2020,
       esModuleInterop: true,
     },
-    fileName: path.basename(filePath),
+    fileName: path.basename(normalizedPath),
   })
 
   const module = { exports: {} }
-  const factory = new Function('module', 'exports', transpiled.outputText)
-  factory(module, module.exports)
+  moduleCache.set(normalizedPath, module.exports)
 
-  if (!(exportName in module.exports)) {
+  const localRequire = (specifier) => {
+    if (!specifier.startsWith('.') && !specifier.startsWith('/')) {
+      return nodeRequire(specifier)
+    }
+
+    const resolved = resolveLocalModulePathSync(normalizedPath, specifier)
+    return loadTsModuleSync(resolved)
+  }
+
+  const factory = new Function('module', 'exports', 'require', transpiled.outputText)
+  factory(module, module.exports, localRequire)
+  moduleCache.set(normalizedPath, module.exports)
+  return module.exports
+}
+
+const loadTsObject = async (filePath, exportName) => {
+  const exportsObject = loadTsModuleSync(filePath)
+  if (!(exportName in exportsObject)) {
     throw new Error(`Missing export "${exportName}" in ${filePath}`)
   }
-  return module.exports[exportName]
+  return exportsObject[exportName]
 }
 
 const flattenKeys = (value, prefix = '') => {
