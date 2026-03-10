@@ -12,7 +12,7 @@ import type {
 } from './types'
 import { FIGHTS_DB_NAME, FIGHTS_DB_VERSION, FIGHTS_STORE_NAME, FOLDER_FIGHT_ID_PREFIX, META_ACTIVE_FIGHT_KEY, META_STORE_NAME } from './presets'
 import { PORTRAIT_ADJUST_DEFAULT, buildMatchupKeyFromNames, clamp, enforceFileNameSideOrder, normalizePortraitAdjust, normalizeSlideImageAdjustments, normalizeToken, parseMatchupFromFileName, resolveFightVariantLabel, resolveFightVariantLocaleFromFileName, stripFileExtension, toMatchupDisplayNameFromFileName } from './helpers'
-import { parseTemplateOrderTokens, parseVsImportText } from './importer'
+import { parseTemplateOrderTokens } from './importer'
 import { resolveSharedFightVisualAdjustments } from './domain/fightVariants'
 
 const isDefaultPortraitAdjust = (value: ReturnType<typeof normalizePortraitAdjust>) =>
@@ -47,8 +47,8 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
   const variantLocale: FightVariantLocale =
     variantLocaleRaw === 'pl' ? 'pl' : variantLocaleRaw === 'en' || variantLocaleRaw === 'eng' ? 'en' : 'unknown'
   const variantLabel = typeof raw.variantLabel === 'string' ? raw.variantLabel.trim() : ''
-  const txtFileName = typeof raw.txtFileName === 'string' ? raw.txtFileName.trim() : ''
-  const txtContent = typeof raw.txtContent === 'string' ? raw.txtContent : ''
+  const fileName = typeof raw.fileName === 'string' ? raw.fileName.trim() : ''
+  const payload = raw.payload as ParsedVsImport | undefined
   const portraitAUrl = typeof raw.portraitAUrl === 'string' ? raw.portraitAUrl.trim() : ''
   const portraitBUrl = typeof raw.portraitBUrl === 'string' ? raw.portraitBUrl.trim() : ''
   const portraitAAdjust = normalizePortraitAdjust(raw.portraitAAdjust)
@@ -60,14 +60,14 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
     ? raw.warnings.filter((item): item is string => typeof item === 'string')
     : []
 
-  if (!folderKey || !txtFileName || !txtContent) return null
+  if (!folderKey || !fileName || !payload) return null
 
-  const fallbackMatchup = parseMatchupFromFileName(txtFileName)
+  const fallbackMatchup = parseMatchupFromFileName(fileName)
   const matchupKey =
     matchupKeyRaw ||
     (fallbackMatchup
       ? buildMatchupKeyFromNames(fallbackMatchup.leftName, fallbackMatchup.rightName)
-      : normalizeToken(matchName || toMatchupDisplayNameFromFileName(txtFileName)))
+      : normalizeToken(matchName || toMatchupDisplayNameFromFileName(fileName)))
 
   return {
     folderKey,
@@ -76,8 +76,8 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
     matchupKey,
     variantLocale,
     variantLabel,
-    txtFileName,
-    txtContent,
+    fileName,
+    payload,
     portraitAUrl,
     portraitBUrl,
     portraitAAdjust,
@@ -108,21 +108,21 @@ export const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[
     if (record.warnings?.length) {
       warnings.push(...record.warnings.map((item) => `[${record.displayName || record.folderKey}] ${item}`))
     }
-    const parsed = parseVsImportText(record.txtContent)
-    if (!parsed.ok) {
-      warnings.push(`[${record.displayName || record.folderKey}] ${parsed.error}`)
+    const normalizedPayload = normalizePersistedImport(record.payload)
+    if (!normalizedPayload) {
+      warnings.push(`[${record.displayName || record.folderKey}] Invalid JSON payload.`)
       return
     }
 
-    const payloadOrdered = enforceFileNameSideOrder(parsed.data, record.txtFileName)
-    const fileMatchup = parseMatchupFromFileName(record.txtFileName)
+    const payloadOrdered = enforceFileNameSideOrder(normalizedPayload, record.fileName)
+    const fileMatchup = parseMatchupFromFileName(record.fileName)
     const fallbackMatchName = fileMatchup
       ? `${fileMatchup.leftName} vs ${fileMatchup.rightName}`
-      : toMatchupDisplayNameFromFileName(record.txtFileName)
+      : toMatchupDisplayNameFromFileName(record.fileName)
     const name =
       record.matchName ||
       fallbackMatchName ||
-      stripFileExtension(record.txtFileName) ||
+      stripFileExtension(record.fileName) ||
       record.displayName ||
       `${payloadOrdered.fighterAName} vs ${payloadOrdered.fighterBName}`
     const matchupKey =
@@ -131,14 +131,14 @@ export const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[
     const variantLocale =
       record.variantLocale !== 'unknown'
         ? record.variantLocale
-        : resolveFightVariantLocaleFromFileName(record.txtFileName)
+        : resolveFightVariantLocaleFromFileName(record.fileName)
     const variantLabel =
-      record.variantLabel || resolveFightVariantLabel(record.txtFileName, variantLocale)
+      record.variantLabel || resolveFightVariantLabel(record.fileName, variantLocale)
 
     fights.push({
-      id: `${FOLDER_FIGHT_ID_PREFIX}${record.folderKey}::${normalizeToken(record.txtFileName)}`,
+      id: `${FOLDER_FIGHT_ID_PREFIX}${record.folderKey}::${normalizeToken(record.fileName)}`,
       name,
-      fileName: record.txtFileName,
+      fileName: record.fileName,
       createdAt: Date.now() - index,
       source: 'folder',
       matchupKey,
@@ -353,7 +353,7 @@ export const normalizePersistedFight = (value: unknown, index: number): FightRec
       ? raw.id
       : `fight-${Date.now()}-${index}-${Math.random().toString(36).slice(2, 8)}`
   const name = typeof raw.name === 'string' && raw.name.trim() ? raw.name : `${payload.fighterAName} vs ${payload.fighterBName}`
-  const fileName = typeof raw.fileName === 'string' && raw.fileName.trim() ? raw.fileName : `${name}.txt`
+  const fileName = typeof raw.fileName === 'string' && raw.fileName.trim() ? raw.fileName : `${name}.json`
   const createdAtRaw = typeof raw.createdAt === 'number' ? raw.createdAt : Number(raw.createdAt)
   const createdAt = Number.isFinite(createdAtRaw) ? createdAtRaw : Date.now()
   const portraitADataUrl = typeof raw.portraitADataUrl === 'string' ? raw.portraitADataUrl : ''

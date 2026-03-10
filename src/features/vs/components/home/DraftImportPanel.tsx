@@ -1,34 +1,12 @@
 import clsx from 'clsx'
-import { useEffect, useMemo, useState, type ChangeEvent, type DragEvent, type RefObject } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import type { TranslationDictionary } from '../../../../i18n/types'
 import { DEFAULT_TEMPLATE_ORDER } from '../../presets'
-import type { ImportDropTarget, ParsedVsImport, PortraitAdjust, TemplateId, TemplatePreset } from '../../types'
+import type { TemplateId, TemplatePreset } from '../../types'
 
 type DraftImportPanelProps = {
   ui: TranslationDictionary['ui']
-  activeDropTarget: ImportDropTarget | null
-  draftTxtInputRef: RefObject<HTMLInputElement | null>
-  draftPortraitInputRefA: RefObject<HTMLInputElement | null>
-  draftPortraitInputRefB: RefObject<HTMLInputElement | null>
-  draftTxtFileName: string
-  draftPayload: ParsedVsImport | null
-  draftPortraitFileA: File | null
-  draftPortraitFileB: File | null
-  draftPortraitPreviewA: string
-  draftPortraitPreviewB: string
-  draftPortraitAdjustA: PortraitAdjust
-  draftPortraitAdjustB: PortraitAdjust
-  fightStarterTxt: string
   availableTemplates: TemplatePreset[]
-  onDropZoneDragEnter: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
-  onDropZoneDragOver: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
-  onDropZoneDragLeave: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
-  onTxtDrop: (event: DragEvent<HTMLElement>) => void
-  onPortraitDrop: (side: 'a' | 'b') => (event: DragEvent<HTMLElement>) => void
-  onDraftPortraitUpload: (side: 'a' | 'b') => (event: ChangeEvent<HTMLInputElement>) => void
-  onDraftImportFile: (event: ChangeEvent<HTMLInputElement>) => void | Promise<void>
-  onCopyImportBlueprint: () => void
-  onCreateFightFromDraft: () => void
   onCreateFightScaffold: (matchName: string, templateOrder: TemplateId[]) => Promise<string>
 }
 
@@ -283,9 +261,9 @@ export function DraftImportPanel({
             <p className="mt-2">{ui.generatedFilesHelp}</p>
             <ul className="mt-3 space-y-1 text-xs text-slate-400">
               <li>`{ui.generatedFolderAuto}`</li>
-              <li>`&lt;auto number&gt; {preparedMatchName}.txt`</li>
-              <li>`&lt;auto number&gt; {preparedMatchName} PL.txt`</li>
-              <li>`&lt;auto number&gt; {preparedMatchName} Scans.txt`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName} EN.json`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName} PL.json`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName} Scans.json`</li>
               <li>`img/`</li>
             </ul>
           </div>

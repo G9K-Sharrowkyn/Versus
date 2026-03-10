@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "portraits": {
+    "a": "",
+    "b": ""
+  },
+  "templates": {
+    "fight-analytics": {
+      "profileMode": "VS"
+    },
+    "crucial-feats": {
+      "leftImages": [],
+      "rightImages": []
+    },
+    "victory-archive": {
+      "leftImages": [],
+      "rightImages": []
+    }
+  }
+}

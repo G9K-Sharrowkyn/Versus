@@ -1,0 +1,206 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Postać A",
+    "version": "Prime Earth",
+    "stats": {
+      "speed": 84,
+      "battleIq": 86,
+      "hax": 93,
+      "stamina": 94,
+      "style": 80,
+      "experience": 94,
+      "skills": 75
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.",
+      "mentality": "Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.",
+      "quote": "Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!"
+    },
+    "victories": [
+      "The Divine",
+      "Teen Titans (korupcja drużynowa / przytłoczenie)",
+      "Superboy",
+      "Wonder Girl",
+      "Psimon (wygnanie / BFR)"
+    ],
+    "profile": {
+      "powers": [
+        "Demoniczna projekcja energii, korupcja, opętanie, regeneracja, podróże międzywymiarowe."
+      ],
+      "tools": [
+        "Kształtowanie i kontrola domeny oraz presja na dusze."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "pochłonął Heart of Darkness",
+      "podbił i skaził niezliczone światy",
+      "zmartwychwstał po wyrwaniu serca",
+      "zregenerował uszkodzenie oka w czasie walki",
+      "przemienił Teen Titans w Dark Titans"
+    ]
+  },
+  "fighterB": {
+    "name": "Postać B",
+    "version": "Ziemia-616",
+    "stats": {
+      "speed": 94,
+      "battleIq": 92,
+      "hax": 98,
+      "stamina": 96,
+      "style": 85,
+      "experience": 98,
+      "skills": 79
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.",
+      "mentality": "Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.",
+      "quote": "Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu."
+    },
+    "victories": [
+      "Silver Surfer (uwięzienie / bariera)",
+      "Sphinx (rozwiązanie przez pętlę czasu)",
+      "Poppup / Poppupianie (rezultat pożarcia świata)",
+      "Imperium Skrulli / Tarnax IV",
+      "Mad Celestials (wynik kontekstowy)"
+    ],
+    "profile": {
+      "powers": [
+        "Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii."
+      ],
+      "tools": [
+        "Absorpcja energii planetarnej lub kosmicznej."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym",
+      "wytrzymał Agamotto w jego własnej domenie",
+      "uwięził Silver Surfera na Ziemi niewykrywalną barierą",
+      "pożarł Poppup zamiast Ziemi",
+      "pokonał Sphinxa, zamykając go w wiecznej pętli czasu"
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TABLICA TAKTYCZNA // TRIGON VS GALACTUS",
+      "subtitle": "Demon kontra Pożeracz",
+      "leftHeader": "SIATKA KATEGORII",
+      "rightHeader": "REALIA WALKI",
+      "linearLabel": "ODCINEK LINIOWY",
+      "chaosLabel": "ODCINEK CHAOSU",
+      "lane": "Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo."
+    },
+    "character-profile": {
+      "headline": "PROFIL POSTACI",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
+      "leftTitle": "Trigon",
+      "rightTitle": "Galactus",
+      "powersLabel": "MOCE",
+      "toolsLabel": "NARZĘDZIA",
+      "weaknessesLabel": "SŁABOŚCI"
+    },
+    "crucial-feats": {
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
+      "leftTitle": "Trigon",
+      "rightTitle": "Galactus",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "ANALITYKA WALKI",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threatLevel": "KOSMICZNY",
+      "integrity": "99.4%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "subtitle": "Mapa średniego profilu statystyk",
+      "leftHeader": "PRZEWAGI TRIGONA",
+      "rightHeader": "PRZEWAGI GALACTUSA",
+      "drawHeader": "STREFY REMISU",
+      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK"
+    },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avgLabel": "ŚREDNI WYNIK",
+      "leftTitle": "Trigon",
+      "rightTitle": "Galactus"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa",
+      "line1": "Galactus wygrywa porównanie na papierze, 92.67 vs 87.33.",
+      "line2": "Trigon pozostaje groźny, gdy korupcja i logika domeny zastępują normalną symetrię walki.",
+      "line3": "Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten pojedynek."
+    },
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "subtitle": "Jak walka zmienia się z minuty na minutę.",
+      "aCurve": "62,68,77,86,91",
+      "bCurve": "88,90,87,83,78"
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
+      "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
+      "implikacja": "Kto kontroluje znaczenie pola walki, kontroluje gałąź całego starcia."
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?"
+    },
+    "fight-simulation": {
+      "headline": "SYMULACJA WALKI",
+      "subtitle": "Przebieg walki przez trzy fazy."
+    },
+    "stat-trap": {
+      "headline": "PUŁAPKA STATYSTYK",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "question": "Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?"
+    },
+    "verdict-matrix": {
+      "headline": "MATRYCA WERDYKTU",
+      "subtitle": "Wygrana zależy od zasad walki.",
+      "colLeft": "NEUTRALNE POLE",
+      "colRight": "DOMENA TRIGONA",
+      "rowTop": "DOBRZE NAKARMIONY",
+      "rowBottom": "WYGŁODNIAŁY",
+      "case1": "Galactus 8/10",
+      "case2": "Galactus 6.5/10",
+      "case3": "Trigon 6/10",
+      "case4": "Trigon 7.5/10"
+    },
+    "fight-card": {
+      "fightTitle": "Trigon vs Galactus",
+      "topColorA": "#7f1d1d",
+      "topColorB": "#ef4444",
+      "bottomColorA": "#6d28d9",
+      "bottomColorB": "#facc15"
+    }
+  }
+}

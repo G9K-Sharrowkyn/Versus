@@ -1,143 +1,75 @@
-# React + TypeScript + Vite
+# VS Graphic Studio
 
-## Fights Auto-Import (Folder Scan)
+## Fight Data
 
-App supports two import modes:
+The app now uses a JSON-only fight format. Each fight folder in [Fights](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/Fights) should look like this:
 
-1. Manual Add in the `Add` panel (TXT + portraits upload).
-2. Auto-import from local `Fights` directory on page reload.
-
-Auto-import path:
-
-`VS/App/vs-graphic-studio/Fights`
-
-Fallback path (also supported):
-
-`VS/Fights`
-
-Expected structure:
-
-```txt
+```text
 Fights/
-  1. Superman vs King Hyperion/
-    Superman vs King Hyperion.txt
-    Superman vs King Hyperion PL.txt
-    1.jpg   (or .jpeg/.png/.webp/.avif)
-    2.jpg   (or .jpeg/.png/.webp/.avif)
-  2. Knull vs Odin/
-    Knull vs Odin.txt
-    Knull vs Odin PL.txt
-    1.png
-    2.png
+  1 Superman vs King Hyperion/
+    1 Superman vs King Hyperion EN.json
+    1 Superman vs King Hyperion PL.json
+    1 Superman vs King Hyperion Scans.json
+    img/
 ```
 
 Rules:
 
-- Multiple `.txt` files per folder are supported.
-- Language variants are detected by filename suffix:
-  - `... PL.txt` -> Polish variant
-  - `... EN.txt` -> English variant
-  - no suffix -> auto (defaults to English when paired with `PL` file)
-- Folder variants are grouped by matchup in `Folder Fights` (for example EN + PL pair in one framed group).
-- Portrait A must be `1.*`, portrait B must be `2.*`.
-- If `1.*` / `2.*` are missing but there are at least 2 image files, app falls back to the first two images (alphabetical).
+- `EN.json` stores the English locale payload.
+- `PL.json` stores the Polish locale payload.
+- `Scans.json` stores shared portraits and template images.
+- Files are read strictly as UTF-8 JSON through `fs.readFile(..., 'utf8')` and `JSON.parse`.
+- There is no legacy text import flow and no alternate encoding fallback.
+
+## Add New Fight
+
+Use the `Add New Fight` panel on the home screen:
+
+1. Enter the matchup name in `Character A vs Character B` format.
+2. Choose the templates and reorder them.
+3. Confirm creation.
+
+The app will create the next numbered folder with:
+
+- `... EN.json`
+- `... PL.json`
+- `... Scans.json`
+- `img/`
+
+Those JSON files are scaffolded and ready to fill in.
+
+## Folder Scan
+
+Folder fights are scanned from:
+
+- `VS/App/vs-graphic-studio/Fights`
+
+Fallback path:
+
+- `VS/Fights`
+
+Behavior:
+
+- EN/PL variants are grouped into one matchup card.
+- Portraits are read from `Scans.json` under `portraits.a` and `portraits.b`.
+- Shared template images are read from `Scans.json`.
 - Folder fights are rebuilt from disk on refresh and shown in `Folder Fights`.
-- Manual fights stay in `Manual Fights`.
-- Portrait framing (`x/y/scale`) can be edited for both folder and manual fights and is persisted in local storage/IndexedDB.
-- Preferred matchup variant selection (EN/PL) is persisted. Search uses the selected variant for the matchup.
+- Manual fights from storage can still appear in `Manual Fights`.
+- Portrait framing is persisted in [Fights/.fight-visuals.json](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/Fights/.fight-visuals.json).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-## Encoding + i18n quality gate
-
-Project is hardened for bilingual PL/EN rendering:
-
-- Source files are expected to be UTF-8.
-- TXT import decoder uses:
-  1. UTF-8 (fatal),
-  2. fallback `windows-1250`,
-  3. quality heuristic + Unicode NFC normalization.
-
-Run checks locally:
+## Dev
 
 ```bash
-npm run i18n:audit
-npm run i18n:keys
+npm install
+npm run dev
 ```
 
-What each script does:
+Important scripts:
 
-- `i18n:audit` scans project text files for mojibake markers and replacement chars.
-- `i18n:keys` verifies parity of `src/i18n/en.ts` and `src/i18n/pl.ts` keys.
+- `npm run dev`
+- `npm run build`
+- `npm run lint`
+- `npm run i18n:audit`
+- `npm run i18n:keys`
 
-Build runs both checks automatically via `prebuild`, and CI runs the same gate in `.github/workflows/quality.yml`.
+`prebuild` runs `i18n:audit` and `i18n:keys`.

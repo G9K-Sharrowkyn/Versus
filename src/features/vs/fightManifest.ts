@@ -1,4 +1,15 @@
-import type { Category, FighterFact, Language, TemplateId, TemplatePreset } from './types'
+import type {
+  Category,
+  FighterFact,
+  FightLocaleJsonFighter,
+  FightLocaleJsonTemplateBlock,
+  FightLocaleJsonV1,
+  FightScansJsonV1,
+  FightStatId,
+  Language,
+  TemplateId,
+  TemplatePreset,
+} from './types'
 
 export type FightManifestLocale = Language
 
@@ -8,6 +19,9 @@ export type FightTemplateFieldSchema = {
   key: string
   aliases?: string[]
   starter?: boolean
+  jsonKey?: string
+  source?: 'fight' | 'scans'
+  valueType?: 'string' | 'string-array'
 }
 
 export type FightTemplateManifest = {
@@ -121,9 +135,24 @@ export type FightManifest = {
 type TemplateTranslationSlice = Record<TemplateId, TemplatePreset>
 
 const text = (pl: string, en: string): LocalizedText => ({ pl, en })
-const field = (key: string, aliases: string[] = [], starter = true): FightTemplateFieldSchema => ({ key, aliases, starter })
+const field = (
+  key: string,
+  aliases: string[] = [],
+  starter = true,
+  options: Pick<FightTemplateFieldSchema, 'jsonKey' | 'source' | 'valueType'> = {},
+): FightTemplateFieldSchema => ({
+  key,
+  aliases,
+  starter,
+  jsonKey: options.jsonKey,
+  source: options.source,
+  valueType: options.valueType,
+})
 const joinFieldLabel = (entry: FightTemplateFieldSchema) => [entry.key, ...(entry.aliases || [])].join(' | ')
 const localize = (copy: LocalizedText, language: FightManifestLocale) => copy[language]
+const toCamelCase = (value: string) =>
+  value.replace(/[_-]([a-z0-9])/gi, (_, char: string) => char.toUpperCase())
+const getFieldJsonKey = (entry: FightTemplateFieldSchema) => entry.jsonKey || toCamelCase(entry.key)
 
 export const fightManifest: FightManifest = {
   fightUi: {
@@ -338,6 +367,8 @@ export const fightManifest: FightManifest = {
         field('left_title'),
         field('right_title'),
         field('feat_label'),
+        field('left_image', [], true, { jsonKey: 'leftImages', source: 'scans', valueType: 'string-array' }),
+        field('right_image', [], true, { jsonKey: 'rightImages', source: 'scans', valueType: 'string-array' }),
       ],
     },
     {
@@ -355,7 +386,7 @@ export const fightManifest: FightManifest = {
         field('subtitle', ['purpose', 'note']),
         field('threat_level'),
         field('integrity', ['data_integrity']),
-        field('profile_mode'),
+        field('profile_mode', [], true, { jsonKey: 'profileMode', source: 'scans' }),
         field('scale'),
       ],
       defaultFields: {
@@ -408,6 +439,8 @@ export const fightManifest: FightManifest = {
         field('left_title'),
         field('right_title'),
         field('win_badge'),
+        field('left_image', [], true, { jsonKey: 'leftImages', source: 'scans', valueType: 'string-array' }),
+        field('right_image', [], true, { jsonKey: 'rightImages', source: 'scans', valueType: 'string-array' }),
       ],
       defaultFields: {
         archive_label: text('ARCHIWUM', 'ARCHIVE'),
@@ -890,172 +923,124 @@ const ensureStarterTemplateOrder = (input?: TemplateId[]) => {
   return deduped
 }
 
-export const buildFightStarterTxt = (
+const FIGHT_STAT_IDS: FightStatId[] = [
+  'strength',
+  'speed',
+  'durability',
+  'battleIq',
+  'hax',
+  'stamina',
+  'style',
+  'experience',
+  'skills',
+]
+
+const buildEmptyStatsRecord = () =>
+  Object.fromEntries(FIGHT_STAT_IDS.map((statId) => [statId, null])) as Partial<
+    Record<FightStatId, number | null>
+  >
+
+const buildEmptyFighterJson = (
   language: FightManifestLocale,
-  templateOrder?: TemplateId[],
-) => {
-  const lines: string[] = []
-  const categories = getFightDefaultCategories(language)
-  const common = getFightCommonCopy(language)
-  const selectedOrder = ensureStarterTemplateOrder(templateOrder)
-  const selectedTemplates = selectedOrder
-    .map((templateId) => getFightTemplateManifest(templateId))
-    .filter((template): template is FightTemplateManifest => Boolean(template))
+  fighterName: string,
+): FightLocaleJsonFighter => ({
+  name: fighterName.trim() || (language === 'pl' ? 'Postać' : 'Character'),
+  version: '',
+  stats: buildEmptyStatsRecord(),
+  dossier: {
+    style: '',
+    advantage: '',
+    mentality: '',
+    quote: '',
+  },
+  victories: Array.from({ length: 5 }, () => ''),
+  profile: {
+    powers: Array.from({ length: 2 }, () => ''),
+    tools: Array.from({ length: 2 }, () => ''),
+    weaknesses: Array.from({ length: 2 }, () => ''),
+  },
+  crucialFeats: Array.from({ length: 5 }, () => ''),
+})
 
-  lines.push(language === 'pl' ? '1. (Nazwa Postaci A)' : '1. (Character A Name)')
-  lines.push(language === 'pl' ? '2. (Staty Postaci A)' : '2. (Character A Stats)')
-  categories.forEach((category) => lines.push(`- ${category.label}:`))
-  lines.push(language === 'pl' ? '3. (Dossier Postaci A)' : '3. (Character A Dossier)')
-  lines.push(`- ${common.style}:`)
-  lines.push(`- ${common.advantage}:`)
-  lines.push(`- ${common.mentality}:`)
-  lines.push(language === 'pl' ? '- Cytat:' : '- Quote:')
-  lines.push(language === 'pl' ? '4. (Pokonani przez Postać A)' : '4. (Defeated by Character A)')
-  lines.push('-')
-  lines.push(language === 'pl' ? '5. (Nazwa Postaci B)' : '5. (Character B Name)')
-  lines.push(language === 'pl' ? '6. (Staty Postaci B)' : '6. (Character B Stats)')
-  categories.forEach((category) => lines.push(`- ${category.label}:`))
-  lines.push(language === 'pl' ? '7. (Dossier Postaci B)' : '7. (Character B Dossier)')
-  lines.push(`- ${common.style}:`)
-  lines.push(`- ${common.advantage}:`)
-  lines.push(`- ${common.mentality}:`)
-  lines.push(language === 'pl' ? '- Cytat:' : '- Quote:')
-  lines.push(language === 'pl' ? '8. (Pokonani przez Postać B)' : '8. (Defeated by Character B)')
-  lines.push('-')
-  lines.push(language === 'pl' ? '9. (Kolejność templatek użytych w tej walce)' : '9. (Template order used in this fight)')
-  selectedOrder.forEach((templateId) => lines.push(`- ${templateId}`))
-  lines.push('')
-  lines.push(language === 'pl' ? '10. (Profil Postaci A)' : '10. (Character A Profile)')
-  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
-  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
-  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
-  lines.push(language === 'pl' ? '11. (Najważniejsze Wyczyny Postaci A)' : '11. (Character A Crucial Feats)')
-  lines.push('-')
-  lines.push(language === 'pl' ? '12. (Profil Postaci B)' : '12. (Character B Profile)')
-  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
-  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
-  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
-  lines.push(language === 'pl' ? '13. (Najważniejsze Wyczyny Postaci B)' : '13. (Character B Crucial Feats)')
-  lines.push('-')
-  lines.push('')
-  lines.push(language === 'pl' ? '# Template blocks (tylko pola zmienne)' : '# Template blocks (variable fields only)')
+const buildTemplateStarterValue = (templateId: TemplateId, entry: FightTemplateFieldSchema) => {
+  if (entry.valueType === 'string-array') {
+    if (
+      templateId === 'crucial-feats' ||
+      templateId === 'victory-archive'
+    ) {
+      return Array.from({ length: 5 }, () => '')
+    }
+    return []
+  }
 
-  selectedTemplates.forEach((template) => {
-    lines.push(`Template ${localize(template.blockName, language)}:`)
-    lines.push(`- purpose: ${localize(template.purpose, language)}`)
-    template.variableFields
-      .filter((entry) => entry.starter !== false)
-      .forEach((entry) => lines.push(`- ${joinFieldLabel(entry)}:`))
-    lines.push('')
-  })
+  if (templateId === 'fight-analytics' && getFieldJsonKey(entry) === 'profileMode') {
+    return 'VS'
+  }
 
-  return lines.join('\n')
+  return ''
 }
 
-export const buildFightScaffoldTxt = (
+const buildTemplateStarterBlock = (
+  template: FightTemplateManifest,
+  source: 'fight' | 'scans',
+): FightLocaleJsonTemplateBlock => {
+  const blockEntries = template.variableFields.filter(
+    (entry) => entry.starter !== false && (entry.source || 'fight') === source,
+  )
+
+  return Object.fromEntries(
+    blockEntries.map((entry) => [getFieldJsonKey(entry), buildTemplateStarterValue(template.id, entry)]),
+  )
+}
+
+const buildSelectedTemplateBlocks = (
+  templateOrder: TemplateId[],
+  source: 'fight' | 'scans',
+) =>
+  Object.fromEntries(
+    templateOrder
+      .map((templateId) => getFightTemplateManifest(templateId))
+      .filter((template): template is FightTemplateManifest => Boolean(template))
+      .map((template) => [template.id, buildTemplateStarterBlock(template, source)])
+      .filter(([, block]) => Object.keys(block).length),
+  ) as Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>
+
+export const buildFightStarterJson = (
+  language: FightManifestLocale,
+  templateOrder?: TemplateId[],
+) =>
+  buildFightScaffoldFightJson(
+    language,
+    language === 'pl' ? 'Postać A' : 'Character A',
+    language === 'pl' ? 'Postać B' : 'Character B',
+    templateOrder,
+  )
+
+export const buildFightScaffoldFightJson = (
   language: FightManifestLocale,
   fighterAName: string,
   fighterBName: string,
   templateOrder?: TemplateId[],
-) => {
-  const categories = getFightDefaultCategories(language)
-  const common = getFightCommonCopy(language)
-  const finalId = getFightFinalTemplateId()
-  const dedupedOrder: TemplateId[] = []
-  const sourceOrder = templateOrder?.length ? templateOrder : getFightTemplateIds()
-  sourceOrder.forEach((templateId) => {
-    if (templateId === finalId) return
-    if (!dedupedOrder.includes(templateId)) dedupedOrder.push(templateId)
-  })
-  dedupedOrder.push(finalId)
-
-  const lines: string[] = []
-  const blankBullets = (count: number) => {
-    for (let index = 0; index < count; index += 1) {
-      lines.push('-')
-    }
+): FightLocaleJsonV1 => {
+  const selectedOrder = ensureStarterTemplateOrder(templateOrder)
+  return {
+    schemaVersion: 1,
+    locale: language,
+    fighterA: buildEmptyFighterJson(language, fighterAName),
+    fighterB: buildEmptyFighterJson(language, fighterBName),
+    templateOrder: selectedOrder,
+    templates: buildSelectedTemplateBlocks(selectedOrder, 'fight'),
   }
-
-  lines.push(`1. ${(fighterAName || (language === 'pl' ? 'Postać A' : 'Character A')).trim()} (Version)`)
-  lines.push(language === 'pl' ? '2. Statystyki Postaci A' : '2. Character A Stats')
-  categories.forEach((category) => lines.push(`- ${category.label}:`))
-  lines.push(language === 'pl' ? '3. Dossier Postaci A' : '3. Character A Dossier')
-  lines.push(`- ${common.style}:`)
-  lines.push(`- ${common.advantage}:`)
-  lines.push(`- ${common.mentality}:`)
-  lines.push(language === 'pl' ? '4. Pokonani przez Postać A' : '4. Defeated by Character A')
-  blankBullets(5)
-  lines.push(`5. ${(fighterBName || (language === 'pl' ? 'Postać B' : 'Character B')).trim()} (Version)`)
-  lines.push(language === 'pl' ? '6. Statystyki Postaci B' : '6. Character B Stats')
-  categories.forEach((category) => lines.push(`- ${category.label}:`))
-  lines.push(language === 'pl' ? '7. Dossier Postaci B' : '7. Character B Dossier')
-  lines.push(`- ${common.style}:`)
-  lines.push(`- ${common.advantage}:`)
-  lines.push(`- ${common.mentality}:`)
-  lines.push(language === 'pl' ? '8. Pokonani przez Postać B' : '8. Defeated by Character B')
-  blankBullets(5)
-  lines.push(language === 'pl' ? '9. Kolejność templatek użytych w tej walce' : '9. Template order used in this fight')
-  dedupedOrder.forEach((templateId) => lines.push(`- ${templateId}`))
-  lines.push('')
-  lines.push(language === 'pl' ? '10. Profil Postaci A' : '10. Character A Profile')
-  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
-  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
-  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
-  lines.push(language === 'pl' ? '11. Najważniejsze Wyczyny Postaci A' : '11. Character A Crucial Feats')
-  blankBullets(5)
-  lines.push(language === 'pl' ? '12. Profil Postaci B' : '12. Character B Profile')
-  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
-  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
-  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
-  lines.push(language === 'pl' ? '13. Najważniejsze Wyczyny Postaci B' : '13. Character B Crucial Feats')
-  blankBullets(5)
-
-  return lines.join('\n')
 }
 
-export const buildFightScaffoldScansTxt = (templateOrder?: TemplateId[]) => {
-  const finalId = getFightFinalTemplateId()
-  const dedupedOrder: TemplateId[] = []
-  const sourceOrder = templateOrder?.length ? templateOrder : getFightTemplateIds()
-  sourceOrder.forEach((templateId) => {
-    if (templateId === finalId) return
-    if (!dedupedOrder.includes(templateId)) dedupedOrder.push(templateId)
-  })
-  const selectedOrder = new Set(dedupedOrder)
-  const lines: string[] = []
-
-  lines.push('Template Portraits:')
-  lines.push('- portrait_a:')
-  lines.push('- portrait_b:')
-  lines.push('')
-
-  if (selectedOrder.has('fight-analytics')) {
-    lines.push('Template Fight Analytics:')
-    lines.push('- profile_mode: VS')
-    lines.push('')
+export const buildFightScaffoldScansJson = (templateOrder?: TemplateId[]): FightScansJsonV1 => {
+  const selectedOrder = ensureStarterTemplateOrder(templateOrder)
+  return {
+    schemaVersion: 1,
+    portraits: {
+      a: '',
+      b: '',
+    },
+    templates: buildSelectedTemplateBlocks(selectedOrder, 'scans'),
   }
-
-  if (selectedOrder.has('crucial-feats')) {
-    lines.push('Template Crucial Feats:')
-    for (let index = 1; index <= 5; index += 1) {
-      lines.push(`- left_image_${index}:`)
-    }
-    for (let index = 1; index <= 5; index += 1) {
-      lines.push(`- right_image_${index}:`)
-    }
-    lines.push('')
-  }
-
-  if (selectedOrder.has('victory-archive')) {
-    lines.push('Template Victory Archive:')
-    for (let index = 1; index <= 5; index += 1) {
-      lines.push(`- left_image_${index}:`)
-    }
-    for (let index = 1; index <= 5; index += 1) {
-      lines.push(`- right_image_${index}:`)
-    }
-    lines.push('')
-  }
-
-  return lines.join('\n').trimEnd()
 }

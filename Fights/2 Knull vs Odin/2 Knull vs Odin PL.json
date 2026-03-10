@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Knull",
+    "version": "Earth-616",
+    "stats": {
+      "speed": 84,
+      "battleIq": 82,
+      "hax": 98,
+      "stamina": 99,
+      "style": 89,
+      "experience": 100,
+      "skills": 86
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.",
+      "mentality": "Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.",
+      "quote": "Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat."
+    },
+    "victories": [
+      "Celestial",
+      "Sentry",
+      "Silver Surfer",
+      "All-Father Thor"
+    ],
+    "profile": {
+      "powers": [
+        "Śmiercionośność All-Black, kontrola żywej Otchłani, władza nad rojem symbiotów i potężna regeneracja."
+      ],
+      "tools": [
+        "Zatruwanie pola walki, presja symbiotycznego przejęcia i stałe zagrożenie w bliskim kontakcie."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Ścina Celestiala i kuje All-Black.",
+      "Podporządkowuje Celestiali i zmusza ich do służby.",
+      "Przetrwał Wielki Wybuch.",
+      "Zabija niezliczonych bogów swoim Necroswordem.",
+      "Pokrywa Ziemię Otchłanią i gasi słońce."
+    ]
+  },
+  "fighterB": {
+    "name": "Odin",
+    "version": "Earth-616",
+    "stats": {
+      "speed": 81,
+      "battleIq": 96,
+      "hax": 96,
+      "stamina": 89,
+      "style": 92,
+      "experience": 99,
+      "skills": 93
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.",
+      "mentality": "Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.",
+      "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, gdy galaktyki słuchają!"
+    },
+    "victories": [
+      "Infinity",
+      "Seth",
+      "Thanos",
+      "Silver Surfer",
+      "Drax"
+    ],
+    "profile": {
+      "powers": [
+        "Pełny Odinforce, wielkoskalowa projekcja energii, bariery, transmutacja i boska magia."
+      ],
+      "tools": [
+        "Pancerz Destroyera i Miecz Odyna do walki na najwyższym kosmicznym poziomie."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Pochłania siłę życiową Asgardu i skaluje Destroyera.",
+      "Odcina Nezarrowi ramię Mieczem Odyna.",
+      "Przebija nieprzenikalną kopułę stworzoną przez Celestiali.",
+      "Gromadzi moc wszystkich bogów Ziemi.",
+      "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów."
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TABLICA TAKTYCZNA // KNULL VS ODIN",
+      "subtitle": "Rzeźnik Bogów kontra Wszechojciec",
+      "leftHeader": "SIATKA KATEGORII",
+      "rightHeader": "REALIA WALKI",
+      "linearLabel": "ODCINEK LINIOWY",
+      "chaosLabel": "ODCINEK CHAOSU",
+      "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie."
+    },
+    "character-profile": {
+      "headline": "PROFIL POSTACI",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
+      "leftTitle": "Knull",
+      "rightTitle": "Odin",
+      "powersLabel": "MOCE",
+      "toolsLabel": "NARZĘDZIA",
+      "weaknessesLabel": "SŁABOŚCI"
+    },
+    "crucial-feats": {
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
+      "leftTitle": "Knull",
+      "rightTitle": "Odin",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "ANALITYKA WALKI",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threatLevel": "KOSMICZNY",
+      "integrity": "99.4%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "subtitle": "Mapa średniego profilu statystyk",
+      "leftHeader": "PRZEWAGI KNULLA",
+      "rightHeader": "PRZEWAGI ODINA",
+      "drawHeader": "STREFY REMISU",
+      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK",
+      "drawFavorite": "STATYSTYCZNY REMIS"
+    },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avgLabel": "ŚREDNI WYNIK",
+      "leftTitle": "Knull",
+      "rightTitle": "Odin",
+      "winBadge": "W"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy.",
+      "line1": "Na papierze to niemal parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.",
+      "line2": "W praktyce Knull ma czystszą ścieżkę wyniszczenia i domykania walki, gdy kontakt i regeneracja zaczynają się powtarzać.",
+      "line3": "Prawdziwa droga Odina istnieje tylko wtedy, gdy ta pełna konfiguracja daje mu właściwą kontrę na Otchłań."
+    },
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "subtitle": "Jak walka zmienia się z minuty na minutę.",
+      "aCurve": "56,61,67,74,81",
+      "bCurve": "84,79,72,63,55",
+      "yellowWave": "31,35,33,37,34,38,36,40",
+      "phase1": "Odin jest najmocniejszy, gdy pole walki pozostaje uporządkowane, a dystans nadal ma znaczenie.",
+      "phase2": "Knull zyskuje za każdym razem, gdy kontakt się powtarza, a obrażenia zaczynają być wymazywane.",
+      "phase3": "Walka zależy od tego, czy kontrola zamieni się w prawdziwe oczyszczenie, czy tylko w kolejny tymczasowy reset.",
+      "analysis": "Odin wygrywa uporządkowaną wersję tej walki. Knull wygrywa tę, która ciągle wraca."
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
+      "factor": "PRAWDZIWA KONTRA NA OTCHŁAŃ CZY TYLKO BOSKIE OBRAŻENIA",
+      "aValue": "50",
+      "aBonus": "14",
+      "aBonusLabel": "PĘTLA REGENERACJI",
+      "bValue": "50",
+      "bBonus": "15",
+      "regen": "PRAWDZIWE OCZYSZCZENIE",
+      "mechanika": "Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.",
+      "implikacja": "Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.",
+      "psychologia": "Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe."
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?",
+      "line1": "Na papierze to niemal remis, z minimalną przewagą Odina w kategoriach kontroli.",
+      "line2": "W praktyce Knull nadal lekko prowadzi, bo jego regenerację i pętlę ostrza łatwiej przekuć w realne zakończenie walki.",
+      "line3": "Walka wyraźnie przechyla się dopiero wtedy, gdy pełna konfiguracja Odina okazuje się właściwą kontrą na Otchłań.",
+      "quote": "Sam parytet statystyk nie rozwiązuje walki, jeśli nawet idealne obrażenia mogą nie zostać na stałe."
+    },
+    "fight-simulation": {
+      "headline": "SYMULACJA WALKI",
+      "subtitle": "Przebieg walki przez trzy fazy.",
+      "opening": "Knull od razu przejmuje inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie potrafi zatrzymać Otchłań.",
+      "midFight": "Odin odpowiada barierami, dystansem i warstwową energią, próbując nie dopuścić do tego, by walka zsunęła się w wyniszczenie narzucone przez All-Black.",
+      "lateFight": "Końcówka sprowadza się do jednego pytania: czy obrażenia Odina zostają na stałe, czy pętla Knulla znowu resetuje wymianę.",
+      "endCondition": "Prawie remis na papierze nie ma znaczenia, jeśli jedna strona ma czystszą, powtarzalną drogę do finiszu."
+    },
+    "stat-trap": {
+      "headline": "PUŁAPKA STATYSTYK",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "trapTop": "PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA",
+      "trapBottom": "KNULL POTRZEBUJE TYLKO JEDNEJ PĘTLI, ŻEBY WALKA ZACZĘŁA IŚĆ PO JEGO MYŚLI",
+      "example": "Odin może być równy albo minimalnie lepszy w średnich i nadal przegrać, jeśli jego obrażenia są imponujące, ale nie zostają na stałe.",
+      "question": "Kluczowe pytanie: czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?"
+    },
+    "verdict-matrix": {
+      "headline": "MATRYCA WERDYKTU",
+      "subtitle": "Wygrana zależy od zasad walki.",
+      "colLeft": "ODINFORCE KONTRUJE",
+      "colRight": "ODINFORCE ZAWODZI",
+      "rowTop": "KONTROLA UTRZYMANA",
+      "rowBottom": "KONTROLA ZŁAMANA",
+      "case1": "Odin 6.5/10. Jeśli jego moc jest właściwą kontrą na Otchłań, kontrola wreszcie zaczyna dawać trwały efekt.",
+      "case2": "Knull 7/10. Jeśli to tylko ogromne boskie obrażenia, pętla Knulla ostatecznie wygrywa wojnę zasobów.",
+      "case3": "Odin 6.5/10. To wciąż ta sama prawdziwa ścieżka: jeśli Odinforce naprawdę oczyszcza Otchłań, pole walki da się jeszcze przywrócić pod kontrolę.",
+      "case4": "Knull 7/10. To wciąż ta sama prawdziwa ścieżka: jeśli kontrola pęka bez prawdziwego oczyszczenia, Knull ma czystszą drogę do finiszu."
+    },
+    "fight-card": {
+      "fightTitle": "Knull vs Odin",
+      "topColorA": "#08090c",
+      "topColorB": "#b91c1c",
+      "bottomColorA": "#f5c542",
+      "bottomColorB": "#38bdf8"
+    }
+  }
+}

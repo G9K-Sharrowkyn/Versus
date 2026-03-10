@@ -1,0 +1,191 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Postać A",
+    "version": "New 52",
+    "stats": {
+      "speed": 86,
+      "battleIq": 84,
+      "hax": 92,
+      "stamina": 84,
+      "style": 78,
+      "experience": 91,
+      "skills": 80
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.",
+      "mentality": "Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.",
+      "quote": "Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!"
+    },
+    "victories": [
+      "The Butcher Entity",
+      "The Butcher's human host",
+      "Saint Walker, Indigo-1 i Star Sapphire (przytłoczenie grupowe)",
+      "Multiple Manhunters",
+      "Bleez (wewnętrzna dominacja)"
+    ],
+    "profile": {
+      "powers": [
+        "Czerwona, plazmowa emisja Pierścienia. Konstrukty, magia krwi i rytuały. Lot oraz dynamika gniewu powiązana z Butcherem."
+      ],
+      "tools": [
+        "Manipulacja spektrum emocjonalnym i silna presja dystansowa."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Uwięził Butchera w swojej baterii mocy",
+      "Walczył dalej po wyrwaniu serca",
+      "Użył magii krwi, by czytać przyszłość i śledzić ścieżki gniewu",
+      "Przepalił plazmą furii samą strukturę przestrzeni",
+      "Przytłoczył jednocześnie Saint Walkera, Indigo-1 i Star Sapphire"
+    ]
+  },
+  "fighterB": {
+    "name": "Postać B",
+    "version": "Ziemia-616",
+    "stats": {
+      "speed": 80,
+      "battleIq": 81,
+      "hax": 66,
+      "stamina": 98,
+      "style": 81,
+      "experience": 78,
+      "skills": 81
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.",
+      "mentality": "Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.",
+      "quote": "Hulk miażdżyć!"
+    },
+    "victories": [
+      "Sentry",
+      "Doctor Strange",
+      "Iron Man",
+      "Juggernaut",
+      "Arm'Cheddon"
+    ],
+    "profile": {
+      "powers": [
+        "Wzrost siły oparty na gniewie. Regeneracja, fale uderzeniowe i ekstremalna kondycja."
+      ],
+      "tools": [
+        "Nieustanna presja w zwarciu."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Skala World Breakera daje mu kolateralne zniszczenie planety i księżyca",
+      "Wytrzymał poziom wyjścia Sentry'ego",
+      "Zregenerował się po skrajnych obrażeniach",
+      "Przekierował szarżę Juggernauta dzięki taktycznie użytej sile",
+      "Przytłoczył jednocześnie Bi-Beasta i Wendigo"
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TABLICA TAKTYCZNA // ATROCITUS VS HULK",
+      "subtitle": "Rzeźnik kontra Worldbreaker",
+      "leftHeader": "SIATKA KATEGORII",
+      "rightHeader": "REALIA WALKI",
+      "linearLabel": "ODCINEK LINIOWY",
+      "chaosLabel": "ODCINEK CHAOSU",
+      "lane": "Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli zamieni tę strukturę w pętlę powtarzalnego kontaktu."
+    },
+    "character-profile": {
+      "headline": "PROFIL POSTACI",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
+      "leftTitle": "Atrocitus",
+      "rightTitle": "Hulk",
+      "powersLabel": "MOCE",
+      "toolsLabel": "NARZĘDZIA",
+      "weaknessesLabel": "SŁABOŚCI"
+    },
+    "crucial-feats": {
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
+      "leftTitle": "Atrocitus",
+      "rightTitle": "Hulk",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "ANALITYKA WALKI",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threatLevel": "KOSMICZNY",
+      "integrity": "99.2%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "subtitle": "Mapa średniego profilu statystyk",
+      "leftHeader": "PRZEWAGI ATROCITUSA",
+      "rightHeader": "PRZEWAGI HULKA",
+      "drawHeader": "STREFY REMISU",
+      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK"
+    },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avgLabel": "ŚREDNI WYNIK",
+      "leftTitle": "Atrocitus",
+      "rightTitle": "Hulk"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "World Breaker Hulk 6.5/10",
+      "line1": "Atrocitus wygrywa porównanie na papierze, 85.6 vs 83.9.",
+      "line2": "Hulk wygrywa więcej realnych walk, bo powtarzalny kontakt i regeneracja tworzą czystszą ścieżkę kończenia.",
+      "line3": "Atrocitus odwraca ten pojedynek tylko wtedy, gdy dystans i kontrola utrzymują się od początku do końca."
+    },
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "subtitle": "Jak walka zmienia się z minuty na minutę."
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
+      "factor": "KONTROLA GNIEWU VS PĘTLA GAMMA",
+      "implikacja": "Zwycięzcę rozstrzyga to, czy gniew pozostaje kontrolowany z zewnątrz, czy zmienia się w samonapędzającą eskalację gamma."
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?"
+    },
+    "fight-simulation": {
+      "headline": "SYMULACJA WALKI",
+      "subtitle": "Przebieg walki przez trzy fazy."
+    },
+    "stat-trap": {
+      "headline": "PUŁAPKA STATYSTYK",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "question": "Czy Atrocitus utrzyma gniew Hulka na zewnątrz, czy sam zacznie karmić tę pętlę?"
+    },
+    "fight-card": {
+      "fightTitle": "Atrocitus vs Hulk",
+      "topColorA": "#8b1e1e",
+      "topColorB": "#ff5a36",
+      "bottomColorA": "#4ade80",
+      "bottomColorB": "#14532d"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "portraits": {
+    "a": "Turns DC Earth and everyone in it into stone.jpg",
+    "b": "Galactus battles Mephisto.jpg"
+  },
+  "templates": {
+    "crucial-feats": {
+      "leftImages": [
+        "01_6_1_trigon_heart_of_darkness.jpg",
+        "02_6_1_trigon_countless_worlds.jpg",
+        "03_6_1_trigon_resurrection.jpg",
+        "04_6_1_trigon_dark_titans.jpg",
+        "04_6_1_trigon_dark_titans.jpg"
+      ],
+      "rightImages": [
+        "06_6_2_galactus_three_solar_systems.jpg",
+        "07_6_2_galactus_agamotto_realm.jpg",
+        "08_6_2_galactus_silver_surfer_barrier.jpg",
+        "09_6_2_galactus_poppup_devouring.jpg",
+        "10_6_2_galactus_sphinx_time_loop.jpg"
+      ]
+    },
+    "fight-analytics": {
+      "profileMode": "VS"
+    },
+    "victory-archive": {
+      "leftImages": [
+        "01_6_1_trigon_heart_of_darkness.jpg",
+        "04_6_1_trigon_dark_titans.jpg",
+        "04_6_1_trigon_dark_titans.jpg",
+        "04_6_1_trigon_dark_titans.jpg",
+        "05_7_1_trigon_psimon_banishment.jpg"
+      ],
+      "rightImages": [
+        "08_6_2_galactus_silver_surfer_barrier.jpg",
+        "10_6_2_galactus_sphinx_time_loop.jpg",
+        "09_6_2_galactus_poppup_devouring.jpg",
+        "11_7_2_galactus_tarnax_iv.jpg",
+        "12_7_2_galactus_mad_celestials.jpg"
+      ]
+    }
+  }
+}

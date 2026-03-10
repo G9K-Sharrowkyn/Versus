@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "portraits": {
+    "a": "1.webp",
+    "b": "2.jpg"
+  },
+  "templates": {
+    "crucial-feats": {
+      "leftImages": [
+        "01_6_1_knull_decapitates_celestial_allblack.jpg",
+        "Knull_Knulled.jpg",
+        "Knull_BigBang.webp",
+        "Knull_gods.jpg",
+        "02_6_1_knull_covers_earth_in_abyss.jpg"
+      ],
+      "rightImages": [
+        "Odin_Life2.jpg",
+        "Odin_ArmCut.jpg",
+        "Odin_Dome.jpg",
+        "Odin_PowerOfGods.jpg",
+        "Odin_Surtur.jpg"
+      ]
+    },
+    "fight-analytics": {
+      "profileMode": "VS"
+    },
+    "victory-archive": {
+      "leftImages": [
+        "Knull_Celestial.jpg",
+        "Knull_Sentry.jpg",
+        "Knull_Surfer.jpg",
+        "Knull_Jaw2.jpg",
+        "Knull_Storm.jpg"
+      ],
+      "rightImages": [
+        "Odin_Infinity.jpg",
+        "Odin_Seth.jpg",
+        "Odin_Thanos.jpg",
+        "Odin_SS.jpg",
+        "Odin_Drax.jpg"
+      ]
+    }
+  }
+}

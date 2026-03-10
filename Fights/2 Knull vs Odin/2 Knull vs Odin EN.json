@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "fighterA": {
+    "name": "Knull",
+    "version": "Earth-616",
+    "stats": {
+      "strength": 95,
+      "speed": 84,
+      "durability": 97,
+      "battleIq": 82,
+      "hax": 98,
+      "stamina": 99,
+      "style": 89,
+      "experience": 100,
+      "skills": 86
+    },
+    "dossier": {
+      "style": "Aggressive necro-swordsmanship. Knull strikes with devastating force, aiming for swift dismemberment or decapitation of the opponent.",
+      "advantage": "All-Black – the sword that negates immortality. The weapon ignores every form of armor and regeneration, and Knull himself returns to the fight even after total incineration.",
+      "mentality": "Sadistic confidence and lack of fear. He revels in his power, striving for the swift and ruthless execution of every opponent.",
+      "quote": "Ah... I see my reputation precedes me... so I won't waste your time... I am going to kill your world."
+    },
+    "victories": [
+      "Celestial",
+      "Sentry",
+      "Silver Surfer",
+      "All-Father Thor"
+    ],
+    "profile": {
+      "powers": [
+        "All-Black necrosword lethality, living abyss manipulation, symbiote hive control, and high-end regeneration."
+      ],
+      "tools": [
+        "Battlefield corruption, symbiote conversion pressure, and persistent close-range threat."
+      ],
+      "weaknesses": [
+        "Strong anti-abyss or high-intensity light counters can disrupt his core advantages.",
+        "Broad cosmic energy control can force him to spend more effort on recovery and tempo reset."
+      ]
+    },
+    "crucialFeats": [
+      "Decapitates a Celestial and forges All-Black.",
+      "Knulls Celestials and makes them serve.",
+      "Survives Big Bang.",
+      "Kills countless gods with his Necrosword.",
+      "Covers the Earth in Abyss and shuts the sun off."
+    ]
+  },
+  "fighterB": {
+    "name": "Odin",
+    "version": "Earth-616",
+    "stats": {
+      "strength": 92,
+      "speed": 81,
+      "durability": 95,
+      "battleIq": 96,
+      "hax": 96,
+      "stamina": 89,
+      "style": 92,
+      "experience": 99,
+      "skills": 93
+    },
+    "dossier": {
+      "style": "Direct combat with the colossal Odinsword. Odin uses devastating slashes to physically break the opponent's armor and will with pure striking power.",
+      "advantage": "Odinforce and the destructive power of the Odinsword. This weapon releases Ragnarok energy capable of erasing galaxies, and the Odinforce allows him to manipulate matter and time.",
+      "mentality": "Majestic ruler with a violent temperament. Drawing the Odinsword means fighting without any inhibitions – he strikes with a fury that knows no mercy or compromise.",
+      "quote": "Odin is the Sun and the stars and the Moon and more. Odin is the way and the wrath and the wonder! Odin is he who speaks while galaxies obey!"
+    },
+    "victories": [
+      "Infinity",
+      "Seth",
+      "Thanos",
+      "Silver Surfer",
+      "Drax"
+    ],
+    "profile": {
+      "powers": [
+        "Full Odinforce, large-scale energy projection, barriers, transmutation, and divine sorcery."
+      ],
+      "tools": [
+        "Destroyer Armor and Odinsword for top-tier cosmic warfare."
+      ],
+      "weaknesses": [
+        "Output and precision can vary with context, burden, and prolonged conflict.",
+        "Strategic overconfidence can create openings against persistent opponents."
+      ]
+    },
+    "crucialFeats": [
+      "Absorbs Asgard life-force and scales Destroyer.",
+      "Severs Nezarr arm with Odinsword.",
+      "Breaches impenetrable Dome made by Celestials.",
+      "Gathers power from all of the Earth gods.",
+      "Absorbs Surtur, whose destiny is to destroy Asgard and kill gods."
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TACTICAL BOARD // KNULL VS ODIN",
+      "subtitle": "God Butcher versus All-Father",
+      "leftHeader": "CATEGORY GRID",
+      "rightHeader": "FIGHT REALITY",
+      "linearLabel": "LINEAR SEGMENT",
+      "chaosLabel": "CHAOS SEGMENT",
+      "lane": "Odin must turn chaos into structure before Knull turns structure into attrition."
+    },
+    "character-profile": {
+      "headline": "CHARACTER PROFILE",
+      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
+      "leftTitle": "KNULL TOOLKIT",
+      "rightTitle": "ODIN TOOLKIT",
+      "powersLabel": "POWERS",
+      "toolsLabel": "TOOLS",
+      "weaknessesLabel": "WEAKNESSES"
+    },
+    "crucial-feats": {
+      "headline": "CRUCIAL FEATS",
+      "subtitle": "Character scaling through achievements.",
+      "leftTitle": "KNULL SHOWCASE",
+      "rightTitle": "ODIN SHOWCASE",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "FIGHT ANALYTICS",
+      "subtitle": "Two-profile stat readout",
+      "threatLevel": "COSMIC",
+      "integrity": "99.4%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PARAMETER COMPARISON",
+      "subtitle": "Average stat profile map",
+      "leftHeader": "KNULL ADVANTAGES",
+      "rightHeader": "ODIN ADVANTAGES",
+      "drawHeader": "DRAW ZONES",
+      "favoriteLabel": "STAT-BASED FAVORITE",
+      "drawFavorite": "STATISTICAL DRAW"
+    },
+    "victory-archive": {
+      "headline": "Victory Archive",
+      "avgLabel": "AVG SCORE",
+      "leftTitle": "KNULL RECORD",
+      "rightTitle": "ODIN RECORD",
+      "winBadge": "W"
+    },
+    "final-summary": {
+      "headline": "FINAL SUMMARY",
+      "subtitle": "Summary",
+      "winner": "Slight edge Knull, conditional matchup",
+      "line1": "On paper this is near-parity, with Odin holding a microscopic average edge at 92.56 to 92.22.",
+      "line2": "In practice Knull owns the cleaner attrition and finish loop once contact and regeneration start repeating.",
+      "line3": "Odin's real branch exists only if this full war configuration produces the right kind of anti-abyss answer."
+    },
+    "battle-dynamics": {
+      "headline": "BATTLE DYNAMICS",
+      "subtitle": "How the fight changes minute by minute.",
+      "aCurve": "56,61,67,74,81",
+      "bCurve": "84,79,72,63,55",
+      "yellowWave": "31,35,33,37,34,38,36,40",
+      "phase1": "Odin is strongest while the map stays structured and range still matters.",
+      "phase2": "Knull improves every time contact repeats and damage starts getting erased.",
+      "phase3": "The fight turns on whether control becomes purge or just another temporary reset.",
+      "analysis": "Odin wins the cleanly managed version of the fight. Knull wins the one that keeps coming back."
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "The variable that affects the verdict more than ordinary stats.",
+      "factor": "ANTI-ABYSS COUNTER OR JUST DIVINE DAMAGE",
+      "aValue": "50",
+      "aBonus": "14",
+      "aBonusLabel": "REGEN LOOP",
+      "bValue": "50",
+      "bBonus": "15",
+      "regen": "COUNTER PURGE",
+      "mechanika": "Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.",
+      "implikacja": "This is why the same stat table can point to parity while the practical baseline still leans Knull.",
+      "psychologia": "Knull wants repetition. Odin wants one controlled exchange that finally stays solved."
+    },
+    "interpretation": {
+      "headline": "INTERPRETATION",
+      "subtitle": "Who wins the fight on paper?",
+      "line1": "On paper this is almost a draw, with Odin owning a microscopic edge in control categories.",
+      "line2": "In practice Knull still leads because his regeneration and blade loop are easier to convert into a finish.",
+      "line3": "The fight only flips cleanly if Odin's full-loadout output is the right kind of anti-abyss answer.",
+      "quote": "Paper parity does not solve a matchup where the wrong damage can be perfect and still not stick."
+    },
+    "fight-simulation": {
+      "headline": "FIGHT SIMULATION",
+      "subtitle": "The course of the fight across three phases.",
+      "opening": "Knull takes initiative immediately and tests whether standard Odinforce pressure actually checks the abyss.",
+      "midFight": "Odin answers with barriers, spacing, and layered energy, trying to stop the fight from collapsing into Necrosword attrition.",
+      "lateFight": "The ending diverges on one point only: whether Odin's damage sticks or Knull's loop resets the exchange again.",
+      "endCondition": "Near-paper parity does not matter if one side has the cleaner repeatable finish route."
+    },
+    "stat-trap": {
+      "headline": "STAT TRAP",
+      "subtitle": "Why better stats do not guarantee victory",
+      "trapTop": "PAPER PARITY DOES NOT TELL YOU WHAT KIND OF DAMAGE WORKS",
+      "trapBottom": "KNULL ONLY NEEDS ONE LOOP TO START PAYING FOR ITSELF",
+      "example": "Odin can be equal on averages and still lose if the damage is impressive but not permanent.",
+      "question": "Can Odin's control actually convert into the kind of finish Knull cannot regenerate through?"
+    },
+    "verdict-matrix": {
+      "headline": "VERDICT MATRIX",
+      "subtitle": "Victory depends on the rules.",
+      "colLeft": "ODINFORCE COUNTER HOLDS",
+      "colRight": "ODINFORCE COUNTER FAILS",
+      "rowTop": "CONTROL MAINTAINED",
+      "rowBottom": "CONTROL BROKEN",
+      "case1": "Odin 6.5/10. If the output is the right kind of anti-abyss counter, control finally means something permanent.",
+      "case2": "Knull 7/10. If the output is only huge divine damage, Knull's loop eventually wins the resource war.",
+      "case3": "Odin 6.5/10. The same real branch: if Odinforce truly purges the abyss, the map can still be brought back under control.",
+      "case4": "Knull 7/10. The same real branch: once control breaks without a true purge, Knull owns the cleaner finish route."
+    },
+    "fight-card": {
+      "fightTitle": "Knull vs Odin",
+      "topColorA": "#08090c",
+      "topColorB": "#b91c1c",
+      "bottomColorA": "#f5c542",
+      "bottomColorB": "#38bdf8"
+    }
+  }
+}

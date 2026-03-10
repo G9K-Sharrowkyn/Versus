@@ -1,0 +1,183 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Postać A",
+    "version": "Historyczny Prime",
+    "stats": {
+      "speed": 93,
+      "battleIq": 86,
+      "hax": 73,
+      "stamina": 81,
+      "style": 91,
+      "experience": 60,
+      "skills": 86
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.",
+      "mentality": "Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.",
+      "quote": "Bądź jak woda, mój przyjacielu."
+    },
+    "victories": [
+      "Gary Elms (zwycięstwo przez decyzję w boksie)",
+      "Yoichi Nakachi (potwierdzony relacjami nokaut w 11 sekund w walce wyzwaniowej)"
+    ],
+    "profile": {
+      "powers": [
+        "Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń."
+      ],
+      "tools": [
+        "Intercepcja w duchu JKD, kopnięcia niskie, łamanie rytmu i adaptacja między stylami."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Demonstracja one-inch punch na Long Beach",
+      "Pompki na dwóch palcach i pokaz kontroli ciała",
+      "Zwycięstwo o międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem",
+      "Stworzenie Jeet Kune Do przez skuteczne łączenie stylów",
+      "Pokonanie Yoichiego Nakachiego w 11 sekund"
+    ]
+  },
+  "fighterB": {
+    "name": "Postać B",
+    "version": "Historyczny Prime",
+    "stats": {
+      "speed": 89,
+      "battleIq": 93,
+      "hax": 48,
+      "stamina": 95,
+      "style": 90,
+      "experience": 97,
+      "skills": 94
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.",
+      "mentality": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.",
+      "quote": "Fruwaj jak motyl, żądl jak pszczoła."
+    },
+    "victories": [
+      "George Foreman",
+      "Joe Frazier",
+      "Sonny Liston",
+      "Cleveland Williams",
+      "Ernie Terrell"
+    ],
+    "profile": {
+      "powers": [
+        "Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa."
+      ],
+      "tools": [
+        "Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Rope-a-dope przeciw George'owi Foremanowi",
+      "Szczytowa szybkość i precyzja przeciw Clevelandowi Williamsowi",
+      "Wytrzymałość i tolerancja karania w walkach z Joe Frazierem",
+      "Złoty medal olimpijski, Rzym 1960",
+      "Jako pierwszy pięściarz w historii trzykrotnie zdobył tytuł mistrza świata wagi ciężkiej"
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TABLICA TAKTYCZNA // BRUCE VS ALI",
+      "subtitle": "Artysta kontra Bokser",
+      "leftHeader": "SIATKA KATEGORII",
+      "rightHeader": "REALIA WALKI",
+      "linearLabel": "ODCINEK LINIOWY",
+      "chaosLabel": "ODCINEK CHAOSU",
+      "lane": "Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich."
+    },
+    "character-profile": {
+      "headline": "PROFIL POSTACI",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
+      "leftTitle": "Bruce Lee",
+      "rightTitle": "Muhammad Ali",
+      "powersLabel": "MOCE",
+      "toolsLabel": "NARZĘDZIA",
+      "weaknessesLabel": "SŁABOŚCI"
+    },
+    "crucial-feats": {
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
+      "leftTitle": "Bruce Lee",
+      "rightTitle": "Muhammad Ali",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "ANALITYKA WALKI",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threatLevel": "LUDZKI",
+      "integrity": "98.7%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "subtitle": "Mapa średniego profilu statystyk",
+      "leftHeader": "PRZEWAGI BRUCE'A",
+      "rightHeader": "PRZEWAGI ALEGO",
+      "drawHeader": "STREFY REMISU",
+      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK"
+    },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avgLabel": "ŚREDNI WYNIK",
+      "leftTitle": "Bruce Lee",
+      "rightTitle": "Muhammad Ali"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "Muhammad Ali z wyraźną przewagą",
+      "line1": "Ali wygrywa porównanie na papierze, 87.67 vs 78.89.",
+      "line2": "Bruce zmienia bardziej teksturę walki niż tożsamość zwycięzcy.",
+      "line3": "Otwarte zasady zawężają pojedynek, ale nie odwracają bazowego wyniku."
+    },
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "subtitle": "Jak walka zmienia się z minuty na minutę.",
+      "aCurve": "78,74,68,61,54",
+      "bCurve": "62,70,79,88,94"
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?"
+    },
+    "fight-simulation": {
+      "headline": "SYMULACJA WALKI",
+      "subtitle": "Przebieg walki przez trzy fazy."
+    },
+    "stat-trap": {
+      "headline": "PUŁAPKA STATYSTYK",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "question": "Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?"
+    },
+    "fight-card": {
+      "fightTitle": "Bruce Lee vs Muhammad Ali",
+      "topColorA": "#facc15",
+      "topColorB": "#111827",
+      "bottomColorA": "#f8fafc",
+      "bottomColorB": "#60a5fa"
+    }
+  }
+}

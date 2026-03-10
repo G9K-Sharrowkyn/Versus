@@ -1,218 +1,108 @@
-﻿# VS Graphic Studio Architecture
+# VS Graphic Studio Architecture
 
-Ten plik opisuje, jak jest zlozona aplikacja po refaktorze i gdzie szukac konkretnych rzeczy.
+Ten plik opisuje aktualną architekturę po twardym cutoverze z legacy plików tekstowych do `JSON`.
 
 ## Co robi aplikacja
 
-Aplikacja sluzy do budowania i odtwarzania ekranow "versus" na podstawie:
+Aplikacja służy do budowania i odtwarzania ekranów `versus` na podstawie:
 
-- pliku `.txt` z opisem walki,
-- dwoch portretow zawodnikow,
+- `EN.json` / `PL.json` z danymi walki,
+- `Scans.json` ze wspólnymi portretami i grafikami template'ów,
 - zapisanych walk lokalnych,
 - walk zeskanowanych z folderu / API.
 
-UI ma 4 glowne tryby:
+UI ma 4 główne tryby:
 
-1. `search` - fullscreen z iframe wyszukiwarki.
-2. `home` - panel importu i biblioteka walk.
-3. `fight-intro` - fullscreen intro oparte o `aaa.html`.
-4. `fight` - glowny podglad i sekwencja template'ow.
+1. `search`
+2. `home`
+3. `fight-intro`
+4. `fight`
 
-## Jak uruchomic
-
-```bash
-npm install
-npm run dev
-```
-
-Najwazniejsze skrypty:
-
-- `npm run dev` - lokalny dev server Vite.
-- `npm run build` - TypeScript build + Vite build.
-- `npm run lint` - ESLint.
-- `npm run i18n:audit` - kontrola kodowania tekstow.
-- `npm run i18n:keys` - kontrola kluczy i18n.
-
-`prebuild` automatycznie odpala `i18n:audit` i `i18n:keys`.
-
-## Mapa projektu
+## Najważniejsze pliki
 
 ### Root
 
-- `src/App.tsx`
-  Glowny kontener aplikacji. Po ostatnim refaktorze jest cienkim kontenerem, ktory skleja hooki, domene i widoki.
-- `aaa.html`
-  Wrapper dla intro fight flow.
-- `APP_ARCHITECTURE.md`
+- [src/App.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/App.tsx)
+  Główny kontener aplikacji.
+- [vite.config.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/vite.config.ts)
+  Dev API do skanu `Fights/**`, tworzenia folderów walk i zapisu ustawień grafik.
+- [APP_ARCHITECTURE.md](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/APP_ARCHITECTURE.md)
   Ten plik.
 
 ### `src/features/vs`
 
-- `types.ts`
-  Glowne typy domenowe: fighterzy, walki, template'y, stany widokow.
-- `presets.ts`
-  Presety template'ow, motywow, ramek i wartosci startowych.
-- `helpers.ts`
-  Male funkcje pomocnicze: normalizacja, parsowanie nazw, style obrazow, handoff dla morphingu.
-- `importer.ts`
-  Parsowanie `.txt` i budowanie payloadu importu.
-- `storage.ts`
+- [types.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/types.ts)
+  Typy domenowe i JSON schema payloadów walk.
+- [fightManifest.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/fightManifest.ts)
+  Jedno źródło prawdy dla stałych fight-viewera, template’ów i generatorów scaffoldów JSON.
+- [importer.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/importer.ts)
+  Parser JSON payloadów walk i helpery dla template’ów.
+- [storage.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/storage.ts)
   IndexedDB/local persistence, merge walk z folderu, migracje legacy storage.
+- [helpers.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/helpers.ts)
+  Normalizacja, style obrazów i pomocnicze utility runtime.
 
 ### `src/features/vs/components`
 
-- `HomeView.tsx`
-  Ekran `home`: kompozycja sekcji importu i biblioteki walk.
-- `components/home/*`
-  Atomowe sekcje `home`: header, panel draft importu, panel biblioteki i karta walki.
-- `FightPreviewStage.tsx`
-  Shell podgladu fight view: toolbar + skalowany preview frame.
-- `TemplateRenderer.tsx`
-  Przelacznik layout/template -> konkretny komponent preview.
-- `PortraitEditorModal.tsx`
-  Modal do korekty kadrowania portretow.
-- `SearchMorphOverlay.tsx`
-  Overlay morphingu miedzy search i intro/search.
-- `AdjustableTemplateImage.tsx`
-  Edycja pozycji/zoomu obrazow w template'ach.
-- `FightScenarioCanvas.tsx`
-  Canvas dla niektorych scen fight.
-- `LightningCanvas.tsx`
-  Canvas efektow piorunow.
+- [HomeView.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/HomeView.tsx)
+  Ekran `home`: kreator nowej walki i biblioteka.
+- [components/home/DraftImportPanel.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/home/DraftImportPanel.tsx)
+  Generator folderu walki i scaffoldów JSON.
+- [FightPreviewStage.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/FightPreviewStage.tsx)
+  Shell preview z toolbar.
+- [TemplateRenderer.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/TemplateRenderer.tsx)
+  Routing `TemplateId -> komponent`.
+- [PortraitEditorModal.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/PortraitEditorModal.tsx)
+  Modal do korekty portretów.
 
 ### `src/features/vs/hooks`
 
-- `useAnimatedCursor.ts`
-  Efekt kursora i relay pozycji kursora z iframe'ow.
-- `usePreviewScale.ts`
-  Skalowanie preview do dostepnej przestrzeni.
-- `useVsDraftImport.ts`
-  Caly flow draft importu, drag/drop i edytora portretow.
-- `useVsPersistence.ts`
+- [useVsPersistence.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/hooks/useVsPersistence.ts)
   Restore, persistence i live refresh walk.
-- `useVsTransitions.ts`
-  Przejscia `search -> intro -> fight -> search` oraz bridge `postMessage`.
-- `useScopedCycleIndex.ts`
-  Lokalny helper do cyklicznych par slajdow bez efektow resetujacych.
+- [useVsTransitions.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/hooks/useVsTransitions.ts)
+  Przejścia `search -> intro -> fight -> search`.
 
 ### `src/features/vs/domain`
 
-- `fightState.ts`
-  Mapowanie `FightRecord -> runtime state` pod template'y.
-- `fightFactory.ts`
-  Tworzenie rekordow walk manualnych z draftu importu.
-- `fightLibrary.ts`
-  Selektory biblioteki i grupowanie walk folderowych.
+- [fightState.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/domain/fightState.ts)
+  Mapowanie `FightRecord -> runtime state`.
+- [fightLibrary.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/domain/fightLibrary.ts)
+  Grupowanie walk folderowych i manualnych.
 
-### `src/features/vs/templates`
+## Jak płynie stan
 
-- `statTemplates.tsx`
-  Template'y statystyczne.
-- `cardTemplates.tsx`
-  Template'y kart i winner CV.
-- `contentTemplates.tsx`
-  Cienki barrel eksportujacy template'y content-heavy.
-- `templates/content/*`
-  Osobne implementacje template'ow content-heavy oraz fallback `UnknownTemplate`.
-- `templates/content/blank/*`
-  Ekrany narracyjne i warunkowe (`fight-card`, `final-summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `direct-verdict`, `verdict-matrix`).
+1. Użytkownik tworzy nowy folder walki w `home`.
+2. `vite.config.ts` zapisuje `EN.json`, `PL.json`, `Scans.json` i `img/`.
+3. Skan folderów odczytuje JSON-y przez `fs.readFile(..., 'utf8')` + `JSON.parse`.
+4. [importer.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/importer.ts) buduje `ParsedVsImport`.
+5. [fightState.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/domain/fightState.ts) składa runtime state pod template’y.
+6. [TemplateRenderer.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/TemplateRenderer.tsx) wybiera konkretny widok.
+7. [storage.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/storage.ts) zapisuje lokalne rekordy i przywraca preferencje.
 
-### Inne katalogi
+## Ważne zasady
 
-- `src/i18n`
-  Slowniki i typy tlumaczen.
-- `public/assets`
-  Statyczne assety graficzne.
-- `public/standalone`
-  CSS/JS dla `aaa.html`.
+- Runtime nie czyta już legacy plików tekstowych.
+- Runtime nie używa alternatywnych kodowań, heurystyk dekodowania ani warstw compat dla dawnych plików tekstowych.
+- `fightManifest.ts` jest źródłem prawdy dla stałych napisów fight-viewera i template’ów.
+- `EN.json` / `PL.json` przechowują dane zmienne walki.
+- `Scans.json` przechowuje portrety i wspólne obrazy template’ów.
 
-## Jak plynie stan
+## Gdzie co zmieniać
 
-`App.tsx` sklada glowny stan runtime z hookow i domeny:
+### Chcesz zmienić wygląd home
 
-- aktywna walka,
-- aktywny template i kolejnosc template'ow,
-- dane fighterow,
-- dane importu draft,
-- stan przejsc `search -> intro -> fight -> search`,
-- lokalne preferencje wariantow i persistence.
+- [src/features/vs/components/HomeView.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/HomeView.tsx)
+- [src/features/vs/components/home](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/components/home)
 
-Przeplyw w skrocie:
+### Chcesz zmienić schemat danych walki
 
-1. Uzytkownik laduje `.txt` i dwa portrety na `home`.
-2. `importer.ts` buduje `ParsedVsImport`.
-3. `useVsDraftImport.ts` tworzy rekord draftu albo `useVsPersistence.ts` odtwarza zapisane walki.
-4. `fightState.ts` sklada runtime state pod template'y.
-5. `TemplateRenderer.tsx` wybiera konkretny widok z `templates/`.
-6. `FightPreviewStage.tsx` renderuje preview i toolbar.
-7. `storage.ts` zapisuje walki i odczytuje dane z IndexedDB / legacy storage.
+- [src/features/vs/types.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/types.ts)
+- [src/features/vs/fightManifest.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/fightManifest.ts)
+- [src/features/vs/importer.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/importer.ts)
+- [TEMPLATE_DATA_REQUIREMENTS.md](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/TEMPLATE_DATA_REQUIREMENTS.md)
 
-## Gdzie co zmieniac
+### Chcesz zmienić skan folderu albo zapis JSON
 
-### Chcesz zmienic wyglad ekranu home
-
-Edytuj:
-
-- `src/features/vs/components/HomeView.tsx`
-- `src/features/vs/components/home/*`
-
-### Chcesz zmienic shell preview / toolbar
-
-Edytuj:
-
-- `src/features/vs/components/FightPreviewStage.tsx`
-
-### Chcesz dodac albo podmienic template
-
-Edytuj:
-
-- `src/features/vs/fightManifest.ts` - kanoniczna definicja template'u i copy.
-- `src/features/vs/components/TemplateRenderer.tsx` - routing do komponentu.
-- odpowiedni plik w `src/features/vs/templates/`.
-- dla ekranow narracyjnych najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
-
-### Chcesz zmienic import `.txt`
-
-Edytuj:
-
-- `src/features/vs/importer.ts`
-- ewentualnie podmoduly w `src/features/vs/templates/content/` gdy template korzysta z dodatkowych pol blokowych.
-
-### Chcesz zmienic storage lub skan folderu
-
-Edytuj:
-
-- `src/features/vs/storage.ts`
-- `src/features/vs/hooks/useVsPersistence.ts`
-
-### Chcesz zmienic intro / standalone animacje
-
-Edytuj:
-
-- `aaa.html`
-- `public/standalone/aaa.css`
-- `public/standalone/aaa.js`
-
-## Persistence
-
-Aplikacja korzysta z dwoch warstw persistence:
-
-- aktualny storage oparty o IndexedDB,
-- fallback / migracje ze starych kluczy `localStorage`.
-
-Najwazniejsze rzeczy:
-
-- lista walk jest zapisywana lokalnie,
-- aktywna walka tez jest zapamietywana,
-- preferowany wariant jezykowy dla danego matchup jest trzymany osobno.
-
-## Co dalej warto jeszcze rozbic
-
-Najbardziej sensowne kolejne kroki:
-
-1. wyniesc efekty persistence z `App.tsx` do osobnego hooka,
-2. wyniesc logike przejsc search/intro/fight do osobnego hooka,
-3. rozbic `aaa.html` / `public/standalone/aaa.*` na mniejsze moduly,
-4. rozwazyc code-splitting dla ciezszych template'ow i canvasow.
-
-
+- [vite.config.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/vite.config.ts)
+- [src/features/vs/storage.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/storage.ts)
+- [src/features/vs/hooks/useVsPersistence.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/hooks/useVsPersistence.ts)

@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 1,
+  "portraits": {
+    "a": "Tags UI Goku a few times.jpeg",
+    "b": "Saitama can achieve flight.jpg"
+  },
+  "templates": {
+    "crucial-feats": {
+      "leftImages": [
+        "Tags UI Goku a few times.jpeg",
+        "Unaffected by Android 17's Self-Destruction.png",
+        "No sells a Kamehameha from SSB Goku.jpeg",
+        "Detects and Counters attacks coming from a different dimension.jpg",
+        "Belmod.png"
+      ],
+      "rightImages": [
+        "Serious Punch Squared... generates an explosion that.png",
+        "Saitama time travels to reverse causality.png",
+        "Can freely grab and move hyperspace.png",
+        "Saitama can achieve flight.jpg",
+        "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
+      ]
+    },
+    "fight-analytics": {
+      "profileMode": "VS"
+    },
+    "victory-archive": {
+      "leftImages": [
+        "11_7_1_jiren_hit.jpg",
+        "12_7_1_jiren_maji_kayo.jpg",
+        "13_7_1_jiren_golden_frieza.jpg",
+        "14_7_1_jiren_kale.jpg",
+        "15_7_1_jiren_vegeta.jpg"
+      ],
+      "rightImages": [
+        "16_7_2_saitama_boros.jpg",
+        "17_7_2_saitama_elder_centipede.jpg",
+        "18_7_2_saitama_orochi.jpg",
+        "19_7_2_saitama_evil_ocean_water.jpg",
+        "20_7_2_saitama_garou_zero_punch.jpg"
+      ]
+    }
+  }
+}

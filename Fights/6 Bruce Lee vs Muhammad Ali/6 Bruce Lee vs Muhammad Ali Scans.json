@@ -1,0 +1,41 @@
+{
+  "schemaVersion": 1,
+  "portraits": {
+    "a": "one-inch punch.avif",
+    "b": "06_6_2_ali_cleveland_speed.jpg"
+  },
+  "templates": {
+    "crucial-feats": {
+      "leftImages": [
+        "01_6_1_bruce_one_inch_punch.jpg",
+        "finger push-ups.webp",
+        "03_6_1_bruce_gary_elms_record.jpg",
+        "04_6_1_bruce_jkd_adaptation.jpg",
+        "Yoichi Nakachi.jpg"
+      ],
+      "rightImages": [
+        "05_6_2_ali_rope_a_dope.jpg",
+        "06_6_2_ali_cleveland_speed.jpg",
+        "07_6_2_ali_frazier_endurance.jpg",
+        "gold.webp",
+        "14_7_2_ali_ernie_terrell.jpg"
+      ]
+    },
+    "fight-analytics": {
+      "profileMode": "VS"
+    },
+    "victory-archive": {
+      "leftImages": [
+        "Gary Elms.jpg",
+        "Yoichi Nakachi.jpg"
+      ],
+      "rightImages": [
+        "05_6_2_ali_rope_a_dope.jpg",
+        "07_6_2_ali_frazier_endurance.jpg",
+        "12_7_2_ali_sonny_liston.jpg",
+        "06_6_2_ali_cleveland_speed.jpg",
+        "14_7_2_ali_ernie_terrell.jpg"
+      ]
+    }
+  }
+}

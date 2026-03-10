@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Jiren",
+    "version": "Dragon Ball Super",
+    "stats": {
+      "speed": 96,
+      "battleIq": 88,
+      "hax": 62,
+      "stamina": 91,
+      "style": 93,
+      "experience": 91,
+      "skills": 94
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Przytłaczająca bariera energetyczna i refleks. Jego ki jest tak potężne, że samo w sobie stanowi nieprzeniknioną obronę i ostateczną ofensywę.",
+      "mentality": "Stoicki absolutysta. Walczy bez zbędnych słów i emocji, idąc najkrótszą drogą do całkowitej dominacji nad przeciwnikiem.",
+      "quote": "Nie ma znaczenia, jak wielu słabeuszy zbierze się razem. Jesteście niczym przed absolutną siłą."
+    },
+    "victories": [
+      "Hit",
+      "Maji Kayo",
+      "Golden Frieza (zdominowany)",
+      "Kale (tymczasowe unieszkodliwienie)",
+      "Vegeta (Super Saiyan Blue) (kontekstowe zdominowanie)"
+    ],
+    "profile": {
+      "powers": [
+        "Ekstremalna emisja ki, techniki barierowe oraz elitarna szybkość i refleks."
+      ],
+      "tools": [
+        "Bardzo wydajny styl uderzeń przy minimalnym ruchu."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Kilkukrotnie trafia UI Goku.",
+      "Niewzruszony po ataku samozniszczenia Androida 17.",
+      "Niewzruszony po ataku Kamehameha od SSB Goku.",
+      "Wykrywa i kontruje ataki z innych wymiarów.",
+      "Potężniejszy niż Bóg Zniszczenia z jego wszechświata."
+    ]
+  },
+  "fighterB": {
+    "name": "Saitama",
+    "version": "One Punch Man",
+    "stats": {
+      "speed": 90,
+      "battleIq": 70,
+      "hax": 80,
+      "stamina": 98,
+      "style": 66,
+      "experience": 74,
+      "skills": 70
+    },
+    "dossier": {
+      "style": "",
+      "advantage": "Niezmierzona siła i odporność. Nie posiada limitów – każde jego uderzenie ma potencjał kończący, a on sam pozostaje niewrażliwy na większość ataków.",
+      "mentality": "Znudzony i beztroski profesjonalista. Nie traktuje walki poważnie, dopóki ktoś nie zmusi go do wysiłku, na który czeka z nadzieją.",
+      "quote": "100 pompek, 100 brzuszków, 100 przysiadów i 10 kilometrów biegu KAŻDEGO DNIA!!!"
+    },
+    "victories": [
+      "Boros",
+      "Elder Centipede",
+      "Orochi",
+      "Evil Ocean Water (neutralizacja)",
+      "Garou (Cosmic Fear Mode) (decydujący wynik zależny od linii czasu)"
+    ],
+    "profile": {
+      "powers": [
+        "Ekstremalna siła fizyczna, wytrzymałość, kondycja i wzrost mocy w długim starciu."
+      ],
+      "tools": [
+        "Bezpośredni atak z bliska i szybka adaptacja w ciągu walki."
+      ],
+      "weaknesses": []
+    },
+    "crucialFeats": [
+      "Cios na serio tworzy próżnię w kosmosie.",
+      "Jego cios cofa przyczynowość.",
+      "Łapie i kopie portale hiperprzestrzenne.",
+      "Zdolność lodu dzięki pierdom.",
+      "Poważnie kichnięcie wydmuchuje gaz z Jowisza."
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TABLICA TAKTYCZNA // JIREN VS SAITAMA",
+      "subtitle": "Dyscyplina kontra Bezgraniczność",
+      "leftHeader": "SIATKA KATEGORII",
+      "rightHeader": "REALIA WALKI",
+      "linearLabel": "ODCINEK LINIOWY",
+      "chaosLabel": "ODCINEK CHAOSU",
+      "lane": "Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie."
+    },
+    "character-profile": {
+      "headline": "PROFIL POSTACI",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
+      "leftTitle": "Jiren",
+      "rightTitle": "Saitama",
+      "powersLabel": "MOCE",
+      "toolsLabel": "NARZĘDZIA",
+      "weaknessesLabel": "SŁABOŚCI"
+    },
+    "crucial-feats": {
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
+      "leftTitle": "Jiren",
+      "rightTitle": "Saitama",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "ANALITYKA WALKI",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threatLevel": "KOSMICZNY",
+      "integrity": "99.3%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "subtitle": "Mapa średniego profilu statystyk",
+      "leftHeader": "PRZEWAGI JIRENA",
+      "rightHeader": "PRZEWAGI SAITAMY",
+      "drawHeader": "STREFY REMISU",
+      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK"
+    },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avgLabel": "ŚREDNI WYNIK",
+      "leftTitle": "Jiren",
+      "rightTitle": "Saitama",
+      "winBadge": "W"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "Jiren prowadzi, ale Saitama ma żywą późną gałąź",
+      "line1": "Jiren wygrywa porównanie na papierze, 89.67 vs 81.22.",
+      "line2": "Jego domyślny układ bierze się z lepszej kontroli otwarcia i czystszej struktury finiszu.",
+      "line3": "Saitama odwraca walkę tylko wtedy, gdy przetrwanie zmienia się w prawdziwą eskalację i gałąź anomalii staje się aktywna."
+    },
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "subtitle": "Jak walka zmienia się z minuty na minutę.",
+      "aCurve": "91,87,79,68,56",
+      "bCurve": "39,43,52,66,81",
+      "yellowWave": "28,31,30,34,33,38,37,44",
+      "phase1": "Jiren zaczyna wysoko, bo presja, bariery i czyste odczyty mają największe znaczenie na początku.",
+      "phase2": "Linia Saitamy rośnie tylko wtedy, gdy pierwszy prawdziwy finisz nie trzyma.",
+      "phase3": "Jiren szybko traci przewagę, gdy walka przechodzi z kontroli otwarcia do późnej eskalacji.",
+      "analysis": "Jiren wygrywa czystszy start. Saitama wygrywa bardziej brudną przyszłą wersję walki."
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
+      "factor": "KONTROLA OTWARCIA VS CZAS NA ESKALACJĘ",
+      "aValue": "50",
+      "aBonus": "15",
+      "aBonusLabel": "WCZESNE OKNO FINISZU",
+      "bValue": "50",
+      "bBonus": "14",
+      "regen": "PÓŹNA ESKALACJA WALKI",
+      "mechanika": "Przewaga Jirena żyje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia się dopiero wtedy, gdy to okno zawiedzie wystarczająco mocno.",
+      "implikacja": "Jeśli Jiren utrzyma walkę we wczesnej fazie, wygrywa czysto. Jeśli walka się wymknie, Saitama staje się groźniejszym silnikiem przyszłej walki.",
+      "psychologia": "Jiren chce rozwiązać walkę, zanim stanie się dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwność się wydarzyła."
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?",
+      "line1": "Jiren ma czystszy start, lepsze odczyty i bardziej niezawodną strukturę wczesnego finiszu.",
+      "line2": "Saitama zachowuje realną późną gałąź tylko dlatego, że jego przeżywalność może zamienić przyszłą wersję walki w coś gorszego.",
+      "line3": "Na papierze przewaga należy do Jirena, ale walka przestaje być papierowa, jeśli przetrwanie zamienia się w eskalację.",
+      "quote": "Początek należy do Jirena. Zagrożenie należy do tego, co go przeżyje."
+    },
+    "fight-simulation": {
+      "headline": "SYMULACJA WALKI",
+      "subtitle": "Przebieg walki przez trzy fazy.",
+      "opening": "Jiren od razu przejmuje kontrolę przez presję, spacing i efektywność.",
+      "midFight": "Saitama bardziej przetrwa niż dyktuje i próbuje wytrzymać na tyle długo, by wymiana zaczęła się zmieniać.",
+      "lateFight": "Walka rozdziela się w zależności od tego, czy Jiren kończy wcześnie, czy Saitama przetrwa do eskalacji.",
+      "endCondition": "Jiren wygrywa, jeśli kończy pierwszą wersję walki. Saitama wygrywa, jeśli przetrwa do silniejszej drugiej wersji."
+    },
+    "stat-trap": {
+      "headline": "PUŁAPKA STATYSTYK",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "trapTop": "PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI",
+      "trapBottom": "ESKALACJA MOŻE STWORZYĆ GORSZĄ DRUGĄ WERSJĘ",
+      "example": "Jiren może kontrolować start i nadal przegrać późniejszą wymianę, jeśli pierwszy finisz nigdy naprawdę nie nastąpi.",
+      "question": "Czy Jiren zdoła skończyć walkę, zanim przetrwanie zamieni się w eskalację?"
+    },
+    "fight-card": {
+      "fightTitle": "Jiren vs Saitama",
+      "topColorA": "#dc2626",
+      "topColorB": "#9ca3af",
+      "bottomColorA": "#facc15",
+      "bottomColorB": "#ef4444"
+    }
+  }
+}

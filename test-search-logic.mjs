@@ -2,9 +2,9 @@ const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 
 const stripFileExtension = (value) => value.replace(/\.[^.]+$/, '').trim()
-const stripTxtDecoratorSuffix = (value) =>
-  value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
-const normalizeFightFileBaseName = (value) => stripTxtDecoratorSuffix(stripFileExtension(value))
+const stripFightFileDecoratorSuffix = (value) =>
+  value.replace(/\.(?:txt|json)\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
+const normalizeFightFileBaseName = (value) => stripFightFileDecoratorSuffix(stripFileExtension(value))
 
 const normalizeToken = (value) =>
   value
@@ -57,20 +57,20 @@ const findFightByQuery = (fights, query, preferredVariantByMatchup) => {
 
 const fights = [
   {
-    id: 'folder::2 Knull vs Odin::2knullvsodintxt',
+    id: 'folder::2 Knull vs Odin::2knullvsodinenjson',
     name: 'Knull vs Odin',
-    fileName: '2 Knull vs Odin.txt',
+    fileName: '2 Knull vs Odin EN.json',
     matchupKey: 'knull::odin'
   },
   {
-    id: 'folder::2 Knull vs Odin::2knullvsodinpltxt',
+    id: 'folder::2 Knull vs Odin::2knullvsodinpljson',
     name: 'Knull vs Odin PL',
-    fileName: '2 Knull vs Odin PL.txt',
+    fileName: '2 Knull vs Odin PL.json',
     matchupKey: 'knull::odin'
   }
 ];
 
-const queries = ['Knull vs Odin', 'knull vs odin', '2 Knull vs Odin', 'Knull vs Odin.txt'];
+const queries = ['Knull vs Odin', 'knull vs odin', '2 Knull vs Odin', 'Knull vs Odin.json'];
 
 queries.forEach(query => {
   const result = findFightByQuery(fights, query, {});

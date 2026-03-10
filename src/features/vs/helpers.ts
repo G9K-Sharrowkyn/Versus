@@ -323,9 +323,10 @@ export const AVERAGE_DRAW_THRESHOLD = 1
 export const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
 export const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 export const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
-export const stripTxtDecoratorSuffix = (value: string) =>
-  value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
-export const normalizeFightFileBaseName = (value: string) => stripTxtDecoratorSuffix(stripFileExtension(value))
+export const stripFightFileDecoratorSuffix = (value: string) =>
+  value.replace(/\.(?:txt|json)\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
+export const normalizeFightFileBaseName = (value: string) =>
+  stripFightFileDecoratorSuffix(stripFileExtension(value))
 
 export const splitFightNameLocaleSuffix = (value: string): { base: string; locale: FightVariantLocale } => {
   const normalized = value.replace(/[_]+/g, ' ').trim()

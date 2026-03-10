@@ -7,20 +7,20 @@ import {
 
 const fights = [
   {
-    id: 'folder::2knullvsodintxt',
+    id: 'folder::2knullvsodinenjson',
     name: 'Knull vs Odin',
-    fileName: '2 Knull vs Odin.txt',
+    fileName: '2 Knull vs Odin EN.json',
     matchupKey: 'knull::odin'
   },
   {
-    id: 'folder::2knullvsodinpltxt',
+    id: 'folder::2knullvsodinpljson',
     name: 'Knull vs Odin PL',
-    fileName: '2 Knull vs Odin PL.txt',
+    fileName: '2 Knull vs Odin PL.json',
     matchupKey: 'knull::odin'
   }
 ];
 
-const queries = ['Knull vs Odin', 'knull vs odin', '2 Knull vs Odin', 'Knull vs Odin.txt'];
+const queries = ['Knull vs Odin', 'knull vs odin', '2 Knull vs Odin', 'Knull vs Odin.json'];
 
 queries.forEach(query => {
   const result = findFightByQuery(fights, query, {});

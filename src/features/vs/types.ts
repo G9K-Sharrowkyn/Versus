@@ -19,6 +19,17 @@ export type Fighter = {
 }
 
 export type Language = 'pl' | 'en'
+export type FightStatId =
+  | 'strength'
+  | 'speed'
+  | 'durability'
+  | 'battleIq'
+  | 'hax'
+  | 'stamina'
+  | 'style'
+  | 'experience'
+  | 'skills'
+
 export type TemplateId =
   | 'character-profile'
   | 'crucial-feats'
@@ -59,6 +70,53 @@ export type ScoreRow = {
 export type ParsedStat = {
   label: string
   value: number
+}
+
+export type FightLocaleJsonTemplateValue =
+  | string
+  | number
+  | boolean
+  | null
+  | string[]
+  | number[]
+
+export type FightLocaleJsonTemplateBlock = Record<string, FightLocaleJsonTemplateValue>
+
+export type FightLocaleJsonFighter = {
+  name: string
+  version: string
+  stats: Partial<Record<FightStatId, number | null>>
+  dossier: {
+    style: string
+    advantage: string
+    mentality: string
+    quote: string
+  }
+  victories: string[]
+  profile: {
+    powers: string[]
+    tools: string[]
+    weaknesses: string[]
+  }
+  crucialFeats: string[]
+}
+
+export type FightLocaleJsonV1 = {
+  schemaVersion: 1
+  locale: Language
+  fighterA: FightLocaleJsonFighter
+  fighterB: FightLocaleJsonFighter
+  templateOrder: TemplateId[]
+  templates: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>
+}
+
+export type FightScansJsonV1 = {
+  schemaVersion: 1
+  portraits: {
+    a: string
+    b: string
+  }
+  templates: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>
 }
 
 export type ParsedVsImport = {
@@ -151,7 +209,6 @@ export type FightScenarioId =
   | 'trade-chaos'
 export type FightScenarioLead = 'a' | 'b'
 
-export type ImportDropTarget = 'txt' | 'a' | 'b'
 export type SearchMorphHandoff = { x: number; y: number; width: number; height: number }
 export type PortraitAdjust = { x: number; y: number; scale: number }
 export type PortraitEditorState =
@@ -189,8 +246,8 @@ export type FolderFightScanRecord = {
   matchupKey: string
   variantLocale: FightVariantLocale
   variantLabel: string
-  txtFileName: string
-  txtContent: string
+  fileName: string
+  payload: ParsedVsImport
   portraitAUrl: string
   portraitBUrl: string
   portraitAAdjust?: PortraitAdjust

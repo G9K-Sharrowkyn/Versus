@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "locale": "pl",
+  "fighterA": {
+    "name": "Iron Specter",
+    "version": "Earth-91",
+    "stats": {
+      "strength": 88,
+      "speed": 94,
+      "durability": 79,
+      "battleIq": 91,
+      "hax": 72,
+      "stamina": 86,
+      "style": 89,
+      "experience": 84,
+      "skills": 90
+    },
+    "dossier": {
+      "style": "Wysokie tempo presji i kontrola kątów.",
+      "advantage": "Zaawansowane czytanie pola walki.",
+      "mentality": "Wygrać szybko, zanim zacznie się wyniszczenie.",
+      "quote": "Trzymaj to czysto, trzymaj to szybko."
+    },
+    "victories": [
+      "Titan Prime",
+      "Nova Jackal",
+      "Vanguard-11",
+      "Chrono Viper"
+    ],
+    "profile": {
+      "powers": [
+        "Szybkościowa fizjologia klasy human-plus."
+      ],
+      "tools": [
+        "Precyzyjne uderzenia i resetowanie kątów."
+      ],
+      "weaknesses": [
+        "Niższa wytrzymałość w długim wyniszczeniu."
+      ]
+    },
+    "crucialFeats": [
+      "Konsekwentna presja w wysokim tempie.",
+      "Czyta wejścia pod kątem i natychmiast kontruje."
+    ]
+  },
+  "fighterB": {
+    "name": "Crimson Warden",
+    "version": "Ruin Sector-3",
+    "stats": {
+      "strength": 93,
+      "speed": 81,
+      "durability": 95,
+      "battleIq": 84,
+      "hax": 87,
+      "stamina": 94,
+      "style": 82,
+      "experience": 92,
+      "skills": 83
+    },
+    "dossier": {
+      "style": "Powolna presja i bezpośrednia gra zderzeniowa.",
+      "advantage": "Potężne pętle regeneracji.",
+      "mentality": "Przetrwać fazę pierwszą i złamać morale.",
+      "quote": "Potrzebuję tylko jednej długiej rundy."
+    },
+    "victories": [
+      "Atlas Rex",
+      "Night Reactor",
+      "Iron Monk",
+      "Helix Wolf"
+    ],
+    "profile": {
+      "powers": [
+        "Ogromna wytrzymałość i regeneracja."
+      ],
+      "tools": [
+        "Presja z bliska i kontrola wyniszczenia."
+      ],
+      "weaknesses": [
+        "Słabsze otwarcie i mniejsza kontrola inicjatywy."
+      ]
+    },
+    "crucialFeats": [
+      "Pozostaje aktywny głęboko w wyniszczeniu.",
+      "Zamienia powtarzane wymiany w rosnącą przewagę."
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "fight-analytics",
+    "parameter-comparison",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "x-factor",
+    "interpretation",
+    "fight-simulation",
+    "stat-trap",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "lane": "Niebieski wygrywa sprint. Czerwony wygrywa wyniszczenie."
+    },
+    "final-summary": {
+      "winner": "Warunkowa przewaga: Crimson Warden",
+      "line1": "Niebieski dominuje szybkość i okna precyzji.",
+      "line2": "Czerwony dominuje wytrzymałość, regenerację i presję długiej walki.",
+      "line3": "Wynik zależy od zasad końcowych i tempa faz."
+    }
+  }
+}

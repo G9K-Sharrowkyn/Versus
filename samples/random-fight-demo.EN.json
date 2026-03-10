@@ -1,0 +1,115 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "fighterA": {
+    "name": "Iron Specter",
+    "version": "Earth-91",
+    "stats": {
+      "strength": 88,
+      "speed": 94,
+      "durability": 79,
+      "battleIq": 91,
+      "hax": 72,
+      "stamina": 86,
+      "style": 89,
+      "experience": 84,
+      "skills": 90
+    },
+    "dossier": {
+      "style": "High tempo pressure and angle control.",
+      "advantage": "Advanced battlefield reading.",
+      "mentality": "Win early before attrition starts.",
+      "quote": "Keep it clean, keep it fast."
+    },
+    "victories": [
+      "Titan Prime",
+      "Nova Jackal",
+      "Vanguard-11",
+      "Chrono Viper"
+    ],
+    "profile": {
+      "powers": [
+        "Speed-focused human-plus physiology."
+      ],
+      "tools": [
+        "Precision striking and angle resets."
+      ],
+      "weaknesses": [
+        "Lower durability in long attrition scenarios."
+      ]
+    },
+    "crucialFeats": [
+      "Consistent high-tempo pressure.",
+      "Reads and punishes angle entries."
+    ]
+  },
+  "fighterB": {
+    "name": "Crimson Warden",
+    "version": "Ruin Sector-3",
+    "stats": {
+      "strength": 93,
+      "speed": 81,
+      "durability": 95,
+      "battleIq": 84,
+      "hax": 87,
+      "stamina": 94,
+      "style": 82,
+      "experience": 92,
+      "skills": 83
+    },
+    "dossier": {
+      "style": "Slow pressure with direct collision game.",
+      "advantage": "Massive regeneration loops.",
+      "mentality": "Survive phase one and break morale.",
+      "quote": "I only need one long round."
+    },
+    "victories": [
+      "Atlas Rex",
+      "Night Reactor",
+      "Iron Monk",
+      "Helix Wolf"
+    ],
+    "profile": {
+      "powers": [
+        "Heavy durability and regeneration."
+      ],
+      "tools": [
+        "Close-range pressure and attrition control."
+      ],
+      "weaknesses": [
+        "Lower opening speed and less initiative control."
+      ]
+    },
+    "crucialFeats": [
+      "Stays active deep into attrition.",
+      "Turns repeated exchanges into momentum."
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "fight-analytics",
+    "parameter-comparison",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "x-factor",
+    "interpretation",
+    "fight-simulation",
+    "stat-trap",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "lane": "Blue wins the sprint. Red wins the attrition war."
+    },
+    "final-summary": {
+      "winner": "Conditional edge: Crimson Warden",
+      "line1": "Blue dominates speed and precision windows.",
+      "line2": "Red dominates durability, regeneration, and long-fight pressure.",
+      "line3": "Outcome swings by end condition and phase pacing."
+    }
+  }
+}

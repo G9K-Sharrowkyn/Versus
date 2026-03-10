@@ -4,7 +4,8 @@ import path from 'node:path'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { parseFightImageIndex } from './scripts/fightImageIndex.js'
-import { decodeImportTextBytes, INVALID_TEXT_ENCODING_ERROR } from './src/shared/textDecoding'
+import { parseFightJsonFiles } from './src/features/vs/importer'
+import type { FightLocaleJsonV1, FightScansJsonV1, ParsedVsImport } from './src/features/vs/types'
 
 const FIGHTS_DIR_CANDIDATES = [
   path.resolve(__dirname, 'Fights'),
@@ -12,7 +13,7 @@ const FIGHTS_DIR_CANDIDATES = [
 ]
 const IMAGE_FILE_PATTERN = /^([12])\.(jpe?g|png|webp|avif)$/i
 const ANY_IMAGE_FILE_PATTERN = /\.(jpe?g|png|webp|avif)$/i
-const TXT_FILE_PATTERN = /\.txt(?:\s*(?:pl|en|eng|polski|english))?$/i
+const JSON_FILE_PATTERN = /\.json(?:\s*(?:pl|en|eng|polski|english))?$/i
 const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
@@ -36,8 +37,8 @@ type ScanFightRecord = {
   matchupKey: string
   variantLocale: 'pl' | 'en' | 'unknown'
   variantLabel: string
-  txtFileName: string
-  txtContent: string
+  fileName: string
+  payload: ParsedVsImport
   portraitAUrl: string
   portraitBUrl: string
   portraitAAdjust: { x: number; y: number; scale: number }
@@ -80,11 +81,11 @@ const normalizeToken = (value: string) =>
     .replace(/[^a-z0-9]+/g, '')
 
 const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
-const stripTxtDecoratorSuffix = (value: string) =>
-  value.replace(/\.txt\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
-const normalizeFightFileBaseName = (value: string) => stripTxtDecoratorSuffix(stripFileExtension(value))
+const stripFightFileDecoratorSuffix = (value: string) =>
+  value.replace(/\.(?:txt|json)\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
+const normalizeFightFileBaseName = (value: string) => stripFightFileDecoratorSuffix(stripFileExtension(value))
 const isSharedScansFile = (fileName: string) => {
-  if (!TXT_FILE_PATTERN.test(fileName)) return false
+  if (!JSON_FILE_PATTERN.test(fileName)) return false
   const normalizedBase = normalizeFightFileBaseName(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
   return SHARED_SCANS_FILE_PATTERN.test(normalizedBase)
 }
@@ -224,61 +225,6 @@ const readJsonBody = async (req: IncomingMessage) =>
     req.on('error', reject)
   })
 
-const parseTemplateBlockFields = (raw: string, blockName: string) => {
-  const lines = raw.replace(/\r/g, '').split('\n')
-  const blockHeading = `Template ${blockName}:`
-  const fields: Record<string, string> = {}
-  let collecting = false
-
-  for (const line of lines) {
-    const trimmed = line.trim()
-    if (!trimmed) {
-      if (collecting) break
-      continue
-    }
-    if (/^Template .+:$/.test(trimmed)) {
-      if (collecting) break
-      collecting = trimmed.toLowerCase() === blockHeading.toLowerCase()
-      continue
-    }
-    if (!collecting) continue
-    const match = trimmed.match(/^(?:-\s*)?([^:=]+)\s*[:=]\s*(.+)$/)
-    if (!match) continue
-    fields[normalizeToken(match[1] || '')] = (match[2] || '').trim()
-  }
-
-  return fields
-}
-
-const pickFieldValue = (fields: Record<string, string>, keys: string[]) => {
-  for (const key of keys) {
-    const value = fields[normalizeToken(key)]
-    if (value) return value
-  }
-  return ''
-}
-
-const resolvePortraitRefsFromScans = (raw: string) => {
-  if (!raw.trim()) return { portraitAFile: '', portraitBFile: '' }
-
-  const portraitFields = parseTemplateBlockFields(raw, 'Portraits')
-  const portraitAFile =
-    pickFieldValue(portraitFields, ['portrait_a', 'portrait_left', 'left_portrait', 'left_image', 'image_a']) ||
-    pickFieldValue(parseTemplateBlockFields(raw, 'Character Dossier A'), ['portrait_image', 'portrait', 'image']) ||
-    pickFieldValue(parseTemplateBlockFields(raw, 'Character A'), ['portrait_image', 'portrait', 'image']) ||
-    ''
-  const portraitBFile =
-    pickFieldValue(portraitFields, ['portrait_b', 'portrait_right', 'right_portrait', 'right_image', 'image_b']) ||
-    pickFieldValue(parseTemplateBlockFields(raw, 'Character Dossier B'), ['portrait_image', 'portrait', 'image']) ||
-    pickFieldValue(parseTemplateBlockFields(raw, 'Character B'), ['portrait_image', 'portrait', 'image']) ||
-    ''
-
-  return {
-    portraitAFile: portraitAFile.trim(),
-    portraitBFile: portraitBFile.trim(),
-  }
-}
-
 const resolveIndexedFightImageFile = async (
   candidateFolder: string,
   section: string,
@@ -415,12 +361,17 @@ const normalizeFightScaffoldWritePayload = (value: unknown) => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return null
   const raw = value as Record<string, unknown>
   const matchName = typeof raw.matchName === 'string' ? sanitizeFightPathSegment(raw.matchName) : ''
-  const englishTxt = typeof raw.englishTxt === 'string' ? raw.englishTxt.trim() : ''
-  const polishTxt = typeof raw.polishTxt === 'string' ? raw.polishTxt.trim() : ''
-  const scansTxt = typeof raw.scansTxt === 'string' ? raw.scansTxt.trim() : ''
-  if (!matchName || !englishTxt || !polishTxt || !scansTxt) return null
-  return { matchName, englishTxt, polishTxt, scansTxt }
+  const englishFight = raw.englishFight as FightLocaleJsonV1 | undefined
+  const polishFight = raw.polishFight as FightLocaleJsonV1 | undefined
+  const scans = raw.scans as FightScansJsonV1 | undefined
+  if (!matchName || !englishFight || !polishFight || !scans) return null
+  if (englishFight.schemaVersion !== 1 || englishFight.locale !== 'en') return null
+  if (polishFight.schemaVersion !== 1 || polishFight.locale !== 'pl') return null
+  if (scans.schemaVersion !== 1) return null
+  return { matchName, englishFight, polishFight, scans }
 }
+
+const readJsonFile = async <T>(filePath: string) => JSON.parse(await fs.readFile(filePath, 'utf8')) as T
 
 const getNextFightFolderIndex = async (fightsDir: string) => {
   const entries = await fs.readdir(fightsDir, { withFileTypes: true })
@@ -467,45 +418,45 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
       continue
     }
 
-    const txtCandidates = files
-      .filter((file) => TXT_FILE_PATTERN.test(file) && !isSharedScansFile(file))
+    const localeCandidates = files
+      .filter((file) => JSON_FILE_PATTERN.test(file) && !isSharedScansFile(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
     const sharedScansCandidates = files
       .filter((file) => isSharedScansFile(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-    if (!txtCandidates.length) {
-      folderWarnings.push(`Missing TXT file in folder "${folderName}".`)
+    if (!localeCandidates.length) {
+      folderWarnings.push(`Missing fight JSON in folder "${folderName}".`)
     }
     if (sharedScansCandidates.length > 1) {
       folderWarnings.push(
-        `Multiple shared scans TXT files detected in folder "${folderName}"; using "${sharedScansCandidates[0]}".`,
+        `Multiple shared scans JSON files detected in folder "${folderName}"; using "${sharedScansCandidates[0]}".`,
       )
     }
 
-    if (!txtCandidates.length) {
+    if (!localeCandidates.length) {
       warnings.push(...folderWarnings)
       continue
     }
 
-    let sharedScansContent = ''
+    let sharedScansJson: FightScansJsonV1 | null = null
     let scansPortraitAFile = ''
     let scansPortraitBFile = ''
     if (sharedScansCandidates[0]) {
       try {
-        const sharedScansPayload = await fs.readFile(path.join(folderPath, sharedScansCandidates[0]))
-        sharedScansContent = decodeImportTextBytes(new Uint8Array(sharedScansPayload)).trim()
-        const portraitRefs = resolvePortraitRefsFromScans(sharedScansContent)
-        scansPortraitAFile = portraitRefs.portraitAFile
-        scansPortraitBFile = portraitRefs.portraitBFile
-      } catch (error) {
-        if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
-          folderWarnings.push(
-            `Shared scans TXT "${sharedScansCandidates[0]}" in folder "${folderName}" has unsupported encoding (use UTF-8 or Windows-1250).`,
-          )
-        } else {
-          folderWarnings.push(`Failed to read shared scans TXT "${sharedScansCandidates[0]}" in folder "${folderName}".`)
-        }
+        const scansPayload = await readJsonFile<FightScansJsonV1>(path.join(folderPath, sharedScansCandidates[0]))
+        sharedScansJson = scansPayload
+        scansPortraitAFile = typeof scansPayload.portraits?.a === 'string' ? scansPayload.portraits.a.trim() : ''
+        scansPortraitBFile = typeof scansPayload.portraits?.b === 'string' ? scansPayload.portraits.b.trim() : ''
+      } catch {
+        folderWarnings.push(`Failed to read shared scans JSON "${sharedScansCandidates[0]}" in folder "${folderName}".`)
       }
+    } else {
+      folderWarnings.push(`Missing shared scans JSON in folder "${folderName}".`)
+    }
+
+    if (!sharedScansJson) {
+      warnings.push(...folderWarnings)
+      continue
     }
 
     const { portraitAFile: rootPortraitAFile, portraitBFile: rootPortraitBFile, fallbackUsed } = pickPortraitFiles(files)
@@ -520,29 +471,22 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     if (!portraitAFile) folderWarnings.push(`Missing portrait A in folder "${folderName}".`)
     if (!portraitBFile) folderWarnings.push(`Missing portrait B in folder "${folderName}".`)
 
-    const hasExplicitPlVariant = txtCandidates.some(
+    const hasExplicitPlVariant = localeCandidates.some(
       (file) => splitFightNameLocaleSuffix(stripFileExtension(file)).locale === 'pl',
     )
 
-    for (const [txtIndex, txtFileName] of txtCandidates.entries()) {
-      let txtContent = ''
+    for (const [fileIndex, fileName] of localeCandidates.entries()) {
+      let localeJson: FightLocaleJsonV1
+      let payload: ParsedVsImport
       try {
-        const txtPayload = await fs.readFile(path.join(folderPath, txtFileName))
-        txtContent = decodeImportTextBytes(new Uint8Array(txtPayload))
+        localeJson = await readJsonFile<FightLocaleJsonV1>(path.join(folderPath, fileName))
+        payload = parseFightJsonFiles(localeJson, sharedScansJson)
       } catch (error) {
-        if (error instanceof Error && error.message === INVALID_TEXT_ENCODING_ERROR) {
-          warnings.push(`TXT "${txtFileName}" in folder "${folderName}" has unsupported encoding (use UTF-8 or Windows-1250).`)
-          continue
-        }
-        warnings.push(`Failed to read TXT "${txtFileName}" in folder "${folderName}".`)
+        warnings.push(`Failed to parse JSON "${fileName}" in folder "${folderName}": ${String(error)}`)
         continue
       }
 
-      if (sharedScansContent) {
-        txtContent = `${sharedScansContent}\n\n${txtContent}`
-      }
-
-      const fileMatchName = toMatchupDisplayNameFromFileName(txtFileName) || matchName
+      const fileMatchName = toMatchupDisplayNameFromFileName(fileName) || matchName
       const parsedFileMatchup = parseMatchupFromName(fileMatchName)
       const parsedFolderMatchup = parsedFileMatchup ? null : parseMatchupFromName(matchName)
       const matchupKey = parsedFileMatchup
@@ -551,8 +495,10 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
           ? buildMatchupKey(parsedFolderMatchup.leftName, parsedFolderMatchup.rightName)
           : normalizeToken(fileMatchName || matchName || folderName)
 
-      let variantLocale = splitFightNameLocaleSuffix(stripFileExtension(txtFileName)).locale
-      if (variantLocale === 'unknown' && txtCandidates.length > 1 && hasExplicitPlVariant) {
+      let variantLocale = splitFightNameLocaleSuffix(stripFileExtension(fileName)).locale
+      if (variantLocale === 'unknown' && localeJson.locale) {
+        variantLocale = localeJson.locale
+      } else if (variantLocale === 'unknown' && localeCandidates.length > 1 && hasExplicitPlVariant) {
         variantLocale = 'en'
       }
       const variantLabel =
@@ -560,7 +506,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
           ? 'PL'
           : variantLocale === 'en'
             ? 'EN'
-            : stripFileExtension(txtFileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+            : stripFileExtension(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
 
       fights.push({
         folderKey,
@@ -569,15 +515,15 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         matchupKey,
         variantLocale,
         variantLabel,
-        txtFileName,
-        txtContent,
+        fileName,
+        payload,
         portraitAUrl: portraitAFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitAFile)}` : '',
         portraitBUrl: portraitBFile ? `/api/fights/image?key=${encodeURIComponent(folderKey)}&file=${encodeURIComponent(portraitBFile)}` : '',
         portraitAAdjust: persistedVisuals.portraitAAdjust,
         portraitBAdjust: persistedVisuals.portraitBAdjust,
         slideImageAdjustments: persistedVisuals.slideImageAdjustments,
-        sortIndex: sortIndex + txtIndex * 0.001,
-        warnings: txtIndex === 0 ? folderWarnings : [],
+        sortIndex: sortIndex + fileIndex * 0.001,
+        warnings: fileIndex === 0 ? folderWarnings : [],
       })
     }
   }
@@ -586,7 +532,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     if (a.sortIndex !== b.sortIndex) return a.sortIndex - b.sortIndex
     const nameOrder = a.displayName.localeCompare(b.displayName, undefined, { sensitivity: 'base', numeric: true })
     if (nameOrder !== 0) return nameOrder
-    return a.txtFileName.localeCompare(b.txtFileName, undefined, { sensitivity: 'base', numeric: true })
+    return a.fileName.localeCompare(b.fileName, undefined, { sensitivity: 'base', numeric: true })
   })
   return { fights, warnings }
 }
@@ -741,13 +687,25 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
 
         await fs.mkdir(path.join(folderPath, 'img'), { recursive: true })
 
-        const englishFileName = `${folderName}.txt`
-        const polishFileName = `${folderName} PL.txt`
-        const scansFileName = `${folderName} Scans.txt`
+        const englishFileName = `${folderName} EN.json`
+        const polishFileName = `${folderName} PL.json`
+        const scansFileName = `${folderName} Scans.json`
 
-        await fs.writeFile(path.join(folderPath, englishFileName), `${normalized.englishTxt}\n`, 'utf8')
-        await fs.writeFile(path.join(folderPath, polishFileName), `${normalized.polishTxt}\n`, 'utf8')
-        await fs.writeFile(path.join(folderPath, scansFileName), `${normalized.scansTxt}\n`, 'utf8')
+        await fs.writeFile(
+          path.join(folderPath, englishFileName),
+          `${JSON.stringify(normalized.englishFight, null, 2)}\n`,
+          'utf8',
+        )
+        await fs.writeFile(
+          path.join(folderPath, polishFileName),
+          `${JSON.stringify(normalized.polishFight, null, 2)}\n`,
+          'utf8',
+        )
+        await fs.writeFile(
+          path.join(folderPath, scansFileName),
+          `${JSON.stringify(normalized.scans, null, 2)}\n`,
+          'utf8',
+        )
 
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json; charset=utf-8')

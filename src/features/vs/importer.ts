@@ -1,15 +1,62 @@
 ﻿import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
+import type {
+  FightLocaleJsonTemplateBlock,
+  FightLocaleJsonTemplateValue,
+  FightLocaleJsonV1,
+  FightScansJsonV1,
+  FightStatId,
+} from './types'
 import {
-  buildFightScaffoldScansTxt,
-  buildFightScaffoldTxt,
-  buildFightStarterTxt as buildManifestFightStarterTxt,
+  buildFightScaffoldFightJson,
+  buildFightScaffoldScansJson,
+  buildFightStarterJson as buildManifestFightStarterJson,
   getFightCommonCopy,
+  getFightDefaultCategories,
   getFightTemplateBlockAliases,
+  getFightTemplateManifest,
   getFightTemplateRequirements,
   getFightTemplateTokenMap,
 } from './fightManifest'
-import { DEFAULT_CATEGORIES, DEFAULT_TEMPLATE_ORDER, TEMPLATE_ID_SET, ensureTemplateOrderHasFinal } from './presets'
-import { clamp, normalizeTemplateId, normalizeToken, slug } from './helpers'
+import { DEFAULT_CATEGORIES, TEMPLATE_ID_SET, ensureTemplateOrderHasFinal } from './presets'
+
+const LEGACY_TEMPLATE_ID_MAP: Record<string, TemplateId> = {
+  'character-card-a': 'character-dossier-a',
+  'character-card-b': 'character-dossier-b',
+  'powers-tools': 'character-profile',
+  'raw-feats': 'crucial-feats',
+  'hud-bars': 'fight-analytics',
+  'radar-brief': 'parameter-comparison',
+  'winner-cv': 'victory-archive',
+  summary: 'final-summary',
+  'fight-title': 'fight-card',
+}
+
+const clamp = (value: number) =>
+  Math.max(0, Math.min(100, Number.isFinite(value) ? Math.round(value) : 0))
+
+const slug = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '')
+
+const normalizeToken = (value: string) =>
+  value
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '')
+
+const normalizeTemplateId = (value: string): TemplateId | null => {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  if (TEMPLATE_ID_SET.has(trimmed as TemplateId)) {
+    return trimmed as TemplateId
+  }
+  return LEGACY_TEMPLATE_ID_MAP[trimmed] || null
+}
 
 export const extractBullet = (line: string) => line.trim().replace(/^[-*?]\s*/, '').trim()
 
@@ -18,76 +65,7 @@ export const parseBulletItems = (lines: string[]) =>
     .map((line) => extractBullet(line))
     .filter(Boolean)
 
-export const trimSectionAtTemplateBlock = (lines: string[]) => {
-  const templateStart = lines.findIndex((line) => /^\s*Template\b/i.test(line.trim()))
-  return templateStart >= 0 ? lines.slice(0, templateStart) : lines
-}
-
-export const parseStatItems = (lines: string[]): ParsedStat[] => {
-  const stats: ParsedStat[] = []
-  for (const item of parseBulletItems(lines)) {
-    const direct = item.match(/^(.+?)\s*[:=]\s*(-?\d+(?:\.\d+)?)$/)
-    const spaced = item.match(/^(.+?)\s+(-?\d+(?:\.\d+)?)$/)
-    const match = direct ?? spaced
-    if (!match) continue
-    const label = match[1].trim()
-    const value = clamp(Number(match[2]))
-    if (!label) continue
-    stats.push({ label, value })
-  }
-  return stats
-}
-
-export const factDefaults = ['Style', 'Advantage', 'Mentality']
-
-export const parseFactItems = (lines: string[]): FighterFact[] =>
-  parseBulletItems(lines).map((item, index) => {
-    const parts = item.split(':')
-    if (parts.length >= 2) {
-      const title = parts.shift()?.trim() || factDefaults[index] || `Feat ${index + 1}`
-      const text = parts.join(':').trim()
-      return { title, text: text || '-' }
-    }
-    return {
-      title: factDefaults[index] || `Feat ${index + 1}`,
-      text: item,
-    }
-  })
-
-export const pickNameFromSection = (
-  sectionTitle: string,
-  sectionLines: string[],
-  fallback: string,
-) => {
-  const title = sectionTitle.trim().replace(/^\((.*)\)$/, '$1').trim()
-  const placeholder = normalizeToken(title)
-  const looksLikePlaceholder =
-    !placeholder ||
-    placeholder.includes('nazwapostaci') ||
-    placeholder.includes('name') ||
-    placeholder.includes('fighter') ||
-    placeholder.includes('character')
-  if (title && !looksLikePlaceholder) return title
-
-  const fromList = parseBulletItems(sectionLines)[0]
-  if (fromList) return fromList
-
-  const fromPlain = sectionLines.map((line) => line.trim()).find(Boolean)
-  return fromPlain || fallback
-}
-
 export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = getFightTemplateTokenMap()
-
-export const parseTemplateOrder = (lines: string[]) => {
-  const ids: TemplateId[] = []
-  for (const line of parseBulletItems(lines)) {
-    const normalized = normalizeToken(line)
-    if (!normalized) continue
-    const mapped = TEMPLATE_TOKEN_MAP[normalized]
-    if (mapped) ids.push(mapped)
-  }
-  return ensureTemplateOrderHasFinal(ids.length ? ids : DEFAULT_TEMPLATE_ORDER)
-}
 
 export const parseTemplateOrderTokens = (tokens: string[]) => {
   const ids: TemplateId[] = []
@@ -107,28 +85,6 @@ export const parseTemplateOrderTokens = (tokens: string[]) => {
   return ids
 }
 
-export const parseTemplateBlocks = (raw: string) => {
-  const blocks: Record<string, string[]> = {}
-  let active: string | null = null
-  for (const line of raw.replace(/\r/g, '').split('\n')) {
-    const trimmed = line.trim()
-    const heading = trimmed.match(/^template\s+(.+?)\s*:?$/i)
-    if (heading) {
-      active = heading[1].trim()
-      if (!blocks[active]) blocks[active] = []
-      continue
-    }
-    if (!active) continue
-    if (/^\d+\.\s*/.test(trimmed)) {
-      active = null
-      continue
-    }
-    const item = extractBullet(trimmed)
-    if (item) blocks[active].push(item)
-  }
-  return blocks
-}
-
 export type TemplateBlockRequirement = {
   blockPl: string
   blockEn: string
@@ -139,31 +95,42 @@ export type TemplateBlockRequirement = {
 
 export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = getFightTemplateRequirements()
 
-export const buildFightStarterTxt = (language: Language, templateOrder?: TemplateId[]) =>
-  buildManifestFightStarterTxt(language, templateOrder)
+export const buildFightStarterJson = (language: Language, templateOrder?: TemplateId[]) =>
+  buildManifestFightStarterJson(language, templateOrder)
 
-export { buildFightScaffoldTxt, buildFightScaffoldScansTxt }
+export { buildFightScaffoldFightJson, buildFightScaffoldScansJson }
 
 export const findTemplateBlockLines = (
   blocks: Record<string, string[]>,
   aliases: string[],
 ) => {
   const normalizedAliases = aliases.map((alias) => normalizeToken(alias))
-  let latestMatch: string[] = []
+  let bestMatch: string[] = []
+  let bestScore = -1
   for (const [heading, lines] of Object.entries(blocks)) {
     const normalizedHeading = normalizeToken(heading)
-    if (
-      normalizedAliases.some(
-        (alias) =>
-          normalizedHeading === alias ||
-          normalizedHeading.includes(alias) ||
-          alias.includes(normalizedHeading),
-      )
-    ) {
-      latestMatch = lines
+    for (const alias of normalizedAliases) {
+      if (!alias || !normalizedHeading) continue
+      let score = -1
+      if (normalizedHeading === alias) {
+        score = 300 + alias.length
+      } else if (normalizedHeading.startsWith(alias)) {
+        score = 200 + alias.length
+      } else if (alias.startsWith(normalizedHeading)) {
+        score = 150 + normalizedHeading.length
+      } else if (normalizedHeading.includes(alias)) {
+        score = 100 + alias.length
+      } else if (alias.includes(normalizedHeading)) {
+        score = 50 + normalizedHeading.length
+      }
+
+      if (score > bestScore) {
+        bestScore = score
+        bestMatch = lines
+      }
     }
   }
-  return latestMatch
+  return bestMatch
 }
 
 export const parseTemplateFieldMap = (lines: string[]) => {
@@ -182,7 +149,12 @@ export const parseTemplateFieldMap = (lines: string[]) => {
 export const pickTemplateField = (fields: Record<string, string>, keys: string[]) => {
   for (const key of keys) {
     const normalized = normalizeToken(key)
-    if (fields[normalized]) return fields[normalized]
+    const value = fields[normalized]
+    if (!value) continue
+    const trimmed = value.trim()
+    const withoutColon = trimmed.replace(/:\s*$/, '')
+    if (normalizeToken(withoutColon) === normalized && /:\s*$/.test(trimmed)) continue
+    return value
   }
   return ''
 }
@@ -217,22 +189,6 @@ const STAT_CATEGORY_ID_BY_TOKEN: Record<string, string> = {
 const resolveStatCategoryKey = (label: string) => {
   const normalized = normalizeToken(label)
   return STAT_CATEGORY_ID_BY_TOKEN[normalized] || normalized
-}
-
-export const buildCardFacts = (fallbackFacts: FighterFact[], fields: Record<string, string>, language: Language) => {
-  const common = getFightCommonCopy(language)
-  const styleDefault = fallbackFacts[0]?.text || '-'
-  const atutDefault = fallbackFacts[1]?.text || '-'
-  const mentalDefault = fallbackFacts[2]?.text || '-'
-
-  return [
-    { title: common.style, text: pickTemplateField(fields, ['style']) || styleDefault },
-    { title: common.advantage, text: pickTemplateField(fields, ['atut', 'advantage']) || atutDefault },
-    {
-      title: common.mentality,
-      text: pickTemplateField(fields, ['mentalnosc', 'mentality']) || mentalDefault,
-    },
-  ]
 }
 
 export const parseCurveValues = (raw: string, fallback: number[]) => {
@@ -341,101 +297,263 @@ export const createCategoryPayload = (statsA: ParsedStat[], statsB: ParsedStat[]
   return { categories, statsRecordA, statsRecordB }
 }
 
-export const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport } | { ok: false; error: string } => {
-  const sanitized = raw.replace(/\r/g, '')
-  const lines = sanitized.split('\n')
+const JSON_STAT_ORDER: FightStatId[] = [
+  'strength',
+  'speed',
+  'durability',
+  'battleIq',
+  'hax',
+  'stamina',
+  'style',
+  'experience',
+  'skills',
+]
 
-  const sections = new Map<number, { title: string; lines: string[] }>()
-  let activeSection: number | null = null
-  for (const line of lines) {
-    const heading = line.match(/^\s*(\d+)\.\s*(.*)\s*$/)
-    if (heading) {
-      activeSection = Number(heading[1])
-      sections.set(activeSection, { title: heading[2].trim(), lines: [] })
-      continue
-    }
-    if (activeSection !== null) {
-      sections.get(activeSection)?.lines.push(line)
-    }
-  }
+const toString = (value: unknown) => (typeof value === 'string' ? value.trim() : '')
+const toStringArray = (value: unknown) =>
+  Array.isArray(value)
+    ? value.map((entry) => toString(entry)).filter(Boolean)
+    : []
 
-  for (const required of [1, 2, 3, 4, 5, 6, 7, 8]) {
-    if (!sections.has(required)) {
-      return {
-        ok: false,
-        error: `Import error: missing section ${required}.`,
-      }
-    }
-  }
+const toFiniteNumber = (value: unknown) => {
+  const numeric = typeof value === 'number' ? value : Number(value)
+  return Number.isFinite(numeric) ? numeric : null
+}
 
-  const section1 = sections.get(1)!
-  const section2 = sections.get(2)!
-  const section3 = sections.get(3)!
-  const section4 = sections.get(4)!
-  const section5 = sections.get(5)!
-  const section6 = sections.get(6)!
-  const section7 = sections.get(7)!
-  const section8 = sections.get(8)!
-  const section9 = sections.get(9)
-  const section10 = sections.get(10)
-  const section11 = sections.get(11)
-  const section12 = sections.get(12)
-  const section13 = sections.get(13)
+const toSnakeCase = (value: string) =>
+  value
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toLowerCase()
 
-  const fighterAName = pickNameFromSection(section1.title, section1.lines, 'Fighter A')
-  const fighterBName = pickNameFromSection(section5.title, section5.lines, 'Fighter B')
+const toCamelCase = (value: string) =>
+  value.replace(/[_-]([a-z0-9])/gi, (_, char: string) => char.toUpperCase())
 
-  const statsA = parseStatItems(section2.lines)
-  const statsB = parseStatItems(section6.lines)
-  if (!statsA.length || !statsB.length) {
+const isFightLocaleJsonTemplateValue = (value: unknown): value is FightLocaleJsonTemplateValue =>
+  value === null ||
+  typeof value === 'string' ||
+  typeof value === 'number' ||
+  typeof value === 'boolean' ||
+  (Array.isArray(value) &&
+    value.every((entry) => typeof entry === 'string' || typeof entry === 'number'))
+
+const normalizeTemplateJsonBlock = (value: unknown): FightLocaleJsonTemplateBlock => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>).filter(
+      ([key, entry]) => key.trim() && isFightLocaleJsonTemplateValue(entry),
+    ),
+  ) as FightLocaleJsonTemplateBlock
+}
+
+const normalizeTemplateJsonMap = (
+  value: unknown,
+): Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>> => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+
+  const output: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>> = {}
+  Object.entries(value as Record<string, unknown>).forEach(([rawTemplateId, block]) => {
+    const templateId = normalizeTemplateId(rawTemplateId)
+    if (!templateId) return
+    output[templateId] = normalizeTemplateJsonBlock(block)
+  })
+  return output
+}
+
+const buildParsedStatsFromJson = (
+  stats: Partial<Record<FightStatId, number | null>> | undefined,
+  language: Language,
+) => {
+  const labels = new Map(getFightDefaultCategories(language).map((category) => [category.id, category.label]))
+  return JSON_STAT_ORDER.map((statId) => {
+    const numeric = toFiniteNumber(stats?.[statId])
+    if (numeric === null) return null
     return {
-      ok: false,
-      error: 'Import error: sections 2 and 6 need stat lines like "- Strength: 96".',
+      label: labels.get(statId) || statId,
+      value: clamp(numeric),
     }
-  }
+  }).filter((entry): entry is ParsedStat => Boolean(entry))
+}
 
-  let winsBLines = section8.lines
-  let templateLinesFromEight: string[] = []
-  const templateMarkerIndex = section8.lines.findIndex((line) =>
-    /template|uklad|kolejnosc/i.test(line.trim()),
-  )
-  if (templateMarkerIndex >= 0) {
-    winsBLines = section8.lines.slice(0, templateMarkerIndex)
-    templateLinesFromEight = section8.lines.slice(templateMarkerIndex + 1)
-  }
+const buildDossierFacts = (
+  dossier: FightLocaleJsonV1['fighterA']['dossier'] | undefined,
+  language: Language,
+): FighterFact[] => {
+  const common = getFightCommonCopy(language)
+  return [
+    { title: common.style, text: toString(dossier?.style) || '-' },
+    { title: common.advantage, text: toString(dossier?.advantage) || '-' },
+    { title: common.mentality, text: toString(dossier?.mentality) || '-' },
+  ]
+}
 
-  const templateOrder = parseTemplateOrder([
-    ...templateLinesFromEight,
-    ...(section9?.lines || []),
-  ])
+const buildProfileFacts = (
+  profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
+  language: Language,
+) => {
+  const powersLabel = language === 'pl' ? 'Moce' : 'Powers'
+  const toolsLabel = language === 'pl' ? 'Narzędzia' : 'Tools'
+  const weaknessesLabel = language === 'pl' ? 'Słabości' : 'Weaknesses'
 
-  const factsA = parseFactItems(section3.lines)
-  const factsB = parseFactItems(section7.lines)
-  const powersA = section10 ? parseFactItems(trimSectionAtTemplateBlock(section10.lines)) : []
-  const crucialFeatsA = section11 ? parseBulletItems(trimSectionAtTemplateBlock(section11.lines)) : []
-  const powersB = section12 ? parseFactItems(trimSectionAtTemplateBlock(section12.lines)) : []
-  const crucialFeatsB = section13 ? parseBulletItems(trimSectionAtTemplateBlock(section13.lines)) : []
-  const winsA = parseBulletItems(section4.lines)
-  const winsB = parseBulletItems(winsBLines)
+  return [
+    ...toStringArray(profile?.powers).map((text) => ({ title: powersLabel, text })),
+    ...toStringArray(profile?.tools).map((text) => ({ title: toolsLabel, text })),
+    ...toStringArray(profile?.weaknesses).map((text) => ({ title: weaknessesLabel, text })),
+  ]
+}
+
+const buildTemplateBlockLinesFromJson = (
+  templateId: TemplateId,
+  language: Language,
+  localeBlock: FightLocaleJsonTemplateBlock,
+  scansBlock: FightLocaleJsonTemplateBlock,
+  supplemental: FightLocaleJsonTemplateBlock = {},
+) => {
+  const manifest = getFightTemplateManifest(templateId)
+  if (!manifest) return null
+
+  const lines: string[] = []
+  const mergedEntries: Array<[string, FightLocaleJsonTemplateValue]> = []
+
+  ;[localeBlock, supplemental, scansBlock].forEach((block) => {
+    Object.entries(block).forEach(([key, value]) => {
+      mergedEntries.push([key, value as FightLocaleJsonTemplateValue])
+    })
+  })
+
+  mergedEntries.forEach(([jsonKey, value]) => {
+    const schema =
+      manifest.variableFields.find((entry) => {
+        const candidate = entry.jsonKey || toCamelCase(entry.key)
+        return candidate === jsonKey
+      }) || null
+
+    const lineKey = schema?.key || toSnakeCase(jsonKey)
+    if (schema?.valueType === 'string-array' && Array.isArray(value)) {
+      value
+        .map((entry) => toString(entry))
+        .forEach((entry, index) => {
+          if (!entry) return
+          lines.push(`${lineKey}_${index + 1}: ${entry}`)
+        })
+      return
+    }
+
+    if (Array.isArray(value)) {
+      value.forEach((entry, index) => {
+        const text = toString(entry)
+        if (!text) return
+        lines.push(`${lineKey}_${index + 1}: ${text}`)
+      })
+      return
+    }
+
+    if (typeof value === 'boolean') {
+      lines.push(`${lineKey}: ${value ? 'true' : 'false'}`)
+      return
+    }
+
+    if (typeof value === 'number') {
+      if (!Number.isFinite(value)) return
+      lines.push(`${lineKey}: ${value}`)
+      return
+    }
+
+    const text = toString(value)
+    if (!text) return
+    const withoutColon = text.replace(/:\s*$/, '')
+    if (normalizeToken(withoutColon) === normalizeToken(lineKey) && /:\s*$/.test(text)) return
+    lines.push(`${lineKey}: ${text}`)
+  })
+
+  if (!lines.length) return null
 
   return {
-    ok: true,
-    data: {
-      fighterAName,
-      fighterBName,
-      statsA,
-      statsB,
-      factsA,
-      factsB,
-      powersA,
-      powersB,
-      crucialFeatsA,
-      crucialFeatsB,
-      winsA,
-      winsB,
-      templateOrder,
-      templateBlocks: parseTemplateBlocks(sanitized),
+    heading: manifest.blockName[language],
+    lines,
+  }
+}
+
+const buildTemplateBlocksFromJson = (
+  localeJson: FightLocaleJsonV1,
+  scansJson: FightScansJsonV1,
+) => {
+  const templateBlocks: Record<string, string[]> = {}
+  const localeTemplates = normalizeTemplateJsonMap(localeJson.templates)
+  const scansTemplates = normalizeTemplateJsonMap(scansJson.templates)
+
+  const supplementByTemplate: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>> = {
+    'character-dossier-a': {
+      world: toString(localeJson.fighterA.version),
+      quote: toString(localeJson.fighterA.dossier?.quote),
     },
+    'character-dossier-b': {
+      world: toString(localeJson.fighterB.version),
+      quote: toString(localeJson.fighterB.dossier?.quote),
+    },
+  }
+
+  const allTemplateIds = new Set<TemplateId>([
+    ...Object.keys(localeTemplates).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+    ...Object.keys(scansTemplates).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+    ...Object.keys(supplementByTemplate).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+  ])
+
+  allTemplateIds.forEach((templateId) => {
+    const built = buildTemplateBlockLinesFromJson(
+      templateId,
+      localeJson.locale,
+      templateId === 'character-dossier-a' || templateId === 'character-dossier-b'
+        ? {}
+        : localeTemplates[templateId] || {},
+      scansTemplates[templateId] || {},
+      supplementByTemplate[templateId] || {},
+    )
+    if (!built) return
+    templateBlocks[built.heading] = built.lines
+  })
+
+  return templateBlocks
+}
+
+export const parseFightJsonFiles = (
+  localeJson: FightLocaleJsonV1,
+  scansJson: FightScansJsonV1,
+): ParsedVsImport => {
+  if (!localeJson || localeJson.schemaVersion !== 1) {
+    throw new Error('Import error: invalid locale fight JSON.')
+  }
+  if (!scansJson || scansJson.schemaVersion !== 1) {
+    throw new Error('Import error: invalid scans JSON.')
+  }
+  if (localeJson.locale !== 'pl' && localeJson.locale !== 'en') {
+    throw new Error('Import error: unsupported locale in fight JSON.')
+  }
+
+  const fighterAName = toString(localeJson.fighterA?.name) || 'Fighter A'
+  const fighterBName = toString(localeJson.fighterB?.name) || 'Fighter B'
+  const statsA = buildParsedStatsFromJson(localeJson.fighterA?.stats, localeJson.locale)
+  const statsB = buildParsedStatsFromJson(localeJson.fighterB?.stats, localeJson.locale)
+
+  return {
+    fighterAName,
+    fighterBName,
+    statsA,
+    statsB,
+    factsA: buildDossierFacts(localeJson.fighterA?.dossier, localeJson.locale),
+    factsB: buildDossierFacts(localeJson.fighterB?.dossier, localeJson.locale),
+    powersA: buildProfileFacts(localeJson.fighterA?.profile, localeJson.locale),
+    powersB: buildProfileFacts(localeJson.fighterB?.profile, localeJson.locale),
+    crucialFeatsA: toStringArray(localeJson.fighterA?.crucialFeats),
+    crucialFeatsB: toStringArray(localeJson.fighterB?.crucialFeats),
+    winsA: toStringArray(localeJson.fighterA?.victories),
+    winsB: toStringArray(localeJson.fighterB?.victories),
+    templateOrder: ensureTemplateOrderHasFinal(
+      (Array.isArray(localeJson.templateOrder) ? localeJson.templateOrder : [])
+        .map((templateId) => normalizeTemplateId(String(templateId)))
+        .filter((templateId): templateId is TemplateId => Boolean(templateId)),
+    ),
+    templateBlocks: buildTemplateBlocksFromJson(localeJson, scansJson),
   }
 }
 

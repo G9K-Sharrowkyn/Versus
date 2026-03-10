@@ -1,7 +1,7 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
 import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { defaultFactsFor } from '../../presets'
-import { TEMPLATE_BLOCK_ALIASES, buildCardFacts, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import {
   HIGH_END_CARD_CLASS,
@@ -36,7 +36,7 @@ export function CharacterDossierBTemplate({
     ...fighterB,
     subtitle: pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterB.subtitle,
   }
-  const cardFacts = buildCardFacts(safeFacts, blockFields, language)
+  const cardFacts = safeFacts
   const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
     .trim()

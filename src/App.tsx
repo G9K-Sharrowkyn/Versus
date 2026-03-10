@@ -30,10 +30,9 @@ import {
   normalizeSlideImageAdjustments,
   stripFileExtension,
 } from './features/vs/helpers'
-import { buildFightScaffoldScansTxt, buildFightScaffoldTxt, buildFightStarterTxt } from './features/vs/importer'
+import { buildFightScaffoldFightJson, buildFightScaffoldScansJson } from './features/vs/importer'
 import { useAnimatedCursor } from './features/vs/hooks/useAnimatedCursor'
 import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
-import { useVsDraftImport } from './features/vs/hooks/useVsDraftImport'
 import { useVsPersistence } from './features/vs/hooks/useVsPersistence'
 import { useVsTransitions } from './features/vs/hooks/useVsTransitions'
 import { buildFightRefreshSignature, collectPersistableFolderFightVisuals, saveFolderFightVisualsToApi } from './features/vs/storage'
@@ -41,9 +40,12 @@ import type {
   Category,
   Fighter,
   FighterFact,
+  FightLocaleJsonV1,
   FightRecord,
+  FightScansJsonV1,
   Language,
   PortraitAdjust,
+  PortraitEditorState,
   ScoreRow,
   TemplateId,
 } from './features/vs/types'
@@ -85,7 +87,6 @@ function App() {
     () => TEMPLATE_PRESETS.map((template) => localizeTemplatePreset(template, language)),
     [language],
   )
-  const fightStarterTxt = useMemo(() => buildFightStarterTxt(language), [language])
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
   const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(DEFAULT_LANGUAGE))
@@ -112,6 +113,7 @@ function App() {
   const searchTransitioningRef = useRef(false)
   const returnTransitioningRef = useRef(false)
   const applyFightRecordRef = useRef<ApplyFightRecord | null>(null)
+  const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
 
   const {
     fights,
@@ -182,45 +184,103 @@ function App() {
     void text
   }
 
-  const {
-    draftPayload,
-    draftTxtFileName,
-    draftPortraitFileA,
-    draftPortraitFileB,
-    draftPortraitPreviewA,
-    draftPortraitPreviewB,
-    draftPortraitAdjustA,
-    draftPortraitAdjustB,
-    portraitEditor,
-    activeDropTarget,
-    draftTxtInputRef,
-    draftPortraitInputRefA,
-    draftPortraitInputRefB,
-    closePortraitEditor,
-    openSavedFightPortraitEditor,
-    applyPortraitEditor,
-    updatePortraitEditorAdjust,
-    resetPortraitEditorAdjust,
-    togglePortraitEditorSide,
-    handleDropZoneDragEnter,
-    handleDropZoneDragOver,
-    handleDropZoneDragLeave,
-    handleTxtDrop,
-    handlePortraitDrop,
-    handleDraftPortraitUpload,
-    handleDraftImportFile,
-    createFightFromDraft,
-  } = useVsDraftImport({
-    language,
-    translations,
-    tr,
-    fights,
-    activeFightId,
-    setFights,
-    setPortraitAAdjust,
-    setPortraitBAdjust,
-    flashStatus,
-  })
+  const closePortraitEditor = () => {
+    setPortraitEditor((current) => {
+      if (current?.previewUrl?.startsWith('blob:')) {
+        URL.revokeObjectURL(current.previewUrl)
+      }
+      return null
+    })
+  }
+
+  const openSavedFightPortraitEditor = (fightId: string, side: 'a' | 'b') => {
+    const match = fights.find((fight) => fight.id === fightId)
+    if (!match) return
+    const previewUrl = side === 'a' ? match.portraitADataUrl : match.portraitBDataUrl
+    if (!previewUrl) return
+    const baseAdjust = side === 'a' ? match.portraitAAdjust : match.portraitBAdjust
+
+    setPortraitEditor((current) => {
+      if (current?.previewUrl?.startsWith('blob:')) {
+        URL.revokeObjectURL(current.previewUrl)
+      }
+      return {
+        mode: 'fight',
+        fightId: match.id,
+        side,
+        previewUrl,
+        adjust: normalizePortraitAdjust(baseAdjust),
+      }
+    })
+  }
+
+  const updatePortraitEditorAdjust = (patch: Partial<PortraitAdjust>) => {
+    setPortraitEditor((current) => {
+      if (!current) return current
+      return {
+        ...current,
+        adjust: normalizePortraitAdjust({
+          ...current.adjust,
+          ...patch,
+        }),
+      }
+    })
+  }
+
+  const resetPortraitEditorAdjust = () => {
+    updatePortraitEditorAdjust(PORTRAIT_ADJUST_DEFAULT)
+  }
+
+  const togglePortraitEditorSide = () => {
+    setPortraitEditor((current) => {
+      if (!current || current.mode !== 'fight') return current
+      const nextSide = current.side === 'a' ? 'b' : 'a'
+      const match = fights.find((fight) => fight.id === current.fightId)
+      if (!match) return current
+      const nextPreviewUrl = nextSide === 'a' ? match.portraitADataUrl : match.portraitBDataUrl
+      if (!nextPreviewUrl) return current
+      const nextAdjust = nextSide === 'a' ? match.portraitAAdjust : match.portraitBAdjust
+      return {
+        ...current,
+        side: nextSide,
+        previewUrl: nextPreviewUrl,
+        adjust: normalizePortraitAdjust(nextAdjust),
+      }
+    })
+  }
+
+  const applyPortraitEditor = () => {
+    if (!portraitEditor || portraitEditor.mode !== 'fight') return
+
+    const nextAdjust = normalizePortraitAdjust(portraitEditor.adjust)
+    let nextFightsSnapshot: FightRecord[] | null = null
+    setFights((current) => {
+      const referenceFight = current.find((fight) => fight.id === portraitEditor.fightId)
+      if (!referenceFight) return current
+      const nextFights = applySharedFightVisualAdjustments(
+        current,
+        referenceFight,
+        portraitEditor.side === 'a'
+          ? { portraitAAdjust: nextAdjust }
+          : { portraitBAdjust: nextAdjust },
+      )
+      nextFightsSnapshot = nextFights
+      return nextFights
+    })
+
+    if (nextFightsSnapshot) {
+      void saveFolderFightVisualsToApi(collectPersistableFolderFightVisuals(nextFightsSnapshot)).catch((error) => {
+        console.warn('[vs-fights-visuals] Failed to save portrait adjustments.', error)
+      })
+    }
+
+    if (activeFightId === portraitEditor.fightId) {
+      if (portraitEditor.side === 'a') setPortraitAAdjust(nextAdjust)
+      if (portraitEditor.side === 'b') setPortraitBAdjust(nextAdjust)
+    }
+
+    closePortraitEditor()
+  }
 
   const activeTemplatePreset =
     localizedTemplates.find((template) => template.id === activeTemplate) || localizedTemplates[0] || initialTemplate
@@ -422,33 +482,34 @@ function App() {
     }
   }
 
-  const copyImportBlueprint = async () => {
-    try {
-      await navigator.clipboard.writeText(fightStarterTxt)
-      flashStatus(ui.blueprintCopied)
-    } catch {
-      flashStatus(ui.clipboardBlocked)
-    }
-  }
-
   const createFightScaffold = async (matchName: string, selectedTemplateOrder: TemplateId[]) => {
     const parsedMatchup = parseFightScaffoldMatchup(matchName)
     if (!parsedMatchup) {
       throw new Error(ui.createFightNameError)
     }
 
-    const englishTxt = buildFightScaffoldTxt('en', parsedMatchup.fighterAName, parsedMatchup.fighterBName, selectedTemplateOrder)
-    const polishTxt = buildFightScaffoldTxt('pl', parsedMatchup.fighterAName, parsedMatchup.fighterBName, selectedTemplateOrder)
-    const scansTxt = buildFightScaffoldScansTxt(selectedTemplateOrder)
+    const englishFight: FightLocaleJsonV1 = buildFightScaffoldFightJson(
+      'en',
+      parsedMatchup.fighterAName,
+      parsedMatchup.fighterBName,
+      selectedTemplateOrder,
+    )
+    const polishFight: FightLocaleJsonV1 = buildFightScaffoldFightJson(
+      'pl',
+      parsedMatchup.fighterAName,
+      parsedMatchup.fighterBName,
+      selectedTemplateOrder,
+    )
+    const scans: FightScansJsonV1 = buildFightScaffoldScansJson(selectedTemplateOrder)
 
     const response = await fetch('/api/fights/create', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         matchName,
-        englishTxt,
-        polishTxt,
-        scansTxt,
+        englishFight,
+        polishFight,
+        scans,
       }),
     })
 
@@ -512,9 +573,7 @@ function App() {
   const isIntroView = viewMode === 'fight-intro'
   const isTemplateView = viewMode === 'fight'
   const isFightFlow = isIntroView || isTemplateView
-  const canSwitchPortraitEditorSide = Boolean(
-    portraitEditor?.mode === 'fight' || (draftPortraitFileA && draftPortraitFileB),
-  )
+  const canSwitchPortraitEditorSide = Boolean(portraitEditor?.mode === 'fight')
 
   useEffect(() => {
     if (!isTemplateView || !fightViewVisible || portraitEditor) return
@@ -574,40 +633,14 @@ function App() {
         {viewMode === 'home' ? (
           <HomeView
             ui={ui}
-            activeDropTarget={activeDropTarget}
-            draftTxtInputRef={draftTxtInputRef}
-            draftPortraitInputRefA={draftPortraitInputRefA}
-            draftPortraitInputRefB={draftPortraitInputRefB}
-            draftTxtFileName={draftTxtFileName}
-            draftPayload={draftPayload}
-            draftPortraitFileA={draftPortraitFileA}
-            draftPortraitFileB={draftPortraitFileB}
-            draftPortraitPreviewA={draftPortraitPreviewA}
-            draftPortraitPreviewB={draftPortraitPreviewB}
-            draftPortraitAdjustA={draftPortraitAdjustA}
-            draftPortraitAdjustB={draftPortraitAdjustB}
             folderFights={folderFights}
             manualFights={manualFights}
             folderFightGroups={folderFightGroups}
             folderScanWarnings={folderScanWarnings}
-            fightStarterTxt={fightStarterTxt}
             availableTemplates={localizedTemplates}
             activeFightId={activeFightId}
             preferredVariantByMatchup={preferredVariantByMatchup}
             onToggleLanguage={toggleLanguage}
-            onDropZoneDragEnter={handleDropZoneDragEnter}
-            onDropZoneDragOver={handleDropZoneDragOver}
-            onDropZoneDragLeave={handleDropZoneDragLeave}
-            onTxtDrop={handleTxtDrop}
-            onPortraitDrop={handlePortraitDrop}
-            onDraftPortraitUpload={handleDraftPortraitUpload}
-            onDraftImportFile={handleDraftImportFile}
-            onCopyImportBlueprint={() => {
-              void copyImportBlueprint()
-            }}
-            onCreateFightFromDraft={() => {
-              void createFightFromDraft()
-            }}
             onCreateFightScaffold={createFightScaffold}
             onOpenFight={openFight}
             onRememberPreferredFightVariant={rememberPreferredFightVariant}

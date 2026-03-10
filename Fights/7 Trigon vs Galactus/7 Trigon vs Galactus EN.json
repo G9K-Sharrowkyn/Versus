@@ -1,0 +1,216 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "fighterA": {
+    "name": "Character A",
+    "version": "Prime Earth",
+    "stats": {
+      "strength": 89,
+      "speed": 84,
+      "durability": 91,
+      "battleIq": 86,
+      "hax": 93,
+      "stamina": 94,
+      "style": 80,
+      "experience": 94,
+      "skills": 75
+    },
+    "dossier": {
+      "style": "Static dominance and devastating energy projection. Trigon utilizes his six eyes for hellfire blasts and his divine brute force to effortlessly smash any opponent.",
+      "advantage": "Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.",
+      "mentality": "A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.",
+      "quote": "In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!"
+    },
+    "victories": [
+      "The Divine",
+      "Teen Titans (team corruption / overwhelm)",
+      "Superboy",
+      "Wonder Girl",
+      "Psimon (banishment / BFR)"
+    ],
+    "profile": {
+      "powers": [
+        "Demonic energy projection, corruption, possession, regeneration, dimensional travel."
+      ],
+      "tools": [
+        "Realm shaping/control and soul-pressure effects."
+      ],
+      "weaknesses": [
+        "Peak control is strongest inside favorable demonic environments.",
+        "Broad cosmic resistance can slow his corruption tempo in neutral space."
+      ]
+    },
+    "crucialFeats": [
+      "consumed the Heart of Darkness",
+      "conquered and corrupted countless worlds",
+      "resurrected after heart extraction",
+      "regenerated eye damage in combat time",
+      "converted the Teen Titans into Dark Titans"
+    ]
+  },
+  "fighterB": {
+    "name": "Character B",
+    "version": "Earth-616",
+    "stats": {
+      "strength": 95,
+      "speed": 94,
+      "durability": 97,
+      "battleIq": 92,
+      "hax": 98,
+      "stamina": 96,
+      "style": 85,
+      "experience": 98,
+      "skills": 79
+    },
+    "dossier": {
+      "style": "Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.",
+      "advantage": "Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.",
+      "mentality": "A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.",
+      "quote": "Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end."
+    },
+    "victories": [
+      "Silver Surfer (containment / barrier imprisonment)",
+      "Sphinx (time-loop resolution)",
+      "Poppup / the Poppupians (world-devouring result)",
+      "Skrull Empire / Tarnax IV",
+      "Mad Celestials (context-heavy)"
+    ],
+    "profile": {
+      "powers": [
+        "Power Cosmic, transmutation, large-scale energy projection, barriers, and matter control."
+      ],
+      "tools": [
+        "Planetary or cosmic energy absorption."
+      ],
+      "weaknesses": [
+        "Performance varies with feeding state.",
+        "In low-fed states, response speed and margin for error decrease."
+      ]
+    },
+    "crucialFeats": [
+      "destroyed at least three solar systems while still weakened",
+      "withstood Agamotto in Agamotto's own realm",
+      "imprisoned Silver Surfer on Earth with an undetectable barrier",
+      "devoured Poppup instead of Earth",
+      "defeated Sphinx by locking him into an eternal time loop"
+    ]
+  },
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "fight-analytics",
+    "parameter-comparison",
+    "interpretation",
+    "stat-trap",
+    "x-factor",
+    "victory-archive",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "verdict-matrix",
+    "fight-card"
+  ],
+  "templates": {
+    "tactical-board": {
+      "headline": "TACTICAL BOARD // TRIGON VS GALACTUS",
+      "subtitle": "Demon versus Devourer",
+      "leftHeader": "CATEGORY GRID",
+      "rightHeader": "FIGHT REALITY",
+      "linearLabel": "LINEAR SEGMENT",
+      "chaosLabel": "CHAOS SEGMENT",
+      "lane": "Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel."
+    },
+    "character-profile": {
+      "headline": "CHARACTER PROFILE",
+      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
+      "leftTitle": "TRIGON TOOLKIT",
+      "rightTitle": "GALACTUS TOOLKIT",
+      "powersLabel": "POWERS",
+      "toolsLabel": "TOOLS",
+      "weaknessesLabel": "WEAKNESSES"
+    },
+    "crucial-feats": {
+      "headline": "CRUCIAL FEATS",
+      "subtitle": "Character scaling through achievements.",
+      "leftTitle": "TRIGON SHOWCASE",
+      "rightTitle": "GALACTUS SHOWCASE",
+      "featLabel": "FEAT"
+    },
+    "fight-analytics": {
+      "headline": "FIGHT ANALYTICS",
+      "subtitle": "Two-profile stat readout",
+      "threatLevel": "COSMIC",
+      "integrity": "99.4%",
+      "scale": "0-100"
+    },
+    "parameter-comparison": {
+      "headline": "PARAMETER COMPARISON",
+      "subtitle": "Average stat profile map",
+      "leftHeader": "TRIGON ADVANTAGES",
+      "rightHeader": "GALACTUS ADVANTAGES",
+      "drawHeader": "DRAW ZONES",
+      "favoriteLabel": "STAT-BASED FAVORITE"
+    },
+    "victory-archive": {
+      "headline": "Victory Archive",
+      "avgLabel": "AVG SCORE",
+      "leftTitle": "TRIGON RECORD",
+      "rightTitle": "GALACTUS RECORD"
+    },
+    "final-summary": {
+      "headline": "FINAL SUMMARY",
+      "subtitle": "Summary",
+      "winner": "Galactus leads, but Trigon has live branch equity",
+      "line1": "Galactus owns the paper comparison, 92.67 vs 87.33.",
+      "line2": "Trigon stays dangerous when corruption and field logic replace normal combat symmetry.",
+      "line3": "Starvation and home-realm control are the two conditions that let Trigon flip the matchup."
+    },
+    "battle-dynamics": {
+      "headline": "BATTLE DYNAMICS",
+      "subtitle": "How the fight changes minute by minute.",
+      "aCurve": "62,68,77,86,91",
+      "bCurve": "88,90,87,83,78"
+    },
+    "x-factor": {
+      "headline": "X-FACTOR",
+      "subtitle": "The variable that affects the verdict more than ordinary stats.",
+      "factor": "POISONOUS REALM VS ENERGY ECONOMY",
+      "implikacja": "Whoever controls the battlefield's meaning controls the fight's branch logic."
+    },
+    "interpretation": {
+      "headline": "INTERPRETATION",
+      "subtitle": "Who wins the fight on paper?"
+    },
+    "fight-simulation": {
+      "headline": "FIGHT SIMULATION",
+      "subtitle": "The course of the fight across three phases."
+    },
+    "stat-trap": {
+      "headline": "STAT TRAP",
+      "subtitle": "Why better stats do not guarantee victory",
+      "question": "Can Trigon keep the field poisonous before Galactus turns it into fuel?"
+    },
+    "verdict-matrix": {
+      "headline": "VERDICT MATRIX",
+      "subtitle": "Victory depends on the rules.",
+      "colLeft": "NEUTRAL",
+      "colRight": "TRIGON REALM",
+      "rowTop": "WELL-FED",
+      "rowBottom": "STARVING",
+      "case1": "Galactus 8/10",
+      "case2": "Galactus 6.5/10",
+      "case3": "Trigon 6/10",
+      "case4": "Trigon 7.5/10"
+    },
+    "fight-card": {
+      "fightTitle": "Trigon vs Galactus",
+      "topColorA": "#7f1d1d",
+      "topColorB": "#ef4444",
+      "bottomColorA": "#6d28d9",
+      "bottomColorB": "#facc15"
+    }
+  }
+}
