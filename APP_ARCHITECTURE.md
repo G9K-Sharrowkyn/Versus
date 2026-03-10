@@ -113,9 +113,9 @@ Najwazniejsze skrypty:
 - `contentTemplates.tsx`
   Cienki barrel eksportujacy template'y content-heavy.
 - `templates/content/*`
-  Osobne implementacje `CharacterProfileTemplate`, `CrucialFeatsTemplate` i dispatcher `NewTemplate`.
+  Osobne implementacje template'ow content-heavy oraz fallback `UnknownTemplate`.
 - `templates/content/blank/*`
-  Warianty `NewTemplate` rozbite per ekran (`fight-card`, `final-summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `verdict-matrix`).
+  Ekrany narracyjne i warunkowe (`fight-card`, `final-summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `direct-verdict`, `verdict-matrix`).
 
 ### Inne katalogi
 
@@ -166,10 +166,10 @@ Edytuj:
 
 Edytuj:
 
-- `src/features/vs/presets.ts` - definicja template'u i preset.
+- `src/features/vs/fightManifest.ts` - kanoniczna definicja template'u i copy.
 - `src/features/vs/components/TemplateRenderer.tsx` - routing do komponentu.
 - odpowiedni plik w `src/features/vs/templates/`.
-- dla `NewTemplate` najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
+- dla ekranow narracyjnych najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
 
 ### Chcesz zmienic import `.txt`
 

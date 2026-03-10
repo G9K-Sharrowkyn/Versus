@@ -34,8 +34,8 @@ export type TemplateId =
   | 'interpretation'
   | 'fight-simulation'
   | 'stat-trap'
+  | 'direct-verdict'
   | 'verdict-matrix'
-  | 'new-template'
   | 'fight-card'
   | 'methodology'
 

@@ -64,7 +64,6 @@
 - phase-2
 - turning-points
 - methodology
-- new-template
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // LIVE MODEL
@@ -230,12 +229,5 @@ Template Methodology:
 - linear_label: LINEAR SEGMENT
 - chaos_label: CHAOS SEGMENT
 - closing_label: Stats are linear. Fight is not.
-
-Template New Template:
-- headline: NEW TEMPLATE SLOT
-- subtitle: Reserved for custom layout
-- line_1: Add custom data block here.
-- line_2: This slot is intentionally generic.
-- line_3: Ready for next iteration.
 
 

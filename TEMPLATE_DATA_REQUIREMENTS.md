@@ -55,8 +55,8 @@ Available IDs (pick only what fits the current fight):
 - `interpretation`
 - `fight-simulation`
 - `stat-trap`
+- `direct-verdict`
 - `verdict-matrix`
-- `new-template`
 - `fight-card`
 - `methodology`
 
@@ -95,6 +95,7 @@ Adaptation notes:
 - Remove any template that adds no value in a given matchup.
 - If no meaningful joker-card exists, skip `x-factor`.
 - If fight simulation is simple, keep only `fight-simulation` and skip extra narrative fillers.
+- If the matchup is one-sided, prefer `direct-verdict` instead of `verdict-matrix`.
 - Keep in mind that `fight-card` is always appended as the final template.
 
 ## 4) Template block syntax
@@ -496,6 +497,23 @@ Recommended subtitle style:
 - Recommended: `Why better stats do not guarantee victory`
 - Polish equivalent: `Dlaczego lepsze statystyki nie gwarantują wygranej`
 
+### Direct Verdict
+Accepted block names: `Direct Verdict`, `Werdykt Prosty`, `Simple Verdict`, `Clear Verdict`
+- `headline | header | title`
+- `subtitle | purpose | note`
+- `winner | verdict`
+- `loser | opponent`
+- `outcome | result | method`
+- `certainty | margin | confidence`
+- `line_1 | line1`
+- `line_2 | line2`
+- `line_3 | line3`
+
+Direct Verdict rule:
+- Use this screen for one-sided fights where outcome does not depend on niche rules.
+- Prefer `verdict-matrix` only when rules, win conditions, or setup meaningfully change the result.
+- Keep `certainty` short and viewer-facing, for example: `Wysoka` / `High`.
+
 ### Verdict Matrix
 Accepted block names: `Verdict Matrix`, `Matryca Werdyktu`
 - `headline | header | title`
@@ -513,14 +531,6 @@ Verdict Matrix modeling rule:
 - Cases may be non-equiprobable (weighted), not necessarily 50/50.
 - If weighting is used, describe it explicitly in `Template Final Summary` (`line_2` and/or `line_3`).
 - Avoid framing any single condition as automatic hard-counter unless the writeup explicitly supports guaranteed uptime.
-
-### New Template
-Accepted block names: `New Template`, `Nowy Template`, `Blank Template`
-- `headline | header | title`
-- `subtitle | purpose | note`
-- `line_1 | line1`
-- `line_2 | line2`
-- `line_3 | line3`
 
 ### Fight Card
 Accepted block names: `Fight Card`, `Karta Walki`, `Fight Title`, `Final Title`, `Ending Title`, `Napis Koncowy`

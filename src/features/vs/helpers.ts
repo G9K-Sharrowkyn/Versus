@@ -44,8 +44,8 @@ const CANONICAL_TEMPLATE_IDS: TemplateId[] = [
   'interpretation',
   'fight-simulation',
   'stat-trap',
+  'direct-verdict',
   'verdict-matrix',
-  'new-template',
   'fight-card',
   'methodology',
 ]
@@ -61,7 +61,6 @@ export const LEGACY_TEMPLATE_ID_MAP: Record<string, TemplateId> = {
   'radar-brief': 'parameter-comparison',
   'winner-cv': 'victory-archive',
   summary: 'final-summary',
-  'blank-template': 'new-template',
   'fight-title': 'fight-card',
 }
 

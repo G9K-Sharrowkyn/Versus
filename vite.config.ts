@@ -26,7 +26,6 @@ const LEGACY_TEMPLATE_ID_MAP: Record<string, string> = {
   'radar-brief': 'parameter-comparison',
   'winner-cv': 'victory-archive',
   summary: 'final-summary',
-  'blank-template': 'new-template',
   'fight-title': 'fight-card',
 }
 

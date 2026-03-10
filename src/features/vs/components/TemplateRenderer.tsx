@@ -5,12 +5,13 @@ import { VictoryArchiveTemplate } from '../templates/card/VictoryArchiveTemplate
 import { CharacterProfileTemplate } from '../templates/content/CharacterProfileTemplate'
 import { CrucialFeatsTemplate } from '../templates/content/CrucialFeatsTemplate'
 import { BattleDynamicsTemplate } from '../templates/content/blank/BattleDynamicsTemplate'
-import { NewTemplate } from '../templates/content/blank/NewTemplate'
+import { DirectVerdictTemplate } from '../templates/content/blank/DirectVerdictTemplate'
 import { FightSimulationTemplate } from '../templates/content/blank/FightSimulationTemplate'
 import { FightCardTemplate } from '../templates/content/blank/FightCardTemplate'
 import { InterpretationTemplate } from '../templates/content/blank/InterpretationTemplate'
 import { StatTrapTemplate } from '../templates/content/blank/StatTrapTemplate'
 import { SummaryTemplate } from '../templates/content/blank/SummaryTemplate'
+import { UnknownTemplate } from '../templates/content/blank/UnknownTemplate'
 import { VerdictMatrixTemplate } from '../templates/content/blank/VerdictMatrixTemplate'
 import { XFactorTemplate } from '../templates/content/blank/XFactorTemplate'
 import { FightAnalyticsTemplate } from '../templates/stat/FightAnalyticsTemplate'
@@ -53,6 +54,8 @@ export function TemplateRenderer({ activeTemplateId, ...templateProps }: Templat
       return <FightSimulationTemplate {...props} />
     case 'stat-trap':
       return <StatTrapTemplate {...props} />
+    case 'direct-verdict':
+      return <DirectVerdictTemplate {...props} />
     case 'verdict-matrix':
       return <VerdictMatrixTemplate {...props} />
     case 'fight-card':
@@ -60,6 +63,6 @@ export function TemplateRenderer({ activeTemplateId, ...templateProps }: Templat
     case 'methodology':
       return <MethodologyTemplate {...props} />
     default:
-      return <NewTemplate {...props} />
+      return <UnknownTemplate {...props} />
   }
 }
