@@ -6,39 +6,31 @@
   },
   "templates": {
     "crucial-feats": {
-      "leftImages": [
-        "01_6_1_trigon_heart_of_darkness.jpg",
-        "02_6_1_trigon_countless_worlds.jpg",
-        "03_6_1_trigon_resurrection.jpg",
-        "04_6_1_trigon_dark_titans.jpg",
-        "04_6_1_trigon_dark_titans.jpg"
-      ],
-      "rightImages": [
-        "06_6_2_galactus_three_solar_systems.jpg",
-        "07_6_2_galactus_agamotto_realm.jpg",
-        "08_6_2_galactus_silver_surfer_barrier.jpg",
-        "09_6_2_galactus_poppup_devouring.jpg",
-        "10_6_2_galactus_sphinx_time_loop.jpg"
-      ]
+      "left_image_1": "01_6_1_trigon_heart_of_darkness.jpg",
+      "left_image_2": "02_6_1_trigon_countless_worlds.jpg",
+      "left_image_3": "03_6_1_trigon_resurrection.jpg",
+      "left_image_4": "04_6_1_trigon_dark_titans.jpg",
+      "left_image_5": "04_6_1_trigon_dark_titans.jpg",
+      "right_image_1": "06_6_2_galactus_three_solar_systems.jpg",
+      "right_image_2": "07_6_2_galactus_agamotto_realm.jpg",
+      "right_image_3": "08_6_2_galactus_silver_surfer_barrier.jpg",
+      "right_image_4": "09_6_2_galactus_poppup_devouring.jpg",
+      "right_image_5": "10_6_2_galactus_sphinx_time_loop.jpg"
     },
     "fight-analytics": {
-      "profileMode": "VS"
+      "profile_mode": "VS"
     },
     "victory-archive": {
-      "leftImages": [
-        "01_6_1_trigon_heart_of_darkness.jpg",
-        "04_6_1_trigon_dark_titans.jpg",
-        "04_6_1_trigon_dark_titans.jpg",
-        "04_6_1_trigon_dark_titans.jpg",
-        "05_7_1_trigon_psimon_banishment.jpg"
-      ],
-      "rightImages": [
-        "08_6_2_galactus_silver_surfer_barrier.jpg",
-        "10_6_2_galactus_sphinx_time_loop.jpg",
-        "09_6_2_galactus_poppup_devouring.jpg",
-        "11_7_2_galactus_tarnax_iv.jpg",
-        "12_7_2_galactus_mad_celestials.jpg"
-      ]
+      "left_image_1": "01_6_1_trigon_heart_of_darkness.jpg",
+      "left_image_2": "04_6_1_trigon_dark_titans.jpg",
+      "left_image_3": "04_6_1_trigon_dark_titans.jpg",
+      "left_image_4": "04_6_1_trigon_dark_titans.jpg",
+      "left_image_5": "05_7_1_trigon_psimon_banishment.jpg",
+      "right_image_1": "08_6_2_galactus_silver_surfer_barrier.jpg",
+      "right_image_2": "10_6_2_galactus_sphinx_time_loop.jpg",
+      "right_image_3": "09_6_2_galactus_poppup_devouring.jpg",
+      "right_image_4": "11_7_2_galactus_tarnax_iv.jpg",
+      "right_image_5": "12_7_2_galactus_mad_celestials.jpg"
     }
   }
 }

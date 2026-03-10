@@ -3,7 +3,7 @@
   "locale": "pl",
   "fighterA": {
     "name": "Darth Vader",
-    "version": "Legends",
+    "version": "Legendy",
     "stats": {
       "speed": 79,
       "battleIq": 88,
@@ -14,7 +14,7 @@
       "skills": 92
     },
     "dossier": {
-      "style": "",
+      "style": "Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.",
       "advantage": "Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.",
       "mentality": "Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.",
       "quote": "Otacza mnie tylko strach. I martwi ludzie."
@@ -37,15 +37,15 @@
     },
     "crucialFeats": [
       "Podnosi i ciska bombowcem Y-Wing.",
-      "Rozbija o siebie dwa statki kosmiczne telekinezą.",
+      "Rozbija o siebie dwa statki kosmiczne.",
       "Przebija samego siebie, by zabić odrodzonego Darth'a Maul'a.",
       "Blokuje dłonią atak energetyczny.",
-      "Przeżywa gigantyczną eksplozję, która niszczy kasyno."
+      "Przeżywa gigantyczną eksplozję kasyna."
     ]
   },
   "fighterB": {
     "name": "Thanos",
-    "version": "Earth-616",
+    "version": "Ziemia-616",
     "stats": {
       "speed": 78,
       "battleIq": 92,
@@ -56,7 +56,7 @@
       "skills": 88
     },
     "dossier": {
-      "style": "",
+      "style": "Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.",
       "advantage": "Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.",
       "mentality": "Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.",
       "quote": "Nie zmusiłem cię do walki ze mną. Sam mnie do tego zmusiłeś. Musiałem pozostać wierny swojej naturze. Bo w końcu... jestem Thanosem."
@@ -65,8 +65,8 @@
       "Silver Surfer",
       "Hulk",
       "Beta Ray Bill i Ronan Oskarżyciel",
-      "Adam Warlock (wynik kontekstowy / wsparty artefaktem)",
-      "Thor z Power Gem (strategiczne zwycięstwo)"
+      "Adam Warlock",
+      "Thor z Power Gem"
     ],
     "profile": {
       "powers": [
@@ -78,11 +78,11 @@
       "weaknesses": []
     },
     "crucialFeats": [
-      "Niszczy planetę podczas walki z Draxem.",
-      "Przeżywa czarną dziurę o średnicy dwóch lat świetlnych.",
+      "Niszczy planetę podczas walki.",
+      "Przeżywa wessanie do czarnej dziury.",
       "Przeżywa śmiertelny atak Galactusa.",
-      "Przeżywa bez szwanku eksplozję gazowego giganta.",
-      "Wykonuje manipulację materią na poziomie molekularnym."
+      "Wychodzi z eksplozji gazowego giganta.",
+      "Zamienia Skrulla w kamień."
     ]
   },
   "templateOrder": [
@@ -106,113 +106,171 @@
     "tactical-board": {
       "headline": "TABLICA TAKTYCZNA // VADER VS THANOS",
       "subtitle": "Lord Sith kontra Tytan",
-      "leftHeader": "SIATKA KATEGORII",
-      "rightHeader": "REALIA WALKI",
-      "linearLabel": "ODCINEK LINIOWY",
-      "chaosLabel": "ODCINEK CHAOSU",
+      "left_header": "SIATKA KATEGORII",
+      "right_header": "REALIA WALKI",
+      "linear_label": "ODCINEK LINIOWY",
+      "chaos_label": "ODCINEK CHAOSU",
       "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia."
+    },
+    "character-dossier-a": {
+      "header": "Dossier postaci",
+      "world": "Legendy",
+      "style": "Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.",
+      "advantage": "Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.",
+      "mentality": "Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.",
+      "quote": "Otacza mnie tylko strach. I martwi ludzie."
+    },
+    "character-dossier-b": {
+      "header": "Dossier postaci",
+      "world": "Ziemia-616",
+      "style": "Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.",
+      "advantage": "Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.",
+      "mentality": "Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.",
+      "quote": "Nie zmusiłem cię do walki ze mną. Sam mnie do tego zmusiłeś. Musiałem pozostać wierny swojej naturze. Bo w końcu... jestem Thanosem."
     },
     "character-profile": {
       "headline": "PROFIL POSTACI",
       "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
-      "leftTitle": "Darth Vader",
-      "rightTitle": "Thanos",
-      "powersLabel": "MOCE",
-      "toolsLabel": "NARZĘDZIA",
-      "weaknessesLabel": "SŁABOŚCI"
+      "left_title": "Darth Vader",
+      "right_title": "Thanos",
+      "powers_label": "MOCE",
+      "tools_label": "NARZĘDZIA",
+      "weaknesses_label": "SŁABOŚCI"
     },
     "crucial-feats": {
       "headline": "NAJWAŻNIEJSZE WYCZYNY",
       "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
-      "leftTitle": "Darth Vader",
-      "rightTitle": "Thanos",
-      "featLabel": "FEAT"
+      "left_title": "Darth Vader",
+      "right_title": "Thanos",
+      "feat_label": "FEAT",
+      "left_item_1": "Podnosi i ciska bombowcem Y-Wing.",
+      "left_item_2": "Rozbija o siebie dwa statki kosmiczne.",
+      "left_item_3": "Przebija samego siebie, by zabić odrodzonego Darth'a Maul'a.",
+      "left_item_4": "Blokuje dłonią atak energetyczny.",
+      "left_item_5": "Przeżywa gigantyczną eksplozję kasyna.",
+      "right_item_1": "Niszczy planetę podczas walki.",
+      "right_item_2": "Przeżywa wessanie do czarnej dziury.",
+      "right_item_3": "Przeżywa śmiertelny atak Galactusa.",
+      "right_item_4": "Wychodzi z eksplozji gazowego giganta.",
+      "right_item_5": "Zamienia Skrulla w kamień."
     },
     "fight-analytics": {
       "headline": "ANALITYKA WALKI",
       "subtitle": "Odczyt statystyk dwóch profili",
-      "threatLevel": "KOSMICZNY",
+      "threat_level": "KOSMICZNY",
       "integrity": "99.4%",
       "scale": "0-100"
     },
     "parameter-comparison": {
       "headline": "PORÓWNANIE PARAMETRÓW",
       "subtitle": "Mapa średniego profilu statystyk",
-      "leftHeader": "PRZEWAGI VADERA",
-      "rightHeader": "PRZEWAGI THANOSA",
-      "drawHeader": "STREFY REMISU",
-      "favoriteLabel": "FAWORYT WEDŁUG STATYSTYK"
-    },
-    "victory-archive": {
-      "headline": "Archiwum zwycięstw",
-      "avgLabel": "ŚREDNI WYNIK",
-      "leftTitle": "Darth Vader",
-      "rightTitle": "Thanos",
-      "winBadge": "W"
-    },
-    "final-summary": {
-      "headline": "PODSUMOWANIE KOŃCOWE",
-      "subtitle": "Podsumowanie",
-      "winner": "Thanos z wyraźną przewagą",
-      "line1": "Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, które naprawdę decydują o finiszu.",
-      "line2": "Otwarcie Vadera pozostaje groźne, ale luka w wytrzymałości i skali jest zbyt duża, by rozwiązać ją konsekwentnie.",
-      "line3": "To stabilny pojedynek, a nie walka oparta na wielu gałęziach."
+      "left_header": "PRZEWAGI VADERA",
+      "right_header": "PRZEWAGI THANOSA",
+      "draw_header": "STREFY REMISU",
+      "favorite_label": "FAWORYT WEDŁUG STATYSTYK"
     },
     "battle-dynamics": {
       "headline": "DYNAMIKA WALKI",
       "subtitle": "Jak walka zmienia się z minuty na minutę.",
-      "aCurve": "86,79,66,52,39",
-      "bCurve": "58,66,78,88,94",
-      "yellowWave": "26,31,29,35,33,39,37,43",
-      "phase1": "Vader zaczyna wyżej, bo jego kontrola i timing czynią pierwszą wymianę groźną.",
-      "phase2": "Thanos staje się silniejszy, gdy tylko pierwszy bypass zawiedzie i walka robi się fizyczna.",
-      "phase3": "Linia Vadera załamuje się, gdy musi wielokrotnie przyjmować kary na poziomie kosmicznym.",
+      "a_curve": "86,79,66,52,39",
+      "b_curve": "58,66,78,88,94",
+      "yellow_wave": "26,31,29,35,33,39,37,43",
+      "phase_1": "Vader zaczyna wyżej, bo jego kontrola i timing czynią pierwszą wymianę groźną.",
+      "phase_2": "Thanos staje się silniejszy, gdy tylko pierwszy bypass zawiedzie i walka robi się fizyczna.",
+      "phase_3": "Linia Vadera załamuje się, gdy musi wielokrotnie przyjmować kary na poziomie kosmicznym.",
       "analysis": "Vader kontroluje momenty. Thanos kontroluje to, czym walka się staje."
     },
     "x-factor": {
       "headline": "X-FACTOR",
       "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
       "factor": "PIERWSZY BYPASS VS PRÓG WYTRZYMAŁOŚCI",
-      "aValue": "50",
-      "aBonus": "14",
-      "aBonusLabel": "ŚMIERTELNE OTWARCIE",
-      "bValue": "50",
-      "bBonus": "22",
+      "a_value": "50",
+      "a_bonus": "14",
+      "a_bonus_label": "ŚMIERTELNE OTWARCIE",
+      "b_value": "50",
+      "b_bonus": "22",
       "regen": "PRZEWAGA SKALI",
-      "mechanika": "Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.",
-      "implikacja": "Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.",
-      "psychologia": "Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję."
+      "mechanics": "Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.",
+      "implication": "Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.",
+      "psychology": "Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję."
     },
     "interpretation": {
       "headline": "INTERPRETACJA",
       "subtitle": "Kto wygrywa walkę na papierze?",
-      "line1": "Na papierze wygrywa Thanos, bo kontroluje kategorie decydujące o tym, czy Vader w ogóle może domknąć walkę.",
-      "line2": "Vader nadal ma groźną pierwszą minutę, bo jego techniczne otwarcie jest dużo czystsze niż otwarcie Thanosa.",
-      "line3": "To otwarcie jest realne, ale cała walka i tak należy do Thanosa, gdy tylko przetrwa pierwszą chirurgiczną próbę.",
+      "line_1": "Na papierze wygrywa Thanos, bo kontroluje kategorie decydujące o tym, czy Vader w ogóle może domknąć walkę.",
+      "line_2": "Vader nadal ma groźną pierwszą minutę, bo jego techniczne otwarcie jest dużo czystsze niż otwarcie Thanosa.",
+      "line_3": "To otwarcie jest realne, ale cała walka i tak należy do Thanosa, gdy tylko przetrwa pierwszą chirurgiczną próbę.",
       "quote": "Lepsza technika nie wystarcza, jeśli nigdy nie zamienia się w realną ścieżkę finiszu."
     },
     "fight-simulation": {
       "headline": "SYMULACJA WALKI",
       "subtitle": "Przebieg walki przez trzy fazy.",
       "opening": "Vader otwiera walkę telekinezą, prekognicją i śmiercionośnością w bliskim dystansie.",
-      "midFight": "Thanos przeżywa pierwszą chirurgiczną próbę i przestaje traktować wymianę jak techniczny pojedynek.",
-      "lateFight": "Walka zamienia się w tarcze, promienie, brutalne kontry i obrażenia ciała, których Vader nie może przyjmować w kółko.",
-      "endCondition": "Jeśli pierwszy bypass zawiedzie, walka natychmiast staje się walką Thanosa."
+      "mid_fight": "Thanos przeżywa pierwszą chirurgiczną próbę i przestaje traktować wymianę jak techniczny pojedynek.",
+      "late_fight": "Walka zamienia się w tarcze, promienie, brutalne kontry i obrażenia ciała, których Vader nie może przyjmować w kółko.",
+      "end_condition": "Jeśli pierwszy bypass zawiedzie, walka natychmiast staje się walką Thanosa.",
+      "phase_1_mode": "bars",
+      "phase_1_animation": "feint-counter",
+      "phase_1_actor": "a",
+      "phase_1_title": "Chirurgiczne Otwarcie",
+      "phase_1_a_label": "Kontrola",
+      "phase_1_b_label": "Wytrzymałość",
+      "phase_1_a_value": "90",
+      "phase_1_b_value": "71",
+      "phase_2_mode": "split",
+      "phase_2_animation": "clash-lock",
+      "phase_2_actor": "b",
+      "phase_2_title": "Pierwsza Porażka",
+      "phase_2_event": "Thanos przeżywa pierwszą realną próbę rozwiązania walki i przestaje respektować pojedynek.",
+      "phase_2_branch_a": "Vader próbuje utrzymać walkę w technicznym reżimie przez kolejną presję Mocy i kąty wejścia.",
+      "phase_2_branch_b": "Thanos zamienia mapę w tarcze, promienie i bezpośrednie karanie ciała.",
+      "phase_3_mode": "split",
+      "phase_3_animation": "trade-chaos",
+      "phase_3_actor": "b",
+      "phase_3_title": "Luka Skali Się Wypłaca",
+      "phase_3_event": "Vader wciąż może grozić pojedynczymi momentami, ale wymiana już do niego nie należy.",
+      "phase_3_branch_a": "Cudowny bypass musiałby skończyć walkę natychmiast.",
+      "phase_3_branch_b": "Thanos absorbuje, kontruje i kończy walkę siłą."
     },
     "stat-trap": {
       "headline": "PUŁAPKA STATYSTYK",
       "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
-      "trapTop": "PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE",
-      "trapBottom": "WYTRZYMAŁOŚĆ THANOSA DECYDUJE O POJEDYNKU",
+      "trap_top": "PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE",
+      "trap_bottom": "WYTRZYMAŁOŚĆ THANOSA DECYDUJE O POJEDYNKU",
       "example": "Vader może wygrać pierwszy odczyt i nadal przegrać walkę, bo cel jest zbudowany tak, by ten odczyt przeżyć.",
       "question": "Czy Vader może stworzyć śmiertelny bypass, zanim Thanos zrozumie, że nie musi respektować pojedynku?"
     },
+    "victory-archive": {
+      "headline": "Archiwum zwycięstw",
+      "avg_label": "ŚREDNI WYNIK",
+      "left_title": "Darth Vader",
+      "right_title": "Thanos",
+      "win_badge": "W",
+      "left_item_1": "Dark Woman",
+      "left_item_2": "Sha Koon",
+      "left_item_3": "Hylon",
+      "left_item_4": "Celeste Morne",
+      "left_item_5": "Kai Hudorra",
+      "right_item_1": "Silver Surfer",
+      "right_item_2": "Hulk",
+      "right_item_3": "Beta Ray Bill i Ronan Oskarżyciel",
+      "right_item_4": "Adam Warlock",
+      "right_item_5": "Thor z Power Gem"
+    },
+    "final-summary": {
+      "headline": "PODSUMOWANIE KOŃCOWE",
+      "subtitle": "Podsumowanie",
+      "winner": "Thanos z wyraźną przewagą",
+      "line_1": "Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, które naprawdę decydują o finiszu.",
+      "line_2": "Otwarcie Vadera pozostaje groźne, ale luka w wytrzymałości i skali jest zbyt duża, by rozwiązać ją konsekwentnie.",
+      "line_3": "To stabilny pojedynek, a nie walka oparta na wielu gałęziach."
+    },
     "fight-card": {
-      "fightTitle": "Darth Vader vs Thanos",
-      "topColorA": "#111827",
-      "topColorB": "#b91c1c",
-      "bottomColorA": "#7c3aed",
-      "bottomColorB": "#f5c542"
+      "fight_title": "Darth Vader vs Thanos",
+      "top_color_a": "#111827",
+      "top_color_b": "#b91c1c",
+      "bottom_color_a": "#7c3aed",
+      "bottom_color_b": "#f5c542"
     }
   }
 }

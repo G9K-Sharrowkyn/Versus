@@ -17,8 +17,8 @@
     },
     "dossier": {
       "style": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.",
-      "advantage": "Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.",
-      "mentality": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.",
+      "advantage": "Extremely trained body and inhuman speed. Possesses total muscle control, allowing him to deliver powerful strikes from zero distance.",
+      "mentality": "Instant adaptation and instinctive precision. Reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without sticking to rigid patterns.",
       "quote": "Be water, my friend."
     },
     "victories": [
@@ -37,11 +37,11 @@
       ]
     },
     "crucialFeats": [
-      "One-inch punch demonstration at Long Beach",
-      "Two-finger push-up and body-control demonstration",
-      "1958 inter-school boxing title win over Gary Elms",
-      "Built Jeet Kune Do by effectively combining multiple styles",
-      "Defeated Yoichi Nakachi in 11 seconds"
+      "One-inch punch (Long Beach).",
+      "Two-finger push-ups.",
+      "1958 inter-school boxing title (Gary Elms).",
+      "Built Jeet Kune Do by effectively combining multiple styles.",
+      "Defeated Yoichi Nakachi in 11 seconds."
     ]
   },
   "fighterB": {
@@ -59,9 +59,9 @@
       "skills": 94
     },
     "dossier": {
-      "style": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance.",
-      "advantage": "Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.",
-      "mentality": "A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.",
+      "style": "Masterful control of distance and rhythm. Uses legendary footwork and a fast jab to frustrate enemies and score points from a safe distance.",
+      "advantage": "Heavyweight endurance and ring intelligence. Can take a punch, but his true strength lies in avoiding them and dictating the pace of the fight.",
+      "mentality": "Charismatic showman with a will of steel. Provokes the opponent to throw them off balance and methodically break their self-confidence.",
       "quote": "Float like a butterfly, sting like a bee."
     },
     "victories": [
@@ -83,11 +83,11 @@
       ]
     },
     "crucialFeats": [
-      "Rope-a-dope against George Foreman",
-      "Peak heavyweight speed and precision against Cleveland Williams",
-      "Frazier-era endurance and punishment tolerance",
-      "Olympic gold medal, Rome 1960",
-      "First boxer in history to win the heavyweight world title three times"
+      "Rope-a-dope vs Foreman.",
+      "19 successful world title defenses.",
+      "First three-time heavyweight world champion.",
+      "Olympic gold, Rome 1960.",
+      "Defeated 21 champions or heavyweight title challengers."
     ]
   },
   "templateOrder": [
@@ -110,82 +110,133 @@
     "tactical-board": {
       "headline": "TACTICAL BOARD // BRUCE VS ALI",
       "subtitle": "Artist versus Boxer",
-      "leftHeader": "CATEGORY GRID",
-      "rightHeader": "FIGHT REALITY",
-      "linearLabel": "LINEAR SEGMENT",
-      "chaosLabel": "CHAOS SEGMENT",
+      "left_header": "CATEGORY GRID",
+      "right_header": "FIGHT REALITY",
+      "linear_label": "LINEAR SEGMENT",
+      "chaos_label": "CHAOS SEGMENT",
       "lane": "Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality."
+    },
+    "character-dossier-a": {
+      "header": "CHARACTER DOSSIER",
+      "world": "Historical Prime",
+      "style": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.",
+      "advantage": "Extremely trained body and inhuman speed. Possesses total muscle control, allowing him to deliver powerful strikes from zero distance.",
+      "mentality": "Instant adaptation and instinctive precision. Reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without sticking to rigid patterns.",
+      "quote": "Be water, my friend."
+    },
+    "character-dossier-b": {
+      "header": "CHARACTER DOSSIER",
+      "world": "Historical Prime",
+      "style": "Masterful control of distance and rhythm. Uses legendary footwork and a fast jab to frustrate enemies and score points from a safe distance.",
+      "advantage": "Heavyweight endurance and ring intelligence. Can take a punch, but his true strength lies in avoiding them and dictating the pace of the fight.",
+      "mentality": "Charismatic showman with a will of steel. Provokes the opponent to throw them off balance and methodically break their self-confidence.",
+      "quote": "Float like a butterfly, sting like a bee."
     },
     "character-profile": {
       "headline": "CHARACTER PROFILE",
       "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
-      "leftTitle": "BRUCE TOOLKIT",
-      "rightTitle": "ALI TOOLKIT",
-      "powersLabel": "POWERS",
-      "toolsLabel": "TOOLS",
-      "weaknessesLabel": "WEAKNESSES"
+      "left_title": "BRUCE TOOLKIT",
+      "right_title": "ALI TOOLKIT",
+      "powers_label": "POWERS",
+      "tools_label": "TOOLS",
+      "weaknesses_label": "WEAKNESSES"
     },
     "crucial-feats": {
       "headline": "CRUCIAL FEATS",
       "subtitle": "Character scaling through achievements.",
-      "leftTitle": "BRUCE SHOWCASE",
-      "rightTitle": "ALI SHOWCASE",
-      "featLabel": "FEAT"
+      "left_title": "BRUCE SHOWCASE",
+      "right_title": "ALI SHOWCASE",
+      "feat_label": "FEAT",
+      "left_item_1": "One-inch punch (Long Beach).",
+      "left_item_2": "Two-finger push-ups.",
+      "left_item_3": "1958 inter-school boxing title (Gary Elms).",
+      "left_item_4": "Built Jeet Kune Do by effectively combining multiple styles.",
+      "left_item_5": "Defeated Yoichi Nakachi in 11 seconds.",
+      "right_item_1": "Rope-a-dope vs Foreman.",
+      "right_item_2": "19 successful world title defenses.",
+      "right_item_3": "First three-time heavyweight world champion.",
+      "right_item_4": "Olympic gold, Rome 1960.",
+      "right_item_5": "Defeated 21 champions or heavyweight title challengers."
     },
     "fight-analytics": {
       "headline": "FIGHT ANALYTICS",
       "subtitle": "Two-profile stat readout",
-      "threatLevel": "HUMAN",
+      "threat_level": "HUMAN",
       "integrity": "98.7%",
       "scale": "0-100"
     },
     "parameter-comparison": {
       "headline": "PARAMETER COMPARISON",
       "subtitle": "Average stat profile map",
-      "leftHeader": "BRUCE ADVANTAGES",
-      "rightHeader": "ALI ADVANTAGES",
-      "drawHeader": "DRAW ZONES",
-      "favoriteLabel": "STAT-BASED FAVORITE"
+      "left_header": "BRUCE ADVANTAGES",
+      "right_header": "ALI ADVANTAGES",
+      "draw_header": "DRAW ZONES",
+      "left_avg": "78.89",
+      "right_avg": "87.67",
+      "left_avg_round": "79",
+      "right_avg_round": "88",
+      "favorite_label": "STAT-BASED FAVORITE",
+      "favorite": "Muhammad Ali",
+      "left_notes": "Entry speed, rhythm disruption, and angle changes",
+      "right_notes": "Reach, durability, pacing, and repeatable ring control",
+      "draw_notes": "Both read timing well, but Ali turns repeated exchanges into his fight"
+    },
+    "battle-dynamics": {
+      "headline": "BATTLE DYNAMICS",
+      "subtitle": "How the fight changes minute by minute.",
+      "left_curve_label": "BRUCE EARLY DISRUPTION",
+      "right_curve_label": "ALI LATE CONTROL",
+      "left_curve": "78,74,68,61,54",
+      "right_curve": "62,70,79,88,94",
+      "notes": "Bruce is live early because speed and disruption matter most before the fight settles. Ali grows stronger as range, pacing, and durability compound over repeated exchanges."
+    },
+    "interpretation": {
+      "headline": "INTERPRETATION",
+      "subtitle": "Who wins the fight on paper?",
+      "body": "Muhammad Ali. Bruce owns speed, disruption, and the uglier opening texture, but Ali owns the categories that settle repeated human exchanges: reach, durability, pacing, and ring management. Bruce only narrows the matchup if he prevents the fight from hardening into Ali's preferred distance game."
+    },
+    "fight-simulation": {
+      "headline": "FIGHT SIMULATION",
+      "subtitle": "The course of the fight across three phases.",
+      "phase_1_title": "Entry and rhythm war",
+      "phase_1_desc": "Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.",
+      "phase_1_anim": "feint-counter",
+      "phase_1_actor": "a",
+      "phase_2_title": "Range tax",
+      "phase_2_desc": "Ali taxes distance with the jab, feet, and ring control, forcing Bruce to pay for every re-entry.",
+      "phase_2_anim": "kite-zone",
+      "phase_2_actor": "b",
+      "phase_3_title": "Heavyweight reality",
+      "phase_3_desc": "The fight either stays ugly and narrow for Bruce or settles into repeatable heavyweight distance, where Ali's durability and pace take over.",
+      "phase_3_anim": "corner-trap",
+      "phase_3_actor": "b"
+    },
+    "stat-trap": {
+      "headline": "STAT TRAP",
+      "subtitle": "Why better stats do not guarantee victory",
+      "question": "Can Bruce stop the fight from turning into Ali's range-and-tax pattern?",
+      "body": "Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator."
     },
     "victory-archive": {
       "headline": "Victory Archive",
-      "avgLabel": "AVG SCORE",
-      "leftTitle": "BRUCE RECORD",
-      "rightTitle": "ALI RECORD"
+      "avg_label": "AVG SCORE",
+      "left_title": "BRUCE RECORD",
+      "right_title": "ALI RECORD"
     },
     "final-summary": {
       "headline": "FINAL SUMMARY",
       "subtitle": "Summary",
       "winner": "Muhammad Ali by clear margin",
-      "line1": "Ali owns the paper comparison, 87.67 vs 78.89.",
-      "line2": "Bruce changes the texture of the fight more than the winner identity.",
-      "line3": "Open rules narrow the matchup, but do not flip the baseline result."
-    },
-    "battle-dynamics": {
-      "headline": "BATTLE DYNAMICS",
-      "subtitle": "How the fight changes minute by minute.",
-      "aCurve": "78,74,68,61,54",
-      "bCurve": "62,70,79,88,94"
-    },
-    "interpretation": {
-      "headline": "INTERPRETATION",
-      "subtitle": "Who wins the fight on paper?"
-    },
-    "fight-simulation": {
-      "headline": "FIGHT SIMULATION",
-      "subtitle": "The course of the fight across three phases."
-    },
-    "stat-trap": {
-      "headline": "STAT TRAP",
-      "subtitle": "Why better stats do not guarantee victory",
-      "question": "Can Bruce stop the fight from turning into Ali's range-and-tax pattern?"
+      "line_1": "Ali owns the paper comparison, 87.67 vs 78.89.",
+      "line_2": "Bruce changes the texture of the fight more than the winner identity.",
+      "line_3": "Open rules narrow the matchup, but do not flip the baseline result."
     },
     "fight-card": {
-      "fightTitle": "Bruce Lee vs Muhammad Ali",
-      "topColorA": "#facc15",
-      "topColorB": "#111827",
-      "bottomColorA": "#f8fafc",
-      "bottomColorB": "#60a5fa"
+      "fight_title": "Bruce Lee vs Muhammad Ali",
+      "top_color_a": "#facc15",
+      "top_color_b": "#111827",
+      "bottom_color_a": "#f8fafc",
+      "bottom_color_b": "#60a5fa"
     }
   }
 }

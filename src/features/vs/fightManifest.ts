@@ -826,8 +826,8 @@ export const buildFightTemplateChrome = (language: FightManifestLocale, fields: 
     dataIntegrityValue: fields.integrity || fields.dataintegrity || copy.dataIntegrityValue,
     brandAlt: copy.brandAlt,
     brandMarkTitle: copy.brandMarkTitle,
-    brandMarkAria: fields.scale || copy.brandMarkAria,
-    brandImageSrc: fields.profilemode || copy.brandImageSrc,
+    brandMarkAria: fields.brandmarkaria || fields.brandaria || copy.brandMarkAria,
+    brandImageSrc: fields.brandimagesrc || fields.brandimage || copy.brandImageSrc,
     portraitAdjustHint: copy.portraitAdjustHint,
   }
 }

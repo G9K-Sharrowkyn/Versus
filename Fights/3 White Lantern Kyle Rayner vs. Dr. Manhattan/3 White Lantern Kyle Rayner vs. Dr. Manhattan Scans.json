@@ -6,23 +6,19 @@
   },
   "templates": {
     "crucial-feats": {
-      "leftImages": [
-        "Kyle_source.jpeg",
-        "Kyle_Resurrection1.jpeg",
-        "Kyle_Destabilize.jpeg",
-        "Kyle_Life.jpeg",
-        "Kyle_Oblivion.jpeg"
-      ],
-      "rightImages": [
-        "06_6_2_manhattan_non_linear_perception.jpg",
-        "07_6_2_manhattan_self_consistency_across_time.jpg",
-        "Manhattan_Resurrection.jpeg",
-        "09_6_2_manhattan_metron_owlman_mobius.jpg",
-        "Manhattan_End.jpg"
-      ]
+      "left_image_1": "Kyle_source.jpeg",
+      "left_image_2": "Kyle_Resurrection1.jpeg",
+      "left_image_3": "Kyle_Destabilize.jpeg",
+      "left_image_4": "Kyle_Life.jpeg",
+      "left_image_5": "Kyle_Oblivion.jpeg",
+      "right_image_1": "06_6_2_manhattan_non_linear_perception.jpg",
+      "right_image_2": "07_6_2_manhattan_self_consistency_across_time.jpg",
+      "right_image_3": "Manhattan_Resurrection.jpeg",
+      "right_image_4": "09_6_2_manhattan_metron_owlman_mobius.jpg",
+      "right_image_5": "Manhattan_End.jpg"
     },
     "fight-analytics": {
-      "profileMode": "VS"
+      "profile_mode": "VS"
     }
   }
 }

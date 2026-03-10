@@ -1,7 +1,6 @@
 import clsx from 'clsx'
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, useEffect, useMemo, useState } from 'react'
 import type { TranslationDictionary } from '../../../../i18n/types'
-import { DEFAULT_TEMPLATE_ORDER } from '../../presets'
 import type { TemplateId, TemplatePreset } from '../../types'
 
 type DraftImportPanelProps = {
@@ -11,6 +10,49 @@ type DraftImportPanelProps = {
 }
 
 const FINAL_TEMPLATE_ID: TemplateId = 'fight-card'
+type TemplateSectionId = 'intro' | 'development' | 'fight-phase' | 'ending'
+
+const DEFAULT_SCAFFOLD_TEMPLATE_ORDER: TemplateId[] = [
+  'tactical-board',
+  'character-dossier-a',
+  'character-dossier-b',
+  'character-profile',
+  'crucial-feats',
+  'fight-analytics',
+  'parameter-comparison',
+  'interpretation',
+  'stat-trap',
+  'x-factor',
+  'victory-archive',
+  'final-summary',
+  'battle-dynamics',
+  'fight-simulation',
+  'verdict-matrix',
+  'fight-card',
+]
+
+const TEMPLATE_SECTION_ORDER: TemplateSectionId[] = ['intro', 'development', 'fight-phase', 'ending']
+
+const TEMPLATE_SECTION_BY_ID: Record<TemplateId, TemplateSectionId> = {
+  'tactical-board': 'intro',
+  'character-dossier-a': 'intro',
+  'character-dossier-b': 'intro',
+  'character-profile': 'intro',
+  'crucial-feats': 'development',
+  'fight-analytics': 'development',
+  'parameter-comparison': 'development',
+  'victory-archive': 'development',
+  'final-summary': 'development',
+  'battle-dynamics': 'fight-phase',
+  'x-factor': 'fight-phase',
+  'interpretation': 'fight-phase',
+  'fight-simulation': 'fight-phase',
+  'stat-trap': 'fight-phase',
+  'direct-verdict': 'ending',
+  'verdict-matrix': 'ending',
+  methodology: 'ending',
+  'fight-card': 'ending',
+}
 
 const normalizeSelectedTemplateOrder = (order: TemplateId[]) => {
   const next: TemplateId[] = []
@@ -31,6 +73,19 @@ const parseMatchup = (value: string) => {
   return { fighterAName, fighterBName }
 }
 
+const getTemplateSectionLabel = (ui: TranslationDictionary['ui'], sectionId: TemplateSectionId) => {
+  switch (sectionId) {
+    case 'intro':
+      return ui.templateSectionIntro
+    case 'development':
+      return ui.templateSectionDevelopment
+    case 'fight-phase':
+      return ui.templateSectionFightPhase
+    case 'ending':
+      return ui.templateSectionEnding
+  }
+}
+
 export function DraftImportPanel({
   ui,
   availableTemplates,
@@ -39,7 +94,7 @@ export function DraftImportPanel({
   const [matchName, setMatchName] = useState('')
   const [preparedMatchName, setPreparedMatchName] = useState('')
   const [selectedTemplateOrder, setSelectedTemplateOrder] = useState<TemplateId[]>(() =>
-    normalizeSelectedTemplateOrder(DEFAULT_TEMPLATE_ORDER),
+    normalizeSelectedTemplateOrder(DEFAULT_SCAFFOLD_TEMPLATE_ORDER),
   )
   const [draggedTemplateId, setDraggedTemplateId] = useState<TemplateId | null>(null)
   const [errorMessage, setErrorMessage] = useState('')
@@ -53,7 +108,7 @@ export function DraftImportPanel({
 
   useEffect(() => {
     const fallbackOrder = normalizeSelectedTemplateOrder(
-      DEFAULT_TEMPLATE_ORDER.filter((templateId) => templateById.has(templateId)),
+      DEFAULT_SCAFFOLD_TEMPLATE_ORDER.filter((templateId) => templateById.has(templateId)),
     )
     setSelectedTemplateOrder((current) => {
       if (current.length) {
@@ -71,6 +126,11 @@ export function DraftImportPanel({
   const availableToAdd = availableTemplates.filter(
     (template) => template.id !== FINAL_TEMPLATE_ID && !selectedTemplateOrder.includes(template.id),
   )
+
+  const availableTemplatesBySection = TEMPLATE_SECTION_ORDER.map((sectionId) => ({
+    sectionId,
+    templates: availableToAdd.filter((template) => TEMPLATE_SECTION_BY_ID[template.id] === sectionId),
+  })).filter((entry) => entry.templates.length)
 
   const preparedMatchup = parseMatchup(preparedMatchName)
 
@@ -122,7 +182,7 @@ export function DraftImportPanel({
       setSuccessMessage(`${ui.createFightSuccess}: ${folderName}`)
       setPreparedMatchName('')
       setMatchName('')
-      setSelectedTemplateOrder(normalizeSelectedTemplateOrder(DEFAULT_TEMPLATE_ORDER))
+      setSelectedTemplateOrder(normalizeSelectedTemplateOrder(DEFAULT_SCAFFOLD_TEMPLATE_ORDER))
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : ui.createFightFailed)
     } finally {
@@ -175,55 +235,71 @@ export function DraftImportPanel({
               <div className="mt-3 space-y-2">
                 {selectedTemplates.map((template, index) => {
                   const isFixedFinal = template.id === FINAL_TEMPLATE_ID
+                  const sectionId = TEMPLATE_SECTION_BY_ID[template.id]
+                  const previousSectionId = index > 0 ? TEMPLATE_SECTION_BY_ID[selectedTemplates[index - 1]!.id] : null
+                  const showSectionHeader = sectionId !== previousSectionId
                   return (
-                    <div
-                      key={template.id}
-                      draggable={!isFixedFinal}
-                      onDragStart={() => {
-                        if (isFixedFinal) return
-                        setDraggedTemplateId(template.id)
-                      }}
-                      onDragOver={(event) => {
-                        if (!draggedTemplateId || draggedTemplateId === template.id) return
-                        event.preventDefault()
-                      }}
-                      onDrop={(event) => {
-                        event.preventDefault()
-                        if (!draggedTemplateId || draggedTemplateId === template.id) return
-                        moveTemplateBefore(draggedTemplateId, template.id)
-                        setDraggedTemplateId(null)
-                      }}
-                      onDragEnd={() => setDraggedTemplateId(null)}
-                      className={clsx(
-                        'flex items-center gap-3 rounded-xl border px-3 py-3 transition',
-                        isFixedFinal
-                          ? 'border-amber-300/35 bg-amber-500/10'
-                          : draggedTemplateId === template.id
-                            ? 'border-cyan-300/70 bg-cyan-500/10'
-                            : 'border-slate-700/70 bg-slate-900/75',
-                      )}
-                    >
-                      <div className="flex w-8 shrink-0 items-center justify-center text-xs font-semibold text-slate-300">
-                        {index + 1}
+                    <Fragment key={template.id}>
+                      {showSectionHeader ? (
+                        <div className="pt-2 first:pt-0">
+                          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/80">
+                            {getTemplateSectionLabel(ui, sectionId)}
+                          </p>
+                        </div>
+                      ) : null}
+                      <div
+                        draggable={!isFixedFinal}
+                        onDragStart={() => {
+                          if (isFixedFinal) return
+                          setDraggedTemplateId(template.id)
+                        }}
+                        onDragOver={(event) => {
+                          if (!draggedTemplateId || draggedTemplateId === template.id) return
+                          event.preventDefault()
+                        }}
+                        onDrop={(event) => {
+                          event.preventDefault()
+                          if (!draggedTemplateId || draggedTemplateId === template.id) return
+                          moveTemplateBefore(draggedTemplateId, template.id)
+                          setDraggedTemplateId(null)
+                        }}
+                        onDragEnd={() => setDraggedTemplateId(null)}
+                        className={clsx(
+                          'flex items-center gap-3 rounded-xl border px-3 py-3 transition',
+                          isFixedFinal
+                            ? 'border-amber-300/35 bg-amber-500/10'
+                            : draggedTemplateId === template.id
+                              ? 'border-cyan-300/70 bg-cyan-500/10'
+                              : 'border-slate-700/70 bg-slate-900/75',
+                        )}
+                      >
+                        <div className="flex w-8 shrink-0 items-center justify-center text-xs font-semibold text-slate-300">
+                          {index + 1}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex flex-wrap items-center gap-2">
+                            <p className="truncate text-sm font-semibold text-slate-100">{template.name}</p>
+                            <span className="rounded-full border border-slate-600/80 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-[0.12em] text-slate-300">
+                              {getTemplateSectionLabel(ui, sectionId)}
+                            </span>
+                          </div>
+                          <p className="truncate text-xs text-slate-400">{template.id}</p>
+                        </div>
+                        {isFixedFinal ? (
+                          <span className="rounded-full border border-amber-300/45 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100">
+                            {ui.templateFixedLabel}
+                          </span>
+                        ) : (
+                          <button
+                            type="button"
+                            className="rounded-lg border border-rose-300/35 bg-rose-500/10 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-rose-100 transition hover:bg-rose-500/20"
+                            onClick={() => removeTemplate(template.id)}
+                          >
+                            {ui.removeTemplate}
+                          </button>
+                        )}
                       </div>
-                      <div className="flex-1 min-w-0">
-                        <p className="truncate text-sm font-semibold text-slate-100">{template.name}</p>
-                        <p className="truncate text-xs text-slate-400">{template.id}</p>
-                      </div>
-                      {isFixedFinal ? (
-                        <span className="rounded-full border border-amber-300/45 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100">
-                          {ui.templateFixedLabel}
-                        </span>
-                      ) : (
-                        <button
-                          type="button"
-                          className="rounded-lg border border-rose-300/35 bg-rose-500/10 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-rose-100 transition hover:bg-rose-500/20"
-                          onClick={() => removeTemplate(template.id)}
-                        >
-                          {ui.removeTemplate}
-                        </button>
-                      )}
-                    </div>
+                    </Fragment>
                   )
                 })}
               </div>
@@ -233,19 +309,26 @@ export function DraftImportPanel({
               <p className="section-label">{ui.availableTemplatesLabel}</p>
               <div className="mt-3 space-y-2">
                 {availableToAdd.length ? (
-                  availableToAdd.map((template) => (
-                    <button
-                      key={template.id}
-                      type="button"
-                      className="flex w-full items-center justify-between rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-3 text-left transition hover:border-cyan-300/45 hover:bg-slate-900"
-                      onClick={() => addTemplate(template.id)}
-                    >
-                      <span>
-                        <span className="block text-sm font-semibold text-slate-100">{template.name}</span>
-                        <span className="block text-xs text-slate-400">{template.id}</span>
-                      </span>
-                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">{ui.addTemplate}</span>
-                    </button>
+                  availableTemplatesBySection.map(({ sectionId, templates }) => (
+                    <div key={sectionId} className="space-y-2">
+                      <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-cyan-100/80">
+                        {getTemplateSectionLabel(ui, sectionId)}
+                      </p>
+                      {templates.map((template) => (
+                        <button
+                          key={template.id}
+                          type="button"
+                          className="flex w-full items-center justify-between rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-3 text-left transition hover:border-cyan-300/45 hover:bg-slate-900"
+                          onClick={() => addTemplate(template.id)}
+                        >
+                          <span>
+                            <span className="block text-sm font-semibold text-slate-100">{template.name}</span>
+                            <span className="block text-xs text-slate-400">{template.id}</span>
+                          </span>
+                          <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">{ui.addTemplate}</span>
+                        </button>
+                      ))}
+                    </div>
                   ))
                 ) : (
                   <p className="rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-4 text-sm text-slate-400">

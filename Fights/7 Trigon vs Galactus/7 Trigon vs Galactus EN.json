@@ -16,17 +16,17 @@
       "skills": 75
     },
     "dossier": {
-      "style": "Static dominance and devastating energy projection. Trigon utilizes his six eyes for hellfire blasts and his divine brute force to effortlessly smash any opponent.",
-      "advantage": "Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.",
-      "mentality": "A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.",
+      "style": "Static dominance and destructive energy projection. Trigon uses six eyes for multi-directional hellfire blasts and the brutal strength of a deity to effortlessly shatter and repel any opponent.",
+      "advantage": "Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies gives him almost infinite magic resources and the ability to instantly regenerate from the very essence of darkness.",
+      "mentality": "Sadistic tyrant seeking total conquest. Does not seek a challenge, but revels in the despair and slow breaking of the opponent's spirit before their ultimate annihilation.",
       "quote": "In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!"
     },
     "victories": [
       "The Divine",
-      "Teen Titans (team corruption / overwhelm)",
+      "Teen Titans",
       "Superboy",
       "Wonder Girl",
-      "Psimon (banishment / BFR)"
+      "Psimon"
     ],
     "profile": {
       "powers": [
@@ -41,11 +41,11 @@
       ]
     },
     "crucialFeats": [
-      "consumed the Heart of Darkness",
-      "conquered and corrupted countless worlds",
-      "resurrected after heart extraction",
-      "regenerated eye damage in combat time",
-      "converted the Teen Titans into Dark Titans"
+      "Heart of Darkness.",
+      "Countless corrupted worlds.",
+      "Resurrection after heart extraction.",
+      "Combat-time eye regeneration.",
+      "Dark Titans conversion."
     ]
   },
   "fighterB": {
@@ -63,17 +63,17 @@
       "skills": 79
     },
     "dossier": {
-      "style": "Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.",
-      "advantage": "Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.",
-      "mentality": "A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.",
+      "style": "Direct dominance of the Power Cosmic. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.",
+      "advantage": "Absolute power absorption and the Ultimate Nullifier. Can absorb energy directed against him (even from deities), and if necessary, use the Nullifier to erase entire galaxies or timelines from existence.",
+      "mentality": "Detached, eternally hungry force of nature. Feels no anger or hatred – perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.",
       "quote": "Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end."
     },
     "victories": [
-      "Silver Surfer (containment / barrier imprisonment)",
-      "Sphinx (time-loop resolution)",
-      "Poppup / the Poppupians (world-devouring result)",
+      "Silver Surfer",
+      "Sphinx",
+      "Poppup / the Poppupians",
       "Skrull Empire / Tarnax IV",
-      "Mad Celestials (context-heavy)"
+      "Mad Celestials"
     ],
     "profile": {
       "powers": [
@@ -88,11 +88,11 @@
       ]
     },
     "crucialFeats": [
-      "destroyed at least three solar systems while still weakened",
-      "withstood Agamotto in Agamotto's own realm",
-      "imprisoned Silver Surfer on Earth with an undetectable barrier",
-      "devoured Poppup instead of Earth",
-      "defeated Sphinx by locking him into an eternal time loop"
+      "Three solar systems while weakened.",
+      "Agamotto in his own realm.",
+      "Silver Surfer barrier imprisonment.",
+      "Devoured Poppup.",
+      "Eternal Sphinx time loop."
     ]
   },
   "templateOrder": [
@@ -117,100 +117,163 @@
     "tactical-board": {
       "headline": "TACTICAL BOARD // TRIGON VS GALACTUS",
       "subtitle": "Demon versus Devourer",
-      "leftHeader": "CATEGORY GRID",
-      "rightHeader": "FIGHT REALITY",
-      "linearLabel": "LINEAR SEGMENT",
-      "chaosLabel": "CHAOS SEGMENT",
+      "left_header": "CATEGORY GRID",
+      "right_header": "FIGHT REALITY",
+      "linear_label": "LINEAR SEGMENT",
+      "chaos_label": "CHAOS SEGMENT",
       "lane": "Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel."
+    },
+    "character-dossier-a": {
+      "header": "CHARACTER DOSSIER",
+      "world": "Prime Earth",
+      "style": "Static dominance and destructive energy projection. Trigon uses six eyes for multi-directional hellfire blasts and the brutal strength of a deity to effortlessly shatter and repel any opponent.",
+      "advantage": "Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies gives him almost infinite magic resources and the ability to instantly regenerate from the very essence of darkness.",
+      "mentality": "Sadistic tyrant seeking total conquest. Does not seek a challenge, but revels in the despair and slow breaking of the opponent's spirit before their ultimate annihilation.",
+      "quote": "In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!"
+    },
+    "character-dossier-b": {
+      "header": "CHARACTER DOSSIER",
+      "world": "Earth-616",
+      "style": "Direct dominance of the Power Cosmic. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.",
+      "advantage": "Absolute power absorption and the Ultimate Nullifier. Can absorb energy directed against him (even from deities), and if necessary, use the Nullifier to erase entire galaxies or timelines from existence.",
+      "mentality": "Detached, eternally hungry force of nature. Feels no anger or hatred – perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.",
+      "quote": "Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end."
     },
     "character-profile": {
       "headline": "CHARACTER PROFILE",
       "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
-      "leftTitle": "TRIGON TOOLKIT",
-      "rightTitle": "GALACTUS TOOLKIT",
-      "powersLabel": "POWERS",
-      "toolsLabel": "TOOLS",
-      "weaknessesLabel": "WEAKNESSES"
+      "left_title": "TRIGON TOOLKIT",
+      "right_title": "GALACTUS TOOLKIT",
+      "powers_label": "POWERS",
+      "tools_label": "TOOLS",
+      "weaknesses_label": "WEAKNESSES"
     },
     "crucial-feats": {
       "headline": "CRUCIAL FEATS",
       "subtitle": "Character scaling through achievements.",
-      "leftTitle": "TRIGON SHOWCASE",
-      "rightTitle": "GALACTUS SHOWCASE",
-      "featLabel": "FEAT"
+      "left_title": "TRIGON SHOWCASE",
+      "right_title": "GALACTUS SHOWCASE",
+      "feat_label": "FEAT",
+      "left_item_1": "Heart of Darkness.",
+      "left_item_2": "Countless corrupted worlds.",
+      "left_item_3": "Resurrection after heart extraction.",
+      "left_item_4": "Combat-time eye regeneration.",
+      "left_item_5": "Dark Titans conversion.",
+      "right_item_1": "Three solar systems while weakened.",
+      "right_item_2": "Agamotto in his own realm.",
+      "right_item_3": "Silver Surfer barrier imprisonment.",
+      "right_item_4": "Devoured Poppup.",
+      "right_item_5": "Eternal Sphinx time loop."
     },
     "fight-analytics": {
       "headline": "FIGHT ANALYTICS",
       "subtitle": "Two-profile stat readout",
-      "threatLevel": "COSMIC",
+      "threat_level": "COSMIC",
       "integrity": "99.4%",
       "scale": "0-100"
     },
     "parameter-comparison": {
-      "headline": "PARAMETER COMPARISON",
       "subtitle": "Average stat profile map",
-      "leftHeader": "TRIGON ADVANTAGES",
-      "rightHeader": "GALACTUS ADVANTAGES",
-      "drawHeader": "DRAW ZONES",
-      "favoriteLabel": "STAT-BASED FAVORITE"
-    },
-    "victory-archive": {
-      "headline": "Victory Archive",
-      "avgLabel": "AVG SCORE",
-      "leftTitle": "TRIGON RECORD",
-      "rightTitle": "GALACTUS RECORD"
-    },
-    "final-summary": {
-      "headline": "FINAL SUMMARY",
-      "subtitle": "Summary",
-      "winner": "Galactus leads, but Trigon has live branch equity",
-      "line1": "Galactus owns the paper comparison, 92.67 vs 87.33.",
-      "line2": "Trigon stays dangerous when corruption and field logic replace normal combat symmetry.",
-      "line3": "Starvation and home-realm control are the two conditions that let Trigon flip the matchup."
+      "headline": "PARAMETER COMPARISON",
+      "favorite_label": "STAT-BASED FAVORITE",
+      "favorite": "Galactus",
+      "left_header": "TRIGON ADVANTAGES",
+      "right_header": "GALACTUS ADVANTAGES",
+      "draw_header": "DRAW ZONES",
+      "left_average": "87.33",
+      "right_average": "92.67",
+      "left_summary": "Trigon bends the field hardest when corruption starts replacing normal combat rules.",
+      "right_summary": "Galactus owns the broader profile and the cleaner neutral-space answer set.",
+      "draw_summary": "The fight tightens only when starvation and home-realm logic distort the map."
     },
     "battle-dynamics": {
       "headline": "BATTLE DYNAMICS",
       "subtitle": "How the fight changes minute by minute.",
-      "aCurve": "62,68,77,86,91",
-      "bCurve": "88,90,87,83,78"
+      "left_curve_label": "TRIGON REALM PRESSURE",
+      "right_curve_label": "GALACTUS ENERGY CONTROL",
+      "left_curve": "62,68,77,86,91",
+      "right_curve": "88,90,87,83,78",
+      "left_note": "Trigon rises when the field behaves more like a demonic domain.",
+      "right_note": "Galactus is strongest when space can be normalized and metabolized."
     },
     "x-factor": {
       "headline": "X-FACTOR",
       "subtitle": "The variable that affects the verdict more than ordinary stats.",
       "factor": "POISONOUS REALM VS ENERGY ECONOMY",
-      "implikacja": "Whoever controls the battlefield's meaning controls the fight's branch logic."
+      "left_case": "If the field stays demonic, Trigon stays live.",
+      "right_case": "If the field becomes fuel, Galactus takes the fight back.",
+      "implication": "Whoever controls the battlefield's meaning controls the fight's branch logic."
     },
     "interpretation": {
       "headline": "INTERPRETATION",
-      "subtitle": "Who wins the fight on paper?"
+      "subtitle": "Who wins the fight on paper?",
+      "winner": "Galactus",
+      "body": "Galactus owns the broader raw profile, but Trigon stays dangerous because his value is nonlinear and field-dependent. Neutral assumptions still favor Galactus."
     },
     "fight-simulation": {
       "headline": "FIGHT SIMULATION",
-      "subtitle": "The course of the fight across three phases."
+      "subtitle": "The course of the fight across three phases.",
+      "phase_1_title": "Poison the opening",
+      "phase_1_body": "Trigon tries to convert the first exchange into corruption, possession pressure, and anti-symmetry.",
+      "phase_1_animation": "trade-chaos",
+      "phase_1_actor": "a",
+      "phase_2_title": "Normalize the map",
+      "phase_2_body": "Galactus answers with scale stabilization, barrier control, and energy economy instead of respecting Trigon's preferred rules.",
+      "phase_2_animation": "kite-zone",
+      "phase_2_actor": "b",
+      "phase_3_title": "Fuel or poison",
+      "phase_3_body": "The finish depends on whether the battlefield stays toxic and demonic or gets normalized into something Galactus can metabolize.",
+      "phase_3_animation": "clash-lock",
+      "phase_3_actor": "b"
     },
     "stat-trap": {
       "headline": "STAT TRAP",
       "subtitle": "Why better stats do not guarantee victory",
-      "question": "Can Trigon keep the field poisonous before Galactus turns it into fuel?"
+      "question": "Can Trigon keep the field poisonous before Galactus turns it into fuel?",
+      "body": "Bigger averages do not erase domain logic. Galactus still keeps the baseline answer set, but this matchup changes sharply once the battlefield stops behaving like neutral space."
+    },
+    "victory-archive": {
+      "headline": "Victory Archive",
+      "avg_label": "AVG SCORE",
+      "left_title": "TRIGON RECORD",
+      "right_title": "GALACTUS RECORD",
+      "left_item_1": "The Divine",
+      "left_item_2": "Teen Titans",
+      "left_item_3": "Superboy",
+      "left_item_4": "Wonder Girl",
+      "left_item_5": "Psimon",
+      "right_item_1": "Silver Surfer",
+      "right_item_2": "Sphinx",
+      "right_item_3": "Poppup / the Poppupians",
+      "right_item_4": "Skrull Empire / Tarnax IV",
+      "right_item_5": "Mad Celestials"
+    },
+    "final-summary": {
+      "headline": "FINAL SUMMARY",
+      "subtitle": "Summary",
+      "winner": "Galactus leads, but Trigon has live branch equity",
+      "line_1": "Galactus owns the paper comparison, 92.67 vs 87.33.",
+      "line_2": "Trigon stays dangerous when corruption and field logic replace normal combat symmetry.",
+      "line_3": "Starvation and home-realm control are the two conditions that let Trigon flip the matchup."
     },
     "verdict-matrix": {
       "headline": "VERDICT MATRIX",
       "subtitle": "Victory depends on the rules.",
-      "colLeft": "NEUTRAL",
-      "colRight": "TRIGON REALM",
-      "rowTop": "WELL-FED",
-      "rowBottom": "STARVING",
-      "case1": "Galactus 8/10",
-      "case2": "Galactus 6.5/10",
-      "case3": "Trigon 6/10",
-      "case4": "Trigon 7.5/10"
+      "col_left": "NEUTRAL",
+      "col_right": "TRIGON REALM",
+      "row_top": "WELL-FED",
+      "row_bottom": "STARVING",
+      "case_1": "Galactus 8/10",
+      "case_2": "Galactus 6.5/10",
+      "case_3": "Trigon 6/10",
+      "case_4": "Trigon 7.5/10"
     },
     "fight-card": {
-      "fightTitle": "Trigon vs Galactus",
-      "topColorA": "#7f1d1d",
-      "topColorB": "#ef4444",
-      "bottomColorA": "#6d28d9",
-      "bottomColorB": "#facc15"
+      "fight_title": "Trigon vs Galactus",
+      "top_color_a": "#7f1d1d",
+      "top_color_b": "#ef4444",
+      "bottom_color_a": "#6d28d9",
+      "bottom_color_b": "#facc15"
     }
   }
 }

@@ -6,39 +6,31 @@
   },
   "templates": {
     "crucial-feats": {
-      "leftImages": [
-        "01_6_1_atrocitus_bound_the_butcher.jpg",
-        "02_6_1_atrocitus_heart_removed.jpg",
-        "03_6_1_atrocitus_blood_magic_foresight.jpg",
-        "04_6_1_atrocitus_burns_through_space.jpg",
-        "05_6_1_atrocitus_group_overpowering.jpg"
-      ],
-      "rightImages": [
-        "06_6_2_hulk_planet_moon_collateral.jpg",
-        "07_6_2_hulk_endured_sentry.jpg",
-        "08_6_2_hulk_regeneration.jpg",
-        "09_6_2_hulk_redirects_juggernaut.jpg",
-        "10_6_2_hulk_bi_beast_wendigo.jpg"
-      ]
+      "left_image_1": "01_6_1_atrocitus_bound_the_butcher.jpg",
+      "left_image_2": "02_6_1_atrocitus_heart_removed.jpg",
+      "left_image_3": "03_6_1_atrocitus_blood_magic_foresight.jpg",
+      "left_image_4": "04_6_1_atrocitus_burns_through_space.jpg",
+      "left_image_5": "05_6_1_atrocitus_group_overpowering.jpg",
+      "right_image_1": "06_6_2_hulk_planet_moon_collateral.jpg",
+      "right_image_2": "07_6_2_hulk_endured_sentry.jpg",
+      "right_image_3": "08_6_2_hulk_regeneration.jpg",
+      "right_image_4": "09_6_2_hulk_redirects_juggernaut.jpg",
+      "right_image_5": "10_6_2_hulk_bi_beast_wendigo.jpg"
     },
     "fight-analytics": {
-      "profileMode": "VS"
+      "profile_mode": "VS"
     },
     "victory-archive": {
-      "leftImages": [
-        "01_6_1_atrocitus_bound_the_butcher.jpg",
-        "11_7_1_atrocitus_butcher_host.jpg",
-        "12_7_1_atrocitus_group_overpowering.jpg",
-        "03_6_1_atrocitus_blood_magic_foresight.jpg",
-        "13_7_1_atrocitus_bleez_internal_dominance.jpg"
-      ],
-      "rightImages": [
-        "07_6_2_hulk_endured_sentry.jpg",
-        "08_6_2_hulk_regeneration.jpg",
-        "14_7_2_hulk_iron_man.jpg",
-        "09_6_2_hulk_redirects_juggernaut.jpg",
-        "15_7_2_hulk_armcheddon.jpg"
-      ]
+      "left_image_1": "01_6_1_atrocitus_bound_the_butcher.jpg",
+      "left_image_2": "11_7_1_atrocitus_butcher_host.jpg",
+      "left_image_3": "12_7_1_atrocitus_group_overpowering.jpg",
+      "left_image_4": "03_6_1_atrocitus_blood_magic_foresight.jpg",
+      "left_image_5": "13_7_1_atrocitus_bleez_internal_dominance.jpg",
+      "right_image_1": "07_6_2_hulk_endured_sentry.jpg",
+      "right_image_2": "08_6_2_hulk_regeneration.jpg",
+      "right_image_3": "14_7_2_hulk_iron_man.jpg",
+      "right_image_4": "09_6_2_hulk_redirects_juggernaut.jpg",
+      "right_image_5": "15_7_2_hulk_armcheddon.jpg"
     }
   }
 }

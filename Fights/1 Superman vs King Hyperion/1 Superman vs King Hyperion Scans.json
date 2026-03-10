@@ -5,40 +5,32 @@
     "b": "2.jpg"
   },
   "templates": {
-    "fight-analytics": {
-      "profileMode": "VS"
-    },
     "crucial-feats": {
-      "leftImages": [
-        "01_6_1_superman_bench_press_earth_equivalent.jpg",
-        "Superman_read.jpeg",
-        "Superman_flash.jpeg",
-        "02_6_1_superman_survives_black_hole_level_punishment.jpg",
-        "05_6_1_superman_high_end_endurance_control.jpg"
-      ],
-      "rightImages": [
-        "06_6_2_hyperion_survives_world_destruction.png",
-        "07_6_2_hyperion_recovers_after_neck_snap.png",
-        "09_6_2_hyperion_regenerates_after_catastrophic_damage.png",
-        "10_6_2_hyperion_disintegrates_weapon_x_vision.jpg",
-        "08_6_2_hyperion_overwhelms_two_alternate_hyperions.png"
-      ]
+      "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",
+      "left_image_2": "Superman_read.jpeg",
+      "left_image_3": "Superman_flash.jpeg",
+      "left_image_4": "02_6_1_superman_survives_black_hole_level_punishment.jpg",
+      "left_image_5": "05_6_1_superman_high_end_endurance_control.jpg",
+      "right_image_1": "06_6_2_hyperion_survives_world_destruction.png",
+      "right_image_2": "07_6_2_hyperion_recovers_after_neck_snap.png",
+      "right_image_3": "09_6_2_hyperion_regenerates_after_catastrophic_damage.png",
+      "right_image_4": "10_6_2_hyperion_disintegrates_weapon_x_vision.jpg",
+      "right_image_5": "08_6_2_hyperion_overwhelms_two_alternate_hyperions.png"
+    },
+    "fight-analytics": {
+      "profile_mode": "VS"
     },
     "victory-archive": {
-      "leftImages": [
-        "11_7_1_superman_doomsday_finish.jpg",
-        "12_7_1_superman_beats_wraith.jpg",
-        "13_7_1_superman_blitzes_parasite.jpg",
-        "14_7_1_superman_blitzes_mongul.jpg",
-        "15_7_1_superman_beats_apollo.jpg"
-      ],
-      "rightImages": [
-        "16_7_2_hyperion_kills_magneto.png",
-        "17_7_2_hyperion_kills_wolverine.png",
-        "18_7_2_hyperion_kills_weapon_x_vision.jpg",
-        "19_7_2_hyperion_beats_thor.png",
-        "20_7_2_hyperion_kills_hulk_and_others.png"
-      ]
+      "left_image_1": "11_7_1_superman_doomsday_finish.jpg",
+      "left_image_2": "12_7_1_superman_beats_wraith.jpg",
+      "left_image_3": "13_7_1_superman_blitzes_parasite.jpg",
+      "left_image_4": "14_7_1_superman_blitzes_mongul.jpg",
+      "left_image_5": "15_7_1_superman_beats_apollo.jpg",
+      "right_image_1": "16_7_2_hyperion_kills_magneto.png",
+      "right_image_2": "17_7_2_hyperion_kills_wolverine.png",
+      "right_image_3": "18_7_2_hyperion_kills_weapon_x_vision.jpg",
+      "right_image_4": "19_7_2_hyperion_beats_thor.png",
+      "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.png"
     }
   }
 }
