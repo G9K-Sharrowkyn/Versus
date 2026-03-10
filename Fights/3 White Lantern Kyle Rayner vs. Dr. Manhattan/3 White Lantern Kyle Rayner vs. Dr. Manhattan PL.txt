@@ -1,4 +1,4 @@
-1. White Lantern Kyle Rayner (New 52)
+﻿1. White Lantern Kyle Rayner (New 52)
 
 2. Statystyki Postaci A
 - Siła: 90
@@ -48,21 +48,21 @@
 
 9. Kolejność Templatek
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - najważniejsze-wyczyny
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
 - verdict-matrix
-- fight-title
+- fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Dostęp do pełnego spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja.
@@ -99,21 +99,21 @@ Template Tactical Board:
 - chaos_label: ODCINEK CHAOSU
 - lane: Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: New 52
 - style: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.
 - advantage: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.
 - mentality: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.
 - quote: W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Watchmen / Rebirth / Doomsday Clock
 - style: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.
 - advantage: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.
 - mentality: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.
 - quote: Tak. Już rozumiem. Wszystko się kończy.
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: Kyle Rayner
@@ -129,14 +129,14 @@ Template Najważniejsze Wyczyny:
 - right_title: Dr. Manhattan
 - feat_label: FEAT
 
-Template HUD Bars:
-- headline: ANALITYKA WALKI HIGH-END
+Template Analityka Walki:
+- headline: ANALITYKA WALKI
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: KOSMICZNY
 - integrity: 99.5%
 - scale: 0-100
 
-Template Radar Brief:
+Template Porównanie Parametrów:
 - headline: PORÓWNANIE PARAMETRÓW
 - subtitle: Mapa średniego profilu statystyk
 - left_header: PRZEWAGI KYLE'A
@@ -174,7 +174,7 @@ Template X-Factor:
 - implication: Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.
 - psychology: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.
 
-Template Winner CV:
+Template Archiwum Zwycięstw:
 - headline: Archiwum zwycięstw
 - subtitle:
 - archive_label:
@@ -183,7 +183,7 @@ Template Winner CV:
 - right_title: Dr. Manhattan
 - win_badge: W
 
-Template Summary:
+Template Podsumowanie Końcowe:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: Podsumowanie
 - winner: Dr. Manhattan prowadzi, ale walka jest warunkowa
@@ -244,10 +244,15 @@ Template Verdict Matrix:
 - case_3: Kyle 7/10. Jeśli Manhattan robi się pasywny, a Kyle dochodzi do pełnej ekspresji, szerszy arsenał wreszcie się spienięża.
 - case_4: Dr. Manhattan 6.5/10. Pasywność zmniejsza przewagę, ale ograniczony dostęp do Life Equation nadal zostawia Kyle'a z przygotowaniem, które Manhattan potrafi rozplątać.
 
-Template Fight Title:
+Template Karta Walki:
 - fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan
 - subtitle:
 - top_color_a: #f8fafc
 - top_color_b: #22c55e
 - bottom_color_a: #38bdf8
 - bottom_color_b: #1d4ed8
+
+
+
+
+

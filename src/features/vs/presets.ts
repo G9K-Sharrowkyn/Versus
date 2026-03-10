@@ -1,4 +1,4 @@
-import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
+﻿import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
 import { getTranslations } from '../../i18n'
 import type { Category, Fighter, FighterFact, FightScenarioId, Language, ParsedVsImport, TemplateId, TemplatePreset } from './types'
 
@@ -67,56 +67,56 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     subtitle: 'Category table and non-linear combat reality',
   },
   {
-    id: 'character-card-a',
+    id: 'character-dossier-a',
     name: 'Character dossier',
     description: 'Single full card for fighter A (more portrait space).',
-    title: 'CHARACTER BLUE',
+    title: 'CHARACTER DOSSIER',
     subtitle: 'Archetype, style and tactical profile',
   },
   {
-    id: 'character-card-b',
+    id: 'character-dossier-b',
     name: 'Character dossier',
     description: 'Single full card for fighter B (more portrait space).',
-    title: 'CHARACTER RED',
+    title: 'CHARACTER DOSSIER',
     subtitle: 'Archetype, style and tactical profile',
   },
   {
-    id: 'powers-tools',
+    id: 'character-profile',
     name: 'Character profile',
     description: 'Split dossier for both fighters with grouped tools and weaknesses.',
     title: 'CHARACTER PROFILE',
     subtitle: 'POWERS, TOOLS, AND WEAKNESSES',
   },
   {
-    id: 'raw-feats',
+    id: 'crucial-feats',
     name: 'Crucial feats',
     description: 'Side-by-side feat ledger sourced from the import file.',
     title: 'CRUCIAL FEATS',
     subtitle: 'Character scaling through achievements.',
   },
   {
-    id: 'hud-bars',
+    id: 'fight-analytics',
     name: 'Fight analytics',
     description: 'Military HUD look with long horizontal bars like output (1).',
-    title: 'HIGH-END COMBAT ANALYTICS',
+    title: 'FIGHT ANALYTICS',
     subtitle: 'Two-profile stat readout',
   },
   {
-    id: 'radar-brief',
+    id: 'parameter-comparison',
     name: 'Parameter comparison',
     description: 'Center radar, side winner notes, bottom score strip.',
     title: 'PARAMETER COMPARISON',
     subtitle: 'Average stat profile map',
   },
   {
-    id: 'winner-cv',
+    id: 'victory-archive',
     name: 'Victory archive',
     description: 'List of top beaten opponents for both fighters.',
     title: 'Victory Archive',
     subtitle: '',
   },
   {
-    id: 'summary',
+    id: 'final-summary',
     name: 'Final summary',
     description: 'Summary card placeholder from imported template block.',
     title: 'FINAL SUMMARY',
@@ -165,17 +165,17 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
     subtitle: 'Victory depends on the rules.',
   },
   {
-    id: 'blank-template',
+    id: 'new-template',
     name: 'New template',
     description: 'Empty placeholder field for the next layout.',
     title: 'NEW TEMPLATE',
     subtitle: 'Placeholder area',
   },
   {
-    id: 'fight-title',
+    id: 'fight-card',
     name: 'Fight card',
     description: 'Animated title card rendered as the final screen.',
-    title: 'FIGHT TITLE',
+    title: 'FIGHT CARD',
     subtitle: 'Animated final matchup text',
   },
 ]
@@ -205,7 +205,7 @@ export const META_MATCHUP_VARIANT_PREFS_KEY = 'matchupVariantPrefs'
 export const FOLDER_FIGHT_ID_PREFIX = 'folder::'
 
 export const TEMPLATE_ID_SET = new Set<TemplateId>(TEMPLATE_PRESETS.map((template) => template.id))
-export const FINAL_TEMPLATE_ID: TemplateId = 'fight-title'
+export const FINAL_TEMPLATE_ID: TemplateId = 'fight-card'
 
 export const ensureTemplateOrderHasFinal = (order: TemplateId[]) => {
   const normalized: TemplateId[] = []
@@ -242,13 +242,13 @@ export const insertTemplateAfterAnchor = (order: TemplateId[], templateId: Templ
 export const injectDerivedTemplates = (order: TemplateId[], payload: ParsedVsImport) => {
   let next = ensureTemplateOrderHasFinal(order)
   const hasPowers = payload.powersA.length > 0 || payload.powersB.length > 0
-  const hasRawFeats = payload.rawFeatsA.length > 0 || payload.rawFeatsB.length > 0
+  const hasCrucialFeats = payload.crucialFeatsA.length > 0 || payload.crucialFeatsB.length > 0
 
   if (hasPowers) {
-    next = insertTemplateAfterAnchor(next, 'powers-tools', ['character-card-b', 'character-card-a', 'tactical-board'])
+    next = insertTemplateAfterAnchor(next, 'character-profile', ['character-dossier-b', 'character-dossier-a', 'tactical-board'])
   }
-  if (hasRawFeats) {
-    next = insertTemplateAfterAnchor(next, 'raw-feats', ['powers-tools', 'character-card-b', 'character-card-a', 'tactical-board'])
+  if (hasCrucialFeats) {
+    next = insertTemplateAfterAnchor(next, 'crucial-feats', ['character-profile', 'character-dossier-b', 'character-dossier-a', 'tactical-board'])
   }
 
   return ensureTemplateOrderHasFinal(next)
@@ -528,4 +528,5 @@ export const DEFAULT_WINNER_CV_B = [
 
 export const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
   getTranslations(language).defaults.profileFacts[side].map((item) => ({ ...item }))
+
 

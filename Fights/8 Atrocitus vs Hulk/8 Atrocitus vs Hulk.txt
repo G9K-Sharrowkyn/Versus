@@ -1,4 +1,4 @@
-1. Character A
+﻿1. Character A
 Atrocitus (New 52)
 
 2. Character A Stats
@@ -50,20 +50,20 @@ Arm'Cheddon
 
 9. Template Order
 tactical-board
-character-card-a
-character-card-b
-powers-tools
+character-dossier-a
+character-dossier-b
+character-profile
 crucial-feats
-hud-bars
-radar-brief
+fight-analytics
+parameter-comparison
 interpretation
 stat-trap
 x-factor
-winner-cv
-summary
+victory-archive
+final-summary
 battle-dynamics
 fight-simulation
-fight-title
+fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: Red Lantern plasma output, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics.
@@ -100,21 +100,21 @@ headline: TACTICAL BOARD // ATROCITUS VS HULK
 subtitle: Butcher versus Worldbreaker
 lane: Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: New 52
 - style: Brutal, primal aggression. Atrocitus charges at opponents to physically tear them apart with bare hands, supported by searing rage plasma that burns through matter and space itself.
 - advantage: Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and deity armor with his bare hands.
 - mentality: Furious fanatic driven by revenge. Knows no mercy or hesitation – presses on with a fury that grows more powerful the more hatred and anger the enemy shows him.
 - quote: I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.
 - advantage: Unlimited strength growth and regeneration. The more injured and angry he becomes, the stronger he gets, making him practically unbeatable in a fight of attrition.
 - mentality: Stubborn and wild destroyer. Does not calculate or retreat – presses on until every resistance is leveled with the ground.
 - quote: Hulk smash!
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: ATROCITUS TOOLKIT
@@ -140,14 +140,14 @@ right_item_3: Regenerated after extreme damage.
 right_item_4: Redirected Juggernaut's charge.
 right_item_5: Overpowered Bi-Beast and Wendigo.
 
-Template HUD Bars:
-headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+headline: FIGHT ANALYTICS
 subtitle: Two-profile stat readout
 threat_level: COSMIC
 integrity: 99.2%
 scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 headline: PARAMETER COMPARISON
 subtitle: Average stat profile map
 left_header: ATROCITUS ADVANTAGES
@@ -181,7 +181,7 @@ left_body: If Atrocitus keeps Hulk at range and manages the fight from the outsi
 right_body: If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange.
 implication: The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation.
 
-Template Winner CV:
+Template Victory Archive:
 headline: Victory Archive
 subtitle:
 archive_label:
@@ -199,7 +199,7 @@ right_item_3: Iron Man
 right_item_4: Juggernaut
 right_item_5: Arm'Cheddon
 
-Template Summary:
+Template Final Summary:
 headline: FINAL SUMMARY
 subtitle: Summary
 winner: World Breaker Hulk 6.5/10
@@ -231,10 +231,14 @@ phase_3_body: If Atrocitus keeps the fight external, he can stay ahead. If Hulk 
 phase_3_animation: trade-chaos
 phase_3_actor: b
 
-Template Fight Title:
+Template Fight Card:
 fight_title: Atrocitus vs Hulk
 subtitle:
 top_color_a: #8b1e1e
 top_color_b: #ff5a36
 bottom_color_a: #4ade80
 bottom_color_b: #14532d
+
+
+
+

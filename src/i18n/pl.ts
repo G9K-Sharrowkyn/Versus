@@ -1,4 +1,4 @@
-export const translationsPl = {
+﻿export const translationsPl = {
   app: {
     title: 'VersusVerseVault',
     languageHint: 'Kliknij, aby zmienić język',
@@ -47,49 +47,49 @@ export const translationsPl = {
         title: 'TABLICA TAKTYCZNA',
         subtitle: 'Tabela kategorii i nieliniowa rzeczywistość starcia',
       },
-      'character-card-a': {
+      'character-dossier-a': {
         name: 'Dossier postaci',
         description: 'Pełna karta lewej postaci z większym miejscem na portret.',
-        title: 'POSTAĆ NIEBIESKA',
+        title: 'DOSSIER POSTACI',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
-      'character-card-b': {
+      'character-dossier-b': {
         name: 'Dossier postaci',
         description: 'Pełna karta prawej postaci z większym miejscem na portret.',
-        title: 'POSTAĆ CZERWONA',
+        title: 'DOSSIER POSTACI',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
-      'powers-tools': {
+      'character-profile': {
         name: 'Profil postaci',
         description: 'Dwustronny panel narzędzi i słabości obu postaci.',
         title: 'PROFIL POSTACI',
         subtitle: 'MOCE, NARZĘDZIA I SŁABOŚCI',
       },
-      'raw-feats': {
+      'crucial-feats': {
         name: 'Najważniejsze wyczyny',
         description: 'Lista konkretnych dokonań obu postaci, bez interpretacji.',
         title: 'NAJWAŻNIEJSZE WYCZYNY',
         subtitle: 'Skalowanie postaci poprzez osiągnięcia.',
       },
-      'hud-bars': {
+      'fight-analytics': {
         name: 'Analityka walki',
         description: 'Militarna plansza z poziomymi paskami statystyk.',
-        title: 'ANALITYKA WALKI HIGH-END',
+        title: 'ANALITYKA WALKI',
         subtitle: 'Odczyt statystyk dwóch profili',
       },
-      'radar-brief': {
+      'parameter-comparison': {
         name: 'Porównanie parametrów',
         description: 'Radar w centrum, przewagi po bokach, pasek wyniku na dole.',
         title: 'PORÓWNANIE PARAMETRÓW',
         subtitle: 'Mapa średniego profilu statystyk',
       },
-      'winner-cv': {
+      'victory-archive': {
         name: 'Archiwum zwycięstw',
         description: 'Lista najważniejszych pokonanych rywali po obu stronach.',
         title: 'Archiwum zwycięstw',
         subtitle: '',
       },
-      summary: {
+      'final-summary': {
         name: 'Podsumowanie końcowe',
         description: 'Blok końcowego podsumowania z danych importu.',
         title: 'PODSUMOWANIE KOŃCOWE',
@@ -131,16 +131,16 @@ export const translationsPl = {
         title: 'MATRYCA WERDYKTU',
         subtitle: 'Wygrana zależy od zasad walki.',
       },
-      'blank-template': {
+      'new-template': {
         name: 'Nowy template',
         description: 'Puste pole robocze pod kolejny layout.',
         title: 'NOWY TEMPLATE',
         subtitle: 'Pole placeholder',
       },
-      'fight-title': {
+      'fight-card': {
         name: 'Karta walki',
         description: 'Animowany ekran końcowy z nazwą pojedynku.',
-        title: 'NAPIS KOŃCOWY',
+        title: 'KARTA WALKI',
         subtitle: 'Animowany finalowy tekst walki',
       },
       methodology: {
@@ -284,3 +284,4 @@ export const translationsPl = {
     importNeedStatLines: 'Błąd importu: sekcje 2 i 6 muszą zawierać linie statystyk, np. "- Strength: 96".',
   },
 } as const
+

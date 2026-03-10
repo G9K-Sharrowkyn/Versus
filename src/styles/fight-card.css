@@ -1,4 +1,4 @@
-.vvv-fight-title-outro {
+﻿.vvv-fight-card-outro {
   width: min(99%, 94em);
   margin: 0 auto;
   padding: 0.35em 0;
@@ -13,7 +13,7 @@
   color: rgba(241, 245, 249, 0.32);
 }
 
-.vvv-fight-title-split {
+.vvv-fight-card-split {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   width: 100%;
@@ -27,7 +27,7 @@
   box-sizing: border-box;
 }
 
-.vvv-fight-title-split__vs {
+.vvv-fight-card-split__vs {
   position: absolute;
   left: 50%;
   top: 50%;
@@ -39,7 +39,7 @@
   pointer-events: none;
 }
 
-.vvv-fight-title-outro__line {
+.vvv-fight-card-outro__line {
   display: block;
   max-width: 100%;
   padding: 0;
@@ -52,7 +52,7 @@
   text-shadow: none;
 }
 
-.vvv-fight-title-outro__wordmark {
+.vvv-fight-card-outro__wordmark {
   display: inline-block;
   position: relative;
   margin: 0 auto;
@@ -70,7 +70,7 @@
   background-repeat: repeat-x, repeat-x;
   -webkit-background-clip: text;
   background-clip: text;
-  animation: vvv-fight-title-stripe-loop 9s linear infinite;
+  animation: vvv-fight-card-stripe-loop 9s linear infinite;
   transform: translate3d(0, -0.035em, 0);
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -79,19 +79,19 @@
   text-shadow: none;
 }
 
-.vvv-fight-title-outro__wordmark::before,
-.vvv-fight-title-outro__wordmark::after {
+.vvv-fight-card-outro__wordmark::before,
+.vvv-fight-card-outro__wordmark::after {
   content: none;
 }
 
-.vvv-fight-title-outro__vs {
+.vvv-fight-card-outro__vs {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   line-height: 1;
 }
 
-.vvv-fight-title-outro__vs-image {
+.vvv-fight-card-outro__vs-image {
   display: block;
   width: clamp(8rem, 16vw, 14rem);
   height: auto;
@@ -100,14 +100,14 @@
   -webkit-user-drag: none;
 }
 
-.vvv-fight-title-svg-defs {
+.vvv-fight-card-svg-defs {
   position: absolute;
   width: 0;
   height: 0;
   overflow: hidden;
 }
 
-.vvv-fight-title-portrait {
+.vvv-fight-card-portrait {
   --vvv-portrait-color: #38bdf8;
   --vvv-name-inset: clamp(0.55rem, 1vw, 1rem);
   --vvv-name-height: clamp(5.4rem, 8.2vw, 7.1rem);
@@ -133,14 +133,14 @@
     inset 0 0 12px rgba(var(--vvv-electric-blue-rgb), 0.18);
 }
 
-.vvv-fight-title-portrait__inner-container {
+.vvv-fight-card-portrait__inner-container {
   position: relative;
   border-radius: inherit;
   height: 100%;
   min-height: 0;
 }
 
-.vvv-fight-title-portrait__border-outer {
+.vvv-fight-card-portrait__border-outer {
   position: relative;
   border-radius: inherit;
   padding: 0;
@@ -148,7 +148,7 @@
   min-height: 0;
 }
 
-.vvv-fight-title-portrait__border-outer::after {
+.vvv-fight-card-portrait__border-outer::after {
   content: '';
   position: absolute;
   inset: 0;
@@ -162,7 +162,7 @@
   pointer-events: none;
 }
 
-.vvv-fight-title-portrait__glow-layer-1 {
+.vvv-fight-card-portrait__glow-layer-1 {
   border: 2px solid oklch(from var(--electric-border-color) l c h / 0.6);
   border-radius: inherit;
   position: absolute;
@@ -172,7 +172,7 @@
   pointer-events: none;
 }
 
-.vvv-fight-title-portrait__glow-layer-2 {
+.vvv-fight-card-portrait__glow-layer-2 {
   border: 2px solid var(--electric-light-color);
   border-radius: inherit;
   position: absolute;
@@ -182,7 +182,7 @@
   pointer-events: none;
 }
 
-.vvv-fight-title-portrait__inner {
+.vvv-fight-card-portrait__inner {
   position: relative;
   height: 100%;
   min-height: 0;
@@ -193,7 +193,7 @@
   z-index: 2;
 }
 
-.vvv-fight-title-portrait__name {
+.vvv-fight-card-portrait__name {
   position: absolute;
   bottom: clamp(0.55rem, 1vw, 1rem);
   left: 50%;
@@ -225,7 +225,7 @@
   pointer-events: none;
 }
 
-.vvv-fight-title-portrait__name-fade {
+.vvv-fight-card-portrait__name-fade {
   position: absolute;
   inset: auto 0 0 0;
   width: 100%;
@@ -235,7 +235,7 @@
   background: linear-gradient(0deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.26) 56%, transparent 100%);
 }
 
-.vvv-fight-title-portrait__scan {
+.vvv-fight-card-portrait__scan {
   position: absolute;
   inset: 0;
   z-index: 6;
@@ -248,7 +248,7 @@
   opacity: 0.32;
 }
 
-@keyframes vvv-fight-title-stripe-loop {
+@keyframes vvv-fight-card-stripe-loop {
   0% {
     background-position: 0 50%, calc(-1 * var(--vvv-stripe-overlap)) 50%;
   }
@@ -258,3 +258,4 @@
       calc(-1 * (var(--vvv-stripe-period) + var(--vvv-stripe-overlap))) 50%;
   }
 }
+

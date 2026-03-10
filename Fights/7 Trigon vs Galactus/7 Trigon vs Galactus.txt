@@ -1,4 +1,4 @@
-1. Character A
+﻿1. Character A
 Trigon (Prime Earth)
 
 2. Character A Stats
@@ -50,21 +50,21 @@ Mad Celestials (context-heavy)
 
 9. Template Order
 tactical-board
-character-card-a
-character-card-b
-powers-tools
+character-dossier-a
+character-dossier-b
+character-profile
 crucial-feats
-hud-bars
-radar-brief
+fight-analytics
+parameter-comparison
 interpretation
 stat-trap
 x-factor
-winner-cv
-summary
+victory-archive
+final-summary
 battle-dynamics
 fight-simulation
 verdict-matrix
-fight-title
+fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: Demonic energy projection, corruption, possession, regeneration, dimensional travel.
@@ -101,21 +101,21 @@ linear_label: LINEAR SEGMENT
 chaos_label: CHAOS SEGMENT
 lane: Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: Prime Earth
 - style: Static dominance and destructive energy projection. Trigon uses six eyes for multi-directional hellfire blasts and the brutal strength of a deity to effortlessly shatter and repel any opponent.
 - advantage: Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies gives him almost infinite magic resources and the ability to instantly regenerate from the very essence of darkness.
 - mentality: Sadistic tyrant seeking total conquest. Does not seek a challenge, but revels in the despair and slow breaking of the opponent's spirit before their ultimate annihilation.
 - quote: In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Direct dominance of the Power Cosmic. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.
 - advantage: Absolute power absorption and the Ultimate Nullifier. Can absorb energy directed against him (even from deities), and if necessary, use the Nullifier to erase entire galaxies or timelines from existence.
 - mentality: Detached, eternally hungry force of nature. Feels no anger or hatred – perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.
 - quote: Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end.
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: TRIGON TOOLKIT
@@ -141,14 +141,14 @@ feat_label: FEAT
 - right_item_4: Devoured Poppup.
 - right_item_5: Eternal Sphinx time loop.
 
-Template HUD Bars:
-headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+headline: FIGHT ANALYTICS
 subtitle: Two-profile stat readout
 threat_level: COSMIC
 integrity: 99.4%
 scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 subtitle: Average stat profile map
 headline: PARAMETER COMPARISON
 favorite_label: STAT-BASED FAVORITE
@@ -182,7 +182,7 @@ left_case: If the field stays demonic, Trigon stays live.
 right_case: If the field becomes fuel, Galactus takes the fight back.
 implication: Whoever controls the battlefield's meaning controls the fight's branch logic.
 
-Template Winner CV:
+Template Victory Archive:
 headline: Victory Archive
 subtitle:
 archive_label:
@@ -200,7 +200,7 @@ right_title: GALACTUS RECORD
 - right_item_4: Skrull Empire / Tarnax IV
 - right_item_5: Mad Celestials
 
-Template Summary:
+Template Final Summary:
 headline: FINAL SUMMARY
 subtitle: Summary
 winner: Galactus leads, but Trigon has live branch equity
@@ -246,10 +246,14 @@ case_2: Galactus 6.5/10
 case_3: Trigon 6/10
 case_4: Trigon 7.5/10
 
-Template Fight Title:
+Template Fight Card:
 fight_title: Trigon vs Galactus
 subtitle:
 top_color_a: #7f1d1d
 top_color_b: #ef4444
 bottom_color_a: #6d28d9
 bottom_color_b: #facc15
+
+
+
+

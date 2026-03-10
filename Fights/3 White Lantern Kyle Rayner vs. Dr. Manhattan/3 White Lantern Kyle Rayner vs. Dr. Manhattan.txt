@@ -1,4 +1,4 @@
-1. White Lantern Kyle Rayner (New 52)
+﻿1. White Lantern Kyle Rayner (New 52)
 
 2. Character A Stats
 - Strength: 90
@@ -48,21 +48,21 @@
 
 9. Template Order
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - crucial-feats
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
 - verdict-matrix
-- fight-title
+- fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation.
@@ -99,21 +99,21 @@ Template Tactical Board:
 - chaos_label: CHAOS SEGMENT
 - lane: Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: New 52
 - style: Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions.
 - advantage: Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.
 - mentality: Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.
 - quote: In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: Watchmen / Rebirth / Doomsday Clock
 - style: Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture.
 - advantage: Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.
 - mentality: Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.
 - quote: Yes. I see now. Everything ends.
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: KYLE TOOLKIT
@@ -129,14 +129,14 @@ Template Crucial Feats:
 - right_title: MANHATTAN SHOWCASE
 - feat_label: FEAT
 
-Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+- headline: FIGHT ANALYTICS
 - subtitle: Two-profile stat readout
 - threat_level: COSMIC
 - integrity: 99.5%
 - scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 - headline: PARAMETER COMPARISON
 - subtitle: Average stat profile map
 - left_header: KYLE ADVANTAGES
@@ -174,7 +174,7 @@ Template X-Factor:
 - implication: If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.
 - psychology: Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.
 
-Template Winner CV:
+Template Victory Archive:
 - headline: Victory Archive
 - subtitle:
 - archive_label:
@@ -183,7 +183,7 @@ Template Winner CV:
 - right_title: MANHATTAN RECORD
 - win_badge: W
 
-Template Summary:
+Template Final Summary:
 - headline: FINAL SUMMARY
 - subtitle: Summary
 - winner: Dr. Manhattan leads, but the fight is conditional
@@ -244,10 +244,14 @@ Template Verdict Matrix:
 - case_3: Kyle 7/10. If Manhattan becomes passive and Kyle reaches full expression, the broader toolkit finally cashes out.
 - case_4: Dr. Manhattan 6.5/10. Passivity narrows the gap, but limited Life Equation access still leaves Kyle too dependent on a setup Manhattan can unravel.
 
-Template Fight Title:
+Template Fight Card:
 - fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan
 - subtitle:
 - top_color_a: #f8fafc
 - top_color_b: #22c55e
 - bottom_color_a: #38bdf8
 - bottom_color_b: #1d4ed8
+
+
+
+

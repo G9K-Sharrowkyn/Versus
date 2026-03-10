@@ -13,7 +13,7 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
-export function CharacterCardATemplate({
+export function CharacterDossierATemplate({
   fighterA,
   portraitAAdjust,
   title,
@@ -28,7 +28,7 @@ export function CharacterCardATemplate({
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const fighterText = fighterA.name || tr('Postać A', 'Fighter A')
   const safeFacts = factsA.length ? factsA : defaultFactsFor('a', language)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-card-a'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-a'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const fighterForCard = {
     ...fighterA,
@@ -97,7 +97,7 @@ export function CharacterCardATemplate({
                   alt={fighterText}
                   fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
                   hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
-                  adjustKey="character-card-a:portrait"
+                  adjustKey="character-dossier-a:portrait"
                   baseAdjust={portraitAAdjust}
                   adjustments={slideImageAdjustments}
                   onAdjustChange={onSlideImageAdjustChange}

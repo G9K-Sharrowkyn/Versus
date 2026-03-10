@@ -1,4 +1,4 @@
-1. Postać A
+﻿1. Postać A
 Trigon (Prime Earth)
 
 2. Statystyki Postaci A
@@ -50,21 +50,21 @@ Mad Celestials (wynik kontekstowy)
 
 9. Kolejność Templatek
 tactical-board
-character-card-a
-character-card-b
-powers-tools
+character-dossier-a
+character-dossier-b
+character-profile
 najważniejsze-wyczyny
-hud-bars
-radar-brief
+fight-analytics
+parameter-comparison
 interpretation
 stat-trap
 x-factor
-winner-cv
-summary
+victory-archive
+final-summary
 battle-dynamics
 fight-simulation
 verdict-matrix
-fight-title
+fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Demoniczna projekcja energii, korupcja, opętanie, regeneracja, podróże międzywymiarowe.
@@ -101,21 +101,21 @@ linear_label: ODCINEK LINIOWY
 chaos_label: ODCINEK CHAOSU
 lane: Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: Prime Earth
 - style: Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu by uderzać piekielnym ogniem oraz brutalną siłę bóstwa, by bez wysiłku rozbić  każdego przeciwnika.
 - advantage: Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.
 - mentality: Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.
 - quote: Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Ziemia-616
 - style: Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.
 - advantage: Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.
 - mentality: Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.
 - quote: Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 left_title: Trigon
@@ -141,14 +141,14 @@ feat_label: FEAT
 - right_item_4: Pożarcie Poppup.
 - right_item_5: Wieczna pętla Sphinxa.
 
-Template HUD Bars:
-headline: ANALITYKA WALKI HIGH-END
+Template Analityka Walki:
+headline: ANALITYKA WALKI
 subtitle: Odczyt statystyk dwóch profili
 threat_level: KOSMICZNY
 integrity: 99.4%
 scale: 0-100
 
-Template Radar Brief:
+Template Porównanie Parametrów:
 subtitle: Mapa średniego profilu statystyk
 headline: PORÓWNANIE PARAMETRÓW
 favorite_label: FAWORYT WEDŁUG STATYSTYK
@@ -182,7 +182,7 @@ left_case: Jeśli pole walki pozostaje demoniczne, Trigon pozostaje realny.
 right_case: Jeśli staje się paliwem, Galactus odzyskuje walkę.
 implication: Kto kontroluje znaczenie pola walki, kontroluje gałąź całego starcia.
 
-Template Winner CV:
+Template Archiwum Zwycięstw:
 headline: Archiwum zwycięstw
 subtitle:
 archive_label:
@@ -200,7 +200,7 @@ right_title: Galactus
 - right_item_4: Imperium Skrulli / Tarnax IV
 - right_item_5: Mad Celestials
 
-Template Summary:
+Template Podsumowanie Końcowe:
 headline: PODSUMOWANIE KOŃCOWE
 subtitle: Podsumowanie
 winner: Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa
@@ -246,10 +246,15 @@ case_2: Galactus 6.5/10
 case_3: Trigon 6/10
 case_4: Trigon 7.5/10
 
-Template Fight Title:
+Template Karta Walki:
 fight_title: Trigon vs Galactus
 subtitle:
 top_color_a: #7f1d1d
 top_color_b: #ef4444
 bottom_color_a: #6d28d9
 bottom_color_b: #facc15
+
+
+
+
+

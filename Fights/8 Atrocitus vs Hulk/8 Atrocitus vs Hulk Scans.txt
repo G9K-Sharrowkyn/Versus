@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: Atrocitus.webp
 - portrait_b: Sentry.jpg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
 - right_image_5: 10_6_2_hulk_bi_beast_wendigo.jpg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
 - left_image_2: 11_7_1_atrocitus_butcher_host.jpg
 - left_image_3: 12_7_1_atrocitus_group_overpowering.jpg
@@ -28,3 +28,7 @@ Template Winner CV:
 - right_image_3: 14_7_2_hulk_iron_man.jpg
 - right_image_4: 09_6_2_hulk_redirects_juggernaut.jpg
 - right_image_5: 15_7_2_hulk_armcheddon.jpg
+
+
+
+

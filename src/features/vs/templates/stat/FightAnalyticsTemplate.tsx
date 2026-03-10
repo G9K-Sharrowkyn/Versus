@@ -9,7 +9,7 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
-export function HudBarsTemplate({
+export function FightAnalyticsTemplate({
   rows,
   fighterA,
   fighterB,

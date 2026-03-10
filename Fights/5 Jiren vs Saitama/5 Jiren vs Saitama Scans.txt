@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: Tags UI Goku a few times.jpeg
 - portrait_b: Saitama can achieve flight.jpg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: Saitama can achieve flight.jpg
 - right_image_5: A Serious Sneeze blows away the gas surrounding Jupiter's.png
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: 11_7_1_jiren_hit.jpg
 - left_image_2: 12_7_1_jiren_maji_kayo.jpg
 - left_image_3: 13_7_1_jiren_golden_frieza.jpg
@@ -28,3 +28,7 @@ Template Winner CV:
 - right_image_3: 18_7_2_saitama_orochi.jpg
 - right_image_4: 19_7_2_saitama_evil_ocean_water.jpg
 - right_image_5: 20_7_2_saitama_garou_zero_punch.jpg
+
+
+
+

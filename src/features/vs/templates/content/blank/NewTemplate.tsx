@@ -12,7 +12,7 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../../shared/highEnd'
 
-export function DefaultBlankTemplate({
+export function NewTemplate({
   title,
   subtitle,
   templateBlocks,
@@ -20,7 +20,7 @@ export function DefaultBlankTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['blank-template'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['new-template'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const renderedLines = parseBulletItems(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title

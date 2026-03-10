@@ -1,4 +1,4 @@
-# VS Graphic Studio Architecture
+﻿# VS Graphic Studio Architecture
 
 Ten plik opisuje, jak jest zlozona aplikacja po refaktorze i gdzie szukac konkretnych rzeczy.
 
@@ -113,9 +113,9 @@ Najwazniejsze skrypty:
 - `contentTemplates.tsx`
   Cienki barrel eksportujacy template'y content-heavy.
 - `templates/content/*`
-  Osobne implementacje `PowersToolsTemplate`, `RawFeatsTemplate` i dispatcher `BlankTemplate`.
+  Osobne implementacje `CharacterProfileTemplate`, `CrucialFeatsTemplate` i dispatcher `NewTemplate`.
 - `templates/content/blank/*`
-  Warianty `BlankTemplate` rozbite per ekran (`fight-title`, `summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `verdict-matrix`).
+  Warianty `NewTemplate` rozbite per ekran (`fight-card`, `final-summary`, `battle-dynamics`, `x-factor`, `interpretation`, `fight-simulation`, `stat-trap`, `verdict-matrix`).
 
 ### Inne katalogi
 
@@ -169,7 +169,7 @@ Edytuj:
 - `src/features/vs/presets.ts` - definicja template'u i preset.
 - `src/features/vs/components/TemplateRenderer.tsx` - routing do komponentu.
 - odpowiedni plik w `src/features/vs/templates/`.
-- dla `BlankTemplate` najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
+- dla `NewTemplate` najczesciej odpowiedni plik w `src/features/vs/templates/content/blank/`.
 
 ### Chcesz zmienic import `.txt`
 
@@ -214,3 +214,5 @@ Najbardziej sensowne kolejne kroki:
 2. wyniesc logike przejsc search/intro/fight do osobnego hooka,
 3. rozbic `aaa.html` / `public/standalone/aaa.*` na mniejsze moduly,
 4. rozwazyc code-splitting dla ciezszych template'ow i canvasow.
+
+

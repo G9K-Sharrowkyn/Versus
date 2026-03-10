@@ -1,4 +1,4 @@
-# VS Graphic Studio - Template Data Requirements
+﻿# VS Graphic Studio - Template Data Requirements
 
 ## 1) Core `.txt` import sections (required)
 Use sections `1..8` always. Section `9` is optional.
@@ -42,22 +42,22 @@ Fixed corner mapping (always):
 ## 3) Template IDs for section 9
 Available IDs (pick only what fits the current fight):
 - `tactical-board`
-- `character-card-a`
-- `character-card-b`
-- `powers-tools`
+- `character-dossier-a`
+- `character-dossier-b`
+- `character-profile`
 - `crucial-feats`
-- `hud-bars`
-- `radar-brief`
-- `winner-cv`
-- `summary`
+- `fight-analytics`
+- `parameter-comparison`
+- `victory-archive`
+- `final-summary`
 - `battle-dynamics`
 - `x-factor`
 - `interpretation`
 - `fight-simulation`
 - `stat-trap`
 - `verdict-matrix`
-- `blank-template`
-- `fight-title`
+- `new-template`
+- `fight-card`
 - `methodology`
 
 Section 9 rules:
@@ -65,26 +65,26 @@ Section 9 rules:
 - You can list any subset of IDs above (for some fights `x-factor` may be unnecessary).
 - The order listed in section `9` is the render order used by the app.
 - If section `9` is omitted, the app falls back to default full order.
-- Final template is always `fight-title` (forced as the last screen by the app).
-- `fight-title` is a mandatory outro screen with matchup name in character-themed colors.
-- The app keeps this last screen even if `fight-title` is missing from section `9`.
+- Final template is always `fight-card` (forced as the last screen by the app).
+- `fight-card` is a mandatory outro screen with matchup name in character-themed colors.
+- The app keeps this last screen even if `fight-card` is missing from section `9`.
 
 Recommended sequencing pattern (reference, not mandatory):
 Use this as a baseline for classic power-scaling matchups, then adapt per fight.
 
 Part A: Intro and analytical framing
 1. `tactical-board`
-2. `character-card-a`
-3. `character-card-b`
-4. `powers-tools`
+2. `character-dossier-a`
+3. `character-dossier-b`
+4. `character-profile`
 5. `crucial-feats`
-6. `hud-bars`
-7. `radar-brief`
+6. `fight-analytics`
+7. `parameter-comparison`
 8. `interpretation`
 9. `stat-trap`
 10. `x-factor`
-11. `winner-cv`
-12. `summary`
+11. `victory-archive`
+12. `final-summary`
 
 Part B: Fight simulation and conditional verdict
 13. `battle-dynamics`
@@ -95,11 +95,11 @@ Adaptation notes:
 - Remove any template that adds no value in a given matchup.
 - If no meaningful joker-card exists, skip `x-factor`.
 - If fight simulation is simple, keep only `fight-simulation` and skip extra narrative fillers.
-- Keep in mind that `fight-title` is always appended as the final template.
+- Keep in mind that `fight-card` is always appended as the final template.
 
 ## 4) Template block syntax
 ```txt
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER // BLUE
 - world: New 52
 ```
@@ -150,8 +150,8 @@ Defeated-opponent rule:
 
 ## 5) Field map (all fillable fields)
 
-### Character A
-Accepted block names: `Character A`, `Character Card A`, `Card A`, `Postać A`, `Karta Postaci A`
+### Character Dossier A
+Accepted block names: `Character Dossier A`, `Dossier Postaci A`, `Character A`, `Character Card A`, `Card A`, `Postać A`, `Karta Postaci A`
 - `header | title | headline`
 - `world | swiat | version`
 - `style`
@@ -159,8 +159,8 @@ Accepted block names: `Character A`, `Character Card A`, `Card A`, `Postać A`, 
 - `mentalnosc | mentality`
 - `quote | cytat`
 
-### Character B
-Accepted block names: `Character B`, `Character Card B`, `Card B`, `Postać B`, `Karta Postaci B`
+### Character Dossier B
+Accepted block names: `Character Dossier B`, `Dossier Postaci B`, `Character B`, `Character Card B`, `Card B`, `Postać B`, `Karta Postaci B`
 - `header | title | headline`
 - `world | swiat | version`
 - `style`
@@ -206,8 +206,8 @@ Accepted block names: `Tactical Board`, `Methodology`, `Tablica Taktyczna`, `Met
 - `chaos_label`
 - `lane | line_1 | line1`
 
-### HUD Bars
-Accepted block names: `HUD Bars`, `Paski HUD`
+### Fight Analytics
+Accepted block names: `Fight Analytics`, `Analityka Walki`, `HUD Bars`, `Paski HUD`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `threat_level`
@@ -220,8 +220,8 @@ Recommended subtitle style:
 - Recommended: `Two-profile stat readout`
 - Polish equivalent: `Odczyt statystyk dwóch profili`
 
-### Radar Brief
-Accepted block names: `Radar Brief`, `Parameter Comparison`, `Raport Radarowy`, `Porównanie Parametrów`
+### Parameter Comparison
+Accepted block names: `Parameter Comparison`, `Porównanie Parametrów`, `Radar Brief`, `Raport Radarowy`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `left_header`
@@ -239,8 +239,8 @@ Baseline favorite rule:
 - Recommended non-draw label: `STAT-BASED FAVORITE`
 - Polish equivalent: `FAWORYT WEDŁUG STATYSTYK`
 
-### Winner CV
-Accepted block names: `Winner CV`, `CV Zwycięzców`
+### Victory Archive
+Accepted block names: `Victory Archive`, `Archiwum Zwycięstw`, `Winner CV`, `CV Zwycięzców`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `archive_label`
@@ -249,7 +249,7 @@ Accepted block names: `Winner CV`, `CV Zwycięzców`
 - `right_title`
 - `win_badge`
 
-Winner CV curation rules:
+Victory Archive curation rules:
 - Keep entries unique (no duplicates in one side list).
 - Do not mix umbrella + member duplicates in the same list.
 - Example: avoid `Celestials (multiple)` together with `Arishem` in one list.
@@ -261,8 +261,8 @@ Winner CV curation rules:
 - If `subtitle` adds nothing useful, leave it empty.
 - If `archive_label` only repeats the same idea as headline, leave it empty.
 
-### Summary
-Accepted block names: `Summary`, `Podsumowanie`
+### Final Summary
+Accepted block names: `Final Summary`, `Podsumowanie Końcowe`, `Summary`, `Podsumowanie`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `winner | verdict`
@@ -511,19 +511,19 @@ Accepted block names: `Verdict Matrix`, `Matryca Werdyktu`
 
 Verdict Matrix modeling rule:
 - Cases may be non-equiprobable (weighted), not necessarily 50/50.
-- If weighting is used, describe it explicitly in `Template Summary` (`line_2` and/or `line_3`).
+- If weighting is used, describe it explicitly in `Template Final Summary` (`line_2` and/or `line_3`).
 - Avoid framing any single condition as automatic hard-counter unless the writeup explicitly supports guaranteed uptime.
 
-### Blank Template
-Accepted block names: `Blank Template`, `New Template`, `Nowy Template`
+### New Template
+Accepted block names: `New Template`, `Nowy Template`, `Blank Template`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `line_1 | line1`
 - `line_2 | line2`
 - `line_3 | line3`
 
-### Fight Title Outro
-Accepted block names: `Fight Title`, `Final Title`, `Ending Title`, `Napis Koncowy`
+### Fight Card
+Accepted block names: `Fight Card`, `Karta Walki`, `Fight Title`, `Final Title`, `Ending Title`, `Napis Koncowy`
 - `fight_title | match_title | title_text | line_1 | line1`
 - `subtitle | purpose | note | line_2 | line2` (optional)
 - `top_color_a | top_primary | fighter_a_color_a | fighter_a_primary` (optional, hex `#RRGGBB` or `#RGB`)
@@ -560,3 +560,6 @@ Recommended subtitle style:
 - If this panel appears in viewer-facing output, keep wording simple and concrete.
 - Recommended: `Estimated stats and conditional verdict logic`
 - Polish equivalent: `Szacowane statystyki i logika werdyktu warunkowego`
+
+
+

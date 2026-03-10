@@ -1,4 +1,4 @@
-1. Postać A
+﻿1. Postać A
 Atrocitus (New 52)
 
 2. Statystyki Postaci A
@@ -50,20 +50,20 @@ Arm'Cheddon
 
 9. Kolejność Templatek
 tactical-board
-character-card-a
-character-card-b
-powers-tools
+character-dossier-a
+character-dossier-b
+character-profile
 najważniejsze-wyczyny
-hud-bars
-radar-brief
+fight-analytics
+parameter-comparison
 interpretation
 stat-trap
 x-factor
-winner-cv
-summary
+victory-archive
+final-summary
 battle-dynamics
 fight-simulation
-fight-title
+fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Czerwona, plazmowa emisja Pierścienia. Konstrukty, magia krwi i rytuały. Lot oraz dynamika gniewu powiązana z Butcherem.
@@ -100,21 +100,21 @@ headline: TABLICA TAKTYCZNA // ATROCITUS VS HULK
 subtitle: Rzeźnik kontra Worldbreaker
 lane: Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli zamieni tę strukturę w pętlę powtarzalnego kontaktu.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: New 52
 - style: Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.
 - advantage: Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.
 - mentality: Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.
 - quote: Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Ziemia-616
 - style: Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.
 - advantage: Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.
 - mentality: Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.
 - quote: Hulk miażdżyć!
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 headline: PROFIL POSTACI
 subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 left_title: Atrocitus
@@ -140,14 +140,14 @@ right_item_3: Zregenerował się po skrajnych obrażeniach.
 right_item_4: Przekierował szarżę Juggernauta.
 right_item_5: Przytłoczył Bi-Beasta i Wendigo.
 
-Template HUD Bars:
-headline: ANALITYKA WALKI HIGH-END
+Template Analityka Walki:
+headline: ANALITYKA WALKI
 subtitle: Odczyt statystyk dwóch profili
 threat_level: KOSMICZNY
 integrity: 99.2%
 scale: 0-100
 
-Template Radar Brief:
+Template Porównanie Parametrów:
 headline: PORÓWNANIE PARAMETRÓW
 subtitle: Mapa średniego profilu statystyk
 left_header: PRZEWAGI ATROCITUSA
@@ -181,7 +181,7 @@ left_body: Jeśli Atrocitus utrzyma Hulka na dystans i będzie zarządzał walk�
 right_body: Jeśli Hulk wymusi powtarzalny kontakt, kontrola gniewu przestaje być smyczą i zaczyna być paliwem dla silniejszej przyszłej wymiany.
 implication: Zwycięzcę rozstrzyga to, czy gniew pozostaje kontrolowany z zewnątrz, czy zmienia się w samonapędzającą eskalację gamma.
 
-Template Winner CV:
+Template Archiwum Zwycięstw:
 headline: Archiwum zwycięstw
 subtitle:
 archive_label:
@@ -199,7 +199,7 @@ right_item_3: Iron Man
 right_item_4: Juggernaut
 right_item_5: Arm'Cheddon
 
-Template Summary:
+Template Podsumowanie Końcowe:
 headline: PODSUMOWANIE KOŃCOWE
 subtitle: Podsumowanie
 winner: World Breaker Hulk 6.5/10
@@ -231,10 +231,15 @@ phase_3_body: Jeśli Atrocitus utrzyma walkę na zewnątrz, może pozostać prze
 phase_3_animation: trade-chaos
 phase_3_actor: b
 
-Template Fight Title:
+Template Karta Walki:
 fight_title: Atrocitus vs Hulk
 subtitle:
 top_color_a: #8b1e1e
 top_color_b: #ff5a36
 bottom_color_a: #4ade80
 bottom_color_b: #14532d
+
+
+
+
+

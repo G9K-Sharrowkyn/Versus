@@ -24,11 +24,11 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
-export function RawFeatsTemplate({
+export function CrucialFeatsTemplate({
   fighterA,
   fighterB,
-  rawFeatsA,
-  rawFeatsB,
+  crucialFeatsA,
+  crucialFeatsB,
   title,
   subtitle,
   templateBlocks,
@@ -40,7 +40,7 @@ export function RawFeatsTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['raw-feats'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['crucial-feats'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText =
     pickTemplateField(blockFields, ['headline', 'header', 'title']) || title || tr('NAJWAŻNIEJSZE WYCZYNY', 'CRUCIAL FEATS')
@@ -53,8 +53,8 @@ export function RawFeatsTemplate({
   const profileMode = '/assets/VS2.png'
   const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
   const scale = 'VersusVerseVault badge'
-  const leftEntries = buildTemplateImageEntries(blockFields, 'left', rawFeatsA)
-  const rightEntries = buildTemplateImageEntries(blockFields, 'right', rawFeatsB)
+  const leftEntries = buildTemplateImageEntries(blockFields, 'left', crucialFeatsA)
+  const rightEntries = buildTemplateImageEntries(blockFields, 'right', crucialFeatsB)
   const pairCount = Math.max(1, leftEntries.length, rightEntries.length)
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
@@ -69,13 +69,13 @@ export function RawFeatsTemplate({
   ) => {
     const imageUrl = entry
       ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
-          templateId: 'raw-feats',
+          templateId: 'crucial-feats',
           side,
           slot: entry.slot,
         })
       : ''
-    const adjustKey = buildTemplateImageAdjustKey('raw-feats', side, entry)
-    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('raw-feats', side, entry)]
+    const adjustKey = buildTemplateImageAdjustKey('crucial-feats', side, entry)
+    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('crucial-feats', side, entry)]
 
     return (
       <div className={`flex h-full min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>

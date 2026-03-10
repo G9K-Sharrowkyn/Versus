@@ -1,4 +1,4 @@
-1. Jiren (Dragon Ball Super)
+﻿1. Jiren (Dragon Ball Super)
 
 2. Character A Stats
 - Strength: 96
@@ -48,20 +48,20 @@
 
 9. Template Order
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - crucial-feats
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
-- fight-title
+- fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: Extreme ki output, barrier techniques and elite speed/reactions.
@@ -96,21 +96,21 @@ Template Tactical Board:
 - chaos_label: CHAOS SEGMENT
 - lane: Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: Dragon Ball Super
 - style: Ultra-efficient combat of pure strength and ki. Relies on minimal movement and devastating counters that end the clash before the opponent can react.
 - advantage: Overwhelming energy barrier and reflexes. His ki is so powerful that it serves as both impenetrable defense and ultimate offense.
 - mentality: Stoic absolutist. Fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.
 - quote: It matters not how many weaklings band together. You are nothing before absolute strength.
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: One Punch Man
 - style: Simple, direct punch attack. His style is based on such a gigantic physical advantage that technique becomes redundant for him.
 - advantage: Immeasurable strength and resilience. Has no limits – every one of his hits has finishing potential, and he remains immune to most attacks.
 - mentality: Bored and carefree professional. Does not take the fight seriously until someone forces him to exert effort, which he waits for with hope.
 - quote: 100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: JIREN TOOLKIT
@@ -126,14 +126,14 @@ Template Crucial Feats:
 - right_title: SAITAMA SHOWCASE
 - feat_label: FEAT
 
-Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+- headline: FIGHT ANALYTICS
 - subtitle: Two-profile stat readout
 - threat_level: COSMIC
 - integrity: 99.3%
 - scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 - headline: PARAMETER COMPARISON
 - subtitle: Average stat profile map
 - left_header: JIREN ADVANTAGES
@@ -171,7 +171,7 @@ Template X-Factor:
 - implication: If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.
 - psychology: Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen.
 
-Template Winner CV:
+Template Victory Archive:
 - headline: Victory Archive
 - subtitle:
 - archive_label:
@@ -190,7 +190,7 @@ Template Winner CV:
 - right_item_4: Evil Ocean Water
 - right_item_5: Garou (Cosmic Fear Mode)
 
-Template Summary:
+Template Final Summary:
 - headline: FINAL SUMMARY
 - subtitle: Summary
 - winner: Jiren leads, but Saitama has a live late branch
@@ -239,10 +239,14 @@ Template Fight Simulation:
 - phase_3_branch_a: Jiren still closes before the future branch fully forms.
 - phase_3_branch_b: Saitama reaches the late-fight engine and the baseline math stops holding.
 
-Template Fight Title:
+Template Fight Card:
 - fight_title: Jiren vs Saitama
 - subtitle:
 - top_color_a: #dc2626
 - top_color_b: #9ca3af
 - bottom_color_a: #facc15
 - bottom_color_b: #ef4444
+
+
+
+

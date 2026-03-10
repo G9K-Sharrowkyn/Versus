@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: 03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg
 - portrait_b: No-sells Odin's blast.jpeg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: 09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg
 - right_image_5: Turns a Skrull to stone.jpeg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: 11_7_1_darth_vader_showcase_wins_dark_woman.jpg
 - left_image_2: 12_7_1_darth_vader_showcase_wins_sha_koon.jpg
 - left_image_3: 13_7_1_darth_vader_showcase_wins_hylon.jpg
@@ -28,3 +28,7 @@ Template Winner CV:
 - right_image_3: 18_7_2_thanos_showcase_wins_beta_ray_bill_and_ronan_the_accuser.jpg
 - right_image_4: 19_7_2_thanos_showcase_wins_adam_warlock.jpg
 - right_image_5: 20_7_2_thanos_showcase_wins_thor_with_the_power_gem.jpg
+
+
+
+

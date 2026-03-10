@@ -1,4 +1,4 @@
-1. Knull (Earth-616)
+﻿1. Knull (Earth-616)
 
 2. Statystyki Postaci A
 - Siła: 95
@@ -47,21 +47,21 @@
 
 9. Kolejność Templatek
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - najważniejsze-wyczyny
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
 - verdict-matrix
-- fight-title
+- fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Śmiercionośność All-Black, kontrola żywej Otchłani, władza nad rojem symbiotów i potężna regeneracja.
@@ -98,21 +98,21 @@ Template Tactical Board:
 - chaos_label: ODCINEK CHAOSU
 - lane: Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: Ziemia-616
 - style: Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika.
 - advantage: All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.
 - mentality: Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.
 - quote: Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat.
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Ziemia-616
 - style: Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia.
 - advantage: Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.
 - mentality: Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.
 - quote: Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, gdy galaktyki słuchają!
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: Knull
@@ -138,14 +138,14 @@ Template Najważniejsze Wyczyny:
 - right_item_4: Gromadzi moc wszystkich bogów Ziemi.
 - right_item_5: Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabić bogów.
 
-Template HUD Bars:
-- headline: ANALITYKA WALKI HIGH-END
+Template Analityka Walki:
+- headline: ANALITYKA WALKI
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: KOSMICZNY
 - integrity: 99.4%
 - scale: 0-100
 
-Template Radar Brief:
+Template Porównanie Parametrów:
 - favorite_label: FAWORYT WEDŁUG STATYSTYK
 - headline: PORÓWNANIE PARAMETRÓW
 - subtitle: Mapa średniego profilu statystyk
@@ -184,7 +184,7 @@ Template X-Factor:
 - implication: Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.
 - psychology: Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe.
 
-Template Winner CV:
+Template Archiwum Zwycięstw:
 - headline: Archiwum zwycięstw
 - subtitle: 
 - archive_label: 
@@ -203,7 +203,7 @@ Template Winner CV:
 - right_item_4: Silver Surfer
 - right_item_5: Drax
 
-Template Summary:
+Template Podsumowanie Końcowe:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: Podsumowanie
 - winner: Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy.
@@ -264,10 +264,15 @@ Template Verdict Matrix:
 - case_3: Odin 6.5/10. To wciąż ta sama prawdziwa ścieżka: jeśli Odinforce naprawdę oczyszcza Otchłań, pole walki da się jeszcze przywrócić pod kontrolę.
 - case_4: Knull 7/10. To wciąż ta sama prawdziwa ścieżka: jeśli kontrola pęka bez prawdziwego oczyszczenia, Knull ma czystszą drogę do finiszu.
 
-Template Fight Title:
+Template Karta Walki:
 - fight_title: Knull vs Odin
 - subtitle:
 - top_color_a: #08090c
 - top_color_b: #b91c1c
 - bottom_color_a: #f5c542
 - bottom_color_b: #38bdf8
+
+
+
+
+

@@ -13,7 +13,7 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
-export function RadarBriefTemplate({
+export function ParameterComparisonTemplate({
   rows,
   fighterA,
   fighterB,
@@ -26,7 +26,7 @@ export function RadarBriefTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['radar-brief'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['parameter-comparison'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle

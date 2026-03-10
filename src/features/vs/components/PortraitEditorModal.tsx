@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import { createPortal } from 'react-dom'
 import type { TranslationDictionary } from '../../../i18n/types'
 import {
-  FIGHT_TITLE_PORTRAIT_ASPECT,
+  FIGHT_CARD_PORTRAIT_ASPECT,
   PORTRAIT_SCALE_MAX,
   PORTRAIT_SCALE_MIN,
   buildPortraitImageStyle,
@@ -63,7 +63,7 @@ export function PortraitEditorModal({
           <div className="rounded-xl border border-slate-700/80 bg-black/55 p-3">
             <div
               className="relative mx-auto w-full max-w-[430px] overflow-hidden rounded-lg border border-slate-600/70 bg-slate-900/80"
-              style={{ aspectRatio: `${FIGHT_TITLE_PORTRAIT_ASPECT}` }}
+              style={{ aspectRatio: `${FIGHT_CARD_PORTRAIT_ASPECT}` }}
             >
               <img
                 src={portraitEditor.previewUrl}

@@ -86,8 +86,8 @@ function App() {
   const [factsB, setFactsB] = useState<FighterFact[]>(() => defaultFactsFor('b', DEFAULT_LANGUAGE))
   const [powersA, setPowersA] = useState<FighterFact[]>([])
   const [powersB, setPowersB] = useState<FighterFact[]>([])
-  const [rawFeatsA, setRawFeatsA] = useState<string[]>([])
-  const [rawFeatsB, setRawFeatsB] = useState<string[]>([])
+  const [crucialFeatsA, setCrucialFeatsA] = useState<string[]>([])
+  const [crucialFeatsB, setCrucialFeatsB] = useState<string[]>([])
   const [winsA, setWinsA] = useState<string[]>(DEFAULT_WINNER_CV_A)
   const [winsB, setWinsB] = useState<string[]>(DEFAULT_WINNER_CV_B)
   const [templateOrder, setTemplateOrder] = useState<TemplateId[]>(DEFAULT_TEMPLATE_ORDER)
@@ -326,8 +326,8 @@ function App() {
     setFactsB(nextState.factsB)
     setPowersA(nextState.powersA)
     setPowersB(nextState.powersB)
-    setRawFeatsA(nextState.rawFeatsA)
-    setRawFeatsB(nextState.rawFeatsB)
+    setCrucialFeatsA(nextState.crucialFeatsA)
+    setCrucialFeatsB(nextState.crucialFeatsB)
     setWinsA(nextState.winsA)
     setWinsB(nextState.winsB)
     setTemplateBlocks(nextState.templateBlocks)
@@ -376,8 +376,8 @@ function App() {
       setFactsB(defaultFactsFor('b', nextLanguage))
       setPowersA([])
       setPowersB([])
-      setRawFeatsA([])
-      setRawFeatsB([])
+      setCrucialFeatsA([])
+      setCrucialFeatsB([])
       setSlideImageAdjustments({})
     }
   }
@@ -448,8 +448,8 @@ function App() {
       factsB={factsB}
       powersA={powersA}
       powersB={powersB}
-      rawFeatsA={rawFeatsA}
-      rawFeatsB={rawFeatsB}
+      crucialFeatsA={crucialFeatsA}
+      crucialFeatsB={crucialFeatsB}
       winsA={winsA}
       winsB={winsB}
       fightLabel={currentFightLabel}

@@ -46,8 +46,8 @@ export type FightStudioState = {
   factsB: FighterFact[]
   powersA: FighterFact[]
   powersB: FighterFact[]
-  rawFeatsA: string[]
-  rawFeatsB: string[]
+  crucialFeatsA: string[]
+  crucialFeatsB: string[]
   winsA: string[]
   winsB: string[]
   templateBlocks: Record<string, string[]>
@@ -128,8 +128,8 @@ export const buildFightStudioState = ({
     factsB: payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', targetLanguage),
     powersA: payload.powersA.slice(0, 8),
     powersB: payload.powersB.slice(0, 8),
-    rawFeatsA: payload.rawFeatsA.slice(0, 8),
-    rawFeatsB: payload.rawFeatsB.slice(0, 8),
+    crucialFeatsA: payload.crucialFeatsA.slice(0, 8),
+    crucialFeatsB: payload.crucialFeatsB.slice(0, 8),
     winsA: payload.winsA.length ? payload.winsA.slice(0, 12) : DEFAULT_WINNER_CV_A,
     winsB: payload.winsB.length ? payload.winsB.slice(0, 12) : DEFAULT_WINNER_CV_B,
     templateBlocks: payload.templateBlocks,

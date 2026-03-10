@@ -1,4 +1,4 @@
-export const translationsEn = {
+﻿export const translationsEn = {
   app: {
     title: 'VersusVerseVault',
     languageHint: 'Click to change language',
@@ -47,49 +47,49 @@ export const translationsEn = {
         title: 'TACTICAL BOARD',
         subtitle: 'Category table and non-linear combat reality',
       },
-      'character-card-a': {
+      'character-dossier-a': {
         name: 'Character dossier',
         description: 'Single full card for fighter A (more portrait space).',
-        title: 'CHARACTER BLUE',
+        title: 'CHARACTER DOSSIER',
         subtitle: 'Archetype, style and tactical profile',
       },
-      'character-card-b': {
+      'character-dossier-b': {
         name: 'Character dossier',
         description: 'Single full card for fighter B (more portrait space).',
-        title: 'CHARACTER RED',
+        title: 'CHARACTER DOSSIER',
         subtitle: 'Archetype, style and tactical profile',
       },
-      'powers-tools': {
+      'character-profile': {
         name: 'Character profile',
         description: 'Split dossier for both fighters with grouped tools and weaknesses.',
         title: 'CHARACTER PROFILE',
         subtitle: 'POWERS, TOOLS, AND WEAKNESSES',
       },
-      'raw-feats': {
+      'crucial-feats': {
         name: 'Crucial feats',
         description: 'Side-by-side feat ledger sourced from the import file.',
         title: 'CRUCIAL FEATS',
         subtitle: 'Character scaling through achievements.',
       },
-      'hud-bars': {
+      'fight-analytics': {
         name: 'Fight analytics',
         description: 'Military HUD look with long horizontal bars like output (1).',
-        title: 'HIGH-END COMBAT ANALYTICS',
+        title: 'FIGHT ANALYTICS',
         subtitle: 'Two-profile stat readout',
       },
-      'radar-brief': {
+      'parameter-comparison': {
         name: 'Parameter comparison',
         description: 'Center radar, side winner notes, bottom score strip.',
         title: 'PARAMETER COMPARISON',
         subtitle: 'Average stat profile map',
       },
-      'winner-cv': {
+      'victory-archive': {
         name: 'Victory archive',
         description: 'List of top beaten opponents for both fighters.',
         title: 'Victory Archive',
         subtitle: '',
       },
-      summary: {
+      'final-summary': {
         name: 'Final summary',
         description: 'Summary card placeholder from imported template block.',
         title: 'FINAL SUMMARY',
@@ -131,16 +131,16 @@ export const translationsEn = {
         title: 'VERDICT MATRIX',
         subtitle: 'Victory depends on the rules.',
       },
-      'blank-template': {
+      'new-template': {
         name: 'New template',
         description: 'Working blank field for the next layout.',
         title: 'NEW TEMPLATE',
         subtitle: 'Placeholder area',
       },
-      'fight-title': {
+      'fight-card': {
         name: 'Fight card',
         description: 'Animated final screen with matchup name.',
-        title: 'FIGHT TITLE',
+        title: 'FIGHT CARD',
         subtitle: 'Animated final matchup text',
       },
       methodology: {
@@ -284,3 +284,4 @@ export const translationsEn = {
     importNeedStatLines: 'Import error: sections 2 and 6 must contain stat lines, e.g. "- Strength: 96".',
   },
 } as const
+

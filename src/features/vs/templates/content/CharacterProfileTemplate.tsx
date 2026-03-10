@@ -123,7 +123,7 @@ const getToolkitSectionMeta = (
   }
 }
 
-export function PowersToolsTemplate({
+export function CharacterProfileTemplate({
   fighterA,
   fighterB,
   powersA,
@@ -135,7 +135,7 @@ export function PowersToolsTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['powers-tools'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-profile'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || ''

@@ -1,5 +1,5 @@
-import type { CSSProperties } from 'react'
-import type { FightRecord, FightScenarioId, FightScenarioLead, FightVariantLocale, Fighter, ParsedVsImport, PointerRelayPayload, PortraitAdjust, ScoreRow, SearchMorphHandoff } from './types'
+﻿import type { CSSProperties } from 'react'
+import type { FightRecord, FightScenarioId, FightScenarioLead, FightVariantLocale, Fighter, ParsedVsImport, PointerRelayPayload, PortraitAdjust, ScoreRow, SearchMorphHandoff, TemplateId } from './types'
 import { DEFAULT_MORPH_SIZE, FALLBACK_ICONS, FIGHT_SCENARIO_ALIAS_TO_ID, FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID, FIGHT_SCENARIO_EXTENDED_LABELS_EN, ICON_BY_CATEGORY } from './presets'
 
 export const clamp = (value: number) =>
@@ -8,7 +8,7 @@ export const clamp = (value: number) =>
 export const PORTRAIT_ADJUST_DEFAULT: PortraitAdjust = { x: 50, y: 50, scale: 1 }
 export const PORTRAIT_SCALE_MIN = 0.6
 export const PORTRAIT_SCALE_MAX = 2.4
-export const FIGHT_TITLE_PORTRAIT_ASPECT = 695 / 787.5
+export const FIGHT_CARD_PORTRAIT_ASPECT = 695 / 787.5
 
 export const clampPortraitPosition = (value: number) =>
   Math.max(0, Math.min(100, Number.isFinite(value) ? value : 50))
@@ -29,11 +29,68 @@ export const normalizePortraitAdjust = (value: unknown): PortraitAdjust => {
   }
 }
 
+const CANONICAL_TEMPLATE_IDS: TemplateId[] = [
+  'character-profile',
+  'crucial-feats',
+  'fight-analytics',
+  'parameter-comparison',
+  'tactical-board',
+  'victory-archive',
+  'character-dossier-a',
+  'character-dossier-b',
+  'final-summary',
+  'battle-dynamics',
+  'x-factor',
+  'interpretation',
+  'fight-simulation',
+  'stat-trap',
+  'verdict-matrix',
+  'new-template',
+  'fight-card',
+  'methodology',
+]
+
+const CANONICAL_TEMPLATE_ID_SET = new Set<TemplateId>(CANONICAL_TEMPLATE_IDS)
+
+export const LEGACY_TEMPLATE_ID_MAP: Record<string, TemplateId> = {
+  'character-card-a': 'character-dossier-a',
+  'character-card-b': 'character-dossier-b',
+  'powers-tools': 'character-profile',
+  'raw-feats': 'crucial-feats',
+  'hud-bars': 'fight-analytics',
+  'radar-brief': 'parameter-comparison',
+  'winner-cv': 'victory-archive',
+  summary: 'final-summary',
+  'blank-template': 'new-template',
+  'fight-title': 'fight-card',
+}
+
+export const normalizeTemplateId = (value: string): TemplateId | null => {
+  const trimmed = value.trim()
+  if (!trimmed) return null
+  if (CANONICAL_TEMPLATE_ID_SET.has(trimmed as TemplateId)) {
+    return trimmed as TemplateId
+  }
+  return LEGACY_TEMPLATE_ID_MAP[trimmed] || null
+}
+
+export const migrateTemplateAdjustKey = (value: string) => {
+  const trimmed = value.trim()
+  if (!trimmed) return ''
+  for (const [legacyId, canonicalId] of Object.entries(LEGACY_TEMPLATE_ID_MAP)) {
+    const prefix = `${legacyId}:`
+    if (trimmed.startsWith(prefix)) {
+      return `${canonicalId}:${trimmed.slice(prefix.length)}`
+    }
+  }
+  return trimmed
+}
+
 export const normalizeSlideImageAdjustments = (value: unknown): Record<string, PortraitAdjust> => {
   if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
   const normalized: Record<string, PortraitAdjust> = {}
   Object.entries(value as Record<string, unknown>).forEach(([key, entry]) => {
-    const normalizedKey = key.trim()
+    const normalizedKey = migrateTemplateAdjustKey(key)
     if (!normalizedKey) return
     normalized[normalizedKey] = normalizePortraitAdjust(entry)
   })
@@ -323,7 +380,7 @@ export const parseMatchupFromFileName = (fileName: string): { leftName: string; 
   return { leftName, rightName }
 }
 
-export type FightTitlePalette = {
+export type FightCardPalette = {
   colorA: string
   colorB: string
   dark: boolean
@@ -353,9 +410,9 @@ export const parseHexRgb = (value: string) => {
   }
 }
 
-export type FightTitleColorToken = 'red' | 'blue' | 'gold' | 'dark' | 'neutral'
+export type FightCardColorToken = 'red' | 'blue' | 'gold' | 'dark' | 'neutral'
 
-export const classifyFightTitleColor = (hexColor: string, dark: boolean): FightTitleColorToken => {
+export const classifyFightCardColor = (hexColor: string, dark: boolean): FightCardColorToken => {
   if (dark) return 'dark'
   const rgb = parseHexRgb(hexColor)
   if (!rgb) return 'neutral'
@@ -384,10 +441,10 @@ export const classifyFightTitleColor = (hexColor: string, dark: boolean): FightT
   return 'neutral'
 }
 
-export const resolveFightTitleStripeStyle = (palette: FightTitlePalette) => {
-  const tokenA = classifyFightTitleColor(palette.colorA, palette.dark)
-  const tokenB = classifyFightTitleColor(palette.colorB, false)
-  const has = (token: FightTitleColorToken) => tokenA === token || tokenB === token
+export const resolveFightCardStripeStyle = (palette: FightCardPalette) => {
+  const tokenA = classifyFightCardColor(palette.colorA, palette.dark)
+  const tokenB = classifyFightCardColor(palette.colorB, false)
+  const has = (token: FightCardColorToken) => tokenA === token || tokenB === token
 
   let textureUrl = "url('/assets/blue-red.png')"
   if (has('dark') && has('red')) textureUrl = "url('/assets/black-red.png')"
@@ -401,7 +458,7 @@ export const resolveFightTitleStripeStyle = (palette: FightTitlePalette) => {
   return { textureUrl, textureFilter }
 }
 
-export const resolveFightTitleNameFontRem = (text: string) => {
+export const resolveFightCardNameFontRem = (text: string) => {
   const normalized = text.replace(/\s+/g, ' ').trim()
   if (!normalized) return 6
   const visualLength = normalized.split('').reduce((acc, char) => acc + (char === ' ' ? 0.55 : 1), 0)
@@ -417,7 +474,7 @@ export const parseBooleanFlag = (value: string, fallback: boolean) => {
   return fallback
 }
 
-export const resolveFightTitlePalette = (name: string, side: 'a' | 'b'): FightTitlePalette => {
+export const resolveFightCardPalette = (name: string, side: 'a' | 'b'): FightCardPalette => {
   const token = normalizeToken(name)
   if (token.includes('knull')) {
     return { colorA: '#08090c', colorB: '#b91c1c', dark: true }
@@ -446,8 +503,8 @@ export const swapImportSides = (payload: ParsedVsImport): ParsedVsImport => ({
   factsB: payload.factsA,
   powersA: payload.powersB,
   powersB: payload.powersA,
-  rawFeatsA: payload.rawFeatsB,
-  rawFeatsB: payload.rawFeatsA,
+  crucialFeatsA: payload.crucialFeatsB,
+  crucialFeatsB: payload.crucialFeatsA,
   winsA: payload.winsB,
   winsB: payload.winsA,
 })
@@ -579,3 +636,4 @@ export const fighterMonogram = (name: string) => {
     .map((part) => part[0]?.toUpperCase() ?? '')
     .join('')
 }
+

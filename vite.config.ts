@@ -17,6 +17,18 @@ const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 const FIGHT_VISUALS_FILE_NAME = '.fight-visuals.json'
+const LEGACY_TEMPLATE_ID_MAP: Record<string, string> = {
+  'character-card-a': 'character-dossier-a',
+  'character-card-b': 'character-dossier-b',
+  'powers-tools': 'character-profile',
+  'raw-feats': 'crucial-feats',
+  'hud-bars': 'fight-analytics',
+  'radar-brief': 'parameter-comparison',
+  'winner-cv': 'victory-archive',
+  summary: 'final-summary',
+  'blank-template': 'new-template',
+  'fight-title': 'fight-card',
+}
 
 type ScanFightRecord = {
   folderKey: string
@@ -150,7 +162,16 @@ const normalizePersistedSlideImageAdjustments = (value: unknown) => {
 
   const normalized: Record<string, PersistedPortraitAdjust> = {}
   Object.entries(value as Record<string, unknown>).forEach(([key, entry]) => {
-    const normalizedKey = key.trim()
+    const trimmed = key.trim()
+    if (!trimmed) return
+    const normalizedKey =
+      Object.entries(LEGACY_TEMPLATE_ID_MAP).find(([legacyId]) => trimmed.startsWith(`${legacyId}:`))
+        ? (() => {
+            const [legacyId, canonicalId] =
+              Object.entries(LEGACY_TEMPLATE_ID_MAP).find(([legacy]) => trimmed.startsWith(`${legacy}:`)) || []
+            return legacyId ? `${canonicalId}:${trimmed.slice(legacyId.length + 1)}` : trimmed
+          })()
+        : trimmed
     if (!normalizedKey) return
     normalized[normalizedKey] = normalizePersistedPortraitAdjust(entry)
   })
@@ -238,10 +259,12 @@ const resolvePortraitRefsFromScans = (raw: string) => {
   const portraitFields = parseTemplateBlockFields(raw, 'Portraits')
   const portraitAFile =
     pickFieldValue(portraitFields, ['portrait_a', 'portrait_left', 'left_portrait', 'left_image', 'image_a']) ||
+    pickFieldValue(parseTemplateBlockFields(raw, 'Character Dossier A'), ['portrait_image', 'portrait', 'image']) ||
     pickFieldValue(parseTemplateBlockFields(raw, 'Character A'), ['portrait_image', 'portrait', 'image']) ||
     ''
   const portraitBFile =
     pickFieldValue(portraitFields, ['portrait_b', 'portrait_right', 'right_portrait', 'right_image', 'image_b']) ||
+    pickFieldValue(parseTemplateBlockFields(raw, 'Character Dossier B'), ['portrait_image', 'portrait', 'image']) ||
     pickFieldValue(parseTemplateBlockFields(raw, 'Character B'), ['portrait_image', 'portrait', 'image']) ||
     ''
 

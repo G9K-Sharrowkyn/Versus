@@ -1,6 +1,6 @@
-import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
+﻿import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
 import { DEFAULT_CATEGORIES, DEFAULT_TEMPLATE_ORDER, TEMPLATE_ID_SET, TEMPLATE_PRESETS, ensureTemplateOrderHasFinal, pickLang } from './presets'
-import { clamp, normalizeToken, slug } from './helpers'
+import { clamp, normalizeTemplateId, normalizeToken, slug } from './helpers'
 
 export const extractBullet = (line: string) => line.trim().replace(/^[-*?]\s*/, '').trim()
 
@@ -68,36 +68,47 @@ export const pickNameFromSection = (
 }
 
 export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = {
-  powerstools: 'powers-tools',
-  powersweaknesses: 'powers-tools',
-  powertoolsweaknesses: 'powers-tools',
-  characterprofile: 'powers-tools',
-  profilpostaci: 'powers-tools',
-  mocenarzedziaslabosci: 'powers-tools',
-  rawfeats: 'raw-feats',
-  crucialfeats: 'raw-feats',
-  najwazniejszewyczyny: 'raw-feats',
-  featsledger: 'raw-feats',
-  surowefeaty: 'raw-feats',
-  hudbars: 'hud-bars',
-  hudbar: 'hud-bars',
-  parametercomparison: 'radar-brief',
-  radarbrief: 'radar-brief',
+  characterprofile: 'character-profile',
+  profilpostaci: 'character-profile',
+  powersweaknesses: 'character-profile',
+  powertoolsweaknesses: 'character-profile',
+  powerstools: 'character-profile',
+  mocenarzedziaslabosci: 'character-profile',
+  crucialfeats: 'crucial-feats',
+  najwazniejszewyczyny: 'crucial-feats',
+  rawfeats: 'crucial-feats',
+  featsledger: 'crucial-feats',
+  surowefeaty: 'crucial-feats',
+  fightanalytics: 'fight-analytics',
+  analitykawalki: 'fight-analytics',
+  hudbars: 'fight-analytics',
+  hudbar: 'fight-analytics',
+  parametercomparison: 'parameter-comparison',
+  porownanieparametrow: 'parameter-comparison',
+  radarbrief: 'parameter-comparison',
   tacticalboard: 'tactical-board',
   tacticalboardmethodology: 'tactical-board',
   methodology: 'methodology',
   metodologia: 'methodology',
-  winnercv: 'winner-cv',
-  cvwinners: 'winner-cv',
-  cvzwyciezcow: 'winner-cv',
-  charactercarda: 'character-card-a',
-  charactera: 'character-card-a',
-  carda: 'character-card-a',
-  charactercardb: 'character-card-b',
-  characterb: 'character-card-b',
-  cardb: 'character-card-b',
-  podsumowanie: 'summary',
-  summary: 'summary',
+  victoryarchive: 'victory-archive',
+  archiwumzwyciestw: 'victory-archive',
+  winnercv: 'victory-archive',
+  cvwinners: 'victory-archive',
+  cvzwyciezcow: 'victory-archive',
+  characterdossiera: 'character-dossier-a',
+  dossierpostacia: 'character-dossier-a',
+  charactercarda: 'character-dossier-a',
+  charactera: 'character-dossier-a',
+  carda: 'character-dossier-a',
+  characterdossierb: 'character-dossier-b',
+  dossierpostacib: 'character-dossier-b',
+  charactercardb: 'character-dossier-b',
+  characterb: 'character-dossier-b',
+  cardb: 'character-dossier-b',
+  finalsummary: 'final-summary',
+  podsumowaniekoncowe: 'final-summary',
+  podsumowanie: 'final-summary',
+  summary: 'final-summary',
   dynamikastarcia: 'battle-dynamics',
   battledynamics: 'battle-dynamics',
   xfactor: 'x-factor',
@@ -109,12 +120,14 @@ export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = {
   stattrap: 'stat-trap',
   matrycawerdyktu: 'verdict-matrix',
   verdictmatrix: 'verdict-matrix',
-  newtemplate: 'blank-template',
-  blanktemplate: 'blank-template',
-  emptyfield: 'blank-template',
-  fighttitle: 'fight-title',
-  finaltitle: 'fight-title',
-  finalscreen: 'fight-title',
+  newtemplate: 'new-template',
+  blanktemplate: 'new-template',
+  emptyfield: 'new-template',
+  fightcard: 'fight-card',
+  kartawalki: 'fight-card',
+  fighttitle: 'fight-card',
+  finaltitle: 'fight-card',
+  finalscreen: 'fight-card',
 }
 
 export const parseTemplateOrder = (lines: string[]) => {
@@ -138,8 +151,9 @@ export const parseTemplateOrderTokens = (tokens: string[]) => {
       ids.push(mapped)
       continue
     }
-    if (TEMPLATE_ID_SET.has(item as TemplateId)) {
-      ids.push(item as TemplateId)
+    const direct = normalizeTemplateId(item)
+    if (direct && TEMPLATE_ID_SET.has(direct)) {
+      ids.push(direct)
     }
   }
   return ids
@@ -177,8 +191,8 @@ export type TemplateBlockRequirement = {
 
 export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   {
-    blockPl: 'Postać A',
-    blockEn: 'Character A',
+    blockPl: 'Dossier Postaci A',
+    blockEn: 'Character Dossier A',
     purposePl: 'Karta lewej postaci (niebieski narożnik).',
     purposeEn: 'Card for the left fighter (blue corner).',
     fields: [
@@ -191,8 +205,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Postać B',
-    blockEn: 'Character B',
+    blockPl: 'Dossier Postaci B',
+    blockEn: 'Character Dossier B',
     purposePl: 'Karta prawej postaci (czerwony narożnik).',
     purposeEn: 'Card for the right fighter (red corner).',
     fields: [
@@ -248,8 +262,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Paski HUD',
-    blockEn: 'HUD Bars',
+    blockPl: 'Analityka Walki',
+    blockEn: 'Fight Analytics',
     purposePl: 'Długi panel statystyk poziomych.',
     purposeEn: 'Long horizontal statistics panel.',
     fields: [
@@ -262,8 +276,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Raport Radarowy',
-    blockEn: 'Radar Brief',
+    blockPl: 'Porównanie Parametrów',
+    blockEn: 'Parameter Comparison',
     purposePl: 'Radar + przewagi lewej i prawej strony.',
     purposeEn: 'Radar + left/right side advantages.',
     fields: [
@@ -277,8 +291,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'CV Zwycięzców',
-    blockEn: 'Winner CV',
+    blockPl: 'Archiwum Zwycięstw',
+    blockEn: 'Victory Archive',
     purposePl: 'Lista pokonanych przeciwników.',
     purposeEn: 'List of defeated opponents.',
     fields: [
@@ -292,8 +306,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Podsumowanie',
-    blockEn: 'Summary',
+    blockPl: 'Podsumowanie Końcowe',
+    blockEn: 'Final Summary',
     purposePl: 'Końcowe streszczenie starcia.',
     purposeEn: 'Final fight summary.',
     fields: [
@@ -418,14 +432,14 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
   },
   {
     blockPl: 'Nowy Template',
-    blockEn: 'Blank Template',
+    blockEn: 'New Template',
     purposePl: 'Puste pole robocze pod kolejny layout.',
     purposeEn: 'Working blank field for the next layout.',
     fields: ['headline | header | title', 'subtitle | purpose | note', 'line_1 | line1', 'line_2 | line2', 'line_3 | line3'],
   },
   {
-    blockPl: 'Napis Koncowy',
-    blockEn: 'Fight Title',
+    blockPl: 'Karta Walki',
+    blockEn: 'Fight Card',
     purposePl: 'Finalny ekran z nazwami postaci i ich kolorami.',
     purposeEn: 'Final screen with fighter names and character-themed colors.',
     fields: [
@@ -725,23 +739,23 @@ export const getPlainTemplateLines = (lines: string[]) =>
   parseBulletItems(lines).filter((item) => !KEY_VALUE_BULLET_RE.test(item))
 
 export const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = {
-  'character-card-a': ['character a', 'character card a', 'card a', 'postac a', 'karta postaci a'],
-  'character-card-b': ['character b', 'character card b', 'card b', 'postac b', 'karta postaci b'],
-  'powers-tools': ['character profile', 'profil postaci', 'powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
-  'raw-feats': ['crucial feats', 'najwazniejsze wyczyny', 'raw feats', 'surowe featy', 'feats ledger'],
+  'character-dossier-a': ['character dossier a', 'character a', 'character card a', 'card a', 'postac a', 'dossier postaci a', 'karta postaci a'],
+  'character-dossier-b': ['character dossier b', 'character b', 'character card b', 'card b', 'postac b', 'dossier postaci b', 'karta postaci b'],
+  'character-profile': ['character profile', 'profil postaci', 'powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
+  'crucial-feats': ['crucial feats', 'najwazniejsze wyczyny', 'raw feats', 'surowe featy', 'feats ledger'],
   'tactical-board': ['tactical board', 'methodology', 'tablica taktyczna', 'metodologia'],
-  'hud-bars': ['hud bars', 'paski hud'],
-  'radar-brief': ['radar brief', 'parameter comparison', 'raport radarowy', 'porownanie parametrow'],
-  'winner-cv': ['winner cv', 'cv zwyciezcow', 'cv zwyciezców', 'zwyciezcy cv'],
-  summary: ['podsumowanie', 'summary'],
+  'fight-analytics': ['fight analytics', 'analityka walki', 'hud bars', 'paski hud'],
+  'parameter-comparison': ['parameter comparison', 'porownanie parametrow', 'radar brief', 'raport radarowy'],
+  'victory-archive': ['victory archive', 'archiwum zwyciestw', 'winner cv', 'cv zwyciezcow', 'cv zwyciezców', 'zwyciezcy cv'],
+  'final-summary': ['final summary', 'podsumowanie koncowe', 'podsumowanie', 'summary'],
   'battle-dynamics': ['dynamika starcia', 'battle dynamics'],
   'x-factor': ['x-factor', 'xfactor'],
   interpretation: ['interpretacja', 'interpretation'],
   'fight-simulation': ['symulacja walki', 'fight simulation'],
   'stat-trap': ['pulapka statystyk', 'pułapka statystyk', 'stat trap'],
   'verdict-matrix': ['matryca werdyktu', 'verdict matrix'],
-  'blank-template': ['new template', 'blank template', 'nowy template'],
-  'fight-title': ['fight title', 'final title', 'ending title', 'napis koncowy'],
+  'new-template': ['new template', 'blank template', 'nowy template'],
+  'fight-card': ['fight card', 'karta walki', 'fight title', 'final title', 'ending title', 'napis koncowy'],
   methodology: ['methodology', 'metodologia'],
 }
 
@@ -870,9 +884,9 @@ export const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport
   const factsA = parseFactItems(section3.lines)
   const factsB = parseFactItems(section7.lines)
   const powersA = section10 ? parseFactItems(trimSectionAtTemplateBlock(section10.lines)) : []
-  const rawFeatsA = section11 ? parseBulletItems(trimSectionAtTemplateBlock(section11.lines)) : []
+  const crucialFeatsA = section11 ? parseBulletItems(trimSectionAtTemplateBlock(section11.lines)) : []
   const powersB = section12 ? parseFactItems(trimSectionAtTemplateBlock(section12.lines)) : []
-  const rawFeatsB = section13 ? parseBulletItems(trimSectionAtTemplateBlock(section13.lines)) : []
+  const crucialFeatsB = section13 ? parseBulletItems(trimSectionAtTemplateBlock(section13.lines)) : []
   const winsA = parseBulletItems(section4.lines)
   const winsB = parseBulletItems(winsBLines)
 
@@ -887,8 +901,8 @@ export const parseVsImportText = (raw: string): { ok: true; data: ParsedVsImport
       factsB,
       powersA,
       powersB,
-      rawFeatsA,
-      rawFeatsB,
+      crucialFeatsA,
+      crucialFeatsB,
       winsA,
       winsB,
       templateOrder,
@@ -913,19 +927,22 @@ const toTemplateImageAdjustIdentity = (entry: TemplateImageEntry | null) => {
 }
 
 export const buildTemplateImageAdjustKey = (
-  templateId: 'raw-feats' | 'winner-cv',
+  templateId: 'crucial-feats' | 'victory-archive',
   side: 'left' | 'right',
   entry: TemplateImageEntry | null,
 ) => `${templateId}:${side}:${toTemplateImageAdjustIdentity(entry)}`
 
 export const buildLegacyTemplateImageAdjustKey = (
-  templateId: 'raw-feats' | 'winner-cv',
+  templateId: 'crucial-feats' | 'victory-archive',
   side: 'left' | 'right',
   entry: TemplateImageEntry | null,
-) => `${templateId}:${side}:${entry?.id || 'empty'}`
+) => {
+  const legacyTemplateId = templateId === 'crucial-feats' ? 'raw-feats' : 'winner-cv'
+  return `${legacyTemplateId}:${side}:${entry?.id || 'empty'}`
+}
 
 export type AutoTemplateImageRequest = {
-  templateId: 'raw-feats' | 'winner-cv'
+  templateId: 'crucial-feats' | 'victory-archive'
   side: 'left' | 'right'
   slot: number
 }
@@ -933,7 +950,7 @@ export type AutoTemplateImageRequest = {
 const resolveAutoTemplateImageSection = (
   request: AutoTemplateImageRequest,
 ): string => {
-  if (request.templateId === 'raw-feats') {
+  if (request.templateId === 'crucial-feats') {
     return request.side === 'left' ? '6.1' : '6.2'
   }
   return request.side === 'left' ? '7.1' : '7.2'
@@ -993,3 +1010,4 @@ export const buildTemplateImageEntries = (
 
   return entries
 }
+

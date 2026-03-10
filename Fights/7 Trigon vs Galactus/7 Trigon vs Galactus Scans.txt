@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: Turns DC Earth and everyone in it into stone.jpg
 - portrait_b: Galactus battles Mephisto.jpg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: 09_6_2_galactus_poppup_devouring.jpg
 - right_image_5: 10_6_2_galactus_sphinx_time_loop.jpg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: 01_6_1_trigon_heart_of_darkness.jpg
 - left_image_2: 04_6_1_trigon_dark_titans.jpg
 - left_image_3: 04_6_1_trigon_dark_titans.jpg
@@ -28,3 +28,7 @@ Template Winner CV:
 - right_image_3: 09_6_2_galactus_poppup_devouring.jpg
 - right_image_4: 11_7_2_galactus_tarnax_iv.jpg
 - right_image_5: 12_7_2_galactus_mad_celestials.jpg
+
+
+
+

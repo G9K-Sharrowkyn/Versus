@@ -33,7 +33,7 @@ export function SummaryTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.summary || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['final-summary'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
   const line = (position: number, keys: string[], fallback = '') =>
@@ -102,7 +102,7 @@ export function SummaryTemplate({
                     alt={fighterA.name || 'Fighter A'}
                     fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
                     hintLabel={portraitHint}
-                    adjustKey="summary:portrait-a"
+                    adjustKey="final-summary:portrait-a"
                     baseAdjust={portraitAAdjust}
                     adjustments={slideImageAdjustments}
                     onAdjustChange={onSlideImageAdjustChange}
@@ -177,7 +177,7 @@ export function SummaryTemplate({
                     alt={fighterB.name || 'Fighter B'}
                     fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
                     hintLabel={portraitHint}
-                    adjustKey="summary:portrait-b"
+                    adjustKey="final-summary:portrait-b"
                     baseAdjust={portraitBAdjust}
                     adjustments={slideImageAdjustments}
                     onAdjustChange={onSlideImageAdjustChange}

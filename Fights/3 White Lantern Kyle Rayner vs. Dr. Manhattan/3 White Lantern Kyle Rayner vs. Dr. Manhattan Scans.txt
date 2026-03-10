@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: Kyle_source.jpeg
 - portrait_b: Manhattan_Observing.jpeg
 
@@ -14,5 +14,9 @@ Template Crucial Feats:
 - right_image_4: 09_6_2_manhattan_metron_owlman_mobius.jpg
 - right_image_5: Manhattan_End.jpg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
+
+
+
+

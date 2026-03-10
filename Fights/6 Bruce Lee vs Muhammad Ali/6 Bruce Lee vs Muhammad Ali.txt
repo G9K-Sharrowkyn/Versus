@@ -1,4 +1,4 @@
-1. Character A
+﻿1. Character A
 Bruce Lee (Historical Prime)
 
 2. Character A Stats
@@ -47,19 +47,19 @@ Ernie Terrell
 
 9. Template Order
 tactical-board
-character-card-a
-character-card-b
-powers-tools
+character-dossier-a
+character-dossier-b
+character-profile
 crucial-feats
-hud-bars
-radar-brief
+fight-analytics
+parameter-comparison
 interpretation
 stat-trap
-winner-cv
-summary
+victory-archive
+final-summary
 battle-dynamics
 fight-simulation
-fight-title
+fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: Elite human speed, reflexes, coordination, and precision striking.
@@ -94,21 +94,21 @@ linear_label: LINEAR SEGMENT
 chaos_label: CHAOS SEGMENT
 lane: Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: Historical Prime
 - style: Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.
 - advantage: Extremely trained body and inhuman speed. Possesses total muscle control, allowing him to deliver powerful strikes from zero distance.
 - mentality: Instant adaptation and instinctive precision. Reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without sticking to rigid patterns.
 - quote: Be water, my friend.
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: Historical Prime
 - style: Masterful control of distance and rhythm. Uses legendary footwork and a fast jab to frustrate enemies and score points from a safe distance.
 - advantage: Heavyweight endurance and ring intelligence. Can take a punch, but his true strength lies in avoiding them and dictating the pace of the fight.
 - mentality: Charismatic showman with a will of steel. Provokes the opponent to throw them off balance and methodically break their self-confidence.
 - quote: Float like a butterfly, sting like a bee.
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 headline: CHARACTER PROFILE
 subtitle: POWERS, TOOLS, AND WEAKNESSES
 left_title: BRUCE TOOLKIT
@@ -134,14 +134,14 @@ feat_label: FEAT
 - right_item_4: Olympic gold, Rome 1960.
 - right_item_5: Defeated 21 champions or heavyweight title challengers.
 
-Template HUD Bars:
-headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+headline: FIGHT ANALYTICS
 subtitle: Two-profile stat readout
 threat_level: HUMAN
 integrity: 98.7%
 scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 headline: PARAMETER COMPARISON
 subtitle: Average stat profile map
 left_header: BRUCE ADVANTAGES
@@ -168,7 +168,7 @@ subtitle: Why better stats do not guarantee victory
 question: Can Bruce stop the fight from turning into Ali's range-and-tax pattern?
 body: Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator.
 
-Template Winner CV:
+Template Victory Archive:
 headline: Victory Archive
 subtitle:
 archive_label:
@@ -176,7 +176,7 @@ avg_label: AVG SCORE
 left_title: BRUCE RECORD
 right_title: ALI RECORD
 
-Template Summary:
+Template Final Summary:
 headline: FINAL SUMMARY
 subtitle: Summary
 winner: Muhammad Ali by clear margin
@@ -209,10 +209,14 @@ phase_3_desc: The fight either stays ugly and narrow for Bruce or settles into r
 phase_3_anim: corner-trap
 phase_3_actor: b
 
-Template Fight Title:
+Template Fight Card:
 fight_title: Bruce Lee vs Muhammad Ali
 subtitle:
 top_color_a: #facc15
 top_color_b: #111827
 bottom_color_a: #f8fafc
 bottom_color_b: #60a5fa
+
+
+
+

@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: one-inch punch.avif
 - portrait_b: 06_6_2_ali_cleveland_speed.jpg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: gold.webp
 - right_image_5: 14_7_2_ali_ernie_terrell.jpg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: Gary Elms.jpg
 - left_image_2: Yoichi Nakachi.jpg
 - right_image_1: 05_6_2_ali_rope_a_dope.jpg
@@ -25,3 +25,7 @@ Template Winner CV:
 - right_image_3: 12_7_2_ali_sonny_liston.jpg
 - right_image_4: 06_6_2_ali_cleveland_speed.jpg
 - right_image_5: 14_7_2_ali_ernie_terrell.jpg
+
+
+
+

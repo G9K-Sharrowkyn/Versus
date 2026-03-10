@@ -1,4 +1,4 @@
-1. Knull (Earth-616)
+﻿1. Knull (Earth-616)
 
 2. Character A Stats
 - Strength: 95
@@ -47,21 +47,21 @@
 
 9. Template Order
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - crucial-feats
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
 - verdict-matrix
-- fight-title
+- fight-card
 
 10. Character A Powers / Tools / Weaknesses
 - Powers: All-Black necrosword lethality, living abyss manipulation, symbiote hive control, and high-end regeneration.
@@ -98,21 +98,21 @@ Template Tactical Board:
 - chaos_label: CHAOS SEGMENT
 - lane: Odin must turn chaos into structure before Knull turns structure into attrition.
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Aggressive necro-swordsmanship. Knull strikes with devastating force, aiming for swift dismemberment or decapitation of the opponent.
 - advantage: All-Black – the sword that negates immortality. The weapon ignores every form of armor and regeneration, and Knull himself returns to the fight even after total incineration.
 - mentality: Sadistic confidence and lack of fear. He revels in his power, striving for the swift and ruthless execution of every opponent.
 - quote: Ah... I see my reputation precedes me... so I won't waste your time... I am going to kill your world.
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER
 - world: Earth-616
 - style: Direct combat with the colossal Odinsword. Odin uses devastating slashes to physically break the opponent's armor and will with pure striking power.
 - advantage: Odinforce and the destructive power of the Odinsword. This weapon releases Ragnarok energy capable of erasing galaxies, and the Odinforce allows him to manipulate matter and time.
 - mentality: Majestic ruler with a violent temperament. Drawing the Odinsword means fighting without any inhibitions – he strikes with a fury that knows no mercy or compromise.
 - quote: Odin is the Sun and the stars and the Moon and more. Odin is the way and the wrath and the wonder! Odin is he who speaks while galaxies obey!
-Template Powers / Tools / Weaknesses:
+Template Character Profile:
 - headline: CHARACTER PROFILE
 - subtitle: POWERS, TOOLS, AND WEAKNESSES
 - left_title: KNULL TOOLKIT
@@ -138,14 +138,14 @@ Template Crucial Feats:
 - right_item_4: Gathers power from all of the Earth gods.
 - right_item_5: Absorbs Surtur, whose destiny is to destroy Asgard and kill gods.
 
-Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+- headline: FIGHT ANALYTICS
 - subtitle: Two-profile stat readout
 - threat_level: COSMIC
 - integrity: 99.4%
 - scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 - favorite_label: STAT-BASED FAVORITE
 - headline: PARAMETER COMPARISON
 - subtitle: Average stat profile map
@@ -184,7 +184,7 @@ Template X-Factor:
 - implication: This is why the same stat table can point to parity while the practical baseline still leans Knull.
 - psychology: Knull wants repetition. Odin wants one controlled exchange that finally stays solved.
 
-Template Winner CV:
+Template Victory Archive:
 - headline: Victory Archive
 - subtitle: 
 - archive_label: 
@@ -203,7 +203,7 @@ Template Winner CV:
 - right_item_4: Silver Surfer
 - right_item_5: Drax
 
-Template Summary:
+Template Final Summary:
 - headline: FINAL SUMMARY
 - subtitle: Summary
 - winner: Slight edge Knull, conditional matchup
@@ -264,10 +264,14 @@ Template Verdict Matrix:
 - case_3: Odin 6.5/10. The same real branch: if Odinforce truly purges the abyss, the map can still be brought back under control.
 - case_4: Knull 7/10. The same real branch: once control breaks without a true purge, Knull owns the cleaner finish route.
 
-Template Fight Title:
+Template Fight Card:
 - fight_title: Knull vs Odin
 - subtitle:
 - top_color_a: #08090c
 - top_color_b: #b91c1c
 - bottom_color_a: #f5c542
 - bottom_color_b: #38bdf8
+
+
+
+

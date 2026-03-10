@@ -20,23 +20,23 @@ export type Fighter = {
 
 export type Language = 'pl' | 'en'
 export type TemplateId =
-  | 'powers-tools'
-  | 'raw-feats'
-  | 'hud-bars'
-  | 'radar-brief'
+  | 'character-profile'
+  | 'crucial-feats'
+  | 'fight-analytics'
+  | 'parameter-comparison'
   | 'tactical-board'
-  | 'winner-cv'
-  | 'character-card-a'
-  | 'character-card-b'
-  | 'summary'
+  | 'victory-archive'
+  | 'character-dossier-a'
+  | 'character-dossier-b'
+  | 'final-summary'
   | 'battle-dynamics'
   | 'x-factor'
   | 'interpretation'
   | 'fight-simulation'
   | 'stat-trap'
   | 'verdict-matrix'
-  | 'blank-template'
-  | 'fight-title'
+  | 'new-template'
+  | 'fight-card'
   | 'methodology'
 
 export type TemplatePreset = {
@@ -70,8 +70,8 @@ export type ParsedVsImport = {
   factsB: FighterFact[]
   powersA: FighterFact[]
   powersB: FighterFact[]
-  rawFeatsA: string[]
-  rawFeatsB: string[]
+  crucialFeatsA: string[]
+  crucialFeatsB: string[]
   winsA: string[]
   winsB: string[]
   templateOrder: TemplateId[]
@@ -120,8 +120,8 @@ export type TemplatePreviewProps = {
   factsB: FighterFact[]
   powersA: FighterFact[]
   powersB: FighterFact[]
-  rawFeatsA: string[]
-  rawFeatsB: string[]
+  crucialFeatsA: string[]
+  crucialFeatsB: string[]
   winsA: string[]
   winsB: string[]
   fightLabel: string

@@ -1,4 +1,4 @@
-1. Superman (New 52)
+﻿1. Superman (New 52)
 
 2. Statystyki Postaci A
 - Siła: 96
@@ -47,21 +47,21 @@
 - Hulk
 9. Kolejność Templatek
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - najważniejsze-wyczyny
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
 - verdict-matrix
-- fight-title
+- fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Kryptoniańska siła, szybkość, lot i wzmocniona percepcja zmysłowa.
@@ -96,21 +96,21 @@ Template Tactical Board:
 - chaos_label: ODCINEK CHAOSU
 - lane: Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: New 52
 - style: Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.
 - advantage: Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.
 - mentality: Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.
 - quote: To wygląda na robotę dla Supermana.
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Ziemia-4023
 - style: Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.
 - advantage: Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.
 - mentality: Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.
 - quote: Właśnie tak, skarbie... Hyperion.
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: Superman
@@ -147,7 +147,7 @@ Template X-Factor:
 - mechanics: Superman ma przewagę statystyczną, ale Hyperion nie zatrzymuje się pod presją żadnego przeciwnika.
 - implication: Jeśli walka przebiega w trybie turniejowym zamiast na śmierć, przewaga Hyperiona rośnie z każdą minutą starcia.
 - psychology: Hyperion może walczyć lekkomyślnie, bo samo przetrwanie przybliża go do zwycięstwa.
-Template Winner CV:
+Template Archiwum Zwycięstw:
 - headline: Archiwum zwycięstw
 - subtitle: 
 - archive_label: 
@@ -165,7 +165,7 @@ Template Winner CV:
 - right_item_3: Vision
 - right_item_4: Thor
 - right_item_5: Hulk
-Template Summary:
+Template Podsumowanie Końcowe:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: Podsumowanie
 - winner: Superman ma przewagę. Hyperion wciąż może wygrać.
@@ -225,7 +225,7 @@ Template Verdict Matrix:
 - case_2: Superman 5.5/10. Solar Flare daje Supermanowi drogę do wygranej, ale walka na śmierć nadal sprzyja Hyperionowi.
 - case_3: Superman 6/10. Bez Solar Flare Superman wciąż ma przewagę, jeśli potrafi kontrolować walkę od początku do końca i uniknie wojny na wyniszczenie.
 - case_4: King Hyperion 6/10. Bez Solar Flare w walce na śmierć regeneracja Hyperiona zaczyna przechylać szalę.
-Template Fight Title:
+Template Karta Walki:
 - headline: Walka #1 skończona
 - fight_title: Superman vs King Hyperion
 - subtitle:
@@ -233,3 +233,8 @@ Template Fight Title:
 - top_color_b: #93c5fd
 - bottom_color_a: #facc15
 - bottom_color_b: #dc2626
+
+
+
+
+

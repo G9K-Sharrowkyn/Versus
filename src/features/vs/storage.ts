@@ -315,8 +315,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
   const factsB = toFactArray(raw.factsB)
   const powersA = toFactArray(raw.powersA)
   const powersB = toFactArray(raw.powersB)
-  const rawFeatsA = toStringArray(raw.rawFeatsA)
-  const rawFeatsB = toStringArray(raw.rawFeatsB)
+  const crucialFeatsA = toStringArray(raw.crucialFeatsA ?? raw.rawFeatsA)
+  const crucialFeatsB = toStringArray(raw.crucialFeatsB ?? raw.rawFeatsB)
   const winsA = toStringArray(raw.winsA)
   const winsB = toStringArray(raw.winsB)
   const templateOrder = parseTemplateOrderTokens(toStringArray(raw.templateOrder))
@@ -333,8 +333,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
     factsB,
     powersA,
     powersB,
-    rawFeatsA,
-    rawFeatsB,
+    crucialFeatsA,
+    crucialFeatsB,
     winsA,
     winsB,
     templateOrder,

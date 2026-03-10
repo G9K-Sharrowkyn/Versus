@@ -1,4 +1,4 @@
-1. Darth Vader (Legends)
+﻿1. Darth Vader (Legends)
 
 2. Statystyki Postaci A
 - Siła: 68
@@ -48,20 +48,20 @@
 
 9. Kolejność Templatek
 - tactical-board
-- character-card-a
-- character-card-b
-- powers-tools
+- character-dossier-a
+- character-dossier-b
+- character-profile
 - najważniejsze-wyczyny
-- hud-bars
-- radar-brief
+- fight-analytics
+- parameter-comparison
 - interpretation
 - stat-trap
 - x-factor
-- winner-cv
-- summary
+- victory-archive
+- final-summary
 - battle-dynamics
 - fight-simulation
-- fight-title
+- fight-card
 
 10. Moce / Narzędzia / Słabości Postaci A
 - Moce: Telekineza Mocy, prekognicja, techniki duszenia i miażdżenia oraz śmiercionośna biegłość miecza świetlnego.
@@ -98,21 +98,21 @@ Template Tactical Board:
 - chaos_label: ODCINEK CHAOSU
 - lane: Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.
 
-Template Character A:
+Template Dossier Postaci A:
 - header: Dossier postaci
 - world: Legendy
 - style: Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.
 - advantage: Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.
 - mentality: Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.
 - quote: Otacza mnie tylko strach. I martwi ludzie.
-Template Character B:
+Template Dossier Postaci B:
 - header: Dossier postaci
 - world: Ziemia-616
 - style: Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę.
 - advantage: Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.
 - mentality: Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.
 - quote: Nie zmusiłem cię do walki ze mną. Sam mnie do tego zmusiłeś. Musiałem pozostać wierny swojej naturze. Bo w końcu... jestem Thanosem.
-Template Powers / Tools / Weaknesses:
+Template Profil Postaci:
 - headline: PROFIL POSTACI
 - subtitle: MOCE, NARZĘDZIA I SŁABOŚCI
 - left_title: Darth Vader
@@ -138,14 +138,14 @@ Template Najważniejsze Wyczyny:
 - right_item_4: Wychodzi z eksplozji gazowego giganta.
 - right_item_5: Zamienia Skrulla w kamień.
 
-Template HUD Bars:
-- headline: ANALITYKA WALKI HIGH-END
+Template Analityka Walki:
+- headline: ANALITYKA WALKI
 - subtitle: Odczyt statystyk dwóch profili
 - threat_level: KOSMICZNY
 - integrity: 99.4%
 - scale: 0-100
 
-Template Radar Brief:
+Template Porównanie Parametrów:
 - headline: PORÓWNANIE PARAMETRÓW
 - subtitle: Mapa średniego profilu statystyk
 - left_header: PRZEWAGI VADERA
@@ -183,7 +183,7 @@ Template X-Factor:
 - implication: Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.
 - psychology: Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.
 
-Template Winner CV:
+Template Archiwum Zwycięstw:
 - headline: Archiwum zwycięstw
 - subtitle:
 - archive_label:
@@ -202,7 +202,7 @@ Template Winner CV:
 - right_item_4: Adam Warlock
 - right_item_5: Thor z Power Gem
 
-Template Summary:
+Template Podsumowanie Końcowe:
 - headline: PODSUMOWANIE KOŃCOWE
 - subtitle: Podsumowanie
 - winner: Thanos z wyraźną przewagą
@@ -251,10 +251,15 @@ Template Fight Simulation:
 - phase_3_branch_a: Cudowny bypass musiałby skończyć walkę natychmiast.
 - phase_3_branch_b: Thanos absorbuje, kontruje i kończy walkę siłą.
 
-Template Fight Title:
+Template Karta Walki:
 - fight_title: Darth Vader vs Thanos
 - subtitle:
 - top_color_a: #111827
 - top_color_b: #b91c1c
 - bottom_color_a: #7c3aed
 - bottom_color_b: #f5c542
+
+
+
+
+

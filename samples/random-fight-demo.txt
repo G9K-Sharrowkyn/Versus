@@ -1,4 +1,4 @@
-1. Iron Specter
+﻿1. Iron Specter
 
 2. Character A Stats
 - Strength: 88
@@ -48,12 +48,12 @@
 
 9. Template Order
 - tactical-board
-- character-card-a
-- character-card-b
-- hud-bars
-- radar-brief
-- winner-cv
-- summary
+- character-dossier-a
+- character-dossier-b
+- fight-analytics
+- parameter-comparison
+- victory-archive
+- final-summary
 - battle-dynamics
 - x-factor
 - interpretation
@@ -64,7 +64,7 @@
 - phase-2
 - turning-points
 - methodology
-- blank-template
+- new-template
 
 Template Tactical Board:
 - headline: TACTICAL BOARD // LIVE MODEL
@@ -75,7 +75,7 @@ Template Tactical Board:
 - chaos_label: CHAOS SEGMENT
 - lane: Active tactical lane online
 
-Template Character A:
+Template Character Dossier A:
 - header: CHARACTER DOSSIER // BLUE
 - world: Earth-91
 - style: Hit-and-shift with range resets
@@ -83,7 +83,7 @@ Template Character A:
 - mentalnosc: End it before attrition
 - quote: Keep it clean, keep it fast.
 
-Template Character B:
+Template Character Dossier B:
 - header: CHARACTER DOSSIER // RED
 - world: Ruin Sector-3
 - style: Forward collapse and clinch grind
@@ -91,15 +91,15 @@ Template Character B:
 - mentalnosc: Drag every fight into chaos
 - quote: I only need one long round.
 
-Template HUD Bars:
-- headline: HIGH-END COMBAT ANALYTICS
+Template Fight Analytics:
+- headline: FIGHT ANALYTICS
 - subtitle: Subject comparison protocol
 - threat_level: EXTREME
 - integrity: 99.7%
 - profile_mode: VS
 - scale: 0-100
 
-Template Radar Brief:
+Template Parameter Comparison:
 - headline: PARAMETER COMPARISON
 - subtitle: Relative profile map
 - left_header: BLUE CORNER ADVANTAGES
@@ -107,7 +107,7 @@ Template Radar Brief:
 - draw_header: DRAW CATEGORIES
 - favorite: PROBABILITY FAVORITE
 
-Template Winner CV:
+Template Victory Archive:
 - headline: WINNER CV ARCHIVE
 - subtitle: Defeated opponents and average score
 - archive_label: ARCHIVE
@@ -116,7 +116,7 @@ Template Winner CV:
 - right_title: RED CORNER RECORD
 - win_badge: W
 
-Template Summary:
+Template Final Summary:
 - headline: FINAL SUMMARY
 - subtitle: Condensed verdict snapshot
 - winner: CONDITIONAL EDGE: CRIMSON WARDEN
@@ -231,9 +231,11 @@ Template Methodology:
 - chaos_label: CHAOS SEGMENT
 - closing_label: Stats are linear. Fight is not.
 
-Template Blank Template:
+Template New Template:
 - headline: NEW TEMPLATE SLOT
 - subtitle: Reserved for custom layout
 - line_1: Add custom data block here.
 - line_2: This slot is intentionally generic.
 - line_3: Ready for next iteration.
+
+

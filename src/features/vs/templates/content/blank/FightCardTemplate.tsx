@@ -1,14 +1,14 @@
-import { type CSSProperties } from 'react'
+﻿import { type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import {
-  type FightTitlePalette,
+  type FightCardPalette,
   fighterMonogram,
   normalizeHexColor,
   parseBooleanFlag,
-  resolveFightTitleNameFontRem,
-  resolveFightTitlePalette,
-  resolveFightTitleStripeStyle,
+  resolveFightCardNameFontRem,
+  resolveFightCardPalette,
+  resolveFightCardStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
 import { pickLang } from '../../../presets'
@@ -16,7 +16,7 @@ import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, 
 import type { TemplatePreviewProps } from '../../../types'
 import { HIGH_END_BACKGROUND_CLASS, HIGH_END_HEADER_CLASS, HIGH_END_SUBTEXT_CLASS } from '../../shared/highEnd'
 
-export function FightTitleTemplate({
+export function FightCardTemplate({
   fighterA,
   fighterB,
   portraitAAdjust,
@@ -30,7 +30,7 @@ export function FightTitleTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-title'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
   const line = (position: number, keys: string[], fallback = '') =>
@@ -54,9 +54,9 @@ export function FightTitleTemplate({
   const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
   const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
-  const topBasePalette = resolveFightTitlePalette(topName, 'a')
-  const bottomBasePalette = resolveFightTitlePalette(bottomName, 'b')
-  const topPalette: FightTitlePalette = {
+  const topBasePalette = resolveFightCardPalette(topName, 'a')
+  const bottomBasePalette = resolveFightCardPalette(bottomName, 'b')
+  const topPalette: FightCardPalette = {
     colorA:
       normalizeHexColor(
         pickTemplateField(blockFields, ['top_color_a', 'top_primary', 'fighter_a_color_a', 'fighter_a_primary']),
@@ -67,7 +67,7 @@ export function FightTitleTemplate({
       ) || topBasePalette.colorB,
     dark: parseBooleanFlag(pickTemplateField(blockFields, ['top_dark', 'fighter_a_dark']), topBasePalette.dark),
   }
-  const bottomPalette: FightTitlePalette = {
+  const bottomPalette: FightCardPalette = {
     colorA:
       normalizeHexColor(
         pickTemplateField(blockFields, ['bottom_color_a', 'bottom_primary', 'fighter_b_color_a', 'fighter_b_primary']),
@@ -82,14 +82,14 @@ export function FightTitleTemplate({
     ),
   }
 
-  const renderAnimatedLine = (text: string, palette: FightTitlePalette) => {
-    const stripeStyle = resolveFightTitleStripeStyle(palette)
-    const fontSizeRem = resolveFightTitleNameFontRem(text)
+  const renderAnimatedLine = (text: string, palette: FightCardPalette) => {
+    const stripeStyle = resolveFightCardStripeStyle(palette)
+    const fontSizeRem = resolveFightCardNameFontRem(text)
 
     return (
       <span
         data-text={text}
-        className="vvv-fight-title-outro__wordmark"
+        className="vvv-fight-card-outro__wordmark"
         style={
           {
             color: palette.colorA,
@@ -104,20 +104,20 @@ export function FightTitleTemplate({
     )
   }
 
-  const renderFightTitlePortrait = (
+  const renderFightCardPortrait = (
     fighter: typeof fighterA,
     nameText: string,
-    palette: FightTitlePalette,
+    palette: FightCardPalette,
     side: 'left' | 'right',
   ) => {
     const fighterAdjust = side === 'left' ? portraitAAdjust : portraitBAdjust
-    const adjustKey = side === 'left' ? 'fight-title:portrait-a' : 'fight-title:portrait-b'
+    const adjustKey = side === 'left' ? 'fight-card:portrait-a' : 'fight-card:portrait-b'
 
     return (
     <div
       className={clsx(
-        'vvv-fight-title-portrait',
-        side === 'left' ? 'vvv-fight-title-portrait--left' : 'vvv-fight-title-portrait--right',
+        'vvv-fight-card-portrait',
+        side === 'left' ? 'vvv-fight-card-portrait--left' : 'vvv-fight-card-portrait--right',
       )}
       style={
         {
@@ -129,9 +129,9 @@ export function FightTitleTemplate({
         } as CSSProperties
       }
     >
-      <div className="vvv-fight-title-portrait__inner-container">
-        <div className="vvv-fight-title-portrait__border-outer">
-          <div className="vvv-fight-title-portrait__inner">
+      <div className="vvv-fight-card-portrait__inner-container">
+        <div className="vvv-fight-card-portrait__border-outer">
+          <div className="vvv-fight-card-portrait__inner">
             {fighter.imageUrl ? (
               <AdjustableTemplateImage
                 imageUrl={fighter.imageUrl}
@@ -156,13 +156,13 @@ export function FightTitleTemplate({
                 </div>
               </div>
             )}
-            <div className="vvv-fight-title-portrait__name">{renderAnimatedLine(nameText, palette)}</div>
-            <div className="vvv-fight-title-portrait__name-fade" />
-            <div className="vvv-fight-title-portrait__scan" />
+            <div className="vvv-fight-card-portrait__name">{renderAnimatedLine(nameText, palette)}</div>
+            <div className="vvv-fight-card-portrait__name-fade" />
+            <div className="vvv-fight-card-portrait__scan" />
           </div>
         </div>
-        <div className="vvv-fight-title-portrait__glow-layer-1" />
-        <div className="vvv-fight-title-portrait__glow-layer-2" />
+        <div className="vvv-fight-card-portrait__glow-layer-1" />
+        <div className="vvv-fight-card-portrait__glow-layer-2" />
       </div>
     </div>
   )
@@ -170,7 +170,7 @@ export function FightTitleTemplate({
 
   return (
     <div className={`relative z-10 flex h-full min-h-0 overflow-hidden rounded-[20px] px-2 pt-2 pb-1 text-center text-slate-200 ${HIGH_END_BACKGROUND_CLASS}`}>
-      <svg className="vvv-fight-title-svg-defs" aria-hidden="true">
+      <svg className="vvv-fight-card-svg-defs" aria-hidden="true">
         <defs>
           <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
             <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
@@ -212,13 +212,14 @@ export function FightTitleTemplate({
 </div>
         </div>
       </div>
-      <div className="vvv-fight-title-split relative z-10 h-full w-full">
-        {renderFightTitlePortrait(fighterA, topName, topPalette, 'left')}
-        {renderFightTitlePortrait(fighterB, bottomName, bottomPalette, 'right')}
-        <span className="vvv-fight-title-split__vs">
-          <img src="/assets/VS.png" alt="VS" className="vvv-fight-title-outro__vs-image" draggable={false} />
+      <div className="vvv-fight-card-split relative z-10 h-full w-full">
+        {renderFightCardPortrait(fighterA, topName, topPalette, 'left')}
+        {renderFightCardPortrait(fighterB, bottomName, bottomPalette, 'right')}
+        <span className="vvv-fight-card-split__vs">
+          <img src="/assets/VS.png" alt="VS" className="vvv-fight-card-outro__vs-image" draggable={false} />
         </span>
       </div>
     </div>
   )
 }
+

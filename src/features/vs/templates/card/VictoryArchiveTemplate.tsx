@@ -24,7 +24,7 @@ import {
   HIGH_END_SUBTEXT_CLASS,
 } from '../shared/highEnd'
 
-export function WinnerCvTemplate({
+export function VictoryArchiveTemplate({
   fighterA,
   fighterB,
   title,
@@ -40,7 +40,7 @@ export function WinnerCvTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['winner-cv'] || [])
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['victory-archive'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const archiveLabel = pickTemplateField(blockFields, ['archive_label']) || tr('ARCHIWUM', 'ARCHIVE')
@@ -76,13 +76,13 @@ export function WinnerCvTemplate({
   ) => {
     const imageUrl = entry
       ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
-          templateId: 'winner-cv',
+          templateId: 'victory-archive',
           side,
           slot: entry.slot,
         })
       : ''
-    const adjustKey = buildTemplateImageAdjustKey('winner-cv', side, entry)
-    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('winner-cv', side, entry)]
+    const adjustKey = buildTemplateImageAdjustKey('victory-archive', side, entry)
+    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('victory-archive', side, entry)]
 
     return (
       <div className={`flex h-full min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>

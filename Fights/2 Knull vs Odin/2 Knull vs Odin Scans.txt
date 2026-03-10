@@ -1,4 +1,4 @@
-Template Portraits:
+﻿Template Portraits:
 - portrait_a: 1.webp
 - portrait_b: 2.jpg
 
@@ -14,10 +14,10 @@ Template Crucial Feats:
 - right_image_4: Odin_PowerOfGods.jpg
 - right_image_5: Odin_Surtur.jpg
 
-Template HUD Bars:
+Template Fight Analytics:
 - profile_mode: VS
 
-Template Winner CV:
+Template Victory Archive:
 - left_image_1: Knull_Celestial.jpg
 - left_image_2: Knull_Sentry.jpg
 - left_image_3: Knull_Surfer.jpg
@@ -28,3 +28,7 @@ Template Winner CV:
 - right_image_3: Odin_Thanos.jpg
 - right_image_4: Odin_SS.jpg
 - right_image_5: Odin_Drax.jpg
+
+
+
+
