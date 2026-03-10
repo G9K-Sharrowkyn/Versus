@@ -66,10 +66,10 @@ export const translationsPl = {
         subtitle: 'MOCE, NARZĘDZIA I SŁABOŚCI',
       },
       'raw-feats': {
-        name: 'Surowe Featy',
+        name: 'Najważniejsze Wyczyny',
         description: 'Lista konkretnych dokonań obu postaci, bez interpretacji.',
-        title: 'SUROWE FEATY',
-        subtitle: 'Czyste przykłady pokazowe, nie pełne archiwa',
+        title: 'NAJWAŻNIEJSZE WYCZYNY',
+        subtitle: 'Skalowanie postaci poprzez osiągnięcia.',
       },
       'hud-bars': {
         name: 'Paski HUD',

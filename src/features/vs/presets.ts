@@ -82,17 +82,17 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
   },
   {
     id: 'powers-tools',
-    name: 'Powers / Tools / Weaknesses',
+    name: 'Character Profile',
     description: 'Split dossier for both fighters with grouped tools and weaknesses.',
     title: 'CHARACTER PROFILE',
     subtitle: 'POWERS, TOOLS, AND WEAKNESSES',
   },
   {
     id: 'raw-feats',
-    name: 'Raw Feats',
+    name: 'Crucial Feats',
     description: 'Side-by-side feat ledger sourced from the import file.',
-    title: 'RAW FEATS',
-    subtitle: 'Clean showcase examples, not full archives',
+    title: 'CRUCIAL FEATS',
+    subtitle: 'Character scaling through achievements.',
   },
   {
     id: 'hud-bars',

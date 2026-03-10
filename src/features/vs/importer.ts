@@ -71,8 +71,12 @@ export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = {
   powerstools: 'powers-tools',
   powersweaknesses: 'powers-tools',
   powertoolsweaknesses: 'powers-tools',
+  characterprofile: 'powers-tools',
+  profilpostaci: 'powers-tools',
   mocenarzedziaslabosci: 'powers-tools',
   rawfeats: 'raw-feats',
+  crucialfeats: 'raw-feats',
+  najwazniejszewyczyny: 'raw-feats',
   featsledger: 'raw-feats',
   surowefeaty: 'raw-feats',
   hudbars: 'hud-bars',
@@ -201,8 +205,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Moce / Narzedzia / Slabosci',
-    blockEn: 'Powers / Tools / Weaknesses',
+    blockPl: 'Profil Postaci',
+    blockEn: 'Character Profile',
     purposePl: 'Panel mocy, narzedzi i slabosci obu postaci.',
     purposeEn: 'Panel for powers, tools, and weaknesses of both fighters.',
     fields: [
@@ -216,10 +220,10 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
     ],
   },
   {
-    blockPl: 'Surowe Featy',
-    blockEn: 'Raw Feats',
-    purposePl: 'Panel surowych featow obu postaci.',
-    purposeEn: 'Panel for raw feats of both fighters.',
+    blockPl: 'Najwazniejsze Wyczyny',
+    blockEn: 'Crucial Feats',
+    purposePl: 'Panel najwazniejszych wyczynow obu postaci.',
+    purposeEn: 'Panel for the most important feats of both fighters.',
     fields: [
       'headline | header | title',
       'subtitle | purpose | note',
@@ -486,8 +490,8 @@ export const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '10. (Moce / Narzędzia / Słabości Postaci A)',
-      '10. (Character A Powers / Tools / Weaknesses)',
+      '10. (Profil Postaci A)',
+      '10. (Character A Profile)',
     ),
   )
   lines.push(
@@ -507,8 +511,8 @@ export const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '11. (Surowe Featy Postaci A)',
-      '11. (Character A Raw Feats)',
+      '11. (Najważniejsze Wyczyny Postaci A)',
+      '11. (Character A Crucial Feats)',
     ),
   )
   lines.push(
@@ -528,8 +532,8 @@ export const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '12. (Moce / Narzędzia / Słabości Postaci B)',
-      '12. (Character B Powers / Tools / Weaknesses)',
+      '12. (Profil Postaci B)',
+      '12. (Character B Profile)',
     ),
   )
   lines.push(
@@ -549,8 +553,8 @@ export const buildImportTxtBlueprint = (language: Language) => {
   lines.push(
     pickLang(
       language,
-      '13. (Surowe Featy Postaci B)',
-      '13. (Character B Raw Feats)',
+      '13. (Najważniejsze Wyczyny Postaci B)',
+      '13. (Character B Crucial Feats)',
     ),
   )
   lines.push(
@@ -723,8 +727,8 @@ export const getPlainTemplateLines = (lines: string[]) =>
 export const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = {
   'character-card-a': ['character a', 'character card a', 'card a', 'postac a', 'karta postaci a'],
   'character-card-b': ['character b', 'character card b', 'card b', 'postac b', 'karta postaci b'],
-  'powers-tools': ['powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
-  'raw-feats': ['raw feats', 'surowe featy', 'feats ledger'],
+  'powers-tools': ['character profile', 'profil postaci', 'powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
+  'raw-feats': ['crucial feats', 'najwazniejsze wyczyny', 'raw feats', 'surowe featy', 'feats ledger'],
   'tactical-board': ['tactical board', 'methodology', 'tablica taktyczna', 'metodologia'],
   'hud-bars': ['hud bars', 'paski hud'],
   'radar-brief': ['radar brief', 'parameter comparison', 'raport radarowy', 'porownanie parametrow'],
