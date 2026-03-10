@@ -1,33 +1,19 @@
 {
-  "schemaVersion": 1,
-  "locale": "en",
   "fighterA": {
-    "name": "Character A",
-    "version": "New 52",
-    "stats": {
-      "strength": 87,
-      "speed": 86,
-      "durability": 88,
-      "battleIq": 84,
-      "hax": 92,
-      "stamina": 84,
-      "style": 78,
-      "experience": 91,
-      "skills": 80
-    },
-    "dossier": {
-      "style": "Brutal, primal aggression. Atrocitus charges at opponents to physically tear them apart with bare hands, supported by searing rage plasma that burns through matter and space itself.",
-      "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and deity armor with his bare hands.",
-      "mentality": "Furious fanatic driven by revenge. Knows no mercy or hesitation – presses on with a fury that grows more powerful the more hatred and anger the enemy shows him.",
-      "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!"
-    },
-    "victories": [
-      "The Butcher Entity",
-      "The Butcher's human host",
-      "Saint Walker, Indigo-1, and Star Sapphire",
-      "Multiple Manhunters",
-      "Bleez"
+    "crucialFeats": [
+      "Bound the Butcher inside his power battery",
+      "Kept fighting after his heart was removed",
+      "Used blood magic to read the future and track rage paths",
+      "Burned through the fabric of space with rage plasma",
+      "Overpowered Saint Walker, Indigo-1, and Star Sapphire together"
     ],
+    "dossier": {
+      "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.",
+      "mentality": "A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful the more hatred and anger the enemy shows him.",
+      "quote": "",
+      "style": "Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma that burns through matter and space itself."
+    },
+    "name": "Character A",
     "profile": {
       "powers": [
         "Red Lantern plasma output, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics."
@@ -40,41 +26,41 @@
         "Prolonged direct brawls can reduce his tactical edge."
       ]
     },
-    "crucialFeats": [
-      "Bound the Butcher inside his power battery.",
-      "Kept fighting after heart removal.",
-      "Blood magic and rage-path foresight.",
-      "Burned through the fabric of space.",
-      "Overpowered Saint Walker, Indigo-1, and Star Sapphire."
+    "stats": {
+      "battleIq": 84,
+      "durability": 88,
+      "experience": 91,
+      "hax": 92,
+      "skills": 80,
+      "speed": 86,
+      "stamina": 84,
+      "strength": 87,
+      "style": 78
+    },
+    "version": "New 52",
+    "victories": [
+      "The Butcher Entity",
+      "The Butcher's human host",
+      "Saint Walker, Indigo-1, and Star Sapphire (group overpowering)",
+      "Multiple Manhunters",
+      "Bleez (internal dominance)"
     ]
   },
   "fighterB": {
-    "name": "Character B",
-    "version": "Earth-616",
-    "stats": {
-      "strength": 95,
-      "speed": 80,
-      "durability": 95,
-      "battleIq": 81,
-      "hax": 66,
-      "stamina": 98,
-      "style": 81,
-      "experience": 78,
-      "skills": 81
-    },
-    "dossier": {
-      "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.",
-      "advantage": "Unlimited strength growth and regeneration. The more injured and angry he becomes, the stronger he gets, making him practically unbeatable in a fight of attrition.",
-      "mentality": "Stubborn and wild destroyer. Does not calculate or retreat – presses on until every resistance is leveled with the ground.",
-      "quote": "Hulk smash!"
-    },
-    "victories": [
-      "Sentry",
-      "Doctor Strange",
-      "Iron Man",
-      "Juggernaut",
-      "Arm'Cheddon"
+    "crucialFeats": [
+      "Planet and moon collateral output from World Breaker scale",
+      "Endured Sentry-level output",
+      "Regenerated after extreme damage",
+      "Redirected Juggernaut's charge through tactical strength",
+      "Overpowered Bi-Beast and Wendigo together"
     ],
+    "dossier": {
+      "advantage": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.",
+      "mentality": "A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.",
+      "quote": "",
+      "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes."
+    },
+    "name": "Character B",
     "profile": {
       "powers": [
         "Gamma-based strength growth, regeneration, thunderclap/shockwave output, and extreme stamina."
@@ -87,14 +73,28 @@
         "Strategy set is narrower when denied sustained contact."
       ]
     },
-    "crucialFeats": [
-      "Planet and moon collateral output.",
-      "Endured Sentry-level output.",
-      "Regenerated after extreme damage.",
-      "Redirected Juggernaut's charge.",
-      "Overpowered Bi-Beast and Wendigo."
+    "stats": {
+      "battleIq": 81,
+      "durability": 95,
+      "experience": 78,
+      "hax": 66,
+      "skills": 81,
+      "speed": 80,
+      "stamina": 98,
+      "strength": 95,
+      "style": 81
+    },
+    "version": "Earth-616",
+    "victories": [
+      "Sentry",
+      "Doctor Strange",
+      "Iron Man",
+      "Juggernaut",
+      "Arm'Cheddon"
     ]
   },
+  "locale": "en",
+  "schemaVersion": 1,
   "templateOrder": [
     "tactical-board",
     "character-dossier-a",
@@ -113,152 +113,155 @@
     "fight-card"
   ],
   "templates": {
-    "tactical-board": {
-      "chaos_label": "CHAOS SEGMENT",
-      "linear_label": "LINEAR SEGMENT",
-      "right_header": "FIGHT REALITY",
-      "left_header": "CATEGORY GRID",
-      "headline": "TACTICAL BOARD // ATROCITUS VS HULK",
-      "subtitle": "Butcher versus Worldbreaker",
-      "lane": "Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop."
+    "battle-dynamics": {
+      "headline": "BATTLE DYNAMICS",
+      "left_curve_body": "Stronger early, then weaker every time contact becomes repeatable.",
+      "left_curve_label": "ATROCITUS CONTROL",
+      "right_curve_body": "Starts lower, then rises fast once regeneration and re-entry stop caring about partial damage.",
+      "right_curve_label": "HULK LOOP",
+      "subtitle": "How the fight changes minute by minute."
     },
     "character-dossier-a": {
-      "header": "CHARACTER DOSSIER",
-      "world": "New 52",
-      "style": "Brutal, primal aggression. Atrocitus charges at opponents to physically tear them apart with bare hands, supported by searing rage plasma that burns through matter and space itself.",
       "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and deity armor with his bare hands.",
+      "header": "CHARACTER DOSSIER",
       "mentality": "Furious fanatic driven by revenge. Knows no mercy or hesitation – presses on with a fury that grows more powerful the more hatred and anger the enemy shows him.",
-      "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!"
+      "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!",
+      "style": "Brutal, primal aggression. Atrocitus charges at opponents to physically tear them apart with bare hands, supported by searing rage plasma that burns through matter and space itself.",
+      "world": "New 52"
     },
     "character-dossier-b": {
-      "header": "CHARACTER DOSSIER",
-      "world": "Earth-616",
-      "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.",
       "advantage": "Unlimited strength growth and regeneration. The more injured and angry he becomes, the stronger he gets, making him practically unbeatable in a fight of attrition.",
+      "header": "CHARACTER DOSSIER",
       "mentality": "Stubborn and wild destroyer. Does not calculate or retreat – presses on until every resistance is leveled with the ground.",
-      "quote": "Hulk smash!"
+      "quote": "Hulk smash!",
+      "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.",
+      "world": "Earth-616"
     },
     "character-profile": {
       "headline": "CHARACTER PROFILE",
-      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
       "left_title": "ATROCITUS TOOLKIT",
-      "right_title": "HULK TOOLKIT",
       "powers_label": "POWERS",
+      "right_title": "HULK TOOLKIT",
+      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
       "tools_label": "TOOLS",
       "weaknesses_label": "WEAKNESSES"
     },
     "crucial-feats": {
-      "headline": "CRUCIAL FEATS",
-      "subtitle": "Character scaling through achievements.",
-      "left_title": "ATROCITUS SHOWCASE",
-      "right_title": "HULK SHOWCASE",
       "feat_label": "FEAT",
+      "headline": "CRUCIAL FEATS",
       "left_item_1": "Bound the Butcher inside his power battery.",
       "left_item_2": "Kept fighting after heart removal.",
       "left_item_3": "Blood magic and rage-path foresight.",
       "left_item_4": "Burned through the fabric of space.",
       "left_item_5": "Overpowered Saint Walker, Indigo-1, and Star Sapphire.",
+      "left_title": "ATROCITUS SHOWCASE",
       "right_item_1": "Planet and moon collateral output.",
       "right_item_2": "Endured Sentry-level output.",
       "right_item_3": "Regenerated after extreme damage.",
       "right_item_4": "Redirected Juggernaut's charge.",
-      "right_item_5": "Overpowered Bi-Beast and Wendigo."
+      "right_item_5": "Overpowered Bi-Beast and Wendigo.",
+      "right_title": "HULK SHOWCASE",
+      "subtitle": "Character scaling through achievements."
     },
     "fight-analytics": {
       "headline": "FIGHT ANALYTICS",
-      "subtitle": "Two-profile stat readout",
-      "threat_level": "COSMIC",
       "integrity": "99.2%",
-      "scale": "0-100"
+      "scale": "0-100",
+      "subtitle": "Two-profile stat readout",
+      "threat_level": "COSMIC"
     },
-    "parameter-comparison": {
-      "headline": "PARAMETER COMPARISON",
-      "subtitle": "Average stat profile map",
-      "left_header": "ATROCITUS ADVANTAGES",
-      "right_header": "HULK ADVANTAGES",
-      "draw_header": "DRAW ZONES",
-      "left_average": "85.60",
-      "right_average": "83.90",
-      "favorite_label": "STAT-BASED FAVORITE",
-      "favorite": "Atrocitus"
-    },
-    "battle-dynamics": {
-      "headline": "BATTLE DYNAMICS",
-      "subtitle": "How the fight changes minute by minute.",
-      "left_curve_label": "ATROCITUS CONTROL",
-      "right_curve_label": "HULK LOOP",
-      "left_curve_body": "Stronger early, then weaker every time contact becomes repeatable.",
-      "right_curve_body": "Starts lower, then rises fast once regeneration and re-entry stop caring about partial damage."
-    },
-    "x-factor": {
-      "headline": "X-FACTOR",
-      "subtitle": "The variable that affects the verdict more than ordinary stats.",
-      "factor": "RAGE CONTROL VS GAMMA LOOP",
-      "left_title": "ATROCITUS BRANCH",
-      "right_title": "HULK BRANCH",
-      "left_body": "If Atrocitus keeps Hulk at range and manages the fight from the outside, his plasma, rituals, and flight can stay ahead of the escalation curve.",
-      "right_body": "If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange.",
-      "implication": "The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation."
-    },
-    "interpretation": {
-      "headline": "INTERPRETATION",
-      "subtitle": "Who wins the fight on paper?",
-      "question": "Who wins the fight on paper?",
-      "answer": "Atrocitus wins the paper comparison, but Hulk still wins more real fights.",
-      "body": "Atrocitus owns the cleaner early toolkit, better speed, and stronger control options. Hulk owns the cleaner finish route once contact becomes repeatable. This is a matchup where the paper edge belongs to the more versatile side, but the practical edge belongs to the side whose loop gets stronger every time the control plan slips."
+    "fight-card": {
+      "bottom_color_a": "#4ade80",
+      "bottom_color_b": "#14532d",
+      "fight_title": "Atrocitus vs Hulk",
+      "subtitle": "",
+      "top_color_a": "#8b1e1e",
+      "top_color_b": "#ff5a36"
     },
     "fight-simulation": {
       "headline": "FIGHT SIMULATION",
-      "subtitle": "The course of the fight across three phases.",
-      "phase_1_title": "Atrocitus starts outside the pocket",
-      "phase_1_body": "Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.",
-      "phase_1_animation": "kite-zone",
       "phase_1_actor": "a",
-      "phase_2_title": "Hulk refuses to stay managed",
-      "phase_2_body": "Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.",
-      "phase_2_animation": "clash-lock",
+      "phase_1_animation": "kite-zone",
+      "phase_1_body": "Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.",
+      "phase_1_title": "Atrocitus starts outside the pocket",
       "phase_2_actor": "b",
-      "phase_3_title": "The loop decides it",
-      "phase_3_body": "If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.",
+      "phase_2_animation": "clash-lock",
+      "phase_2_body": "Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.",
+      "phase_2_title": "Hulk refuses to stay managed",
+      "phase_3_actor": "b",
       "phase_3_animation": "trade-chaos",
-      "phase_3_actor": "b"
+      "phase_3_body": "If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.",
+      "phase_3_title": "The loop decides it",
+      "subtitle": "The course of the fight across three phases."
+    },
+    "final-summary": {
+      "headline": "FINAL SUMMARY",
+      "line_1": "Atrocitus wins the paper comparison, 85.6 vs 83.9.",
+      "line_2": "Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.",
+      "line_3": "Atrocitus only flips the matchup if distance and control hold from start to finish.",
+      "subtitle": "Summary",
+      "winner": "World Breaker Hulk 6.5/10"
+    },
+    "interpretation": {
+      "answer": "Atrocitus wins the paper comparison, but Hulk still wins more real fights.",
+      "body": "Atrocitus owns the cleaner early toolkit, better speed, and stronger control options. Hulk owns the cleaner finish route once contact becomes repeatable. This is a matchup where the paper edge belongs to the more versatile side, but the practical edge belongs to the side whose loop gets stronger every time the control plan slips.",
+      "headline": "INTERPRETATION",
+      "question": "Who wins the fight on paper?",
+      "subtitle": "Who wins the fight on paper?"
+    },
+    "parameter-comparison": {
+      "draw_header": "DRAW ZONES",
+      "favorite": "Atrocitus",
+      "favorite_label": "STAT-BASED FAVORITE",
+      "headline": "PARAMETER COMPARISON",
+      "left_average": "85.60",
+      "left_header": "ATROCITUS ADVANTAGES",
+      "right_average": "83.90",
+      "right_header": "HULK ADVANTAGES",
+      "subtitle": "Average stat profile map"
     },
     "stat-trap": {
+      "body": "Better averages do not matter if they do not create a finish route. Atrocitus has more ways to shape the opening, but Hulk gets more dangerous every time the fight resets into contact. This is not about who has more tools. It is about whose win condition stays intact after the first plan fails.",
       "headline": "STAT TRAP",
-      "subtitle": "Why better stats do not guarantee victory",
       "question": "Can Atrocitus keep Hulk's rage external, or does he end up feeding the loop himself?",
-      "body": "Better averages do not matter if they do not create a finish route. Atrocitus has more ways to shape the opening, but Hulk gets more dangerous every time the fight resets into contact. This is not about who has more tools. It is about whose win condition stays intact after the first plan fails."
+      "subtitle": "Why better stats do not guarantee victory"
+    },
+    "tactical-board": {
+      "chaos_label": "CHAOS SEGMENT",
+      "headline": "TACTICAL BOARD // ATROCITUS VS HULK",
+      "lane": "Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.",
+      "left_header": "CATEGORY GRID",
+      "linear_label": "LINEAR SEGMENT",
+      "right_header": "FIGHT REALITY",
+      "subtitle": "Butcher versus Worldbreaker"
     },
     "victory-archive": {
-      "headline": "Victory Archive",
+      "archive_label": "",
       "avg_label": "AVG SCORE",
-      "left_title": "ATROCITUS RECORD",
-      "right_title": "HULK RECORD",
+      "headline": "Victory Archive",
       "left_item_1": "The Butcher Entity",
       "left_item_2": "The Butcher's human host",
       "left_item_3": "Saint Walker, Indigo-1, and Star Sapphire",
       "left_item_4": "Multiple Manhunters",
       "left_item_5": "Bleez",
+      "left_title": "ATROCITUS RECORD",
       "right_item_1": "Sentry",
       "right_item_2": "Doctor Strange",
       "right_item_3": "Iron Man",
       "right_item_4": "Juggernaut",
-      "right_item_5": "Arm'Cheddon"
+      "right_item_5": "Arm'Cheddon",
+      "right_title": "HULK RECORD",
+      "subtitle": ""
     },
-    "final-summary": {
-      "headline": "FINAL SUMMARY",
-      "subtitle": "Summary",
-      "winner": "World Breaker Hulk 6.5/10",
-      "line_1": "Atrocitus wins the paper comparison, 85.6 vs 83.9.",
-      "line_2": "Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.",
-      "line_3": "Atrocitus only flips the matchup if distance and control hold from start to finish."
-    },
-    "fight-card": {
-      "fight_title": "Atrocitus vs Hulk",
-      "top_color_a": "#8b1e1e",
-      "top_color_b": "#ff5a36",
-      "bottom_color_a": "#4ade80",
-      "bottom_color_b": "#14532d"
+    "x-factor": {
+      "factor": "RAGE CONTROL VS GAMMA LOOP",
+      "headline": "X-FACTOR",
+      "implication": "The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation.",
+      "left_body": "If Atrocitus keeps Hulk at range and manages the fight from the outside, his plasma, rituals, and flight can stay ahead of the escalation curve.",
+      "left_title": "ATROCITUS BRANCH",
+      "right_body": "If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange.",
+      "right_title": "HULK BRANCH",
+      "subtitle": "The variable that affects the verdict more than ordinary stats."
     }
   }
 }

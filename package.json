@@ -9,7 +9,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "fights:guard": "node scripts/guard-fight-json-integrity.mjs",
+    "fights:guard": "node scripts/guard-fight-json-integrity.mjs && node scripts/guard-fight-semantic-snapshot.mjs",
+    "fights:audit:migration": "node scripts/audit-fight-json-migration.mjs",
+    "fights:snapshot:update": "node scripts/guard-fight-semantic-snapshot.mjs --update",
     "i18n:audit": "node scripts/audit-text-encoding.mjs",
     "i18n:keys": "node scripts/i18n-keys-check.mjs"
   },

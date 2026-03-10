@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "Turns DC Earth and everyone in it into stone.jpg",
     "b": "Galactus battles Mephisto.jpg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "01_6_1_trigon_heart_of_darkness.jpg",

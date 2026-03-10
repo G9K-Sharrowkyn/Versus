@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "1.webp",
     "b": "2.jpg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",

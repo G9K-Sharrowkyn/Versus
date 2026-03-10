@@ -69,7 +69,15 @@ Important scripts:
 - `npm run dev`
 - `npm run build`
 - `npm run lint`
+- `npm run fights:audit:migration`
 - `npm run i18n:audit`
 - `npm run i18n:keys`
+- `npm run fights:snapshot:update`
 
-`prebuild` runs `i18n:audit` and `i18n:keys`.
+Operational rules:
+
+- fight content is canonical only in `EN.json`, `PL.json`, and `Scans.json`
+- `npm run fights:guard` checks both file structure and semantic snapshot integrity
+- after an intentional fight-content edit, run `npm run fights:snapshot:update`
+
+`prebuild` runs `fights:guard`, `i18n:audit`, and `i18n:keys`.

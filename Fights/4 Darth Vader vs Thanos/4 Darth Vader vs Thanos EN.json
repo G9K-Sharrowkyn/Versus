@@ -1,33 +1,19 @@
 {
-  "schemaVersion": 1,
-  "locale": "en",
   "fighterA": {
-    "name": "Darth Vader",
-    "version": "Legends",
-    "stats": {
-      "strength": 68,
-      "speed": 79,
-      "durability": 68,
-      "battleIq": 88,
-      "hax": 82,
-      "stamina": 76,
-      "style": 91,
-      "experience": 80,
-      "skills": 92
-    },
-    "dossier": {
-      "style": "Brutal swordsmanship with Djem So form. Vader uses cybernetic strength to overwhelm the opponent and break any defense with pure physical pressure.",
-      "advantage": "Cybernetic endurance and the power of the Force. Armor allows him to ignore most attacks, while telekinesis serves to paralyze and crush enemies.",
-      "mentality": "Cold, vengeful inevitability. Knows neither mercy nor fear – presses on relentlessly until he completely breaks the opponent's resistance and will.",
-      "quote": "All I am surrounded by is fear. And dead men."
-    },
-    "victories": [
-      "Dark Woman",
-      "Sha Koon",
-      "Hylon",
-      "Celeste Morne",
-      "Kai Hudorra"
+    "crucialFeats": [
+      "Picks up and slams down a Y-Wing bomber.",
+      "Slams two starships together with telekinesis.",
+      "Walks through an alley while deflecting blaster fire.",
+      "Blocks an energy blast with his hand.",
+      "Survives a giant explosion that destroys a casino."
     ],
+    "dossier": {
+      "advantage": "Elite precision and an iron defense. His mastery of the Force allows him to control the environment and the enemy's body, preventing effective counterattacks.",
+      "mentality": "Cold, patient, and ruthless. He waits for the smallest mistake from the opponent to end the fight with a single, vengeful strike.",
+      "quote": "",
+      "style": "Technical pressure fighting with the Force. He combines perfect lightsaber swordsmanship with brutal telekinesis to choke and crush opponents in close quarters."
+    },
+    "name": "Darth Vader",
     "profile": {
       "powers": [
         "Force telekinesis, precognition, choke and crush techniques, and elite lightsaber lethality."
@@ -40,41 +26,41 @@
         "Lower raw physical durability and scale than top cosmic entities."
       ]
     },
-    "crucialFeats": [
-      "Picks up and slams down a Y-Wing bomber.",
-      "Slams two starships together.",
-      "Walks through an alley while deflecting blaster fire.",
-      "Blocks an energy blast with his hand.",
-      "Survives a giant explosion that destroys a casino."
+    "stats": {
+      "battleIq": 88,
+      "durability": 68,
+      "experience": 80,
+      "hax": 82,
+      "skills": 92,
+      "speed": 79,
+      "stamina": 76,
+      "strength": 68,
+      "style": 91
+    },
+    "version": "Legends",
+    "victories": [
+      "Dark Woman",
+      "Sha Koon",
+      "Hylon",
+      "Celeste Morne",
+      "Kai Hudorra"
     ]
   },
   "fighterB": {
-    "name": "Thanos",
-    "version": "Earth-616",
-    "stats": {
-      "strength": 96,
-      "speed": 78,
-      "durability": 97,
-      "battleIq": 92,
-      "hax": 92,
-      "stamina": 96,
-      "style": 84,
-      "experience": 94,
-      "skills": 88
-    },
-    "dossier": {
-      "style": "Brutal, precise power fighting. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.",
-      "advantage": "Near-absolute invulnerability and tactical genius. Possesses a body capable of surviving god-tier attacks and a mind that instantly turns an enemy's mistake into their inevitable defeat.",
-      "mentality": "Arrogant nihilist with iron discipline. Fights with absolute certainty of his superiority, seeking the ruthless suppression of anyone who stands in his way.",
-      "quote": "I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos."
-    },
-    "victories": [
-      "Silver Surfer",
-      "Hulk",
-      "Beta Ray Bill and Ronan the Accuser",
-      "Adam Warlock",
-      "Thor with the Power Gem"
+    "crucialFeats": [
+      "Destroys a planet during a fight with Drax.",
+      "Survives a two-light-year black hole.",
+      "Tanks Odin-level energy.",
+      "Walks out of a gas-giant explosion unharmed.",
+      "Performs molecular-level matter manipulation."
     ],
+    "dossier": {
+      "advantage": "Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.",
+      "mentality": "Arrogant nihilist with iron discipline. He fights with absolute certainty of his superiority, seeking to ruthlessly crush anyone who stands in his way.",
+      "quote": "",
+      "style": "Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense."
+    },
+    "name": "Thanos",
     "profile": {
       "powers": [
         "Massive strength and durability, cosmic energy projection, force fields, and matter manipulation."
@@ -87,14 +73,28 @@
         "Without Infinity Stones, he remains elite but lacks Gauntlet-level instant authority."
       ]
     },
-    "crucialFeats": [
-      "Destroys a planet during a fight.",
-      "Survives being sucked into a black hole.",
-      "Tanks Odin-level energy.",
-      "Walks out of a gas-giant explosion.",
-      "Turns Skrull into stone."
+    "stats": {
+      "battleIq": 92,
+      "durability": 97,
+      "experience": 94,
+      "hax": 92,
+      "skills": 88,
+      "speed": 78,
+      "stamina": 96,
+      "strength": 96,
+      "style": 84
+    },
+    "version": "Earth-616",
+    "victories": [
+      "Silver Surfer",
+      "Hulk",
+      "Beta Ray Bill and Ronan the Accuser",
+      "Adam Warlock (artifact-assisted / context-heavy result)",
+      "Thor with the Power Gem (strategic defeat)"
     ]
   },
+  "locale": "en",
+  "schemaVersion": 1,
   "templateOrder": [
     "tactical-board",
     "character-dossier-a",
@@ -113,174 +113,177 @@
     "fight-card"
   ],
   "templates": {
-    "tactical-board": {
-      "headline": "TACTICAL BOARD // VADER VS THANOS",
-      "subtitle": "Sith Lord versus Titan",
-      "left_header": "CATEGORY GRID",
-      "right_header": "FIGHT REALITY",
-      "linear_label": "LINEAR SEGMENT",
-      "chaos_label": "CHAOS SEGMENT",
-      "lane": "Vader must solve the fight fast. Thanos only needs the opening to fail once."
+    "battle-dynamics": {
+      "a_curve": "86,79,66,52,39",
+      "analysis": "Vader can control moments. Thanos controls what the fight becomes.",
+      "b_curve": "58,66,78,88,94",
+      "headline": "BATTLE DYNAMICS",
+      "phase_1": "Vader starts higher because his control and timing make the first exchange dangerous.",
+      "phase_2": "Thanos grows stronger as soon as the first bypass fails and the fight turns physical.",
+      "phase_3": "Vader's line collapses once he has to absorb cosmic-level punishment repeatedly.",
+      "subtitle": "How the fight changes minute by minute.",
+      "yellow_wave": "26,31,29,35,33,39,37,43"
     },
     "character-dossier-a": {
-      "header": "CHARACTER DOSSIER",
-      "world": "Legends",
-      "style": "Brutal swordsmanship with Djem So form. Vader uses cybernetic strength to overwhelm the opponent and break any defense with pure physical pressure.",
       "advantage": "Cybernetic endurance and the power of the Force. Armor allows him to ignore most attacks, while telekinesis serves to paralyze and crush enemies.",
+      "header": "CHARACTER DOSSIER",
       "mentality": "Cold, vengeful inevitability. Knows neither mercy nor fear – presses on relentlessly until he completely breaks the opponent's resistance and will.",
-      "quote": "All I am surrounded by is fear. And dead men."
+      "quote": "All I am surrounded by is fear. And dead men.",
+      "style": "Brutal swordsmanship with Djem So form. Vader uses cybernetic strength to overwhelm the opponent and break any defense with pure physical pressure.",
+      "world": "Legends"
     },
     "character-dossier-b": {
-      "header": "CHARACTER DOSSIER",
-      "world": "Earth-616",
-      "style": "Brutal, precise power fighting. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.",
       "advantage": "Near-absolute invulnerability and tactical genius. Possesses a body capable of surviving god-tier attacks and a mind that instantly turns an enemy's mistake into their inevitable defeat.",
+      "header": "CHARACTER DOSSIER",
       "mentality": "Arrogant nihilist with iron discipline. Fights with absolute certainty of his superiority, seeking the ruthless suppression of anyone who stands in his way.",
-      "quote": "I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos."
+      "quote": "I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos.",
+      "style": "Brutal, precise power fighting. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense.",
+      "world": "Earth-616"
     },
     "character-profile": {
       "headline": "CHARACTER PROFILE",
-      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
       "left_title": "VADER TOOLKIT",
-      "right_title": "THANOS TOOLKIT",
       "powers_label": "POWERS",
+      "right_title": "THANOS TOOLKIT",
+      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
       "tools_label": "TOOLS",
       "weaknesses_label": "WEAKNESSES"
     },
     "crucial-feats": {
-      "headline": "CRUCIAL FEATS",
-      "subtitle": "Character scaling through achievements.",
-      "left_title": "VADER SHOWCASE",
-      "right_title": "THANOS SHOWCASE",
       "feat_label": "FEAT",
+      "headline": "CRUCIAL FEATS",
       "left_item_1": "Picks up and slams down a Y-Wing bomber.",
       "left_item_2": "Slams two starships together.",
       "left_item_3": "Walks through an alley while deflecting blaster fire.",
       "left_item_4": "Blocks an energy blast with his hand.",
       "left_item_5": "Survives a giant explosion that destroys a casino.",
+      "left_title": "VADER SHOWCASE",
       "right_item_1": "Destroys a planet during a fight.",
       "right_item_2": "Survives being sucked into a black hole.",
       "right_item_3": "Tanks Odin-level energy.",
       "right_item_4": "Walks out of a gas-giant explosion.",
-      "right_item_5": "Turns Skrull into stone."
+      "right_item_5": "Turns Skrull into stone.",
+      "right_title": "THANOS SHOWCASE",
+      "subtitle": "Character scaling through achievements."
     },
     "fight-analytics": {
       "headline": "FIGHT ANALYTICS",
-      "subtitle": "Two-profile stat readout",
-      "threat_level": "COSMIC",
       "integrity": "99.4%",
-      "scale": "0-100"
+      "scale": "0-100",
+      "subtitle": "Two-profile stat readout",
+      "threat_level": "COSMIC"
     },
-    "parameter-comparison": {
-      "headline": "PARAMETER COMPARISON",
-      "subtitle": "Average stat profile map",
-      "left_header": "VADER ADVANTAGES",
-      "right_header": "THANOS ADVANTAGES",
-      "draw_header": "DRAW ZONES",
-      "favorite_label": "STAT-BASED FAVORITE"
+    "fight-card": {
+      "bottom_color_a": "#7c3aed",
+      "bottom_color_b": "#f5c542",
+      "fight_title": "Darth Vader vs Thanos",
+      "subtitle": "",
+      "top_color_a": "#111827",
+      "top_color_b": "#b91c1c"
     },
-    "battle-dynamics": {
-      "headline": "BATTLE DYNAMICS",
-      "subtitle": "How the fight changes minute by minute.",
-      "a_curve": "86,79,66,52,39",
-      "b_curve": "58,66,78,88,94",
-      "yellow_wave": "26,31,29,35,33,39,37,43",
-      "phase_1": "Vader starts higher because his control and timing make the first exchange dangerous.",
-      "phase_2": "Thanos grows stronger as soon as the first bypass fails and the fight turns physical.",
-      "phase_3": "Vader's line collapses once he has to absorb cosmic-level punishment repeatedly.",
-      "analysis": "Vader can control moments. Thanos controls what the fight becomes."
+    "fight-simulation": {
+      "end_condition": "If the first bypass fails, the fight becomes Thanos's immediately.",
+      "headline": "FIGHT SIMULATION",
+      "late_fight": "The fight becomes shields, beams, brute-force counters, and body punishment that Vader cannot absorb repeatedly.",
+      "mid_fight": "Thanos survives the first surgical attempt and stops treating the exchange like a technical duel.",
+      "opening": "Vader opens with telekinesis, precognition, and close-range lethality.",
+      "phase_1_a_label": "Control",
+      "phase_1_a_value": "90",
+      "phase_1_actor": "a",
+      "phase_1_animation": "feint-counter",
+      "phase_1_b_label": "Durability",
+      "phase_1_b_value": "71",
+      "phase_1_mode": "bars",
+      "phase_1_title": "Surgical Opening",
+      "phase_2_actor": "b",
+      "phase_2_animation": "clash-lock",
+      "phase_2_branch_a": "Vader tries to keep the fight technical with more Force pressure and angles.",
+      "phase_2_branch_b": "Thanos turns the map into shields, beams, and direct body punishment.",
+      "phase_2_event": "Thanos survives the first real solve attempt and stops respecting the duel.",
+      "phase_2_mode": "split",
+      "phase_2_title": "First Failure",
+      "phase_3_actor": "b",
+      "phase_3_animation": "trade-chaos",
+      "phase_3_branch_a": "A miracle bypass would have to end the fight immediately.",
+      "phase_3_branch_b": "Thanos absorbs, counters, and ends the fight by force.",
+      "phase_3_event": "Vader can still threaten moments, but the exchange no longer belongs to him.",
+      "phase_3_mode": "split",
+      "phase_3_title": "Scale Gap Pays Out",
+      "subtitle": "The course of the fight across three phases."
     },
-    "x-factor": {
-      "headline": "X-FACTOR",
-      "subtitle": "The variable that affects the verdict more than ordinary stats.",
-      "factor": "FIRST BYPASS VS DURABILITY FLOOR",
-      "a_value": "50",
-      "a_bonus": "14",
-      "a_bonus_label": "LETHAL OPENING",
-      "b_value": "50",
-      "b_bonus": "22",
-      "regen": "SCALE EDGE",
-      "mechanics": "Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.",
-      "implication": "If Thanos survives the first real bypass, the fight immediately shifts onto his terms.",
-      "psychology": "Vader wants a controlled duel. Thanos wants the fight to become a long execution."
+    "final-summary": {
+      "headline": "FINAL SUMMARY",
+      "line_1": "Vader wins precision categories, but Thanos wins the categories that actually decide the finish.",
+      "line_2": "Vader's opening remains dangerous, yet the durability and scale gap are too large to solve consistently.",
+      "line_3": "This is a stable matchup, not a branch-heavy one.",
+      "subtitle": "Summary",
+      "winner": "Thanos by clear margin"
     },
     "interpretation": {
       "headline": "INTERPRETATION",
-      "subtitle": "Who wins the fight on paper?",
       "line_1": "On paper Thanos wins because he owns the categories that decide whether Vader can finish at all.",
       "line_2": "Vader still has a dangerous first minute because his technical opening is much cleaner than Thanos's.",
       "line_3": "The opening is real, but the overall fight stays Thanos's once he survives the first surgical attempt.",
-      "quote": "Better technique is not enough if it never becomes a finish route."
+      "quote": "Better technique is not enough if it never becomes a finish route.",
+      "subtitle": "Who wins the fight on paper?"
     },
-    "fight-simulation": {
-      "headline": "FIGHT SIMULATION",
-      "subtitle": "The course of the fight across three phases.",
-      "opening": "Vader opens with telekinesis, precognition, and close-range lethality.",
-      "mid_fight": "Thanos survives the first surgical attempt and stops treating the exchange like a technical duel.",
-      "late_fight": "The fight becomes shields, beams, brute-force counters, and body punishment that Vader cannot absorb repeatedly.",
-      "end_condition": "If the first bypass fails, the fight becomes Thanos's immediately.",
-      "phase_1_mode": "bars",
-      "phase_1_animation": "feint-counter",
-      "phase_1_actor": "a",
-      "phase_1_title": "Surgical Opening",
-      "phase_1_a_label": "Control",
-      "phase_1_b_label": "Durability",
-      "phase_1_a_value": "90",
-      "phase_1_b_value": "71",
-      "phase_2_mode": "split",
-      "phase_2_animation": "clash-lock",
-      "phase_2_actor": "b",
-      "phase_2_title": "First Failure",
-      "phase_2_event": "Thanos survives the first real solve attempt and stops respecting the duel.",
-      "phase_2_branch_a": "Vader tries to keep the fight technical with more Force pressure and angles.",
-      "phase_2_branch_b": "Thanos turns the map into shields, beams, and direct body punishment.",
-      "phase_3_mode": "split",
-      "phase_3_animation": "trade-chaos",
-      "phase_3_actor": "b",
-      "phase_3_title": "Scale Gap Pays Out",
-      "phase_3_event": "Vader can still threaten moments, but the exchange no longer belongs to him.",
-      "phase_3_branch_a": "A miracle bypass would have to end the fight immediately.",
-      "phase_3_branch_b": "Thanos absorbs, counters, and ends the fight by force."
+    "parameter-comparison": {
+      "draw_header": "DRAW ZONES",
+      "favorite_label": "STAT-BASED FAVORITE",
+      "headline": "PARAMETER COMPARISON",
+      "left_header": "VADER ADVANTAGES",
+      "right_header": "THANOS ADVANTAGES",
+      "subtitle": "Average stat profile map"
     },
     "stat-trap": {
-      "headline": "STAT TRAP",
-      "subtitle": "Why better stats do not guarantee victory",
-      "trap_top": "TECHNICAL EDGE CHANGES THE OPENING",
-      "trap_bottom": "THANOS'S DURABILITY DECIDES THE MATCHUP",
       "example": "Vader can win the first read and still lose the fight because the target is built to survive that read.",
-      "question": "Can Vader create a lethal bypass before Thanos learns he does not need to respect the duel?"
+      "headline": "STAT TRAP",
+      "question": "Can Vader create a lethal bypass before Thanos learns he does not need to respect the duel?",
+      "subtitle": "Why better stats do not guarantee victory",
+      "trap_bottom": "THANOS'S DURABILITY DECIDES THE MATCHUP",
+      "trap_top": "TECHNICAL EDGE CHANGES THE OPENING"
+    },
+    "tactical-board": {
+      "chaos_label": "CHAOS SEGMENT",
+      "headline": "TACTICAL BOARD // VADER VS THANOS",
+      "lane": "Vader must solve the fight fast. Thanos only needs the opening to fail once.",
+      "left_header": "CATEGORY GRID",
+      "linear_label": "LINEAR SEGMENT",
+      "right_header": "FIGHT REALITY",
+      "subtitle": "Sith Lord versus Titan"
     },
     "victory-archive": {
-      "headline": "Victory Archive",
+      "archive_label": "",
       "avg_label": "AVG SCORE",
-      "left_title": "VADER RECORD",
-      "right_title": "THANOS RECORD",
-      "win_badge": "W",
+      "headline": "Victory Archive",
       "left_item_1": "Dark Woman",
       "left_item_2": "Sha Koon",
       "left_item_3": "Hylon",
       "left_item_4": "Celeste Morne",
       "left_item_5": "Kai Hudorra",
+      "left_title": "VADER RECORD",
       "right_item_1": "Silver Surfer",
       "right_item_2": "Hulk",
       "right_item_3": "Beta Ray Bill and Ronan the Accuser",
       "right_item_4": "Adam Warlock",
-      "right_item_5": "Thor with the Power Gem"
+      "right_item_5": "Thor with the Power Gem",
+      "right_title": "THANOS RECORD",
+      "subtitle": "",
+      "win_badge": "W"
     },
-    "final-summary": {
-      "headline": "FINAL SUMMARY",
-      "subtitle": "Summary",
-      "winner": "Thanos by clear margin",
-      "line_1": "Vader wins precision categories, but Thanos wins the categories that actually decide the finish.",
-      "line_2": "Vader's opening remains dangerous, yet the durability and scale gap are too large to solve consistently.",
-      "line_3": "This is a stable matchup, not a branch-heavy one."
-    },
-    "fight-card": {
-      "fight_title": "Darth Vader vs Thanos",
-      "top_color_a": "#111827",
-      "top_color_b": "#b91c1c",
-      "bottom_color_a": "#7c3aed",
-      "bottom_color_b": "#f5c542"
+    "x-factor": {
+      "a_bonus": "14",
+      "a_bonus_label": "LETHAL OPENING",
+      "a_value": "50",
+      "b_bonus": "22",
+      "b_value": "50",
+      "factor": "FIRST BYPASS VS DURABILITY FLOOR",
+      "headline": "X-FACTOR",
+      "implication": "If Thanos survives the first real bypass, the fight immediately shifts onto his terms.",
+      "mechanics": "Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.",
+      "psychology": "Vader wants a controlled duel. Thanos wants the fight to become a long execution.",
+      "regen": "SCALE EDGE",
+      "subtitle": "The variable that affects the verdict more than ordinary stats."
     }
   }
 }

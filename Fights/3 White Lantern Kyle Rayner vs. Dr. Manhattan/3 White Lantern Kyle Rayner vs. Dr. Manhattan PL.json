@@ -1,31 +1,19 @@
 {
-  "schemaVersion": 1,
-  "locale": "pl",
   "fighterA": {
-    "name": "White Lantern Kyle Rayner",
-    "version": "New 52",
-    "stats": {
-      "speed": 94,
-      "battleIq": 86,
-      "hax": 95,
-      "stamina": 93,
-      "style": 79,
-      "experience": 86,
-      "skills": 76
-    },
+    "crucialFeats": [
+      "Przetrwał Source Wall i wrócił z Life Equation.",
+      "Wskrzesił Hal'a Jordan'a.",
+      "Niemal destabilizuje rzeczywistość.",
+      "Nieświadomie tworzy życie samą obecnością.",
+      "Zmienia The Source, kod na którym operuje rzeczywistość."
+    ],
     "dossier": {
-      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.",
       "advantage": "Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.",
       "mentality": "Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.",
-      "quote": "W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!"
+      "quote": "",
+      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne."
     },
-    "victories": [
-      "Relic",
-      "Third Army",
-      "Guardians of the Universe (tymczasowa transformacja / dominacja)",
-      "Godkillers (masowe rozbrojenie i neutralizacja przez teleportację)",
-      "Carol Ferris (tymczasowe przepisanie rzeczywistości)"
-    ],
+    "name": "White Lantern Kyle Rayner",
     "profile": {
       "powers": [
         "Dostęp do pełnego spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja."
@@ -33,41 +21,46 @@
       "tools": [
         "Dostęp do Life Equation i szeroka użyteczność pierścienia w ataku, obronie i odtwarzaniu."
       ],
-      "weaknesses": []
+      "weaknesses": [
+        "Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.",
+        "Najmocniejsze rezultaty wymagają czasu przygotowania i realnego okna wykonania."
+      ]
     },
-    "crucialFeats": [
-      "Przetrwał Source Wall i wrócił z Life Equation.",
-      "Wskrzesił Hal'a Jordan'a.",
-      "Niemal destabilizuje rzeczywistość.",
-      "Nieświadomie tworzy życie samą obecnością.",
-      "Zmienia The Source, kod na którym operuje rzeczywistość."
+    "stats": {
+      "battleIq": 86,
+      "durability": 94,
+      "experience": 86,
+      "hax": 95,
+      "skills": 76,
+      "speed": 94,
+      "stamina": 93,
+      "strength": 90,
+      "style": 79
+    },
+    "version": "New 52",
+    "victories": [
+      "Relic",
+      "Third Army",
+      "Guardians of the Universe (tymczasowa transformacja / dominacja)",
+      "Godkillers (masowe rozbrojenie i neutralizacja przez teleportację)",
+      "Carol Ferris (tymczasowe przepisanie rzeczywistości)"
     ]
   },
   "fighterB": {
-    "name": "Dr. Manhattan",
-    "version": "Watchmen / Rebirth / Doomsday Clock",
-    "stats": {
-      "speed": 96,
-      "battleIq": 95,
-      "hax": 100,
-      "stamina": 100,
-      "style": 48,
-      "experience": 86,
-      "skills": 44
-    },
+    "crucialFeats": [
+      "Widzi wszystkie linie czasowe jednocześnie.",
+      "Utrzymuje obecność w wielu stanach czasoprzestrzeni.",
+      "Przeżywa kompletną dezintegrację.",
+      "Odparowuje Metrona i Owlmana.",
+      "Niszczy multiwersum DC, tworząc New 52."
+    ],
     "dossier": {
-      "style": "Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.",
       "advantage": "Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.",
       "mentality": "Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.",
-      "quote": "Tak. Już rozumiem. Wszystko się kończy."
+      "quote": "",
+      "style": "Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem."
     },
-    "victories": [
-      "Rorschach (bezpośrednie zabójstwo)",
-      "Metron (natychmiastowe odparowanie)",
-      "Owlman (natychmiastowe odparowanie)",
-      "Ozymandias (nieśmiercionośna kontrola konfrontacji)",
-      "Silk Spectre / Laurie (lokalny przymus rzeczywistości, nieśmiercionośny)"
-    ],
+    "name": "Dr. Manhattan",
     "profile": {
       "powers": [
         "Manipulacja atomowa, dezintegracja/rekonstrukcja materii, samoodbudowa i percepcja na poziomie linii czasu."
@@ -75,164 +68,33 @@
       "tools": [
         "Interwencja czasoprzestrzenna i ingerencja przyczynowa zamiast klasycznej walki."
       ],
-      "weaknesses": []
+      "weaknesses": [
+        "W części ujęć pasywność lub emocjonalny dystans opóźniają decyzję o domknięciu starcia.",
+        "Klasyczna walka wręcz jest u niego węższa niż sugeruje sam profil kontroli rzeczywistości."
+      ]
     },
-    "crucialFeats": [
-      "Widzi wszystkie linie czasowe jednocześnie.",
-      "Utrzymuje obecność w wielu stanach czasoprzestrzeni.",
-      "Przeżywa kompletną dezintegrację.",
-      "Odparowuje Metrona i Owlmana.",
-      "Niszczy multiwersum DC, tworząc New 52.",
-      "Template Tactical Board:",
-      "headline: TABLICA TAKTYCZNA // KYLE VS MANHATTAN",
-      "subtitle: Wola kontra Przyczynowość",
-      "left_header: SIATKA KATEGORII",
-      "right_header: REALIA WALKI",
-      "linear_label: ODCINEK LINIOWY",
-      "chaos_label: ODCINEK CHAOSU",
-      "lane: Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.",
-      "Template Dossier Postaci A:",
-      "header: Dossier postaci",
-      "world: New 52",
-      "style: Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.",
-      "advantage: Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.",
-      "mentality: Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.",
-      "quote: W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!",
-      "Template Dossier Postaci B:",
-      "header: Dossier postaci",
-      "world: Watchmen / Rebirth / Doomsday Clock",
-      "style: Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.",
-      "advantage: Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.",
-      "mentality: Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.",
-      "quote: Tak. Już rozumiem. Wszystko się kończy.",
-      "Template Profil Postaci:",
-      "headline: PROFIL POSTACI",
-      "subtitle: MOCE, NARZĘDZIA I SŁABOŚCI",
-      "left_title: Kyle Rayner",
-      "right_title: Dr. Manhattan",
-      "powers_label: MOCE",
-      "tools_label: NARZĘDZIA",
-      "weaknesses_label: SŁABOŚCI",
-      "Template Najważniejsze Wyczyny:",
-      "headline: NAJWAŻNIEJSZE WYCZYNY",
-      "subtitle: Skalowanie postaci poprzez osiągnięcia.",
-      "left_title: Kyle Rayner",
-      "right_title: Dr. Manhattan",
-      "feat_label: FEAT",
-      "Template Analityka Walki:",
-      "headline: ANALITYKA WALKI",
-      "subtitle: Odczyt statystyk dwóch profili",
-      "threat_level: KOSMICZNY",
-      "integrity: 99.5%",
-      "scale: 0-100",
-      "Template Porównanie Parametrów:",
-      "headline: PORÓWNANIE PARAMETRÓW",
-      "subtitle: Mapa średniego profilu statystyk",
-      "left_header: PRZEWAGI KYLE'A",
-      "right_header: PRZEWAGI MANHATTANA",
-      "draw_header: STREFY REMISU",
-      "favorite_label: FAWORYT WEDŁUG STATYSTYK",
-      "Template Interpretation:",
-      "headline: INTERPRETACJA",
-      "subtitle: Kto wygrywa walkę na papierze?",
-      "line_1: Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał.",
-      "line_2: Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować samo przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie.",
-      "line_3: Przewaga na papierze nie przetrwa, jeśli walka nigdy nie osiągnie symetrycznych warunków wymiany.",
-      "quote: Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna.",
-      "Template Stat Trap:",
-      "headline: PUŁAPKA STATYSTYK",
-      "subtitle: Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
-      "trap_top: LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE",
-      "trap_bottom: MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL",
-      "example: Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.",
-      "question: Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje samo przygotowanie?",
-      "Template X-Factor:",
-      "headline: X-FACTOR",
-      "subtitle: Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
-      "factor: OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE",
-      "a_value: 50",
-      "a_bonus: 15",
-      "a_bonus_label: OKNO PRZEPISYWANIA",
-      "b_value: 50",
-      "b_bonus: 17",
-      "regen: PRZEWAGA PREEMPCJI",
-      "mechanics: Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.",
-      "implication: Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.",
-      "psychology: Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.",
-      "Template Archiwum Zwycięstw:",
-      "headline: Archiwum zwycięstw",
-      "subtitle:",
-      "archive_label:",
-      "avg_label: ŚREDNI WYNIK",
-      "left_title: Kyle Rayner",
-      "right_title: Dr. Manhattan",
-      "win_badge: W",
-      "Template Podsumowanie Końcowe:",
-      "headline: PODSUMOWANIE KOŃCOWE",
-      "subtitle: Podsumowanie",
-      "winner: Dr. Manhattan prowadzi, ale walka jest warunkowa",
-      "line_1: Kyle wygrywa porównanie na papierze, 88.11 do 83.33.",
-      "line_2: Manhattan prowadzi w domyślnej wersji walki, bo ma lepszy pierwszy ruch i atakuje samo przygotowanie.",
-      "line_3: Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie.",
-      "Template Battle Dynamics:",
-      "headline: DYNAMIKA WALKI",
-      "subtitle: Jak walka zmienia się z minuty na minutę.",
-      "a_curve: 62,66,71,78,86",
-      "b_curve: 90,84,72,59,47",
-      "yellow_wave: 29,34,31,36,32,38,34,40",
-      "phase_1: Manhattan jest najsilniejszy, zanim powstanie symetria i zanim przygotowanie przestanie być kruche.",
-      "phase_2: Kyle zaczyna spieniężać lepszy arsenał dopiero wtedy, gdy warstwowa presja naprawdę zostaje na planszy.",
-      "phase_3: Jeśli przepisywanie nigdy nie otworzy się w pełni, praktyczna przewaga Manhattana trwa od początku do końca.",
-      "analysis: Kyle ma pełniejszy profil. Manhattan ma czystszy pierwszy ruch.",
-      "Template Fight Simulation:",
-      "headline: SYMULACJA WALKI",
-      "subtitle: Przebieg walki przez trzy fazy.",
-      "opening: Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.",
-      "mid_fight: Manhattan odrzuca logikę normalnej wymiany i atakuje przygotowanie, timing pierścienia albo lokalny stan ruchu.",
-      "late_fight: Walka rozchodzi się tylko na jednym pytaniu: czy Kyle dostaje prawdziwe okno Life Equation, zanim spadnie preempcja.",
-      "end_condition: O tej walce decyduje to, czy symetria w ogóle zdąży się uformować.",
-      "phase_1_mode: bars",
-      "phase_1_animation: teleport-burst",
-      "phase_1_actor: a",
-      "phase_1_title: Otwarcie Przygotowania",
-      "phase_1_a_label: Presja",
-      "phase_1_b_label: Wyprzedzenie",
-      "phase_1_a_value: 86",
-      "phase_1_b_value: 89",
-      "phase_2_mode: split",
-      "phase_2_animation: feint-counter",
-      "phase_2_actor: b",
-      "phase_2_title: Odmowa Przygotowania",
-      "phase_2_event: Manhattan atakuje mechanizm akcji zamiast handlować się z gotowym atakiem.",
-      "phase_2_branch_a: Kyle utrzymuje dość planszy przy życiu, by budować przepisywanie.",
-      "phase_2_branch_b: Manhattan usuwa przygotowanie, zanim to zamieni się w prawdziwą sekwencję.",
-      "phase_3_mode: split",
-      "phase_3_animation: teleport-burst",
-      "phase_3_actor: a",
-      "phase_3_title: Okno Przepisywania",
-      "phase_3_event: Albo Kyle osiąga pełną ekspresję Life Equation, albo Manhattan utrzymuje walkę w stanie permanentnego niedokończenia.",
-      "phase_3_branch_a: Pełny dostęp do przepisywania zamienia szerszy arsenał w realną ścieżkę zwycięstwa.",
-      "phase_3_branch_b: Preempcja zatrzymuje lepszy arsenał w sferze teorii, a walka zostaje po stronie Manhattana.",
-      "Template Verdict Matrix:",
-      "headline: MATRYCA WERDYKTU",
-      "subtitle: Wygrana zależy od zasad walki.",
-      "col_left: PEŁNA LIFE EQUATION",
-      "col_right: OGRANICZONA LIFE EQUATION",
-      "row_top: MANHATTAN PROAKTYWNY",
-      "row_bottom: MANHATTAN PASYWNY",
-      "case_1: Dr. Manhattan 6.5/10. Pełne przepisywanie utrzymuje Kyle'a w grze, ale proaktywna preempcja nadal kradnie dość otwarć, by zostać minimalnie z przodu.",
-      "case_2: Dr. Manhattan 9/10. Ograniczone przepisywanie plus proaktywna preempcja usuwa jedyną gałąź, która naprawdę zmienia ten pojedynek.",
-      "case_3: Kyle 7/10. Jeśli Manhattan robi się pasywny, a Kyle dochodzi do pełnej ekspresji, szerszy arsenał wreszcie się spienięża.",
-      "case_4: Dr. Manhattan 6.5/10. Pasywność zmniejsza przewagę, ale ograniczony dostęp do Life Equation nadal zostawia Kyle'a z przygotowaniem, które Manhattan potrafi rozplątać.",
-      "Template Karta Walki:",
-      "fight_title: White Lantern Kyle Rayner vs. Dr. Manhattan",
-      "subtitle:",
-      "top_color_a: #f8fafc",
-      "top_color_b: #22c55e",
-      "bottom_color_a: #38bdf8",
-      "bottom_color_b: #1d4ed8"
+    "stats": {
+      "battleIq": 95,
+      "durability": 99,
+      "experience": 86,
+      "hax": 100,
+      "skills": 44,
+      "speed": 96,
+      "stamina": 100,
+      "strength": 82,
+      "style": 48
+    },
+    "version": "Watchmen / Rebirth / Doomsday Clock",
+    "victories": [
+      "Rorschach (bezpośrednie zabójstwo)",
+      "Metron (natychmiastowe odparowanie)",
+      "Owlman (natychmiastowe odparowanie)",
+      "Ozymandias (nieśmiercionośna kontrola konfrontacji)",
+      "Silk Spectre / Laurie (lokalny przymus rzeczywistości, nieśmiercionośny)"
     ]
   },
+  "locale": "pl",
+  "schemaVersion": 1,
   "templateOrder": [
     "tactical-board",
     "character-dossier-a",
@@ -252,166 +114,169 @@
     "fight-card"
   ],
   "templates": {
-    "tactical-board": {
-      "headline": "TABLICA TAKTYCZNA // KYLE VS MANHATTAN",
-      "subtitle": "Wola kontra Przyczynowość",
-      "left_header": "SIATKA KATEGORII",
-      "right_header": "REALIA WALKI",
-      "linear_label": "ODCINEK LINIOWY",
-      "chaos_label": "ODCINEK CHAOSU",
-      "lane": "Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką."
+    "battle-dynamics": {
+      "a_curve": "62,66,71,78,86",
+      "analysis": "Kyle ma pełniejszy profil. Manhattan ma czystszy pierwszy ruch.",
+      "b_curve": "90,84,72,59,47",
+      "headline": "DYNAMIKA WALKI",
+      "phase_1": "Manhattan jest najsilniejszy, zanim powstanie symetria i zanim przygotowanie przestanie być kruche.",
+      "phase_2": "Kyle zaczyna spieniężać lepszy arsenał dopiero wtedy, gdy warstwowa presja naprawdę zostaje na planszy.",
+      "phase_3": "Jeśli przepisywanie nigdy nie otworzy się w pełni, praktyczna przewaga Manhattana trwa od początku do końca.",
+      "subtitle": "Jak walka zmienia się z minuty na minutę.",
+      "yellow_wave": "29,34,31,36,32,38,34,40"
     },
     "character-dossier-a": {
-      "header": "Dossier postaci",
-      "world": "New 52",
-      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.",
       "advantage": "Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.",
+      "header": "Dossier postaci",
       "mentality": "Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.",
-      "quote": "W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!"
+      "quote": "W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!",
+      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.",
+      "world": "New 52"
     },
     "character-dossier-b": {
-      "header": "Dossier postaci",
-      "world": "Watchmen / Rebirth / Doomsday Clock",
-      "style": "Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.",
       "advantage": "Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.",
+      "header": "Dossier postaci",
       "mentality": "Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.",
-      "quote": "Tak. Już rozumiem. Wszystko się kończy."
+      "quote": "Tak. Już rozumiem. Wszystko się kończy.",
+      "style": "Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.",
+      "world": "Watchmen / Rebirth / Doomsday Clock"
     },
     "character-profile": {
       "headline": "PROFIL POSTACI",
-      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
       "left_title": "Kyle Rayner",
-      "right_title": "Dr. Manhattan",
       "powers_label": "MOCE",
+      "right_title": "Dr. Manhattan",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
       "tools_label": "NARZĘDZIA",
       "weaknesses_label": "SŁABOŚCI"
     },
     "crucial-feats": {
+      "feat_label": "FEAT",
       "headline": "NAJWAŻNIEJSZE WYCZYNY",
-      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
       "left_title": "Kyle Rayner",
       "right_title": "Dr. Manhattan",
-      "feat_label": "FEAT"
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia."
     },
     "fight-analytics": {
       "headline": "ANALITYKA WALKI",
-      "subtitle": "Odczyt statystyk dwóch profili",
-      "threat_level": "KOSMICZNY",
       "integrity": "99.5%",
-      "scale": "0-100"
+      "scale": "0-100",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threat_level": "KOSMICZNY"
     },
-    "parameter-comparison": {
-      "headline": "PORÓWNANIE PARAMETRÓW",
-      "subtitle": "Mapa średniego profilu statystyk",
-      "left_header": "PRZEWAGI KYLE'A",
-      "right_header": "PRZEWAGI MANHATTANA",
-      "draw_header": "STREFY REMISU",
-      "favorite_label": "FAWORYT WEDŁUG STATYSTYK"
-    },
-    "battle-dynamics": {
-      "headline": "DYNAMIKA WALKI",
-      "subtitle": "Jak walka zmienia się z minuty na minutę.",
-      "a_curve": "62,66,71,78,86",
-      "b_curve": "90,84,72,59,47",
-      "yellow_wave": "29,34,31,36,32,38,34,40",
-      "phase_1": "Manhattan jest najsilniejszy, zanim powstanie symetria i zanim przygotowanie przestanie być kruche.",
-      "phase_2": "Kyle zaczyna spieniężać lepszy arsenał dopiero wtedy, gdy warstwowa presja naprawdę zostaje na planszy.",
-      "phase_3": "Jeśli przepisywanie nigdy nie otworzy się w pełni, praktyczna przewaga Manhattana trwa od początku do końca.",
-      "analysis": "Kyle ma pełniejszy profil. Manhattan ma czystszy pierwszy ruch."
-    },
-    "x-factor": {
-      "headline": "X-FACTOR",
-      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
-      "factor": "OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE",
-      "a_value": "50",
-      "a_bonus": "15",
-      "a_bonus_label": "OKNO PRZEPISYWANIA",
-      "b_value": "50",
-      "b_bonus": "17",
-      "regen": "PRZEWAGA PREEMPCJI",
-      "mechanics": "Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.",
-      "implication": "Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.",
-      "psychology": "Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona."
-    },
-    "interpretation": {
-      "headline": "INTERPRETACJA",
-      "subtitle": "Kto wygrywa walkę na papierze?",
-      "line_1": "Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał.",
-      "line_2": "Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować samo przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie.",
-      "line_3": "Przewaga na papierze nie przetrwa, jeśli walka nigdy nie osiągnie symetrycznych warunków wymiany.",
-      "quote": "Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna."
+    "fight-card": {
+      "bottom_color_a": "#38bdf8",
+      "bottom_color_b": "#1d4ed8",
+      "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "subtitle": "",
+      "top_color_a": "#f8fafc",
+      "top_color_b": "#22c55e"
     },
     "fight-simulation": {
-      "headline": "SYMULACJA WALKI",
-      "subtitle": "Przebieg walki przez trzy fazy.",
-      "opening": "Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.",
-      "mid_fight": "Manhattan odrzuca logikę normalnej wymiany i atakuje przygotowanie, timing pierścienia albo lokalny stan ruchu.",
-      "late_fight": "Walka rozchodzi się tylko na jednym pytaniu: czy Kyle dostaje prawdziwe okno Life Equation, zanim spadnie preempcja.",
       "end_condition": "O tej walce decyduje to, czy symetria w ogóle zdąży się uformować.",
-      "phase_1_mode": "bars",
-      "phase_1_animation": "teleport-burst",
-      "phase_1_actor": "a",
-      "phase_1_title": "Otwarcie Przygotowania",
+      "headline": "SYMULACJA WALKI",
+      "late_fight": "Walka rozchodzi się tylko na jednym pytaniu: czy Kyle dostaje prawdziwe okno Life Equation, zanim spadnie preempcja.",
+      "mid_fight": "Manhattan odrzuca logikę normalnej wymiany i atakuje przygotowanie, timing pierścienia albo lokalny stan ruchu.",
+      "opening": "Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.",
       "phase_1_a_label": "Presja",
-      "phase_1_b_label": "Wyprzedzenie",
       "phase_1_a_value": "86",
+      "phase_1_actor": "a",
+      "phase_1_animation": "teleport-burst",
+      "phase_1_b_label": "Wyprzedzenie",
       "phase_1_b_value": "89",
-      "phase_2_mode": "split",
-      "phase_2_animation": "feint-counter",
+      "phase_1_mode": "bars",
+      "phase_1_title": "Otwarcie Przygotowania",
       "phase_2_actor": "b",
-      "phase_2_title": "Odmowa Przygotowania",
-      "phase_2_event": "Manhattan atakuje mechanizm akcji zamiast handlować się z gotowym atakiem.",
+      "phase_2_animation": "feint-counter",
       "phase_2_branch_a": "Kyle utrzymuje dość planszy przy życiu, by budować przepisywanie.",
       "phase_2_branch_b": "Manhattan usuwa przygotowanie, zanim to zamieni się w prawdziwą sekwencję.",
-      "phase_3_mode": "split",
-      "phase_3_animation": "teleport-burst",
+      "phase_2_event": "Manhattan atakuje mechanizm akcji zamiast handlować się z gotowym atakiem.",
+      "phase_2_mode": "split",
+      "phase_2_title": "Odmowa Przygotowania",
       "phase_3_actor": "a",
-      "phase_3_title": "Okno Przepisywania",
-      "phase_3_event": "Albo Kyle osiąga pełną ekspresję Life Equation, albo Manhattan utrzymuje walkę w stanie permanentnego niedokończenia.",
+      "phase_3_animation": "teleport-burst",
       "phase_3_branch_a": "Pełny dostęp do przepisywania zamienia szerszy arsenał w realną ścieżkę zwycięstwa.",
-      "phase_3_branch_b": "Preempcja zatrzymuje lepszy arsenał w sferze teorii, a walka zostaje po stronie Manhattana."
-    },
-    "stat-trap": {
-      "headline": "PUŁAPKA STATYSTYK",
-      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
-      "trap_top": "LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE",
-      "trap_bottom": "MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL",
-      "example": "Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.",
-      "question": "Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje samo przygotowanie?"
-    },
-    "victory-archive": {
-      "headline": "Archiwum zwycięstw",
-      "avg_label": "ŚREDNI WYNIK",
-      "left_title": "Kyle Rayner",
-      "right_title": "Dr. Manhattan",
-      "win_badge": "W"
+      "phase_3_branch_b": "Preempcja zatrzymuje lepszy arsenał w sferze teorii, a walka zostaje po stronie Manhattana.",
+      "phase_3_event": "Albo Kyle osiąga pełną ekspresję Life Equation, albo Manhattan utrzymuje walkę w stanie permanentnego niedokończenia.",
+      "phase_3_mode": "split",
+      "phase_3_title": "Okno Przepisywania",
+      "subtitle": "Przebieg walki przez trzy fazy."
     },
     "final-summary": {
       "headline": "PODSUMOWANIE KOŃCOWE",
-      "subtitle": "Podsumowanie",
-      "winner": "Dr. Manhattan prowadzi, ale walka jest warunkowa",
       "line_1": "Kyle wygrywa porównanie na papierze, 88.11 do 83.33.",
       "line_2": "Manhattan prowadzi w domyślnej wersji walki, bo ma lepszy pierwszy ruch i atakuje samo przygotowanie.",
-      "line_3": "Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie."
+      "line_3": "Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie.",
+      "subtitle": "Podsumowanie",
+      "winner": "Dr. Manhattan prowadzi, ale walka jest warunkowa"
+    },
+    "interpretation": {
+      "headline": "INTERPRETACJA",
+      "line_1": "Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał.",
+      "line_2": "Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować samo przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie.",
+      "line_3": "Przewaga na papierze nie przetrwa, jeśli walka nigdy nie osiągnie symetrycznych warunków wymiany.",
+      "quote": "Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna.",
+      "subtitle": "Kto wygrywa walkę na papierze?"
+    },
+    "parameter-comparison": {
+      "draw_header": "STREFY REMISU",
+      "favorite_label": "FAWORYT WEDŁUG STATYSTYK",
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "left_header": "PRZEWAGI KYLE'A",
+      "right_header": "PRZEWAGI MANHATTANA",
+      "subtitle": "Mapa średniego profilu statystyk"
+    },
+    "stat-trap": {
+      "example": "Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.",
+      "headline": "PUŁAPKA STATYSTYK",
+      "question": "Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje samo przygotowanie?",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
+      "trap_bottom": "MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL",
+      "trap_top": "LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE"
+    },
+    "tactical-board": {
+      "chaos_label": "ODCINEK CHAOSU",
+      "headline": "TABLICA TAKTYCZNA // KYLE VS MANHATTAN",
+      "lane": "Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.",
+      "left_header": "SIATKA KATEGORII",
+      "linear_label": "ODCINEK LINIOWY",
+      "right_header": "REALIA WALKI",
+      "subtitle": "Wola kontra Przyczynowość"
     },
     "verdict-matrix": {
-      "headline": "MATRYCA WERDYKTU",
-      "subtitle": "Wygrana zależy od zasad walki.",
-      "col_left": "PEŁNA LIFE EQUATION",
-      "col_right": "OGRANICZONA LIFE EQUATION",
-      "row_top": "MANHATTAN PROAKTYWNY",
-      "row_bottom": "MANHATTAN PASYWNY",
       "case_1": "Dr. Manhattan 6.5/10. Pełne przepisywanie utrzymuje Kyle'a w grze, ale proaktywna preempcja nadal kradnie dość otwarć, by zostać minimalnie z przodu.",
       "case_2": "Dr. Manhattan 9/10. Ograniczone przepisywanie plus proaktywna preempcja usuwa jedyną gałąź, która naprawdę zmienia ten pojedynek.",
       "case_3": "Kyle 7/10. Jeśli Manhattan robi się pasywny, a Kyle dochodzi do pełnej ekspresji, szerszy arsenał wreszcie się spienięża.",
-      "case_4": "Dr. Manhattan 6.5/10. Pasywność zmniejsza przewagę, ale ograniczony dostęp do Life Equation nadal zostawia Kyle'a z przygotowaniem, które Manhattan potrafi rozplątać."
+      "case_4": "Dr. Manhattan 6.5/10. Pasywność zmniejsza przewagę, ale ograniczony dostęp do Life Equation nadal zostawia Kyle'a z przygotowaniem, które Manhattan potrafi rozplątać.",
+      "col_left": "PEŁNA LIFE EQUATION",
+      "col_right": "OGRANICZONA LIFE EQUATION",
+      "headline": "MATRYCA WERDYKTU",
+      "row_bottom": "MANHATTAN PASYWNY",
+      "row_top": "MANHATTAN PROAKTYWNY",
+      "subtitle": "Wygrana zależy od zasad walki."
     },
-    "fight-card": {
-      "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan",
-      "top_color_a": "#f8fafc",
-      "top_color_b": "#22c55e",
-      "bottom_color_a": "#38bdf8",
-      "bottom_color_b": "#1d4ed8"
+    "victory-archive": {
+      "archive_label": "",
+      "avg_label": "ŚREDNI WYNIK",
+      "headline": "Archiwum zwycięstw",
+      "left_title": "Kyle Rayner",
+      "right_title": "Dr. Manhattan",
+      "subtitle": "",
+      "win_badge": "W"
+    },
+    "x-factor": {
+      "a_bonus": "15",
+      "a_bonus_label": "OKNO PRZEPISYWANIA",
+      "a_value": "50",
+      "b_bonus": "17",
+      "b_value": "50",
+      "factor": "OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE",
+      "headline": "X-FACTOR",
+      "implication": "Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.",
+      "mechanics": "Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.",
+      "psychology": "Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona.",
+      "regen": "PRZEWAGA PREEMPCJI",
+      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki."
     }
   }
 }

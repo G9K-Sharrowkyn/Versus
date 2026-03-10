@@ -1,28 +1,19 @@
 {
-  "schemaVersion": 1,
-  "locale": "pl",
   "fighterA": {
-    "name": "Postać A",
-    "version": "Historyczny Prime",
-    "stats": {
-      "speed": 93,
-      "battleIq": 86,
-      "hax": 73,
-      "stamina": 81,
-      "style": 91,
-      "experience": 60,
-      "skills": 86
-    },
+    "crucialFeats": [
+      "Demonstracja one-inch punch na Long Beach",
+      "Pompki na dwóch palcach i pokaz kontroli ciała",
+      "Zwycięstwo o międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem",
+      "Stworzenie Jeet Kune Do przez skuteczne łączenie stylów",
+      "Pokonanie Yoichiego Nakachiego w 11 sekund"
+    ],
     "dossier": {
-      "style": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.",
       "advantage": "Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.",
       "mentality": "Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.",
-      "quote": "Bądź jak woda, mój przyjacielu."
+      "quote": "",
+      "style": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga."
     },
-    "victories": [
-      "Gary Elms (zwycięstwo przez decyzję w boksie)",
-      "Yoichi Nakachi (potwierdzony relacjami nokaut w 11 sekund w walce wyzwaniowej)"
-    ],
+    "name": "Postać A",
     "profile": {
       "powers": [
         "Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń."
@@ -30,41 +21,42 @@
       "tools": [
         "Intercepcja w duchu JKD, kopnięcia niskie, łamanie rytmu i adaptacja między stylami."
       ],
-      "weaknesses": []
+      "weaknesses": [
+        "Wyraźny deficyt masy i zasięgu wobec specjalistów wagi ciężkiej."
+      ]
     },
-    "crucialFeats": [
-      "One-inch punch na Long Beach.",
-      "Pompki na dwóch palcach.",
-      "Międzyszkolny tytuł bokserski 1958 (Gary Elms).",
-      "Stworzenie Jeet Kune Do przez skuteczne łączenie stylów.",
-      "Pokonanie Yoichiego Nakachiego w 11 sekund."
+    "stats": {
+      "battleIq": 86,
+      "durability": 70,
+      "experience": 60,
+      "hax": 73,
+      "skills": 86,
+      "speed": 93,
+      "stamina": 81,
+      "strength": 70,
+      "style": 91
+    },
+    "version": "Historyczny Prime",
+    "victories": [
+      "Gary Elms (zwycięstwo przez decyzję w boksie)",
+      "Yoichi Nakachi (potwierdzony relacjami nokaut w 11 sekund w walce wyzwaniowej)"
     ]
   },
   "fighterB": {
-    "name": "Postać B",
-    "version": "Historyczny Prime",
-    "stats": {
-      "speed": 89,
-      "battleIq": 93,
-      "hax": 48,
-      "stamina": 95,
-      "style": 90,
-      "experience": 97,
-      "skills": 94
-    },
+    "crucialFeats": [
+      "Rope-a-dope przeciw George'owi Foremanowi",
+      "Szczytowa szybkość i precyzja przeciw Clevelandowi Williamsowi",
+      "Wytrzymałość i tolerancja karania w walkach z Joe Frazierem",
+      "Złoty medal olimpijski, Rzym 1960",
+      "Jako pierwszy pięściarz w historii trzykrotnie zdobył tytuł mistrza świata wagi ciężkiej"
+    ],
     "dossier": {
-      "style": "Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.",
       "advantage": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.",
       "mentality": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.",
-      "quote": "Fruwaj jak motyl, żądl jak pszczoła."
+      "quote": "",
+      "style": "Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości."
     },
-    "victories": [
-      "George Foreman",
-      "Joe Frazier",
-      "Sonny Liston",
-      "Cleveland Williams",
-      "Ernie Terrell"
-    ],
+    "name": "Postać B",
     "profile": {
       "powers": [
         "Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa."
@@ -72,16 +64,32 @@
       "tools": [
         "Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa."
       ],
-      "weaknesses": []
+      "weaknesses": [
+        "Zestaw narzędzi skupiony głównie na boksie wobec szerokich zasad otwartych."
+      ]
     },
-    "crucialFeats": [
-      "Rope-a-dope przeciw Foremanowi.",
-      "19 udanych obron tytułu mistrza świata.",
-      "Pierwszy trzykrotny mistrz świata wszechwag.",
-      "Złoto olimpijskie, Rzym 1960.",
-      "Pokonanie 21 mistrzów lub pretendentów do tytułu."
+    "stats": {
+      "battleIq": 93,
+      "durability": 94,
+      "experience": 97,
+      "hax": 48,
+      "skills": 94,
+      "speed": 89,
+      "stamina": 95,
+      "strength": 89,
+      "style": 90
+    },
+    "version": "Historyczny Prime",
+    "victories": [
+      "George Foreman",
+      "Joe Frazier",
+      "Sonny Liston",
+      "Cleveland Williams",
+      "Ernie Terrell"
     ]
   },
+  "locale": "pl",
+  "schemaVersion": 1,
   "templateOrder": [
     "tactical-board",
     "character-dossier-a",
@@ -99,136 +107,139 @@
     "fight-card"
   ],
   "templates": {
-    "tactical-board": {
-      "headline": "TABLICA TAKTYCZNA // BRUCE VS ALI",
-      "subtitle": "Artysta kontra Bokser",
-      "left_header": "SIATKA KATEGORII",
-      "right_header": "REALIA WALKI",
-      "linear_label": "ODCINEK LINIOWY",
-      "chaos_label": "ODCINEK CHAOSU",
-      "lane": "Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich."
+    "battle-dynamics": {
+      "headline": "DYNAMIKA WALKI",
+      "left_curve": "78,74,68,61,54",
+      "left_curve_label": "WCZESNE ZAKŁÓCENIA BRUCE'A",
+      "notes": "Bruce jest groźny wcześnie, bo szybkość i zakłócenie rytmu mają największą wartość, zanim walka się ustawi. Ali rośnie, gdy zasięg, tempo i wytrzymałość zaczynają się kumulować.",
+      "right_curve": "62,70,79,88,94",
+      "right_curve_label": "PÓŹNA KONTROLA ALEGO",
+      "subtitle": "Jak walka zmienia się z minuty na minutę."
     },
     "character-dossier-a": {
-      "header": "Dossier postaci",
-      "world": "Historyczny Prime",
-      "style": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.",
       "advantage": "Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.",
+      "header": "Dossier postaci",
       "mentality": "Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.",
-      "quote": "Bądź jak woda, mój przyjacielu."
+      "quote": "Bądź jak woda, mój przyjacielu.",
+      "style": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.",
+      "world": "Historyczny Prime"
     },
     "character-dossier-b": {
-      "header": "Dossier postaci",
-      "world": "Historyczny Prime",
-      "style": "Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.",
       "advantage": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.",
+      "header": "Dossier postaci",
       "mentality": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.",
-      "quote": "Fruwaj jak motyl, żądl jak pszczoła."
+      "quote": "Fruwaj jak motyl, żądl jak pszczoła.",
+      "style": "Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.",
+      "world": "Historyczny Prime"
     },
     "character-profile": {
       "headline": "PROFIL POSTACI",
-      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
       "left_title": "Bruce Lee",
-      "right_title": "Muhammad Ali",
       "powers_label": "MOCE",
+      "right_title": "Muhammad Ali",
+      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
       "tools_label": "NARZĘDZIA",
       "weaknesses_label": "SŁABOŚCI"
     },
     "crucial-feats": {
-      "headline": "NAJWAŻNIEJSZE WYCZYNY",
-      "subtitle": "Skalowanie postaci poprzez osiągnięcia.",
-      "left_title": "Bruce Lee",
-      "right_title": "Muhammad Ali",
       "feat_label": "FEAT",
+      "headline": "NAJWAŻNIEJSZE WYCZYNY",
       "left_item_1": "One-inch punch na Long Beach.",
       "left_item_2": "Pompki na dwóch palcach.",
       "left_item_3": "Międzyszkolny tytuł bokserski 1958 (Gary Elms).",
       "left_item_4": "Stworzenie Jeet Kune Do przez skuteczne łączenie stylów.",
       "left_item_5": "Pokonanie Yoichiego Nakachiego w 11 sekund.",
+      "left_title": "Bruce Lee",
       "right_item_1": "Rope-a-dope przeciw Foremanowi.",
       "right_item_2": "19 udanych obron tytułu mistrza świata.",
       "right_item_3": "Pierwszy trzykrotny mistrz świata wszechwag.",
       "right_item_4": "Złoto olimpijskie, Rzym 1960.",
-      "right_item_5": "Pokonanie 21 mistrzów lub pretendentów do tytułu."
+      "right_item_5": "Pokonanie 21 mistrzów lub pretendentów do tytułu.",
+      "right_title": "Muhammad Ali",
+      "subtitle": "Skalowanie postaci poprzez osiągnięcia."
     },
     "fight-analytics": {
       "headline": "ANALITYKA WALKI",
-      "subtitle": "Odczyt statystyk dwóch profili",
-      "threat_level": "LUDZKI",
       "integrity": "98.7%",
-      "scale": "0-100"
+      "scale": "0-100",
+      "subtitle": "Odczyt statystyk dwóch profili",
+      "threat_level": "LUDZKI"
     },
-    "parameter-comparison": {
-      "headline": "PORÓWNANIE PARAMETRÓW",
-      "subtitle": "Mapa średniego profilu statystyk",
-      "left_header": "PRZEWAGI BRUCE'A",
-      "right_header": "PRZEWAGI ALEGO",
-      "draw_header": "STREFY REMISU",
-      "left_avg": "78.89",
-      "right_avg": "87.67",
-      "left_avg_round": "79",
-      "right_avg_round": "88",
-      "favorite_label": "FAWORYT WEDŁUG STATYSTYK",
-      "favorite": "Muhammad Ali",
-      "left_notes": "Wejścia, łamanie rytmu i zmiana kątów",
-      "right_notes": "Zasięg, wytrzymałość, tempo i powtarzalna kontrola ringu",
-      "draw_notes": "Obaj dobrze czytają timing, ale Ali zamienia powtarzalne wymiany w swoją walkę"
-    },
-    "battle-dynamics": {
-      "headline": "DYNAMIKA WALKI",
-      "subtitle": "Jak walka zmienia się z minuty na minutę.",
-      "left_curve_label": "WCZESNE ZAKŁÓCENIA BRUCE'A",
-      "right_curve_label": "PÓŹNA KONTROLA ALEGO",
-      "left_curve": "78,74,68,61,54",
-      "right_curve": "62,70,79,88,94",
-      "notes": "Bruce jest groźny wcześnie, bo szybkość i zakłócenie rytmu mają największą wartość, zanim walka się ustawi. Ali rośnie, gdy zasięg, tempo i wytrzymałość zaczynają się kumulować."
-    },
-    "interpretation": {
-      "headline": "INTERPRETACJA",
-      "subtitle": "Kto wygrywa walkę na papierze?",
-      "body": "Muhammad Ali. Bruce ma szybkość, chaos i brudniejszą teksturę otwarcia, ale Ali ma kategorie, które rozstrzygają powtarzalne ludzkie wymiany: zasięg, wytrzymałość, tempo i zarządzanie ringiem. Bruce zawęża pojedynek tylko wtedy, gdy nie pozwala walce ustawić się w preferowanej przez Alego grze dystansu."
+    "fight-card": {
+      "bottom_color_a": "#f8fafc",
+      "bottom_color_b": "#60a5fa",
+      "fight_title": "Bruce Lee vs Muhammad Ali",
+      "subtitle": "",
+      "top_color_a": "#facc15",
+      "top_color_b": "#111827"
     },
     "fight-simulation": {
       "headline": "SYMULACJA WALKI",
-      "subtitle": "Przebieg walki przez trzy fazy.",
-      "phase_1_title": "Wojna o wejście i rytm",
-      "phase_1_desc": "Bruce atakuje rytm szybkimi wejściami i niskimi zakłóceniami, zanim Ali ustawi geografię ringu.",
-      "phase_1_anim": "feint-counter",
       "phase_1_actor": "a",
-      "phase_2_title": "Podatek dystansu",
-      "phase_2_desc": "Ali opodatkowuje dystans jabem, nogami i kontrolą ringu, zmuszając Bruce'a do płacenia za każde ponowne wejście.",
-      "phase_2_anim": "kite-zone",
+      "phase_1_anim": "feint-counter",
+      "phase_1_desc": "Bruce atakuje rytm szybkimi wejściami i niskimi zakłóceniami, zanim Ali ustawi geografię ringu.",
+      "phase_1_title": "Wojna o wejście i rytm",
       "phase_2_actor": "b",
-      "phase_3_title": "Rzeczywistość ciężkich",
-      "phase_3_desc": "Walka albo pozostaje brudna i wąska dla Bruce'a, albo ustawia się w powtarzalnym dystansie ciężkich, gdzie tempo i wytrzymałość Alego przejmują kontrolę.",
+      "phase_2_anim": "kite-zone",
+      "phase_2_desc": "Ali opodatkowuje dystans jabem, nogami i kontrolą ringu, zmuszając Bruce'a do płacenia za każde ponowne wejście.",
+      "phase_2_title": "Podatek dystansu",
+      "phase_3_actor": "b",
       "phase_3_anim": "corner-trap",
-      "phase_3_actor": "b"
-    },
-    "stat-trap": {
-      "headline": "PUŁAPKA STATYSTYK",
-      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa",
-      "question": "Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?",
-      "body": "Najlepsze przewagi Bruce'a zmieniają bardziej teksturę walki niż samą tożsamość zwycięzcy. Szybkość i styl mogą wygrywać momenty, ale to udowodniona odporność Alego pod długą presją ciężkich jest prawdziwym separatorem."
-    },
-    "victory-archive": {
-      "headline": "Archiwum zwycięstw",
-      "avg_label": "ŚREDNI WYNIK",
-      "left_title": "Bruce Lee",
-      "right_title": "Muhammad Ali"
+      "phase_3_desc": "Walka albo pozostaje brudna i wąska dla Bruce'a, albo ustawia się w powtarzalnym dystansie ciężkich, gdzie tempo i wytrzymałość Alego przejmują kontrolę.",
+      "phase_3_title": "Rzeczywistość ciężkich",
+      "subtitle": "Przebieg walki przez trzy fazy."
     },
     "final-summary": {
       "headline": "PODSUMOWANIE KOŃCOWE",
-      "subtitle": "Podsumowanie",
-      "winner": "Muhammad Ali z wyraźną przewagą",
       "line_1": "Ali wygrywa porównanie na papierze, 87.67 vs 78.89.",
       "line_2": "Bruce zmienia bardziej teksturę walki niż tożsamość zwycięzcy.",
-      "line_3": "Otwarte zasady zawężają pojedynek, ale nie odwracają bazowego wyniku."
+      "line_3": "Otwarte zasady zawężają pojedynek, ale nie odwracają bazowego wyniku.",
+      "subtitle": "Podsumowanie",
+      "winner": "Muhammad Ali z wyraźną przewagą"
     },
-    "fight-card": {
-      "fight_title": "Bruce Lee vs Muhammad Ali",
-      "top_color_a": "#facc15",
-      "top_color_b": "#111827",
-      "bottom_color_a": "#f8fafc",
-      "bottom_color_b": "#60a5fa"
+    "interpretation": {
+      "body": "Muhammad Ali. Bruce ma szybkość, chaos i brudniejszą teksturę otwarcia, ale Ali ma kategorie, które rozstrzygają powtarzalne ludzkie wymiany: zasięg, wytrzymałość, tempo i zarządzanie ringiem. Bruce zawęża pojedynek tylko wtedy, gdy nie pozwala walce ustawić się w preferowanej przez Alego grze dystansu.",
+      "headline": "INTERPRETACJA",
+      "subtitle": "Kto wygrywa walkę na papierze?"
+    },
+    "parameter-comparison": {
+      "draw_header": "STREFY REMISU",
+      "draw_notes": "Obaj dobrze czytają timing, ale Ali zamienia powtarzalne wymiany w swoją walkę",
+      "favorite": "Muhammad Ali",
+      "favorite_label": "FAWORYT WEDŁUG STATYSTYK",
+      "headline": "PORÓWNANIE PARAMETRÓW",
+      "left_avg": "78.89",
+      "left_avg_round": "79",
+      "left_header": "PRZEWAGI BRUCE'A",
+      "left_notes": "Wejścia, łamanie rytmu i zmiana kątów",
+      "right_avg": "87.67",
+      "right_avg_round": "88",
+      "right_header": "PRZEWAGI ALEGO",
+      "right_notes": "Zasięg, wytrzymałość, tempo i powtarzalna kontrola ringu",
+      "subtitle": "Mapa średniego profilu statystyk"
+    },
+    "stat-trap": {
+      "body": "Najlepsze przewagi Bruce'a zmieniają bardziej teksturę walki niż samą tożsamość zwycięzcy. Szybkość i styl mogą wygrywać momenty, ale to udowodniona odporność Alego pod długą presją ciężkich jest prawdziwym separatorem.",
+      "headline": "PUŁAPKA STATYSTYK",
+      "question": "Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?",
+      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa"
+    },
+    "tactical-board": {
+      "chaos_label": "ODCINEK CHAOSU",
+      "headline": "TABLICA TAKTYCZNA // BRUCE VS ALI",
+      "lane": "Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich.",
+      "left_header": "SIATKA KATEGORII",
+      "linear_label": "ODCINEK LINIOWY",
+      "right_header": "REALIA WALKI",
+      "subtitle": "Artysta kontra Bokser"
+    },
+    "victory-archive": {
+      "archive_label": "",
+      "avg_label": "ŚREDNI WYNIK",
+      "headline": "Archiwum zwycięstw",
+      "left_title": "Bruce Lee",
+      "right_title": "Muhammad Ali",
+      "subtitle": ""
     }
   }
 }

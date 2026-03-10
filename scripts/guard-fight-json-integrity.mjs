@@ -20,6 +20,7 @@ const allowedParsedPayloadFiles = new Set([
 ])
 
 const errors = []
+const REQUIRED_STAT_KEYS = ['strength', 'speed', 'durability', 'battleIq', 'hax', 'stamina', 'style', 'experience', 'skills']
 
 const walk = (root, callback) => {
   for (const entry of readdirSync(root, { withFileTypes: true })) {
@@ -68,9 +69,23 @@ for (const dir of numberedFightDirs) {
         if (parsed?.schemaVersion !== 1 || parsed?.locale !== 'en') {
           errors.push(`[${dirName}] ${fileName} must have schemaVersion=1 and locale="en".`)
         }
+        for (const fighterKey of ['fighterA', 'fighterB']) {
+          const stats = parsed?.[fighterKey]?.stats
+          const missingKeys = REQUIRED_STAT_KEYS.filter((key) => !(key in (stats || {})))
+          if (missingKeys.length) {
+            errors.push(`[${dirName}] ${fileName} is missing stat keys for ${fighterKey}: ${missingKeys.join(', ')}.`)
+          }
+        }
       } else if (/ PL\.json$/i.test(fileName)) {
         if (parsed?.schemaVersion !== 1 || parsed?.locale !== 'pl') {
           errors.push(`[${dirName}] ${fileName} must have schemaVersion=1 and locale="pl".`)
+        }
+        for (const fighterKey of ['fighterA', 'fighterB']) {
+          const stats = parsed?.[fighterKey]?.stats
+          const missingKeys = REQUIRED_STAT_KEYS.filter((key) => !(key in (stats || {})))
+          if (missingKeys.length) {
+            errors.push(`[${dirName}] ${fileName} is missing stat keys for ${fighterKey}: ${missingKeys.join(', ')}.`)
+          }
         }
       } else if (/ Scans\.json$/i.test(fileName)) {
         if (parsed?.schemaVersion !== 1) {

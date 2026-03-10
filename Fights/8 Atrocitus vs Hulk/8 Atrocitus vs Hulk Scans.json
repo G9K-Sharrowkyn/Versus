@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "Atrocitus.webp",
     "b": "Sentry.jpg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "01_6_1_atrocitus_bound_the_butcher.jpg",

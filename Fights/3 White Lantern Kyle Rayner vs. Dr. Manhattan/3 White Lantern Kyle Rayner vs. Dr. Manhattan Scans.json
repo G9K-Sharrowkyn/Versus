@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "Kyle_source.jpeg",
     "b": "Manhattan_Observing.jpeg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "Kyle_source.jpeg",

@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "Tags UI Goku a few times.jpeg",
     "b": "Saitama can achieve flight.jpg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "Tags UI Goku a few times.jpeg",

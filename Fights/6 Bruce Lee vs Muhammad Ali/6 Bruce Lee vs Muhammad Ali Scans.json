@@ -1,9 +1,9 @@
 {
-  "schemaVersion": 1,
   "portraits": {
     "a": "one-inch punch.avif",
     "b": "06_6_2_ali_cleveland_speed.jpg"
   },
+  "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
