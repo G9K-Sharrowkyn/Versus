@@ -72,25 +72,25 @@ export const translationsPl = {
         subtitle: 'Skalowanie postaci poprzez osiągnięcia.',
       },
       'hud-bars': {
-        name: 'Paski HUD',
+        name: 'Analityka Walki High-End',
         description: 'Militarna plansza z poziomymi paskami statystyk.',
         title: 'ANALITYKA WALKI HIGH-END',
         subtitle: 'Odczyt statystyk dwóch profili',
       },
       'radar-brief': {
-        name: 'Raport Radarowy',
+        name: 'Porównanie Parametrów',
         description: 'Radar w centrum, przewagi po bokach, pasek wyniku na dole.',
         title: 'PORÓWNANIE PARAMETRÓW',
         subtitle: 'Mapa średniego profilu statystyk',
       },
       'winner-cv': {
-        name: 'CV Zwycięzców',
+        name: 'Archiwum Zwycięstw',
         description: 'Lista najważniejszych pokonanych rywali po obu stronach.',
         title: 'Archiwum zwycięstw',
         subtitle: '',
       },
       summary: {
-        name: 'Podsumowanie',
+        name: 'Podsumowanie Końcowe',
         description: 'Blok końcowego podsumowania z danych importu.',
         title: 'PODSUMOWANIE KOŃCOWE',
         subtitle: 'Podsumowanie',
@@ -138,7 +138,7 @@ export const translationsPl = {
         subtitle: 'Pole placeholder',
       },
       'fight-title': {
-        name: 'Napis Końcowy Walki',
+        name: 'Napis Końcowy',
         description: 'Animowany ekran końcowy z nazwą pojedynku.',
         title: 'NAPIS KOŃCOWY',
         subtitle: 'Animowany finalowy tekst walki',

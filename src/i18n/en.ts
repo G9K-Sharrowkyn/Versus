@@ -72,25 +72,25 @@ export const translationsEn = {
         subtitle: 'Character scaling through achievements.',
       },
       'hud-bars': {
-        name: 'HUD Bars',
+        name: 'High-End Combat Analytics',
         description: 'Military HUD look with long horizontal bars like output (1).',
         title: 'HIGH-END COMBAT ANALYTICS',
         subtitle: 'Two-profile stat readout',
       },
       'radar-brief': {
-        name: 'Radar Brief',
+        name: 'Parameter Comparison',
         description: 'Center radar, side winner notes, bottom score strip.',
         title: 'PARAMETER COMPARISON',
         subtitle: 'Average stat profile map',
       },
       'winner-cv': {
-        name: 'Winner CV',
+        name: 'Victory Archive',
         description: 'List of top beaten opponents for both fighters.',
         title: 'Victory Archive',
         subtitle: '',
       },
       summary: {
-        name: 'Summary',
+        name: 'Final Summary',
         description: 'Summary card placeholder from imported template block.',
         title: 'FINAL SUMMARY',
         subtitle: 'Summary',
@@ -138,7 +138,7 @@ export const translationsEn = {
         subtitle: 'Placeholder area',
       },
       'fight-title': {
-        name: 'Fight Title Outro',
+        name: 'Fight Title',
         description: 'Animated final screen with matchup name.',
         title: 'FIGHT TITLE',
         subtitle: 'Animated final matchup text',
