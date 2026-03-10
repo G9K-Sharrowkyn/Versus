@@ -129,10 +129,10 @@ feat_label: FEAT
 - left_item_4: Built Jeet Kune Do by effectively combining multiple styles.
 - left_item_5: Defeated Yoichi Nakachi in 11 seconds.
 - right_item_1: Rope-a-dope vs Foreman.
-- right_item_2: Peak speed and precision vs Cleveland Williams.
-- right_item_3: Frazier-era endurance under punishment.
+- right_item_2: 19 successful world title defenses.
+- right_item_3: First three-time heavyweight world champion.
 - right_item_4: Olympic gold, Rome 1960.
-- right_item_5: First three-time heavyweight world champion.
+- right_item_5: Defeated 21 champions or heavyweight title challengers.
 
 Template HUD Bars:
 headline: HIGH-END COMBAT ANALYTICS

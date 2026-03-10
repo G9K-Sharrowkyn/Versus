@@ -129,10 +129,10 @@ feat_label: FEAT
 - left_item_4: Stworzenie Jeet Kune Do przez skuteczne łączenie stylów.
 - left_item_5: Pokonanie Yoichiego Nakachiego w 11 sekund.
 - right_item_1: Rope-a-dope przeciw Foremanowi.
-- right_item_2: Szczytowa szybkość i precyzja przeciw Williamsowi.
-- right_item_3: Wytrzymałość w walkach z Frazierem.
+- right_item_2: 19 udanych obron tytułu mistrza świata.
+- right_item_3: Pierwszy trzykrotny mistrz świata wszechwag.
 - right_item_4: Złoto olimpijskie, Rzym 1960.
-- right_item_5: Pierwszy trzykrotny mistrz świata wszechwag.
+- right_item_5: Pokonanie 21 mistrzów lub pretendentów do tytułu.
 
 Template HUD Bars:
 headline: ANALITYKA WALKI HIGH-END
