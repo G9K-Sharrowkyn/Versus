@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-10T08:47:40.277Z",
+  "updatedAt": "2026-03-10T12:07:34.872Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -14,132 +14,132 @@
         "scale": 1
       },
       "slideImageAdjustments": {
-        "character-card-b:portrait": {
+        "character-dossier-b:portrait": {
           "x": 100,
           "y": 11.467171787929278,
           "scale": 1
         },
-        "raw-feats:left:left-1": {
+        "crucial-feats:left:left-1": {
           "x": 73.80217420999566,
           "y": 12.693348574450791,
           "scale": 1
         },
-        "raw-feats:right:right-1": {
+        "crucial-feats:right:right-1": {
           "x": 0,
           "y": 32.46050181790548,
           "scale": 1
         },
-        "raw-feats:right:right-2": {
+        "crucial-feats:right:right-2": {
           "x": 49.54661161490533,
           "y": 100,
           "scale": 1
         },
-        "raw-feats:right:right-3": {
+        "crucial-feats:right:right-3": {
           "x": 50,
           "y": 91.23966545001426,
           "scale": 1
         },
-        "raw-feats:right:right-4": {
+        "crucial-feats:right:right-4": {
           "x": 50,
           "y": 86.11111111111128,
           "scale": 1
         },
-        "raw-feats:right:right-5": {
+        "crucial-feats:right:right-5": {
           "x": 50,
           "y": 0,
           "scale": 1
         },
-        "character-card-a:portrait": {
+        "character-dossier-a:portrait": {
           "x": 0,
           "y": 21.751608560955525,
           "scale": 1
         },
-        "raw-feats:left:left-2": {
+        "crucial-feats:left:left-2": {
           "x": 50,
           "y": 3.5966610224679885,
           "scale": 1
         },
-        "raw-feats:left:left-3": {
+        "crucial-feats:left:left-3": {
           "x": 50,
           "y": 3.096460036890118,
           "scale": 1
         },
-        "raw-feats:left:left-4": {
+        "crucial-feats:left:left-4": {
           "x": 50,
           "y": 39.786854977432576,
           "scale": 1
         },
-        "raw-feats:left:left-5": {
+        "crucial-feats:left:left-5": {
           "x": 50,
           "y": 50.46954747939151,
           "scale": 1
         },
-        "winner-cv:left:left-1": {
+        "victory-archive:left:left-1": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "winner-cv:right:right-1": {
+        "victory-archive:right:right-1": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "winner-cv:left:left-2": {
+        "victory-archive:left:left-2": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "winner-cv:right:right-2": {
+        "victory-archive:right:right-2": {
           "x": 50,
           "y": 80.2583138441248,
           "scale": 1
         },
-        "winner-cv:left:left-3": {
+        "victory-archive:left:left-3": {
           "x": 50,
           "y": 0,
           "scale": 1
         },
-        "winner-cv:right:right-3": {
+        "victory-archive:right:right-3": {
           "x": 50,
           "y": 51.65180046250413,
           "scale": 1
         },
-        "winner-cv:left:left-4": {
+        "victory-archive:left:left-4": {
           "x": 59.5175587409192,
           "y": 0,
           "scale": 1
         },
-        "winner-cv:right:right-4": {
+        "victory-archive:right:right-4": {
           "x": 50,
           "y": 6.888076388088087,
           "scale": 1
         },
-        "winner-cv:left:left-5": {
+        "victory-archive:left:left-5": {
           "x": 50,
           "y": 0,
           "scale": 1
         },
-        "winner-cv:right:right-5": {
+        "victory-archive:right:right-5": {
           "x": 50,
           "y": 39.18405042107993,
           "scale": 1
         },
-        "fight-title:portrait-a": {
+        "fight-card:portrait-a": {
           "x": 65.44416692522383,
           "y": 17.99232118093437,
           "scale": 1
         },
-        "fight-title:portrait-b": {
+        "fight-card:portrait-b": {
           "x": 39.81003502019006,
           "y": 20.904559333977094,
           "scale": 1
         },
-        "summary:portrait-a": {
+        "final-summary:portrait-a": {
           "x": 65.44416692522383,
           "y": 31.050116117978924,
           "scale": 1
         },
-        "summary:portrait-b": {
+        "final-summary:portrait-b": {
           "x": 39.81003502019006,
           "y": 47.1414364819922,
           "scale": 1
@@ -158,82 +158,82 @@
         "scale": 1
       },
       "slideImageAdjustments": {
-        "raw-feats:left:left-1": {
+        "crucial-feats:left:left-1": {
           "x": 50,
           "y": 53.005597575051205,
           "scale": 1
         },
-        "raw-feats:left:left-2": {
+        "crucial-feats:left:left-2": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:left:left-3": {
+        "crucial-feats:left:left-3": {
           "x": 50,
           "y": 70.85489755432963,
           "scale": 1
         },
-        "raw-feats:left:left-4": {
+        "crucial-feats:left:left-4": {
           "x": 50,
           "y": 96.03035923307053,
           "scale": 1
         },
-        "character-card-a:portrait": {
+        "character-dossier-a:portrait": {
           "x": 50,
           "y": 0,
           "scale": 1
         },
-        "raw-feats:left:left-5": {
+        "crucial-feats:left:left-5": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "winner-cv:left:left-1": {
+        "victory-archive:left:left-1": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "winner-cv:left:left-2": {
+        "victory-archive:left:left-2": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "winner-cv:left:left-3": {
+        "victory-archive:left:left-3": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "winner-cv:left:left-4": {
+        "victory-archive:left:left-4": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "character-card-b:portrait": {
+        "character-dossier-b:portrait": {
           "x": 50,
           "y": 5.471258905520998,
           "scale": 1
         },
-        "raw-feats:right:right-1": {
+        "crucial-feats:right:right-1": {
           "x": 50,
           "y": 81.88131540020815,
           "scale": 1
         },
-        "raw-feats:right:right-3": {
+        "crucial-feats:right:right-3": {
           "x": 50,
           "y": 79.65270142353435,
           "scale": 1
         },
-        "raw-feats:right:right-4": {
+        "crucial-feats:right:right-4": {
           "x": 50,
           "y": 82.85054620905576,
           "scale": 1
         },
-        "raw-feats:right:right-5": {
+        "crucial-feats:right:right-5": {
           "x": 50,
           "y": 64.97171152721896,
           "scale": 1
         },
-        "raw-feats:right:right-2": {
+        "crucial-feats:right:right-2": {
           "x": 50,
           "y": 79.50735391585646,
           "scale": 1
@@ -277,7 +277,58 @@
         "y": 50,
         "scale": 1
       },
-      "slideImageAdjustments": {}
+      "slideImageAdjustments": {
+        "crucial-feats:left:file:tags ui goku a few times.jpeg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:serious punch squared... generates an explosion that.png": {
+          "x": 50,
+          "y": 15.23294593589744,
+          "scale": 1
+        },
+        "crucial-feats:left:file:unaffected by android 17's self-destruction.png": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:saitama time travels to reverse causality.png": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "crucial-feats:left:file:no sells a kamehameha from ssb goku.jpeg": {
+          "x": 50,
+          "y": 79.89665730947097,
+          "scale": 1
+        },
+        "crucial-feats:right:file:can freely grab and move hyperspace.png": {
+          "x": 50,
+          "y": 16.744969435852422,
+          "scale": 1
+        },
+        "crucial-feats:left:file:detects and counters attacks coming from a different dimension.jpg": {
+          "x": 70.86552045984317,
+          "y": 0,
+          "scale": 1.362236658208516
+        },
+        "crucial-feats:right:file:saitama can achieve flight.jpg": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "crucial-feats:left:file:belmod.png": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:a serious sneeze blows away the gas surrounding jupiter's.png": {
+          "x": 50,
+          "y": 30.69062361258914,
+          "scale": 1
+        }
+      }
     },
     "6 Bruce Lee vs Muhammad Ali": {
       "portraitAAdjust": {
@@ -291,52 +342,52 @@
         "scale": 1
       },
       "slideImageAdjustments": {
-        "raw-feats:left:left-1": {
+        "crucial-feats:left:left-1": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:right:right-2": {
+        "crucial-feats:right:right-2": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:right:right-3": {
+        "crucial-feats:right:right-3": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:right:right-4": {
+        "crucial-feats:right:right-4": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "raw-feats:left:left-2": {
+        "crucial-feats:left:left-2": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:left:left-3": {
+        "crucial-feats:left:left-3": {
           "x": 50,
           "y": 38.17712076032464,
           "scale": 1
         },
-        "raw-feats:right:right-5": {
+        "crucial-feats:right:right-5": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:right:right-1": {
+        "crucial-feats:right:right-1": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:left:left-4": {
+        "crucial-feats:left:left-4": {
           "x": 44.72340502493837,
           "y": 62.019230769230774,
           "scale": 1.1838907686658433
         },
-        "raw-feats:left:left-5": {
+        "crucial-feats:left:left-5": {
           "x": 50,
           "y": 100,
           "scale": 1
@@ -355,22 +406,47 @@
         "scale": 1
       },
       "slideImageAdjustments": {
-        "raw-feats:left:left-1": {
+        "crucial-feats:left:left-1": {
           "x": 50,
           "y": 96.79744981692043,
           "scale": 1
         },
-        "raw-feats:right:right-1": {
+        "crucial-feats:right:right-1": {
           "x": 50,
           "y": 100,
           "scale": 1
         },
-        "raw-feats:right:right-2": {
+        "crucial-feats:right:right-2": {
           "x": 50,
           "y": 50,
           "scale": 1
         },
-        "raw-feats:right:right-3": {
+        "crucial-feats:right:right-3": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:01_6_1_trigon_heart_of_darkness.jpg": {
+          "x": 50,
+          "y": 25.79232450086991,
+          "scale": 1
+        },
+        "crucial-feats:right:file:06_6_2_galactus_three_solar_systems.jpg": {
+          "x": 50,
+          "y": 33.09339641782631,
+          "scale": 1
+        },
+        "crucial-feats:left:file:02_6_1_trigon_countless_worlds.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:07_6_2_galactus_agamotto_realm.jpg": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "crucial-feats:right:slot:2": {
           "x": 50,
           "y": 50,
           "scale": 1
