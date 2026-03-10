@@ -68,14 +68,14 @@ export const TEMPLATE_PRESETS: TemplatePreset[] = [
   },
   {
     id: 'character-card-a',
-    name: 'Character blue',
+    name: 'Character dossier',
     description: 'Single full card for fighter A (more portrait space).',
     title: 'CHARACTER BLUE',
     subtitle: 'Archetype, style and tactical profile',
   },
   {
     id: 'character-card-b',
-    name: 'Character red',
+    name: 'Character dossier',
     description: 'Single full card for fighter B (more portrait space).',
     title: 'CHARACTER RED',
     subtitle: 'Archetype, style and tactical profile',

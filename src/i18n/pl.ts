@@ -48,13 +48,13 @@ export const translationsPl = {
         subtitle: 'Tabela kategorii i nieliniowa rzeczywistość starcia',
       },
       'character-card-a': {
-        name: 'Postać niebieska',
+        name: 'Dossier postaci',
         description: 'Pełna karta lewej postaci z większym miejscem na portret.',
         title: 'POSTAĆ NIEBIESKA',
         subtitle: 'Archetyp, styl i profil taktyczny',
       },
       'character-card-b': {
-        name: 'Postać czerwona',
+        name: 'Dossier postaci',
         description: 'Pełna karta prawej postaci z większym miejscem na portret.',
         title: 'POSTAĆ CZERWONA',
         subtitle: 'Archetyp, styl i profil taktyczny',
