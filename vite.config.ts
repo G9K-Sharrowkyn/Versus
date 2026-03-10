@@ -62,6 +62,12 @@ type PersistedFightVisualsStore = {
 
 const toPosixPath = (value: string) => value.split(path.sep).join('/')
 const normalizeFsPath = (value: string) => toPosixPath(path.resolve(value)).toLowerCase()
+const sanitizeFightPathSegment = (value: string) =>
+  value
+    .replace(/[<>:"/\\|?*\u0000-\u001f]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(/[. ]+$/g, '')
 const isPathInsideDirectory = (filePath: string, directoryPath: string) => {
   const relative = path.relative(directoryPath, filePath)
   return Boolean(relative) && !relative.startsWith('..') && !path.isAbsolute(relative)
@@ -406,6 +412,30 @@ const normalizeFightVisualsWritePayload = (value: unknown) => {
   return folders
 }
 
+const normalizeFightScaffoldWritePayload = (value: unknown) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  const raw = value as Record<string, unknown>
+  const matchName = typeof raw.matchName === 'string' ? sanitizeFightPathSegment(raw.matchName) : ''
+  const englishTxt = typeof raw.englishTxt === 'string' ? raw.englishTxt.trim() : ''
+  const polishTxt = typeof raw.polishTxt === 'string' ? raw.polishTxt.trim() : ''
+  const scansTxt = typeof raw.scansTxt === 'string' ? raw.scansTxt.trim() : ''
+  if (!matchName || !englishTxt || !polishTxt || !scansTxt) return null
+  return { matchName, englishTxt, polishTxt, scansTxt }
+}
+
+const getNextFightFolderIndex = async (fightsDir: string) => {
+  const entries = await fs.readdir(fightsDir, { withFileTypes: true })
+  const maxIndex = entries
+    .filter((entry) => entry.isDirectory())
+    .map((entry) => {
+      const match = entry.name.match(/^\s*(\d+)\s*[._ -]*/)
+      return match ? Number(match[1]) : 0
+    })
+    .filter((value) => Number.isFinite(value))
+    .reduce((highest, value) => Math.max(highest, value), 0)
+  return maxIndex + 1
+}
+
 const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warnings: string[] }> => {
   const warnings: string[] = []
   const fights: ScanFightRecord[] = []
@@ -636,7 +666,8 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
       return
     }
     const isVisualsWriteRequest = requestUrl.pathname === '/api/fights/visuals' && req.method === 'POST'
-    if (req.method !== 'GET' && !isVisualsWriteRequest) {
+    const isFightCreateRequest = requestUrl.pathname === '/api/fights/create' && req.method === 'POST'
+    if (req.method !== 'GET' && !isVisualsWriteRequest && !isFightCreateRequest) {
       res.statusCode = 405
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(asJson({ error: 'Method not allowed.' }))
@@ -671,6 +702,69 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         res.statusCode = 500
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
         res.end(asJson({ error: 'Failed to save fight visuals.', details: String(error) }))
+      }
+      return
+    }
+
+    if (isFightCreateRequest) {
+      const fightsDir = await resolveFightsDir()
+      if (!fightsDir) {
+        res.statusCode = 404
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(asJson({ error: 'Fights directory not found.' }))
+        return
+      }
+
+      try {
+        const payload = await readJsonBody(req)
+        const normalized = normalizeFightScaffoldWritePayload(payload)
+        if (!normalized) {
+          res.statusCode = 400
+          res.setHeader('Content-Type', 'application/json; charset=utf-8')
+          res.end(asJson({ error: 'Invalid fight scaffold payload.' }))
+          return
+        }
+
+        let nextIndex = await getNextFightFolderIndex(fightsDir)
+        let folderName = `${nextIndex} ${normalized.matchName}`.trim()
+        let folderPath = path.join(fightsDir, folderName)
+
+        while (true) {
+          try {
+            await fs.access(folderPath)
+            nextIndex += 1
+            folderName = `${nextIndex} ${normalized.matchName}`.trim()
+            folderPath = path.join(fightsDir, folderName)
+          } catch {
+            break
+          }
+        }
+
+        await fs.mkdir(path.join(folderPath, 'img'), { recursive: true })
+
+        const englishFileName = `${folderName}.txt`
+        const polishFileName = `${folderName} PL.txt`
+        const scansFileName = `${folderName} Scans.txt`
+
+        await fs.writeFile(path.join(folderPath, englishFileName), `${normalized.englishTxt}\n`, 'utf8')
+        await fs.writeFile(path.join(folderPath, polishFileName), `${normalized.polishTxt}\n`, 'utf8')
+        await fs.writeFile(path.join(folderPath, scansFileName), `${normalized.scansTxt}\n`, 'utf8')
+
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.setHeader('Cache-Control', 'no-store')
+        res.end(
+          asJson({
+            ok: true,
+            folderName,
+            folderKey: toPosixPath(folderName),
+            files: [englishFileName, polishFileName, scansFileName],
+          }),
+        )
+      } catch (error) {
+        res.statusCode = 500
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(asJson({ error: 'Failed to create fight scaffold.', details: String(error) }))
       }
       return
     }

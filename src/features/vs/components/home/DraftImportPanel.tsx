@@ -1,9 +1,8 @@
 import clsx from 'clsx'
-import type { ChangeEvent, DragEvent, RefObject } from 'react'
+import { useEffect, useMemo, useState, type ChangeEvent, type DragEvent, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../../i18n/types'
-import { buildPortraitImageStyle } from '../../helpers'
-import { DEFAULT_TEMPLATE_ORDER, injectDerivedTemplates } from '../../presets'
-import type { ImportDropTarget, ParsedVsImport, PortraitAdjust } from '../../types'
+import { DEFAULT_TEMPLATE_ORDER } from '../../presets'
+import type { ImportDropTarget, ParsedVsImport, PortraitAdjust, TemplateId, TemplatePreset } from '../../types'
 
 type DraftImportPanelProps = {
   ui: TranslationDictionary['ui']
@@ -20,6 +19,7 @@ type DraftImportPanelProps = {
   draftPortraitAdjustA: PortraitAdjust
   draftPortraitAdjustB: PortraitAdjust
   fightStarterTxt: string
+  availableTemplates: TemplatePreset[]
   onDropZoneDragEnter: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
   onDropZoneDragOver: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
   onDropZoneDragLeave: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
@@ -29,203 +29,286 @@ type DraftImportPanelProps = {
   onDraftImportFile: (event: ChangeEvent<HTMLInputElement>) => void | Promise<void>
   onCopyImportBlueprint: () => void
   onCreateFightFromDraft: () => void
+  onCreateFightScaffold: (matchName: string, templateOrder: TemplateId[]) => Promise<string>
+}
+
+const FINAL_TEMPLATE_ID: TemplateId = 'fight-card'
+
+const normalizeSelectedTemplateOrder = (order: TemplateId[]) => {
+  const next: TemplateId[] = []
+  order.forEach((templateId) => {
+    if (templateId === FINAL_TEMPLATE_ID) return
+    if (!next.includes(templateId)) next.push(templateId)
+  })
+  next.push(FINAL_TEMPLATE_ID)
+  return next
+}
+
+const parseMatchup = (value: string) => {
+  const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
+  if (!match) return null
+  const fighterAName = match[1]?.trim()
+  const fighterBName = match[2]?.trim()
+  if (!fighterAName || !fighterBName) return null
+  return { fighterAName, fighterBName }
 }
 
 export function DraftImportPanel({
   ui,
-  activeDropTarget,
-  draftTxtInputRef,
-  draftPortraitInputRefA,
-  draftPortraitInputRefB,
-  draftTxtFileName,
-  draftPayload,
-  draftPortraitFileA,
-  draftPortraitFileB,
-  draftPortraitPreviewA,
-  draftPortraitPreviewB,
-  draftPortraitAdjustA,
-  draftPortraitAdjustB,
-  fightStarterTxt,
-  onDropZoneDragEnter,
-  onDropZoneDragOver,
-  onDropZoneDragLeave,
-  onTxtDrop,
-  onPortraitDrop,
-  onDraftPortraitUpload,
-  onDraftImportFile,
-  onCopyImportBlueprint,
-  onCreateFightFromDraft,
+  availableTemplates,
+  onCreateFightScaffold,
 }: DraftImportPanelProps) {
-  const draftTemplateOrder = draftPayload
-    ? injectDerivedTemplates(
-        draftPayload.templateOrder.length ? draftPayload.templateOrder : DEFAULT_TEMPLATE_ORDER,
-        draftPayload,
-      ).join(' -> ')
-    : ui.notLoaded
+  const [matchName, setMatchName] = useState('')
+  const [preparedMatchName, setPreparedMatchName] = useState('')
+  const [selectedTemplateOrder, setSelectedTemplateOrder] = useState<TemplateId[]>(() =>
+    normalizeSelectedTemplateOrder(DEFAULT_TEMPLATE_ORDER),
+  )
+  const [draggedTemplateId, setDraggedTemplateId] = useState<TemplateId | null>(null)
+  const [errorMessage, setErrorMessage] = useState('')
+  const [successMessage, setSuccessMessage] = useState('')
+  const [isCreating, setIsCreating] = useState(false)
 
-  const draftBlocksCount = draftPayload ? Object.keys(draftPayload.templateBlocks).length : 0
+  const templateById = useMemo(
+    () => new Map(availableTemplates.map((template) => [template.id, template])),
+    [availableTemplates],
+  )
+
+  useEffect(() => {
+    const fallbackOrder = normalizeSelectedTemplateOrder(
+      DEFAULT_TEMPLATE_ORDER.filter((templateId) => templateById.has(templateId)),
+    )
+    setSelectedTemplateOrder((current) => {
+      if (current.length) {
+        const filtered = normalizeSelectedTemplateOrder(current.filter((templateId) => templateById.has(templateId)))
+        if (filtered.length) return filtered
+      }
+      return fallbackOrder
+    })
+  }, [templateById])
+
+  const selectedTemplates = selectedTemplateOrder
+    .map((templateId) => templateById.get(templateId))
+    .filter((template): template is TemplatePreset => Boolean(template))
+
+  const availableToAdd = availableTemplates.filter(
+    (template) => template.id !== FINAL_TEMPLATE_ID && !selectedTemplateOrder.includes(template.id),
+  )
+
+  const preparedMatchup = parseMatchup(preparedMatchName)
+
+  const handlePrepare = () => {
+    if (!parseMatchup(matchName)) {
+      setErrorMessage(ui.createFightNameError)
+      setSuccessMessage('')
+      return
+    }
+    setPreparedMatchName(matchName.trim())
+    setErrorMessage('')
+    setSuccessMessage('')
+  }
+
+  const addTemplate = (templateId: TemplateId) => {
+    setSelectedTemplateOrder((current) => normalizeSelectedTemplateOrder([...current, templateId]))
+  }
+
+  const removeTemplate = (templateId: TemplateId) => {
+    if (templateId === FINAL_TEMPLATE_ID) return
+    setSelectedTemplateOrder((current) => normalizeSelectedTemplateOrder(current.filter((entry) => entry !== templateId)))
+  }
+
+  const moveTemplateBefore = (draggedId: TemplateId, targetId: TemplateId) => {
+    if (draggedId === FINAL_TEMPLATE_ID || targetId === FINAL_TEMPLATE_ID && draggedId === FINAL_TEMPLATE_ID) return
+    setSelectedTemplateOrder((current) => {
+      const movable = current.filter((entry) => entry !== FINAL_TEMPLATE_ID)
+      const draggedIndex = movable.indexOf(draggedId)
+      const targetIndex = movable.indexOf(targetId)
+      if (draggedIndex < 0 || targetIndex < 0) return current
+      const next = movable.slice()
+      next.splice(draggedIndex, 1)
+      next.splice(targetIndex, 0, draggedId)
+      return normalizeSelectedTemplateOrder(next)
+    })
+  }
+
+  const handleCreate = async () => {
+    if (!preparedMatchup) {
+      setErrorMessage(ui.createFightNameError)
+      return
+    }
+
+    setIsCreating(true)
+    setErrorMessage('')
+    setSuccessMessage('')
+    try {
+      const folderName = await onCreateFightScaffold(preparedMatchName, selectedTemplateOrder)
+      setSuccessMessage(`${ui.createFightSuccess}: ${folderName}`)
+      setPreparedMatchName('')
+      setMatchName('')
+      setSelectedTemplateOrder(normalizeSelectedTemplateOrder(DEFAULT_TEMPLATE_ORDER))
+    } catch (error) {
+      setErrorMessage(error instanceof Error ? error.message : ui.createFightFailed)
+    } finally {
+      setIsCreating(false)
+    }
+  }
 
   return (
     <section className="panel">
-      <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-slate-100">{ui.homeTitle}</h2>
-      <p className="mt-2 text-sm text-slate-300">{ui.homeSubtitle}</p>
-      <p className="mt-2 text-sm text-slate-300">{ui.uploadHelp}</p>
+      <h2 className="text-lg font-semibold uppercase tracking-[0.12em] text-slate-100">{ui.scaffoldTitle}</h2>
+      <p className="mt-2 text-sm text-slate-300">{ui.scaffoldSubtitle}</p>
 
-      <label
-        className={clsx(
-          'mt-3 block rounded-xl border p-3 transition-colors',
-          activeDropTarget === 'txt' ? 'border-cyan-300/70 bg-cyan-500/14' : 'border-slate-700/70 bg-slate-950/55',
-        )}
-        onDragEnter={onDropZoneDragEnter('txt')}
-        onDragOver={onDropZoneDragOver('txt')}
-        onDragLeave={onDropZoneDragLeave('txt')}
-        onDrop={onTxtDrop}
-      >
-        <span className="section-label">{ui.matchTxt}</span>
-        <p className="mt-1 text-xs text-slate-300">{ui.dropTxtHint}</p>
-        <div className="mt-2 flex items-center gap-2">
-          <button
-            type="button"
-            className="rounded-lg border border-cyan-300/45 bg-cyan-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-cyan-100 transition hover:bg-cyan-300/28"
-            onClick={(event) => {
-              event.preventDefault()
-              draftTxtInputRef.current?.click()
-            }}
-          >
-            {ui.pickTxtButton}
-          </button>
-          <span className="truncate text-xs text-slate-300">{draftTxtFileName || ui.noFileSelected}</span>
-        </div>
+      <div className="mt-4 rounded-xl border border-slate-700/70 bg-slate-950/55 p-3">
+        <label className="section-label" htmlFor="fight-scaffold-name">
+          {ui.matchNameLabel}
+        </label>
         <input
-          ref={draftTxtInputRef}
-          type="file"
-          accept=".txt,text/plain"
-          className="hidden"
-          onChange={onDraftImportFile}
+          id="fight-scaffold-name"
+          type="text"
+          value={matchName}
+          onChange={(event) => setMatchName(event.target.value)}
+          placeholder={ui.matchNamePlaceholder}
+          className="mt-2 w-full rounded-xl border border-slate-700/80 bg-slate-950/85 px-3 py-3 text-sm text-slate-100 outline-none transition focus:border-cyan-300/65"
         />
-        <p className={clsx('mt-2 text-xs', draftTxtFileName ? 'text-emerald-200' : 'text-slate-400')}>
-          {draftTxtFileName ? `${ui.txtLoadedLabel}: ${draftTxtFileName}` : ui.txtNotLoadedLabel}
-        </p>
-      </label>
+        <div className="mt-3 flex flex-wrap gap-2">
+          <button type="button" className="button-soft" onClick={handlePrepare}>
+            {ui.prepareFightScaffold}
+          </button>
+        </div>
+        <p className="mt-3 text-xs text-slate-400">{ui.scaffoldHelp}</p>
+      </div>
 
-      <div className="mt-3 grid grid-cols-2 gap-2">
-        <label
-          className={clsx(
-            'rounded-xl border p-2 transition-colors',
-            activeDropTarget === 'a' ? 'border-sky-300/70 bg-sky-500/12' : 'border-slate-700/70 bg-slate-950/55',
-          )}
-          onDragEnter={onDropZoneDragEnter('a')}
-          onDragOver={onDropZoneDragOver('a')}
-          onDragLeave={onDropZoneDragLeave('a')}
-          onDrop={onPortraitDrop('a')}
-        >
-          <span className="section-label">{ui.portraitA}</span>
-          <p className="mt-1 text-xs text-slate-300">{ui.dropImageHint}</p>
-          <div className="mt-2 flex items-center gap-2">
-            <button
-              type="button"
-              className="rounded-lg border border-sky-300/45 bg-sky-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-sky-100 transition hover:bg-sky-300/28"
-              onClick={(event) => {
-                event.preventDefault()
-                draftPortraitInputRefA.current?.click()
-              }}
-            >
-              {ui.pickImageButton}
-            </button>
-            <span className="truncate text-xs text-slate-300">{draftPortraitFileA?.name || ui.noFileSelected}</span>
+      {preparedMatchup ? (
+        <div className="mt-4 space-y-4">
+          <div className="rounded-xl border border-cyan-300/30 bg-cyan-500/10 p-3 text-sm text-cyan-50">
+            <p className="section-label">{ui.scaffoldReadyLabel}</p>
+            <p className="mt-2">{preparedMatchName}</p>
+            <p className="mt-2 text-xs text-cyan-100/80">
+              {preparedMatchup.fighterAName} / {preparedMatchup.fighterBName}
+            </p>
           </div>
-          <input
-            ref={draftPortraitInputRefA}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={onDraftPortraitUpload('a')}
-          />
-          {draftPortraitPreviewA ? (
-            <img
-              src={draftPortraitPreviewA}
-              alt="portrait-a-preview"
-              className="mt-2 h-20 w-full rounded-md object-cover"
-              style={buildPortraitImageStyle(draftPortraitAdjustA)}
-            />
-          ) : null}
-        </label>
 
-        <label
-          className={clsx(
-            'rounded-xl border p-2 transition-colors',
-            activeDropTarget === 'b' ? 'border-rose-300/70 bg-rose-500/12' : 'border-slate-700/70 bg-slate-950/55',
-          )}
-          onDragEnter={onDropZoneDragEnter('b')}
-          onDragOver={onDropZoneDragOver('b')}
-          onDragLeave={onDropZoneDragLeave('b')}
-          onDrop={onPortraitDrop('b')}
-        >
-          <span className="section-label">{ui.portraitB}</span>
-          <p className="mt-1 text-xs text-slate-300">{ui.dropImageHint}</p>
-          <div className="mt-2 flex items-center gap-2">
-            <button
-              type="button"
-              className="rounded-lg border border-rose-300/45 bg-rose-400/20 px-3 py-1 text-xs font-semibold uppercase tracking-[0.1em] text-rose-100 transition hover:bg-rose-300/28"
-              onClick={(event) => {
-                event.preventDefault()
-                draftPortraitInputRefB.current?.click()
-              }}
-            >
-              {ui.pickImageButton}
-            </button>
-            <span className="truncate text-xs text-slate-300">{draftPortraitFileB?.name || ui.noFileSelected}</span>
+          <div className="grid gap-3 xl:grid-cols-[1.2fr_0.9fr]">
+            <div className="rounded-xl border border-slate-700/70 bg-slate-950/55 p-3">
+              <div className="flex items-center justify-between gap-3">
+                <p className="section-label">{ui.selectedTemplatesLabel}</p>
+                <p className="text-[11px] uppercase tracking-[0.16em] text-slate-400">{ui.templateDragHint}</p>
+              </div>
+
+              <div className="mt-3 space-y-2">
+                {selectedTemplates.map((template, index) => {
+                  const isFixedFinal = template.id === FINAL_TEMPLATE_ID
+                  return (
+                    <div
+                      key={template.id}
+                      draggable={!isFixedFinal}
+                      onDragStart={() => {
+                        if (isFixedFinal) return
+                        setDraggedTemplateId(template.id)
+                      }}
+                      onDragOver={(event) => {
+                        if (!draggedTemplateId || draggedTemplateId === template.id) return
+                        event.preventDefault()
+                      }}
+                      onDrop={(event) => {
+                        event.preventDefault()
+                        if (!draggedTemplateId || draggedTemplateId === template.id) return
+                        moveTemplateBefore(draggedTemplateId, template.id)
+                        setDraggedTemplateId(null)
+                      }}
+                      onDragEnd={() => setDraggedTemplateId(null)}
+                      className={clsx(
+                        'flex items-center gap-3 rounded-xl border px-3 py-3 transition',
+                        isFixedFinal
+                          ? 'border-amber-300/35 bg-amber-500/10'
+                          : draggedTemplateId === template.id
+                            ? 'border-cyan-300/70 bg-cyan-500/10'
+                            : 'border-slate-700/70 bg-slate-900/75',
+                      )}
+                    >
+                      <div className="flex w-8 shrink-0 items-center justify-center text-xs font-semibold text-slate-300">
+                        {index + 1}
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="truncate text-sm font-semibold text-slate-100">{template.name}</p>
+                        <p className="truncate text-xs text-slate-400">{template.id}</p>
+                      </div>
+                      {isFixedFinal ? (
+                        <span className="rounded-full border border-amber-300/45 px-2 py-1 text-[10px] font-semibold uppercase tracking-[0.14em] text-amber-100">
+                          {ui.templateFixedLabel}
+                        </span>
+                      ) : (
+                        <button
+                          type="button"
+                          className="rounded-lg border border-rose-300/35 bg-rose-500/10 px-2 py-1 text-[11px] font-semibold uppercase tracking-[0.1em] text-rose-100 transition hover:bg-rose-500/20"
+                          onClick={() => removeTemplate(template.id)}
+                        >
+                          {ui.removeTemplate}
+                        </button>
+                      )}
+                    </div>
+                  )
+                })}
+              </div>
+            </div>
+
+            <div className="rounded-xl border border-slate-700/70 bg-slate-950/55 p-3">
+              <p className="section-label">{ui.availableTemplatesLabel}</p>
+              <div className="mt-3 space-y-2">
+                {availableToAdd.length ? (
+                  availableToAdd.map((template) => (
+                    <button
+                      key={template.id}
+                      type="button"
+                      className="flex w-full items-center justify-between rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-3 text-left transition hover:border-cyan-300/45 hover:bg-slate-900"
+                      onClick={() => addTemplate(template.id)}
+                    >
+                      <span>
+                        <span className="block text-sm font-semibold text-slate-100">{template.name}</span>
+                        <span className="block text-xs text-slate-400">{template.id}</span>
+                      </span>
+                      <span className="text-xs font-semibold uppercase tracking-[0.12em] text-cyan-100">{ui.addTemplate}</span>
+                    </button>
+                  ))
+                ) : (
+                  <p className="rounded-xl border border-slate-700/70 bg-slate-900/75 px-3 py-4 text-sm text-slate-400">
+                    {ui.allTemplatesSelected}
+                  </p>
+                )}
+              </div>
+            </div>
           </div>
-          <input
-            ref={draftPortraitInputRefB}
-            type="file"
-            accept="image/*"
-            className="hidden"
-            onChange={onDraftPortraitUpload('b')}
-          />
-          {draftPortraitPreviewB ? (
-            <img
-              src={draftPortraitPreviewB}
-              alt="portrait-b-preview"
-              className="mt-2 h-20 w-full rounded-md object-cover"
-              style={buildPortraitImageStyle(draftPortraitAdjustB)}
-            />
+
+          <div className="rounded-xl border border-slate-700/70 bg-slate-950/55 p-3 text-sm text-slate-300">
+            <p className="section-label">{ui.generatedFilesLabel}</p>
+            <p className="mt-2">{ui.generatedFilesHelp}</p>
+            <ul className="mt-3 space-y-1 text-xs text-slate-400">
+              <li>`{ui.generatedFolderAuto}`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName}.txt`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName} PL.txt`</li>
+              <li>`&lt;auto number&gt; {preparedMatchName} Scans.txt`</li>
+              <li>`img/`</li>
+            </ul>
+          </div>
+
+          {errorMessage ? (
+            <div className="rounded-xl border border-rose-300/35 bg-rose-500/10 px-3 py-2 text-sm text-rose-100">
+              {errorMessage}
+            </div>
           ) : null}
-        </label>
-      </div>
 
-      <div className="mt-3 rounded-xl border border-slate-700/70 bg-slate-950/55 p-2 text-xs text-slate-300">
-        <p>
-          {ui.importFile}: {draftTxtFileName || ui.notLoaded}
-        </p>
-        <p className="mt-1">
-          {ui.templateOrderLoaded}: {draftTemplateOrder}
-        </p>
-        <p className="mt-1">
-          {ui.blocksDetected}: {draftBlocksCount}
-        </p>
-      </div>
+          {successMessage ? (
+            <div className="rounded-xl border border-emerald-300/35 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-100">
+              {successMessage}
+            </div>
+          ) : null}
 
-      <div className="mt-3 flex flex-wrap gap-2">
-        <button type="button" className="button-soft" onClick={onCopyImportBlueprint}>
-          {ui.copyBlueprint}
-        </button>
-        <button type="button" className="button-soft" onClick={onCreateFightFromDraft}>
-          {ui.createFight}
-        </button>
-      </div>
-
-      <details className="mt-3 rounded-xl border border-slate-700/70 bg-slate-950/55 p-2">
-        <summary className="cursor-pointer text-xs font-semibold uppercase tracking-[0.14em] text-slate-200">
-          {ui.templateRequirements}
-        </summary>
-        <p className="mt-2 text-xs text-slate-300">{ui.requirementsHelp}</p>
-        <textarea
-          readOnly
-          value={fightStarterTxt}
-          className="mt-2 h-56 w-full rounded-lg border border-slate-700/80 bg-slate-950/85 px-3 py-2 font-mono text-[11px] text-slate-100"
-        />
-      </details>
+          <div className="flex flex-wrap gap-2">
+            <button type="button" className="button-soft" disabled={isCreating} onClick={handleCreate}>
+              {isCreating ? ui.createFightWorking : ui.createFightFolder}
+            </button>
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

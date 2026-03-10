@@ -941,3 +941,111 @@ export const buildFightStarterTxt = (
 
   return lines.join('\n')
 }
+
+export const buildFightScaffoldTxt = (
+  language: FightManifestLocale,
+  fighterAName: string,
+  fighterBName: string,
+  templateOrder?: TemplateId[],
+) => {
+  const categories = getFightDefaultCategories(language)
+  const common = getFightCommonCopy(language)
+  const finalId = getFightFinalTemplateId()
+  const dedupedOrder: TemplateId[] = []
+  const sourceOrder = templateOrder?.length ? templateOrder : getFightTemplateIds()
+  sourceOrder.forEach((templateId) => {
+    if (templateId === finalId) return
+    if (!dedupedOrder.includes(templateId)) dedupedOrder.push(templateId)
+  })
+  dedupedOrder.push(finalId)
+
+  const lines: string[] = []
+  const blankBullets = (count: number) => {
+    for (let index = 0; index < count; index += 1) {
+      lines.push('-')
+    }
+  }
+
+  lines.push(`1. ${(fighterAName || (language === 'pl' ? 'Postać A' : 'Character A')).trim()} (Version)`)
+  lines.push(language === 'pl' ? '2. Statystyki Postaci A' : '2. Character A Stats')
+  categories.forEach((category) => lines.push(`- ${category.label}:`))
+  lines.push(language === 'pl' ? '3. Dossier Postaci A' : '3. Character A Dossier')
+  lines.push(`- ${common.style}:`)
+  lines.push(`- ${common.advantage}:`)
+  lines.push(`- ${common.mentality}:`)
+  lines.push(language === 'pl' ? '4. Pokonani przez Postać A' : '4. Defeated by Character A')
+  blankBullets(5)
+  lines.push(`5. ${(fighterBName || (language === 'pl' ? 'Postać B' : 'Character B')).trim()} (Version)`)
+  lines.push(language === 'pl' ? '6. Statystyki Postaci B' : '6. Character B Stats')
+  categories.forEach((category) => lines.push(`- ${category.label}:`))
+  lines.push(language === 'pl' ? '7. Dossier Postaci B' : '7. Character B Dossier')
+  lines.push(`- ${common.style}:`)
+  lines.push(`- ${common.advantage}:`)
+  lines.push(`- ${common.mentality}:`)
+  lines.push(language === 'pl' ? '8. Pokonani przez Postać B' : '8. Defeated by Character B')
+  blankBullets(5)
+  lines.push(language === 'pl' ? '9. Kolejność templatek użytych w tej walce' : '9. Template order used in this fight')
+  dedupedOrder.forEach((templateId) => lines.push(`- ${templateId}`))
+  lines.push('')
+  lines.push(language === 'pl' ? '10. Profil Postaci A' : '10. Character A Profile')
+  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
+  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
+  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
+  lines.push(language === 'pl' ? '11. Najważniejsze Wyczyny Postaci A' : '11. Character A Crucial Feats')
+  blankBullets(5)
+  lines.push(language === 'pl' ? '12. Profil Postaci B' : '12. Character B Profile')
+  lines.push(language === 'pl' ? '- Moce:' : '- Powers:')
+  lines.push(language === 'pl' ? '- Narzędzia:' : '- Tools:')
+  lines.push(language === 'pl' ? '- Słabości:' : '- Weaknesses:')
+  lines.push(language === 'pl' ? '13. Najważniejsze Wyczyny Postaci B' : '13. Character B Crucial Feats')
+  blankBullets(5)
+
+  return lines.join('\n')
+}
+
+export const buildFightScaffoldScansTxt = (templateOrder?: TemplateId[]) => {
+  const finalId = getFightFinalTemplateId()
+  const dedupedOrder: TemplateId[] = []
+  const sourceOrder = templateOrder?.length ? templateOrder : getFightTemplateIds()
+  sourceOrder.forEach((templateId) => {
+    if (templateId === finalId) return
+    if (!dedupedOrder.includes(templateId)) dedupedOrder.push(templateId)
+  })
+  const selectedOrder = new Set(dedupedOrder)
+  const lines: string[] = []
+
+  lines.push('Template Portraits:')
+  lines.push('- portrait_a:')
+  lines.push('- portrait_b:')
+  lines.push('')
+
+  if (selectedOrder.has('fight-analytics')) {
+    lines.push('Template Fight Analytics:')
+    lines.push('- profile_mode: VS')
+    lines.push('')
+  }
+
+  if (selectedOrder.has('crucial-feats')) {
+    lines.push('Template Crucial Feats:')
+    for (let index = 1; index <= 5; index += 1) {
+      lines.push(`- left_image_${index}:`)
+    }
+    for (let index = 1; index <= 5; index += 1) {
+      lines.push(`- right_image_${index}:`)
+    }
+    lines.push('')
+  }
+
+  if (selectedOrder.has('victory-archive')) {
+    lines.push('Template Victory Archive:')
+    for (let index = 1; index <= 5; index += 1) {
+      lines.push(`- left_image_${index}:`)
+    }
+    for (let index = 1; index <= 5; index += 1) {
+      lines.push(`- right_image_${index}:`)
+    }
+    lines.push('')
+  }
+
+  return lines.join('\n').trimEnd()
+}

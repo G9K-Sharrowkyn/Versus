@@ -1,7 +1,7 @@
 import type { ChangeEvent, DragEvent, RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import type { FightLibraryGroup } from '../domain/fightLibrary'
-import type { FightRecord, ImportDropTarget, ParsedVsImport, PortraitAdjust } from '../types'
+import type { FightRecord, ImportDropTarget, ParsedVsImport, PortraitAdjust, TemplateId, TemplatePreset } from '../types'
 import { DraftImportPanel } from './home/DraftImportPanel'
 import { FightLibraryPanel } from './home/FightLibraryPanel'
 import { HomeHeader } from './home/HomeHeader'
@@ -25,6 +25,7 @@ type HomeViewProps = {
   folderFightGroups: FightLibraryGroup[]
   folderScanWarnings: string[]
   fightStarterTxt: string
+  availableTemplates: TemplatePreset[]
   activeFightId: string | null
   preferredVariantByMatchup: Record<string, string>
   onToggleLanguage: () => void
@@ -37,6 +38,7 @@ type HomeViewProps = {
   onDraftImportFile: (event: ChangeEvent<HTMLInputElement>) => void | Promise<void>
   onCopyImportBlueprint: () => void
   onCreateFightFromDraft: () => void
+  onCreateFightScaffold: (matchName: string, templateOrder: TemplateId[]) => Promise<string>
   onOpenFight: (fightId: string) => void
   onRememberPreferredFightVariant: (fight: FightRecord) => void
   onOpenSavedFightPortraitEditor: (fightId: string, side: 'a' | 'b') => void
@@ -63,6 +65,7 @@ export function HomeView(props: HomeViewProps) {
     folderFightGroups,
     folderScanWarnings,
     fightStarterTxt,
+    availableTemplates,
     activeFightId,
     preferredVariantByMatchup,
     onToggleLanguage,
@@ -75,6 +78,7 @@ export function HomeView(props: HomeViewProps) {
     onDraftImportFile,
     onCopyImportBlueprint,
     onCreateFightFromDraft,
+    onCreateFightScaffold,
     onOpenFight,
     onRememberPreferredFightVariant,
     onOpenSavedFightPortraitEditor,
@@ -100,6 +104,7 @@ export function HomeView(props: HomeViewProps) {
           draftPortraitAdjustA={draftPortraitAdjustA}
           draftPortraitAdjustB={draftPortraitAdjustB}
           fightStarterTxt={fightStarterTxt}
+          availableTemplates={availableTemplates}
           onDropZoneDragEnter={onDropZoneDragEnter}
           onDropZoneDragOver={onDropZoneDragOver}
           onDropZoneDragLeave={onDropZoneDragLeave}
@@ -109,6 +114,7 @@ export function HomeView(props: HomeViewProps) {
           onDraftImportFile={onDraftImportFile}
           onCopyImportBlueprint={onCopyImportBlueprint}
           onCreateFightFromDraft={onCreateFightFromDraft}
+          onCreateFightScaffold={onCreateFightScaffold}
         />
         <FightLibraryPanel
           ui={ui}

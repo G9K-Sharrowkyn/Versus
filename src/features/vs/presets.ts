@@ -111,8 +111,18 @@ export const insertTemplateAfterAnchor = (order: TemplateId[], templateId: Templ
 
 export const injectDerivedTemplates = (order: TemplateId[], payload: ParsedVsImport) => {
   let next = ensureTemplateOrderHasFinal(order)
-  const hasPowers = payload.powersA.length > 0 || payload.powersB.length > 0
-  const hasCrucialFeats = payload.crucialFeatsA.length > 0 || payload.crucialFeatsB.length > 0
+  const hasMeaningfulFacts = (facts: ParsedVsImport['powersA']) =>
+    facts.some((entry) => {
+      const text = entry.text.trim()
+      return Boolean(text && text !== '-')
+    })
+  const hasMeaningfulBullets = (items: string[]) =>
+    items.some((item) => {
+      const text = item.trim()
+      return Boolean(text && text !== '-')
+    })
+  const hasPowers = hasMeaningfulFacts(payload.powersA) || hasMeaningfulFacts(payload.powersB)
+  const hasCrucialFeats = hasMeaningfulBullets(payload.crucialFeatsA) || hasMeaningfulBullets(payload.crucialFeatsB)
 
   if (hasPowers) {
     next = insertTemplateAfterAnchor(next, 'character-profile', ['character-dossier-b', 'character-dossier-a', 'tactical-board'])

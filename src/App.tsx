@@ -30,7 +30,7 @@ import {
   normalizeSlideImageAdjustments,
   stripFileExtension,
 } from './features/vs/helpers'
-import { buildFightStarterTxt } from './features/vs/importer'
+import { buildFightScaffoldScansTxt, buildFightScaffoldTxt, buildFightStarterTxt } from './features/vs/importer'
 import { useAnimatedCursor } from './features/vs/hooks/useAnimatedCursor'
 import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import { useVsDraftImport } from './features/vs/hooks/useVsDraftImport'
@@ -65,6 +65,15 @@ const FIGHTS_SCAN_POLL_MS = 1200
 const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
+
+const parseFightScaffoldMatchup = (value: string) => {
+  const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
+  if (!match) return null
+  const fighterAName = match[1]?.trim()
+  const fighterBName = match[2]?.trim()
+  if (!fighterAName || !fighterBName) return null
+  return { fighterAName, fighterBName }
+}
 
 function App() {
   const [language, setLanguage] = useState<Language>(DEFAULT_LANGUAGE)
@@ -422,6 +431,40 @@ function App() {
     }
   }
 
+  const createFightScaffold = async (matchName: string, selectedTemplateOrder: TemplateId[]) => {
+    const parsedMatchup = parseFightScaffoldMatchup(matchName)
+    if (!parsedMatchup) {
+      throw new Error(ui.createFightNameError)
+    }
+
+    const englishTxt = buildFightScaffoldTxt('en', parsedMatchup.fighterAName, parsedMatchup.fighterBName, selectedTemplateOrder)
+    const polishTxt = buildFightScaffoldTxt('pl', parsedMatchup.fighterAName, parsedMatchup.fighterBName, selectedTemplateOrder)
+    const scansTxt = buildFightScaffoldScansTxt(selectedTemplateOrder)
+
+    const response = await fetch('/api/fights/create', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        matchName,
+        englishTxt,
+        polishTxt,
+        scansTxt,
+      }),
+    })
+
+    const payload = await response.json().catch(() => null) as { folderName?: string; error?: string } | null
+    if (!response.ok) {
+      throw new Error(payload?.error || ui.createFightFailed)
+    }
+
+    if (payload?.folderName) {
+      flashStatus(`${ui.createFightSuccess}: ${payload.folderName}`)
+      return payload.folderName
+    }
+
+    throw new Error(ui.createFightFailed)
+  }
+
   const activeFightRecord = useMemo(
     () => fights.find((fight) => fight.id === activeFightId) || null,
     [activeFightId, fights],
@@ -548,6 +591,7 @@ function App() {
             folderFightGroups={folderFightGroups}
             folderScanWarnings={folderScanWarnings}
             fightStarterTxt={fightStarterTxt}
+            availableTemplates={localizedTemplates}
             activeFightId={activeFightId}
             preferredVariantByMatchup={preferredVariantByMatchup}
             onToggleLanguage={toggleLanguage}
@@ -564,6 +608,7 @@ function App() {
             onCreateFightFromDraft={() => {
               void createFightFromDraft()
             }}
+            onCreateFightScaffold={createFightScaffold}
             onOpenFight={openFight}
             onRememberPreferredFightVariant={rememberPreferredFightVariant}
             onOpenSavedFightPortraitEditor={openSavedFightPortraitEditor}

@@ -1,5 +1,7 @@
 ﻿import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
 import {
+  buildFightScaffoldScansTxt,
+  buildFightScaffoldTxt,
   buildFightStarterTxt as buildManifestFightStarterTxt,
   getFightCommonCopy,
   getFightTemplateBlockAliases,
@@ -139,6 +141,8 @@ export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = getFightT
 
 export const buildFightStarterTxt = (language: Language, templateOrder?: TemplateId[]) =>
   buildManifestFightStarterTxt(language, templateOrder)
+
+export { buildFightScaffoldTxt, buildFightScaffoldScansTxt }
 
 export const findTemplateBlockLines = (
   blocks: Record<string, string[]>,
