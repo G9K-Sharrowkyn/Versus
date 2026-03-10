@@ -30,7 +30,7 @@ import {
   normalizeSlideImageAdjustments,
   stripFileExtension,
 } from './features/vs/helpers'
-import { buildImportTxtBlueprint } from './features/vs/importer'
+import { buildFightStarterTxt } from './features/vs/importer'
 import { useAnimatedCursor } from './features/vs/hooks/useAnimatedCursor'
 import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import { useVsDraftImport } from './features/vs/hooks/useVsDraftImport'
@@ -76,7 +76,7 @@ function App() {
     () => TEMPLATE_PRESETS.map((template) => localizeTemplatePreset(template, language)),
     [language],
   )
-  const importTxtBlueprint = useMemo(() => buildImportTxtBlueprint(language), [language])
+  const fightStarterTxt = useMemo(() => buildFightStarterTxt(language), [language])
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
   const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(DEFAULT_LANGUAGE))
@@ -415,7 +415,7 @@ function App() {
 
   const copyImportBlueprint = async () => {
     try {
-      await navigator.clipboard.writeText(importTxtBlueprint)
+      await navigator.clipboard.writeText(fightStarterTxt)
       flashStatus(ui.blueprintCopied)
     } catch {
       flashStatus(ui.clipboardBlocked)
@@ -547,7 +547,7 @@ function App() {
             manualFights={manualFights}
             folderFightGroups={folderFightGroups}
             folderScanWarnings={folderScanWarnings}
-            importTxtBlueprint={importTxtBlueprint}
+            fightStarterTxt={fightStarterTxt}
             activeFightId={activeFightId}
             preferredVariantByMatchup={preferredVariantByMatchup}
             onToggleLanguage={toggleLanguage}

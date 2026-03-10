@@ -1,8 +1,8 @@
-import { LightningCanvas } from '../../components/LightningCanvas'
+import { buildFightTemplateChrome, getFightTemplateDefaultField } from '../../fightManifest'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
-import { pickLang } from '../../presets'
 import type { TemplatePreviewProps } from '../../types'
+import { LightningCanvas } from '../../components/LightningCanvas'
 import {
   HIGH_END_FRAME_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -25,23 +25,23 @@ export function TacticalBoardTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const boardHeader = pickTemplateField(blockFields, ['left_header', 'categories_header']) || tr('Kategorie', 'Categories')
-  const realityHeader = pickTemplateField(blockFields, ['right_header', 'reality_header']) || tr('Rzeczywistość walki', 'Combat reality')
-  const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
-  const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
+  const boardHeader =
+    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
+    getFightTemplateDefaultField('tactical-board', 'left_header', language)
+  const realityHeader =
+    pickTemplateField(blockFields, ['right_header', 'reality_header']) ||
+    getFightTemplateDefaultField('tactical-board', 'right_header', language)
+  const linearLabel =
+    pickTemplateField(blockFields, ['linear_label']) ||
+    getFightTemplateDefaultField('tactical-board', 'linear_label', language)
+  const chaosLabel =
+    pickTemplateField(blockFields, ['chaos_label']) ||
+    getFightTemplateDefaultField('tactical-board', 'chaos_label', language)
   const fallbackMatchup = `${fighterA.name || 'Fighter A'} VS ${fighterB.name || 'Fighter B'}`
   const parsedHeader = headerText.trim().match(MATCHUP_SEPARATOR_RE)
   const mainHeaderText = parsedHeader?.[1]?.trim() || headerText
@@ -61,41 +61,35 @@ export function TacticalBoardTemplate({
         <div className="relative z-10 flex h-full min-h-0 flex-col gap-3">
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
             <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
             </div>
             <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
                 {mainHeaderText}
               </h2>
               {matchupText ? (
-                <p
-                  className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
+                <p className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
                   {matchupText}
                 </p>
               ) : headerText === fallbackMatchup ? (
-                <p
-                  className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
+                <p className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
                   {fallbackMatchup}
                 </p>
               ) : null}
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>
             <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
-    onClick={onToggleLanguage}
-  >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
+              <button
+                type="button"
+                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
+                title={chrome.brandMarkTitle}
+                aria-label={chrome.brandMarkAria}
+                onClick={onToggleLanguage}
+              >
+                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+              </button>
+            </div>
           </div>
 
           <div className="grid min-h-0 flex-1 grid-cols-2 gap-3">

@@ -24,7 +24,7 @@ type HomeViewProps = {
   manualFights: FightRecord[]
   folderFightGroups: FightLibraryGroup[]
   folderScanWarnings: string[]
-  importTxtBlueprint: string
+  fightStarterTxt: string
   activeFightId: string | null
   preferredVariantByMatchup: Record<string, string>
   onToggleLanguage: () => void
@@ -62,7 +62,7 @@ export function HomeView(props: HomeViewProps) {
     manualFights,
     folderFightGroups,
     folderScanWarnings,
-    importTxtBlueprint,
+    fightStarterTxt,
     activeFightId,
     preferredVariantByMatchup,
     onToggleLanguage,
@@ -99,7 +99,7 @@ export function HomeView(props: HomeViewProps) {
           draftPortraitPreviewB={draftPortraitPreviewB}
           draftPortraitAdjustA={draftPortraitAdjustA}
           draftPortraitAdjustB={draftPortraitAdjustB}
-          importTxtBlueprint={importTxtBlueprint}
+          fightStarterTxt={fightStarterTxt}
           onDropZoneDragEnter={onDropZoneDragEnter}
           onDropZoneDragOver={onDropZoneDragOver}
           onDropZoneDragLeave={onDropZoneDragLeave}

@@ -19,7 +19,7 @@ type DraftImportPanelProps = {
   draftPortraitPreviewB: string
   draftPortraitAdjustA: PortraitAdjust
   draftPortraitAdjustB: PortraitAdjust
-  importTxtBlueprint: string
+  fightStarterTxt: string
   onDropZoneDragEnter: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
   onDropZoneDragOver: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
   onDropZoneDragLeave: (target: ImportDropTarget) => (event: DragEvent<HTMLElement>) => void
@@ -45,7 +45,7 @@ export function DraftImportPanel({
   draftPortraitPreviewB,
   draftPortraitAdjustA,
   draftPortraitAdjustB,
-  importTxtBlueprint,
+  fightStarterTxt,
   onDropZoneDragEnter,
   onDropZoneDragOver,
   onDropZoneDragLeave,
@@ -222,7 +222,7 @@ export function DraftImportPanel({
         <p className="mt-2 text-xs text-slate-300">{ui.requirementsHelp}</p>
         <textarea
           readOnly
-          value={importTxtBlueprint}
+          value={fightStarterTxt}
           className="mt-2 h-56 w-full rounded-lg border border-slate-700/80 bg-slate-950/85 px-3 py-2 font-mono text-[11px] text-slate-100"
         />
       </details>

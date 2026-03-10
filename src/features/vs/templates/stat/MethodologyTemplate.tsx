@@ -1,4 +1,4 @@
-import { pickLang } from '../../presets'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
@@ -14,27 +14,30 @@ import {
 } from '../shared/highEnd'
 
 export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language, onToggleLanguage }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.methodology || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
+  const common = getFightCommonCopy(language)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
-  const listLabel = pickTemplateField(blockFields, ['list_label']) || tr('Lista metod', 'Method list')
-  const realityLabel = pickTemplateField(blockFields, ['reality_label']) || tr('Rzeczywistość walki', 'Combat reality')
-  const linearLabel = pickTemplateField(blockFields, ['linear_label']) || tr('ODCINEK LINIOWY', 'LINEAR SEGMENT')
-  const chaosLabel = pickTemplateField(blockFields, ['chaos_label']) || tr('ODCINEK CHAOSU', 'CHAOS SEGMENT')
-  const closingLabel = pickTemplateField(blockFields, ['closing_label']) || tr('Statystyki są liniowe. Walka nie jest.', 'Stats are linear. Fight is not.')
+  const listLabel =
+    pickTemplateField(blockFields, ['list_label']) ||
+    getFightTemplateDefaultField('methodology', 'list_label', language)
+  const realityLabel =
+    pickTemplateField(blockFields, ['reality_label']) ||
+    getFightTemplateDefaultField('methodology', 'reality_label', language)
+  const linearLabel =
+    pickTemplateField(blockFields, ['linear_label']) ||
+    getFightTemplateDefaultField('methodology', 'linear_label', language)
+  const chaosLabel =
+    pickTemplateField(blockFields, ['chaos_label']) ||
+    getFightTemplateDefaultField('methodology', 'chaos_label', language)
+  const closingLabel =
+    pickTemplateField(blockFields, ['closing_label']) ||
+    getFightTemplateDefaultField('methodology', 'closing_label', language)
   const safeRows = rows.length
     ? rows
-    : [{ id: 'fallback', label: tr('Bazowy', 'Baseline'), a: 50, b: 50, delta: 0, winner: 'draw' as const }]
+    : [{ id: 'fallback', label: common.baseline, a: 50, b: 50, delta: 0, winner: 'draw' as const }]
 
   const splitX = 50
   const linearStartX = 8
@@ -50,24 +53,24 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
         <div className="relative z-10 flex h-full flex-col text-slate-100">
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
             <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
             </div>
             <div className="text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>{headerText}</h2>
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>
             <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
-    onClick={onToggleLanguage}
-  >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
+              <button
+                type="button"
+                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
+                title={chrome.brandMarkTitle}
+                aria-label={chrome.brandMarkAria}
+                onClick={onToggleLanguage}
+              >
+                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+              </button>
+            </div>
           </div>
 
           <div className="mt-3 grid flex-1 grid-cols-[1fr_1.7fr] gap-3">

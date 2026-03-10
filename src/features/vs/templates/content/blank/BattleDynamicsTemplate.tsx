@@ -1,5 +1,6 @@
+import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
+import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
 import { pickLang } from '../../../presets'
-import { TEMPLATE_BLOCK_ALIASES, buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -19,23 +20,17 @@ export function BattleDynamicsTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
+  const common = getFightCommonCopy(language)
   const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
   const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
   const phase1 = line(
     0,
     ['phase_1', 'phase1'],
@@ -83,8 +78,8 @@ export function BattleDynamicsTemplate({
         <div className="relative z-10 flex h-full flex-col">
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
             <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
             </div>
             <div className="text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
@@ -93,16 +88,16 @@ export function BattleDynamicsTemplate({
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>
             <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
-    onClick={onToggleLanguage}
-  >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
+              <button
+                type="button"
+                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
+                title={chrome.brandMarkTitle}
+                aria-label={chrome.brandMarkAria}
+                onClick={onToggleLanguage}
+              >
+                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+              </button>
+            </div>
           </div>
 
           <div className="relative mt-2 min-h-0 rounded-md border border-cyan-300/30 bg-slate-950/65 p-2">
@@ -125,17 +120,17 @@ export function BattleDynamicsTemplate({
               <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.35" markerEnd="url(#arrow-dark)" />
 
               <text x="4.5" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
-                {tr('POCZĄTEK', 'START')}
+                {common.startLabel}
               </text>
               <text x="45" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
-                {tr('CZAS WALKI', 'FIGHT TIME')}
+                {common.fightTimeLabel}
               </text>
               <text x="90.8" y="47.8" fontSize="2.5" fill="#e2e8f0" fontWeight="700">
-                {tr('KONIEC', 'END')}
+                {common.endLabel}
               </text>
 
               <text x="3" y="30" fontSize="2.7" fill="#e2e8f0" fontWeight="700" transform="rotate(-90 3 30)">
-                {tr('PRZEWAGA / KONDYCJA', 'ADVANTAGE / STAMINA')}
+                {common.advantageStaminaLabel}
               </text>
 
               <line x1="50.5" y1="8" x2="50.5" y2="44" stroke="#64748b" strokeWidth="0.25" strokeDasharray="1.1 0.9" />
@@ -155,15 +150,15 @@ export function BattleDynamicsTemplate({
 
             <div className="relative z-10 mt-3 grid grid-cols-3 gap-3">
               <div className="rounded-sm border-[3px] border-[#0ea5e9] bg-[#071b31]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(14,165,233,0.45)]">
-                <p className="font-semibold">{tr('Faza 1: Otwarcie.', 'Phase 1: Opening.')}</p>
+                <p className="font-semibold">{common.phase1Label}</p>
                 <p>{phase1}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#64748b] bg-[#111827]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(71,85,105,0.45)]">
-                <p className="font-semibold">{tr('Faza 2: Środek walki.', 'Phase 2: Midfight.')}</p>
+                <p className="font-semibold">{common.phase2Label}</p>
                 <p>{phase2}</p>
               </div>
               <div className="rounded-sm border-[3px] border-[#f43f5e] bg-[#2b101b]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(244,63,94,0.45)]">
-                <p className="font-semibold">{tr('Faza 3: Końcówka.', 'Phase 3: Endgame.')}</p>
+                <p className="font-semibold">{common.phase3Label}</p>
                 <p>{phase3}</p>
               </div>
             </div>

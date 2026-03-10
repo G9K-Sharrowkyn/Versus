@@ -1,5 +1,6 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
-import { defaultFactsFor, pickLang } from '../../presets'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
+import { defaultFactsFor } from '../../presets'
 import { TEMPLATE_BLOCK_ALIASES, buildCardFacts, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import {
@@ -25,11 +26,12 @@ export function CharacterDossierBTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const fighterText = fighterB.name || tr('Postać B', 'Fighter B')
+  const common = getFightCommonCopy(language)
+  const fighterText = fighterB.name || 'Fighter B'
   const safeFacts = factsB.length ? factsB : defaultFactsFor('b', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-b'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
   const fighterForCard = {
     ...fighterB,
     subtitle: pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterB.subtitle,
@@ -38,22 +40,15 @@ export function CharacterDossierBTemplate({
   const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
     .trim()
-  const cornerLabel = tr('Czerwony narożnik', 'Red corner')
-  const subText = cornerLabel
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
+  const subText =
+    pickTemplateField(blockFields, ['corner_label']) ||
+    getFightTemplateDefaultField('character-dossier-b', 'corner_label', language)
   const fighterSubtitle = fighterForCard.subtitle
     .replace(/^\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\b\s*(?:(?:\/\/)|[|/-])?\s*/i, '')
     .trim()
   const quote =
     pickTemplateField(blockFields, ['quote', 'cytat']) ||
-    tr('Nie szuka czystej walki. Szuka zniszczenia.', 'He does not seek a clean fight. He seeks destruction.')
+    getFightTemplateDefaultField('character-dossier-b', 'quote', language)
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -62,8 +57,8 @@ export function CharacterDossierBTemplate({
         <div className="relative z-10 flex h-full flex-col">
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
             <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
             </div>
             <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
@@ -72,31 +67,28 @@ export function CharacterDossierBTemplate({
               {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
             </div>
             <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
-    onClick={onToggleLanguage}
-  >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
+              <button
+                type="button"
+                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
+                title={chrome.brandMarkTitle}
+                aria-label={chrome.brandMarkAria}
+                onClick={onToggleLanguage}
+              >
+                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+              </button>
+            </div>
           </div>
           <div
             className={`mt-3 min-h-0 flex-1 ${HIGH_END_FRAME_CLASS} p-3`}
             style={{ boxShadow: `0 0 0 1px ${fighterForCard.color}33 inset` }}
           >
             <div className="grid h-full grid-cols-[1.06fr_1.4fr] gap-3">
-              <div
-                className="relative overflow-hidden rounded-lg border bg-slate-950/80"
-                style={{ borderColor: `${fighterForCard.color}88` }}
-              >
+              <div className="relative overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterForCard.color}88` }}>
                 <AdjustableTemplateImage
                   imageUrl={fighterForCard.imageUrl}
                   alt={fighterText}
-                  fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
-                  hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
+                  fallbackLabel={common.portraitSlot}
+                  hintLabel={chrome.portraitAdjustHint}
                   adjustKey="character-dossier-b:portrait"
                   baseAdjust={portraitBAdjust}
                   adjustments={slideImageAdjustments}
@@ -114,10 +106,7 @@ export function CharacterDossierBTemplate({
 
               <div className={`flex h-full flex-col ${HIGH_END_CARD_CLASS} p-3`}>
                 <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                  <h3
-                    className="text-2xl uppercase leading-none"
-                    style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}
-                  >
+                  <h3 className="text-2xl uppercase leading-none" style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}>
                     {fighterText}
                   </h3>
                   {fighterSubtitle ? <p className="mt-1 text-sm text-slate-300">{fighterSubtitle}</p> : null}

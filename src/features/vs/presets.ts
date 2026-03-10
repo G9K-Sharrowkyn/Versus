@@ -1,5 +1,14 @@
 ﻿import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
 import { getTranslations } from '../../i18n'
+import {
+  getFightDefaultCategories,
+  getFightDefaultProfileFacts,
+  getFightDefaultVictoryArchive,
+  getFightFinalTemplateId,
+  getFightTemplateIds,
+  getFightTemplatePreset,
+  getFightTemplatePresets,
+} from './fightManifest'
 import type { Category, Fighter, FighterFact, FightScenarioId, Language, ParsedVsImport, TemplateId, TemplatePreset } from './types'
 
 type IconType = LucideIcon
@@ -7,20 +16,9 @@ type IconType = LucideIcon
 export const FIGHTER_A_COLOR = '#3FC3CF'
 export const FIGHTER_B_COLOR = '#EF5D5D'
 
-export const DEFAULT_CATEGORIES: Category[] = [
-  { id: 'strength', label: 'Strength' },
-  { id: 'speed', label: 'Speed' },
-  { id: 'durability', label: 'Durability' },
-  { id: 'battleIq', label: 'Combat IQ' },
-  { id: 'hax', label: 'Hax' },
-  { id: 'stamina', label: 'Stamina' },
-  { id: 'style', label: 'Fighting Style' },
-  { id: 'experience', label: 'Experience' },
-  { id: 'skills', label: 'Combat Skills' },
-]
+export const DEFAULT_CATEGORIES: Category[] = getFightDefaultCategories('en')
 
-export const defaultCategoriesFor = (language: Language): Category[] =>
-  Object.entries(getTranslations(language).categories).map(([id, label]) => ({ id, label }))
+export const defaultCategoriesFor = (language: Language): Category[] => getFightDefaultCategories(language)
 
 export const FIGHTER_A: Fighter = {
   name: 'Superman',
@@ -58,140 +56,12 @@ export const FIGHTER_B: Fighter = {
   },
 }
 
-export const TEMPLATE_PRESETS: TemplatePreset[] = [
-  {
-    id: 'tactical-board',
-    name: 'Tactical board',
-    description: 'Category board and combat-reality screen.',
-    title: 'TACTICAL BOARD',
-    subtitle: 'Category table and non-linear combat reality',
-  },
-  {
-    id: 'character-dossier-a',
-    name: 'Character dossier',
-    description: 'Single full card for fighter A (more portrait space).',
-    title: 'CHARACTER DOSSIER',
-    subtitle: 'Archetype, style and tactical profile',
-  },
-  {
-    id: 'character-dossier-b',
-    name: 'Character dossier',
-    description: 'Single full card for fighter B (more portrait space).',
-    title: 'CHARACTER DOSSIER',
-    subtitle: 'Archetype, style and tactical profile',
-  },
-  {
-    id: 'character-profile',
-    name: 'Character profile',
-    description: 'Split dossier for both fighters with grouped tools and weaknesses.',
-    title: 'CHARACTER PROFILE',
-    subtitle: 'POWERS, TOOLS, AND WEAKNESSES',
-  },
-  {
-    id: 'crucial-feats',
-    name: 'Crucial feats',
-    description: 'Side-by-side feat ledger sourced from the import file.',
-    title: 'CRUCIAL FEATS',
-    subtitle: 'Character scaling through achievements.',
-  },
-  {
-    id: 'fight-analytics',
-    name: 'Fight analytics',
-    description: 'Military HUD look with long horizontal bars like output (1).',
-    title: 'FIGHT ANALYTICS',
-    subtitle: 'Two-profile stat readout',
-  },
-  {
-    id: 'parameter-comparison',
-    name: 'Parameter comparison',
-    description: 'Center radar, side winner notes, bottom score strip.',
-    title: 'PARAMETER COMPARISON',
-    subtitle: 'Average stat profile map',
-  },
-  {
-    id: 'victory-archive',
-    name: 'Victory archive',
-    description: 'List of top beaten opponents for both fighters.',
-    title: 'Victory Archive',
-    subtitle: '',
-  },
-  {
-    id: 'final-summary',
-    name: 'Final summary',
-    description: 'Summary card placeholder from imported template block.',
-    title: 'FINAL SUMMARY',
-    subtitle: 'Summary',
-  },
-  {
-    id: 'battle-dynamics',
-    name: 'Battle dynamics',
-    description: 'Battle dynamics placeholder for custom data.',
-    title: 'BATTLE DYNAMICS',
-    subtitle: 'How the fight changes minute by minute.',
-  },
-  {
-    id: 'x-factor',
-    name: 'X-Factor',
-    description: 'Critical variable placeholder panel.',
-    title: 'X-FACTOR',
-    subtitle: 'The variable that affects the verdict more than ordinary stats.',
-  },
-  {
-    id: 'interpretation',
-    name: 'Interpretation',
-    description: 'Interpretation placeholder for narrative readout.',
-    title: 'INTERPRETATION',
-    subtitle: 'Who wins the fight on paper?',
-  },
-  {
-    id: 'fight-simulation',
-    name: 'Fight simulation',
-    description: 'Simulation placeholder for phase-by-phase scenario.',
-    title: 'FIGHT SIMULATION',
-    subtitle: 'The course of the fight across three phases.',
-  },
-  {
-    id: 'stat-trap',
-    name: 'Stat trap',
-    description: 'Non-linear trap placeholder.',
-    title: 'STAT TRAP',
-    subtitle: 'Why better stats do not guarantee victory',
-  },
-  {
-    id: 'verdict-matrix',
-    name: 'Verdict matrix',
-    description: 'Decision matrix placeholder.',
-    title: 'VERDICT MATRIX',
-    subtitle: 'Victory depends on the rules.',
-  },
-  {
-    id: 'new-template',
-    name: 'New template',
-    description: 'Empty placeholder field for the next layout.',
-    title: 'NEW TEMPLATE',
-    subtitle: 'Placeholder area',
-  },
-  {
-    id: 'fight-card',
-    name: 'Fight card',
-    description: 'Animated title card rendered as the final screen.',
-    title: 'FIGHT CARD',
-    subtitle: 'Animated final matchup text',
-  },
-]
+export const TEMPLATE_PRESETS: TemplatePreset[] = getFightTemplatePresets('en')
 
 export const pickLang = (language: Language, pl: string, en: string) => (language === 'pl' ? pl : en)
 
-export const localizeTemplatePreset = (preset: TemplatePreset, language: Language): TemplatePreset => {
-  const copy = getTranslations(language).templates.presets[preset.id]
-  return {
-    ...preset,
-    name: copy.name,
-    description: copy.description,
-    title: copy.title,
-    subtitle: copy.subtitle,
-  }
-}
+export const localizeTemplatePreset = (preset: TemplatePreset, language: Language): TemplatePreset =>
+  getFightTemplatePreset(preset.id, language)
 
 export const LEGACY_FIGHTS_STORAGE_KEY = 'versus-verse-vault:fights:v1'
 export const LEGACY_ACTIVE_FIGHT_STORAGE_KEY = 'versus-verse-vault:active-fight-id:v1'
@@ -204,8 +74,8 @@ export const META_ACTIVE_FIGHT_KEY = 'activeFightId'
 export const META_MATCHUP_VARIANT_PREFS_KEY = 'matchupVariantPrefs'
 export const FOLDER_FIGHT_ID_PREFIX = 'folder::'
 
-export const TEMPLATE_ID_SET = new Set<TemplateId>(TEMPLATE_PRESETS.map((template) => template.id))
-export const FINAL_TEMPLATE_ID: TemplateId = 'fight-card'
+export const TEMPLATE_ID_SET = new Set<TemplateId>(getFightTemplateIds())
+export const FINAL_TEMPLATE_ID: TemplateId = getFightFinalTemplateId()
 
 export const ensureTemplateOrderHasFinal = (order: TemplateId[]) => {
   const normalized: TemplateId[] = []
@@ -502,31 +372,11 @@ export const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   mutualrespectclash: 'clash-lock',
   villainousmonologuestall: 'regen-attrition',
 }
+export const DEFAULT_WINNER_CV_A = getFightDefaultVictoryArchive('a')
 
-
-export const DEFAULT_WINNER_CV_A = [
-  'Doomsday',
-  'Brainiac',
-  "Mongul",
-  'Pariah',
-  "H'el",
-  'Rogol Zaar',
-  'Ulysses',
-  'Wraith',
-]
-
-export const DEFAULT_WINNER_CV_B = [
-  'Thor',
-  'Hulk',
-  'Blue Marvel',
-  'Juggernaut',
-  'Namora',
-  'Winter Guard',
-  'Rogue',
-  'Gambit',
-]
+export const DEFAULT_WINNER_CV_B = getFightDefaultVictoryArchive('b')
 
 export const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
-  getTranslations(language).defaults.profileFacts[side].map((item) => ({ ...item }))
+  getFightDefaultProfileFacts(side, language)
 
 

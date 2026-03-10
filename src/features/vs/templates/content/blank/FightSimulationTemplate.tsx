@@ -1,4 +1,5 @@
 import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightDefaultCategories } from '../../../fightManifest'
 import {
   humanizeScenarioToken,
   normalizeToken,
@@ -43,18 +44,15 @@ export function FightSimulationTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-simulation'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
+  const common = getFightCommonCopy(language)
+  const categories = getFightDefaultCategories(language)
+  const categoryLabel = (categoryId: string, fallback: string) =>
+    categories.find((entry) => entry.id === categoryId)?.label || fallback
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
   const opening = line(0, ['opening'], tr('Otwarcie: szybka kontrola dystansu.', 'Opening: fast range control.'))
   const midFight = line(
     1,
@@ -75,8 +73,8 @@ export function FightSimulationTemplate({
       animation: 'orbit-harass' as FightScenarioId,
       lead: 'a' as FightScenarioLead,
       title: opening,
-      aLabel: fallbackRows[0]?.label || 'Strength',
-      bLabel: fallbackRows[0]?.label || 'Strength',
+      aLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
+      bLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
       aValue: fallbackRows[0]?.a ?? 96,
       bValue: fallbackRows[0]?.b ?? 84,
       event: tr(`${fighterAName} narzuca tempo.`, `${fighterAName} sets the pace.`),
@@ -88,8 +86,8 @@ export function FightSimulationTemplate({
       animation: 'clash-lock' as FightScenarioId,
       lead: 'a' as FightScenarioLead,
       title: midFight,
-      aLabel: fallbackRows[1]?.label || 'Speed',
-      bLabel: fallbackRows[1]?.label || 'Speed',
+      aLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
+      bLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
       aValue: fallbackRows[1]?.a ?? 92,
       bValue: fallbackRows[1]?.b ?? 88,
       event: tr('Punkt zwrotny: pierwsza wymiana zmienia warunki walki.', 'Turning point: first exchange shifts the conditions.'),
@@ -101,8 +99,8 @@ export function FightSimulationTemplate({
       animation: 'regen-attrition' as FightScenarioId,
       lead: 'a' as FightScenarioLead,
       title: lateFight,
-      aLabel: fallbackRows[2]?.label || 'Stamina',
-      bLabel: fallbackRows[2]?.label || 'Stamina',
+      aLabel: fallbackRows[2]?.label || categoryLabel('stamina', 'Stamina'),
+      bLabel: fallbackRows[2]?.label || categoryLabel('stamina', 'Stamina'),
       aValue: fallbackRows[2]?.a ?? 90,
       bValue: fallbackRows[2]?.b ?? 93,
       event: tr('Ostatni punkt zwrotny.', 'Final turning point.'),
@@ -269,8 +267,8 @@ export function FightSimulationTemplate({
         <div className="relative z-10 flex h-full flex-col">
           <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
             <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
             </div>
             <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
               <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
@@ -282,11 +280,11 @@ export function FightSimulationTemplate({
   <button
     type="button"
     className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
+    title={chrome.brandMarkTitle}
+    aria-label={chrome.brandMarkAria}
     onClick={onToggleLanguage}
   >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+    <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
   </button>
 </div>
           </div>
@@ -295,7 +293,7 @@ export function FightSimulationTemplate({
             {phaseData.map((phase, index) => (
               <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] min-w-0 flex-col overflow-hidden rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
                 <div className="mb-2 flex items-center">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{tr('Faza', 'Phase')} {index + 1}</p>
+                  <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{common.phaseLabel} {index + 1}</p>
                 </div>
                 <p className="text-[20px] font-semibold leading-tight text-slate-100">{phase.title}</p>
 
@@ -308,7 +306,7 @@ export function FightSimulationTemplate({
                     lead={phase.lead}
                   />
                   <div className="mt-1 flex items-center justify-between rounded border border-slate-700/70 bg-slate-900/72 px-2 py-1">
-                    <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{tr('Preset scenariusza', 'Scenario preset')}</span>
+                    <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{common.scenarioPresetLabel}</span>
                     <span className="text-[10px] uppercase tracking-[0.14em] text-cyan-100">{phase.animationLabel}</span>
                   </div>
                 </div>

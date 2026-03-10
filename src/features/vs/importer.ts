@@ -1,5 +1,12 @@
 ﻿import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
-import { DEFAULT_CATEGORIES, DEFAULT_TEMPLATE_ORDER, TEMPLATE_ID_SET, TEMPLATE_PRESETS, ensureTemplateOrderHasFinal, pickLang } from './presets'
+import {
+  buildFightStarterTxt as buildManifestFightStarterTxt,
+  getFightCommonCopy,
+  getFightTemplateBlockAliases,
+  getFightTemplateRequirements,
+  getFightTemplateTokenMap,
+} from './fightManifest'
+import { DEFAULT_CATEGORIES, DEFAULT_TEMPLATE_ORDER, TEMPLATE_ID_SET, ensureTemplateOrderHasFinal } from './presets'
 import { clamp, normalizeTemplateId, normalizeToken, slug } from './helpers'
 
 export const extractBullet = (line: string) => line.trim().replace(/^[-*?]\s*/, '').trim()
@@ -67,68 +74,7 @@ export const pickNameFromSection = (
   return fromPlain || fallback
 }
 
-export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = {
-  characterprofile: 'character-profile',
-  profilpostaci: 'character-profile',
-  powersweaknesses: 'character-profile',
-  powertoolsweaknesses: 'character-profile',
-  powerstools: 'character-profile',
-  mocenarzedziaslabosci: 'character-profile',
-  crucialfeats: 'crucial-feats',
-  najwazniejszewyczyny: 'crucial-feats',
-  rawfeats: 'crucial-feats',
-  featsledger: 'crucial-feats',
-  surowefeaty: 'crucial-feats',
-  fightanalytics: 'fight-analytics',
-  analitykawalki: 'fight-analytics',
-  hudbars: 'fight-analytics',
-  hudbar: 'fight-analytics',
-  parametercomparison: 'parameter-comparison',
-  porownanieparametrow: 'parameter-comparison',
-  radarbrief: 'parameter-comparison',
-  tacticalboard: 'tactical-board',
-  tacticalboardmethodology: 'tactical-board',
-  methodology: 'methodology',
-  metodologia: 'methodology',
-  victoryarchive: 'victory-archive',
-  archiwumzwyciestw: 'victory-archive',
-  winnercv: 'victory-archive',
-  cvwinners: 'victory-archive',
-  cvzwyciezcow: 'victory-archive',
-  characterdossiera: 'character-dossier-a',
-  dossierpostacia: 'character-dossier-a',
-  charactercarda: 'character-dossier-a',
-  charactera: 'character-dossier-a',
-  carda: 'character-dossier-a',
-  characterdossierb: 'character-dossier-b',
-  dossierpostacib: 'character-dossier-b',
-  charactercardb: 'character-dossier-b',
-  characterb: 'character-dossier-b',
-  cardb: 'character-dossier-b',
-  finalsummary: 'final-summary',
-  podsumowaniekoncowe: 'final-summary',
-  podsumowanie: 'final-summary',
-  summary: 'final-summary',
-  dynamikastarcia: 'battle-dynamics',
-  battledynamics: 'battle-dynamics',
-  xfactor: 'x-factor',
-  interpretacja: 'interpretation',
-  interpretation: 'interpretation',
-  symulacjawalki: 'fight-simulation',
-  fightsimulation: 'fight-simulation',
-  pulapkastatystyk: 'stat-trap',
-  stattrap: 'stat-trap',
-  matrycawerdyktu: 'verdict-matrix',
-  verdictmatrix: 'verdict-matrix',
-  newtemplate: 'new-template',
-  blanktemplate: 'new-template',
-  emptyfield: 'new-template',
-  fightcard: 'fight-card',
-  kartawalki: 'fight-card',
-  fighttitle: 'fight-card',
-  finaltitle: 'fight-card',
-  finalscreen: 'fight-card',
-}
+export const TEMPLATE_TOKEN_MAP: Record<string, TemplateId> = getFightTemplateTokenMap()
 
 export const parseTemplateOrder = (lines: string[]) => {
   const ids: TemplateId[] = []
@@ -189,414 +135,10 @@ export type TemplateBlockRequirement = {
   fields: string[]
 }
 
-export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = [
-  {
-    blockPl: 'Dossier Postaci A',
-    blockEn: 'Character Dossier A',
-    purposePl: 'Karta lewej postaci (niebieski narożnik).',
-    purposeEn: 'Card for the left fighter (blue corner).',
-    fields: [
-      'header | title | headline',
-      'world | swiat | version',
-      'style',
-      'atut | advantage',
-      'mentalnosc | mentality',
-      'quote | cytat',
-    ],
-  },
-  {
-    blockPl: 'Dossier Postaci B',
-    blockEn: 'Character Dossier B',
-    purposePl: 'Karta prawej postaci (czerwony narożnik).',
-    purposeEn: 'Card for the right fighter (red corner).',
-    fields: [
-      'header | title | headline',
-      'world | swiat | version',
-      'style',
-      'atut | advantage',
-      'mentalnosc | mentality',
-      'quote | cytat',
-    ],
-  },
-  {
-    blockPl: 'Profil Postaci',
-    blockEn: 'Character Profile',
-    purposePl: 'Panel mocy, narzedzi i slabosci obu postaci.',
-    purposeEn: 'Panel for powers, tools, and weaknesses of both fighters.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'left_title',
-      'right_title',
-      'powers_label',
-      'tools_label',
-      'weaknesses_label',
-    ],
-  },
-  {
-    blockPl: 'Najwazniejsze Wyczyny',
-    blockEn: 'Crucial Feats',
-    purposePl: 'Panel najwazniejszych wyczynow obu postaci.',
-    purposeEn: 'Panel for the most important feats of both fighters.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'left_title',
-      'right_title',
-      'feat_label',
-    ],
-  },
-  {
-    blockPl: 'Tablica Taktyczna',
-    blockEn: 'Tactical Board',
-    purposePl: 'Plansza kategorii + panel chaosu.',
-    purposeEn: 'Category board + chaos panel.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'left_header | categories_header',
-      'right_header | reality_header',
-      'linear_label',
-      'chaos_label',
-      'lane | line_1 | line1',
-    ],
-  },
-  {
-    blockPl: 'Analityka Walki',
-    blockEn: 'Fight Analytics',
-    purposePl: 'Długi panel statystyk poziomych.',
-    purposeEn: 'Long horizontal statistics panel.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'threat_level',
-      'integrity | data_integrity',
-      'profile_mode',
-      'scale',
-    ],
-  },
-  {
-    blockPl: 'Porównanie Parametrów',
-    blockEn: 'Parameter Comparison',
-    purposePl: 'Radar + przewagi lewej i prawej strony.',
-    purposeEn: 'Radar + left/right side advantages.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'left_header',
-      'right_header',
-      'draw_header',
-      'favorite_label | favorite',
-      'draw_favorite | draw_favorite_label | favorite_draw',
-    ],
-  },
-  {
-    blockPl: 'Archiwum Zwycięstw',
-    blockEn: 'Victory Archive',
-    purposePl: 'Lista pokonanych przeciwników.',
-    purposeEn: 'List of defeated opponents.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'archive_label',
-      'avg_label',
-      'left_title',
-      'right_title',
-      'win_badge',
-    ],
-  },
-  {
-    blockPl: 'Podsumowanie Końcowe',
-    blockEn: 'Final Summary',
-    purposePl: 'Końcowe streszczenie starcia.',
-    purposeEn: 'Final fight summary.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'winner | verdict',
-      'line_1 | line1',
-      'line_2 | line2',
-      'line_3 | line3',
-    ],
-  },
-  {
-    blockPl: 'Dynamika Starcia',
-    blockEn: 'Battle Dynamics',
-    purposePl: 'Tempo walki i presja w czasie.',
-    purposeEn: 'Fight tempo and pressure over time.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'a_curve | curve_a | blue_curve | left_curve',
-      'b_curve | curve_b | red_curve | right_curve',
-      'yellow_wave | wave | chaos_wave',
-      'phase_1 | phase1',
-      'phase_2 | phase2',
-      'phase_3 | phase3',
-      'analysis | note | line_4 | line4',
-    ],
-  },
-  {
-    blockPl: 'X-Factor',
-    blockEn: 'X-Factor',
-    purposePl: 'Najważniejsza zmienna decydująca.',
-    purposeEn: 'Most decisive variable.',
-    fields: [
-      'headline | header | title',
-      'subtitle | note',
-      'factor | headline',
-      'a_value | super_value | superman | left_value',
-      'a_bonus | super_bonus | left_bonus',
-      'a_bonus_label | left_bonus_label',
-      'b_value | hyper_value | hyperion | right_value',
-      'b_bonus | hyper_bonus | right_bonus',
-      'regen | regen_label',
-      'mechanika | mechanics',
-      'implikacja | implication',
-      'psychologia | psychology',
-    ],
-  },
-  {
-    blockPl: 'Interpretacja',
-    blockEn: 'Interpretation',
-    purposePl: 'Komentarz ekspercki do danych.',
-    purposeEn: 'Expert readout of the data.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'line_1 | line1 | thesis',
-      'line_2 | line2 | antithesis',
-      'line_3 | line3 | conclusion',
-      'quote | line_4 | line4',
-    ],
-  },
-  {
-    blockPl: 'Symulacja Walki',
-    blockEn: 'Fight Simulation',
-    purposePl: 'Symulacja etapów walki.',
-    purposeEn: 'Three-phase simulation board.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'opening',
-      'mid_fight | midfight',
-      'late_fight | latefight',
-      'end_condition | endcondition',
-      'phase_mode | phasemode | mode | simulation_mode | simulationmode',
-      'phase_animation | phaseanimation | animation | scenario | preset | simulation_animation | simulationanimation',
-      'phase_actor | phaseactor | actor | lead | aggressor | attacker',
-      'phase_<N>_mode | phase<N>mode | phase_<N>_type | phase<N>type',
-      'phase_<N>_animation | phase<N>animation | phase_<N>_scenario | phase<N>scenario | phase_<N>_preset | phase<N>preset',
-      'phase_<N>_actor | phase<N>actor | phase_<N>_lead | phase<N>lead | phase_<N>_aggressor | phase<N>aggressor | phase_<N>_attacker | phase<N>attacker',
-      'phase_<N>_title | phase<N>title | phase_<N>_headline | phase<N>headline',
-      'phase_<N>_a_label | phase<N>alabel | phase_<N>_left_label | phase<N>leftlabel',
-      'phase_<N>_b_label | phase<N>blabel | phase_<N>_right_label | phase<N>rightlabel',
-      'phase_<N>_a_value | phase<N>avalue | phase_<N>_left_value | phase<N>leftvalue',
-      'phase_<N>_b_value | phase<N>bvalue | phase_<N>_right_value | phase<N>rightvalue',
-      'phase_<N>_event | phase<N>event | phase_<N>_turn | phase<N>turn | phase_<N>_pivot | phase<N>pivot',
-      'phase_<N>_branch_a | phase<N>brancha | phase_<N>_option_a | phase<N>optiona | phase_<N>_left_option | phase<N>leftoption',
-      'phase_<N>_branch_b | phase<N>branchb | phase_<N>_option_b | phase<N>optionb | phase_<N>_right_option | phase<N>rightoption',
-    ],
-  },
-  {
-    blockPl: 'Pułapka Statystyk',
-    blockEn: 'Stat Trap',
-    purposePl: 'Wyjaśnienie nieliniowości starcia.',
-    purposeEn: 'Explains non-linear outcome mechanics.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'trap_top | top | line_1',
-      'trap_bottom | bottom | line_2',
-      'example | line_3',
-      'question | line_4 | trap',
-    ],
-  },
-  {
-    blockPl: 'Matryca Werdyktu',
-    blockEn: 'Verdict Matrix',
-    purposePl: 'Werdykt zależny od warunków.',
-    purposeEn: 'Condition-based verdict matrix.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'col_left | solar_flare_yes | solarflare_yes',
-      'col_right | solar_flare_no | solarflare_no',
-      'row_top | standard | standard_ko',
-      'row_bottom | deathmatch | kill_only',
-      'case_1 | case1',
-      'case_2 | case2',
-      'case_3 | case3',
-      'case_4 | case4',
-    ],
-  },
-  {
-    blockPl: 'Nowy Template',
-    blockEn: 'New Template',
-    purposePl: 'Puste pole robocze pod kolejny layout.',
-    purposeEn: 'Working blank field for the next layout.',
-    fields: ['headline | header | title', 'subtitle | purpose | note', 'line_1 | line1', 'line_2 | line2', 'line_3 | line3'],
-  },
-  {
-    blockPl: 'Karta Walki',
-    blockEn: 'Fight Card',
-    purposePl: 'Finalny ekran z nazwami postaci i ich kolorami.',
-    purposeEn: 'Final screen with fighter names and character-themed colors.',
-    fields: [
-      'fight_title | match_title | title_text | line_1 | line1',
-      'subtitle | purpose | note | line_2 | line2',
-      'top_color_a | top_primary | fighter_a_color_a | fighter_a_primary',
-      'top_color_b | top_secondary | fighter_a_color_b | fighter_a_secondary',
-      'bottom_color_a | bottom_primary | fighter_b_color_a | fighter_b_primary',
-      'bottom_color_b | bottom_secondary | fighter_b_color_b | fighter_b_secondary',
-      'top_dark | fighter_a_dark',
-      'bottom_dark | fighter_b_dark',
-    ],
-  },
-  {
-    blockPl: 'Metodologia',
-    blockEn: 'Methodology',
-    purposePl: 'Plansza metodologii i nieliniowości walki.',
-    purposeEn: 'Method board and non-linear combat panel.',
-    fields: [
-      'headline | header | title',
-      'subtitle | purpose | note',
-      'list_label',
-      'reality_label',
-      'linear_label',
-      'chaos_label',
-      'closing_label',
-    ],
-  },
-]
+export const TEMPLATE_BLOCK_REQUIREMENTS: TemplateBlockRequirement[] = getFightTemplateRequirements()
 
-export const buildImportTxtBlueprint = (language: Language) => {
-  const lines: string[] = []
-  lines.push(pickLang(language, '1. (Nazwa Postaci A)', '1. (Character A Name)'))
-  lines.push(pickLang(language, '2. (Staty Postaci A)', '2. (Character A Stats)'))
-  lines.push(pickLang(language, '- Siła: 96', '- Strength: 96'))
-  lines.push(pickLang(language, '- Szybkość: 95', '- Speed: 95'))
-  lines.push(pickLang(language, '- Wytrzymałość: 94', '- Durability: 94'))
-  lines.push(pickLang(language, '3. (Featy Postaci A)', '3. (Character A Feats)'))
-  lines.push(pickLang(language, '- Styl: Kontrola dystansu i tempa', '- Style: Range control and pace control'))
-  lines.push(pickLang(language, '- Atut: Dyscyplina taktyczna', '- Advantage: Tactical discipline'))
-  lines.push(pickLang(language, '- Mentalnosc: Wygrać decyzją, uniknąć zniszczeń', '- Mentality: Win by decision, avoid collateral damage'))
-  lines.push(pickLang(language, '4. (Pokonani przez Postać A)', '4. (Defeated by Character A)'))
-  lines.push('- Doomsday')
-  lines.push('- Brainiac')
-  lines.push(pickLang(language, '5. (Nazwa Postaci B)', '5. (Character B Name)'))
-  lines.push(pickLang(language, '6. (Staty Postaci B)', '6. (Character B Stats)'))
-  lines.push(pickLang(language, '- Siła: 92', '- Strength: 92'))
-  lines.push(pickLang(language, '- Szybkość: 84', '- Speed: 84'))
-  lines.push(pickLang(language, '- Wytrzymałość: 95', '- Durability: 95'))
-  lines.push(pickLang(language, '7. (Featy Postaci B)', '7. (Character B Feats)'))
-  lines.push(pickLang(language, '- Styl: Agresywne skracanie dystansu', '- Style: Aggressive distance closing'))
-  lines.push(pickLang(language, '- Atut: Nieludzka regeneracja', '- Advantage: Extreme regeneration'))
-  lines.push(pickLang(language, '- Mentalnosc: Złamać przeciwnika za wszelką cenę', '- Mentality: Break the opponent at any cost'))
-  lines.push(pickLang(language, '8. (Pokonani przez Postać B)', '8. (Defeated by Character B)'))
-  lines.push('- Thor')
-  lines.push('- Hulk')
-  lines.push(pickLang(language, '9. (Kolejność templatek użytych w tej walce)', '9. (Template Order Used In This Fight)'))
-  TEMPLATE_PRESETS.forEach((template) => {
-    lines.push(`- ${template.id}`)
-  })
-  lines.push('')
-  lines.push(
-    pickLang(
-      language,
-      '10. (Profil Postaci A)',
-      '10. (Character A Profile)',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Narzędzia: Kontrola pola walki, presja dystansowa, odpowiedzi na zwarcie',
-      '- Tools: Battlefield control, ranged pressure, answers to close range',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Słabości: Zależność od konkretnego źródła mocy lub wyraźny hard-counter',
-      '- Weaknesses: Dependence on a specific power source or a clear hard counter',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '11. (Najważniejsze Wyczyny Postaci A)',
-      '11. (Character A Crucial Feats)',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Przetrwał atak skali planetarnej',
-      '- Survived a planet-level attack',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Zniszczył cel jednym ciosem lub pojedynczą techniką',
-      '- Destroyed a target with one strike or one technique',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '12. (Profil Postaci B)',
-      '12. (Character B Profile)',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Narzędzia: Regeneracja, kontratak, przewaga zasięgu lub specjalna mechanika',
-      '- Tools: Regeneration, counterplay, range advantage, or a special mechanic',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Słabości: Luka taktyczna, limit zasobów albo konkretna podatność',
-      '- Weaknesses: Tactical gap, resource limit, or a specific vulnerability',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '13. (Najważniejsze Wyczyny Postaci B)',
-      '13. (Character B Crucial Feats)',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Powstrzymał przeciwnika o dużo większej skali',
-      '- Stopped an opponent operating at a much larger scale',
-    ),
-  )
-  lines.push(
-    pickLang(
-      language,
-      '- Odbudował się po skrajnym zniszczeniu',
-      '- Rebuilt from catastrophic destruction',
-    ),
-  )
-  lines.push('')
-  lines.push(pickLang(language, '# Template blocks (opcjonalne / rozszerzone)', '# Template blocks (optional / extended)'))
-  TEMPLATE_BLOCK_REQUIREMENTS.forEach((item) => {
-    const blockName = pickLang(language, item.blockPl, item.blockEn)
-    const purpose = pickLang(language, item.purposePl, item.purposeEn)
-    lines.push(`Template ${blockName}:`)
-    lines.push(`- purpose: ${purpose}`)
-    item.fields.forEach((field) => lines.push(`- ${field}:`))
-    lines.push('')
-  })
-  return lines.join('\n')
-}
+export const buildFightStarterTxt = (language: Language, templateOrder?: TemplateId[]) =>
+  buildManifestFightStarterTxt(language, templateOrder)
 
 export const findTemplateBlockLines = (
   blocks: Record<string, string[]>,
@@ -674,15 +216,16 @@ const resolveStatCategoryKey = (label: string) => {
 }
 
 export const buildCardFacts = (fallbackFacts: FighterFact[], fields: Record<string, string>, language: Language) => {
+  const common = getFightCommonCopy(language)
   const styleDefault = fallbackFacts[0]?.text || '-'
   const atutDefault = fallbackFacts[1]?.text || '-'
   const mentalDefault = fallbackFacts[2]?.text || '-'
 
   return [
-    { title: pickLang(language, 'Styl', 'Style'), text: pickTemplateField(fields, ['style']) || styleDefault },
-    { title: pickLang(language, 'Atut', 'Advantage'), text: pickTemplateField(fields, ['atut', 'advantage']) || atutDefault },
+    { title: common.style, text: pickTemplateField(fields, ['style']) || styleDefault },
+    { title: common.advantage, text: pickTemplateField(fields, ['atut', 'advantage']) || atutDefault },
     {
-      title: pickLang(language, 'Mentalność', 'Mentality'),
+      title: common.mentality,
       text: pickTemplateField(fields, ['mentalnosc', 'mentality']) || mentalDefault,
     },
   ]
@@ -738,26 +281,7 @@ export const KEY_VALUE_BULLET_RE = /^[^:=]+\s*[:=]\s*.+$/
 export const getPlainTemplateLines = (lines: string[]) =>
   parseBulletItems(lines).filter((item) => !KEY_VALUE_BULLET_RE.test(item))
 
-export const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = {
-  'character-dossier-a': ['character dossier a', 'character a', 'character card a', 'card a', 'postac a', 'dossier postaci a', 'karta postaci a'],
-  'character-dossier-b': ['character dossier b', 'character b', 'character card b', 'card b', 'postac b', 'dossier postaci b', 'karta postaci b'],
-  'character-profile': ['character profile', 'profil postaci', 'powers / tools / weaknesses', 'powers tools weaknesses', 'powers tools', 'mocenarzedziaslabosci', 'moce narzedzia slabosci'],
-  'crucial-feats': ['crucial feats', 'najwazniejsze wyczyny', 'raw feats', 'surowe featy', 'feats ledger'],
-  'tactical-board': ['tactical board', 'methodology', 'tablica taktyczna', 'metodologia'],
-  'fight-analytics': ['fight analytics', 'analityka walki', 'hud bars', 'paski hud'],
-  'parameter-comparison': ['parameter comparison', 'porownanie parametrow', 'radar brief', 'raport radarowy'],
-  'victory-archive': ['victory archive', 'archiwum zwyciestw', 'winner cv', 'cv zwyciezcow', 'cv zwyciezców', 'zwyciezcy cv'],
-  'final-summary': ['final summary', 'podsumowanie koncowe', 'podsumowanie', 'summary'],
-  'battle-dynamics': ['dynamika starcia', 'battle dynamics'],
-  'x-factor': ['x-factor', 'xfactor'],
-  interpretation: ['interpretacja', 'interpretation'],
-  'fight-simulation': ['symulacja walki', 'fight simulation'],
-  'stat-trap': ['pulapka statystyk', 'pułapka statystyk', 'stat trap'],
-  'verdict-matrix': ['matryca werdyktu', 'verdict matrix'],
-  'new-template': ['new template', 'blank template', 'nowy template'],
-  'fight-card': ['fight card', 'karta walki', 'fight title', 'final title', 'ending title', 'napis koncowy'],
-  methodology: ['methodology', 'metodologia'],
-}
+export const TEMPLATE_BLOCK_ALIASES: Partial<Record<TemplateId, string[]>> = getFightTemplateBlockAliases()
 
 export const createCategoryPayload = (statsA: ParsedStat[], statsB: ParsedStat[]) => {
   const orderedKeys: string[] = []

@@ -1,6 +1,7 @@
-﻿import { type CSSProperties } from 'react'
+import { type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
+import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import {
   type FightCardPalette,
   fighterMonogram,
@@ -11,7 +12,6 @@ import {
   resolveFightCardStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
-import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { HIGH_END_BACKGROUND_CLASS, HIGH_END_HEADER_CLASS, HIGH_END_SUBTEXT_CLASS } from '../../shared/highEnd'
@@ -22,6 +22,8 @@ export function FightCardTemplate({
   portraitAAdjust,
   portraitBAdjust,
   fightLabel,
+  title,
+  subtitle,
   templateBlocks,
   slideImageAdjustments,
   onSlideImageAdjustChange,
@@ -29,28 +31,21 @@ export function FightCardTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
+  const chrome = buildFightTemplateChrome(language, blockFields)
+  const common = getFightCommonCopy(language)
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || tr('KARTA WALKI', 'FIGHT CARD')
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const finalLabelRaw = line(
     0,
     ['fight_title', 'match_title', 'title_text', 'line_1', 'line1'],
     fightLabel || `${fighterA.name || 'Fighter A'} vs ${fighterB.name || 'Fighter B'}`,
   )
   const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || normalizedLabel
-  const leftTopLabel = tr('Stopień zagrożenia', 'Threat level')
-  const threatLevel = tr('ekstremalny', 'extreme')
-  const leftBottomLabel = tr('Integralność danych', 'Data integrity')
-  const integrity = '99.6%'
-  const rightTopLabel = 'VersusVerseVault'
-  const profileMode = '/assets/VS2.png'
-  const rightBottomLabel = tr('Sygnatura marki', 'Brand mark')
-  const scale = 'VersusVerseVault badge'
+  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || normalizedLabel
   const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
   const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
@@ -114,58 +109,58 @@ export function FightCardTemplate({
     const adjustKey = side === 'left' ? 'fight-card:portrait-a' : 'fight-card:portrait-b'
 
     return (
-    <div
-      className={clsx(
-        'vvv-fight-card-portrait',
-        side === 'left' ? 'vvv-fight-card-portrait--left' : 'vvv-fight-card-portrait--right',
-      )}
-      style={
-        {
-          '--vvv-portrait-color': fighter.color,
-          '--f': 'url(#vvv-electric-flow-hue)',
-          '--electric-y-offset': '-3px',
-          '--electric-border-color': 'DodgerBlue',
-          '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
-        } as CSSProperties
-      }
-    >
-      <div className="vvv-fight-card-portrait__inner-container">
-        <div className="vvv-fight-card-portrait__border-outer">
-          <div className="vvv-fight-card-portrait__inner">
-            {fighter.imageUrl ? (
-              <AdjustableTemplateImage
-                imageUrl={fighter.imageUrl}
-                alt={fighter.name || 'Fighter'}
-                fallbackLabel={tr('Miejsce na portret', 'Portrait Slot')}
-                hintLabel={tr('LPM: przesun | PPM: skaluj', 'LMB: move | RMB: zoom')}
-                adjustKey={adjustKey}
-                baseAdjust={fighterAdjust}
-                adjustments={slideImageAdjustments}
-                onAdjustChange={onSlideImageAdjustChange}
-                onAdjustCommit={onSlideImageAdjustCommit}
-                plain
-              />
-            ) : (
-              <div
-                className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.16),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
-                style={{ color: fighter.color }}
-              >
-                <div className="text-center">
-                  <p className="text-[62px] font-semibold tracking-[0.04em]">{fighterMonogram(fighter.name || 'Fighter')}</p>
-                  <p className="text-xs uppercase tracking-[0.2em] text-slate-300">{tr('Miejsce na portret', 'Portrait Slot')}</p>
+      <div
+        className={clsx(
+          'vvv-fight-card-portrait',
+          side === 'left' ? 'vvv-fight-card-portrait--left' : 'vvv-fight-card-portrait--right',
+        )}
+        style={
+          {
+            '--vvv-portrait-color': fighter.color,
+            '--f': 'url(#vvv-electric-flow-hue)',
+            '--electric-y-offset': '-3px',
+            '--electric-border-color': 'DodgerBlue',
+            '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
+          } as CSSProperties
+        }
+      >
+        <div className="vvv-fight-card-portrait__inner-container">
+          <div className="vvv-fight-card-portrait__border-outer">
+            <div className="vvv-fight-card-portrait__inner">
+              {fighter.imageUrl ? (
+                <AdjustableTemplateImage
+                  imageUrl={fighter.imageUrl}
+                  alt={fighter.name || 'Fighter'}
+                  fallbackLabel={common.portraitSlot}
+                  hintLabel={chrome.portraitAdjustHint}
+                  adjustKey={adjustKey}
+                  baseAdjust={fighterAdjust}
+                  adjustments={slideImageAdjustments}
+                  onAdjustChange={onSlideImageAdjustChange}
+                  onAdjustCommit={onSlideImageAdjustCommit}
+                  plain
+                />
+              ) : (
+                <div
+                  className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.16),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
+                  style={{ color: fighter.color }}
+                >
+                  <div className="text-center">
+                    <p className="text-[62px] font-semibold tracking-[0.04em]">{fighterMonogram(fighter.name || 'Fighter')}</p>
+                    <p className="text-xs uppercase tracking-[0.2em] text-slate-300">{common.portraitSlot}</p>
+                  </div>
                 </div>
-              </div>
-            )}
-            <div className="vvv-fight-card-portrait__name">{renderAnimatedLine(nameText, palette)}</div>
-            <div className="vvv-fight-card-portrait__name-fade" />
-            <div className="vvv-fight-card-portrait__scan" />
+              )}
+              <div className="vvv-fight-card-portrait__name">{renderAnimatedLine(nameText, palette)}</div>
+              <div className="vvv-fight-card-portrait__name-fade" />
+              <div className="vvv-fight-card-portrait__scan" />
+            </div>
           </div>
+          <div className="vvv-fight-card-portrait__glow-layer-1" />
+          <div className="vvv-fight-card-portrait__glow-layer-2" />
         </div>
-        <div className="vvv-fight-card-portrait__glow-layer-1" />
-        <div className="vvv-fight-card-portrait__glow-layer-2" />
       </div>
-    </div>
-  )
+    )
   }
 
   return (
@@ -190,8 +185,8 @@ export function FightCardTemplate({
       <div className="pointer-events-none absolute left-4 right-4 top-3 z-20">
         <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 rounded-[18px] border border-cyan-300/25 bg-slate-950/38 px-4 pb-2 pt-2 text-[11px] text-slate-200 backdrop-blur-[8px]">
           <div className="min-w-[238px] space-y-1 pt-1 text-left">
-            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftTopLabel}: {threatLevel}</p>
-            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{leftBottomLabel}: {integrity}</p>
+            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
+            <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
           </div>
           <div className="text-center">
             <h2 className={`${HIGH_END_HEADER_CLASS} text-[32px]`} style={{ fontFamily: 'var(--font-display)' }}>
@@ -200,16 +195,16 @@ export function FightCardTemplate({
             {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
           </div>
           <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={rightBottomLabel}
-    aria-label={scale}
-    onClick={onToggleLanguage}
-  >
-    <img src={profileMode} alt={rightTopLabel} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
+            <button
+              type="button"
+              className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
+              title={chrome.brandMarkTitle}
+              aria-label={chrome.brandMarkAria}
+              onClick={onToggleLanguage}
+            >
+              <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
+            </button>
+          </div>
         </div>
       </div>
       <div className="vvv-fight-card-split relative z-10 h-full w-full">
@@ -222,4 +217,3 @@ export function FightCardTemplate({
     </div>
   )
 }
-
