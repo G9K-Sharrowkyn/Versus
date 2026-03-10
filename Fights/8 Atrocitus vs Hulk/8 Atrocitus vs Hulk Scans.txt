@@ -2,7 +2,7 @@ Template Portraits:
 - portrait_a: Atrocitus.webp
 - portrait_b: Sentry.jpg
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: 01_6_1_atrocitus_bound_the_butcher.jpg
 - left_image_2: 02_6_1_atrocitus_heart_removed.jpg
 - left_image_3: 03_6_1_atrocitus_blood_magic_foresight.jpg

@@ -5,7 +5,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -23,7 +23,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -41,7 +41,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -59,7 +59,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -76,7 +76,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -93,7 +93,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -109,7 +109,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation
@@ -127,7 +127,7 @@
 2. character-card-a
 3. character-card-b
 4. powers-tools
-5. raw-feats
+5. crucial-feats
 6. hud-bars
 7. radar-brief
 8. interpretation

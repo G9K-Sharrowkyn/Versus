@@ -53,7 +53,7 @@ tactical-board
 character-card-a
 character-card-b
 powers-tools
-raw-feats
+najważniejsze-wyczyny
 hud-bars
 radar-brief
 interpretation
@@ -123,7 +123,7 @@ powers_label: MOCE
 tools_label: NARZĘDZIA
 weaknesses_label: SŁABOŚCI
 
-Template Raw Feats:
+Template Najważniejsze Wyczyny:
 - headline: NAJWAŻNIEJSZE WYCZYNY
 - subtitle: Skalowanie postaci poprzez osiągnięcia.
 left_title: Atrocitus

@@ -2,7 +2,7 @@ Template Portraits:
 - portrait_a: 1.webp
 - portrait_b: 2.jpg
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: 01_6_1_knull_decapitates_celestial_allblack.jpg
 - left_image_2: Knull_Knulled.jpg
 - left_image_3: Knull_BigBang.webp

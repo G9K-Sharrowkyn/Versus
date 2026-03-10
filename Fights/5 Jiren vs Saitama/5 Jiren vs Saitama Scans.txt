@@ -2,7 +2,7 @@ Template Portraits:
 - portrait_a: Tags UI Goku a few times.jpeg
 - portrait_b: Saitama can achieve flight.jpg
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: Tags UI Goku a few times.jpeg
 - left_image_2: Unaffected by Android 17's Self-Destruction.png
 - left_image_3: No sells a Kamehameha from SSB Goku.jpeg

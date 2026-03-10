@@ -5,7 +5,7 @@ Template Portraits:
 Template HUD Bars:
 - profile_mode: VS
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: 01_6_1_superman_bench_press_earth_equivalent.jpg
 - left_image_2: Superman_read.jpeg
 - left_image_3: Superman_flash.jpeg

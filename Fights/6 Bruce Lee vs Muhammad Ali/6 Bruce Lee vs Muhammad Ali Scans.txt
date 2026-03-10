@@ -2,7 +2,7 @@ Template Portraits:
 - portrait_a: one-inch punch.avif
 - portrait_b: 06_6_2_ali_cleveland_speed.jpg
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: 01_6_1_bruce_one_inch_punch.jpg
 - left_image_2: finger push-ups.webp
 - left_image_3: 03_6_1_bruce_gary_elms_record.jpg

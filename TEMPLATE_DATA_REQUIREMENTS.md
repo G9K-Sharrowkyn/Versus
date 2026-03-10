@@ -26,9 +26,9 @@ Filename side rule (priority):
 8. `Defeated by Character B` / `Pokonani przez Postać B`
 9. `Template Order` / `Kolejność templatek` (optional)
 10. `Character A Powers / Tools / Weaknesses` / `Moce / Narzędzia / Słabości Postaci A` (recommended)
-11. `Character A Raw Feats` / `Surowe Featy Postaci A` (recommended)
+11. `Character A Crucial Feats` / `Najważniejsze Wyczyny Postaci A` (recommended)
 12. `Character B Powers / Tools / Weaknesses` / `Moce / Narzędzia / Słabości Postaci B` (recommended)
-13. `Character B Raw Feats` / `Surowe Featy Postaci B` (recommended)
+13. `Character B Crucial Feats` / `Najważniejsze Wyczyny Postaci B` (recommended)
 
 ## 2) Portrait inputs
 Upload 2 images in UI:
@@ -45,7 +45,7 @@ Available IDs (pick only what fits the current fight):
 - `character-card-a`
 - `character-card-b`
 - `powers-tools`
-- `raw-feats`
+- `crucial-feats`
 - `hud-bars`
 - `radar-brief`
 - `winner-cv`
@@ -77,7 +77,7 @@ Part A: Intro and analytical framing
 2. `character-card-a`
 3. `character-card-b`
 4. `powers-tools`
-5. `raw-feats`
+5. `crucial-feats`
 6. `hud-bars`
 7. `radar-brief`
 8. `interpretation`
@@ -183,8 +183,8 @@ Writing rule:
 - Use short bullets grouped by `Powers:`, `Tools:`, `Weaknesses:`.
 - If you need custom labels on screen, override them with `powers_label`, `tools_label`, `weaknesses_label`.
 
-### Raw Feats
-Accepted block names: `Raw Feats`, `Surowe Featy`, `Feats Ledger`
+### Crucial Feats
+Accepted block names: `Crucial Feats`, `Najważniejsze Wyczyny`, `Feats Ledger`
 - `headline | header | title`
 - `subtitle | purpose | note`
 - `left_title`

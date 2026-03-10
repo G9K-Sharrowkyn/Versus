@@ -50,7 +50,7 @@
 - character-card-a
 - character-card-b
 - powers-tools
-- raw-feats
+- crucial-feats
 - hud-bars
 - radar-brief
 - interpretation
@@ -69,7 +69,7 @@
 - Weaknesses: Strong anti-abyss or high-intensity light counters can disrupt his core advantages.
 - Weaknesses: Broad cosmic energy control can force him to spend more effort on recovery and tempo reset.
 
-11. Character A Raw Feats
+11. Character A Crucial Feats
 - Decapitates a Celestial and forges All-Black.
 - Knulls Celestials and makes them serve.
 - Survives Big Bang.
@@ -82,7 +82,7 @@
 - Weaknesses: Output and precision can vary with context, burden, and prolonged conflict.
 - Weaknesses: Strategic overconfidence can create openings against persistent opponents.
 
-13. Character B Raw Feats
+13. Character B Crucial Feats
 - Absorbs Asgard life-force and scales Destroyer.
 - Severs Nezarr arm with Odinsword.
 - Breaches impenetrable Dome made by Celestials.
@@ -121,7 +121,7 @@ Template Powers / Tools / Weaknesses:
 - tools_label: TOOLS
 - weaknesses_label: WEAKNESSES
 
-Template Raw Feats:
+Template Crucial Feats:
 - headline: CRUCIAL FEATS
 - subtitle: Character scaling through achievements.
 - left_title: KNULL SHOWCASE

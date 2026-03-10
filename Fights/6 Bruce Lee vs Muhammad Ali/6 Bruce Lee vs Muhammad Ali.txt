@@ -50,7 +50,7 @@ tactical-board
 character-card-a
 character-card-b
 powers-tools
-raw-feats
+crucial-feats
 hud-bars
 radar-brief
 interpretation
@@ -66,7 +66,7 @@ fight-title
 - Tools: JKD interception timing, low kicks, rhythm disruption, and cross-style adaptation.
 - Weaknesses: Significant size and reach deficit versus heavyweight specialists.
 
-11. Character A Raw Feats
+11. Character A Crucial Feats
 One-inch punch demonstration at Long Beach
 Two-finger push-up and body-control demonstration
 1958 inter-school boxing title win over Gary Elms
@@ -78,7 +78,7 @@ Defeated Yoichi Nakachi in 11 seconds
 - Tools: Jab control, footwork, defensive movement, clinch management, and pacing control.
 - Weaknesses: Primarily boxing-centric toolkit compared with broad open-rule combat sets.
 
-13. Character B Raw Feats
+13. Character B Crucial Feats
 Rope-a-dope against George Foreman
 Peak heavyweight speed and precision against Cleveland Williams
 Frazier-era endurance and punishment tolerance
@@ -117,7 +117,7 @@ powers_label: POWERS
 tools_label: TOOLS
 weaknesses_label: WEAKNESSES
 
-Template Raw Feats:
+Template Crucial Feats:
 headline: CRUCIAL FEATS
 subtitle: Character scaling through achievements.
 left_title: BRUCE SHOWCASE

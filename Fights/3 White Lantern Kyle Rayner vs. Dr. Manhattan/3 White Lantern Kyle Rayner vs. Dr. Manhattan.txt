@@ -51,7 +51,7 @@
 - character-card-a
 - character-card-b
 - powers-tools
-- raw-feats
+- crucial-feats
 - hud-bars
 - radar-brief
 - interpretation
@@ -70,7 +70,7 @@
 - Weaknesses: Ring dependence and concentration dependence for top-end effects.
 - Weaknesses: The strongest outcomes still require setup time and execution window.
 
-11. Character A Raw Feats
+11. Character A Crucial Feats
 - Survives the Source Wall and returns with the Life Equation.
 - Ressurects Hal Jordan.
 - Is close to destabilizing reality.
@@ -83,7 +83,7 @@
 - Weaknesses: In some portrayals, passivity or detachment delays decisive action.
 - Weaknesses: Traditional close-quarters combat expression is narrower than his raw reality-control profile.
 
-13. Character B Raw Feats
+13. Character B Crucial Feats
 - Experiences all time lines at once.
 - Maintains present across space-time states.
 - Survives complete desintegration.
@@ -122,7 +122,7 @@ Template Powers / Tools / Weaknesses:
 - tools_label: TOOLS
 - weaknesses_label: WEAKNESSES
 
-Template Raw Feats:
+Template Crucial Feats:
 - headline: CRUCIAL FEATS
 - subtitle: Character scaling through achievements.
 - left_title: KYLE SHOWCASE

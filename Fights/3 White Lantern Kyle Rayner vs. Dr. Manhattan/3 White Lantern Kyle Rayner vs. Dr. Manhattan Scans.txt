@@ -2,7 +2,7 @@ Template Portraits:
 - portrait_a: Kyle_source.jpeg
 - portrait_b: Manhattan_Observing.jpeg
 
-Template Raw Feats:
+Template Crucial Feats:
 - left_image_1: Kyle_source.jpeg
 - left_image_2: Kyle_Resurrection1.jpeg
 - left_image_3: Kyle_Destabilize.jpeg

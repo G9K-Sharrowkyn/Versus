@@ -55,7 +55,7 @@
 - interpretation
 - stat-trap
 - powers-tools
-- raw-feats
+- crucial-feats
 - x-factor
 - winner-cv
 - summary
@@ -71,7 +71,7 @@
 - Weaknesses: Kryptonite exposure, magic susceptibility, and red-sun power loss.
 - Weaknesses: Solar Flare leaves a temporary vulnerability window if it does not end the fight.
 
-11. Character A Raw Feats
+11. Character A Crucial Feats
 - Bench-presses a weight equal to Earth's mass for five days.
 - Reads every published medical text in seconds.
 - Manages to tag Flash.
@@ -85,7 +85,7 @@
 - Weaknesses: Argonite vulnerability and psychological instability in some portrayals.
 - Weaknesses: Extreme arrogance can open tactical gaps against disciplined opponents.
 
-13. Character B Raw Feats
+13. Character B Crucial Feats
 - Survives Earth's destruction on Earth-4023.
 - Comes back to life moments after Namora twists his neck one hundred and eighty degrees.
 - Regenerates after catastrophic injuries.
@@ -124,7 +124,7 @@ Template Powers / Tools / Weaknesses:
 - tools_label: TOOLS
 - weaknesses_label: WEAKNESSES
 
-Template Raw Feats:
+Template Crucial Feats:
 - headline: CRUCIAL FEATS
 - subtitle: Character scaling through achievements.
 - left_title: SUPERMAN SHOWCASE

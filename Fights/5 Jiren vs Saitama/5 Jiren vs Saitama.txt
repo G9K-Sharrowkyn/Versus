@@ -51,7 +51,7 @@
 - character-card-a
 - character-card-b
 - powers-tools
-- raw-feats
+- crucial-feats
 - hud-bars
 - radar-brief
 - interpretation
@@ -68,7 +68,7 @@
 - Tools: Efficient minimal-motion striking.
 - Weaknesses: Limited utility compared with heavy hax specialists.
 
-11. Character A Raw Feats
+11. Character A Crucial Feats
 - Tags UI Goku a few times.
 - Unaffected by Android 17's Self-Destruction.
 - No sells a Kamehameha from SSB Goku.
@@ -80,7 +80,7 @@
 - Tools: Direct close-range offense and rapid adaptation through the fight.
 - Weaknesses: Minimal formal technique variety. Relies heavily on direct engagement.
 
-13. Character B Raw Feats
+13. Character B Crucial Feats
 - Serious Punch Squared carves a void through space.
 - Saitama time travels to reverse causality.
 - Grabs and kicks hyperspace gates.
@@ -119,7 +119,7 @@ Template Powers / Tools / Weaknesses:
 - tools_label: TOOLS
 - weaknesses_label: WEAKNESSES
 
-Template Raw Feats:
+Template Crucial Feats:
 - headline: CRUCIAL FEATS
 - subtitle: Character scaling through achievements.
 - left_title: JIREN SHOWCASE
