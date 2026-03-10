@@ -4,13 +4,13 @@ import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, 
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
 import {
+  HIGH_END_BODY_GAP_CLASS,
   HIGH_END_FRAME_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_HEADER_CLASS,
   HIGH_END_LABEL_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SUBTEXT_CLASS,
+  HighEndTemplateHeader,
 } from '../shared/highEnd'
 
 const MATCHUP_SEPARATOR_RE = /^(.*?)(?:\s*\/\/\s*|\s+\|\s+|\s+-\s+)(.+\b(?:vs\.?|versus|kontra|v)\b.+)$/i
@@ -53,46 +53,30 @@ export function TacticalBoardTemplate({
   const stablePoints = `${linearStartX},50 ${splitX},50`
   const linearLabelX = 25
   const chaosLabelX = 75
+  const matchupSupplement = matchupText ? (
+    <p className="mt-1 text-center text-[18px] uppercase leading-[1.05] tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
+      {matchupText}
+    </p>
+  ) : headerText === fallbackMatchup ? (
+    <p className="mt-1 text-center text-[18px] uppercase leading-[1.05] tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
+      {fallbackMatchup}
+    </p>
+  ) : null
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
       <div className={HIGH_END_PANEL_CLASS}>
         <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full min-h-0 flex-col gap-3">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
-            <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
-            </div>
-            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
-              <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
-                {mainHeaderText}
-              </h2>
-              {matchupText ? (
-                <p className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
-                  {matchupText}
-                </p>
-              ) : headerText === fallbackMatchup ? (
-                <p className="mt-1 text-center text-[18px] uppercase tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
-                  {fallbackMatchup}
-                </p>
-              ) : null}
-              {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
-            </div>
-            <div className="flex items-start justify-end pt-1">
-              <button
-                type="button"
-                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-                title={chrome.brandMarkTitle}
-                aria-label={chrome.brandMarkAria}
-                onClick={onToggleLanguage}
-              >
-                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-              </button>
-            </div>
-          </div>
+        <div className="relative z-10 flex h-full min-h-0 flex-col">
+          <HighEndTemplateHeader
+            chrome={chrome}
+            headerText={mainHeaderText}
+            subText={subText}
+            centerSupplement={matchupSupplement}
+            onToggleLanguage={onToggleLanguage}
+          />
 
-          <div className="grid min-h-0 flex-1 grid-cols-2 gap-3">
+          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-2 gap-3`}>
             <div className={`flex min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
               <p className={`mb-2 ${HIGH_END_LABEL_CLASS}`}>{boardHeader}</p>
               <div className="grid min-h-0 flex-1 grid-cols-3 gap-2">

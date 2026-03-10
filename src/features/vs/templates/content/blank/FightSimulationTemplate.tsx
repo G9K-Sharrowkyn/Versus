@@ -21,11 +21,11 @@ import {
 } from '../../../importer'
 import type { FightScenarioId, FightScenarioLead, ScoreRow, TemplatePreviewProps } from '../../../types'
 import {
+  HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_HEADER_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SUBTEXT_CLASS,
+  HighEndTemplateHeader,
 } from '../../shared/highEnd'
 
 export function FightSimulationTemplate({
@@ -265,31 +265,14 @@ export function FightSimulationTemplate({
       <div className={HIGH_END_PANEL_CLASS}>
         <div className={HIGH_END_GRID_OVERLAY_CLASS} />
         <div className="relative z-10 flex h-full flex-col">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
-            <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
-            </div>
-            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
-              <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
-                {headerText}
-              </h2>
-              {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
-            </div>
-            <div className="flex items-start justify-end pt-1">
-  <button
-    type="button"
-    className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-    title={chrome.brandMarkTitle}
-    aria-label={chrome.brandMarkAria}
-    onClick={onToggleLanguage}
-  >
-    <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-  </button>
-</div>
-          </div>
+          <HighEndTemplateHeader
+            chrome={chrome}
+            headerText={headerText}
+            subText={subText}
+            onToggleLanguage={onToggleLanguage}
+          />
 
-          <div className="mt-2 grid min-h-0 flex-1 grid-cols-3 items-stretch gap-3 rounded-md border border-cyan-300/25 bg-slate-950/68 p-3">
+          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-3 items-stretch gap-3 rounded-md border border-cyan-300/25 bg-slate-950/68 p-3`}>
             {phaseData.map((phase, index) => (
               <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] min-w-0 flex-col overflow-hidden rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
                 <div className="mb-2 flex items-center">
@@ -366,7 +349,7 @@ export function FightSimulationTemplate({
             ))}
           </div>
 
-          <div className="mt-2 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] text-slate-100">
+          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] text-slate-100">
             {endCondition}
           </div>
         </div>

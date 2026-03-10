@@ -4,15 +4,14 @@ import { normalizeToken } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { Fighter, FighterFact, IconType, TemplatePreviewProps } from '../../types'
 import {
+  HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_HEADER_CLASS,
-  HIGH_END_INSET_CLASS,
   HIGH_END_LABEL_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SUBTEXT_CLASS,
+  HighEndFighterBanner,
+  HighEndTemplateHeader,
 } from '../shared/highEnd'
 
 const TOOLKIT_SECTION_ORDER = ['powers', 'tools', 'weaknesses'] as const
@@ -147,12 +146,6 @@ export function CharacterProfileTemplate({
   }
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || ''
-  const leftTitle =
-    pickTemplateField(blockFields, ['left_title']) ||
-    `${fighterA.name || 'Fighter A'} ${getFightTemplateDefaultField('character-profile', 'left_title_suffix', language)}`
-  const rightTitle =
-    pickTemplateField(blockFields, ['right_title']) ||
-    `${fighterB.name || 'Fighter B'} ${getFightTemplateDefaultField('character-profile', 'right_title_suffix', language)}`
   const leftSections = buildToolkitSections(powersA, blockFields, common, toolkitDefaults)
   const rightSections = buildToolkitSections(powersB, blockFields, common, toolkitDefaults)
   const leftSectionMap = new Map(leftSections.map((section) => [section.key, section]))
@@ -164,18 +157,7 @@ export function CharacterProfileTemplate({
     ),
   ]
 
-  const renderColumnHeader = (fighter: Fighter, columnTitle: string) => (
-    <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-3`}>
-      <div className={`${HIGH_END_INSET_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighter.color}33 inset` }}>
-        <div className="mt-1">
-          <p className="text-[28px] uppercase leading-none tracking-[0.03em]" style={{ color: fighter.color, fontFamily: 'var(--font-display)' }}>
-            {fighter.name || 'Fighter'}
-          </p>
-          <p className="mt-1 text-xs uppercase tracking-[0.18em] text-slate-300">{columnTitle}</p>
-        </div>
-      </div>
-    </div>
-  )
+  const renderColumnHeader = (fighter: Fighter) => <HighEndFighterBanner fighter={fighter} />
 
   const renderSectionCard = (
     fighter: Fighter,
@@ -216,36 +198,16 @@ export function CharacterProfileTemplate({
       <div className={HIGH_END_PANEL_CLASS}>
         <div className={HIGH_END_GRID_OVERLAY_CLASS} />
         <div className="relative z-10 flex h-full flex-col">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
-            <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
-            </div>
-            <div className="flex min-h-[108px] flex-col items-center justify-start text-center">
-              <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>{headerText}</h2>
-              {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
-            </div>
-            <div className="flex items-start justify-end pt-1">
-              <button
-                type="button"
-                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-                title={chrome.brandMarkTitle}
-                aria-label={chrome.brandMarkAria}
-                onClick={onToggleLanguage}
-              >
-                <img
-                  src={chrome.brandImageSrc}
-                  alt={chrome.brandAlt}
-                  className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]"
-                  draggable={false}
-                />
-              </button>
-            </div>
-          </div>
-          <div className="mt-3 grid min-h-0 flex-1 grid-rows-[auto_1fr] gap-3">
+          <HighEndTemplateHeader
+            chrome={chrome}
+            headerText={headerText}
+            subText={subText}
+            onToggleLanguage={onToggleLanguage}
+          />
+          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-rows-[auto_1fr] gap-3`}>
             <div className="grid grid-cols-2 gap-3">
-              {renderColumnHeader(fighterA, leftTitle)}
-              {renderColumnHeader(fighterB, rightTitle)}
+              {renderColumnHeader(fighterA)}
+              {renderColumnHeader(fighterB)}
             </div>
             {sectionRowKeys.length ? (
               <div className="min-h-0 space-y-2 overflow-y-auto pr-1">

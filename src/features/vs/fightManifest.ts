@@ -663,7 +663,7 @@ export const fightManifest: FightManifest = {
       activeName: text('Karta walki', 'Fight card'),
       description: text('Animowany ekran końcowy z nazwą pojedynku.', 'Animated final screen with matchup name.'),
       title: text('KARTA WALKI', 'FIGHT CARD'),
-      subtitle: text('Animowany finalowy tekst walki', 'Animated final matchup text'),
+      subtitle: text('', ''),
       blockName: text('Karta Walki', 'Fight Card'),
       purpose: text('Finalny ekran z nazwami postaci i ich kolorami.', 'Final screen with fighter names and character-themed colors.'),
       aliases: ['karta walki', 'fight card', 'fight title', 'final title', 'ending title', 'napis końcowy'],

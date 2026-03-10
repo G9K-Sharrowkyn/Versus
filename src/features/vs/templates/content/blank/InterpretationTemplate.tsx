@@ -4,11 +4,11 @@ import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
+  HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_HEADER_CLASS,
   HIGH_END_PANEL_CLASS,
   HIGH_END_ROOT_CLASS,
-  HIGH_END_SUBTEXT_CLASS,
+  HighEndTemplateHeader,
 } from '../../shared/highEnd'
 
 const INTERPRETATION_BAR_MAX_DELTA = 40
@@ -130,31 +130,14 @@ export function InterpretationTemplate({
       <div className={HIGH_END_PANEL_CLASS}>
         <div className={HIGH_END_GRID_OVERLAY_CLASS} />
         <div className="relative z-10 flex h-full flex-col">
-          <div className="grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-3 text-[11px] text-slate-300">
-            <div className="min-w-[238px] space-y-1 pt-2 text-left">
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.threatLevelLabel}: {chrome.threatLevelValue}</p>
-              <p className="whitespace-nowrap uppercase tracking-[0.16em]">{chrome.dataIntegrityLabel}: {chrome.dataIntegrityValue}</p>
-            </div>
-            <div className="text-center">
-              <h2 className={HIGH_END_HEADER_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
-                {headerText}
-              </h2>
-              {subText ? <p className={HIGH_END_SUBTEXT_CLASS}>{subText}</p> : null}
-            </div>
-            <div className="flex items-start justify-end pt-1">
-              <button
-                type="button"
-                className="flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95"
-                title={chrome.brandMarkTitle}
-                aria-label={chrome.brandMarkAria}
-                onClick={onToggleLanguage}
-              >
-                <img src={chrome.brandImageSrc} alt={chrome.brandAlt} className="h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]" draggable={false} />
-              </button>
-            </div>
-          </div>
+          <HighEndTemplateHeader
+            chrome={chrome}
+            headerText={headerText}
+            subText={subText}
+            onToggleLanguage={onToggleLanguage}
+          />
 
-          <div className="relative mt-2 rounded-md border border-cyan-300/25 bg-slate-950/70 p-2">
+          <div className={`relative ${HIGH_END_BODY_GAP_CLASS} rounded-md border border-cyan-300/25 bg-slate-950/70 p-2`}>
             <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:12%_33%]" />
             <div className="relative z-10 grid grid-cols-[0.9fr_1.7fr] gap-2">
               <div className="flex min-h-[185px] items-center justify-center rounded-md border-2 p-3" style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
@@ -168,7 +151,7 @@ export function InterpretationTemplate({
                 </div>
               </div>
 
-              <div className="max-h-[286px] space-y-2 overflow-y-auto py-2 pr-1">
+              <div className="space-y-2 py-2 pr-1">
                 {bars.map((bar, index) => {
                   const normalizedDelta = Math.min(bar.delta, INTERPRETATION_BAR_MAX_DELTA) / INTERPRETATION_BAR_MAX_DELTA
                   const fillWidth = INTERPRETATION_BAR_MIN_FILL + normalizedDelta * INTERPRETATION_BAR_FILL_RANGE
@@ -191,7 +174,7 @@ export function InterpretationTemplate({
             </div>
           </div>
 
-          <div className="mt-2 rounded-md border border-slate-500/70 bg-slate-900/82 px-4 py-3">
+          <div className="mt-3 rounded-md border border-slate-500/70 bg-slate-900/82 px-4 py-3">
             <ul className="list-disc space-y-1 pl-6 text-[20px] leading-tight text-slate-100">
               <li>{bullet1}</li>
               <li>{bullet2}</li>
@@ -199,7 +182,7 @@ export function InterpretationTemplate({
             </ul>
           </div>
 
-          <div className="mt-2 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] italic text-slate-100">
+          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] italic text-slate-100">
             "{closingQuote}"
           </div>
         </div>
