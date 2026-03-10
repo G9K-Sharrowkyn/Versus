@@ -122,9 +122,10 @@ export function FightPreviewStage({
             {activeTemplate === 'fight-card' ? null : (
               <div className={HIGH_END_STAGE_OVERLAY_CLASS} />
             )}
+            <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:34px_34px]" />
             <div className="pointer-events-none absolute inset-3 rounded-[26px] border border-white/12" />
             {activeTemplate === 'fight-card' ? null : <div className="scan-sweep" />}
-            <div key={activeTemplate} className="h-full">
+            <div key={activeTemplate} className="template-fade h-full">
               {children}
             </div>
           </div>
