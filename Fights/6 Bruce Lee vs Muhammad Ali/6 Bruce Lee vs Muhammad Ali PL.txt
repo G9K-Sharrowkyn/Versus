@@ -18,7 +18,7 @@ Umiejętności bojowe: 86
 - Mentalność: Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.
 4. Pokonani przez Postać A
 Gary Elms (zwycięstwo przez decyzję w boksie)
-Yoichi Nakachi (potwierdzony relacjami szybki nokaut w walce wyzwaniowej)
+Yoichi Nakachi (potwierdzony relacjami nokaut w 11 sekund w walce wyzwaniowej)
 
 5. Postać B
 Muhammad Ali (Historyczny Prime)
@@ -69,8 +69,9 @@ fight-title
 11. Najważniejsze Wyczyny Postaci A
 Demonstracja one-inch punch na Long Beach
 Pompki na dwóch palcach i pokaz kontroli ciała
-Międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem
-Zbudowanie Jeet Kune Do z praktycznej adaptacji między stylami
+Zwycięstwo o międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem
+Stworzenie Jeet Kune Do przez skuteczne łączenie stylów
+Pokonanie Yoichiego Nakachiego w 11 sekund
 
 12. Moce / Narzędzia / Słabości Postaci B
 - Moce: Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa.
@@ -79,8 +80,10 @@ Zbudowanie Jeet Kune Do z praktycznej adaptacji między stylami
 
 13. Najważniejsze Wyczyny Postaci B
 Rope-a-dope przeciw George'owi Foremanowi
-Szybkość i precyzja wagi ciężkiej przeciw Clevelandowi Williamsowi
-Wytrzymałość i tolerancja karania z ery Fraziera
+Szczytowa szybkość i precyzja przeciw Clevelandowi Williamsowi
+Wytrzymałość i tolerancja karania w walkach z Joe Frazierem
+Złoty medal olimpijski, Rzym 1960
+Jako pierwszy pięściarz w historii trzykrotnie zdobył tytuł mistrza świata wagi ciężkiej
 
 Template Tactical Board:
 headline: TABLICA TAKTYCZNA // BRUCE VS ALI
@@ -122,13 +125,14 @@ right_title: Muhammad Ali
 feat_label: FEAT
 - left_item_1: One-inch punch na Long Beach.
 - left_item_2: Pompki na dwóch palcach.
-- left_item_3: Tytuł nad Garym Elmsem.
-- left_item_4: Adaptacja Jeet Kune Do.
+- left_item_3: Międzyszkolny tytuł bokserski 1958 (Gary Elms).
+- left_item_4: Stworzenie Jeet Kune Do przez skuteczne łączenie stylów.
+- left_item_5: Pokonanie Yoichiego Nakachiego w 11 sekund.
 - right_item_1: Rope-a-dope przeciw Foremanowi.
-- right_item_2: Szybkość przeciw Clevelandowi Williamsowi.
-- right_item_3: Wytrzymałość z ery Fraziera.
-- right_item_4: Zatrzymanie Sonny'ego Listona.
-- right_item_5: Praca nóg Alego.
+- right_item_2: Szczytowa szybkość i precyzja przeciw Williamsowi.
+- right_item_3: Wytrzymałość w walkach z Frazierem.
+- right_item_4: Złoto olimpijskie, Rzym 1960.
+- right_item_5: Pierwszy trzykrotny mistrz świata wszechwag.
 
 Template HUD Bars:
 headline: ANALITYKA WALKI HIGH-END

@@ -18,7 +18,7 @@ Combat Skills: 86
 - Mentality: Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.
 4. Defeated by Character A
 Gary Elms (boxing decision victory)
-Yoichi Nakachi (witness-backed rapid challenge-fight knockout)
+Yoichi Nakachi (witness-backed 11-second challenge-fight knockout)
 
 5. Character B
 Muhammad Ali (Historical Prime)
@@ -69,8 +69,9 @@ fight-title
 11. Character A Raw Feats
 One-inch punch demonstration at Long Beach
 Two-finger push-up and body-control demonstration
-1958 inter-school boxing title over Gary Elms
-Built Jeet Kune Do from practical cross-style adaptation
+1958 inter-school boxing title win over Gary Elms
+Built Jeet Kune Do by effectively combining multiple styles
+Defeated Yoichi Nakachi in 11 seconds
 
 12. Character B Powers / Tools / Weaknesses
 - Powers: Elite heavyweight boxing speed, timing, durability, and ring IQ.
@@ -81,6 +82,8 @@ Built Jeet Kune Do from practical cross-style adaptation
 Rope-a-dope against George Foreman
 Peak heavyweight speed and precision against Cleveland Williams
 Frazier-era endurance and punishment tolerance
+Olympic gold medal, Rome 1960
+First boxer in history to win the heavyweight world title three times
 
 Template Tactical Board:
 headline: TACTICAL BOARD // BRUCE VS ALI
@@ -122,13 +125,14 @@ right_title: ALI SHOWCASE
 feat_label: FEAT
 - left_item_1: One-inch punch (Long Beach).
 - left_item_2: Two-finger push-ups.
-- left_item_3: Gary Elms title.
-- left_item_4: JKD adaptation.
+- left_item_3: 1958 inter-school boxing title (Gary Elms).
+- left_item_4: Built Jeet Kune Do by effectively combining multiple styles.
+- left_item_5: Defeated Yoichi Nakachi in 11 seconds.
 - right_item_1: Rope-a-dope vs Foreman.
-- right_item_2: Cleveland Williams speed.
-- right_item_3: Frazier endurance.
-- right_item_4: Sonny Liston stoppage.
-- right_item_5: Ali footwork.
+- right_item_2: Peak speed and precision vs Cleveland Williams.
+- right_item_3: Frazier-era endurance under punishment.
+- right_item_4: Olympic gold, Rome 1960.
+- right_item_5: First three-time heavyweight world champion.
 
 Template HUD Bars:
 headline: HIGH-END COMBAT ANALYTICS
