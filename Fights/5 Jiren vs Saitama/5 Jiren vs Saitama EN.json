@@ -40,9 +40,9 @@
     "victories": [
       "Hit",
       "Maji Kayo",
-      "Golden Frieza (overpowering)",
-      "Kale (temporary incapacitation)",
-      "Vegeta (Super Saiyan Blue) (context-heavy overpowering)"
+      "Golden Frieza",
+      "Kale",
+      "Vegeta (Super Saiyan Blue)"
     ]
   },
   "fighterB": {
@@ -87,8 +87,8 @@
       "Boros",
       "Elder Centipede",
       "Orochi",
-      "Evil Ocean Water (neutralization)",
-      "Garou (Cosmic Fear Mode) (timeline-specific decisive result)"
+      "Evil Ocean Water",
+      "Garou (Cosmic Fear Mode)"
     ]
   },
   "locale": "en",
