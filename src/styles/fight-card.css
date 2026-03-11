@@ -30,7 +30,24 @@
   margin: 0 auto;
   line-height: 1.12;
   white-space: nowrap;
-  transform: translate3d(0, -0.015em, 0);
+  --vvv-stripe-period: 8.514em;
+  --vvv-stripe-overlap: 0.572em;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image:
+    var(--vvv-stripe-image, url('/assets/blue-red.png')),
+    var(--vvv-stripe-image, url('/assets/blue-red.png'));
+  background-size: var(--vvv-stripe-period) 100%, var(--vvv-stripe-period) 100%;
+  background-position: 0 50%, calc(-1 * var(--vvv-stripe-overlap)) 50%;
+  background-repeat: repeat-x, repeat-x;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: vvv-fight-card-stripe-loop 9s linear infinite;
+  transform: translate3d(0, -0.035em, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: background-position, filter;
+  filter: var(--vvv-stripe-filter, none);
   text-shadow: none;
 }
 
@@ -159,4 +176,15 @@
   z-index: 7;
   pointer-events: none;
   background: linear-gradient(0deg, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.26) 56%, transparent 100%);
+}
+
+@keyframes vvv-fight-card-stripe-loop {
+  0% {
+    background-position: 0 50%, calc(-1 * var(--vvv-stripe-overlap)) 50%;
+  }
+  100% {
+    background-position:
+      calc(-1 * var(--vvv-stripe-period)) 50%,
+      calc(-1 * (var(--vvv-stripe-period) + var(--vvv-stripe-overlap))) 50%;
+  }
 }

@@ -9,6 +9,7 @@ import {
   parseBooleanFlag,
   resolveFightCardNameFontRem,
   resolveFightCardPalette,
+  resolveFightCardStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
@@ -83,6 +84,7 @@ export function FightCardTemplate({
   }
 
   const renderStaticLine = (text: string, palette: FightCardPalette) => {
+    const stripeStyle = resolveFightCardStripeStyle(palette)
     const fontSizeRem = resolveFightCardNameFontRem(text)
 
     return (
@@ -92,6 +94,8 @@ export function FightCardTemplate({
           {
             color: palette.colorA,
             fontSize: `${fontSizeRem}rem`,
+            '--vvv-stripe-image': stripeStyle.textureUrl,
+            '--vvv-stripe-filter': stripeStyle.textureFilter,
           } as CSSProperties
         }
       >
