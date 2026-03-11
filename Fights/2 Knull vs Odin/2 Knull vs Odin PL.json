@@ -1,11 +1,11 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "Ścina Celestiala i kuje All-Black.",
-      "Podporządkowuje Celestiali i zmusza ich do służby.",
+      "Kuje All-Black z Otchłani.",
+      "Podporządkowuje sobie Celestiali.",
       "Przetrwał Wielki Wybuch.",
       "Zabija niezliczonych bogów swoim Necroswordem.",
-      "Pokrywa Ziemię Otchłanią i gasi słońce."
+      "Pokrywa Ziemię symbiontem."
     ],
     "dossier": {
       "advantage": "All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.",
@@ -42,16 +42,17 @@
       "Celestial",
       "Sentry",
       "Silver Surfer",
-      "All-Father Thor"
+      "All-Father Thor",
+      "Storm"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Pochłania siłę życiową Asgardu i skaluje Destroyera.",
+      "Pochłania siłę życiową wszystkich Asgardian.",
       "Odcina Nezarrowi ramię Mieczem Odyna.",
       "Przebija nieprzenikalną kopułę stworzoną przez Celestiali.",
       "Gromadzi moc wszystkich bogów Ziemi.",
-      "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów."
+      "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabić bogów."
     ],
     "dossier": {
       "advantage": "Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.",

@@ -1,11 +1,11 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "Decapitates a Celestial and forges All-Black.",
-      "Knulls Celestials and makes them serve.",
+      "Forges All-Black from the Abyss.",
+      "Subjugates the Celestials.",
       "Survives Big Bang.",
       "Kills countless gods with his Necrosword.",
-      "Covers the Earth in Abyss and shuts the sun off."
+      "Covers the Earth in symbiotes."
     ],
     "dossier": {
       "advantage": "All-Black – the sword that negates immortality. The weapon ignores every form of armor and regeneration, and Knull himself returns to the fight even after total incineration.",
@@ -42,12 +42,13 @@
       "Celestial",
       "Sentry",
       "Silver Surfer",
-      "All-Father Thor"
+      "All-Father Thor",
+      "Storm"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Absorbs Asgard life-force and scales Destroyer.",
+      "Absorbs the life-force of all Asgardians.",
       "Severs Nezarr arm with Odinsword.",
       "Breaches impenetrable Dome made by Celestials.",
       "Gathers power from all of the Earth gods.",

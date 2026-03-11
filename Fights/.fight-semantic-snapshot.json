@@ -219,8 +219,8 @@
         "Magneto",
         "Wolverine",
         "Vision",
-        "Thor (context-dependent result from the conquest)",
-        "Hulk (Earth-4400) (kill confirmed in the aftermath)"
+        "Thor",
+        "Hulk"
       ]
     },
     {
@@ -448,14 +448,14 @@
     },
     {
       "crucialFeatsA": [
-        "Decapitates a Celestial and forges All-Black.",
-        "Knulls Celestials and makes them serve.",
+        "Forges All-Black from the Abyss.",
+        "Subjugates the Celestials.",
         "Survives Big Bang.",
         "Kills countless gods with his Necrosword.",
-        "Covers the Earth in Abyss and shuts the sun off."
+        "Covers the Earth in symbiotes."
       ],
       "crucialFeatsB": [
-        "Absorbs Asgard life-force and scales Destroyer.",
+        "Absorbs the life-force of all Asgardians.",
         "Severs Nezarr arm with Odinsword.",
         "Breaches impenetrable Dome made by Celestials.",
         "Gathers power from all of the Earth gods.",
@@ -663,7 +663,8 @@
         "Celestial",
         "Sentry",
         "Silver Surfer",
-        "All-Father Thor"
+        "All-Father Thor",
+        "Storm"
       ],
       "winsB": [
         "Infinity",
@@ -675,18 +676,18 @@
     },
     {
       "crucialFeatsA": [
-        "Ścina Celestiala i kuje All-Black.",
-        "Podporządkowuje Celestiali i zmusza ich do służby.",
+        "Kuje All-Black z Otchłani.",
+        "Podporządkowuje sobie Celestiali.",
         "Przetrwał Wielki Wybuch.",
         "Zabija niezliczonych bogów swoim Necroswordem.",
-        "Pokrywa Ziemię Otchłanią i gasi słońce."
+        "Pokrywa Ziemię symbiontem."
       ],
       "crucialFeatsB": [
-        "Pochłania siłę życiową Asgardu i skaluje Destroyera.",
+        "Pochłania siłę życiową wszystkich Asgardian.",
         "Odcina Nezarrowi ramię Mieczem Odyna.",
         "Przebija nieprzenikalną kopułę stworzoną przez Celestiali.",
         "Gromadzi moc wszystkich bogów Ziemi.",
-        "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabijać bogów."
+        "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabić bogów."
       ],
       "dossierA": [
         {
@@ -890,7 +891,8 @@
         "Celestial",
         "Sentry",
         "Silver Surfer",
-        "All-Father Thor"
+        "All-Father Thor",
+        "Storm"
       ],
       "winsB": [
         "Infinity",
@@ -1334,14 +1336,14 @@
       "crucialFeatsA": [
         "Picks up and slams down a Y-Wing bomber.",
         "Slams two starships together with telekinesis.",
-        "Walks through an alley while deflecting blaster fire.",
+        "Impales himself to kill the reborn Darth Maul.",
         "Blocks an energy blast with his hand.",
         "Survives a giant explosion that destroys a casino."
       ],
       "crucialFeatsB": [
         "Destroys a planet during a fight with Drax.",
         "Survives a two-light-year black hole.",
-        "Tanks Odin-level energy.",
+        "Survives Galactus's lethal attack.",
         "Walks out of a gas-giant explosion unharmed.",
         "Performs molecular-level matter manipulation."
       ],
@@ -2203,11 +2205,11 @@
         "Defeated Yoichi Nakachi in 11 seconds"
       ],
       "crucialFeatsB": [
-        "Rope-a-dope against George Foreman",
-        "Peak heavyweight speed and precision against Cleveland Williams",
-        "Frazier-era endurance and punishment tolerance",
-        "Olympic gold medal, Rome 1960",
-        "First boxer in history to win the heavyweight world title three times"
+        "Rope-a-dope vs Foreman.",
+        "19 successful world title defenses.",
+        "First three-time heavyweight world champion.",
+        "Olympic gold, Rome 1960.",
+        "Defeated 21 champions or heavyweight title challengers."
       ],
       "dossierA": [
         {
@@ -2402,11 +2404,11 @@
         "Pokonanie Yoichiego Nakachiego w 11 sekund"
       ],
       "crucialFeatsB": [
-        "Rope-a-dope przeciw George'owi Foremanowi",
-        "Szczytowa szybkość i precyzja przeciw Clevelandowi Williamsowi",
-        "Wytrzymałość i tolerancja karania w walkach z Joe Frazierem",
-        "Złoty medal olimpijski, Rzym 1960",
-        "Jako pierwszy pięściarz w historii trzykrotnie zdobył tytuł mistrza świata wagi ciężkiej"
+        "Rope-a-dope przeciw Foremanowi.",
+        "19 udanych obron tytułu mistrza świata.",
+        "Pierwszy trzykrotny mistrz świata wszechwag.",
+        "Złoto olimpijskie, Rzym 1960.",
+        "Pokonanie 21 mistrzów lub pretendentów do tytułu."
       ],
       "dossierA": [
         {

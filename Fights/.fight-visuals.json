@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T13:08:08.474Z",
+  "updatedAt": "2026-03-11T13:30:29.886Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -291,6 +291,51 @@
         "crucial-feats:right:file:odin_life2.jpg": {
           "x": 50,
           "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:01_6_1_knull_decapitates_celestial_allblack.jpg": {
+          "x": 50,
+          "y": 52.405798412341404,
+          "scale": 1
+        },
+        "crucial-feats:left:file:knull_knulled.jpg": {
+          "x": 86.91170100662387,
+          "y": 0,
+          "scale": 1.4272709794292153
+        },
+        "crucial-feats:left:file:knull_bigbang.webp": {
+          "x": 42.96206810853809,
+          "y": 72.8466056666918,
+          "scale": 1.0392391715802343
+        },
+        "crucial-feats:left:file:knull_gods.jpg": {
+          "x": 82.89797487027377,
+          "y": 95.68535922351712,
+          "scale": 1.2543278752434062
+        },
+        "crucial-feats:left:file:02_6_1_knull_covers_earth_in_abyss.jpg": {
+          "x": 54.19167933656993,
+          "y": 96.7485272767487,
+          "scale": 1.098824535924869
+        },
+        "crucial-feats:right:file:odin_armcut.jpg": {
+          "x": 50,
+          "y": 78.33305357161902,
+          "scale": 1
+        },
+        "crucial-feats:right:file:odin_dome.jpg": {
+          "x": 41.989229401345945,
+          "y": 82.95501443659839,
+          "scale": 1.1584099002695027
+        },
+        "crucial-feats:right:file:odin_powerofgods.jpg": {
+          "x": 81.31056038651052,
+          "y": 83.19094519168034,
+          "scale": 1.1598632472718995
+        },
+        "crucial-feats:right:file:odin_surtur.jpg": {
+          "x": 50,
+          "y": 66.39855351554841,
           "scale": 1
         }
       }
