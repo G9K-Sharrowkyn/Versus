@@ -501,6 +501,8 @@ export const swapImportSides = (payload: ParsedVsImport): ParsedVsImport => ({
   statsB: payload.statsA,
   factsA: payload.factsB,
   factsB: payload.factsA,
+  profileA: payload.profileB,
+  profileB: payload.profileA,
   powersA: payload.powersB,
   powersB: payload.powersA,
   crucialFeatsA: payload.crucialFeatsB,

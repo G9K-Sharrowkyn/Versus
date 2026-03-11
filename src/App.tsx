@@ -40,6 +40,7 @@ import type {
   Category,
   Fighter,
   FighterFact,
+  FighterProfileData,
   FightLocaleJsonV1,
   FightRecord,
   FightScansJsonV1,
@@ -67,6 +68,7 @@ const FIGHTS_SCAN_POLL_MS = 1200
 const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
+const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 
 const parseFightScaffoldMatchup = (value: string) => {
   const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
@@ -94,6 +96,8 @@ function App() {
   const [fighterB, setFighterB] = useState<Fighter>(() => cloneFighter(FIGHTER_B))
   const [factsA, setFactsA] = useState<FighterFact[]>(() => defaultFactsFor('a', DEFAULT_LANGUAGE))
   const [factsB, setFactsB] = useState<FighterFact[]>(() => defaultFactsFor('b', DEFAULT_LANGUAGE))
+  const [profileA, setProfileA] = useState<FighterProfileData>(EMPTY_PROFILE_DATA)
+  const [profileB, setProfileB] = useState<FighterProfileData>(EMPTY_PROFILE_DATA)
   const [powersA, setPowersA] = useState<FighterFact[]>([])
   const [powersB, setPowersB] = useState<FighterFact[]>([])
   const [crucialFeatsA, setCrucialFeatsA] = useState<string[]>([])
@@ -393,6 +397,8 @@ function App() {
     setLanguage(nextState.targetLanguage)
     setFactsA(nextState.factsA)
     setFactsB(nextState.factsB)
+    setProfileA(nextState.profileA)
+    setProfileB(nextState.profileB)
     setPowersA(nextState.powersA)
     setPowersB(nextState.powersB)
     setCrucialFeatsA(nextState.crucialFeatsA)
@@ -550,6 +556,8 @@ function App() {
       subtitle={activeTemplatePreset.subtitle}
       factsA={factsA}
       factsB={factsB}
+      profileA={profileA}
+      profileB={profileB}
       powersA={powersA}
       powersB={powersB}
       crucialFeatsA={crucialFeatsA}

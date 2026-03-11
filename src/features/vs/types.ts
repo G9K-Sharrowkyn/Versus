@@ -10,6 +10,12 @@ export type FighterFact = {
   text: string
 }
 
+export type FighterProfileData = {
+  powers: string[]
+  tools: string[]
+  weaknesses: string[]
+}
+
 export type Fighter = {
   name: string
   subtitle: string
@@ -129,6 +135,8 @@ export type ParsedVsImport = {
   statsB: ParsedStat[]
   factsA: FighterFact[]
   factsB: FighterFact[]
+  profileA: FighterProfileData
+  profileB: FighterProfileData
   powersA: FighterFact[]
   powersB: FighterFact[]
   crucialFeatsA: string[]
@@ -179,6 +187,8 @@ export type TemplatePreviewProps = {
   subtitle: string
   factsA: FighterFact[]
   factsB: FighterFact[]
+  profileA: FighterProfileData
+  profileB: FighterProfileData
   powersA: FighterFact[]
   powersB: FighterFact[]
   crucialFeatsA: string[]

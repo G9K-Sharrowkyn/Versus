@@ -10,7 +10,7 @@
     "dossier": {
       "advantage": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.",
       "mentality": "Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.",
-      "quote": "",
+      "quote": "Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!",
       "style": "Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika."
     },
     "name": "Postać A",
@@ -57,7 +57,7 @@
     "dossier": {
       "advantage": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.",
       "mentality": "Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.",
-      "quote": "",
+      "quote": "Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.",
       "style": "Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię."
     },
     "name": "Postać B",
@@ -114,169 +114,85 @@
     "fight-card"
   ],
   "templates": {
-    "battle-dynamics": {
-      "headline": "DYNAMIKA WALKI",
-      "left_curve": "62,68,77,86,91",
-      "left_curve_label": "PRESJA DOMENY TRIGONA",
-      "left_note": "Trigon rośnie, gdy pole walki zachowuje się bardziej jak demoniczna domena.",
-      "right_curve": "88,90,87,83,78",
-      "right_curve_label": "KONTROLA ENERGII GALACTUSA",
-      "right_note": "Galactus jest najsilniejszy, gdy może normalizować i metabolizować przestrzeń.",
-      "subtitle": "Jak walka zmienia się z minuty na minutę."
-    },
-    "character-dossier-a": {
-      "advantage": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.",
-      "header": "Dossier postaci",
-      "mentality": "Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.",
-      "quote": "Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!",
-      "style": "Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu by uderzać piekielnym ogniem oraz brutalną siłę bóstwa, by bez wysiłku rozbić  każdego przeciwnika.",
-      "world": "Prime Earth"
-    },
-    "character-dossier-b": {
-      "advantage": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.",
-      "header": "Dossier postaci",
-      "mentality": "Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.",
-      "quote": "Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.",
-      "style": "Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.",
-      "world": "Ziemia-616"
-    },
-    "character-profile": {
-      "headline": "PROFIL POSTACI",
-      "left_title": "Trigon",
-      "powers_label": "MOCE",
-      "right_title": "Galactus",
-      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
-      "tools_label": "NARZĘDZIA",
-      "weaknesses_label": "SŁABOŚCI"
-    },
-    "crucial-feats": {
-      "feat_label": "FEAT",
-      "headline": "NAJWAŻNIEJSZE WYCZYNY",
-      "left_item_1": "Heart of Darkness.",
-      "left_item_2": "Niezliczone skażone światy.",
-      "left_item_3": "Zmartwychwstanie po wyrwaniu serca.",
-      "left_item_4": "Regeneracja oka w czasie walki.",
-      "left_item_5": "Dark Titans.",
-      "left_title": "Trigon",
-      "right_item_1": "Trzy układy słoneczne mimo osłabienia.",
-      "right_item_2": "Agamotto we własnej domenie.",
-      "right_item_3": "Bariera dla Silver Surfera.",
-      "right_item_4": "Pożarcie Poppup.",
-      "right_item_5": "Wieczna pętla Sphinxa.",
-      "right_title": "Galactus",
-      "subtitle": "Skalowanie postaci poprzez osiągnięcia."
-    },
-    "fight-analytics": {
-      "headline": "ANALITYKA WALKI",
-      "integrity": "99.4%",
-      "scale": "0-100",
-      "subtitle": "Odczyt statystyk dwóch profili",
-      "threat_level": "KOSMICZNY"
-    },
     "fight-card": {
-      "bottom_color_a": "#facc15",
-      "bottom_color_b": "#dc2626",
-      "fight_title": "Trigon vs Galactus",
-      "subtitle": "",
-      "top_color_a": "#2563eb",
-      "top_color_b": "#93c5fd"
+      "fight_title": "Trigon vs Galactus"
     },
     "fight-simulation": {
-      "headline": "SYMULACJA WALKI",
-      "phase_1_actor": "a",
-      "phase_1_animation": "trade-chaos",
-      "phase_1_body": "Trigon próbuje zamienić pierwszą wymianę w korupcję, presję opętania i anty-symetrię.",
+      "opening": "Trigon próbuje zamienić pierwszą wymianę w korupcję, presję opętania i anty-symetrię.",
+      "mid_fight": "Galactus odpowiada stabilizacją skali, kontrolą barier i ekonomią energii zamiast respektować preferowane zasady Trigona.",
+      "late_fight": "Finał zależy od tego, czy pole walki pozostaje toksyczne i demoniczne, czy zostaje znormalizowane do czegoś, co Galactus może metabolizować.",
+      "end_condition": "Jeśli Galactus nie znormalizuje pola walki, sama logika domeny zaczyna przechylać pojedynek w stronę Trigona.",
       "phase_1_title": "Zatruć otwarcie",
-      "phase_2_actor": "b",
-      "phase_2_animation": "kite-zone",
-      "phase_2_body": "Galactus odpowiada stabilizacją skali, kontrolą barier i ekonomią energii zamiast respektować preferowane zasady Trigona.",
+      "phase_1_animation": "trade-chaos",
+      "phase_1_event": "Trigon próbuje zamienić pierwszą wymianę w korupcję, presję opętania i anty-symetrię.",
+      "phase_1_a_label": "Korupcja",
+      "phase_1_a_value": "93",
+      "phase_1_b_label": "Stabilizacja",
+      "phase_1_b_value": "98",
       "phase_2_title": "Znormalizować mapę",
+      "phase_2_animation": "kite-zone",
+      "phase_2_event": "Galactus odpowiada stabilizacją skali, kontrolą barier i ekonomią energii zamiast respektować preferowane zasady Trigona.",
+      "phase_2_branch_a": "Pole dalej osuwa się w demoniczną logikę i wzmacnia przewagę Trigona.",
+      "phase_2_branch_b": "Galactus normalizuje przestrzeń i odbudowuje ekonomię energii po swojej stronie.",
+      "phase_3_title": "Paliwo albo trucizna",
       "phase_3_actor": "b",
       "phase_3_animation": "clash-lock",
-      "phase_3_body": "Finał zależy od tego, czy pole walki pozostaje toksyczne i demoniczne, czy zostaje znormalizowane do czegoś, co Galactus może metabolizować.",
-      "phase_3_title": "Paliwo albo trucizna",
-      "subtitle": "Przebieg walki przez trzy fazy."
+      "phase_3_event": "Finał zależy od tego, czy pole walki pozostaje toksyczne i demoniczne, czy zostaje znormalizowane do czegoś, co Galactus może metabolizować.",
+      "phase_3_branch_a": "Głód i toksyczna domena odbierają Galactusowi czystą drogę normalizacji.",
+      "phase_3_branch_b": "Galactus zamienia pole walki w paliwo i wraca do własnej logiki skali."
     },
     "final-summary": {
-      "headline": "PODSUMOWANIE KOŃCOWE",
       "line_1": "Galactus wygrywa porównanie na papierze, 92.67 vs 87.33.",
       "line_2": "Trigon pozostaje groźny, gdy korupcja i logika domeny zastępują normalną symetrię walki.",
       "line_3": "Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten pojedynek.",
-      "subtitle": "Podsumowanie",
       "winner": "Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa"
     },
-    "interpretation": {
-      "body": "Galactus ma szerszy surowy profil, ale Trigon pozostaje groźny, bo jego wartość jest nieliniowa i zależy od pola walki. Przy neutralnych założeniach nadal prowadzi Galactus.",
-      "headline": "INTERPRETACJA",
-      "subtitle": "Kto wygrywa walkę na papierze?",
-      "winner": "Galactus"
-    },
     "parameter-comparison": {
-      "draw_header": "STREFY REMISU",
-      "draw_summary": "Walka zwęża się dopiero wtedy, gdy głód i własna domena wypaczają mapę starcia.",
-      "favorite": "Galactus",
-      "favorite_label": "FAWORYT WEDŁUG STATYSTYK",
-      "headline": "PORÓWNANIE PARAMETRÓW",
-      "left_average": "87.33",
       "left_header": "PRZEWAGI TRIGONA",
-      "left_summary": "Trigon ugina pole walki najmocniej wtedy, gdy korupcja zastępuje normalne zasady starcia.",
-      "right_average": "92.67",
-      "right_header": "PRZEWAGI GALACTUSA",
-      "right_summary": "Galactus ma szerszy profil i czystszą odpowiedź na neutralnym polu.",
-      "subtitle": "Mapa średniego profilu statystyk"
+      "right_header": "PRZEWAGI GALACTUSA"
     },
     "stat-trap": {
-      "body": "Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten pojedynek zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń.",
-      "headline": "PUŁAPKA STATYSTYK",
       "question": "Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?",
-      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa"
+      "trap_top": "WIĘKSZE ŚREDNIE >",
+      "trap_bottom": "NIE KASUJĄ LOGIKI DOMENY",
+      "example": "Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten pojedynek zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń."
     },
     "tactical-board": {
-      "chaos_label": "ODCINEK CHAOSU",
-      "headline": "TABLICA TAKTYCZNA // TRIGON VS GALACTUS",
       "lane": "Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.",
-      "left_header": "SIATKA KATEGORII",
-      "linear_label": "ODCINEK LINIOWY",
-      "right_header": "REALIA WALKI",
       "subtitle": "Demon kontra Pożeracz"
     },
     "verdict-matrix": {
-      "case_1": "Galactus 8/10",
-      "case_2": "Galactus 6.5/10",
-      "case_3": "Trigon 6/10",
-      "case_4": "Trigon 7.5/10",
-      "col_left": "NEUTRALNE POLE",
-      "col_right": "DOMENA TRIGONA",
-      "headline": "MATRYCA WERDYKTU",
-      "row_bottom": "WYGŁODNIAŁY",
-      "row_top": "DOBRZE NAKARMIONY",
-      "subtitle": "Wygrana zależy od zasad walki."
-    },
-    "victory-archive": {
-      "archive_label": "",
-      "avg_label": "ŚREDNI WYNIK",
-      "headline": "Archiwum zwycięstw",
-      "left_item_1": "The Divine",
-      "left_item_2": "Teen Titans",
-      "left_item_3": "Superboy",
-      "left_item_4": "Wonder Girl",
-      "left_item_5": "Psimon",
-      "left_title": "Trigon",
-      "right_item_1": "Silver Surfer",
-      "right_item_2": "Sphinx",
-      "right_item_3": "Poppup / Poppupianie",
-      "right_item_4": "Imperium Skrulli / Tarnax IV",
-      "right_item_5": "Mad Celestials",
-      "right_title": "Galactus",
-      "subtitle": ""
+      "case_1": "Galactus 8/10. Na neutralnym polu i syty zachowuje bazowy zestaw odpowiedzi, zanim korupcja na dobre przejmie mapę.",
+      "case_2": "Galactus 6.5/10. W domenie Trigona ryzyko rośnie, ale pełne rezerwy nadal pozwalają Galactusowi spychać pole walki z powrotem w stronę paliwa.",
+      "case_3": "Trigon 6/10. Wygłodniały Galactus jest groźny nawet na neutralnym polu, ale każda pętla korupcji zaczyna kosztować go znacznie więcej.",
+      "case_4": "Trigon 7.5/10. Wygłodniały Galactus w domenie Trigona traci czystą ścieżkę normalizacji, więc logika pola zaczyna prowadzić cały pojedynek."
     },
     "x-factor": {
       "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
-      "headline": "X-FACTOR",
+      "a_value": "48",
+      "a_bonus": "16",
+      "a_bonus_label": "DOMENA",
+      "b_value": "52",
+      "b_bonus": "14",
+      "regen": "LOGIKA POLA",
+      "mechanics": "Jeśli pole walki pozostaje demoniczne, Trigon pozostaje realny.",
       "implication": "Kto kontroluje znaczenie pola walki, kontroluje gałąź całego starcia.",
-      "left_case": "Jeśli pole walki pozostaje demoniczne, Trigon pozostaje realny.",
-      "right_case": "Jeśli staje się paliwem, Galactus odzyskuje walkę.",
-      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki."
+      "psychology": "Jeśli staje się paliwem, Galactus odzyskuje walkę."
+    },
+    "interpretation": {
+      "line_1": "Galactus ma szerszy surowy profil.",
+      "line_2": "Trigon pozostaje groźny, bo jego wartość jest nieliniowa i zależy od pola walki.",
+      "line_3": "Przy neutralnych założeniach nadal prowadzi Galactus.",
+      "quote": "Galactus."
+    },
+    "battle-dynamics": {
+      "a_curve": "62,68,77,86,91",
+      "b_curve": "88,90,87,83,78",
+      "yellow_wave": "44,56,48,61,46,59,50,63",
+      "phase_1": "Galactus zaczyna mocniej, gdy może normalizować i metabolizować przestrzeń.",
+      "phase_2": "Trigon rośnie, gdy pole walki coraz bardziej przypomina demoniczną domenę.",
+      "phase_3": "Końcówka zależy od tego, która logika pola walki utrzyma się dłużej.",
+      "analysis": "Galactus jest najsilniejszy, gdy może normalizować i metabolizować przestrzeń. Trigon rośnie, gdy pole walki zachowuje się bardziej jak demoniczna domena."
     }
   }
 }

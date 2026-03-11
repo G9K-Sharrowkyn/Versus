@@ -10,7 +10,7 @@
     "dossier": {
       "advantage": "Overwhelming energy barrier and reflexes. His Ki is so powerful that it serves as both an impenetrable defense and the ultimate offense.",
       "mentality": "A stoic absolutist. He fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.",
-      "quote": "",
+      "quote": "It matters not how many weaklings band together. You are nothing before absolute strength.",
       "style": "Ultra-efficient fighting of pure strength and Ki. He relies on minimal movement and devastating counters that end the fight before the opponent can react."
     },
     "name": "Jiren",
@@ -56,7 +56,7 @@
     "dossier": {
       "advantage": "Immeasurable strength and resilience. He has no limits – every strike has finishing potential, and he remains immune to most attacks.",
       "mentality": "A bored and carefree professional. He doesn't take the fight seriously until someone forces him to exert effort, which he waits for with hope.",
-      "quote": "",
+      "quote": "100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!",
       "style": "Simple, direct punch attacks. His style relies on such massive physical superiority that technique becomes redundant for him."
     },
     "name": "Saitama",
@@ -115,149 +115,64 @@
       "a_curve": "91,87,79,68,56",
       "analysis": "Jiren wins the cleaner start. Saitama wins the messier future version.",
       "b_curve": "39,43,52,66,81",
-      "headline": "BATTLE DYNAMICS",
       "phase_1": "Jiren starts high because pressure, barriers, and clean reads matter most early.",
       "phase_2": "Saitama's line rises only if the first real finish does not stick.",
       "phase_3": "Jiren loses leverage fast once the fight crosses from opening control into late escalation.",
-      "subtitle": "How the fight changes minute by minute.",
       "yellow_wave": "28,31,30,34,33,38,37,44"
     },
-    "character-dossier-a": {
-      "advantage": "Overwhelming energy barrier and reflexes. His ki is so powerful that it serves as both impenetrable defense and ultimate offense.",
-      "header": "CHARACTER DOSSIER",
-      "mentality": "Stoic absolutist. Fights without unnecessary words or emotions, taking the shortest path to total dominance over the opponent.",
-      "quote": "It matters not how many weaklings band together. You are nothing before absolute strength.",
-      "style": "Ultra-efficient combat of pure strength and ki. Relies on minimal movement and devastating counters that end the clash before the opponent can react.",
-      "world": "Dragon Ball Super"
-    },
-    "character-dossier-b": {
-      "advantage": "Immeasurable strength and resilience. Has no limits – every one of his hits has finishing potential, and he remains immune to most attacks.",
-      "header": "CHARACTER DOSSIER",
-      "mentality": "Bored and carefree professional. Does not take the fight seriously until someone forces him to exert effort, which he waits for with hope.",
-      "quote": "100 push-ups, 100 sit-ups, 100 squats, and a 10km run EVERY SINGLE DAY!!!",
-      "style": "Simple, direct punch attack. His style is based on such a gigantic physical advantage that technique becomes redundant for him.",
-      "world": "One Punch Man"
-    },
-    "character-profile": {
-      "headline": "CHARACTER PROFILE",
-      "left_title": "JIREN TOOLKIT",
-      "powers_label": "POWERS",
-      "right_title": "SAITAMA TOOLKIT",
-      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
-      "tools_label": "TOOLS",
-      "weaknesses_label": "WEAKNESSES"
-    },
-    "crucial-feats": {
-      "feat_label": "FEAT",
-      "headline": "CRUCIAL FEATS",
-      "left_title": "JIREN SHOWCASE",
-      "right_title": "SAITAMA SHOWCASE",
-      "subtitle": "Character scaling through achievements."
-    },
-    "fight-analytics": {
-      "headline": "FIGHT ANALYTICS",
-      "integrity": "99.3%",
-      "scale": "0-100",
-      "subtitle": "Two-profile stat readout",
-      "threat_level": "COSMIC"
-    },
     "fight-card": {
-      "bottom_color_a": "#facc15",
-      "bottom_color_b": "#dc2626",
-      "fight_title": "Jiren vs Saitama",
-      "subtitle": "",
-      "top_color_a": "#2563eb",
-      "top_color_b": "#93c5fd"
+      "fight_title": "Jiren vs Saitama"
     },
     "fight-simulation": {
       "end_condition": "Jiren wins by ending the first version of the fight. Saitama wins by surviving into a stronger second version.",
-      "headline": "FIGHT SIMULATION",
       "late_fight": "The fight diverges based on whether Jiren closes early or Saitama survives into escalation.",
       "mid_fight": "Saitama survives rather than dictates and tries to stay alive long enough for the exchange to change.",
       "opening": "Jiren takes immediate control through pressure, spacing, and efficiency.",
       "phase_1_a_label": "Pressure",
       "phase_1_a_value": "92",
-      "phase_1_actor": "a",
       "phase_1_animation": "feint-counter",
       "phase_1_b_label": "Survival",
       "phase_1_b_value": "68",
-      "phase_1_mode": "bars",
       "phase_1_title": "Opening Control",
       "phase_2_actor": "a",
       "phase_2_animation": "clash-lock",
       "phase_2_branch_a": "Jiren keeps the fight structured and denies real growth time.",
       "phase_2_branch_b": "Saitama survives long enough for the exchange to become a worse future problem.",
       "phase_2_event": "The fight changes the first time Jiren's clean finish sequence fails to cash out.",
-      "phase_2_mode": "split",
       "phase_2_title": "First Failure",
       "phase_3_actor": "b",
       "phase_3_animation": "trade-chaos",
       "phase_3_branch_a": "Jiren still closes before the future branch fully forms.",
       "phase_3_branch_b": "Saitama reaches the late-fight engine and the baseline math stops holding.",
       "phase_3_event": "Once the opening window slips, the question stops being who started better and becomes who the fight is becoming.",
-      "phase_3_mode": "split",
       "phase_3_title": "Escalation Branch",
-      "subtitle": "The course of the fight across three phases."
+      "phase_1_event": "Jiren takes immediate control through pressure, spacing, and efficiency."
     },
     "final-summary": {
-      "headline": "FINAL SUMMARY",
       "line_1": "Jiren owns the paper comparison, 89.67 vs 81.22.",
       "line_2": "Jiren's baseline comes from better opening control and cleaner finish structure.",
       "line_3": "Saitama only flips the matchup if survival turns into real escalation and the anomaly branch becomes live.",
-      "subtitle": "Summary",
       "winner": "Jiren leads, but Saitama has a live late branch"
     },
     "interpretation": {
-      "headline": "INTERPRETATION",
       "line_1": "Jiren owns the better start, cleaner reads, and more reliable opening finish structure.",
       "line_2": "Saitama keeps a real late branch only because his survivability can turn the future version of the fight into something worse.",
       "line_3": "On paper the edge is Jiren's, but the fight stops being a paper fight if survival turns into escalation.",
-      "quote": "The start belongs to Jiren. The danger belongs to whatever survives it.",
-      "subtitle": "Who wins the fight on paper?"
+      "quote": "The start belongs to Jiren. The danger belongs to whatever survives it."
     },
     "parameter-comparison": {
-      "draw_header": "DRAW ZONES",
-      "favorite_label": "STAT-BASED FAVORITE",
-      "headline": "PARAMETER COMPARISON",
       "left_header": "JIREN ADVANTAGES",
-      "right_header": "SAITAMA ADVANTAGES",
-      "subtitle": "Average stat profile map"
+      "right_header": "SAITAMA ADVANTAGES"
     },
     "stat-trap": {
       "example": "Jiren can control the start and still lose the later exchange if the first finish never truly happens.",
-      "headline": "STAT TRAP",
       "question": "Can Jiren finish before survival turns into escalation?",
-      "subtitle": "Why better stats do not guarantee victory",
       "trap_bottom": "ESCALATION CAN CREATE A WORSE SECOND VERSION",
       "trap_top": "OPENING EDGE DECIDES THE FIRST VERSION OF THE FIGHT"
     },
     "tactical-board": {
-      "chaos_label": "CHAOS SEGMENT",
-      "headline": "TACTICAL BOARD // JIREN VS SAITAMA",
       "lane": "Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.",
-      "left_header": "CATEGORY GRID",
-      "linear_label": "LINEAR SEGMENT",
-      "right_header": "FIGHT REALITY",
       "subtitle": "Discipline versus Limitlessness"
-    },
-    "victory-archive": {
-      "archive_label": "",
-      "avg_label": "AVG SCORE",
-      "headline": "Victory Archive",
-      "left_item_1": "Hit",
-      "left_item_2": "Maji Kayo",
-      "left_item_3": "Golden Frieza",
-      "left_item_4": "Kale",
-      "left_item_5": "Vegeta (Super Saiyan Blue)",
-      "left_title": "JIREN RECORD",
-      "right_item_1": "Boros",
-      "right_item_2": "Elder Centipede",
-      "right_item_3": "Orochi",
-      "right_item_4": "Evil Ocean Water",
-      "right_item_5": "Garou (Cosmic Fear Mode)",
-      "right_title": "SAITAMA RECORD",
-      "subtitle": "",
-      "win_badge": "W"
     },
     "x-factor": {
       "a_bonus": "15",
@@ -266,12 +181,10 @@
       "b_bonus": "14",
       "b_value": "50",
       "factor": "OPENING CONTROL VS ESCALATION TIME",
-      "headline": "X-FACTOR",
       "implication": "If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.",
       "mechanics": "Jiren's edge lives in the first clean finish window. Saitama's edge appears only if that window fails badly enough.",
       "psychology": "Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen.",
-      "regen": "LATE-FIGHT ESCALATION",
-      "subtitle": "The variable that affects the verdict more than ordinary stats."
+      "regen": "LATE-FIGHT ESCALATION"
     }
   }
 }

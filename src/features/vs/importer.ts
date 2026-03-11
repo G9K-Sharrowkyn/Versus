@@ -1,4 +1,4 @@
-import type { Category, FighterFact, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
+import type { Category, FighterFact, FighterProfileData, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
 import type {
   FightLocaleJsonTemplateBlock,
   FightLocaleJsonTemplateValue,
@@ -13,6 +13,7 @@ import {
   getFightCommonCopy,
   getFightDefaultCategories,
   getFightTemplateBlockAliases,
+  getFightTemplateDefaultField,
   getFightTemplateManifest,
   getFightTemplateRequirements,
   getFightTemplateTokenMap,
@@ -391,9 +392,9 @@ const buildProfileFacts = (
   profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
   language: Language,
 ) => {
-  const powersLabel = language === 'pl' ? 'Moce' : 'Powers'
-  const toolsLabel = language === 'pl' ? 'Narzędzia' : 'Tools'
-  const weaknessesLabel = language === 'pl' ? 'Słabości' : 'Weaknesses'
+  const powersLabel = getFightTemplateDefaultField('character-profile', 'powers_label', language)
+  const toolsLabel = getFightTemplateDefaultField('character-profile', 'tools_label', language)
+  const weaknessesLabel = getFightTemplateDefaultField('character-profile', 'weaknesses_label', language)
 
   return [
     ...toStringArray(profile?.powers).map((text) => ({ title: powersLabel, text })),
@@ -401,6 +402,14 @@ const buildProfileFacts = (
     ...toStringArray(profile?.weaknesses).map((text) => ({ title: weaknessesLabel, text })),
   ]
 }
+
+const buildProfileData = (
+  profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
+): FighterProfileData => ({
+  powers: toStringArray(profile?.powers),
+  tools: toStringArray(profile?.tools),
+  weaknesses: toStringArray(profile?.weaknesses),
+})
 
 const buildTemplateBlockLinesFromJson = (
   templateId: TemplateId,
@@ -568,6 +577,8 @@ export const parseFightJsonFiles = (
     statsB,
     factsA: buildDossierFacts(localeJson.fighterA?.dossier, localeJson.locale),
     factsB: buildDossierFacts(localeJson.fighterB?.dossier, localeJson.locale),
+    profileA: buildProfileData(localeJson.fighterA?.profile),
+    profileB: buildProfileData(localeJson.fighterB?.profile),
     powersA: buildProfileFacts(localeJson.fighterA?.profile, localeJson.locale),
     powersB: buildProfileFacts(localeJson.fighterB?.profile, localeJson.locale),
     crucialFeatsA: toStringArray(localeJson.fighterA?.crucialFeats),

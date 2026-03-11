@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T08:59:42.487Z",
+  "updatedAt": "2026-03-11T11:21:25.727Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -266,7 +266,13 @@
         "y": 50,
         "scale": 1
       },
-      "slideImageAdjustments": {}
+      "slideImageAdjustments": {
+        "fight-card:portrait-b": {
+          "x": 50,
+          "y": 50.18101003432384,
+          "scale": 1
+        }
+      }
     },
     "4 Darth Vader vs Thanos": {
       "portraitAAdjust": {

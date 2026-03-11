@@ -27,7 +27,7 @@ export function FightAnalyticsTemplate({
   const chrome = buildFightTemplateChrome(language, blockFields)
   const common = getFightCommonCopy(language)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const averageShort =
     getFightTemplateDefaultField('fight-analytics', 'average_short', language) || common.averageShort
   const parameterLabel =

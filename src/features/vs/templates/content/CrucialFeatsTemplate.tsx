@@ -43,7 +43,7 @@ export function CrucialFeatsTemplate({
   const chrome = buildFightTemplateChrome(language, blockFields)
   const common = getFightCommonCopy(language)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || ''
+  const subText = subtitle || ''
   const leftEntries = buildTemplateImageEntries(blockFields, 'left', crucialFeatsA)
   const rightEntries = buildTemplateImageEntries(blockFields, 'right', crucialFeatsB)
   const pairCount = Math.max(1, leftEntries.length, rightEntries.length)

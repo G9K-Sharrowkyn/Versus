@@ -44,10 +44,8 @@ export function VictoryArchiveTemplate({
   const chrome = buildFightTemplateChrome(language, blockFields)
   const common = getFightCommonCopy(language)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const archiveLabel =
-    pickTemplateField(blockFields, ['archive_label']) ||
-    getFightTemplateDefaultField('victory-archive', 'archive_label', language)
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || archiveLabel
+  const archiveLabel = getFightTemplateDefaultField('victory-archive', 'archive_label', language)
+  const subText = subtitle || archiveLabel
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
   const leftTitle =

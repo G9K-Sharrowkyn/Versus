@@ -1,12 +1,11 @@
 import { type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../../fightManifest'
 import {
   type FightCardPalette,
   fighterMonogram,
   normalizeHexColor,
-  parseBooleanFlag,
   resolveFightCardNameFontRem,
   resolveFightCardPalette,
   resolveFightCardStripeStyle,
@@ -51,7 +50,7 @@ export function FightCardTemplate({
     fightLabel || `${fighterA.name || 'Fighter A'} vs ${fighterB.name || 'Fighter B'}`,
   )
   const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle || ''
+  const subText = subtitle || ''
   const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
   const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
@@ -59,28 +58,17 @@ export function FightCardTemplate({
   const bottomBasePalette = resolveFightCardPalette(bottomName, 'b')
   const topPalette: FightCardPalette = {
     colorA:
-      normalizeHexColor(
-        pickTemplateField(blockFields, ['top_color_a', 'top_primary', 'fighter_a_color_a', 'fighter_a_primary']),
-      ) || topBasePalette.colorA,
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'top_color_a', language)) || topBasePalette.colorA,
     colorB:
-      normalizeHexColor(
-        pickTemplateField(blockFields, ['top_color_b', 'top_secondary', 'fighter_a_color_b', 'fighter_a_secondary']),
-      ) || topBasePalette.colorB,
-    dark: parseBooleanFlag(pickTemplateField(blockFields, ['top_dark', 'fighter_a_dark']), topBasePalette.dark),
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'top_color_b', language)) || topBasePalette.colorB,
+    dark: topBasePalette.dark,
   }
   const bottomPalette: FightCardPalette = {
     colorA:
-      normalizeHexColor(
-        pickTemplateField(blockFields, ['bottom_color_a', 'bottom_primary', 'fighter_b_color_a', 'fighter_b_primary']),
-      ) || bottomBasePalette.colorA,
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'bottom_color_a', language)) || bottomBasePalette.colorA,
     colorB:
-      normalizeHexColor(
-        pickTemplateField(blockFields, ['bottom_color_b', 'bottom_secondary', 'fighter_b_color_b', 'fighter_b_secondary']),
-      ) || bottomBasePalette.colorB,
-    dark: parseBooleanFlag(
-      pickTemplateField(blockFields, ['bottom_dark', 'fighter_b_dark']),
-      bottomBasePalette.dark,
-    ),
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'bottom_color_b', language)) || bottomBasePalette.colorB,
+    dark: bottomBasePalette.dark,
   }
 
   const renderStaticLine = (text: string, palette: FightCardPalette) => {

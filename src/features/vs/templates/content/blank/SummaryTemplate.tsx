@@ -40,7 +40,7 @@ export function SummaryTemplate({
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const portraitHint = chrome.portraitAdjustHint
   const winnerLabel =
     pickTemplateField(blockFields, ['winner', 'verdict']) ||

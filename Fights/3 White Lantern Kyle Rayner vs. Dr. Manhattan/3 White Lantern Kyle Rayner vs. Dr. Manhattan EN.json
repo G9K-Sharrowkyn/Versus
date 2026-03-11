@@ -10,7 +10,7 @@
     "dossier": {
       "advantage": "Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.",
       "mentality": "Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.",
-      "quote": "",
+      "quote": "In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!",
       "style": "Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions."
     },
     "name": "White Lantern Kyle Rayner",
@@ -57,7 +57,7 @@
     "dossier": {
       "advantage": "Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.",
       "mentality": "Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.",
-      "quote": "",
+      "quote": "Yes. I see now. Everything ends.",
       "style": "Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture."
     },
     "name": "Dr. Manhattan",
@@ -118,151 +118,69 @@
       "a_curve": "62,66,71,78,86",
       "analysis": "Kyle owns the fuller profile. Manhattan owns the cleaner first move.",
       "b_curve": "90,84,72,59,47",
-      "headline": "BATTLE DYNAMICS",
       "phase_1": "Manhattan is strongest before symmetry forms and while the setup still looks fragile.",
       "phase_2": "Kyle only starts cashing out the better toolkit once layered pressure actually stays on the board.",
       "phase_3": "If rewrite never fully opens, the practical edge stays with Manhattan from start to finish.",
-      "subtitle": "How the fight changes minute by minute.",
       "yellow_wave": "29,34,31,36,32,38,34,40"
     },
-    "character-dossier-a": {
-      "advantage": "Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.",
-      "header": "CHARACTER DOSSIER",
-      "mentality": "Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.",
-      "quote": "In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!",
-      "style": "Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions.",
-      "world": "New 52"
-    },
-    "character-dossier-b": {
-      "advantage": "Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.",
-      "header": "CHARACTER DOSSIER",
-      "mentality": "Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.",
-      "quote": "Yes. I see now. Everything ends.",
-      "style": "Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture.",
-      "world": "Watchmen / Rebirth / Doomsday Clock"
-    },
-    "character-profile": {
-      "headline": "CHARACTER PROFILE",
-      "left_title": "KYLE TOOLKIT",
-      "powers_label": "POWERS",
-      "right_title": "MANHATTAN TOOLKIT",
-      "subtitle": "POWERS, TOOLS, AND WEAKNESSES",
-      "tools_label": "TOOLS",
-      "weaknesses_label": "WEAKNESSES"
-    },
-    "crucial-feats": {
-      "feat_label": "FEAT",
-      "headline": "CRUCIAL FEATS",
-      "left_title": "KYLE SHOWCASE",
-      "right_title": "MANHATTAN SHOWCASE",
-      "subtitle": "Character scaling through achievements."
-    },
-    "fight-analytics": {
-      "headline": "FIGHT ANALYTICS",
-      "integrity": "99.5%",
-      "scale": "0-100",
-      "subtitle": "Two-profile stat readout",
-      "threat_level": "COSMIC"
-    },
     "fight-card": {
-      "bottom_color_a": "#facc15",
-      "bottom_color_b": "#dc2626",
-      "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan",
-      "subtitle": "",
-      "top_color_a": "#2563eb",
-      "top_color_b": "#93c5fd"
+      "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan"
     },
     "fight-simulation": {
       "end_condition": "This fight is decided by whether symmetry ever forms at all.",
-      "headline": "FIGHT SIMULATION",
       "late_fight": "The fight diverges on one question only: whether Kyle gets a real Life Equation window before preemption lands.",
       "mid_fight": "Manhattan refuses normal exchange logic and attacks the setup, ring timing, or local state of the move.",
       "opening": "Kyle tries to seize initiative through speed, constructs, and layered White Light pressure.",
       "phase_1_a_label": "Pressure",
       "phase_1_a_value": "86",
-      "phase_1_actor": "a",
       "phase_1_animation": "teleport-burst",
       "phase_1_b_label": "Preemption",
       "phase_1_b_value": "89",
-      "phase_1_mode": "bars",
       "phase_1_title": "Opening Setup",
-      "phase_2_actor": "b",
       "phase_2_animation": "feint-counter",
       "phase_2_branch_a": "Kyle keeps enough of the board alive to build toward rewrite.",
       "phase_2_branch_b": "Manhattan deletes the setup before it becomes a real sequence.",
       "phase_2_event": "Manhattan attacks the mechanism of the action instead of trading into the finished attack.",
-      "phase_2_mode": "split",
       "phase_2_title": "Setup Denial",
       "phase_3_actor": "a",
       "phase_3_animation": "teleport-burst",
       "phase_3_branch_a": "Full rewrite access turns the broader toolkit into a live finishing route.",
       "phase_3_branch_b": "Preemption keeps the better toolkit theoretical and the fight stays Manhattan's.",
       "phase_3_event": "Either Kyle reaches full Life Equation expression or Manhattan keeps the fight permanently unfinished.",
-      "phase_3_mode": "split",
       "phase_3_title": "Rewrite Window",
-      "subtitle": "The course of the fight across three phases."
+      "phase_1_event": "Kyle tries to seize initiative through speed, constructs, and layered White Light pressure."
     },
     "final-summary": {
-      "headline": "FINAL SUMMARY",
       "line_1": "Kyle wins the paper comparison, 88.11 to 83.33.",
       "line_2": "Manhattan leads the default fight because he owns the better first move and attacks the setup itself.",
       "line_3": "Kyle flips the matchup only if Life Equation access is full and Manhattan does not proactively collapse the setup.",
-      "subtitle": "Summary",
       "winner": "Dr. Manhattan leads, but the fight is conditional"
     },
     "interpretation": {
-      "headline": "INTERPRETATION",
       "line_1": "Kyle owns the broader profile, better fighting rhythm, and the more complete active toolkit.",
       "line_2": "Manhattan still leads the default fight because he can attack the setup itself before Kyle's best route fully exists.",
       "line_3": "Paper advantage does not survive if the fight never reaches symmetrical exchange terms.",
-      "quote": "Kyle wins the categories. Manhattan wins the part where the fight becomes real.",
-      "subtitle": "Who wins the fight on paper?"
+      "quote": "Kyle wins the categories. Manhattan wins the part where the fight becomes real."
     },
     "parameter-comparison": {
-      "draw_header": "DRAW ZONES",
-      "favorite_label": "STAT-BASED FAVORITE",
-      "headline": "PARAMETER COMPARISON",
       "left_header": "KYLE ADVANTAGES",
-      "right_header": "MANHATTAN ADVANTAGES",
-      "subtitle": "Average stat profile map"
+      "right_header": "MANHATTAN ADVANTAGES"
     },
     "stat-trap": {
       "example": "Kyle can be better on paper and still lose the default fight if Manhattan erases the action before rewrite comes online.",
-      "headline": "STAT TRAP",
       "question": "Can Kyle force a real rewrite window before Manhattan attacks the setup itself?",
-      "subtitle": "Why better stats do not guarantee victory",
       "trap_bottom": "MANHATTAN WINS BY DENYING THE BOARD, NOT BY WINNING A NORMAL DUEL",
       "trap_top": "BETTER STATS DO NOT MATTER IF THE SETUP NEVER FULLY FORMS"
     },
     "tactical-board": {
-      "chaos_label": "CHAOS SEGMENT",
-      "headline": "TACTICAL BOARD // KYLE VS MANHATTAN",
       "lane": "Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.",
-      "left_header": "CATEGORY GRID",
-      "linear_label": "LINEAR SEGMENT",
-      "right_header": "FIGHT REALITY",
       "subtitle": "Willpower versus Causality"
     },
     "verdict-matrix": {
       "case_1": "Dr. Manhattan 6.5/10. Full rewrite keeps Kyle live, but proactive preemption still steals enough openings to stay slightly ahead.",
       "case_2": "Dr. Manhattan 9/10. Limited rewrite plus proactive preemption removes the only branch that really changes the matchup.",
       "case_3": "Kyle 7/10. If Manhattan becomes passive and Kyle reaches full expression, the broader toolkit finally cashes out.",
-      "case_4": "Dr. Manhattan 6.5/10. Passivity narrows the gap, but limited Life Equation access still leaves Kyle too dependent on a setup Manhattan can unravel.",
-      "col_left": "LIFE EQUATION FULL",
-      "col_right": "LIFE EQUATION LIMITED",
-      "headline": "VERDICT MATRIX",
-      "row_bottom": "MANHATTAN PASSIVE",
-      "row_top": "MANHATTAN PROACTIVE",
-      "subtitle": "Victory depends on the rules."
-    },
-    "victory-archive": {
-      "archive_label": "",
-      "avg_label": "AVG SCORE",
-      "headline": "Victory Archive",
-      "left_title": "KYLE RECORD",
-      "right_title": "MANHATTAN RECORD",
-      "subtitle": "",
-      "win_badge": "W"
+      "case_4": "Dr. Manhattan 6.5/10. Passivity narrows the gap, but limited Life Equation access still leaves Kyle too dependent on a setup Manhattan can unravel."
     },
     "x-factor": {
       "a_bonus": "15",
@@ -271,12 +189,10 @@
       "b_bonus": "17",
       "b_value": "50",
       "factor": "SETUP WINDOW VS PREEMPTION",
-      "headline": "X-FACTOR",
       "implication": "If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.",
       "mechanics": "Kyle only needs one real Life Equation window, but Manhattan's whole game is stopping that window before it exists.",
       "psychology": "Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.",
-      "regen": "PREEMPTION EDGE",
-      "subtitle": "The variable that affects the verdict more than ordinary stats."
+      "regen": "PREEMPTION EDGE"
     }
   }
 }

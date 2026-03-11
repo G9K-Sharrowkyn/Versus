@@ -10,7 +10,7 @@
     "dossier": {
       "advantage": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.",
       "mentality": "Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.",
-      "quote": "",
+      "quote": "Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!",
       "style": "Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń."
     },
     "name": "Postać A",
@@ -57,7 +57,7 @@
     "dossier": {
       "advantage": "Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.",
       "mentality": "Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.",
-      "quote": "",
+      "quote": "Hulk miażdżyć!",
       "style": "Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami."
     },
     "name": "Postać B",
@@ -113,155 +113,79 @@
     "fight-card"
   ],
   "templates": {
-    "battle-dynamics": {
-      "headline": "DYNAMIKA WALKI",
-      "left_curve_body": "Mocniejsza na początku, potem słabnie za każdym razem, gdy kontakt staje się powtarzalny.",
-      "left_curve_label": "KONTROLA ATROCITUSA",
-      "right_curve_body": "Zaczyna niżej, potem szybko rośnie, gdy regeneracja i wejścia przestają przejmować się częściowymi obrażeniami.",
-      "right_curve_label": "PĘTLA HULKA",
-      "subtitle": "Jak walka zmienia się z minuty na minutę."
-    },
-    "character-dossier-a": {
-      "advantage": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.",
-      "header": "Dossier postaci",
-      "mentality": "Wściekły fanatyk napędzany zemstą. Nie zna litości ani wahania – napiera z furią, która staje się tym potężniejsza, im więcej nienawiści i gniewu okazuje mu wróg.",
-      "quote": "Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!",
-      "style": "Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.",
-      "world": "New 52"
-    },
-    "character-dossier-b": {
-      "advantage": "Nielimitowany wzrost siły i regeneracja. Im bardziej jest ranny i wściekły, tym staje się silniejszy, co czyni go praktycznie nie do pokonania w walce na wyniszczenie.",
-      "header": "Dossier postaci",
-      "mentality": "Uparty i dziki niszczyciel. Nie kalkuluje i nie cofa się – napiera tak długo, aż każdy opór zostanie zrównany z ziemią.",
-      "quote": "Hulk miażdżyć!",
-      "style": "Niepowstrzymana destrukcja w zwarciu. Opiera się na czystej, fizycznej sile i ciągłym parciu naprzód, miażdżąc wszystko pod swoimi ciosami.",
-      "world": "Ziemia-616"
-    },
-    "character-profile": {
-      "headline": "PROFIL POSTACI",
-      "left_title": "Atrocitus",
-      "powers_label": "MOCE",
-      "right_title": "Hulk",
-      "subtitle": "MOCE, NARZĘDZIA I SŁABOŚCI",
-      "tools_label": "NARZĘDZIA",
-      "weaknesses_label": "SŁABOŚCI"
-    },
-    "crucial-feats": {
-      "feat_label": "FEAT",
-      "headline": "NAJWAŻNIEJSZE WYCZYNY",
-      "left_item_1": "Uwięził Butchera w baterii mocy.",
-      "left_item_2": "Walczył dalej po wyrwaniu serca.",
-      "left_item_3": "Magia krwi i śledzenie ścieżek gniewu.",
-      "left_item_4": "Przepalił strukturę przestrzeni.",
-      "left_item_5": "Przytłoczył Saint Walkera, Indigo-1 i Star Sapphire.",
-      "left_title": "Atrocitus",
-      "right_item_1": "Kolateralne zniszczenie planety i księżyca.",
-      "right_item_2": "Wytrzymał poziom wyjścia Sentry'ego.",
-      "right_item_3": "Zregenerował się po skrajnych obrażeniach.",
-      "right_item_4": "Przekierował szarżę Juggernauta.",
-      "right_item_5": "Przytłoczył Bi-Beasta i Wendigo.",
-      "right_title": "Hulk",
-      "subtitle": "Skalowanie postaci poprzez osiągnięcia."
-    },
-    "fight-analytics": {
-      "headline": "ANALITYKA WALKI",
-      "integrity": "99.2%",
-      "scale": "0-100",
-      "subtitle": "Odczyt statystyk dwóch profili",
-      "threat_level": "KOSMICZNY"
-    },
     "fight-card": {
-      "bottom_color_a": "#facc15",
-      "bottom_color_b": "#dc2626",
-      "fight_title": "Atrocitus vs Hulk",
-      "subtitle": "",
-      "top_color_a": "#2563eb",
-      "top_color_b": "#93c5fd"
+      "fight_title": "Atrocitus vs Hulk"
     },
     "fight-simulation": {
-      "headline": "SYMULACJA WALKI",
-      "phase_1_actor": "a",
-      "phase_1_animation": "kite-zone",
-      "phase_1_body": "Atrocitus otwiera walkę lotem, plazmą i kontrolą gniewu, żeby nie pozwolić Hulkowi zbudować prostego rytmu.",
+      "opening": "Atrocitus otwiera walkę lotem, plazmą i kontrolą gniewu, żeby nie pozwolić Hulkowi zbudować prostego rytmu.",
+      "mid_fight": "Hulk przyjmuje pierwszą warstwę kontroli i wciąż próbuje zamknąć dystans, aż walka i tak staje się fizyczna.",
+      "late_fight": "Jeśli Atrocitus utrzyma walkę na zewnątrz, może pozostać przed krzywą. Jeśli Hulk dostanie drugą realną sekwencję kontaktu, regeneracja i eskalacja gamma zaczynają kasować wartość każdego częściowego sukcesu.",
+      "end_condition": "Atrocitus musi utrzymać dystans i kontrolę od początku do końca; druga prawdziwa sekwencja kontaktu zwykle oddaje walkę Hulkowi.",
       "phase_1_title": "Atrocitus zaczyna poza zasięgiem",
-      "phase_2_actor": "b",
-      "phase_2_animation": "clash-lock",
-      "phase_2_body": "Hulk przyjmuje pierwszą warstwę kontroli i wciąż próbuje zamknąć dystans, aż walka i tak staje się fizyczna.",
+      "phase_1_animation": "kite-zone",
+      "phase_1_event": "Atrocitus otwiera walkę lotem, plazmą i kontrolą gniewu, żeby nie pozwolić Hulkowi zbudować prostego rytmu.",
+      "phase_1_a_label": "Kontrola",
+      "phase_1_a_value": "92",
+      "phase_1_b_label": "Eskalacja",
+      "phase_1_b_value": "98",
       "phase_2_title": "Hulk nie daje się utrzymać w ryzach",
+      "phase_2_animation": "clash-lock",
+      "phase_2_event": "Hulk przyjmuje pierwszą warstwę kontroli i wciąż próbuje zamknąć dystans, aż walka i tak staje się fizyczna.",
+      "phase_2_branch_a": "Atrocitus utrzymuje walkę na zewnątrz i dalej zarządza gniewem Hulka z dystansu.",
+      "phase_2_branch_b": "Hulk wymusza kolejny kontakt i zaczyna zamieniać częściowe sukcesy Atrocitusa w paliwo dla następnej wymiany.",
+      "phase_3_title": "Pętla rozstrzyga wszystko",
       "phase_3_actor": "b",
       "phase_3_animation": "trade-chaos",
-      "phase_3_body": "Jeśli Atrocitus utrzyma walkę na zewnątrz, może pozostać przed krzywą. Jeśli Hulk dostanie drugą realną sekwencję kontaktu, regeneracja i eskalacja gamma zaczynają kasować wartość każdego częściowego sukcesu.",
-      "phase_3_title": "Pętla rozstrzyga wszystko",
-      "subtitle": "Przebieg walki przez trzy fazy."
+      "phase_3_event": "Jeśli Atrocitus utrzyma walkę na zewnątrz, może pozostać przed krzywą. Jeśli Hulk dostanie drugą realną sekwencję kontaktu, regeneracja i eskalacja gamma zaczynają kasować wartość każdego częściowego sukcesu.",
+      "phase_3_branch_a": "Dystans i kontrola utrzymują się od początku do końca, więc Atrocitus zostaje przed krzywą eskalacji.",
+      "phase_3_branch_b": "Druga realna sekwencja kontaktu uruchamia pętlę gamma, która zaczyna kasować wartość wcześniejszych sukcesów Atrocitusa."
     },
     "final-summary": {
-      "headline": "PODSUMOWANIE KOŃCOWE",
       "line_1": "Atrocitus wygrywa porównanie na papierze, 85.6 vs 83.9.",
       "line_2": "Hulk wygrywa więcej realnych walk, bo powtarzalny kontakt i regeneracja tworzą czystszą ścieżkę kończenia.",
       "line_3": "Atrocitus odwraca ten pojedynek tylko wtedy, gdy dystans i kontrola utrzymują się od początku do końca.",
-      "subtitle": "Podsumowanie",
       "winner": "World Breaker Hulk 6.5/10"
     },
-    "interpretation": {
-      "answer": "Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk.",
-      "body": "Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli. Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny. To pojedynek, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.",
-      "headline": "INTERPRETACJA",
-      "question": "Kto wygrywa walkę na papierze?",
-      "subtitle": "Kto wygrywa walkę na papierze?"
-    },
     "parameter-comparison": {
-      "draw_header": "STREFY REMISU",
-      "favorite": "Atrocitus",
-      "favorite_label": "FAWORYT WEDŁUG STATYSTYK",
-      "headline": "PORÓWNANIE PARAMETRÓW",
-      "left_average": "85.60",
       "left_header": "PRZEWAGI ATROCITUSA",
-      "right_average": "83.90",
-      "right_header": "PRZEWAGI HULKA",
-      "subtitle": "Mapa średniego profilu statystyk"
+      "right_header": "PRZEWAGI HULKA"
     },
     "stat-trap": {
-      "body": "Lepsze średnie nic nie znaczą, jeśli nie tworzą prawdziwej ścieżki kończenia. Atrocitus ma więcej sposobów, by ułożyć początek walki, ale Hulk staje się groźniejszy za każdym razem, gdy walka wraca do kontaktu. To nie jest pytanie o to, kto ma więcej narzędzi. To pytanie o to, czyj warunek zwycięstwa zostaje nienaruszony po porażce pierwszego planu.",
-      "headline": "PUŁAPKA STATYSTYK",
       "question": "Czy Atrocitus utrzyma gniew Hulka na zewnątrz, czy sam zacznie karmić tę pętlę?",
-      "subtitle": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa"
+      "trap_top": "LEPSZE ŚREDNIE >",
+      "trap_bottom": "NIE GWARANTUJĄ ŚCIEŻKI KOŃCZENIA",
+      "example": "Lepsze średnie nic nie znaczą, jeśli nie tworzą prawdziwej ścieżki kończenia. Atrocitus ma więcej sposobów, by ułożyć początek walki, ale Hulk staje się groźniejszy za każdym razem, gdy walka wraca do kontaktu. To nie jest pytanie o to, kto ma więcej narzędzi. To pytanie o to, czyj warunek zwycięstwa zostaje nienaruszony po porażce pierwszego planu."
     },
     "tactical-board": {
-      "chaos_label": "ODCINEK CHAOSU",
-      "headline": "TABLICA TAKTYCZNA // ATROCITUS VS HULK",
       "lane": "Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli zamieni tę strukturę w pętlę powtarzalnego kontaktu.",
-      "left_header": "SIATKA KATEGORII",
-      "linear_label": "ODCINEK LINIOWY",
-      "right_header": "REALIA WALKI",
       "subtitle": "Rzeźnik kontra Worldbreaker"
-    },
-    "victory-archive": {
-      "archive_label": "",
-      "avg_label": "ŚREDNI WYNIK",
-      "headline": "Archiwum zwycięstw",
-      "left_item_1": "The Butcher Entity",
-      "left_item_2": "The Butcher's human host",
-      "left_item_3": "Saint Walker, Indigo-1 i Star Sapphire",
-      "left_item_4": "Multiple Manhunters",
-      "left_item_5": "Bleez",
-      "left_title": "Atrocitus",
-      "right_item_1": "Sentry",
-      "right_item_2": "Doctor Strange",
-      "right_item_3": "Iron Man",
-      "right_item_4": "Juggernaut",
-      "right_item_5": "Arm'Cheddon",
-      "right_title": "Hulk",
-      "subtitle": ""
     },
     "x-factor": {
       "factor": "KONTROLA GNIEWU VS PĘTLA GAMMA",
-      "headline": "X-FACTOR",
+      "a_value": "46",
+      "a_bonus": "12",
+      "a_bonus_label": "KONTROLA",
+      "b_value": "54",
+      "b_bonus": "18",
+      "regen": "PĘTLA GAMMA",
+      "mechanics": "Jeśli Atrocitus utrzyma Hulka na dystans i będzie zarządzał walką z zewnątrz, jego plazma, rytuały i lot mogą wyprzedzać krzywą eskalacji.",
       "implication": "Zwycięzcę rozstrzyga to, czy gniew pozostaje kontrolowany z zewnątrz, czy zmienia się w samonapędzającą eskalację gamma.",
-      "left_body": "Jeśli Atrocitus utrzyma Hulka na dystans i będzie zarządzał walką z zewnątrz, jego plazma, rytuały i lot mogą wyprzedzać krzywą eskalacji.",
-      "left_title": "GAŁĄŹ ATROCITUSA",
-      "right_body": "Jeśli Hulk wymusi powtarzalny kontakt, kontrola gniewu przestaje być smyczą i zaczyna być paliwem dla silniejszej przyszłej wymiany.",
-      "right_title": "GAŁĄŹ HULKA",
-      "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki."
+      "psychology": "Jeśli Hulk wymusi powtarzalny kontakt, kontrola gniewu przestaje być smyczą i zaczyna być paliwem dla silniejszej przyszłej wymiany."
+    },
+    "interpretation": {
+      "line_1": "Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli.",
+      "line_2": "Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny.",
+      "line_3": "To pojedynek, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.",
+      "quote": "Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk."
+    },
+    "battle-dynamics": {
+      "a_curve": "84,80,72,63,54",
+      "b_curve": "58,66,76,88,96",
+      "yellow_wave": "40,48,44,59,47,63,49,68",
+      "phase_1": "Atrocitus kształtuje początek walki dzięki szybszej kontroli i czystszemu arsenałowi.",
+      "phase_2": "Hulk rośnie, gdy walka resetuje się do kontaktu i częściowe obrażenia przestają go spowalniać.",
+      "phase_3": "Im dłużej trwa kontakt, tym bardziej groźna staje się pętla Hulka.",
+      "analysis": "Atrocitus jest mocniejszy na początku, ale Hulk szybko rośnie, gdy regeneracja i kolejne wejścia przestają przejmować się częściowymi obrażeniami."
     }
   }
 }

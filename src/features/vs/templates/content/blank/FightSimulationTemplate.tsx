@@ -1,5 +1,5 @@
 import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightDefaultCategories } from '../../../fightManifest'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightDefaultCategories, getFightTemplateDefaultField } from '../../../fightManifest'
 import {
   humanizeScenarioToken,
   normalizeToken,
@@ -52,7 +52,7 @@ export function FightSimulationTemplate({
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const opening = line(0, ['opening'], tr('Otwarcie: szybka kontrola dystansu.', 'Opening: fast range control.'))
   const midFight = line(
     1,
@@ -67,11 +67,30 @@ export function FightSimulationTemplate({
   )
   const fallbackRows = [rows[0], rows[1], rows[5] || rows[2]].filter(Boolean) as ScoreRow[]
 
+  const parsePhaseMode = (
+    token: string,
+    fallback: 'bars' | 'split' | 'animation',
+  ): 'bars' | 'split' | 'animation' => {
+    if (!token) return fallback
+    if (token.includes('anim') || token.includes('scenario') || token.includes('preset')) return 'animation'
+    if (token.includes('split') || token.includes('branch') || token.includes('turn') || token.includes('pivot')) return 'split'
+    return 'bars'
+  }
+
+  const templateDefault = (fieldKey: string, fallback = '') =>
+    getFightTemplateDefaultField('fight-simulation', fieldKey, language) || fallback
+
+  const defaultPhase1Lead = resolveFightScenarioLead(templateDefault('phase_1_actor', 'a'), 'a')
+  const defaultPhase1Mode = parsePhaseMode(normalizeToken(templateDefault('phase_1_mode', 'bars')), 'bars')
+  const defaultPhase2Lead = resolveFightScenarioLead(templateDefault('phase_2_actor', 'b'), 'b')
+  const defaultPhase2Mode = parsePhaseMode(normalizeToken(templateDefault('phase_2_mode', 'split')), 'split')
+  const defaultPhase3Mode = parsePhaseMode(normalizeToken(templateDefault('phase_3_mode', 'split')), 'split')
+
   const phaseDefaults = [
     {
-      mode: 'bars' as const,
+      mode: defaultPhase1Mode,
       animation: 'orbit-harass' as FightScenarioId,
-      lead: 'a' as FightScenarioLead,
+      lead: defaultPhase1Lead,
       title: opening,
       aLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
       bLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
@@ -82,9 +101,9 @@ export function FightSimulationTemplate({
       branchB: tr(`${fighterBName} przełamuje dystans.`, `${fighterBName} breaks the distance.`),
     },
     {
-      mode: 'split' as const,
+      mode: defaultPhase2Mode,
       animation: 'clash-lock' as FightScenarioId,
-      lead: 'a' as FightScenarioLead,
+      lead: defaultPhase2Lead,
       title: midFight,
       aLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
       bLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
@@ -95,7 +114,7 @@ export function FightSimulationTemplate({
       branchB: tr(`${fighterBName} wymusza chaos i wyniszczenie.`, `${fighterBName} forces chaos and attrition.`),
     },
     {
-      mode: 'bars' as const,
+      mode: defaultPhase3Mode,
       animation: 'regen-attrition' as FightScenarioId,
       lead: 'a' as FightScenarioLead,
       title: lateFight,
@@ -112,16 +131,6 @@ export function FightSimulationTemplate({
   const globalModeToken = normalizeToken(
     pickTemplateField(blockFields, ['phase_mode', 'phasemode', 'mode', 'simulation_mode', 'simulationmode']),
   )
-
-  const parsePhaseMode = (
-    token: string,
-    fallback: 'bars' | 'split' | 'animation',
-  ): 'bars' | 'split' | 'animation' => {
-    if (!token) return fallback
-    if (token.includes('anim') || token.includes('scenario') || token.includes('preset')) return 'animation'
-    if (token.includes('split') || token.includes('branch') || token.includes('turn') || token.includes('pivot')) return 'split'
-    return 'bars'
-  }
 
   const globalAnimationValue = pickTemplateField(blockFields, [
     'phase_animation',

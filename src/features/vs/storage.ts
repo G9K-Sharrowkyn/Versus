@@ -8,6 +8,7 @@ import type {
   FolderFightsScanResponse,
   ParsedStat,
   ParsedVsImport,
+  FighterProfileData,
   FighterFact,
 } from './types'
 import { FIGHTS_DB_NAME, FIGHTS_DB_VERSION, FIGHTS_STORE_NAME, FOLDER_FIGHT_ID_PREFIX, META_ACTIVE_FIGHT_KEY, META_STORE_NAME } from './presets'
@@ -280,6 +281,60 @@ export const toFactArray = (value: unknown): FighterFact[] =>
         .filter((item): item is FighterFact => Boolean(item))
     : []
 
+const EMPTY_PROFILE_DATA: FighterProfileData = {
+  powers: [],
+  tools: [],
+  weaknesses: [],
+}
+
+const PROFILE_SECTION_KEY_BY_TITLE: Record<string, keyof FighterProfileData> = {
+  powers: 'powers',
+  moce: 'powers',
+  tools: 'tools',
+  'narzędzia': 'tools',
+  weaknesses: 'weaknesses',
+  'słabości': 'weaknesses',
+}
+
+const normalizeProfileSectionTitle = (value: string) =>
+  value.trim().replace(/:\s*$/, '').toLocaleLowerCase('pl-PL')
+
+const buildProfileDataFromLegacyFacts = (facts: FighterFact[]): FighterProfileData => {
+  const profile: FighterProfileData = {
+    powers: [],
+    tools: [],
+    weaknesses: [],
+  }
+
+  facts.forEach((fact) => {
+    const sectionKey = PROFILE_SECTION_KEY_BY_TITLE[normalizeProfileSectionTitle(fact.title)]
+    if (!sectionKey || !fact.text.trim()) return
+    profile[sectionKey].push(fact.text.trim())
+  })
+
+  return profile
+}
+
+const toProfileData = (value: unknown, legacyFacts: FighterFact[]): FighterProfileData => {
+  if (value && typeof value === 'object' && !Array.isArray(value)) {
+    const raw = value as Record<string, unknown>
+    const profile: FighterProfileData = {
+      powers: toStringArray(raw.powers),
+      tools: toStringArray(raw.tools),
+      weaknesses: toStringArray(raw.weaknesses),
+    }
+    if (profile.powers.length || profile.tools.length || profile.weaknesses.length) {
+      return profile
+    }
+  }
+
+  if (legacyFacts.length) {
+    return buildProfileDataFromLegacyFacts(legacyFacts)
+  }
+
+  return { ...EMPTY_PROFILE_DATA }
+}
+
 export const toParsedStatArray = (value: unknown): ParsedStat[] =>
   Array.isArray(value)
     ? value
@@ -315,6 +370,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
   const factsB = toFactArray(raw.factsB)
   const powersA = toFactArray(raw.powersA)
   const powersB = toFactArray(raw.powersB)
+  const profileA = toProfileData(raw.profileA, powersA)
+  const profileB = toProfileData(raw.profileB, powersB)
   const crucialFeatsA = toStringArray(raw.crucialFeatsA ?? raw.rawFeatsA)
   const crucialFeatsB = toStringArray(raw.crucialFeatsB ?? raw.rawFeatsB)
   const winsA = toStringArray(raw.winsA)
@@ -331,6 +388,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
     statsB,
     factsA,
     factsB,
+    profileA,
+    profileB,
     powersA,
     powersB,
     crucialFeatsA,

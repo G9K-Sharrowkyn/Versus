@@ -25,7 +25,6 @@ export const stripBom = (value) => value.replace(/^\uFEFF/, '')
 export const normalizeToken = (value) =>
   String(value || '')
     .toLowerCase()
-    .replace(/ł/g, 'l')
     .normalize('NFD')
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9]+/g, '')
@@ -34,6 +33,87 @@ export const trimString = (value) => (typeof value === 'string' ? value.trim() :
 
 export const trimStringArray = (value) =>
   Array.isArray(value) ? value.map((entry) => trimString(entry)).filter(Boolean) : []
+
+export const MANIFEST_OWNED_TEMPLATE_FIELDS = {
+  'tactical-board': ['headline', 'left_header', 'right_header', 'linear_label', 'chaos_label'],
+  'character-dossier-a': ['header', 'world', 'style', 'advantage', 'mentality', 'quote'],
+  'character-dossier-b': ['header', 'world', 'style', 'advantage', 'mentality', 'quote'],
+  'character-profile': ['headline', 'subtitle', 'powers_label', 'tools_label', 'weaknesses_label', 'left_title', 'right_title'],
+  'crucial-feats': ['headline', 'subtitle', 'feat_label', 'left_title', 'right_title'],
+  'fight-analytics': ['headline', 'subtitle', 'scale', 'threat_level', 'integrity', 'profile_mode', 'profileMode'],
+  'parameter-comparison': ['headline', 'subtitle', 'draw_header', 'favorite_label'],
+  'victory-archive': ['headline', 'subtitle', 'archive_label', 'avg_label', 'left_title', 'right_title', 'win_badge'],
+  'battle-dynamics': ['headline', 'subtitle'],
+  'final-summary': ['headline', 'subtitle'],
+  'x-factor': ['headline', 'subtitle'],
+  interpretation: ['headline', 'subtitle'],
+  'fight-simulation': ['headline', 'subtitle'],
+  'stat-trap': ['headline', 'subtitle'],
+  'direct-verdict': ['headline', 'subtitle'],
+  'verdict-matrix': ['headline', 'subtitle', 'col_left', 'col_right', 'row_top', 'row_bottom'],
+  'fight-card': ['headline', 'subtitle', 'top_color_a', 'top_color_b', 'bottom_color_a', 'bottom_color_b', 'top_dark', 'bottom_dark'],
+  methodology: ['headline', 'subtitle', 'list_label', 'reality_label', 'linear_label', 'chaos_label', 'closing_label'],
+}
+
+export const FIGHTER_DERIVED_TEMPLATE_FIELD_PREFIXES = {
+  'crucial-feats': ['left_item_', 'right_item_'],
+  'victory-archive': ['left_item_', 'right_item_'],
+}
+
+export const MANIFEST_DEFAULT_TEMPLATE_FIELDS = {
+  'fight-simulation': {
+    phase_1_actor: 'a',
+    phase_1_mode: 'bars',
+    phase_2_actor: 'b',
+    phase_2_mode: 'split',
+    phase_3_mode: 'split',
+  },
+}
+
+const toCamelCase = (value) =>
+  value.replace(/[_-]([a-z0-9])/gi, (_, char) => char.toUpperCase())
+
+const toSnakeCase = (value) =>
+  value
+    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
+    .replace(/[-\s]+/g, '_')
+    .toLowerCase()
+
+const manifestOwnedFieldSet = Object.fromEntries(
+  Object.entries(MANIFEST_OWNED_TEMPLATE_FIELDS).map(([templateId, keys]) => [
+    templateId,
+    new Set(keys.flatMap((key) => [key, toCamelCase(key)])),
+  ]),
+)
+const fighterDerivedFieldPrefixes = Object.fromEntries(
+  Object.entries(FIGHTER_DERIVED_TEMPLATE_FIELD_PREFIXES).map(([templateId, prefixes]) => [
+    templateId,
+    prefixes.flatMap((prefix) => [prefix, toCamelCase(prefix)]),
+  ]),
+)
+
+const manifestDefaultFieldMap = Object.fromEntries(
+  Object.entries(MANIFEST_DEFAULT_TEMPLATE_FIELDS).map(([templateId, defaults]) => [
+    templateId,
+    new Map(
+      Object.entries(defaults).flatMap(([key, value]) => [
+        [key, value],
+        [toCamelCase(key), value],
+      ]),
+    ),
+  ]),
+)
+
+export const stripManifestOwnedTemplateFields = (templateId, block = {}) =>
+  Object.fromEntries(
+    Object.entries(block).filter(([key, value]) => {
+      if (manifestOwnedFieldSet[templateId]?.has(key)) return false
+      if (fighterDerivedFieldPrefixes[templateId]?.some((prefix) => key.startsWith(prefix))) return false
+      const defaultValue = manifestDefaultFieldMap[templateId]?.get(key)
+      if (defaultValue === undefined) return true
+      return JSON.stringify(value) !== JSON.stringify(defaultValue)
+    }),
+  )
 
 const transpileTs = (source, fileName) =>
   ts.transpileModule(source, {
@@ -323,6 +403,122 @@ const normalizeTemplateBlockObject = (block = {}) =>
       .sort(([a], [b]) => a.localeCompare(b, undefined, { numeric: true })),
   )
 
+const pickTemplateBlockValue = (block = {}, keys = []) => {
+  for (const key of keys) {
+    for (const candidate of [key, toCamelCase(key), toSnakeCase(key)]) {
+      const text = trimString(block?.[candidate])
+      if (text) return text
+    }
+  }
+  return ''
+}
+
+const normalizeVerdictLead = (value) => {
+  const text = trimString(value)
+  if (!text) return ''
+  const match = text.match(/^(.+?[.!?])(?:\s+|$)/u)
+  return (match ? match[1] : text).replace(/[.!?]+$/u, '').trim()
+}
+
+const extractNormalizedSentences = (...values) =>
+  Array.from(
+    new Set(
+      values
+        .flatMap((value) =>
+          trimString(value)
+            .split(/(?<=[.!?])\s+/u)
+            .map((entry) => entry.replace(/[.!?]+$/u, '').trim())
+            .filter(Boolean),
+        )
+        .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: 'base' })),
+    ),
+  )
+
+const splitLeadingWinnerSentence = (value) => {
+  const text = trimString(value)
+  if (!text) return { winner: '', body: '' }
+  const match = text.match(/^(.+?[.!?])(?:\s+|$)(.*)$/u)
+  if (!match) return { winner: '', body: text }
+  const winner = match[1].replace(/[.!?]+$/u, '').trim()
+  const body = trimString(match[2])
+  if (!body) return { winner: '', body: text }
+  if (winner.split(/\s+/u).length > 6) return { winner: '', body: text }
+  return { winner, body }
+}
+
+const normalizeComparableTemplateBlock = (templateId, block = {}) => {
+  switch (templateId) {
+    case 'x-factor':
+      return {
+        headline: pickTemplateBlockValue(block, ['headline']),
+        factor: pickTemplateBlockValue(block, ['factor']),
+        subtitle: pickTemplateBlockValue(block, ['subtitle']),
+        implication: pickTemplateBlockValue(block, ['implication', 'implikacja']),
+        mechanics: pickTemplateBlockValue(block, ['mechanics', 'mechanika', 'left_case', 'left_body']),
+        psychology: pickTemplateBlockValue(block, ['psychology', 'psychologia', 'right_case', 'right_body']),
+      }
+    case 'fight-simulation':
+      return {
+        headline: pickTemplateBlockValue(block, ['headline']),
+        phase_1_title: pickTemplateBlockValue(block, ['phase_1_title']),
+        phase_1_animation: pickTemplateBlockValue(block, ['phase_1_animation', 'phase_1_anim']),
+        phase_1_text: pickTemplateBlockValue(block, ['phase_1_event', 'opening', 'phase_1_desc', 'phase_1_body']),
+        phase_2_title: pickTemplateBlockValue(block, ['phase_2_title']),
+        phase_2_animation: pickTemplateBlockValue(block, ['phase_2_animation', 'phase_2_anim']),
+        phase_2_text: pickTemplateBlockValue(block, ['phase_2_event', 'mid_fight', 'phase_2_desc', 'phase_2_body']),
+        phase_3_title: pickTemplateBlockValue(block, ['phase_3_title']),
+        phase_3_actor: pickTemplateBlockValue(block, ['phase_3_actor']),
+        phase_3_animation: pickTemplateBlockValue(block, ['phase_3_animation', 'phase_3_anim']),
+        phase_3_text: pickTemplateBlockValue(block, ['phase_3_event', 'late_fight', 'phase_3_desc', 'phase_3_body']),
+      }
+    case 'verdict-matrix':
+      return {
+        headline: pickTemplateBlockValue(block, ['headline']),
+        subtitle: pickTemplateBlockValue(block, ['subtitle']),
+        col_left: pickTemplateBlockValue(block, ['col_left']),
+        col_right: pickTemplateBlockValue(block, ['col_right']),
+        row_top: pickTemplateBlockValue(block, ['row_top']),
+        row_bottom: pickTemplateBlockValue(block, ['row_bottom']),
+        case_1: normalizeVerdictLead(pickTemplateBlockValue(block, ['case_1', 'case1'])),
+        case_2: normalizeVerdictLead(pickTemplateBlockValue(block, ['case_2', 'case2'])),
+        case_3: normalizeVerdictLead(pickTemplateBlockValue(block, ['case_3', 'case3'])),
+        case_4: normalizeVerdictLead(pickTemplateBlockValue(block, ['case_4', 'case4'])),
+      }
+    case 'parameter-comparison':
+      return {
+        left_header: pickTemplateBlockValue(block, ['left_header']),
+        right_header: pickTemplateBlockValue(block, ['right_header']),
+        draw_favorite: pickTemplateBlockValue(block, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']),
+      }
+    case 'interpretation':
+      {
+        const rawBody = pickTemplateBlockValue(block, ['body']) || [
+          pickTemplateBlockValue(block, ['line_1', 'line1']),
+          pickTemplateBlockValue(block, ['line_2', 'line2']),
+          pickTemplateBlockValue(block, ['line_3', 'line3']),
+        ].filter(Boolean).join(' ')
+        const explicitWinner = pickTemplateBlockValue(block, ['quote', 'winner', 'answer'])
+        const split = explicitWinner ? { winner: '', body: rawBody } : splitLeadingWinnerSentence(rawBody)
+        return {
+          body: split.body || rawBody,
+          winner: trimString(explicitWinner || split.winner).replace(/[.!?]+$/u, ''),
+        }
+      }
+    case 'stat-trap':
+      return {
+        question: pickTemplateBlockValue(block, ['question', 'trap']),
+        body: pickTemplateBlockValue(block, ['body', 'example']),
+      }
+    case 'battle-dynamics':
+      return {
+        a_curve: pickTemplateBlockValue(block, ['a_curve', 'curve_a', 'left_curve']),
+        b_curve: pickTemplateBlockValue(block, ['b_curve', 'curve_b', 'right_curve']),
+      }
+    default:
+      return block
+  }
+}
+
 const buildRawTemplateBlocksProjection = (localeBlocks = {}, scansBlocks = {}) => {
   const templateIds = new Set([...Object.keys(localeBlocks), ...Object.keys(scansBlocks)])
   return Object.fromEntries(
@@ -330,10 +526,12 @@ const buildRawTemplateBlocksProjection = (localeBlocks = {}, scansBlocks = {}) =
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true }))
       .map((templateId) => [
         templateId,
-        normalizeTemplateBlockObject({
-          ...(localeBlocks?.[templateId] || {}),
-          ...(scansBlocks?.[templateId] || {}),
-        }),
+        normalizeTemplateBlockObject(
+          normalizeComparableTemplateBlock(templateId, {
+            ...stripManifestOwnedTemplateFields(templateId, localeBlocks?.[templateId] || {}),
+            ...stripManifestOwnedTemplateFields(templateId, scansBlocks?.[templateId] || {}),
+          }),
+        ),
       ])
       .filter(([, block]) => Object.keys(block).length),
   )
@@ -342,6 +540,14 @@ const buildRawTemplateBlocksProjection = (localeBlocks = {}, scansBlocks = {}) =
 export const buildCurrentLocaleProjection = (localeJson, scansJson, importer) => {
   const parsed = importer.parseFightJsonFiles(localeJson, scansJson)
   return {
+    fighterA: {
+      version: trimString(localeJson?.fighterA?.version),
+      quote: trimString(localeJson?.fighterA?.dossier?.quote),
+    },
+    fighterB: {
+      version: trimString(localeJson?.fighterB?.version),
+      quote: trimString(localeJson?.fighterB?.dossier?.quote),
+    },
     statsA: Object.fromEntries(CANONICAL_STAT_KEYS.map((key) => [key, localeJson?.fighterA?.stats?.[key] ?? null])),
     statsB: Object.fromEntries(CANONICAL_STAT_KEYS.map((key) => [key, localeJson?.fighterB?.stats?.[key] ?? null])),
     factsA: (parsed.factsA || []).map((fact) => ({ title: trimString(fact?.title), text: trimString(fact?.text) })),
@@ -379,6 +585,14 @@ export const buildBaselineLocaleProjection = (folderName, language, historicalIm
   const scansTemplateBlocks = buildTemplateBlocksFromLegacyBlocks(scansBlocks, currentImporter)
 
   return {
+    fighterA: {
+      version: pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-a'], ['world']),
+      quote: pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-a'], ['quote']),
+    },
+    fighterB: {
+      version: pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-b'], ['world']),
+      quote: pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-b'], ['quote']),
+    },
     statsA: buildStatsRecordFromParsedStats(parsed?.statsA || []),
     statsB: buildStatsRecordFromParsedStats(parsed?.statsB || []),
     factsA: (parsed?.factsA || []).map((fact) => ({ title: trimString(fact?.title), text: trimString(fact?.text) })),
@@ -408,6 +622,8 @@ export const diffSemanticProjection = (baseline, current) => {
     if (JSON.stringify(a) !== JSON.stringify(b)) diffs.push(label)
   }
 
+  pushIfDifferent('fighterA', baseline.fighterA, current.fighterA)
+  pushIfDifferent('fighterB', baseline.fighterB, current.fighterB)
   pushIfDifferent('statsA', baseline.statsA, current.statsA)
   pushIfDifferent('statsB', baseline.statsB, current.statsB)
   pushIfDifferent('dossierA', baseline.factsA, current.factsA)
@@ -428,6 +644,8 @@ export const diffSemanticProjection = (baseline, current) => {
 export const buildSnapshotRecord = (folderName, locale, projection) => ({
   folder: folderName,
   locale,
+  fighterA: projection.fighterA,
+  fighterB: projection.fighterB,
   statsA: projection.statsA,
   statsB: projection.statsB,
   dossierA: projection.factsA,

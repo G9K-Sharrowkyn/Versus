@@ -30,7 +30,7 @@ export function ParameterComparisonTemplate({
   const chrome = buildFightTemplateChrome(language, blockFields)
   const common = getFightCommonCopy(language)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const customLeftHeader = pickTemplateField(blockFields, ['left_header'])
   const customRightHeader = pickTemplateField(blockFields, ['right_header'])
   const leftHeader = customLeftHeader || getFightTemplateDefaultField('parameter-comparison', 'left_header', language)
@@ -51,11 +51,13 @@ export function ParameterComparisonTemplate({
     pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_favorite', language) ||
     common.drawLabel
+  const favoriteLabel =
+    pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
+    getFightTemplateDefaultField('parameter-comparison', 'favorite_label', language)
   const favorite =
     isAverageDraw
       ? favoriteDrawLabel
-      : pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
-        (averageA > averageB ? `${fighterAText} ${common.favoriteSuffix}` : `${fighterBText} ${common.favoriteSuffix}`)
+      : favoriteLabel || (averageA > averageB ? `${fighterAText} ${common.favoriteSuffix}` : `${fighterBText} ${common.favoriteSuffix}`)
   const favoriteLeft = favoriteSide === 'a' ? '37.5%' : favoriteSide === 'b' ? '87.5%' : '50%'
   const favoriteRotation = favoriteSide === 'a' ? -12 : favoriteSide === 'b' ? 12 : 0
 

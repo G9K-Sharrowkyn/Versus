@@ -30,7 +30,7 @@ export function BattleDynamicsTemplate({
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const phase1 = line(
     0,
     ['phase_1', 'phase1'],

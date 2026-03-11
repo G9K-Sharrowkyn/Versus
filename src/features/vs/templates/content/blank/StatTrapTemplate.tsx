@@ -21,7 +21,7 @@ export function StatTrapTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const chrome = buildFightTemplateChrome(language, blockFields)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const subText = subtitle
   const trapTop =
     pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) ||
     getFightTemplateDefaultField('stat-trap', 'trap_top', language)

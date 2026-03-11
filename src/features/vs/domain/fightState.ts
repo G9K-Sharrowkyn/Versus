@@ -23,6 +23,7 @@ import type {
   FightRecord,
   Fighter,
   FighterFact,
+  FighterProfileData,
   Language,
   PortraitAdjust,
   TemplateId,
@@ -44,6 +45,8 @@ export type FightStudioState = {
   slideImageAdjustments: Record<string, PortraitAdjust>
   factsA: FighterFact[]
   factsB: FighterFact[]
+  profileA: FighterProfileData
+  profileB: FighterProfileData
   powersA: FighterFact[]
   powersB: FighterFact[]
   crucialFeatsA: string[]
@@ -126,6 +129,16 @@ export const buildFightStudioState = ({
     slideImageAdjustments: normalizeSlideImageAdjustments(fight.slideImageAdjustments),
     factsA: payload.factsA.length ? payload.factsA.slice(0, 5) : defaultFactsFor('a', targetLanguage),
     factsB: payload.factsB.length ? payload.factsB.slice(0, 5) : defaultFactsFor('b', targetLanguage),
+    profileA: {
+      powers: payload.profileA.powers.slice(0, 8),
+      tools: payload.profileA.tools.slice(0, 8),
+      weaknesses: payload.profileA.weaknesses.slice(0, 8),
+    },
+    profileB: {
+      powers: payload.profileB.powers.slice(0, 8),
+      tools: payload.profileB.tools.slice(0, 8),
+      weaknesses: payload.profileB.weaknesses.slice(0, 8),
+    },
     powersA: payload.powersA.slice(0, 8),
     powersB: payload.powersB.slice(0, 8),
     crucialFeatsA: payload.crucialFeatsA.slice(0, 8),

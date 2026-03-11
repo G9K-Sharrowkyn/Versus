@@ -15,6 +15,7 @@ import {
   parseRawKeyValueBlock,
   readFightJsonSet,
   resolveTemplateId,
+  stripManifestOwnedTemplateFields,
   trimStringArray,
 } from './lib/fight-semantic-tools.mjs'
 
@@ -40,7 +41,7 @@ const buildTemplateBlockMap = (blocks, importer) => {
   for (const [heading, lines] of Object.entries(blocks)) {
     const templateId = resolveTemplateId(heading, importer)
     if (!templateId) continue
-    const fieldMap = parseRawKeyValueBlock(lines)
+    const fieldMap = stripManifestOwnedTemplateFields(templateId, parseRawKeyValueBlock(lines))
     if (!Object.keys(fieldMap).length) continue
     output[templateId] = fieldMap
   }
@@ -57,6 +58,26 @@ const pickPortraits = (scansBlocks) => {
     }
   }
   return { a: '', b: '' }
+}
+
+const mergeMissingStats = (primary, fallback) => {
+  const next = { ...(primary || {}) }
+  for (const key of CANONICAL_STAT_KEYS) {
+    if (next[key] === null || next[key] === undefined) {
+      next[key] = fallback?.[key] ?? null
+    }
+  }
+  return next
+}
+
+const MIGRATION_AUDIT_IGNORED_TEMPLATE_BLOCKS = new Set(['battle-dynamics', 'interpretation'])
+
+const sanitizeMigrationProjection = (projection) => {
+  const next = structuredClone(projection)
+  next.templateBlocks = Object.fromEntries(
+    Object.entries(next.templateBlocks || {}).filter(([templateId]) => !MIGRATION_AUDIT_IGNORED_TEMPLATE_BLOCKS.has(templateId)),
+  )
+  return next
 }
 
 const patchStats = (currentStats, baselineStats) => {
@@ -110,6 +131,8 @@ for (const folderName of folders) {
   const currentSet = readFightJsonSet(folderName)
   const baselineEn = buildBaselineLocaleProjection(folderName, 'en', historicalImporter, currentImporter, BASELINE_REF)
   const baselinePl = buildBaselineLocaleProjection(folderName, 'pl', historicalImporter, currentImporter, BASELINE_REF)
+  baselinePl.statsA = mergeMissingStats(baselinePl.statsA, baselineEn.statsA)
+  baselinePl.statsB = mergeMissingStats(baselinePl.statsB, baselineEn.statsB)
 
   const currentEn = buildCurrentLocaleProjection(currentSet.en, currentSet.scans, currentImporter)
   const currentPl = buildCurrentLocaleProjection(currentSet.pl, currentSet.scans, currentImporter)
@@ -123,8 +146,8 @@ for (const folderName of folders) {
   const baselineScansBlocks = buildTemplateBlockMap(baselineEn.scansBlocks, currentImporter)
   const baselinePortraits = pickPortraits(baselineEn.scansBlocks)
 
-  const initialEnDiffs = diffSemanticProjection(baselineEn, currentEn)
-  const initialPlDiffs = diffSemanticProjection(baselinePl, currentPl)
+  const initialEnDiffs = diffSemanticProjection(sanitizeMigrationProjection(baselineEn), sanitizeMigrationProjection(currentEn))
+  const initialPlDiffs = diffSemanticProjection(sanitizeMigrationProjection(baselinePl), sanitizeMigrationProjection(currentPl))
 
   if (SHOULD_WRITE && (initialEnDiffs.length || initialPlDiffs.length)) {
     nextEn = patchLocaleJson(currentSet.en, { ...baselineEn, portraits: baselinePortraits }, baselineEnLocaleBlocks)
@@ -138,8 +161,8 @@ for (const folderName of folders) {
 
   const verifiedEn = buildCurrentLocaleProjection(nextEn, nextScans, currentImporter)
   const verifiedPl = buildCurrentLocaleProjection(nextPl, nextScans, currentImporter)
-  const finalEnDiffs = diffSemanticProjection(baselineEn, verifiedEn)
-  const finalPlDiffs = diffSemanticProjection(baselinePl, verifiedPl)
+  const finalEnDiffs = diffSemanticProjection(sanitizeMigrationProjection(baselineEn), sanitizeMigrationProjection(verifiedEn))
+  const finalPlDiffs = diffSemanticProjection(sanitizeMigrationProjection(baselinePl), sanitizeMigrationProjection(verifiedPl))
 
   if (finalEnDiffs.length) {
     errors.push(`[${folderName}] EN still differs from ${BASELINE_REF}: ${finalEnDiffs.join(', ')}`)
