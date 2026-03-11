@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T12:12:17.763Z",
+  "updatedAt": "2026-03-11T13:08:08.474Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -146,12 +146,52 @@
         },
         "crucial-feats:left:file:01_6_1_superman_bench_press_earth_equivalent.jpg": {
           "x": 50,
-          "y": 50,
+          "y": 17.194918810463648,
           "scale": 1
         },
         "crucial-feats:left:file:superman_read.jpeg": {
           "x": 50,
-          "y": 50,
+          "y": 6.526843606937712,
+          "scale": 1
+        },
+        "crucial-feats:right:file:06_6_2_hyperion_survives_world_destruction.png": {
+          "x": 50,
+          "y": 25.449816879546887,
+          "scale": 1
+        },
+        "crucial-feats:right:file:07_6_2_hyperion_recovers_after_neck_snap.png": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:left:file:superman_flash.jpeg": {
+          "x": 50,
+          "y": 62.89081354499008,
+          "scale": 1
+        },
+        "crucial-feats:right:file:09_6_2_hyperion_regenerates_after_catastrophic_damage.png": {
+          "x": 50,
+          "y": 85.8112972733227,
+          "scale": 1
+        },
+        "crucial-feats:left:file:02_6_1_superman_survives_black_hole_level_punishment.jpg": {
+          "x": 50,
+          "y": 38.08735777752753,
+          "scale": 1
+        },
+        "crucial-feats:right:file:10_6_2_hyperion_disintegrates_weapon_x_vision.jpg": {
+          "x": 50,
+          "y": 88.15510841275352,
+          "scale": 1
+        },
+        "crucial-feats:left:file:05_6_1_superman_high_end_endurance_control.jpg": {
+          "x": 50,
+          "y": 42.976687221937674,
+          "scale": 1
+        },
+        "crucial-feats:right:file:08_6_2_hyperion_overwhelms_two_alternate_hyperions.png": {
+          "x": 50,
+          "y": 0,
           "scale": 1
         }
       }
@@ -270,6 +310,16 @@
         "fight-card:portrait-b": {
           "x": 50,
           "y": 50.18101003432384,
+          "scale": 1
+        },
+        "character-dossier-a:portrait": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "character-dossier-b:portrait": {
+          "x": 50,
+          "y": 0,
           "scale": 1
         }
       }
@@ -485,7 +535,18 @@
         "y": 50,
         "scale": 1
       },
-      "slideImageAdjustments": {}
+      "slideImageAdjustments": {
+        "character-dossier-a:portrait": {
+          "x": 7.377463620576489,
+          "y": 0,
+          "scale": 1.1572258711709031
+        },
+        "character-dossier-b:portrait": {
+          "x": 50,
+          "y": 58.60902240325929,
+          "scale": 1
+        }
+      }
     }
   }
 }
