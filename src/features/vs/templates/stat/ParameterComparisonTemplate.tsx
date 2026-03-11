@@ -44,6 +44,8 @@ export function ParameterComparisonTemplate({
   const drawRows = rows.filter((row) => row.winner === 'draw')
   const fighterAText = fighterA.name || 'Fighter A'
   const fighterBText = fighterB.name || 'Fighter B'
+  const leftCompact = leftAdvantages.length > 5
+  const rightCompact = rightAdvantages.length > 5
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
@@ -73,23 +75,26 @@ export function ParameterComparisonTemplate({
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid flex-1 grid-cols-[1fr_1.3fr_1fr] gap-3`}>
-            <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`}>
+          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto] gap-3`}>
+            <div className="grid min-h-0 grid-cols-[1fr_1.3fr_1fr] gap-3">
+              <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-2`}>
               <p className="text-[12px] uppercase tracking-[0.16em]" style={{ color: fighterA.color }}>
                 {customLeftHeader ? leftHeader : `${leftHeader} // ${fighterAText}`}
               </p>
-              <div className="mt-2 max-h-full space-y-2 overflow-y-auto pr-1">
+              <div
+                className={`mt-2 min-h-0 flex-1 overflow-hidden pr-1 ${leftCompact ? 'grid auto-rows-min grid-cols-2 gap-2 content-start' : 'space-y-2'}`}
+              >
                 {leftAdvantages.length ? (
                   leftAdvantages.map((row) => (
                     <div
                       key={`left-adv-${row.id}`}
-                      className="rounded border px-2 py-2"
+                      className={`rounded border ${leftCompact ? 'px-2 py-1.5' : 'px-2 py-2'}`}
                       style={{ borderColor: `${fighterA.color}66`, backgroundColor: `${fighterA.color}18` }}
                     >
-                      <p className="text-[12px] uppercase tracking-[0.15em]" style={{ color: fighterA.color }}>
+                      <p className={`${leftCompact ? 'text-[11px]' : 'text-[12px]'} uppercase tracking-[0.15em]`} style={{ color: fighterA.color }}>
                         {row.label}
                       </p>
-                      <p className="mt-1 text-[16px] leading-tight text-slate-100">
+                      <p className={`${leftCompact ? 'mt-0.5 text-[14px]' : 'mt-1 text-[16px]'} leading-tight text-slate-100`}>
                         {row.a} &gt; {row.b}
                       </p>
                     </div>
@@ -102,8 +107,8 @@ export function ParameterComparisonTemplate({
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} select-none p-2`}>
-              <div className="pointer-events-none h-[78%] select-none">
+            <div className={`${HIGH_END_FRAME_CLASS} grid min-h-0 grid-rows-[minmax(0,1fr)_132px] select-none p-2`}>
+              <div className="pointer-events-none min-h-0 select-none">
                 <ResponsiveContainer width="100%" height="100%">
                   <RadarChart data={rows} cx="50%" cy="44%" outerRadius="74%" margin={{ top: 12, right: 28, bottom: 38, left: 28 }}>
                     <PolarGrid stroke="rgba(148,163,184,0.35)" />
@@ -113,7 +118,7 @@ export function ParameterComparisonTemplate({
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
-              <div className="mt-2 rounded-lg border border-slate-600/60 bg-black/35 px-3 py-2">
+              <div className="mt-2 h-full rounded-lg border border-slate-600/60 bg-black/35 px-3 py-2">
                 <p className="text-[11px] uppercase tracking-[0.16em] text-slate-300">{drawHeader}</p>
                 {drawRows.length ? (
                   <div className="mt-2 grid grid-cols-2 gap-2">
@@ -132,22 +137,24 @@ export function ParameterComparisonTemplate({
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`}>
+            <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-2`}>
               <p className="text-[12px] uppercase tracking-[0.16em]" style={{ color: fighterB.color }}>
                 {customRightHeader ? rightHeader : `${rightHeader} // ${fighterBText}`}
               </p>
-              <div className="mt-2 max-h-full space-y-2 overflow-y-auto pr-1">
+              <div
+                className={`mt-2 min-h-0 flex-1 overflow-hidden pr-1 ${rightCompact ? 'grid auto-rows-min grid-cols-2 gap-2 content-start' : 'space-y-2'}`}
+              >
                 {rightAdvantages.length ? (
                   rightAdvantages.map((row) => (
                     <div
                       key={`right-adv-${row.id}`}
-                      className="rounded border px-2 py-2"
+                      className={`rounded border ${rightCompact ? 'px-2 py-1.5' : 'px-2 py-2'}`}
                       style={{ borderColor: `${fighterB.color}66`, backgroundColor: `${fighterB.color}18` }}
                     >
-                      <p className="text-[12px] uppercase tracking-[0.15em]" style={{ color: fighterB.color }}>
+                      <p className={`${rightCompact ? 'text-[11px]' : 'text-[12px]'} uppercase tracking-[0.15em]`} style={{ color: fighterB.color }}>
                         {row.label}
                       </p>
-                      <p className="mt-1 text-[16px] leading-tight text-slate-100">
+                      <p className={`${rightCompact ? 'mt-0.5 text-[14px]' : 'mt-1 text-[16px]'} leading-tight text-slate-100`}>
                         {row.b} &gt; {row.a}
                       </p>
                     </div>
@@ -161,7 +168,7 @@ export function ParameterComparisonTemplate({
             </div>
           </div>
 
-          <div className="mt-3 grid grid-cols-2 gap-3">
+          <div className="relative grid grid-cols-2 gap-3 pt-1">
             <div className={`${HIGH_END_CARD_CLASS} px-4 py-3 text-center`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
               <p className="text-[12px] uppercase tracking-[0.16em] text-slate-200">{fighterAText}</p>
               <p className="text-[42px] font-semibold leading-none" style={{ color: fighterA.color }}>
@@ -174,16 +181,17 @@ export function ParameterComparisonTemplate({
                 {Math.round(averageB)}
               </p>
             </div>
-          </div>
 
-          <div
-            className="favorite-stamp absolute bottom-4 -translate-x-1/2 px-4 py-2 text-lg uppercase tracking-[0.04em]"
-            style={{
-              left: favoriteLeft,
-              transform: `translateX(-50%) rotate(${favoriteRotation}deg)`,
-            }}
-          >
-            {favorite}
+            <div
+              className="favorite-stamp pointer-events-none absolute bottom-[22px] z-20 -translate-x-1/2 px-4 py-2 text-[15px] uppercase tracking-[0.04em]"
+              style={{
+                left: favoriteLeft,
+                transform: `translateX(-50%) rotate(${favoriteRotation}deg)`,
+              }}
+            >
+              {favorite}
+            </div>
+          </div>
           </div>
         </div>
       </div>

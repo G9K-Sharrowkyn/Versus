@@ -92,21 +92,37 @@
 }
 
 .favorite-stamp {
-  border: 1px solid rgba(251, 191, 36, 0.95);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(251, 191, 36, 1);
+  border-radius: 10px;
+  width: 240px;
+  max-width: calc(100% - 24px);
+  min-height: 46px;
   color: #fff7d6;
+  text-align: center;
   text-shadow:
     0 0 8px rgba(255, 245, 195, 0.65),
     0 0 18px rgba(251, 191, 36, 0.35);
+  white-space: nowrap;
+  background-color: rgb(137, 77, 9);
   background:
     linear-gradient(
       118deg,
-      rgba(120, 53, 15, 0.42) 0%,
-      rgba(253, 224, 71, 0.22) 35%,
-      rgba(255, 251, 235, 0.34) 50%,
-      rgba(251, 191, 36, 0.24) 66%,
-      rgba(120, 53, 15, 0.42) 100%
+      rgba(80, 28, 4, 1) 0%,
+      rgba(145, 86, 8, 1) 24%,
+      rgba(230, 145, 10, 1) 49%,
+      rgba(145, 86, 8, 1) 74%,
+      rgba(80, 28, 4, 1) 100%
     );
   background-size: 240% 240%;
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(120, 53, 15, 0.9) inset,
+    0 0 16px rgba(251, 191, 36, 0.28);
+  opacity: 1;
+  isolation: isolate;
   animation: vv-gold-spark 2.4s ease-in-out infinite;
 }
 
