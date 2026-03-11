@@ -50,8 +50,8 @@ export function CrucialFeatsTemplate({
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
 
-  const leftEntry = leftEntries.length ? leftEntries[pairIndex % leftEntries.length] : null
-  const rightEntry = rightEntries.length ? rightEntries[pairIndex % rightEntries.length] : null
+  const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
+  const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
 
   const renderColumn = (
     fighter: Fighter,

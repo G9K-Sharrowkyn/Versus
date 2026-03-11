@@ -1,11 +1,11 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "pochłonął Heart of Darkness",
-      "podbił i skaził niezliczone światy",
-      "zmartwychwstał po wyrwaniu serca",
-      "zregenerował uszkodzenie oka w czasie walki",
-      "przemienił Teen Titans w Dark Titans"
+      "Wszechświat za wszechświatem upadał przed jego potęgą.",
+      "Zamienia Ziemię DC i wszystkich na niej w kamień.",
+      "Monitor klasyfikuje go na tym samym poziomie zagrożenia co Spectre.",
+      "Niszczy planetę samym spojrzeniem.",
+      "Pochłania Heart of Darkness."
     ],
     "dossier": {
       "advantage": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.",
@@ -39,20 +39,20 @@
     },
     "version": "Prime Earth",
     "victories": [
-      "The Divine",
-      "Teen Titans (korupcja drużynowa / przytłoczenie)",
-      "Superboy",
-      "Wonder Girl",
-      "Psimon (wygnanie / BFR)"
+      "Sala trofeów zawiera kostium Supermana.",
+      "Miażdży JLA i Teen Titans.",
+      "Masakruje The Divine.",
+      "Rozprasza atomy Psimona po rzeczywistości.",
+      "Ares."
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "zniszczył co najmniej trzy układy słoneczne, będąc nadal osłabionym",
-      "wytrzymał Agamotto w jego własnej domenie",
-      "uwięził Silver Surfera na Ziemi niewykrywalną barierą",
-      "pożarł Poppup zamiast Ziemi",
-      "pokonał Sphinxa, zamykając go w wiecznej pętli czasu"
+      "Posiada Ultimate Nullifier, broń zdolną zniszczyć cały wszechświat.",
+      "Galactus musi istnieć, bo inaczej wszechświat umrze.",
+      "Atak Galactusa obejmuje trzy układy słoneczne.",
+      "Cały wszechświat był zagrożony zniszczeniem, gdy Galactus walczył.",
+      "Odsyła Sphinxa w przeszłość, by ten przeżywał swoje życie w kółko przez całą wieczność."
     ],
     "dossier": {
       "advantage": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.",
@@ -86,11 +86,11 @@
     },
     "version": "Ziemia-616",
     "victories": [
-      "Silver Surfer (uwięzienie / bariera)",
-      "Sphinx (rozwiązanie przez pętlę czasu)",
-      "Poppup / Poppupianie (rezultat pożarcia świata)",
-      "Imperium Skrulli / Tarnax IV",
-      "Mad Celestials (wynik kontekstowy)"
+      "Galactus walczy z Mephisto.",
+      "Silver Surfer.",
+      "Jednym strzałem eliminuje Celestiala.",
+      "Zamienia Terraxa w robaka, a potem w energię.",
+      "Red Hulk."
     ]
   },
   "locale": "pl",

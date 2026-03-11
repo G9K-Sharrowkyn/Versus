@@ -62,8 +62,8 @@ export function VictoryArchiveTemplate({
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
 
-  const leftEntry = leftEntries.length ? leftEntries[pairIndex % leftEntries.length] : null
-  const rightEntry = rightEntries.length ? rightEntries[pairIndex % rightEntries.length] : null
+  const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
+  const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
   const entriesUnit =
     pickTemplateField(blockFields, ['entries_unit']) ||
     getFightTemplateDefaultField('victory-archive', 'entries_unit', language) ||

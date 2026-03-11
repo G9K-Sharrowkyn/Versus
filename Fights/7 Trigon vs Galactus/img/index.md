@@ -1,12 +1,12 @@
 # Image Index
 
 ## 6.1 - Consumed the Heart of Darkness
-- Local filename: `01_6_1_trigon_heart_of_darkness.jpg`
+- Local filename: `Absorbs The Heart of Darkness....jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/8/8d/Teen_Titans_Vol_4_23.1_Trigon.jpg/revision/latest?cb=20130919031951
 - Exact source: Teen Titans Vol 4 #23.1: Trigon (2013)
 
 ## 6.1 - Conquered and corrupted countless worlds
-- Local filename: `02_6_1_trigon_countless_worlds.jpg`
+- Local filename: `Universe after Universe has fallen before his.jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/f/f6/The_Phantom_Stranger_Vol_4_1.jpg/revision/latest?cb=20121011175133
 - Exact source: The Phantom Stranger Vol 4 #1 (2012) / Teen Titans Vol 4 #23.1: Trigon (2013)
 
@@ -16,9 +16,9 @@
 - Exact source: Red Hood: Outlaw Vol 1 #45 (2020)
 
 ## 6.1 - Regenerated eye damage in combat time
-- Local filename: `04_6_1_trigon_dark_titans.jpg`
+- Local filename: `Destroys planet with a Death-Stare.jpg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/f/f0/Teen_Titans_Vol_4_22.jpg/revision/latest?cb=20130725031821
-- Exact source: Teen Titans Vol 4 #22 (2013)
+- Exact source: Local verify lock
 
 ## 6.1 - Converted the Teen Titans into Dark Titans
 - Local filename: `04_6_1_trigon_dark_titans.jpg`
@@ -26,27 +26,27 @@
 - Exact source: Teen Titans Vol 4 #22 (2013)
 
 ## 7.1 - The Divine
-- Local filename: `01_6_1_trigon_heart_of_darkness.jpg`
+- Local filename: `Slaughters the Divine.jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/8/8d/Teen_Titans_Vol_4_23.1_Trigon.jpg/revision/latest?cb=20130919031951
 - Exact source: Teen Titans Vol 4 #23.1: Trigon (2013)
 
 ## 7.1 - Teen Titans
-- Local filename: `04_6_1_trigon_dark_titans.jpg`
+- Local filename: `Stomps the JLA + Teen.jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/f/f0/Teen_Titans_Vol_4_22.jpg/revision/latest?cb=20130725031821
-- Exact source: Teen Titans Vol 4 #22 (2013)
+- Exact source: Local verify lock
 
 ## 7.1 - Superboy
-- Local filename: `04_6_1_trigon_dark_titans.jpg`
+- Local filename: `Trophy Room includes Superman's Suit.jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/f/f0/Teen_Titans_Vol_4_22.jpg/revision/latest?cb=20130725031821
-- Exact source: Teen Titans Vol 4 #22 (2013)
+- Exact source: Local verify lock
 
 ## 7.1 - Wonder Girl
-- Local filename: `04_6_1_trigon_dark_titans.jpg`
+- Local filename: `Turns DC Earth and everyone in it into stone.jpg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/f/f0/Teen_Titans_Vol_4_22.jpg/revision/latest?cb=20130725031821
-- Exact source: Teen Titans Vol 4 #22 (2013)
+- Exact source: Local verify lock
 
 ## 7.1 - Psimon
-- Local filename: `05_7_1_trigon_psimon_banishment.jpg`
+- Local filename: `Dissipates Psimon's Atoms across.jpeg`
 - Original link: https://static.wikia.nocookie.net/marvel_dc/images/6/61/Teen_Titans_Vol_4_1.jpg/revision/latest?cb=20110926180324
 - Exact source: Teen Titans Vol 4 #1 (2014) / local verify lock
 
@@ -99,4 +99,3 @@
 - Local filename: `12_7_2_galactus_mad_celestials.jpg`
 - Original link: https://static.wikia.nocookie.net/marveldatabase/images/5/58/Fantastic_Four_Vol_3_604_Textless.jpg/revision/latest?cb=20111219175539
 - Exact source: Fantastic Four Vol 3 #604 (2012)
-
