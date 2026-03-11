@@ -81,10 +81,28 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
                     />
                     <svg viewBox="0 0 100 100" className="relative z-10 h-full w-full">
                       <line x1={splitX} y1="8" x2={splitX} y2="92" stroke="rgba(148,163,184,0.35)" strokeWidth="0.7" strokeDasharray="2 2" />
-                      <text x={linearLabelX} y="14" fill="#67e8f9" fontSize="4" letterSpacing="0.8" textAnchor="middle">
+                      <text
+                        x={linearLabelX}
+                        y="14"
+                        fill="#67e8f9"
+                        fontSize="4"
+                        fontFamily="var(--font-ui)"
+                        fontWeight="600"
+                        textAnchor="middle"
+                        style={{ letterSpacing: '0.04em' }}
+                      >
                         {linearLabel}
                       </text>
-                      <text x={chaosLabelX} y="14" fill="#fda4af" fontSize="4" letterSpacing="0.8" textAnchor="middle">
+                      <text
+                        x={chaosLabelX}
+                        y="14"
+                        fill="#fda4af"
+                        fontSize="4"
+                        fontFamily="var(--font-ui)"
+                        fontWeight="600"
+                        textAnchor="middle"
+                        style={{ letterSpacing: '0.04em' }}
+                      >
                         {chaosLabel}
                       </text>
                       <polyline points={stablePoints} fill="none" stroke="#22d3ee" strokeWidth="1.7" />
