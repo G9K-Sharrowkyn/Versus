@@ -39,11 +39,11 @@
     },
     "version": "Prime Earth",
     "victories": [
-      "Sala trofeów zawiera kostium Supermana.",
-      "Miażdży JLA i Teen Titans.",
-      "Masakruje The Divine.",
-      "Rozprasza atomy Psimona po rzeczywistości.",
-      "Ares."
+      "Superman",
+      "JLA + Teen Titans",
+      "The Divine",
+      "Psimon",
+      "Ares"
     ]
   },
   "fighterB": {
@@ -86,11 +86,11 @@
     },
     "version": "Ziemia-616",
     "victories": [
-      "Galactus walczy z Mephisto.",
-      "Silver Surfer.",
-      "Jednym strzałem eliminuje Celestiala.",
-      "Zamienia Terraxa w robaka, a potem w energię.",
-      "Red Hulk."
+      "Mephisto",
+      "Silver Surfer",
+      "Celestial",
+      "Terrax",
+      "Tyrant"
     ]
   },
   "locale": "pl",

@@ -1105,16 +1105,16 @@
       "winsA": [
         "Relic",
         "Third Army",
-        "Guardians of the Universe (temporary transformation / dominance)",
-        "Godkillers (mass disarm and teleport neutralization)",
-        "Carol Ferris (temporary reality overwrite)"
+        "Guardians of the Universe",
+        "Godkillers",
+        "Carol Ferris"
       ],
       "winsB": [
-        "Rorschach (direct kill)",
-        "Metron (instant vaporization)",
-        "Owlman (instant vaporization)",
-        "Ozymandias (non-lethal confrontation control)",
-        "Silk Spectre / Laurie (localized reality coercion, non-lethal)"
+        "Rorschach",
+        "Metron",
+        "Owlman",
+        "Ozymandias",
+        "Silk Spectre / Laurie"
       ]
     },
     {
@@ -1320,16 +1320,16 @@
       "winsA": [
         "Relic",
         "Third Army",
-        "Guardians of the Universe (tymczasowa transformacja / dominacja)",
-        "Godkillers (masowe rozbrojenie i neutralizacja przez teleportację)",
-        "Carol Ferris (tymczasowe przepisanie rzeczywistości)"
+        "Guardians of the Universe",
+        "Godkillers",
+        "Carol Ferris"
       ],
       "winsB": [
-        "Rorschach (bezpośrednie zabójstwo)",
-        "Metron (natychmiastowe odparowanie)",
-        "Owlman (natychmiastowe odparowanie)",
-        "Ozymandias (nieśmiercionośna kontrola konfrontacji)",
-        "Silk Spectre / Laurie (lokalny przymus rzeczywistości, nieśmiercionośny)"
+        "Rorschach",
+        "Metron",
+        "Owlman",
+        "Ozymandias",
+        "Silk Spectre / Laurie"
       ]
     },
     {
@@ -1768,8 +1768,8 @@
         "Silver Surfer",
         "Hulk",
         "Beta Ray Bill i Ronan Oskarżyciel",
-        "Adam Warlock (wynik kontekstowy / wsparty artefaktem)",
-        "Thor z Power Gem (strategiczne zwycięstwo)"
+        "Adam Warlock",
+        "Thor z Power Gem"
       ]
     },
     {
@@ -2184,16 +2184,16 @@
       "winsA": [
         "Hit",
         "Maji Kayo",
-        "Golden Frieza (zdominowany)",
-        "Kale (tymczasowe unieszkodliwienie)",
-        "Vegeta (Super Saiyan Blue) (kontekstowe zdominowanie)"
+        "Golden Frieza",
+        "Kale",
+        "Vegeta (Super Saiyan Blue)"
       ],
       "winsB": [
         "Boros",
         "Elder Centipede",
         "Orochi",
-        "Evil Ocean Water (neutralizacja)",
-        "Garou (Cosmic Fear Mode) (decydujący wynik zależny od linii czasu)"
+        "Evil Ocean Water",
+        "Garou (Cosmic Fear Mode)"
       ]
     },
     {
@@ -2384,8 +2384,8 @@
         "fight-card"
       ],
       "winsA": [
-        "Gary Elms (boxing decision victory)",
-        "Yoichi Nakachi (witness-backed 11-second challenge-fight knockout)"
+        "Gary Elms",
+        "Yoichi Nakachi"
       ],
       "winsB": [
         "George Foreman",
@@ -2583,8 +2583,8 @@
         "fight-card"
       ],
       "winsA": [
-        "Gary Elms (zwycięstwo przez decyzję w boksie)",
-        "Yoichi Nakachi (potwierdzony relacjami nokaut w 11 sekund w walce wyzwaniowej)"
+        "Gary Elms",
+        "Yoichi Nakachi"
       ],
       "winsB": [
         "George Foreman",
@@ -2779,7 +2779,7 @@
           "right_image_2": "Silver.jpeg",
           "right_image_3": "One shots a Celestial.webp",
           "right_image_4": "Turns Terrax into a Worm and then Energy.jpg",
-          "right_image_5": "Red_Hulk.jpeg"
+          "right_image_5": "Tyrant.jpeg"
         },
         "x-factor": {
           "factor": "POISONOUS REALM VS ENERGY ECONOMY",
@@ -2807,18 +2807,18 @@
         "fight-card"
       ],
       "winsA": [
-        "Trophy Room includes Superman's suit.",
-        "Stomps the JLA + Teen Titans.",
-        "Slaughters the Divine.",
-        "Dissipates Psimon's atoms across reality.",
-        "Ares."
+        "Superman",
+        "JLA + Teen Titans",
+        "The Divine",
+        "Psimon",
+        "Ares"
       ],
       "winsB": [
-        "Galactus battles Mephisto.",
-        "Silver Surfer.",
-        "One-shots a Celestial.",
-        "Turns Terrax into a worm and then energy.",
-        "Red Hulk."
+        "Mephisto",
+        "Silver Surfer",
+        "Celestial",
+        "Terrax",
+        "Tyrant"
       ]
     },
     {
@@ -3006,7 +3006,7 @@
           "right_image_2": "Silver.jpeg",
           "right_image_3": "One shots a Celestial.webp",
           "right_image_4": "Turns Terrax into a Worm and then Energy.jpg",
-          "right_image_5": "Red_Hulk.jpeg"
+          "right_image_5": "Tyrant.jpeg"
         },
         "x-factor": {
           "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
@@ -3034,18 +3034,18 @@
         "fight-card"
       ],
       "winsA": [
-        "Sala trofeów zawiera kostium Supermana.",
-        "Miażdży JLA i Teen Titans.",
-        "Masakruje The Divine.",
-        "Rozprasza atomy Psimona po rzeczywistości.",
-        "Ares."
+        "Superman",
+        "JLA + Teen Titans",
+        "The Divine",
+        "Psimon",
+        "Ares"
       ],
       "winsB": [
-        "Galactus walczy z Mephisto.",
-        "Silver Surfer.",
-        "Jednym strzałem eliminuje Celestiala.",
-        "Zamienia Terraxa w robaka, a potem w energię.",
-        "Red Hulk."
+        "Mephisto",
+        "Silver Surfer",
+        "Celestial",
+        "Terrax",
+        "Tyrant"
       ]
     },
     {
@@ -3256,9 +3256,9 @@
       "winsA": [
         "The Butcher Entity",
         "The Butcher's human host",
-        "Saint Walker, Indigo-1, and Star Sapphire (group overpowering)",
+        "Saint Walker, Indigo-1, and Star Sapphire",
         "Multiple Manhunters",
-        "Bleez (internal dominance)"
+        "Bleez"
       ],
       "winsB": [
         "Sentry",
@@ -3476,9 +3476,9 @@
       "winsA": [
         "The Butcher Entity",
         "The Butcher's human host",
-        "Saint Walker, Indigo-1 i Star Sapphire (przytłoczenie grupowe)",
+        "Saint Walker, Indigo-1 i Star Sapphire",
         "Multiple Manhunters",
-        "Bleez (wewnętrzna dominacja)"
+        "Bleez"
       ],
       "winsB": [
         "Sentry",

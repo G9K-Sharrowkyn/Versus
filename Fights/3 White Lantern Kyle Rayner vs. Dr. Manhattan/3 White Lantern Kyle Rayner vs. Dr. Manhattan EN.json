@@ -41,9 +41,9 @@
     "victories": [
       "Relic",
       "Third Army",
-      "Guardians of the Universe (temporary transformation / dominance)",
-      "Godkillers (mass disarm and teleport neutralization)",
-      "Carol Ferris (temporary reality overwrite)"
+      "Guardians of the Universe",
+      "Godkillers",
+      "Carol Ferris"
     ]
   },
   "fighterB": {
@@ -86,11 +86,11 @@
     },
     "version": "Watchmen / Rebirth / Doomsday Clock",
     "victories": [
-      "Rorschach (direct kill)",
-      "Metron (instant vaporization)",
-      "Owlman (instant vaporization)",
-      "Ozymandias (non-lethal confrontation control)",
-      "Silk Spectre / Laurie (localized reality coercion, non-lethal)"
+      "Rorschach",
+      "Metron",
+      "Owlman",
+      "Ozymandias",
+      "Silk Spectre / Laurie"
     ]
   },
   "locale": "en",

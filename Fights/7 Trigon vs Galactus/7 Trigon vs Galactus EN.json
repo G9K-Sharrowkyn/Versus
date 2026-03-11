@@ -39,11 +39,11 @@
     },
     "version": "Prime Earth",
     "victories": [
-      "Trophy Room includes Superman's suit.",
-      "Stomps the JLA + Teen Titans.",
-      "Slaughters the Divine.",
-      "Dissipates Psimon's atoms across reality.",
-      "Ares."
+      "Superman",
+      "JLA + Teen Titans",
+      "The Divine",
+      "Psimon",
+      "Ares"
     ]
   },
   "fighterB": {
@@ -86,11 +86,11 @@
     },
     "version": "Earth-616",
     "victories": [
-      "Galactus battles Mephisto.",
-      "Silver Surfer.",
-      "One-shots a Celestial.",
-      "Turns Terrax into a worm and then energy.",
-      "Red Hulk."
+      "Mephisto",
+      "Silver Surfer",
+      "Celestial",
+      "Terrax",
+      "Tyrant"
     ]
   },
   "locale": "en",
