@@ -954,8 +954,8 @@
       "folder": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
       "locale": "en",
       "portraits": {
-        "a": "Kyle_source.jpeg",
-        "b": "Manhattan_Observing.jpeg"
+        "a": "Kyle.jpeg",
+        "b": "Manhattan.webp"
       },
       "profileA": [
         {
@@ -1169,8 +1169,8 @@
       "folder": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
       "locale": "pl",
       "portraits": {
-        "a": "Kyle_source.jpeg",
-        "b": "Manhattan_Observing.jpeg"
+        "a": "Kyle.jpeg",
+        "b": "Manhattan.webp"
       },
       "profileA": [
         {
@@ -1384,8 +1384,8 @@
       "folder": "4 Darth Vader vs Thanos",
       "locale": "en",
       "portraits": {
-        "a": "03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg",
-        "b": "No-sells Odin's blast.jpeg"
+        "a": "Vader.webp",
+        "b": "Thanos.jpg"
       },
       "profileA": [
         {
@@ -1604,8 +1604,8 @@
       "folder": "4 Darth Vader vs Thanos",
       "locale": "pl",
       "portraits": {
-        "a": "03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg",
-        "b": "No-sells Odin's blast.jpeg"
+        "a": "Vader.webp",
+        "b": "Thanos.jpg"
       },
       "profileA": [
         {
@@ -1824,8 +1824,8 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "en",
       "portraits": {
-        "a": "Tags UI Goku a few times.jpeg",
-        "b": "Saitama can achieve flight.jpg"
+        "a": "Jiren.jpg",
+        "b": "Saitama.jpg"
       },
       "profileA": [
         {
@@ -2036,8 +2036,8 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "pl",
       "portraits": {
-        "a": "Tags UI Goku a few times.jpeg",
-        "b": "Saitama can achieve flight.jpg"
+        "a": "Jiren.jpg",
+        "b": "Saitama.jpg"
       },
       "profileA": [
         {
@@ -2248,8 +2248,8 @@
       "folder": "6 Bruce Lee vs Muhammad Ali",
       "locale": "en",
       "portraits": {
-        "a": "one-inch punch.avif",
-        "b": "06_6_2_ali_cleveland_speed.jpg"
+        "a": "Bruce.jpg",
+        "b": "Ali.webp"
       },
       "profileA": [
         {
@@ -2447,8 +2447,8 @@
       "folder": "6 Bruce Lee vs Muhammad Ali",
       "locale": "pl",
       "portraits": {
-        "a": "one-inch punch.avif",
-        "b": "06_6_2_ali_cleveland_speed.jpg"
+        "a": "Bruce.jpg",
+        "b": "Ali.webp"
       },
       "profileA": [
         {
@@ -2646,8 +2646,8 @@
       "folder": "7 Trigon vs Galactus",
       "locale": "en",
       "portraits": {
-        "a": "Turns DC Earth and everyone in it into stone.jpg",
-        "b": "Galactus battles Mephisto.jpg"
+        "a": "Trigon.png",
+        "b": "Galactus.webp"
       },
       "profileA": [
         {
@@ -2873,8 +2873,8 @@
       "folder": "7 Trigon vs Galactus",
       "locale": "pl",
       "portraits": {
-        "a": "Turns DC Earth and everyone in it into stone.jpg",
-        "b": "Galactus battles Mephisto.jpg"
+        "a": "Trigon.png",
+        "b": "Galactus.webp"
       },
       "profileA": [
         {
@@ -3101,7 +3101,7 @@
       "locale": "en",
       "portraits": {
         "a": "Atrocitus.webp",
-        "b": "Sentry.jpg"
+        "b": "Hulk.webp"
       },
       "profileA": [
         {
@@ -3321,7 +3321,7 @@
       "locale": "pl",
       "portraits": {
         "a": "Atrocitus.webp",
-        "b": "Sentry.jpg"
+        "b": "Hulk.webp"
       },
       "profileA": [
         {
