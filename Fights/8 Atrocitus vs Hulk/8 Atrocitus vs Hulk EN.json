@@ -171,12 +171,12 @@
       "threat_level": "COSMIC"
     },
     "fight-card": {
-      "bottom_color_a": "#4ade80",
-      "bottom_color_b": "#14532d",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Atrocitus vs Hulk",
       "subtitle": "",
-      "top_color_a": "#8b1e1e",
-      "top_color_b": "#ff5a36"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "headline": "FIGHT SIMULATION",

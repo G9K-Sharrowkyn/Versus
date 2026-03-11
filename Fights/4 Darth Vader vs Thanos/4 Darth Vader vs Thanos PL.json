@@ -174,12 +174,12 @@
       "threat_level": "KOSMICZNY"
     },
     "fight-card": {
-      "bottom_color_a": "#7c3aed",
-      "bottom_color_b": "#f5c542",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Darth Vader vs Thanos",
       "subtitle": "",
-      "top_color_a": "#111827",
-      "top_color_b": "#b91c1c"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "end_condition": "Jeśli pierwszy bypass zawiedzie, walka natychmiast staje się walką Thanosa.",

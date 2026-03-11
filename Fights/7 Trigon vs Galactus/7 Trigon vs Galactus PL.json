@@ -174,12 +174,12 @@
       "threat_level": "KOSMICZNY"
     },
     "fight-card": {
-      "bottom_color_a": "#6d28d9",
-      "bottom_color_b": "#facc15",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Trigon vs Galactus",
       "subtitle": "",
-      "top_color_a": "#7f1d1d",
-      "top_color_b": "#ef4444"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "headline": "SYMULACJA WALKI",

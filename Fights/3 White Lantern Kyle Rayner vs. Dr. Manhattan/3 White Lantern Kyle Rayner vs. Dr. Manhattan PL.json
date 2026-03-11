@@ -165,12 +165,12 @@
       "threat_level": "KOSMICZNY"
     },
     "fight-card": {
-      "bottom_color_a": "#38bdf8",
-      "bottom_color_b": "#1d4ed8",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan",
       "subtitle": "",
-      "top_color_a": "#f8fafc",
-      "top_color_b": "#22c55e"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "end_condition": "O tej walce decyduje to, czy symetria w ogóle zdąży się uformować.",

@@ -166,12 +166,12 @@
       "threat_level": "HUMAN"
     },
     "fight-card": {
-      "bottom_color_a": "#f8fafc",
-      "bottom_color_b": "#60a5fa",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Bruce Lee vs Muhammad Ali",
       "subtitle": "",
-      "top_color_a": "#facc15",
-      "top_color_b": "#111827"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "headline": "FIGHT SIMULATION",

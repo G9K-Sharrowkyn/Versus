@@ -163,11 +163,11 @@
     },
     "fight-card": {
       "bottom_color_a": "#facc15",
-      "bottom_color_b": "#ef4444",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Jiren vs Saitama",
       "subtitle": "",
-      "top_color_a": "#dc2626",
-      "top_color_b": "#9ca3af"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "end_condition": "Jiren wins by ending the first version of the fight. Saitama wins by surviving into a stronger second version.",

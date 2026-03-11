@@ -174,12 +174,12 @@
       "threat_level": "COSMIC"
     },
     "fight-card": {
-      "bottom_color_a": "#f5c542",
-      "bottom_color_b": "#38bdf8",
+      "bottom_color_a": "#facc15",
+      "bottom_color_b": "#dc2626",
       "fight_title": "Knull vs Odin",
       "subtitle": "",
-      "top_color_a": "#08090c",
-      "top_color_b": "#b91c1c"
+      "top_color_a": "#2563eb",
+      "top_color_b": "#93c5fd"
     },
     "fight-simulation": {
       "end_condition": "Near-paper parity does not matter if one side has the cleaner repeatable finish route.",
