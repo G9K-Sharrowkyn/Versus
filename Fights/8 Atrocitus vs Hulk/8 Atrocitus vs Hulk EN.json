@@ -3,9 +3,9 @@
     "crucialFeats": [
       "Bound the Butcher inside his power battery",
       "Kept fighting after his heart was removed",
-      "Used blood magic to read the future and track rage paths",
+      "Martian Manhunter can't attack him telepathically.",
       "Burned through the fabric of space with rage plasma",
-      "Overpowered Saint Walker, Indigo-1, and Star Sapphire together"
+      "Throws around Apollo"
     ],
     "dossier": {
       "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.",
@@ -49,10 +49,10 @@
   "fighterB": {
     "crucialFeats": [
       "Planet and moon collateral output from World Breaker scale",
-      "Endured Sentry-level output",
+      "Stale-mated Sentry",
       "Regenerated after extreme damage",
-      "Redirected Juggernaut's charge through tactical strength",
-      "Overpowered Bi-Beast and Wendigo together"
+      "Worldbreaker Red She-Hulk and WBH clashing caused planet to break",
+      "Nearly sank the entire east coast with a single step"
     ],
     "dossier": {
       "advantage": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.",
@@ -154,7 +154,7 @@
       "question": "Can Atrocitus keep Hulk's rage external, or does he end up feeding the loop himself?",
       "trap_top": "BETTER AVERAGES >",
       "trap_bottom": "DO NOT GUARANTEE A FINISH ROUTE",
-      "example": "Better averages do not matter if they do not create a finish route. Atrocitus has more ways to shape the opening, but Hulk gets more dangerous every time the fight resets into contact. This is not about who has more tools. It is about whose win condition stays intact after the first plan fails."
+      "example": "Better averages mean little if they do not lead to a finish. Atrocitus has the better opening, but every close-range reset makes Hulk stronger. The real question is not who has more tools, but whose plan survives the first reset."
     },
     "tactical-board": {
       "lane": "Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.",

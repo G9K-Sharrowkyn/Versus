@@ -38,6 +38,42 @@ export function StatTrapTemplate({
   const questionMatch = questionLine.match(/^([^:]+:)\s*(.*)$/)
   const questionLead = questionMatch?.[1] || ''
   const questionBody = questionMatch?.[2] || questionLine
+  const exampleLength = example.length
+  const questionLength = questionLine.length
+
+  const exampleTypography =
+    exampleLength > 260
+      ? {
+          fontSize: 'clamp(1.18rem,1.35vw,1.9rem)',
+          lineHeight: 1.06,
+        }
+      : exampleLength > 185
+        ? {
+            fontSize: 'clamp(1.42rem,1.62vw,2.35rem)',
+            lineHeight: 1.07,
+          }
+        : {
+            fontSize: 'clamp(1.8rem,1.95vw,2.95rem)',
+            lineHeight: 1.08,
+          }
+
+  const questionTypography =
+    questionLength > 120
+      ? {
+          fontSize: 'clamp(1rem,1.1vw,1.45rem)',
+          lineHeight: 1.1,
+        }
+      : {
+          fontSize: 'clamp(1.2rem,1.35vw,1.95rem)',
+          lineHeight: 1.14,
+        }
+
+  const warningIconSizeClass =
+    exampleLength > 260
+      ? 'h-[clamp(112px,12vw,176px)] w-[clamp(128px,13.8vw,196px)]'
+      : exampleLength > 185
+        ? 'h-[clamp(132px,13.8vw,214px)] w-[clamp(150px,15vw,238px)]'
+        : 'h-[clamp(156px,16.8vw,252px)] w-[clamp(178px,19vw,286px)]'
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -60,14 +96,19 @@ export function StatTrapTemplate({
               </div>
             </div>
 
-            <p className="mt-2 whitespace-pre-line text-[clamp(1.8rem,1.95vw,2.95rem)] leading-[1.08] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-              {example}
-            </p>
+            <div className="mt-2 flex min-h-0 flex-1 items-start">
+              <p
+                className="whitespace-pre-line text-slate-100"
+                style={{ fontFamily: 'var(--font-ui)', ...exampleTypography }}
+              >
+                {example}
+              </p>
+            </div>
 
-            <div className="mb-[-8px] mt-[clamp(12px,1.4vh,22px)] flex items-center justify-center">
+            <div className="mt-[clamp(8px,1vh,16px)] flex items-center justify-center">
               <svg
                 viewBox="0 0 100 92"
-                className="h-[clamp(156px,16.8vw,252px)] w-[clamp(178px,19vw,286px)] drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]"
+                className={`${warningIconSizeClass} drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]`}
                 aria-hidden="true"
               >
                 <polygon
@@ -82,7 +123,7 @@ export function StatTrapTemplate({
               </svg>
             </div>
 
-            <p className="mt-auto text-[clamp(1.2rem,1.35vw,1.95rem)] leading-[1.14] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
+            <p className="mt-[clamp(8px,1vh,14px)] text-slate-100" style={{ fontFamily: 'var(--font-ui)', ...questionTypography }}>
               {questionLead ? <span className="font-bold">{questionLead}</span> : null} {questionBody}
             </p>
           </div>
