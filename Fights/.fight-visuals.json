@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T19:05:03.731Z",
+  "updatedAt": "2026-03-11T22:29:05.507Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -196,22 +196,52 @@
         },
         "victory-archive:left:file:11_7_1_superman_doomsday_finish.jpg": {
           "x": 50,
-          "y": 50,
+          "y": 100,
           "scale": 1
         },
         "victory-archive:left:file:12_7_1_superman_beats_wraith.jpg": {
           "x": 50,
-          "y": 50,
+          "y": 100,
           "scale": 1
         },
         "victory-archive:left:file:13_7_1_superman_blitzes_parasite.jpg": {
           "x": 50,
-          "y": 50,
+          "y": 0,
           "scale": 1
         },
         "victory-archive:left:file:14_7_1_superman_blitzes_mongul.jpg": {
-          "x": 50,
+          "x": 0,
           "y": 50,
+          "scale": 1
+        },
+        "victory-archive:right:file:16_7_2_hyperion_kills_magneto.png": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "victory-archive:right:file:17_7_2_hyperion_kills_wolverine.png": {
+          "x": 50,
+          "y": 83.23812804603406,
+          "scale": 1
+        },
+        "victory-archive:right:file:18_7_2_hyperion_kills_weapon_x_vision.jpg": {
+          "x": 50,
+          "y": 88.08067284980959,
+          "scale": 1
+        },
+        "victory-archive:right:file:19_7_2_hyperion_beats_thor.png": {
+          "x": 50,
+          "y": 8.058848788870316,
+          "scale": 1
+        },
+        "victory-archive:right:file:20_7_2_hyperion_kills_hulk_and_others.png": {
+          "x": 50,
+          "y": 41.11180901486,
+          "scale": 1
+        },
+        "victory-archive:left:file:15_7_1_superman_beats_apollo.jpg": {
+          "x": 50,
+          "y": 100,
           "scale": 1
         }
       }
