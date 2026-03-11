@@ -15,6 +15,23 @@ const INTERPRETATION_BAR_MAX_DELTA = 40
 const INTERPRETATION_BAR_MIN_FILL = 18
 const INTERPRETATION_BAR_FILL_RANGE = 62
 
+function buildInterpretationTitleLines(text: string): string[] {
+  const words = text.trim().split(/\s+/).filter(Boolean)
+  if (words.length <= 1) return [text]
+  let bestSplitIndex = 1
+  let bestScore = Number.POSITIVE_INFINITY
+  for (let index = 1; index < words.length; index += 1) {
+    const left = words.slice(0, index).join(' ')
+    const right = words.slice(index).join(' ')
+    const score = Math.abs(left.length - right.length)
+    if (score < bestScore) {
+      bestScore = score
+      bestSplitIndex = index
+    }
+  }
+  return [words.slice(0, bestSplitIndex).join(' '), words.slice(bestSplitIndex).join(' ')]
+}
+
 export function InterpretationTemplate({
   fighterA,
   fighterB,
@@ -124,6 +141,10 @@ export function InterpretationTemplate({
         ))
 
   const badgeSymbol = isAverageDraw ? '=' : 'V'
+  const titleLines = buildInterpretationTitleLines(cardTitleText)
+  const isMultilineTitle = titleLines.length > 1
+  const titleFontSize = isMultilineTitle ? 'clamp(1.95rem,2.2vw,2.5rem)' : 'clamp(2.9rem,3.25vw,3.75rem)'
+  const titleLineHeight = isMultilineTitle ? 0.88 : 0.94
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -140,14 +161,28 @@ export function InterpretationTemplate({
           <div className={`relative ${HIGH_END_BODY_GAP_CLASS} rounded-md border border-cyan-300/25 bg-slate-950/70 p-2`}>
             <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:12%_33%]" />
             <div className="relative z-10 grid grid-cols-[0.9fr_1.7fr] gap-2">
-              <div className="flex min-h-[185px] items-center justify-center rounded-md border-2 p-3" style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
+              <div className="flex min-h-[210px] items-center justify-center rounded-md border-2 p-3" style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
                 <div className="w-full rounded-md border border-slate-500/70 bg-[linear-gradient(135deg,rgba(2,132,199,0.28),rgba(15,23,42,0.5))] p-2 text-center">
                   <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg border-2 text-3xl font-bold" style={{ borderColor: leaderColor, color: leaderColor }}>
                     {badgeSymbol}
                   </div>
-                  <p className="mt-3 text-[52px] uppercase leading-none" style={{ color: leaderColor, fontFamily: 'var(--font-display)' }}>
-                    {cardTitleText}
-                  </p>
+                  <div className="mt-3 flex h-[102px] items-center justify-center">
+                    <div
+                      className="flex max-w-[15ch] flex-col items-center justify-center text-center uppercase tracking-[0.03em]"
+                      style={{
+                        color: leaderColor,
+                        fontFamily: 'var(--font-display)',
+                        fontSize: titleFontSize,
+                        lineHeight: titleLineHeight,
+                      }}
+                    >
+                      {titleLines.map((lineText, index) => (
+                        <span key={`interpretation-title-${index}`} className="block whitespace-nowrap">
+                          {lineText}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
 

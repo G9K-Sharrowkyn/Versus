@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T14:51:48.928Z",
+  "updatedAt": "2026-03-11T19:05:03.731Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -146,7 +146,7 @@
         },
         "crucial-feats:left:file:01_6_1_superman_bench_press_earth_equivalent.jpg": {
           "x": 50,
-          "y": 50,
+          "y": 19.166947122049933,
           "scale": 1
         },
         "crucial-feats:left:file:superman_read.jpeg": {
@@ -192,6 +192,26 @@
         "crucial-feats:right:file:08_6_2_hyperion_overwhelms_two_alternate_hyperions.png": {
           "x": 50,
           "y": 0,
+          "scale": 1
+        },
+        "victory-archive:left:file:11_7_1_superman_doomsday_finish.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:12_7_1_superman_beats_wraith.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:13_7_1_superman_blitzes_parasite.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:14_7_1_superman_blitzes_mongul.jpg": {
+          "x": 50,
+          "y": 50,
           "scale": 1
         }
       }
@@ -365,6 +385,91 @@
         "character-dossier-b:portrait": {
           "x": 50,
           "y": 0,
+          "scale": 1
+        },
+        "crucial-feats:left:file:kyle_source.jpeg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:06_6_2_manhattan_non_linear_perception.jpg": {
+          "x": 50,
+          "y": 92.89255175258377,
+          "scale": 1
+        },
+        "crucial-feats:left:file:kyle_resurrection1.jpeg": {
+          "x": 50,
+          "y": 64.13544898250349,
+          "scale": 1
+        },
+        "crucial-feats:right:file:07_6_2_manhattan_self_consistency_across_time.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:manhattan_resurrection.jpeg": {
+          "x": 50,
+          "y": 65.6388701256286,
+          "scale": 1
+        },
+        "crucial-feats:left:file:kyle_destabilize.jpeg": {
+          "x": 50,
+          "y": 35.50895600821367,
+          "scale": 1
+        },
+        "crucial-feats:left:file:kyle_life.jpeg": {
+          "x": 50,
+          "y": 50.94092832197009,
+          "scale": 1
+        },
+        "crucial-feats:right:file:09_6_2_manhattan_metron_owlman_mobius.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:manhattan_end.jpg": {
+          "x": 50,
+          "y": 77.89259996113847,
+          "scale": 1
+        },
+        "crucial-feats:left:file:kyle_oblivion.jpeg": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "victory-archive:left:slot:1": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:slot:2": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:slot:3": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:slot:4": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:slot:5": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:right:slot:1": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "victory-archive:right:slot:2": {
+          "x": 50,
+          "y": 50,
           "scale": 1
         }
       }
@@ -609,7 +714,7 @@
         },
         "victory-archive:left:file:dissipates psimon's atoms across.jpeg": {
           "x": 50,
-          "y": 50,
+          "y": 60.86820442539282,
           "scale": 1
         },
         "crucial-feats:left:file:absorbs the heart of darkness....jpeg": {
@@ -634,7 +739,7 @@
         },
         "crucial-feats:right:file:the ultimate nullifier.jpg": {
           "x": 50,
-          "y": 50.09113728868602,
+          "y": 28.37484274198573,
           "scale": 1
         },
         "crucial-feats:left:file:turns dc earth and everyone in it into stone.jpg": {
@@ -665,6 +770,61 @@
         "crucial-feats:right:empty": {
           "x": 50,
           "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:right:file:sphinx.jpeg": {
+          "x": 50,
+          "y": 90.1433383976437,
+          "scale": 1
+        },
+        "victory-archive:left:file:trophy room includes superman's suit.jpeg": {
+          "x": 0,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:right:file:galactus battles mephisto.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "victory-archive:right:file:silver.jpeg": {
+          "x": 50,
+          "y": 23.160913712632134,
+          "scale": 1
+        },
+        "victory-archive:right:file:one shots a celestial.webp": {
+          "x": 70.88159530792775,
+          "y": 51.020213908837995,
+          "scale": 1.1201277312513538
+        },
+        "victory-archive:left:file:slaughters the divine.jpeg": {
+          "x": 50,
+          "y": 92.90910199022126,
+          "scale": 1
+        },
+        "victory-archive:left:file:ares.png": {
+          "x": 0,
+          "y": 0,
+          "scale": 1
+        },
+        "victory-archive:right:file:red_hulk.jpeg": {
+          "x": 50,
+          "y": 17.229925844251,
+          "scale": 1
+        },
+        "victory-archive:left:file:stomps the jla + teen.jpeg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "victory-archive:right:file:turns terrax into a worm and then energy.jpg": {
+          "x": 50,
+          "y": 66.26797360750992,
+          "scale": 1
+        },
+        "victory-archive:right:file:tyrant.jpeg": {
+          "x": 50,
+          "y": 42.494508586707205,
           "scale": 1
         }
       }
