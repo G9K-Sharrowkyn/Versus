@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T13:30:29.886Z",
+  "updatedAt": "2026-03-11T14:51:48.928Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -146,12 +146,12 @@
         },
         "crucial-feats:left:file:01_6_1_superman_bench_press_earth_equivalent.jpg": {
           "x": 50,
-          "y": 17.194918810463648,
+          "y": 50,
           "scale": 1
         },
         "crucial-feats:left:file:superman_read.jpeg": {
           "x": 50,
-          "y": 6.526843606937712,
+          "y": 50,
           "scale": 1
         },
         "crucial-feats:right:file:06_6_2_hyperion_survives_world_destruction.png": {
@@ -549,7 +549,7 @@
         },
         "crucial-feats:right:file:06_6_2_galactus_three_solar_systems.jpg": {
           "x": 50,
-          "y": 33.09339641782631,
+          "y": 100,
           "scale": 1
         },
         "crucial-feats:left:file:02_6_1_trigon_countless_worlds.jpg": {
@@ -559,10 +559,110 @@
         },
         "crucial-feats:right:file:07_6_2_galactus_agamotto_realm.jpg": {
           "x": 50,
-          "y": 0,
+          "y": 100,
           "scale": 1
         },
         "crucial-feats:right:slot:2": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "character-dossier-a:portrait": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "character-dossier-b:portrait": {
+          "x": 50,
+          "y": 21.562313213978427,
+          "scale": 1
+        },
+        "crucial-feats:right:file:08_6_2_galactus_silver_surfer_barrier.jpg": {
+          "x": 50,
+          "y": 85.5297050776278,
+          "scale": 1
+        },
+        "crucial-feats:right:file:09_6_2_galactus_poppup_devouring.jpg": {
+          "x": 50,
+          "y": 83.53213297666927,
+          "scale": 1
+        },
+        "crucial-feats:right:file:10_6_2_galactus_sphinx_time_loop.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:04_6_1_trigon_dark_titans.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:01_6_1_trigon_heart_of_darkness.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:04_6_1_trigon_dark_titans.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:dissipates psimon's atoms across.jpeg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:absorbs the heart of darkness....jpeg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:left:file:universe after universe has fallen before his.jpeg": {
+          "x": 50,
+          "y": 0,
+          "scale": 1
+        },
+        "crucial-feats:left:file:03_6_1_trigon_resurrection.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "crucial-feats:left:file:destroys planet with a death-stare.jpg": {
+          "x": 50,
+          "y": 31.875874822588397,
+          "scale": 1
+        },
+        "crucial-feats:right:file:the ultimate nullifier.jpg": {
+          "x": 50,
+          "y": 50.09113728868602,
+          "scale": 1
+        },
+        "crucial-feats:left:file:turns dc earth and everyone in it into stone.jpg": {
+          "x": 50,
+          "y": 49.73675375926554,
+          "scale": 1
+        },
+        "crucial-feats:right:file:galactus must exist or eternity.jpg": {
+          "x": 50,
+          "y": 51.61340964532977,
+          "scale": 1
+        },
+        "crucial-feats:left:file:monitor ranks him on the same threat level.jpg": {
+          "x": 50,
+          "y": 0.09010483703752153,
+          "scale": 1
+        },
+        "crucial-feats:right:file:galactus' blast... encompasses the star system he is in....jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:file:the whole multiverse risked being destroyed when galactus.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "crucial-feats:right:empty": {
           "x": 50,
           "y": 50,
           "scale": 1

@@ -2315,8 +2315,8 @@
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
           "left_image_5": "Yoichi Nakachi.jpg",
           "right_image_1": "1181878-1024x770.jpg",
-          "right_image_2": "06_6_2_ali_cleveland_speed.jpg",
-          "right_image_3": "07_6_2_ali_frazier_endurance.jpg",
+          "right_image_2": "Ricard Dunn.jpg",
+          "right_image_3": "First three-time heavyweight world champion.jpg",
           "right_image_4": "gold.webp",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
@@ -2360,6 +2360,9 @@
         "victory-archive": {
           "left_image_1": "Gary Elms.jpg",
           "left_image_2": "Yoichi Nakachi.jpg",
+          "left_image_3": "Hawkins Chung.jpg",
+          "left_image_4": "Wong Shun Leung.jpg",
+          "left_image_5": "wong jack man.jpg",
           "right_image_1": "05_6_2_ali_rope_a_dope.jpg",
           "right_image_2": "07_6_2_ali_frazier_endurance.jpg",
           "right_image_3": "12_7_2_ali_sonny_liston.jpg",
@@ -2385,7 +2388,10 @@
       ],
       "winsA": [
         "Gary Elms",
-        "Yoichi Nakachi"
+        "Yoichi Nakachi",
+        "Hawkins Chung",
+        "Wong Shun Leung",
+        "Wong Jack Man"
       ],
       "winsB": [
         "George Foreman",
@@ -2514,8 +2520,8 @@
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
           "left_image_5": "Yoichi Nakachi.jpg",
           "right_image_1": "1181878-1024x770.jpg",
-          "right_image_2": "06_6_2_ali_cleveland_speed.jpg",
-          "right_image_3": "07_6_2_ali_frazier_endurance.jpg",
+          "right_image_2": "Ricard Dunn.jpg",
+          "right_image_3": "First three-time heavyweight world champion.jpg",
           "right_image_4": "gold.webp",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
@@ -2559,6 +2565,9 @@
         "victory-archive": {
           "left_image_1": "Gary Elms.jpg",
           "left_image_2": "Yoichi Nakachi.jpg",
+          "left_image_3": "Hawkins Chung.jpg",
+          "left_image_4": "Wong Shun Leung.jpg",
+          "left_image_5": "wong jack man.jpg",
           "right_image_1": "05_6_2_ali_rope_a_dope.jpg",
           "right_image_2": "07_6_2_ali_frazier_endurance.jpg",
           "right_image_3": "12_7_2_ali_sonny_liston.jpg",
@@ -2584,7 +2593,10 @@
       ],
       "winsA": [
         "Gary Elms",
-        "Yoichi Nakachi"
+        "Yoichi Nakachi",
+        "Hawkins Chung",
+        "Wong Shun Leung",
+        "Wong Jack Man"
       ],
       "winsB": [
         "George Foreman",
