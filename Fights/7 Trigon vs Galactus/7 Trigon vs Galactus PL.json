@@ -152,10 +152,10 @@
       "right_header": "PRZEWAGI GALACTUSA"
     },
     "stat-trap": {
-      "question": "Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?",
+      "question": "Czy Trigon zatruje pole walki, zanim Galactus zamieni je w paliwo?",
       "trap_top": "WIĘKSZE ŚREDNIE >",
       "trap_bottom": "NIE KASUJĄ LOGIKI DOMENY",
-      "example": "Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten pojedynek zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń."
+      "example": "Lepsze średnie Galactusa działają głównie na neutralnym polu. Gdy przestrzeń przechodzi pod logikę domeny Trigona, same liczby przestają wystarczać."
     },
     "tactical-board": {
       "lane": "Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.",

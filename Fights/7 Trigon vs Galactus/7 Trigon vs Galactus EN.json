@@ -152,10 +152,10 @@
       "right_header": "GALACTUS ADVANTAGES"
     },
     "stat-trap": {
-      "question": "Can Trigon keep the field poisonous before Galactus turns it into fuel?",
+      "question": "Can Trigon poison the battlefield before Galactus turns it into fuel?",
       "trap_top": "BIGGER AVERAGES >",
       "trap_bottom": "DO NOT ERASE DOMAIN LOGIC",
-      "example": "Bigger averages do not erase domain logic. Galactus still keeps the baseline answer set, but this matchup changes sharply once the battlefield stops behaving like neutral space."
+      "example": "Galactus' better averages matter mostly on neutral ground. Once the battlefield shifts under Trigon's domain logic, raw numbers stop being enough."
     },
     "tactical-board": {
       "lane": "Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.",

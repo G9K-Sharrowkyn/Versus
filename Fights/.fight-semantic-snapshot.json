@@ -2754,8 +2754,8 @@
           "right_header": "GALACTUS ADVANTAGES"
         },
         "stat-trap": {
-          "body": "Bigger averages do not erase domain logic. Galactus still keeps the baseline answer set, but this matchup changes sharply once the battlefield stops behaving like neutral space.",
-          "question": "Can Trigon keep the field poisonous before Galactus turns it into fuel?"
+          "body": "Galactus' better averages matter mostly on neutral ground. Once the battlefield shifts under Trigon's domain logic, raw numbers stop being enough.",
+          "question": "Can Trigon poison the battlefield before Galactus turns it into fuel?"
         },
         "tactical-board": {
           "lane": "Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.",
@@ -2981,8 +2981,8 @@
           "right_header": "PRZEWAGI GALACTUSA"
         },
         "stat-trap": {
-          "body": "Większe średnie Galactusa nie kasują logiki domeny. Galactus nadal ma bazowy zestaw odpowiedzi, ale ten pojedynek zmienia się ostro, gdy pole walki przestaje zachowywać się jak neutralna przestrzeń.",
-          "question": "Czy Trigon zdoła utrzymać pole walki w stanie toksycznym, zanim Galactus zamieni je w paliwo?"
+          "body": "Lepsze średnie Galactusa działają głównie na neutralnym polu. Gdy przestrzeń przechodzi pod logikę domeny Trigona, same liczby przestają wystarczać.",
+          "question": "Czy Trigon zatruje pole walki, zanim Galactus zamieni je w paliwo?"
         },
         "tactical-board": {
           "lane": "Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.",

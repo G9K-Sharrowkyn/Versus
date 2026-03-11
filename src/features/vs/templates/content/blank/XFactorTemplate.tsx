@@ -14,6 +14,7 @@ import {
 export function XFactorTemplate({
   fighterA,
   fighterB,
+  title,
   subtitle,
   templateBlocks,
   language,
@@ -48,8 +49,25 @@ export function XFactorTemplate({
   const superTotalPct = Math.max(0, Math.min(100, superPct + superBonusPct))
   const hyperTotalPct = Math.max(0, Math.min(100, hyperPct + hyperBonusPct))
   const xLabel = line(0, ['factor', 'headline'], tr('REGENERACJA I PRZETRWANIE', 'REGENERATION AND SURVIVAL'))
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || `X-FACTOR: ${xLabel}`
+  const headerText = title || 'X-FACTOR'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
+  const factorMatch = xLabel.match(/^(.*?)(\s+VS\s+)(.*)$/i)
+  const factorSupplement = xLabel ? (
+    <p
+      className="mt-1 text-center text-[18px] uppercase leading-[1.05] tracking-[0.18em] text-cyan-100"
+      style={{ fontFamily: 'var(--font-display)' }}
+    >
+      {factorMatch ? (
+        <>
+          <span style={{ color: fighterA.color }}>{factorMatch[1].trim()}</span>
+          <span className="text-slate-200">{factorMatch[2]}</span>
+          <span style={{ color: fighterB.color }}>{factorMatch[3].trim()}</span>
+        </>
+      ) : (
+        xLabel
+      )}
+    </p>
+  ) : null
   const mechanics = line(
     1,
     ['mechanika', 'mechanics'],
@@ -77,6 +95,7 @@ export function XFactorTemplate({
             chrome={chrome}
             headerText={headerText}
             subText={subText}
+            centerSupplement={factorSupplement}
             onToggleLanguage={onToggleLanguage}
           />
 
