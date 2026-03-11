@@ -42,38 +42,38 @@ export function StatTrapTemplate({
   const questionLength = questionLine.length
 
   const exampleTypography =
-    exampleLength > 260
+    exampleLength > 200
       ? {
-          fontSize: 'clamp(1.18rem,1.35vw,1.9rem)',
-          lineHeight: 1.06,
+          fontSize: 'clamp(0.98rem,1.02vw,1.38rem)',
+          lineHeight: 1.04,
         }
-      : exampleLength > 185
+      : exampleLength > 150
         ? {
-            fontSize: 'clamp(1.42rem,1.62vw,2.35rem)',
-            lineHeight: 1.07,
+            fontSize: 'clamp(1.14rem,1.16vw,1.62rem)',
+            lineHeight: 1.05,
           }
         : {
-            fontSize: 'clamp(1.8rem,1.95vw,2.95rem)',
-            lineHeight: 1.08,
+            fontSize: 'clamp(1.45rem,1.45vw,2.1rem)',
+            lineHeight: 1.06,
           }
 
   const questionTypography =
-    questionLength > 120
+    questionLength > 95
       ? {
-          fontSize: 'clamp(1rem,1.1vw,1.45rem)',
-          lineHeight: 1.1,
+          fontSize: 'clamp(0.92rem,0.98vw,1.24rem)',
+          lineHeight: 1.08,
         }
       : {
-          fontSize: 'clamp(1.2rem,1.35vw,1.95rem)',
-          lineHeight: 1.14,
+          fontSize: 'clamp(1.02rem,1.08vw,1.46rem)',
+          lineHeight: 1.1,
         }
 
   const warningIconSizeClass =
-    exampleLength > 260
-      ? 'h-[clamp(112px,12vw,176px)] w-[clamp(128px,13.8vw,196px)]'
-      : exampleLength > 185
-        ? 'h-[clamp(132px,13.8vw,214px)] w-[clamp(150px,15vw,238px)]'
-        : 'h-[clamp(156px,16.8vw,252px)] w-[clamp(178px,19vw,286px)]'
+    exampleLength > 200
+      ? 'h-[clamp(96px,10.2vw,150px)] w-[clamp(110px,11.2vw,172px)]'
+      : exampleLength > 150
+        ? 'h-[clamp(116px,11.6vw,184px)] w-[clamp(132px,12.6vw,208px)]'
+        : 'h-[clamp(138px,14.2vw,220px)] w-[clamp(156px,15.8vw,250px)]'
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>

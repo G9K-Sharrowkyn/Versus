@@ -957,7 +957,7 @@
       "locale": "en",
       "portraits": {
         "a": "Kyle.jpeg",
-        "b": "Manhattan.webp"
+        "b": "Manhattan.jpg"
       },
       "profileA": [
         {
@@ -1172,7 +1172,7 @@
       "locale": "pl",
       "portraits": {
         "a": "Kyle.jpeg",
-        "b": "Manhattan.webp"
+        "b": "Manhattan.jpg"
       },
       "profileA": [
         {
@@ -1826,7 +1826,7 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "en",
       "portraits": {
-        "a": "Jiren.jpg",
+        "a": "Jiren.webp",
         "b": "Saitama.jpg"
       },
       "profileA": [
@@ -1893,7 +1893,7 @@
           "right_image_1": "Serious Punch Squared... generates an explosion that.png",
           "right_image_2": "Saitama time travels to reverse causality.png",
           "right_image_3": "Can freely grab and move hyperspace.png",
-          "right_image_4": "Saitama can achieve flight.jpg",
+          "right_image_4": "Saitama can achieve flight.png",
           "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
         },
         "fight-card": {
@@ -2038,7 +2038,7 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "pl",
       "portraits": {
-        "a": "Jiren.jpg",
+        "a": "Jiren.webp",
         "b": "Saitama.jpg"
       },
       "profileA": [
@@ -2105,7 +2105,7 @@
           "right_image_1": "Serious Punch Squared... generates an explosion that.png",
           "right_image_2": "Saitama time travels to reverse causality.png",
           "right_image_3": "Can freely grab and move hyperspace.png",
-          "right_image_4": "Saitama can achieve flight.jpg",
+          "right_image_4": "Saitama can achieve flight.png",
           "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
         },
         "fight-card": {
@@ -2309,7 +2309,7 @@
           "b_curve": "62,70,79,88,94"
         },
         "crucial-feats": {
-          "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
+          "left_image_1": "01_6_1_bruce_one_inch_punch.webp",
           "left_image_2": "finger push-ups.webp",
           "left_image_3": "03_6_1_bruce_gary_elms_record.jpg",
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
@@ -2514,7 +2514,7 @@
           "b_curve": "62,70,79,88,94"
         },
         "crucial-feats": {
-          "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
+          "left_image_1": "01_6_1_bruce_one_inch_punch.webp",
           "left_image_2": "finger push-ups.webp",
           "left_image_3": "03_6_1_bruce_gary_elms_record.jpg",
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
@@ -2661,7 +2661,7 @@
       "locale": "en",
       "portraits": {
         "a": "Trigon.png",
-        "b": "Galactus.webp"
+        "b": "Galactus.jpg"
       },
       "profileA": [
         {
@@ -2888,7 +2888,7 @@
       "locale": "pl",
       "portraits": {
         "a": "Trigon.png",
-        "b": "Galactus.webp"
+        "b": "Galactus.jpg"
       },
       "profileA": [
         {

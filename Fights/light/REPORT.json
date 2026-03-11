@@ -1,0 +1,123 @@
+{
+  "used_light_images": [
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan.webp",
+      "size": 71270
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "Jiren.jpg",
+      "size": 94992
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "Saitama can achieve flight.jpg",
+      "size": 92547
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "01_6_1_bruce_one_inch_punch.jpg",
+      "size": 56279
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "04_6_1_bruce_jkd_adaptation.jpg",
+      "size": 35048
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "07_6_2_ali_frazier_endurance.jpg",
+      "size": 69525
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "1181878-1024x770.jpg",
+      "size": 91983
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "Hawkins Chung.jpg",
+      "size": 45960
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "Ricard Dunn.jpg",
+      "size": 86294
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "finger push-ups.webp",
+      "size": 50926
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "wong jack man.jpg",
+      "size": 54329
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "file": "Galactus.webp",
+      "size": 96164
+    }
+  ],
+  "summary": [
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "used_count": 20,
+      "unused_count": 6,
+      "missing_refs": [
+        "1.webp",
+        "2.jpg"
+      ]
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "used_count": 20,
+      "unused_count": 22,
+      "missing_refs": [
+        "1.webp",
+        "2.jpg"
+      ]
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "used_count": 12,
+      "unused_count": 37,
+      "missing_refs": []
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "used_count": 22,
+      "unused_count": 24,
+      "missing_refs": []
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "used_count": 20,
+      "unused_count": 13,
+      "missing_refs": [
+        "14_7_1_jiren_kale.jpg",
+        "17_7_2_saitama_elder_centipede.jpg"
+      ]
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "used_count": 20,
+      "unused_count": 4,
+      "missing_refs": []
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "used_count": 22,
+      "unused_count": 4,
+      "missing_refs": []
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "used_count": 21,
+      "unused_count": 22,
+      "missing_refs": []
+    }
+  ]
+}

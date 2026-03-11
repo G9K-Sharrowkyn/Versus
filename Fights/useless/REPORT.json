@@ -1,0 +1,723 @@
+{
+  "unused_images": [
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "03_6_1_superman_punches_wraith_through_the_moon.jpg",
+      "size": 822206
+    },
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "04_6_1_superman_searches_globally_for_doomsday.jpeg",
+      "size": 476832
+    },
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "21_support_hyperion_statement_thor_hercules_galactus.png",
+      "size": 656582
+    },
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "22_support_hyperion_world_destruction2.png",
+      "size": 519196
+    },
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "23_support_hyperion_namora_snaps_his_neck.jpg",
+      "size": 415818
+    },
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "file": "24_support_hyperion_beats_juggernaut.jpg",
+      "size": 958971
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "03_6_1_knull_tanks_surfer_blast.jpg",
+      "size": 468385
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "09_6_2_odin_defeats_infinity.jpg",
+      "size": 643639
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "12_7_1_knull_result_sentry.jpg",
+      "size": 218601
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "14_7_1_knull_result_silver_surfer.jpg",
+      "size": 194454
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "15_7_1_knull_result_all_father_thor.webp",
+      "size": 102926
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Knull_CosmicThor.jpg",
+      "size": 637995
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Knull_Hurt.jpg",
+      "size": 788440
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Knull_Jaw1.jpg",
+      "size": 893159
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Knull_Sentry.webp",
+      "size": 1125152
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Knull_Sun.jpeg",
+      "size": 1138352
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_AllPowerful.jpg",
+      "size": 566153
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Flame.jpg",
+      "size": 194189
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Life.jpg",
+      "size": 613823
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Multiverse.jpg",
+      "size": 167977
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Particles.jpg",
+      "size": 536950
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Plane2.jpg",
+      "size": 212592
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Shake.jpg",
+      "size": 234266
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Size.jpg",
+      "size": 1156674
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Sword.jpg",
+      "size": 57159
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "Odin_Time.jpg",
+      "size": 808197
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "RCO018.jpg",
+      "size": 602330
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "file": "RCO019.jpg",
+      "size": 566153
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "01_6_1_kyle_source_wall_life_equation.jpg",
+      "size": 405635
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "02_6_1_kyle_third_army_white_light.jpg",
+      "size": 645691
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "03_6_1_kyle_life_creation_restoration.jpg",
+      "size": 498993
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "04_6_1_kyle_reality_warp_guardians_carol.jpg",
+      "size": 648317
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "05_6_1_kyle_godkillers_teleport_disarm.jpg",
+      "size": 584914
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "08_6_2_manhattan_local_reality_bending.jpg",
+      "size": 689488
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "10_6_2_manhattan_rorschach_disintegration.jpg",
+      "size": 1018427
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "11_7_2_manhattan_ozymandias_confrontation.jpg",
+      "size": 787230
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Banish.jpeg",
+      "size": 500542
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Guardians.jpeg",
+      "size": 1008500
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Reshape.jpeg",
+      "size": 613763
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Reshape2.jpeg",
+      "size": 529856
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Resurrection2.jpeg",
+      "size": 420514
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_sense.jpeg",
+      "size": 490475
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Titans.jpg",
+      "size": 1313667
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_Vessel.jpeg",
+      "size": 594180
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Kyle_wall.jpeg",
+      "size": 460997
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_10years.jpeg",
+      "size": 616176
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Anything.jpeg",
+      "size": 562418
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Chair1.jpeg",
+      "size": 497654
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Chair2.jpeg",
+      "size": 426863
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Crisis.jpeg",
+      "size": 541661
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_disintegrate.jpg",
+      "size": 705165
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Erase.jpeg",
+      "size": 616176
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_GreenRing.jpeg",
+      "size": 655766
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_JL.jpeg",
+      "size": 526450
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Lantern.jpeg",
+      "size": 567092
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Mxy1.jpg",
+      "size": 197659
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Mxy2.jpg",
+      "size": 165061
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Observing.jpeg",
+      "size": 622216
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_OwlMetr.jpeg",
+      "size": 497654
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Pandora.jpg",
+      "size": 813301
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Reset.jpg",
+      "size": 181888
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_Reverse.jpg",
+      "size": 686974
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_ring.jpeg",
+      "size": 512173
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_SpeedForce.avif",
+      "size": 615002
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "file": "Manhattan_WhiteRing.jpeg",
+      "size": 533726
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "03_6_1_darth_vader_showcase_feats_walks_down_an_alley_while_deflecting_blaster_fire.jpg",
+      "size": 202391
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "06_6_2_thanos_showcase_feats_destroys_a_planet_during_a_fight_with_drax.jpg",
+      "size": 268960
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "10_6_2_thanos_showcase_feats_performs_molecular_level_matter_manipulation.jpg",
+      "size": 232460
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Bargained with The One.jpg",
+      "size": 92038
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Beat up Beta Ray.jpg",
+      "size": 193090
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Blasts Galactus.jpeg",
+      "size": 679258
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Blasts Galactus2.jpeg",
+      "size": 540203
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Blokowanie potężnego ataku energetycznego gołą dłonią.jpeg",
+      "size": 727497
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Ciskanie bombowcem Y-Wing.jpeg",
+      "size": 463097
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Curses Deadpool with unending.jpeg",
+      "size": 720095
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Duels the Dark Woman.jpeg",
+      "size": 623030
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Gets disintegrated down to his skeleton.jpeg",
+      "size": 535990
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Manhandles Hulk and Thing.jpeg",
+      "size": 352156
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "No-sells Odin's blast.jpeg",
+      "size": 256682
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Punches through War Machine.jpeg",
+      "size": 518204
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Slams two starships together.jpeg",
+      "size": 657777
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Stops Mjolnir mid-flight.jpeg",
+      "size": 969138
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Survives a giant explosion that destroyed a casino.jpeg",
+      "size": 536878
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Survives being swallowed into.jpeg",
+      "size": 555955
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Tanks multiple close-range.jpeg",
+      "size": 635451
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Thanos beats Silver Surfer.jpeg",
+      "size": 481553
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Vader vs Celeste Morne.jpeg",
+      "size": 395521
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "Vader vs Sha Koon.jpeg",
+      "size": 386789
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "file": "vader-vs-master-kai-hudorra.jpeg",
+      "size": 532308
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "01_6_1_jiren_one_finger_block.jpg",
+      "size": 141373
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "02_6_1_jiren_breaks_time_cage.jpg",
+      "size": 133864
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "03_6_1_jiren_spirit_bomb_glare.jpg",
+      "size": 140866
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "04_6_1_jiren_meditation_barrier.jpg",
+      "size": 141190
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "05_6_1_jiren_belmod_scaling.jpg",
+      "size": 456802
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "06_6_2_saitama_serious_punch_squared.jpg",
+      "size": 311926
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "07_6_2_saitama_serious_sneeze.jpg",
+      "size": 330286
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "08_6_2_saitama_hyperspace_gate_grab.jpg",
+      "size": 298886
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "09_6_2_saitama_gamma_ray_burst.jpg",
+      "size": 278257
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "10_6_2_saitama_zero_punch.jpg",
+      "size": 193983
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "Blocks blows from SSJB Goku using Instant Transmission without looking.png",
+      "size": 383584
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "Saitama is immune to attacks.png",
+      "size": 931142
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "file": "Shakes the World of The Void .jpg",
+      "size": 379914
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "09_7_1_bruce_yoichi_nakachi.jpg",
+      "size": 377978
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "Dance.jpg",
+      "size": 79399
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "Jeet Kune Do.webp",
+      "size": 63878
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "file": "one-inch punch.avif",
+      "size": 65136
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "file": "At Age One he ruled his planet and at age 6 he destroyed it, at age 30 he ruled his entire dimension.jpeg",
+      "size": 557021
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "file": "Bypasses Kitty Pride's intangibility.jpg",
+      "size": 777671
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "file": "Odin charges at Galactus and headbutts.jpg",
+      "size": 501400
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "file": "Red_Hulk.jpeg",
+      "size": 442065
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "01_6_1_atrocitus_bound_the_butcher.jpg",
+      "size": 525008
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "02_6_1_atrocitus_heart_removed.jpg",
+      "size": 6482
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "04_6_1_atrocitus_burns_through_space.jpg",
+      "size": 1059886
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "05_6_1_atrocitus_group_overpowering.jpg",
+      "size": 172937
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "07_6_2_hulk_endured_sentry.jpg",
+      "size": 1076574
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "08_6_2_hulk_regeneration.jpg",
+      "size": 281186
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "09_6_2_hulk_redirects_juggernaut.jpg",
+      "size": 167724
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "10_6_2_hulk_bi_beast_wendigo.jpg",
+      "size": 184026
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "11_7_1_atrocitus_butcher_host.jpg",
+      "size": 525008
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "13_7_1_atrocitus_bleez_internal_dominance.jpg",
+      "size": 1068430
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Atrocitus_Incinirate.jpeg",
+      "size": 638857
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Atrocitus_Martian_Apollo.jpeg",
+      "size": 794222
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Atrocitus_Tank.jpeg",
+      "size": 294970
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Atrocitus_Tornado.jpeg",
+      "size": 235560
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Atrocitus_Voolthom.jpeg",
+      "size": 787215
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Built a cosmic Divining.jpeg",
+      "size": 746192
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Claps hard enough to take down Dormammu, who existed beyond all time and space..jpg",
+      "size": 422545
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Closed the door of a nuclear core that the combined efforts of Thor and the Thing couldn't budge..jpg",
+      "size": 444061
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Explodes with only a skeleton left, and has seemingly healed immediately..jpg",
+      "size": 112139
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "He hurts Krona by biting him.jpeg",
+      "size": 206272
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "The Butcher could draw blood from the Spectre.jpeg",
+      "size": 1221758
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "file": "Withstood and matched the mystical energy whose potency was equivalent to 133 blows from Hercules at maximum force..jpg",
+      "size": 152813
+    }
+  ],
+  "summary": [
+    {
+      "fight": "1 Superman vs King Hyperion",
+      "used_count": 20,
+      "unused_count": 6,
+      "missing_refs": [
+        "1.webp",
+        "2.jpg"
+      ]
+    },
+    {
+      "fight": "2 Knull vs Odin",
+      "used_count": 20,
+      "unused_count": 22,
+      "missing_refs": [
+        "1.webp",
+        "2.jpg"
+      ]
+    },
+    {
+      "fight": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
+      "used_count": 12,
+      "unused_count": 37,
+      "missing_refs": []
+    },
+    {
+      "fight": "4 Darth Vader vs Thanos",
+      "used_count": 22,
+      "unused_count": 24,
+      "missing_refs": []
+    },
+    {
+      "fight": "5 Jiren vs Saitama",
+      "used_count": 20,
+      "unused_count": 13,
+      "missing_refs": [
+        "14_7_1_jiren_kale.jpg",
+        "17_7_2_saitama_elder_centipede.jpg"
+      ]
+    },
+    {
+      "fight": "6 Bruce Lee vs Muhammad Ali",
+      "used_count": 20,
+      "unused_count": 4,
+      "missing_refs": []
+    },
+    {
+      "fight": "7 Trigon vs Galactus",
+      "used_count": 22,
+      "unused_count": 4,
+      "missing_refs": []
+    },
+    {
+      "fight": "8 Atrocitus vs Hulk",
+      "used_count": 21,
+      "unused_count": 22,
+      "missing_refs": []
+    }
+  ]
+}

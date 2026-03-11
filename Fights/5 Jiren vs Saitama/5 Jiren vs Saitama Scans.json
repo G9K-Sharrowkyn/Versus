@@ -1,6 +1,6 @@
 {
   "portraits": {
-    "a": "Jiren.jpg",
+    "a": "Jiren.webp",
     "b": "Saitama.jpg"
   },
   "schemaVersion": 1,
@@ -14,7 +14,7 @@
       "right_image_1": "Serious Punch Squared... generates an explosion that.png",
       "right_image_2": "Saitama time travels to reverse causality.png",
       "right_image_3": "Can freely grab and move hyperspace.png",
-      "right_image_4": "Saitama can achieve flight.jpg",
+      "right_image_4": "Saitama can achieve flight.png",
       "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
     },
     "victory-archive": {
