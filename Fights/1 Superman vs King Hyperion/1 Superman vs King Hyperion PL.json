@@ -185,6 +185,12 @@
       "mechanics": "Superman ma przewagę statystyczną, ale Hyperion nie zatrzymuje się pod presją żadnego przeciwnika.",
       "psychology": "Hyperion może walczyć lekkomyślnie, bo samo przetrwanie przybliża go do zwycięstwa.",
       "regen": "BRAK ZASAD"
+    },
+    "stat-trap": {
+      "trap_top": "REGENERACJA I BRUTALNOŚĆ >",
+      "trap_bottom": "TECHNIKA W DŁUGIEJ WALCE",
+      "example": "Superman może wygrywać czyste wymiany i nadal przegrać całą walkę, jeśli Hyperion wciąż wraca do kolejnego kontaktu.",
+      "question": "Czy Superman zdoła naprawdę domknąć walkę, zanim regeneracja Hyperiona zacznie kasować wartość każdej dobrej sekwencji?"
     }
   }
 }

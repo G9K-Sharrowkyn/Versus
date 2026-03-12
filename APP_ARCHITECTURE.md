@@ -86,6 +86,9 @@ UI ma 4 główne tryby:
 - `fightManifest.ts` jest źródłem prawdy dla stałych napisów fight-viewera i template’ów.
 - `EN.json` / `PL.json` przechowują dane zmienne walki.
 - `Scans.json` przechowuje portrety i wspólne obrazy template’ów.
+- Layout template’ów jest stały: rozmiary ramek, spacing, typografia, ikony i prefiksy sekcji nie są przechowywane w danych walki.
+- JSON walki nie może zawierać obejść layoutowych ani kopiować stałych etykiet viewer’a; trzyma wyłącznie treść zmienną per matchup.
+- `Fights/.fight-visuals.json` jest kanonicznym magazynem korekt portretów i obrazów współdzielonych przez warianty tej samej walki.
 
 ## Gdzie co zmieniać
 

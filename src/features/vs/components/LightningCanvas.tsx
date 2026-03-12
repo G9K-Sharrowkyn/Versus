@@ -270,6 +270,7 @@ export function LightningCanvas({
     const host = lightningRef.current
     if (!host) return
 
+    const auditMode = typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true'
     let frame = 0
     let previous = 0
     let context: CanvasRenderingContext2D | null = null
@@ -299,7 +300,9 @@ export function LightningCanvas({
 
     const render = (time: number) => {
       if (!context) {
-        frame = requestAnimationFrame(render)
+        if (!auditMode) {
+          frame = requestAnimationFrame(render)
+        }
         return
       }
 
@@ -495,10 +498,16 @@ export function LightningCanvas({
         }
       }
 
-      frame = requestAnimationFrame(render)
+      if (!auditMode) {
+        frame = requestAnimationFrame(render)
+      }
     }
 
-    frame = requestAnimationFrame(render)
+    if (auditMode) {
+      render(0)
+    } else {
+      frame = requestAnimationFrame(render)
+    }
     const resizeObserver = new ResizeObserver(() => ensureCanvas())
     resizeObserver.observe(host)
 

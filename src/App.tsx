@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
@@ -26,12 +26,14 @@ import {
   avg,
   clamp,
   cloneFighter,
+  normalizeTemplateId,
   normalizePortraitAdjust,
   normalizeSlideImageAdjustments,
   stripFileExtension,
 } from './features/vs/helpers'
 import { buildFightScaffoldFightJson, buildFightScaffoldScansJson } from './features/vs/importer'
 import { useAnimatedCursor } from './features/vs/hooks/useAnimatedCursor'
+import { useDocumentFontsReady } from './features/vs/hooks/useDocumentFontsReady'
 import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import { useVsPersistence } from './features/vs/hooks/useVsPersistence'
 import { useVsTransitions } from './features/vs/hooks/useVsTransitions'
@@ -52,6 +54,11 @@ import type {
 } from './features/vs/types'
 
 type ApplyFightRecord = (fight: FightRecord, options?: ApplyFightRecordOptions) => void
+type AuditRequest = {
+  fightKey: string
+  templateId: TemplateId | null
+  language: Language | null
+}
 
 const DEFAULT_LANGUAGE: Language = 'en'
 const PREVIEW_BASE_WIDTH = 1400
@@ -89,6 +96,20 @@ function App() {
     () => TEMPLATE_PRESETS.map((template) => localizeTemplatePreset(template, language)),
     [language],
   )
+  const auditRequest = useMemo<AuditRequest | null>(() => {
+    if (typeof window === 'undefined') return null
+    const params = new URLSearchParams(window.location.search)
+    if (params.get('audit') !== '1') return null
+    const fightKey = (params.get('fight') || params.get('folder') || params.get('id') || '').trim()
+    const templateValue = (params.get('template') || '').trim()
+    const localeValue = (params.get('lang') || params.get('locale') || '').trim().toLowerCase()
+    const requestedLanguage: Language | null = localeValue === 'pl' || localeValue === 'en' ? localeValue : null
+    return {
+      fightKey,
+      templateId: normalizeTemplateId(templateValue),
+      language: requestedLanguage,
+    }
+  }, [])
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
   const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(DEFAULT_LANGUAGE))
@@ -117,6 +138,8 @@ function App() {
   const searchTransitioningRef = useRef(false)
   const returnTransitioningRef = useRef(false)
   const applyFightRecordRef = useRef<ApplyFightRecord | null>(null)
+  const auditAppliedRef = useRef(false)
+  const pendingAuditTemplateRef = useRef<TemplateId | null>(null)
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
 
   const {
@@ -127,6 +150,7 @@ function App() {
     setPreferredVariantByMatchup,
     activeFightId,
     setActiveFightId,
+    storageReady,
     activeFightSignatureRef,
   } = useVsPersistence({
     applyFightRecordRef,
@@ -149,6 +173,7 @@ function App() {
     searchFrameRef,
     introFrameRef,
     clearSearchTransitionQueue,
+    clearFinalTemplateAutoReturnTimeout,
     goBackToLibrary,
     handleIntroFrameLoad,
   } = useVsTransitions({
@@ -175,7 +200,8 @@ function App() {
 
   useAnimatedCursor({ searchFrameRef, introFrameRef })
 
-  const previewScale = usePreviewScale({
+  const fontsReady = useDocumentFontsReady()
+  const { previewScale, previewScaleReady } = usePreviewScale({
     shellRef: previewShellRef,
     viewMode,
     baseWidth: PREVIEW_BASE_WIDTH,
@@ -183,10 +209,34 @@ function App() {
     minScale: PREVIEW_MIN_SCALE,
     maxScale: PREVIEW_MAX_SCALE,
   })
+  const previewReady = fontsReady && previewScaleReady
 
-  const flashStatus = (text: string) => {
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    if (auditRequest) {
+      document.documentElement.dataset.vsAudit = 'true'
+      return () => {
+        delete document.documentElement.dataset.vsAudit
+      }
+    }
+    delete document.documentElement.dataset.vsAudit
+    return undefined
+  }, [auditRequest])
+
+  const flashStatus = useCallback((text: string) => {
     void text
-  }
+  }, [])
+
+  const rememberPreferredFightVariant = useCallback((fight: FightRecord) => {
+    if (!fight.matchupKey) return
+    setPreferredVariantByMatchup((current) => {
+      if (current[fight.matchupKey] === fight.id) return current
+      return {
+        ...current,
+        [fight.matchupKey]: fight.id,
+      }
+    })
+  }, [setPreferredVariantByMatchup])
 
   const closePortraitEditor = () => {
     setPortraitEditor((current) => {
@@ -310,7 +360,7 @@ function App() {
           winner: delta === 0 ? 'draw' : delta > 0 ? 'a' : 'b',
         }
       }),
-    [categories, fighterA.stats, fighterB.stats, translations.categories],
+    [categories, fighterA.stats, fighterB.stats, translations],
   )
 
   const averageA = useMemo(() => avg(rows, 'a'), [rows])
@@ -319,22 +369,22 @@ function App() {
   const canStepTemplateBackward = templateOrder.length > 0 && templateCursor > 0
   const canStepTemplateForward = templateOrder.length > 0 && templateCursor < maxTemplateCursor
 
-  const applyTemplateById = (templateId: TemplateId, shouldFlash = true) => {
+  const applyTemplateById = useCallback((templateId: TemplateId, shouldFlash = true) => {
     const preset = localizedTemplates.find((template) => template.id === templateId)
     if (!preset) return
     setActiveTemplate(preset.id)
     if (shouldFlash) {
       flashStatus(`${ui.templateLoaded}: ${preset.name}`)
     }
-  }
+  }, [flashStatus, localizedTemplates, ui.templateLoaded])
 
-  const stepTemplateOrder = (direction: 1 | -1) => {
+  const stepTemplateOrder = useCallback((direction: 1 | -1) => {
     if (!templateOrder.length) return
     const nextTemplateCursor = templateCursor + direction
     if (nextTemplateCursor < 0 || nextTemplateCursor >= templateOrder.length) return
     setTemplateCursor(nextTemplateCursor)
     applyTemplateById(templateOrder[nextTemplateCursor], false)
-  }
+  }, [applyTemplateById, templateCursor, templateOrder])
 
   const handleSlideImageAdjustChange = (imageKey: string, adjust: PortraitAdjust) => {
     const normalizedKey = imageKey.trim()
@@ -425,6 +475,70 @@ function App() {
     applyFightRecordRef.current = applyFightRecord
   })
 
+  useEffect(() => {
+    if (!auditRequest?.fightKey || !storageReady || auditAppliedRef.current || !fights.length) return
+
+    const requestedLocale = auditRequest.language
+    const targetFight = fights.find((fight) => {
+      const matchesFight =
+        fight.id === auditRequest.fightKey ||
+        fight.folderKey === auditRequest.fightKey ||
+        fight.matchupKey === auditRequest.fightKey ||
+        fight.fileName === auditRequest.fightKey ||
+        fight.name === auditRequest.fightKey
+      if (!matchesFight) return false
+      if (!requestedLocale) return true
+      return resolveFightLanguage(fight, requestedLocale) === requestedLocale || fight.variantLocale === requestedLocale
+    })
+
+    if (!targetFight) {
+      console.warn('[vs-audit] Could not resolve audit fight request.', auditRequest)
+      auditAppliedRef.current = true
+      return
+    }
+
+    auditAppliedRef.current = true
+    const targetLanguage = auditRequest.language ?? resolveFightLanguage(targetFight, language)
+    const timeoutId = window.setTimeout(() => {
+      rememberPreferredFightVariant(targetFight)
+      applyFightRecordRef.current?.(targetFight, {
+        enterIntro: false,
+        preserveTemplateSelection: true,
+        targetLanguage,
+      })
+      pendingAuditTemplateRef.current = auditRequest.templateId
+      clearFinalTemplateAutoReturnTimeout()
+      setIntroVisible(true)
+      setViewMode('fight')
+    })
+
+    return () => {
+      window.clearTimeout(timeoutId)
+    }
+  }, [
+    auditRequest,
+    clearFinalTemplateAutoReturnTimeout,
+    fights,
+    language,
+    rememberPreferredFightVariant,
+    setIntroVisible,
+    setViewMode,
+    storageReady,
+  ])
+
+  useEffect(() => {
+    const pendingTemplate = pendingAuditTemplateRef.current
+    if (!pendingTemplate || !templateOrder.length) return
+    const nextTemplateCursor = templateOrder.indexOf(pendingTemplate)
+    if (nextTemplateCursor === -1) return
+    setTemplateCursor(nextTemplateCursor)
+    applyTemplateById(pendingTemplate, false)
+    clearFinalTemplateAutoReturnTimeout()
+    setIntroVisible(true)
+    setViewMode('fight')
+    pendingAuditTemplateRef.current = null
+  }, [applyTemplateById, clearFinalTemplateAutoReturnTimeout, setIntroVisible, setViewMode, templateOrder])
+
   const toggleLanguage = () => {
     const nextLanguage = language === 'pl' ? 'en' : 'pl'
     setLanguage(nextLanguage)
@@ -455,17 +569,6 @@ function App() {
       setCrucialFeatsB([])
       setSlideImageAdjustments({})
     }
-  }
-
-  const rememberPreferredFightVariant = (fight: FightRecord) => {
-    if (!fight.matchupKey) return
-    setPreferredVariantByMatchup((current) => {
-      if (current[fight.matchupKey] === fight.id) return current
-      return {
-        ...current,
-        [fight.matchupKey]: fight.id,
-      }
-    })
   }
 
   const openFight = (fightId: string) => {
@@ -625,6 +728,7 @@ function App() {
 
   return (
     <main
+      data-vs-audit={auditRequest ? 'true' : 'false'}
       data-reverse-stage={reverseStage}
       className={clsx(
         'text-slate-100',
@@ -705,7 +809,10 @@ function App() {
             previewBaseWidth={PREVIEW_BASE_WIDTH}
             previewBaseHeight={PREVIEW_BASE_HEIGHT}
             previewScale={previewScale}
+            previewReady={previewReady}
             activeTemplate={activeTemplate}
+            activeFightFolderKey={activeFightRecord?.folderKey || ''}
+            activeFightLocale={activeFightRecord?.variantLocale || language}
           >
             {renderedTemplate}
           </FightPreviewStage>

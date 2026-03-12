@@ -169,7 +169,7 @@
       "example": "Vader może wygrać pierwszy odczyt i nadal przegrać walkę, bo cel jest zbudowany tak, by ten odczyt przeżyć.",
       "question": "Czy Vader może stworzyć śmiertelny bypass, zanim Thanos zrozumie, że nie musi respektować pojedynku?",
       "trap_bottom": "WYTRZYMAŁOŚĆ THANOSA DECYDUJE O POJEDYNKU",
-      "trap_top": "PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE"
+      "trap_top": "PRZEWAGA TECHNICZNA ZMIENIA OTWARCIE >"
     },
     "tactical-board": {
       "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.",

@@ -22,7 +22,10 @@ type FightPreviewStageProps = {
   previewBaseWidth: number
   previewBaseHeight: number
   previewScale: number
+  previewReady: boolean
   activeTemplate: TemplateId
+  activeFightFolderKey: string
+  activeFightLocale: string
   children: ReactNode
 }
 
@@ -44,7 +47,10 @@ export function FightPreviewStage({
   previewBaseWidth,
   previewBaseHeight,
   previewScale,
+  previewReady,
   activeTemplate,
+  activeFightFolderKey,
+  activeFightLocale,
   children,
 }: FightPreviewStageProps) {
   const toolbarItemClass =
@@ -100,6 +106,7 @@ export function FightPreviewStage({
 
       <div
         ref={previewShellRef}
+        data-vs-preview-shell="true"
         className="min-h-0 flex-1 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/55 p-3 backdrop-blur-xl"
       >
         <div
@@ -111,13 +118,21 @@ export function FightPreviewStage({
         >
           <div
             ref={previewRef}
+            data-vs-stage="true"
+            data-vs-preview-ready={previewReady ? 'true' : 'false'}
+            data-vs-preview-scale={previewScale}
+            data-vs-template={activeTemplate}
+            data-vs-folder-key={activeFightFolderKey}
+            data-vs-locale={activeFightLocale}
             className={HIGH_END_STAGE_CLASS}
             style={{
               width: `${previewBaseWidth}px`,
               height: `${previewBaseHeight}px`,
               transform: `scale(${previewScale})`,
               transformOrigin: 'top left',
+              opacity: previewReady ? 1 : 0,
             }}
+            aria-busy={!previewReady}
           >
             <div className={HIGH_END_STAGE_OVERLAY_CLASS} />
             <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:34px_34px]" />

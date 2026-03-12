@@ -1,4 +1,4 @@
-import { buildFightTemplateChrome, getFightTemplateDefaultField } from '../../../fightManifest'
+import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
@@ -9,71 +9,34 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { FittedText } from '../../shared/FittedText'
+import {
+  STAT_TRAP_EXAMPLE_STYLE,
+  STAT_TRAP_HEADLINE_CLASS,
+  STAT_TRAP_QUESTION_STYLE,
+  STAT_TRAP_WARNING_ICON_CLASS,
+} from '../../shared/layoutTokens'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function StatTrapTemplate({
   title,
   subtitle,
   templateBlocks,
+  activeFightId,
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['stat-trap'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const common = getFightCommonCopy(language)
   const chrome = buildFightTemplateChrome(language, blockFields)
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
-  const trapTop =
-    pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) ||
-    getFightTemplateDefaultField('stat-trap', 'trap_top', language)
-  const trapBottom =
-    pickTemplateField(blockFields, ['trap_bottom', 'bottom', 'line_2']) ||
-    getFightTemplateDefaultField('stat-trap', 'trap_bottom', language)
-  const example =
-    pickTemplateField(blockFields, ['example', 'line_3']) ||
-    getFightTemplateDefaultField('stat-trap', 'example', language)
-  const questionLine =
-    pickTemplateField(blockFields, ['question', 'line_4', 'trap']) ||
-    getFightTemplateDefaultField('stat-trap', 'question', language)
-
-  const questionMatch = questionLine.match(/^([^:]+:)\s*(.*)$/)
-  const questionLead = questionMatch?.[1] || ''
-  const questionBody = questionMatch?.[2] || questionLine
-  const exampleLength = example.length
-  const questionLength = questionLine.length
-
-  const exampleTypography =
-    exampleLength > 200
-      ? {
-          fontSize: 'clamp(0.98rem,1.02vw,1.38rem)',
-          lineHeight: 1.04,
-        }
-      : exampleLength > 150
-        ? {
-            fontSize: 'clamp(1.14rem,1.16vw,1.62rem)',
-            lineHeight: 1.05,
-          }
-        : {
-            fontSize: 'clamp(1.45rem,1.45vw,2.1rem)',
-            lineHeight: 1.06,
-          }
-
-  const questionTypography =
-    questionLength > 95
-      ? {
-          fontSize: 'clamp(0.92rem,0.98vw,1.24rem)',
-          lineHeight: 1.08,
-        }
-      : {
-          fontSize: 'clamp(1.02rem,1.08vw,1.46rem)',
-          lineHeight: 1.1,
-        }
-
-  const warningIconSizeClass =
-    exampleLength > 200
-      ? 'h-[clamp(96px,10.2vw,150px)] w-[clamp(110px,11.2vw,172px)]'
-      : exampleLength > 150
-        ? 'h-[clamp(116px,11.6vw,184px)] w-[clamp(132px,12.6vw,208px)]'
-        : 'h-[clamp(138px,14.2vw,220px)] w-[clamp(156px,15.8vw,250px)]'
+  const trapTop = pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) || common.emptyFieldLabel
+  const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom', 'line_2']) || common.emptyFieldLabel
+  const example = pickTemplateField(blockFields, ['example', 'line_3']) || common.emptyFieldLabel
+  const questionLine = pickTemplateField(blockFields, ['question', 'line_4', 'trap']) || common.emptyFieldLabel
+  const auditPrefix = `${activeFightId || 'draft'}:stat-trap`
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -91,24 +54,47 @@ export function StatTrapTemplate({
           <div className={`${HIGH_END_BODY_GAP_CLASS} flex min-h-0 flex-1 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
             <div className="border-y border-cyan-300/25 py-2">
               <div className="mx-auto flex max-w-[92%] flex-col items-center gap-1 text-center" style={{ fontFamily: 'var(--font-display)' }}>
-                <p className="text-[clamp(1rem,1.28vw,1.55rem)] uppercase leading-none text-[#b10f24]">{trapTop}</p>
-                <p className="text-[clamp(1rem,1.28vw,1.55rem)] uppercase leading-none text-[#c4951a]">{trapBottom}</p>
+                <FittedText
+                  as="p"
+                  slotKey={`${auditPrefix}:top`}
+                  spec={TEMPLATE_SLOT_SPECS.statTrapHeadline}
+                  text={trapTop}
+                  className={`${STAT_TRAP_HEADLINE_CLASS} text-[#b10f24]`}
+                  templateId="stat-trap"
+                  activeFightId={activeFightId}
+                  language={language}
+                />
+                <FittedText
+                  as="p"
+                  slotKey={`${auditPrefix}:bottom`}
+                  spec={TEMPLATE_SLOT_SPECS.statTrapHeadline}
+                  text={trapBottom}
+                  className={`${STAT_TRAP_HEADLINE_CLASS} text-[#c4951a]`}
+                  templateId="stat-trap"
+                  activeFightId={activeFightId}
+                  language={language}
+                />
               </div>
             </div>
 
             <div className="mt-2 flex min-h-0 flex-1 items-start">
-              <p
-                className="whitespace-pre-line text-slate-100"
-                style={{ fontFamily: 'var(--font-ui)', ...exampleTypography }}
-              >
-                {example}
-              </p>
+              <FittedText
+                as="p"
+                slotKey={`${auditPrefix}:example`}
+                spec={TEMPLATE_SLOT_SPECS.statTrapExample}
+                text={example}
+                className="w-full whitespace-pre-line text-slate-100"
+                style={{ fontFamily: 'var(--font-ui)', ...STAT_TRAP_EXAMPLE_STYLE }}
+                templateId="stat-trap"
+                activeFightId={activeFightId}
+                language={language}
+              />
             </div>
 
-            <div className="mt-[clamp(8px,1vh,16px)] flex items-center justify-center">
+            <div className="mt-3 flex items-center justify-center">
               <svg
                 viewBox="0 0 100 92"
-                className={`${warningIconSizeClass} drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]`}
+                className={`${STAT_TRAP_WARNING_ICON_CLASS} drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]`}
                 aria-hidden="true"
               >
                 <polygon
@@ -123,9 +109,19 @@ export function StatTrapTemplate({
               </svg>
             </div>
 
-            <p className="mt-[clamp(8px,1vh,14px)] text-slate-100" style={{ fontFamily: 'var(--font-ui)', ...questionTypography }}>
-              {questionLead ? <span className="font-bold">{questionLead}</span> : null} {questionBody}
-            </p>
+            <div className="mt-3 text-slate-100">
+              <span className="font-bold">{common.keyQuestionLabel}</span>{' '}
+              <FittedText
+                as="span"
+                slotKey={`${auditPrefix}:question`}
+                spec={TEMPLATE_SLOT_SPECS.statTrapQuestion}
+                text={questionLine}
+                style={{ fontFamily: 'var(--font-ui)', ...STAT_TRAP_QUESTION_STYLE }}
+                templateId="stat-trap"
+                activeFightId={activeFightId}
+                language={language}
+              />
+            </div>
           </div>
         </div>
       </div>

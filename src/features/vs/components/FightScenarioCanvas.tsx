@@ -619,6 +619,7 @@ export function FightScenarioCanvas({
     const host = hostRef.current
     if (!host) return
 
+    const auditMode = typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true'
     let frame = 0
     let startTime = 0
     let canvas: HTMLCanvasElement | null = null
@@ -724,7 +725,9 @@ export function FightScenarioCanvas({
 
     const render = (time: number) => {
       if (!context) {
-        frame = requestAnimationFrame(render)
+        if (!auditMode) {
+          frame = requestAnimationFrame(render)
+        }
         return
       }
       if (startTime === 0) startTime = time
@@ -790,10 +793,16 @@ export function FightScenarioCanvas({
 
       drawFighter(ctx, pointB, colorB, 5.2, scenarioFrame.pulseB)
       drawFighter(ctx, pointA, colorA, 5.2, scenarioFrame.pulseA)
-      frame = requestAnimationFrame(render)
+      if (!auditMode) {
+        frame = requestAnimationFrame(render)
+      }
     }
 
-    frame = requestAnimationFrame(render)
+    if (auditMode) {
+      render(0)
+    } else {
+      frame = requestAnimationFrame(render)
+    }
     const resizeObserver = new ResizeObserver(() => ensureCanvas())
     resizeObserver.observe(host)
 

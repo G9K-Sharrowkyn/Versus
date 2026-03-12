@@ -1,8 +1,8 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
-import { defaultFactsFor } from '../../presets'
+import { buildFightTemplateChrome, getFightCommonCopy } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
+import { FittedText } from '../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
@@ -13,6 +13,7 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
 
 export function CharacterDossierATemplate({
   fighterA,
@@ -28,7 +29,13 @@ export function CharacterDossierATemplate({
 }: TemplatePreviewProps) {
   const common = getFightCommonCopy(language)
   const fighterText = fighterA.name || 'Fighter A'
-  const safeFacts = factsA.length ? factsA : defaultFactsFor('a', language)
+  const safeFacts = factsA.length
+    ? factsA
+    : [
+        { title: common.style, text: common.emptyFieldLabel },
+        { title: common.advantage, text: common.emptyFieldLabel },
+        { title: common.mentality, text: common.emptyFieldLabel },
+      ]
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-a'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const chrome = buildFightTemplateChrome(language, blockFields)
@@ -40,15 +47,11 @@ export function CharacterDossierATemplate({
   const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
     .trim()
-  const subText =
-    pickTemplateField(blockFields, ['corner_label']) ||
-    getFightTemplateDefaultField('character-dossier-a', 'corner_label', language)
+  const subText = common.blueCorner
   const fighterSubtitle = fighterForCard.subtitle
     .replace(/^\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\b\s*(?:(?:\/\/)|[|/-])?\s*/i, '')
     .trim()
-  const quote =
-    pickTemplateField(blockFields, ['quote', 'cytat']) ||
-    getFightTemplateDefaultField('character-dossier-a', 'quote', language)
+  const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -89,24 +92,53 @@ export function CharacterDossierATemplate({
 
               <div className={`flex h-full flex-col ${HIGH_END_CARD_CLASS} p-3`}>
                 <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                  <h3 className="text-2xl uppercase leading-none" style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}>
-                    {fighterText}
-                  </h3>
-                  {fighterSubtitle ? <p className="mt-1 text-sm text-slate-300">{fighterSubtitle}</p> : null}
+                  <FittedText
+                    as="h3"
+                    slotKey={`character-dossier-a:name:${fighterText}`}
+                    spec={TEMPLATE_SLOT_SPECS.heroName}
+                    text={fighterText}
+                    className="tracking-[0.02em]"
+                    style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}
+                  />
+                  {fighterSubtitle ? (
+                    <FittedText
+                      as="p"
+                      slotKey={`character-dossier-a:subtitle:${fighterSubtitle}`}
+                      spec={TEMPLATE_SLOT_SPECS.heroSubtitle}
+                      text={fighterSubtitle}
+                      className="mt-1 text-slate-300"
+                    />
+                  ) : null}
                 </div>
 
                 <div className="flex-1 space-y-1.5">
-                  {cardFacts.map((fact) => (
-                    <div key={`${fighterText}-${fact.title}`} className="rounded-md border border-white/15 bg-black/28 px-3 py-1.5">
-                      <p className="text-[10px] uppercase tracking-[0.2em]" style={{ color: fighterForCard.color }}>
-                        {fact.title}
-                      </p>
-                      <p className="mt-0.5 text-sm leading-tight text-slate-100">{fact.text}</p>
+                  {cardFacts.map((fact, index) => (
+                    <div key={`${fighterText}-${fact.title}-${index}`} className="rounded-md border border-white/15 bg-black/28 px-3 py-1.5">
+                      <FittedText
+                        as="p"
+                        slotKey={`character-dossier-a:fact-title:${index}`}
+                        spec={TEMPLATE_SLOT_SPECS.factTitle}
+                        text={fact.title}
+                        style={{ color: fighterForCard.color }}
+                      />
+                      <FittedText
+                        as="p"
+                        slotKey={`character-dossier-a:fact-body:${index}`}
+                        spec={TEMPLATE_SLOT_SPECS.factBody}
+                        text={fact.text}
+                        className="mt-0.5 text-slate-100"
+                      />
                     </div>
                   ))}
                 </div>
 
-                <p className="mt-2 text-lg italic leading-tight text-slate-100">"{quote}"</p>
+                <FittedText
+                  as="p"
+                  slotKey="character-dossier-a:quote"
+                  spec={TEMPLATE_SLOT_SPECS.quoteBody}
+                  text={`"${dossierQuote}"`}
+                  className="mt-2 italic text-slate-100"
+                />
               </div>
             </div>
           </div>

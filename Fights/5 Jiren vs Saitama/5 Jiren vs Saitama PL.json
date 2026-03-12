@@ -168,7 +168,7 @@
       "example": "Jiren może kontrolować start i nadal przegrać późniejszą wymianę, jeśli pierwszy finisz nigdy naprawdę nie nastąpi.",
       "question": "Czy Jiren zdoła skończyć walkę, zanim przetrwanie zamieni się w eskalację?",
       "trap_bottom": "ESKALACJA MOŻE STWORZYĆ GORSZĄ DRUGĄ WERSJĘ",
-      "trap_top": "PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI"
+      "trap_top": "PRZEWAGA OTWARCIA DECYDUJE O PIERWSZEJ WERSJI WALKI >"
     },
     "tactical-board": {
       "lane": "Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie.",

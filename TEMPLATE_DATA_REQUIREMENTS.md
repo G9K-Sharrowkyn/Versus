@@ -133,6 +133,10 @@ Zasady:
 - Dla walk jednostronnych preferuj `direct-verdict` zamiast `verdict-matrix`.
 - `templates` może zawierać tylko override’y potrzebne dla konkretnej walki.
 - Stałe nagłówki, podtytuły, etykiety i copy viewerowe są w [fightManifest.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/fightManifest.ts).
+- Dane template’ów nie przechowują stałych prefiksów sekcji ani layoutowych obejść; to należy do template’u.
+- `stat-trap.question` przechowuje samo pytanie, bez prefiksu `Kluczowe pytanie:` / `Key question:`.
+- `stat-trap.trap_top` używa wzoru `A >`, a `trap_bottom` domyka drugą stronę tezy.
+- `x-factor.factor` używa wzoru `A VS B`, żeby viewer mógł zawsze rozdzielić oba człony kolorystycznie.
 
 ## Source of Truth
 

@@ -169,9 +169,9 @@
     },
     "stat-trap": {
       "example": "Odin może być równy albo minimalnie lepszy w średnich i nadal przegrać, jeśli jego obrażenia są imponujące, ale nie zostają na stałe.",
-      "question": "Kluczowe pytanie: czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?",
+      "question": "Czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?",
       "trap_bottom": "KNULL POTRZEBUJE TYLKO JEDNEJ PĘTLI, ŻEBY WALKA ZACZĘŁA IŚĆ PO JEGO MYŚLI",
-      "trap_top": "PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA"
+      "trap_top": "PARYTET NA PAPIERZE NIE MÓWI, JAKI RODZAJ OBRAŻEŃ NAPRAWDĘ DZIAŁA >"
     },
     "tactical-board": {
       "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.",
@@ -189,7 +189,7 @@
       "a_value": "50",
       "b_bonus": "15",
       "b_value": "50",
-      "factor": "PRAWDZIWA KONTRA NA OTCHŁAŃ CZY TYLKO BOSKIE OBRAŻENIA",
+      "factor": "KONTRA NA OTCHŁAŃ VS BOSKIE OBRAŻENIA",
       "implication": "Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.",
       "mechanics": "Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.",
       "psychology": "Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe.",

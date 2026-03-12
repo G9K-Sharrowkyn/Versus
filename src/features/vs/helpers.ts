@@ -458,14 +458,6 @@ export const resolveFightCardStripeStyle = (palette: FightCardPalette) => {
   return { textureUrl, textureFilter }
 }
 
-export const resolveFightCardNameFontRem = (text: string) => {
-  const normalized = text.replace(/\s+/g, ' ').trim()
-  if (!normalized) return 6
-  const visualLength = normalized.split('').reduce((acc, char) => acc + (char === ' ' ? 0.55 : 1), 0)
-  const estimated = 8.2 - visualLength * 0.23
-  return Math.max(3.35, Math.min(6.8, estimated))
-}
-
 export const parseBooleanFlag = (value: string, fallback: boolean) => {
   const token = normalizeToken(value)
   if (!token) return fallback

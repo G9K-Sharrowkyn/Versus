@@ -1,8 +1,9 @@
-import { fighterMonogram } from '../../../helpers'
-import { buildFightTemplateChrome, getFightTemplateDefaultField } from '../../../fightManifest'
+import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../../fightManifest'
 import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { fighterMonogram } from '../../../helpers'
+import { FittedText } from '../../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -10,6 +11,7 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function VerdictMatrixTemplate({
   fighterA,
@@ -21,48 +23,17 @@ export function VerdictMatrixTemplate({
   onToggleLanguage,
 }: TemplatePreviewProps) {
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
-  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
+  const common = getFightCommonCopy(language)
+  const fighterAName = fighterA.name || tr('Postac A', 'Fighter A')
+  const fighterBName = fighterB.name || tr('Postac B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
   const chrome = buildFightTemplateChrome(language, blockFields)
-  const line = (position: number, keys: string[], fallback = '') =>
+  const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
-  const case1 = line(
-    0,
-    ['case_1', 'case1'],
-    tr(
-      `${fighterAName} (6/10). Szybkość i technika kończą walkę, zanim skończy się czas.`,
-      `${fighterAName} (6/10). Speed and technique finish the fight before time runs out.`,
-    ),
-  )
-  const case2 = line(
-    1,
-    ['case_2', 'case2'],
-    tr(
-      `${fighterBName} (5.5/10). Szybkie domknięcie jest trudniejsze. Regen daje przewagę.`,
-      `${fighterBName} (5.5/10). A quick closeout is harder. Regen gives the edge.`,
-    ),
-  )
-  const case3 = line(
-    2,
-    ['case_3', 'case3'],
-    tr(
-      `${fighterAName} (5.5/10). Ryzyko rośnie. Jeśli szybki finisz nie wejdzie, przeciwnik wraca do walki.`,
-      `${fighterAName} (5.5/10). Risk rises. If the fast finisher does not land, the opponent comes back.`,
-    ),
-  )
-  const case4 = line(
-    3,
-    ['case_4', 'case4'],
-    tr(
-      `${fighterBName} (6.5/10). Wojna na wyniszczenie faworyzuje regen.`,
-      `${fighterBName} (6.5/10). Attrition war favors regen.`,
-    ),
-  )
 
   const splitCase = (value: string) => {
     const clean = value.trim()
@@ -109,6 +80,11 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['row_bottom', 'deathmatch', 'kill_only']) ||
     getFightTemplateDefaultField('verdict-matrix', 'row_bottom', language)
 
+  const case1 = line(0, ['case_1', 'case1'])
+  const case2 = line(1, ['case_2', 'case2'])
+  const case3 = line(2, ['case_3', 'case3'])
+  const case4 = line(3, ['case_4', 'case4'])
+
   const cells = [
     {
       id: 'tl',
@@ -153,24 +129,50 @@ export function VerdictMatrixTemplate({
             <div />
 
             <div className="grid grid-cols-2">
-              <div className="flex items-center justify-center border border-cyan-300/45 bg-slate-900/72 text-[38px] uppercase leading-none text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                {colLeftHeader}
+              <div className="flex items-center justify-center border border-cyan-300/45 bg-slate-900/72 px-2 text-slate-100">
+                <FittedText
+                  as="p"
+                  slotKey="verdict-matrix:col-left"
+                  spec={TEMPLATE_SLOT_SPECS.verdictMatrixHeader}
+                  text={colLeftHeader}
+                  style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
+                />
               </div>
-              <div className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 text-[38px] uppercase leading-none text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                {colRightHeader}
+              <div className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 px-2 text-slate-100">
+                <FittedText
+                  as="p"
+                  slotKey="verdict-matrix:col-right"
+                  spec={TEMPLATE_SLOT_SPECS.verdictMatrixHeader}
+                  text={colRightHeader}
+                  style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
+                />
               </div>
             </div>
 
             <div className="grid grid-rows-2">
               <div className="relative border border-r-0 border-t-0 border-cyan-300/45 bg-slate-900/72">
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[16px] uppercase tracking-[0.05em] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                  {rowTopHeader}
-                </span>
+                <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+                  <FittedText
+                    as="p"
+                    slotKey="verdict-matrix:row-top"
+                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixRowHeader}
+                    text={rowTopHeader}
+                    className="text-slate-100"
+                    style={{ fontFamily: 'var(--font-ui)', width: '150px' }}
+                  />
+                </div>
               </div>
               <div className="relative border border-r-0 border-t-0 border-cyan-300/45 bg-slate-900/72">
-                <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90 whitespace-nowrap text-[16px] uppercase tracking-[0.05em] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                  {rowBottomHeader}
-                </span>
+                <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+                  <FittedText
+                    as="p"
+                    slotKey="verdict-matrix:row-bottom"
+                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixRowHeader}
+                    text={rowBottomHeader}
+                    className="text-slate-100"
+                    style={{ fontFamily: 'var(--font-ui)', width: '150px' }}
+                  />
+                </div>
               </div>
             </div>
 
@@ -180,13 +182,23 @@ export function VerdictMatrixTemplate({
                   key={`matrix-cell-${cell.id}`}
                   className={`relative overflow-hidden border-cyan-300/45 p-3 ${cell.bg} ${index % 2 === 0 ? 'border-r' : ''} ${index < 2 ? 'border-b' : ''}`}
                 >
-                  <p className="relative z-10 text-[clamp(1.3rem,1.45vw,2.2rem)] font-semibold uppercase leading-tight text-slate-100" style={{ fontFamily: 'var(--font-display)' }}>
-                    {cell.lead}
-                  </p>
+                  <FittedText
+                    as="p"
+                    slotKey={`verdict-matrix:lead:${cell.id}`}
+                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixLead}
+                    text={cell.lead}
+                    className="relative z-10 font-semibold text-slate-100"
+                    style={{ fontFamily: 'var(--font-display)' }}
+                  />
                   {cell.body ? (
-                    <p className="relative z-10 mt-1 text-[clamp(1.15rem,1.25vw,1.9rem)] leading-[1.08] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                      {cell.body}
-                    </p>
+                    <FittedText
+                      as="p"
+                      slotKey={`verdict-matrix:body:${cell.id}`}
+                      spec={TEMPLATE_SLOT_SPECS.verdictMatrixBody}
+                      text={cell.body}
+                      className="relative z-10 mt-1 text-slate-100"
+                      style={{ fontFamily: 'var(--font-ui)' }}
+                    />
                   ) : null}
                   <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[170px] font-bold text-white/10">
                     {cell.mark}

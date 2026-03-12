@@ -170,7 +170,7 @@
       "example": "Kyle can be better on paper and still lose the default fight if Manhattan erases the action before rewrite comes online.",
       "question": "Can Kyle force a real rewrite window before Manhattan attacks the setup itself?",
       "trap_bottom": "MANHATTAN WINS BY DENYING THE BOARD, NOT BY WINNING A NORMAL DUEL",
-      "trap_top": "BETTER STATS DO NOT MATTER IF THE SETUP NEVER FULLY FORMS"
+      "trap_top": "BETTER STATS DO NOT MATTER IF THE SETUP NEVER FULLY FORMS >"
     },
     "tactical-board": {
       "lane": "Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.",

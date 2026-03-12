@@ -1,7 +1,7 @@
 import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
-import { pickLang } from '../../../presets'
 import type { TemplatePreviewProps } from '../../../types'
+import { FittedText } from '../../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -9,52 +9,30 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function BattleDynamicsTemplate({
-  fighterA,
-  fighterB,
   title,
   subtitle,
   templateBlocks,
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const common = getFightCommonCopy(language)
-  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
-  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
   const chrome = buildFightTemplateChrome(language, blockFields)
-  const line = (position: number, keys: string[], fallback = '') =>
+  const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
-  const phase1 = line(
-    0,
-    ['phase_1', 'phase1'],
-    tr(`${fighterAName} narzuca tempo dzięki szybkości.`, `${fighterAName} sets the pace with speed.`),
-  )
-  const phase2 = line(
-    1,
-    ['phase_2', 'phase2'],
-    tr(
-      `${fighterBName} przyjmuje obrażenia i skraca dystans.`,
-      `${fighterBName} absorbs damage and closes distance.`,
-    ),
-  )
-  const phase3 = line(
-    2,
-    ['phase_3', 'phase3'],
-    tr(`${fighterBName} zyskuje przewagę kondycyjną w końcówce.`, `${fighterBName} gains late stamina advantage.`),
-  )
+  const phase1 = line(0, ['phase_1', 'phase1'])
+  const phase2 = line(1, ['phase_2', 'phase2'])
+  const phase3 = line(2, ['phase_3', 'phase3'])
   const analysisLine =
     pickTemplateField(blockFields, ['analysis', 'note', 'line_4', 'line4']) ||
-    tr(
-      `Analiza: ${fighterAName} wygrywa sprint. ${fighterBName} wygrywa maraton.`,
-      `Analysis: ${fighterAName} wins the sprint. ${fighterBName} wins the marathon.`,
-    )
+    common.emptyFieldLabel
   const curveAValues = parseCurveValues(
     pickTemplateField(blockFields, ['a_curve', 'curve_a', 'blue_curve', 'left_curve']),
     [78, 64, 50, 32, 20],
@@ -132,23 +110,44 @@ export function BattleDynamicsTemplate({
             </svg>
 
             <div className="relative z-10 mt-3 grid grid-cols-3 gap-3">
-              <div className="rounded-sm border-[3px] border-[#0ea5e9] bg-[#071b31]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(14,165,233,0.45)]">
+              <div className="rounded-sm border-[3px] border-[#0ea5e9] bg-[#071b31]/95 p-2 text-slate-100 shadow-[4px_4px_0_rgba(14,165,233,0.45)]">
                 <p className="font-semibold">{common.phase1Label}</p>
-                <p>{phase1}</p>
+                <FittedText
+                  as="p"
+                  slotKey="battle-dynamics:phase-1"
+                  spec={TEMPLATE_SLOT_SPECS.battleDynamicsPhase}
+                  text={phase1}
+                />
               </div>
-              <div className="rounded-sm border-[3px] border-[#64748b] bg-[#111827]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(71,85,105,0.45)]">
+              <div className="rounded-sm border-[3px] border-[#64748b] bg-[#111827]/95 p-2 text-slate-100 shadow-[4px_4px_0_rgba(71,85,105,0.45)]">
                 <p className="font-semibold">{common.phase2Label}</p>
-                <p>{phase2}</p>
+                <FittedText
+                  as="p"
+                  slotKey="battle-dynamics:phase-2"
+                  spec={TEMPLATE_SLOT_SPECS.battleDynamicsPhase}
+                  text={phase2}
+                />
               </div>
-              <div className="rounded-sm border-[3px] border-[#f43f5e] bg-[#2b101b]/95 p-2 text-[16px] leading-tight text-slate-100 shadow-[4px_4px_0_rgba(244,63,94,0.45)]">
+              <div className="rounded-sm border-[3px] border-[#f43f5e] bg-[#2b101b]/95 p-2 text-slate-100 shadow-[4px_4px_0_rgba(244,63,94,0.45)]">
                 <p className="font-semibold">{common.phase3Label}</p>
-                <p>{phase3}</p>
+                <FittedText
+                  as="p"
+                  slotKey="battle-dynamics:phase-3"
+                  spec={TEMPLATE_SLOT_SPECS.battleDynamicsPhase}
+                  text={phase3}
+                />
               </div>
             </div>
           </div>
 
-          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/78 px-3 py-1 text-center text-[20px] font-semibold text-slate-100">
-            {analysisLine}
+          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/78 px-3 py-1 text-center text-slate-100">
+            <FittedText
+              as="p"
+              slotKey="battle-dynamics:analysis"
+              spec={TEMPLATE_SLOT_SPECS.battleDynamicsAnalysis}
+              text={analysisLine}
+              className="font-semibold"
+            />
           </div>
         </div>
       </div>

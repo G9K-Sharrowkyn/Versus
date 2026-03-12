@@ -161,6 +161,10 @@
           "line_3": "If Superman does not go all out from the start, Hyperion will eventually overwhelm him.",
           "winner": "Superman holds the edge. Hyperion can still win."
         },
+        "stat-trap": {
+          "body": "Superman can win clean exchanges and still lose the fight if Hyperion keeps coming back for the next contact.",
+          "question": "Can Superman truly close the fight before Hyperion's regeneration starts erasing the value of every good sequence?"
+        },
         "tactical-board": {
           "lane": "Superman wins by closing it out. Hyperion wins when the closeout fails.",
           "subtitle": "Hero versus Tyrant"
@@ -383,6 +387,14 @@
           "line_2": "Superman lepiej kontroluje walkę, ale regeneracja Hyperiona daje mu coraz większą przewagę z każdą dodatkową chwilą starcia.",
           "line_3": "Jeśli Superman nie wejdzie na pełną moc od samego początku, Hyperion ostatecznie go przełamie.",
           "winner": "Superman ma przewagę. Hyperion wciąż może wygrać."
+        },
+        "interpretation": {
+          "body": "Superman jest lepszy w niemal każdym czystym elemencie tej walki: szybszy, precyzyjniejszy i lepszy w narzucaniu tempa. King Hyperion pozostaje groźny, bo jego regeneracja i bezwzględność zamieniają każdą niezamkniętą sekwencję w kolejną, coraz gorszą wojnę na wyniszczenie. Superman prowadzi tylko wtedy, gdy utrzyma tempo i nie pozwoli walce wejść w długie wyniszczenie.",
+          "winner": "Przewaga należy do Supermana. Czas należy do Hyperiona"
+        },
+        "stat-trap": {
+          "body": "Superman może wygrywać czyste wymiany i nadal przegrać całą walkę, jeśli Hyperion wciąż wraca do kolejnego kontaktu.",
+          "question": "Czy Superman zdoła naprawdę domknąć walkę, zanim regeneracja Hyperiona zacznie kasować wartość każdej dobrej sekwencji?"
         },
         "tactical-board": {
           "lane": "Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.",
@@ -635,7 +647,7 @@
           "right_image_5": "Odin_Drax.jpg"
         },
         "x-factor": {
-          "factor": "ANTI-ABYSS COUNTER OR JUST DIVINE DAMAGE",
+          "factor": "ANTI-ABYSS COUNTER VS DIVINE DAMAGE",
           "implication": "This is why the same stat table can point to parity while the practical baseline still leans Knull.",
           "mechanics": "Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.",
           "psychology": "Knull wants repetition. Odin wants one controlled exchange that finally stays solved."
@@ -828,8 +840,8 @@
           "winner": "Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy."
         },
         "interpretation": {
-          "body": "Na papierze to niemal remis, z minimalną przewagą Odina w kategoriach kontroli. W praktyce Knull nadal lekko prowadzi, bo jego regenerację i pętlę ostrza łatwiej przekuć w realne zakończenie walki. Walka wyraźnie przechyla się dopiero wtedy, gdy pełna konfiguracja Odina okazuje się właściwą kontrą na Otchłań.",
-          "winner": "Sam parytet statystyk nie rozwiązuje walki, jeśli nawet idealne obrażenia mogą nie zostać na stałe"
+          "body": "Odin nie wnosi do tej walki tylko większej kontroli. Wnosi też Odinforce, Destroyera i Ragnarok — narzędzia stworzone właśnie na przeciwników z najwyższej kosmicznej półki. Knull nadal jest koszmarem do domknięcia, bo All-Black, Otchłań i regeneracja potrafią zamienić nawet bardzo dobre sekwencje Odina w kolejną rundę tej samej walki. O wyniku nie decyduje więc to, kto zada więcej obrażeń, ale czy moc Odina naprawdę zdoła zatrzymać Knulla na stałe, zanim pojedynek zamieni się w wyniszczenie.",
+          "winner": "Odin nie musi tylko przebić Knulla. Musi trafić w taki sposób, po którym Knull już nie wróci"
         },
         "parameter-comparison": {
           "draw_favorite": "STATYSTYCZNY REMIS",
@@ -838,7 +850,7 @@
         },
         "stat-trap": {
           "body": "Odin może być równy albo minimalnie lepszy w średnich i nadal przegrać, jeśli jego obrażenia są imponujące, ale nie zostają na stałe.",
-          "question": "Kluczowe pytanie: czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?"
+          "question": "Czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?"
         },
         "tactical-board": {
           "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.",
@@ -863,7 +875,7 @@
           "right_image_5": "Odin_Drax.jpg"
         },
         "x-factor": {
-          "factor": "PRAWDZIWA KONTRA NA OTCHŁAŃ CZY TYLKO BOSKIE OBRAŻENIA",
+          "factor": "KONTRA NA OTCHŁAŃ VS BOSKIE OBRAŻENIA",
           "implication": "Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.",
           "mechanics": "Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.",
           "psychology": "Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe."
@@ -1077,6 +1089,18 @@
           "case_3": "Kyle 7/10",
           "case_4": "Dr"
         },
+        "victory-archive": {
+          "left_image_1": "Relic.webp",
+          "left_image_2": "Third Army.webp",
+          "left_image_3": "Kyle_Oblivion.jpeg",
+          "left_image_4": "Kyle_Titans.jpg",
+          "left_image_5": "Kyle_Vessel.jpeg",
+          "right_image_1": "Manhattan_disintegrate.jpg",
+          "right_image_2": "Manhattan_Reverse.jpg",
+          "right_image_3": "Manhattan_OwlMetr.jpeg",
+          "right_image_4": "11_7_2_manhattan_ozymandias_confrontation.jpg",
+          "right_image_5": "Manhattan_Pandora.jpg"
+        },
         "x-factor": {
           "factor": "SETUP WINDOW VS PREEMPTION",
           "implication": "If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.",
@@ -1271,8 +1295,8 @@
           "winner": "Dr. Manhattan prowadzi, ale walka jest warunkowa"
         },
         "interpretation": {
-          "body": "Kyle ma szerszy profil, lepszy rytm walki i pełniejszy aktywny arsenał. Manhattan nadal prowadzi w domyślnej wersji walki, bo może zaatakować samo przygotowanie, zanim najlepsza ścieżka Kyle'a w ogóle powstanie. Przewaga na papierze nie przetrwa, jeśli walka nigdy nie osiągnie symetrycznych warunków wymiany.",
-          "winner": "Kyle wygrywa kategorie. Manhattan wygrywa ten moment, w którym walka staje się realna"
+          "body": "Kyle nie przegrywa tej walki niższym pułapem mocy. Jego White Light i Life Equation dają mu realny argument nawet przeciw komuś takiemu jak Manhattan. Problem polega na tym, że Manhattan częściej działa pierwszy i prościej, bo nie musi rozwijać pełnej sekwencji, by uderzyć w sam moment powstania zagrożenia. Dlatego ten pojedynek rozstrzyga nie tyle to, kto może więcej w absolutnym sensie, ale kto szybciej zamienia swoje maksimum w realny stan walki.",
+          "winner": "Kyle ma moc, by zagrozić Manhattanowi. Manhattan częściej nie daje tej mocy w pełni wejść do gry"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI KYLE'A",
@@ -1291,6 +1315,18 @@
           "case_2": "Dr",
           "case_3": "Kyle 7/10",
           "case_4": "Dr"
+        },
+        "victory-archive": {
+          "left_image_1": "Relic.webp",
+          "left_image_2": "Third Army.webp",
+          "left_image_3": "Kyle_Oblivion.jpeg",
+          "left_image_4": "Kyle_Titans.jpg",
+          "left_image_5": "Kyle_Vessel.jpeg",
+          "right_image_1": "Manhattan_disintegrate.jpg",
+          "right_image_2": "Manhattan_Reverse.jpg",
+          "right_image_3": "Manhattan_OwlMetr.jpeg",
+          "right_image_4": "11_7_2_manhattan_ozymandias_confrontation.jpg",
+          "right_image_5": "Manhattan_Pandora.jpg"
         },
         "x-factor": {
           "factor": "OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE",
@@ -1706,8 +1742,8 @@
           "winner": "Thanos z wyraźną przewagą"
         },
         "interpretation": {
-          "body": "Na papierze wygrywa Thanos, bo kontroluje kategorie decydujące o tym, czy Vader w ogóle może domknąć walkę. Vader nadal ma groźną pierwszą minutę, bo jego techniczne otwarcie jest dużo czystsze niż otwarcie Thanosa. To otwarcie jest realne, ale cała walka i tak należy do Thanosa, gdy tylko przetrwa pierwszą chirurgiczną próbę.",
-          "winner": "Lepsza technika nie wystarcza, jeśli nigdy nie zamienia się w realną ścieżkę finiszu"
+          "body": "Vader ma narzędzia, które potrafią natychmiast zabić wielu przeciwników. Problem w tym, że Thanos należy do tych nielicznych, którzy mogą to przeżyć. Telekineza, prekognicja i miecz świetlny dają Vaderowi jedną realną sekwencję otwarcia, ale ciało, odporności i własna kosmiczna projekcja Thanosa bardzo zawężają jej skuteczność. Jeśli Thanos przeżyje pierwszą idealną próbę, pojedynek szybko przestaje być walką techniki i zamienia się w starcie skali, którego Vader zwykle nie wytrzyma.",
+          "winner": "Vader ma plan na otwarcie. Thanos ma ciało, które ten plan zwykle przeżyje"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI VADERA",
@@ -2130,8 +2166,8 @@
           "winner": "Jiren prowadzi, ale Saitama ma żywą późną gałąź"
         },
         "interpretation": {
-          "body": "Jiren ma czystszy start, lepsze odczyty i bardziej niezawodną strukturę wczesnego finiszu. Saitama zachowuje realną późną gałąź tylko dlatego, że jego przeżywalność może zamienić przyszłą wersję walki w coś gorszego. Na papierze przewaga należy do Jirena, ale walka przestaje być papierowa, jeśli przetrwanie zamienia się w eskalację.",
-          "winner": "Początek należy do Jirena. Zagrożenie należy do tego, co go przeżyje"
+          "body": "To nie jest walka o same statystyki, tylko o to, z jakim Jirenem walczy Saitama. Spokojny, oszczędny Jiren daje mu czas, którego potrzebuje, by jego wzrost zaczął naprawdę zmieniać układ sił. Jeśli jednak Jiren od początku walczy na pełnym skupieniu i pełnej mocy, może zamknąć starcie, zanim potencjał Saitamy zdąży się rozwinąć.",
+          "winner": "Saitama ma nieskończony potencjał. Jiren może nie dać mu nawet sekundy, by go rozwinąć"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI JIRENA",
@@ -2547,8 +2583,8 @@
           "winner": "Muhammad Ali z wyraźną przewagą"
         },
         "interpretation": {
-          "body": "Bruce ma szybkość, chaos i brudniejszą teksturę otwarcia. Ali ma kategorie, które rozstrzygają powtarzalne ludzkie wymiany: zasięg, wytrzymałość, tempo i zarządzanie ringiem. Bruce zawęża pojedynek tylko wtedy, gdy nie pozwala walce ustawić się w preferowanej przez Alego grze dystansu.",
-          "winner": "Muhammad Ali"
+          "body": "Ali ma przewagę od pierwszej wymiany, bo wnosi nie tylko lepszy zasięg i większą masę, ale też elitarny timing i ringową kontrolę wagi ciężkiej. Bruce może utrudnić mu walkę szybkością, kopnięciami i zmianą rytmu, ale to za mało, by zniwelować różnicę gabarytów i odporności. Zasady otwarte zwężają pojedynek tylko trochę; w ringu Ali wygrywa bardzo wyraźnie, a bez rękawic nadal pozostaje wyraźnym faworytem.",
+          "winner": "To nie styl Bruce'a rozstrzyga tę walkę. Rozstrzyga ją skala Alego"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI BRUCE'A",
@@ -2987,8 +3023,8 @@
           "winner": "Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa"
         },
         "interpretation": {
-          "body": "Galactus ma szerszy surowy profil. Trigon pozostaje groźny, bo jego wartość jest nieliniowa i zależy od pola walki. Przy neutralnych założeniach nadal prowadzi Galactus.",
-          "winner": "Galactus"
+          "body": "Galactus ma większą skalę i szerszy zestaw odpowiedzi. Trigon nie przegrywa jednak samą różnicą mocy, bo potrafi zamienić przestrzeń w broń i przeciągnąć walkę na własne zasady. W tym pojedynku kluczowe jest nie tylko to, kto uderza mocniej, ale kto szybciej narzuci logikę całemu polu walki.",
+          "winner": "Tu nie wystarczy być potężniejszym. Trzeba jeszcze wygrać samo pole walki"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI TRIGONA",
@@ -3434,8 +3470,8 @@
           "winner": "World Breaker Hulk 6.5/10"
         },
         "interpretation": {
-          "body": "Atrocitus ma czystszy wczesny arsenał, lepszą szybkość i mocniejsze narzędzia kontroli. Hulk ma czystszą ścieżkę kończenia, gdy kontakt staje się powtarzalny. To pojedynek, w którym przewaga na papierze należy do bardziej wszechstronnej strony, ale przewaga praktyczna należy do tej, której pętla robi się groźniejsza po każdym załamaniu planu kontroli.",
-          "winner": "Atrocitus wygrywa porównanie na papierze, ale Hulk wygrywa więcej realnych walk"
+          "body": "To nie jest pojedynek, w którym tylko Hulk rośnie w trakcie walki. Atrocitus również staje się groźniejszy razem z własnym gniewem. Różnica polega na tym, że Atrocitus zamienia eskalację w więcej narzędzi, presji i kontroli, a Hulk zamienia ją w coraz prostszą i cięższą przemoc w kontakcie. Dlatego o wyniku decyduje to, czy Atrocitus przełoży plazmę, lot i manipulację gniewem na realne domknięcie, zanim pojedynek osiada w powtarzalnym zwarciu.",
+          "winner": "Obaj rosną z gniewem. Pytanie brzmi, czyj gniew szybciej zamienia się w zwycięstwo"
         },
         "parameter-comparison": {
           "left_header": "PRZEWAGI ATROCITUSA",

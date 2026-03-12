@@ -44,7 +44,8 @@ export function AdjustableTemplateImage({
   const isDraggingRef = useRef(false)
   const [containerSize, setContainerSize] = useState({ width: 0, height: 0 })
   const [imageNaturalSizeState, setImageNaturalSizeState] = useState({ key: '', width: 0, height: 0 })
-  const [isImageReady, setIsImageReady] = useState(false)
+  const [loadedImageKey, setLoadedImageKey] = useState('')
+  const [isInteracting, setIsInteracting] = useState(false)
   const imageNaturalSize = useMemo(
     () =>
       imageNaturalSizeState.key === imageUrl
@@ -60,6 +61,8 @@ export function AdjustableTemplateImage({
     normalizePortraitAdjust(adjustments[adjustKey] ?? fallbackLegacyAdjust ?? baseAdjust ?? PORTRAIT_ADJUST_DEFAULT),
   )
   const [liveAdjust, setLiveAdjust] = useState<PortraitAdjust>(committedAdjust)
+  const displayAdjust = isInteracting ? liveAdjust : committedAdjust
+  const isImageReady = loadedImageKey === imageUrl
   const imageGeometry = useMemo(
     () =>
       getTemplateImageGeometry(
@@ -67,30 +70,17 @@ export function AdjustableTemplateImage({
         containerSize.height,
         imageNaturalSize.width,
         imageNaturalSize.height,
-        liveAdjust.scale,
+        displayAdjust.scale,
       ),
-    [containerSize.height, containerSize.width, imageNaturalSize.height, imageNaturalSize.width, liveAdjust.scale],
+    [containerSize.height, containerSize.width, displayAdjust.scale, imageNaturalSize.height, imageNaturalSize.width],
   )
-
   useEffect(() => {
-    latestAdjustRef.current = liveAdjust
-  }, [liveAdjust])
-
-  useEffect(() => {
-    if (isDraggingRef.current) return
-    setLiveAdjust(committedAdjust)
-    latestAdjustRef.current = committedAdjust
-  }, [adjustKey, committedAdjust.scale, committedAdjust.x, committedAdjust.y])
+    latestAdjustRef.current = displayAdjust
+  }, [displayAdjust])
 
   useEffect(() => {
     imageMetricsRef.current = imageNaturalSize
   }, [imageNaturalSize])
-
-  useEffect(() => {
-    imageMetricsRef.current = { width: 0, height: 0 }
-    setImageNaturalSizeState({ key: '', width: 0, height: 0 })
-    setIsImageReady(false)
-  }, [imageUrl])
 
   useEffect(() => {
     const container = containerRef.current
@@ -139,6 +129,7 @@ export function AdjustableTemplateImage({
       moved: false,
     }
     isDraggingRef.current = true
+    setIsInteracting(true)
     container.setPointerCapture(event.pointerId)
   }
 
@@ -200,6 +191,7 @@ export function AdjustableTemplateImage({
     }
     dragRef.current = null
     isDraggingRef.current = false
+    setIsInteracting(false)
     commitAdjust(latestAdjustRef.current)
     if (!drag.moved && drag.mode === 'pan') {
       onActivate?.()
@@ -253,7 +245,7 @@ export function AdjustableTemplateImage({
               key: imageUrl,
               ...nextMetrics,
             })
-            setIsImageReady(true)
+            setLoadedImageKey(imageUrl)
           }}
         />
       ) : (

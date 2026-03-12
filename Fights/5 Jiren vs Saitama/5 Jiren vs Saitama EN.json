@@ -168,7 +168,7 @@
       "example": "Jiren can control the start and still lose the later exchange if the first finish never truly happens.",
       "question": "Can Jiren finish before survival turns into escalation?",
       "trap_bottom": "ESCALATION CAN CREATE A WORSE SECOND VERSION",
-      "trap_top": "OPENING EDGE DECIDES THE FIRST VERSION OF THE FIGHT"
+      "trap_top": "OPENING EDGE DECIDES THE FIRST VERSION OF THE FIGHT >"
     },
     "tactical-board": {
       "lane": "Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.",

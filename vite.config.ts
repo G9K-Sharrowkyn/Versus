@@ -64,7 +64,12 @@ const toPosixPath = (value: string) => value.split(path.sep).join('/')
 const normalizeFsPath = (value: string) => toPosixPath(path.resolve(value)).toLowerCase()
 const sanitizeFightPathSegment = (value: string) =>
   value
-    .replace(/[<>:"/\\|?*\u0000-\u001f]/g, ' ')
+    .split('')
+    .map((char) => {
+      const code = char.charCodeAt(0)
+      return /[<>:"/\\|?*]/.test(char) || code < 32 ? ' ' : char
+    })
+    .join('')
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/[. ]+$/g, '')
@@ -640,7 +645,11 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
           return
         }
 
-        await writeFightVisualsStore(fightsDir, normalizedFolders)
+        const currentStore = await readFightVisualsStore(fightsDir)
+        await writeFightVisualsStore(fightsDir, {
+          ...currentStore.folders,
+          ...normalizedFolders,
+        })
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
         res.setHeader('Cache-Control', 'no-store')

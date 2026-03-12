@@ -9,7 +9,6 @@ import {
 import {
   FIGHT_SCENARIO_EXTENDED_LABELS_EN,
   fightScenarioLabel,
-  pickLang,
 } from '../../../presets'
 import {
   TEMPLATE_BLOCK_ALIASES,
@@ -20,6 +19,7 @@ import {
   pickTemplateField,
 } from '../../../importer'
 import type { FightScenarioId, FightScenarioLead, ScoreRow, TemplatePreviewProps } from '../../../types'
+import { FittedText } from '../../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -27,6 +27,7 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function FightSimulationTemplate({
   fighterA,
@@ -38,9 +39,6 @@ export function FightSimulationTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const fighterAName = fighterA.name || tr('Postać A', 'Fighter A')
-  const fighterBName = fighterB.name || tr('Postać B', 'Fighter B')
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-simulation'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
@@ -49,22 +47,14 @@ export function FightSimulationTemplate({
   const categories = getFightDefaultCategories(language)
   const categoryLabel = (categoryId: string, fallback: string) =>
     categories.find((entry) => entry.id === categoryId)?.label || fallback
-  const line = (position: number, keys: string[], fallback = '') =>
+  const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
-  const opening = line(0, ['opening'], tr('Otwarcie: szybka kontrola dystansu.', 'Opening: fast range control.'))
-  const midFight = line(
-    1,
-    ['mid_fight', 'midfight'],
-    tr('Środek walki: presja i pętle odzyskiwania tempa.', 'Mid fight: pressure and recovery loops.'),
-  )
-  const lateFight = line(2, ['late_fight', 'latefight'], tr('Końcówka: test wyniszczenia.', 'Late fight: attrition checks.'))
-  const endCondition = line(
-    3,
-    ['end_condition', 'endcondition'],
-    tr('Warunek końcowy: KO/BFR kontra kill-only.', 'End condition: KO/BFR vs kill-only.'),
-  )
+  const opening = line(0, ['opening'])
+  const midFight = line(1, ['mid_fight', 'midfight'])
+  const lateFight = line(2, ['late_fight', 'latefight'])
+  const endCondition = line(3, ['end_condition', 'endcondition'])
   const fallbackRows = [rows[0], rows[1], rows[5] || rows[2]].filter(Boolean) as ScoreRow[]
 
   const parsePhaseMode = (
@@ -96,9 +86,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
       aValue: fallbackRows[0]?.a ?? 96,
       bValue: fallbackRows[0]?.b ?? 84,
-      event: tr(`${fighterAName} narzuca tempo.`, `${fighterAName} sets the pace.`),
-      branchA: tr(`${fighterAName} utrzymuje kontrolę dystansu.`, `${fighterAName} keeps range control.`),
-      branchB: tr(`${fighterBName} przełamuje dystans.`, `${fighterBName} breaks the distance.`),
+      event: common.emptyFieldLabel,
+      branchA: common.emptyFieldLabel,
+      branchB: common.emptyFieldLabel,
     },
     {
       mode: defaultPhase2Mode,
@@ -109,9 +99,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
       aValue: fallbackRows[1]?.a ?? 92,
       bValue: fallbackRows[1]?.b ?? 88,
-      event: tr('Punkt zwrotny: pierwsza wymiana zmienia warunki walki.', 'Turning point: first exchange shifts the conditions.'),
-      branchA: tr(`${fighterAName} buduje przewagę techniką.`, `${fighterAName} builds advantage with technique.`),
-      branchB: tr(`${fighterBName} wymusza chaos i wyniszczenie.`, `${fighterBName} forces chaos and attrition.`),
+      event: common.emptyFieldLabel,
+      branchA: common.emptyFieldLabel,
+      branchB: common.emptyFieldLabel,
     },
     {
       mode: defaultPhase3Mode,
@@ -122,9 +112,9 @@ export function FightSimulationTemplate({
       bLabel: fallbackRows[2]?.label || categoryLabel('stamina', 'Stamina'),
       aValue: fallbackRows[2]?.a ?? 90,
       bValue: fallbackRows[2]?.b ?? 93,
-      event: tr('Ostatni punkt zwrotny.', 'Final turning point.'),
-      branchA: tr(`${fighterAName} domyka walkę decyzją.`, `${fighterAName} closes the fight by decision.`),
-      branchB: tr(`${fighterBName} łamie rywala w końcówce.`, `${fighterBName} breaks the rival late.`),
+      event: common.emptyFieldLabel,
+      branchA: common.emptyFieldLabel,
+      branchB: common.emptyFieldLabel,
     },
   ]
 
@@ -287,7 +277,13 @@ export function FightSimulationTemplate({
                 <div className="mb-2 flex items-center">
                   <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{common.phaseLabel} {index + 1}</p>
                 </div>
-                <p className="text-[20px] font-semibold leading-tight text-slate-100">{phase.title}</p>
+                <FittedText
+                  as="p"
+                  slotKey={`fight-simulation:title:${index}`}
+                  spec={TEMPLATE_SLOT_SPECS.phaseTitle}
+                  text={phase.title}
+                  className="font-semibold text-slate-100"
+                />
 
                 <div className="mt-2 rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
                   <FightScenarioCanvas
@@ -297,15 +293,28 @@ export function FightSimulationTemplate({
                     colorB={fighterB.color}
                     lead={phase.lead}
                   />
-                  <div className="mt-1 flex items-center justify-between rounded border border-slate-700/70 bg-slate-900/72 px-2 py-1">
+                  <div className="mt-1 flex items-center justify-between gap-2 rounded border border-slate-700/70 bg-slate-900/72 px-2 py-1">
                     <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{common.scenarioPresetLabel}</span>
-                    <span className="text-[10px] uppercase tracking-[0.14em] text-cyan-100">{phase.animationLabel}</span>
+                    <FittedText
+                      as="span"
+                      slotKey={`fight-simulation:scenario:${index}`}
+                      spec={TEMPLATE_SLOT_SPECS.phaseScenarioLabel}
+                      text={phase.animationLabel}
+                      className="text-cyan-100"
+                      style={{ width: '140px' }}
+                    />
                   </div>
                 </div>
 
                 {phase.mode === 'bars' ? (
                   <div className="mt-2 flex min-h-0 flex-1 flex-col">
-                    <p className="text-[13px] leading-snug text-slate-200">{phase.event}</p>
+                    <FittedText
+                      as="p"
+                      slotKey={`fight-simulation:event:${index}`}
+                      spec={TEMPLATE_SLOT_SPECS.phaseEvent}
+                      text={phase.event}
+                      className="text-slate-200"
+                    />
                     <div className="mt-2 flex min-h-0 flex-1 items-stretch overflow-hidden">
                       <div className="flex w-full items-end justify-center gap-6 overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/75 px-3 py-2">
                         {[
@@ -325,13 +334,24 @@ export function FightSimulationTemplate({
                           },
                         ].map((entry) => (
                           <div key={`phase-bar-${index}-${entry.id}`} className="flex h-full w-[42%] min-h-0 flex-col items-center justify-end overflow-hidden">
-                            <p className={`mb-1 text-[15px] font-semibold leading-none ${entry.textColor}`}>{Math.round(entry.value)}</p>
+                            <FittedText
+                              as="p"
+                              slotKey={`fight-simulation:value:${index}:${entry.id}`}
+                              spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                              text={String(Math.round(entry.value))}
+                              className={`mb-1 font-semibold leading-none ${entry.textColor}`}
+                            />
                             <div className="relative h-[132px] w-12 overflow-hidden rounded border border-slate-500/75 bg-slate-900/95">
                               <div className={`absolute bottom-0 left-0 right-0 ${entry.color}`} style={{ height: `${entry.value}%` }} />
                             </div>
-                            <p className={`mt-1 text-center text-[10px] uppercase leading-tight tracking-[0.1em] ${entry.textColor}`}>
-                              {entry.label}
-                            </p>
+                            <FittedText
+                              as="p"
+                              slotKey={`fight-simulation:label:${index}:${entry.id}`}
+                              spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                              text={entry.label}
+                              className={`mt-1 ${entry.textColor}`}
+                              style={{ width: '100%', textAlign: 'center' }}
+                            />
                           </div>
                         ))}
                       </div>
@@ -339,7 +359,13 @@ export function FightSimulationTemplate({
                   </div>
                 ) : (
                   <div className="mt-2 flex flex-1 flex-col">
-                    <p className="text-sm leading-tight text-slate-200">{phase.event}</p>
+                    <FittedText
+                      as="p"
+                      slotKey={`fight-simulation:event:${index}`}
+                      spec={TEMPLATE_SLOT_SPECS.phaseEvent}
+                      text={phase.event}
+                      className="text-slate-200"
+                    />
                     <div className="mt-2 flex flex-1 flex-col rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
                       <svg viewBox="0 0 100 40" className="h-20 w-full">
                         <line x1="50" y1="2" x2="50" y2="14" stroke="#94a3b8" strokeWidth="1.1" />
@@ -348,8 +374,22 @@ export function FightSimulationTemplate({
                         <circle cx="50" cy="14" r="2.2" fill="#e2e8f0" />
                       </svg>
                       <div className="mt-2 grid grid-cols-2 gap-2">
-                        <div className="rounded border border-cyan-300/45 bg-cyan-500/12 px-2 py-1.5 text-xs leading-tight text-cyan-100">{phase.branchA}</div>
-                        <div className="rounded border border-rose-300/45 bg-rose-500/12 px-2 py-1.5 text-xs leading-tight text-rose-100">{phase.branchB}</div>
+                        <div className="rounded border border-cyan-300/45 bg-cyan-500/12 px-2 py-1.5 text-cyan-100">
+                          <FittedText
+                            as="p"
+                            slotKey={`fight-simulation:branch-a:${index}`}
+                            spec={TEMPLATE_SLOT_SPECS.phaseBranch}
+                            text={phase.branchA}
+                          />
+                        </div>
+                        <div className="rounded border border-rose-300/45 bg-rose-500/12 px-2 py-1.5 text-rose-100">
+                          <FittedText
+                            as="p"
+                            slotKey={`fight-simulation:branch-b:${index}`}
+                            spec={TEMPLATE_SLOT_SPECS.phaseBranch}
+                            text={phase.branchB}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -358,8 +398,13 @@ export function FightSimulationTemplate({
             ))}
           </div>
 
-          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] text-slate-100">
-            {endCondition}
+          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-slate-100">
+            <FittedText
+              as="p"
+              slotKey="fight-simulation:end-condition"
+              spec={TEMPLATE_SLOT_SPECS.endCondition}
+              text={endCondition}
+            />
           </div>
         </div>
       </div>

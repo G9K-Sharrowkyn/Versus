@@ -9,7 +9,6 @@ import {
 import { synchronizeFightVisualAdjustments } from '../domain/fightVariants'
 import {
   buildFightRefreshSignature,
-  collectPersistableFolderFightVisuals,
   fetchFolderFightsFromApi,
   idbGetActiveFightId,
   idbGetMetaString,
@@ -20,7 +19,6 @@ import {
   mergeScannedFolderFights,
   normalizePersistedFight,
   normalizeVariantPrefsMap,
-  saveFolderFightVisualsToApi,
   sanitizePreferredVariantPrefs,
 } from '../storage'
 import type { FightRecord } from '../types'
@@ -203,11 +201,6 @@ export function useVsPersistence({
       if (restoredActiveFight) {
         applyFightRecordRef.current?.(restoredActiveFight, { enterIntro: false })
       }
-
-      void saveFolderFightVisualsToApi(collectPersistableFolderFightVisuals(mergedFights)).catch((error) => {
-        console.warn('[vs-fights-visuals] Failed to backfill folder visuals.', error)
-      })
-
       setStorageReady(true)
     }
 

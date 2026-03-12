@@ -2,6 +2,7 @@ import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultFi
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
+import { FittedText } from '../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
@@ -12,6 +13,9 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+
+const METHODOLOGY_ITEM_COUNT = 6
 
 export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language, onToggleLanguage }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.methodology || [])
@@ -35,9 +39,10 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
   const closingLabel =
     pickTemplateField(blockFields, ['closing_label']) ||
     getFightTemplateDefaultField('methodology', 'closing_label', language)
-  const safeRows = rows.length
+  const rowSource = rows.length
     ? rows
     : [{ id: 'fallback', label: common.baseline, a: 50, b: 50, delta: 0, winner: 'draw' as const }]
+  const safeRows = Array.from({ length: METHODOLOGY_ITEM_COUNT }, (_, index) => rowSource[index]?.label || common.emptyFieldLabel)
 
   const splitX = 50
   const linearStartX = 8
@@ -61,10 +66,16 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
           <div className={`${HIGH_END_BODY_GAP_CLASS} grid flex-1 grid-cols-[1fr_1.7fr] gap-3`}>
             <div className={`min-h-0 ${HIGH_END_FRAME_CLASS} p-3`}>
               <p className={`mb-2 ${HIGH_END_LABEL_CLASS}`}>{listLabel}</p>
-              <div className="max-h-full space-y-1 overflow-y-auto pr-1 text-[clamp(0.9rem,1.05vw,1.22rem)] leading-tight text-slate-100">
-                {safeRows.map((row, index) => (
-                  <div key={`method-${row.id}`} className="rounded border border-slate-700/60 bg-slate-900/72 px-2 py-0.5">
-                    {index + 1}. {row.label}
+              <div className="grid h-full grid-rows-6 gap-1">
+                {safeRows.map((label, index) => (
+                  <div key={`method-${index}`} className="rounded border border-slate-700/60 bg-slate-900/72 px-2 py-0.5">
+                    <FittedText
+                      as="p"
+                      slotKey={`methodology:item:${index}`}
+                      spec={TEMPLATE_SLOT_SPECS.methodologyItem}
+                      text={`${index + 1}. ${label}`}
+                      className="text-slate-100"
+                    />
                   </div>
                 ))}
               </div>
@@ -113,7 +124,13 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
               </div>
 
               <div className={`${HIGH_END_CARD_CLASS} px-4 py-3`}>
-                <p className="text-[42px] leading-tight text-slate-50">{closingLabel}</p>
+                <FittedText
+                  as="p"
+                  slotKey="methodology:closing-label"
+                  spec={TEMPLATE_SLOT_SPECS.methodologyClosing}
+                  text={closingLabel}
+                  className="text-slate-50"
+                />
                 <p className="mt-1 text-sm uppercase tracking-[0.15em] text-slate-300">{subText}</p>
               </div>
             </div>

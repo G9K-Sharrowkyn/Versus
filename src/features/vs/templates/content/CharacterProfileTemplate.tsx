@@ -2,6 +2,7 @@ import { Crosshair, Swords, WandSparkles } from 'lucide-react'
 import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { Fighter, IconType, TemplatePreviewProps } from '../../types'
+import { FittedText } from '../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
@@ -12,6 +13,7 @@ import {
   HighEndFighterBanner,
   HighEndTemplateHeader,
 } from '../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
 
 const TOOLKIT_SECTION_ORDER = ['powers', 'tools', 'weaknesses'] as const
 
@@ -21,10 +23,7 @@ type ToolkitDefaults = {
   weaknesses: string
 }
 
-const getToolkitSectionMeta = (
-  key: string,
-  defaults: ToolkitDefaults,
-) => {
+const getToolkitSectionMeta = (key: string, defaults: ToolkitDefaults) => {
   if (key === 'powers') {
     return {
       label: defaults.powers,
@@ -45,6 +44,8 @@ const getToolkitSectionMeta = (
   }
   return null
 }
+
+const PROFILE_ITEM_COUNT = 2
 
 export function CharacterProfileTemplate({
   fighterA,
@@ -68,54 +69,48 @@ export function CharacterProfileTemplate({
   }
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle || ''
-  const sectionRows = TOOLKIT_SECTION_ORDER.flatMap((sectionKey) => {
+  const sectionRows = TOOLKIT_SECTION_ORDER.map((sectionKey) => {
     const meta = getToolkitSectionMeta(sectionKey, toolkitDefaults)
-    if (!meta) return []
-
-    const section = {
+    return {
       key: sectionKey,
-      label: meta.label,
-      icon: meta.icon,
-      leftItems: profileA[sectionKey],
-      rightItems: profileB[sectionKey],
+      label: meta?.label || common.emptyFieldLabel,
+      icon: meta?.icon || Crosshair,
+      leftItems: profileA[sectionKey].slice(0, PROFILE_ITEM_COUNT),
+      rightItems: profileB[sectionKey].slice(0, PROFILE_ITEM_COUNT),
     }
-
-    return section.leftItems.length || section.rightItems.length ? [section] : []
   })
-
-  const renderColumnHeader = (fighter: Fighter) => <HighEndFighterBanner fighter={fighter} />
 
   const renderSectionCard = (
     fighter: Fighter,
     label: string,
     Icon: IconType,
     items: string[],
-  ) => {
-    return (
-      <div className={`h-full min-h-0 ${HIGH_END_CARD_CLASS} p-3`}>
-        <div className="mb-2 flex items-center gap-2">
-          <Icon size={16} style={{ color: fighter.color }} />
-          <p className={HIGH_END_LABEL_CLASS}>{label}</p>
-        </div>
-        {items.length ? (
-          <div className="space-y-2 text-sm leading-snug text-slate-200">
-            {items.map((item, index) => (
-              <div
-                key={`${label}-${index}-${item}`}
-                className="rounded-md border border-slate-700/70 bg-slate-900/84 px-2 py-1.5"
-              >
-                {item}
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className="flex h-[calc(100%-1.75rem)] items-center justify-center rounded-md border border-dashed border-cyan-300/20 bg-slate-950/45 px-3 text-center text-sm text-slate-500">
-            {common.noDataInCategory}
-          </div>
-        )}
+    side: 'left' | 'right',
+    sectionKey: string,
+  ) => (
+    <div className={`h-full min-h-0 ${HIGH_END_CARD_CLASS} p-3`}>
+      <div className="mb-2 flex items-center gap-2">
+        <Icon size={16} style={{ color: fighter.color }} />
+        <p className={HIGH_END_LABEL_CLASS}>{label}</p>
       </div>
-    )
-  }
+      <div className="grid h-[calc(100%-1.75rem)] grid-rows-2 gap-2">
+        {Array.from({ length: PROFILE_ITEM_COUNT }, (_, index) => items[index] || common.noDataInCategory).map((item, index) => (
+          <div
+            key={`${sectionKey}-${side}-${index}`}
+            className="rounded-md border border-slate-700/70 bg-slate-900/84 px-2 py-1.5"
+          >
+            <FittedText
+              as="p"
+              slotKey={`character-profile:${sectionKey}:${side}:${index}`}
+              spec={TEMPLATE_SLOT_SPECS.factBody}
+              text={item}
+              className="text-slate-200"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  )
 
   return (
     <div className={HIGH_END_ROOT_CLASS}>
@@ -130,28 +125,17 @@ export function CharacterProfileTemplate({
           />
           <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-rows-[auto_1fr] gap-3`}>
             <div className="grid grid-cols-2 gap-3">
-            {renderColumnHeader(fighterA)}
-            {renderColumnHeader(fighterB)}
-          </div>
-            {sectionRows.length ? (
-              <div className="min-h-0 space-y-2 overflow-y-auto pr-1">
-                {sectionRows.map((section) => (
-                  <div key={section.key} className="grid items-stretch grid-cols-2 gap-3">
-                    {renderSectionCard(fighterA, section.label, section.icon, section.leftItems)}
-                    {renderSectionCard(fighterB, section.label, section.icon, section.rightItems)}
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="grid grid-cols-2 gap-3">
-                <div className="flex min-h-[180px] items-center justify-center rounded-lg border border-dashed border-cyan-300/25 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
-                  {common.noPowersWeaknesses}
+              <HighEndFighterBanner fighter={fighterA} />
+              <HighEndFighterBanner fighter={fighterB} />
+            </div>
+            <div className="grid min-h-0 grid-rows-3 gap-2">
+              {sectionRows.map((section) => (
+                <div key={section.key} className="grid min-h-0 grid-cols-2 gap-3">
+                  {renderSectionCard(fighterA, section.label, section.icon, section.leftItems, 'left', section.key)}
+                  {renderSectionCard(fighterB, section.label, section.icon, section.rightItems, 'right', section.key)}
                 </div>
-                <div className="flex min-h-[180px] items-center justify-center rounded-lg border border-dashed border-cyan-300/25 bg-slate-950/60 px-3 py-4 text-center text-sm text-slate-400">
-                  {common.noPowersWeaknesses}
-                </div>
-              </div>
-            )}
+              ))}
+            </div>
           </div>
         </div>
       </div>

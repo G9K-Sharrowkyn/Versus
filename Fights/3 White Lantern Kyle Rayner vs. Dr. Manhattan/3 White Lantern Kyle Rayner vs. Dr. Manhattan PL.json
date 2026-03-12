@@ -170,7 +170,7 @@
       "example": "Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.",
       "question": "Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje samo przygotowanie?",
       "trap_bottom": "MANHATTAN WYGRYWA PRZEZ ODMOWĘ POLA WALKI, NIE PRZEZ NORMALNY DUEL",
-      "trap_top": "LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE"
+      "trap_top": "LEPSZE STATYSTYKI NIE MAJĄ ZNACZENIA, JEŚLI PRZYGOTOWANIE NIGDY W PEŁNI NIE POWSTANIE >"
     },
     "tactical-board": {
       "lane": "Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.",

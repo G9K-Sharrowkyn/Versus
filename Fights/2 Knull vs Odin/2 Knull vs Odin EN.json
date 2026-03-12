@@ -171,7 +171,7 @@
       "example": "Odin can be equal on averages and still lose if the damage is impressive but not permanent.",
       "question": "Can Odin's control actually convert into the kind of finish Knull cannot regenerate through?",
       "trap_bottom": "KNULL ONLY NEEDS ONE LOOP TO START PAYING FOR ITSELF",
-      "trap_top": "PAPER PARITY DOES NOT TELL YOU WHAT KIND OF DAMAGE WORKS"
+      "trap_top": "PAPER PARITY DOES NOT TELL YOU WHAT KIND OF DAMAGE WORKS >"
     },
     "tactical-board": {
       "lane": "Odin must turn chaos into structure before Knull turns structure into attrition.",
@@ -189,7 +189,7 @@
       "a_value": "50",
       "b_bonus": "15",
       "b_value": "50",
-      "factor": "ANTI-ABYSS COUNTER OR JUST DIVINE DAMAGE",
+      "factor": "ANTI-ABYSS COUNTER VS DIVINE DAMAGE",
       "implication": "This is why the same stat table can point to parity while the practical baseline still leans Knull.",
       "mechanics": "Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.",
       "psychology": "Knull wants repetition. Odin wants one controlled exchange that finally stays solved.",

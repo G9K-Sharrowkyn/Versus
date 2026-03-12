@@ -179,6 +179,12 @@
       "mechanics": "Superman has the statistical edge, but Hyperion does not stop under any opponent's pressure.",
       "psychology": "Hyperion can fight recklessly because mere survival brings him closer to victory.",
       "regen": "REGEN LOOP"
+    },
+    "stat-trap": {
+      "trap_top": "REGENERATION AND BRUTALITY >",
+      "trap_bottom": "TECHNIQUE IN A LONG FIGHT",
+      "example": "Superman can win clean exchanges and still lose the fight if Hyperion keeps coming back for the next contact.",
+      "question": "Can Superman truly close the fight before Hyperion's regeneration starts erasing the value of every good sequence?"
     }
   }
 }

@@ -11,6 +11,8 @@
     "preview": "vite preview",
     "fights:guard": "node scripts/guard-fight-json-integrity.mjs && node scripts/guard-fight-semantic-snapshot.mjs",
     "fights:audit:migration": "node scripts/audit-fight-json-migration.mjs",
+    "fights:audit:layout": "node scripts/audit-fight-layout.mjs",
+    "fights:test:visuals-persistence": "node scripts/test-fight-visuals-persistence.mjs",
     "fights:snapshot:update": "node scripts/guard-fight-semantic-snapshot.mjs --update",
     "i18n:audit": "node scripts/audit-text-encoding.mjs",
     "i18n:keys": "node scripts/i18n-keys-check.mjs"
@@ -35,6 +37,7 @@
     "eslint-plugin-react-hooks": "^7.0.1",
     "eslint-plugin-react-refresh": "^0.4.24",
     "globals": "^16.5.0",
+    "playwright": "^1.58.2",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "typescript": "~5.9.3",

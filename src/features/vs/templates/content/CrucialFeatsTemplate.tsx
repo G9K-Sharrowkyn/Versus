@@ -13,6 +13,7 @@ import {
   type TemplateImageEntry,
 } from '../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../types'
+import { FittedText } from '../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
@@ -22,6 +23,7 @@ import {
   HighEndFighterBanner,
   HighEndTemplateHeader,
 } from '../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
 
 export function CrucialFeatsTemplate({
   fighterA,
@@ -85,9 +87,13 @@ export function CrucialFeatsTemplate({
             onActivate={nextPair}
           />
           <div className={`${HIGH_END_CARD_CLASS} flex h-[18px] items-start overflow-hidden px-3 pt-[3px]`}>
-            <p className="w-full overflow-hidden text-ellipsis whitespace-nowrap text-[11px] leading-[1.1] text-slate-200">
-              {entry?.text || common.noEntry}
-            </p>
+            <FittedText
+              as="p"
+              slotKey={`crucial-feats:${side}:caption:${entry?.id || 'empty'}`}
+              spec={TEMPLATE_SLOT_SPECS.imageCaption}
+              text={entry?.text || common.noEntry}
+              className="w-full text-slate-200"
+            />
           </div>
         </div>
       </div>

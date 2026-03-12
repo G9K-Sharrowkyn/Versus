@@ -103,6 +103,7 @@ export type FightManifest = {
       mechanicsLabel: LocalizedText
       implicationLabel: LocalizedText
       psychologyLabel: LocalizedText
+      keyQuestionLabel: LocalizedText
       templateBlockPreviewLabel: LocalizedText
       emptyFieldLabel: LocalizedText
       startLabel: LocalizedText
@@ -221,6 +222,7 @@ export const fightManifest: FightManifest = {
       mechanicsLabel: text('Mechanika:', 'Mechanics:'),
       implicationLabel: text('Implikacja:', 'Implication:'),
       psychologyLabel: text('Psychologia:', 'Psychology:'),
+      keyQuestionLabel: text('Kluczowe pytanie:', 'Key question:'),
       templateBlockPreviewLabel: text('Podgląd bloku template', 'Template block preview'),
       emptyFieldLabel: text('PUSTE POLE', 'EMPTY FIELD'),
       startLabel: text('POCZĄTEK', 'START'),
@@ -282,10 +284,6 @@ export const fightManifest: FightManifest = {
       aliases: ['character a', 'character card a', 'card a', 'dossier postaci a', 'karta postaci a', 'postać a'],
       legacyIds: ['character-card-a'],
       variableFields: [],
-      defaultFields: {
-        corner_label: text('Niebieski narożnik', 'Blue corner'),
-        quote: text('Walka oparta na kontroli tempa i dystansu.', 'Fighter who controls pace and distance.'),
-      },
     },
     {
       id: 'character-dossier-b',
@@ -298,10 +296,6 @@ export const fightManifest: FightManifest = {
       aliases: ['character b', 'character card b', 'card b', 'dossier postaci b', 'karta postaci b', 'postać b'],
       legacyIds: ['character-card-b'],
       variableFields: [],
-      defaultFields: {
-        corner_label: text('Czerwony narożnik', 'Red corner'),
-        quote: text('Walka oparta na przejmowaniu inicjatywy i presji.', 'Fighter who takes initiative and applies pressure.'),
-      },
     },
     {
       id: 'character-profile',
@@ -421,12 +415,6 @@ export const fightManifest: FightManifest = {
         field('line_2', ['line2']),
         field('line_3', ['line3']),
       ],
-      defaultFields: {
-        winner: text('WERDYKT WARUNKOWY, BRAK ABSOLUTNEGO STOMPA', 'CONDITIONAL VERDICT, NO ABSOLUTE STOMP'),
-        line_1: text('Tempo > obrażenia na otwarciu.', 'Tempo > damage in opening.'),
-        line_2: text('Regeneracja zmienia późną fazę starcia.', 'Regeneration changes late game.'),
-        line_3: text('Zasady walki mogą odwrócić werdykt.', 'Rules can flip the verdict.'),
-      },
     },
     {
       id: 'battle-dynamics',
@@ -484,9 +472,6 @@ export const fightManifest: FightManifest = {
         field('line_3', ['line3', 'conclusion']),
         field('quote', ['line_4', 'line4']),
       ],
-      defaultFields: {
-        line_3: text('Warunki i wykonanie decydują o wyniku.', 'Conditions and execution decide the result.'),
-      },
     },
     {
       id: 'fight-simulation',
@@ -540,18 +525,6 @@ export const fightManifest: FightManifest = {
         field('example', ['line_3']),
         field('question', ['line_4', 'trap']),
       ],
-      defaultFields: {
-        trap_top: text('REGENERACJA I BRUTALNOŚĆ >', 'REGEN AND BRUTALITY >'),
-        trap_bottom: text('TECHNIKA W DŁUGIEJ WALCE', 'TECHNIQUE IN A LONG FIGHT'),
-        example: text(
-          'Przewaga umiejętności o 2-3 punkty znika, gdy przeciwnik od razu leczy każde trafienie.',
-          'A 2-3 point skill edge disappears when the opponent heals immediately after each hit.',
-        ),
-        question: text(
-          'Kluczowe pytanie: W zasadach "tylko zabicie" regeneracja przeciwnika znaczy więcej niż ogólny profil statystyk.',
-          "KEY QUESTION: In 'Kill-Only' rules, opponent regeneration matters more than all-around stats.",
-        ),
-      },
     },
     {
       id: 'direct-verdict',
@@ -571,13 +544,6 @@ export const fightManifest: FightManifest = {
         field('line_2', ['line2']),
         field('line_3', ['line3']),
       ],
-      defaultFields: {
-        outcome: text('Wygrywa konsekwentnie w standardowych warunkach.', 'Wins consistently under standard conditions.'),
-        certainty: text('Wysoka', 'High'),
-        line_1: text('Przewaga jest stała i nie zależy od niszowych zasad walki.', 'The edge is stable and does not depend on niche rules.'),
-        line_2: text('Przeciwnik nie ma realistycznego mechanizmu odwrócenia przebiegu starcia.', 'The opponent lacks a realistic mechanism to flip the fight.'),
-        line_3: text('Większość sensownych scenariuszy kończy się tym samym wynikiem.', 'Most reasonable scenarios end with the same result.'),
-      },
     },
     {
       id: 'verdict-matrix',

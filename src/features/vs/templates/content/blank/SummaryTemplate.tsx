@@ -1,8 +1,9 @@
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../../fightManifest'
+import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import { fighterMonogram } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { FittedText } from '../../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_CARD_CLASS,
@@ -15,6 +16,7 @@ import {
   HIGH_END_SMALL_TEXT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function SummaryTemplate({
   fighterA,
@@ -42,13 +44,11 @@ export function SummaryTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
   const portraitHint = chrome.portraitAdjustHint
-  const winnerLabel =
-    pickTemplateField(blockFields, ['winner', 'verdict']) ||
-    getFightTemplateDefaultField('final-summary', 'winner', language)
+  const winnerLabel = pickTemplateField(blockFields, ['winner', 'verdict']) || common.emptyFieldLabel
   const summaryLines = [
-    line(0, ['line_1', 'line1'], getFightTemplateDefaultField('final-summary', 'line_1', language)),
-    line(1, ['line_2', 'line2'], getFightTemplateDefaultField('final-summary', 'line_2', language)),
-    line(2, ['line_3', 'line3'], getFightTemplateDefaultField('final-summary', 'line_3', language)),
+    line(0, ['line_1', 'line1'], common.emptyFieldLabel),
+    line(1, ['line_2', 'line2'], common.emptyFieldLabel),
+    line(2, ['line_3', 'line3'], common.emptyFieldLabel),
   ]
 
   return (
@@ -67,9 +67,13 @@ export function SummaryTemplate({
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
               <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
                 <p className={HIGH_END_SMALL_TEXT_CLASS}>{common.blueCorner}</p>
-                <p className="text-lg uppercase leading-none" style={{ color: fighterA.color, fontFamily: 'var(--font-display)' }}>
-                  {fighterA.name || 'Fighter A'}
-                </p>
+                <FittedText
+                  as="p"
+                  slotKey={`final-summary:left-name:${fighterA.name || 'Fighter A'}`}
+                  spec={TEMPLATE_SLOT_SPECS.heroName}
+                  text={fighterA.name || 'Fighter A'}
+                  style={{ color: fighterA.color, fontFamily: 'var(--font-display)' }}
+                />
               </div>
               <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterA.color}88` }}>
                 {fighterA.imageUrl ? (
@@ -104,26 +108,48 @@ export function SummaryTemplate({
             <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-3`}>
               <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-left">
                 <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{common.verdictLabel}</p>
-                <p
-                  className="mt-2 max-w-[20ch] text-[clamp(1.6rem,2.2vw,2.8rem)] font-semibold leading-[1.1] tracking-[-0.02em] text-white"
+                <FittedText
+                  as="p"
+                  slotKey="final-summary:winner"
+                  spec={TEMPLATE_SLOT_SPECS.summaryWinner}
+                  text={winnerLabel}
+                  className="mt-2 max-w-[20ch] font-semibold tracking-[-0.02em] text-white"
                   style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  {winnerLabel}
-                </p>
+                />
               </div>
 
               <div className="mt-2 grid shrink-0 grid-cols-2 gap-2">
                 <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-                  <p className="text-xs uppercase tracking-[0.16em]">{fighterA.name || 'Fighter A'}</p>
-                  <p className="text-[1.75rem] font-semibold leading-none" style={{ color: fighterA.color }}>
-                    {Math.round(averageA)}
-                  </p>
+                  <FittedText
+                    as="p"
+                    slotKey={`final-summary:left-score-label:${fighterA.name || 'Fighter A'}`}
+                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                    text={fighterA.name || 'Fighter A'}
+                  />
+                  <FittedText
+                    as="p"
+                    slotKey="final-summary:left-score"
+                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    text={String(Math.round(averageA))}
+                    className="font-semibold"
+                    style={{ color: fighterA.color }}
+                  />
                 </div>
                 <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-                  <p className="text-xs uppercase tracking-[0.16em]">{fighterB.name || 'Fighter B'}</p>
-                  <p className="text-[1.75rem] font-semibold leading-none" style={{ color: fighterB.color }}>
-                    {Math.round(averageB)}
-                  </p>
+                  <FittedText
+                    as="p"
+                    slotKey={`final-summary:right-score-label:${fighterB.name || 'Fighter B'}`}
+                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                    text={fighterB.name || 'Fighter B'}
+                  />
+                  <FittedText
+                    as="p"
+                    slotKey="final-summary:right-score"
+                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    text={String(Math.round(averageB))}
+                    className="font-semibold"
+                    style={{ color: fighterB.color }}
+                  />
                 </div>
               </div>
 
@@ -132,7 +158,13 @@ export function SummaryTemplate({
                 <div className="mt-2 space-y-1.5 text-[0.92rem] leading-[1.18] text-slate-100">
                   {summaryLines.map((item, index) => (
                     <div key={`summary-line-${index}-${item}`} className="rounded border border-slate-700/60 bg-black/35 px-2 py-1">
-                      {index + 1}. {item}
+                      <FittedText
+                        as="p"
+                        slotKey={`final-summary:line:${index}`}
+                        spec={TEMPLATE_SLOT_SPECS.summaryLine}
+                        text={`${index + 1}. ${item}`}
+                        className="text-slate-100"
+                      />
                     </div>
                   ))}
                 </div>
@@ -142,9 +174,13 @@ export function SummaryTemplate({
             <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
               <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
                 <p className={HIGH_END_SMALL_TEXT_CLASS}>{common.redCorner}</p>
-                <p className="text-lg uppercase leading-none" style={{ color: fighterB.color, fontFamily: 'var(--font-display)' }}>
-                  {fighterB.name || 'Fighter B'}
-                </p>
+                <FittedText
+                  as="p"
+                  slotKey={`final-summary:right-name:${fighterB.name || 'Fighter B'}`}
+                  spec={TEMPLATE_SLOT_SPECS.heroName}
+                  text={fighterB.name || 'Fighter B'}
+                  style={{ color: fighterB.color, fontFamily: 'var(--font-display)' }}
+                />
               </div>
               <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterB.color}88` }}>
                 {fighterB.imageUrl ? (

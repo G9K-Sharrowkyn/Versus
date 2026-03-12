@@ -54,6 +54,7 @@ const manifestDefaultFieldMap = Object.fromEntries(
 const REQUIRED_TEMPLATE_FIELDS = {
   'battle-dynamics': ['a_curve', 'b_curve', 'yellow_wave', 'phase_1', 'phase_2', 'phase_3', 'analysis'],
   'x-factor': ['factor', 'a_value', 'a_bonus', 'a_bonus_label', 'b_value', 'b_bonus', 'regen', 'mechanics', 'implication', 'psychology'],
+  'stat-trap': ['trap_top', 'trap_bottom', 'example', 'question'],
   'fight-simulation': [
     'opening',
     'mid_fight',
@@ -123,6 +124,8 @@ const LEGACY_TEMPLATE_FIELDS = {
   ],
 }
 const VERDICT_CASE_BODY_RE = /[.!?]\s+\S/u
+const STAT_TRAP_QUESTION_PREFIX_RE = /^(kluczowe pytanie|key question)\s*:/i
+const X_FACTOR_HEADLINE_RE = /\sVS\s/i
 const requiredTemplateBlockSet = new Set(Object.keys(REQUIRED_TEMPLATE_FIELDS))
 
 const templateFieldCandidates = (key) => [key, toCamelCase(key)]
@@ -196,6 +199,25 @@ const validateLocaleTemplateBlocks = (dirName, fileName, parsed) => {
         if (typeof value !== 'string' || !VERDICT_CASE_BODY_RE.test(value.trim())) {
           errors.push(`[${dirName}] ${fileName} requires descriptive ${key} text in verdict-matrix, not only a short winner label.`)
         }
+      }
+    }
+    if (templateId === 'x-factor') {
+      const factorValue =
+        templateFieldCandidates('factor').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
+      if (typeof factorValue !== 'string' || !X_FACTOR_HEADLINE_RE.test(factorValue.trim())) {
+        errors.push(`[${dirName}] ${fileName} requires an x-factor headline in the "A VS B" format.`)
+      }
+    }
+    if (templateId === 'stat-trap') {
+      const questionValue =
+        templateFieldCandidates('question').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
+      const trapTopValue =
+        templateFieldCandidates('trap_top').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
+      if (typeof questionValue === 'string' && STAT_TRAP_QUESTION_PREFIX_RE.test(questionValue.trim())) {
+        errors.push(`[${dirName}] ${fileName} must keep the stat-trap question body without the "Key question" prefix.`)
+      }
+      if (typeof trapTopValue !== 'string' || !trapTopValue.includes('>')) {
+        errors.push(`[${dirName}] ${fileName} requires a stat-trap top line in the "A >" format.`)
       }
     }
   }

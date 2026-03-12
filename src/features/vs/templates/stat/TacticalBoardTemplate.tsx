@@ -3,6 +3,7 @@ import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
+import { FittedText } from '../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_FRAME_CLASS,
@@ -12,8 +13,7 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../shared/highEnd'
-
-const MATCHUP_SEPARATOR_RE = /^(.*?)(?:\s*\/\/\s*|\s+\|\s+|\s+-\s+)(.+\b(?:vs\.?|versus|kontra|v)\b.+)$/i
+import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
 
 export function TacticalBoardTemplate({
   rows,
@@ -28,8 +28,7 @@ export function TacticalBoardTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const chrome = buildFightTemplateChrome(language, blockFields)
-  const rawHeaderText = pickTemplateField(blockFields, ['headline', 'header', 'title'])
-  const headerText = rawHeaderText || title
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const boardHeader =
     pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
@@ -44,9 +43,7 @@ export function TacticalBoardTemplate({
     pickTemplateField(blockFields, ['chaos_label']) ||
     getFightTemplateDefaultField('tactical-board', 'chaos_label', language)
   const fallbackMatchup = `${fighterA.name || 'Fighter A'} VS ${fighterB.name || 'Fighter B'}`
-  const parsedHeader = rawHeaderText?.trim().match(MATCHUP_SEPARATOR_RE)
-  const mainHeaderText = parsedHeader?.[1]?.trim() || headerText
-  const matchupText = pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) || parsedHeader?.[2]?.trim() || fallbackMatchup
+  const matchupText = pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) || fallbackMatchup
   const tiles = rows.slice(0, 9)
   const splitX = 50
   const linearStartX = 8
@@ -55,9 +52,14 @@ export function TacticalBoardTemplate({
   const linearLabelX = 25
   const chaosLabelX = 75
   const matchupSupplement = matchupText ? (
-    <p className="mt-1 text-center text-[18px] uppercase leading-[1.05] tracking-[0.18em] text-cyan-100" style={{ fontFamily: 'var(--font-display)' }}>
-      {matchupText}
-    </p>
+    <FittedText
+      as="p"
+      slotKey={`tactical-board:matchup:${matchupText}`}
+      spec={TEMPLATE_SLOT_SPECS.matchupSupplement}
+      text={matchupText}
+      className="mt-1 text-cyan-100"
+      style={{ fontFamily: 'var(--font-display)' }}
+    />
   ) : null
 
   return (
@@ -67,7 +69,7 @@ export function TacticalBoardTemplate({
         <div className="relative z-10 flex h-full min-h-0 flex-col">
           <HighEndTemplateHeader
             chrome={chrome}
-            headerText={mainHeaderText}
+            headerText={headerText}
             subText={subText}
             centerSupplement={matchupSupplement}
             onToggleLanguage={onToggleLanguage}
@@ -88,9 +90,14 @@ export function TacticalBoardTemplate({
                         <Icon size={31} color={winnerColor} />
                       </div>
                       <div className="flex min-h-[56px] items-center justify-center rounded-md border border-slate-600/45 bg-black/25 px-1">
-                        <p className="text-center text-[18px] font-semibold uppercase leading-tight tracking-[0.04em]" style={{ color: winnerColor }}>
-                          {row.label}
-                        </p>
+                        <FittedText
+                          as="p"
+                          slotKey={`tactical-board:tile:${row.id}`}
+                          spec={TEMPLATE_SLOT_SPECS.tacticalBoardTile}
+                          text={row.label}
+                          className="font-semibold tracking-[0.04em]"
+                          style={{ color: winnerColor, width: '100%' }}
+                        />
                       </div>
                     </div>
                   )

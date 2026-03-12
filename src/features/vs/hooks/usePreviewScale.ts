@@ -1,4 +1,4 @@
-import { useEffect, useState, type RefObject } from 'react'
+import { useLayoutEffect, useState, type RefObject } from 'react'
 
 type UsePreviewScaleOptions = {
   shellRef: RefObject<HTMLDivElement | null>
@@ -17,9 +17,11 @@ export function usePreviewScale({
   minScale,
   maxScale,
 }: UsePreviewScaleOptions) {
-  const [previewScale, setPreviewScale] = useState(1)
+  const quantizeScale = (value: number) => Math.round(value * 1000) / 1000
+  const [previewScale, setPreviewScale] = useState(quantizeScale(minScale))
+  const [previewScaleReady, setPreviewScaleReady] = useState(false)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const shell = shellRef.current
     if (!shell) return
 
@@ -29,8 +31,9 @@ export function usePreviewScale({
       const scaleFromWidth = availableWidth / baseWidth
       const scaleFromHeight = availableHeight / baseHeight
       const boundedScale = Math.min(scaleFromWidth, scaleFromHeight)
-      const nextScale = Math.max(minScale, Math.min(maxScale, boundedScale))
+      const nextScale = quantizeScale(Math.max(minScale, Math.min(maxScale, boundedScale)))
       setPreviewScale((previous) => (Math.abs(previous - nextScale) > 0.001 ? nextScale : previous))
+      setPreviewScaleReady(true)
     }
 
     updateScale()
@@ -45,5 +48,8 @@ export function usePreviewScale({
     }
   }, [baseHeight, baseWidth, maxScale, minScale, shellRef, viewMode])
 
-  return previewScale
+  return {
+    previewScale,
+    previewScaleReady,
+  }
 }

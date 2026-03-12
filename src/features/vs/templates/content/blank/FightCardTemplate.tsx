@@ -6,13 +6,13 @@ import {
   type FightCardPalette,
   fighterMonogram,
   normalizeHexColor,
-  resolveFightCardNameFontRem,
   resolveFightCardPalette,
   resolveFightCardStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { FittedText } from '../../shared/FittedText'
 import {
   HIGH_END_BODY_GAP_CLASS,
   HIGH_END_GRID_OVERLAY_CLASS,
@@ -20,6 +20,7 @@ import {
   HIGH_END_ROOT_CLASS,
   HighEndTemplateHeader,
 } from '../../shared/highEnd'
+import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
 
 export function FightCardTemplate({
   fighterA,
@@ -51,6 +52,7 @@ export function FightCardTemplate({
   )
   const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
   const subText = subtitle || ''
+  const isAuditMode = typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true'
   const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
   const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || 'Fighter A').trim())
   const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || 'Fighter B').trim())
@@ -73,22 +75,23 @@ export function FightCardTemplate({
 
   const renderStaticLine = (text: string, palette: FightCardPalette) => {
     const stripeStyle = resolveFightCardStripeStyle(palette)
-    const fontSizeRem = resolveFightCardNameFontRem(text)
 
     return (
-      <span
+      <FittedText
+        as="span"
+        slotKey={`fight-card:name:${text}`}
+        spec={TEMPLATE_SLOT_SPECS.fightCardName}
+        text={text}
         className="vvv-fight-card-portrait__wordmark"
         style={
           {
             color: palette.colorA,
-            fontSize: `${fontSizeRem}rem`,
+            width: '100%',
             '--vvv-stripe-image': stripeStyle.textureUrl,
             '--vvv-stripe-filter': stripeStyle.textureFilter,
           } as CSSProperties
         }
-      >
-        {text}
-      </span>
+      />
     )
   }
 
@@ -110,7 +113,7 @@ export function FightCardTemplate({
         style={
           {
             '--vvv-portrait-color': fighter.color,
-            '--f': 'url(#vvv-electric-flow-hue)',
+            '--f': isAuditMode ? 'none' : 'url(#vvv-electric-flow-hue)',
             '--electric-y-offset': '-3px',
             '--electric-border-color': fighter.color,
             '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
@@ -159,23 +162,25 @@ export function FightCardTemplate({
     <div className={HIGH_END_ROOT_CLASS}>
       <div className={HIGH_END_PANEL_CLASS}>
         <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <svg className="vvv-fight-card-svg-defs" aria-hidden="true">
-          <defs>
-            <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
-              <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
-              <feColorMatrix type="hueRotate" result="pt1">
-                <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
-              </feColorMatrix>
-              <feComposite />
-              <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
-              <feColorMatrix type="hueRotate" result="pt2">
-                <animate attributeName="values" values="0;333;199;286;64;168;256;157;360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
-              </feColorMatrix>
-              <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
-              <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
-            </filter>
-          </defs>
-        </svg>
+        {!isAuditMode ? (
+          <svg className="vvv-fight-card-svg-defs" aria-hidden="true">
+            <defs>
+              <filter id="vvv-electric-flow-hue" colorInterpolationFilters="sRGB" x="-20%" y="-20%" width="140%" height="140%">
+                <feTurbulence type="turbulence" baseFrequency="0.02" numOctaves="7" />
+                <feColorMatrix type="hueRotate" result="pt1">
+                  <animate attributeName="values" values="0;360;" dur=".6s" repeatCount="indefinite" calcMode="paced" />
+                </feColorMatrix>
+                <feComposite />
+                <feTurbulence type="turbulence" baseFrequency="0.03" numOctaves="7" seed="5" />
+                <feColorMatrix type="hueRotate" result="pt2">
+                  <animate attributeName="values" values="0;333;199;286;64;168;256;157;360;" dur="5s" repeatCount="indefinite" calcMode="paced" />
+                </feColorMatrix>
+                <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+                <feDisplacementMap in="SourceGraphic" scale="30" xChannelSelector="R" yChannelSelector="B" />
+              </filter>
+            </defs>
+          </svg>
+        ) : null}
         <div className="relative z-10 flex h-full min-h-0 flex-col text-center text-slate-200">
           <HighEndTemplateHeader
             chrome={chrome}
