@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-03-11T22:29:05.507Z",
+  "updatedAt": "2026-03-12T18:00:28.441Z",
   "folders": {
     "1 Superman vs King Hyperion": {
       "portraitAAdjust": {
@@ -146,7 +146,7 @@
         },
         "crucial-feats:left:file:01_6_1_superman_bench_press_earth_equivalent.jpg": {
           "x": 50,
-          "y": 19.166947122049933,
+          "y": 11.614178631940243,
           "scale": 1
         },
         "crucial-feats:left:file:superman_read.jpeg": {
@@ -196,21 +196,21 @@
         },
         "victory-archive:left:file:11_7_1_superman_doomsday_finish.jpg": {
           "x": 50,
-          "y": 100,
+          "y": 50,
           "scale": 1
         },
         "victory-archive:left:file:12_7_1_superman_beats_wraith.jpg": {
           "x": 50,
-          "y": 100,
+          "y": 50,
           "scale": 1
         },
         "victory-archive:left:file:13_7_1_superman_blitzes_parasite.jpg": {
           "x": 50,
-          "y": 0,
+          "y": 50,
           "scale": 1
         },
         "victory-archive:left:file:14_7_1_superman_blitzes_mongul.jpg": {
-          "x": 0,
+          "x": 50,
           "y": 50,
           "scale": 1
         },
@@ -414,7 +414,7 @@
         },
         "character-dossier-b:portrait": {
           "x": 50,
-          "y": 0,
+          "y": 100,
           "scale": 1
         },
         "crucial-feats:left:file:kyle_source.jpeg": {
@@ -501,6 +501,41 @@
           "x": 50,
           "y": 50,
           "scale": 1
+        },
+        "victory-archive:left:file:relic.webp": {
+          "x": 50,
+          "y": 49.8235403942213,
+          "scale": 1
+        },
+        "victory-archive:left:file:third army.webp": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:kyle_oblivion.jpeg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:kyle_titans.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:kyle_vessel.jpeg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:right:file:manhattan_disintegrate.jpg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
+        },
+        "victory-archive:right:file:manhattan_owlmetr.jpeg": {
+          "x": 50,
+          "y": 100,
+          "scale": 1
         }
       }
     },
@@ -545,14 +580,14 @@
           "scale": 1
         },
         "crucial-feats:right:file:saitama time travels to reverse causality.png": {
-          "x": 50,
+          "x": 0,
           "y": 0,
-          "scale": 1
+          "scale": 1.1089976988339845
         },
         "crucial-feats:left:file:no sells a kamehameha from ssb goku.jpeg": {
-          "x": 50,
-          "y": 79.89665730947097,
-          "scale": 1
+          "x": 100,
+          "y": 77.62834738714297,
+          "scale": 1.0726652212585428
         },
         "crucial-feats:right:file:can freely grab and move hyperspace.png": {
           "x": 50,
@@ -562,7 +597,7 @@
         "crucial-feats:left:file:detects and counters attacks coming from a different dimension.jpg": {
           "x": 70.86552045984317,
           "y": 0,
-          "scale": 1.362236658208516
+          "scale": 1.3665965661618753
         },
         "crucial-feats:right:file:saitama can achieve flight.jpg": {
           "x": 50,
@@ -577,6 +612,41 @@
         "crucial-feats:right:file:a serious sneeze blows away the gas surrounding jupiter's.png": {
           "x": 50,
           "y": 30.69062361258914,
+          "scale": 1
+        },
+        "character-dossier-a:portrait": {
+          "x": 50,
+          "y": 74.7260540611039,
+          "scale": 1
+        },
+        "character-dossier-b:portrait": {
+          "x": 50,
+          "y": 8.149128154735763,
+          "scale": 1
+        },
+        "victory-archive:left:file:11_7_1_jiren_hit.jpg": {
+          "x": 93.20944751404608,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:12_7_1_jiren_maji_kayo.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:13_7_1_jiren_golden_frieza.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:14_7_1_jiren_kale.jpg": {
+          "x": 50,
+          "y": 50,
+          "scale": 1
+        },
+        "victory-archive:left:file:15_7_1_jiren_vegeta.jpg": {
+          "x": 50,
+          "y": 50,
           "scale": 1
         }
       }
@@ -684,7 +754,7 @@
         },
         "crucial-feats:right:file:06_6_2_galactus_three_solar_systems.jpg": {
           "x": 50,
-          "y": 100,
+          "y": 33.09339641782631,
           "scale": 1
         },
         "crucial-feats:left:file:02_6_1_trigon_countless_worlds.jpg": {
@@ -694,7 +764,7 @@
         },
         "crucial-feats:right:file:07_6_2_galactus_agamotto_realm.jpg": {
           "x": 50,
-          "y": 100,
+          "y": 0,
           "scale": 1
         },
         "crucial-feats:right:slot:2": {
@@ -744,7 +814,7 @@
         },
         "victory-archive:left:file:dissipates psimon's atoms across.jpeg": {
           "x": 50,
-          "y": 60.86820442539282,
+          "y": 50,
           "scale": 1
         },
         "crucial-feats:left:file:absorbs the heart of darkness....jpeg": {
@@ -764,12 +834,12 @@
         },
         "crucial-feats:left:file:destroys planet with a death-stare.jpg": {
           "x": 50,
-          "y": 31.875874822588397,
+          "y": 50,
           "scale": 1
         },
         "crucial-feats:right:file:the ultimate nullifier.jpg": {
           "x": 50,
-          "y": 28.37484274198573,
+          "y": 50.09113728868602,
           "scale": 1
         },
         "crucial-feats:left:file:turns dc earth and everyone in it into stone.jpg": {

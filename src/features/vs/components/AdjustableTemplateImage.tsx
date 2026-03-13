@@ -1,7 +1,11 @@
 import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import clsx from 'clsx'
+import { getImagePreloadSnapshot, preloadImageUrl } from '../domain/imagePreloadCache'
 import type { PortraitAdjust } from '../types'
 import { PORTRAIT_ADJUST_DEFAULT, buildAdjustableTemplateImageStyle, getTemplateImageGeometry, normalizePortraitAdjust, normalizeTemplateImageAdjust } from '../helpers'
+
+const samePortraitAdjust = (left: PortraitAdjust, right: PortraitAdjust) =>
+  left.x === right.x && left.y === right.y && left.scale === right.scale
 
 export function AdjustableTemplateImage({
   imageUrl,
@@ -63,6 +67,9 @@ export function AdjustableTemplateImage({
   const [liveAdjust, setLiveAdjust] = useState<PortraitAdjust>(committedAdjust)
   const displayAdjust = isInteracting ? liveAdjust : committedAdjust
   const isImageReady = loadedImageKey === imageUrl
+  const committedX = committedAdjust.x
+  const committedY = committedAdjust.y
+  const committedScale = committedAdjust.scale
   const imageGeometry = useMemo(
     () =>
       getTemplateImageGeometry(
@@ -79,8 +86,55 @@ export function AdjustableTemplateImage({
   }, [displayAdjust])
 
   useEffect(() => {
+    if (isDraggingRef.current) return
+    latestAdjustRef.current = { x: committedX, y: committedY, scale: committedScale }
+  }, [adjustKey, committedScale, committedX, committedY])
+
+  useEffect(() => {
     imageMetricsRef.current = imageNaturalSize
   }, [imageNaturalSize])
+
+  useEffect(() => {
+    let cancelled = false
+    let frameId = 0
+
+    const commitSnapshot = (nextKey: string, width: number, height: number) => {
+      frameId = window.requestAnimationFrame(() => {
+        if (cancelled) return
+        setLoadedImageKey(nextKey)
+        setImageNaturalSizeState({
+          key: nextKey,
+          width,
+          height,
+        })
+      })
+    }
+
+    if (!imageUrl) {
+      commitSnapshot('', 0, 0)
+      return () => {
+        cancelled = true
+        window.cancelAnimationFrame(frameId)
+      }
+    }
+
+    const cached = getImagePreloadSnapshot(imageUrl)
+    if (cached?.status === 'loaded') {
+      commitSnapshot(imageUrl, cached.width, cached.height)
+    } else {
+      commitSnapshot('', 0, 0)
+    }
+
+    void preloadImageUrl(imageUrl).then((snapshot) => {
+      if (cancelled || snapshot.status !== 'loaded') return
+      commitSnapshot(imageUrl, snapshot.width, snapshot.height)
+    })
+
+    return () => {
+      cancelled = true
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [imageUrl])
 
   useEffect(() => {
     const container = containerRef.current
@@ -110,6 +164,7 @@ export function AdjustableTemplateImage({
     const normalized = normalizeTemplateImageAdjust(normalizePortraitAdjust(nextAdjust))
     latestAdjustRef.current = normalized
     setLiveAdjust(normalized)
+    onAdjustChange(adjustKey, normalized)
     return normalized
   }
 
@@ -119,13 +174,17 @@ export function AdjustableTemplateImage({
     if (!container) return
     event.preventDefault()
     event.stopPropagation()
+    if (!samePortraitAdjust(liveAdjust, committedAdjust)) {
+      setLiveAdjust(committedAdjust)
+    }
+    latestAdjustRef.current = committedAdjust
 
     dragRef.current = {
       pointerId: event.pointerId,
       mode: event.button === 2 ? 'zoom' : 'pan',
       startX: event.clientX,
       startY: event.clientY,
-      base: latestAdjustRef.current,
+      base: committedAdjust,
       moved: false,
     }
     isDraggingRef.current = true
@@ -225,13 +284,14 @@ export function AdjustableTemplateImage({
     >
       {imageUrl ? (
         <img
-          key={imageUrl}
           src={imageUrl}
           alt={alt}
           className="absolute block select-none"
           draggable={false}
+          loading="eager"
+          decoding="async"
           style={{
-            ...buildAdjustableTemplateImageStyle(liveAdjust, imageGeometry),
+            ...buildAdjustableTemplateImageStyle(displayAdjust, imageGeometry),
             opacity: isImageReady ? 1 : 0,
           }}
           onLoad={(event) => {

@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
+import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import type { TemplateSlotSpec } from './templateUi'
 
 type SharedSlotProps = {
@@ -35,6 +35,8 @@ const applyFont = (element: HTMLElement, fontPx: number, spec: TemplateSlotSpec)
   element.style.lineHeight = `${spec.lineHeight}`
 }
 
+const roundToStep = (value: number) => Math.round(value / FIT_STEP) * FIT_STEP
+
 const measureOverflow = (element: HTMLElement) => {
   const width = Math.max(1, element.clientWidth)
   const height = Math.max(1, element.clientHeight)
@@ -68,10 +70,34 @@ const buildDataAttributes = (
   'data-vs-slot-overflow-min': metrics.overflowedAtMin,
   'data-vs-slot-excess-chars': metrics.excessChars,
   'data-vs-slot-text-length': text.length,
+  'data-vs-slot-fit-mode': spec.fitMode || 'none',
   ...(templateId ? { 'data-vs-template-id': templateId } : {}),
   ...(activeFightId ? { 'data-vs-fight-id': activeFightId } : {}),
   ...(language ? { 'data-vs-language': language } : {}),
 })
+
+export const buildStaticSlotDataAttributes = ({
+  slotKey,
+  spec,
+  text,
+  templateId,
+  activeFightId,
+  language,
+}: SharedSlotProps) =>
+  buildDataAttributes(
+    slotKey,
+    text,
+    spec,
+    {
+      finalFontPx: spec.baseFontPx,
+      overflowedAtBase: false,
+      overflowedAtMin: false,
+      excessChars: 0,
+    },
+    templateId,
+    activeFightId,
+    language,
+  )
 
 export function useSlotAutofit({
   slotKey,
@@ -95,7 +121,9 @@ export function useSlotAutofit({
     [spec.baseFontPx, spec.lineHeight, spec.maxLines],
   )
 
-  useLayoutEffect(() => {
+  useEffect(() => {
+    if ((spec.fitMode || 'none') !== 'shrink') return
+
     const element = ref.current
     if (!element) return
 
@@ -108,13 +136,28 @@ export function useSlotAutofit({
       const baseMetrics = measureOverflow(target)
 
       let nextFontPx = spec.baseFontPx
-      for (let candidate = spec.baseFontPx; candidate >= spec.minFontPx; candidate -= FIT_STEP) {
-        applyFont(target, candidate, spec)
-        if (measureOverflow(target).fits) {
-          nextFontPx = roundMetric(candidate)
-          break
+      if (!baseMetrics.fits) {
+        let low = spec.minFontPx
+        let high = spec.baseFontPx
+        let best = spec.minFontPx
+
+        applyFont(target, low, spec)
+        const minMetrics = measureOverflow(target)
+        if (!minMetrics.fits) {
+          nextFontPx = spec.minFontPx
+        } else {
+          while (high - low > FIT_STEP) {
+            const candidate = roundToStep((low + high) / 2)
+            applyFont(target, candidate, spec)
+            if (measureOverflow(target).fits) {
+              best = candidate
+              low = candidate
+            } else {
+              high = candidate
+            }
+          }
+          nextFontPx = roundMetric(best)
         }
-        nextFontPx = spec.minFontPx
       }
 
       applyFont(target, nextFontPx, spec)
@@ -138,17 +181,10 @@ export function useSlotAutofit({
       )
     }
 
-    const observer = new ResizeObserver(() => {
-      cancelAnimationFrame(frameId)
-      frameId = window.requestAnimationFrame(fit)
-    })
-    observer.observe(element)
-    if (element.parentElement) observer.observe(element.parentElement)
-    fit()
+    frameId = window.requestAnimationFrame(fit)
 
     return () => {
       cancelAnimationFrame(frameId)
-      observer.disconnect()
     }
   }, [spec, text])
 

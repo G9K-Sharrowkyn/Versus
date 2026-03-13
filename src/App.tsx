@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
@@ -8,6 +8,8 @@ import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
 import { findFightVariantByLanguage, applySharedFightVisualAdjustments } from './features/vs/domain/fightVariants'
+import { preloadFightCoreImages } from './features/vs/domain/fightImagePreload'
+import { markPerformance, measurePerformance } from './features/vs/domain/performanceTrace'
 import { buildFightStudioState, resolveFightLanguage, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
 import {
   DEFAULT_TEMPLATE_ORDER,
@@ -54,6 +56,18 @@ import type {
 } from './features/vs/types'
 
 type ApplyFightRecord = (fight: FightRecord, options?: ApplyFightRecordOptions) => void
+type RequestFightApply = (
+  fight: FightRecord,
+  options?: ApplyFightRecordOptions,
+  reason?: PendingFightSelectionReason,
+) => void
+type PendingFightSelectionReason = 'open-fight' | 'search-transition' | 'search-shortcut' | 'language-switch'
+type PendingFightSelection = {
+  requestId: number
+  fight: FightRecord
+  options?: ApplyFightRecordOptions
+  reason: PendingFightSelectionReason
+}
 type AuditRequest = {
   fightKey: string
   templateId: TemplateId | null
@@ -138,9 +152,19 @@ function App() {
   const searchTransitioningRef = useRef(false)
   const returnTransitioningRef = useRef(false)
   const applyFightRecordRef = useRef<ApplyFightRecord | null>(null)
+  const requestFightApplyRef = useRef<RequestFightApply | null>(null)
   const auditAppliedRef = useRef(false)
   const pendingAuditTemplateRef = useRef<TemplateId | null>(null)
+  const pendingPaintPerfRef = useRef<{
+    requestId: number
+    fightId: string
+    language: Language
+    reason: PendingFightSelectionReason
+  } | null>(null)
+  const pendingFightRequestIdRef = useRef(0)
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
+  const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
+  const [pendingLocaleSwitch, setPendingLocaleSwitch] = useState<Language | null>(null)
 
   const {
     fights,
@@ -183,7 +207,7 @@ function App() {
     activeTemplate,
     activeFightId,
     templateCursor,
-    applyFightRecordRef,
+    requestFightApplyRef,
     setActiveFightId,
     searchTransitioningRef,
     returnTransitioningRef,
@@ -428,7 +452,7 @@ function App() {
     }
   }
 
-  const applyFightRecord: ApplyFightRecord = (fight, options) => {
+  const applyFightRecord = useCallback<ApplyFightRecord>((fight, options) => {
     const fightLanguage = resolveFightLanguage(fight, language)
     const nextState = buildFightStudioState({
       fight,
@@ -469,11 +493,82 @@ function App() {
     }
 
     applyTemplateById(nextState.nextTemplate, false)
-  }
+  }, [
+    activeFightSignatureRef,
+    activeTemplate,
+    applyTemplateById,
+    clearSearchTransitionQueue,
+    language,
+    setActiveFightId,
+    setIntroVisible,
+    setViewMode,
+    templateCursor,
+  ])
 
   useEffect(() => {
     applyFightRecordRef.current = applyFightRecord
-  })
+  }, [applyFightRecord])
+
+  const requestFightApply = useCallback<RequestFightApply>((fight, options, reason = 'open-fight') => {
+    const requestId = pendingFightRequestIdRef.current + 1
+    pendingFightRequestIdRef.current = requestId
+    const targetLanguage = options?.targetLanguage ?? resolveFightLanguage(fight, language)
+    if (reason !== 'language-switch' && pendingLocaleSwitch !== null) {
+      setPendingLocaleSwitch(null)
+    }
+    markPerformance(`vs-request:${requestId}:click`)
+    pendingPaintPerfRef.current = {
+      requestId,
+      fightId: fight.id,
+      language: targetLanguage,
+      reason,
+    }
+    void preloadFightCoreImages(fight)
+    setPendingFightSelection({
+      requestId,
+      fight,
+      options,
+      reason,
+    })
+  }, [language, pendingLocaleSwitch])
+
+  useEffect(() => {
+    requestFightApplyRef.current = requestFightApply
+  }, [requestFightApply])
+
+  useEffect(() => {
+    if (!pendingFightSelection) return
+
+    const currentRequest = pendingFightSelection
+    const applyStartMark = `vs-request:${currentRequest.requestId}:apply-start`
+    const applyEndMark = `vs-request:${currentRequest.requestId}:apply-end`
+    let cancelled = false
+
+    const frameId = window.requestAnimationFrame(() => {
+      if (cancelled) return
+      markPerformance(applyStartMark)
+      startTransition(() => {
+        applyFightRecord(currentRequest.fight, currentRequest.options)
+        markPerformance(applyEndMark)
+        measurePerformance(
+          `fight:${currentRequest.reason}:apply:${currentRequest.requestId}`,
+          applyStartMark,
+          applyEndMark,
+        )
+        setPendingFightSelection((active) =>
+          active?.requestId === currentRequest.requestId ? null : active,
+        )
+        if (currentRequest.reason === 'language-switch') {
+          setPendingLocaleSwitch(null)
+        }
+      })
+    })
+
+    return () => {
+      cancelled = true
+      window.cancelAnimationFrame(frameId)
+    }
+  }, [applyFightRecord, pendingFightSelection])
 
   useEffect(() => {
     if (!auditRequest?.fightKey || !storageReady || auditAppliedRef.current || !fights.length) return
@@ -541,7 +636,6 @@ function App() {
 
   const toggleLanguage = () => {
     const nextLanguage = language === 'pl' ? 'en' : 'pl'
-    setLanguage(nextLanguage)
 
     if (activeFightId) {
       const currentFight = fights.find((fight) => fight.id === activeFightId)
@@ -549,33 +643,48 @@ function App() {
         const otherVariant = findFightVariantByLanguage(fights, currentFight, nextLanguage)
         if (otherVariant) {
           rememberPreferredFightVariant(otherVariant)
-          applyFightRecord(otherVariant, {
+          setPendingLocaleSwitch(nextLanguage)
+          requestFightApply(otherVariant, {
             enterIntro: false,
             preserveTemplateSelection: true,
             targetLanguage: nextLanguage,
-          })
+          }, 'language-switch')
           return
         }
       }
     }
 
-    if (!importFileName && !Object.keys(templateBlocks).length) {
-      setCategories(defaultCategoriesFor(nextLanguage))
-      setFactsA(defaultFactsFor('a', nextLanguage))
-      setFactsB(defaultFactsFor('b', nextLanguage))
-      setPowersA([])
-      setPowersB([])
-      setCrucialFeatsA([])
-      setCrucialFeatsB([])
-      setSlideImageAdjustments({})
-    }
+    markPerformance(`vs-language-switch:fallback:${nextLanguage}:click`)
+    startTransition(() => {
+      setLanguage(nextLanguage)
+      if (!importFileName && !Object.keys(templateBlocks).length) {
+        setCategories(defaultCategoriesFor(nextLanguage))
+        setFactsA(defaultFactsFor('a', nextLanguage))
+        setFactsB(defaultFactsFor('b', nextLanguage))
+        setPowersA([])
+        setPowersB([])
+        setCrucialFeatsA([])
+        setCrucialFeatsB([])
+        setSlideImageAdjustments({})
+      }
+      markPerformance(`vs-language-switch:fallback:${nextLanguage}:end`)
+      measurePerformance(
+        `language-switch:fallback:${nextLanguage}`,
+        `vs-language-switch:fallback:${nextLanguage}:click`,
+        `vs-language-switch:fallback:${nextLanguage}:end`,
+      )
+    })
   }
 
   const openFight = (fightId: string) => {
     const fight = fights.find((item) => item.id === fightId)
     if (!fight) return
     rememberPreferredFightVariant(fight)
-    applyFightRecord(fight)
+    clearFinalTemplateAutoReturnTimeout()
+    clearSearchTransitionQueue()
+    setIntroVisible(true)
+    setViewMode('fight-intro')
+    requestFightApply(fight, { enterIntro: false }, 'open-fight')
   }
 
   const deleteFight = (fightId: string) => {
@@ -639,6 +748,27 @@ function App() {
     () => fights.find((fight) => fight.id === activeFightId) || null,
     [activeFightId, fights],
   )
+
+  useEffect(() => {
+    if (!activeFightRecord) return
+    void preloadFightCoreImages(activeFightRecord)
+  }, [activeFightRecord])
+
+  useEffect(() => {
+    const pendingPaint = pendingPaintPerfRef.current
+    if (!pendingPaint) return
+    if (!previewReady || viewMode !== 'fight') return
+    if (activeFightId !== pendingPaint.fightId || language !== pendingPaint.language) return
+
+    const paintMark = `vs-request:${pendingPaint.requestId}:paint`
+    markPerformance(paintMark)
+    measurePerformance(
+      `fight:${pendingPaint.reason}:click-to-paint:${pendingPaint.requestId}`,
+      `vs-request:${pendingPaint.requestId}:click`,
+      paintMark,
+    )
+    pendingPaintPerfRef.current = null
+  }, [activeFightId, language, previewReady, viewMode])
 
   const currentFightLabel =
     stripFileExtension(importFileName) ||

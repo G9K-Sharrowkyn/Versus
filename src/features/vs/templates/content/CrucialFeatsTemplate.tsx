@@ -1,6 +1,9 @@
+import { useEffect } from 'react'
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
+import { preloadImageUrls } from '../../domain/imagePreloadCache'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import {
+  buildCanonicalLegacyTemplateImageAdjustKey,
   TEMPLATE_BLOCK_ALIASES,
   buildLegacyTemplateImageAdjustKey,
   buildTemplateImageAdjustKey,
@@ -55,6 +58,30 @@ export function CrucialFeatsTemplate({
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
 
+  useEffect(() => {
+    const nextLeftEntry = leftEntries[pairIndex + 1] || null
+    const nextRightEntry = rightEntries[pairIndex + 1] || null
+    const preloadUrls = [
+      nextLeftEntry
+        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextLeftEntry.imageFile, {
+            templateId: 'crucial-feats',
+            side: 'left',
+            slot: nextLeftEntry.slot,
+          })
+        : '',
+      nextRightEntry
+        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextRightEntry.imageFile, {
+            templateId: 'crucial-feats',
+            side: 'right',
+            slot: nextRightEntry.slot,
+          })
+        : '',
+    ].filter(Boolean)
+
+    if (!preloadUrls.length) return
+    void preloadImageUrls(preloadUrls)
+  }, [activeFightFolderKey, leftEntries, pairIndex, rightEntries])
+
   const renderColumn = (
     fighter: Fighter,
     entry: TemplateImageEntry | null,
@@ -69,7 +96,10 @@ export function CrucialFeatsTemplate({
         })
       : ''
     const adjustKey = buildTemplateImageAdjustKey('crucial-feats', side, entry)
-    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('crucial-feats', side, entry)]
+    const legacyAdjustKeys = [
+      buildCanonicalLegacyTemplateImageAdjustKey('crucial-feats', side, entry),
+      buildLegacyTemplateImageAdjustKey('crucial-feats', side, entry),
+    ]
 
     return (
       <div className={layout.COLUMN_CLASS}>

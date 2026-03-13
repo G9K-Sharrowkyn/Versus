@@ -159,7 +159,6 @@ export const buildAdjustableTemplateImageStyle = (
       maxWidth: 'none',
       maxHeight: 'none',
       transform: `translate3d(${translateX}px, ${translateY}px, 0)`,
-      willChange: 'transform, width, height',
     }
   }
 
@@ -172,7 +171,6 @@ export const buildAdjustableTemplateImageStyle = (
     objectPosition: `${x}% ${y}%`,
     transform: `scale(${scale})`,
     transformOrigin: 'center center',
-    willChange: 'transform, object-position',
   }
 }
 

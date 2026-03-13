@@ -16,10 +16,12 @@ const resolveLocalModulePathSync = (fromFilePath, specifier) => {
     `${basePath}.tsx`,
     `${basePath}.js`,
     `${basePath}.mjs`,
+    `${basePath}.json`,
     path.join(basePath, 'index.ts'),
     path.join(basePath, 'index.tsx'),
     path.join(basePath, 'index.js'),
     path.join(basePath, 'index.mjs'),
+    path.join(basePath, 'index.json'),
   ]
 
   for (const candidate of candidates) {
@@ -43,6 +45,7 @@ const loadTsModuleSync = (filePath) => {
       module: ts.ModuleKind.CommonJS,
       target: ts.ScriptTarget.ES2020,
       esModuleInterop: true,
+      resolveJsonModule: true,
     },
     fileName: path.basename(normalizedPath),
   })
@@ -56,6 +59,9 @@ const loadTsModuleSync = (filePath) => {
     }
 
     const resolved = resolveLocalModulePathSync(normalizedPath, specifier)
+    if (resolved.endsWith('.json')) {
+      return JSON.parse(fsSync.readFileSync(resolved, 'utf8').replace(/^\uFEFF/, ''))
+    }
     return loadTsModuleSync(resolved)
   }
 

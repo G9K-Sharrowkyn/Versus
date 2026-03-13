@@ -1,7 +1,10 @@
+import { useEffect } from 'react'
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
+import { preloadImageUrls } from '../../domain/imagePreloadCache'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import { DEFAULT_WINNER_CV_A, DEFAULT_WINNER_CV_B } from '../../presets'
 import {
+  buildCanonicalLegacyTemplateImageAdjustKey,
   TEMPLATE_BLOCK_ALIASES,
   buildLegacyTemplateImageAdjustKey,
   buildTemplateImageAdjustKey,
@@ -71,6 +74,30 @@ export function VictoryArchiveTemplate({
     getFightTemplateDefaultField('victory-archive', 'entries_unit', language) ||
     common.entriesUnit
 
+  useEffect(() => {
+    const nextLeftEntry = leftEntries[pairIndex + 1] || null
+    const nextRightEntry = rightEntries[pairIndex + 1] || null
+    const preloadUrls = [
+      nextLeftEntry
+        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextLeftEntry.imageFile, {
+            templateId: 'victory-archive',
+            side: 'left',
+            slot: nextLeftEntry.slot,
+          })
+        : '',
+      nextRightEntry
+        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextRightEntry.imageFile, {
+            templateId: 'victory-archive',
+            side: 'right',
+            slot: nextRightEntry.slot,
+          })
+        : '',
+    ].filter(Boolean)
+
+    if (!preloadUrls.length) return
+    void preloadImageUrls(preloadUrls)
+  }, [activeFightFolderKey, leftEntries, pairIndex, rightEntries])
+
   const renderColumn = (
     fighter: Fighter,
     columnTitle: string,
@@ -85,7 +112,10 @@ export function VictoryArchiveTemplate({
         })
       : ''
     const adjustKey = buildTemplateImageAdjustKey('victory-archive', side, entry)
-    const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('victory-archive', side, entry)]
+    const legacyAdjustKeys = [
+      buildCanonicalLegacyTemplateImageAdjustKey('victory-archive', side, entry),
+      buildLegacyTemplateImageAdjustKey('victory-archive', side, entry),
+    ]
     const entryBadge = (
       <span
         className={layout.ENTRY_BADGE_CLASS}

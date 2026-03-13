@@ -5548,9 +5548,17 @@ pointer-events: none;
 }
 .flash-overlay {
 z-index: 100;
-background: #fff;
+background:
+radial-gradient(circle at 50% 50%,
+rgba(255, 255, 255, 0.98) 0,
+rgba(255, 255, 255, 0.92) 10%,
+rgba(186, 230, 253, 0.72) 22%,
+rgba(125, 211, 252, 0.32) 38%,
+rgba(255, 255, 255, 0) 66%);
 opacity: 0;
 transform: scale(0);
+filter: blur(10px);
+mix-blend-mode: screen;
 }
 .flash-overlay.active {
 animation: 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards flash-explode;

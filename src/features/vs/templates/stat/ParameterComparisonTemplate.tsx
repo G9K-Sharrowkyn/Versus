@@ -36,10 +36,8 @@ export function ParameterComparisonTemplate({
   const subText = subtitle
   const fighterAFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_b_fallback', language)
-  const customLeftHeader = pickTemplateField(blockFields, ['left_header'])
-  const customRightHeader = pickTemplateField(blockFields, ['right_header'])
-  const leftHeader = customLeftHeader || fighterA.name || fighterAFallback
-  const rightHeader = customRightHeader || fighterB.name || fighterBFallback
+  const leftHeader = fighterA.name || fighterAFallback
+  const rightHeader = fighterB.name || fighterBFallback
   const drawHeader =
     pickTemplateField(blockFields, ['draw_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||

@@ -169,21 +169,21 @@
       "case_4": "King Hyperion 6/10. Without Solar Flare in a fight to the death, Hyperion's regeneration starts to tilt the odds."
     },
     "x-factor": {
-      "a_bonus": "14",
-      "a_bonus_label": "FINISH WINDOW",
+      "a_bonus": "10",
+      "a_bonus_label": "CONTROL",
       "a_value": "50",
-      "b_bonus": "12",
+      "b_bonus": "20",
       "b_value": "50",
       "factor": "CLOSURE QUALITY VS REGENERATION ECONOMY",
       "implication": "If the fight runs in tournament mode instead of to the death, Hyperion's advantage grows with every minute of the fight.",
       "mechanics": "Superman has the statistical edge, but Hyperion does not stop under any opponent's pressure.",
       "psychology": "Hyperion can fight recklessly because mere survival brings him closer to victory.",
-      "regen": "REGEN LOOP"
+      "regen": "NO RULES"
     },
     "stat-trap": {
       "trap_top": "REGENERATION AND BRUTALITY >",
       "trap_bottom": "TECHNIQUE IN A LONG FIGHT",
-      "example": "Superman can win clean exchanges and still lose the fight if Hyperion keeps coming back for the next contact.",
+      "example": "As long as Superman keeps the fight technical and under his control, the edge stays with him. Once Hyperion keeps coming back after each damaging sequence, the whole economy of the matchup starts to turn.",
       "question": "Can Superman truly close the fight before Hyperion's regeneration starts erasing the value of every good sequence?"
     }
   }

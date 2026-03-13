@@ -232,7 +232,8 @@
       "maxLines": 1,
       "whiteSpace": "nowrap",
       "textTransform": "uppercase",
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "fighterBannerNameLarge": {
       "baseFontPx": 58,
@@ -241,7 +242,8 @@
       "maxLines": 1,
       "whiteSpace": "nowrap",
       "textTransform": "uppercase",
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "heroName": {
       "baseFontPx": 24,
@@ -250,7 +252,8 @@
       "maxLines": 1,
       "whiteSpace": "nowrap",
       "textTransform": "uppercase",
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "heroSubtitle": {
       "baseFontPx": 14,
@@ -274,7 +277,8 @@
       "minFontPx": 11,
       "lineHeight": 1.15,
       "maxLines": 3,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "factTitle": {
       "baseFontPx": 10,
@@ -298,14 +302,16 @@
       "minFontPx": 8,
       "lineHeight": 1.1,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "imageCaptionCentered": {
       "baseFontPx": 11,
       "minFontPx": 8,
       "lineHeight": 1.1,
       "maxLines": 2,
-      "textAlign": "center"
+      "textAlign": "center",
+      "fitMode": "shrink"
     },
     "sectionLabel": {
       "baseFontPx": 11,
@@ -322,14 +328,16 @@
       "minFontPx": 18,
       "lineHeight": 1.06,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "summaryLine": {
       "baseFontPx": 15,
       "minFontPx": 10,
       "lineHeight": 1.16,
       "maxLines": 3,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "scoreLabel": {
       "baseFontPx": 12,
@@ -339,7 +347,8 @@
       "textAlign": "left",
       "textTransform": "uppercase",
       "letterSpacing": "0.16em",
-      "whiteSpace": "nowrap"
+      "whiteSpace": "nowrap",
+      "fitMode": "shrink"
     },
     "scoreValue": {
       "baseFontPx": 28,
@@ -354,21 +363,24 @@
       "lineHeight": 0.98,
       "maxLines": 2,
       "textAlign": "left",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "directVerdictSubline": {
       "baseFontPx": 18,
       "minFontPx": 11,
       "lineHeight": 1.16,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "directVerdictCard": {
       "baseFontPx": 16,
       "minFontPx": 10,
       "lineHeight": 1.15,
       "maxLines": 3,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "battleDynamicsPhase": {
       "baseFontPx": 16,
@@ -382,7 +394,8 @@
       "minFontPx": 12,
       "lineHeight": 1.14,
       "maxLines": 2,
-      "textAlign": "center"
+      "textAlign": "center",
+      "fitMode": "shrink"
     },
     "tacticalBoardTile": {
       "baseFontPx": 18,
@@ -398,7 +411,8 @@
       "lineHeight": 0.94,
       "maxLines": 2,
       "textAlign": "center",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "interpretationBarLabel": {
       "baseFontPx": 20,
@@ -407,21 +421,24 @@
       "maxLines": 1,
       "whiteSpace": "nowrap",
       "textAlign": "left",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "interpretationBullet": {
       "baseFontPx": 20,
       "minFontPx": 12,
       "lineHeight": 1.14,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "interpretationQuote": {
       "baseFontPx": 18,
       "minFontPx": 11,
       "lineHeight": 1.14,
       "maxLines": 2,
-      "textAlign": "center"
+      "textAlign": "center",
+      "fitMode": "shrink"
     },
     "statTrapHeadline": {
       "baseFontPx": 24,
@@ -429,7 +446,8 @@
       "lineHeight": 1,
       "maxLines": 1,
       "textAlign": "center",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "statTrapExample": {
       "baseFontPx": 20,
@@ -437,14 +455,16 @@
       "lineHeight": 1.08,
       "maxLines": 7,
       "whiteSpace": "pre-line",
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "statTrapQuestion": {
       "baseFontPx": 18,
       "minFontPx": 11,
       "lineHeight": 1.1,
       "maxLines": 3,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "xFactorSupplement": {
       "baseFontPx": 18,
@@ -453,7 +473,8 @@
       "maxLines": 2,
       "textAlign": "center",
       "textTransform": "uppercase",
-      "letterSpacing": "0.18em"
+      "letterSpacing": "0.18em",
+      "fitMode": "shrink"
     },
     "xFactorInsightTitle": {
       "baseFontPx": 16,
@@ -468,7 +489,8 @@
       "minFontPx": 10,
       "lineHeight": 1.12,
       "maxLines": 5,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "parameterAdvantageLabel": {
       "baseFontPx": 12,
@@ -492,7 +514,8 @@
       "maxLines": 2,
       "textAlign": "left",
       "textTransform": "uppercase",
-      "letterSpacing": "0.16em"
+      "letterSpacing": "0.16em",
+      "fitMode": "shrink"
     },
     "parameterAdvantageList": {
       "baseFontPx": 13,
@@ -500,7 +523,8 @@
       "lineHeight": 1.1,
       "maxLines": 10,
       "textAlign": "left",
-      "whiteSpace": "pre-line"
+      "whiteSpace": "pre-line",
+      "fitMode": "shrink"
     },
     "parameterFavoriteStamp": {
       "baseFontPx": 15,
@@ -508,21 +532,24 @@
       "lineHeight": 1.04,
       "maxLines": 2,
       "textAlign": "center",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "methodologyItem": {
       "baseFontPx": 18,
       "minFontPx": 10,
       "lineHeight": 1.12,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "methodologyClosing": {
       "baseFontPx": 42,
       "minFontPx": 18,
       "lineHeight": 1.02,
       "maxLines": 2,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "verdictMatrixHeader": {
       "baseFontPx": 38,
@@ -547,14 +574,16 @@
       "lineHeight": 1.08,
       "maxLines": 2,
       "textAlign": "left",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
     },
     "verdictMatrixBody": {
       "baseFontPx": 19,
       "minFontPx": 11,
       "lineHeight": 1.08,
       "maxLines": 4,
-      "textAlign": "left"
+      "textAlign": "left",
+      "fitMode": "shrink"
     },
     "phaseTitle": {
       "baseFontPx": 20,
@@ -600,7 +629,8 @@
       "maxLines": 1,
       "textAlign": "center",
       "textTransform": "uppercase",
-      "whiteSpace": "nowrap"
+      "whiteSpace": "nowrap",
+      "fitMode": "shrink"
     }
   }
 }

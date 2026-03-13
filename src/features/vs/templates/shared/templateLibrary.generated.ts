@@ -11,6 +11,7 @@ export type TemplateSlotSpec = {
   minFontPx: number
   lineHeight: number
   maxLines: number
+  fitMode?: 'none' | 'shrink'
   whiteSpace?: string
   textAlign?: string
   textTransform?: string

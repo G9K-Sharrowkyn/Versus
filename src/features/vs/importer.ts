@@ -618,6 +618,12 @@ export const buildTemplateImageAdjustKey = (
   entry: TemplateImageEntry | null,
 ) => `${templateId}:${side}:${toTemplateImageAdjustIdentity(entry)}`
 
+export const buildCanonicalLegacyTemplateImageAdjustKey = (
+  templateId: 'crucial-feats' | 'victory-archive',
+  side: 'left' | 'right',
+  entry: TemplateImageEntry | null,
+) => `${templateId}:${side}:${entry?.id || 'empty'}`
+
 export const buildLegacyTemplateImageAdjustKey = (
   templateId: 'crucial-feats' | 'victory-archive',
   side: 'left' | 'right',

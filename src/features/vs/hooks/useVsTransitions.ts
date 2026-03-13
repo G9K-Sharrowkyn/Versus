@@ -5,9 +5,10 @@ import { FINAL_TEMPLATE_ID } from '../presets'
 import { findFightByQuery, getViewportCenterHandoff, normalizeSearchMorphHandoff, normalizeToken } from '../helpers'
 import type { FightRecord, Language, ReverseStage, SearchMorphHandoff, TemplateId } from '../types'
 
-type ApplyFightRecord = (
+type RequestFightApply = (
   fight: FightRecord,
   options?: ApplyFightRecordOptions,
+  reason?: 'open-fight' | 'search-transition' | 'search-shortcut' | 'language-switch',
 ) => void
 
 type ViewMode = 'search' | 'home' | 'fight-intro' | 'fight'
@@ -19,7 +20,7 @@ type UseVsTransitionsOptions = {
   activeTemplate: TemplateId
   activeFightId: string | null
   templateCursor: number
-  applyFightRecordRef: RefObject<ApplyFightRecord | null>
+  requestFightApplyRef: RefObject<RequestFightApply | null>
   setActiveFightId: (fightId: string | null) => void
   searchTransitioningRef: MutableRefObject<boolean>
   returnTransitioningRef: MutableRefObject<boolean>
@@ -41,7 +42,7 @@ export function useVsTransitions({
   activeTemplate,
   activeFightId,
   templateCursor,
-  applyFightRecordRef,
+  requestFightApplyRef,
   setActiveFightId,
   searchTransitioningRef,
   returnTransitioningRef,
@@ -198,12 +199,12 @@ export function useVsTransitions({
     clearReturnTransitionQueue()
     clearSearchTransitionQueue()
     searchTransitioningRef.current = true
-    applyFightRecordRef.current?.(fight, { enterIntro: false })
     postMessageToSearchFrame({ type: 'vvv-search-collapse' })
     introFrameReadyRef.current = false
     introRevealPendingRef.current = false
     setIntroFlowMode('forward')
     setIntroVisible(false)
+    requestFightApplyRef.current?.(fight, { enterIntro: false }, 'search-transition')
 
     const collapseWatchdogTimeout = window.setTimeout(() => {
       runSearchMorphSequence(null)
@@ -215,10 +216,11 @@ export function useVsTransitions({
   const openFightImmediately = (fight: FightRecord) => {
     clearReturnTransitionQueue()
     clearSearchTransitionQueue()
-    applyFightRecordRef.current?.(fight, { enterIntro: false })
-    setFightViewVisible(true)
+    setFightViewVisible(false)
     setIntroVisible(true)
     setViewMode('fight')
+    requestFightApplyRef.current?.(fight, { enterIntro: false }, 'search-shortcut')
+    triggerFightViewFadeIn()
   }
 
   const findFightByShortcutNumber = (query: string) => {

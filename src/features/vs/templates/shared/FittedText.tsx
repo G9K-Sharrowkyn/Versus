@@ -1,12 +1,13 @@
 import clsx from 'clsx'
 import {
   createElement,
+  useMemo,
   type CSSProperties,
   type ElementType,
   type ReactNode,
 } from 'react'
 import type { TemplateSlotSpec } from './templateUi'
-import { useSlotAutofit } from './useSlotAutofit'
+import { buildStaticSlotDataAttributes, useSlotAutofit } from './useSlotAutofit'
 
 type FittedTextProps<T extends ElementType = 'p'> = {
   slotKey: string
@@ -25,6 +26,71 @@ type FittedTextProps<T extends ElementType = 'p'> = {
 const defaultElementText = (text: string, children: ReactNode) => (children === undefined ? text : children)
 
 export function FittedText<T extends ElementType = 'p'>({
+  spec,
+  ...props
+}: FittedTextProps<T>) {
+  if ((spec.fitMode || 'none') === 'shrink') {
+    return <ShrinkFittedText spec={spec} {...props} />
+  }
+  return <StaticFittedText spec={spec} {...props} />
+}
+
+function StaticFittedText<T extends ElementType = 'p'>({
+  as,
+  slotKey,
+  spec,
+  text,
+  className,
+  style,
+  templateId,
+  activeFightId,
+  language,
+  title,
+  children,
+}: FittedTextProps<T>) {
+  const Component = (as || 'p') as ElementType
+  const fixedHeightPx = useMemo(
+    () => Math.round(spec.baseFontPx * spec.lineHeight * spec.maxLines * 100) / 100,
+    [spec.baseFontPx, spec.lineHeight, spec.maxLines],
+  )
+  const dataAttributes = buildStaticSlotDataAttributes({
+    slotKey,
+    spec,
+    text,
+    templateId,
+    activeFightId,
+    language,
+  })
+
+  const resolvedStyle: CSSProperties = {
+    display: style?.display || 'block',
+    ...style,
+    height: `${fixedHeightPx}px`,
+    maxHeight: `${fixedHeightPx}px`,
+    overflow: 'hidden',
+    whiteSpace: (spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
+    textAlign: spec.textAlign as CSSProperties['textAlign'],
+    textTransform: spec.textTransform as CSSProperties['textTransform'],
+    overflowWrap: (spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
+    wordBreak: (spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
+    letterSpacing: spec.letterSpacing as CSSProperties['letterSpacing'],
+    fontSize: `${spec.baseFontPx}px`,
+    lineHeight: `${spec.lineHeight}`,
+  }
+
+  return createElement(
+    Component,
+    {
+      className: clsx(className, 'min-w-0'),
+      style: resolvedStyle,
+      title,
+      ...dataAttributes,
+    },
+    defaultElementText(text, children),
+  )
+}
+
+function ShrinkFittedText<T extends ElementType = 'p'>({
   as,
   slotKey,
   spec,

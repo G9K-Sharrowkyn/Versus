@@ -144,6 +144,36 @@ const contentTypeForImage = (fileName: string) => {
   return 'image/jpeg'
 }
 
+const buildFileEtag = (size: number, mtimeMs: number) => `W/"${size}-${Math.round(mtimeMs)}"`
+const IMAGE_CACHE_CONTROL = 'public, max-age=600'
+
+const sendCachedImageFile = async (
+  req: IncomingMessage,
+  res: ServerResponse,
+  filePath: string,
+  fileName: string,
+) => {
+  const stats = await fs.stat(filePath)
+  const etag = buildFileEtag(stats.size, stats.mtimeMs)
+  const ifNoneMatch = req.headers['if-none-match']
+  if (typeof ifNoneMatch === 'string' && ifNoneMatch === etag) {
+    res.statusCode = 304
+    res.setHeader('Cache-Control', IMAGE_CACHE_CONTROL)
+    res.setHeader('ETag', etag)
+    res.setHeader('Last-Modified', stats.mtime.toUTCString())
+    res.end()
+    return
+  }
+
+  const payload = await fs.readFile(filePath)
+  res.statusCode = 200
+  res.setHeader('Content-Type', contentTypeForImage(fileName))
+  res.setHeader('Cache-Control', IMAGE_CACHE_CONTROL)
+  res.setHeader('ETag', etag)
+  res.setHeader('Last-Modified', stats.mtime.toUTCString())
+  res.end(payload)
+}
+
 const clampPercent = (value: unknown) => {
   const numeric = typeof value === 'number' ? value : Number(value)
   if (!Number.isFinite(numeric)) return 50
@@ -544,7 +574,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
   return { fights, warnings }
 }
 
-const handleFightsAssetRequest = async (url: URL, res: ServerResponse) => {
+const handleFightsAssetRequest = async (req: IncomingMessage, url: URL, res: ServerResponse) => {
   const key = String(url.searchParams.get('key') || '').trim()
   const slot = String(url.searchParams.get('slot') || '').trim()
   if (!key || (slot !== '1' && slot !== '2')) {
@@ -594,11 +624,7 @@ const handleFightsAssetRequest = async (url: URL, res: ServerResponse) => {
   }
 
   try {
-    const payload = await fs.readFile(path.join(candidateFolder, assetFile))
-    res.statusCode = 200
-    res.setHeader('Content-Type', contentTypeForImage(assetFile))
-    res.setHeader('Cache-Control', 'no-store')
-    res.end(payload)
+    await sendCachedImageFile(req, res, path.join(candidateFolder, assetFile), assetFile)
   } catch {
     res.statusCode = 500
     res.setHeader('Content-Type', 'application/json; charset=utf-8')
@@ -753,7 +779,7 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
     }
 
     if (requestUrl.pathname === '/api/fights/asset') {
-      await handleFightsAssetRequest(requestUrl, res)
+      await handleFightsAssetRequest(req, requestUrl, res)
       return
     }
 
@@ -796,11 +822,7 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
           continue
         }
         try {
-          const payload = await fs.readFile(candidatePath)
-          res.statusCode = 200
-          res.setHeader('Content-Type', contentTypeForImage(resolvedFileName))
-          res.setHeader('Cache-Control', 'no-store')
-          res.end(payload)
+          await sendCachedImageFile(req, res, candidatePath, resolvedFileName)
           return
         } catch {
           // Try next candidate.
