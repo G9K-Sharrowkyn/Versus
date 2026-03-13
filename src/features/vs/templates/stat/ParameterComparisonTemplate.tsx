@@ -253,6 +253,7 @@ export function ParameterComparisonTemplate({
                   spec={slots.parameterFavoriteStamp}
                   text={favorite}
                   className={layout.FAVORITE_TEXT_CLASS as string}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                   templateId="parameter-comparison"
                   activeFightId={activeFightId}
                   language={language}

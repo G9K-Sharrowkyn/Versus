@@ -168,7 +168,7 @@
     },
     "TEMPLATE": {
       "BANNERS_GRID_CLASS": "grid grid-cols-2 gap-2 text-[12px]",
-      "AVERAGE_CARD_CLASS": "flex min-w-[82px] flex-col items-center justify-center px-2 py-1 text-right",
+      "AVERAGE_CARD_CLASS": "flex min-w-[72px] flex-col items-end justify-center px-0.5 py-0 text-right",
       "AVERAGE_LABEL_CLASS": "text-[10px] uppercase tracking-[0.14em] text-slate-300",
       "AVERAGE_VALUE_CLASS": "text-[22px] font-semibold leading-none",
       "CONTENT_CLASS": "mt-[7px] min-h-0 flex-1 -translate-y-[12px]",

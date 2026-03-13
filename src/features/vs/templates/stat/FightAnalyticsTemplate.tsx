@@ -61,7 +61,7 @@ export function FightAnalyticsTemplate({
               language={language}
               fighter={fighterA}
               trailing={
-                <div className={`${shell.HIGH_END_CARD_CLASS} ${layout.AVERAGE_CARD_CLASS}`}>
+                <div className={layout.AVERAGE_CARD_CLASS}>
                   <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
                   <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterA.color }}>
                     {averageA.toFixed(1)}
@@ -74,7 +74,7 @@ export function FightAnalyticsTemplate({
               language={language}
               fighter={fighterB}
               trailing={
-                <div className={`${shell.HIGH_END_CARD_CLASS} ${layout.AVERAGE_CARD_CLASS}`}>
+                <div className={layout.AVERAGE_CARD_CLASS}>
                   <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
                   <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterB.color }}>
                     {averageB.toFixed(1)}
