@@ -1,5 +1,4 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import { DEFAULT_WINNER_CV_A, DEFAULT_WINNER_CV_B } from '../../presets'
 import {
@@ -15,16 +14,13 @@ import {
 } from '../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
+import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndFighterBanner,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 export function VictoryArchiveTemplate({
   fighterA,
@@ -43,13 +39,17 @@ export function VictoryArchiveTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['victory-archive'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('victory-archive', language, blockFields)
+  const common = getFightCommonCopy('victory-archive', language)
+  const ui = getTemplateUi('victory-archive', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const archiveLabel = getFightTemplateDefaultField('victory-archive', 'archive_label', language)
   const subText = subtitle || archiveLabel
-  const fighterAText = fighterA.name || 'Fighter A'
-  const fighterBText = fighterB.name || 'Fighter B'
+  const fighterAText = fighterA.name || getFightTemplateDefaultField('victory-archive', 'fighter_a_fallback', language)
+  const fighterBText = fighterB.name || getFightTemplateDefaultField('victory-archive', 'fighter_b_fallback', language)
   const leftTitle =
     pickTemplateField(blockFields, ['left_title']) ||
     `${getFightTemplateDefaultField('victory-archive', 'left_title_prefix', language)} ${fighterAText}`
@@ -88,7 +88,7 @@ export function VictoryArchiveTemplate({
     const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('victory-archive', side, entry)]
     const entryBadge = (
       <span
-        className="rounded-full border px-2 py-0.5 text-[10px] uppercase tracking-[0.16em]"
+        className={layout.ENTRY_BADGE_CLASS}
         style={{ borderColor: `${fighter.color}88`, color: fighter.color }}
       >
         {pairCount} {entriesUnit}
@@ -96,9 +96,9 @@ export function VictoryArchiveTemplate({
     )
 
     return (
-      <div className="flex h-full min-h-0 flex-col">
-        <HighEndFighterBanner fighter={fighter} trailing={entryBadge} />
-        <div className="mt-3 flex min-h-0 flex-1 flex-col gap-2">
+      <div className={layout.COLUMN_CLASS}>
+        <HighEndFighterBanner templateId="victory-archive" language={language} fighter={fighter} trailing={entryBadge} />
+        <div className={layout.COLUMN_BODY_CLASS}>
           <AdjustableTemplateImage
             imageUrl={imageUrl}
             alt={entry?.text || columnTitle}
@@ -111,13 +111,13 @@ export function VictoryArchiveTemplate({
             onAdjustCommit={onSlideImageAdjustCommit}
             onActivate={nextPair}
           />
-          <div className={`${HIGH_END_CARD_CLASS} flex h-[18px] items-start overflow-hidden px-3 pt-[3px]`}>
+          <div className={layout.CAPTION_CARD_CLASS}>
             <FittedText
               as="p"
               slotKey={`victory-archive:${side}:caption:${entry?.id || 'empty'}`}
-              spec={TEMPLATE_SLOT_SPECS.imageCaption}
+              spec={slots.imageCaption}
               text={entry?.text || common.noEntry}
-              className="w-full text-slate-200"
+              className={layout.CAPTION_TEXT_CLASS}
             />
           </div>
         </div>
@@ -126,17 +126,19 @@ export function VictoryArchiveTemplate({
   }
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="victory-archive"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-2 gap-3`}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
             {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
             {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
           </div>

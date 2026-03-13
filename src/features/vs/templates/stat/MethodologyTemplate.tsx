@@ -1,27 +1,26 @@
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
 import { FittedText } from '../shared/FittedText'
+import { HighEndTemplateHeader } from '../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_LABEL_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 const METHODOLOGY_ITEM_COUNT = 6
 
 export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, language, onToggleLanguage }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.methodology || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('methodology', language, blockFields)
+  const common = getFightCommonCopy('methodology', language)
+  const ui = getTemplateUi('methodology', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string | number>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const listLabel =
@@ -44,94 +43,96 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
     : [{ id: 'fallback', label: common.baseline, a: 50, b: 50, delta: 0, winner: 'draw' as const }]
   const safeRows = Array.from({ length: METHODOLOGY_ITEM_COUNT }, (_, index) => rowSource[index]?.label || common.emptyFieldLabel)
 
-  const splitX = 50
-  const linearStartX = 8
-  const chaosEndX = 92
+  const splitX = Number(layout.SPLIT_X)
+  const linearStartX = Number(layout.LINEAR_START_X)
+  const chaosEndX = Number(layout.CHAOS_END_X)
   const stablePoints = `${linearStartX},50 ${splitX},50`
-  const linearLabelX = 25
-  const chaosLabelX = 75
+  const linearLabelX = Number(layout.LINEAR_LABEL_X)
+  const chaosLabelX = Number(layout.CHAOS_LABEL_X)
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col text-slate-100">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
+            templateId="methodology"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid flex-1 grid-cols-[1fr_1.7fr] gap-3`}>
-            <div className={`min-h-0 ${HIGH_END_FRAME_CLASS} p-3`}>
-              <p className={`mb-2 ${HIGH_END_LABEL_CLASS}`}>{listLabel}</p>
-              <div className="grid h-full grid-rows-6 gap-1">
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
+            <div className={layout.LIST_PANEL_CLASS as string}>
+              <p className={layout.LIST_HEADER_CLASS as string}>{listLabel}</p>
+              <div className={layout.LIST_GRID_CLASS as string}>
                 {safeRows.map((label, index) => (
-                  <div key={`method-${index}`} className="rounded border border-slate-700/60 bg-slate-900/72 px-2 py-0.5">
+                  <div key={`method-${index}`} className={layout.LIST_ITEM_CLASS as string}>
                     <FittedText
                       as="p"
                       slotKey={`methodology:item:${index}`}
-                      spec={TEMPLATE_SLOT_SPECS.methodologyItem}
+                      spec={slots.methodologyItem}
                       text={`${index + 1}. ${label}`}
-                      className="text-slate-100"
+                      className={layout.LIST_ITEM_TEXT_CLASS as string}
                     />
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="grid grid-rows-[1fr_auto] gap-3">
-              <div className={`${HIGH_END_FRAME_CLASS} p-3`}>
-                <p className={HIGH_END_LABEL_CLASS}>{realityLabel}</p>
-                <div className="mt-2 h-[72%] overflow-hidden rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
-                  <div className="relative -m-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-hidden rounded-lg">
+            <div className={layout.RIGHT_COLUMN_CLASS as string}>
+              <div className={layout.REALITY_PANEL_CLASS as string}>
+                <p className={layout.REALITY_HEADER_CLASS as string}>{realityLabel}</p>
+                <div className={layout.REALITY_VIEWPORT_CLASS as string}>
+                  <div className={layout.REALITY_CANVAS_CLASS as string}>
                     <LightningCanvas
                       startRatio={{ x: splitX / 100, y: 0.5 }}
-                      endRatio={{ x: Math.min(1.34, chaosEndX / 100 + 0.42), y: 0.5 }}
+                      endRatio={{ x: Math.min(1.34, chaosEndX / 100 + Number(layout.LIGHTNING_EXTENSION)), y: 0.5 }}
                     />
-                    <svg viewBox="0 0 100 100" className="relative z-10 h-full w-full">
-                      <line x1={splitX} y1="8" x2={splitX} y2="92" stroke="rgba(148,163,184,0.35)" strokeWidth="0.7" strokeDasharray="2 2" />
+                    <svg viewBox={layout.SVG_VIEWBOX as string} className={layout.SVG_CLASS as string}>
+                      <line x1={splitX} y1={layout.DIVIDER_Y1 as string} x2={splitX} y2={layout.DIVIDER_Y2 as string} stroke={layout.DIVIDER_STROKE as string} strokeWidth={layout.DIVIDER_STROKE_WIDTH as string} strokeDasharray={layout.DIVIDER_DASHARRAY as string} />
                       <text
                         x={linearLabelX}
-                        y="14"
-                        fill="#67e8f9"
-                        fontSize="4"
-                        fontFamily="var(--font-ui)"
-                        fontWeight="600"
-                        textAnchor="middle"
-                        style={{ letterSpacing: '0.04em' }}
+                        y={layout.LINEAR_LABEL_Y as string}
+                        fill={layout.LINEAR_LABEL_FILL as string}
+                        fontSize={layout.LABEL_FONT_SIZE as string}
+                        fontFamily={layout.LABEL_FONT_FAMILY as string}
+                        fontWeight={layout.LABEL_FONT_WEIGHT as string}
+                        textAnchor={layout.LABEL_TEXT_ANCHOR as 'middle'}
+                        style={{ letterSpacing: layout.LABEL_LETTER_SPACING as string }}
                       >
                         {linearLabel}
                       </text>
                       <text
                         x={chaosLabelX}
-                        y="14"
-                        fill="#fda4af"
-                        fontSize="4"
-                        fontFamily="var(--font-ui)"
-                        fontWeight="600"
-                        textAnchor="middle"
-                        style={{ letterSpacing: '0.04em' }}
+                        y={layout.CHAOS_LABEL_Y as string}
+                        fill={layout.CHAOS_LABEL_FILL as string}
+                        fontSize={layout.LABEL_FONT_SIZE as string}
+                        fontFamily={layout.LABEL_FONT_FAMILY as string}
+                        fontWeight={layout.LABEL_FONT_WEIGHT as string}
+                        textAnchor={layout.LABEL_TEXT_ANCHOR as 'middle'}
+                        style={{ letterSpacing: layout.LABEL_LETTER_SPACING as string }}
                       >
                         {chaosLabel}
                       </text>
-                      <polyline points={stablePoints} fill="none" stroke="#22d3ee" strokeWidth="1.7" />
-                      <polyline points={stablePoints} fill="none" stroke="rgba(34,211,238,0.3)" strokeWidth="3.2" />
+                      <polyline points={stablePoints} fill="none" stroke={layout.STABLE_LINE_STROKE as string} strokeWidth={layout.STABLE_LINE_WIDTH as string} />
+                      <polyline points={stablePoints} fill="none" stroke={layout.GLOW_LINE_STROKE as string} strokeWidth={layout.GLOW_LINE_WIDTH as string} />
                     </svg>
                   </div>
                 </div>
               </div>
 
-              <div className={`${HIGH_END_CARD_CLASS} px-4 py-3`}>
+              <div className={layout.CLOSING_CARD_CLASS as string}>
                 <FittedText
                   as="p"
                   slotKey="methodology:closing-label"
-                  spec={TEMPLATE_SLOT_SPECS.methodologyClosing}
+                  spec={slots.methodologyClosing}
                   text={closingLabel}
-                  className="text-slate-50"
+                  className={layout.CLOSING_TEXT_CLASS as string}
                 />
-                <p className="mt-1 text-sm uppercase tracking-[0.15em] text-slate-300">{subText}</p>
+                <p className={layout.CLOSING_SUBTEXT_CLASS as string}>{subText}</p>
               </div>
             </div>
           </div>

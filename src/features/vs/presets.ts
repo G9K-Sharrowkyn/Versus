@@ -1,14 +1,15 @@
 import { Award, BookOpen, Brain, Clock3, Crosshair, Dumbbell, Flame, Gauge, Sparkles, Swords, WandSparkles, Zap, type LucideIcon } from 'lucide-react'
 import { getTranslations } from '../../i18n'
 import {
-  getFightDefaultCategories,
-  getFightDefaultProfileFacts,
-  getFightDefaultVictoryArchive,
   getFightFinalTemplateId,
   getFightTemplateIds,
-  getFightTemplatePreset,
-  getFightTemplatePresets,
 } from './fightManifest'
+import {
+  getDefaultFightCategories as getFightDefaultCategories,
+  getDefaultProfileFacts as getFightDefaultProfileFacts,
+  getDefaultVictoryArchive as getFightDefaultVictoryArchive,
+  getTemplatePreset as getFightTemplatePreset,
+} from './templates/shared/templateCopy'
 import type { Category, Fighter, FighterFact, FightScenarioId, Language, ParsedVsImport, TemplateId, TemplatePreset } from './types'
 
 type IconType = LucideIcon
@@ -16,9 +17,10 @@ type IconType = LucideIcon
 export const FIGHTER_A_COLOR = '#3FC3CF'
 export const FIGHTER_B_COLOR = '#EF5D5D'
 
-export const DEFAULT_CATEGORIES: Category[] = getFightDefaultCategories('en')
+export const DEFAULT_CATEGORIES: Category[] = getFightDefaultCategories('fight-analytics', 'en')
 
-export const defaultCategoriesFor = (language: Language): Category[] => getFightDefaultCategories(language)
+export const defaultCategoriesFor = (language: Language): Category[] =>
+  getFightDefaultCategories('fight-analytics', language)
 
 export const FIGHTER_A: Fighter = {
   name: 'Superman',
@@ -56,7 +58,9 @@ export const FIGHTER_B: Fighter = {
   },
 }
 
-export const TEMPLATE_PRESETS: TemplatePreset[] = getFightTemplatePresets('en')
+export const TEMPLATE_PRESETS: TemplatePreset[] = getFightTemplateIds().map((templateId) =>
+  getFightTemplatePreset(templateId, 'en'),
+)
 
 export const pickLang = (language: Language, pl: string, en: string) => (language === 'pl' ? pl : en)
 

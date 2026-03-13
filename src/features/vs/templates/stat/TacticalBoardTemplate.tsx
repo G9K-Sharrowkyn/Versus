@@ -1,21 +1,80 @@
-import { buildFightTemplateChrome, getFightTemplateDefaultField } from '../../fightManifest'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
 import { FittedText } from '../shared/FittedText'
+import { HighEndTemplateHeader } from '../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_LABEL_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
+
+type TacticalBoardLayout = {
+  MATCHUP_SUPPLEMENT_CLASS: string
+  MATCHUP_SUPPLEMENT_STYLE: {
+    fontFamily: string
+  }
+  MATCHUP_SEPARATOR_CLASS: string
+  INNER_CLASS: string
+  BODY_CLASS: string
+  BOARD_PANEL_CLASS: string
+  BOARD_HEADER_CLASS: string
+  BOARD_GRID_CLASS: string
+  TILE_CLASS: string
+  TILE_ICON_WRAP_CLASS: string
+  TILE_LABEL_WRAP_CLASS: string
+  TILE_TEXT_CLASS: string
+  TILE_ICON_SIZE: number
+  REALITY_PANEL_CLASS: string
+  REALITY_HEADER_CLASS: string
+  REALITY_VIEWPORT_CLASS: string
+  REALITY_CANVAS_CLASS: string
+  SVG_VIEWBOX: string
+  SVG_CLASS: string
+  SPLIT_X: number
+  LINEAR_START_X: number
+  CHAOS_END_X: number
+  LIGHTNING_EXTENSION: number
+  LINEAR_LABEL_X: number
+  CHAOS_LABEL_X: number
+  DIVIDER: {
+    y1: number
+    y2: number
+    stroke: string
+    strokeWidth: number
+    strokeDasharray: string
+  }
+  LINEAR_LABEL: {
+    y: number
+    fill: string
+    fontSize: string
+    fontFamily: string
+    fontWeight: string
+    textAnchor: string
+    letterSpacing: string
+  }
+  CHAOS_LABEL: {
+    y: number
+    fill: string
+    fontSize: string
+    fontFamily: string
+    fontWeight: string
+    textAnchor: string
+    letterSpacing: string
+  }
+  STABLE_LINE: {
+    stroke: string
+    strokeWidth: number
+  }
+  GLOW_LINE: {
+    stroke: string
+    strokeWidth: number
+  }
+}
 
 export function TacticalBoardTemplate({
+  activeTemplateId,
   rows,
   fighterA,
   fighterB,
@@ -27,7 +86,11 @@ export function TacticalBoardTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const chrome = buildFightTemplateChrome('tactical-board', language, blockFields)
+  const ui = getTemplateUi(activeTemplateId, language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as unknown as TacticalBoardLayout
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const boardHeader =
@@ -42,32 +105,45 @@ export function TacticalBoardTemplate({
   const chaosLabel =
     pickTemplateField(blockFields, ['chaos_label']) ||
     getFightTemplateDefaultField('tactical-board', 'chaos_label', language)
-  const fallbackMatchup = `${fighterA.name || 'Fighter A'} VS ${fighterB.name || 'Fighter B'}`
+  const fallbackMatchup = `${fighterA.name || getFightTemplateDefaultField('tactical-board', 'fighter_a_fallback', language)} VS ${fighterB.name || getFightTemplateDefaultField('tactical-board', 'fighter_b_fallback', language)}`
   const matchupText = pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) || fallbackMatchup
+  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
   const tiles = rows.slice(0, 9)
-  const splitX = 50
-  const linearStartX = 8
-  const chaosEndX = 92
+  const splitX = layout.SPLIT_X
+  const linearStartX = layout.LINEAR_START_X
+  const chaosEndX = layout.CHAOS_END_X
   const stablePoints = `${linearStartX},50 ${splitX},50`
-  const linearLabelX = 25
-  const chaosLabelX = 75
+  const linearLabelX = layout.LINEAR_LABEL_X
+  const chaosLabelX = layout.CHAOS_LABEL_X
   const matchupSupplement = matchupText ? (
     <FittedText
       as="p"
       slotKey={`tactical-board:matchup:${matchupText}`}
-      spec={TEMPLATE_SLOT_SPECS.matchupSupplement}
+      spec={slots.matchupSupplement}
       text={matchupText}
-      className="mt-1 text-cyan-100"
-      style={{ fontFamily: 'var(--font-display)' }}
-    />
+      className={layout.MATCHUP_SUPPLEMENT_CLASS}
+      style={layout.MATCHUP_SUPPLEMENT_STYLE}
+    >
+      {matchupMatch ? (
+        <>
+          <span style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
+          <span className={layout.MATCHUP_SEPARATOR_CLASS}>{matchupMatch[2]}</span>
+          <span style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
+        </>
+      ) : (
+        matchupText
+      )}
+    </FittedText>
   ) : null
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full min-h-0 flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId={activeTemplateId}
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
@@ -75,28 +151,28 @@ export function TacticalBoardTemplate({
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-2 gap-3`}>
-            <div className={`flex min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
-              <p className={`mb-2 ${HIGH_END_LABEL_CLASS}`}>{boardHeader}</p>
-              <div className="grid min-h-0 flex-1 grid-cols-3 gap-2">
+          <div className={layout.BODY_CLASS}>
+            <div className={layout.BOARD_PANEL_CLASS}>
+              <p className={layout.BOARD_HEADER_CLASS}>{boardHeader}</p>
+              <div className={layout.BOARD_GRID_CLASS}>
                 {tiles.map((row, index) => {
                   const Icon = iconForCategory(row.id, index)
                   const isDraw = row.winner === 'draw'
                   const winnerColor = isDraw ? '#E2E8F0' : row.winner === 'a' ? fighterA.color : fighterB.color
 
                   return (
-                    <div key={`tile-${row.id}`} className="relative rounded-lg border border-slate-500/45 bg-slate-900/75 p-2">
-                      <div className="mb-2 flex items-center justify-center rounded-md border border-slate-600/60 bg-black/35 py-2">
-                        <Icon size={31} color={winnerColor} />
+                    <div key={`tile-${row.id}`} className={layout.TILE_CLASS}>
+                      <div className={layout.TILE_ICON_WRAP_CLASS}>
+                        <Icon size={layout.TILE_ICON_SIZE} color={winnerColor} />
                       </div>
-                      <div className="flex min-h-[56px] items-center justify-center rounded-md border border-slate-600/45 bg-black/25 px-1">
+                      <div className={layout.TILE_LABEL_WRAP_CLASS}>
                         <FittedText
                           as="p"
                           slotKey={`tactical-board:tile:${row.id}`}
-                          spec={TEMPLATE_SLOT_SPECS.tacticalBoardTile}
+                          spec={slots.tacticalBoardTile}
                           text={row.label}
-                          className="font-semibold tracking-[0.04em]"
-                          style={{ color: winnerColor, width: '100%' }}
+                          className={layout.TILE_TEXT_CLASS}
+                          style={{ color: winnerColor }}
                         />
                       </div>
                     </div>
@@ -105,42 +181,60 @@ export function TacticalBoardTemplate({
               </div>
             </div>
 
-            <div className={`flex min-h-0 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
-              <p className={HIGH_END_LABEL_CLASS}>{realityHeader}</p>
-              <div className="mt-2 min-h-0 flex-1 overflow-hidden rounded-lg border border-slate-600/55 bg-slate-950/65 p-2">
-                <div className="relative -m-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-hidden rounded-lg">
+            <div className={layout.REALITY_PANEL_CLASS}>
+              <p className={layout.REALITY_HEADER_CLASS}>{realityHeader}</p>
+              <div className={layout.REALITY_VIEWPORT_CLASS}>
+                <div className={layout.REALITY_CANVAS_CLASS}>
                   <LightningCanvas
                     startRatio={{ x: splitX / 100, y: 0.5 }}
-                    endRatio={{ x: Math.min(1.34, chaosEndX / 100 + 0.42), y: 0.5 }}
+                    endRatio={{ x: Math.min(1.34, chaosEndX / 100 + layout.LIGHTNING_EXTENSION), y: 0.5 }}
                   />
-                  <svg viewBox="0 0 100 100" className="relative z-10 h-full w-full">
-                    <line x1={splitX} y1="8" x2={splitX} y2="92" stroke="rgba(148,163,184,0.35)" strokeWidth="0.7" strokeDasharray="2 2" />
+                  <svg viewBox={layout.SVG_VIEWBOX} className={layout.SVG_CLASS}>
+                    <line
+                      x1={splitX}
+                      y1={layout.DIVIDER.y1}
+                      x2={splitX}
+                      y2={layout.DIVIDER.y2}
+                      stroke={layout.DIVIDER.stroke}
+                      strokeWidth={layout.DIVIDER.strokeWidth}
+                      strokeDasharray={layout.DIVIDER.strokeDasharray}
+                    />
                     <text
                       x={linearLabelX}
-                      y="14"
-                      fill="#67e8f9"
-                      fontSize="4"
-                      fontFamily="var(--font-ui)"
-                      fontWeight="600"
-                      textAnchor="middle"
-                      style={{ letterSpacing: '0.04em' }}
+                      y={layout.LINEAR_LABEL.y}
+                      fill={layout.LINEAR_LABEL.fill}
+                      fontSize={layout.LINEAR_LABEL.fontSize}
+                      fontFamily={layout.LINEAR_LABEL.fontFamily}
+                      fontWeight={layout.LINEAR_LABEL.fontWeight}
+                      textAnchor={layout.LINEAR_LABEL.textAnchor as 'middle'}
+                      style={{ letterSpacing: layout.LINEAR_LABEL.letterSpacing }}
                     >
                       {linearLabel}
                     </text>
                     <text
                       x={chaosLabelX}
-                      y="14"
-                      fill="#fda4af"
-                      fontSize="4"
-                      fontFamily="var(--font-ui)"
-                      fontWeight="600"
-                      textAnchor="middle"
-                      style={{ letterSpacing: '0.04em' }}
+                      y={layout.CHAOS_LABEL.y}
+                      fill={layout.CHAOS_LABEL.fill}
+                      fontSize={layout.CHAOS_LABEL.fontSize}
+                      fontFamily={layout.CHAOS_LABEL.fontFamily}
+                      fontWeight={layout.CHAOS_LABEL.fontWeight}
+                      textAnchor={layout.CHAOS_LABEL.textAnchor as 'middle'}
+                      style={{ letterSpacing: layout.CHAOS_LABEL.letterSpacing }}
                     >
                       {chaosLabel}
                     </text>
-                    <polyline points={stablePoints} fill="none" stroke="#22d3ee" strokeWidth="1.7" />
-                    <polyline points={stablePoints} fill="none" stroke="rgba(34,211,238,0.3)" strokeWidth="3.2" />
+                    <polyline
+                      points={stablePoints}
+                      fill="none"
+                      stroke={layout.STABLE_LINE.stroke}
+                      strokeWidth={layout.STABLE_LINE.strokeWidth}
+                    />
+                    <polyline
+                      points={stablePoints}
+                      fill="none"
+                      stroke={layout.GLOW_LINE.stroke}
+                      strokeWidth={layout.GLOW_LINE.strokeWidth}
+                    />
                   </svg>
                 </div>
               </div>

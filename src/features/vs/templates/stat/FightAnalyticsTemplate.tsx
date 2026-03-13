@@ -1,16 +1,13 @@
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
-import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
+import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
 import { FittedText } from '../shared/FittedText'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+import {
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 export function FightAnalyticsTemplate({
   rows,
@@ -27,8 +24,12 @@ export function FightAnalyticsTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-analytics'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('fight-analytics', language, blockFields)
+  const common = getFightCommonCopy('fight-analytics', language)
+  const ui = getTemplateUi('fight-analytics', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
   const averageShort =
@@ -38,98 +39,97 @@ export function FightAnalyticsTemplate({
   const scoreScaleLabel =
     getFightTemplateDefaultField('fight-analytics', 'score_scale_label', language) || common.scoreScaleLabel
   const auditPrefix = `${activeFightId || 'draft'}:fight-analytics`
+  const scaleMarks = (layout.SCALE_MARKS as unknown as Array<{ label: string; className: string }>) || []
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="fight-analytics"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid grid-cols-2 gap-2 text-[12px]`}>
-            <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-              <FittedText
-                as="p"
-                slotKey={`${auditPrefix}:fighter-a`}
-                spec={TEMPLATE_SLOT_SPECS.fighterBannerName}
-                text={fighterA.name}
-                className="uppercase tracking-[0.16em] text-slate-300"
-                templateId="fight-analytics"
-                activeFightId={activeFightId}
-                language={language}
-              />
-              <p className="font-semibold" style={{ color: fighterA.color }}>
-                {averageShort} {averageA.toFixed(1)}
-              </p>
-            </div>
-            <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-              <FittedText
-                as="p"
-                slotKey={`${auditPrefix}:fighter-b`}
-                spec={TEMPLATE_SLOT_SPECS.fighterBannerName}
-                text={fighterB.name}
-                className="uppercase tracking-[0.16em] text-slate-300"
-                templateId="fight-analytics"
-                activeFightId={activeFightId}
-                language={language}
-              />
-              <p className="font-semibold" style={{ color: fighterB.color }}>
-                {averageShort} {averageB.toFixed(1)}
-              </p>
-            </div>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BANNERS_GRID_CLASS}`}>
+            <HighEndFighterBanner
+              templateId="fight-analytics"
+              language={language}
+              fighter={fighterA}
+              trailing={
+                <div className={`${shell.HIGH_END_CARD_CLASS} ${layout.AVERAGE_CARD_CLASS}`}>
+                  <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
+                  <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterA.color }}>
+                    {averageA.toFixed(1)}
+                  </p>
+                </div>
+              }
+            />
+            <HighEndFighterBanner
+              templateId="fight-analytics"
+              language={language}
+              fighter={fighterB}
+              trailing={
+                <div className={`${shell.HIGH_END_CARD_CLASS} ${layout.AVERAGE_CARD_CLASS}`}>
+                  <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
+                  <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterB.color }}>
+                    {averageB.toFixed(1)}
+                  </p>
+                </div>
+              }
+            />
           </div>
 
-          <div className="mt-3 min-h-0 flex-1">
-            <div className="grid grid-cols-[190px_1fr] items-center gap-4 px-1 text-[11px] uppercase tracking-[0.15em] text-slate-400">
+          <div className={layout.CONTENT_CLASS}>
+            <div className={layout.HEADER_ROW_CLASS}>
               <p>{parameterLabel}</p>
-              <div className="space-y-1">
+              <div className={layout.SCALE_WRAP_CLASS}>
                 <span>{scoreScaleLabel}</span>
-                <div className="grid grid-cols-[1fr_30px] items-start gap-2">
-                  <div className="relative h-3 text-[10px] text-slate-500">
-                    <span className="absolute left-0 top-0">0</span>
-                    <span className="absolute left-1/4 top-0 -translate-x-1/2">25</span>
-                    <span className="absolute left-1/2 top-0 -translate-x-1/2">50</span>
-                    <span className="absolute left-3/4 top-0 -translate-x-1/2">75</span>
-                    <span className="absolute right-0 top-0">100</span>
+                <div className={layout.SCALE_GRID_CLASS}>
+                  <div className={layout.SCALE_MARKS_CLASS}>
+                    {scaleMarks.map((mark) => (
+                      <span key={`fight-analytics-scale-${mark.label}`} className={mark.className}>
+                        {mark.label}
+                      </span>
+                    ))}
                   </div>
                   <div />
                 </div>
               </div>
             </div>
-            <div className="mt-2 grid min-h-0 flex-1 gap-2">
+            <div className={layout.ROWS_WRAP_CLASS}>
               {rows.map((row, index) => (
                 <div
                   key={`row-${row.id}`}
-                  className="grid h-[50px] grid-cols-[190px_1fr] items-center gap-4 rounded border border-cyan-300/15 bg-slate-950/55 px-2"
+                  className={layout.ROW_CLASS}
                   style={{ animationDelay: `${index * 0.04}s` }}
                 >
                   <FittedText
                     as="div"
                     slotKey={`${auditPrefix}:row-label-${row.id}`}
-                    spec={TEMPLATE_SLOT_SPECS.parameterAdvantageValue}
+                    spec={slots.parameterAdvantageValue}
                     text={row.label}
-                    className="pr-2 text-slate-100"
+                    className={layout.ROW_LABEL_CLASS}
                     templateId="fight-analytics"
                     activeFightId={activeFightId}
                     language={language}
                   />
-                  <div className="space-y-1">
-                    <div className="grid grid-cols-[1fr_30px] items-center gap-2">
-                      <div className="h-3 overflow-hidden rounded border border-slate-700/70 bg-black/55">
-                        <div className="h-full rounded-r transition-[width] duration-700" style={{ width: `${row.a}%`, backgroundColor: fighterA.color }} />
+                  <div className={layout.BAR_GROUP_CLASS}>
+                    <div className={layout.BAR_ROW_CLASS}>
+                      <div className={layout.BAR_TRACK_CLASS}>
+                        <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.a}%`, backgroundColor: fighterA.color }} />
                       </div>
-                      <span className="text-right text-sm text-slate-200">{row.a}</span>
+                      <span className={layout.BAR_VALUE_CLASS}>{row.a}</span>
                     </div>
-                    <div className="grid grid-cols-[1fr_30px] items-center gap-2">
-                      <div className="h-3 overflow-hidden rounded border border-slate-700/70 bg-black/55">
-                        <div className="h-full rounded-r transition-[width] duration-700" style={{ width: `${row.b}%`, backgroundColor: fighterB.color }} />
+                    <div className={layout.BAR_ROW_CLASS}>
+                      <div className={layout.BAR_TRACK_CLASS}>
+                        <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.b}%`, backgroundColor: fighterB.color }} />
                       </div>
-                      <span className="text-right text-sm text-slate-200">{row.b}</span>
+                      <span className={layout.BAR_VALUE_CLASS}>{row.b}</span>
                     </div>
                   </div>
                 </div>

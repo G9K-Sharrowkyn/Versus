@@ -1,22 +1,13 @@
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
+import type { CSSProperties } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import { FittedText } from '../../shared/FittedText'
 import {
-  STAT_TRAP_EXAMPLE_STYLE,
-  STAT_TRAP_HEADLINE_CLASS,
-  STAT_TRAP_QUESTION_STYLE,
-  STAT_TRAP_WARNING_ICON_CLASS,
-} from '../../shared/layoutTokens'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function StatTrapTemplate({
   title,
@@ -28,8 +19,13 @@ export function StatTrapTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['stat-trap'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const common = getFightCommonCopy(language)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const common = getFightCommonCopy('stat-trap', language)
+  const chrome = buildFightTemplateChrome('stat-trap', language, blockFields)
+  const ui = getTemplateUi('stat-trap', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const tokens = ui.tokens as Record<string, string | CSSProperties>
+  const layout = ui.template as Record<string, string>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
   const trapTop = pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) || common.emptyFieldLabel
@@ -39,27 +35,29 @@ export function StatTrapTemplate({
   const auditPrefix = `${activeFightId || 'draft'}:stat-trap`
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
 
-        <div className="relative z-10 flex h-full flex-col">
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="stat-trap"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} flex min-h-0 flex-1 flex-col ${HIGH_END_FRAME_CLASS} p-3`}>
-            <div className="border-y border-cyan-300/25 py-2">
-              <div className="mx-auto flex max-w-[92%] flex-col items-center gap-1 text-center" style={{ fontFamily: 'var(--font-display)' }}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.FRAME_CLASS}`}>
+            <div className={layout.HEADLINE_BAND_CLASS}>
+              <div className={layout.HEADLINE_WRAP_CLASS} style={{ fontFamily: 'var(--font-display)' }}>
                 <FittedText
                   as="p"
                   slotKey={`${auditPrefix}:top`}
-                  spec={TEMPLATE_SLOT_SPECS.statTrapHeadline}
+                  spec={slots.statTrapHeadline}
                   text={trapTop}
-                  className={`${STAT_TRAP_HEADLINE_CLASS} text-[#b10f24]`}
+                  className={`${String(tokens.STAT_TRAP_HEADLINE_CLASS)} text-[#b10f24]`}
                   templateId="stat-trap"
                   activeFightId={activeFightId}
                   language={language}
@@ -67,9 +65,9 @@ export function StatTrapTemplate({
                 <FittedText
                   as="p"
                   slotKey={`${auditPrefix}:bottom`}
-                  spec={TEMPLATE_SLOT_SPECS.statTrapHeadline}
+                  spec={slots.statTrapHeadline}
                   text={trapBottom}
-                  className={`${STAT_TRAP_HEADLINE_CLASS} text-[#c4951a]`}
+                  className={`${String(tokens.STAT_TRAP_HEADLINE_CLASS)} text-[#c4951a]`}
                   templateId="stat-trap"
                   activeFightId={activeFightId}
                   language={language}
@@ -77,46 +75,54 @@ export function StatTrapTemplate({
               </div>
             </div>
 
-            <div className="mt-2 flex min-h-0 flex-1 items-start">
+            <div className={layout.EXAMPLE_WRAP_CLASS}>
               <FittedText
                 as="p"
                 slotKey={`${auditPrefix}:example`}
-                spec={TEMPLATE_SLOT_SPECS.statTrapExample}
+                spec={slots.statTrapExample}
                 text={example}
-                className="w-full whitespace-pre-line text-slate-100"
-                style={{ fontFamily: 'var(--font-ui)', ...STAT_TRAP_EXAMPLE_STYLE }}
+                className={layout.EXAMPLE_TEXT_CLASS as string}
+                style={{ fontFamily: 'var(--font-ui)', ...(tokens.STAT_TRAP_EXAMPLE_STYLE as CSSProperties) }}
                 templateId="stat-trap"
                 activeFightId={activeFightId}
                 language={language}
               />
             </div>
 
-            <div className="mt-3 flex items-center justify-center">
+            <div className={layout.ICON_WRAP_CLASS}>
               <svg
-                viewBox="0 0 100 92"
-                className={`${STAT_TRAP_WARNING_ICON_CLASS} drop-shadow-[0_0_16px_rgba(255,45,63,0.52)]`}
+                viewBox={layout.ICON_VIEWBOX}
+                className={`${String(tokens.STAT_TRAP_WARNING_ICON_CLASS)} ${layout.ICON_CLASS}`}
                 aria-hidden="true"
               >
                 <polygon
-                  points="50,6 95,84 5,84"
-                  fill="rgba(255,255,255,0.96)"
-                  stroke="#ff2d3f"
-                  strokeWidth="6"
-                  strokeLinejoin="round"
+                  points={layout.ICON_POLYGON_POINTS}
+                  fill={layout.ICON_POLYGON_FILL}
+                  stroke={layout.ICON_STROKE}
+                  strokeWidth={layout.ICON_STROKE_WIDTH}
+                  strokeLinejoin={layout.ICON_STROKE_JOIN as 'round'}
                 />
-                <line x1="50" y1="30" x2="50" y2="56" stroke="#ff2d3f" strokeWidth="8" strokeLinecap="round" />
-                <circle cx="50" cy="69" r="4.8" fill="#ff2d3f" />
+                <line
+                  x1={layout.ICON_LINE_X1}
+                  y1={layout.ICON_LINE_Y1}
+                  x2={layout.ICON_LINE_X2}
+                  y2={layout.ICON_LINE_Y2}
+                  stroke={layout.ICON_STROKE}
+                  strokeWidth={layout.ICON_LINE_WIDTH}
+                  strokeLinecap={layout.ICON_LINE_CAP as 'round'}
+                />
+                <circle cx={layout.ICON_CIRCLE_CX} cy={layout.ICON_CIRCLE_CY} r={layout.ICON_CIRCLE_R} fill={layout.ICON_STROKE} />
               </svg>
             </div>
 
-            <div className="mt-3 text-slate-100">
-              <span className="font-bold">{common.keyQuestionLabel}</span>{' '}
+            <div className={layout.QUESTION_ROW_CLASS}>
+              <span className={layout.QUESTION_LABEL_CLASS}>{common.keyQuestionLabel}</span>{' '}
               <FittedText
                 as="span"
                 slotKey={`${auditPrefix}:question`}
-                spec={TEMPLATE_SLOT_SPECS.statTrapQuestion}
+                spec={slots.statTrapQuestion}
                 text={questionLine}
-                style={{ fontFamily: 'var(--font-ui)', ...STAT_TRAP_QUESTION_STYLE }}
+                style={{ fontFamily: 'var(--font-ui)', ...(tokens.STAT_TRAP_QUESTION_STYLE as CSSProperties) }}
                 templateId="stat-trap"
                 activeFightId={activeFightId}
                 language={language}

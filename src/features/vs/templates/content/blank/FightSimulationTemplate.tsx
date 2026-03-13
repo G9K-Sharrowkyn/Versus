@@ -1,5 +1,4 @@
 import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightDefaultCategories, getFightTemplateDefaultField } from '../../../fightManifest'
 import {
   humanizeScenarioToken,
   normalizeToken,
@@ -20,14 +19,14 @@ import {
 } from '../../../importer'
 import type { FightScenarioId, FightScenarioLead, ScoreRow, TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getDefaultFightCategories as getFightDefaultCategories,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function FightSimulationTemplate({
   fighterA,
@@ -42,9 +41,13 @@ export function FightSimulationTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-simulation'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
-  const categories = getFightDefaultCategories(language)
+  const chrome = buildFightTemplateChrome('fight-simulation', language, blockFields)
+  const common = getFightCommonCopy('fight-simulation', language)
+  const ui = getTemplateUi('fight-simulation', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
+  const categories = getFightDefaultCategories('fight-simulation', language)
   const categoryLabel = (categoryId: string, fallback: string) =>
     categories.find((entry) => entry.id === categoryId)?.label || fallback
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
@@ -260,32 +263,34 @@ export function FightSimulationTemplate({
   })
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="fight-simulation"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-3 items-stretch gap-3 rounded-md border border-cyan-300/25 bg-slate-950/68 p-3`}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.PHASES_PANEL_CLASS}`}>
             {phaseData.map((phase, index) => (
-              <div key={`phase-sim-${index}-${phase.title}`} className="flex min-h-[430px] min-w-0 flex-col overflow-hidden rounded-lg border border-slate-500/70 bg-slate-900/84 p-3">
-                <div className="mb-2 flex items-center">
-                  <p className="text-[11px] uppercase tracking-[0.2em] text-slate-300">{common.phaseLabel} {index + 1}</p>
+              <div key={`phase-sim-${index}-${phase.title}`} className={layout.PHASE_CARD_CLASS}>
+                <div className={layout.PHASE_CARD_HEADER_CLASS}>
+                  <p className={layout.PHASE_CARD_LABEL_CLASS}>{common.phaseLabel} {index + 1}</p>
                 </div>
                 <FittedText
                   as="p"
                   slotKey={`fight-simulation:title:${index}`}
-                  spec={TEMPLATE_SLOT_SPECS.phaseTitle}
+                  spec={slots.phaseTitle}
                   text={phase.title}
-                  className="font-semibold text-slate-100"
+                  className={layout.PHASE_TITLE_CLASS}
                 />
 
-                <div className="mt-2 rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
+                <div className={layout.SCENARIO_PANEL_CLASS}>
                   <FightScenarioCanvas
                     scenario={phase.animation}
                     variantToken={phase.animationVariantToken}
@@ -293,63 +298,63 @@ export function FightSimulationTemplate({
                     colorB={fighterB.color}
                     lead={phase.lead}
                   />
-                  <div className="mt-1 flex items-center justify-between gap-2 rounded border border-slate-700/70 bg-slate-900/72 px-2 py-1">
-                    <span className="text-[10px] uppercase tracking-[0.16em] text-slate-400">{common.scenarioPresetLabel}</span>
+                  <div className={layout.SCENARIO_META_CLASS}>
+                    <span className={layout.SCENARIO_META_LABEL_CLASS}>{common.scenarioPresetLabel}</span>
                     <FittedText
                       as="span"
                       slotKey={`fight-simulation:scenario:${index}`}
-                      spec={TEMPLATE_SLOT_SPECS.phaseScenarioLabel}
+                      spec={slots.phaseScenarioLabel}
                       text={phase.animationLabel}
-                      className="text-cyan-100"
-                      style={{ width: '140px' }}
+                      className={layout.SCENARIO_META_VALUE_CLASS}
+                      style={{ width: String(layout.SCENARIO_META_VALUE_WIDTH) }}
                     />
                   </div>
                 </div>
 
                 {phase.mode === 'bars' ? (
-                  <div className="mt-2 flex min-h-0 flex-1 flex-col">
+                  <div className={layout.BARS_MODE_CLASS}>
                     <FittedText
                       as="p"
                       slotKey={`fight-simulation:event:${index}`}
-                      spec={TEMPLATE_SLOT_SPECS.phaseEvent}
+                      spec={slots.phaseEvent}
                       text={phase.event}
-                      className="text-slate-200"
+                      className={layout.EVENT_TEXT_CLASS}
                     />
-                    <div className="mt-2 flex min-h-0 flex-1 items-stretch overflow-hidden">
-                      <div className="flex w-full items-end justify-center gap-6 overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/75 px-3 py-2">
+                    <div className={layout.BARS_STAGE_WRAP_CLASS}>
+                      <div className={layout.BARS_STAGE_CLASS}>
                         {[
                           {
                             id: 'a',
                             label: phase.aLabel,
                             value: phase.aValue,
-                            color: 'bg-[linear-gradient(180deg,#22d3ee,#1d4ed8)]',
-                            textColor: 'text-sky-200',
+                            color: layout.BAR_A_FILL_CLASS,
+                            textColor: layout.BAR_A_TEXT_CLASS,
                           },
                           {
                             id: 'b',
                             label: phase.bLabel,
                             value: phase.bValue,
-                            color: 'bg-[linear-gradient(180deg,#fb7185,#b91c1c)]',
-                            textColor: 'text-rose-200',
+                            color: layout.BAR_B_FILL_CLASS,
+                            textColor: layout.BAR_B_TEXT_CLASS,
                           },
                         ].map((entry) => (
-                          <div key={`phase-bar-${index}-${entry.id}`} className="flex h-full w-[42%] min-h-0 flex-col items-center justify-end overflow-hidden">
+                          <div key={`phase-bar-${index}-${entry.id}`} className={layout.BAR_COLUMN_CLASS}>
                             <FittedText
                               as="p"
                               slotKey={`fight-simulation:value:${index}:${entry.id}`}
-                              spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                              spec={slots.scoreValue}
                               text={String(Math.round(entry.value))}
-                              className={`mb-1 font-semibold leading-none ${entry.textColor}`}
+                              className={`${layout.BAR_VALUE_BASE_CLASS} ${entry.textColor}`}
                             />
-                            <div className="relative h-[132px] w-12 overflow-hidden rounded border border-slate-500/75 bg-slate-900/95">
+                            <div className={layout.BAR_TRACK_CLASS}>
                               <div className={`absolute bottom-0 left-0 right-0 ${entry.color}`} style={{ height: `${entry.value}%` }} />
                             </div>
                             <FittedText
                               as="p"
                               slotKey={`fight-simulation:label:${index}:${entry.id}`}
-                              spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                              spec={slots.scoreLabel}
                               text={entry.label}
-                              className={`mt-1 ${entry.textColor}`}
+                              className={`${layout.BAR_LABEL_BASE_CLASS} ${entry.textColor}`}
                               style={{ width: '100%', textAlign: 'center' }}
                             />
                           </div>
@@ -358,35 +363,35 @@ export function FightSimulationTemplate({
                     </div>
                   </div>
                 ) : (
-                  <div className="mt-2 flex flex-1 flex-col">
+                  <div className={layout.SPLIT_MODE_CLASS}>
                     <FittedText
                       as="p"
                       slotKey={`fight-simulation:event:${index}`}
-                      spec={TEMPLATE_SLOT_SPECS.phaseEvent}
+                      spec={slots.phaseEvent}
                       text={phase.event}
-                      className="text-slate-200"
+                      className={layout.EVENT_TEXT_CLASS}
                     />
-                    <div className="mt-2 flex flex-1 flex-col rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
-                      <svg viewBox="0 0 100 40" className="h-20 w-full">
-                        <line x1="50" y1="2" x2="50" y2="14" stroke="#94a3b8" strokeWidth="1.1" />
-                        <line x1="50" y1="14" x2="22" y2="37" stroke="#22d3ee" strokeWidth="1.2" />
-                        <line x1="50" y1="14" x2="78" y2="37" stroke="#fb7185" strokeWidth="1.2" />
-                        <circle cx="50" cy="14" r="2.2" fill="#e2e8f0" />
+                    <div className={layout.SPLIT_PANEL_CLASS}>
+                      <svg viewBox={layout.SPLIT_SVG_VIEWBOX} className={layout.SPLIT_SVG_CLASS}>
+                        <line x1={layout.SPLIT_LINE_TOP_X1} y1={layout.SPLIT_LINE_TOP_Y1} x2={layout.SPLIT_LINE_TOP_X2} y2={layout.SPLIT_LINE_TOP_Y2} stroke={layout.SPLIT_LINE_TOP_STROKE} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH} />
+                        <line x1={layout.SPLIT_BRANCH_A_X1} y1={layout.SPLIT_BRANCH_A_Y1} x2={layout.SPLIT_BRANCH_A_X2} y2={layout.SPLIT_BRANCH_A_Y2} stroke={layout.SPLIT_BRANCH_A_STROKE} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH} />
+                        <line x1={layout.SPLIT_BRANCH_B_X1} y1={layout.SPLIT_BRANCH_B_Y1} x2={layout.SPLIT_BRANCH_B_X2} y2={layout.SPLIT_BRANCH_B_Y2} stroke={layout.SPLIT_BRANCH_B_STROKE} strokeWidth={layout.SPLIT_BRANCH_B_WIDTH} />
+                        <circle cx={layout.SPLIT_NODE_CX} cy={layout.SPLIT_NODE_CY} r={layout.SPLIT_NODE_R} fill={layout.SPLIT_NODE_FILL} />
                       </svg>
-                      <div className="mt-2 grid grid-cols-2 gap-2">
-                        <div className="rounded border border-cyan-300/45 bg-cyan-500/12 px-2 py-1.5 text-cyan-100">
+                      <div className={layout.BRANCH_GRID_CLASS}>
+                        <div className={layout.BRANCH_A_CLASS}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-a:${index}`}
-                            spec={TEMPLATE_SLOT_SPECS.phaseBranch}
+                            spec={slots.phaseBranch}
                             text={phase.branchA}
                           />
                         </div>
-                        <div className="rounded border border-rose-300/45 bg-rose-500/12 px-2 py-1.5 text-rose-100">
+                        <div className={layout.BRANCH_B_CLASS}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-b:${index}`}
-                            spec={TEMPLATE_SLOT_SPECS.phaseBranch}
+                            spec={slots.phaseBranch}
                             text={phase.branchB}
                           />
                         </div>
@@ -398,11 +403,11 @@ export function FightSimulationTemplate({
             ))}
           </div>
 
-          <div className="mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-slate-100">
+          <div className={layout.END_CONDITION_CLASS}>
             <FittedText
               as="p"
               slotKey="fight-simulation:end-condition"
-              spec={TEMPLATE_SLOT_SPECS.endCondition}
+              spec={slots.endCondition}
               text={endCondition}
             />
           </div>

@@ -5,10 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run fights:guard && npm run i18n:audit && npm run i18n:keys",
+    "prebuild": "npm run templates:sync && npm run templates:guard && npm run fights:guard && npm run i18n:audit && npm run i18n:keys",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
+    "templates:sync": "node scripts/export-template-library.mjs",
+    "templates:guard": "node scripts/guard-template-library.mjs",
     "fights:guard": "node scripts/guard-fight-json-integrity.mjs && node scripts/guard-fight-semantic-snapshot.mjs",
     "fights:audit:migration": "node scripts/audit-fight-json-migration.mjs",
     "fights:audit:layout": "node scripts/audit-fight-layout.mjs",

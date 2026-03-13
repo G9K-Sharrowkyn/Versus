@@ -1,17 +1,14 @@
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../../fightManifest'
-import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { fighterMonogram } from '../../../helpers'
 import { FittedText } from '../../shared/FittedText'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function VerdictMatrixTemplate({
   fighterA,
@@ -22,14 +19,17 @@ export function VerdictMatrixTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const common = getFightCommonCopy(language)
-  const fighterAName = fighterA.name || tr('Postac A', 'Fighter A')
-  const fighterBName = fighterB.name || tr('Postac B', 'Fighter B')
+  const common = getFightCommonCopy('verdict-matrix', language)
+  const fighterAName = fighterA.name || getFightTemplateDefaultField('verdict-matrix', 'fighter_a_fallback', language)
+  const fighterBName = fighterB.name || getFightTemplateDefaultField('verdict-matrix', 'fighter_b_fallback', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const chrome = buildFightTemplateChrome('verdict-matrix', language, blockFields)
+  const ui = getTemplateUi('verdict-matrix', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -50,8 +50,8 @@ export function VerdictMatrixTemplate({
       .trim()
   const fighterAKey = normalizeName(fighterAName)
   const fighterBKey = normalizeName(fighterBName)
-  const winnerBlueBackground = 'bg-[linear-gradient(135deg,rgba(14,116,144,0.34),rgba(30,64,175,0.3))]'
-  const winnerRedBackground = 'bg-[linear-gradient(135deg,rgba(220,38,38,0.34),rgba(127,29,29,0.3))]'
+  const winnerBlueBackground = String(layout.WINNER_A_BG_CLASS)
+  const winnerRedBackground = String(layout.WINNER_B_BG_CLASS)
   const resolveWinnerSide = (value: string, fallback: 'a' | 'b') => {
     const normalized = normalizeName(value)
     if (fighterAKey && normalized.startsWith(fighterAKey)) return 'a'
@@ -113,94 +113,96 @@ export function VerdictMatrixTemplate({
   ]
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
 
-        <div className="relative z-10 flex h-full flex-col">
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="verdict-matrix"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-[96px_1fr] grid-rows-[56px_1fr]`}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.MATRIX_SHELL_CLASS}`}>
             <div />
 
-            <div className="grid grid-cols-2">
-              <div className="flex items-center justify-center border border-cyan-300/45 bg-slate-900/72 px-2 text-slate-100">
+            <div className={layout.COLUMN_HEADERS_CLASS}>
+              <div className={layout.COLUMN_HEADER_CELL_CLASS}>
                 <FittedText
                   as="p"
                   slotKey="verdict-matrix:col-left"
-                  spec={TEMPLATE_SLOT_SPECS.verdictMatrixHeader}
+                  spec={slots.verdictMatrixHeader}
                   text={colLeftHeader}
                   style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
                 />
               </div>
-              <div className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 px-2 text-slate-100">
+              <div className={layout.COLUMN_HEADER_CELL_RIGHT_CLASS}>
                 <FittedText
                   as="p"
                   slotKey="verdict-matrix:col-right"
-                  spec={TEMPLATE_SLOT_SPECS.verdictMatrixHeader}
+                  spec={slots.verdictMatrixHeader}
                   text={colRightHeader}
                   style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
                 />
               </div>
             </div>
 
-            <div className="grid grid-rows-2">
-              <div className="relative border border-r-0 border-t-0 border-cyan-300/45 bg-slate-900/72">
-                <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+            <div className={layout.ROW_HEADERS_CLASS}>
+              <div className={layout.ROW_HEADER_CELL_CLASS}>
+                <div className={layout.ROW_HEADER_TEXT_WRAP_CLASS}>
                   <FittedText
                     as="p"
                     slotKey="verdict-matrix:row-top"
-                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixRowHeader}
+                    spec={slots.verdictMatrixRowHeader}
                     text={rowTopHeader}
-                    className="text-slate-100"
-                    style={{ fontFamily: 'var(--font-ui)', width: '150px' }}
+                    className={layout.ROW_HEADER_TEXT_CLASS as string}
+                    style={{ fontFamily: 'var(--font-ui)', width: String(layout.ROW_HEADER_WIDTH) }}
                   />
                 </div>
               </div>
-              <div className="relative border border-r-0 border-t-0 border-cyan-300/45 bg-slate-900/72">
-                <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+              <div className={layout.ROW_HEADER_CELL_CLASS}>
+                <div className={layout.ROW_HEADER_TEXT_WRAP_CLASS}>
                   <FittedText
                     as="p"
                     slotKey="verdict-matrix:row-bottom"
-                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixRowHeader}
+                    spec={slots.verdictMatrixRowHeader}
                     text={rowBottomHeader}
-                    className="text-slate-100"
-                    style={{ fontFamily: 'var(--font-ui)', width: '150px' }}
+                    className={layout.ROW_HEADER_TEXT_CLASS as string}
+                    style={{ fontFamily: 'var(--font-ui)', width: String(layout.ROW_HEADER_WIDTH) }}
                   />
                 </div>
               </div>
             </div>
 
-            <div className="grid min-h-0 grid-cols-2 grid-rows-2 border border-t-0 border-cyan-300/45">
+            <div className={layout.CELLS_GRID_CLASS}>
               {cells.map((cell, index) => (
                 <div
                   key={`matrix-cell-${cell.id}`}
-                  className={`relative overflow-hidden border-cyan-300/45 p-3 ${cell.bg} ${index % 2 === 0 ? 'border-r' : ''} ${index < 2 ? 'border-b' : ''}`}
+                  className={`${layout.CELL_CLASS} ${cell.bg} ${index % 2 === 0 ? layout.CELL_RIGHT_BORDER_CLASS : ''} ${index < 2 ? layout.CELL_BOTTOM_BORDER_CLASS : ''}`}
                 >
                   <FittedText
                     as="p"
                     slotKey={`verdict-matrix:lead:${cell.id}`}
-                    spec={TEMPLATE_SLOT_SPECS.verdictMatrixLead}
+                    spec={slots.verdictMatrixLead}
                     text={cell.lead}
-                    className="relative z-10 font-semibold text-slate-100"
+                    className={layout.CELL_LEAD_CLASS as string}
                     style={{ fontFamily: 'var(--font-display)' }}
                   />
                   {cell.body ? (
                     <FittedText
                       as="p"
                       slotKey={`verdict-matrix:body:${cell.id}`}
-                      spec={TEMPLATE_SLOT_SPECS.verdictMatrixBody}
+                      spec={slots.verdictMatrixBody}
                       text={cell.body}
-                      className="relative z-10 mt-1 text-slate-100"
+                      className={layout.CELL_BODY_CLASS as string}
                       style={{ fontFamily: 'var(--font-ui)' }}
                     />
                   ) : null}
-                  <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[170px] font-bold text-white/10">
+                  <div className={layout.CELL_MARK_CLASS}>
                     {cell.mark}
                   </div>
                 </div>

@@ -1,22 +1,15 @@
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import { fighterMonogram } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_INSET_CLASS,
-  HIGH_END_LABEL_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HIGH_END_SMALL_TEXT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function SummaryTemplate({
   fighterA,
@@ -37,13 +30,21 @@ export function SummaryTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['final-summary'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('final-summary', language, blockFields)
+  const common = getFightCommonCopy('final-summary', language)
+  const ui = getTemplateUi('final-summary', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
   const portraitHint = chrome.portraitAdjustHint
+  const fighterAFallback = getFightTemplateDefaultField('final-summary', 'fighter_a_fallback', language)
+  const fighterBFallback = getFightTemplateDefaultField('final-summary', 'fighter_b_fallback', language)
+  const fighterAName = fighterA.name || fighterAFallback
+  const fighterBName = fighterB.name || fighterBFallback
   const winnerLabel = pickTemplateField(blockFields, ['winner', 'verdict']) || common.emptyFieldLabel
   const summaryLines = [
     line(0, ['line_1', 'line1'], common.emptyFieldLabel),
@@ -52,34 +53,37 @@ export function SummaryTemplate({
   ]
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="final-summary"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-[1.05fr_1.2fr_1.05fr] gap-3`}>
-            <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-              <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                <p className={HIGH_END_SMALL_TEXT_CLASS}>{common.blueCorner}</p>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
+            <div className={layout.SIDE_FRAME_CLASS} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
+              <div className={layout.SIDE_NAME_PLATE_CLASS}>
+                <p className={shell.HIGH_END_SMALL_TEXT_CLASS}>{common.blueCorner}</p>
                 <FittedText
                   as="p"
-                  slotKey={`final-summary:left-name:${fighterA.name || 'Fighter A'}`}
-                  spec={TEMPLATE_SLOT_SPECS.heroName}
-                  text={fighterA.name || 'Fighter A'}
-                  style={{ color: fighterA.color, fontFamily: 'var(--font-display)' }}
+                  slotKey={`final-summary:left-name:${fighterAName}`}
+                  spec={slots.heroName}
+                  text={fighterAName}
+                  className={layout.SIDE_NAME_TEXT_CLASS}
+                  style={{ color: fighterA.color, fontFamily: 'var(--font-display)', width: '100%' }}
                 />
               </div>
-              <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterA.color}88` }}>
+              <div className={layout.PORTRAIT_FRAME_CLASS} style={{ borderColor: `${fighterA.color}88` }}>
                 {fighterA.imageUrl ? (
                   <AdjustableTemplateImage
                     imageUrl={fighterA.imageUrl}
-                    alt={fighterA.name || 'Fighter A'}
+                    alt={fighterAName}
                     fallbackLabel={common.portraitSlot}
                     hintLabel={portraitHint}
                     adjustKey="final-summary:portrait-a"
@@ -91,79 +95,83 @@ export function SummaryTemplate({
                   />
                 ) : (
                   <div
-                    className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.14),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
+                    className={layout.FALLBACK_PORTRAIT_CLASS}
                     style={{ color: fighterA.color }}
                   >
-                    <div className="text-center">
-                      <p className="text-[56px] font-semibold tracking-[0.04em]">{fighterMonogram(fighterA.name || 'Fighter A')}</p>
-                      <p className="text-xs uppercase tracking-[0.2em] text-slate-300">{common.portraitSlot}</p>
+                    <div className={layout.FALLBACK_INNER_CLASS}>
+                      <p className={layout.FALLBACK_MONOGRAM_CLASS}>{fighterMonogram(fighterAName)}</p>
+                      <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
                     </div>
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-0 border-[3px] border-black/35" />
-                <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.22)_1px,transparent_1px)] [background-size:28px_28px]" />
+                <div className={layout.PORTRAIT_OVERLAY_BORDER_CLASS} />
+                <div className={layout.PORTRAIT_OVERLAY_GRID_CLASS} />
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-3`}>
-              <div className="rounded-xl border border-amber-300/55 bg-[linear-gradient(115deg,rgba(120,53,15,0.42),rgba(251,191,36,0.35),rgba(120,53,15,0.42))] px-4 py-3 text-left">
-                <p className="text-xs uppercase tracking-[0.18em] text-amber-100">{common.verdictLabel}</p>
+            <div className={layout.CENTER_FRAME_CLASS}>
+              <div className={layout.VERDICT_PANEL_CLASS}>
+                <p className={layout.VERDICT_LABEL_CLASS}>{common.verdictLabel}</p>
                 <FittedText
                   as="p"
                   slotKey="final-summary:winner"
-                  spec={TEMPLATE_SLOT_SPECS.summaryWinner}
+                  spec={slots.summaryWinner}
                   text={winnerLabel}
-                  className="mt-2 max-w-[20ch] font-semibold tracking-[-0.02em] text-white"
+                  className={layout.VERDICT_WINNER_CLASS}
                   style={{ fontFamily: 'var(--font-display)' }}
                 />
               </div>
 
-              <div className="mt-2 grid shrink-0 grid-cols-2 gap-2">
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
+              <div className={layout.SCORE_GRID_CLASS}>
+                <div className={layout.SCORE_CARD_CLASS} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
                   <FittedText
                     as="p"
-                    slotKey={`final-summary:left-score-label:${fighterA.name || 'Fighter A'}`}
-                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
-                    text={fighterA.name || 'Fighter A'}
+                    slotKey={`final-summary:left-score-label:${fighterAName}`}
+                    spec={slots.scoreLabel}
+                    text={fighterAName}
+                    className={layout.SIDE_NAME_TEXT_CLASS}
+                    style={{ width: '100%' }}
                   />
                   <FittedText
                     as="p"
                     slotKey="final-summary:left-score"
-                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    spec={slots.scoreValue}
                     text={String(Math.round(averageA))}
-                    className="font-semibold"
+                    className={layout.SCORE_VALUE_TEXT_CLASS}
                     style={{ color: fighterA.color }}
                   />
                 </div>
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-1.5`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-                  <FittedText
-                    as="p"
-                    slotKey={`final-summary:right-score-label:${fighterB.name || 'Fighter B'}`}
-                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
-                    text={fighterB.name || 'Fighter B'}
-                  />
+                <div className={layout.SCORE_CARD_CLASS} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
+                <FittedText
+                  as="p"
+                  slotKey={`final-summary:right-score-label:${fighterBName}`}
+                  spec={slots.scoreLabel}
+                  text={fighterBName}
+                  className={layout.SIDE_NAME_TEXT_CLASS}
+                  style={{ width: '100%' }}
+                />
                   <FittedText
                     as="p"
                     slotKey="final-summary:right-score"
-                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    spec={slots.scoreValue}
                     text={String(Math.round(averageB))}
-                    className="font-semibold"
+                    className={layout.SCORE_VALUE_TEXT_CLASS}
                     style={{ color: fighterB.color }}
                   />
                 </div>
               </div>
 
-              <div className={`mt-2 shrink-0 ${HIGH_END_CARD_CLASS} p-2`}>
-                <p className={HIGH_END_LABEL_CLASS}>{common.summaryLabel}</p>
-                <div className="mt-2 space-y-1.5 text-[0.92rem] leading-[1.18] text-slate-100">
+              <div className={layout.SUMMARY_PANEL_CLASS}>
+                <p className={shell.HIGH_END_LABEL_CLASS}>{common.summaryLabel}</p>
+                <div className={layout.SUMMARY_LIST_CLASS}>
                   {summaryLines.map((item, index) => (
-                    <div key={`summary-line-${index}-${item}`} className="rounded border border-slate-700/60 bg-black/35 px-2 py-1">
+                    <div key={`summary-line-${index}-${item}`} className={layout.SUMMARY_ITEM_CLASS}>
                       <FittedText
                         as="p"
                         slotKey={`final-summary:line:${index}`}
-                        spec={TEMPLATE_SLOT_SPECS.summaryLine}
+                        spec={slots.summaryLine}
                         text={`${index + 1}. ${item}`}
-                        className="text-slate-100"
+                        className={layout.SUMMARY_LINE_TEXT_CLASS}
                       />
                     </div>
                   ))}
@@ -171,22 +179,23 @@ export function SummaryTemplate({
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} min-h-0 p-2`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-              <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
-                <p className={HIGH_END_SMALL_TEXT_CLASS}>{common.redCorner}</p>
+            <div className={layout.SIDE_FRAME_CLASS} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
+              <div className={layout.SIDE_NAME_PLATE_CLASS}>
+                <p className={shell.HIGH_END_SMALL_TEXT_CLASS}>{common.redCorner}</p>
                 <FittedText
                   as="p"
-                  slotKey={`final-summary:right-name:${fighterB.name || 'Fighter B'}`}
-                  spec={TEMPLATE_SLOT_SPECS.heroName}
-                  text={fighterB.name || 'Fighter B'}
-                  style={{ color: fighterB.color, fontFamily: 'var(--font-display)' }}
+                  slotKey={`final-summary:right-name:${fighterBName}`}
+                  spec={slots.heroName}
+                  text={fighterBName}
+                  className={layout.SIDE_NAME_TEXT_CLASS}
+                  style={{ color: fighterB.color, fontFamily: 'var(--font-display)', width: '100%' }}
                 />
               </div>
-              <div className="relative h-[78%] overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterB.color}88` }}>
+              <div className={layout.PORTRAIT_FRAME_CLASS} style={{ borderColor: `${fighterB.color}88` }}>
                 {fighterB.imageUrl ? (
                   <AdjustableTemplateImage
                     imageUrl={fighterB.imageUrl}
-                    alt={fighterB.name || 'Fighter B'}
+                    alt={fighterBName}
                     fallbackLabel={common.portraitSlot}
                     hintLabel={portraitHint}
                     adjustKey="final-summary:portrait-b"
@@ -198,17 +207,17 @@ export function SummaryTemplate({
                   />
                 ) : (
                   <div
-                    className="flex h-full w-full items-center justify-center bg-[radial-gradient(circle_at_35%_25%,rgba(255,255,255,0.14),transparent_45%),linear-gradient(160deg,rgba(15,23,42,0.96),rgba(2,6,23,0.9))]"
+                    className={layout.FALLBACK_PORTRAIT_CLASS}
                     style={{ color: fighterB.color }}
                   >
-                    <div className="text-center">
-                      <p className="text-[56px] font-semibold tracking-[0.04em]">{fighterMonogram(fighterB.name || 'Fighter B')}</p>
-                      <p className="text-xs uppercase tracking-[0.2em] text-slate-300">{common.portraitSlot}</p>
+                    <div className={layout.FALLBACK_INNER_CLASS}>
+                      <p className={layout.FALLBACK_MONOGRAM_CLASS}>{fighterMonogram(fighterBName)}</p>
+                      <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
                     </div>
                   </div>
                 )}
-                <div className="pointer-events-none absolute inset-0 border-[3px] border-black/35" />
-                <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.22)_1px,transparent_1px)] [background-size:28px_28px]" />
+                <div className={layout.PORTRAIT_OVERLAY_BORDER_CLASS} />
+                <div className={layout.PORTRAIT_OVERLAY_GRID_CLASS} />
               </div>
             </div>
           </div>

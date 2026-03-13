@@ -1,19 +1,15 @@
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
-import { buildFightTemplateChrome, getFightCommonCopy, getFightTemplateDefaultField } from '../../fightManifest'
 import { AVERAGE_DRAW_THRESHOLD } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
-import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
+import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
 import { FittedText } from '../shared/FittedText'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+import {
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 export function ParameterComparisonTemplate({
   rows,
@@ -30,14 +26,20 @@ export function ParameterComparisonTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['parameter-comparison'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('parameter-comparison', language, blockFields)
+  const common = getFightCommonCopy('parameter-comparison', language)
+  const ui = getTemplateUi('parameter-comparison', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string | number>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
+  const fighterAFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_a_fallback', language)
+  const fighterBFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_b_fallback', language)
   const customLeftHeader = pickTemplateField(blockFields, ['left_header'])
   const customRightHeader = pickTemplateField(blockFields, ['right_header'])
-  const leftHeader = customLeftHeader || getFightTemplateDefaultField('parameter-comparison', 'left_header', language)
-  const rightHeader = customRightHeader || getFightTemplateDefaultField('parameter-comparison', 'right_header', language)
+  const leftHeader = customLeftHeader || fighterA.name || fighterAFallback
+  const rightHeader = customRightHeader || fighterB.name || fighterBFallback
   const drawHeader =
     pickTemplateField(blockFields, ['draw_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||
@@ -45,8 +47,8 @@ export function ParameterComparisonTemplate({
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')
-  const fighterAText = fighterA.name || 'Fighter A'
-  const fighterBText = fighterB.name || 'Fighter B'
+  const fighterAText = fighterA.name || fighterAFallback
+  const fighterBText = fighterB.name || fighterBFallback
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
@@ -64,63 +66,112 @@ export function ParameterComparisonTemplate({
   const favoriteLeft = favoriteSide === 'a' ? '37.5%' : favoriteSide === 'b' ? '87.5%' : '50%'
   const favoriteRotation = favoriteSide === 'a' ? -12 : favoriteSide === 'b' ? 12 : 0
   const auditPrefix = `${activeFightId || 'draft'}:parameter-comparison`
-  const buildAdvantageSummary = (entries: typeof rows, side: 'a' | 'b', emptyLabel: string) =>
-    entries.length
-      ? entries
-          .map((row) => `${row.label.toUpperCase()}: ${side === 'a' ? `${row.a} > ${row.b}` : `${row.b} > ${row.a}`}`)
-          .join('\n')
-      : emptyLabel
+  const renderAdvantageCards = (
+    entries: typeof rows,
+    side: 'a' | 'b' | 'draw',
+    color: string,
+    emptyLabel: string,
+    slotPrefix: 'left' | 'right' | 'draw',
+  ) => {
+    if (!entries.length) {
+      return (
+        <div className={layout.ADVANTAGE_EMPTY_CLASS as string}>
+          <FittedText
+            as="p"
+            slotKey={`${auditPrefix}:${slotPrefix}-empty`}
+            spec={slots.parameterAdvantageValue}
+            text={emptyLabel}
+            className={layout.ADVANTAGE_EMPTY_TEXT_CLASS as string}
+            templateId="parameter-comparison"
+            activeFightId={activeFightId}
+            language={language}
+          />
+        </div>
+      )
+    }
 
-  const leftSummary = buildAdvantageSummary(leftAdvantages, 'a', common.noLeftCategoryEdge)
-  const drawSummary = drawRows.length
-    ? drawRows.map((row) => `${row.label.toUpperCase()}: ${row.a} = ${row.b}`).join('\n')
-    : common.noDrawsCurrentSetup
-  const rightSummary = buildAdvantageSummary(rightAdvantages, 'b', common.noRightCategoryEdge)
+    return entries.map((row) => {
+      const valueText =
+        side === 'draw'
+          ? `${row.a} = ${row.b}`
+          : side === 'a'
+            ? `${row.a} > ${row.b}`
+            : `${row.b} > ${row.a}`
+
+      return (
+        <div
+          key={`${slotPrefix}-adv-${row.id}`}
+          className={layout.ADVANTAGE_CARD_CLASS as string}
+          style={{
+            borderColor: `${color}7A`,
+            background: `linear-gradient(180deg, ${color}26 0%, rgba(2,6,23,0.86) 100%)`,
+            boxShadow: `0 0 0 1px ${color}22 inset`,
+          }}
+        >
+          <FittedText
+            as="p"
+            slotKey={`${auditPrefix}:${slotPrefix}-label-${row.id}`}
+            spec={slots.parameterAdvantageLabel}
+            text={row.label}
+            className={layout.ADVANTAGE_LABEL_CLASS as string}
+            style={{ color }}
+            templateId="parameter-comparison"
+            activeFightId={activeFightId}
+            language={language}
+          />
+          <FittedText
+            as="p"
+            slotKey={`${auditPrefix}:${slotPrefix}-value-${row.id}`}
+            spec={slots.parameterAdvantageValue}
+            text={valueText}
+            className={layout.ADVANTAGE_VALUE_CLASS as string}
+            templateId="parameter-comparison"
+            activeFightId={activeFightId}
+            language={language}
+          />
+        </div>
+      )
+    })
+  }
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
+            templateId="parameter-comparison"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-rows-[minmax(0,1fr)_auto] gap-3`}>
-            <div className="grid min-h-0 grid-cols-[1fr_1.3fr_1fr] gap-3">
-              <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-2`}>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:left-header`}
-                  spec={TEMPLATE_SLOT_SPECS.parameterPanelHeader}
-                  text={customLeftHeader ? leftHeader : `${leftHeader} // ${fighterAText}`}
-                  className="uppercase"
-                  style={{ color: fighterA.color }}
-                  templateId="parameter-comparison"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <div className="mt-2 flex min-h-0 flex-1 rounded border border-slate-600/55 bg-black/28 px-2 py-2">
-                  <FittedText
-                    as="p"
-                    slotKey={`${auditPrefix}:left-summary`}
-                    spec={TEMPLATE_SLOT_SPECS.parameterAdvantageList}
-                    text={leftSummary}
-                    className="w-full text-slate-100"
-                    templateId="parameter-comparison"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS as string}`}>
+            <div className={layout.MAIN_GRID_CLASS as string}>
+              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
+                <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterA, name: leftHeader }} />
+                <div className={layout.ADVANTAGES_GRID_CLASS as string}>
+                  {renderAdvantageCards(leftAdvantages, 'a', fighterA.color, common.noLeftCategoryEdge, 'left')}
                 </div>
               </div>
 
-              <div className={`${HIGH_END_FRAME_CLASS} grid min-h-0 grid-rows-[minmax(0,1fr)_132px] select-none p-2`}>
-                <div className="pointer-events-none min-h-0 select-none">
+              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.CENTER_FRAME_CLASS as string}`}>
+                <div className={layout.RADAR_WRAP_CLASS as string}>
                   <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart data={rows} cx="50%" cy="44%" outerRadius="74%" margin={{ top: 12, right: 28, bottom: 38, left: 28 }}>
+                    <RadarChart
+                      data={rows}
+                      cx={String(layout.RADAR_CX)}
+                      cy={String(layout.RADAR_CY)}
+                      outerRadius={String(layout.RADAR_OUTER_RADIUS)}
+                      margin={{
+                        top: Number(layout.RADAR_MARGIN_TOP),
+                        right: Number(layout.RADAR_MARGIN_RIGHT),
+                        bottom: Number(layout.RADAR_MARGIN_BOTTOM),
+                        left: Number(layout.RADAR_MARGIN_LEFT),
+                      }}
+                    >
                       <PolarGrid stroke="rgba(148,163,184,0.35)" />
                       <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 12 }} />
                       <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
@@ -128,95 +179,71 @@ export function ParameterComparisonTemplate({
                     </RadarChart>
                   </ResponsiveContainer>
                 </div>
-                <div className="mt-2 h-full rounded-lg border border-slate-600/60 bg-black/35 px-3 py-2">
+                <div className={layout.DRAW_PANEL_CLASS as string}>
                   <FittedText
                     as="p"
                     slotKey={`${auditPrefix}:draw-header`}
-                    spec={TEMPLATE_SLOT_SPECS.sectionLabel}
+                    spec={slots.sectionLabel}
                     text={drawHeader}
-                    className="text-slate-300"
+                    className={layout.DRAW_HEADER_CLASS as string}
                     templateId="parameter-comparison"
                     activeFightId={activeFightId}
                     language={language}
                   />
-                  <div className="mt-2 h-[88px] rounded border border-slate-500/75 bg-slate-900/75 px-2 py-2">
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:draw-summary`}
-                      spec={TEMPLATE_SLOT_SPECS.parameterAdvantageList}
-                      text={drawSummary}
-                      className="w-full text-slate-100"
-                      templateId="parameter-comparison"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
+                  <div className={layout.DRAW_GRID_CLASS as string}>
+                    {renderAdvantageCards(drawRows, 'draw', '#cbd5e1', common.noDrawsCurrentSetup, 'draw')}
                   </div>
                 </div>
               </div>
 
-              <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-2`}>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:right-header`}
-                  spec={TEMPLATE_SLOT_SPECS.parameterPanelHeader}
-                  text={customRightHeader ? rightHeader : `${rightHeader} // ${fighterBText}`}
-                  className="uppercase"
-                  style={{ color: fighterB.color }}
-                  templateId="parameter-comparison"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <div className="mt-2 flex min-h-0 flex-1 rounded border border-slate-600/55 bg-black/28 px-2 py-2">
-                  <FittedText
-                    as="p"
-                    slotKey={`${auditPrefix}:right-summary`}
-                    spec={TEMPLATE_SLOT_SPECS.parameterAdvantageList}
-                    text={rightSummary}
-                    className="w-full text-slate-100"
-                    templateId="parameter-comparison"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
+              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
+                <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterB, name: rightHeader }} />
+                <div className={layout.ADVANTAGES_GRID_CLASS as string}>
+                  {renderAdvantageCards(rightAdvantages, 'b', fighterB.color, common.noRightCategoryEdge, 'right')}
                 </div>
               </div>
             </div>
 
-            <div className="relative grid grid-cols-2 gap-3 pt-1">
-              <div className={`${HIGH_END_CARD_CLASS} px-4 py-3 text-center`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:score-name-a`}
-                  spec={TEMPLATE_SLOT_SPECS.sectionLabel}
-                  text={fighterAText}
-                  className="text-slate-200"
-                  style={{ textAlign: 'center' }}
-                  templateId="parameter-comparison"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <p className="text-[42px] font-semibold leading-none" style={{ color: fighterA.color }}>
-                  {Math.round(averageA)}
-                </p>
+            <div className={layout.BOTTOM_GRID_CLASS as string}>
+              <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
+                <div className={`${shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS} ${layout.SCORE_BANNER_INSET_CLASS as string}`}>
+                  <FittedText
+                    as="p"
+                    slotKey={`${auditPrefix}:score-name-a`}
+                    spec={slots.fighterBannerName}
+                    text={fighterAText}
+                    className={layout.SCORE_NAME_CLASS as string}
+                    style={{ color: fighterA.color, fontFamily: 'var(--font-display)', textAlign: 'center' }}
+                    templateId="parameter-comparison"
+                    activeFightId={activeFightId}
+                    language={language}
+                  />
+                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterA.color }}>
+                    {Math.round(averageA)}
+                  </p>
+                </div>
               </div>
-              <div className={`${HIGH_END_CARD_CLASS} px-4 py-3 text-center`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:score-name-b`}
-                  spec={TEMPLATE_SLOT_SPECS.sectionLabel}
-                  text={fighterBText}
-                  className="text-slate-200"
-                  style={{ textAlign: 'center' }}
-                  templateId="parameter-comparison"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <p className="text-[42px] font-semibold leading-none" style={{ color: fighterB.color }}>
-                  {Math.round(averageB)}
-                </p>
+              <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
+                <div className={`${shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS} ${layout.SCORE_BANNER_INSET_CLASS as string}`}>
+                  <FittedText
+                    as="p"
+                    slotKey={`${auditPrefix}:score-name-b`}
+                    spec={slots.fighterBannerName}
+                    text={fighterBText}
+                    className={layout.SCORE_NAME_CLASS as string}
+                    style={{ color: fighterB.color, fontFamily: 'var(--font-display)', textAlign: 'center' }}
+                    templateId="parameter-comparison"
+                    activeFightId={activeFightId}
+                    language={language}
+                  />
+                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterB.color }}>
+                    {Math.round(averageB)}
+                  </p>
+                </div>
               </div>
 
               <div
-                className="favorite-stamp pointer-events-none absolute bottom-[22px] z-20 -translate-x-1/2 px-4 py-2"
+                className={layout.FAVORITE_STAMP_CLASS as string}
                 style={{
                   left: favoriteLeft,
                   transform: `translateX(-50%) rotate(${favoriteRotation}deg)`,
@@ -225,9 +252,9 @@ export function ParameterComparisonTemplate({
                 <FittedText
                   as="p"
                   slotKey={`${auditPrefix}:favorite`}
-                  spec={TEMPLATE_SLOT_SPECS.parameterFavoriteStamp}
+                  spec={slots.parameterFavoriteStamp}
                   text={favorite}
-                  className="w-[188px]"
+                  className={layout.FAVORITE_TEXT_CLASS as string}
                   templateId="parameter-comparison"
                   activeFightId={activeFightId}
                   language={language}

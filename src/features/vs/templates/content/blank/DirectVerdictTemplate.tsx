@@ -1,19 +1,13 @@
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
-import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_LABEL_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function DirectVerdictTemplate({
   fighterA,
@@ -26,10 +20,15 @@ export function DirectVerdictTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const common = getFightCommonCopy(language)
-  const fighterAName = fighterA.name || tr('Postac A', 'Fighter A')
-  const fighterBName = fighterB.name || tr('Postac B', 'Fighter B')
+  const common = getFightCommonCopy('direct-verdict', language)
+  const fighterAFallback = getFightTemplateDefaultField('direct-verdict', 'fighter_a_fallback', language)
+  const fighterBFallback = getFightTemplateDefaultField('direct-verdict', 'fighter_b_fallback', language)
+  const defeatsWord = getFightTemplateDefaultField('direct-verdict', 'defeats_word', language)
+  const outcomeText = getFightTemplateDefaultField('direct-verdict', 'outcome_label', language)
+  const confidenceText = getFightTemplateDefaultField('direct-verdict', 'confidence_label', language)
+  const reasonText = getFightTemplateDefaultField('direct-verdict', 'reason_label', language)
+  const fighterAName = fighterA.name || fighterAFallback
+  const fighterBName = fighterB.name || fighterBFallback
   const winnerSide: 'a' | 'b' = averageA >= averageB ? 'a' : 'b'
   const defaultWinner = winnerSide === 'a' ? fighterAName : fighterBName
   const defaultLoser = winnerSide === 'a' ? fighterBName : fighterAName
@@ -38,7 +37,11 @@ export function DirectVerdictTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['direct-verdict'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const chrome = buildFightTemplateChrome('direct-verdict', language, blockFields)
+  const ui = getTemplateUi('direct-verdict', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -58,119 +61,121 @@ export function DirectVerdictTemplate({
   ]
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="direct-verdict"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-[0.95fr_1.25fr] gap-3`}>
-            <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-3`} style={{ boxShadow: `0 0 0 1px ${accentColor}33 inset` }}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
+            <div className={layout.LEFT_PANEL_CLASS} style={{ boxShadow: `0 0 0 1px ${accentColor}33 inset` }}>
               <div
-                className="rounded-xl border px-4 py-4 text-left"
+                className={layout.VERDICT_PANEL_CLASS}
                 style={{
                   borderColor: `${accentColor}88`,
                   background: `linear-gradient(145deg, ${accentColor}33, rgba(15,23,42,0.78))`,
                 }}
               >
-                <p className="text-xs uppercase tracking-[0.18em] text-slate-200">
-                  {pickLang(language, 'Werdykt', 'Verdict')}
+                <p className={layout.VERDICT_LABEL_CLASS}>
+                  {common.verdictLabel}
                 </p>
                 <FittedText
                   as="p"
                   slotKey="direct-verdict:winner"
-                  spec={TEMPLATE_SLOT_SPECS.directVerdictWinner}
+                  spec={slots.directVerdictWinner}
                   text={winnerLabel}
-                  className="mt-3 font-semibold tracking-[-0.03em] text-white"
+                  className={layout.WINNER_TEXT_CLASS}
                   style={{ fontFamily: 'var(--font-display)' }}
                 />
                 <FittedText
                   as="p"
                   slotKey="direct-verdict:subline"
-                  spec={TEMPLATE_SLOT_SPECS.directVerdictSubline}
-                  text={`${tr('pokonuje', 'defeats')} ${loserLabel}`}
-                  className="mt-3 text-slate-100"
+                  spec={slots.directVerdictSubline}
+                  text={`${defeatsWord} ${loserLabel}`}
+                  className={layout.SUBLINE_TEXT_CLASS}
                 />
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-2">
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`}>
-                  <p className={HIGH_END_LABEL_CLASS}>{tr('Wynik', 'Outcome')}</p>
+              <div className={layout.INFO_GRID_CLASS}>
+                <div className={layout.INFO_CARD_CLASS}>
+                  <p className={shell.HIGH_END_LABEL_CLASS}>{outcomeText}</p>
                   <FittedText
                     as="p"
                     slotKey="direct-verdict:outcome"
-                    spec={TEMPLATE_SLOT_SPECS.directVerdictCard}
+                    spec={slots.directVerdictCard}
                     text={outcomeLabel}
-                    className="mt-1 text-slate-100"
+                    className={layout.INFO_VALUE_CLASS}
                   />
                 </div>
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`}>
-                  <p className={HIGH_END_LABEL_CLASS}>{tr('Pewnosc', 'Confidence')}</p>
+                <div className={layout.INFO_CARD_CLASS}>
+                  <p className={shell.HIGH_END_LABEL_CLASS}>{confidenceText}</p>
                   <FittedText
                     as="p"
                     slotKey="direct-verdict:certainty"
-                    spec={TEMPLATE_SLOT_SPECS.directVerdictCard}
+                    spec={slots.directVerdictCard}
                     text={certaintyLabel}
-                    className="mt-1 text-slate-100"
+                    className={layout.INFO_VALUE_CLASS}
                   />
                 </div>
               </div>
 
-              <div className="mt-3 grid flex-1 grid-cols-2 gap-2">
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`}>
+              <div className={layout.SCORE_GRID_CLASS}>
+                <div className={layout.SCORE_CARD_CLASS}>
                   <FittedText
                     as="p"
                     slotKey={`direct-verdict:left-score-label:${fighterAName}`}
-                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                    spec={slots.scoreLabel}
                     text={fighterAName}
                   />
                   <FittedText
                     as="p"
                     slotKey="direct-verdict:left-score"
-                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    spec={slots.scoreValue}
                     text={String(Math.round(averageA))}
-                    className="font-semibold"
+                    className={layout.SCORE_VALUE_TEXT_CLASS}
                     style={{ color: fighterA.color }}
                   />
                 </div>
-                <div className={`${HIGH_END_CARD_CLASS} px-3 py-2`}>
+                <div className={layout.SCORE_CARD_CLASS}>
                   <FittedText
                     as="p"
                     slotKey={`direct-verdict:right-score-label:${fighterBName}`}
-                    spec={TEMPLATE_SLOT_SPECS.scoreLabel}
+                    spec={slots.scoreLabel}
                     text={fighterBName}
                   />
                   <FittedText
                     as="p"
                     slotKey="direct-verdict:right-score"
-                    spec={TEMPLATE_SLOT_SPECS.scoreValue}
+                    spec={slots.scoreValue}
                     text={String(Math.round(averageB))}
-                    className="font-semibold"
+                    className={layout.SCORE_VALUE_TEXT_CLASS}
                     style={{ color: fighterB.color }}
                   />
                 </div>
               </div>
             </div>
 
-            <div className={`${HIGH_END_FRAME_CLASS} flex min-h-0 flex-col p-3`}>
-              <p className={HIGH_END_LABEL_CLASS}>{pickLang(language, 'Dlaczego ten werdykt?', 'Why this verdict?')}</p>
-              <div className="mt-3 grid min-h-0 flex-1 grid-rows-3 gap-2">
+            <div className={layout.RIGHT_PANEL_CLASS}>
+              <p className={shell.HIGH_END_LABEL_CLASS}>{reasonText}</p>
+              <div className={layout.REASON_GRID_CLASS}>
                 {summaryLines.map((item, index) => (
-                  <div key={`direct-verdict-line-${index}-${item}`} className={`${HIGH_END_CARD_CLASS} flex items-center px-3 py-3 text-slate-100`}>
-                    <span className="mr-3 text-xl font-semibold" style={{ color: accentColor }}>
+                  <div key={`direct-verdict-line-${index}-${item}`} className={layout.REASON_CARD_CLASS}>
+                    <span className={layout.REASON_INDEX_CLASS} style={{ color: accentColor }}>
                       {index + 1}
                     </span>
                     <FittedText
                       as="span"
                       slotKey={`direct-verdict:line:${index}`}
-                      spec={TEMPLATE_SLOT_SPECS.directVerdictCard}
+                      spec={slots.directVerdictCard}
                       text={item}
-                      className="text-slate-100"
+                      className={layout.REASON_TEXT_CLASS}
                       style={{ flex: 1 }}
                     />
                   </div>

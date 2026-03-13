@@ -1,5 +1,4 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../fightManifest'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
 import {
   TEMPLATE_BLOCK_ALIASES,
@@ -14,16 +13,13 @@ import {
 } from '../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
+import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndFighterBanner,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 export function CrucialFeatsTemplate({
   fighterA,
@@ -42,8 +38,12 @@ export function CrucialFeatsTemplate({
 }: TemplatePreviewProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['crucial-feats'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
-  const common = getFightCommonCopy(language)
+  const chrome = buildFightTemplateChrome('crucial-feats', language, blockFields)
+  const common = getFightCommonCopy('crucial-feats', language)
+  const ui = getTemplateUi('crucial-feats', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle || ''
   const leftEntries = buildTemplateImageEntries(blockFields, 'left', crucialFeatsA)
@@ -60,6 +60,7 @@ export function CrucialFeatsTemplate({
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
+    const fighterFallback = getFightTemplateDefaultField('crucial-feats', 'fighter_fallback', language)
     const imageUrl = entry
       ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
           templateId: 'crucial-feats',
@@ -71,12 +72,12 @@ export function CrucialFeatsTemplate({
     const legacyAdjustKeys = [buildLegacyTemplateImageAdjustKey('crucial-feats', side, entry)]
 
     return (
-      <div className="flex h-full min-h-0 flex-col">
-        <HighEndFighterBanner fighter={fighter} />
-        <div className="mt-3 flex min-h-0 flex-1 flex-col gap-1">
+      <div className={layout.COLUMN_CLASS}>
+        <HighEndFighterBanner templateId="crucial-feats" language={language} fighter={fighter} />
+        <div className={layout.COLUMN_BODY_CLASS}>
           <AdjustableTemplateImage
             imageUrl={imageUrl}
-            alt={entry?.text || fighter.name || 'Fighter'}
+            alt={entry?.text || fighter.name || fighterFallback}
             fallbackLabel={common.noImage}
             hintLabel=""
             adjustKey={adjustKey}
@@ -86,13 +87,13 @@ export function CrucialFeatsTemplate({
             onAdjustCommit={onSlideImageAdjustCommit}
             onActivate={nextPair}
           />
-          <div className={`${HIGH_END_CARD_CLASS} flex h-[18px] items-start overflow-hidden px-3 pt-[3px]`}>
+          <div className={layout.CAPTION_CARD_CLASS}>
             <FittedText
               as="p"
               slotKey={`crucial-feats:${side}:caption:${entry?.id || 'empty'}`}
-              spec={TEMPLATE_SLOT_SPECS.imageCaption}
+              spec={slots.imageCaption}
               text={entry?.text || common.noEntry}
-              className="w-full text-slate-200"
+              className={layout.CAPTION_TEXT_CLASS}
             />
           </div>
         </div>
@@ -101,17 +102,19 @@ export function CrucialFeatsTemplate({
   }
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="crucial-feats"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
-          <div className={`${HIGH_END_BODY_GAP_CLASS} grid min-h-0 flex-1 grid-cols-2 gap-3`}>
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
             {renderColumn(fighterA, leftEntry, 'left')}
             {renderColumn(fighterB, rightEntry, 'right')}
           </div>

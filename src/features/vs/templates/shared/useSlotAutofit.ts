@@ -1,5 +1,5 @@
 import { useLayoutEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
-import type { TemplateSlotSpec } from './templateSlotSpecs'
+import type { TemplateSlotSpec } from './templateUi'
 
 type SharedSlotProps = {
   slotKey: string

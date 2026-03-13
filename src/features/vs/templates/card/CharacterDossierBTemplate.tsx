@@ -1,19 +1,14 @@
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../fightManifest'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
+import { HighEndTemplateHeader } from '../shared/highEnd'
 import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_CARD_CLASS,
-  HIGH_END_FRAME_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_INSET_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../shared/highEnd'
-import { TEMPLATE_SLOT_SPECS } from '../shared/templateSlotSpecs'
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 export function CharacterDossierBTemplate({
   fighterB,
@@ -27,8 +22,8 @@ export function CharacterDossierBTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const common = getFightCommonCopy(language)
-  const fighterText = fighterB.name || 'Fighter B'
+  const common = getFightCommonCopy('character-dossier-b', language)
+  const fighterText = fighterB.name || getFightTemplateDefaultField('character-dossier-b', 'fighter_b_fallback', language)
   const safeFacts = factsB.length
     ? factsB
     : [
@@ -38,7 +33,11 @@ export function CharacterDossierBTemplate({
       ]
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-b'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const chrome = buildFightTemplateChrome('character-dossier-b', language, blockFields)
+  const ui = getTemplateUi('character-dossier-b', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
   const fighterForCard = {
     ...fighterB,
     subtitle: pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterB.subtitle,
@@ -54,22 +53,24 @@ export function CharacterDossierBTemplate({
   const quote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
+            templateId="character-dossier-b"
+            language={language}
             chrome={chrome}
             headerText={cardTitle}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
           <div
-            className={`${HIGH_END_BODY_GAP_CLASS} min-h-0 flex-1 ${HIGH_END_FRAME_CLASS} p-3`}
+            className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_FRAME_CLASS}`}
             style={{ boxShadow: `0 0 0 1px ${fighterForCard.color}33 inset` }}
           >
-            <div className="grid h-full grid-cols-[1.06fr_1.4fr] gap-3">
-              <div className="relative overflow-hidden rounded-lg border bg-slate-950/80" style={{ borderColor: `${fighterForCard.color}88` }}>
+            <div className={layout.BODY_GRID_CLASS}>
+              <div className={layout.PORTRAIT_FRAME_CLASS} style={{ borderColor: `${fighterForCard.color}88` }}>
                 <AdjustableTemplateImage
                   imageUrl={fighterForCard.imageUrl}
                   alt={fighterText}
@@ -82,51 +83,51 @@ export function CharacterDossierBTemplate({
                   onAdjustCommit={onSlideImageAdjustCommit}
                   plain
                 />
-                <div className="pointer-events-none absolute inset-0 border-[3px] border-black/35" />
-                <div className="pointer-events-none absolute inset-0 opacity-35 [background-image:linear-gradient(to_right,rgba(148,163,184,0.22)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.22)_1px,transparent_1px)] [background-size:28px_28px]" />
-                <div className="pointer-events-none absolute left-2 top-2 h-4 w-4 border-l-2 border-t-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
-                <div className="pointer-events-none absolute right-2 top-2 h-4 w-4 border-r-2 border-t-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
-                <div className="pointer-events-none absolute bottom-2 left-2 h-4 w-4 border-b-2 border-l-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
-                <div className="pointer-events-none absolute bottom-2 right-2 h-4 w-4 border-b-2 border-r-2" style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className={layout.PORTRAIT_BORDER_CLASS} />
+                <div className={layout.PORTRAIT_GRID_CLASS} />
+                <div className={layout.CORNER_TL_CLASS} style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className={layout.CORNER_TR_CLASS} style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className={layout.CORNER_BL_CLASS} style={{ borderColor: `${fighterForCard.color}AA` }} />
+                <div className={layout.CORNER_BR_CLASS} style={{ borderColor: `${fighterForCard.color}AA` }} />
               </div>
 
-              <div className={`flex h-full flex-col ${HIGH_END_CARD_CLASS} p-3`}>
-                <div className={`mb-2 ${HIGH_END_INSET_CLASS} px-3 py-2`}>
+              <div className={layout.DETAILS_CARD_CLASS}>
+                <div className={layout.NAME_PLATE_CLASS}>
                   <FittedText
                     as="h3"
                     slotKey={`character-dossier-b:name:${fighterText}`}
-                    spec={TEMPLATE_SLOT_SPECS.heroName}
+                    spec={slots.heroName}
                     text={fighterText}
-                    className="tracking-[0.02em]"
+                    className={layout.HERO_NAME_CLASS}
                     style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)' }}
                   />
                   {fighterSubtitle ? (
                     <FittedText
                       as="p"
                       slotKey={`character-dossier-b:subtitle:${fighterSubtitle}`}
-                      spec={TEMPLATE_SLOT_SPECS.heroSubtitle}
+                      spec={slots.heroSubtitle}
                       text={fighterSubtitle}
-                      className="mt-1 text-slate-300"
+                      className={layout.HERO_SUBTITLE_CLASS}
                     />
                   ) : null}
                 </div>
 
-                <div className="flex-1 space-y-1.5">
+                <div className={layout.FACTS_LIST_CLASS}>
                   {cardFacts.map((fact, index) => (
-                    <div key={`${fighterText}-${fact.title}-${index}`} className="rounded-md border border-white/15 bg-black/28 px-3 py-1.5">
+                    <div key={`${fighterText}-${fact.title}-${index}`} className={layout.FACT_CARD_CLASS}>
                       <FittedText
                         as="p"
                         slotKey={`character-dossier-b:fact-title:${index}`}
-                        spec={TEMPLATE_SLOT_SPECS.factTitle}
+                        spec={slots.factTitle}
                         text={fact.title}
                         style={{ color: fighterForCard.color }}
                       />
                       <FittedText
                         as="p"
                         slotKey={`character-dossier-b:fact-body:${index}`}
-                        spec={TEMPLATE_SLOT_SPECS.factBody}
+                        spec={slots.factBody}
                         text={fact.text}
-                        className="mt-0.5 text-slate-100"
+                        className={layout.FACT_BODY_CLASS}
                       />
                     </div>
                   ))}
@@ -135,9 +136,9 @@ export function CharacterDossierBTemplate({
                 <FittedText
                   as="p"
                   slotKey="character-dossier-b:quote"
-                  spec={TEMPLATE_SLOT_SPECS.quoteBody}
+                  spec={slots.quoteBody}
                   text={`"${quote}"`}
-                  className="mt-2 italic text-slate-100"
+                  className={layout.QUOTE_CLASS}
                 />
               </div>
             </div>

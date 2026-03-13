@@ -1,26 +1,14 @@
-import { buildFightTemplateChrome, getFightCommonCopy } from '../../../fightManifest'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
-import { pickLang } from '../../../presets'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import {
-  HIGH_END_BODY_GAP_CLASS,
-  HIGH_END_GRID_OVERLAY_CLASS,
-  HIGH_END_PANEL_CLASS,
-  HIGH_END_ROOT_CLASS,
-  HighEndTemplateHeader,
-} from '../../shared/highEnd'
+import { HighEndTemplateHeader } from '../../shared/highEnd'
 import { FittedText } from '../../shared/FittedText'
 import {
-  INTERPRETATION_BAR_LABEL_CLASS,
-  INTERPRETATION_BULLET_LIST_CLASS,
-  INTERPRETATION_QUOTE_CLASS,
-} from '../../shared/layoutTokens'
-import { TEMPLATE_SLOT_SPECS } from '../../shared/templateSlotSpecs'
-
-const INTERPRETATION_BAR_MAX_DELTA = 40
-const INTERPRETATION_BAR_MIN_FILL = 18
-const INTERPRETATION_BAR_FILL_RANGE = 62
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 export function InterpretationTemplate({
   fighterA,
@@ -35,21 +23,28 @@ export function InterpretationTemplate({
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
-  const tr = (pl: string, en: string) => pickLang(language, pl, en)
-  const common = getFightCommonCopy(language)
+  const common = getFightCommonCopy('interpretation', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.interpretation || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome(language, blockFields)
+  const chrome = buildFightTemplateChrome('interpretation', language, blockFields)
+  const ui = getTemplateUi('interpretation', language)
+  const shell = ui.highEnd as Record<string, string>
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const tokens = ui.tokens as Record<string, string>
+  const layout = ui.template as Record<string, string | number>
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const fighterAFallback = getFightTemplateDefaultField('interpretation', 'fighter_a_fallback', language)
+  const fighterBFallback = getFightTemplateDefaultField('interpretation', 'fighter_b_fallback', language)
+  const drawBadgeLabel = getFightTemplateDefaultField('interpretation', 'draw_badge_label', language)
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const leaderSide: 'a' | 'b' = averageA >= averageB ? 'a' : 'b'
-  const leaderName = leaderSide === 'a' ? fighterA.name || tr('Postac A', 'Fighter A') : fighterB.name || tr('Postac B', 'Fighter B')
-  const cardTitleText = isAverageDraw ? tr('REMIS', 'DRAW') : leaderName
+  const leaderName = leaderSide === 'a' ? fighterA.name || fighterAFallback : fighterB.name || fighterBFallback
+  const cardTitleText = isAverageDraw ? drawBadgeLabel : leaderName
   const leaderColor = isAverageDraw ? '#94a3b8' : leaderSide === 'a' ? '#0b69ad' : '#b91c1c'
 
   const edgeRows = [...rows]
@@ -63,24 +58,26 @@ export function InterpretationTemplate({
 
   const fallbackEdges = isAverageDraw
     ? [
-        { label: tr('KONTROLA TEMPA', 'TEMPO CONTROL'), delta: 0.8 },
-        { label: tr('EKONOMIA ZASOBOW', 'RESOURCE ECONOMY'), delta: 0.7 },
-        { label: tr('OKNA FINISZU', 'FINISH WINDOWS'), delta: 0.6 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_draw_edge_1', language), delta: 0.8 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_draw_edge_2', language), delta: 0.7 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_draw_edge_3', language), delta: 0.6 },
       ]
     : [
-        { label: tr('OKNO MOCY', 'POWER WINDOW'), delta: 4 },
-        { label: tr('KONTROLA TEMPA', 'PACE CONTROL'), delta: 3 },
-        { label: tr('IQ BOJOWE', 'COMBAT IQ'), delta: 2 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_lead_edge_1', language), delta: 4 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_lead_edge_2', language), delta: 3 },
+        { label: getFightTemplateDefaultField('interpretation', 'fallback_lead_edge_3', language), delta: 2 },
       ]
   const bars = edgeRows.length ? edgeRows : fallbackEdges
   const formatDelta = (value: number) => (Number.isInteger(value) ? `${value}` : value.toFixed(1))
   const barGradient = isAverageDraw
-    ? 'linear-gradient(90deg,#334155,#94a3b8)'
+    ? String(layout.BAR_GRADIENT_DRAW)
     : leaderSide === 'a'
-      ? 'linear-gradient(90deg,#0b69ad,#1377b9)'
-      : 'linear-gradient(90deg,#8b1e1e,#dc2626)'
-  const labelColumnWidth = '19rem'
+      ? String(layout.BAR_GRADIENT_A)
+      : String(layout.BAR_GRADIENT_B)
   const auditPrefix = `${activeFightId || 'draft'}:interpretation`
+  const maxDelta = Number(layout.BAR_MAX_DELTA)
+  const minFill = Number(layout.BAR_MIN_FILL)
+  const fillRange = Number(layout.BAR_FILL_RANGE)
 
   const bullet1 = line(0, ['line_1', 'line1', 'thesis'])
   const bullet2 = line(1, ['line_2', 'line2', 'antithesis'])
@@ -89,32 +86,34 @@ export function InterpretationTemplate({
   const badgeSymbol = isAverageDraw ? '=' : 'V'
 
   return (
-    <div className={HIGH_END_ROOT_CLASS}>
-      <div className={HIGH_END_PANEL_CLASS}>
-        <div className={HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className="relative z-10 flex h-full flex-col">
+    <div className={shell.HIGH_END_ROOT_CLASS}>
+      <div className={shell.HIGH_END_PANEL_CLASS}>
+        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+        <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
+            templateId="interpretation"
+            language={language}
             chrome={chrome}
             headerText={headerText}
             subText={subText}
             onToggleLanguage={onToggleLanguage}
           />
 
-          <div className={`relative ${HIGH_END_BODY_GAP_CLASS} rounded-md border border-cyan-300/25 bg-slate-950/70 p-2`}>
-            <div className="pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:12%_33%]" />
-            <div className="relative z-10 grid grid-cols-[0.9fr_1.7fr] gap-2">
-              <div className="flex min-h-[210px] items-center justify-center rounded-md border-2 p-3" style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
-                <div className="w-full rounded-md border border-slate-500/70 bg-[linear-gradient(135deg,rgba(2,132,199,0.28),rgba(15,23,42,0.5))] p-2 text-center">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg border-2 text-3xl font-bold" style={{ borderColor: leaderColor, color: leaderColor }}>
+          <div className={`${layout.EDGE_PANEL_CLASS as string} ${shell.HIGH_END_BODY_GAP_CLASS}`}>
+            <div className={layout.EDGE_PANEL_OVERLAY_CLASS as string} />
+            <div className={layout.EDGE_PANEL_GRID_CLASS as string}>
+              <div className={layout.BADGE_SHELL_CLASS as string} style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
+                <div className={layout.BADGE_CARD_CLASS as string}>
+                  <div className={layout.BADGE_SYMBOL_WRAP_CLASS as string} style={{ borderColor: leaderColor, color: leaderColor }}>
                     {badgeSymbol}
                   </div>
-                  <div className="mt-3 flex h-[102px] items-center justify-center">
+                  <div className={layout.BADGE_TITLE_WRAP_CLASS as string}>
                     <FittedText
                       as="p"
                       slotKey={`${auditPrefix}:badge-title`}
-                      spec={TEMPLATE_SLOT_SPECS.interpretationBadge}
+                      spec={slots.interpretationBadge}
                       text={cardTitleText}
-                      className="mx-auto max-w-[15ch] tracking-[0.03em]"
+                      className={layout.BADGE_TITLE_CLASS as string}
                       style={{ color: leaderColor, fontFamily: 'var(--font-display)' }}
                       templateId="interpretation"
                       activeFightId={activeFightId}
@@ -124,26 +123,26 @@ export function InterpretationTemplate({
                 </div>
               </div>
 
-              <div className="space-y-2 py-2 pr-1">
+              <div className={layout.BAR_LIST_CLASS as string}>
                 {bars.map((bar, index) => {
-                  const normalizedDelta = Math.min(bar.delta, INTERPRETATION_BAR_MAX_DELTA) / INTERPRETATION_BAR_MAX_DELTA
-                  const fillWidth = INTERPRETATION_BAR_MIN_FILL + normalizedDelta * INTERPRETATION_BAR_FILL_RANGE
+                  const normalizedDelta = Math.min(bar.delta, maxDelta) / maxDelta
+                  const fillWidth = minFill + normalizedDelta * fillRange
                   const labelText = isAverageDraw ? `${bar.label} (d${formatDelta(bar.delta)})` : `${bar.label} (+${formatDelta(bar.delta)})`
                   return (
                     <div
                       key={`interp-bar-${index}-${bar.label}`}
-                      className="grid items-center gap-2"
-                      style={{ gridTemplateColumns: `minmax(0,1fr) ${labelColumnWidth}` }}
+                      className={layout.BAR_ROW_CLASS as string}
+                      style={{ gridTemplateColumns: `minmax(0,1fr) ${String(layout.LABEL_COLUMN_WIDTH)}` }}
                     >
-                      <div className="h-8 overflow-hidden rounded-sm border border-slate-500/70 bg-slate-900/85">
-                        <div className="h-full" style={{ width: `${fillWidth}%`, background: barGradient }} />
+                      <div className={layout.BAR_TRACK_CLASS as string}>
+                        <div className={layout.BAR_FILL_CLASS as string} style={{ width: `${fillWidth}%`, background: barGradient }} />
                       </div>
                       <FittedText
                         as="p"
                         slotKey={`${auditPrefix}:bar-${index}`}
-                        spec={TEMPLATE_SLOT_SPECS.interpretationBarLabel}
+                        spec={slots.interpretationBarLabel}
                         text={labelText}
-                        className={INTERPRETATION_BAR_LABEL_CLASS}
+                        className={tokens.INTERPRETATION_BAR_LABEL_CLASS}
                         templateId="interpretation"
                         activeFightId={activeFightId}
                         language={language}
@@ -155,13 +154,13 @@ export function InterpretationTemplate({
             </div>
           </div>
 
-          <div className="mt-3 rounded-md border border-slate-500/70 bg-slate-900/82 px-4 py-3">
-            <ul className={INTERPRETATION_BULLET_LIST_CLASS}>
+          <div className={layout.BULLET_PANEL_CLASS as string}>
+            <ul className={tokens.INTERPRETATION_BULLET_LIST_CLASS}>
               <li>
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-1`}
-                  spec={TEMPLATE_SLOT_SPECS.interpretationBullet}
+                  spec={slots.interpretationBullet}
                   text={bullet1}
                   templateId="interpretation"
                   activeFightId={activeFightId}
@@ -172,7 +171,7 @@ export function InterpretationTemplate({
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-2`}
-                  spec={TEMPLATE_SLOT_SPECS.interpretationBullet}
+                  spec={slots.interpretationBullet}
                   text={bullet2}
                   templateId="interpretation"
                   activeFightId={activeFightId}
@@ -183,7 +182,7 @@ export function InterpretationTemplate({
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-3`}
-                  spec={TEMPLATE_SLOT_SPECS.interpretationBullet}
+                  spec={slots.interpretationBullet}
                   text={bullet3}
                   templateId="interpretation"
                   activeFightId={activeFightId}
@@ -193,11 +192,11 @@ export function InterpretationTemplate({
             </ul>
           </div>
 
-          <div className={INTERPRETATION_QUOTE_CLASS}>
+          <div className={tokens.INTERPRETATION_QUOTE_CLASS}>
             <FittedText
               as="p"
               slotKey={`${auditPrefix}:quote`}
-              spec={TEMPLATE_SLOT_SPECS.interpretationQuote}
+              spec={slots.interpretationQuote}
               text={`"${closingQuote}"`}
               templateId="interpretation"
               activeFightId={activeFightId}

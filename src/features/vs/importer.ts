@@ -10,14 +10,17 @@ import {
   buildFightScaffoldFightJson,
   buildFightScaffoldScansJson,
   buildFightStarterJson as buildManifestFightStarterJson,
-  getFightCommonCopy,
-  getFightDefaultCategories,
   getFightTemplateBlockAliases,
-  getFightTemplateDefaultField,
   getFightTemplateManifest,
   getFightTemplateRequirements,
   getFightTemplateTokenMap,
 } from './fightManifest'
+import {
+  getDefaultFightCategories as getFightDefaultCategories,
+  getTemplateBlockName as getFightTemplateBlockName,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from './templates/shared/templateCopy'
 import { DEFAULT_CATEGORIES, TEMPLATE_ID_SET, ensureTemplateOrderHasFinal } from './presets'
 
 const LEGACY_TEMPLATE_ID_MAP: Record<string, TemplateId> = {
@@ -365,7 +368,7 @@ const buildParsedStatsFromJson = (
   stats: Partial<Record<FightStatId, number | null>> | undefined,
   language: Language,
 ) => {
-  const labels = new Map(getFightDefaultCategories(language).map((category) => [category.id, category.label]))
+  const labels = new Map(getFightDefaultCategories('fight-analytics', language).map((category) => [category.id, category.label]))
   return JSON_STAT_ORDER.map((statId) => {
     const numeric = toFiniteNumber(stats?.[statId])
     if (numeric === null) return null
@@ -380,7 +383,7 @@ const buildDossierFacts = (
   dossier: FightLocaleJsonV1['fighterA']['dossier'] | undefined,
   language: Language,
 ): FighterFact[] => {
-  const common = getFightCommonCopy(language)
+  const common = getFightCommonCopy('character-dossier-a', language)
   return [
     { title: common.style, text: toString(dossier?.style) || '-' },
     { title: common.advantage, text: toString(dossier?.advantage) || '-' },
@@ -478,7 +481,7 @@ const buildTemplateBlockLinesFromJson = (
   if (!lines.length) return null
 
   return {
-    heading: manifest.blockName[language],
+    heading: getFightTemplateBlockName(templateId, language),
     lines,
   }
 }

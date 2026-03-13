@@ -5,7 +5,7 @@ import {
   type ElementType,
   type ReactNode,
 } from 'react'
-import type { TemplateSlotSpec } from './templateSlotSpecs'
+import type { TemplateSlotSpec } from './templateUi'
 import { useSlotAutofit } from './useSlotAutofit'
 
 type FittedTextProps<T extends ElementType = 'p'> = {
@@ -53,12 +53,12 @@ export function FittedText<T extends ElementType = 'p'>({
     height: `${fixedHeightPx}px`,
     maxHeight: `${fixedHeightPx}px`,
     overflow: 'hidden',
-    whiteSpace: spec.whiteSpace || 'normal',
-    textAlign: spec.textAlign,
-    textTransform: spec.textTransform,
-    overflowWrap: spec.overflowWrap || 'anywhere',
-    wordBreak: spec.wordBreak || 'break-word',
-    letterSpacing: spec.letterSpacing,
+    whiteSpace: (spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
+    textAlign: spec.textAlign as CSSProperties['textAlign'],
+    textTransform: spec.textTransform as CSSProperties['textTransform'],
+    overflowWrap: (spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
+    wordBreak: (spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
+    letterSpacing: spec.letterSpacing as CSSProperties['letterSpacing'],
     fontSize: `${fontPx}px`,
     lineHeight: `${spec.lineHeight}`,
   }

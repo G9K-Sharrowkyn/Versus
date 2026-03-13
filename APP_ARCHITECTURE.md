@@ -6,6 +6,7 @@ Ten plik opisuje aktualną architekturę po twardym cutoverze z legacy plików t
 
 Aplikacja służy do budowania i odtwarzania ekranów `versus` na podstawie:
 
+- `Templates/**/Template EN.json` / `Template PL.json` ze stałą definicją każdego template'u,
 - `EN.json` / `PL.json` z danymi walki,
 - `Scans.json` ze wspólnymi portretami i grafikami template'ów,
 - zapisanych walk lokalnych,
@@ -22,6 +23,8 @@ UI ma 4 główne tryby:
 
 ### Root
 
+- [Templates](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/Templates)
+  Stała biblioteka template'ów. Każdy template ma własny folder i dwa locale JSON: `Template PL.json` oraz `Template EN.json`.
 - [src/App.tsx](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/App.tsx)
   Główny kontener aplikacji.
 - [vite.config.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/vite.config.ts)
@@ -34,7 +37,11 @@ UI ma 4 główne tryby:
 - [types.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/types.ts)
   Typy domenowe i JSON schema payloadów walk.
 - [fightManifest.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/fightManifest.ts)
-  Jedno źródło prawdy dla stałych fight-viewera, template’ów i generatorów scaffoldów JSON.
+  Warstwa techniczna template’ów: ID, aliasy, pola zmienne i scaffold JSON.
+- [templates/shared/templateCopy.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/templates/shared/templateCopy.ts)
+  Loader biblioteki `Templates/` dla runtime i scaffoldów.
+- [templates/shared/templateLibrary.generated.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/templates/shared/templateLibrary.generated.ts)
+  Wygenerowany indeks importujący wszystkie locale JSON z `Templates/`.
 - [importer.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/importer.ts)
   Parser JSON payloadów walk i helpery dla template’ów.
 - [storage.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/storage.ts)
@@ -83,8 +90,10 @@ UI ma 4 główne tryby:
 
 - Runtime nie czyta już legacy plików tekstowych.
 - Runtime nie używa alternatywnych kodowań, heurystyk dekodowania ani warstw compat dla dawnych plików tekstowych.
-- `fightManifest.ts` jest źródłem prawdy dla stałych napisów fight-viewera i template’ów.
-- `EN.json` / `PL.json` przechowują dane zmienne walki.
+- Stałe definicje template’ów są trzymane w `Templates/<template-id>/Template PL|EN.json`.
+- `templateCopy.ts` nie jest już źródłem danych; tylko ładuje bibliotekę `Templates/`.
+- `fightManifest.ts` opisuje tylko kontrakt techniczny template’ów i scaffold danych.
+- `Fights/**/EN.json` i `Fights/**/PL.json` przechowują wyłącznie dane zmienne walki.
 - `Scans.json` przechowuje portrety i wspólne obrazy template’ów.
 - Layout template’ów jest stały: rozmiary ramek, spacing, typografia, ikony i prefiksy sekcji nie są przechowywane w danych walki.
 - JSON walki nie może zawierać obejść layoutowych ani kopiować stałych etykiet viewer’a; trzyma wyłącznie treść zmienną per matchup.
@@ -99,8 +108,11 @@ UI ma 4 główne tryby:
 
 ### Chcesz zmienić schemat danych walki
 
+- [Templates](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/Templates)
 - [src/features/vs/types.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/types.ts)
 - [src/features/vs/fightManifest.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/fightManifest.ts)
+- [src/features/vs/templates/shared/templateCopy.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/templates/shared/templateCopy.ts)
+- [src/features/vs/templates/shared/templateLibrary.generated.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/templates/shared/templateLibrary.generated.ts)
 - [src/features/vs/importer.ts](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/src/features/vs/importer.ts)
 - [TEMPLATE_DATA_REQUIREMENTS.md](/f:/Teksty/Programming/YT/VS/App/vs-graphic-studio/TEMPLATE_DATA_REQUIREMENTS.md)
 
