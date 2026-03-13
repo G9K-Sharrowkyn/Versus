@@ -1,6 +1,8 @@
 import { promises as fs } from 'node:fs'
 import type { IncomingMessage, ServerResponse } from 'node:http'
+import { execFile } from 'node:child_process'
 import path from 'node:path'
+import { promisify } from 'node:util'
 import { defineConfig, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { parseFightImageIndex } from './scripts/fightImageIndex.js'
@@ -11,6 +13,7 @@ const FIGHTS_DIR_CANDIDATES = [
   path.resolve(__dirname, 'Fights'),
   path.resolve(__dirname, '..', '..', 'Fights'),
 ]
+const TEMPLATES_DIR = path.resolve(__dirname, 'Templates')
 const IMAGE_FILE_PATTERN = /^([12])\.(jpe?g|png|webp|avif)$/i
 const ANY_IMAGE_FILE_PATTERN = /\.(jpe?g|png|webp|avif)$/i
 const JSON_FILE_PATTERN = /\.json(?:\s*(?:pl|en|eng|polski|english))?$/i
@@ -18,6 +21,7 @@ const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
 const FIGHT_VISUALS_FILE_NAME = '.fight-visuals.json'
+const execFileAsync = promisify(execFile)
 const LEGACY_TEMPLATE_ID_MAP: Record<string, string> = {
   'character-card-a': 'character-dossier-a',
   'character-card-b': 'character-dossier-b',
@@ -846,7 +850,26 @@ const fightsApiPlugin = (): Plugin => ({
     server.middlewares.use(createFightsApiMiddleware())
     const watchedDirs = FIGHTS_DIR_CANDIDATES.map((directory) => path.resolve(directory))
     const normalizedWatchedDirs = watchedDirs.map(normalizeFsPath)
+    const normalizedTemplatesDir = normalizeFsPath(TEMPLATES_DIR)
     server.watcher.add(watchedDirs)
+    server.watcher.add(TEMPLATES_DIR)
+
+    let templateReloadTimer: NodeJS.Timeout | null = null
+    let templateSyncInFlight = false
+
+    const syncTemplatesIndex = async () => {
+      if (templateSyncInFlight) return
+      templateSyncInFlight = true
+      try {
+        await execFileAsync(process.execPath, ['scripts/export-template-library.mjs'], {
+          cwd: __dirname,
+        })
+      } catch (error) {
+        console.error('[vs-templates-sync] Failed to rebuild template library after change.', error)
+      } finally {
+        templateSyncInFlight = false
+      }
+    }
 
     const handleFightFileEvent = (eventName: string, changedPath: string) => {
       if (!changedPath || !['add', 'change', 'unlink'].includes(eventName)) return
@@ -867,7 +890,25 @@ const fightsApiPlugin = (): Plugin => ({
       })
     }
 
+    const handleTemplateFileEvent = (eventName: string, changedPath: string) => {
+      if (!changedPath || !['add', 'unlink'].includes(eventName)) return
+
+      const normalizedChangedPath = normalizeFsPath(changedPath)
+      if (!isPathInsideDirectory(normalizedChangedPath, normalizedTemplatesDir) && normalizedChangedPath !== normalizedTemplatesDir) {
+        return
+      }
+
+      if (templateReloadTimer) {
+        clearTimeout(templateReloadTimer)
+      }
+      templateReloadTimer = setTimeout(() => {
+        templateReloadTimer = null
+        void syncTemplatesIndex()
+      }, 60)
+    }
+
     server.watcher.on('all', handleFightFileEvent)
+    server.watcher.on('all', handleTemplateFileEvent)
   },
   configurePreviewServer(server) {
     server.middlewares.use(createFightsApiMiddleware())

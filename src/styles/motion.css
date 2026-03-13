@@ -102,9 +102,7 @@
   min-height: 46px;
   color: #fff7d6;
   text-align: center;
-  text-shadow:
-    0 0 8px rgba(255, 245, 195, 0.65),
-    0 0 18px rgba(251, 191, 36, 0.35);
+  text-shadow: 0 1px 2px rgba(42, 23, 2, 0.45);
   white-space: nowrap;
   background-color: rgb(137, 77, 9);
   background:

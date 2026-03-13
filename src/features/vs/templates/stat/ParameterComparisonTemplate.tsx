@@ -204,39 +204,21 @@ export function ParameterComparisonTemplate({
 
             <div className={layout.BOTTOM_GRID_CLASS as string}>
               <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-                <div className={`${shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS} ${layout.SCORE_BANNER_INSET_CLASS as string}`}>
-                  <FittedText
-                    as="p"
-                    slotKey={`${auditPrefix}:score-name-a`}
-                    spec={slots.fighterBannerName}
-                    text={fighterAText}
-                    className={layout.SCORE_NAME_CLASS as string}
-                    style={{ color: fighterA.color, fontFamily: 'var(--font-display)', textAlign: 'center' }}
-                    templateId="parameter-comparison"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
-                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterA.color }}>
-                    {Math.round(averageA)}
-                  </p>
+                <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
+                  <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
+                    <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterA.color }}>
+                      {Math.round(averageA)}
+                    </p>
+                  </div>
                 </div>
               </div>
               <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-                <div className={`${shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS} ${layout.SCORE_BANNER_INSET_CLASS as string}`}>
-                  <FittedText
-                    as="p"
-                    slotKey={`${auditPrefix}:score-name-b`}
-                    spec={slots.fighterBannerName}
-                    text={fighterBText}
-                    className={layout.SCORE_NAME_CLASS as string}
-                    style={{ color: fighterB.color, fontFamily: 'var(--font-display)', textAlign: 'center' }}
-                    templateId="parameter-comparison"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
-                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterB.color }}>
-                    {Math.round(averageB)}
-                  </p>
+                <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
+                  <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
+                    <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterB.color }}>
+                      {Math.round(averageB)}
+                    </p>
+                  </div>
                 </div>
               </div>
 
