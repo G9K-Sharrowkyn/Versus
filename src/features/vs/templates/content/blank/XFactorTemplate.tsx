@@ -149,7 +149,10 @@ export function XFactorTemplate({
                     ) : null}
                     <div className={layout.METER_PATTERN_CLASS as string} />
                   </div>
-                  <div className={layout.METER_VALUE_A_CLASS as string}>
+                  <div
+                    className={layout.METER_VALUE_A_CLASS as string}
+                    style={{ backgroundImage: String(layout.METER_BONUS_BG_A), backgroundClip: 'padding-box' }}
+                  >
                     <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(superPct)}%</span>
                     <span className={layout.METER_BONUS_VALUE_A_CLASS as string}>
                       {superBonusPct > 0 ? `+${Math.round(superBonusPct)}%` : '\u00A0'}
@@ -184,7 +187,10 @@ export function XFactorTemplate({
                     ) : null}
                     <div className={layout.METER_PATTERN_CLASS as string} />
                   </div>
-                  <div className={layout.METER_VALUE_B_CLASS as string}>
+                  <div
+                    className={layout.METER_VALUE_B_CLASS as string}
+                    style={{ backgroundImage: String(layout.METER_BONUS_BG_B), backgroundClip: 'padding-box' }}
+                  >
                     <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(hyperPct)}%</span>
                     <span className={layout.METER_BONUS_VALUE_B_CLASS as string}>
                       {hyperBonusPct > 0 ? `+${Math.round(hyperBonusPct)}%` : '\u00A0'}
