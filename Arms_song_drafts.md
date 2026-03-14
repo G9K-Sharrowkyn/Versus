@@ -1,14 +1,3 @@
-## Suno Notes
-
-- Use `Custom` with `v4.5` or newer.
-- Put genre, arrangement, vocal type, tempo, and sonic texture in `Style of Music`.
-- Put the lyric sheet in `Lyrics`, but if the result feels too generic, add one short bracketed direction above the first verse.
-- Avoid artist or band names in the prompt. Suno says names of well known artists or people can be flagged, so descriptive language is safer and usually works better.
-- Use `Exclude` on purpose. It is the cleanest way to block bright pop sheen, trap hats, EDM risers, or other elements that break the mood.
-- Good starting sliders for these songs: `Style Influence 70-80%`, `Weirdness 30-45%`. Raise `Weirdness` only if the result is too safe or too generic.
-
----
-
 ## 1. Quietly Disappear
 
 [Verse 1]
@@ -62,17 +51,6 @@ The most intimate song of the set: house-at-night grief, porch light, fading flo
 
 [Suno Style Prompt]
 Slow-burn melodic doom and atmospheric alternative metal elegy, around 72 BPM, intimate piano and clean guitar opening, brushed or very restrained drums, distant cello, warm bass, low-tuned guitars entering gradually in the chorus, close low male baritone with fragile breath and controlled sorrow, verses should feel like walking through an empty house that still remembers love, chorus should widen and ache without turning triumphant, cinematic but minimal, haunted, devotional, smoke, rain, wood, and old-room resonance, finish in resignation and near-silence rather than a big ending.
-
-[Suno Exclude]
-No trap hats, no EDM risers, no glossy synth-pop sheen, no cheerful uplift, no arena gang shouts, no pop claps, no bright radio-rock optimism.
-
-[Suno Sliders]
-Style Influence 78%. Weirdness 34%.
-
-[Optional Top Line for Lyrics Box]
-[Low male baritone, intimate verses, wider chorus, grief as devotion, final refrain resigned and ghostlike]
-
----
 
 ## 2. Museum of Things I Want to Forget
 
@@ -143,17 +121,6 @@ Midnight museum, chapel smoke, letters in drawers, self-recognition after obsess
 
 [Suno Style Prompt]
 Gothic alternative metal and chamber-doom ballad, around 80 BPM, piano-led opening with muted toms and snare, deep bass, smoky cello and viola layers, clean electric guitar swells, occasional low-tuned rhythm guitar weight in the chorus, expressive low male vocal that sounds exhausted, lucid, and self-aware, verses should feel controlled and observational like walking through a museum after midnight, pre-choruses should tighten with self-interrogation, choruses should bloom with chain-heavy sorrow but stay elegant instead of explosive, wax, dust, mirrors, chapel air, final section should feel like turning off the gallery lights and reclaiming your name in the dark.
-
-[Suno Exclude]
-No glossy pop chorus, no trap percussion, no EDM synth leads, no happy major-key release, no power-metal cheer, no theatrical choir overload.
-
-[Suno Sliders]
-Style Influence 76%. Weirdness 38%.
-
-[Optional Top Line for Lyrics Box]
-[Low male vocal, controlled verses, self-aware pre-chorus, elegant heavy chorus, ending sounds like leaving the museum alone]
-
----
 
 ## 3. Umbrella at World's End
 
@@ -232,14 +199,6 @@ Cinematic melodic metal ballad with doom-dark weather and storm-soaked grandeur,
 [Suno Exclude]
 No fast power-metal drumming, no upbeat key change, no pop-punk bounce, no EDM drop, no festival chant energy, no glossy commercial uplift.
 
-[Suno Sliders]
-Style Influence 80%. Weirdness 32%.
-
-[Optional Top Line for Lyrics Box]
-[Dark melodic metal ballad, intimate storm verses, huge protective chorus, final chorus collapses into night rather than triumph]
-
----
-
 ## 4. Garden of the Unsaid
 
 [Verse 1]
@@ -313,12 +272,3 @@ The most nocturnal and funeral-bloom mood in the set: overgrown garden, ruined h
 
 [Suno Style Prompt]
 Slow 6/8 gothic doom and dark folk lament, around 68-70 BPM, reverb-soaked piano, tremolo and clean guitars, bowed cello, deep low percussion, soft pads like cold mist, occasional low distorted guitar swells, intimate low male or androgynous vocal with a haunted late-night delivery, lush but restrained, verses should feel like moving through an abandoned house and an overgrown grave-garden, chorus should bloom like a graveyard hymn, beautiful, heavy, perfumed, and sleepless rather than loud, emphasize black flowers, roots, rain-dark soil, and the ache of unsaid words, end in dark reconciliation rather than catharsis.
-
-[Suno Exclude]
-No bright synth leads, no trap beat, no cheerful strings, no gospel uplift, no arena-rock drums, no diva ad-libs, no glossy pop finish.
-
-[Suno Sliders]
-Style Influence 74%. Weirdness 41%.
-
-[Optional Top Line for Lyrics Box]
-[Haunted low vocal, slow 6/8, abandoned house and black flowers, chorus like a nocturnal hymn, ending in dark reconciliation]

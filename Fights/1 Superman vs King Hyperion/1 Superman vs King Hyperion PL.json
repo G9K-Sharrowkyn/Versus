@@ -8,23 +8,23 @@
       "Jako jedyny przeżywa aurę śmierci Doomsdaya."
     ],
     "dossier": {
-      "advantage": "Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.",
-      "mentality": "Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.",
+      "advantage": "Potworna przewaga w sile, szybkości i wytrzymałości nad większością przeciwników.",
+      "mentality": "Zwykle się hamuje i walczy poniżej swoich możliwości. Gdy sytuacja tego wymaga, bez wahania wchodzi na pełną moc.",
       "quote": "To wygląda na robotę dla Supermana.",
-      "style": "Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach."
+      "style": "Bezpośrednia walka na sile i szybkości. Narzuca własne tempo i trzyma je przez całą walkę."
     },
     "name": "Superman",
     "profile": {
       "powers": [
-        "Kryptoniańska siła, szybkość, lot i wzmocniona percepcja zmysłowa."
+        "Kryptoniańska siła, szybkość, lot, wzmocnione zmysły i percepcja bojowa na elitarnym poziomie."
       ],
       "tools": [
-        "Heat vision i freeze breath.",
-        "Solar Flare jako kosztowna opcja kończąca."
+        "Heat Vision, Freeze Breath i pełna kontrola dystansu w połączeniu z mobilnością powietrzną.",
+        "Solar Flare jako kosztowna, ale potencjalnie rozstrzygająca opcja kończąca."
       ],
       "weaknesses": [
-        "Ekspozycja na kryptonit, podatność na magię i utrata mocy pod czerwonym słońcem.",
-        "Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki."
+        "Magia, kryptonit i czerwone słońce.",
+        "Solar Flare zostawia go bezbronnym, jeśli nie zdoła zakończyć walki natychmiast."
       ]
     },
     "stats": {
@@ -56,23 +56,23 @@
       "Walczył z dwoma innymi Hyperionami naraz i dominował w starciu."
     ],
     "dossier": {
-      "advantage": "Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.",
-      "mentality": "Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.",
+      "advantage": "Potworna regeneracja i przeżywalność. Hyperion wraca do walki po obrażeniach, które byłyby śmiertelne dla innych.",
+      "mentality": "Megalo-psychopata z kompleksem boga. Nie cofa się i nie kalkuluje — bez zastanowienia zabije każdego, jeśli znajdzie choć jeden powód.",
       "quote": "Właśnie tak, skarbie... Hyperion.",
-      "style": "Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników."
+      "style": "Brutalna agresja w zwarciu. Hyperion masakruje wrogów swoim Atomic Vision i niemożliwą siłą ciosów."
     },
     "name": "King Hyperion",
     "profile": {
       "powers": [
-        "Ekstremalna siła, wytrzymałość, lot i niemal natychmiastowa regeneracja."
+        "Ekstremalna siła, lot, ogromna wytrzymałość i niemal natychmiastowa regeneracja nawet po katastrofalnych obrażeniach."
       ],
       "tools": [
-        "Atomic Vision.",
-        "Doświadczenie w zabijaniu bohaterów. Zna słabości i psychologię herosów."
+        "Atomic Vision jako śmiercionośna broń do przebijania odporności i szybkiego domykania przewagi.",
+        "Doświadczenie w mordowaniu superbohaterów i instynkt wykorzystywania ich zawahań oraz ograniczeń."
       ],
       "weaknesses": [
-        "Wrażliwość na Argonite (odpowiednik Kryptonitu w jego świecie).",
-        "Skrajna arogancja. Często lekceważy przeciwników, pozwalając im zadać pierwszy cios, co może być błędem przy kimś klasy Supermana."
+        "Argonit.",
+        "Skrajna arogancja i lekceważenie przeciwników sprawiają, że często oddaje inicjatywę."
       ]
     },
     "stats": {
@@ -118,61 +118,61 @@
   "templates": {
     "battle-dynamics": {
       "a_curve": "92,84,73,61,52",
-      "analysis": "Superman ma lepsze otwarcie. Hyperion staje się groźniejszy z każdą dodatkową minutą.",
+      "analysis": "Superman wygrywa walkę uporządkowaną. Hyperion wygrywa tę, która trwa za długo i przestaje karać jego błędy.",
       "b_curve": "44,50,59,69,77",
-      "phase_1": "Na początku Superman kontroluje tempo dzięki szybkości i dystansowi.",
-      "phase_2": "Jeśli Hyperion przetrwa pierwszy ciężki napór, zaczyna stopniowo odrabiać różnicę.",
-      "phase_3": "Im dłużej trwa walka, tym bardziej regeneracja Hyperiona zaczyna pracować na jego korzyść.",
+      "phase_1": "Na początku Superman dyktuje tempo dzięki szybkości, dystansowi i znacznie czystszej kontroli wymian.",
+      "phase_2": "Jeśli Hyperion przetrwa pierwszą falę dominacji, zaczyna odzyskiwać wartość przez sam fakt, że wciąż stoi i wraca do walki.",
+      "phase_3": "Im dłużej trwa starcie, tym mniej liczy się przewaga techniczna Supermana, a tym bardziej brutalna ekonomia regeneracji Hyperiona.",
       "yellow_wave": "31,34,32,36,33,37,35,39"
     },
     "fight-card": {
       "fight_title": "Superman vs King Hyperion"
     },
     "fight-simulation": {
-      "end_condition": "Przy standardowych zasadach przewagę daje kontrola. W walce tylko na śmierć samo przetrwanie staje się cenniejsze.",
-      "late_fight": "Końcówka zależy od tego, czy Clark naprawdę domknie walkę, zanim Hyperion odzyska grunt dzięki regeneracji.",
-      "mid_fight": "Jeśli Hyperion przeżyje pierwszą falę, walka zamienia się w wyniszczenie.",
-      "opening": "Superman zaczyna od szybkości, dystansu i czystszej kontroli walki.",
+      "end_condition": "Ta walka nie rozstrzyga się samym pułapem mocy, tylko tym, czy przewaga Supermana zostanie naprawdę domknięta, zanim starcie przejdzie w wyniszczenie.",
+      "late_fight": "Końcówka zależy od jednego pytania: czy Superman zdoła zakończyć pojedynek definitywnie, zanim Hyperion zresetuje wartość kolejnych obrażeń swoją regeneracją.",
+      "mid_fight": "Jeśli Hyperion przeżyje pierwszą falę, walka zaczyna odchodzić od czystej kontroli i zmienia się w coraz bardziej niewygodną wojnę zasobów.",
+      "opening": "Superman zaczyna od szybkości, dystansu i znacznie czystszej kontroli pola walki.",
       "phase_1_a_label": "Kontrola",
       "phase_1_a_value": "93",
       "phase_1_animation": "kite-zone",
       "phase_1_b_label": "Napór do przodu",
       "phase_1_b_value": "79",
-      "phase_1_event": "Superman wcześnie narzuca tempo i trzyma Hyperiona na dystansie.",
+      "phase_1_event": "Superman wcześnie narzuca rytm walki i spycha Hyperiona do reakcji zamiast inicjatywy.",
       "phase_1_title": "Otwarcie",
       "phase_2_animation": "clash-lock",
-      "phase_2_branch_a": "Superman odzyskuje dystans i utrzymuje walkę na swoich warunkach.",
-      "phase_2_branch_b": "Hyperion wchodzi na średni dystans i zamienia pojedynek w wyniszczenie.",
-      "phase_2_event": "Punkt zwrotny przychodzi wtedy, gdy Hyperion zrani Supermana, który nie może się regenerować.",
+      "phase_2_branch_a": "Superman odzyskuje dystans i utrzymuje pojedynek w wersji, która premiuje jego przewagę szybkości oraz kontroli.",
+      "phase_2_branch_b": "Hyperion wchodzi na średni dystans i zamienia walkę w brudne, siłowe wyniszczenie.",
+      "phase_2_event": "Punkt zwrotny pojawia się wtedy, gdy Hyperion zada pierwsze trwałe szkody komuś, kto sam nie ma porównywalnej regeneracji.",
       "phase_2_title": "Punkt Zwrotny",
       "phase_3_actor": "a",
       "phase_3_animation": "teleport-burst",
-      "phase_3_branch_a": "Solar Flare albo czysta ścieżka incap wreszcie zamyka pojedynek.",
-      "phase_3_branch_b": "Hyperion wraca jeszcze raz, a z każdą dodatkową minutą rośnie jego szansa na odwrócenie walki.",
-      "phase_3_event": "Superman albo porzuca własny kodeks, albo ginie z rąk Hyperiona, który ciągle wraca.",
+      "phase_3_branch_a": "Solar Flare albo idealnie prowadzona ścieżka incap wreszcie domyka pojedynek.",
+      "phase_3_branch_b": "Hyperion wraca jeszcze raz, a każda dodatkowa minuta zaczyna coraz mocniej pracować na jego stronę.",
+      "phase_3_event": "Superman albo przełamuje własne ograniczenia i kończy walkę naprawdę, albo zostaje w końcu zdarty przez przeciwnika, który nie przestaje wracać.",
       "phase_3_title": "Końcówka"
     },
     "final-summary": {
       "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
-      "line_2": "Superman lepiej kontroluje walkę, ale regeneracja Hyperiona daje mu coraz większą przewagę z każdą dodatkową chwilą starcia.",
-      "line_3": "Jeśli Superman nie wejdzie na pełną moc od samego początku, Hyperion ostatecznie go przełamie.",
-      "winner": "Superman ma przewagę. Hyperion wciąż może wygrać."
+      "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej, kontrolowanej formie.",
+      "line_3": "Problem polega na tym, że każda niezamknięta sekwencja daje Hyperionowi kolejną szansę, a im dłużej trwa walka, tym bardziej jego regeneracja zaczyna odwracać całą ekonomię starcia.",
+      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
     },
     "interpretation": {
-      "line_1": "Superman jest lepszy w niemal każdym czystym elemencie tej walki: szybszy, precyzyjniejszy i lepszy w narzucaniu tempa.",
-      "line_2": "King Hyperion pozostaje groźny, bo jego regeneracja i bezwzględność zamieniają każdą niezamkniętą sekwencję w kolejną, coraz gorszą wojnę na wyniszczenie.",
-      "line_3": "Superman prowadzi tylko wtedy, gdy utrzyma tempo i nie pozwoli walce wejść w długie wyniszczenie.",
+      "line_1": "Superman jest lepszy w niemal każdym czystym aspekcie tej walki: szybszy, bardziej techniczny.",
+      "line_2": "King Hyperion nie jest na z góry przegranej pozycji, bo jego regeneracja i całkowity brak hamulców sprawiają, że każda wymiana ciosów, która go nie zabije, działa na jego korzyść.",
+      "line_3": "Superman ma przewagę, gdy walka toczy się według określonych zasad. Gdy jednak jest to walka na śmierć, Hyperion w końcu zacznie odwracać sytuację na swoją korzyść.",
       "quote": "Przewaga należy do Supermana. Czas należy do Hyperiona."
     },
     "tactical-board": {
-      "lane": "Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.",
+      "lane": "Superman musi zamienić przewagę kontroli w prawdziwe zakończenie, zanim regeneracja Hyperiona odbierze wartość każdej kolejnej wymianie.",
       "subtitle": "Bohater kontra Tyran"
     },
     "verdict-matrix": {
-      "case_1": "Superman 7/10. Przy standardowych zasadach i z Solar Flare ma najczystszą drogę do zwycięstwa.",
-      "case_2": "Superman 5.5/10. Solar Flare daje Supermanowi drogę do wygranej, ale walka na śmierć nadal sprzyja Hyperionowi.",
-      "case_3": "Superman 6/10. Bez Solar Flare Superman wciąż ma przewagę, jeśli potrafi kontrolować walkę od początku do końca i uniknie wojny na wyniszczenie.",
-      "case_4": "King Hyperion 6/10. Bez Solar Flare w walce na śmierć regeneracja Hyperiona zaczyna przechylać szalę."
+      "case_1": "Superman 7/10. Przy standardowych zasadach i z Solar Flare ma najczystszą oraz najbardziej powtarzalną drogę do zwycięstwa.",
+      "case_2": "Superman 5.5/10. Solar Flare nadal daje mu realną ścieżkę finiszu, ale walka na śmierć mocniej premiuje przeżywalność Hyperiona.",
+      "case_3": "Superman 6/10. Bez Solar Flare wciąż prowadzi, jeśli utrzyma pełną kontrolę od początku do końca i nie dopuści do wojny na wyniszczenie.",
+      "case_4": "King Hyperion 6/10. Bez Solar Flare i przy zasadach śmierci jego regeneracja zaczyna przechylać walkę na swoją stronę."
     },
     "x-factor": {
       "a_bonus": "10",
@@ -181,16 +181,16 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI",
-      "implication": "Jeśli walka przebiega w trybie turniejowym zamiast na śmierć, przewaga Hyperiona rośnie z każdą minutą starcia.",
-      "mechanics": "Superman ma przewagę statystyczną, ale Hyperion nie zatrzymuje się pod presją żadnego przeciwnika.",
-      "psychology": "Hyperion może walczyć lekkomyślnie, bo samo przetrwanie przybliża go do zwycięstwa.",
+      "implication": "Im mniej walka premiuje czysty nokaut lub techniczny incap, tym bardziej rośnie wartość samego faktu, że Hyperion ciągle wraca.",
+      "mechanics": "Superman ma przewagę statystyczną i lepszą kontrolę planszy, ale Hyperion jest jednym z tych przeciwników, których sama dominacja nie wystarcza, jeśli nie prowadzi do trwałego końca.",
+      "psychology": "Hyperion może pozwolić sobie na bardziej lekkomyślną walkę, bo samo przetrwanie kolejnych sekwencji zbliża go do momentu, w którym przeciwnik zacznie pękać.",
       "regen": "BRAK ZASAD"
     },
     "stat-trap": {
       "trap_top": "REGENERACJA I BRUTALNOŚĆ >",
       "trap_bottom": "TECHNIKA W DŁUGIEJ WALCE",
-      "example": "Dopóki Superman utrzymuje walkę techniczną i pod własną kontrolą, przewaga jest po jego stronie. Gdy Hyperion wciąż wraca po kolejnych obrażeniach, cała ekonomia starcia zaczyna się odwracać.",
-      "question": "Czy Superman zdoła naprawdę domknąć walkę, zanim regeneracja Hyperiona zacznie kasować wartość każdej dobrej sekwencji?"
+      "example": "Dopóki Superman utrzymuje walkę techniczną, i udaje mu się unikać ciosów Hyperiona, przewaga pozostaje po jego stronie. Gdy Hyperion przeżywa kolejne ciężkie sekwencje i wraca po następne wymiany, cały układ walki zaczyna powoli odwracać się przeciw Clarkowi.",
+      "question": "Czy Superman zdoła naprawdę zakończyć walkę, zanim regeneracja Hyperiona sprawi, że rany Supermana zniwelują przewagę statystyk?"
     }
   }
 }

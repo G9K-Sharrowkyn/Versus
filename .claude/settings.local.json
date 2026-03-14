@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls:*)",
+      "Read(//h/ComfyUI/**)",
+      "Bash(find:*)"
+    ]
+  }
+}
