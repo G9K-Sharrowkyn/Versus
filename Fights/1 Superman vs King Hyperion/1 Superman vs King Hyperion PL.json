@@ -103,12 +103,10 @@
     "character-dossier-b",
     "character-profile",
     "crucial-feats",
+    "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "interpretation",
-    "stat-trap",
     "x-factor",
-    "victory-archive",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
@@ -156,13 +154,8 @@
       "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
       "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej, kontrolowanej formie.",
       "line_3": "Problem polega na tym, że każda niezamknięta sekwencja daje Hyperionowi kolejną szansę, a im dłużej trwa walka, tym bardziej jego regeneracja zaczyna odwracać całą ekonomię starcia.",
-      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
-    },
-    "interpretation": {
-      "line_1": "Superman jest lepszy w niemal każdym czystym aspekcie tej walki: szybszy, bardziej techniczny.",
-      "line_2": "King Hyperion nie jest na z góry przegranej pozycji, bo jego regeneracja i całkowity brak hamulców sprawiają, że każda wymiana ciosów, która go nie zabije, działa na jego korzyść.",
-      "line_3": "Superman ma przewagę, gdy walka toczy się według określonych zasad. Gdy jednak jest to walka na śmierć, Hyperion w końcu zacznie odwracać sytuację na swoją korzyść.",
-      "quote": "Przewaga należy do Supermana. Czas należy do Hyperiona."
+      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa.",
+      "quote": "\u201EPrzewaga należy do Supermana. Czas należy do Hyperiona.\u201D"
     },
     "tactical-board": {
       "lane": "Superman musi zamienić przewagę kontroli w prawdziwe zakończenie, zanim regeneracja Hyperiona odbierze wartość każdej kolejnej wymianie.",
@@ -180,13 +173,11 @@
       "a_value": "50",
       "b_bonus": "20",
       "b_value": "50",
-      "factor": "JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI",
+      "factor": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa?",
       "implication": "Im mniej walka premiuje czysty nokaut lub techniczny incap, tym bardziej rośnie wartość samego faktu, że Hyperion ciągle wraca.",
       "mechanics": "Superman ma przewagę statystyczną i lepszą kontrolę planszy, ale Hyperion jest jednym z tych przeciwników, których sama dominacja nie wystarcza, jeśli nie prowadzi do trwałego końca.",
       "psychology": "Hyperion może pozwolić sobie na bardziej lekkomyślną walkę, bo samo przetrwanie kolejnych sekwencji zbliża go do momentu, w którym przeciwnik zacznie pękać.",
-      "regen": "BRAK ZASAD"
-    },
-    "stat-trap": {
+      "regen": "BRAK ZASAD",
       "trap_top": "REGENERACJA I BRUTALNOŚĆ >",
       "trap_bottom": "TECHNIKA W DŁUGIEJ WALCE",
       "example": "Dopóki Superman utrzymuje walkę techniczną, i udaje mu się unikać ciosów Hyperiona, przewaga pozostaje po jego stronie. Gdy Hyperion przeżywa kolejne ciężkie sekwencje i wraca po następne wymiany, cały układ walki zaczyna powoli odwracać się przeciw Clarkowi.",

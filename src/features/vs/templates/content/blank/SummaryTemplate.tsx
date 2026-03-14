@@ -36,6 +36,7 @@ export function SummaryTemplate({
   const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
+  const tokens = ui.tokens as Record<string, string>
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -46,6 +47,7 @@ export function SummaryTemplate({
   const fighterAName = fighterA.name || fighterAFallback
   const fighterBName = fighterB.name || fighterBFallback
   const winnerLabel = pickTemplateField(blockFields, ['winner', 'verdict']) || common.emptyFieldLabel
+  const quoteText = pickTemplateField(blockFields, ['quote'])
   const summaryLines = [
     line(0, ['line_1', 'line1'], common.emptyFieldLabel),
     line(1, ['line_2', 'line2'], common.emptyFieldLabel),
@@ -177,6 +179,17 @@ export function SummaryTemplate({
                   ))}
                 </div>
               </div>
+
+              {quoteText && (
+                <div className={tokens.INTERPRETATION_QUOTE_CLASS}>
+                  <FittedText
+                    as="p"
+                    slotKey="final-summary:quote"
+                    spec={slots.interpretationQuote}
+                    text={quoteText}
+                  />
+                </div>
+              )}
             </div>
 
             <div className={layout.SIDE_FRAME_CLASS} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>

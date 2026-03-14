@@ -103,12 +103,10 @@
     "character-dossier-b",
     "character-profile",
     "crucial-feats",
+    "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "interpretation",
-    "stat-trap",
     "x-factor",
-    "victory-archive",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
@@ -156,7 +154,8 @@
       "line_1": "Superman sets the terms of the fight more cleanly from the opening seconds.",
       "line_2": "Superman controls the fight better, but Hyperion's regeneration gives him more of an edge with every extra moment the fight lasts.",
       "line_3": "If Superman does not go all out from the start, Hyperion will eventually overwhelm him.",
-      "winner": "Superman holds the edge. Hyperion can still win."
+      "winner": "Superman holds the edge. Hyperion can still win.",
+      "quote": "\u201CThe advantage belongs to Superman. Time belongs to Hyperion.\u201D"
     },
     "tactical-board": {
       "lane": "Superman wins by closing it out. Hyperion wins when the closeout fails.",
@@ -174,13 +173,11 @@
       "a_value": "50",
       "b_bonus": "20",
       "b_value": "50",
-      "factor": "CLOSURE QUALITY VS REGENERATION ECONOMY",
+      "factor": "Why don't better stats guarantee victory?",
       "implication": "If the fight runs in tournament mode instead of to the death, Hyperion's advantage grows with every minute of the fight.",
       "mechanics": "Superman has the statistical edge, but Hyperion does not stop under any opponent's pressure.",
       "psychology": "Hyperion can fight recklessly because mere survival brings him closer to victory.",
-      "regen": "NO RULES"
-    },
-    "stat-trap": {
+      "regen": "NO RULES",
       "trap_top": "REGENERATION AND BRUTALITY >",
       "trap_bottom": "TECHNIQUE IN A LONG FIGHT",
       "example": "As long as Superman keeps the fight technical and under his control, the edge stays with him. Once Hyperion keeps coming back after each damaging sequence, the whole economy of the matchup starts to turn.",

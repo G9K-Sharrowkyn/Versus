@@ -3,7 +3,10 @@
     "allow": [
       "Bash(ls:*)",
       "Read(//h/ComfyUI/**)",
-      "Bash(find:*)"
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(python3:*)",
+      "Bash(node:*)"
     ]
   }
 }

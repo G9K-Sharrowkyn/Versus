@@ -1,5 +1,5 @@
 import { Brain, Crosshair, WandSparkles } from 'lucide-react'
-import type { MutableRefObject } from 'react'
+import type { CSSProperties, MutableRefObject } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { HighEndTemplateHeader } from '../../shared/highEnd'
@@ -36,6 +36,7 @@ export function XFactorTemplate({
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
+  const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const superPct = parsePercentValue(
@@ -63,6 +64,10 @@ export function XFactorTemplate({
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
   const psychology = line(3, ['psychologia', 'psychology'])
+  const trapTop = pickTemplateField(blockFields, ['trap_top', 'top'])
+  const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom'])
+  const trapExample = pickTemplateField(blockFields, ['example'])
+  const trapQuestion = pickTemplateField(blockFields, ['question'])
   const auditPrefix = `${activeFightId || 'draft'}:x-factor`
   const factorFit = useSlotAutofit({
     slotKey: `${auditPrefix}:factor`,
@@ -280,6 +285,32 @@ export function XFactorTemplate({
                 </div>
               </div>
             </div>
+
+            {(trapTop || trapBottom || trapExample || trapQuestion) && (
+              <div className="mt-4 rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3">
+                {(trapTop || trapBottom) && (
+                  <div className={statTrapLayout.HEADLINE_BAND_CLASS}>
+                    <p
+                      className={String(tokens.STAT_TRAP_HEADLINE_CLASS)}
+                      style={{ fontFamily: 'var(--font-display)', textAlign: 'center' }}
+                    >
+                      {trapTop && <span style={{ color: fighterB.color }}>{trapTop} </span>}
+                      {trapBottom && <span style={{ color: fighterA.color }}>{trapBottom}</span>}
+                    </p>
+                  </div>
+                )}
+                {trapExample && (
+                  <p className="mt-2 text-[14px] leading-[1.25] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
+                    {trapExample}
+                  </p>
+                )}
+                {trapQuestion && (
+                  <p className="mt-2 text-[13px] leading-[1.25] text-slate-200" style={{ fontFamily: 'var(--font-ui)' }}>
+                    <span className="font-bold">{common.keyQuestionLabel}</span>{' '}{trapQuestion}
+                  </p>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
