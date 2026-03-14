@@ -17,6 +17,9 @@ incase.md
 ComfyUI/
 ComfyUI — kopia/
 
+# NEW folder
+NEW/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
