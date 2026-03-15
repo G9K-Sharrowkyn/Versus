@@ -1,29 +1,30 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "Bound the Butcher inside his power battery",
-      "Kept fighting after his heart was removed",
-      "Martian Manhunter can't attack him telepathically.",
-      "Burned through the fabric of space with rage plasma",
-      "Throws around Apollo"
+      "Bound the Butcher inside his power battery.",
+      "Kept fighting after his heart was removed.",
+      "Martian Manhunter cannot attack him telepathically.",
+      "Burned through the fabric of space with rage plasma.",
+      "Throws around Apollo."
     ],
     "dossier": {
-      "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.",
-      "mentality": "A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful the more hatred and anger the enemy shows him.",
-      "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!",
-      "style": "Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma that burns through matter and space itself."
+      "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers.",
+      "mentality": "A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful with the enemy's anger.",
+      "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am wrath, I am hate, I am righteous vengeance!",
+      "style": "Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma."
     },
-    "name": "Character A",
+    "name": "Atrocitus",
     "profile": {
       "powers": [
         "Red Lantern plasma output, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics."
       ],
       "tools": [
-        "Emotional-spectrum manipulation and high-pressure ranged offense."
+        "Emotional-spectrum manipulation and high-pressure ranged offense.",
+        "Ability to poison the opponent's Power or energy through contact with blood and plasma."
       ],
       "weaknesses": [
-        "Ring or construct-output dependence and front-loaded control windows.",
-        "Prolonged direct brawls can reduce his tactical edge."
+        "Ring dependence (instead of a heart).",
+        "Prolonged direct brawls can reduce his tactical edge in favor of the opponent's raw strength."
       ]
     },
     "stats": {
@@ -48,25 +49,26 @@
   },
   "fighterB": {
     "crucialFeats": [
-      "Planet and moon collateral output from World Breaker scale",
-      "Stale-mated Sentry",
-      "Regenerated after extreme damage",
-      "Worldbreaker Red She-Hulk and WBH clashing caused planet to break",
-      "Nearly sank the entire east coast with a single step"
+      "World Breaker scale allows for collateral planet and moon destruction.",
+      "Stale-mated Sentry.",
+      "Regenerated from extreme damage.",
+      "Worldbreaker Red She-Hulk and WBH clashing broke the planet.",
+      "Nearly sank the entire east coast with a single step."
     ],
     "dossier": {
-      "advantage": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.",
+      "advantage": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in attrition.",
       "mentality": "A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.",
       "quote": "Hulk smash!",
       "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes."
     },
-    "name": "Character B",
+    "name": "Hulk",
     "profile": {
       "powers": [
-        "Gamma-based strength growth, regeneration, thunderclap/shockwave output, and extreme stamina."
+        "Gamma-based strength growth, regeneration, thunderclaps, and extreme stamina."
       ],
       "tools": [
-        "Relentless close-range pressure."
+        "Relentless close-range pressure.",
+        "Gamma radiation emission (in World Breaker mode), destroying everything in the vicinity."
       ],
       "weaknesses": [
         "Limited precision utility at long range versus dedicated control users.",
@@ -101,91 +103,167 @@
     "character-dossier-b",
     "character-profile",
     "crucial-feats",
+    "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "interpretation",
-    "stat-trap",
     "x-factor",
-    "victory-archive",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
+    "verdict-matrix",
     "fight-card"
   ],
   "templates": {
+    "battle-dynamics": {
+      "s1_label": "Standard Rules · World Breaker",
+      "a_curve": "85,75,65,55,45",
+      "b_curve": "70,80,90,98,100",
+      "yellow_wave": "40,48,44,59,47,63,49,68",
+      "phase_1": "Atrocitus begins with brutal plasma pressure, attempting to burn Hulk before he reaches a rage critical point.",
+      "phase_2": "Hulk in World Breaker mode starts emitting gamma waves that neutralize Atrocitus's ring constructs.",
+      "phase_3": "Hulk's escalation becomes unstoppable. Every wound only fuels the gamma loop, pushing the Lantern into defense.",
+      "analysis": "World Breaker Hulk possesses a scale that simply 'burns through' Atrocitus's control in a long exchange.",
+      "s2_label": "Standard Rules · Standard Hulk",
+      "s2_a_curve": "85,82,78,75,72",
+      "s2_b_curve": "60,65,70,75,80",
+      "s2_phase_1": "Atrocitus controls distance and dictates the fight's rhythm. Standard Hulk struggles to break through the plasma barrier.",
+      "s2_phase_2": "Close-range exchanges favor Atrocitus's combat experience and his magical blood techniques.",
+      "s2_phase_3": "Atrocitus wins on points or by knocking out Hulk before he can reach World Breaker levels.",
+      "s2_analysis": "Without immediate gamma escalation, Atrocitus holds the edge in technique and control.",
+      "s3_label": "Fight to the Death · World Breaker",
+      "s3_a_curve": "90,80,60,40,20",
+      "s3_b_curve": "80,90,95,99,100",
+      "s3_phase_1": "Murderous fury from both sides. Atrocitus attempts to tear out Hulk's heart, but he regenerates faster than wounds form.",
+      "s3_phase_2": "Hulk erupts with energy that tears the planet apart. Atrocitus fights with his last strength, fueled by pure hate.",
+      "s3_phase_3": "Ultimate annihilation. Hulk crushes Atrocitus, turning the battlefield into atomic dust.",
+      "s3_analysis": "Death rules are Hulk's element. In a fight of total destruction, his regeneration engine is decisive.",
+      "s4_label": "Fight to the Death · Standard Hulk",
+      "s4_a_curve": "90,85,80,75,70",
+      "s4_b_curve": "60,70,80,85,90",
+      "s4_phase_1": "Atrocitus strikes to kill, using plasma to incinerate Hulk's cells at a subatomic level.",
+      "s4_phase_2": "Hulk puts up a wild resistance, but the lack of World Breaker scale makes Atrocitus's wounds permanent.",
+      "s4_phase_3": "War of nerves. Atrocitus wins thanks to his ring-based immortality and superior attack precision.",
+      "s4_analysis": "Even to the death, without the World Breaker level, Hulk can be halted by someone as relentless as Atrocitus."
+    },
     "fight-card": {
       "fight_title": "Atrocitus vs Hulk"
     },
     "fight-simulation": {
-      "opening": "Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.",
-      "mid_fight": "Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.",
-      "late_fight": "If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.",
-      "end_condition": "Atrocitus has to hold range and control from start to finish; a second true contact sequence usually hands the fight to Hulk.",
-      "phase_1_title": "Atrocitus starts outside the pocket",
-      "phase_1_animation": "kite-zone",
-      "phase_1_event": "Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.",
-      "phase_1_a_label": "Control",
-      "phase_1_a_value": "92",
-      "phase_1_b_label": "Escalation",
-      "phase_1_b_value": "98",
-      "phase_2_title": "Hulk refuses to stay managed",
+      "s1_label": "Standard Rules · World Breaker",
+      "opening": "Atrocitus charges with rage plasma, attempting to immediately break Hulk's armor.",
+      "mid_fight": "Hulk enters World Breaker mode, emitting blinding green gamma light.",
+      "late_fight": "Hulk's rage escalation exceeds the ring's capacity to generate constructs.",
+      "end_condition": "Hulk's victory through total physical and energy dominance.",
+      "phase_1_animation": "rush-ko",
+      "phase_1_actor": "a",
+      "phase_1_title": "Red Fury",
+      "phase_1_a_label": "Aggression",
+      "phase_1_a_value": "94",
+      "phase_1_b_label": "Strength",
+      "phase_1_b_value": "92",
+      "phase_1_event": "Atrocitus strikes with a fury that incinerates the oxygen around the warriors.",
       "phase_2_animation": "clash-lock",
-      "phase_2_event": "Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.",
-      "phase_2_branch_a": "Atrocitus keeps the fight outside and continues managing Hulk's rage from range.",
-      "phase_2_branch_b": "Hulk forces another contact sequence and starts turning Atrocitus' partial wins into fuel for the next exchange.",
-      "phase_3_title": "The loop decides it",
+      "phase_2_title": "Clash of Rages",
+      "phase_2_event": "Red plasma clashes with green gamma energy in a giant explosion.",
+      "phase_2_branch_a": "Atrocitus finds a gap and wounds Hulk in the chest.",
+      "phase_2_branch_b": "Hulk absorbs the plasma and becomes even stronger.",
       "phase_3_actor": "b",
-      "phase_3_animation": "trade-chaos",
-      "phase_3_event": "If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.",
-      "phase_3_branch_a": "Distance and control hold from start to finish, so Atrocitus stays ahead of the escalation curve.",
-      "phase_3_branch_b": "A second real contact sequence triggers the gamma loop and starts erasing the value of Atrocitus' earlier success."
+      "phase_3_animation": "nova-cleansing",
+      "phase_3_title": "Gamma Burst",
+      "phase_3_event": "Hulk detonates World Breaker energy, destroying the battlefield.",
+      "phase_3_branch_a": "Atrocitus is thrown back and loses consciousness.",
+      "phase_3_branch_b": "Ring constructs are completely dispersed.",
+      "s2_label": "Standard Rules · Standard Hulk",
+      "s2_phase_1_animation": "kite-zone",
+      "s2_phase_1_title": "Tactical Control",
+      "s2_phase_1_a_label": "Precision",
+      "s2_phase_1_a_value": "90",
+      "s2_phase_1_b_label": "Fury",
+      "s2_phase_1_b_value": "85",
+      "s2_phase_1_event": "Atrocitus keeps Hulk at range with ring constructs, denying a clinch.",
+      "s2_phase_2_animation": "shadow-surge",
+      "s2_phase_2_title": "Plasma Sea",
+      "s2_phase_2_event": "The battlefield is flooded with Atrocitus's corrosive blood, slowing Hulk's regeneration.",
+      "s2_phase_2_branch_a": "Hulk is immobilized by constructs.",
+      "s2_phase_2_branch_b": "Hulk desperately tries to break through the plasma.",
+      "s2_phase_3_actor": "a",
+      "s2_phase_3_animation": "celestial-purge",
+      "s2_phase_3_title": "Leader's Verdict",
+      "s2_phase_3_event": "Atrocitus concentrates all power into one massive plasma shot.",
+      "s2_phase_3_branch_a": "Hulk is downed and taken out of the fight.",
+      "s2_phase_3_branch_b": "The referee stops the clash seeing Hulk's lack of response.",
+      "s2_end_condition": "Atrocitus's victory through technical control.",
+      "s3_label": "Fight to the Death · World Breaker",
+      "s3_phase_1_animation": "rush-ko",
+      "s3_phase_1_actor": "b",
+      "s3_phase_1_title": "World Breaker",
+      "s3_phase_1_event": "Hulk strikes from the first second with power that crushes the planet's crust.",
+      "s3_phase_2_animation": "infinite-attrition",
+      "s3_phase_2_actor": "b",
+      "s3_phase_2_title": "Gamma Grinder",
+      "s3_phase_2_event": "An endless series of strikes that Atrocitus's armor cannot withstand.",
+      "s3_phase_2_branch_a": "Atrocitus's ring begins to crack.",
+      "s3_phase_2_branch_b": "Hulk ignores a burned face and continues the assault.",
+      "s3_phase_3_animation": "all-black-execution",
+      "s3_phase_3_actor": "b",
+      "s3_phase_3_title": "Annihilation",
+      "s3_phase_3_event": "Hulk crushes Atrocitus along with his ring. This is the definitive end.",
+      "s3_phase_3_branch_a": "Atrocitus dies in an atomic cloud.",
+      "s3_phase_3_branch_b": "Only dust remains of the planet.",
+      "s3_end_condition": "Hulk's total victory through physical annihilation.",
+      "s4_label": "Fight to the Death · Standard Hulk",
+      "s4_phase_1_animation": "rush-ko",
+      "s4_phase_1_actor": "a",
+      "s4_phase_1_title": "Sector 666 Vengeance",
+      "s4_phase_1_event": "Atrocitus strikes with lethal intent, aiming straight for Hulk's head.",
+      "s4_phase_2_animation": "blade-dance",
+      "s4_phase_2_actor": "a",
+      "s4_phase_2_title": "Dance of Death",
+      "s4_phase_2_event": "Atrocitus uses plasma like blades, cutting Hulk's tissues before they can regrow.",
+      "s4_phase_2_branch_a": "Hulk loses regeneration ability at the wound sites.",
+      "s4_phase_2_branch_b": "Hulk grabs Atrocitus by the arm, breaking bones.",
+      "s4_phase_3_animation": "rush-ko",
+      "s4_phase_3_actor": "a",
+      "s4_phase_3_title": "Last Breath",
+      "s4_phase_3_event": "Atrocitus forces plasma directly into Hulk's wounds, ending the clash.",
+      "s4_phase_3_branch_a": "Hulk dies from internal annihilation.",
+      "s4_phase_3_branch_b": "Both fall dead in rage's embrace.",
+      "s4_end_condition": "Atrocitus's victory due to the ring's higher resilience."
     },
     "final-summary": {
-      "line_1": "Atrocitus wins the paper comparison, 85.6 vs 83.9.",
-      "line_2": "Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.",
-      "line_3": "Atrocitus only flips the matchup if distance and control hold from start to finish.",
-      "winner": "World Breaker Hulk 6.5/10"
-    },
-    "parameter-comparison": {
-      "left_header": "ATROCITUS ADVANTAGES",
-      "right_header": "HULK ADVANTAGES"
-    },
-    "stat-trap": {
-      "question": "Can Atrocitus keep Hulk's rage external, or does he end up feeding the loop himself?",
-      "trap_top": "BETTER AVERAGES >",
-      "trap_bottom": "DO NOT GUARANTEE A FINISH ROUTE",
-      "example": "Better averages mean little if they do not lead to a finish. Atrocitus has the better opening, but every close-range reset makes Hulk stronger. The real question is not who has more tools, but whose plan survives the first reset."
+      "line_1": "Both warriors feed on rage, but Atrocitus converts it into control, while Hulk converts it into sheer destructive scale.",
+      "line_2": "World Breaker scenarios leave Atrocitus with no chance, as gamma power simply 'burns through' any form of blood magic.",
+      "line_3": "This is a clash of whether a life-sustaining ring can survive in the heart of an atomic explosion that an angry Hulk becomes.",
+      "winner": "Hulk (as World Breaker) or Atrocitus (against Standard Hulk).",
+      "quote": "\u201CRage is fire. Atrocitus is the fire that burns. Hulk is the wildfire that devours the forest.\u201D"
     },
     "tactical-board": {
-      "lane": "Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.",
+      "lane": "Atrocitus must keep the fight within the Force's bounds before Hulk turns it into a gamma loop.",
       "subtitle": "Butcher versus Worldbreaker"
     },
+    "verdict-matrix": {
+      "col_1": "STATUS: WORLD BREAKER",
+      "col_2": "STATUS: STANDARD",
+      "row_1": "STANDARD KO",
+      "row_2": "DEATHMATCH",
+      "case_1": "Hulk 8/10. As World Breaker, Hulk is too powerful for Atrocitus to stop with constructs.",
+      "case_2": "Atrocitus 7/10. Against the standard version, the Lantern's technique and plasma give him a clean victory.",
+      "case_3": "Hulk 9.5/10. In a life-and-death struggle, World Breaker simply erases Atrocitus from reality.",
+      "case_4": "Atrocitus 6.5/10. A fight to the death is a risk for him, but the ring offers more finish routes than for a regular Hulk."
+    },
     "x-factor": {
-      "factor": "RAGE CONTROL VS GAMMA LOOP",
-      "a_value": "46",
       "a_bonus": "12",
-      "a_bonus_label": "CONTROL",
-      "b_value": "54",
-      "b_bonus": "18",
+      "a_bonus_label": "PLASMA CONTROL",
+      "a_value": "50",
+      "b_bonus": "25",
+      "b_value": "50",
+      "factor": "RAGE CONTROL VS GAMMA LOOP",
+      "implication": "Victory depends on whether Atrocitus can close the fight before the opponent's full gamma escalation.",
+      "mechanics": "Hulk grows infinitely. Atrocitus only grows to the ring's energy level, creating a hard power ceiling.",
+      "psychology": "Hulk is pure instinct. Atrocitus is intelligent fury – this difference decides the opening.",
       "regen": "GAMMA LOOP",
-      "mechanics": "If Atrocitus keeps Hulk at range and manages the fight from the outside, his plasma, rituals, and flight can stay ahead of the escalation curve.",
-      "implication": "The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation.",
-      "psychology": "If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange."
-    },
-    "interpretation": {
-      "line_1": "Atrocitus owns the cleaner early toolkit, better speed, and stronger control options.",
-      "line_2": "Hulk owns the cleaner finish route once contact becomes repeatable.",
-      "line_3": "This is a matchup where the paper edge belongs to the more versatile side, but the practical edge belongs to the side whose loop gets stronger every time the control plan slips.",
-      "quote": "Atrocitus wins the paper comparison, but Hulk still wins more real fights."
-    },
-    "battle-dynamics": {
-      "a_curve": "84,80,72,63,54",
-      "b_curve": "58,66,76,88,96",
-      "yellow_wave": "40,48,44,59,47,63,49,68",
-      "phase_1": "Atrocitus shapes the opening through faster control and the cleaner toolkit.",
-      "phase_2": "Hulk rises once the fight resets into contact and partial damage stops slowing him down.",
-      "phase_3": "The longer contact lasts, the more dangerous Hulk's loop becomes.",
-      "analysis": "Atrocitus is stronger early, but Hulk rises fast once regeneration and repeat entries stop caring about partial damage."
+      "example": "Hulk regenerates an entire arm in a second. Atrocitus doesn't regenerate his body, but his ring replaces damaged organs with energy.",
+      "question": "Is the red rage plasma capable of poisoning gamma radiation, or will it become fuel for it?"
     }
   }
 }

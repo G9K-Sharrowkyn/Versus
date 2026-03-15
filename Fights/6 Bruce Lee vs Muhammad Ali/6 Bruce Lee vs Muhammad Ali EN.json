@@ -1,28 +1,30 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "One-inch punch (Long Beach).",
-      "Two-finger push-ups.",
-      "1958 inter-school boxing title (Gary Elms).",
-      "Built Jeet Kune Do by effectively combining multiple styles",
-      "Defeated Yoichi Nakachi in 11 seconds"
+      "One-inch punch demonstration (Long Beach).",
+      "Two-finger push-ups and extreme body control.",
+      "1958 inter-school boxing title.",
+      "Creation of Jeet Kune Do by combining styles.",
+      "Defeated Yoichi Nakachi in 11 seconds."
     ],
     "dossier": {
       "advantage": "Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.",
-      "mentality": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.",
+      "mentality": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest.",
       "quote": "Be water, my friend.",
-      "style": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack."
+      "style": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements."
     },
-    "name": "Character A",
+    "name": "Bruce Lee",
     "profile": {
       "powers": [
         "Elite human speed, reflexes, coordination, and precision striking."
       ],
       "tools": [
-        "JKD interception timing, low kicks, rhythm disruption, and cross-style adaptation."
+        "JKD interception timing, low kicks, rhythm disruption, and cross-style adaptation.",
+        "Nunchaku and staff (in street scenarios), extreme power of the one-inch punch."
       ],
       "weaknesses": [
-        "Significant size and reach deficit versus heavyweight specialists."
+        "Significant size and reach deficit versus heavyweight specialists.",
+        "Lack of proven experience taking hits from professional heavyweight boxers."
       ]
     },
     "stats": {
@@ -36,7 +38,7 @@
       "strength": 70,
       "style": 91
     },
-    "version": "Historical Prime",
+    "version": "Prime",
     "victories": [
       "Gary Elms",
       "Yoichi Nakachi",
@@ -57,18 +59,20 @@
       "advantage": "Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.",
       "mentality": "A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.",
       "quote": "Float like a butterfly, sting like a bee.",
-      "style": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance."
+      "style": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies."
     },
-    "name": "Character B",
+    "name": "Muhammad Ali",
     "profile": {
       "powers": [
         "Elite heavyweight boxing speed, timing, durability, and ring IQ."
       ],
       "tools": [
-        "Jab control, footwork, defensive movement, clinch management, and pacing control."
+        "Jab control, footwork, defensive movement, clinch management, and pacing control.",
+        "Ability to survive punishing rounds and 'rope-a-dope' - exhausting the opponent."
       ],
       "weaknesses": [
-        "Primarily boxing-centric toolkit compared with broad open-rule combat sets."
+        "Primarily boxing-centric toolkit compared with broad open-rule combat sets.",
+        "Vulnerability to low kicks and joint attacks that boxing does not account for."
       ]
     },
     "stats": {
@@ -82,7 +86,7 @@
       "strength": 89,
       "style": 90
     },
-    "version": "Historical Prime",
+    "version": "Prime",
     "victories": [
       "George Foreman",
       "Joe Frazier",
@@ -99,78 +103,170 @@
     "character-dossier-b",
     "character-profile",
     "crucial-feats",
+    "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "interpretation",
-    "stat-trap",
-    "victory-archive",
+    "x-factor",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
+    "verdict-matrix",
     "fight-card"
   ],
   "templates": {
+    "battle-dynamics": {
+      "s1_label": "Standard Rules · Ring",
+      "a_curve": "75,68,60,52,45",
+      "b_curve": "80,85,90,95,98",
+      "yellow_wave": "38,42,40,45,43,47,44,48",
+      "phase_1": "Bruce Lee attempts to shock Ali with speed, but the boxing geography of the ring favors the heavyweight champion.",
+      "phase_2": "Ali establishes the jab. Every time Bruce enters the range, he is scored upon by Ali, who controls the rhythm.",
+      "phase_3": "Bruce's fatigue and Ali's mass advantage close the fight. Ali wins on points or by technical knockout.",
+      "analysis": "In the ring, Ali is unbeatable for Bruce. The mass and reach difference is simply too vast.",
+      "s2_label": "Standard Rules · Street",
+      "s2_a_curve": "85,80,75,70,65",
+      "s2_b_curve": "65,70,75,80,85",
+      "s2_phase_1": "Bruce Lee takes advantage of the lack of barriers and low kicks to the knees. Ali must suddenly adapt to unknown attack angles.",
+      "s2_phase_2": "The fight becomes chaotic. Bruce uses elbows and interceptions, neutralizing Ali's boxing rhythm.",
+      "s2_phase_3": "Ali still has the power edge, but the lack of gloves makes Bruce's strikes to vital points decisive.",
+      "s2_analysis": "The street levels the playing field, giving Bruce access to the full Jeet Kune Do arsenal.",
+      "s3_label": "Fight to the Death · Ring",
+      "s3_a_curve": "70,60,40,20,5",
+      "s3_b_curve": "85,90,95,99,100",
+      "s3_phase_1": "Death rules in the ring are a sentence for the lighter fighter. Ali does not need to conserve energy for rounds.",
+      "s3_phase_2": "Bruce desperately tries to land a lethal blow, but Ali simply 'crushes' him with his weight in the clinch.",
+      "s3_phase_3": "Pure physics. Ali ends the fight with a brutal knockout that Bruce's body cannot survive.",
+      "s3_analysis": "Death rules in the ring reward physical power and Ali's scale.",
+      "s4_label": "Fight to the Death · Street",
+      "s4_a_curve": "90,85,75,60,50",
+      "s4_b_curve": "60,70,80,90,95",
+      "s4_phase_1": "Bruce Lee strikes to kill in the first second. Kicks to the groin and eyes – zero sportsmanship.",
+      "s4_phase_2": "Ali, wounded and enraged, tries to grab Bruce. Every punch Ali lands is like a hammer strike.",
+      "s4_phase_3": "A war of attrition. Bruce Lee wins through mobility, but both emerge tragically mangled.",
+      "s4_analysis": "The bloodiest scenario, where Bruce's speed and dirty techniques give him the edge."
+    },
     "fight-card": {
-      "fight_title": "Bruce Lee vs Muhammad Ali"
+      "fight_title": "Lee vs Ali"
     },
     "fight-simulation": {
-      "opening": "Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.",
-      "mid_fight": "Ali taxes distance with the jab, feet, and ring control, forcing Bruce to pay for every re-entry.",
-      "late_fight": "The fight either stays ugly and narrow for Bruce or settles into repeatable heavyweight distance, where Ali's durability and pace take over.",
-      "end_condition": "If Bruce cannot keep the fight tight and ugly, true heavyweight distance starts working for Ali with every minute.",
-      "phase_1_title": "Entry and rhythm war",
-      "phase_1_animation": "feint-counter",
-      "phase_1_event": "Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.",
-      "phase_1_a_label": "Entry",
-      "phase_1_a_value": "93",
-      "phase_1_b_label": "Range",
-      "phase_1_b_value": "89",
-      "phase_2_title": "Range tax",
+      "s1_label": "Standard Rules · Ring",
+      "opening": "Bruce Lee attempts to set the pace, but Ali 'floats like a butterfly' around him.",
+      "mid_fight": "Ali sets the range with a left jab, not allowing Bruce to enter with a combination.",
+      "late_fight": "Ali's reach advantage becomes an impenetrable wall.",
+      "end_condition": "Ali's victory by technical knockout in the late phase.",
+      "phase_1_animation": "hit-and-run",
+      "phase_1_actor": "a",
+      "phase_1_title": "Speed Test",
+      "phase_1_a_label": "Agility",
+      "phase_1_a_value": "95",
+      "phase_1_b_label": "Timing",
+      "phase_1_b_value": "90",
+      "phase_1_event": "Bruce performs a series of lightning-fast dodges, but Ali calmly keeps him at range with the jab.",
       "phase_2_animation": "kite-zone",
-      "phase_2_event": "Ali taxes distance with the jab, feet, and ring control, forcing Bruce to pay for every re-entry.",
-      "phase_2_branch_a": "Bruce keeps the entries short and irregular, so Ali never gets to set the full ring geography.",
-      "phase_2_branch_b": "Ali establishes the jab, feet, and rhythm, so every Bruce re-entry starts costing more.",
-      "phase_3_title": "Heavyweight reality",
+      "phase_2_title": "Distance Tax",
+      "phase_2_event": "Ali moves in circles, forcing Bruce into constant footwork that tires him.",
+      "phase_2_branch_a": "Bruce finds a gap and lands a single strike.",
+      "phase_2_branch_b": "Ali counters with a double jab, weakening Bruce's guard.",
       "phase_3_actor": "b",
-      "phase_3_animation": "corner-trap",
-      "phase_3_event": "The fight either stays ugly and narrow for Bruce or settles into repeatable heavyweight distance, where Ali's durability and pace take over.",
-      "phase_3_branch_a": "Bruce keeps the fight dirty, tight, and outside full heavyweight distance.",
-      "phase_3_branch_b": "The fight settles into repeatable heavyweight distance, where Ali's pace and durability take over."
+      "phase_3_animation": "infinite-attrition",
+      "phase_3_title": "Heavyweight Pressure",
+      "phase_3_event": "Ali moves to the offensive, raining combinations that cannot be blocked by hands.",
+      "phase_3_branch_a": "Bruce hits the canvas after a series of hooks.",
+      "phase_3_branch_b": "The referee stops the fight due to a cut on Bruce.",
+      "s2_label": "Standard Rules · Street",
+      "s2_phase_1_animation": "hit-and-run",
+      "s2_phase_1_title": "Breaking Rules",
+      "s2_phase_1_a_label": "Unpredictability",
+      "s2_phase_1_a_value": "92",
+      "s2_phase_1_b_label": "Boxing Guard",
+      "s2_phase_1_b_value": "85",
+      "s2_phase_1_event": "Bruce attacks Ali's legs with low side kicks, destroying his footwork.",
+      "s2_phase_2_animation": "blade-dance",
+      "s2_phase_2_title": "Rhythm Interception",
+      "s2_phase_2_event": "Rapid exchanges without gloves. Every one of Bruce's strikes is precisely aimed at joints.",
+      "s2_phase_2_branch_a": "Ali is immobilized by knee pain.",
+      "s2_phase_2_branch_b": "Ali catches Bruce in a clinch and uses his mass.",
+      "s2_phase_3_actor": "a",
+      "s2_phase_3_animation": "rush-ko",
+      "s2_phase_3_title": "One-Inch Punch",
+      "s2_phase_3_event": "Bruce closes the distance to zero and strikes with full force into Ali's chest.",
+      "s2_phase_3_branch_a": "Ali loses his breath and falls to his knees.",
+      "s2_phase_3_branch_b": "Ali pushes Bruce away but loses control of the fight.",
+      "s2_end_condition": "Bruce's victory through Ali's inability to continue the fight.",
+      "s3_label": "Fight to the Death · Ring",
+      "s3_phase_1_animation": "clash-lock",
+      "s3_phase_1_actor": "b",
+      "s3_phase_1_title": "Collision of Masses",
+      "s3_phase_1_event": "Ali ignores technical aspects and strives to physically smother the opponent.",
+      "s3_phase_2_animation": "infinite-attrition",
+      "s3_phase_2_actor": "b",
+      "s3_phase_2_title": "Hammer and Anvil",
+      "s3_phase_2_event": "Every one of Ali's punches is lethal. Bruce must be perfect not to die on the spot.",
+      "s3_phase_2_branch_a": "Ali breaks Bruce's ribs with a single body shot.",
+      "s3_phase_2_branch_b": "Bruce tries desperately to counter to the eyes.",
+      "s3_phase_3_animation": "all-black-execution",
+      "s3_phase_3_actor": "b",
+      "s3_phase_3_title": "Ultimate Knockout",
+      "s3_phase_3_event": "Ali strikes with all his weight into Bruce's jaw. It's over.",
+      "s3_phase_3_branch_a": "Bruce dies instantly.",
+      "s3_phase_3_branch_b": "Bruce loses consciousness permanently.",
+      "s3_end_condition": "Ali's total dominance through physical advantage.",
+      "s4_label": "Fight to the Death · Street",
+      "s4_phase_1_animation": "hit-and-run",
+      "s4_phase_1_title": "Killer Instinct",
+      "s4_phase_1_a_label": "Lethality",
+      "s4_phase_1_a_value": "96",
+      "s4_phase_1_b_label": "Durability",
+      "s4_phase_1_b_value": "94",
+      "s4_phase_1_event": "Bruce attacks Ali's throat and eyes, aiming to end the Titan's life as quickly as possible.",
+      "s4_phase_2_animation": "blade-dance",
+      "s4_phase_2_actor": "a",
+      "s4_phase_2_title": "Dance of Death",
+      "s4_phase_2_event": "Ali is bleeding but still pressing forward. Bruce must move faster than ever.",
+      "s4_phase_2_branch_a": "Bruce avoids a massive haymaker and counters to the temple.",
+      "s4_phase_2_branch_b": "Ali grabs Bruce's clothes and pulls him in.",
+      "s4_phase_3_animation": "rush-ko",
+      "s4_phase_3_actor": "a",
+      "s4_phase_3_title": "JKD Verdict",
+      "s4_phase_3_event": "Bruce executes a series of strikes to the solar plexus and larynx.",
+      "s4_phase_3_branch_a": "Ali falls dead, unable to catch his breath.",
+      "s4_phase_3_branch_b": "Both fall from exhaustion and wounds.",
+      "s4_end_condition": "Bruce Lee's victory through ruthless precision."
     },
     "final-summary": {
-      "line_1": "Ali owns the paper comparison, 87.67 vs 78.89.",
-      "line_2": "Bruce changes the texture of the fight more than the winner identity.",
-      "line_3": "Open rules narrow the matchup, but do not flip the baseline result.",
-      "winner": "Muhammad Ali by clear margin"
-    },
-    "parameter-comparison": {
-      "left_header": "BRUCE ADVANTAGES",
-      "right_header": "ALI ADVANTAGES"
-    },
-    "stat-trap": {
-      "question": "Can Bruce stop the fight from turning into Ali's range-and-tax pattern?",
-      "trap_top": "SPEED AND STYLE >",
-      "trap_bottom": "DO NOT REPLACE REACH AND DURABILITY",
-      "example": "Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator."
+      "line_1": "This is a clash of precision versus power. Bruce Lee has speed Ali has never encountered, but Ali has a scale Bruce cannot ignore.",
+      "line_2": "In the ring, the rules and Ali's mass give him a nearly certain victory. On the street, where Bruce can use his full arsenal, the odds level out.",
+      "line_3": "Ultimately, it is a fight of whether one perfect Bruce strike can topple a man who survived 15 rounds with the world's strongest boxers.",
+      "winner": "Muhammad Ali in the ring, Bruce Lee on the street.",
+      "quote": "\u201CI fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times... unless that man is Muhammad Ali.\u201D"
     },
     "tactical-board": {
-      "lane": "Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.",
+      "lane": "Bruce must keep the fight dirty and chaotic. Ali wins if he imposes boxing distance.",
       "subtitle": "Artist versus Boxer"
     },
-    "interpretation": {
-      "line_1": "Bruce owns speed, disruption, and the uglier opening texture.",
-      "line_2": "Ali owns the categories that settle repeated human exchanges: reach, durability, pacing, and ring management.",
-      "line_3": "Bruce only narrows the matchup if he prevents the fight from hardening into Ali's preferred distance game.",
-      "quote": "Muhammad Ali."
+    "verdict-matrix": {
+      "col_1": "LOCATION: RING",
+      "col_2": "LOCATION: STREET",
+      "row_1": "STANDARD KO",
+      "row_2": "DEATHMATCH",
+      "case_1": "Ali 9/10. In the ring, boxing rules make Ali a god. Bruce lacks the tools to break him.",
+      "case_2": "Bruce 6.5/10. Lack of gloves and open rules allow Bruce techniques that will simply disable Ali.",
+      "case_3": "Ali 9.5/10. The mass and durability difference means Ali simply crushes Bruce physically in the ring.",
+      "case_4": "Bruce 7/10. In a life-and-death struggle, Bruce's precision aimed at vital points is more lethal than Ali's fists."
     },
-    "battle-dynamics": {
-      "a_curve": "78,74,68,61,54",
-      "b_curve": "62,70,79,88,94",
-      "yellow_wave": "38,42,40,45,43,47,44,48",
-      "phase_1": "Bruce is live early because speed and disruption matter most before the fight settles.",
-      "phase_2": "Ali steadies the exchanges once reach and pacing begin to dictate range.",
-      "phase_3": "Ali grows stronger as range, pacing, and durability compound over repeated exchanges.",
-      "analysis": "Bruce is live early because speed and disruption matter most before the fight settles. Ali grows stronger as range, pacing, and durability compound over repeated exchanges."
+    "x-factor": {
+      "a_bonus": "12",
+      "a_bonus_label": "DIRTY TECHNIQUES",
+      "a_value": "50",
+      "b_bonus": "25",
+      "b_value": "50",
+      "factor": "TECHNIQUE VS PHYSICAL SCALE",
+      "implication": "This is why Ali wins unquestionably in the ring, while on the street, Bruce becomes a lethal threat.",
+      "mechanics": "Ali possesses a chin of steel and heavyweight mass. Bruce must strike perfectly at points muscles do not protect.",
+      "psychology": "Ali wants to toy with the opponent. Bruce is pure, focused professionalism.",
+      "regen": "SIZE DIFFERENCE",
+      "example": "Bruce lands a perfect side kick to Ali's knee. On the street, it's the end of the fight. In the ring, Ali might survive through adrenaline and the clinch.",
+      "question": "Is Bruce's speed enough to avoid every Ali jab for the entire fight?"
     }
   }
 }
