@@ -113,6 +113,17 @@
 
 * {
   box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+input[type='text'],
+input[type='search'],
+input[type='email'],
+input[type='password'],
+textarea {
+  user-select: text;
+  -webkit-user-select: text;
 }
 
 html,
