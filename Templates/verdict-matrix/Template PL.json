@@ -103,8 +103,8 @@
     }
   ],
   "staticFields": {
-    "col_left": "SOLAR FLARE: TAK",
-    "col_right": "SOLAR FLARE: NIE",
+    "col_left": "WARUNEK A",
+    "col_right": "WARUNEK B",
     "row_top": "STANDARD KO",
     "row_bottom": "WALKA NA ŚMIERĆ",
     "fighter_a_fallback": "Postac A",

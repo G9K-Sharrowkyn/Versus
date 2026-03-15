@@ -30,187 +30,125 @@ export function VerdictMatrixTemplate({
   const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
-  const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
-    pickTemplateField(blockFields, keys) || plainLines[position] || fallback
+  
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
 
-  const splitCase = (value: string) => {
-    const clean = value.trim()
-    const normalized = clean.replace(/(\d)\s*\.\s*(\d)/g, '$1.$2')
-    const match = normalized.match(/^(.+?[.!?])\s+([\p{L}].*)$/su)
-    if (!match) return { lead: clean, body: '' }
-    return { lead: match[1].trim(), body: match[2].trim() }
-  }
+  // Dynamiczne zbieranie nagłówków i przypadków
+  const columns = [
+    pickTemplateField(blockFields, ['col_1', 'col_left', 'column_1']),
+    pickTemplateField(blockFields, ['col_2', 'col_right', 'column_2']),
+    pickTemplateField(blockFields, ['col_3', 'column_3']),
+  ].filter(Boolean) as string[]
+
+  const rowsList = [
+    pickTemplateField(blockFields, ['row_1', 'row_top', 'row_1']),
+    pickTemplateField(blockFields, ['row_2', 'row_bottom', 'row_2']),
+    pickTemplateField(blockFields, ['row_3', 'row_3']),
+  ].filter(Boolean) as string[]
+
+  const singleVerdict = pickTemplateField(blockFields, ['verdict', 'final_verdict', 'single_case'])
+
   const normalizeName = (value: string) =>
-    value
-      .normalize('NFD')
-      .replace(/\p{Diacritic}/gu, '')
-      .toLocaleLowerCase()
-      .trim()
+    value.normalize('NFD').replace(/\p{Diacritic}/gu, '').toLocaleLowerCase().trim()
+  
   const fighterAKey = normalizeName(fighterAName)
   const fighterBKey = normalizeName(fighterBName)
   const winnerBlueBackground = String(layout.WINNER_A_BG_CLASS)
   const winnerRedBackground = String(layout.WINNER_B_BG_CLASS)
+
   const resolveWinnerSide = (value: string, fallback: 'a' | 'b') => {
     const normalized = normalizeName(value)
     if (fighterAKey && normalized.startsWith(fighterAKey)) return 'a'
     if (fighterBKey && normalized.startsWith(fighterBKey)) return 'b'
     return fallback
   }
-  const resolveWinnerMark = (value: string, fallback: 'a' | 'b') => {
-    const winnerSide = resolveWinnerSide(value, fallback)
-    return winnerSide === 'a' ? fighterMonogram(fighterAName) : fighterMonogram(fighterBName)
+
+  const resolveCell = (caseText: string, defaultSide: 'a' | 'b') => {
+    const side = resolveWinnerSide(caseText, defaultSide)
+    const normalized = caseText.trim().replace(/(\d)\s*\.\s*(\d)/g, '$1.$2')
+    const match = normalized.match(/^(.+?[.!?])\s+([\p{L}].*)$/su)
+    return {
+      lead: match ? match[1].trim() : caseText,
+      body: match ? match[2].trim() : '',
+      bg: side === 'a' ? winnerBlueBackground : winnerRedBackground,
+      mark: side === 'a' ? fighterMonogram(fighterAName) : fighterMonogram(fighterBName)
+    }
   }
-  const winnerBackground = (value: string, fallback: 'a' | 'b') => {
-    const winnerSide = resolveWinnerSide(value, fallback)
-    return winnerSide === 'a' ? winnerBlueBackground : winnerRedBackground
+
+  // Jeśli mamy Single Verdict Mode
+  if (singleVerdict) {
+    const cell = resolveCell(singleVerdict, 'a')
+    return (
+      <div className={shell.HIGH_END_ROOT_CLASS}>
+        <div className={shell.HIGH_END_PANEL_CLASS}>
+          <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
+          <div className={layout.INNER_CLASS}>
+            <HighEndTemplateHeader templateId="verdict-matrix" language={language} chrome={chrome} headerText={headerText} subText={subText} onToggleLanguage={onToggleLanguage} />
+            <div className="mt-8 flex flex-1 flex-col items-center justify-center px-12">
+              <div className={`relative w-full max-w-3xl overflow-hidden rounded-2xl border border-cyan-300/45 p-10 text-center ${cell.bg}`}>
+                <FittedText as="p" slotKey="verdict-matrix:single:lead" spec={slots.directVerdictWinner} text={cell.lead} className="font-bold text-slate-100" />
+                {cell.body && <FittedText as="p" slotKey="verdict-matrix:single:body" spec={slots.directVerdictSubline} text={cell.body} className="mt-4 text-slate-200" />}
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[240px] font-bold text-white/5">{cell.mark}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
   }
 
-  const colLeftHeader =
-    pickTemplateField(blockFields, ['col_left', 'solar_flare_yes', 'solarflare_yes']) ||
-    getFightTemplateDefaultField('verdict-matrix', 'col_left', language)
-  const colRightHeader =
-    pickTemplateField(blockFields, ['col_right', 'solar_flare_no', 'solarflare_no']) ||
-    getFightTemplateDefaultField('verdict-matrix', 'col_right', language)
-  const rowTopHeader =
-    pickTemplateField(blockFields, ['row_top', 'standard', 'standard_ko']) ||
-    getFightTemplateDefaultField('verdict-matrix', 'row_top', language)
-  const rowBottomHeader =
-    pickTemplateField(blockFields, ['row_bottom', 'deathmatch', 'kill_only']) ||
-    getFightTemplateDefaultField('verdict-matrix', 'row_bottom', language)
-
-  const case1 = line(0, ['case_1', 'case1'])
-  const case2 = line(1, ['case_2', 'case2'])
-  const case3 = line(2, ['case_3', 'case3'])
-  const case4 = line(3, ['case_4', 'case4'])
-
-  const cells = [
-    {
-      id: 'tl',
-      ...splitCase(case1),
-      bg: winnerBackground(case1, 'a'),
-      mark: resolveWinnerMark(case1, 'a'),
-    },
-    {
-      id: 'tr',
-      ...splitCase(case2),
-      bg: winnerBackground(case2, 'b'),
-      mark: resolveWinnerMark(case2, 'b'),
-    },
-    {
-      id: 'bl',
-      ...splitCase(case3),
-      bg: winnerBackground(case3, 'a'),
-      mark: resolveWinnerMark(case3, 'a'),
-    },
-    {
-      id: 'br',
-      ...splitCase(case4),
-      bg: winnerBackground(case4, 'b'),
-      mark: resolveWinnerMark(case4, 'b'),
-    },
-  ]
+  // Tryb Matrycy (Dynamic Grid)
+  const colCount = Math.max(1, columns.length)
+  const rowCount = Math.max(1, rowsList.length)
+  const totalCells = colCount * rowCount
+  const cases = Array.from({ length: totalCells }, (_, i) => 
+    pickTemplateField(blockFields, [`case_${i + 1}`, `case${i + 1}`]) || plainLines[i] || ''
+  )
 
   return (
     <div className={shell.HIGH_END_ROOT_CLASS}>
       <div className={shell.HIGH_END_PANEL_CLASS}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-
         <div className={layout.INNER_CLASS}>
-          <HighEndTemplateHeader
-            templateId="verdict-matrix"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
-
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.MATRIX_SHELL_CLASS}`}>
-            <div />
-
-            <div className={layout.COLUMN_HEADERS_CLASS}>
-              <div className={layout.COLUMN_HEADER_CELL_CLASS}>
-                <FittedText
-                  as="p"
-                  slotKey="verdict-matrix:col-left"
-                  spec={slots.verdictMatrixHeader}
-                  text={colLeftHeader}
-                  style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
-                />
+          <HighEndTemplateHeader templateId="verdict-matrix" language={language} chrome={chrome} headerText={headerText} subText={subText} onToggleLanguage={onToggleLanguage} />
+          
+          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} grid flex-1`} style={{ gridTemplateColumns: `96px repeat(${colCount}, 1fr)`, gridTemplateRows: `56px repeat(${rowCount}, 1fr)` }}>
+            <div className="border border-cyan-300/45 bg-slate-900/72" />
+            
+            {/* Nagłówki Kolumn */}
+            {columns.map((col, i) => (
+              <div key={`col-${i}`} className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 px-2">
+                <FittedText as="p" slotKey={`verdict-matrix:col-${i}`} spec={slots.verdictMatrixHeader} text={col} className="w-full text-center" />
               </div>
-              <div className={layout.COLUMN_HEADER_CELL_RIGHT_CLASS}>
-                <FittedText
-                  as="p"
-                  slotKey="verdict-matrix:col-right"
-                  spec={slots.verdictMatrixHeader}
-                  text={colRightHeader}
-                  style={{ fontFamily: 'var(--font-ui)', width: '100%' }}
-                />
-              </div>
-            </div>
+            ))}
 
-            <div className={layout.ROW_HEADERS_CLASS}>
-              <div className={layout.ROW_HEADER_CELL_CLASS}>
-                <div className={layout.ROW_HEADER_TEXT_WRAP_CLASS}>
-                  <FittedText
-                    as="p"
-                    slotKey="verdict-matrix:row-top"
-                    spec={slots.verdictMatrixRowHeader}
-                    text={rowTopHeader}
-                    className={layout.ROW_HEADER_TEXT_CLASS as string}
-                    style={{ fontFamily: 'var(--font-ui)', width: String(layout.ROW_HEADER_WIDTH) }}
-                  />
-                </div>
-              </div>
-              <div className={layout.ROW_HEADER_CELL_CLASS}>
-                <div className={layout.ROW_HEADER_TEXT_WRAP_CLASS}>
-                  <FittedText
-                    as="p"
-                    slotKey="verdict-matrix:row-bottom"
-                    spec={slots.verdictMatrixRowHeader}
-                    text={rowBottomHeader}
-                    className={layout.ROW_HEADER_TEXT_CLASS as string}
-                    style={{ fontFamily: 'var(--font-ui)', width: String(layout.ROW_HEADER_WIDTH) }}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className={layout.CELLS_GRID_CLASS}>
-              {cells.map((cell, index) => (
-                <div
-                  key={`matrix-cell-${cell.id}`}
-                  className={`${layout.CELL_CLASS} ${cell.bg} ${index % 2 === 0 ? layout.CELL_RIGHT_BORDER_CLASS : ''} ${index < 2 ? layout.CELL_BOTTOM_BORDER_CLASS : ''}`}
-                >
-                  <FittedText
-                    as="p"
-                    slotKey={`verdict-matrix:lead:${cell.id}`}
-                    spec={slots.verdictMatrixLead}
-                    text={cell.lead}
-                    className={layout.CELL_LEAD_CLASS as string}
-                    style={{ fontFamily: 'var(--font-display)' }}
-                  />
-                  {cell.body ? (
-                    <FittedText
-                      as="p"
-                      slotKey={`verdict-matrix:body:${cell.id}`}
-                      spec={slots.verdictMatrixBody}
-                      text={cell.body}
-                      className={layout.CELL_BODY_CLASS as string}
-                      style={{ fontFamily: 'var(--font-ui)' }}
-                    />
-                  ) : null}
-                  <div className={layout.CELL_MARK_CLASS}>
-                    {cell.mark}
+            {/* Nagłówki Wierszy i Komórki */}
+            {rowsList.map((row, r) => (
+              <Fragment key={`row-group-${r}`}>
+                <div className="relative border border-t-0 border-cyan-300/45 bg-slate-900/72">
+                  <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+                    <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100" style={{ width: '150px' }} />
                   </div>
                 </div>
-              ))}
-            </div>
+                {Array.from({ length: colCount }, (_, c) => {
+                  const cellIdx = r * colCount + c
+                  const cell = resolveCell(cases[cellIdx], c % 2 === 0 ? 'a' : 'b')
+                  return (
+                    <div key={`cell-${cellIdx}`} className={`relative overflow-hidden border border-l-0 border-t-0 border-cyan-300/45 p-3 ${cell.bg}`}>
+                      <FittedText as="p" slotKey={`verdict-matrix:lead:${cellIdx}`} spec={slots.verdictMatrixLead} text={cell.lead} className="relative z-10 font-semibold text-slate-100" />
+                      {cell.body && <FittedText as="p" slotKey={`verdict-matrix:body:${cellIdx}`} spec={slots.verdictMatrixBody} text={cell.body} className="relative z-10 mt-1 text-slate-100" />}
+                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[120px] font-bold text-white/10">{cell.mark}</div>
+                    </div>
+                  )
+                })}
+              </Fragment>
+            ))}
           </div>
         </div>
       </div>
     </div>
   )
 }
+
+import { Fragment } from 'react'

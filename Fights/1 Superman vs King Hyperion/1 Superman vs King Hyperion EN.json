@@ -245,9 +245,13 @@
       "subtitle": "Hero versus Tyrant"
     },
     "verdict-matrix": {
+      "col_1": "SOLAR FLARE: YES",
+      "col_2": "SOLAR FLARE: NO",
+      "row_1": "STANDARD KO",
+      "row_2": "DEATHMATCH",
       "case_1": "Superman 7/10. Under standard rules and with Solar Flare, he has the cleanest and most repeatable path to victory.",
-      "case_2": "Superman 5.5/10. Solar Flare still gives him a real finish route, but a fight to the death rewards Hyperion's survivability more.",
-      "case_3": "Superman 6/10. Without Solar Flare he still leads if he maintains full control from start to finish and avoids a war of attrition.",
+      "case_2": "Superman 6/10. Without Solar Flare he still leads if he maintains full control from start to finish and avoids a war of attrition.",
+      "case_3": "Superman 5.5/10. Solar Flare still gives him a real finish route, but a fight to the death rewards Hyperion's survivability more.",
       "case_4": "King Hyperion 6/10. Without Solar Flare and under death rules, his regeneration starts tilting the fight his way."
     },
     "x-factor": {

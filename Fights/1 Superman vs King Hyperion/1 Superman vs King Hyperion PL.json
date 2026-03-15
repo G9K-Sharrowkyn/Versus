@@ -245,9 +245,13 @@
       "subtitle": "Bohater kontra Tyran"
     },
     "verdict-matrix": {
+      "col_1": "SOLAR FLARE: TAK",
+      "col_2": "SOLAR FLARE: NIE",
+      "row_1": "STANDARD KO",
+      "row_2": "WALKA NA ŚMIERĆ",
       "case_1": "Superman 7/10. Przy standardowych zasadach i z Solar Flare ma najczystszą oraz najbardziej powtarzalną drogę do zwycięstwa.",
-      "case_2": "Superman 5.5/10. Solar Flare nadal daje mu realną ścieżkę finiszu, ale walka na śmierć mocniej premiuje przeżywalność Hyperiona.",
-      "case_3": "Superman 6/10. Bez Solar Flare wciąż prowadzi, jeśli utrzyma pełną kontrolę od początku do końca i nie dopuści do wojny na wyniszczenie.",
+      "case_2": "Superman 6/10. Bez Solar Flare wciąż prowadzi, jeśli utrzyma pełną kontrolę od początku do końca i nie dopuści do wojny na wyniszczenie.",
+      "case_3": "Superman 5.5/10. Solar Flare nadal daje mu realną ścieżkę finiszu, ale walka na śmierć mocniej premiuje przeżywalność Hyperiona.",
       "case_4": "King Hyperion 6/10. Bez Solar Flare i przy zasadach śmierci jego regeneracja zaczyna przechylać walkę na swoją stronę."
     },
     "x-factor": {

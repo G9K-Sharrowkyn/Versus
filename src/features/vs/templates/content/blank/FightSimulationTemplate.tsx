@@ -156,7 +156,8 @@ export function FightSimulationTemplate({
       const animValue = pf([`phase_${index}_animation`, `phase_${index}_scenario`, `phase_${index}_preset`])
         || (!pfx ? globalAnimationValue : '') || ''
       const animSelection = resolveFightScenarioSelection(animValue, defaults.animation)
-      const variantToken = animSelection.variantToken
+      const phaseToken = normalizeToken(pf([`phase_${index}_token`, `phase_${index}_variant`]))
+      const variantToken = [animSelection.variantToken, phaseToken].filter(Boolean).join(' ')
       const modeToken = normalizeToken(pf([`phase_${index}_mode`, `phase_${index}_type`]))
       const fallbackTitle = index === 1 ? baseOpening : index === 2 ? baseMidFight : baseLateFight
 

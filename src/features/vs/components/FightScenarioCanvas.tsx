@@ -10,6 +10,8 @@ type FightScenarioFrame = {
   beam: number
   pulseA: number
   pulseB: number
+  flood?: number
+  floodColor?: string
   ghostsA?: LightningPoint[]
   ghostsB?: LightningPoint[]
 }
@@ -198,6 +200,11 @@ const applyFightScenarioVariant = (
       { x: next.a.x, y: next.a.y + 0.07 },
     ]
     next.pulseA = Math.max(next.pulseA, 0.56 + pulse01(seconds, 6.2) * 0.28)
+  }
+
+  if (scenarioTokenHasAny(variantToken, ['fullredflood'])) {
+    next.flood = 1.0
+    next.floodColor = '#ef4444'
   }
 
   if (variantToken === 'dominancedisplay') {
@@ -623,6 +630,218 @@ const buildFightScenarioFrame = (
     })
   }
 
+  if (scenario === 'cosmic-salvo') {
+    const a = { x: 0.15, y: 0.5 + Math.sin(seconds * 1.5) * 0.05 }
+    const b = { x: 0.75 + Math.sin(seconds * 12) * 0.015, y: 0.5 + Math.cos(seconds * 10) * 0.02 }
+    const p01 = pulse01(seconds, 8.5)
+    return finishScenarioFrame({
+      a,
+      b,
+      impact: p01 * 0.65,
+      beam: p01 * 0.85,
+      pulseA: 0.4 + p01 * 0.4,
+      pulseB: 0.3 + p01 * 0.3,
+    })
+  }
+
+  if (scenario === 'void-clash') {
+    const p01 = pulse01(seconds, 15)
+    return finishScenarioFrame({
+      a: { x: 0.48 + Math.sin(seconds * 14) * 0.015, y: 0.5 + Math.cos(seconds * 12) * 0.02 },
+      b: { x: 0.52 + Math.sin(seconds * 13) * 0.015, y: 0.5 + Math.cos(seconds * 11) * 0.02 },
+      impact: 0.85 + p01 * 0.15,
+      beam: 0.75,
+      pulseA: 0.55 + p01 * 0.45,
+      pulseB: 0.55 + p01 * 0.45,
+    })
+  }
+
+  if (scenario === 'celestial-purge') {
+    if (p < 0.4) {
+      const k = smoothStep(p / 0.4)
+      return finishScenarioFrame({
+        a: { x: 0.5, y: 0.5 },
+        b: { x: mixNumber(0.8, 0.55, k), y: 0.5 },
+        impact: k * 0.6,
+        beam: k * 0.4,
+        pulseA: 0.3 + k * 0.7,
+        pulseB: 0.3,
+      })
+    }
+    const k = smoothStep((p - 0.4) / 0.6)
+    return finishScenarioFrame({
+      a: { x: 0.5, y: 0.5 },
+      b: { x: mixNumber(0.55, 1.2, k), y: 0.5 },
+      impact: Math.max(0, 1 - k * 2),
+      beam: Math.max(0, 1 - k * 1.5),
+      pulseA: 1.0 - k * 0.5,
+      pulseB: 0.3 - k * 0.3,
+      ghostsA: Array.from({ length: 6 }, (_, i) => ({
+        x: 0.5 + Math.cos(i * 1.1 + seconds * 2) * k * 0.4,
+        y: 0.5 + Math.sin(i * 1.1 + seconds * 2) * k * 0.4,
+      })),
+    })
+  }
+
+  if (scenario === 'shadow-surge') {
+    const spread = wrap01(seconds / 10)
+    const b = { x: 0.85 + Math.sin(seconds) * 0.015, y: 0.5 + Math.cos(seconds * 0.8) * 0.03 }
+    return finishScenarioFrame({
+      a: { x: 0.15, y: 0.5 + Math.sin(seconds * 2) * 0.02 },
+      b,
+      flood: spread,
+      floodColor: '#ef4444',
+      impact: 0,
+      beam: 0,
+      pulseA: 0.25,
+      pulseB: 0.9,
+    })
+  }
+
+  if (scenario === 'infinite-attrition') {
+    const flicker = Math.sin(seconds * 40) * 0.015
+    const a = { x: 0.44 + flicker, y: 0.5 + Math.cos(seconds * 35) * 0.01 }
+    const b = { x: 0.56 - flicker, y: 0.5 + Math.sin(seconds * 32) * 0.01 }
+    const ghostsA = Array.from({ length: 4 }, (_, i) => ({
+      x: a.x - i * 0.02, y: a.y + Math.sin(seconds * 10 + i) * 0.03
+    }))
+    const ghostsB = Array.from({ length: 4 }, (_, i) => ({
+      x: b.x + i * 0.02, y: b.y + Math.cos(seconds * 10 + i) * 0.03
+    }))
+    return finishScenarioFrame({
+      a,
+      b,
+      impact: 0.7 + Math.sin(seconds * 50) * 0.3,
+      beam: 0.6,
+      pulseA: 0.5 + Math.abs(flicker) * 20,
+      pulseB: 0.5 + Math.abs(flicker) * 20,
+      ghostsA,
+      ghostsB,
+    })
+  }
+
+  if (scenario === 'blade-entrapment') {
+    const progress = wrap01(seconds / 8) // Powolne osaczanie
+    const fightCycle = wrap01(seconds * 4) 
+    const lunge = Math.max(0, 1 - Math.abs(fightCycle - 0.5) / 0.15) * 0.1 // Wypad Odina
+    
+    const a = { 
+      x: mixNumber(0.4, 0.1, progress) + lunge, 
+      y: 0.5 + Math.sin(seconds * 18) * 0.06 
+    }
+    const b = { 
+      x: a.x + 0.12 + Math.sin(seconds * 6) * 0.02, 
+      y: 0.5 + Math.cos(seconds * 10) * 0.03 
+    }
+    
+    return finishScenarioFrame({
+      a,
+      b,
+      impact: 0.4 + lunge * 4,
+      beam: 0.2 + lunge * 2,
+      pulseA: 0.5 + lunge * 3,
+      pulseB: 0.85,
+    })
+  }
+
+  if (scenario === 'ragnarok-unleashed') {
+    if (p < 0.7) {
+      const k = p / 0.7
+      return finishScenarioFrame({
+        a: { x: 0.2 + Math.sin(seconds * 20) * 0.005 * k, y: 0.5 },
+        b: { x: 0.8, y: 0.5 },
+        impact: 0,
+        beam: 0,
+        pulseA: 0.3 + k * 0.7,
+        pulseB: 0.3,
+      })
+    }
+    const k = smoothStep((p - 0.7) / 0.3)
+    return finishScenarioFrame({
+      a: { x: mixNumber(0.2, 0.7, k), y: 0.5 },
+      b: { x: mixNumber(0.8, 0.95, k), y: 0.5 + Math.sin(k * 10) * 0.1 },
+      impact: 1.0 - k * 0.8,
+      beam: 1.0 - k * 0.9,
+      pulseA: 1.0 - k * 0.5,
+      pulseB: 0.3 + k * 0.7,
+    })
+  }
+
+  if (scenario === 'abyss-corruption') {
+    const k = p
+    const a = { x: 0.4, y: 0.5 }
+    const b = { x: 0.5 + Math.sin(seconds * 4) * 0.05, y: 0.5 + Math.cos(seconds * 3) * 0.05 }
+    return finishScenarioFrame({
+      a,
+      b,
+      impact: 0.4 + k * 0.4,
+      beam: 0.3 + k * 0.5,
+      pulseA: 0.3 + k * 0.6,
+      pulseB: 0.6 + k * 0.4,
+      ghostsB: Array.from({ length: 3 }, (_, i) => ({
+        x: a.x + Math.sin(seconds * 5 + i) * 0.05,
+        y: a.y + Math.cos(seconds * 5 + i) * 0.05,
+      })),
+    })
+  }
+
+  if (scenario === 'nova-cleansing') {
+    const burst = wrap01(seconds * 2)
+    const a = { x: 0.5, y: 0.5 }
+    const ghostsA = Array.from({ length: 24 }, (_, i) => {
+      const angle = (i / 24) * Math.PI * 2
+      const dist = burst * 0.75
+      return { 
+        x: a.x + Math.cos(angle) * dist, 
+        y: a.y + Math.sin(angle) * dist * 0.65 
+      }
+    })
+    return finishScenarioFrame({
+      a,
+      b: { x: mixNumber(0.85, 1.2, burst), y: 0.5 },
+      impact: 0.8 * (1 - burst),
+      beam: 0.4 * (1 - burst),
+      pulseA: 0.95 * (1 - burst),
+      pulseB: 0.2,
+      ghostsA,
+    })
+  }
+
+  if (scenario === 'void-absorption') {
+    const k = p
+    return finishScenarioFrame({
+      a: { x: mixNumber(0.2, 0.55, k), y: 0.5 },
+      b: { x: 0.6 + Math.sin(seconds * 2) * 0.02, y: 0.5 },
+      impact: 0.4 + k * 0.6,
+      beam: 0.2 + k * 0.8,
+      pulseA: 0.3 + (1 - k) * 0.4,
+      pulseB: 0.6 + k * 0.4,
+    })
+  }
+
+  if (scenario === 'all-black-execution') {
+    if (p < 0.6) {
+      const k = smoothStep(p / 0.6)
+      return finishScenarioFrame({
+        a: { x: 0.4, y: 0.5 },
+        b: { x: mixNumber(0.8, 0.45, k), y: 0.5 },
+        impact: 0,
+        beam: 0,
+        pulseA: 0.4,
+        pulseB: 0.4 + k * 0.6,
+      })
+    }
+    const k = smoothStep((p - 0.6) / 0.4)
+    return finishScenarioFrame({
+      a: { x: 0.4, y: 0.5 },
+      b: { x: mixNumber(0.45, 0.1, k), y: 0.5 },
+      impact: Math.max(0, 1 - k * 3),
+      beam: Math.max(0, 1 - k * 2),
+      pulseA: Math.max(0, 0.4 - k * 0.4),
+      pulseB: 1.0 - k * 0.5,
+    })
+  }
+
   const a = {
     x: 0.34 + Math.sin(seconds * 1.7) * 0.22 + Math.sin(seconds * 7.8) * 0.05,
     y: 0.5 + Math.sin(seconds * 2.4) * 0.18,
@@ -790,6 +1009,22 @@ export function FightScenarioCanvas({
       ctx.clearRect(0, 0, width, height)
       ctx.fillStyle = 'rgba(2, 6, 23, 0.88)'
       ctx.fillRect(0, 0, width, height)
+
+      if (scenarioFrame.flood && scenarioFrame.flood > 0.02) {
+        const floodOpacity = scenarioFrame.flood * 0.2
+        const color = rgbaFromHex(scenarioFrame.floodColor || '#ef4444', floodOpacity)
+        
+        if (scenario === 'shadow-surge') {
+          // Rozchodzenie się od Knulla (pointB)
+          const grad = ctx.createRadialGradient(pointB.x, pointB.y, 0, pointB.x, pointB.y, width * scenarioFrame.flood * 1.5)
+          grad.addColorStop(0, color)
+          grad.addColorStop(1, 'rgba(2, 6, 23, 0)')
+          ctx.fillStyle = grad
+        } else {
+          ctx.fillStyle = color
+        }
+        ctx.fillRect(0, 0, width, height)
+      }
 
       ctx.strokeStyle = 'rgba(148, 163, 184, 0.18)'
       ctx.lineWidth = 1

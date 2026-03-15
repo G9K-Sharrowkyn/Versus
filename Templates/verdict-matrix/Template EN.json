@@ -103,8 +103,8 @@
     }
   ],
   "staticFields": {
-    "col_left": "SOLAR FLARE: YES",
-    "col_right": "SOLAR FLARE: NO",
+    "col_left": "CONDITION A",
+    "col_right": "CONDITION B",
     "row_top": "STANDARD KO",
     "row_bottom": "DEATHMATCH",
     "fighter_a_fallback": "Fighter A",
