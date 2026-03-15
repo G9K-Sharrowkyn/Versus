@@ -579,6 +579,50 @@ const buildFightScenarioFrame = (
     })
   }
 
+  if (scenario === 'solar-flare') {
+    if (p < 0.3) {
+      const k = smoothStep(p / 0.3)
+      return finishScenarioFrame({
+        a: { x: 0.28, y: 0.5 + Math.sin(seconds * 3.2) * 0.04 },
+        b: { x: mixNumber(0.78, 0.5, k), y: 0.5 },
+        impact: k * 0.55,
+        beam: k * 0.35,
+        pulseA: 0.2 + k * 0.15,
+        pulseB: 0.55 + pulse01(seconds, 3.8) * 0.3,
+      })
+    }
+    if (p < 0.55) {
+      const k = smoothStep((p - 0.3) / 0.25)
+      return finishScenarioFrame({
+        a: { x: mixNumber(0.28, 0.5, k), y: 0.5 },
+        b: { x: mixNumber(0.5, 0.52, k * 0.4), y: 0.5 },
+        impact: k * 0.3,
+        beam: k * 0.85,
+        pulseA: 0.35 + k * 0.65,
+        pulseB: 0.5 - k * 0.2,
+      })
+    }
+    const k = smoothStep((p - 0.55) / 0.45)
+    const numRays = 8
+    const explosionRadius = k * 0.38
+    const ghostsA: LightningPoint[] = Array.from({ length: numRays }, (_, i) => {
+      const angle = (i / numRays) * Math.PI * 2 + seconds * 0.4
+      return {
+        x: 0.5 + Math.cos(angle) * explosionRadius,
+        y: 0.5 + Math.sin(angle) * explosionRadius * 0.58,
+      }
+    })
+    return finishScenarioFrame({
+      a: { x: 0.5, y: 0.5 },
+      b: { x: mixNumber(0.52, 0.97, k), y: 0.5 + k * 0.08 },
+      impact: Math.max(0, 1 - k * 0.85),
+      beam: Math.max(0, 0.9 - k * 0.8),
+      pulseA: 1.0 - k * 0.25,
+      pulseB: Math.max(0, 0.45 - k * 0.45),
+      ghostsA,
+    })
+  }
+
   const a = {
     x: 0.34 + Math.sin(seconds * 1.7) * 0.22 + Math.sin(seconds * 7.8) * 0.05,
     y: 0.5 + Math.sin(seconds * 2.4) * 0.18,

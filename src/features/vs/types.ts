@@ -219,6 +219,7 @@ export type FightScenarioId =
   | 'corner-trap'
   | 'regen-attrition'
   | 'berserk-overextend'
+  | 'solar-flare'
   | 'trade-chaos'
 export type FightScenarioLead = 'a' | 'b'
 

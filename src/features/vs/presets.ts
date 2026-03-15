@@ -262,6 +262,7 @@ export const FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID: Record<string, FightScenarioI
   cornertrap: 'corner-trap',
   regenattrition: 'regen-attrition',
   berserkoverextend: 'berserk-overextend',
+  solarflare: 'solar-flare',
   tradechaos: 'trade-chaos',
 }
 
@@ -292,6 +293,8 @@ export const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   regen: 'regen-attrition',
   berserkoverextend: 'berserk-overextend',
   overextend: 'berserk-overextend',
+  solarflare: 'solar-flare',
+  solar: 'solar-flare',
   tradechaos: 'trade-chaos',
   chaos: 'trade-chaos',
   // Extended cinematic aliases from new.md

@@ -21,6 +21,7 @@ export const translationsEn = {
     'corner-trap': 'Corner Trap',
     'regen-attrition': 'Regen Attrition',
     'berserk-overextend': 'Berserk Overextend',
+    'solar-flare': 'Solar Flare',
     'trade-chaos': 'Trade Chaos',
   },
   templates: fightCopyEn.templates,

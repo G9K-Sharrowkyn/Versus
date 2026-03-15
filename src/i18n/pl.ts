@@ -21,6 +21,7 @@ export const translationsPl = {
     'corner-trap': 'Pułapka narożna',
     'regen-attrition': 'Regen i wyniszczenie',
     'berserk-overextend': 'Berserk i przestrzał',
+    'solar-flare': 'Solar Flare',
     'trade-chaos': 'Chaotyczna wymiana',
   },
   templates: fightCopyPl.templates,
