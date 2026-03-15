@@ -197,7 +197,7 @@ export function FightSimulationTemplate({
     }
   }
 
-  const scopeKey = `${activeFightId || 'draft'}:fight-simulation`
+  const scopeKey = `${fighterA.name}::${fighterB.name}:fight-simulation`
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
 

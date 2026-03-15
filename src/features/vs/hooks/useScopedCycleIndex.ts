@@ -1,16 +1,17 @@
 import { useState } from 'react'
 
-export function useScopedCycleIndex(scopeKey: string, itemCount: number) {
-  const [indexByScope, setIndexByScope] = useState<Record<string, number>>({})
+const globalIndexStore: Record<string, number> = {}
 
-  const activeIndex = itemCount > 0 ? (indexByScope[scopeKey] ?? 0) % itemCount : 0
+export function useScopedCycleIndex(scopeKey: string, itemCount: number) {
+  const [localTick, setLocalTick] = useState(0)
+
+  const activeIndex = itemCount > 0 ? (globalIndexStore[scopeKey] ?? 0) % itemCount : 0
 
   const goToNext = () => {
     if (itemCount <= 1) return
-    setIndexByScope((current) => ({
-      ...current,
-      [scopeKey]: ((current[scopeKey] ?? 0) + 1) % itemCount,
-    }))
+    const nextValue = ((globalIndexStore[scopeKey] ?? 0) + 1) % itemCount
+    globalIndexStore[scopeKey] = nextValue
+    setLocalTick((t) => t + 1)
   }
 
   return [activeIndex, goToNext] as const
