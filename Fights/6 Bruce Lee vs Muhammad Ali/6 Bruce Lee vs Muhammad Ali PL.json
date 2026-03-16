@@ -245,14 +245,9 @@
       "subtitle": "Artysta kontra Bokser"
     },
     "verdict-matrix": {
-      "col_1": "LOKALIZACJA: RING",
-      "col_2": "LOKALIZACJA: ULICA",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Ali 9/10. W ringu zasady bokserskie czynią Alego bogiem. Bruce nie ma narzędzi by go przełamać.",
-      "case_2": "Bruce 6.5/10. Brak rękawic i zasady otwarte pozwalają Bruce'owi na techniki, które Ali'ego po prostu wyłączą.",
-      "case_3": "Ali 9.5/10. Różnica masy i wytrzymałości sprawia, że w ringu Ali po prostu zmiażdży Bruce'a fizycznie.",
-      "case_4": "Bruce 7/10. Na śmierć i życie, precyzja Bruce'a skierowana w punkty witalne jest bardziej zabójcza niż pięści Alego."
+      "header": "WERDYKT OSTATECZNY",
+      "subtitle": "Brak zmiennych zmieniających wynik",
+      "verdict": "Muhammad Ali 10/10. Choć legenda Bruce'a Lee jest fascynująca, realna fizyka i fakty bojowe są bezlitosne. Ali posiadał ok. 36 kg przewagi masy, ogromną przewagę zasięgu rąk nad nogami Bruce'a oraz udowodnioną odporność na ciosy, których Bruce nigdy nie musiał przyjmować. W starciu zawodowego mistrza świata wagi ciężkiej z lżejszym o kilka klas artystą walki, każdy scenariusz kończy się błyskawicznym i brutalnym nokautem na korzyść Alego."
     },
     "x-factor": {
       "a_bonus": "12",

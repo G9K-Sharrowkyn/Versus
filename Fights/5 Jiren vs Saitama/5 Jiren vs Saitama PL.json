@@ -246,15 +246,14 @@
       "subtitle": "Dyscyplina kontra Bezgraniczność"
     },
     "verdict-matrix": {
-      "col_1": "SAITAMA: POWAŻNY",
-      "col_2": "SAITAMA: BEZTROSKI",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Saitama 9/10. Jeśli od początku walczy na serio, Jiren nie ma czasu na adaptację i przegrywa przez czystą siłę.",
-      "case_2": "Jiren 7/10. Przy zasadach turniejowych Saitama może dać się wypchnąć z ringu, zanim zrozumie, że przeciwnik jest groźny.",
-      "case_3": "Saitama 10/10. Na zasadach śmierci Saitama nieubłaganie przerasta Jirena w każdej wymianie.",
-      "case_4": "Saitama 9.5/10. Nawet beztroski Saitama jest zbyt wytrzymały, by Jiren mógł go zabić, a jeden kontratak kończy wszystko."
+      "header": "MATRYCA ADAPTACJI",
+      "subtitle": "Werdykt zależny od pierwszego uderzenia Jirena",
+      "row_1": "JIREN: NATYCHMIASTOWY ATAK",
+      "row_2": "JIREN: PASYWNA OBSERWACJA",
+      "case_1": "Jiren 10/10. Różnica skali na starcie jest zbyt wielka. Jeśli Jiren uderzy z pełną mocą od pierwszej sekundy, Saitama zostanie wymazany, zanim jego potencjał zdąży zareagować na nowe zagrożenie. Saitama nigdy nie stał przed potęgą zdolną trząść nieskończonością.",
+      "case_2": "Saitama 7/10. Jeśli Jiren pozwoli na walkę i będzie powoli badał przeciwnika (tak jak w Turnieju Mocy), da Saitamie czas na nieliniowy wzrost. W tym scenariuszu Saitama nieuchronnie przeskoczy sufit mocy Jirena i przejmie kontrolę nad starciem."
     },
+
     "x-factor": {
       "a_bonus": "15",
       "a_bonus_label": "BARIERA KI",

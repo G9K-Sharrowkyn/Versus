@@ -242,15 +242,11 @@
       "subtitle": "Rzeźnik kontra Worldbreaker"
     },
     "verdict-matrix": {
-      "col_1": "STATUS: WORLD BREAKER",
-      "col_2": "STATUS: STANDARD",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Hulk 8/10. Jako World Breaker, Hulk jest zbyt potężny, by Atrocitus mógł go powstrzymać konstrukty.",
-      "case_2": "Atrocitus 7/10. Przeciwko standardowej wersji, technika i plazma Latarni dają mu czyste zwycięstwo.",
-      "case_3": "Hulk 9.5/10. Na śmierć i życie World Breaker po prostu wymazuje Atrocitusa z rzeczywistości.",
-      "case_4": "Atrocitus 6.5/10. Walka na śmierć to dla niego ryzyko, ale pierścień daje mu więcej dróg finiszu niż zwykłemu Hulkowi."
+      "header": "WERDYKT OSTATECZNY",
+      "subtitle": "Koncepcyjna anihilacja vs 'Lucky Shot'",
+      "verdict": "Atrocitus 9/10. Choć World Breaker Hulk to szczyt siły fizycznej, jest on koncepcyjną ofiarą Atrocitusa. Czerwony Pierścień nie tylko pozwala Atrocitusowi żywić się gniewem Hulka, ale posiada rzadką zdolność tłumienia furii (Rage Suppression). Atrocitus może dosłownie 'wyłączyć' szał Hulka, cofając go do postaci Bruce'a Bannera jednym impulsem woli. W połączeniu z plazmą przepalającą przestrzeń i brakiem potrzeby oddychania, Atrocitus całkowicie kontroluje starcie. Hulk zachowuje 1/10 szansy jedynie na wypadek absolutnego farta – jeśli zdołałby zniszczyć pierścień Latarni jednym, desperackim ciosem, zanim ten zdąży aktywować pełną kontrolę spektrum."
     },
+
     "x-factor": {
       "a_bonus": "12",
       "a_bonus_label": "KONTROLA PLAZMY",

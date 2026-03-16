@@ -246,14 +246,12 @@
       "subtitle": "Discipline versus Limitlessness"
     },
     "verdict-matrix": {
-      "col_1": "SAITAMA: SERIOUS",
-      "col_2": "SAITAMA: CASUAL",
-      "row_1": "STANDARD KO",
-      "row_2": "DEATHMATCH",
-      "case_1": "Saitama 9/10. If he fights seriously from the start, Jiren has no time to adapt and loses to pure strength.",
-      "case_2": "Jiren 7/10. Under tournament rules Saitama might let himself be ringed out before realizing the opponent is dangerous.",
-      "case_3": "Saitama 10/10. Under death rules Saitama relentlessly outgrows Jiren in every exchange.",
-      "case_4": "Saitama 9.5/10. Even a carefree Saitama is too durable for Jiren to kill, and one counterattack ends everything."
+      "header": "ADAPTATION MATRIX",
+      "subtitle": "Verdict based on Jiren's initial output",
+      "row_1": "JIREN: IMMEDIATE ASSAULT",
+      "row_2": "JIREN: PASSIVE OBSERVATION",
+      "case_1": "Jiren 10/10. The scale difference at the start is too vast. If Jiren strikes with full power from the first second, Saitama is erased before his potential can even react to the new threat level. Saitama has never faced a power capable of shaking infinity.",
+      "case_2": "Saitama 7/10. If Jiren allows the fight to proceed and slowly tests his opponent (as in the ToP), he gives Saitama time for non-linear growth. In this scenario, Saitama inevitably surpasses Jiren's power ceiling and takes control of the clash."
     },
     "x-factor": {
       "a_bonus": "15",

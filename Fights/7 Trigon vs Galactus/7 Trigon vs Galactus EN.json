@@ -247,14 +247,14 @@
       "subtitle": "Demon versus Devourer"
     },
     "verdict-matrix": {
-      "col_1": "STATUS: FED GALACTUS",
-      "col_2": "STATUS: HUNGRY GALACTUS",
-      "row_1": "STANDARD KO",
-      "row_2": "DEATHMATCH",
-      "case_1": "Galactus 8.5/10. A fed devourer simply absorbs Trigon's magic and casts him out of reality.",
-      "case_2": "Trigon 7/10. A hungry Galactus loses speed and resistance, allowing Trigon's corruption to take control.",
-      "case_3": "Galactus 9.5/10. In a life-and-death struggle, a fed Galactus uses the Nullifier and ends the matter in a second.",
-      "case_4": "Trigon 9/10. In an attrition fight, a hungry god stands no chance against a demon's infinite regeneration."
+      "col_1": "STATUS: SATIATED",
+      "col_2": "STATUS: HUNGRY",
+      "row_1": "NEUTRAL UNIVERSE",
+      "row_2": "TRIGON'S REALM (HELL)",
+      "case_1": "Galactus 10/10. In open space, being satiated with planetary energy, Galactus is an absolute force of nature. His Power Cosmic simply devours any demonic manifestation from Trigon before it can even breach the Devourer's physical structure.",
+      "case_2": "Galactus 7.5/10. Even a hungry Galactus possesses a cosmic scale far beyond most demons. On neutral ground, his technology and the Ultimate Nullifier still give him a decisive edge over Trigon's magic.",
+      "case_3": "Galactus 6/10. In the heart of Hell, Trigon sets the rules, but a satiated Galactus brings so much raw universe-energy that he can 'burn through' the demonic domain and impose his own order, though with significant effort.",
+      "case_4": "Trigon 8.5/10. This is the only scenario where Galactus loses. Hungry, deprived of stable energy resources, and trapped in an alien dimension, he becomes a victim of Trigon's corruption and magic, which is absolute in Hell."
     },
     "x-factor": {
       "a_bonus": "18",

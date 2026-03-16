@@ -244,14 +244,9 @@
       "subtitle": "Sith Lord versus Titan"
     },
     "verdict-matrix": {
-      "col_1": "VADER: FORCE RAGE",
-      "col_2": "VADER: STANDARD",
-      "row_1": "STANDARD KO",
-      "row_2": "DEATHMATCH",
-      "case_1": "Thanos 8/10. Vader's fury forces him to exert himself, but the Titan's armor is built for punishment the Sith cannot repeat.",
-      "case_2": "Thanos 9.5/10. Without extreme Force augmentation, Vader lacks the arguments to even slow the Titan down.",
-      "case_3": "Thanos 9/10. A fight to the death rewards Thanos's durability. Even a wounded Vader cannot deliver a final blow.",
-      "case_4": "Thanos 10/10. Pure execution. The scale difference between Galactic Empire technology and a cosmic Titan is too vast."
+      "header": "FINAL VERDICT",
+      "subtitle": "Zero variables affecting the outcome",
+      "verdict": "Thanos 10/10. This clash is ultimately settled by the difference in scale. Darth Vader is a master of the Force and swordsmanship, but Thanos is a cosmic entity who has survived galactic explosions and attacks from deities like Galactus. There is no scenario where Sith technique or Force manipulation could bypass the Titan's armor and durability."
     },
     "x-factor": {
       "a_bonus": "14",

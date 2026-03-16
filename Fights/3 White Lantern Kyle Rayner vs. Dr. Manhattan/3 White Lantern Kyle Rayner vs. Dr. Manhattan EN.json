@@ -2,7 +2,7 @@
   "fighterA": {
     "crucialFeats": [
       "Survives the Source Wall and returns with the Life Equation.",
-      "Ressurects Hal Jordan.",
+      "Resurrects Hal Jordan.",
       "Is close to destabilizing reality.",
       "Unwillingly creates life by his presence.",
       "Changes The Source, code on which the reality runs."
@@ -243,14 +243,12 @@
       "subtitle": "Willpower versus Causality"
     },
     "verdict-matrix": {
-      "col_1": "LIFE EQUATION: FULL",
-      "col_2": "LIFE EQUATION: LIMITED",
-      "row_1": "STANDARD KO",
-      "row_2": "DEATHMATCH",
-      "case_1": "Dr. Manhattan 6/10. Even with the full Equation, his preemption steals enough openings to maintain a slight edge.",
-      "case_2": "Dr. Manhattan 9/10. Without his ultimate weapon, Kyle is just a very powerful Lantern in the hands of a matter god.",
-      "case_3": "Kyle 7/10. In a fight to the death, Kyle's desperation and the Life Equation create a new reality where Manhattan loses his determinism.",
-      "case_4": "Dr. Manhattan 9.5/10. Under death rules, without a full counter, Manhattan simply erases Kyle in the first second."
+      "header": "POWER MATRIX",
+      "subtitle": "Verdict based on Life Equation control",
+      "row_1": "FULL LIFE EQUATION",
+      "row_2": "LIMITED POWER",
+      "case_1": "Dr. Manhattan 6/10. Even when Kyle holds the keys to reality, Manhattan sees every attempt to shift the course of time. It is a battle of gods where Manhattan maintains a slight edge through a superior grasp of causality.",
+      "case_2": "Dr. Manhattan 9.5/10. Without the full Life Equation, Kyle is but a pawn in Manhattan's simulation. The Titan from Watchmen simply erases the cause for Kyle ever stepping onto the battlefield."
     },
     "x-factor": {
       "a_bonus": "15",

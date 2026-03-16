@@ -244,14 +244,9 @@
       "subtitle": "Lord Sith kontra Tytan"
     },
     "verdict-matrix": {
-      "col_1": "VADER: FORCE RAGE",
-      "col_2": "VADER: STANDARD",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Thanos 8/10. Furia Vadera zmusza go do wysiłku, ale pancerz tytana jest zbudowany na kary, których Sith nie może powtórzyć.",
-      "case_2": "Thanos 9.5/10. Bez ekstremalnego wzmocnienia, Vader nie ma argumentów, by choćby spowolnić tytana.",
-      "case_3": "Thanos 9/10. Walka na śmierć premiuje wytrzymałość Thanosa. Nawet ranny Vader nie jest w stanie zadać ostatecznego ciosu.",
-      "case_4": "Thanos 10/10. Czysta egzekucja. Różnica skali między technologią Galaktycznego Imperium a kosmicznym tytanem jest zbyt wielka."
+      "header": "WERDYKT OSTATECZNY",
+      "subtitle": "Brak zmiennych wpływających na wynik",
+      "verdict": "Thanos 10/10. To starcie ostatecznie rozstrzyga różnica skali. Darth Vader jest mistrzem Mocy i szermierki, ale Thanos to byt kosmiczny, który przetrwał wybuchy galaktyk i ataki bóstw pokroju Galactusa. Nie istnieje scenariusz, w którym technika Sitha lub manipulacja Mocą zdołałyby przebić pancerz i wytrzymałość Tytana."
     },
     "x-factor": {
       "a_bonus": "14",

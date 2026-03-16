@@ -245,14 +245,9 @@
       "subtitle": "Artist versus Boxer"
     },
     "verdict-matrix": {
-      "col_1": "LOCATION: RING",
-      "col_2": "LOCATION: STREET",
-      "row_1": "STANDARD KO",
-      "row_2": "DEATHMATCH",
-      "case_1": "Ali 9/10. In the ring, boxing rules make Ali a god. Bruce lacks the tools to break him.",
-      "case_2": "Bruce 6.5/10. Lack of gloves and open rules allow Bruce techniques that will simply disable Ali.",
-      "case_3": "Ali 9.5/10. The mass and durability difference means Ali simply crushes Bruce physically in the ring.",
-      "case_4": "Bruce 7/10. In a life-and-death struggle, Bruce's precision aimed at vital points is more lethal than Ali's fists."
+      "header": "FINAL VERDICT",
+      "subtitle": "Zero variables affecting the outcome",
+      "verdict": "Muhammad Ali 10/10. While the legend of Bruce Lee is fascinating, real-world physics and combat facts are ruthless. Ali possessed approximately a 36kg weight advantage, a massive reach advantage (hands over legs), and a proven durability against strikes Bruce never had to endure. In a clash between a professional heavyweight world champion and a martial artist several weight classes lighter, every scenario ends in a swift and brutal knockout in Ali's favor."
     },
     "x-factor": {
       "a_bonus": "12",

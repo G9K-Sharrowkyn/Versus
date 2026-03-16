@@ -243,14 +243,12 @@
       "subtitle": "Wola kontra Przyczynowość"
     },
     "verdict-matrix": {
-      "col_1": "LIFE EQUATION: PEŁNA",
-      "col_2": "LIFE EQUATION: OGRANICZONA",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Dr. Manhattan 6/10. Nawet z pełnym Równaniem, jego preempcja kradnie dość otwarć, by utrzymać minimalną przewagę.",
-      "case_2": "Dr. Manhattan 9/10. Bez ostatecznej broni, Kyle jest tylko bardzo potężnym Lanternem w rękach boga materii.",
-      "case_3": "Kyle 7/10. W walce na śmierć desperacja Kyle'a i Life Equation tworzą nową rzeczywistość, w której Manhattan traci swój determinizm.",
-      "case_4": "Dr. Manhattan 9.5/10. Na zasadach śmierci, bez pełnej kontry, Manhattan po prostu wymazuje Kyle'a w pierwszej sekundzie."
+      "header": "MATRYCA POTĘGI",
+      "subtitle": "Werdykt zależny od poziomu Life Equation",
+      "row_1": "PEŁNA LIFE EQUATION",
+      "row_2": "OGRANICZONA MOC",
+      "case_1": "Dr. Manhattan 6/10. Nawet gdy Kyle posiada klucze do rzeczywistości, Manhattan widzi każdą jego próbę zmiany kursu czasu. To walka bogów, w której Manhattan zachowuje minimalną przewagę dzięki lepszemu zrozumieniu przyczynowości.",
+      "case_2": "Dr. Manhattan 9.5/10. Bez pełnego Równania Życia, Kyle jest tylko pionkiem w symulacji Manhattana. Tytan z Watchmen po prostu wymazuje przyczynę, dla której Kyle w ogóle stanął na polu walki."
     },
     "x-factor": {
       "a_bonus": "15",

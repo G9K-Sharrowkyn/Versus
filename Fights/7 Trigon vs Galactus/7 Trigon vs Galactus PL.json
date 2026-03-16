@@ -247,14 +247,14 @@
       "subtitle": "Demon kontra Pożeracz"
     },
     "verdict-matrix": {
-      "col_1": "STATUS: GALACTUS SYTY",
-      "col_2": "STATUS: GALACTUS GŁODNY",
-      "row_1": "STANDARD KO",
-      "row_2": "WALKA NA ŚMIERĆ",
-      "case_1": "Galactus 8.5/10. Syty pożeracz po prostu pochłania magię Trigona i wyrzuca go z rzeczywistości.",
-      "case_2": "Trigon 7/10. Głodny Galactus traci szybkość i odporność, pozwalając korupcji Trigona przejąć kontrolę.",
-      "case_3": "Galactus 9.5/10. Na śmierć i życie, syty Galactus używa Nullifiera i kończy sprawę w sekundę.",
-      "case_4": "Trigon 9/10. W walce na wycieńczenie, głodny bóg nie ma szans z nieskończoną regeneracją demona."
+      "col_1": "STATUS: NASYCONY",
+      "col_2": "STATUS: GŁODNY",
+      "row_1": "NEUTRALNY WSZECHŚWIAT",
+      "row_2": "DOMENA TRIGONA (PIEKŁO)",
+      "case_1": "Galactus 10/10. W otwartej przestrzeni, będąc nasyconym energią planet, Galactus jest absolutną siłą natury. Jego Power Cosmic po prostu pożre każdą demoniczną manifestację Trigona, zanim ta zdąży naruszyć strukturę fizyczną Pożeracza.",
+      "case_2": "Galactus 7.5/10. Nawet głodny Galactus posiada skalę kosmiczną wykraczającą poza większość demonów. Na neutralnym gruncie jego technologia i Ultimate Nullifier wciąż dają mu decydującą przewagę nad magią Trigona.",
+      "case_3": "Galactus 6/10. W sercu piekła Trigon ustala zasady, ale nasycony Galactus wnosi ze sobą tyle czystej energii wszechświata, że jest w stanie 'przepalić' demoniczną domenę i narzucić własny porządek, choć przychodzi mu to z trudem.",
+      "case_4": "Trigon 8.5/10. To jedyny scenariusz, w którym Galactus przegrywa. Głodny, pozbawiony stabilnych zasobów energii i uwięziony w obcym wymiarze, staje się ofiarą korupcji i magii Trigona, która w piekle jest absolutna."
     },
     "x-factor": {
       "a_bonus": "18",
