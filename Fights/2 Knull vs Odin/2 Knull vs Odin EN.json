@@ -146,7 +146,8 @@
       "s4_analysis": "This is the worst-case scenario for the All-Father. Knull inevitably wins the resource war in his element."
     },
     "fight-card": {
-      "fight_title": "Knull vs Odin"
+      "fight_title": "Knull vs Odin",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Standard Rules · Odinforce Cleansing",
@@ -239,7 +240,7 @@
       "line_2": "Without this specific counter to the Abyss's regeneration, Knull simply outlasts even the most destructive attack phase from the All-Father.",
       "line_3": "This is a battle of whether cosmic order can erase chaos before it is consumed by it.",
       "winner": "Slight edge to Knull overall, but Odin wins in optimal conditions.",
-      "quote": "\u201CGods die in the dark, unless their light is strong enough to burn away nothingness itself.\u201D"
+      "quote": "“Gods die in the dark, unless their light is strong enough to burn away nothingness itself.”"
     },
     "tactical-board": {
       "lane": "Odin must turn chaos into structure before Knull turns structure into attrition.",

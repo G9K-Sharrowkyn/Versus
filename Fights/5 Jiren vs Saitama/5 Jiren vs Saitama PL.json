@@ -116,12 +116,12 @@
   "templates": {
     "battle-dynamics": {
       "s1_label": "Jiren: Atak Natychmiastowy",
-      "a_curve": "90,93,96,98,100",
-      "b_curve": "81,55,30,10,0",
+      "a_curve": "90,90,90,90,90",
+      "b_curve": "81,0,0,0,0",
       "yellow_wave": "10,12,11,14,12,15,13,18",
-      "phase_1": "Jiren nie daje czasu na zabawę. Uderza z mocą, która trzęsie nieskończoną próżnią, celując w serce Saitamy.",
-      "phase_2": "Saitama próbuje zareagować, ale różnica poziomów na starcie jest mierzona w rzędach wielkości. Jego ciało nie zdążyło się zaadaptować.",
-      "phase_3": "Koniec. Saitama zostaje wymazany z rzeczywistości zanim jego limiter zdążył pęknąć.",
+      "phase_1": "Jiren uderza natychmiast. Saitama wyparowuje.",
+      "phase_2": "-",
+      "phase_3": "-",
       "analysis": "Przy natychmiastowym ataku Jirena, Saitama nie ma okna czasowego potrzebnego na nieliniowy wzrost mocy.",
       "s2_label": "Jiren: Pasywna Obserwacja",
       "s2_a_curve": "90,88,85,80,75",
@@ -132,7 +132,8 @@
       "s2_analysis": "Błąd Jirena (zwłoka) daje Saitamie jedyną ścieżkę do zwycięstwa poprzez ewolucję w trakcie walki."
     },
     "fight-card": {
-      "fight_title": "Jiren vs Saitama"
+      "fight_title": "Jiren vs Saitama",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Atak Natychmiastowy",

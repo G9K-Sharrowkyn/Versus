@@ -19,6 +19,8 @@ export function XFactorTemplate({
   subtitle,
   templateBlocks,
   activeFightId,
+  averageA,
+  averageB,
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
@@ -37,14 +39,17 @@ export function XFactorTemplate({
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
   const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
+  
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
-  const superPct = parsePercentValue(
-    pickTemplateField(blockFields, ['a_value', 'super_value', 'superman', 'left_value']),
+
+  // Używamy realnych statystyk (averageA/B) jako bazy, jeśli są dostępne
+  const superPct = averageA ?? parsePercentValue(
+    pickTemplateField(blockFields, ['a_value', 'super_value', 'left_value']),
     0,
   )
-  const hyperPct = parsePercentValue(
-    pickTemplateField(blockFields, ['b_value', 'hyper_value', 'hyperion', 'right_value']),
+  const hyperPct = averageB ?? parsePercentValue(
+    pickTemplateField(blockFields, ['b_value', 'hyper_value', 'right_value']),
     0,
   )
   const superBonusPct = parsePercentValue(
@@ -55,8 +60,10 @@ export function XFactorTemplate({
     pickTemplateField(blockFields, ['b_bonus', 'hyper_bonus', 'right_bonus']),
     0,
   )
-  const superTotalPct = Math.max(0, Math.min(100, superPct + superBonusPct))
-  const hyperTotalPct = Math.max(0, Math.min(100, hyperPct + hyperBonusPct))
+
+  const superTotalPct = superPct + superBonusPct
+  const hyperTotalPct = hyperPct + hyperBonusPct
+
   const xLabel = line(0, ['factor', 'headline'])
   const headerText = title || 'X-FACTOR'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
@@ -123,6 +130,7 @@ export function XFactorTemplate({
 
           <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS as string}`}>
             <div className={layout.FIGHTERS_WRAP_CLASS as string}>
+              {/* FIGHTER A METER */}
               <div>
                 <FittedText
                   as="p"
@@ -137,16 +145,22 @@ export function XFactorTemplate({
                 />
                 <div className={layout.METER_ROW_CLASS as string}>
                   <div className={layout.METER_TRACK_A_CLASS as string}>
-                    <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${superPct}%` }} />
+                    <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%` }} />
                     {superBonusPct > 0 ? (
                       <div
                         className={layout.METER_BONUS_OVERLAY_CLASS as string}
                         style={{
-                          clipPath: `inset(5% ${Math.max(0, 100 - superTotalPct)}% 5% ${Math.max(0, Math.min(100, superPct))}%)`,
+                          clipPath: `inset(0% ${Math.max(0, 100 - superTotalPct)}% 0% ${Math.min(100, superPct)}%)`,
                           background: String(layout.METER_BONUS_BG_A),
+                          opacity: 0.85
                         }}
                       />
                     ) : null}
+                    {superTotalPct >= 100 && (
+                      <div className="lightning-wrapper !opacity-40">
+                        <div className="lightning" />
+                      </div>
+                    )}
                     <div className={layout.METER_PATTERN_CLASS as string} />
                   </div>
                   <div
@@ -161,6 +175,7 @@ export function XFactorTemplate({
                 </div>
               </div>
 
+              {/* FIGHTER B METER */}
               <div>
                 <FittedText
                   as="p"
@@ -175,16 +190,22 @@ export function XFactorTemplate({
                 />
                 <div className={layout.METER_ROW_CLASS as string}>
                   <div className={layout.METER_TRACK_B_CLASS as string}>
-                    <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${hyperPct}%` }} />
+                    <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${Math.min(100, hyperPct)}%` }} />
                     {hyperBonusPct > 0 ? (
                       <div
                         className={layout.METER_BONUS_OVERLAY_CLASS as string}
                         style={{
-                          clipPath: `inset(5% ${Math.max(0, 100 - hyperTotalPct)}% 5% ${Math.max(0, Math.min(100, hyperPct))}%)`,
+                          clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalPct)}% 0% ${Math.min(100, hyperPct)}%)`,
                           background: String(layout.METER_BONUS_BG_B),
+                          opacity: 0.85
                         }}
                       />
                     ) : null}
+                    {hyperTotalPct >= 100 && (
+                      <div className="lightning-wrapper !opacity-40">
+                        <div className="lightning" />
+                      </div>
+                    )}
                     <div className={layout.METER_PATTERN_CLASS as string} />
                   </div>
                   <div

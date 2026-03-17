@@ -114,16 +114,17 @@
   "templates": {
     "battle-dynamics": {
       "s1_label": "Ostateczna Nieuchronność",
-      "a_curve": "80,60,40,20,5",
-      "b_curve": "91,95,98,100,100",
+      "a_curve": "79,60,40,20,5",
+      "b_curve": "90,95,98,100,100",
       "yellow_wave": "20,25,22,28,24,30,26,35",
       "phase_1": "Vader uderza z furią Mocy, próbując narzucić swoją wolę bytowi kosmicznemu. Thanos przyjmuje ataki z ironicznym spokojem.",
       "phase_2": "Miecz świetlny i telekineza zderzają się z fizyczną niezniszczalnością. Skala Thanosa zaczyna przytłaczać systemy Lorda Sitha.",
       "phase_3": "Koniec nadziei. Każdy atom przestrzeni należy do Thanosa. Vader zostaje zredukowany do poziomu nieistotnej anomalii.",
-      "analysis": "W starciu tych dwóch potęg nie istnieją zmienne, które mogłyby zmienić wynik. Thanos dominuje w każdym wymiarze fizyki."
+      "analysis": "Thanos dominuje w każdym wymiarze fizyki. Vader to mistrz, ale Thanos to siła natury."
     },
     "fight-card": {
-      "fight_title": "Vader vs Thanos"
+      "fight_title": "Vader vs Thanos",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Werdykt Ostateczny",
@@ -145,7 +146,7 @@
       "phase_2_branch_a": "Vader próbuje użyć Force Crush na sercu Thanosa.",
       "phase_2_branch_b": "Thanos uśmiecha się i kontratakuje kosmicznym wybuchem.",
       "phase_3_actor": "b",
-      "phase_3_animation": "infinite-attrition",
+      "phase_3_animation": "brutal-execution",
       "phase_3_title": "Nieuchronny Koniec",
       "phase_3_event": "Thanos systematycznie niszczy każdy mechanizm podtrzymywania życia Vadera.",
       "phase_3_branch_a": "Vader upada, tracąc połączenie z Mocą.",

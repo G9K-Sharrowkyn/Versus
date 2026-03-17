@@ -1,98 +1,98 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "Wszechświat za wszechświatem upadał przed jego potęgą.",
-      "Zamienia Ziemię DC i wszystkich na niej w kamień.",
-      "Monitor klasyfikuje go na tym samym poziomie zagrożenia co Spectre.",
-      "Niszczy planetę samym spojrzeniem.",
-      "Pochłania Heart of Darkness."
+      "W wieku jednego roku rządził własną planetą, w wieku 6 ją zniszczył.",
+      "Pokonał Justice League i Teen Titans jednocześnie.",
+      "Posiada trofea z pokonanych Supermanów z różnych wymiarów.",
+      "Absorbuje Serce Ciemności, stając się jeszcze potężniejszym.",
+      "Wymazuje atomy przeciwników jednym gestem."
     ],
     "dossier": {
-      "advantage": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji.",
-      "mentality": "Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika.",
-      "quote": "Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!",
-      "style": "Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa."
+      "advantage": "Absolutna manipulacja wymiarami i duszami. Trigon nie jest tylko fizycznym zagrożeniem – on jest metafizyczną infekcją, która przejmuje kontrolę nad samą esencją bytu przeciwnika.",
+      "mentality": "Czyste zło i sadystyczny narcyzm. Nie walczy o przetrwanie, lecz o całkowitą dominację i upodlenie wszystkiego, co żyje.",
+      "quote": "Twój świat jest mój. Wasze dusze są moimi zabawkami. Nadchodzi Trigon!",
+      "style": "Magiczna dominacja i sianie chaosu. Wykorzystuje potęgę piekielną, by niszczyć umysły i ciała wrogów, zanim ci zdążą zrozumieć skalę zagrożenia."
     },
     "name": "Trigon",
     "profile": {
       "powers": [
-        "Demoniczna projekcja energii, korupcja rzeczywistości, opętanie, regeneracja koncepcyjna i podróże międzywymiarowe."
+        "Manipulacja rzeczywistością, magia piekielna, absorpcja dusz i nieograniczona projekcja energii."
       ],
       "tools": [
-        "Kształtowanie i kontrola domeny (demoniczne wymiary) oraz presja na dusze i materię.",
-        "Heart of Darkness: artefakt zasilający jego magię esencją miliardów upadłych dusz."
+        "Zdolność tworzenia armii demonów i korumpowania bohaterów.",
+        "Kontrola nad wymiarami, pozwalająca mu atakować z punktów poza postrzeganiem wroga."
       ],
       "weaknesses": [
-        "Szczytowa kontrola działa najlepiej w środowisku sprzyjającym demonicznej domenie.",
-        "Szeroka odporność kosmiczna przeciwnika może spowalniać tempo jego korupcji na neutralnym polu."
+        "Zależność od rytuałów i bram wymiarowych do pełnej manifestacji w niektórych sferach.",
+        "Arogancja, która pozwala mu lekceważyć drobne, precyzyjne ataki."
       ]
     },
     "stats": {
-      "battleIq": 86,
-      "durability": 91,
-      "experience": 94,
-      "hax": 93,
-      "skills": 75,
-      "speed": 84,
-      "stamina": 94,
-      "strength": 89,
-      "style": 80
+      "battleIq": 94,
+      "durability": 98,
+      "experience": 99,
+      "hax": 98,
+      "skills": 82,
+      "speed": 92,
+      "stamina": 99,
+      "strength": 98,
+      "style": 95
     },
-    "version": "Prime Earth",
+    "version": "DC Multiverse",
     "victories": [
-      "Superman",
-      "JLA + Teen Titans",
-      "The Divine",
+      "Justice League",
+      "Teen Titans",
       "Psimon",
-      "Ares"
+      "Ares",
+      "The Divine"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Posiada Ultimate Nullifier, broń zdolną zniszczyć cały wszechświat.",
-      "Galactus musi istnieć, bo inaczej wszechświat umrze.",
-      "Atak Galactusa obejmuje trzy układy słoneczne.",
-      "Cały wszechświat był zagrożony zniszczeniem, gdy Galactus walczył.",
-      "Odsyła Sphinxa w przeszłość, by ten przeżywał swoje życie w kółko."
+      "Pożera całe planety, by zasilić swój byt.",
+      "Pokonał Celestiali w bezpośrednim starciu.",
+      "Przetrwał Wielki Wybuch poprzedniego wszechświata.",
+      "Niszczy byty kosmiczne samą swoją obecnością.",
+      "Posiada Power Cosmic, pozwalającą na dowolną manipulację materią i energią."
     ],
     "dossier": {
-      "advantage": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu i użyć Nullifiera, by wymazać całe galaktyki z istnienia.",
-      "mentality": "Zdystansowana, wiecznie głodna siła natury. Postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.",
-      "quote": "Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.",
-      "style": "Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii i wykorzystuje restrukturyzację molekularną."
+      "advantage": "Power Cosmic i skala istnienia. Galactus nie walczy – on przeprowadza proces konsumpcji. Posiada kontrolę nad fundamentalnymi siłami wszechświata na niewyobrażalnym poziomie.",
+      "mentality": "Amoralna siła natury. Nie zabija z nienawiści, lecz z głodu. Patrzy na planety i bóstwa jak na pokarm potrzebny do utrzymania równowagi kosmosu.",
+      "quote": "Nie jestem bogiem. Nie jestem potworem. Jestem Galactusem. Jestem nieuchronnością.",
+      "style": "Kosmiczna manipulacja i wymazywanie. Używa Power Cosmic, by rozkładać materię na atomy i pochłaniać całą energię dostępną w danej sferze."
     },
     "name": "Galactus",
     "profile": {
       "powers": [
-        "Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii."
+        "Power Cosmic, manipulacja materią, energią i czasem na poziomie uniwersalnym."
       ],
       "tools": [
-        "Absorpcja energii planetarnej lub kosmicznej.",
-        "Ultimate Nullifier: ostateczny argument zdolny do zresetowania całego wszechświata."
+        "Ultimate Nullifier (w ekstremalnych przypadkach) – broń zdolna zniszczyć całe kontinuum.",
+        "Zdolność tworzenia heroldów, którzy wykonują jego wolę w niższych wymiarach."
       ],
       "weaknesses": [
-        "Skuteczność zależy od poziomu nasycenia.",
-        "W stanie głodu spada szybkość reakcji i margines błędu."
+        "Głód – jego potęga drastycznie spada, gdy nie spożywa planet.",
+        "Złożoność procesów technologicznych potrzebnych do efektywnej konsumpcji."
       ]
     },
     "stats": {
-      "battleIq": 92,
-      "durability": 97,
-      "experience": 98,
-      "hax": 98,
-      "skills": 79,
+      "battleIq": 96,
+      "durability": 99,
+      "experience": 99,
+      "hax": 99,
+      "skills": 85,
       "speed": 94,
-      "stamina": 96,
-      "strength": 95,
-      "style": 85
+      "stamina": 92,
+      "strength": 99,
+      "style": 94
     },
     "version": "Ziemia-616",
     "victories": [
-      "Mephisto",
+      "Sphinx",
+      "Tyrant",
       "Silver Surfer",
-      "Celestial",
-      "Terrax",
-      "Tyrant"
+      "Thanos",
+      "Red Hulk"
     ]
   },
   "locale": "pl",
@@ -115,160 +115,104 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Nasycony · Neutralne Pole",
-      "a_curve": "65,70,75,80,85",
-      "b_curve": "90,92,94,96,98",
-      "yellow_wave": "44,56,48,61,46,59,50,63",
-      "phase_1": "Galactus narzuca kosmiczny porządek. Power Cosmic normalizuje pole walki, nie dając Trigonowi miejsca na demoniczną korupcję.",
-      "phase_2": "Trigon próbuje przełamać bariery Galactusa piekielnym ogniem, ale nasycony Pożeracz po prostu pochłania tę energię jako paliwo.",
-      "phase_3": "Galactus domyka walkę wybuchem energii kosmicznej. Trigon zostaje zepchnięty z powrotem do swojego wymiaru.",
-      "analysis": "Gdy Galactus jest nasycony i walczy na neutralnym polu, jego zdolność absorpcji czyni magię Trigona bezskuteczną.",
-      "s2_label": "Głodny · Neutralne Pole",
-      "s2_a_curve": "80,85,90,92,95",
-      "s2_b_curve": "85,82,80,78,75",
-      "s2_phase_1": "Osłabiony Galactus traci szybkość reakcji. Piekielne moce Trigona zaczynają powoli korodować stabilność Power Cosmic.",
-      "s2_phase_2": "Galactus próbuje walczyć ekonomią energii, ale głód sprawia, że każda sekunda wymiany ciosów go osłabia.",
-      "s2_phase_3": "Pomimo głodu, skala Galactusa pozwala mu na wywalczenie remisu lub wymuszenie odwrotu przeciwnika Nullifierem.",
-      "s2_analysis": "Głód wyrównuje szanse, ale neutralny wszechświat wciąż faworyzuje technologiczne rozwiązania Galactusa.",
-      "s3_label": "Nasycony · Domena Piekła",
-      "s3_a_curve": "85,88,90,92,94",
-      "s3_b_curve": "90,92,94,96,98",
-      "s3_phase_1": "Galactus wchodzi do piekła z pełnymi rezerwami. Trigon próbuje narzucić mu demoniczną logikę, ale Pożeracz wnosi własny porządek.",
-      "s3_phase_2": "Starcie bóstw. Piekło płonie złotym blaskiem Power Cosmic. Galactus musi stale wydatkować energię, by nie zostać opętanym.",
-      "s3_phase_3": "Galactus wygrywa na punkty, przepalając domenę Trigona czystą mocą, choć cena tego zwycięstwa jest ogromna.",
-      "s3_analysis": "W domenie Trigona Galactus musi walczyć o każdy metr przestrzeni, ale pełne nasycenie daje mu stabilność.",
-      "s4_label": "Głodny · Domena Piekła",
-      "s4_a_curve": "90,95,98,100,100",
-      "s4_b_curve": "60,50,40,30,20",
-      "s4_phase_1": "Trigon natychmiast uderza w najsłabszy punkt – głód Galactusa, wyciągając z niego resztki energii kosmicznej.",
-      "s4_phase_2": "Głodny Galactus w sercu piekła staje się ofiarą. Nie ma skąd czerpać energii, a jego bariery padają pod naporem dusz.",
-      "s4_phase_3": "Dominacja Trigona. Galactus zostaje rozerwany na części pierwsze i zamieniony w trofeum w demonicznym pałacu.",
-      "s4_analysis": "To jedyny scenariusz, w którym Galactus przegrywa całkowicie. Brak paliwa w toksycznej domenie to wyrok."
+      "s1_label": "Starcie w Świecie Materii",
+      "a_curve": "95,90,85,80,70",
+      "b_curve": "96,97,98,99,100",
+      "yellow_wave": "20,25,22,28,24,30,26,35",
+      "phase_1": "Galactus operuje w swoim domyślnym środowisku. Power Cosmic trzyma magię Trigona w ryzach.",
+      "phase_2": "Trigon traci wpływ na świat fizyczny. Galactus zaczyna proces neutralizacji piekielnej anomalii.",
+      "phase_3": "Konsumpcja energii. Galactus pożera esencję Trigona, traktując go jak wyjątkowo kaloryczne źródło zasilania.",
+      "analysis": "W sferze fizycznej Power Cosmic Galactusa ma naturalną przewagę nad magią Trigona.",
+      "s2_label": "Starcie w Domenie Piekła",
+      "s2_a_curve": "95,97,98,99,100",
+      "s2_b_curve": "96,92,88,84,80",
+      "s2_phase_1": "Galactus wkracza w wymiar Trigona. Tutaj zasady fizyki są dyktowane wolą piekielnego władcy.",
+      "s2_phase_2": "Power Cosmic zaczyna zawodzić w obliczu nieskończonego mroku. Trigon infekuje esencję Galactusa.",
+      "s2_phase_3": "Absolucja cienia. Trigon przejmuje kontrolę nad Galactusem, czyniąc go swoim najpotężniejszym sługą.",
+      "s2_analysis": "W sercu swojego wymiaru Trigon jest niemal niemożliwy do pokonania, nawet dla Galactusa."
     },
     "fight-card": {
-      "fight_title": "Trigon vs Galactus"
+      "fight_title": "Trigon vs Galactus",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
-      "s1_label": "Nasycony · Neutralne Pole",
-      "opening": "Galactus otwiera walkę falą Power Cosmic, która stabilizuje całą galaktykę.",
-      "mid_fight": "Trigon zalewa przestrzeń piekielnym ogniem, ale Galactus otwiera usta i dosłownie wypija atak.",
-      "late_fight": "Galactus uderza prosto w esencję Trigona, wyrzucając go poza ramy wszechświata.",
-      "end_condition": "Zwycięstwo Galactusa przez totalną dominację energetyczną.",
-      "phase_1_animation": "cosmic-salvo",
+      "s1_label": "Kosmiczna Neutralizacja",
+      "opening": "Galactus używa Power Cosmic, by narzucić strukturę wymiarowi Trigona.",
+      "mid_fight": "Trigon próbuje rozerwać Galactusa od środka, atakując jego kosmiczną świadomość.",
+      "late_fight": "Galactus uwalnia falę energii, która wypala piekielne wpływy z lokalnego kontinuum.",
+      "end_condition": "Zwycięstwo Galactusa przez totalną neutralizację.",
+      "phase_1_animation": "rush-ko",
       "phase_1_actor": "b",
-      "phase_1_title": "Kosmiczny Porządek",
-      "phase_1_a_label": "Magia",
-      "phase_1_a_value": "88",
-      "phase_1_b_label": "Skala",
+      "phase_1_title": "Napór Kosmosu",
+      "phase_1_a_label": "Mrok",
+      "phase_1_a_value": "95",
+      "phase_1_b_label": "Światło",
       "phase_1_b_value": "98",
-      "phase_1_event": "Galactus narzuca swoją wolę rzeczywistości, gasząc pierwsze płomienie Trigona.",
-      "phase_2_animation": "void-clash",
-      "phase_2_title": "Starcie Absolutów",
-      "phase_2_event": "Demoniczna magia ściera się z kosmiczną technologią. Galactus stoi niewzruszony.",
-      "phase_2_branch_a": "Trigon znajduje lukę w barierach, ale tylko na chwilę.",
-      "phase_2_branch_b": "Galactus zaczyna pochłaniać esencję magii Trigona.",
+      "phase_1_event": "Galactus uderza czystą energią Power Cosmic, ignorując bariery Trigona.",
+      "phase_2_animation": "clash-lock",
+      "phase_2_title": "Zderzenie Potęg",
+      "phase_2_event": "Dwie nieskończoności ścierają się, niszcząc pobliskie galaktyki.",
+      "phase_2_branch_a": "Galactus zaczyna pożerać mroczną energię przeciwnika.",
+      "phase_2_branch_b": "Trigon traci stabilność w świecie materii.",
       "phase_3_actor": "b",
       "phase_3_animation": "celestial-purge",
-      "phase_3_title": "Ostateczny Wyrok",
-      "phase_3_event": "Galactus uwalnia falę energii, która wymazuje demoniczną obecność z sektora.",
-      "phase_3_branch_a": "Trigon zostaje wygnany do swojego wymiaru.",
-      "phase_3_branch_b": "Trigon zostaje rozproszony na czystą informację.",
-      "s2_label": "Głodny · Neutralne Pole",
-      "s2_phase_1_animation": "shadow-surge",
-      "s2_phase_1_title": "Piekielna Inwazja",
-      "s2_phase_1_a_label": "Korupcja",
-      "s2_phase_1_a_value": "95",
-      "s2_phase_1_b_label": "Opór",
-      "s2_phase_1_b_value": "72",
-      "s2_phase_1_event": "Trigon zalewa pole walki krwistą czerwienią, zatruwając źródło mocy Galactusa.",
-      "s2_phase_2_animation": "abyss-corruption",
-      "s2_phase_2_token": "fullredflood",
-      "s2_phase_2_title": "Upadek Pożeracza",
-      "s2_phase_2_event": "Głodny Galactus słabnie pod naporem demonicznej woli. Jego pancerz zaczyna korodować.",
-      "s2_phase_2_branch_a": "Galactus próbuje kontrować Nullifierem, ale brak mu sił.",
-      "s2_phase_2_branch_b": "Trigon opętuje systemy nawigacyjne Galactusa.",
+      "phase_3_title": "Wymazanie",
+      "phase_3_event": "Galactus wymazuje ślad Trigona z rzeczywistości.",
+      "phase_3_branch_a": "Trigon zostaje wyparty do swojego wymiaru.",
+      "phase_3_branch_b": "Esencja demona zostaje skonsumowana.",
+      "s2_label": "Piekielna Korupcja",
+      "s2_phase_1_animation": "kite-zone",
+      "s2_phase_1_title": "Pułapka Wymiarowa",
+      "s2_phase_1_a_label": "Wola",
+      "s2_phase_1_a_value": "99",
+      "s2_phase_1_b_label": "Głód",
+      "s2_phase_1_b_value": "90",
+      "s2_phase_1_event": "Galactus wchodzi w domenę Trigona, nieświadomie oddając inicjatywę.",
+      "s2_phase_2_animation": "shadow-surge",
+      "s2_phase_2_title": "Infekcja Duszy",
+      "s2_phase_2_event": "Trigon zaczyna korumpować Power Cosmic, zamieniając ją w narzędzie tortur.",
+      "s2_phase_2_branch_a": "Galactus desperacko próbuje opuścić wymiar.",
+      "s2_phase_2_branch_b": "Świadomość Galactusa zaczyna pękać.",
       "s2_phase_3_actor": "a",
-      "s2_phase_3_animation": "all-black-execution",
-      "s2_phase_3_title": "Triumf Demona",
-      "s2_phase_3_event": "Trigon wykonuje ostateczny gest, zamieniając Galactusa w kamienny pomnik swojej chwały.",
-      "s2_phase_3_branch_a": "Galactus pada, stając się częścią domeny Trigona.",
-      "s2_phase_3_branch_b": "Galactus ucieka w nicość, tracąc swoją formę fizyczną.",
-      "s2_end_condition": "Zwycięstwo Trigona przez całkowitą korupcję przeciwnika.",
-      "s3_label": "Nasycony · Domena Piekła",
-      "s3_phase_1_animation": "cosmic-salvo",
-      "s3_phase_1_actor": "b",
-      "s3_phase_1_title": "Anihilacja",
-      "s3_phase_1_event": "Galactus uderza z intencją zakończenia wszelkiego życia w zasięgu wzroku.",
-      "s3_phase_2_animation": "infinite-attrition",
-      "s3_phase_2_actor": "b",
-      "s3_phase_2_title": "Mielenie Gwiazd",
-      "s3_phase_2_event": "Wymiana ciosów, która niszczy całe galaktyki w tle. Galactus jest nieugięty.",
-      "s3_phase_2_branch_a": "Trigon regeneruje się z Heart of Darkness.",
-      "s3_phase_2_branch_b": "Galactus zaczyna pochłaniać sam Heart of Darkness.",
-      "s3_phase_3_animation": "nova-cleansing",
-      "s3_phase_3_actor": "b",
-      "s3_phase_3_title": "Supernova Kosmiczna",
-      "s3_phase_3_event": "Galactus detonuje całą swoją energię w jednym punkcie, unicestwiając Trigona.",
-      "s3_phase_3_branch_a": "Trigon zostaje całkowicie wymazany.",
-      "s3_phase_3_branch_b": "Obaj giną w eksplozji, resetując lokalny wszechświat.",
-      "s3_end_condition": "Zwycięstwo Galactusa przez totalne unicestwienie.",
-      "s4_label": "Głodny · Domena Piekła",
-      "s4_phase_1_animation": "shadow-surge",
-      "s4_phase_1_title": "Uczta Demonów",
-      "s4_phase_1_a_label": "Głód",
-      "s4_phase_1_a_value": "98",
-      "s4_phase_1_b_label": "Rozpacz",
-      "s4_phase_1_b_value": "40",
-      "s4_phase_1_event": "Trigon rozrywa zasłonę rzeczywistości, wciągając głodnego Galactusa do serca piekła.",
-      "s4_phase_2_animation": "void-absorption",
-      "s4_phase_2_actor": "a",
-      "s4_phase_2_token": "fullredflood",
-      "s4_phase_2_title": "Koniec Wieczności",
-      "s4_phase_2_event": "Galactus zostaje rozebrany na części pierwsze przez demoniczną magię.",
-      "s4_phase_2_branch_a": "Trigon pożera Power Cosmic.",
-      "s4_phase_2_branch_b": "Galactus staje się marionetką w rękach Trigona.",
-      "s4_phase_3_animation": "all-black-execution",
-      "s4_phase_3_actor": "a",
-      "s4_phase_3_title": "Śmierć Pożeracza",
-      "s4_phase_3_event": "Trigon miażdży czaszkę Galactusa, kończąc erę bogów kosmicznych.",
-      "s4_phase_3_branch_a": "Galactus ginie na stałe.",
-      "s4_phase_3_branch_b": "Zwycięstwo Trigona nad trupem wszechświata.",
-      "s4_end_condition": "Dominacja Trigona przez absolutną różnicę zasobów."
+      "s2_phase_3_animation": "nova-cleansing",
+      "s2_phase_3_title": "Upadek Giganta",
+      "s2_phase_3_event": "Trigon triumfuje, stając się panem kosmicznego pożeracza.",
+      "s2_phase_3_branch_a": "Galactus zostaje nowym Heroldem Trigona.",
+      "s2_phase_3_branch_b": "Wszechświat pogrąża się w wiecznym mroku.",
+      "s2_end_condition": "Zwycięstwo Trigona przez metafizyczną korupcję."
     },
     "final-summary": {
-      "line_1": "Galactus posiada większą surową skalę i potencjał niszczycielski, ale jest niewolnikiem własnego metabolizmu.",
-      "line_2": "Większość starć wygrywa Galactus, o ile nie zostanie zmuszony do walki w stanie skrajnego wyczerpania i głodu.",
-      "line_3": "To pojedynek o to, czy kosmiczna technologia i Power Cosmic zdołają przetrwać w świecie, w którym zasady ustala demoniczna magia.",
-      "winner": "Galactus (Nasycony) lub Trigon (Gdy Galactus głoduje).",
-      "quote": "„Bogowie jedzą planety, ale demony jedzą bogów.”"
+      "line_1": "To starcie ostatecznych skrajności: fizycznej konsumpcji Galactusa i duchowej korupcji Trigona.",
+      "line_2": "Wynik zależy niemal wyłącznie od lokalizacji starcia i tego, kto pierwszy narzuci swoje zasady rzeczywistości.",
+      "line_3": "W świecie materii Galactus jest nie do powstrzymania, ale w Domenie Piekła to on staje się ofiarą.",
+      "winner": "Galactus (Materie) lub Trigon (Piekło).",
+      "quote": "„Galactus pożera światy. Trigon pożera dusze światów.”"
     },
     "tactical-board": {
-      "lane": "Galactus musi zamienić pole walki w paliwo, zanim Trigon zamieni je w piekło.",
-      "subtitle": "Demon kontra Pożeracz"
+      "lane": "Zwycięzca musi kontrolować wymiar, w którym toczy się walka.",
+      "subtitle": "Pożeracz kontra Demon"
     },
     "verdict-matrix": {
-      "col_1": "STATUS: NASYCONY",
-      "col_2": "STATUS: GŁODNY",
-      "row_1": "NEUTRALNY WSZECHŚWIAT",
-      "row_2": "DOMENA TRIGONA (PIEKŁO)",
-      "case_1": "Galactus 10/10. W otwartej przestrzeni, będąc nasyconym energią planet, Galactus jest absolutną siłą natury. Jego Power Cosmic po prostu pożre każdą demoniczną manifestację Trigona, zanim ta zdąży naruszyć strukturę fizyczną Pożeracza.",
-      "case_2": "Galactus 7.5/10. Nawet głodny Galactus posiada skalę kosmiczną wykraczającą poza większość demonów. Na neutralnym gruncie jego technologia i Ultimate Nullifier wciąż dają mu decydującą przewagę nad magią Trigona.",
-      "case_3": "Galactus 6/10. W sercu piekła Trigon ustala zasady, ale nasycony Galactus wnosi ze sobą tyle czystej energii wszechświata, że jest w stanie 'przepalić' demoniczną domenę i narzucić własny porządek, choć przychodzi mu to z trudem.",
-      "case_4": "Trigon 8.5/10. To jedyny scenariusz, w którym Galactus przegrywa. Głodny, pozbawiony stabilnych zasobów energii i uwięziony w obcym wymiarze, staje się ofiarą korupcji i magii Trigona, która w piekle jest absolutna."
+      "header": "MATRYCA DOMEN",
+      "subtitle": "Werdykt zależny od miejsca starcia",
+      "row_1": "ŚWIAT MATERII",
+      "row_2": "DOMENA PIEKŁA",
+      "case_1": "Galactus 8/10. Power Cosmic pozwala Galactusowi na całkowitą kontrolę nad materią i energią. W sferze fizycznej Trigon jest potężny, ale Galactus posiada narzędzia do neutralizacji nadnaturalnych anomalii i potrafi po prostu skonsumować energię Trigona.",
+      "case_2": "Trigon 9/10. W swoim własnym wymiarze Trigon jest absolutem. Galactus, wchodząc tam, traci oparcie w prawach fizyki, które zasilały jego Power Cosmic. Trigon może zainfekować duszę Galactusa, przejmując kontrolę nad jego nieskończoną mocą."
     },
     "x-factor": {
-      "a_bonus": "18",
-      "a_bonus_label": "DOMENA PIEKŁA",
+      "a_bonus": "15",
+      "a_bonus_label": "MOC PIEKIELNA",
       "a_value": "50",
-      "b_bonus": "20",
+      "b_bonus": "15",
       "b_value": "50",
-      "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
-      "implication": "Dlatego wynik walki zależy niemal wyłącznie od poziomu nasycenia Galactusa w momencie startu.",
-      "mechanics": "Galactus wygrywa, jeśli może metabolizować energię Trigona. Trigon wygrywa, jeśli jego magia jest zbyt 'ciężka' do przełknięcia.",
-      "psychology": "Trigon chce przeciągać walkę, by pogłębić głód Galactusa. Galactus chce błyskawicznego finiszu.",
-      "regen": "ABSORPCJA KOSMICZNA",
-      "example": "Trigon uderza Galactusa falą dusz. Syty Galactus śmieje się i zamienia dusze w energię dla swojej zbroi. Głodny Galactus zaczyna krzyczeć z bólu, gdy dusze rozrywają go od środka.",
-      "question": "Czy Ultimate Nullifier zadziała na istotę, która technicznie nie należy do tego wszechświata?"
+      "factor": "KONSUMPCJA ENERGII VS KORUPCJA DUSZY",
+      "implication": "Galactus chce zneutralizować zagrożenie, Trigon chce je przejąć.",
+      "mechanics": "Power Cosmic to nauka doprowadzona do poziomu boskości. Magia Trigona to wola niszcząca naukę.",
+      "psychology": "Galactus jest głodny, ale Trigon jest zły. Ta różnica w motywacji czyni Trigona bardziej nieprzewidywalnym.",
+      "regen": "KOSMICZNA REGENERACJA",
+      "example": "Galactus próbuje rozproszyć Trigona falą energii. Trigon po prostu śmieje się i zmienia tę energię w rój demonów, które atakują systemy Galactusa.",
+      "question": "Czy Power Cosmic może zniszczyć istotę, która technicznie nie jest materią, lecz czystym konceptem zła?"
     }
   }
 }

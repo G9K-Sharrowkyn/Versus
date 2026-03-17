@@ -58,7 +58,7 @@
     "dossier": {
       "advantage": "Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.",
       "mentality": "Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.",
-      "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, gdy galaktyki słuchają!",
+      "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, a galaktyki słuchają!",
       "style": "Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia."
     },
     "name": "Odin",
@@ -146,7 +146,8 @@
       "s4_analysis": "To najgorszy scenariusz dla Wszechojca. Knull w swoim żywiole nieuchronnie wygrywa wojnę zasobów."
     },
     "fight-card": {
-      "fight_title": "Knull vs Odin"
+      "fight_title": "Knull vs Odin",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Standardowe zasady · Odinforce Cleansing",

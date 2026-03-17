@@ -116,16 +116,19 @@
   "templates": {
     "battle-dynamics": {
       "s1_label": "Satiated · Neutral Ground",
-      "a_curve": "65,70,75,80,85",
-      "b_curve": "90,92,94,96,98",
+      "a_curve": "95,90,85,80,70",
+      "b_curve": "96,97,98,99,100",
       "yellow_wave": "44,56,48,61,46,59,50,63",
       "phase_1": "Galactus imposes cosmic order. Power Cosmic normalizes the battlefield, giving Trigon no room for demonic corruption.",
       "phase_2": "Trigon attempts to break Galactus's barriers with hellfire, but the satiated Devourer simply absorbs the energy as fuel.",
       "phase_3": "Galactus closes the fight with a cosmic energy burst. Trigon is pushed back to his dimension.",
-      "analysis": "When Galactus is satiated and fights on neutral ground, his absorption capacity makes Trigon's magic ineffective."
+      "analysis": "When Galactus is satiated and fights on neutral ground, his absorption capacity makes Trigon's magic ineffective.",
+      "s2_a_curve": "95,97,98,99,100",
+      "s2_b_curve": "96,92,88,84,80"
     },
     "fight-card": {
-      "fight_title": "Trigon vs Galactus"
+      "fight_title": "Trigon vs Galactus",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Satiated · Neutral Ground",
@@ -158,7 +161,7 @@
       "line_2": "Most clashes are won by Galactus, unless he is forced to fight in a state of extreme exhaustion and hunger.",
       "line_3": "This is a duel of whether cosmic technology and Power Cosmic can survive in a world where demonic magic sets the rules.",
       "winner": "Galactus (Satiated) or Trigon (When Galactus is hungry).",
-      "quote": "\u201CGods eat planets, but demons eat gods.\u201D"
+      "quote": "“Gods eat planets, but demons eat gods.”"
     },
     "tactical-board": {
       "lane": "Galactus must turn the battlefield into fuel before Trigon turns it into hell.",

@@ -131,7 +131,8 @@
       "s2_analysis": "Limited WL power allows Manhattan to control the clash with mathematical certainty."
     },
     "fight-card": {
-      "fight_title": "Rayner vs Manhattan"
+      "fight_title": "Rayner vs Manhattan",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Life Equation: Full",
@@ -185,7 +186,7 @@
       "line_2": "Most scenarios favor Manhattan as he can strike at the moment of attack preparation before it even exists.",
       "line_3": "This is a battle of whether creative life-will can break the mathematical certainty of an inevitable end.",
       "winner": "Dr. Manhattan leads in most variants.",
-      "quote": "\u201CKyle has the power to threaten Manhattan. Manhattan more often prevents that power from fully entering the game.\u201D"
+      "quote": "“Kyle has the power to threaten Manhattan. Manhattan more often prevents that power from fully entering the game.”"
     },
     "tactical-board": {
       "lane": "Kyle must force an action window before Manhattan erases the very cause of his existence.",

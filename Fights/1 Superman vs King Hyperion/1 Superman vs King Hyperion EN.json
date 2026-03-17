@@ -146,7 +146,8 @@
       "s4_analysis": "Superman wins the controlled fight. Hyperion wins the one that goes too long and stops punishing his mistakes."
     },
     "fight-card": {
-      "fight_title": "Superman vs King Hyperion"
+      "fight_title": "Superman vs King Hyperion",
+      "subtitle": "SEKWENCJA UKOŃCZONA"
     },
     "fight-simulation": {
       "s1_label": "Standard Rules · Solar Flare",
@@ -233,7 +234,7 @@
       "line_2": "He is faster, more precise, and better at keeping the fight in a safe, controlled form.",
       "line_3": "The problem is that every unclosed sequence gives Hyperion another chance, and the longer the fight lasts, the more his regeneration starts reversing the entire economy of the matchup.",
       "winner": "Superman holds the edge. Hyperion still has a real path to victory.",
-      "quote": "\u201CThe advantage belongs to Superman. Time belongs to Hyperion.\u201D"
+      "quote": "“The advantage belongs to Superman. Time belongs to Hyperion.”"
     },
     "tactical-board": {
       "lane": "Superman must convert his control advantage into a real finish before Hyperion's regeneration strips the value from every subsequent exchange.",
