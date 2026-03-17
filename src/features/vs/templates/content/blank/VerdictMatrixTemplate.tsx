@@ -29,9 +29,6 @@ export function VerdictMatrixTemplate({
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string | number>
 
-  const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
-    pickTemplateField(blockFields, keys) || plainLines[position] || fallback
-
   const headerText = title || 'MATRYCA WERDYKTU'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
 
@@ -44,11 +41,26 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ B',
   ]
 
-  const cells = [
-    { body: pickTemplateField(blockFields, ['case_1', 'verdict', 'case1']) || plainLines[0], mark: fighterMonogram(fighterA.name) },
-    { body: pickTemplateField(blockFields, ['case_2', 'case2']) || plainLines[1], mark: fighterMonogram(fighterB.name) },
-    { body: pickTemplateField(blockFields, ['case_3', 'case3']) || plainLines[2], mark: fighterMonogram(fighterA.name) },
-    { body: pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3], mark: fighterMonogram(fighterB.name) },
+  // Helper do rozpoznawania strony zwycięzcy ('a' | 'b' | null)
+  const resolveWinnerSide = (text: string) => {
+    if (!text) return null
+    const lowerText = text.toLowerCase()
+    const nameA = fighterA.name.toLowerCase()
+    const nameB = fighterB.name.toLowerCase()
+
+    const posA = lowerText.indexOf(nameA)
+    const posB = lowerText.indexOf(nameB)
+
+    if (posA !== -1 && (posB === -1 || posA < posB)) return 'a'
+    if (posB !== -1 && (posA === -1 || posB < posA)) return 'b'
+    return null
+  }
+
+  const cellData = [
+    pickTemplateField(blockFields, ['case_1', 'verdict', 'case1']) || plainLines[0],
+    pickTemplateField(blockFields, ['case_2', 'case2']) || plainLines[1],
+    pickTemplateField(blockFields, ['case_3', 'case3']) || plainLines[2],
+    pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3],
   ]
 
   const effectiveColCount = hasColumns ? 2 : 1
@@ -97,22 +109,38 @@ export function VerdictMatrixTemplate({
                   </div>
                   {Array.from({ length: effectiveColCount }, (_, c) => {
                     const cellIdx = r * effectiveColCount + c
-                    const cell = cells[cellIdx]
-                    if (!cell?.body) return <div key={`empty-${cellIdx}`} className="border-b border-l border-cyan-300/45 bg-slate-900/20" />
+                    const body = cellData[cellIdx]
+                    if (!body) return <div key={`empty-${cellIdx}`} className="border-b border-l border-cyan-300/45 bg-slate-900/20" />
+
+                    const winnerSide = resolveWinnerSide(body)
+                    const mark = winnerSide === 'a' ? fighterMonogram(fighterA.name) : (winnerSide === 'b' ? fighterMonogram(fighterB.name) : '')
+                    const accentColor = winnerSide === 'a' ? fighterA.color : (winnerSide === 'b' ? fighterB.color : 'rgba(255,255,255,0.1)')
 
                     return (
                       <div
                         key={`cell-${cellIdx}`}
-                        className="relative flex flex-col items-center justify-center border border-l-0 border-t-0 border-cyan-300/45 bg-slate-900/40 p-4 text-center"
+                        className="relative flex flex-col items-center justify-center border border-l-0 border-t-0 p-4 text-center transition-colors duration-500"
+                        style={{
+                          borderColor: winnerSide ? `${accentColor}88` : 'rgba(34,211,238,0.45)',
+                          background: winnerSide 
+                            ? `linear-gradient(145deg, ${accentColor}44, rgba(15,23,42,0.85))` 
+                            : 'rgba(15,23,42,0.4)',
+                          boxShadow: winnerSide ? `inset 0 0 30px ${accentColor}22` : 'none'
+                        }}
                       >
                         <FittedText
                           as="p"
                           slotKey={`verdict-matrix:cell-body-${cellIdx}`}
                           spec={slots.verdictMatrixBody}
-                          text={cell.body}
-                          className="relative z-10 text-slate-200"
+                          text={body}
+                          className="relative z-10 text-slate-100 font-medium"
                         />
-                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[120px] font-bold text-white/5">{cell.mark}</div>
+                        <div 
+                          className="pointer-events-none absolute inset-0 flex items-center justify-center text-[120px] font-bold transition-opacity duration-500"
+                          style={{ color: accentColor, opacity: 0.12 }}
+                        >
+                          {mark}
+                        </div>
                       </div>
                     )
                   })}
