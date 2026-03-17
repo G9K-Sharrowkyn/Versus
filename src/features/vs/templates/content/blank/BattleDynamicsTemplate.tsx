@@ -112,6 +112,7 @@ export function BattleDynamicsTemplate({
               viewBox={layout.SVG_VIEWBOX as string}
               className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
               onClick={scenarios.length > 1 ? nextScenario : undefined}
+              preserveAspectRatio="xMidYMid meet"
             >
               <defs>
                 <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
@@ -157,12 +158,10 @@ export function BattleDynamicsTemplate({
             </svg>
 
             <div className="mt-auto">
-            <div className={layout.ANALYSIS_PANEL_CLASS as string}>
-              {scenarios.length > 1 && active.label && (
-                <p className="mb-1 text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                  {active.label}
-                </p>
-              )}
+            <div className={layout.ANALYSIS_PANEL_CLASS as string} style={{ minHeight: '94px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <p className="mb-1 min-h-[1.25rem] text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                {scenarios.length > 1 && active.label ? active.label : ''}
+              </p>
               <FittedText
                 as="p"
                 slotKey={`battle-dynamics:analysis:${activeIndex}`}
@@ -170,16 +169,14 @@ export function BattleDynamicsTemplate({
                 text={active.analysis}
                 className={layout.ANALYSIS_TEXT_CLASS as string}
               />
-              {scenarios.length > 1 && (
-                <div className="mt-1.5 flex justify-center gap-1.5">
-                  {scenarios.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
-                    />
-                  ))}
-                </div>
-              )}
+              <div className="mt-1.5 h-[6px] flex justify-center gap-1.5">
+                {scenarios.length > 1 && scenarios.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
+                  />
+                ))}
+              </div>
             </div>
 
             <div className={layout.PHASE_GRID_CLASS as string}>

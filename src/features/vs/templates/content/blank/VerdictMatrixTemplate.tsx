@@ -67,7 +67,7 @@ export function VerdictMatrixTemplate({
   const resolveCell = (caseText: string, defaultSide: 'a' | 'b') => {
     const side = resolveWinnerSide(caseText, defaultSide)
     const normalized = caseText.trim().replace(/(\d)\s*\.\s*(\d)/g, '$1.$2')
-    const match = normalized.match(/^(.+?[.!?])\s+([\p{L}].*)$/su)
+    const match = normalized.match(/^(.+?\/\d{1,2}[.!?])\s+([\p{L}].*)$/su)
     return {
       lead: match ? match[1].trim() : caseText,
       body: match ? match[2].trim() : '',
@@ -99,9 +99,13 @@ export function VerdictMatrixTemplate({
   }
 
   // Tryb Matrycy (Dynamic Grid)
-  const colCount = Math.max(1, columns.length)
+  const colCount = columns.length
+  const hasColumns = colCount > 0
   const rowCount = Math.max(1, rowsList.length)
-  const totalCells = colCount * rowCount
+  
+  // Jeśli nie ma kolumn, traktujemy to jako 1-kolumnowy layout z nagłówkami wierszy
+  const effectiveColCount = hasColumns ? colCount : 1
+  const totalCells = effectiveColCount * rowCount
   const cases = Array.from({ length: totalCells }, (_, i) => 
     pickTemplateField(blockFields, [`case_${i + 1}`, `case${i + 1}`]) || plainLines[i] || ''
   )
@@ -113,37 +117,45 @@ export function VerdictMatrixTemplate({
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader templateId="verdict-matrix" language={language} chrome={chrome} headerText={headerText} subText={subText} onToggleLanguage={onToggleLanguage} />
           
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} grid flex-1`} style={{ gridTemplateColumns: `96px repeat(${colCount}, 1fr)`, gridTemplateRows: `56px repeat(${rowCount}, 1fr)` }}>
-            <div className="border border-cyan-300/45 bg-slate-900/72" />
-            
-            {/* Nagłówki Kolumn */}
-            {columns.map((col, i) => (
-              <div key={`col-${i}`} className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 px-2">
-                <FittedText as="p" slotKey={`verdict-matrix:col-${i}`} spec={slots.verdictMatrixHeader} text={col} className="w-full text-center" />
-              </div>
-            ))}
-
-            {/* Nagłówki Wierszy i Komórki */}
-            {rowsList.map((row, r) => (
-              <Fragment key={`row-group-${r}`}>
-                <div className="relative border border-t-0 border-cyan-300/45 bg-slate-900/72">
-                  <div className="absolute left-1/2 top-1/2 w-[150px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
-                    <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100" style={{ width: '150px' }} />
-                  </div>
+          <div className="flex flex-1 items-center justify-center p-4">
+            <div className={`${shell.HIGH_END_BODY_GAP_CLASS} grid w-full max-w-5xl`} 
+                 style={{
+                   gridTemplateColumns: `120px repeat(${effectiveColCount}, 1fr)`,
+                   gridTemplateRows: hasColumns ? `56px repeat(${rowCount}, 1fr)` : `repeat(${rowCount}, 1fr)`
+                 }}>
+              
+              {/* Lewy Górny Narożnik - tylko jeśli są kolumny */}
+              {hasColumns && <div className="border border-cyan-300/45 bg-slate-900/72" />}
+              
+              {/* Nagłówki Kolumn */}
+              {hasColumns && columns.map((col, i) => (
+                <div key={`col-${i}`} className="flex items-center justify-center border border-l-0 border-cyan-300/45 bg-slate-900/72 px-2">
+                  <FittedText as="p" slotKey={`verdict-matrix:col-${i}`} spec={slots.verdictMatrixHeader} text={col} className="w-full text-center" />
                 </div>
-                {Array.from({ length: colCount }, (_, c) => {
-                  const cellIdx = r * colCount + c
-                  const cell = resolveCell(cases[cellIdx], c % 2 === 0 ? 'a' : 'b')
-                  return (
-                    <div key={`cell-${cellIdx}`} className={`relative overflow-hidden border border-l-0 border-t-0 border-cyan-300/45 p-3 ${cell.bg}`}>
-                      <FittedText as="p" slotKey={`verdict-matrix:lead:${cellIdx}`} spec={slots.verdictMatrixLead} text={cell.lead} className="relative z-10 font-semibold text-slate-100" />
-                      {cell.body && <FittedText as="p" slotKey={`verdict-matrix:body:${cellIdx}`} spec={slots.verdictMatrixBody} text={cell.body} className="relative z-10 mt-1 text-slate-100" />}
-                      <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[120px] font-bold text-white/10">{cell.mark}</div>
+              ))}
+
+              {/* Nagłówki Wierszy i Komórki */}
+              {rowsList.map((row, r) => (
+                <Fragment key={`row-group-${r}`}>
+                  <div className={`relative border ${hasColumns || r > 0 ? 'border-t-0' : ''} border-cyan-300/45 bg-slate-900/72 min-h-[200px]`}>
+                    <div className="absolute left-1/2 top-1/2 w-[240px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
+                      <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100 font-bold" />
                     </div>
-                  )
-                })}
-              </Fragment>
-            ))}
+                  </div>
+                  {Array.from({ length: effectiveColCount }, (_, c) => {
+                    const cellIdx = r * effectiveColCount + c
+                    const cell = resolveCell(cases[cellIdx], c % 2 === 0 ? 'a' : 'b')
+                    return (
+                      <div key={`cell-${cellIdx}`} className={`relative overflow-hidden border border-l-0 ${hasColumns || r > 0 ? 'border-t-0' : ''} border-cyan-300/45 p-6 flex flex-col justify-center ${cell.bg}`}>
+                        <FittedText as="p" slotKey={`verdict-matrix:lead:${cellIdx}`} spec={slots.verdictMatrixLead} text={cell.lead} className="relative z-10 font-bold text-slate-100 mb-2" />
+                        {cell.body && <FittedText as="p" slotKey={`verdict-matrix:body:${cellIdx}`} spec={slots.verdictMatrixBody} text={cell.body} className="relative z-10 text-slate-200 leading-relaxed" />}
+                        <div className="pointer-events-none absolute inset-0 flex items-center justify-center text-[160px] font-bold text-white/5">{cell.mark}</div>
+                      </div>
+                    )
+                  })}
+                </Fragment>
+              ))}
+            </div>
           </div>
         </div>
       </div>

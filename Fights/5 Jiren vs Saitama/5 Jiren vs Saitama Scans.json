@@ -1,21 +1,21 @@
 {
   "portraits": {
-    "a": "Jiren.webp",
+    "a": "Jiren.jpg",
     "b": "Saitama.jpg"
   },
   "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
-      "left_image_1": "Tags UI Goku a few times.jpeg",
-      "left_image_2": "Unaffected by Android 17's Self-Destruction.png",
-      "left_image_3": "No sells a Kamehameha from SSB Goku.jpeg",
+      "left_image_1": "Tags UI Goku a few times.jpg",
+      "left_image_2": "Unaffected by Android 17's Self-Destruction.jpg",
+      "left_image_3": "No sells a Kamehameha from SSB Goku.jpg",
       "left_image_4": "Detects and Counters attacks coming from a different dimension.jpg",
-      "left_image_5": "Belmod.png",
-      "right_image_1": "Serious Punch Squared... generates an explosion that.png",
-      "right_image_2": "Saitama time travels to reverse causality.png",
-      "right_image_3": "Can freely grab and move hyperspace.png",
-      "right_image_4": "Saitama can achieve flight.png",
-      "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
+      "left_image_5": "Belmod.jpg",
+      "right_image_1": "Serious Punch Squared... generates an explosion that.jpg",
+      "right_image_2": "Saitama time travels to reverse causality.jpg",
+      "right_image_3": "Can freely grab and move hyperspace.jpg",
+      "right_image_4": "Saitama can achieve flight.jpg",
+      "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.jpg"
     },
     "victory-archive": {
       "left_image_1": "11_7_1_jiren_hit.jpg",

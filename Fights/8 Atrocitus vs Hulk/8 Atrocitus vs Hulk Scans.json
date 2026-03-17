@@ -1,16 +1,16 @@
 {
   "portraits": {
-    "a": "Atrocitus.webp",
-    "b": "Hulk.webp"
+    "a": "Atrocitus.jpg",
+    "b": "Hulk.jpg"
   },
   "schemaVersion": 1,
   "templates": {
     "crucial-feats": {
       "left_image_1": "Atrocitus_ButcherBound.jpg",
       "left_image_2": "ATrocitus_Heart.jpg",
-      "left_image_3": "Martian Manhunter can't telepathically.jpeg",
-      "left_image_4": "Tears a hole through reality.jpeg",
-      "left_image_5": "Throws around Apollo.jpeg",
+      "left_image_3": "Martian Manhunter can't telepathically.jpg",
+      "left_image_4": "Tears a hole through reality.jpg",
+      "left_image_5": "Throws around Apollo.jpg",
       "right_image_1": "06_6_2_hulk_planet_moon_collateral.jpg",
       "right_image_2": "Sentry.jpg",
       "right_image_3": "Healed around 90% of his body mass within seconds, including his eyes..jpg",
@@ -22,9 +22,9 @@
       "left_image_2": "Atrocitus_Bind2.jpg",
       "left_image_3": "12_7_1_atrocitus_group_overpowering.jpg",
       "left_image_4": "03_6_1_atrocitus_blood_magic_foresight.jpg",
-      "left_image_5": "Atrocitus_Bleez.jpeg",
+      "left_image_5": "Atrocitus_Bleez.jpg",
       "right_image_1": "Sentry.jpg",
-      "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG",
+      "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..jpg",
       "right_image_3": "14_7_2_hulk_iron_man.jpg",
       "right_image_4": "Defeated the Unstoppable Juggernaut.jpg",
       "right_image_5": "15_7_2_hulk_armcheddon.jpg"

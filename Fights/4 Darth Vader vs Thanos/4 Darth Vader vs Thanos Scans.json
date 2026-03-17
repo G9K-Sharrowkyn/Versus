@@ -1,6 +1,6 @@
 {
   "portraits": {
-    "a": "Vader.webp",
+    "a": "Vader.jpg",
     "b": "Thanos.jpg"
   },
   "schemaVersion": 1,
@@ -8,14 +8,14 @@
     "crucial-feats": {
       "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
       "left_image_2": "02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg",
-      "left_image_3": "Impales himself to kill Maul.jpeg",
+      "left_image_3": "Impales himself to kill Maul.jpg",
       "left_image_4": "04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg",
       "left_image_5": "05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg",
-      "right_image_1": "Drax and Thanos destroy a planet in their fight.jpeg",
+      "right_image_1": "Drax and Thanos destroy a planet in their fight.jpg",
       "right_image_2": "07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg",
       "right_image_3": "08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg",
       "right_image_4": "09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg",
-      "right_image_5": "Turns a Skrull to stone.jpeg"
+      "right_image_5": "Turns a Skrull to stone.jpg"
     },
     "victory-archive": {
       "left_image_1": "11_7_1_darth_vader_showcase_wins_dark_woman.jpg",

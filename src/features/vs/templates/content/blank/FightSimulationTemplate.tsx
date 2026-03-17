@@ -226,21 +226,23 @@ export function FightSimulationTemplate({
             onToggleLanguage={onToggleLanguage}
           />
 
-          {scenarios.length > 1 && (
-            <div className="mt-1 flex items-center justify-between gap-3 px-1">
-              <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                {active.label}
-              </p>
-              <div className="flex items-center gap-1.5">
-                {scenarios.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
-                  />
-                ))}
-              </div>
-            </div>
-          )}
+          <div className="mt-1 h-6 flex items-center justify-between gap-3 px-1">
+            {scenarios.length > 1 && (
+              <>
+                <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                  {active.label}
+                </p>
+                <div className="flex items-center gap-1.5">
+                  {scenarios.map((_, i) => (
+                    <div
+                      key={i}
+                      className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
 
           <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.PHASES_PANEL_CLASS}`}>
             {active.phases.map((phase, index) => (
@@ -252,7 +254,7 @@ export function FightSimulationTemplate({
                 <div className={layout.PHASE_CARD_HEADER_CLASS}>
                   <p className={layout.PHASE_CARD_LABEL_CLASS}>{common.phaseLabel} {index + 1}</p>
                 </div>
-                <div style={{ minHeight: '3rem' }}>
+                <div style={{ minHeight: '2.5rem' }}>
                   <FittedText
                     as="p"
                     slotKey={`fight-simulation:title:${activeIndex}:${index}`}

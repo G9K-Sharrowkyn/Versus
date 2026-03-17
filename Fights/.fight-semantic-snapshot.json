@@ -54,7 +54,7 @@
       "folder": "1 Superman vs King Hyperion",
       "locale": "en",
       "portraits": {
-        "a": "1.webp",
+        "a": "1.jpg",
         "b": "2.jpg"
       },
       "profileA": [
@@ -130,15 +130,15 @@
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",
-          "left_image_2": "Superman_read.jpeg",
-          "left_image_3": "Superman_flash.jpeg",
+          "left_image_2": "Superman_read.jpg",
+          "left_image_3": "Superman_flash.jpg",
           "left_image_4": "02_6_1_superman_survives_black_hole_level_punishment.jpg",
           "left_image_5": "05_6_1_superman_high_end_endurance_control.jpg",
-          "right_image_1": "06_6_2_hyperion_survives_world_destruction.png",
-          "right_image_2": "07_6_2_hyperion_recovers_after_neck_snap.png",
-          "right_image_3": "09_6_2_hyperion_regenerates_after_catastrophic_damage.png",
+          "right_image_1": "06_6_2_hyperion_survives_world_destruction.jpg",
+          "right_image_2": "07_6_2_hyperion_recovers_after_neck_snap.jpg",
+          "right_image_3": "09_6_2_hyperion_regenerates_after_catastrophic_damage.jpg",
           "right_image_4": "10_6_2_hyperion_disintegrates_weapon_x_vision.jpg",
-          "right_image_5": "08_6_2_hyperion_overwhelms_two_alternate_hyperions.png"
+          "right_image_5": "08_6_2_hyperion_overwhelms_two_alternate_hyperions.jpg"
         },
         "fight-card": {
           "fight_title": "Superman vs King Hyperion"
@@ -181,11 +181,11 @@
           "left_image_3": "13_7_1_superman_blitzes_parasite.jpg",
           "left_image_4": "14_7_1_superman_blitzes_mongul.jpg",
           "left_image_5": "15_7_1_superman_beats_apollo.jpg",
-          "right_image_1": "16_7_2_hyperion_kills_magneto.png",
-          "right_image_2": "17_7_2_hyperion_kills_wolverine.png",
+          "right_image_1": "16_7_2_hyperion_kills_magneto.jpg",
+          "right_image_2": "17_7_2_hyperion_kills_wolverine.jpg",
           "right_image_3": "18_7_2_hyperion_kills_weapon_x_vision.jpg",
-          "right_image_4": "19_7_2_hyperion_beats_thor.png",
-          "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.png"
+          "right_image_4": "19_7_2_hyperion_beats_thor.jpg",
+          "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.jpg"
         },
         "x-factor": {
           "factor": "CLOSURE QUALITY VS REGENERATION ECONOMY",
@@ -281,7 +281,7 @@
       "folder": "1 Superman vs King Hyperion",
       "locale": "pl",
       "portraits": {
-        "a": "1.webp",
+        "a": "1.jpg",
         "b": "2.jpg"
       },
       "profileA": [
@@ -357,15 +357,15 @@
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",
-          "left_image_2": "Superman_read.jpeg",
-          "left_image_3": "Superman_flash.jpeg",
+          "left_image_2": "Superman_read.jpg",
+          "left_image_3": "Superman_flash.jpg",
           "left_image_4": "02_6_1_superman_survives_black_hole_level_punishment.jpg",
           "left_image_5": "05_6_1_superman_high_end_endurance_control.jpg",
-          "right_image_1": "06_6_2_hyperion_survives_world_destruction.png",
-          "right_image_2": "07_6_2_hyperion_recovers_after_neck_snap.png",
-          "right_image_3": "09_6_2_hyperion_regenerates_after_catastrophic_damage.png",
+          "right_image_1": "06_6_2_hyperion_survives_world_destruction.jpg",
+          "right_image_2": "07_6_2_hyperion_recovers_after_neck_snap.jpg",
+          "right_image_3": "09_6_2_hyperion_regenerates_after_catastrophic_damage.jpg",
           "right_image_4": "10_6_2_hyperion_disintegrates_weapon_x_vision.jpg",
-          "right_image_5": "08_6_2_hyperion_overwhelms_two_alternate_hyperions.png"
+          "right_image_5": "08_6_2_hyperion_overwhelms_two_alternate_hyperions.jpg"
         },
         "fight-card": {
           "fight_title": "Superman vs King Hyperion"
@@ -412,11 +412,11 @@
           "left_image_3": "13_7_1_superman_blitzes_parasite.jpg",
           "left_image_4": "14_7_1_superman_blitzes_mongul.jpg",
           "left_image_5": "15_7_1_superman_beats_apollo.jpg",
-          "right_image_1": "16_7_2_hyperion_kills_magneto.png",
-          "right_image_2": "17_7_2_hyperion_kills_wolverine.png",
+          "right_image_1": "16_7_2_hyperion_kills_magneto.jpg",
+          "right_image_2": "17_7_2_hyperion_kills_wolverine.jpg",
           "right_image_3": "18_7_2_hyperion_kills_weapon_x_vision.jpg",
-          "right_image_4": "19_7_2_hyperion_beats_thor.png",
-          "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.png"
+          "right_image_4": "19_7_2_hyperion_beats_thor.jpg",
+          "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.jpg"
         },
         "x-factor": {
           "factor": "JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI",
@@ -512,7 +512,7 @@
       "folder": "2 Knull vs Odin",
       "locale": "en",
       "portraits": {
-        "a": "1.webp",
+        "a": "1.jpg",
         "b": "2.jpg"
       },
       "profileA": [
@@ -581,7 +581,7 @@
         "crucial-feats": {
           "left_image_1": "01_6_1_knull_decapitates_celestial_allblack.jpg",
           "left_image_2": "Knull_Knulled.jpg",
-          "left_image_3": "Knull_BigBang.webp",
+          "left_image_3": "Knull_BigBang.jpg",
           "left_image_4": "Knull_gods.jpg",
           "left_image_5": "02_6_1_knull_covers_earth_in_abyss.jpg",
           "right_image_1": "Odin_Life2.jpg",
@@ -740,7 +740,7 @@
       "folder": "2 Knull vs Odin",
       "locale": "pl",
       "portraits": {
-        "a": "1.webp",
+        "a": "1.jpg",
         "b": "2.jpg"
       },
       "profileA": [
@@ -809,7 +809,7 @@
         "crucial-feats": {
           "left_image_1": "01_6_1_knull_decapitates_celestial_allblack.jpg",
           "left_image_2": "Knull_Knulled.jpg",
-          "left_image_3": "Knull_BigBang.webp",
+          "left_image_3": "Knull_BigBang.jpg",
           "left_image_4": "Knull_gods.jpg",
           "left_image_5": "02_6_1_knull_covers_earth_in_abyss.jpg",
           "right_image_1": "Odin_Life2.jpg",
@@ -968,7 +968,7 @@
       "folder": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
       "locale": "en",
       "portraits": {
-        "a": "Kyle.jpeg",
+        "a": "Kyle.jpg",
         "b": "Manhattan.jpg"
       },
       "profileA": [
@@ -1035,14 +1035,14 @@
           "b_curve": "90,84,72,59,47"
         },
         "crucial-feats": {
-          "left_image_1": "Kyle_source.jpeg",
-          "left_image_2": "Kyle_Resurrection1.jpeg",
-          "left_image_3": "Kyle_Destabilize.jpeg",
-          "left_image_4": "Kyle_Life.jpeg",
-          "left_image_5": "Kyle_Oblivion.jpeg",
+          "left_image_1": "Kyle_source.jpg",
+          "left_image_2": "Kyle_Resurrection1.jpg",
+          "left_image_3": "Kyle_Destabilize.jpg",
+          "left_image_4": "Kyle_Life.jpg",
+          "left_image_5": "Kyle_Oblivion.jpg",
           "right_image_1": "06_6_2_manhattan_non_linear_perception.jpg",
           "right_image_2": "07_6_2_manhattan_self_consistency_across_time.jpg",
-          "right_image_3": "Manhattan_Resurrection.jpeg",
+          "right_image_3": "Manhattan_Resurrection.jpg",
           "right_image_4": "09_6_2_manhattan_metron_owlman_mobius.jpg",
           "right_image_5": "Manhattan_End.jpg"
         },
@@ -1090,14 +1090,14 @@
           "case_4": "Dr"
         },
         "victory-archive": {
-          "left_image_1": "Relic.webp",
-          "left_image_2": "Third Army.webp",
-          "left_image_3": "Kyle_Oblivion.jpeg",
+          "left_image_1": "Relic.jpg",
+          "left_image_2": "Third Army.jpg",
+          "left_image_3": "Kyle_Oblivion.jpg",
           "left_image_4": "Kyle_Titans.jpg",
-          "left_image_5": "Kyle_Vessel.jpeg",
+          "left_image_5": "Kyle_Vessel.jpg",
           "right_image_1": "Manhattan_disintegrate.jpg",
           "right_image_2": "Manhattan_Reverse.jpg",
-          "right_image_3": "Manhattan_OwlMetr.jpeg",
+          "right_image_3": "Manhattan_OwlMetr.jpg",
           "right_image_4": "11_7_2_manhattan_ozymandias_confrontation.jpg",
           "right_image_5": "Manhattan_Pandora.jpg"
         },
@@ -1195,7 +1195,7 @@
       "folder": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
       "locale": "pl",
       "portraits": {
-        "a": "Kyle.jpeg",
+        "a": "Kyle.jpg",
         "b": "Manhattan.jpg"
       },
       "profileA": [
@@ -1262,14 +1262,14 @@
           "b_curve": "90,84,72,59,47"
         },
         "crucial-feats": {
-          "left_image_1": "Kyle_source.jpeg",
-          "left_image_2": "Kyle_Resurrection1.jpeg",
-          "left_image_3": "Kyle_Destabilize.jpeg",
-          "left_image_4": "Kyle_Life.jpeg",
-          "left_image_5": "Kyle_Oblivion.jpeg",
+          "left_image_1": "Kyle_source.jpg",
+          "left_image_2": "Kyle_Resurrection1.jpg",
+          "left_image_3": "Kyle_Destabilize.jpg",
+          "left_image_4": "Kyle_Life.jpg",
+          "left_image_5": "Kyle_Oblivion.jpg",
           "right_image_1": "06_6_2_manhattan_non_linear_perception.jpg",
           "right_image_2": "07_6_2_manhattan_self_consistency_across_time.jpg",
-          "right_image_3": "Manhattan_Resurrection.jpeg",
+          "right_image_3": "Manhattan_Resurrection.jpg",
           "right_image_4": "09_6_2_manhattan_metron_owlman_mobius.jpg",
           "right_image_5": "Manhattan_End.jpg"
         },
@@ -1317,14 +1317,14 @@
           "case_4": "Dr"
         },
         "victory-archive": {
-          "left_image_1": "Relic.webp",
-          "left_image_2": "Third Army.webp",
-          "left_image_3": "Kyle_Oblivion.jpeg",
+          "left_image_1": "Relic.jpg",
+          "left_image_2": "Third Army.jpg",
+          "left_image_3": "Kyle_Oblivion.jpg",
           "left_image_4": "Kyle_Titans.jpg",
-          "left_image_5": "Kyle_Vessel.jpeg",
+          "left_image_5": "Kyle_Vessel.jpg",
           "right_image_1": "Manhattan_disintegrate.jpg",
           "right_image_2": "Manhattan_Reverse.jpg",
-          "right_image_3": "Manhattan_OwlMetr.jpeg",
+          "right_image_3": "Manhattan_OwlMetr.jpg",
           "right_image_4": "11_7_2_manhattan_ozymandias_confrontation.jpg",
           "right_image_5": "Manhattan_Pandora.jpg"
         },
@@ -1422,7 +1422,7 @@
       "folder": "4 Darth Vader vs Thanos",
       "locale": "en",
       "portraits": {
-        "a": "Vader.webp",
+        "a": "Vader.jpg",
         "b": "Thanos.jpg"
       },
       "profileA": [
@@ -1491,14 +1491,14 @@
         "crucial-feats": {
           "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
           "left_image_2": "02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg",
-          "left_image_3": "Impales himself to kill Maul.jpeg",
+          "left_image_3": "Impales himself to kill Maul.jpg",
           "left_image_4": "04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg",
           "left_image_5": "05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg",
-          "right_image_1": "Drax and Thanos destroy a planet in their fight.jpeg",
+          "right_image_1": "Drax and Thanos destroy a planet in their fight.jpg",
           "right_image_2": "07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg",
           "right_image_3": "08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg",
           "right_image_4": "09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg",
-          "right_image_5": "Turns a Skrull to stone.jpeg"
+          "right_image_5": "Turns a Skrull to stone.jpg"
         },
         "fight-card": {
           "fight_title": "Darth Vader vs Thanos"
@@ -1642,7 +1642,7 @@
       "folder": "4 Darth Vader vs Thanos",
       "locale": "pl",
       "portraits": {
-        "a": "Vader.webp",
+        "a": "Vader.jpg",
         "b": "Thanos.jpg"
       },
       "profileA": [
@@ -1711,14 +1711,14 @@
         "crucial-feats": {
           "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
           "left_image_2": "02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg",
-          "left_image_3": "Impales himself to kill Maul.jpeg",
+          "left_image_3": "Impales himself to kill Maul.jpg",
           "left_image_4": "04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg",
           "left_image_5": "05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg",
-          "right_image_1": "Drax and Thanos destroy a planet in their fight.jpeg",
+          "right_image_1": "Drax and Thanos destroy a planet in their fight.jpg",
           "right_image_2": "07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg",
           "right_image_3": "08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg",
           "right_image_4": "09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg",
-          "right_image_5": "Turns a Skrull to stone.jpeg"
+          "right_image_5": "Turns a Skrull to stone.jpg"
         },
         "fight-card": {
           "fight_title": "Darth Vader vs Thanos"
@@ -1862,7 +1862,7 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "en",
       "portraits": {
-        "a": "Jiren.webp",
+        "a": "Jiren.jpg",
         "b": "Saitama.jpg"
       },
       "profileA": [
@@ -1921,16 +1921,16 @@
           "b_curve": "39,43,52,66,81"
         },
         "crucial-feats": {
-          "left_image_1": "Tags UI Goku a few times.jpeg",
-          "left_image_2": "Unaffected by Android 17's Self-Destruction.png",
-          "left_image_3": "No sells a Kamehameha from SSB Goku.jpeg",
+          "left_image_1": "Tags UI Goku a few times.jpg",
+          "left_image_2": "Unaffected by Android 17's Self-Destruction.jpg",
+          "left_image_3": "No sells a Kamehameha from SSB Goku.jpg",
           "left_image_4": "Detects and Counters attacks coming from a different dimension.jpg",
-          "left_image_5": "Belmod.png",
-          "right_image_1": "Serious Punch Squared... generates an explosion that.png",
-          "right_image_2": "Saitama time travels to reverse causality.png",
-          "right_image_3": "Can freely grab and move hyperspace.png",
-          "right_image_4": "Saitama can achieve flight.png",
-          "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
+          "left_image_5": "Belmod.jpg",
+          "right_image_1": "Serious Punch Squared... generates an explosion that.jpg",
+          "right_image_2": "Saitama time travels to reverse causality.jpg",
+          "right_image_3": "Can freely grab and move hyperspace.jpg",
+          "right_image_4": "Saitama can achieve flight.jpg",
+          "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.jpg"
         },
         "fight-card": {
           "fight_title": "Jiren vs Saitama"
@@ -2074,7 +2074,7 @@
       "folder": "5 Jiren vs Saitama",
       "locale": "pl",
       "portraits": {
-        "a": "Jiren.webp",
+        "a": "Jiren.jpg",
         "b": "Saitama.jpg"
       },
       "profileA": [
@@ -2133,16 +2133,16 @@
           "b_curve": "39,43,52,66,81"
         },
         "crucial-feats": {
-          "left_image_1": "Tags UI Goku a few times.jpeg",
-          "left_image_2": "Unaffected by Android 17's Self-Destruction.png",
-          "left_image_3": "No sells a Kamehameha from SSB Goku.jpeg",
+          "left_image_1": "Tags UI Goku a few times.jpg",
+          "left_image_2": "Unaffected by Android 17's Self-Destruction.jpg",
+          "left_image_3": "No sells a Kamehameha from SSB Goku.jpg",
           "left_image_4": "Detects and Counters attacks coming from a different dimension.jpg",
-          "left_image_5": "Belmod.png",
-          "right_image_1": "Serious Punch Squared... generates an explosion that.png",
-          "right_image_2": "Saitama time travels to reverse causality.png",
-          "right_image_3": "Can freely grab and move hyperspace.png",
-          "right_image_4": "Saitama can achieve flight.png",
-          "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.png"
+          "left_image_5": "Belmod.jpg",
+          "right_image_1": "Serious Punch Squared... generates an explosion that.jpg",
+          "right_image_2": "Saitama time travels to reverse causality.jpg",
+          "right_image_3": "Can freely grab and move hyperspace.jpg",
+          "right_image_4": "Saitama can achieve flight.jpg",
+          "right_image_5": "A Serious Sneeze blows away the gas surrounding Jupiter's.jpg"
         },
         "fight-card": {
           "fight_title": "Jiren vs Saitama"
@@ -2287,7 +2287,7 @@
       "locale": "en",
       "portraits": {
         "a": "Bruce.jpg",
-        "b": "Ali.webp"
+        "b": "Ali.jpg"
       },
       "profileA": [
         {
@@ -2345,15 +2345,15 @@
           "b_curve": "62,70,79,88,94"
         },
         "crucial-feats": {
-          "left_image_1": "01_6_1_bruce_one_inch_punch.webp",
-          "left_image_2": "finger push-ups.webp",
+          "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
+          "left_image_2": "finger push-ups.jpg",
           "left_image_3": "03_6_1_bruce_gary_elms_record.jpg",
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
           "left_image_5": "Yoichi Nakachi.jpg",
           "right_image_1": "1181878-1024x770.jpg",
           "right_image_2": "Ricard Dunn.jpg",
           "right_image_3": "First three-time heavyweight world champion.jpg",
-          "right_image_4": "gold.webp",
+          "right_image_4": "gold.jpg",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
         "fight-card": {
@@ -2492,7 +2492,7 @@
       "locale": "pl",
       "portraits": {
         "a": "Bruce.jpg",
-        "b": "Ali.webp"
+        "b": "Ali.jpg"
       },
       "profileA": [
         {
@@ -2550,15 +2550,15 @@
           "b_curve": "62,70,79,88,94"
         },
         "crucial-feats": {
-          "left_image_1": "01_6_1_bruce_one_inch_punch.webp",
-          "left_image_2": "finger push-ups.webp",
+          "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
+          "left_image_2": "finger push-ups.jpg",
           "left_image_3": "03_6_1_bruce_gary_elms_record.jpg",
           "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
           "left_image_5": "Yoichi Nakachi.jpg",
           "right_image_1": "1181878-1024x770.jpg",
           "right_image_2": "Ricard Dunn.jpg",
           "right_image_3": "First three-time heavyweight world champion.jpg",
-          "right_image_4": "gold.webp",
+          "right_image_4": "gold.jpg",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
         "fight-card": {
@@ -2696,7 +2696,7 @@
       "folder": "7 Trigon vs Galactus",
       "locale": "en",
       "portraits": {
-        "a": "Trigon.png",
+        "a": "Trigon.jpg",
         "b": "Galactus.jpg"
       },
       "profileA": [
@@ -2763,16 +2763,16 @@
           "b_curve": "88,90,87,83,78"
         },
         "crucial-feats": {
-          "left_image_1": "Universe after Universe has fallen before his.jpeg",
+          "left_image_1": "Universe after Universe has fallen before his.jpg",
           "left_image_2": "Turns DC Earth and everyone in it into stone.jpg",
           "left_image_3": "Monitor ranks him on the same threat level.jpg",
           "left_image_4": "Destroys planet with a Death-Stare.jpg",
-          "left_image_5": "Absorbs The Heart of Darkness....jpeg",
+          "left_image_5": "Absorbs The Heart of Darkness....jpg",
           "right_image_1": "The Ultimate Nullifier.jpg",
           "right_image_2": "Galactus must exist or eternity.jpg",
           "right_image_3": "Galactus' blast... encompasses the star system he is in....jpg",
           "right_image_4": "The whole multiverse risked being destroyed when Galactus.jpg",
-          "right_image_5": "Sphinx.jpeg"
+          "right_image_5": "Sphinx.jpg"
         },
         "fight-card": {
           "fight_title": "Trigon vs Galactus"
@@ -2818,16 +2818,16 @@
           "case_4": "Trigon 7.5/10"
         },
         "victory-archive": {
-          "left_image_1": "Trophy Room includes Superman's Suit.jpeg",
+          "left_image_1": "Trophy Room includes Superman's Suit.jpg",
           "left_image_2": "Stomps the JLA + Teen.jpeg",
-          "left_image_3": "Slaughters the Divine.jpeg",
-          "left_image_4": "Dissipates Psimon's Atoms across.jpeg",
-          "left_image_5": "Ares.png",
+          "left_image_3": "Slaughters the Divine.jpg",
+          "left_image_4": "Dissipates Psimon's Atoms across.jpg",
+          "left_image_5": "Ares.jpg",
           "right_image_1": "Galactus battles Mephisto.jpg",
-          "right_image_2": "Silver.jpeg",
-          "right_image_3": "One shots a Celestial.webp",
+          "right_image_2": "Silver.jpg",
+          "right_image_3": "One shots a Celestial.jpg",
           "right_image_4": "Turns Terrax into a Worm and then Energy.jpg",
-          "right_image_5": "Tyrant.jpeg"
+          "right_image_5": "Tyrant.jpg"
         },
         "x-factor": {
           "factor": "POISONOUS REALM VS ENERGY ECONOMY",
@@ -2923,7 +2923,7 @@
       "folder": "7 Trigon vs Galactus",
       "locale": "pl",
       "portraits": {
-        "a": "Trigon.png",
+        "a": "Trigon.jpg",
         "b": "Galactus.jpg"
       },
       "profileA": [
@@ -2990,16 +2990,16 @@
           "b_curve": "88,90,87,83,78"
         },
         "crucial-feats": {
-          "left_image_1": "Universe after Universe has fallen before his.jpeg",
+          "left_image_1": "Universe after Universe has fallen before his.jpg",
           "left_image_2": "Turns DC Earth and everyone in it into stone.jpg",
           "left_image_3": "Monitor ranks him on the same threat level.jpg",
           "left_image_4": "Destroys planet with a Death-Stare.jpg",
-          "left_image_5": "Absorbs The Heart of Darkness....jpeg",
+          "left_image_5": "Absorbs The Heart of Darkness....jpg",
           "right_image_1": "The Ultimate Nullifier.jpg",
           "right_image_2": "Galactus must exist or eternity.jpg",
           "right_image_3": "Galactus' blast... encompasses the star system he is in....jpg",
           "right_image_4": "The whole multiverse risked being destroyed when Galactus.jpg",
-          "right_image_5": "Sphinx.jpeg"
+          "right_image_5": "Sphinx.jpg"
         },
         "fight-card": {
           "fight_title": "Trigon vs Galactus"
@@ -3045,16 +3045,16 @@
           "case_4": "Trigon 7.5/10"
         },
         "victory-archive": {
-          "left_image_1": "Trophy Room includes Superman's Suit.jpeg",
+          "left_image_1": "Trophy Room includes Superman's Suit.jpg",
           "left_image_2": "Stomps the JLA + Teen.jpeg",
-          "left_image_3": "Slaughters the Divine.jpeg",
-          "left_image_4": "Dissipates Psimon's Atoms across.jpeg",
-          "left_image_5": "Ares.png",
+          "left_image_3": "Slaughters the Divine.jpg",
+          "left_image_4": "Dissipates Psimon's Atoms across.jpg",
+          "left_image_5": "Ares.jpg",
           "right_image_1": "Galactus battles Mephisto.jpg",
-          "right_image_2": "Silver.jpeg",
-          "right_image_3": "One shots a Celestial.webp",
+          "right_image_2": "Silver.jpg",
+          "right_image_3": "One shots a Celestial.jpg",
           "right_image_4": "Turns Terrax into a Worm and then Energy.jpg",
-          "right_image_5": "Tyrant.jpeg"
+          "right_image_5": "Tyrant.jpg"
         },
         "x-factor": {
           "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
@@ -3150,8 +3150,8 @@
       "folder": "8 Atrocitus vs Hulk",
       "locale": "en",
       "portraits": {
-        "a": "Atrocitus.webp",
-        "b": "Hulk.webp"
+        "a": "Atrocitus.jpg",
+        "b": "Hulk.jpg"
       },
       "profileA": [
         {
@@ -3219,9 +3219,9 @@
         "crucial-feats": {
           "left_image_1": "Atrocitus_ButcherBound.jpg",
           "left_image_2": "ATrocitus_Heart.jpg",
-          "left_image_3": "Martian Manhunter can't telepathically.jpeg",
-          "left_image_4": "Tears a hole through reality.jpeg",
-          "left_image_5": "Throws around Apollo.jpeg",
+          "left_image_3": "Martian Manhunter can't telepathically.jpg",
+          "left_image_4": "Tears a hole through reality.jpg",
+          "left_image_5": "Throws around Apollo.jpg",
           "right_image_1": "06_6_2_hulk_planet_moon_collateral.jpg",
           "right_image_2": "Sentry.jpg",
           "right_image_3": "Healed around 90% of his body mass within seconds, including his eyes..jpg",
@@ -3270,9 +3270,9 @@
           "left_image_2": "Atrocitus_Bind2.jpg",
           "left_image_3": "12_7_1_atrocitus_group_overpowering.jpg",
           "left_image_4": "03_6_1_atrocitus_blood_magic_foresight.jpg",
-          "left_image_5": "Atrocitus_Bleez.jpeg",
+          "left_image_5": "Atrocitus_Bleez.jpg",
           "right_image_1": "Sentry.jpg",
-          "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG",
+          "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..jpg",
           "right_image_3": "14_7_2_hulk_iron_man.jpg",
           "right_image_4": "Defeated the Unstoppable Juggernaut.jpg",
           "right_image_5": "15_7_2_hulk_armcheddon.jpg"
@@ -3370,8 +3370,8 @@
       "folder": "8 Atrocitus vs Hulk",
       "locale": "pl",
       "portraits": {
-        "a": "Atrocitus.webp",
-        "b": "Hulk.webp"
+        "a": "Atrocitus.jpg",
+        "b": "Hulk.jpg"
       },
       "profileA": [
         {
@@ -3439,9 +3439,9 @@
         "crucial-feats": {
           "left_image_1": "Atrocitus_ButcherBound.jpg",
           "left_image_2": "ATrocitus_Heart.jpg",
-          "left_image_3": "Martian Manhunter can't telepathically.jpeg",
-          "left_image_4": "Tears a hole through reality.jpeg",
-          "left_image_5": "Throws around Apollo.jpeg",
+          "left_image_3": "Martian Manhunter can't telepathically.jpg",
+          "left_image_4": "Tears a hole through reality.jpg",
+          "left_image_5": "Throws around Apollo.jpg",
           "right_image_1": "06_6_2_hulk_planet_moon_collateral.jpg",
           "right_image_2": "Sentry.jpg",
           "right_image_3": "Healed around 90% of his body mass within seconds, including his eyes..jpg",
@@ -3490,9 +3490,9 @@
           "left_image_2": "Atrocitus_Bind2.jpg",
           "left_image_3": "12_7_1_atrocitus_group_overpowering.jpg",
           "left_image_4": "03_6_1_atrocitus_blood_magic_foresight.jpg",
-          "left_image_5": "Atrocitus_Bleez.jpeg",
+          "left_image_5": "Atrocitus_Bleez.jpg",
           "right_image_1": "Sentry.jpg",
-          "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..JPG",
+          "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..jpg",
           "right_image_3": "14_7_2_hulk_iron_man.jpg",
           "right_image_4": "Defeated the Unstoppable Juggernaut.jpg",
           "right_image_5": "15_7_2_hulk_armcheddon.jpg"
