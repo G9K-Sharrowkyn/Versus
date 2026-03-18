@@ -24,7 +24,7 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     let targetY = window.innerHeight * 0.5
     let activeRelaySource: PointerRelaySource | null = null
     let relayPriorityUntil = 0
-    layer.style.transform = `translate3d(${targetX - 2}px, ${targetY - 2}px, 0)`
+    layer.style.transform = `translate3d(${targetX - 3}px, ${targetY - 2}px, 0)`
     layer.classList.add('is-visible')
 
     const resolveRelayFrame = (source: PointerRelaySource): HTMLIFrameElement | null => {
@@ -43,7 +43,7 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     }
 
     const syncPosition = (x: number, y: number) => {
-      layer.style.transform = `translate3d(${x - 2}px, ${y - 2}px, 0)`
+      layer.style.transform = `translate3d(${x - 3}px, ${y - 2}px, 0)`
     }
 
     const applyTarget = (x: number, y: number, source?: PointerRelaySource) => {
