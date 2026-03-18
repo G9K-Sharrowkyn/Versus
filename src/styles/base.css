@@ -41,46 +41,26 @@
 
 .vvv-animated-cursor-layer svg { overflow: visible; display: block; }
 
-/* ── Border: constant neon glow, no pulsing animation ── */
-.vvv-cursor-border {
-  filter: drop-shadow(0 0 1.5px #00e5ff) drop-shadow(0 0 3px rgba(0, 229, 255, 0.45));
-}
+/* ── Border: static cyan stroke, zero filter, zero outer aura ── */
 
-/* ── Interior crossing line: ONLY this pulses ── */
+/* ── Interior lines: only stroke COLOR animates, no filter anywhere ── */
 .vvv-cursor-inner {
   animation: vvv-line-pulse 2s ease-in-out infinite;
 }
 
 /* ── Click state ── */
 .vvv-animated-cursor-layer.is-down .vvv-cursor-border {
-  filter: drop-shadow(0 0 2px #c0fbff) drop-shadow(0 0 5px rgba(0, 229, 255, 0.8));
+  stroke: #b0f8ff;
 }
 .vvv-animated-cursor-layer.is-down .vvv-cursor-inner {
   animation: none;
   stroke: #c0fbff;
-  filter: drop-shadow(0 0 3px #fff) drop-shadow(0 0 8px rgba(0, 229, 255, 0.9));
 }
 
 @keyframes vvv-line-pulse {
-  0%, 100% {
-    stroke: #00e5ff;
-    filter:
-      drop-shadow(0 0 1.5px #00e5ff)
-      drop-shadow(0 0 5px rgba(0, 229, 255, 0.6));
-  }
-  40% {
-    stroke: #7df9ff;
-    filter:
-      drop-shadow(0 0 3px #00e5ff)
-      drop-shadow(0 0 9px rgba(0, 229, 255, 1))
-      drop-shadow(0 0 16px rgba(0, 229, 255, 0.5));
-  }
-  70% {
-    stroke: #00e5ff;
-    filter:
-      drop-shadow(0 0 2px #00e5ff)
-      drop-shadow(0 0 6px rgba(0, 229, 255, 0.7));
-  }
+  0%, 100% { stroke: #00e5ff; }
+  40%       { stroke: #7df9ff; }
+  70%       { stroke: #1ae8ff; }
 }
 
 * {
