@@ -895,7 +895,7 @@ function App() {
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
-              src="/search/1.html?v=11"
+              src="/search/1.html?v=12"
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
             />
