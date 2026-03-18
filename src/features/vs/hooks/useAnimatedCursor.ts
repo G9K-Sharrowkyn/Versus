@@ -19,11 +19,20 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     layer.setAttribute('aria-hidden', 'true')
 
     // Cursor path from cursor.css (24×24 viewBox, classic arrow with rounded corners)
-    // Hotspot at tip ≈ (5.5, 3) → displayed at 36×36 → offset (-8, -4)
+    // Key junction points derived from the path:
+    //   notch junction  : (11.21, 16.29) — where spine-bottom diagonal meets shoulder
+    //   shoulder line   : (11.56, 16.14) → (18.43, 16.14) — already on the border
+    //   interior target : (13.5, 10)     — on the outer right edge, divides arrow body
+    // Interior line from notch→target cuts through the dark fill, creating the crossing.
+    // Hotspot at tip ≈ (5.5, 3) in 24×24 viewBox → displayed 36×36 → offset (-8, -4)
     const d = 'M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z'
     layer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
-  <path class="vvv-cursor-body" d="${d}" fill="#070a10" stroke="none"/>
-  <path class="vvv-cursor-stroke" d="${d}" fill="none" stroke="#00e5ff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Dark fill body -->
+  <path class="vvv-cursor-body"   d="${d}" fill="#070a10" stroke="none"/>
+  <!-- Static neon border (no pulsing, just constant glow) -->
+  <path class="vvv-cursor-border" d="${d}" fill="none" stroke="#00e5ff" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+  <!-- Interior crossing line: notch junction → upper right body (PULSING) -->
+  <line class="vvv-cursor-inner" x1="11.21" y1="16.29" x2="13.5" y2="10" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round"/>
 </svg>`
 
     document.body.appendChild(layer)
