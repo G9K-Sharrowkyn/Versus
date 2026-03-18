@@ -54,6 +54,18 @@
     <script src='./bundle.js?v=2'></script>
 <script src='./runner.js?v=2'></script>
     <script>
+    window.addEventListener('keydown', function (event) {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
+      if (!/^[1-5]$/.test(event.key)) return;
+      if (!window.parent || window.parent === window) return;
+      event.preventDefault();
+      window.parent.postMessage(
+        { type: 'vvv-dev-jump-stage-request', stage: Number(event.key) },
+        window.location.origin
+      );
+    });
+    </script>
+    <script>
     (function () {
       var bootLines = [
         "AETHER//GRID v13.4.0 :: WAKE SEQUENCE",

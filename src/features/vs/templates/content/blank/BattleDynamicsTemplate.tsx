@@ -1,4 +1,4 @@
-import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
+﻿import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
 import { HighEndTemplateHeader } from '../../shared/highEnd'
@@ -93,8 +93,8 @@ export function BattleDynamicsTemplate({
   const yellowWave = buildCurvePolyline(active.yellowWaveValues, 5, 96, 8, 41)
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
@@ -216,3 +216,4 @@ export function BattleDynamicsTemplate({
     </div>
   )
 }
+

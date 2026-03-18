@@ -1,4 +1,4 @@
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+﻿import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { fighterMonogram } from '../../../helpers'
 import { FittedText } from '../../shared/FittedText'
@@ -41,7 +41,7 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ B',
   ]
 
-  // Helper do rozpoznawania strony zwycięzcy ('a' | 'b' | null)
+  // Helper do rozpoznawania strony zwyciÄ™zcy ('a' | 'b' | null)
   const resolveWinnerSide = (text: string) => {
     if (!text) return null
     const lowerText = text.toLowerCase()
@@ -67,8 +67,8 @@ export function VerdictMatrixTemplate({
   const gridColsClass = hasColumns ? 'grid-cols-[120px_1fr_1fr]' : 'grid-cols-[120px_1fr]'
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
@@ -82,7 +82,7 @@ export function VerdictMatrixTemplate({
 
           <div className={`${shell.HIGH_END_BODY_GAP_CLASS} flex flex-1 flex-col justify-center px-12 pb-8`}>
             <div className={`grid ${gridColsClass} overflow-hidden rounded-xl border border-cyan-300/45 bg-slate-950/40 shadow-2xl`}>
-              {/* Nagłówki Kolumn */}
+              {/* NagĹ‚Ăłwki Kolumn */}
               <div className="border-b border-r border-cyan-300/45 bg-slate-900/80" />
               {hasColumns ? (
                 <>
@@ -95,11 +95,11 @@ export function VerdictMatrixTemplate({
                 </>
               ) : (
                 <div className="border-b border-cyan-300/45 bg-slate-900/80 p-4 text-center">
-                  <FittedText as="p" slotKey="verdict-matrix:verdict-label" spec={slots.verdictMatrixHeader} text="ANALIZA WARIANTÓW" className="font-bold text-cyan-200" />
+                  <FittedText as="p" slotKey="verdict-matrix:verdict-label" spec={slots.verdictMatrixHeader} text="ANALIZA WARIANTĂ“W" className="font-bold text-cyan-200" />
                 </div>
               )}
 
-              {/* Nagłówki Wierszy i Komórki */}
+              {/* NagĹ‚Ăłwki Wierszy i KomĂłrki */}
               {rowsList.map((row, r) => (
                 <Fragment key={`row-group-${r}`}>
                   <div className={`relative border ${hasColumns || r > 0 ? 'border-t-0' : ''} border-cyan-300/45 bg-slate-900/72 min-h-[200px]`}>
@@ -155,3 +155,4 @@ export function VerdictMatrixTemplate({
 }
 
 import { Fragment } from 'react'
+

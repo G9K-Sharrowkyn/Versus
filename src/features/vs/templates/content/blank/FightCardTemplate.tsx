@@ -1,4 +1,4 @@
-import { type CSSProperties } from 'react'
+﻿import { type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import {
@@ -164,8 +164,8 @@ export function FightCardTemplate({
   }
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         {!isAuditMode ? (
           <svg className={layout.SVG_DEFS_CLASS} aria-hidden="true">
@@ -207,3 +207,4 @@ export function FightCardTemplate({
     </div>
   )
 }
+

@@ -1,4 +1,4 @@
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
+﻿import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { LightningCanvas } from '../../components/LightningCanvas'
 import { FittedText } from '../shared/FittedText'
@@ -51,8 +51,8 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
   const chaosLabelX = Number(layout.CHAOS_LABEL_X)
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
@@ -141,3 +141,4 @@ export function MethodologyTemplate({ rows, title, subtitle, templateBlocks, lan
     </div>
   )
 }
+

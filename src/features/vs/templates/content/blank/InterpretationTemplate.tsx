@@ -1,4 +1,4 @@
-import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
+﻿import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { HighEndTemplateHeader } from '../../shared/highEnd'
@@ -86,8 +86,8 @@ export function InterpretationTemplate({
   const badgeSymbol = isAverageDraw ? '=' : 'V'
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
@@ -208,3 +208,4 @@ export function InterpretationTemplate({
     </div>
   )
 }
+

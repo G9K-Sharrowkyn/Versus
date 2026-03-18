@@ -1,4 +1,4 @@
-import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
+﻿import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
 import {
   humanizeScenarioToken,
   normalizeToken,
@@ -201,7 +201,7 @@ export function FightSimulationTemplate({
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
 
-  // Mini chart — czytamy dane z bloku battle-dynamics dla aktywnego scenariusza
+  // Mini chart â€” czytamy dane z bloku battle-dynamics dla aktywnego scenariusza
   const bdLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const bdFields = parseTemplateFieldMap(bdLines)
   const bdPrefix = activeIndex === 0 ? '' : `s${activeIndex + 1}_`
@@ -213,8 +213,8 @@ export function FightSimulationTemplate({
   const miniCurveB = buildCurvePolyline(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35, 35]), 5, 96, 8, 41)
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
@@ -368,3 +368,4 @@ export function FightSimulationTemplate({
     </div>
   )
 }
+

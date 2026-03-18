@@ -370,6 +370,15 @@ export function useVsTransitions({
     setActiveFightId(null)
   }
 
+  const showSearchImmediately = () => {
+    clearReturnTransitionQueue()
+    clearSearchTransitionQueue()
+    clearFightViewRevealTimeout()
+    setFightViewVisible(true)
+    setIntroVisible(true)
+    setViewMode('search')
+  }
+
   const handleIntroFrameLoad = () => {
     introFrameReadyRef.current = true
 
@@ -513,6 +522,7 @@ export function useVsTransitions({
     clearFightViewRevealTimeout,
     startFightReturnTransition,
     goBackToLibrary,
+    showSearchImmediately,
     handleIntroFrameLoad,
   }
 }

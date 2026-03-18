@@ -1,4 +1,4 @@
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
+﻿import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
 import { FittedText } from '../shared/FittedText'
@@ -42,8 +42,8 @@ export function FightAnalyticsTemplate({
   const scaleMarks = (layout.SCALE_MARKS as unknown as Array<{ label: string; className: string }>) || []
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
@@ -141,3 +141,4 @@ export function FightAnalyticsTemplate({
     </div>
   )
 }
+

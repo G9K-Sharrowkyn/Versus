@@ -60,8 +60,8 @@ export function HighEndTemplateHeader({
   const resolvedSubtitleClassName = subtitleClassName || shell.HIGH_END_SUBTEXT_CLASS
 
   return (
-    <div className={resolvedShellClassName}>
-      <div className={resolvedMetaClassName}>
+    <div className={`${resolvedShellClassName} vs-highend-header`}>
+      <div className={`${resolvedMetaClassName} vs-highend-header-meta`}>
         <FittedText
           as="p"
           slotKey="shared-header:threat-level"
@@ -81,13 +81,13 @@ export function HighEndTemplateHeader({
           <CyberpunkMetaValue value={chrome.dataIntegrityValue} />
         </FittedText>
       </div>
-      <div className={`${resolvedCenterClassName} glitch-heading-wrap`}>
+      <div className={`${resolvedCenterClassName} glitch-heading-wrap vs-highend-header-center`}>
         <FittedText
           as="h2"
           slotKey={`shared-header:title:${headerText}`}
           spec={titleSlot}
           text={headerText}
-          className={resolvedTitleClassName}
+          className={`${resolvedTitleClassName} vs-highend-title`}
           style={{ fontFamily: 'var(--font-display)' }}
         />
         {centerSupplement}
@@ -97,14 +97,14 @@ export function HighEndTemplateHeader({
             slotKey={`shared-header:subtitle:${subText}`}
             spec={subtitleSlot}
             text={subText}
-            className={resolvedSubtitleClassName}
+            className={`${resolvedSubtitleClassName} vs-highend-subtitle`}
           />
         ) : null}
       </div>
-      <div className={resolvedLogoWrapClassName}>
+      <div className={`${resolvedLogoWrapClassName} vs-highend-logo-wrap`}>
         <button
           type="button"
-          className={shell.HIGH_END_LOGO_BUTTON_CLASS}
+          className={`${shell.HIGH_END_LOGO_BUTTON_CLASS} vs-highend-logo-button`}
           title={chrome.brandMarkTitle}
           aria-label={chrome.brandMarkAria}
           onClick={onToggleLanguage}
@@ -112,7 +112,7 @@ export function HighEndTemplateHeader({
           <img
             src={chrome.brandImageSrc}
             alt={chrome.brandAlt}
-            className={shell.HIGH_END_LOGO_IMAGE_CLASS}
+            className={`${shell.HIGH_END_LOGO_IMAGE_CLASS} vs-highend-logo-image`}
             draggable={false}
           />
         </button>
@@ -139,9 +139,9 @@ export function HighEndFighterBanner({
   const fighterNameSlot = getTemplateSlotSpec(templateId, language, 'fighterBannerName')
   const fighterName = fighter.name || getTemplateStaticField(templateId, 'fighter_fallback', language)
   return (
-    <div className={shell.HIGH_END_FIGHTER_BANNER_CLASS}>
+    <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} vs-highend-banner`}>
       <div
-        className={shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS}
+        className={`${shell.HIGH_END_FIGHTER_BANNER_INSET_CLASS} vs-highend-banner-inset`}
         style={{ boxShadow: `0 0 0 1px ${fighter.color}33 inset` }}
       >
         <FittedText
@@ -149,7 +149,7 @@ export function HighEndFighterBanner({
           slotKey={`shared-banner:${fighterName}`}
           spec={fighterNameSlot}
           text={fighterName}
-          className={shell.HIGH_END_FIGHTER_NAME_CLASS}
+          className={`${shell.HIGH_END_FIGHTER_NAME_CLASS} vs-highend-fighter-name`}
           style={{ color: fighter.color, fontFamily: 'var(--font-display)', width: '100%', flex: 1 }}
         />
         {trailing}

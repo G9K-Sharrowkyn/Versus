@@ -11,7 +11,7 @@
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
     :root {
-      --bg: #030303;
+      --bg: linear-gradient(0deg, #000 0%, #280604 100%);
       --card-bg: rgba(10, 10, 10, 0.4);
       --text: #e0e0e0;
       --accent: #ff003c;
@@ -24,6 +24,7 @@
     body {
       margin: 0; padding: 0;
       background: var(--bg);
+      background-attachment: fixed;
       color: var(--text);
       font-family: var(--font-display);
       overflow: hidden;
@@ -47,6 +48,7 @@
       z-index: 11; pointer-events: none;
     }
     .noise {
+      display: none;
       position: fixed; inset: 0; z-index: 12; opacity: 0.07; pointer-events: none;
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
     }
@@ -111,10 +113,40 @@
     .card::after  { bottom: -1px; right: -1px; border-bottom-color: var(--text); border-right-color: var(--text); }
 
     /* --- CARD BACKGROUND IMAGE --- */
-    .card-bg {
-      position: absolute; inset: 0;
-      background-size: cover; background-position: center top;
-      opacity: 0.6; z-index: 0;
+    .card-media {
+      position: absolute;
+      left: 1rem;
+      right: 1rem;
+      top: 4.8rem;
+      bottom: 3.4rem;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(0, 0, 0, 0.24);
+      z-index: 0;
+    }
+    .card-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(255, 85, 78, 0.04), transparent 22%, transparent 78%, rgba(255, 85, 78, 0.06)),
+        linear-gradient(to bottom,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,0) 50%,
+          rgba(0,0,0,0.16) 50%,
+          rgba(0,0,0,0.16) 100%);
+      background-size: 100% 100%, 100% 4px;
+      pointer-events: none;
+    }
+    .card-bg-image {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.82;
+      filter: saturate(0.96) contrast(1.04) brightness(0.82);
+      transform: scale(1.01);
     }
     .card-header, .card-footer { position: relative; z-index: 1; }
 
@@ -130,15 +162,119 @@
       display: flex; justify-content: space-between;
     }
 
-    /* --- BIG TEXT --- */
-    .big-text {
-      font-size: 15vw; font-weight: 800;
-      color: transparent;
-      -webkit-text-stroke: 2px rgba(255,255,255,0.15);
-      text-transform: uppercase; white-space: nowrap;
-      transform: translate(-50%,-50%);
-      pointer-events: none; letter-spacing: -0.5rem;
-      mix-blend-mode: overlay;
+    /* --- SIGNAL PANELS --- */
+    .signal-card {
+      --signal-main-bg: rgba(255, 85, 78, 0.96);
+      --signal-main-glow: rgba(255, 85, 78, 0.32);
+      position: relative;
+      width: min(78vw, 1160px);
+      padding: 1.1rem 1.2rem 1rem;
+      border: 1px solid rgba(255, 85, 78, 0.5);
+      background:
+        linear-gradient(180deg, rgba(26, 7, 7, 0.86), rgba(8, 3, 3, 0.92)),
+        linear-gradient(0deg, rgba(255, 85, 78, 0.05), rgba(255, 85, 78, 0));
+      box-shadow:
+        inset 0 0 0 1px rgba(255, 85, 78, 0.08),
+        0 0 32px rgba(255, 48, 36, 0.12);
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .signal-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(to bottom,
+          rgba(255,255,255,0) 0%,
+          rgba(255,255,255,0) 50%,
+          rgba(0,0,0,0.18) 50%,
+          rgba(0,0,0,0.18) 100%);
+      background-size: 100% 4px;
+      opacity: 0.32;
+      pointer-events: none;
+    }
+    .signal-corners,
+    .signal-corners::before,
+    .signal-corners::after,
+    .signal-card::after {
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      content: '';
+      border-color: rgba(255, 85, 78, 0.95);
+      pointer-events: none;
+    }
+    .signal-corners {
+      inset: 0;
+      border-top: 3px solid rgba(255, 85, 78, 0.95);
+      border-left: 3px solid rgba(255, 85, 78, 0.95);
+      width: 18px;
+      height: 18px;
+    }
+    .signal-corners::before {
+      top: 0;
+      right: -18px;
+      border-top: 3px solid rgba(255, 85, 78, 0.95);
+      border-right: 3px solid rgba(255, 85, 78, 0.95);
+    }
+    .signal-corners::after {
+      bottom: -18px;
+      left: 0;
+      border-bottom: 3px solid rgba(255, 85, 78, 0.95);
+      border-left: 3px solid rgba(255, 85, 78, 0.95);
+    }
+    .signal-card::after {
+      right: 0;
+      bottom: 0;
+      border-right: 3px solid rgba(255, 85, 78, 0.95);
+      border-bottom: 3px solid rgba(255, 85, 78, 0.95);
+    }
+    .signal-kicker {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 0.85rem;
+      font-family: var(--font-display);
+      font-size: clamp(24px, 2.3vw, 40px);
+      color: rgba(255, 85, 78, 0.9);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .signal-main {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      text-align: center;
+      margin-bottom: 0.95rem;
+      padding: 0.32em 0.38em 0.28em;
+      background: var(--signal-main-bg);
+      color: #050505;
+      font-family: var(--font-code);
+      font-size: clamp(34px, 4vw, 78px);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      box-shadow: 0 0 24px var(--signal-main-glow);
+      text-shadow: none;
+    }
+    .signal-card.is-fighter-a {
+      --signal-main-bg: rgba(119, 226, 242, 0.96);
+      --signal-main-glow: rgba(119, 226, 242, 0.28);
+    }
+    .signal-lines {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      gap: 0.16rem;
+      font-family: var(--font-code);
+      font-size: clamp(16px, 1.2vw, 24px);
+      color: rgba(255, 85, 78, 0.86);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .signal-line {
+      white-space: nowrap;
     }
 
     /* --- PARTICLES --- */
@@ -182,8 +318,8 @@
     const FIGHTER_B = (params.get('b') || 'FIGHTER B').toUpperCase();
     const FOLDER    = params.get('folder') || '';
 
-    const IMG_A = FOLDER ? `/api/fights/image?folder=${encodeURIComponent(FOLDER)}&file=1.jpg` : '';
-    const IMG_B = FOLDER ? `/api/fights/image?folder=${encodeURIComponent(FOLDER)}&file=2.jpg` : '';
+    const IMG_A = FOLDER ? `/api/fights/image?key=${encodeURIComponent(FOLDER)}&file=1.jpg` : '';
+    const IMG_B = FOLDER ? `/api/fights/image?key=${encodeURIComponent(FOLDER)}&file=2.jpg` : '';
 
     // --- CONFIGURATION ---
     const CONFIG = {
@@ -197,19 +333,61 @@
     CONFIG.loopSize = CONFIG.itemCount * CONFIG.zGap; // used only for stars
 
     // Item sequence:
-    // i=0  big-text "EVALUATION STARTING"
+    // i=0  signal-card intro
     // i=1,2,3  card  IMG_A
-    // i=4  big-text FIGHTER_A
+    // i=4  signal-card fighter A
     // i=5,6,7  card  IMG_B
-    // i=8  big-text FIGHTER_B
+    // i=8  signal-card fighter B
     // i=9,11,13  card  IMG_A
     // i=10,12,14 card  IMG_B
     const HEADINGS = new Set([0, 4, 8]);
-    const HEADING_TEXT = { 0: 'EVALUATION STARTING', 4: FIGHTER_A, 8: FIGHTER_B };
-    const CARD_IMG = (i) => {
-      if (i >= 1 && i <= 3) return IMG_A;
-      if (i >= 5 && i <= 7) return IMG_B;
-      return (i % 2 === 1) ? IMG_A : IMG_B; // i 9-14: odd=A, even=B
+    const SIGNAL_PANELS = {
+      0: {
+        kicker: 'EVALUATION MATRIX READY',
+        main: '[ 0.000024 ] combat vectors drift-ready',
+        lines: [
+          'ARCHIVE :: PROJECT_ARES      [PRIMARY SHARD]',
+          'HALO    :: VERSUSVERSEVAULT  [EDGE GATE]',
+          `MATCH   :: ${FIGHTER_A} // ${FIGHTER_B}`,
+          'STATUS  :: PRE-FIGHT SCAN    [WINDOW OPEN]'
+        ]
+      },
+      4: {
+        kicker: 'COMBATANT PROFILE INDEXED',
+        main: FIGHTER_A,
+        className: 'is-fighter-a',
+        lines: [
+          'HALO :: VERSUSVERSEVAULT [PROJECT ARES]',
+          'STATUS :: EXTREME THREAT',
+          `A. NAME :: ${FIGHTER_A}`,
+          `MATCH :: ${FIGHTER_A} // ${FIGHTER_B}`
+        ]
+      },
+      8: {
+        kicker: 'COMBATANT PROFILE INDEXED',
+        main: FIGHTER_B,
+        lines: [
+          'HALO :: VERSUSVERSEVAULT [PROJECT ARES]',
+          'STATUS :: EXTREME THREAT',
+          `A. NAME :: ${FIGHTER_B}`,
+          `MATCH :: ${FIGHTER_A} // ${FIGHTER_B}`
+        ]
+      }
+    };
+    const buildFightImageSources = (side, slot) => {
+      if (!FOLDER) return [];
+      const sectionGroup = side === 'left' ? ['6.1', '7.1'] : ['6.2', '7.2'];
+      const variantSlots = [slot, slot + 3, slot + 6];
+      const urls = [];
+
+      for (const section of sectionGroup) {
+        for (const variantSlot of variantSlots) {
+          urls.push(`/api/fights/image?key=${encodeURIComponent(FOLDER)}&section=${encodeURIComponent(section)}&index=${encodeURIComponent(String(variantSlot))}`);
+        }
+      }
+
+      urls.push(side === 'left' ? IMG_A : IMG_B);
+      return urls;
     };
 
     // --- STATE ---
@@ -221,29 +399,64 @@
       mouseY: 0
     };
 
+    const postRelay = (event, x, y, down) => {
+      if (!window.parent || window.parent === window) return;
+      window.parent.postMessage(
+        { type: 'vvv-pointer-relay', source: 'intro', event, x, y, down, timestamp: performance.now() },
+        window.location.origin
+      );
+    };
+
     const world    = document.getElementById('world');
     const viewport = document.getElementById('viewport');
     const items    = [];
 
+    const attachCardImage = (imageEl, sources) => {
+      if (!imageEl || !sources.length) return;
+      let sourceIndex = 0;
+
+      const loadNext = () => {
+        if (sourceIndex >= sources.length) {
+          imageEl.remove();
+          return;
+        }
+        imageEl.src = sources[sourceIndex++];
+      };
+
+      imageEl.addEventListener('error', loadNext);
+      loadNext();
+    };
+
     // --- INIT ---
     function init() {
+      let leftCardSlot = 1;
+      let rightCardSlot = 1;
+
       for (let i = 0; i < CONFIG.itemCount; i++) {
         const el = document.createElement('div');
         el.className = 'item';
 
         if (HEADINGS.has(i)) {
+          const panel = SIGNAL_PANELS[i];
           const txt = document.createElement('div');
-          txt.className = 'big-text';
-          txt.innerText = HEADING_TEXT[i];
+          txt.className = `signal-card${panel.className ? ` ${panel.className}` : ''}`;
+          txt.innerHTML = `
+            <div class="signal-corners"></div>
+            <div class="signal-kicker">${panel.kicker}</div>
+            <div class="signal-main">${panel.main}</div>
+            <div class="signal-lines">${panel.lines.map(line => `<div class="signal-line">${line}</div>`).join('')}</div>
+          `;
           el.appendChild(txt);
           items.push({ el, type: 'text', x: 0, y: 0, rot: 0, baseZ: -i * CONFIG.zGap });
         } else {
           const card = document.createElement('div');
           card.className = 'card';
           const randId = Math.floor(Math.random() * 9999);
-          const imgUrl = CARD_IMG(i);
+          const side = (i >= 1 && i <= 3) || i === 9 || i === 11 || i === 13 ? 'left' : 'right';
+          const slot = side === 'left' ? leftCardSlot++ : rightCardSlot++;
+          const imageSources = buildFightImageSources(side, slot);
           card.innerHTML = `
-            ${imgUrl ? `<div class="card-bg" style="background-image:url('${imgUrl}')"></div>` : ''}
+            <div class="card-media"></div>
             <div class="card-header">
               <span class="card-id">ID-${randId}</span>
               <div style="width:10px;height:10px;background:var(--accent)"></div>
@@ -253,6 +466,15 @@
               <span>${FIGHTER_A} vs ${FIGHTER_B}</span>
             </div>
           `;
+          const media = card.querySelector('.card-media');
+          if (media && imageSources.length) {
+            const img = document.createElement('img');
+            img.className = 'card-bg-image';
+            img.alt = '';
+            img.loading = 'eager';
+            media.appendChild(img);
+            attachCardImage(img, imageSources);
+          }
           el.appendChild(card);
 
           const angle = (i / CONFIG.itemCount) * Math.PI * 6;
@@ -278,9 +500,30 @@
         });
       }
 
-      window.addEventListener('mousemove', e => {
+      const updateMouse = e => {
         state.mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
         state.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+      };
+
+      window.addEventListener('mousemove', updateMouse);
+      window.addEventListener('pointermove', e => {
+        updateMouse(e);
+        postRelay('move', e.clientX, e.clientY);
+      }, { passive: true });
+      window.addEventListener('pointerdown', e => postRelay('down', e.clientX, e.clientY, true), { passive: true });
+      window.addEventListener('pointerup', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('pointercancel', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('pointerleave', e => postRelay('leave', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('blur', () => postRelay('leave', window.innerWidth * 0.5, window.innerHeight * 0.5, false), { passive: true });
+      window.addEventListener('keydown', e => {
+        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+        if (!/^[1-5]$/.test(e.key)) return;
+        if (!window.parent || window.parent === window) return;
+        e.preventDefault();
+        window.parent.postMessage(
+          { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
+          window.location.origin
+        );
       });
     }
     init();
@@ -357,12 +600,6 @@
             trans += ` scale3d(1, 1, ${stretch})`;
           } else if (item.type === 'text') {
             trans += ` rotateZ(${item.rot}deg)`;
-            if (Math.abs(state.velocity) > 1) {
-              const offset = state.velocity * 2;
-              item.el.style.textShadow = `${offset}px 0 red, ${-offset}px 0 cyan`;
-            } else {
-              item.el.style.textShadow = 'none';
-            }
           } else {
             const t = time * 0.001;
             const float = Math.sin(t + item.x) * 10;

@@ -1,4 +1,4 @@
-import type { TemplatePreviewProps } from '../../../types'
+﻿import type { TemplatePreviewProps } from '../../../types'
 import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -21,8 +21,8 @@ export function UnknownTemplate({
   const layout = ui.template as Record<string, string>
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.UNKNOWN_INNER_CLASS}>
           <HighEndTemplateHeader
@@ -43,3 +43,4 @@ export function UnknownTemplate({
     </div>
   )
 }
+

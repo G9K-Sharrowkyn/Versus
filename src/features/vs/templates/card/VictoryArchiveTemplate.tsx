@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+﻿import { useEffect } from 'react'
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
 import { preloadImageUrls } from '../../domain/imagePreloadCache'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
@@ -156,8 +156,8 @@ export function VictoryArchiveTemplate({
   }
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
@@ -177,3 +177,4 @@ export function VictoryArchiveTemplate({
     </div>
   )
 }
+

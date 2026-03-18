@@ -1,4 +1,4 @@
-import { Crosshair, Swords, WandSparkles } from 'lucide-react'
+﻿import { Crosshair, Swords, WandSparkles } from 'lucide-react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { Fighter, IconType, TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
@@ -118,8 +118,8 @@ export function CharacterProfileTemplate({
   }
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
@@ -149,3 +149,4 @@ export function CharacterProfileTemplate({
     </div>
   )
 }
+

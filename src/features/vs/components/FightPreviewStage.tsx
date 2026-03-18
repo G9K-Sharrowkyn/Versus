@@ -70,9 +70,9 @@ export function FightPreviewStage({
 
   // ── Class builders ────────────────────────────────────────────────────────
   const toolbarItemClass =
-    'flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
-  const buttonHueClass = `${toolbarItemClass} btn-hue-shift`
-  const statusItemClass = `${toolbarItemClass} border-white/15 bg-transparent text-slate-200`
+    'vs-template-toolbar-item flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
+  const buttonHueClass = `${toolbarItemClass} vs-template-toolbar-button btn-hue-shift`
+  const statusItemClass = `${toolbarItemClass} vs-template-toolbar-status`
 
   return (
     <section
@@ -83,10 +83,10 @@ export function FightPreviewStage({
       <div
         ref={toolbarRef}
         style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
-        className="shrink-0 grid grid-cols-1 gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl sm:grid-cols-2 xl:grid-cols-7"
+        className="vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-7"
       >
         <span
-          className={`${toolbarItemClass} border-cyan-300/50 bg-cyan-400/15 font-semibold text-cyan-100`}
+          className={`${toolbarItemClass} vs-template-toolbar-live font-semibold`}
           title={ui.liveMode}
         >
           {ui.liveMode}
@@ -130,7 +130,7 @@ export function FightPreviewStage({
       <div
         ref={previewShellRef}
         data-vs-preview-shell="true"
-        className="min-h-0 flex-1 overflow-hidden rounded-3xl border border-white/10 bg-slate-950/55 p-3 backdrop-blur-xl"
+        className="vs-preview-shell min-h-0 flex-1 overflow-hidden rounded-[32px] border p-3"
       >
         <div
           className="mx-auto"
@@ -144,7 +144,7 @@ export function FightPreviewStage({
             data-vs-template={activeTemplate}
             data-vs-folder-key={activeFightFolderKey}
             data-vs-locale={activeFightLocale}
-            className={stageShell.HIGH_END_STAGE_CLASS}
+            className={`${stageShell.HIGH_END_STAGE_CLASS} vs-stage-shell`}
             style={{
               width: `${previewBaseWidth}px`,
               height: `${previewBaseHeight}px`,

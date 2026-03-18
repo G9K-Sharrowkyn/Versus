@@ -137,8 +137,8 @@ export function TacticalBoardTemplate({
   ) : null
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS}>
           <HighEndTemplateHeader
@@ -152,20 +152,20 @@ export function TacticalBoardTemplate({
           />
 
           <div className={layout.BODY_CLASS}>
-            <div className={layout.BOARD_PANEL_CLASS}>
+            <div className={`${layout.BOARD_PANEL_CLASS} vs-tactical-panel`}>
               <p className={layout.BOARD_HEADER_CLASS}>{boardHeader}</p>
-              <div className={layout.BOARD_GRID_CLASS}>
+              <div className={`${layout.BOARD_GRID_CLASS} vs-tactical-grid`}>
                 {tiles.map((row, index) => {
                   const Icon = iconForCategory(row.id, index)
                   const isDraw = row.winner === 'draw'
                   const winnerColor = isDraw ? '#E2E8F0' : row.winner === 'a' ? fighterA.color : fighterB.color
 
                   return (
-                    <div key={`tile-${row.id}`} className={layout.TILE_CLASS}>
-                      <div className={layout.TILE_ICON_WRAP_CLASS}>
+                    <div key={`tile-${row.id}`} className={`${layout.TILE_CLASS} vs-tactical-tile`}>
+                      <div className={`${layout.TILE_ICON_WRAP_CLASS} vs-tactical-tile-icon`}>
                         <Icon size={layout.TILE_ICON_SIZE} color={winnerColor} />
                       </div>
-                      <div className={layout.TILE_LABEL_WRAP_CLASS}>
+                      <div className={`${layout.TILE_LABEL_WRAP_CLASS} vs-tactical-tile-label`}>
                         <FittedText
                           as="p"
                           slotKey={`tactical-board:tile:${row.id}`}
@@ -181,10 +181,10 @@ export function TacticalBoardTemplate({
               </div>
             </div>
 
-            <div className={layout.REALITY_PANEL_CLASS}>
+            <div className={`${layout.REALITY_PANEL_CLASS} vs-tactical-panel`}>
               <p className={layout.REALITY_HEADER_CLASS}>{realityHeader}</p>
-              <div className={layout.REALITY_VIEWPORT_CLASS}>
-                <div className={layout.REALITY_CANVAS_CLASS}>
+              <div className={`${layout.REALITY_VIEWPORT_CLASS} vs-tactical-viewport`}>
+                <div className={`${layout.REALITY_CANVAS_CLASS} vs-tactical-canvas`}>
                   <LightningCanvas
                     startRatio={{ x: splitX / 100, y: 0.5 }}
                     endRatio={{ x: Math.min(1.34, chaosEndX / 100 + layout.LIGHTNING_EXTENSION), y: 0.5 }}

@@ -162,6 +162,7 @@ function App() {
     reason: PendingFightSelectionReason
   } | null>(null)
   const pendingFightRequestIdRef = useRef(0)
+  const pendingSearchStageJumpRef = useRef<number | null>(null)
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
   const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
   const [pendingLocaleSwitch, setPendingLocaleSwitch] = useState<Language | null>(null)
@@ -199,6 +200,7 @@ function App() {
     clearSearchTransitionQueue,
     clearFinalTemplateAutoReturnTimeout,
     goBackToLibrary,
+    showSearchImmediately,
     handleIntroFrameLoad,
   } = useVsTransitions({
     fights,
@@ -856,11 +858,83 @@ function App() {
     stepTemplateOrder,
   ])
 
+  const dispatchSearchStageJump = useCallback(
+    (stage: number) => {
+      pendingSearchStageJumpRef.current = stage
+
+      const frameWindow = searchFrameRef.current?.contentWindow
+      if (viewMode === 'search' && frameWindow) {
+        frameWindow.postMessage(
+          { type: 'vvv-dev-jump-stage', stage },
+          window.location.origin,
+        )
+        pendingSearchStageJumpRef.current = null
+        return
+      }
+
+      showSearchImmediately()
+    },
+    [searchFrameRef, showSearchImmediately, viewMode],
+  )
+
+  useEffect(() => {
+    const isTypingTarget = (target: EventTarget | null) =>
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      (target instanceof HTMLElement && target.isContentEditable)
+
+    const handleSearchStageJumpKeydown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
+      if (isTypingTarget(event.target)) return
+      if (!/^[1-5]$/.test(event.key)) return
+
+      event.preventDefault()
+      dispatchSearchStageJump(Number(event.key))
+    }
+
+    window.addEventListener('keydown', handleSearchStageJumpKeydown)
+    return () => window.removeEventListener('keydown', handleSearchStageJumpKeydown)
+  }, [dispatchSearchStageJump])
+
+  useEffect(() => {
+    const handleSearchStageJumpMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return
+      const payload = event.data
+      if (!payload || typeof payload !== 'object') return
+
+      const typed = payload as { type?: unknown; stage?: unknown }
+      if (typed.type !== 'vvv-dev-jump-stage-request') return
+      if (!Number.isInteger(typed.stage)) return
+      if (typed.stage < 1 || typed.stage > 5) return
+
+      dispatchSearchStageJump(typed.stage)
+    }
+
+    window.addEventListener('message', handleSearchStageJumpMessage)
+    return () => window.removeEventListener('message', handleSearchStageJumpMessage)
+  }, [dispatchSearchStageJump])
+
+  const handleSearchFrameLoad = useCallback(() => {
+    const stage = pendingSearchStageJumpRef.current
+    if (!stage) return
+
+    const frameWindow = searchFrameRef.current?.contentWindow
+    if (!frameWindow) return
+
+    frameWindow.postMessage(
+      { type: 'vvv-dev-jump-stage', stage },
+      window.location.origin,
+    )
+    pendingSearchStageJumpRef.current = null
+  }, [searchFrameRef])
+
   return (
     <main
       data-vs-audit={auditRequest ? 'true' : 'false'}
       data-reverse-stage={reverseStage}
       className={clsx(
+        isTemplateView && 'vs-template-mode',
         'text-slate-100',
         isSearchView
           ? 'h-screen overflow-visible p-0'
@@ -895,9 +969,10 @@ function App() {
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
-              src="/search/1.html?v=19"
+              src="/search/1.html?v=22"
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
+              onLoad={handleSearchFrameLoad}
             />
           </section>
         ) : viewMode === 'home' ? null : viewMode === 'fight-intro' ? (
@@ -912,7 +987,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=8&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}

@@ -7,7 +7,11 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html, body, * { cursor: none !important; }
+    html, body, * {
+      cursor: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+    }
 
     html, body {
       height: 100%; overflow: hidden;
@@ -325,6 +329,7 @@
       transition: opacity 0.45s ease;
     }
     #s6.collapsing { opacity: 0.25; pointer-events: none; }
+    #s6.submitting { opacity: 0; pointer-events: none; }
 
     .s6-wrap {
       display: flex; flex-direction: column;
@@ -461,7 +466,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=23"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=24"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -555,7 +560,68 @@
     }
   };
 
-  const runChromaticFlash = (stageEl, onDone, options = {}) => {
+  let stageRunToken = 0;
+  const nextStageRunToken = () => {
+    stageRunToken += 1;
+    return stageRunToken;
+  };
+  const isStageRunTokenActive = token => token === stageRunToken;
+
+  const clearStageArtifacts = () => {
+    const s3 = $('s3');
+    const s4 = $('s4');
+    const main = $('h-main');
+    const done = $('h-done');
+    const pct = $('h-pct');
+    const bar = $('h-bar');
+    const spin = $('h-spin');
+
+    if (s3) s3.classList.remove('on');
+    if (s4) s4.style.transform = '';
+    if (spin) spin.textContent = '[/]';
+    if (pct) pct.textContent = '0';
+    if (bar) bar.innerHTML = '&nbsp;';
+    if (main) main.style.display = '';
+    if (done) done.style.display = 'none';
+
+    document.querySelectorAll('.vvv-chroma-flash, .s4-flash').forEach(node => node.remove());
+
+    searchActive = false;
+    resetCollapse();
+  };
+
+  const jumpToDebugStage = shortcut => {
+    const token = nextStageRunToken();
+    clearStageArtifacts();
+
+    if (shortcut === 1) {
+      showStage(1);
+      return;
+    }
+
+    if (shortcut === 2) {
+      showStage(2);
+      return;
+    }
+
+    if (shortcut === 3) {
+      showStage(3);
+      requestAnimationFrame(() => $('s3').classList.add('on'));
+      runHydra(token);
+      return;
+    }
+
+    if (shortcut === 4) {
+      showStage(4);
+      return;
+    }
+
+    if (shortcut === 5) {
+      runSearchStage(token);
+    }
+  };
+
+  const runChromaticFlash = (stageEl, onDone, options = {}, token = stageRunToken) => {
     const {
       frames = 14,
       interval = 40,
@@ -563,7 +629,7 @@
       skew = 6
     } = options;
     if (!stageEl) {
-      if (typeof onDone === 'function') onDone();
+      if (isStageRunTokenActive(token) && typeof onDone === 'function') onDone();
       return;
     }
 
@@ -577,6 +643,12 @@
     clearFlash();
 
     const iv = setInterval(() => {
+      if (!isStageRunTokenActive(token)) {
+        clearInterval(iv);
+        clearFlash();
+        return;
+      }
+
       clearFlash();
       const n = 5 + Math.floor(Math.random() * 7);
       for (let i = 0; i < n; i++) {
@@ -592,7 +664,7 @@
       if (++frame >= frames) {
         clearInterval(iv);
         clearFlash();
-        if (typeof onDone === 'function') onDone();
+        if (isStageRunTokenActive(token) && typeof onDone === 'function') onDone();
       }
     }, interval);
   };
@@ -602,10 +674,12 @@
   const inputEl   = $('s6-input');
   let collapseStarted = false, collapseNotified = false;
   let collapseTimers = [];
+  let searchSubmitResetTimer = 0;
   let rAF_a = 0, rAF_b = 0, rAF_c = 0;
   let relayX = window.innerWidth * 0.5, relayY = window.innerHeight * 0.5;
   let disposeRelay = () => {};
   let searchActive = false;
+  let searchSubmitPending = false;
 
   const post = msg => {
     if (window.parent && window.parent !== window)
@@ -652,6 +726,12 @@
     collapseTimers.forEach(id => clearTimeout(id));
     collapseTimers = [];
   };
+  const clearSearchSubmitResetTimer = () => {
+    if (searchSubmitResetTimer) {
+      clearTimeout(searchSubmitResetTimer);
+      searchSubmitResetTimer = 0;
+    }
+  };
   const clearRAFs = () => {
     [rAF_a,rAF_b,rAF_c].forEach(id => id && cancelAnimationFrame(id));
     rAF_a = rAF_b = rAF_c = 0;
@@ -661,31 +741,38 @@
     if (!searchActive || collapseStarted) return;
     collapseStarted = true; collapseNotified = false;
     clearCollapseTimers();
+    clearSearchSubmitResetTimer();
+    if (searchSubmitPending) searchEl.classList.add('submitting');
     searchEl.classList.add('collapsing');
     collapseTimers.push(setTimeout(() => {
       if (collapseNotified) return;
       collapseNotified = true;
       post({ type:'vvv-search-collapsed', handoff:buildHandoff() });
-    }, 480));
+    }, searchSubmitPending ? 60 : 480));
   };
 
   const resetCollapse = () => {
     collapseStarted = false; collapseNotified = false;
-    clearCollapseTimers(); clearRAFs();
+    searchSubmitPending = false;
+    clearCollapseTimers(); clearSearchSubmitResetTimer(); clearRAFs();
+    searchEl.classList.remove('submitting');
     searchEl.classList.remove('collapsing');
   };
 
   const primeCollapsed = () => {
     if (!searchActive) return;
     collapseStarted = true;
-    clearCollapseTimers(); clearRAFs();
+    clearCollapseTimers(); clearSearchSubmitResetTimer(); clearRAFs();
+    searchEl.classList.remove('submitting');
     searchEl.classList.add('collapsing');
     post({ type:'vvv-search-primed', handoff:buildHandoff() });
   };
 
   const expandFromPrime = () => {
     collapseStarted = false; collapseNotified = false;
-    clearCollapseTimers(); clearRAFs();
+    clearCollapseTimers(); clearSearchSubmitResetTimer(); clearRAFs();
+    searchSubmitPending = false;
+    searchEl.classList.remove('submitting');
     rAF_a = requestAnimationFrame(() => {
       rAF_a = 0;
       void searchEl.offsetWidth;
@@ -704,9 +791,18 @@
     // ── Solution B: forward pointer relay from child iframes (terminal) to App.tsx ──
     if (p.type === 'vvv-pointer-relay' && e.source !== window.parent) { post(p); return; }
     if (p.type === 'vvv-terminal-submit') {
+      const token = nextStageRunToken();
       showStage(3);
       requestAnimationFrame(() => $('s3').classList.add('on'));
-      runHydra();
+      runHydra(token);
+      return;
+    }
+    if (p.type === 'vvv-dev-jump-stage-request' && Number.isInteger(p.stage)) {
+      jumpToDebugStage(p.stage);
+      return;
+    }
+    if (p.type === 'vvv-dev-jump-stage' && Number.isInteger(p.stage)) {
+      jumpToDebugStage(p.stage);
       return;
     }
     if (p.type === 'vvv-search-collapse')        { startCollapse();   return; }
@@ -715,12 +811,44 @@
     if (p.type === 'vvv-search-reset')           { resetCollapse(); if (searchActive) notifyReady(); }
   });
 
+  const collapseInputSelection = () => {
+    if (!inputEl) return;
+    try {
+      const end = inputEl.value.length;
+      inputEl.setSelectionRange(end, end);
+    } catch (err) {}
+
+    const selection = window.getSelection?.();
+    if (selection && selection.rangeCount) selection.removeAllRanges();
+  };
+
+  const submitSearch = query => {
+    if (!query || searchSubmitPending || !searchActive) return;
+    searchSubmitPending = true;
+    clearSearchSubmitResetTimer();
+    searchSubmitResetTimer = setTimeout(() => {
+      searchSubmitResetTimer = 0;
+      if (collapseStarted) return;
+      searchSubmitPending = false;
+      searchEl.classList.remove('submitting');
+    }, 1800);
+    inputEl?.blur();
+    runChromaticFlash(searchEl, () => {
+      post({ type:'vvv-search-submit', query });
+    }, { frames: 12, interval: 40, jitterX: 26, skew: 4 }, stageRunToken);
+  };
+
   inputEl?.addEventListener('keydown', e => {
     if (e.key !== 'Enter') return;
     e.preventDefault();
     const q = String(inputEl.value || '').trim();
-    if (q) post({ type:'vvv-search-submit', query:q });
+    if (q) submitSearch(q);
   });
+
+  inputEl?.addEventListener('select', () => {
+    requestAnimationFrame(collapseInputSelection);
+  });
+  inputEl?.addEventListener('dragstart', e => e.preventDefault());
 
   const focusInput = () => {
     if (!inputEl || document.body.classList.contains('search-collapsing')) return;
@@ -817,7 +945,7 @@
 
 
   // ── STAGE 3: loading bar ──────────────────────────────────────────────────────
-  const runHydra = async () => {
+  const runHydra = async (token = nextStageRunToken()) => {
     const spin = $('h-spin'), pct = $('h-pct'), bar = $('h-bar');
     const main = $('h-main'), done = $('h-done');
     main.style.display = ''; done.style.display = 'none';
@@ -828,11 +956,20 @@
     const frames = ['/','-','\\','|'];
     let fi = 0;
     const spinTimer = setInterval(() => {
+      if (!isStageRunTokenActive(token)) {
+        clearInterval(spinTimer);
+        return;
+      }
       spin.textContent = `[${frames[fi++ % 4]}]`;
     }, 110 + Math.random() * 80);
 
     await new Promise(resolve => {
       const tick = setInterval(() => {
+        if (!isStageRunTokenActive(token)) {
+          clearInterval(tick);
+          resolve();
+          return;
+        }
         const emptyIdx = vals.lastIndexOf(EMPTY);
         if (emptyIdx === -1) { clearInterval(tick); resolve(); return; }
         vals[emptyIdx] = LOADED;
@@ -845,31 +982,48 @@
     });
 
     clearInterval(spinTimer);
+    if (!isStageRunTokenActive(token)) return;
     pct.textContent = '100';
     bar.innerHTML = `(${'#'.repeat(MAX)})`;
     await delay(400);
+    if (!isStageRunTokenActive(token)) return;
 
     main.style.display = 'none';
     done.style.display = '';
     await delay(3000);
+    if (!isStageRunTokenActive(token)) return;
     runChromaticFlash($('s3'), () => {
-      runGlitchBurst();
-    }, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
+      if (!isStageRunTokenActive(token)) return;
+      runGlitchBurst(token);
+    }, { frames: 12, interval: 45, jitterX: 28, skew: 4 }, token);
   };
 
   // ── STAGE 4: CSS pseudo-element glitch → JS glitch flash → search ───────────
-  const runGlitchBurst = () => {
+  const runGlitchBurst = (token = nextStageRunToken()) => {
+    if (!isStageRunTokenActive(token)) return;
     showStage(4);
     setTimeout(() => {
-      runChromaticFlash($('s4'), runSearchStage);
+      if (!isStageRunTokenActive(token)) return;
+      runChromaticFlash($('s4'), () => {
+        if (!isStageRunTokenActive(token)) return;
+        runSearchStage(token);
+      }, {}, token);
     }, 2500);
   };
 
   // ── STAGE 6 ───────────────────────────────────────────────────────────────────
-  const runSearchStage = () => {
+  const runSearchStage = (token = stageRunToken) => {
+    if (!isStageRunTokenActive(token)) return;
     showStage(6);
     activateSearch();
   };
+
+  window.addEventListener('keydown', e => {
+    if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+    if (!/^[1-5]$/.test(e.key)) return;
+    e.preventDefault();
+    jumpToDebugStage(Number(e.key));
+  });
 
   // ── Solution A: attach pointer listeners to s2 iframe document ───────────────
   const s2IFrame = document.querySelector('#s2 iframe');

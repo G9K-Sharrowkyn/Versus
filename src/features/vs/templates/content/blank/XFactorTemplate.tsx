@@ -1,4 +1,4 @@
-import { Brain, Crosshair, WandSparkles } from 'lucide-react'
+﻿import { Brain, Crosshair, WandSparkles } from 'lucide-react'
 import type { CSSProperties, MutableRefObject } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -43,7 +43,7 @@ export function XFactorTemplate({
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
 
-  // Używamy realnych statystyk (averageA/B) jako bazy, jeśli są dostępne
+  // UĹĽywamy realnych statystyk (averageA/B) jako bazy, jeĹ›li sÄ… dostÄ™pne
   const superPct = averageA ?? parsePercentValue(
     pickTemplateField(blockFields, ['a_value', 'super_value', 'left_value']),
     0,
@@ -114,8 +114,8 @@ export function XFactorTemplate({
   ) : null
 
   return (
-    <div className={shell.HIGH_END_ROOT_CLASS}>
-      <div className={shell.HIGH_END_PANEL_CLASS}>
+    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
+      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
         <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
         <div className={layout.INNER_CLASS as string}>
           <HighEndTemplateHeader
@@ -344,3 +344,4 @@ export function XFactorTemplate({
     </div>
   )
 }
+
