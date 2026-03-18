@@ -142,7 +142,7 @@
     #s3 {
       background: #0f0000; color: #ff6666;
       text-shadow: 0 0 4px red; text-align: center;
-      font-size: clamp(12px, 2.2vw, 26px);
+      font-size: clamp(24px, 4.4vw, 52px);
     }
 
     .hydra-box {
@@ -186,9 +186,10 @@
        STAGE 4 — CSS PSEUDO-ELEMENT GLITCH
     ═══════════════════════════════════════════ */
     #s4 { background: #000; overflow: hidden; }
+    .s4-lines { display: flex; flex-direction: column; align-items: center; gap: 0.4em; }
     .s4-glitch {
       font-family: "Chakra Petch", "Courier New", monospace;
-      font-size: clamp(2rem, 8vw, 7rem);
+      font-size: clamp(1.2rem, 4vw, 4rem);
       font-weight: 900; color: #fff; position: relative;
       text-shadow: 3px 0 rgba(255,85,78,1), -3px 0 #0cf;
       animation: s4skew 0.2s steps(2) infinite;
@@ -317,10 +318,10 @@
        STAGE 6 — SEARCH INPUT (Cyberpunk Glitch)
     ═══════════════════════════════════════════ */
     #s6 {
-      background: #0d0d0d;
-      --primary: #00f2ea;
-      --secondary: #a855f7;
-      --mono: 'Courier New', Consolas, monospace;
+      background: linear-gradient(0deg, #000 0%, #280604 100%);
+      --primary: rgba(255,85,78,1);
+      --secondary: #77e2f2;
+      --mono: "Chakra Petch", "Courier New", monospace;
       transition: opacity 0.45s ease;
     }
     #s6.collapsing { opacity: 0.25; pointer-events: none; }
@@ -332,43 +333,43 @@
     }
 
     .s6-heading {
-      font-size: 0.62rem; letter-spacing: 0.24em;
-      text-transform: uppercase; color: rgba(0,242,234,0.45);
+      font-size: 1.1rem; letter-spacing: 0.24em;
+      text-transform: uppercase; color: rgba(255,85,78,0.6);
     }
 
     .s6-container {
-      position: relative; width: min(460px, 90vw);
+      position: relative; width: min(920px, 90vw);
     }
 
     .s6-input {
-      width: 100%; height: 3.5rem;
+      width: 100%; height: 6rem;
       background: rgba(13,13,13,0.85);
       border: none; border-bottom: 2px solid #333;
-      outline: none; padding: 1rem 1rem 0;
+      outline: none; padding: 1.6rem 1.4rem 0;
       color: var(--primary); font-family: var(--mono);
-      font-size: 1rem; caret-color: var(--primary);
+      font-size: 1.8rem; caret-color: var(--primary);
       transition: border-color 0.3s ease;
       position: relative; z-index: 10;
     }
 
     .s6-label {
-      position: absolute; top: 1rem; left: 1rem;
+      position: absolute; top: 1.6rem; left: 1.4rem;
       color: rgba(229,229,229,0.55);
       text-transform: uppercase; letter-spacing: 0.1em;
-      font-size: 0.82rem; pointer-events: none;
+      font-size: 1.6rem; pointer-events: none;
       transition: all 0.3s ease;
       font-family: var(--mono); z-index: 11;
     }
     .s6-input:focus + .s6-label,
     .s6-input:not(:placeholder-shown) + .s6-label {
-      top: -1.4rem; left: 0; font-size: 0.68rem;
+      top: -2.2rem; left: 0; font-size: 1.2rem;
       opacity: 1; color: var(--primary);
     }
     .s6-input:focus + .s6-label::before,
     .s6-input:focus + .s6-label::after {
       content: attr(data-text);
       position: absolute; top:0;left:0;
-      width:100%;height:100%; background:#1a1a1a;
+      width:100%;height:100%; background:#1a0c0c;
     }
     .s6-input:focus + .s6-label::before {
       color: var(--secondary);
@@ -389,19 +390,19 @@
 
     .s6-border {
       position:absolute;inset:0; pointer-events:none;
-      border: 1px solid rgba(0,242,234,0.2);
+      border: 1px solid rgba(255,85,78,0.25);
       opacity:0.5; transition:all 0.3s ease;
     }
     .s6-glow {
       position:absolute;inset:0; pointer-events:none;
-      background: radial-gradient(ellipse at center, rgba(0,242,234,0.2) 0%, transparent 70%);
+      background: radial-gradient(ellipse at center, rgba(255,85,78,0.15) 0%, transparent 70%);
       opacity:0; transition:opacity 0.4s ease;
     }
     .s6-scanline {
       position:absolute;inset:0; pointer-events:none;
       background: linear-gradient(to bottom,
-        transparent 0%, rgba(0,242,234,.1) 48%, rgba(0,242,234,.28) 50%,
-        rgba(0,242,234,.1) 52%, transparent 100%);
+        transparent 0%, rgba(255,85,78,.08) 48%, rgba(255,85,78,.2) 50%,
+        rgba(255,85,78,.08) 52%, transparent 100%);
       opacity:0;
     }
     .s6-data {
@@ -411,7 +412,7 @@
       transition: opacity 0.3s ease 0.1s; pointer-events:none;
     }
     .s6-bar {
-      flex-grow:1; background:#00f2ea;
+      flex-grow:1; background: rgba(255,85,78,1);
       transform:scaleY(0); transform-origin:bottom;
     }
     .s6-corners { position:absolute;inset:0;pointer-events:none; }
@@ -426,7 +427,7 @@
     .s6-c.br{bottom:-.3rem;right:-.3rem;border-left:none;border-top:none;}
 
     .s6-input:focus { border-color:transparent; }
-    .s6-input:focus ~ .s6-border  { opacity:1; border-color:rgba(0,242,234,.5); }
+    .s6-input:focus ~ .s6-border  { opacity:1; border-color:rgba(255,85,78,.5); }
     .s6-input:focus ~ .s6-corners .s6-c { width:1.25rem;height:1.25rem;border-width:3px;opacity:1; }
     .s6-input:focus ~ .s6-glow     { opacity:1; }
     .s6-input:focus ~ .s6-scanline { animation:scan-v 4s linear infinite; }
@@ -489,7 +490,11 @@
 
 <!-- ── STAGE 4: GLITCH BURST ── -->
 <div id="s4" class="stage off">
-  <div class="s4-glitch" data-text="NEXUS//OS CORRUPTED">NEXUS//OS CORRUPTED</div>
+  <div class="s4-lines">
+    <div class="s4-glitch" data-text="Authenticated:G9K_Rubikon">Authenticated:G9K_Rubikon</div>
+    <div class="s4-glitch" data-text="Artemis_Argo:Launched">Artemis_Argo:Launched</div>
+    <div class="s4-glitch" data-text="Project_Ares:Starting_now...">Project_Ares:Starting_now...</div>
+  </div>
 </div>
 
 <!-- ── STAGE 5: VersusVerseVault ── -->
@@ -503,7 +508,7 @@
 <!-- ── STAGE 6: CYBERPUNK SEARCH ── -->
 <div id="s6" class="stage off">
   <div class="s6-wrap">
-    <p class="s6-heading">// FIGHTER DATABASE · QUERY INTERFACE //</p>
+    <p class="s6-heading">// versusversevault.com · PROJECT ARES //</p>
     <div class="s6-container">
       <input
         id="s6-input" class="s6-input"
@@ -512,7 +517,7 @@
         autocorrect="off" spellcheck="false"
         inputmode="search"
       />
-      <label class="s6-label" for="s6-input" data-text="SEARCH_FIGHTER">SEARCH_FIGHTER</label>
+      <label class="s6-label" for="s6-input" data-text="FIGHT_EVALUATION">FIGHT_EVALUATION</label>
       <div class="s6-border"></div>
       <div class="s6-scanline"></div>
       <div class="s6-glow"></div>
