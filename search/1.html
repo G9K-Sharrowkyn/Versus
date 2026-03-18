@@ -56,10 +56,7 @@
     }
 
     .s1-overlay {
-      position: absolute; bottom: 2.5rem; left: 50%;
-      transform: translateX(-50%);
-      z-index: 10; pointer-events: none;
-      display: flex; align-items: center; justify-content: center;
+      display: none;
     }
 
     .s1-btn {
@@ -88,7 +85,7 @@
       background: #0a0000;
       color: #db0e15;
       text-shadow: 0 0 5px rgba(219,14,21,0.8);
-      font-size: clamp(12px, 1.8vw, 20px);
+      font-size: clamp(18px, 2.7vw, 30px);
       animation: s2-shake 1.5s linear infinite;
     }
     @keyframes s2-shake {
@@ -100,7 +97,7 @@
     .term-box {
       border: 0.15em solid #db0e15;
       box-shadow: 0 0 8px #db0e15, inset 0 0 6px rgba(219,14,21,0.08);
-      padding: 2em 2.4em; max-width: 480px; width: 88%;
+      padding: 2em 2.4em; max-width: 720px; width: 88%;
     }
 
     .term-heading {
@@ -399,7 +396,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=5"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -642,6 +639,75 @@
   $('s1-btn').addEventListener('click', () => {
     showStage(2);
     runTerminal();
+  });
+
+  // ── STAGE 1 → let breach animation play fully, then transition ───────────────
+  // When .breachButton becomes visible: drop .s1-ptr so hover/clicks reach iframe.
+  // On breach click: poll .breachCover opacity → when it peaks → showStage(2).
+  const s1IFrame = document.querySelector('.s1-iframe');
+  const s1Ptr    = document.querySelector('.s1-ptr');
+
+  s1IFrame.addEventListener('load', () => {
+    try {
+      const iDoc = s1IFrame.contentWindow.document;
+      const iWin = s1IFrame.contentWindow;
+
+      const enableBreachClick = () => {
+        const btn = iDoc.querySelector('.breachButton');
+        if (!btn) return;
+        const cs = iWin.getComputedStyle(btn);
+        if (cs.display === 'none' || parseFloat(cs.opacity) <= 0.1) return;
+
+        observer.disconnect();
+        s1Ptr.style.pointerEvents = 'none'; // let hover + clicks reach iframe
+
+        // Re-establish cursor relay through Svelte iframe's document.
+        // The iframe is CSS-scaled (scale(3) from 33.34%), so e.clientX/Y are
+        // in iframe's own coordinate space (1/3 of the parent viewport).
+        // Multiply by the rendered/intrinsic ratio to convert back to parent coords.
+        const iframeScale = () => {
+          const r = s1IFrame.getBoundingClientRect();
+          return { r, kx: r.width / s1IFrame.offsetWidth, ky: r.height / s1IFrame.offsetHeight };
+        };
+        iDoc.addEventListener('pointermove', e => {
+          const { r, kx, ky } = iframeScale();
+          postRelay('move', r.left + e.clientX * kx, r.top + e.clientY * ky);
+        }, { passive: true });
+        iDoc.addEventListener('pointerdown', e => {
+          const { r, kx, ky } = iframeScale();
+          postRelay('down', r.left + e.clientX * kx, r.top + e.clientY * ky, true);
+        }, { passive: true });
+        iDoc.addEventListener('pointerup', e => {
+          const { r, kx, ky } = iframeScale();
+          postRelay('up', r.left + e.clientX * kx, r.top + e.clientY * ky, false);
+        }, { passive: true });
+
+        btn.addEventListener('click', () => {
+          const cover = iDoc.querySelector('.breachCover');
+          let done = false;
+          const doTransition = () => { if (done) return; done = true; showStage(2); runTerminal(); };
+
+          if (cover) {
+            const poll = setInterval(() => {
+              if (parseFloat(iWin.getComputedStyle(cover).opacity) > 0.85) {
+                clearInterval(poll);
+                setTimeout(doTransition, 400);
+              }
+            }, 100);
+            setTimeout(() => { clearInterval(poll); doTransition(); }, 8000);
+          } else {
+            setTimeout(doTransition, 5000);
+          }
+        }, { once: true });
+      };
+
+      const observer = new MutationObserver(enableBreachClick);
+      observer.observe(iDoc.documentElement, {
+        subtree: true, attributes: true, childList: true,
+        attributeFilter: ['style', 'class']
+      });
+      enableBreachClick();
+    } catch (err) { /* cross-origin guard */ }
   });
 
   // ── STAGE 2: auto-type terminal ───────────────────────────────────────────────

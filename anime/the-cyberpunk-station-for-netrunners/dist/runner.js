@@ -46525,7 +46525,7 @@ In function ‘printf’,
       hr = r(18),
       fr = r(1),
       pr = r.n(fr)
-    const gr = 'https://nightfm-backend.a6hs.repl.co/'
+    const gr = '/api/nightfm-mock/'
     var mr = {
       async initialize () {
         pr.a.initialize({

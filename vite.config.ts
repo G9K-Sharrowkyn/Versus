@@ -643,6 +643,14 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
       return
     }
     const requestUrl = new URL(req.url, 'http://127.0.0.1')
+    if (requestUrl.pathname.startsWith('/api/nightfm-mock/')) {
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
+      res.setHeader('Cache-Control', 'no-store')
+      res.end('{}')
+      return
+    }
+
     if (!requestUrl.pathname.startsWith('/api/fights/')) {
       next()
       return

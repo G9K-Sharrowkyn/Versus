@@ -5226,6 +5226,8 @@ main.svelte-x3vk1e.svelte-x3vk1e {
   display: flex;
   flex-direction: column;
   user-select: none;
+  transform: scale(0.5);
+  transform-origin: top left;
 }
 .breachIcon.svelte-x3vk1e.svelte-x3vk1e {
   border: 1px solid rgb(255, 85, 78);
@@ -5262,7 +5264,8 @@ main.svelte-x3vk1e.svelte-x3vk1e {
   min-height: 150px;
   top: 20%;
   left: 50%;
-  transform: translate(30%, 0);
+  transform: translate(30%, 0) scale(0.5);
+  transform-origin: top left;
   font-size: xx-small;
   padding: 0;
   background: transparent;
@@ -5275,6 +5278,8 @@ main.svelte-x3vk1e.svelte-x3vk1e {
   width: 400px;
   border: 1px solid rgb(255, 85, 78);
   padding: 2px;
+  transform: scale(0.5);
+  transform-origin: left center;
 }
 .breachProgressInner.svelte-x3vk1e.svelte-x3vk1e {
   width: 0;

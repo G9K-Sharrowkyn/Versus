@@ -4,9 +4,35 @@
   <head>
     <meta charset="UTF-8">
     <title>The cyberpunk station for netrunners</title>
-    <link rel="stylesheet" href="./style.css">
-    <style>html, body, * { cursor: none !important; }</style>
-
+    <link rel="stylesheet" href="./style.css?v=2">
+    <style>
+      html, body, * { cursor: none !important; }
+      /* ── Hide music player (dead backend, not needed) ── */
+      main.svelte-pj992h, main.svelte-1vwdivv { display: none !important; }
+      /* ── Breach animation scale-down ── */
+      .breachBox { transform: scale(0.5) !important; transform-origin: top left !important; }
+      .breachBox3 { display: none !important; }
+      .breachProgress { transform: scale(0.5) !important; transform-origin: left center !important; }
+    </style>
+    <script>
+    /* ── Mock dead nightfm-backend (Replit gone) — runs before bundle/runner ── */
+    (function () {
+      var blob = URL.createObjectURL(new Blob(['{}'], { type: 'application/json' }));
+      var _open = XMLHttpRequest.prototype.open;
+      XMLHttpRequest.prototype.open = function (method, url, async, user, pass) {
+        if (typeof url === 'string' && url.includes('nightfm-backend')) url = blob;
+        return async === undefined ? _open.call(this, method, url)
+                                   : _open.call(this, method, url, async, user, pass);
+      };
+      var _fetch = window.fetch;
+      window.fetch = function (url, opts) {
+        if (typeof url === 'string' && url.includes('nightfm-backend'))
+          return Promise.resolve(new Response('{}', { status: 200 }));
+        return _fetch.call(this, url, opts);
+      };
+      window.addEventListener('unhandledrejection', function (e) { e.preventDefault(); });
+    })();
+    </script>
   </head>
     
   <body>
