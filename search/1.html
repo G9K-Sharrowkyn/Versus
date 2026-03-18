@@ -326,72 +326,72 @@
       --primary: rgba(255,85,78,1);
       --secondary: #77e2f2;
       --mono: "Chakra Petch", "Courier New", monospace;
+      --s6-wrap-y: -1px;
+      --s6-heading-y: -76px;
+      --s6-label-active-top: -5.05rem;
       transition: opacity 0.45s ease;
     }
     #s6.collapsing { opacity: 0.25; pointer-events: none; }
-    #s6.submitting { opacity: 0; pointer-events: none; }
+    #s6.submitting { pointer-events: none; }
+    #s6.submitting .s6-wrap {
+      opacity: 0;
+      transition: opacity 0.09s linear;
+    }
 
     .s6-wrap {
       display: flex; flex-direction: column;
       align-items: center; gap: 1.8rem;
       padding: 2rem; font-family: var(--mono);
-      transform: translateY(-20px);
+      transform: translateY(var(--s6-wrap-y));
     }
 
     .s6-heading {
-      font-size: 1.1rem; letter-spacing: 0.24em;
-      text-transform: uppercase; color: rgba(255,85,78,0.6);
+      font-size: clamp(2.35rem, 2.7vw, 3rem);
+      letter-spacing: 0.24em;
+      text-transform: uppercase;
+      color: rgba(255,85,78,0.72);
+      transform: translateY(var(--s6-heading-y));
     }
 
     .s6-container {
-      position: relative; width: min(920px, 90vw);
+      position: relative; width: min(1020px, 92vw);
     }
 
     .s6-input {
-      width: 100%; height: 6rem;
+      width: 100%; height: 7.9rem;
       background: rgba(13,13,13,0.85);
       border: none; border-bottom: 2px solid #333;
-      outline: none; padding: 1.6rem 1.4rem 0;
-      color: var(--primary); font-family: var(--mono);
-      font-size: 1.8rem; caret-color: var(--primary);
+      outline: none; padding: 2.55rem 1.7rem 0;
+      color: var(--secondary); font-family: var(--mono);
+      font-size: clamp(3rem, 3.5vw, 3.85rem); caret-color: var(--secondary);
+      line-height: 1;
+      text-shadow: 0 0 12px rgba(119, 226, 242, 0.16);
       transition: border-color 0.3s ease;
       position: relative; z-index: 10;
     }
 
     .s6-label {
-      position: absolute; top: 1.6rem; left: 1.4rem;
+      position: absolute; top: 1.95rem; left: 1.7rem;
       color: rgba(229,229,229,0.55);
       text-transform: uppercase; letter-spacing: 0.1em;
-      font-size: 1.6rem; pointer-events: none;
+      font-size: clamp(2.35rem, 2.7vw, 2.9rem); pointer-events: none;
       transition: all 0.3s ease;
       font-family: var(--mono); z-index: 11;
+      padding: 0.18rem 0.48rem 0.14rem;
+      background: rgba(24, 8, 8, 0.88);
+      border: 1px solid transparent;
     }
     .s6-input:focus + .s6-label,
     .s6-input:not(:placeholder-shown) + .s6-label {
-      top: -1.45rem; left: 0; font-size: 1.2rem;
-      opacity: 1; color: var(--primary);
-    }
-    .s6-input:focus + .s6-label::before,
-    .s6-input:focus + .s6-label::after {
-      content: attr(data-text);
-      position: absolute; top:0;left:0;
-      width:100%;height:100%; background:#1a0c0c;
-    }
-    .s6-input:focus + .s6-label::before {
-      color: var(--secondary);
-      animation: glitch-lbl 0.4s cubic-bezier(.25,.46,.45,.94) both;
-    }
-    .s6-input:focus + .s6-label::after {
-      color: var(--primary);
-      animation: glitch-lbl 0.4s cubic-bezier(.25,.46,.45,.94) reverse both;
-    }
-    @keyframes glitch-lbl {
-      0%  { transform:translate(0);       clip-path:inset(0 0 0 0); }
-      20% { transform:translate(-3px,1px);  clip-path:inset(50% 0 20% 0); }
-      40% { transform:translate(2px,-1px);  clip-path:inset(20% 0 60% 0); }
-      60% { transform:translate(-2px,1px);  clip-path:inset(80% 0 5%  0); }
-      80% { transform:translate(2px,-2px);  clip-path:inset(30% 0 45% 0); }
-      100%{ transform:translate(0);       clip-path:inset(0 0 0 0); }
+      top: var(--s6-label-active-top); left: 0; font-size: clamp(2.35rem, 2.7vw, 3rem);
+      opacity: 1;
+      color: #070707;
+      background: rgba(255,85,78,0.96);
+      border-color: rgba(255,85,78,0.98);
+      box-shadow:
+        inset 0 0 0 1px rgba(255,85,78,0.24),
+        0 0 26px rgba(255,85,78,0.34),
+        0 0 48px rgba(255,85,78,0.18);
     }
 
     .s6-border {
@@ -672,6 +672,7 @@
   // ── postMessage protocol ─────────────────────────────────────────────────────
   const searchEl  = $('s6');
   const inputEl   = $('s6-input');
+  const SEARCH_STAGE_DEV_STORAGE_KEY = 'vvv-search-stage-dev-layout';
   let collapseStarted = false, collapseNotified = false;
   let collapseTimers = [];
   let searchSubmitResetTimer = 0;
@@ -680,6 +681,48 @@
   let disposeRelay = () => {};
   let searchActive = false;
   let searchSubmitPending = false;
+
+  const applySearchStageDevLayout = layout => {
+    if (!searchEl || !layout) return;
+    if (typeof layout.wrapY === 'number') {
+      searchEl.style.setProperty('--s6-wrap-y', `${layout.wrapY}px`);
+    }
+    if (typeof layout.headingY === 'number') {
+      searchEl.style.setProperty('--s6-heading-y', `${layout.headingY}px`);
+    }
+    if (typeof layout.labelTopRem === 'number') {
+      searchEl.style.setProperty('--s6-label-active-top', `${layout.labelTopRem}rem`);
+    }
+  };
+
+  const readSearchStageDevLayout = () => {
+    try {
+      const raw = localStorage.getItem(SEARCH_STAGE_DEV_STORAGE_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || typeof parsed !== 'object') return null;
+      return {
+        wrapY: Number(parsed.wrapY),
+        headingY: Number(parsed.headingY),
+        labelTopRem: Number(parsed.labelTopRem)
+      };
+    } catch (err) {
+      return null;
+    }
+  };
+
+  const writeSearchStageDevLayout = layout => {
+    try {
+      localStorage.setItem(SEARCH_STAGE_DEV_STORAGE_KEY, JSON.stringify(layout));
+    } catch (err) {}
+  };
+
+  const getCurrentSearchStageDevLayout = () => {
+    const wrapY = parseFloat(getComputedStyle(searchEl).getPropertyValue('--s6-wrap-y')) || 0;
+    const headingY = parseFloat(getComputedStyle(searchEl).getPropertyValue('--s6-heading-y')) || 0;
+    const labelTopRem = parseFloat(getComputedStyle(searchEl).getPropertyValue('--s6-label-active-top')) || -5.05;
+    return { wrapY, headingY, labelTopRem };
+  };
 
   const post = msg => {
     if (window.parent && window.parent !== window)
@@ -826,6 +869,7 @@
     if (!query || searchSubmitPending || !searchActive) return;
     searchSubmitPending = true;
     clearSearchSubmitResetTimer();
+    searchEl.classList.add('submitting');
     searchSubmitResetTimer = setTimeout(() => {
       searchSubmitResetTimer = 0;
       if (collapseStarted) return;
@@ -1019,6 +1063,40 @@
   };
 
   window.addEventListener('keydown', e => {
+    if (e.altKey && e.shiftKey && /^[1-3]$/.test(e.key)) {
+      e.preventDefault();
+      const layout = getCurrentSearchStageDevLayout();
+
+      if (e.key === '1') layout.headingY -= 8;
+      if (e.key === '2') layout.labelTopRem -= 0.2;
+      if (e.key === '3') layout.wrapY -= 8;
+
+      applySearchStageDevLayout(layout);
+      writeSearchStageDevLayout(layout);
+      return;
+    }
+
+    if (e.altKey && e.shiftKey && /^[qwe]$/i.test(e.key)) {
+      e.preventDefault();
+      const layout = getCurrentSearchStageDevLayout();
+
+      if (e.key.toLowerCase() === 'q') layout.headingY += 8;
+      if (e.key.toLowerCase() === 'w') layout.labelTopRem += 0.2;
+      if (e.key.toLowerCase() === 'e') layout.wrapY += 8;
+
+      applySearchStageDevLayout(layout);
+      writeSearchStageDevLayout(layout);
+      return;
+    }
+
+    if (e.altKey && e.shiftKey && e.key === '0') {
+      e.preventDefault();
+      const defaults = { wrapY: -1, headingY: -76, labelTopRem: -5.05 };
+      applySearchStageDevLayout(defaults);
+      writeSearchStageDevLayout(defaults);
+      return;
+    }
+
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
     if (!/^[1-5]$/.test(e.key)) return;
     e.preventDefault();
@@ -1046,6 +1124,7 @@
 
   // ── BOOT ──────────────────────────────────────────────────────────────────────
   window.addEventListener('load', () => {
+    applySearchStageDevLayout(readSearchStageDevLayout() || { wrapY: -1, headingY: -76, labelTopRem: -5.05 });
     showStage(1);
     // Relay pointer events od razu — iframe zajmuje cały ekran podczas intro
     disposeRelay = bindPointerRelay();
