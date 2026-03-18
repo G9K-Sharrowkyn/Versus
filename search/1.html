@@ -396,7 +396,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=10"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=11"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -409,7 +409,7 @@
 
 <!-- ── STAGE 2: CYBERPUNK TERMINAL ── -->
 <div id="s2" class="stage off">
-  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=2" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin"></iframe>
+  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=3" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin"></iframe>
 </div>
 
 <!-- ── STAGE 3: HYDRA LOADING ── -->
@@ -585,9 +585,11 @@
   };
 
   window.addEventListener('message', e => {
-    if (e.origin !== window.location.origin) return;
+    if (e.origin !== window.location.origin && e.origin !== 'null') return;
     const p = e.data;
     if (!p || typeof p !== 'object') return;
+    // ── Solution B: forward pointer relay from child iframes (terminal) to App.tsx ──
+    if (p.type === 'vvv-pointer-relay' && e.source !== window.parent) { post(p); return; }
     if (p.type === 'vvv-terminal-submit')        { showStage(3); runHydra(); return; }
     if (p.type === 'vvv-search-collapse')        { startCollapse();   return; }
     if (p.type === 'vvv-search-prime-collapsed') { primeCollapsed();   return; }
@@ -770,6 +772,20 @@
     showStage(6);
     activateSearch();
   };
+
+  // ── Solution A: attach pointer listeners to s2 iframe document ───────────────
+  const s2IFrame = document.querySelector('#s2 iframe');
+  if (s2IFrame) {
+    s2IFrame.addEventListener('load', () => {
+      try {
+        const iDoc = s2IFrame.contentWindow.document;
+        iDoc.addEventListener('pointermove',   e => postRelay('move', e.clientX, e.clientY),        { passive: true });
+        iDoc.addEventListener('pointerdown',   e => postRelay('down', e.clientX, e.clientY, true),  { passive: true });
+        iDoc.addEventListener('pointerup',     e => postRelay('up',   e.clientX, e.clientY, false), { passive: true });
+        iDoc.addEventListener('pointercancel', e => postRelay('up',   e.clientX, e.clientY, false), { passive: true });
+      } catch(err) {}
+    });
+  }
 
   // ── BOOT ──────────────────────────────────────────────────────────────────────
   window.addEventListener('load', () => {

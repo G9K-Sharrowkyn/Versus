@@ -4,30 +4,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>cyberpunk terminal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&family=Rajdhani:wght@500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;600&display=swap" rel="stylesheet">
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; cursor: none !important; }
 
     html, body {
       height: 100%; overflow: hidden;
-      background: #0a0000;
-      color: #db0e15;
-      font-family: 'Rajdhani', 'Courier New', monospace;
-      font-size: clamp(14px, 2.2vw, 26px);
-      text-shadow: 0 0 5px rgba(219,14,21,0.8);
-      animation: s2-shake 1.5s linear infinite;
+      background: linear-gradient(0deg, #000 0%, #280604 100%);
+      color: rgba(255,85,78,1);
+      font-family: "Chakra Petch", "Courier New", monospace;
+      font-size: 16px;
+      font-weight: 500;
+      user-select: none;
     }
 
-    @keyframes s2-shake {
-      2%,64% { transform: translate(2px,0)  skewX(0deg); }
-      4%,60% { transform: translate(-2px,0) skewX(0deg); }
-      62%    { transform: translate(0,0)    skewX(4deg); }
+    /* ── CRT turn-on (szarpane przejście) ── */
+    .container { position: relative; width: 100%; height: 100%; }
+
+    .container.on > .screen {
+      animation: turn-on 2s linear;
+      animation-fill-mode: forwards;
     }
 
-    /* scanlines */
+    @keyframes turn-on {
+      0%  { transform: scale(1,.8)        translate3d(0,0,0);      opacity:1; }
+      5%  { transform: scale(1.09139,1.34235) translate3d(0,100%,0); }
+      10% { transform: scale(.63084,1.40698)  translate3d(0,-100%,0); }
+      15% { transform: scale(.75142,1.34118)  translate3d(0,100%,0); }
+      20% { transform: scale(.96173,1.36858)  translate3d(0,-100%,0); }
+      25% { transform: scale(1.1348,1.02729)  translate3d(0,100%,0); }
+      30% { transform: scale(.97038,.71092)   translate3d(0,-100%,0); }
+      35% { transform: scale(.6067,1.31101)   translate3d(0,100%,0); }
+      40% { transform: scale(.786,.9326)      translate3d(0,-100%,0); }
+      45% { transform: scale(1.38602,1.14399) translate3d(0,100%,0); }
+      50% { transform: scale(.69973,.90412)   translate3d(0,-100%,0); }
+      51% { transform: scale(1,1)             translate3d(0,0,0);
+            filter: brightness(1) saturate(1); opacity:0; }
+      100%{ transform: scale(1,1)             translate3d(0,0,0);
+            filter: contrast(1) brightness(1.2) saturate(1.3); opacity:1; }
+    }
+
+    /* ── Scanlines only (no flicker) ── */
     body::after {
       content: '';
-      position: fixed; inset: 0; z-index: 100; pointer-events: none;
+      position: fixed; inset: 0; z-index: 200; pointer-events: none;
       background: repeating-linear-gradient(
         0deg,
         rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px,
@@ -35,102 +55,135 @@
       );
     }
 
-    .wrap {
+    /* ── Full-screen wrapper ── */
+    .screen {
       position: absolute; inset: 0;
       display: flex; align-items: center; justify-content: center;
     }
 
+    /* ── Terminal box — styled like stage 1 breachBox ── */
     .term-box {
-      border: 0.15em solid #db0e15;
-      box-shadow: 0 0 8px #db0e15, inset 0 0 6px rgba(219,14,21,0.08);
-      padding: 2em 2.4em;
-      max-width: 720px; width: 88%;
+      background: rgba(0,0,0,0.4);
+      border: 2px solid rgb(255,85,78);
+      border-left: 10px solid rgb(255,85,78);
+      padding: 2rem 2.5rem;
+      width: 90%; max-width: 680px;
+      filter: drop-shadow(0 0 10px rgba(255,85,78,1));
     }
 
+    /* ── Heading ── */
     .term-heading {
-      text-align: center; font-size: 1em;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      border-bottom: 1px solid rgba(219,14,21,0.35);
-      padding-bottom: 0.5em; margin-bottom: 1.2em;
+      font-size: 1.4em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      border-bottom: 1px solid rgba(255,85,78,0.4);
+      padding-bottom: 0.6em;
+      margin-bottom: 1.4em;
+      filter: drop-shadow(0 0 10px rgba(255,85,78,1));
     }
 
+    /* ── Description ── */
     .term-desc {
-      font-size: 0.62em; opacity: 0.7;
-      text-align: center; margin-bottom: 1.4em;
-      line-height: 1.6; text-transform: uppercase; letter-spacing: 0.04em;
+      font-size: 0.75em;
+      opacity: 0.7;
+      text-align: left;
+      margin-bottom: 1.6em;
+      line-height: 1.6;
+      letter-spacing: 0.04em;
     }
+    .term-desc b { font-weight: 600; opacity: 1; }
 
+    /* ── Rows ── */
     .term-row {
       display: flex; align-items: center;
-      gap: 0.8em; margin: 0.55em 0; font-size: 0.7em;
+      gap: 1em; margin: 0.7em 0;
+      font-size: 0.85em;
     }
     .term-lbl {
-      min-width: 6em; opacity: 0.7;
-      text-transform: uppercase; letter-spacing: 0.06em;
+      min-width: 6em;
+      opacity: 0.65;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-size: 0.9em;
     }
     .term-inp {
       flex: 1;
-      background: rgba(219,14,21,0.07);
-      border: 1px solid rgba(219,14,21,0.3);
-      color: inherit; font-family: inherit; font-size: inherit;
-      text-shadow: inherit;
-      padding: 0.3em 0.6em; outline: none;
+      background: rgba(255,85,78,0.06);
+      border: 1px solid rgba(255,85,78,0.4);
+      color: rgba(255,85,78,1);
+      font-family: inherit; font-size: inherit;
+      font-weight: 500;
+      padding: 0.4em 0.7em;
+      outline: none;
       transition: border-color .2s, box-shadow .2s;
     }
     .term-inp:focus {
-      border-color: #db0e15;
-      box-shadow: 0 0 8px rgba(219,14,21,.5);
+      border-color: rgba(255,85,78,1);
+      box-shadow: 0 0 8px rgba(255,85,78,0.5);
     }
+    .term-inp::placeholder { color: rgba(255,85,78,0.3); }
 
+    /* ── Submit button — cyan like breach button in stage 1 ── */
     .term-submit {
-      display: block; margin: 1.2em auto 0;
-      padding: 0.4em 2em;
-      border: 1px solid rgba(219,14,21,.6);
-      background: rgba(219,14,21,.1);
-      color: inherit; font-family: inherit; font-size: 0.7em;
-      text-transform: uppercase; letter-spacing: 0.1em;
-      text-shadow: inherit;
+      display: block;
+      margin: 1.4em auto 0;
+      padding: 0.45em 2.2em;
+      border: 1px solid rgba(255,85,78,1);
+      background: rgba(255,85,78,0.08);
+      color: #77e2f2;
+      font-family: inherit; font-size: 0.85em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
       transition: background .2s, box-shadow .2s;
+      filter: drop-shadow(0 0 6px rgba(255,85,78,0.6));
     }
     .term-submit:hover {
-      background: rgba(219,14,21,.25);
-      box-shadow: 0 0 10px rgba(219,14,21,.6);
+      background: rgba(255,85,78,0.15);
+      box-shadow: 0 0 14px rgba(255,85,78,0.8);
     }
 
+    /* ── Status line ── */
     .term-status {
-      text-align: center; margin-top: 0.8em;
-      font-size: 0.65em; letter-spacing: 0.1em;
-      min-height: 1.4em; transition: color .2s;
+      text-align: center;
+      margin-top: 0.8em;
+      font-size: 0.75em;
+      letter-spacing: 0.1em;
+      min-height: 1.4em;
     }
     .term-status.ok {
-      color: #22edfc;
-      text-shadow: 0 0 8px #22edfc;
-      animation: tblink 0.25s steps(1) 4;
+      color: #77e2f2;
+      filter: drop-shadow(0 0 8px #77e2f2);
+      animation: tblink .25s steps(1) 4;
     }
     @keyframes tblink { 0%,100%{opacity:1} 50%{opacity:0} }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <div class="term-box">
-      <div class="term-heading">NEXUS LINK ESTABLISHED</div>
-      <p class="term-desc">
-        Welcome to <b>VERSUS//VAULT</b> — Battle data nexus.<br>
-        Enter NETRUNNER credentials to proceed.
-      </p>
-      <div class="term-row">
-        <span class="term-lbl">Login</span>
-        <input class="term-inp" id="t-login" type="text" readonly>
-      </div>
-      <form id="auth-form">
+  <div class="container on">
+    <div class="screen">
+      <div class="term-box">
+        <div class="term-heading">NEXUS LINK ESTABLISHED</div>
+        <p class="term-desc">
+          Welcome to <b>VERSUS//VAULT</b> — Battle data nexus.<br>
+          Enter NETRUNNER credentials to proceed.
+        </p>
         <div class="term-row">
-          <span class="term-lbl">Password</span>
-          <input class="term-inp" id="t-pass" type="password" maxlength="32"
-            placeholder="________" autocomplete="new-password">
+          <span class="term-lbl">Login</span>
+          <input class="term-inp" id="t-login" type="text" readonly>
         </div>
-        <div class="term-status" id="t-status">&nbsp;</div>
-        <button class="term-submit" type="submit">[ AUTHENTICATE ]</button>
-      </form>
+        <form id="auth-form">
+          <div class="term-row">
+            <span class="term-lbl">Password</span>
+            <input class="term-inp" id="t-pass" type="password"
+              maxlength="32" placeholder="________" autocomplete="new-password">
+          </div>
+          <div class="term-status" id="t-status">&nbsp;</div>
+          <button class="term-submit" type="submit">[ AUTHENTICATE ]</button>
+        </form>
+      </div>
     </div>
   </div>
 
@@ -151,25 +204,29 @@
         passEl.focus({ preventScroll: true });
       }
     };
-    setTimeout(typeLogin, 600);
+    // wait for turn-on animation to settle before typing
+    setTimeout(typeLogin, 2200);
 
-    // ── pointer relay → parent (search/1.html) → App.tsx ─────────
+    // ── pointer relay → parent chain (search/1.html → App.tsx) ───
     const relay = (kind, e, down) =>
       window.parent.postMessage(
-        { type:'vvv-pointer-relay', source:'search', event:kind,
-          x: e.clientX, y: e.clientY, down: !!down, timestamp: performance.now() },
+        { type:'vvv-pointer-relay', source:'terminal', event:kind,
+          x: e.clientX, y: e.clientY, down: !!down,
+          timestamp: performance.now() },
         '*'
       );
-    document.addEventListener('pointermove',  e => relay('move', e),       { passive:true });
-    document.addEventListener('pointerdown',  e => relay('down', e, true), { passive:true });
-    document.addEventListener('pointerup',    e => relay('up',   e, false),{ passive:true });
-    document.addEventListener('pointercancel',e => relay('up',   e, false),{ passive:true });
+    document.addEventListener('pointermove',   e => relay('move', e),        { passive:true });
+    document.addEventListener('pointerdown',   e => relay('down', e, true),  { passive:true });
+    document.addEventListener('pointerup',     e => relay('up',   e, false), { passive:true });
+    document.addEventListener('pointercancel', e => relay('up',   e, false), { passive:true });
+    document.addEventListener('pointerleave',  e => relay('leave',e, false), { passive:true });
 
-    // ── submit ────────────────────────────────────────────────────
+    // ── form submit ───────────────────────────────────────────────
     document.getElementById('auth-form').addEventListener('submit', e => {
       e.preventDefault();
       if (!passEl.value.trim()) {
         statusEl.textContent = 'PASSWORD REQUIRED';
+        statusEl.className = 'term-status';
         passEl.focus();
         return;
       }
