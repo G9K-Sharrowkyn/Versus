@@ -49,6 +49,12 @@
       transform-origin: top left;
     }
 
+    /* transparent div that sits over the iframe, captures pointer for relay */
+    .s1-ptr {
+      position: absolute; inset: 0;
+      z-index: 5; pointer-events: auto;
+    }
+
     .s1-overlay {
       position: absolute; bottom: 2.5rem; left: 50%;
       transform: translateX(-50%);
@@ -397,6 +403,8 @@
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
+  <!-- pointer-capture layer: sits over iframe so window receives pointermove for relay -->
+  <div class="s1-ptr" aria-hidden="true"></div>
   <div class="s1-overlay">
     <button id="s1-btn" class="s1-btn"><span>// LOADING... //</span></button>
   </div>
