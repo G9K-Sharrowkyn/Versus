@@ -41,26 +41,35 @@
 
 .vvv-animated-cursor-layer svg { overflow: visible; display: block; }
 
-/* ── Border: static cyan stroke, zero filter, zero outer aura ── */
-
-/* ── Interior lines: only stroke COLOR animates, no filter anywhere ── */
-.vvv-cursor-inner {
-  animation: vvv-line-pulse 2s ease-in-out infinite;
+/* ── Glitch jitter + scanline texture on cursor shape wrapper ── */
+.vvv-cursor-glitch {
+  animation: vvv-glitch 4s steps(1) infinite;
+  will-change: transform;
+  -webkit-mask-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.1) 0px, rgba(0,0,0,0.08) 1px,
+    black 1px, black 3px
+  );
+  mask-image: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.08) 1px,
+    black 1px, black 3px
+  );
 }
 
 /* ── Click state ── */
-.vvv-animated-cursor-layer.is-down .vvv-cursor-border {
-  stroke: #b0f8ff;
-}
+.vvv-animated-cursor-layer.is-down .vvv-cursor-border,
 .vvv-animated-cursor-layer.is-down .vvv-cursor-inner {
-  animation: none;
   stroke: #c0fbff;
 }
 
-@keyframes vvv-line-pulse {
-  0%, 100% { stroke: #00e5ff; }
-  40%       { stroke: #7df9ff; }
-  70%       { stroke: #1ae8ff; }
+@keyframes vvv-glitch {
+  0%,   89.9% { transform: none;                          opacity: 1;   }
+  90%          { transform: translate(4px,-1px) skewX(6deg); opacity: 0.7; }
+  90.5%        { transform: translate(-3px,2px) skewX(-4deg); opacity: 0.9; }
+  91%          { transform: translate(2px,-2px);            opacity: 0.6; }
+  91.5%        { transform: translate(-1px,1px) skewX(2deg); opacity: 0.85; }
+  92%,  100%   { transform: none;                          opacity: 1;   }
 }
 
 * {

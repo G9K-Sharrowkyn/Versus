@@ -27,7 +27,7 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     // 3 interior lines run from centroid to each corner, clipped inside the cursor body.
     // NO filter/drop-shadow anywhere — zero outer aura. Only stroke color animates.
     const d = 'M5.5 3.21V20.8c0 .45.54.67.85.35l4.86-4.86a.5.5 0 0 1 .35-.15h6.87a.5.5 0 0 0 .35-.85L6.35 2.85a.5.5 0 0 0-.85.35Z'
-    layer.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
+    layer.innerHTML = `<div class="vvv-cursor-glitch"><svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24">
   <defs>
     <clipPath id="vvv-cc"><path d="${d}"/></clipPath>
   </defs>
@@ -38,7 +38,7 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     <line class="vvv-cursor-inner" x1="10.21" y1="13.22" x2="18.78" y2="15.29" stroke="#00e5ff" stroke-width="1.3" stroke-linecap="round"/>
     <line class="vvv-cursor-inner" x1="10.21" y1="13.22" x2="6.35"  y2="21.15" stroke="#00e5ff" stroke-width="1.3" stroke-linecap="round"/>
   </g>
-</svg>`
+</svg></div>`
 
     document.body.appendChild(layer)
 
