@@ -20,58 +20,60 @@
 
 /* ═══════════════════════════════════════════════════════════
    CYBERPUNK BLADE CURSOR
-   Black body · Cyan neon border · Pulsing energy glow
+   Black body · Cyan neon LINES pulse from within (not outer glow)
+   Hotspot at tip: JS uses translate3d(x-3, y-3)
 ═══════════════════════════════════════════════════════════ */
 
-/* Hotspot at blade tip (top-left) — JS positions via translate3d(x-3, y-2) */
 .vvv-animated-cursor-layer {
   position: fixed;
   top: 0;
   left: 0;
-  width: 28px;
-  height: 36px;
+  width: 32px;
+  height: 40px;
   transform: translate3d(-200px, -200px, 0);
   pointer-events: none;
   z-index: 2147483647;
   will-change: transform;
   transition: none;
-  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyOCcgaGVpZ2h0PSczNicgdmlld0JveD0nMCAwIDI4IDM2Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2JnJyB4MT0nMCcgeTE9JzAnIHgyPScwLjQnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjMWExYzJlJy8+PHN0b3Agb2Zmc2V0PScxMDAlJyBzdG9wLWNvbG9yPScjMDUwNTA4Jy8+PC9saW5lYXJHcmFkaWVudD48L2RlZnM+PHBhdGggZD0nTTMsMiBMMjYsMTQgTDE0LDExIEwyMCwzNCBMMTMsMjYgTDgsMzQgWicgZmlsbD0ndXJsKCNiZyknIHN0cm9rZT0nIzAwZTVmZicgc3Ryb2tlLXdpZHRoPScyJyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+PC9zdmc+") no-repeat;
-  background-size: contain;
-  animation: vvv-cursor-neon 2s ease-in-out infinite;
 }
 
 .vvv-animated-cursor-layer.is-hidden { opacity: 0; }
 
-/* ── Click flare ── */
-.vvv-animated-cursor-layer.is-down {
-  animation: none;
-  filter:
-    drop-shadow(0 0 4px #fff)
-    drop-shadow(0 0 10px #00e5ff)
-    drop-shadow(0 0 22px rgba(0, 229, 255, 0.9))
-    drop-shadow(0 0 36px rgba(0, 229, 255, 0.5));
+.vvv-animated-cursor-layer svg { overflow: visible; display: block; }
+
+/* ── The cyan neon lines pulse (stroke animation, not outer glow) ── */
+.vvv-cursor-stroke {
+  animation: vvv-line-pulse 2s ease-in-out infinite;
 }
 
-/* ── Pulsing neon energy ── */
-@keyframes vvv-cursor-neon {
+.vvv-animated-cursor-layer.is-down .vvv-cursor-stroke {
+  animation: none;
+  stroke: #c0fbff;
+  filter:
+    drop-shadow(0 0 2px #fff)
+    drop-shadow(0 0 6px #00e5ff)
+    drop-shadow(0 0 14px rgba(0, 229, 255, 0.9));
+}
+
+@keyframes vvv-line-pulse {
   0%, 100% {
+    stroke: #00e5ff;
     filter:
-      drop-shadow(0 0 2px #00e5ff)
-      drop-shadow(0 0 5px rgba(0, 229, 255, 0.55))
-      drop-shadow(0 0 9px rgba(0, 229, 255, 0.2));
+      drop-shadow(0 0 1.5px #00e5ff)
+      drop-shadow(0 0 4px rgba(0, 229, 255, 0.5));
   }
-  30% {
+  35% {
+    stroke: #5af0ff;
     filter:
       drop-shadow(0 0 3px #00e5ff)
-      drop-shadow(0 0 9px rgba(0, 229, 255, 0.85))
-      drop-shadow(0 0 18px rgba(0, 229, 255, 0.45))
-      drop-shadow(0 0 28px rgba(0, 229, 255, 0.15));
+      drop-shadow(0 0 8px rgba(0, 229, 255, 0.9))
+      drop-shadow(0 0 16px rgba(0, 229, 255, 0.45));
   }
-  60% {
+  65% {
+    stroke: #00e5ff;
     filter:
       drop-shadow(0 0 2px #00e5ff)
-      drop-shadow(0 0 6px rgba(0, 229, 255, 0.65))
-      drop-shadow(0 0 12px rgba(0, 229, 255, 0.25));
+      drop-shadow(0 0 6px rgba(0, 229, 255, 0.65));
   }
 }
 
