@@ -123,6 +123,7 @@
       box-shadow: 0 0 8px rgba(255,85,78,0.5);
     }
     .term-inp::placeholder { color: rgba(255,85,78,0.3); }
+    #t-login { user-select: none; -webkit-user-select: none; pointer-events: none; }
 
     /* ── Submit button — cyan like breach button in stage 1 ── */
     .term-submit {
@@ -178,7 +179,7 @@
           <div class="term-row">
             <span class="term-lbl">Password</span>
             <input class="term-inp" id="t-pass" type="password"
-              maxlength="32" placeholder="________" autocomplete="new-password">
+              maxlength="32" placeholder="________" autocomplete="off" data-form-type="other">
           </div>
           <div class="term-status" id="t-status">&nbsp;</div>
           <button class="term-submit" type="submit">[ AUTHENTICATE ]</button>
