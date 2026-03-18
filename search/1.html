@@ -396,7 +396,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=9"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=10"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -409,22 +409,7 @@
 
 <!-- ── STAGE 2: CYBERPUNK TERMINAL ── -->
 <div id="s2" class="stage off">
-  <div class="term-box">
-    <div class="term-heading">CONNECTION ESTABLISHED</div>
-    <p class="term-desc">
-      Welcome to <b>VERSUS//VAULT</b> — Battle data nexus.<br>
-      Enter NETRUNNER credentials to proceed.
-    </p>
-    <div class="term-row">
-      <span class="term-lbl">Login</span>
-      <input class="term-inp" id="t-login" type="text" readonly />
-    </div>
-    <div class="term-row">
-      <span class="term-lbl">Password</span>
-      <input class="term-inp" id="t-pass" type="password" readonly />
-    </div>
-    <div class="term-status" id="t-status">&nbsp;</div>
-  </div>
+  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=1" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin"></iframe>
 </div>
 
 <!-- ── STAGE 3: HYDRA LOADING ── -->
@@ -603,6 +588,7 @@
     if (e.origin !== window.location.origin) return;
     const p = e.data;
     if (!p || typeof p !== 'object') return;
+    if (p.type === 'vvv-terminal-submit')        { showStage(3); runHydra(); return; }
     if (p.type === 'vvv-search-collapse')        { startCollapse();   return; }
     if (p.type === 'vvv-search-prime-collapsed') { primeCollapsed();   return; }
     if (p.type === 'vvv-search-expand')          { expandFromPrime();  return; }
@@ -638,7 +624,6 @@
   // ── STAGE 1 → button ─────────────────────────────────────────────────────────
   $('s1-btn').addEventListener('click', () => {
     showStage(2);
-    runTerminal();
   });
 
   // ── STAGE 1 → let breach animation play fully, then transition ───────────────
@@ -685,7 +670,7 @@
         btn.addEventListener('click', () => {
           const cover = iDoc.querySelector('.breachCover');
           let done = false;
-          const doTransition = () => { if (done) return; done = true; showStage(2); runTerminal(); };
+          const doTransition = () => { if (done) return; done = true; showStage(2); };
 
           if (cover) {
             const poll = setInterval(() => {
@@ -710,30 +695,6 @@
     } catch (err) { /* cross-origin guard */ }
   });
 
-  // ── STAGE 2: auto-type terminal ───────────────────────────────────────────────
-  const typeInto = async (el, text, speed = 85) => {
-    for (const ch of text) {
-      el.value += ch;
-      await delay(speed + Math.random() * 55);
-    }
-  };
-
-  const runTerminal = async () => {
-    const tl = $('t-login'), tp = $('t-pass'), ts = $('t-status');
-    tl.value = ''; tp.value = ''; ts.textContent = '\u00a0'; ts.className = 'term-status';
-    await delay(500);
-    await typeInto(tl, 'NETRUNNER_V77', 90);
-    await delay(420);
-    await typeInto(tp, 'v2.077.run', 72);
-    await delay(650);
-    ts.textContent = 'AUTHENTICATING...';
-    await delay(950);
-    ts.textContent = 'ACCESS GRANTED';
-    ts.classList.add('ok');
-    await delay(720);
-    showStage(3);
-    runHydra();
-  };
 
   // ── STAGE 3: loading bar ──────────────────────────────────────────────────────
   const runHydra = async () => {
