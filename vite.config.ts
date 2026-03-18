@@ -297,6 +297,16 @@ const resolveIndexedFightImageFile = async (
   }
 }
 
+const listFightImageFiles = async (candidateFolder: string) => {
+  try {
+    return (await fs.readdir(path.join(candidateFolder, 'img')))
+      .filter((file) => ANY_IMAGE_FILE_PATTERN.test(file))
+      .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+  } catch {
+    return []
+  }
+}
+
 const pickPortraitFiles = (
   files: string[],
 ): { portraitAFile: string; portraitBFile: string; fallbackUsed: boolean } => {
@@ -843,6 +853,36 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
 
       res.statusCode = 404
       res.end(asJson({ error: 'Image not found' }))
+      return
+    }
+
+    if (requestUrl.pathname === '/api/fights/images') {
+      const key = String(requestUrl.searchParams.get('key') || '').trim()
+      if (!key) {
+        res.statusCode = 400
+        res.end(asJson({ error: 'Invalid parameters' }))
+        return
+      }
+      const fightsDir = await resolveFightsDir()
+      if (!fightsDir) {
+        res.statusCode = 404
+        res.end(asJson({ error: 'Fights dir not found' }))
+        return
+      }
+      const normalizedKey = key.replace(/\\/g, '/')
+      const candidateFolder = path.resolve(fightsDir, normalizedKey)
+      const relativeFolder = path.relative(fightsDir, candidateFolder)
+      if (relativeFolder.startsWith('..') || path.isAbsolute(relativeFolder)) {
+        res.statusCode = 403
+        res.end(asJson({ error: 'Forbidden' }))
+        return
+      }
+
+      const files = await listFightImageFiles(candidateFolder)
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'application/json; charset=utf-8')
+      res.setHeader('Cache-Control', 'no-store')
+      res.end(asJson({ ok: true, key: normalizedKey, files }))
       return
     }
 

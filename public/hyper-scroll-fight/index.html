@@ -336,9 +336,6 @@
     const FIGHTER_B = (params.get('b') || 'FIGHTER B').toUpperCase();
     const FOLDER    = params.get('folder') || '';
 
-    const IMG_A = FOLDER ? `/api/fights/image?key=${encodeURIComponent(FOLDER)}&file=1.jpg` : '';
-    const IMG_B = FOLDER ? `/api/fights/image?key=${encodeURIComponent(FOLDER)}&file=2.jpg` : '';
-
     // --- CONFIGURATION ---
     const CONFIG = {
       itemCount: 15,
@@ -350,17 +347,8 @@
     };
     CONFIG.loopSize = CONFIG.itemCount * CONFIG.zGap; // used only for stars
 
-    // Item sequence:
-    // i=0  signal-card intro
-    // i=1,2,3  card  IMG_A
-    // i=4  signal-card fighter A
-    // i=5,6,7  card  IMG_B
-    // i=8  signal-card fighter B
-    // i=9,11,13  card  IMG_A
-    // i=10,12,14 card  IMG_B
-    const HEADINGS = new Set([0, 4, 8]);
     const SIGNAL_PANELS = {
-      0: {
+      intro: {
         kicker: 'EVALUATION MATRIX READY',
         main: '[ 0.000024 ] combat vectors drift-ready',
         lines: [
@@ -370,7 +358,7 @@
           'STATUS  :: PRE-FIGHT SCAN    [WINDOW OPEN]'
         ]
       },
-      4: {
+      fighterA: {
         kicker: 'COMBATANT PROFILE INDEXED',
         main: FIGHTER_A,
         className: 'is-fighter-a',
@@ -381,7 +369,7 @@
           `MATCH :: ${FIGHTER_A} // ${FIGHTER_B}`
         ]
       },
-      8: {
+      fighterB: {
         kicker: 'COMBATANT PROFILE INDEXED',
         main: FIGHTER_B,
         lines: [
@@ -392,20 +380,134 @@
         ]
       }
     };
-    const buildFightImageSources = (side, slot) => {
-      if (!FOLDER) return [];
-      const sectionGroup = side === 'left' ? ['6.1', '7.1'] : ['6.2', '7.2'];
-      const variantSlots = [slot, slot + 3, slot + 6];
-      const urls = [];
+    const buildFightImageUrl = (fileName) =>
+      FOLDER && fileName
+        ? `/api/fights/image?key=${encodeURIComponent(FOLDER)}&file=${encodeURIComponent(fileName)}`
+        : '';
 
-      for (const section of sectionGroup) {
-        for (const variantSlot of variantSlots) {
-          urls.push(`/api/fights/image?key=${encodeURIComponent(FOLDER)}&section=${encodeURIComponent(section)}&index=${encodeURIComponent(String(variantSlot))}`);
-        }
+    const fetchFightImageFiles = async () => {
+      if (!FOLDER) return [];
+      try {
+        const response = await fetch(`/api/fights/images?key=${encodeURIComponent(FOLDER)}`, { cache: 'no-store' });
+        if (!response.ok) return [];
+        const payload = await response.json();
+        return Array.isArray(payload.files)
+          ? payload.files.filter((file) => typeof file === 'string' && file.trim())
+          : [];
+      } catch {
+        return [];
+      }
+    };
+
+    const STAGE_BLUEPRINT = [
+      { type: 'panel', panel: SIGNAL_PANELS.intro },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'panel', panel: SIGNAL_PANELS.fighterA },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'panel', panel: SIGNAL_PANELS.fighterB },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+      { type: 'cards' },
+    ];
+    const BURST_STAGE_CENTERS = [
+      { x: -0.42, y: -0.24 },
+      { x: 0.4, y: -0.24 },
+      { x: -0.38, y: 0.18 },
+      { x: 0.38, y: 0.16 },
+      { x: -0.08, y: -0.28 },
+      { x: 0.1, y: 0.24 },
+      { x: -0.46, y: -0.02 },
+      { x: 0.46, y: -0.02 },
+      { x: -0.24, y: 0.28 },
+      { x: 0.24, y: -0.3 },
+      { x: -0.02, y: 0.06 },
+      { x: 0.02, y: -0.08 },
+    ];
+    const BURST_LAYOUTS = {
+      1: [{ x: 0, y: 0, rot: -4 }],
+      2: [
+        { x: -0.42, y: -0.02, rot: -18 },
+        { x: 0.42, y: 0.04, rot: 16 },
+      ],
+      3: [
+        { x: -0.42, y: -0.18, rot: -18 },
+        { x: 0.42, y: -0.08, rot: 16 },
+        { x: 0.02, y: 0.28, rot: -8 },
+      ],
+      4: [
+        { x: -0.42, y: -0.22, rot: -18 },
+        { x: 0.42, y: -0.14, rot: 16 },
+        { x: -0.36, y: 0.24, rot: 12 },
+        { x: 0.38, y: 0.18, rot: -14 },
+      ],
+      5: [
+        { x: -0.46, y: -0.24, rot: -18 },
+        { x: 0.46, y: -0.16, rot: 16 },
+        { x: -0.34, y: 0.22, rot: 12 },
+        { x: 0.36, y: 0.2, rot: -14 },
+        { x: 0.02, y: 0.02, rot: -4 },
+      ],
+    };
+
+    const buildBurstGroups = (imageFiles, burstCount) => {
+      const files = imageFiles.length ? imageFiles : ['1.jpg', '2.jpg'];
+      if (!files.length) return Array.from({ length: burstCount }, () => []);
+
+      if (files.length < burstCount) {
+        return Array.from({ length: burstCount }, (_, index) => [files[index % files.length]]);
       }
 
-      urls.push(side === 'left' ? IMG_A : IMG_B);
-      return urls;
+      const groups = [];
+      let cursor = 0;
+      for (let burstIndex = 0; burstIndex < burstCount; burstIndex += 1) {
+        const remainingBursts = burstCount - burstIndex;
+        const remainingFiles = files.length - cursor;
+        const take = Math.ceil(remainingFiles / remainingBursts);
+        groups.push(files.slice(cursor, cursor + take));
+        cursor += take;
+      }
+      return groups;
+    };
+
+    const buildSequencePlan = (imageFiles) => {
+      const burstCount = STAGE_BLUEPRINT.filter((entry) => entry.type === 'cards').length;
+      const burstGroups = buildBurstGroups(imageFiles, burstCount);
+      let burstIndex = 0;
+
+      return STAGE_BLUEPRINT.map((entry) => {
+        if (entry.type === 'panel') return entry;
+        return {
+          type: 'cards',
+          files: burstGroups[burstIndex] || [],
+          burstIndex: burstIndex++,
+        };
+      });
+    };
+
+    const buildBurstPlacements = (burstIndex, count) => {
+      const center = BURST_STAGE_CENTERS[burstIndex % BURST_STAGE_CENTERS.length];
+      const centerX = center.x * window.innerWidth;
+      const centerY = center.y * window.innerHeight;
+      const layout = BURST_LAYOUTS[Math.min(count, 5)] || BURST_LAYOUTS[5];
+
+      return Array.from({ length: count }, (_, index) => {
+        const preset = layout[index % layout.length];
+        const ring = Math.floor(index / layout.length);
+        const spreadX = window.innerWidth * 0.52 * (1 + ring * 0.48);
+        const spreadY = window.innerHeight * 0.4 * (1 + ring * 0.44);
+        return {
+          x: Math.max(-window.innerWidth * 0.46, Math.min(window.innerWidth * 0.46, centerX + preset.x * spreadX)),
+          y: Math.max(-window.innerHeight * 0.34, Math.min(window.innerHeight * 0.34, centerY + preset.y * spreadY)),
+          rot: preset.rot + ring * (index % 2 === 0 ? -6 : 6),
+        };
+      });
     };
 
     // --- STATE ---
@@ -446,16 +548,19 @@
     };
 
     // --- INIT ---
-    function init() {
-      let leftCardSlot = 1;
-      let rightCardSlot = 1;
+    async function init() {
+      const fightImageFiles = await fetchFightImageFiles();
+      const sequencePlan = buildSequencePlan(fightImageFiles);
+      CONFIG.itemCount = sequencePlan.length;
+      CONFIG.loopSize = CONFIG.itemCount * CONFIG.zGap;
+      DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500;
 
-      for (let i = 0; i < CONFIG.itemCount; i++) {
+      sequencePlan.forEach((entry, i) => {
         const el = document.createElement('div');
         el.className = 'item';
 
-        if (HEADINGS.has(i)) {
-          const panel = SIGNAL_PANELS[i];
+        if (entry.type === 'panel') {
+          const panel = entry.panel;
           const txt = document.createElement('div');
           txt.className = `signal-card${panel.className ? ` ${panel.className}` : ''}`;
           txt.innerHTML = `
@@ -467,43 +572,54 @@
           el.appendChild(txt);
           items.push({ el, type: 'text', x: 0, y: 0, rot: 0, baseZ: -i * CONFIG.zGap });
         } else {
-          const card = document.createElement('div');
-          card.className = 'card';
-          const randId = Math.floor(Math.random() * 9999);
-          const side = (i >= 1 && i <= 3) || i === 9 || i === 11 || i === 13 ? 'left' : 'right';
-          const slot = side === 'left' ? leftCardSlot++ : rightCardSlot++;
-          const imageSources = buildFightImageSources(side, slot);
-          card.innerHTML = `
-            <div class="card-media"></div>
-            <div class="card-header">
-              <span class="card-id">ID-${randId}</span>
-              <div style="width:10px;height:10px;background:var(--accent)"></div>
-            </div>
-            <div class="card-footer">
-              <span>PROJECT ARES</span>
-              <span>${FIGHTER_A} vs ${FIGHTER_B}</span>
-            </div>
-          `;
-          const media = card.querySelector('.card-media');
-          if (media && imageSources.length) {
-            const img = document.createElement('img');
-            img.className = 'card-bg-image';
-            img.alt = '';
-            img.loading = 'eager';
-            media.appendChild(img);
-            attachCardImage(img, imageSources);
-          }
-          el.appendChild(card);
+          const placements = buildBurstPlacements(entry.burstIndex, entry.files.length);
 
-          const angle = (i / CONFIG.itemCount) * Math.PI * 6;
-          const x     = Math.cos(angle) * (window.innerWidth  * 0.3);
-          const y     = Math.sin(angle) * (window.innerHeight * 0.3);
-          const rot   = (Math.random() - 0.5) * 30;
+          entry.files.forEach((fileName, fileIndex) => {
+            const cardEl = document.createElement('div');
+            cardEl.className = 'item';
 
-          items.push({ el, type: 'card', x, y, rot, baseZ: -i * CONFIG.zGap });
+            const card = document.createElement('div');
+            card.className = 'card';
+            const randId = Math.floor(Math.random() * 9999);
+            const imageSources = [buildFightImageUrl(fileName)].filter(Boolean);
+            card.innerHTML = `
+              <div class="card-media"></div>
+              <div class="card-header">
+                <span class="card-id">ID-${randId}</span>
+                <div style="width:10px;height:10px;background:var(--accent)"></div>
+              </div>
+              <div class="card-footer">
+                <span>PROJECT ARES</span>
+                <span>${FIGHTER_A} vs ${FIGHTER_B}</span>
+              </div>
+            `;
+            const media = card.querySelector('.card-media');
+            if (media && imageSources.length) {
+              const img = document.createElement('img');
+              img.className = 'card-bg-image';
+              img.alt = '';
+              img.loading = 'eager';
+              media.appendChild(img);
+              attachCardImage(img, imageSources);
+            }
+            cardEl.appendChild(card);
+
+            const placement = placements[fileIndex] || placements[0] || { x: 0, y: 0, rot: 0 };
+            items.push({
+              el: cardEl,
+              type: 'card',
+              x: placement.x,
+              y: placement.y,
+              rot: placement.rot,
+              baseZ: -i * CONFIG.zGap - fileIndex * 260,
+            });
+            world.appendChild(cardEl);
+          });
+
+          return;
         }
         world.appendChild(el);
-      }
+      });
 
       // Stars (looping)
       for (let i = 0; i < CONFIG.starCount; i++) {
@@ -544,7 +660,6 @@
         );
       });
     }
-    init();
 
     // --- AUTO-SCROLL (no Lenis) ---
     // Start slightly behind so "EVALUATION STARTING" begins in the distance
@@ -554,7 +669,7 @@
     const TEXT_PASS_CAMERA_CUT_Z = 1800;
 
     // Stop after last card (i=14) has passed the camera + 1.5s buffer
-    const DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500; // ≈5980
+    let DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500; // ≈5980
 
     // --- HUD elements ---
     const feedbackVel = document.getElementById('vel-readout');
@@ -606,7 +721,7 @@
         let alpha = 1;
         if (vizZ < -3000) alpha = 0;
         else if (vizZ < -2000) alpha = (vizZ + 3000) / 1000;
-        if (item.type === 'text') {
+        if (item.type === 'text' || item.type === 'card') {
           if (vizZ > TEXT_PASS_CAMERA_CUT_Z) alpha = 0;
         } else if (vizZ > 100 && item.type !== 'star') alpha = 1 - ((vizZ - 100) / 400);
         if (alpha < 0) alpha = 0;
@@ -641,7 +756,9 @@
 
       requestAnimationFrame(raf);
     }
-    requestAnimationFrame(raf);
+    init().then(() => {
+      requestAnimationFrame(raf);
+    });
   })();
   </script>
 </body>
