@@ -361,7 +361,7 @@
       width: 100%; height: 7.9rem;
       background: rgba(13,13,13,0.85);
       border: none; border-bottom: 2px solid #333;
-      outline: none; padding: 2.55rem 1.7rem 0;
+      outline: none; padding: 0 1.7rem;
       color: var(--secondary); font-family: var(--mono);
       font-size: clamp(3rem, 3.5vw, 3.85rem); caret-color: var(--secondary);
       line-height: 1;
@@ -411,8 +411,15 @@
       width:100vw;
       pointer-events:none;
       background: linear-gradient(to bottom,
-        transparent 0%, rgba(255,85,78,.08) 48%, rgba(255,85,78,.2) 50%,
-        rgba(255,85,78,.08) 52%, transparent 100%);
+        transparent 0%,
+        rgba(255,85,78,.015) 28%,
+        rgba(255,85,78,.045) 40%,
+        rgba(255,85,78,.095) 47%,
+        rgba(255,85,78,.18) 50%,
+        rgba(255,85,78,.095) 53%,
+        rgba(255,85,78,.045) 60%,
+        rgba(255,85,78,.015) 72%,
+        transparent 100%);
       opacity:0;
     }
     .s6-data {
@@ -440,7 +447,9 @@
     .s6-input:focus ~ .s6-border  { opacity:1; border-color:rgba(255,85,78,.5); }
     .s6-input:focus ~ .s6-corners .s6-c { width:1.25rem;height:1.25rem;border-width:3px;opacity:1; }
     .s6-input:focus ~ .s6-glow     { opacity:1; }
-    .s6-input:focus ~ .s6-scanline { animation:scan-v 4s linear infinite; }
+    .s6-input:focus ~ .s6-scanline {
+      animation:scan-v 4s linear infinite;
+    }
     .s6-input:focus ~ .s6-data     { opacity:1; }
     .s6-input:focus ~ .s6-data .s6-bar {
       animation: dpulse 2s infinite;
