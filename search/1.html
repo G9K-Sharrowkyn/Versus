@@ -140,7 +140,7 @@
        STAGE 3 — HYDRA
     ═══════════════════════════════════════════ */
     #s3 {
-      background: #0f0000; color: #ff6666;
+      background: linear-gradient(0deg, #000 0%, #280604 100%); color: #ff6666;
       text-shadow: 0 0 4px red; text-align: center;
       font-size: clamp(24px, 4.4vw, 52px);
     }
@@ -330,6 +330,7 @@
       display: flex; flex-direction: column;
       align-items: center; gap: 1.8rem;
       padding: 2rem; font-family: var(--mono);
+      transform: translateY(-20px);
     }
 
     .s6-heading {
@@ -362,7 +363,7 @@
     }
     .s6-input:focus + .s6-label,
     .s6-input:not(:placeholder-shown) + .s6-label {
-      top: -2.2rem; left: 0; font-size: 1.2rem;
+      top: -1.45rem; left: 0; font-size: 1.2rem;
       opacity: 1; color: var(--primary);
     }
     .s6-input:focus + .s6-label::before,
@@ -460,7 +461,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=17"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=19"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -473,7 +474,7 @@
 
 <!-- ── STAGE 2: CYBERPUNK TERMINAL ── -->
 <div id="s2" class="stage off">
-  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=6" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=7" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
 </div>
 
 <!-- ── STAGE 3: HYDRA LOADING ── -->
@@ -495,9 +496,9 @@
 <!-- ── STAGE 4: GLITCH BURST ── -->
 <div id="s4" class="stage off">
   <div class="s4-lines">
-    <div class="s4-glitch" data-text="Authenticated:G9K_Rubikon">Authenticated:G9K_Rubikon</div>
-    <div class="s4-glitch" data-text="Artemis_Argo:Launched">Artemis_Argo:Launched</div>
-    <div class="s4-glitch" data-text="Project_Ares:Starting_now...">Project_Ares:Starting_now...</div>
+    <div class="s4-glitch" data-text="G9K_Rubikon:Session_Authenticated">G9K_Rubikon:Session_Authenticated</div>
+    <div class="s4-glitch" data-text="Artemis_Argo:Kernel_Linked">Artemis_Argo:Kernel_Linked</div>
+    <div class="s4-glitch" data-text="Project_Ares:Boot_Sequence_Armed">Project_Ares:Boot_Sequence_Armed</div>
   </div>
 </div>
 
@@ -854,6 +855,11 @@
     s2IFrame.addEventListener('load', () => {
       try {
         const iDoc = s2IFrame.contentWindow.document;
+        const termDesc = iDoc.querySelector('.term-desc');
+        if (termDesc) {
+          termDesc.innerHTML = 'Welcome to <b>VERSUSVERSEVAULT</b> - Battle data nexus.<br>'
+            + 'Enter NETRUNNER credentials to proceed.';
+        }
         iDoc.addEventListener('pointermove',   e => postRelay('move', e.clientX, e.clientY),        { passive: true });
         iDoc.addEventListener('pointerdown',   e => postRelay('down', e.clientX, e.clientY, true),  { passive: true });
         iDoc.addEventListener('pointerup',     e => postRelay('up',   e.clientX, e.clientY, false), { passive: true });

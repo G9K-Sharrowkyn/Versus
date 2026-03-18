@@ -71,22 +71,22 @@
         "[  0.000012] moonwire bus carrying soft static",
         "[  0.000013] phase well depth stable",
         "[  0.000014] quartz envoy accepting route ribbon",
-        "[  0.000015] cobalt veil tension nominal",
+        "[  0.000015] archive ghost :: ARTEMIS_ARGO woven",
         "[  0.000016] signal marrow glowing clean",
         "[  0.000017] eclipse loom pattern chamber open",
         "[  0.000018] helios shard refraction responsive",
         "[  0.000019] silent nodes answering in chorus",
-        "[  0.000020] drift compass fixed on northless path",
+        "[  0.000020] halo sigil :: VERSUSVERSEVAULT awake",
         "[  0.000021] glass harbor docking lights refracted",
         "[  0.000022] comet spool winding carrier line",
-        "[  0.000023] static orchard purged of stray echoes",
+        "[  0.000023] mantle lock :: PROJECT_ARES engaged",
         "[  0.000024] all systems drift-ready"
       ];
 
       var secondaryBlocks = [
         [
           "SRC      :: ORBITAL-ECHO-13    [AETHER DOCK]",
-          "DEST     :: GLASS-HARBOR-07     [POLARIS SPAN]",
+          "DEST     :: VERSUSVERSEVAULT   [PUBLIC GATE]",
           "PORT     :: 77//LUMA            [PRISM TIDE]",
           "OPERATOR :: ORBITAL_WRAITH      [TIER VEIL]",
           "NODE     :: NEON-SHADOW-3       [AWAKE]",
@@ -96,7 +96,7 @@
         ],
         [
           "SRC      :: VEIL-CARRIER-02     [NOON MIRROR]",
-          "DEST     :: SILICA-CHOIR-88     [MOON GATE]",
+          "DEST     :: PROJECT_ARES        [RUNTIME SLOT]",
           "PORT     :: 11//BLOOM           [DUSK CURRENT]",
           "OPERATOR :: ASTRA_VANTAGE       [TIER ECHO]",
           "NODE     :: SUNLESS-THREAD      [LISTENING]",
@@ -106,7 +106,7 @@
         ],
         [
           "SRC      :: CROWN-STATIC-41     [GHOST WHARF]",
-          "DEST     :: VELVET-RELAY-09     [STAR FORGE]",
+          "DEST     :: ARTEMIS_ARGO        [REPO INDEX]",
           "PORT     :: 05//DRIFT           [NOVA LANE]",
           "OPERATOR :: LUCID_SIGNALER      [TIER ARC]",
           "NODE     :: IRON-HALO-5         [WARM]",
@@ -116,7 +116,7 @@
         ],
         [
           "SRC      :: MIRAGE-CIRCUIT-6    [GLASS ORBIT]",
-          "DEST     :: OPAL-GARDEN-22      [FROST FIELD]",
+          "DEST     :: G9K_RUBIKON         [USER SESSION]",
           "PORT     :: 19//WAVE            [EMBER LINK]",
           "OPERATOR :: PHASE_CARTOGRAPH    [TIER NINE]",
           "NODE     :: SOLAR-EMBER-1       [OPEN]",
@@ -148,9 +148,12 @@
 
       var finalReadyBlock = [
         "CHANNEL  :: PROXY-LINK-07      [RELAY BUS]",
-        "TARGET   :: NODE-VAULT-09      [BACKPLANE CORE]",
+        "VAULT    :: G9K_RUBIKON        [SHADOW MIRROR]",
         "PORT     :: 44//MUX            [CACHE TUNNEL]",
         "OPERATOR :: ORBITAL_WRAITH     [ROOT VECTOR]",
+        "ARCHIVE  :: ARTEMIS_ARGO       [INDEX GHOST]",
+        "MANTLE   :: PROJECT_ARES       [PRIMARY SHARD]",
+        "HALO     :: VERSUSVERSEVAULT   [EDGE GATE]",
         "KERNEL   :: HYPERVISOR ACTIVE  [THREAD SAFE]",
         "ROUTE    :: NULL GATE STABLE   [0 TRACE LOSS]",
         "STATUS   :: PACKET FABRIC      [EXEC READY]",
@@ -297,14 +300,27 @@
         "[0x00A] CHARGE      THREAD-POOL               READY",
         "[0x00B] IGNITE      HYPERVISOR                READY",
         "[0x00C] REFRACT     TRACE-SHIELD              READY",
-        "[0x00D] MARK        SESSION-TOKEN             READY",
-        "[0x00E] BROADCAST   RELAY-SIGNAL              READY",
-        "[0x00F] STATUS      EXEC-WINDOW               READY",
+        "[0x00D] MARK        G9K_RUBIKON_SESSION       READY",
+        "[0x00E] MOUNT       ARTEMIS_ARGO_INDEX        READY",
+        "[0x00F] SELECT      PROJECT_ARES_RUNTIME      READY",
+        "[0x010] BROADCAST   VERSUSVERSEVAULT_LINK     READY",
+        "[0x011] STATUS      EXEC-WINDOW               READY",
         "------------------------------------------------",
         "VISUAL STATE : STABLE [NO PACKET LOSS]",
         "OPERATOR     : ORBITAL_WRAITH [ROOT VECTOR]",
         "------------------------------------------------"
       ].join("\n");
+
+      var postSpecialLines = [
+        "archive_ghost.sig :: braiding ARTEMIS_ARGO index ghost :: synced [0xB241]",
+        "mantle_lock.sig :: seating PROJECT_ARES core mantle :: active [0xB5A2]",
+        "halo_gate.sig :: resolving VERSUSVERSEVAULT edge halo :: online [0xB8C3]",
+        "shadow_mirror.sig :: pinning G9K_RUBIKON mirror trace :: cached [0xBC14]",
+        "archive_ghost.sig :: ARTEMIS_ARGO checksum veil :: clean [0xBF65]",
+        "mantle_lock.sig :: PROJECT_ARES kernel braid :: mapped [0xC2D6]",
+        "halo_gate.sig :: VERSUSVERSEVAULT packet halo :: stable [0xC607]",
+        "shadow_mirror.sig :: G9K_RUBIKON token lattice :: indexed [0xC958]"
+      ];
 
       var postStart = null;
 
@@ -353,12 +369,15 @@
 
       function buildPostLine(step) {
         if (step === 0) return "kernel render v13.4 :: NULLROUTE_WINDOW";
-        if (step === 1) return "target :: NODE-VAULT-09";
+        if (step === 1) return "vault :: G9K_RUBIKON";
         if (step === 2) return "operator :: ORBITAL_WRAITH";
         if (step === 3) return "----------------------------------------";
         if (step === 4) return "";
 
         var phase = step - 5;
+        if (phase > 0 && phase % 9 === 0) {
+          return postSpecialLines[Math.floor(phase / 9) % postSpecialLines.length];
+        }
         var module = pick(postModules, phase, 3);
         var object = pick(postObjects, phase, 7);
         var verb = pick(postVerbs, phase, 5);
