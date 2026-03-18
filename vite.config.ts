@@ -307,6 +307,69 @@ const listFightImageFiles = async (candidateFolder: string) => {
   }
 }
 
+const inferFightSidesFromFolder = (candidateFolder: string) => {
+  const folderName = path.basename(candidateFolder).replace(/^\d+\s+/, '').trim()
+  const parts = folderName.split(/\s+vs\.?\s+/i)
+  if (parts.length < 2) {
+    return { fighterATokens: [] as string[], fighterBTokens: [] as string[] }
+  }
+
+  const tokenize = (value: string) =>
+    value
+      .toLowerCase()
+      .split(/[^a-z0-9]+/i)
+      .map((token) => token.trim())
+      .filter((token) => token.length >= 3)
+
+  return {
+    fighterATokens: tokenize(parts[0]),
+    fighterBTokens: tokenize(parts[1]),
+  }
+}
+
+const inferFightImageSide = (fileName: string, candidateFolder?: string) => {
+  const normalized = fileName.toLowerCase()
+  if (IMAGE_FILE_PATTERN.test(normalized)) {
+    const sideToken = normalized.match(IMAGE_FILE_PATTERN)?.[1]
+    if (sideToken === '1') return 'a'
+    if (sideToken === '2') return 'b'
+  }
+  if (/_6_1_|_7_1_/.test(normalized)) return 'a'
+  if (/_6_2_|_7_2_/.test(normalized)) return 'b'
+
+  if (candidateFolder) {
+    const { fighterATokens, fighterBTokens } = inferFightSidesFromFolder(candidateFolder)
+    const hasA = fighterATokens.some((token) => normalized.includes(token))
+    const hasB = fighterBTokens.some((token) => normalized.includes(token))
+    if (hasA && !hasB) return 'a'
+    if (hasB && !hasA) return 'b'
+  }
+
+  return null
+}
+
+const listFightImagesDetailed = async (candidateFolder: string) => {
+  const files = await listFightImageFiles(candidateFolder)
+  const indexedSideByFile = new Map<string, 'a' | 'b'>()
+
+  try {
+    const indexPayload = await fs.readFile(path.join(candidateFolder, 'img', 'index.md'), 'utf8')
+    parseFightImageIndex(indexPayload).forEach((entry) => {
+      const fileName = entry.fileName?.trim()
+      if (!fileName) return
+      if (entry.section === '6.1' || entry.section === '7.1') indexedSideByFile.set(fileName, 'a')
+      if (entry.section === '6.2' || entry.section === '7.2') indexedSideByFile.set(fileName, 'b')
+    })
+  } catch {
+    // Fallback to filename inference below.
+  }
+
+  return files.map((fileName) => ({
+    fileName,
+    side: indexedSideByFile.get(fileName) || inferFightImageSide(fileName, candidateFolder),
+  }))
+}
+
 const pickPortraitFiles = (
   files: string[],
 ): { portraitAFile: string; portraitBFile: string; fallbackUsed: boolean } => {
@@ -878,7 +941,7 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         return
       }
 
-      const files = await listFightImageFiles(candidateFolder)
+      const files = await listFightImagesDetailed(candidateFolder)
       res.statusCode = 200
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.setHeader('Cache-Control', 'no-store')

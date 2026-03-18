@@ -92,9 +92,14 @@
 
     /* --- CARDS --- */
     .card {
+      --card-accent: rgba(255, 85, 78, 0.72);
+      --card-accent-strong: rgba(255, 85, 78, 0.96);
+      --card-accent-soft: rgba(255, 85, 78, 0.24);
+      --card-accent-faint: rgba(255, 85, 78, 0.12);
+      --card-accent-glow: rgba(255, 85, 78, 0.08);
       width: 320px; height: 460px;
       background: var(--card-bg);
-      border: 1px solid var(--border);
+      border: 1px solid var(--card-accent-soft);
       position: relative;
       padding: 2rem;
       display: flex; flex-direction: column; justify-content: space-between;
@@ -109,8 +114,72 @@
       width: 10px; height: 10px;
       border: 1px solid transparent; transition: 0.3s;
     }
-    .card::before { top: -1px; left: -1px; border-top-color: var(--text); border-left-color: var(--text); }
-    .card::after  { bottom: -1px; right: -1px; border-bottom-color: var(--text); border-right-color: var(--text); }
+    .card::before { top: -1px; left: -1px; border-top-color: var(--card-accent-strong); border-left-color: var(--card-accent-strong); }
+    .card::after  { bottom: -1px; right: -1px; border-bottom-color: var(--card-accent-strong); border-right-color: var(--card-accent-strong); }
+    .card--a {
+      --card-accent: rgba(119, 226, 242, 0.72);
+      --card-accent-strong: rgba(119, 226, 242, 0.96);
+      --card-accent-soft: rgba(119, 226, 242, 0.24);
+      --card-accent-faint: rgba(119, 226, 242, 0.12);
+      --card-accent-glow: rgba(119, 226, 242, 0.08);
+    }
+    .card--b {
+      --card-accent: rgba(255, 85, 78, 0.72);
+      --card-accent-strong: rgba(255, 85, 78, 0.96);
+      --card-accent-soft: rgba(255, 85, 78, 0.24);
+      --card-accent-faint: rgba(255, 85, 78, 0.12);
+      --card-accent-glow: rgba(255, 85, 78, 0.08);
+    }
+    .card.card-spawning {
+      animation: cardSpawnGlitch 420ms steps(6, end) both;
+    }
+    .card.card-pre-spawn {
+      opacity: 0;
+    }
+    .card.card-spawning .card-media::after {
+      animation: cardSpawnScan 420ms linear both;
+    }
+    .card.card-spawning .card-dot {
+      animation: cardSpawnDot 420ms linear both;
+    }
+    @keyframes cardSpawnGlitch {
+      0% {
+        opacity: 0;
+        filter: brightness(1.9) contrast(1.35);
+        clip-path: inset(44% 0 43% 0);
+      }
+      18% {
+        opacity: 0.42;
+        transform: translate(-50%, -50%) translate3d(-10px, 8px, 0);
+        clip-path: inset(8% 0 58% 0);
+      }
+      36% {
+        opacity: 0.64;
+        transform: translate(-50%, -50%) translate3d(12px, -6px, 0);
+        clip-path: inset(62% 0 8% 0);
+      }
+      58% {
+        opacity: 0.88;
+        transform: translate(-50%, -50%) translate3d(-4px, 2px, 0);
+        clip-path: inset(18% 0 22% 0);
+      }
+      100% {
+        opacity: 1;
+        filter: none;
+        transform: translate(-50%, -50%);
+        clip-path: inset(0 0 0 0);
+      }
+    }
+    @keyframes cardSpawnScan {
+      0%   { opacity: 0.95; filter: brightness(1.8); }
+      45%  { opacity: 0.66; filter: brightness(1.25); }
+      100% { opacity: 1; filter: none; }
+    }
+    @keyframes cardSpawnDot {
+      0%   { opacity: 0; transform: scale(1.8); }
+      35%  { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 1; transform: scale(1); }
+    }
 
     /* --- CARD BACKGROUND IMAGE --- */
     .card-media {
@@ -120,12 +189,12 @@
       top: 4.8rem;
       bottom: 3.4rem;
       overflow: hidden;
-      border: 1px solid rgba(255, 85, 78, 0.24);
+      border: 1px solid var(--card-accent-soft);
       background: rgba(0, 0, 0, 0.24);
       box-shadow:
-        inset 0 0 0 1px rgba(255, 85, 78, 0.24),
-        0 0 0 1px rgba(255, 85, 78, 0.12),
-        0 0 18px rgba(255, 85, 78, 0.08);
+        inset 0 0 0 1px var(--card-accent-soft),
+        0 0 0 1px var(--card-accent-faint),
+        0 0 18px var(--card-accent-glow);
       z-index: 0;
     }
     .card-media::after {
@@ -146,10 +215,10 @@
       content: '';
       position: absolute;
       inset: 0.55rem;
-      border: 1px solid rgba(255, 85, 78, 0.42);
+      border: 1px solid color-mix(in srgb, var(--card-accent-strong) 62%, transparent);
       box-shadow:
         inset 0 0 0 1px rgba(255, 255, 255, 0.05),
-        0 0 0 1px rgba(255, 85, 78, 0.18);
+        0 0 0 1px var(--card-accent-faint);
       pointer-events: none;
       z-index: 1;
     }
@@ -169,11 +238,17 @@
     .card-header, .card-footer { position: relative; z-index: 1; }
 
     .card-header {
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--card-accent-faint);
       padding-bottom: 1rem; margin-bottom: 1rem;
       display: flex; justify-content: space-between; align-items: center;
     }
-    .card-id { font-family: var(--font-code); color: var(--accent); font-size: 0.8rem; }
+    .card-id { font-family: var(--font-code); color: var(--card-accent-strong); font-size: 0.8rem; }
+    .card-dot {
+      width: 10px;
+      height: 10px;
+      background: var(--card-accent-strong);
+      box-shadow: 0 0 10px var(--card-accent-glow);
+    }
     .card-footer {
       margin-top: auto; font-family: var(--font-code);
       font-size: 0.7rem; color: rgba(255,255,255,0.4);
@@ -391,9 +466,20 @@
         const response = await fetch(`/api/fights/images?key=${encodeURIComponent(FOLDER)}`, { cache: 'no-store' });
         if (!response.ok) return [];
         const payload = await response.json();
-        return Array.isArray(payload.files)
-          ? payload.files.filter((file) => typeof file === 'string' && file.trim())
-          : [];
+        if (!Array.isArray(payload.files)) return [];
+        return payload.files
+          .map((entry, index) => {
+            if (typeof entry === 'string') {
+              const trimmed = entry.trim();
+              return trimmed ? { fileName: trimmed, side: index % 2 === 0 ? 'a' : 'b' } : null;
+            }
+            if (!entry || typeof entry !== 'object') return null;
+            const fileName = String(entry.fileName || '').trim();
+            if (!fileName) return null;
+            const side = entry.side === 'a' || entry.side === 'b' ? entry.side : (index % 2 === 0 ? 'a' : 'b');
+            return { fileName, side };
+          })
+          .filter(Boolean);
       } catch {
         return [];
       }
@@ -457,7 +543,10 @@
     };
 
     const buildBurstGroups = (imageFiles, burstCount) => {
-      const files = imageFiles.length ? imageFiles : ['1.jpg', '2.jpg'];
+      const files = imageFiles.length ? imageFiles : [
+        { fileName: '1.jpg', side: 'a' },
+        { fileName: '2.jpg', side: 'b' },
+      ];
       if (!files.length) return Array.from({ length: burstCount }, () => []);
 
       if (burstCount <= 1) return [files.slice()];
@@ -591,19 +680,23 @@
         } else {
           const placements = buildBurstPlacements(entry.burstIndex, entry.files.length, entry.finalCenter);
 
-          entry.files.forEach((fileName, fileIndex) => {
+          entry.files.forEach((fileEntry, fileIndex) => {
             const cardEl = document.createElement('div');
             cardEl.className = 'item';
 
             const card = document.createElement('div');
-            card.className = 'card';
+            const imageFileName = typeof fileEntry === 'string' ? fileEntry : fileEntry?.fileName;
+            const cardSide = fileEntry?.side === 'a' || fileEntry?.side === 'b'
+              ? fileEntry.side
+              : ((entry.burstIndex + fileIndex) % 2 === 0 ? 'a' : 'b');
+            card.className = `card card--${cardSide} card-pre-spawn`;
             const cardId = String((entry.burstIndex + 1) * 100 + fileIndex + 1).padStart(4, '0');
-            const imageSources = [buildFightImageUrl(fileName)].filter(Boolean);
+            const imageSources = [buildFightImageUrl(imageFileName)].filter(Boolean);
             card.innerHTML = `
               <div class="card-media"></div>
               <div class="card-header">
                 <span class="card-id">ID-${cardId}</span>
-                <div style="width:10px;height:10px;background:var(--accent)"></div>
+                <div class="card-dot"></div>
               </div>
               <div class="card-footer">
                 <span>PROJECT ARES</span>
@@ -625,7 +718,10 @@
             items.push({
               el: cardEl,
               type: 'card',
+              cardNode: card,
               finalCenter: Boolean(entry.finalCenter),
+              spawned: false,
+              spawnTimer: 0,
               x: placement.x,
               y: placement.y,
               rot: placement.rot,
@@ -766,11 +862,25 @@
             trans += ` scale3d(1, 1, ${stretch})`;
           } else if (item.type === 'text') {
             trans += ` rotateZ(${item.rot}deg)`;
-          } else {
-            const t = time * 0.001;
-            const float = Math.sin(t + item.x) * 10;
-            trans += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
+        } else {
+          const t = time * 0.001;
+          const float = Math.sin(t + item.x) * 10;
+          if (!item.spawned && vizZ > -2200) {
+            item.spawned = true;
+            if (item.cardNode) {
+              item.cardNode.classList.remove('card-spawning');
+              item.cardNode.classList.remove('card-pre-spawn');
+              void item.cardNode.offsetWidth;
+              item.cardNode.classList.add('card-spawning');
+              if (item.spawnTimer) clearTimeout(item.spawnTimer);
+              item.spawnTimer = window.setTimeout(() => {
+                item.cardNode?.classList.remove('card-spawning');
+                item.spawnTimer = 0;
+              }, 420);
+            }
           }
+          trans += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
+        }
 
           item.el.style.transform = trans;
         }
