@@ -131,44 +131,23 @@
       --card-accent-glow: rgba(255, 85, 78, 0.08);
     }
     .card.card-spawning {
-      animation: cardSpawnGlitch 420ms steps(6, end) both;
+      animation: cardSpawnGlitch 240ms steps(4, end) both;
     }
     .card.card-pre-spawn {
       opacity: 0;
     }
     .card.card-spawning .card-media::after {
-      animation: cardSpawnScan 420ms linear both;
+      animation: cardSpawnScan 260ms linear both;
     }
     .card.card-spawning .card-dot {
-      animation: cardSpawnDot 420ms linear both;
+      animation: cardSpawnDot 260ms linear both;
     }
     @keyframes cardSpawnGlitch {
-      0% {
-        opacity: 0;
-        filter: brightness(1.9) contrast(1.35);
-        clip-path: inset(44% 0 43% 0);
-      }
-      18% {
-        opacity: 0.42;
-        transform: translate(-50%, -50%) translate3d(-10px, 8px, 0);
-        clip-path: inset(8% 0 58% 0);
-      }
-      36% {
-        opacity: 0.64;
-        transform: translate(-50%, -50%) translate3d(12px, -6px, 0);
-        clip-path: inset(62% 0 8% 0);
-      }
-      58% {
-        opacity: 0.88;
-        transform: translate(-50%, -50%) translate3d(-4px, 2px, 0);
-        clip-path: inset(18% 0 22% 0);
-      }
-      100% {
-        opacity: 1;
-        filter: none;
-        transform: translate(-50%, -50%);
-        clip-path: inset(0 0 0 0);
-      }
+      0%   { opacity: 0; filter: brightness(2) contrast(1.45); clip-path: inset(46% 0 42% 0); }
+      24%  { opacity: 0.36; filter: brightness(1.85) contrast(1.35); clip-path: inset(12% 0 60% 0); }
+      52%  { opacity: 0.72; filter: brightness(1.45) contrast(1.18); clip-path: inset(58% 0 10% 0); }
+      78%  { opacity: 0.94; filter: brightness(1.14) contrast(1.08); clip-path: inset(16% 0 20% 0); }
+      100% { opacity: 1; filter: none; clip-path: inset(0 0 0 0); }
     }
     @keyframes cardSpawnScan {
       0%   { opacity: 0.95; filter: brightness(1.8); }
@@ -551,8 +530,9 @@
 
       if (burstCount <= 1) return [files.slice()];
 
-      const finalImage = files[files.length - 1];
-      const leadFiles = files.slice(0, -1);
+      const finalImage = files.find((entry) => /^final\.(jpe?g|png|webp|avif)$/i.test(String(entry?.fileName || '').trim()))
+        || files[files.length - 1];
+      const leadFiles = files.filter((entry) => entry !== finalImage);
       const distributedBursts = burstCount - 1;
       const groups = [];
 
@@ -876,7 +856,7 @@
               item.spawnTimer = window.setTimeout(() => {
                 item.cardNode?.classList.remove('card-spawning');
                 item.spawnTimer = 0;
-              }, 420);
+              }, 260);
             }
           }
           trans += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
