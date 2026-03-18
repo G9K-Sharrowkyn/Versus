@@ -195,7 +195,7 @@
     const statusEl = document.getElementById('t-status');
 
     // ── auto-type login ───────────────────────────────────────────
-    const LOGIN_TEXT = 'GHOST_7';
+    const LOGIN_TEXT = 'G9K_Rubikon';
     let i = 0;
     const typeLogin = () => {
       if (i < LOGIN_TEXT.length) {
@@ -235,7 +235,7 @@
       statusEl.textContent = 'AUTHENTICATING...';
       statusEl.className = 'term-status';
       setTimeout(() => {
-        statusEl.textContent = 'CLEARANCE VERIFIED — GHOST_7';
+        statusEl.textContent = 'CLEARANCE VERIFIED — G9K_Rubikon';
         statusEl.className = 'term-status ok';
         setTimeout(() => {
           window.parent.postMessage({ type: 'vvv-terminal-submit' }, '*');
