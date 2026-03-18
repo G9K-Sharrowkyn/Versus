@@ -18,18 +18,32 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     layer.className = 'vvv-animated-cursor-layer'
     layer.setAttribute('aria-hidden', 'true')
 
-    const glow = document.createElement('span')
-    glow.className = 'vvv-animated-cursor-glow'
-    const core = document.createElement('span')
-    core.className = 'vvv-animated-cursor-core'
-    layer.append(glow, core)
+    const ring = document.createElement('span')
+    ring.className = 'vvv-cursor-ring'
+    const innerRing = document.createElement('span')
+    innerRing.className = 'vvv-cursor-inner-ring'
+    const crossH = document.createElement('span')
+    crossH.className = 'vvv-cursor-cross-h'
+    const crossV = document.createElement('span')
+    crossV.className = 'vvv-cursor-cross-v'
+    const tl = document.createElement('span')
+    tl.className = 'vvv-cursor-tl'
+    const tr = document.createElement('span')
+    tr.className = 'vvv-cursor-tr'
+    const bl = document.createElement('span')
+    bl.className = 'vvv-cursor-bl'
+    const br = document.createElement('span')
+    br.className = 'vvv-cursor-br'
+    const dot = document.createElement('span')
+    dot.className = 'vvv-cursor-dot'
+    layer.append(ring, innerRing, crossH, crossV, tl, tr, bl, br, dot)
     document.body.appendChild(layer)
 
     let targetX = window.innerWidth * 0.5
     let targetY = window.innerHeight * 0.5
     let activeRelaySource: PointerRelaySource | null = null
     let relayPriorityUntil = 0
-    layer.style.transform = `translate3d(${targetX - 2}px, ${targetY - 2}px, 0)`
+    layer.style.transform = `translate3d(${targetX - 16}px, ${targetY - 16}px, 0)`
     layer.classList.add('is-visible')
 
     const resolveRelayFrame = (source: PointerRelaySource): HTMLIFrameElement | null => {
@@ -48,7 +62,7 @@ export function useAnimatedCursor({ searchFrameRef, introFrameRef }: UseAnimated
     }
 
     const syncPosition = (x: number, y: number) => {
-      layer.style.transform = `translate3d(${x - 2}px, ${y - 2}px, 0)`
+      layer.style.transform = `translate3d(${x - 16}px, ${y - 16}px, 0)`
     }
 
     const applyTarget = (x: number, y: number, source?: PointerRelaySource) => {
