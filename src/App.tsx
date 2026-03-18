@@ -987,7 +987,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?v=8&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=11&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}

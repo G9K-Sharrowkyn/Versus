@@ -356,19 +356,48 @@
     .s6-container {
       position: relative; width: min(1020px, 92vw);
     }
+    .s6-container::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(13,13,13,0.85);
+      z-index: 1;
+      pointer-events: none;
+    }
 
     .s6-input {
       width: 100%; height: 7.9rem;
-      background: rgba(13,13,13,0.85);
+      background: transparent;
       border: none; border-bottom: 2px solid #333;
       outline: none; padding: 0 1.7rem;
-      color: var(--secondary); font-family: var(--mono);
+      color: transparent; -webkit-text-fill-color: transparent;
+      font-family: var(--mono);
       font-size: clamp(3rem, 3.5vw, 3.85rem); caret-color: var(--secondary);
       line-height: 1;
-      text-shadow: 0 0 12px rgba(119, 226, 242, 0.16);
+      text-shadow: none;
       transition: border-color 0.3s ease;
-      position: relative; z-index: 10;
+      position: relative; z-index: 12;
     }
+    .s6-display {
+      position: absolute;
+      inset: 0 1.7rem;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      white-space: pre;
+      pointer-events: none;
+      z-index: 10;
+      font-family: var(--mono);
+      font-size: clamp(3rem, 3.5vw, 3.85rem);
+      line-height: 1;
+      text-shadow: 0 0 12px rgba(255, 85, 78, 0.06);
+    }
+    .s6-display .s6-name-a { color: var(--secondary); }
+    .s6-display .s6-vs {
+      color: rgba(229,229,229,0.56);
+      text-shadow: none;
+    }
+    .s6-display .s6-name-b { color: rgba(255,85,78,0.96); }
 
     .s6-label {
       position: absolute; top: 1.95rem; left: 1.7rem;
@@ -381,8 +410,8 @@
       background: rgba(24, 8, 8, 0.88);
       border: 1px solid transparent;
     }
-    .s6-input:focus + .s6-label,
-    .s6-input:not(:placeholder-shown) + .s6-label {
+    .s6-input:focus ~ .s6-label,
+    .s6-input:not(:placeholder-shown) ~ .s6-label {
       top: var(--s6-label-active-top); left: 0; font-size: clamp(2.35rem, 2.7vw, 3rem);
       opacity: 1;
       color: #070707;
@@ -536,6 +565,7 @@
         autocorrect="off" spellcheck="false"
         inputmode="search"
       />
+      <div id="s6-display" class="s6-display" aria-hidden="true"></div>
       <label class="s6-label" for="s6-input" data-text="FIGHT_EVALUATION">FIGHT_EVALUATION</label>
       <div class="s6-border"></div>
       <div class="s6-scanline"></div>
@@ -681,6 +711,7 @@
   // ── postMessage protocol ─────────────────────────────────────────────────────
   const searchEl  = $('s6');
   const inputEl   = $('s6-input');
+  const displayEl = $('s6-display');
   const SEARCH_STAGE_DEV_STORAGE_KEY = 'vvv-search-stage-dev-layout';
   let collapseStarted = false, collapseNotified = false;
   let collapseTimers = [];
@@ -736,6 +767,36 @@
   const post = msg => {
     if (window.parent && window.parent !== window)
       window.parent.postMessage(msg, window.location.origin);
+  };
+
+  const escapeHtml = value =>
+    String(value)
+      .replaceAll('&', '&amp;')
+      .replaceAll('<', '&lt;')
+      .replaceAll('>', '&gt;')
+      .replaceAll('"', '&quot;')
+      .replaceAll("'", '&#39;');
+
+  const updateSearchDisplay = value => {
+    if (!displayEl) return;
+    const raw = String(value || '');
+    if (!raw) {
+      displayEl.innerHTML = '';
+      return;
+    }
+
+    const match = raw.match(/^(.*?)(\s+)(v(?:s(?:\.?)?)?|versus|kontra)(\s*)(.*)$/i);
+    if (!match) {
+      displayEl.innerHTML = `<span class="s6-name-a">${escapeHtml(raw)}</span>`;
+      return;
+    }
+
+    const [, fighterA = '', gap = '', separatorToken = '', separatorTail = '', fighterB = ''] = match;
+    const separator = `${gap}${separatorToken}${separatorTail}`;
+    displayEl.innerHTML =
+      `<span class="s6-name-a">${escapeHtml(fighterA)}</span>` +
+      `<span class="s6-vs">${escapeHtml(separator)}</span>` +
+      `<span class="s6-name-b">${escapeHtml(fighterB)}</span>`;
   };
 
   const postRelay = (kind, x, y, down) =>
@@ -897,6 +958,9 @@
     const q = String(inputEl.value || '').trim();
     if (q) submitSearch(q);
   });
+  inputEl?.addEventListener('input', () => {
+    updateSearchDisplay(inputEl.value || '');
+  });
 
   inputEl?.addEventListener('select', () => {
     requestAnimationFrame(collapseInputSelection);
@@ -918,6 +982,7 @@
       inputEl.name = `vvv-search-${Math.random().toString(36).slice(2)}`;
       inputEl.autocomplete = 'off';
       inputEl.value = '';
+      updateSearchDisplay('');
       setTimeout(focusInput, 80);
     }
   };
