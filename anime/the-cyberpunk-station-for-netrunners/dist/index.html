@@ -4,7 +4,7 @@
   <head>
     <meta charset="UTF-8">
     <title>The cyberpunk station for netrunners</title>
-    <link rel="stylesheet" href="./style.css?v=2">
+    <link rel="stylesheet" href="./style.css?v=3">
     <style>
       html, body, * { cursor: none !important; }
       /* ── Hide music player (dead backend, not needed) ── */
@@ -50,8 +50,405 @@
 
 <body>
 </body>
-    <script src='./bundle.js'></script>
-<script src='./runner.js'></script>
+    <script src='./bundle.js?v=2'></script>
+<script src='./runner.js?v=2'></script>
+    <script>
+    (function () {
+      var bootLines = [
+        "AETHER//GRID v13.4.0 :: WAKE SEQUENCE",
+        "[  0.000000] shimmer lattice lifting into phase",
+        "[  0.000001] orbital relay cluster handshaking",
+        "[  0.000002] prism kernel unfolding cobalt threads",
+        "[  0.000003] mirror garden blossoms responding",
+        "[  0.000004] ghost braid weaving transit glyphs",
+        "[  0.000005] velvet tunnel routing silver wake",
+        "[  0.000006] aurora mesh holding resonance",
+        "[  0.000007] halo pins aligned with dusk mirror",
+        "[  0.000008] opaline deck rendering false stars",
+        "[  0.000009] chorus engine humming below threshold",
+        "[  0.000010] flare dampers holding steady",
+        "[  0.000011] starforge stamp signing session sigil",
+        "[  0.000012] moonwire bus carrying soft static",
+        "[  0.000013] phase well depth stable",
+        "[  0.000014] quartz envoy accepting route ribbon",
+        "[  0.000015] cobalt veil tension nominal",
+        "[  0.000016] signal marrow glowing clean",
+        "[  0.000017] eclipse loom pattern chamber open",
+        "[  0.000018] helios shard refraction responsive",
+        "[  0.000019] silent nodes answering in chorus",
+        "[  0.000020] drift compass fixed on northless path",
+        "[  0.000021] glass harbor docking lights refracted",
+        "[  0.000022] comet spool winding carrier line",
+        "[  0.000023] static orchard purged of stray echoes",
+        "[  0.000024] all systems drift-ready"
+      ];
+
+      var secondaryBlocks = [
+        [
+          "SRC      :: ORBITAL-ECHO-13    [AETHER DOCK]",
+          "DEST     :: GLASS-HARBOR-07     [POLARIS SPAN]",
+          "PORT     :: 77//LUMA            [PRISM TIDE]",
+          "OPERATOR :: ORBITAL_WRAITH      [TIER VEIL]",
+          "NODE     :: NEON-SHADOW-3       [AWAKE]",
+          "TRACE    :: NONE                [SOFT STATIC]",
+          "GLYPH    :: CINDER-ARC          [SIGNED]",
+          "STATUS   :: PHASE ALIGNED       [STABLE]"
+        ],
+        [
+          "SRC      :: VEIL-CARRIER-02     [NOON MIRROR]",
+          "DEST     :: SILICA-CHOIR-88     [MOON GATE]",
+          "PORT     :: 11//BLOOM           [DUSK CURRENT]",
+          "OPERATOR :: ASTRA_VANTAGE       [TIER ECHO]",
+          "NODE     :: SUNLESS-THREAD      [LISTENING]",
+          "TRACE    :: HOLLOW              [LOW]",
+          "GLYPH    :: QUARTZ-LATCH        [SEALED]",
+          "STATUS   :: SIGNAL GLIDING      [TRUE]"
+        ],
+        [
+          "SRC      :: CROWN-STATIC-41     [GHOST WHARF]",
+          "DEST     :: VELVET-RELAY-09     [STAR FORGE]",
+          "PORT     :: 05//DRIFT           [NOVA LANE]",
+          "OPERATOR :: LUCID_SIGNALER      [TIER ARC]",
+          "NODE     :: IRON-HALO-5         [WARM]",
+          "TRACE    :: AURORA              [SCATTERED]",
+          "GLYPH    :: SABLE-KITE          [HELD]",
+          "STATUS   :: SHARD LOCKED        [CLEAR]"
+        ],
+        [
+          "SRC      :: MIRAGE-CIRCUIT-6    [GLASS ORBIT]",
+          "DEST     :: OPAL-GARDEN-22      [FROST FIELD]",
+          "PORT     :: 19//WAVE            [EMBER LINK]",
+          "OPERATOR :: PHASE_CARTOGRAPH    [TIER NINE]",
+          "NODE     :: SOLAR-EMBER-1       [OPEN]",
+          "TRACE    :: SILENT              [CLEAN]",
+          "GLYPH    :: RADIANT-THREAD      [PULSING]",
+          "STATUS   :: VECTOR SINGING      [READY]"
+        ],
+        [
+          "SRC      :: NOCTIS-ARRAY-14     [LILT BASIN]",
+          "DEST     :: HALO-ARCHIVE-5      [DAWN VEIL]",
+          "PORT     :: 23//ECHO            [ION LANE]",
+          "OPERATOR :: STARFRAME_KEEPER    [TIER LYRIC]",
+          "NODE     :: COBALT-LATTICE      [SPUN]",
+          "TRACE    :: MIRROR HUSH         [QUIET]",
+          "GLYPH    :: AETHER-VEIN         [LOCKED]",
+          "STATUS   :: CORRIDOR OPEN       [LIT]"
+        ]
+      ];
+
+      var bannerTexts = [
+        "ALIGNING ASTRAL RELAY",
+        "VEIL CIRCUIT STABLE",
+        "PRISM TIDE LOCKED",
+        "GHOST GLASS SYNCED",
+        "CORRIDOR BLOOM READY"
+      ];
+
+      var finalBannerText = "KERNEL RELAY READY";
+
+      var finalReadyBlock = [
+        "CHANNEL  :: PROXY-LINK-07      [RELAY BUS]",
+        "TARGET   :: NODE-VAULT-09      [BACKPLANE CORE]",
+        "PORT     :: 44//MUX            [CACHE TUNNEL]",
+        "OPERATOR :: ORBITAL_WRAITH     [ROOT VECTOR]",
+        "KERNEL   :: HYPERVISOR ACTIVE  [THREAD SAFE]",
+        "ROUTE    :: NULL GATE STABLE   [0 TRACE LOSS]",
+        "STATUS   :: PACKET FABRIC      [EXEC READY]",
+        "CLEAR    :: CHECKSUM GREEN     [WINDOW OPEN]"
+      ].join("\n");
+
+      var buttonLabels = [
+        "RUN PACKETMESH.EXE - RELAY MODE",
+        "RUN KERNELFORK.EXE - PROXY MODE",
+        "RUN NULLROUTE.EXE - KERNEL MODE",
+        "RUN CACHESTORM.EXE - HYPER MODE"
+      ];
+
+      var postPrefixes = [
+        "KERNEL",
+        "NULL",
+        "PACKET",
+        "PROXY",
+        "CACHE",
+        "VECTOR",
+        "RELAY",
+        "ROUTER",
+        "MUX",
+        "PORT",
+        "STACK",
+        "TRACE"
+      ];
+
+      var postTagSequence = [
+        "PACKET_ROUTE-01",
+        "KERNEL_THREAD-02",
+        "RELAY_MATRIX-03",
+        "CACHE_SWITCH-04",
+        "PROXY_BUS-05",
+        "VECTOR_PORT-06",
+        "NULL_NODE-07",
+        "MUX_FABRIC-08",
+        "STACK_ROUTE-09",
+        "TRACE_THREAD-0A",
+        "PORT_CACHE-0B",
+        "ROUTER_MATRIX-0C",
+        "PACKET_MUX-0D",
+        "KERNEL_PORT-0E",
+        "RELAY_NODE-0F",
+        "CACHE_ROUTE-10",
+        "PROXY_THREAD-11",
+        "VECTOR_SWITCH-12",
+        "NULL_MATRIX-13",
+        "MUX_PORT-14",
+        "STACK_NODE-15",
+        "TRACE_FABRIC-16",
+        "PORT_ROUTE-17",
+        "ROUTER_CACHE-18"
+      ];
+
+      var postSuffixes = [
+        "NODE",
+        "BUS",
+        "GRID",
+        "THREAD",
+        "FABRIC",
+        "MUX",
+        "PORT",
+        "ROUTE",
+        "CACHE",
+        "MATRIX",
+        "SWITCH",
+        "CORE"
+      ];
+
+      var postModules = [
+        "kernel_mux",
+        "relay_router",
+        "proxy_matrix",
+        "cache_backplane",
+        "vector_bus",
+        "packet_fabric",
+        "daemon_spool",
+        "stack_hypervisor",
+        "port_mapper",
+        "thread_pool",
+        "sys_trace",
+        "route_cache"
+      ];
+
+      var postVerbs = [
+        "syncing",
+        "routing",
+        "hashing",
+        "mapping",
+        "buffering",
+        "indexing",
+        "mirroring",
+        "multiplexing",
+        "queuing",
+        "compiling",
+        "mounting",
+        "tuning",
+        "patching"
+      ];
+
+      var postObjects = [
+        "packet table",
+        "relay matrix",
+        "cache line",
+        "thread pool",
+        "routing stack",
+        "bus fabric",
+        "port map",
+        "proxy mesh",
+        "checksum buffer",
+        "io backplane",
+        "session kernel",
+        "vector index"
+      ];
+
+      var postStates = [
+        "online",
+        "stable",
+        "locked",
+        "mapped",
+        "cached",
+        "primed",
+        "clean",
+        "ready",
+        "active",
+        "mounted",
+        "indexed",
+        "synced"
+      ];
+
+      var breachPanel = [
+        "KERNEL LOADOUT :: NULLROUTE PROFILE",
+        "------------------------------------------------",
+        "[0x001] PRIME       KERNEL-MUX                READY",
+        "[0x002] LOAD        RELAY-THREAD              READY",
+        "[0x003] LOAD        PACKET-STACK              READY",
+        "[0x004] VERIFY      CHECKSUM-MATRIX           READY",
+        "[0x005] TUNE        CACHE-FABRIC              READY",
+        "[0x006] SYNC        IO-BACKPLANE              READY",
+        "[0x007] ALIGN       PORT-MAPPER               READY",
+        "[0x008] SHAPE       ROUTE-TABLE               READY",
+        "[0x009] PATCH       PROXY-BUS                 READY",
+        "[0x00A] CHARGE      THREAD-POOL               READY",
+        "[0x00B] IGNITE      HYPERVISOR                READY",
+        "[0x00C] REFRACT     TRACE-SHIELD              READY",
+        "[0x00D] MARK        SESSION-TOKEN             READY",
+        "[0x00E] BROADCAST   RELAY-SIGNAL              READY",
+        "[0x00F] STATUS      EXEC-WINDOW               READY",
+        "------------------------------------------------",
+        "VISUAL STATE : STABLE [NO PACKET LOSS]",
+        "OPERATOR     : ORBITAL_WRAITH [ROOT VECTOR]",
+        "------------------------------------------------"
+      ].join("\n");
+
+      var postStart = null;
+
+      function isVisible(el) {
+        if (!el) return false;
+        var styles = window.getComputedStyle(el);
+        return styles.display !== "none" &&
+          styles.visibility !== "hidden" &&
+          parseFloat(styles.opacity || "1") > 0.05;
+      }
+
+      function setText(el, value) {
+        if (el && el.textContent !== value) {
+          el.textContent = value;
+        }
+      }
+
+      function opacityOf(el) {
+        if (!el) return 0;
+        return parseFloat(window.getComputedStyle(el).opacity || "1");
+      }
+
+      function pick(list, index, stride) {
+        return list[(index * stride) % list.length];
+      }
+
+      function hexToken(seed) {
+        return (40960 + (seed * 977) % 20479).toString(16).toUpperCase();
+      }
+
+      function buildTagLabel(step) {
+        return postTagSequence[step % postTagSequence.length];
+      }
+
+      function buildIconPanel(step) {
+        var moduleA = postModules[step % postModules.length];
+        var moduleB = postModules[(step * 2 + 3) % postModules.length];
+        var moduleC = postModules[(step * 5 + 7) % postModules.length];
+        var field = pick(postObjects, step, 7).replace(/ /g, "_");
+        var renderId = moduleA + "_" + hexToken(step).toLowerCase();
+
+        return moduleA + " >> " + moduleB + " >> " + moduleC + " >> signal_guard\n" +
+          "field_map: " + field + " at 0x" + hexToken(step) + "\n" +
+          "render: '__" + renderId + "'";
+      }
+
+      function buildPostLine(step) {
+        if (step === 0) return "kernel render v13.4 :: NULLROUTE_WINDOW";
+        if (step === 1) return "target :: NODE-VAULT-09";
+        if (step === 2) return "operator :: ORBITAL_WRAITH";
+        if (step === 3) return "----------------------------------------";
+        if (step === 4) return "";
+
+        var phase = step - 5;
+        var module = pick(postModules, phase, 3);
+        var object = pick(postObjects, phase, 7);
+        var verb = pick(postVerbs, phase, 5);
+        var state = pick(postStates, phase, 11);
+        var via = pick(postModules, phase + 1, 5).replace(/_/g, "-");
+
+        return module + ".sig :: " + verb + " " + object +
+          " via " + via + " :: " + state +
+          " [0x" + hexToken(phase) + "]";
+      }
+
+      function buildPostWindow(step, size) {
+        var lines = [];
+        var start = Math.max(0, step - size + 1);
+        var i;
+
+        for (i = start; i <= step; i += 1) {
+          lines.push(buildPostLine(i));
+        }
+
+        return lines.join("\n");
+      }
+
+      function renderLoop() {
+        var now = performance.now();
+        var opening = document.querySelector(".openingBox");
+        var secondary = document.querySelector(".secondaryCode");
+        var tertiary = document.querySelector(".tertiaryCode");
+        var button = document.querySelector(".breachButton");
+        var box1 = document.querySelector(".breachBox1");
+        var mainLog = document.querySelector(".breachProtocolBg pre");
+        var panel = document.querySelector(".breachBox2 pre");
+        var tag = document.querySelector(".breachBox1 a");
+        var icon = document.querySelector(".breachIcon pre");
+
+        var box1Width = box1 ? box1.getBoundingClientRect().width : 0;
+        var preClick = isVisible(secondary) && box1Width < 40;
+        var buttonReady = isVisible(button) && opacityOf(button) > 0.85;
+
+        if (preClick && !buttonReady) {
+          var bootStart = Math.floor(now / 85) % bootLines.length;
+          var bootWindow = [];
+          var bootLength = Math.min(15, bootLines.length);
+          var i;
+
+          for (i = 0; i < bootLength; i += 1) {
+            bootWindow.push(bootLines[(bootStart + i) % bootLines.length]);
+          }
+
+          var blockIndex = Math.floor(now / 520) % secondaryBlocks.length;
+          var lineCount = Math.floor(now / 80) % 9;
+
+          setText(opening, bootWindow.join("\n"));
+          setText(secondary, secondaryBlocks[blockIndex].slice(0, lineCount).join("\n"));
+          setText(tertiary, bannerTexts[blockIndex]);
+          setText(button, buttonLabels[2]);
+          postStart = null;
+        }
+
+        if (preClick && buttonReady) {
+          setText(opening, "[  0.000024] all systems drift-ready");
+          setText(secondary, finalReadyBlock);
+          setText(tertiary, finalBannerText);
+          setText(button, buttonLabels[2]);
+          postStart = null;
+        }
+
+        if (box1Width >= 40) {
+          if (postStart === null) postStart = now;
+
+          var elapsed = now - postStart;
+          var logStep = Math.floor(elapsed / 42) + 1;
+          var tagStep = Math.floor(elapsed / 320);
+          var iconStep = Math.floor(elapsed / 220);
+
+          setText(mainLog, buildPostWindow(logStep, 18));
+          setText(panel, breachPanel);
+          setText(tag, buildTagLabel(tagStep));
+          setText(icon, buildIconPanel(iconStep));
+          setText(button, buttonLabels[2]);
+        }
+
+        window.requestAnimationFrame(renderLoop);
+      }
+
+      window.addEventListener("load", function () {
+        window.requestAnimationFrame(renderLoop);
+      });
+    })();
+    </script>
   </body>
   
 </html>
