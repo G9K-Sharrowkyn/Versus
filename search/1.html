@@ -618,7 +618,6 @@
 
   const activateSearch = () => {
     searchActive = true;
-    disposeRelay = bindPointerRelay();
     resetCollapse();
     notifyReady();
     if (inputEl) {
@@ -736,7 +735,11 @@
   };
 
   // ── BOOT ──────────────────────────────────────────────────────────────────────
-  window.addEventListener('load', () => { showStage(1); });
+  window.addEventListener('load', () => {
+    showStage(1);
+    // Relay pointer events od razu — iframe zajmuje cały ekran podczas intro
+    disposeRelay = bindPointerRelay();
+  });
   window.addEventListener('beforeunload', () => { disposeRelay(); });
 })();
 </script>

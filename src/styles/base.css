@@ -8,9 +8,9 @@
   --vvv-electric-blue-rgb: 30, 144, 255;
   --vvv-electric-blue-soft-rgb: 121, 191, 255;
   --vvv-cursor-default:
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjZmY0ZDZkJy8+PHN0b3Agb2Zmc2V0PSc0NSUnIHN0b3AtY29sb3I9JyNmZjFmNGEnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMzYjgyZjYnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ndycgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyNmZWNkZDMnLz48c3RvcCBvZmZzZXQ9JzUyJScgc3RvcC1jb2xvcj0nI2JmZGJmZScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzYwYTVmYScvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGQ9J00zLDIuNXYxN2w0LjctNC40bDMuNCw1LjhsMi42LTEuNWwtMy42LTUuN2w3LjEtMC40eicgZmlsbD0ndXJsKCNnKScgc3Ryb2tlPScjZmZmMWY0JyBzdHJva2Utd2lkdGg9JzAuOTUnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz48cGF0aCBkPSdNNi40LDUuMiBDOC45LDYuOCAxMS45LDkuOCAxNS4yLDEyLjEnIHN0cm9rZT0ndXJsKCN3KScgc3Ryb2tlLXdpZHRoPScwLjknIGZpbGw9J25vbmUnIHN0cm9rZS1saW5lY2FwPSdyb3VuZCcgb3BhY2l0eT0nMC45Jy8+PHBhdGggZD0nTTUuOSw3LjAgQzguMyw4LjggMTAuOCwxMC41IDEzLjgsMTMuMScgc3Ryb2tlPScjN2RkM2ZjJyBzdHJva2Utd2lkdGg9JzAuNycgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBvcGFjaXR5PScwLjY1Jy8+PC9zdmc+");
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjZmY1NTQ4Jy8+PHN0b3Agb2Zmc2V0PSc1NSUnIHN0b3AtY29sb3I9JyNmZjhjMDAnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyMwMGU1ZmYnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ndycgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMjU1LDIwMCwxODAsMC45KScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0ncmdiYSgwLDIyOSwyNTUsMC43KScvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGQ9J00zLDIuNXYxN2w0LjctNC40bDMuNCw1LjhsMi42LTEuNWwtMy42LTUuN2w3LjEtMC40eicgZmlsbD0ndXJsKCNnKScgc3Ryb2tlPSdyZ2JhKDI1NSwyMjAsMjEwLDAuODgpJyBzdHJva2Utd2lkdGg9JzAuOTUnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz48cGF0aCBkPSdNNi40LDUuMiBDOC45LDYuOCAxMS45LDkuOCAxNS4yLDEyLjEnIHN0cm9rZT0ndXJsKCN3KScgc3Ryb2tlLXdpZHRoPScwLjg1JyBmaWxsPSdub25lJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIG9wYWNpdHk9JzAuODUnLz48L3N2Zz4=");
   --vvv-cursor-pointer:
-    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjZmY3YTkyJy8+PHN0b3Agb2Zmc2V0PSc0MiUnIHN0b3AtY29sb3I9JyNmZjI0NTUnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyM2MGE1ZmEnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ndycgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9JyNmZmU0ZWEnLz48c3RvcCBvZmZzZXQ9JzQ1JScgc3RvcC1jb2xvcj0nI2M3ZDJmZScvPjxzdG9wIG9mZnNldD0nMTAwJScgc3RvcC1jb2xvcj0nIzkzYzVmZCcvPjwvbGluZWFyR3JhZGllbnQ+PC9kZWZzPjxwYXRoIGQ9J00zLDIuNXYxN2w0LjktNC43bDMuNiw2LjFsMi44LTEuNmwtMy44LTYuMGw3LjMtMC41eicgZmlsbD0ndXJsKCNnKScgc3Ryb2tlPScjZmZmNWY3JyBzdHJva2Utd2lkdGg9JzEuMDUnIHN0cm9rZS1saW5lam9pbj0ncm91bmQnLz48cGF0aCBkPSdNNi41LDUuMSBDOS4xLDcuMCAxMi4yLDkuOSAxNS43LDEyLjQnIHN0cm9rZT0ndXJsKCN3KScgc3Ryb2tlLXdpZHRoPScxJyBmaWxsPSdub25lJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIG9wYWNpdHk9JzAuOTUnLz48cGF0aCBkPSdNNi4wLDcuMSBDOC41LDguNyAxMS4yLDEwLjkgMTQuNSwxMy41JyBzdHJva2U9JyM5M2M1ZmQnIHN0cm9rZS13aWR0aD0nMC44JyBmaWxsPSdub25lJyBzdHJva2UtbGluZWNhcD0ncm91bmQnIG9wYWNpdHk9JzAuNzUnLz48L3N2Zz4=");
+    url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyNCcgaGVpZ2h0PScyNCcgdmlld0JveD0nMCAwIDI0IDI0Jz48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9J2cnIHgxPScwJyB5MT0nMCcgeDI9JzEnIHkyPScxJz48c3RvcCBvZmZzZXQ9JzAlJyBzdG9wLWNvbG9yPScjMDBlNWZmJy8+PHN0b3Agb2Zmc2V0PSc0NSUnIHN0b3AtY29sb3I9JyNmZjU1NDgnLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9JyNmZjhjMDAnLz48L2xpbmVhckdyYWRpZW50PjxsaW5lYXJHcmFkaWVudCBpZD0ndycgeDE9JzAnIHkxPScwJyB4Mj0nMScgeTI9JzAnPjxzdG9wIG9mZnNldD0nMCUnIHN0b3AtY29sb3I9J3JnYmEoMCwyMjksMjU1LDAuOSknLz48c3RvcCBvZmZzZXQ9JzEwMCUnIHN0b3AtY29sb3I9J3JnYmEoMjU1LDE0MCwwLDAuOCknLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cGF0aCBkPSdNMywyLjV2MTdsNC45LTQuN2wzLjYsNi4xbDIuOC0xLjZsLTMuOC02LjBsNy4zLTAuNXonIGZpbGw9J3VybCgjZyknIHN0cm9rZT0ncmdiYSgyMDAsMjU1LDI1NSwwLjg4KScgc3Ryb2tlLXdpZHRoPScxLjA1JyBzdHJva2UtbGluZWpvaW49J3JvdW5kJy8+PHBhdGggZD0nTTYuNSw1LjEgQzkuMSw3LjAgMTIuMiw5LjkgMTUuNywxMi40JyBzdHJva2U9J3VybCgjdyknIHN0cm9rZS13aWR0aD0nMC45NScgZmlsbD0nbm9uZScgc3Ryb2tlLWxpbmVjYXA9J3JvdW5kJyBvcGFjaXR5PScwLjknLz48L3N2Zz4=");
 }
 
 .vvv-animated-cursor,
@@ -43,31 +43,31 @@
 
 .vvv-animated-cursor-glow {
   position: absolute;
-  inset: -8px;
+  inset: -10px;
   border-radius: 999px;
   background: conic-gradient(
     from 0deg,
-    rgba(59, 130, 246, 0.18) 0deg,
-    rgba(124, 58, 237, 0.42) 120deg,
-    rgba(239, 68, 68, 0.42) 240deg,
-    rgba(59, 130, 246, 0.18) 360deg
+    rgba(255, 85, 72, 0.55) 0deg,
+    rgba(255, 140, 0, 0.45) 90deg,
+    rgba(0, 229, 255, 0.35) 180deg,
+    rgba(255, 85, 72, 0.55) 360deg
   );
-  filter: blur(6px);
-  animation: vvv-cursor-spin 2.8s linear infinite;
+  filter: blur(5px);
+  animation: vvv-cursor-spin 2.2s linear infinite;
 }
 
 .vvv-animated-cursor-core {
   position: absolute;
   inset: 0;
   clip-path: polygon(8% 0%, 8% 87%, 35% 62%, 52% 100%, 67% 92%, 49% 56%, 92% 56%);
-  border: 1px solid rgba(245, 245, 255, 0.9);
-  border-radius: 3px;
-  background: linear-gradient(132deg, #3b82f6 0%, #7c3aed 48%, #ef4444 100%);
+  border: 1px solid rgba(255, 220, 200, 0.88);
+  border-radius: 2px;
+  background: linear-gradient(132deg, #ff5548 0%, #ff8c00 52%, #00e5ff 100%);
   background-size: 280% 280%;
   box-shadow:
-    0 0 8px rgba(59, 130, 246, 0.7),
-    0 0 14px rgba(124, 58, 237, 0.35),
-    0 0 20px rgba(239, 68, 68, 0.3);
+    0 0 7px rgba(255, 85, 72, 0.85),
+    0 0 14px rgba(255, 140, 0, 0.45),
+    0 0 22px rgba(0, 229, 255, 0.25);
   animation:
     vvv-cursor-wave 2.2s ease-in-out infinite,
     vvv-cursor-breathe 1.4s ease-in-out infinite;
