@@ -12,7 +12,8 @@
       /* ── Breach animation scale-down ── */
       .breachBox { transform: scale(0.5) !important; transform-origin: top left !important; }
       .breachBox3 { display: none !important; }
-      .breachProgress { transform: scale(0.5) !important; transform-origin: left center !important; }
+      .breachProgress { transform: translateY(0) scale(0.5) !important; transform-origin: left center !important; }
+      .breachProtocolBg + div { transform: translateY(-16px) !important; position: relative !important; z-index: 3 !important; }
     </style>
     <script>
     /* ── Mock dead nightfm-backend (Replit gone) — runs before bundle/runner ── */

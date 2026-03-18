@@ -461,7 +461,7 @@
 <div id="s1" class="stage">
   <iframe
     class="s1-iframe"
-    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=19"
+    src="/anime/the-cyberpunk-station-for-netrunners/dist/index.html?v=21"
     title="The cyberpunk station for netrunners"
     sandbox="allow-scripts allow-same-origin allow-popups"
   ></iframe>
@@ -474,7 +474,7 @@
 
 <!-- ── STAGE 2: CYBERPUNK TERMINAL ── -->
 <div id="s2" class="stage off">
-  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=7" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
+  <iframe src="/anime/cyberpunk-terminal/dist/index.html?v=10" style="position:absolute;inset:0;width:100%;height:100%;border:none;" sandbox="allow-scripts allow-same-origin allow-forms"></iframe>
 </div>
 
 <!-- ── STAGE 3: HYDRA LOADING ── -->
@@ -553,6 +553,48 @@
       if (i === n) el.classList.remove('off');
       else         el.classList.add('off');
     }
+  };
+
+  const runChromaticFlash = (stageEl, onDone, options = {}) => {
+    const {
+      frames = 14,
+      interval = 40,
+      jitterX = 35,
+      skew = 6
+    } = options;
+    if (!stageEl) {
+      if (typeof onDone === 'function') onDone();
+      return;
+    }
+
+    const COLORS = ['rgba(255,85,78,1)', '#77e2f2', '#ff0', '#fff', '#0cf', '#f80'];
+    let frame = 0;
+    const clearFlash = () => {
+      [...stageEl.querySelectorAll('.vvv-chroma-flash')].forEach(b => b.remove());
+      stageEl.style.transform = '';
+    };
+
+    clearFlash();
+
+    const iv = setInterval(() => {
+      clearFlash();
+      const n = 5 + Math.floor(Math.random() * 7);
+      for (let i = 0; i < n; i++) {
+        const b = document.createElement('div');
+        b.className = 'vvv-chroma-flash';
+        b.style.cssText = `position:absolute;left:0;right:0;top:${Math.random()*100}%;`
+          + `height:${1+Math.random()*14}%;z-index:10;pointer-events:none;`
+          + `background:${COLORS[Math.floor(Math.random()*COLORS.length)]};`
+          + `mix-blend-mode:screen;opacity:${0.45+Math.random()*0.55};`;
+        stageEl.appendChild(b);
+      }
+      stageEl.style.transform = `translateX(${(Math.random()-.5)*jitterX}px) skewX(${(Math.random()-.5)*skew}deg)`;
+      if (++frame >= frames) {
+        clearInterval(iv);
+        clearFlash();
+        if (typeof onDone === 'function') onDone();
+      }
+    }, interval);
   };
 
   // ── postMessage protocol ─────────────────────────────────────────────────────
@@ -810,36 +852,16 @@
     main.style.display = 'none';
     done.style.display = '';
     await delay(3000);
-    runGlitchBurst();
+    runChromaticFlash($('s3'), () => {
+      runGlitchBurst();
+    }, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
   };
 
   // ── STAGE 4: CSS pseudo-element glitch → JS glitch flash → search ───────────
   const runGlitchBurst = () => {
     showStage(4);
     setTimeout(() => {
-      // Intense JS glitch flash (14 frames × 40ms) before cutting to search
-      const s4 = $('s4');
-      const COLORS = ['rgba(255,85,78,1)','#77e2f2','#ff0','#fff','#0cf','#f80'];
-      let frame = 0;
-      const iv = setInterval(() => {
-        const n = 5 + Math.floor(Math.random() * 7);
-        [...s4.querySelectorAll('.s4-flash')].forEach(b => b.remove());
-        for (let i = 0; i < n; i++) {
-          const b = document.createElement('div');
-          b.className = 's4-flash';
-          b.style.cssText = `position:absolute;left:0;right:0;top:${Math.random()*100}%;`
-            + `height:${1+Math.random()*14}%;z-index:10;pointer-events:none;`
-            + `background:${COLORS[Math.floor(Math.random()*COLORS.length)]};`
-            + `mix-blend-mode:screen;opacity:${0.45+Math.random()*0.55};`;
-          s4.appendChild(b);
-        }
-        s4.style.transform = `translateX(${(Math.random()-.5)*35}px) skewX(${(Math.random()-.5)*6}deg)`;
-        if (++frame >= 14) {
-          clearInterval(iv);
-          s4.style.transform = '';
-          runSearchStage();
-        }
-      }, 40);
+      runChromaticFlash($('s4'), runSearchStage);
     }, 2500);
   };
 

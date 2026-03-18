@@ -122,8 +122,74 @@
       border-color: rgba(255,85,78,1);
       box-shadow: 0 0 8px rgba(255,85,78,0.5);
     }
+    body, body * {
+      user-select: none;
+      -webkit-user-select: none;
+    }
     .term-inp::placeholder { color: rgba(255,85,78,0.3); }
     #t-login { user-select: none; -webkit-user-select: none; pointer-events: none; }
+    .term-pass-shell {
+      position: relative;
+      flex: 1;
+    }
+    .term-pass-shell .term-inp {
+      width: 100%;
+      color: transparent;
+      caret-color: transparent;
+      text-shadow: none;
+      position: relative;
+      z-index: 1;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    .term-pass-mask {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      pointer-events: none;
+      padding: 0.4em 0.7em;
+      color: #77e2f2;
+      font-family: inherit;
+      font-size: inherit;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-shadow: 0 0 8px rgba(119,226,242,0.65);
+      white-space: pre;
+    }
+    .term-pass-mask.is-empty {
+      letter-spacing: 0.08em;
+    }
+    .term-pass-mask.is-placeholder {
+      color: rgba(119,226,242,0.28);
+      text-shadow: 0 0 7px rgba(119,226,242,0.18);
+      animation: term-placeholder-glitch 0.22s steps(2) infinite;
+    }
+    .term-pass-mask.is-focused::after,
+    .term-pass-mask.has-value::after {
+      content: '';
+      width: 1px;
+      height: 1.1em;
+      margin-left: 0.18em;
+      background: currentColor;
+      box-shadow: 0 0 8px currentColor;
+      animation: term-caret 0.8s steps(1) infinite;
+    }
+    .term-pass-mask.has-hidden {
+      animation: term-mask-glitch 0.18s steps(2) infinite;
+    }
+    @keyframes term-caret { 0%,49%{opacity:1} 50%,100%{opacity:0} }
+    @keyframes term-mask-glitch {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(0.08em, -0.02em); }
+      100% { transform: translate(-0.05em, 0.03em); }
+    }
+    @keyframes term-placeholder-glitch {
+      0% { transform: translate(0, 0); opacity: 0.6; }
+      50% { transform: translate(0.05em, 0); opacity: 0.85; }
+      100% { transform: translate(-0.04em, 0.02em); opacity: 0.68; }
+    }
 
     /* ── Submit button — cyan like breach button in stage 1 ── */
     .term-submit {
@@ -178,8 +244,11 @@
         <form id="auth-form">
           <div class="term-row">
             <span class="term-lbl">Password</span>
-            <input class="term-inp" id="t-pass" type="password"
-              maxlength="32" placeholder="________" autocomplete="off" data-form-type="other">
+            <div class="term-pass-shell">
+              <input class="term-inp" id="t-pass" type="text"
+                maxlength="32" placeholder="" autocomplete="off" spellcheck="false" data-form-type="other">
+              <div class="term-pass-mask is-empty" id="t-pass-mask">________</div>
+            </div>
           </div>
           <div class="term-status" id="t-status">&nbsp;</div>
           <button class="term-submit" type="submit">[ AUTHENTICATE ]</button>
@@ -192,7 +261,101 @@
   (() => {
     const loginEl  = document.getElementById('t-login');
     const passEl   = document.getElementById('t-pass');
+    const passMask = document.getElementById('t-pass-mask');
     const statusEl = document.getElementById('t-status');
+    const authForm = document.getElementById('auth-form');
+    const PASSWORD_POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$%#&*';
+    const MAX_PASS_LEN = 32;
+    const HIDE_DELAY_MS = 1500;
+    const SCRAMBLE_STEP_MS = 70;
+    let passTokens = [];
+    let passFrame = 0;
+
+    const renderPassMask = (now = performance.now()) => {
+      let display = '';
+      let hasHidden = false;
+      const isFocused = document.activeElement === passEl;
+      const isEmpty = passTokens.length === 0;
+
+      for (let idx = 0; idx < passTokens.length; idx += 1) {
+        const token = passTokens[idx];
+        const age = now - token.createdAt;
+
+        if (age >= HIDE_DELAY_MS) {
+          display += '#';
+          hasHidden = true;
+          continue;
+        }
+
+        const phase = Math.floor(age / SCRAMBLE_STEP_MS);
+        const poolIndex = (token.seed + phase * 7 + idx * 13) % PASSWORD_POOL.length;
+        display += PASSWORD_POOL[poolIndex];
+      }
+
+      if (isEmpty) {
+        display = isFocused ? '' : 'NETRUNNER PASS';
+      }
+
+      passMask.textContent = display;
+      passMask.classList.toggle('is-empty', isEmpty);
+      passMask.classList.toggle('is-placeholder', isEmpty && !isFocused);
+      passMask.classList.toggle('has-value', !isEmpty);
+      passMask.classList.toggle('has-hidden', hasHidden);
+      passMask.classList.toggle('is-focused', isFocused);
+      passEl.value = passTokens.length ? '#'.repeat(passTokens.length) : '';
+      if (typeof passEl.setSelectionRange === 'function') {
+        const end = passEl.value.length;
+        passEl.setSelectionRange(end, end);
+      }
+    };
+
+    const tickPassMask = () => {
+      renderPassMask();
+      passFrame = window.requestAnimationFrame(tickPassMask);
+    };
+
+    const startPassMask = () => {
+      if (!passFrame) {
+        passFrame = window.requestAnimationFrame(tickPassMask);
+      }
+    };
+
+    const lockPassSelection = () => {
+      if (typeof passEl.setSelectionRange === 'function') {
+        const end = passEl.value.length;
+        passEl.setSelectionRange(end, end);
+      }
+    };
+
+    const syncPassFocus = () => {
+      passMask.classList.toggle('is-focused', document.activeElement === passEl);
+    };
+
+    const pushPassToken = (count = 1) => {
+      if (passTokens.length >= MAX_PASS_LEN || count <= 0) return;
+      const now = performance.now();
+
+      passTokens = passTokens.map(() => ({
+        createdAt: now,
+        seed: Math.floor(Math.random() * PASSWORD_POOL.length)
+      }));
+
+      for (let idx = 0; idx < count; idx += 1) {
+        if (passTokens.length >= MAX_PASS_LEN) break;
+        passTokens.push({
+          createdAt: now,
+          seed: Math.floor(Math.random() * PASSWORD_POOL.length)
+        });
+      }
+
+      renderPassMask(now);
+    };
+
+    const popPassToken = () => {
+      if (!passTokens.length) return;
+      passTokens.pop();
+      renderPassMask();
+    };
 
     // ── auto-type login ───────────────────────────────────────────
     const LOGIN_TEXT = 'G9K_Rubikon';
@@ -203,10 +366,47 @@
         setTimeout(typeLogin, 90 + Math.random() * 60);
       } else {
         passEl.focus({ preventScroll: true });
+        syncPassFocus();
       }
     };
     // wait for turn-on animation to settle before typing
+    renderPassMask();
+    startPassMask();
     setTimeout(typeLogin, 2200);
+
+    passEl.addEventListener('focus', syncPassFocus);
+    passEl.addEventListener('blur', syncPassFocus);
+    passEl.addEventListener('select', lockPassSelection);
+    passEl.addEventListener('mouseup', lockPassSelection);
+    passEl.addEventListener('pointerup', lockPassSelection);
+    passEl.addEventListener('dragstart', e => e.preventDefault());
+    passEl.addEventListener('keydown', e => {
+      if (passEl.readOnly && e.key !== 'Tab') {
+        e.preventDefault();
+        return;
+      }
+      if (e.ctrlKey || e.metaKey || e.altKey) return;
+
+      if (e.key === 'Backspace' || e.key === 'Delete') {
+        e.preventDefault();
+        popPassToken();
+        return;
+      }
+      if (e.key === 'Enter') {
+        e.preventDefault();
+        authForm.requestSubmit();
+        return;
+      }
+      if (e.key.length === 1) {
+        e.preventDefault();
+        pushPassToken();
+      }
+    });
+    passEl.addEventListener('paste', e => {
+      e.preventDefault();
+      const pasted = (e.clipboardData || window.clipboardData).getData('text') || '';
+      pushPassToken(pasted.length);
+    });
 
     // ── pointer relay → parent chain (search/1.html → App.tsx) ───
     const relay = (kind, e, down) =>
@@ -223,15 +423,25 @@
     document.addEventListener('pointerleave',  e => relay('leave',e, false), { passive:true });
 
     // ── form submit ───────────────────────────────────────────────
-    document.getElementById('auth-form').addEventListener('submit', e => {
+    authForm.addEventListener('submit', e => {
       e.preventDefault();
-      if (!passEl.value.trim()) {
+      if (!passTokens.length) {
         statusEl.textContent = 'PASSWORD REQUIRED';
         statusEl.className = 'term-status';
         passEl.focus();
+        syncPassFocus();
         return;
       }
       passEl.readOnly = true;
+      if (passFrame) {
+        window.cancelAnimationFrame(passFrame);
+        passFrame = 0;
+      }
+      passTokens = passTokens.map(token => ({
+        createdAt: performance.now() - HIDE_DELAY_MS,
+        seed: token.seed
+      }));
+      renderPassMask();
       statusEl.textContent = 'AUTHENTICATING...';
       statusEl.className = 'term-status';
       setTimeout(() => {
