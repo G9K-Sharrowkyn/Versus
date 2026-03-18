@@ -87,8 +87,250 @@
   animation: vv-scan 5.8s linear infinite;
 }
 
+/* ===== ENHANCED TEMPLATE TRANSITION ===== */
+@keyframes vv-template-slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(90px) skewX(-5deg);
+    filter: drop-shadow(14px 0 rgba(0, 200, 255, 0.75)) drop-shadow(-4px 0 rgba(255, 30, 80, 0.5));
+  }
+  18% {
+    opacity: 0.7;
+    filter: drop-shadow(-6px 0 rgba(255, 30, 80, 0.95)) drop-shadow(6px 0 rgba(0, 200, 255, 0.95));
+  }
+  30% {
+    transform: translateX(-6px) skewX(2deg);
+    filter: drop-shadow(-2px 0 rgba(255, 30, 80, 0.4)) drop-shadow(2px 0 rgba(0, 200, 255, 0.4));
+  }
+  45% {
+    transform: translateX(2px);
+    filter: none;
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
 .template-fade {
-  animation: vv-fade 0.45s ease;
+  animation: vv-template-slide-in 0.72s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ===== ENERGY BURST ON TEMPLATE CHANGE ===== */
+@keyframes vv-template-burst {
+  0% {
+    opacity: 0;
+    clip-path: inset(48% 0 48% 0);
+  }
+  12% {
+    opacity: 0.9;
+    clip-path: inset(0 0 0 0);
+  }
+  42% {
+    opacity: 0.45;
+    clip-path: inset(0 0 0 0);
+  }
+  100% {
+    opacity: 0;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.template-flash {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 30;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 220, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.6) 45%,
+    rgba(255, 30, 80, 0.45) 100%
+  );
+  mix-blend-mode: screen;
+  animation: vv-template-burst 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ===== GLITCH HEADING (5 s cycle – more frequent) ===== */
+@keyframes vv-glitch-header {
+  0%,
+  74%,
+  100% {
+    filter: none;
+    transform: none;
+  }
+  75% {
+    filter: drop-shadow(-5px 0 rgba(255, 30, 80, 1)) drop-shadow(5px 0 rgba(0, 220, 255, 1));
+    transform: translateX(-3px);
+  }
+  76% {
+    filter: none;
+    transform: translateX(4px);
+  }
+  77% {
+    filter: drop-shadow(6px 0 rgba(255, 30, 80, 0.8)) drop-shadow(-6px 0 rgba(0, 220, 255, 0.8));
+    transform: translateX(-2px) skewX(-5deg);
+  }
+  78% {
+    filter: none;
+    transform: none;
+  }
+  84% {
+    filter: drop-shadow(-7px 0 rgba(255, 30, 80, 0.6));
+    transform: translateX(3px) skewX(3deg);
+  }
+  85% {
+    filter: none;
+    transform: none;
+  }
+  92% {
+    filter: drop-shadow(5px 0 rgba(0, 220, 255, 0.85));
+    transform: translateX(-2px);
+  }
+  93% {
+    filter: none;
+    transform: none;
+  }
+}
+
+.glitch-heading-wrap {
+  animation: vv-glitch-header 5s steps(1) infinite;
+}
+
+/* ===== MECHANICAL ELEMENT ANIMATIONS ===== */
+@keyframes vv-mech-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes vv-mech-spin-rev {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* Vertical laser scan – left → right */
+@keyframes vv-mech-vscan {
+  0%   { transform: translateX(-5px); }
+  100% { transform: translateX(1405px); }
+}
+
+/* ── Vertical laser scan line (mix-blend-mode: screen → shines through panels) ── */
+.mech-vscan {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: linear-gradient(
+    180deg,
+    transparent 0%,
+    rgba(0, 230, 255, 0.65) 40%,
+    rgba(0, 230, 255, 0.85) 50%,
+    rgba(0, 230, 255, 0.65) 60%,
+    transparent 100%
+  );
+  box-shadow:
+    0 0 10px rgba(0, 220, 255, 0.55),
+    0 0 24px rgba(0, 220, 255, 0.22);
+  mix-blend-mode: screen;
+  animation: vv-mech-vscan 15s linear infinite;
+  will-change: transform;
+  pointer-events: none;
+  z-index: 25;
+}
+
+/* ===== HERO LOGO BADGE ===== */
+@keyframes vv-hero-show {
+  0% {
+    opacity: 0;
+    transform: scale(0.6) rotate(-20deg);
+    filter: blur(6px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1.12) rotate(3deg);
+    filter: none;
+  }
+  75% {
+    transform: scale(0.95) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+    filter: none;
+  }
+}
+
+@keyframes vv-hero-hide {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: none;
+  }
+  45% {
+    opacity: 0.35;
+    transform: scale(1.18);
+    filter: blur(2px) drop-shadow(0 0 12px rgba(255, 220, 50, 0.8));
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.5) rotate(22deg);
+    filter: blur(9px);
+  }
+}
+
+@keyframes vv-hero-badge-pulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 10px var(--hero-glow),
+      0 0 22px var(--hero-glow-soft),
+      inset 0 0 8px rgba(0, 0, 0, 0.6);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--hero-glow),
+      0 0 42px var(--hero-glow-soft),
+      0 0 65px var(--hero-glow-far),
+      inset 0 0 14px rgba(0, 0, 0, 0.7);
+  }
+}
+
+.hero-badge-ring {
+  --hero-glow: rgba(0, 180, 255, 0.5);
+  --hero-glow-soft: rgba(0, 180, 255, 0.2);
+  --hero-glow-far: rgba(0, 180, 255, 0.08);
+  animation: vv-hero-badge-pulse 2.8s ease-in-out infinite;
+}
+
+.hero-logo-enter {
+  animation: vv-hero-show 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.hero-logo-exit {
+  animation: vv-hero-hide 0.38s ease-in forwards;
+}
+
+/* ===== HUE-SHIFT BUTTON ===== */
+.btn-hue-shift {
+  border-color: hsla(var(--vs-mouse-hue, 180), 75%, 65%, 0.5);
+  background-color: hsla(var(--vs-mouse-hue, 180), 65%, 50%, 0.12);
+  color: hsl(var(--vs-mouse-hue, 180), 90%, 88%);
+  transition:
+    border-color 0.35s ease,
+    background-color 0.35s ease,
+    color 0.35s ease;
+}
+
+.btn-hue-shift:hover:not(:disabled) {
+  background-color: hsla(var(--vs-mouse-hue, 180), 70%, 55%, 0.26);
+  box-shadow: 0 0 14px hsla(var(--vs-mouse-hue, 180), 80%, 60%, 0.3);
+}
+
+.btn-hue-shift:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
 
 .favorite-stamp {

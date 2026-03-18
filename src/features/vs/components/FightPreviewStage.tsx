@@ -1,8 +1,9 @@
-import type { ReactNode, RefObject } from 'react'
+import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import { stripFileExtension } from '../helpers'
 import { getTemplateUi } from '../templates/shared/templateUi'
 import type { TemplateId } from '../types'
+import { HeroLogoBadge } from './HeroLogoBadge'
 
 type FightPreviewStageProps = {
   ui: TranslationDictionary['ui']
@@ -54,11 +55,23 @@ export function FightPreviewStage({
   children,
 }: FightPreviewStageProps) {
   const stageShell = getTemplateUi(activeTemplate, activeFightLocale === 'en' ? 'en' : 'pl').highEnd as Record<string, string>
+
+  // ── Hue-shift toolbar on mouse move ──────────────────────────────────────
+  const toolbarRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleMove = (e: MouseEvent) => {
+      const hue = Math.round((e.clientX / window.innerWidth) * 300 + 150)
+      toolbarRef.current?.style.setProperty('--vs-mouse-hue', String(hue))
+    }
+    window.addEventListener('mousemove', handleMove, { passive: true })
+    return () => window.removeEventListener('mousemove', handleMove)
+  }, [])
+
+  // ── Class builders ────────────────────────────────────────────────────────
   const toolbarItemClass =
     'flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
-  const buttonItemClass =
-    `${toolbarItemClass} border-white/15 bg-white/5 text-slate-100 transition-colors hover:bg-white/10 ` +
-    'disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-white/5'
+  const buttonHueClass = `${toolbarItemClass} btn-hue-shift`
   const statusItemClass = `${toolbarItemClass} border-white/15 bg-transparent text-slate-200`
 
   return (
@@ -66,15 +79,23 @@ export function FightPreviewStage({
       className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
       style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
     >
-      <div className="shrink-0 grid grid-cols-1 gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl sm:grid-cols-2 xl:grid-cols-7">
-        <span className={`${toolbarItemClass} border-cyan-300/50 bg-cyan-400/15 font-semibold text-cyan-100`} title={ui.liveMode}>
+      {/* ── Toolbar ── */}
+      <div
+        ref={toolbarRef}
+        style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
+        className="shrink-0 grid grid-cols-1 gap-2 rounded-2xl border border-white/10 bg-slate-950/60 p-3 backdrop-blur-xl sm:grid-cols-2 xl:grid-cols-7"
+      >
+        <span
+          className={`${toolbarItemClass} border-cyan-300/50 bg-cyan-400/15 font-semibold text-cyan-100`}
+          title={ui.liveMode}
+        >
           {ui.liveMode}
         </span>
-        <button className={buttonItemClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
+        <button className={buttonHueClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
           {ui.backToLibrary}
         </button>
         <button
-          className={buttonItemClass}
+          className={buttonHueClass}
           type="button"
           onClick={() => onStepTemplateOrder(-1)}
           title={ui.prevTemplate}
@@ -83,7 +104,7 @@ export function FightPreviewStage({
           {ui.prevTemplate}
         </button>
         <button
-          className={buttonItemClass}
+          className={buttonHueClass}
           type="button"
           onClick={() => onStepTemplateOrder(1)}
           title={ui.nextTemplate}
@@ -105,6 +126,7 @@ export function FightPreviewStage({
         </span>
       </div>
 
+      {/* ── Preview shell ── */}
       <div
         ref={previewShellRef}
         data-vs-preview-shell="true"
@@ -112,10 +134,7 @@ export function FightPreviewStage({
       >
         <div
           className="mx-auto"
-          style={{
-            width: `${scaledPreviewWidth}px`,
-            height: `${scaledPreviewHeight}px`,
-          }}
+          style={{ width: `${scaledPreviewWidth}px`, height: `${scaledPreviewHeight}px` }}
         >
           <div
             ref={previewRef}
@@ -139,9 +158,15 @@ export function FightPreviewStage({
             <div className={stageShell.HIGH_END_STAGE_GRID_CLASS} />
             <div className={stageShell.HIGH_END_STAGE_FRAME_CLASS} />
             <div className="scan-sweep" />
+
+            {/* ── Template content ── */}
             <div key={activeTemplate} className="template-fade h-full">
               {children}
             </div>
+
+
+            {/* ── Cycling DC hero logo badge ── */}
+            <HeroLogoBadge />
           </div>
         </div>
       </div>

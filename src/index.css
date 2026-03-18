@@ -20,3 +20,14 @@
   display: none !important;
 }
 
+:root[data-vs-audit='true'] .mech-overlay,
+:root[data-vs-audit='true'] .hero-logo-badge-root {
+  display: none !important;
+}
+
+:root[data-vs-audit='true'] .glitch-heading-wrap {
+  animation: none !important;
+  filter: none !important;
+  transform: none !important;
+}
+

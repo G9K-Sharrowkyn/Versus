@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { Fighter, Language, TemplateId } from '../../types'
+import { CyberpunkMetaValue } from '../../components/CyberpunkMetaValue'
 import { FittedText } from './FittedText'
 import { getTemplateStaticField } from './templateCopy'
 import { getTemplateSlotSpec, getTemplateUi } from './templateUi'
@@ -66,15 +67,21 @@ export function HighEndTemplateHeader({
           slotKey="shared-header:threat-level"
           spec={metaSlot}
           text={`${chrome.threatLevelLabel}: ${chrome.threatLevelValue}`}
-        />
+        >
+          {chrome.threatLevelLabel}:{' '}
+          <CyberpunkMetaValue value={chrome.threatLevelValue} />
+        </FittedText>
         <FittedText
           as="p"
           slotKey="shared-header:data-integrity"
           spec={metaSlot}
           text={`${chrome.dataIntegrityLabel}: ${chrome.dataIntegrityValue}`}
-        />
+        >
+          {chrome.dataIntegrityLabel}:{' '}
+          <CyberpunkMetaValue value={chrome.dataIntegrityValue} />
+        </FittedText>
       </div>
-      <div className={resolvedCenterClassName}>
+      <div className={`${resolvedCenterClassName} glitch-heading-wrap`}>
         <FittedText
           as="h2"
           slotKey={`shared-header:title:${headerText}`}
