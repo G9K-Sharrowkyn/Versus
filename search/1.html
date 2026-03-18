@@ -399,7 +399,11 @@
       opacity:0; transition:opacity 0.4s ease;
     }
     .s6-scanline {
-      position:absolute;inset:0; pointer-events:none;
+      position:absolute;
+      top:0; bottom:0;
+      left:calc((100% - 100vw) / 2);
+      width:100vw;
+      pointer-events:none;
       background: linear-gradient(to bottom,
         transparent 0%, rgba(255,85,78,.08) 48%, rgba(255,85,78,.2) 50%,
         rgba(255,85,78,.08) 52%, transparent 100%);

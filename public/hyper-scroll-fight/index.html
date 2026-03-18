@@ -194,10 +194,10 @@
       camSpeed: 2.5,
       colors: ['#ff003c', '#00f3ff', '#ccff00', '#ffffff']
     };
-    CONFIG.loopSize = CONFIG.itemCount * CONFIG.zGap;
+    CONFIG.loopSize = CONFIG.itemCount * CONFIG.zGap; // used only for stars
 
-    // Sequence: which items are headings and what text/img they show
-    // i=0  big-text "FIGHT STARTING"
+    // Item sequence:
+    // i=0  big-text "EVALUATION STARTING"
     // i=1,2,3  card  IMG_A
     // i=4  big-text FIGHTER_A
     // i=5,6,7  card  IMG_B
@@ -205,12 +205,11 @@
     // i=9,11,13  card  IMG_A
     // i=10,12,14 card  IMG_B
     const HEADINGS = new Set([0, 4, 8]);
-    const HEADING_TEXT = { 0: 'FIGHT STARTING', 4: FIGHTER_A, 8: FIGHTER_B };
+    const HEADING_TEXT = { 0: 'EVALUATION STARTING', 4: FIGHTER_A, 8: FIGHTER_B };
     const CARD_IMG = (i) => {
       if (i >= 1 && i <= 3) return IMG_A;
       if (i >= 5 && i <= 7) return IMG_B;
-      // i 9-14: alternating A, B
-      return (i % 2 === 1) ? IMG_A : IMG_B;
+      return (i % 2 === 1) ? IMG_A : IMG_B; // i 9-14: odd=A, even=B
     };
 
     // --- STATE ---
@@ -256,17 +255,17 @@
           `;
           el.appendChild(card);
 
-          const angle  = (i / CONFIG.itemCount) * Math.PI * 6;
-          const x      = Math.cos(angle) * (window.innerWidth  * 0.3);
-          const y      = Math.sin(angle) * (window.innerHeight * 0.3);
-          const rot    = (Math.random() - 0.5) * 30;
+          const angle = (i / CONFIG.itemCount) * Math.PI * 6;
+          const x     = Math.cos(angle) * (window.innerWidth  * 0.3);
+          const y     = Math.sin(angle) * (window.innerHeight * 0.3);
+          const rot   = (Math.random() - 0.5) * 30;
 
           items.push({ el, type: 'card', x, y, rot, baseZ: -i * CONFIG.zGap });
         }
         world.appendChild(el);
       }
 
-      // Stars
+      // Stars (looping)
       for (let i = 0; i < CONFIG.starCount; i++) {
         const el = document.createElement('div');
         el.className = 'star';
@@ -286,58 +285,61 @@
     }
     init();
 
-    // --- AUTO-SCROLL (replaces Lenis) ---
-    const AUTO_RATE = 0.75; // px/ms
-    let autoPos  = 0;
+    // --- AUTO-SCROLL (no Lenis) ---
+    // Start slightly behind so "EVALUATION STARTING" begins in the distance
+    const AUTO_RATE = 0.375; // px/ms — half speed vs original
+    let autoPos  = -800;    // pre-roll: puts item i=0 at vizZ=-2000 initially
     let prevTime = null;
 
-    const DONE_AT = CONFIG.itemCount * CONFIG.zGap / CONFIG.camSpeed + 2000; // ~6800
+    // Stop after last card (i=14) has passed the camera + 1.5s buffer
+    const DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500; // ≈5980
 
     // --- HUD elements ---
     const feedbackVel = document.getElementById('vel-readout');
     const feedbackFPS = document.getElementById('fps');
     const coordEl     = document.getElementById('coord');
-    let lastTime = 0;
+    let lastFpsTime = 0;
 
     // --- RAF LOOP ---
     function raf(time) {
       const delta = prevTime !== null ? Math.min(time - prevTime, 50) : 16;
       prevTime = time;
 
-      // Auto-advance scroll
       autoPos += AUTO_RATE * delta;
       state.scroll      = autoPos;
       state.targetSpeed = AUTO_RATE * 16.67;
 
-      // FPS
-      const frameDelta = time - lastTime;
-      lastTime = time;
+      const frameDelta = time - lastFpsTime;
+      lastFpsTime = time;
       if (frameDelta > 0 && time % 10 < 1) feedbackFPS.innerText = Math.round(1000 / frameDelta);
 
-      // Smooth velocity
       state.velocity += (state.targetSpeed - state.velocity) * 0.1;
 
-      // HUD
       feedbackVel.innerText = Math.abs(state.velocity).toFixed(2);
-      coordEl.innerText = state.scroll.toFixed(0);
+      coordEl.innerText = Math.max(0, state.scroll).toFixed(0);
 
-      // Camera tilt
       const tiltX = state.mouseY * 5 - state.velocity * 0.5;
       const tiltY = state.mouseX * 5;
       world.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
-      // Dynamic perspective
       const fov = 1000 - Math.min(Math.abs(state.velocity) * 10, 600);
       viewport.style.perspective = `${fov}px`;
 
-      // Item loop
       const cameraZ = state.scroll * CONFIG.camSpeed;
 
       items.forEach(item => {
-        let relZ = item.baseZ + cameraZ;
-        const modC = CONFIG.loopSize;
-        let vizZ = ((relZ % modC) + modC) % modC;
-        if (vizZ > 500) vizZ -= modC;
+        let vizZ;
+
+        if (item.type === 'star') {
+          // Stars loop infinitely for background depth
+          const relZ = item.baseZ + cameraZ;
+          const modC = CONFIG.loopSize;
+          vizZ = ((relZ % modC) + modC) % modC;
+          if (vizZ > 500) vizZ -= modC;
+        } else {
+          // Content items: no looping — appear in correct sequence
+          vizZ = item.baseZ + cameraZ;
+        }
 
         let alpha = 1;
         if (vizZ < -3000) alpha = 0;
@@ -371,7 +373,6 @@
         }
       });
 
-      // Completion check
       if (autoPos >= DONE_AT) {
         window.parent.postMessage(
           { type: 'vvv-aaa-complete' },

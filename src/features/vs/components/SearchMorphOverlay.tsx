@@ -15,6 +15,7 @@ export function SearchMorphOverlay({
   direction,
   handoff,
 }: SearchMorphOverlayProps) {
+  return null // morph overlay removed
   if (!visible || typeof document === 'undefined') return null
 
   const morphHandoff = handoff ?? getViewportCenterHandoff()
