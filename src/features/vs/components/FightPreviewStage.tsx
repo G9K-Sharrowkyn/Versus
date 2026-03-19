@@ -152,11 +152,11 @@ export function FightPreviewStage({
             data-vs-template={activeTemplate}
             data-vs-folder-key={activeFightFolderKey}
             data-vs-locale={activeFightLocale}
-            className="vs-preview-shell--bare-body"
+            className="vs-preview-shell--bare-body vs-preview-shell--bare-body--tactical"
             style={{
-              width: `${previewBaseWidth}px`,
-              height: `${previewBaseHeight}px`,
-              transform: `scale(${previewScale})`,
+              width: '100%',
+              height: '100%',
+              transform: 'none',
               transformOrigin: 'top center',
               opacity: previewReady ? 1 : 0,
             }}
