@@ -81,9 +81,13 @@ export function TacticalBoardTemplate({
         <div className="vs-tactical-board25-matchup">
           {matchupMatch ? (
             <>
-              <span style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
+              <span className="vs-tactical-board25-matchup-a" style={{ color: fighterA.color }}>
+                {matchupMatch[1].trim()}
+              </span>
               <span className="vs-tactical-board25-matchup-separator">{matchupMatch[2]}</span>
-              <span style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
+              <span className="vs-tactical-board25-matchup-b" style={{ color: fighterB.color }}>
+                {matchupMatch[3].trim()}
+              </span>
             </>
           ) : (
             matchupText
@@ -99,6 +103,13 @@ export function TacticalBoardTemplate({
         onClick={onToggleLanguage}
       >
         <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img
+          className="vs-tactical-board25-logo-reflection"
+          src={chrome.brandImageSrc}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+        />
       </button>
 
       <section className="vs-tactical-board25-stats">
@@ -110,11 +121,14 @@ export function TacticalBoardTemplate({
             const winnerColor = isDraw ? '#f0e8e1' : row.winner === 'a' ? fighterA.color : fighterB.color
 
             return (
-              <div key={row.id} className="vs-tactical-board25-item" style={{ ['--item-accent' as string]: winnerColor }}>
-                <div className="vs-tactical-board25-item-icon">
-                  <Icon size={28} color={winnerColor} />
-                </div>
-                <FittedText
+                <div key={row.id} className="vs-tactical-board25-item" style={{ ['--item-accent' as string]: winnerColor }}>
+                  <div className="vs-tactical-board25-item-icon">
+                    <Icon size={28} color={winnerColor} />
+                    <div className="vs-tactical-board25-item-icon-reflection" aria-hidden="true">
+                      <Icon size={28} color={winnerColor} />
+                    </div>
+                  </div>
+                  <FittedText
                   as="p"
                   slotKey={`tactical-board:tile:${row.id}`}
                   spec={slots.tacticalBoardTile}
@@ -133,6 +147,14 @@ export function TacticalBoardTemplate({
           <span>{realityHeader}</span>
         </div>
         <div className="vs-tactical-board25-reality-viewport">
+          <div className="vs-tactical-board25-reality-labels" aria-hidden="true">
+            <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--linear">
+              {linearLabel}
+            </span>
+            <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--chaos">
+              {chaosLabel}
+            </span>
+          </div>
           <LightningCanvas
             startRatio={{ x: linearSplitX / 100, y: 0.52 }}
             endRatio={{ x: 1.08, y: 0.52 }}
@@ -147,30 +169,6 @@ export function TacticalBoardTemplate({
               strokeWidth="0.8"
               strokeDasharray="2.5 2.5"
             />
-            <text
-              x="26"
-              y="18"
-              fill="#77e2f2"
-              fontSize="7.6"
-              fontFamily="'Chakra Petch', sans-serif"
-              fontWeight="700"
-              textAnchor="middle"
-              style={{ letterSpacing: '0.08em' }}
-            >
-              {linearLabel}
-            </text>
-            <text
-              x="77"
-              y="18"
-              fill="#ff8a7e"
-              fontSize="7.6"
-              fontFamily="'Chakra Petch', sans-serif"
-              fontWeight="700"
-              textAnchor="middle"
-              style={{ letterSpacing: '0.08em' }}
-            >
-              {chaosLabel}
-            </text>
             <polyline
               points={stablePoints}
               fill="none"

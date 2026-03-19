@@ -482,6 +482,11 @@
 
 .vs-tactical-board25-surface {
   --tb-scale: 1.803;
+  --tb-type-1: calc(3.9rem * var(--tb-scale));
+  --tb-type-2: calc(1.16rem * var(--tb-scale));
+  --tb-type-3: calc(1.08rem * var(--tb-scale));
+  --tb-type-4: calc(0.94rem * var(--tb-scale));
+  --tb-type-5: calc(0.82rem * var(--tb-scale));
   --tb-side-margin: 5.2%;
   --tb-center-gap: 5.4%;
   --tb-stats-width: 42%;
@@ -557,8 +562,8 @@
   background: transparent;
   box-shadow: none;
   color: rgba(255, 236, 229, 0.92);
-  text-shadow: 0 10px 3px rgba(255, 85, 78, 0.16);
-  font-size: calc(0.875rem * var(--tb-scale));
+  text-shadow: 0 0.3em 0 rgba(255, 236, 229, 0.12);
+  font-size: var(--tb-type-5);
 }
 
 .vs-tactical-board25-surface .vs-template-toolbar-item::after,
@@ -598,25 +603,18 @@
   gap: calc(0.32rem * var(--tb-scale));
   color: rgba(255, 174, 160, 0.76);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(1.08rem * var(--tb-scale));
+  font-size: var(--tb-type-3);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.vs-tactical-board25-meta p,
-.vs-tactical-board25-title,
-.vs-tactical-board25-subtitle,
-.vs-tactical-board25-matchup,
-.vs-tactical-board25-list-title,
-.vs-tactical-board25-item-label,
-.vs-tactical-board25-gauge-label,
-.vs-tactical-board25-reality-heading,
-.vs-tactical-board25-surface .vs-template-toolbar-item {
-  text-shadow: 0 10px 3px rgba(255, 85, 78, 0.16);
-}
-
 .vs-tactical-board25-meta span {
   color: #77e2f2;
+  text-shadow: 0 0.1em 0 rgba(119, 226, 242, 0.18);
+}
+
+.vs-tactical-board25-meta p {
+  text-shadow: 0 0.1em 0 rgba(255, 153, 130, 0.14);
 }
 
 .vs-tactical-board25-heading {
@@ -633,12 +631,13 @@
   margin: 0;
   color: #f7f0ea;
   font-family: 'Chakra Petch', 'Syncopate', sans-serif;
-  font-size: clamp(calc(3.1rem * var(--tb-scale)), 6vw, calc(4.5rem * var(--tb-scale)));
+  font-size: var(--tb-type-1);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 0.96;
   white-space: nowrap;
   text-transform: uppercase;
+  text-shadow: 0 0.1em 0 rgba(247, 240, 234, 0.14);
 }
 
 .vs-tactical-board25-subtitle {
@@ -646,10 +645,11 @@
   margin-top: calc(0.62rem * var(--tb-scale));
   color: rgba(255, 153, 130, 0.78);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(0.94rem * var(--tb-scale));
+  font-size: var(--tb-type-4);
   letter-spacing: 0.14em;
   white-space: nowrap;
   text-transform: uppercase;
+  text-shadow: 0 0.1em 0 rgba(255, 153, 130, 0.14);
 }
 
 .vs-tactical-board25-matchup {
@@ -657,14 +657,24 @@
   margin-top: calc(0.42rem * var(--tb-scale));
   color: rgba(238, 229, 221, 0.9);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(1.08rem * var(--tb-scale));
+  font-size: var(--tb-type-3);
   letter-spacing: 0.06em;
   white-space: nowrap;
   text-transform: uppercase;
+  text-shadow: none;
+}
+
+.vs-tactical-board25-matchup-a {
+  text-shadow: 0 0.1em 0 color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .vs-tactical-board25-matchup-separator {
   color: rgba(239, 228, 219, 0.48);
+  text-shadow: 0 0.1em 0 rgba(239, 228, 219, 0.12);
+}
+
+.vs-tactical-board25-matchup-b {
+  text-shadow: 0 0.2em 0 color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .vs-tactical-board25-logo {
@@ -688,10 +698,22 @@
 }
 
 .vs-tactical-board25-logo img {
-  width: calc(54px * var(--tb-scale));
+  width: calc(162px * var(--tb-scale));
   height: auto;
+  display: block;
   object-fit: contain;
   filter: drop-shadow(0 0 12px rgba(255, 126, 74, 0.14));
+}
+
+.vs-tactical-board25-logo-reflection {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: calc(6px * var(--tb-scale));
+  transform: none;
+  opacity: 0.18;
+  filter: blur(calc(0.9px * var(--tb-scale)));
+  pointer-events: none;
 }
 
 .vs-tactical-board25-stats,
@@ -720,9 +742,10 @@
   margin-bottom: calc(0.96rem * var(--tb-scale));
   color: rgba(255, 141, 122, 0.78);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(1.14rem * var(--tb-scale));
+  font-size: var(--tb-type-2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  text-shadow: 0 0.1em 0 rgba(255, 141, 122, 0.14);
 }
 
 .vs-tactical-board25-stats-grid {
@@ -749,6 +772,7 @@
 }
 
 .vs-tactical-board25-item-icon {
+  position: relative;
   flex: 0 0 auto;
   width: calc(42px * var(--tb-scale));
   height: calc(42px * var(--tb-scale));
@@ -760,13 +784,36 @@
   border: 1px solid color-mix(in srgb, var(--item-accent) 22%, rgba(255, 85, 78, 0.14));
 }
 
+.vs-tactical-board25-item-icon svg {
+  display: block;
+  overflow: visible;
+}
+
+.vs-tactical-board25-item-icon-reflection {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(calc(7px * var(--tb-scale)));
+  opacity: 0.18;
+  filter: blur(calc(0.9px * var(--tb-scale)));
+  pointer-events: none;
+}
+
+.vs-tactical-board25-item-icon-reflection svg {
+  display: block;
+  overflow: visible;
+}
+
 .vs-tactical-board25-item-label {
   width: 100%;
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(0.98rem * var(--tb-scale));
+  font-size: var(--tb-type-4);
   letter-spacing: 0.07em;
   line-height: 1.08;
   text-transform: uppercase;
+  text-shadow: 0 0.1em 0 color-mix(in srgb, currentColor 18%, transparent);
 }
 
 .vs-tactical-board25-gauge-card {
@@ -853,9 +900,41 @@
   margin-bottom: calc(0.78rem * var(--tb-scale));
   color: rgba(255, 141, 122, 0.82);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: calc(1.16rem * var(--tb-scale));
+  font-size: var(--tb-type-2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  text-shadow: 0 0.1em 0 rgba(255, 141, 122, 0.14);
+}
+
+.vs-tactical-board25-reality-labels {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vs-tactical-board25-reality-label {
+  position: absolute;
+  top: calc(14px * var(--tb-scale));
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-type-4);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  line-height: 1;
+  text-transform: none;
+  white-space: nowrap;
+}
+
+.vs-tactical-board25-reality-label--linear {
+  left: 16%;
+  color: #77e2f2;
+  text-shadow: 0 0.1em 0 rgba(119, 226, 242, 0.18);
+}
+
+.vs-tactical-board25-reality-label--chaos {
+  left: 58%;
+  color: #ff8a7e;
+  text-shadow: 0 0.1em 0 rgba(255, 138, 126, 0.18);
 }
 
 .vs-tactical-board25-reality-viewport {
