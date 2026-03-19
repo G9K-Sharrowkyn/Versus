@@ -109,10 +109,12 @@
 
 .vs-tactical-board25-toolbar {
   position: absolute;
-  top: calc(12px * var(--tb-scale));
+  top: calc(8px * var(--tb-scale));
   left: 4.2%;
   width: 91.6%;
+  padding-bottom: calc(14px * var(--tb-scale));
   z-index: 3;
+  overflow: visible;
 }
 
 .vs-template-toolbar--integrated {
@@ -121,6 +123,7 @@
   border: 0;
   background: transparent;
   box-shadow: none;
+  overflow: visible;
 }
 
 .vs-tactical-board25-surface .vs-template-toolbar-item {
@@ -137,6 +140,11 @@
   color: rgba(255, 236, 229, 0.92);
   text-shadow: 0 var(--tb-reflect-5-y) var(--tb-reflect-5-blur) rgba(255, 236, 229, 0.14);
   font-size: var(--tb-type-5);
+  overflow: visible;
+}
+
+.vs-tactical-board25-surface .vs-template-toolbar-item > * {
+  overflow: visible;
 }
 
 
@@ -230,7 +238,7 @@
 
 .vs-tactical-board25-logo {
   position: absolute;
-  top: calc(104px * var(--tb-scale));
+  top: calc(88px * var(--tb-scale));
   right: var(--tb-side-margin);
   width: auto;
   height: auto;
@@ -248,12 +256,14 @@
   content: none;
 }
 
-.vs-tactical-board25-logo img {
+.vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
   width: calc(162px * var(--tb-scale));
   height: auto;
   display: block;
   object-fit: contain;
-  filter: drop-shadow(0 0 12px rgba(255, 126, 74, 0.14));
+  filter:
+    blur(calc(0.5px * var(--tb-scale)))
+    drop-shadow(0 0 12px rgba(255, 126, 74, 0.14));
 }
 
 /* Logo reflection - soft duplicate below the logo, not mirrored. */
@@ -370,6 +380,7 @@
   justify-content: center;
   background: linear-gradient(180deg, rgba(9, 2, 2, 0.28), rgba(4, 0, 0, 0.34));
   border: 1px solid color-mix(in srgb, var(--item-accent) 22%, rgba(255, 85, 78, 0.14));
+  transform: translateY(calc(-4px * var(--tb-scale)));
 }
 
 .vs-tactical-board25-item-icon svg {
