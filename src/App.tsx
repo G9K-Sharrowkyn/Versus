@@ -969,7 +969,7 @@ function App() {
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
-              src="/search/1.html?v=22"
+              src="/search/1.html?v=32"
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
               onLoad={handleSearchFrameLoad}
@@ -987,7 +987,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?v=14&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=15&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}
