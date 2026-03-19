@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
+import { cloneElement, isValidElement, useEffect, useRef, type ReactElement, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import { stripFileExtension } from '../helpers'
 import { getTemplateUi } from '../templates/shared/templateUi'
@@ -55,8 +55,8 @@ export function FightPreviewStage({
   children,
 }: FightPreviewStageProps) {
   const stageShell = getTemplateUi(activeTemplate, activeFightLocale === 'en' ? 'en' : 'pl').highEnd as Record<string, string>
+  const isBareTacticalBoard = activeTemplate === 'tactical-board'
 
-  // ── Hue-shift toolbar on mouse move ──────────────────────────────────────
   const toolbarRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -68,74 +68,82 @@ export function FightPreviewStage({
     return () => window.removeEventListener('mousemove', handleMove)
   }, [])
 
-  // ── Class builders ────────────────────────────────────────────────────────
   const toolbarItemClass =
     'vs-template-toolbar-item flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
   const buttonHueClass = `${toolbarItemClass} vs-template-toolbar-button btn-hue-shift`
   const statusItemClass = `${toolbarItemClass} vs-template-toolbar-status`
 
+  const toolbar = (
+    <div
+      ref={toolbarRef}
+      style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
+      className={`vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-7${
+        isBareTacticalBoard ? ' vs-template-toolbar--integrated' : ''
+      }`}
+    >
+      <span className={`${toolbarItemClass} vs-template-toolbar-live font-semibold`} title={ui.liveMode}>
+        {ui.liveMode}
+      </span>
+      <button className={buttonHueClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
+        {ui.backToLibrary}
+      </button>
+      <button
+        className={buttonHueClass}
+        type="button"
+        onClick={() => onStepTemplateOrder(-1)}
+        title={ui.prevTemplate}
+        disabled={!canStepTemplateBackward}
+      >
+        {ui.prevTemplate}
+      </button>
+      <button
+        className={buttonHueClass}
+        type="button"
+        onClick={() => onStepTemplateOrder(1)}
+        title={ui.nextTemplate}
+        disabled={!canStepTemplateForward}
+      >
+        {ui.nextTemplate}
+      </button>
+      <span className={`${statusItemClass} flex-col`} title={`${ui.sequence} ${templateCursor + 1}/${templateOrderLength}`}>
+        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.sequence}</span>
+        <span className="mt-0.5">{templateCursor + 1}/{templateOrderLength}</span>
+      </span>
+      <span className={`${statusItemClass} flex-col`} title={`${ui.active}: ${activeTemplateLabel}`}>
+        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.active}</span>
+        <span className="mt-0.5 w-full truncate">{activeTemplateLabel}</span>
+      </span>
+      <span className={`${statusItemClass} flex-col`} title={stripFileExtension(importFileName) || ui.notLoaded}>
+        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.importFile}</span>
+        <span className="mt-0.5 w-full truncate">{stripFileExtension(importFileName) || ui.notLoaded}</span>
+      </span>
+    </div>
+  )
+
+  const tacticalBoardContent =
+    isBareTacticalBoard && isValidElement(children)
+      ? cloneElement(children as ReactElement<Record<string, unknown>>, {
+          integratedToolbar: toolbar,
+        })
+      : children
+
   return (
     <section
-      className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
+      className={`flex h-full min-h-0 flex-col transition-opacity duration-200 ease-out${isBareTacticalBoard ? ' gap-0' : ' gap-3'}`}
       style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
     >
-      {/* ── Toolbar ── */}
-      <div
-        ref={toolbarRef}
-        style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
-        className="vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-7"
-      >
-        <span
-          className={`${toolbarItemClass} vs-template-toolbar-live font-semibold`}
-          title={ui.liveMode}
-        >
-          {ui.liveMode}
-        </span>
-        <button className={buttonHueClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
-          {ui.backToLibrary}
-        </button>
-        <button
-          className={buttonHueClass}
-          type="button"
-          onClick={() => onStepTemplateOrder(-1)}
-          title={ui.prevTemplate}
-          disabled={!canStepTemplateBackward}
-        >
-          {ui.prevTemplate}
-        </button>
-        <button
-          className={buttonHueClass}
-          type="button"
-          onClick={() => onStepTemplateOrder(1)}
-          title={ui.nextTemplate}
-          disabled={!canStepTemplateForward}
-        >
-          {ui.nextTemplate}
-        </button>
-        <span className={`${statusItemClass} flex-col`} title={`${ui.sequence} ${templateCursor + 1}/${templateOrderLength}`}>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.sequence}</span>
-          <span className="mt-0.5">{templateCursor + 1}/{templateOrderLength}</span>
-        </span>
-        <span className={`${statusItemClass} flex-col`} title={`${ui.active}: ${activeTemplateLabel}`}>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.active}</span>
-          <span className="mt-0.5 w-full truncate">{activeTemplateLabel}</span>
-        </span>
-        <span className={`${statusItemClass} flex-col`} title={stripFileExtension(importFileName) || ui.notLoaded}>
-          <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.importFile}</span>
-          <span className="mt-0.5 w-full truncate">{stripFileExtension(importFileName) || ui.notLoaded}</span>
-        </span>
-      </div>
+      {isBareTacticalBoard ? null : toolbar}
 
-      {/* ── Preview shell ── */}
       <div
         ref={previewShellRef}
         data-vs-preview-shell="true"
-        className="vs-preview-shell min-h-0 flex-1 overflow-hidden rounded-[32px] border p-3"
+        className={
+          isBareTacticalBoard
+            ? 'vs-preview-shell--bare min-h-0 flex-1 overflow-hidden'
+            : 'vs-preview-shell min-h-0 flex-1 overflow-hidden rounded-[32px] border p-3'
+        }
       >
-        <div
-          className="mx-auto"
-          style={{ width: `${scaledPreviewWidth}px`, height: `${scaledPreviewHeight}px` }}
-        >
+        {isBareTacticalBoard ? (
           <div
             ref={previewRef}
             data-vs-stage="true"
@@ -144,31 +152,49 @@ export function FightPreviewStage({
             data-vs-template={activeTemplate}
             data-vs-folder-key={activeFightFolderKey}
             data-vs-locale={activeFightLocale}
-            className={`${stageShell.HIGH_END_STAGE_CLASS} vs-stage-shell`}
+            className="vs-preview-shell--bare-body"
             style={{
               width: `${previewBaseWidth}px`,
               height: `${previewBaseHeight}px`,
               transform: `scale(${previewScale})`,
-              transformOrigin: 'top left',
+              transformOrigin: 'top center',
               opacity: previewReady ? 1 : 0,
             }}
             aria-busy={!previewReady}
           >
-            <div className={stageShell.HIGH_END_STAGE_OVERLAY_CLASS} />
-            <div className={stageShell.HIGH_END_STAGE_GRID_CLASS} />
-            <div className={stageShell.HIGH_END_STAGE_FRAME_CLASS} />
-            <div className="scan-sweep" />
-
-            {/* ── Template content ── */}
-            <div key={activeTemplate} className="template-fade h-full">
-              {children}
-            </div>
-
-
-            {/* ── Cycling DC hero logo badge ── */}
-            <HeroLogoBadge />
+            {tacticalBoardContent}
           </div>
-        </div>
+        ) : (
+          <div className="mx-auto" style={{ width: `${scaledPreviewWidth}px`, height: `${scaledPreviewHeight}px` }}>
+            <div
+              ref={previewRef}
+              data-vs-stage="true"
+              data-vs-preview-ready={previewReady ? 'true' : 'false'}
+              data-vs-preview-scale={previewScale}
+              data-vs-template={activeTemplate}
+              data-vs-folder-key={activeFightFolderKey}
+              data-vs-locale={activeFightLocale}
+              className={`${stageShell.HIGH_END_STAGE_CLASS} vs-stage-shell`}
+              style={{
+                width: `${previewBaseWidth}px`,
+                height: `${previewBaseHeight}px`,
+                transform: `scale(${previewScale})`,
+                transformOrigin: 'top left',
+                opacity: previewReady ? 1 : 0,
+              }}
+              aria-busy={!previewReady}
+            >
+              <div className={stageShell.HIGH_END_STAGE_OVERLAY_CLASS} />
+              <div className={stageShell.HIGH_END_STAGE_GRID_CLASS} />
+              <div className={stageShell.HIGH_END_STAGE_FRAME_CLASS} />
+              <div className="scan-sweep" />
+              <div key={activeTemplate} className="template-fade h-full">
+                {children}
+              </div>
+              <HeroLogoBadge />
+            </div>
+          </div>
+        )}
       </div>
     </section>
   )
