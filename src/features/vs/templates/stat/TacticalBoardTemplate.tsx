@@ -122,20 +122,20 @@ export function TacticalBoardTemplate({
             const winnerColor = isDraw ? '#f0e8e1' : row.winner === 'a' ? fighterA.color : fighterB.color
 
             return (
-                <div key={row.id} className="vs-tactical-board25-item" style={{ ['--item-accent' as string]: winnerColor }}>
-                  <div className="vs-tactical-board25-item-icon">
+              <div key={row.id} className="vs-tactical-board25-item" style={{ ['--item-accent' as string]: winnerColor }}>
+                <div className="vs-tactical-board25-item-icon">
+                  <Icon size={28} color={winnerColor} />
+                  <div className="vs-tactical-board25-item-icon-reflection" aria-hidden="true">
                     <Icon size={28} color={winnerColor} />
-                    <div className="vs-tactical-board25-item-icon-reflection" aria-hidden="true">
-                      <Icon size={28} color={winnerColor} />
-                    </div>
                   </div>
-                  <FittedText
+                </div>
+                <FittedText
                   as="p"
                   slotKey={`tactical-board:tile:${row.id}`}
                   spec={slots.tacticalBoardTile}
                   text={row.label}
                   className="vs-tactical-board25-item-label"
-                  style={{ color: winnerColor }}
+                  style={{ color: winnerColor, overflow: 'visible' }}
                 />
               </div>
             )
@@ -147,15 +147,15 @@ export function TacticalBoardTemplate({
         <div className="vs-tactical-board25-reality-heading">
           <span>{realityHeader}</span>
         </div>
+        <div className="vs-tactical-board25-reality-labels" aria-hidden="true">
+          <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--linear">
+            {linearLabel}
+          </span>
+          <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--chaos">
+            {chaosLabel}
+          </span>
+        </div>
         <div className="vs-tactical-board25-reality-viewport">
-          <div className="vs-tactical-board25-reality-labels" aria-hidden="true">
-            <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--linear">
-              {linearLabel}
-            </span>
-            <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--chaos">
-              {chaosLabel}
-            </span>
-          </div>
           <LightningCanvas
             startRatio={{ x: linearSplitX / 100, y: 0.52 }}
             endRatio={{ x: 1.08, y: 0.52 }}
