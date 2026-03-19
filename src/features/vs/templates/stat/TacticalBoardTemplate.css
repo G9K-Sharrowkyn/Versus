@@ -39,7 +39,7 @@
   --tb-stat-label-line-height: 1.05;
   --tb-stat-label-letter-spacing: 0.07em;
   --tb-stat-label-font-weight: 400;
-  --tb-reflect-1-y: 0.98em;
+  --tb-reflect-1-y: 0.58em;
   --tb-reflect-2-y: 1.7em;
   --tb-reflect-3-y: 1.84em;
   --tb-reflect-4-y: 2.8em;
@@ -50,12 +50,15 @@
   --tb-reflect-4-blur: 0.2em;
   --tb-reflect-5-blur: 0.2em;
   --tb-side-margin: 5.2%;
-  --tb-center-gap: 5.4%;
-  --tb-stats-width: 42%;
+  --tb-center-gap: 4.8%;
+  --tb-panel-width: 34%;
+  --tb-panel-top: calc(262px * var(--tb-scale));
+  --tb-panel-height: calc(336px * var(--tb-scale));
+  --tb-stats-width: var(--tb-panel-width);
   --tb-right-start: calc(50% + (var(--tb-center-gap) / 2));
   --tb-stats-left: calc(50% - (var(--tb-center-gap) / 2) - var(--tb-stats-width));
   --tb-reality-left: var(--tb-right-start);
-  --tb-reality-width: 28%;
+  --tb-reality-width: var(--tb-panel-width);
   position: relative;
   width: min(calc(1240px * var(--tb-scale)), calc(100vw - 40px));
   aspect-ratio: 800 / 450;
@@ -73,36 +76,14 @@
 
 /* Surface depth shadow */
 .vs-tactical-board25-surface::after {
-  content: '';
-  display: block;
-  position: absolute;
-  top: calc(44px * var(--tb-scale));
-  bottom: calc(-50px * var(--tb-scale));
-  left: calc(22px * var(--tb-scale));
-  right: calc(22px * var(--tb-scale));
-  z-index: -1;
-  border-radius: 50px;
-  border: 5px solid rgba(255, 85, 78, 0.07);
-  box-shadow:
-    0 0 40px rgba(255, 85, 78, 0.09),
-    0 0 80px rgba(0, 0, 0, 0.28);
+  content: none;
 }
 
 /* Divider line */
 /* Reference: cyberpunk-info-board #line with box-shadow floor glow */
 
 .vs-tactical-board25-line {
-  display: block;
-  position: absolute;
-  top: calc(218px * var(--tb-scale));
-  left: 0;
-  right: 0;
-  height: 0;
-  border: none;
-  border-top: 1px solid rgba(83, 71, 92, 0.55);
-  box-shadow: 0 calc(44px * var(--tb-scale)) calc(6px * var(--tb-scale)) rgba(255, 85, 78, 0.22);
-  z-index: 0;
-  pointer-events: none;
+  display: none;
 }
 
 /* Toolbar */
@@ -250,6 +231,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: visible;
 }
 
 .vs-tactical-board25-logo::after {
@@ -263,7 +245,7 @@
   object-fit: contain;
   filter:
     blur(calc(0.5px * var(--tb-scale)))
-    drop-shadow(0 0 12px rgba(255, 126, 74, 0.14));
+    drop-shadow(0 0 2px rgba(255, 126, 74, 0.14));
 }
 
 /* Logo reflection - soft duplicate below the logo, not mirrored. */
@@ -273,12 +255,12 @@
   top: 100%;
   width: 100%;
   height: auto;
-  margin-top: calc(4px * var(--tb-scale));
+  margin-top: calc(-34px * var(--tb-scale));
   transform: none;
-  opacity: 0.16;
+  opacity: 0.2;
   filter: blur(calc(1.6px * var(--tb-scale)));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 65%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5) 0%, transparent 65%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
   pointer-events: none;
 }
 
@@ -325,28 +307,35 @@
 }
 
 .vs-tactical-board25-stats {
-  top: calc(222px * var(--tb-scale));
+  top: var(--tb-panel-top);
   left: var(--tb-stats-left);
   width: var(--tb-stats-width);
+  min-height: var(--tb-panel-height);
   padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   border-radius: calc(34px * var(--tb-scale));
 }
 
 .vs-tactical-board25-stats-title {
+  position: absolute;
+  top: calc(-28px * var(--tb-scale));
+  left: calc(18px * var(--tb-scale));
   display: inline-block;
-  margin-bottom: calc(0.96rem * var(--tb-scale));
+  margin: 0;
+  padding: 0 calc(4px * var(--tb-scale));
   color: rgba(255, 141, 122, 0.78);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
   font-size: var(--tb-type-2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
   text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 141, 122, 0.18);
+  z-index: 2;
 }
 
 .vs-tactical-board25-stats-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: calc(0.9rem * var(--tb-scale));
+  margin-top: calc(0.4rem * var(--tb-scale));
 }
 
 /* Stat items */
@@ -393,7 +382,7 @@
   position: absolute;
   left: 0;
   right: 0;
-  top: calc(100% + calc(1px * var(--tb-scale)));
+  top: calc(100% + calc(-12px * var(--tb-scale)));
   bottom: auto;
   height: 100%;
   display: flex;
@@ -428,42 +417,35 @@
 /* Reality viewport */
 
 .vs-tactical-board25-reality {
-  top: calc(375px * var(--tb-scale));
+  top: var(--tb-panel-top);
   left: var(--tb-reality-left);
   width: var(--tb-reality-width);
-  height: calc(208px * var(--tb-scale));
+  height: var(--tb-panel-height);
   padding: calc(1rem * var(--tb-scale));
   border-radius: calc(34px * var(--tb-scale));
   background: transparent;
   box-shadow:
     inset 0 0 0 1px rgba(255, 85, 78, 0.06),
-    0 10px 18px rgba(0, 0, 0, 0.18),
     0 0 32px rgba(255, 85, 78, 0.04);
 }
 
 /* Depth slab beneath reality panel */
 .vs-tactical-board25-reality::after {
-  content: '';
-  display: block;
-  position: absolute;
-  left: calc(6px * var(--tb-scale));
-  right: calc(6px * var(--tb-scale));
-  top: calc(12px * var(--tb-scale));
-  bottom: calc(-14px * var(--tb-scale));
-  z-index: -1;
-  border-radius: inherit;
-  border: 3px solid rgba(255, 85, 78, 0.04);
-  box-shadow: 0 0 28px rgba(255, 85, 78, 0.07);
-  pointer-events: none;
+  content: none;
 }
 
 .vs-tactical-board25-reality-heading {
-  margin-bottom: calc(0.78rem * var(--tb-scale));
+  position: absolute;
+  top: calc(-28px * var(--tb-scale));
+  left: calc(18px * var(--tb-scale));
+  margin: 0;
+  padding: 0 calc(4px * var(--tb-scale));
   color: rgba(255, 141, 122, 0.82);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
   font-size: var(--tb-type-2);
   letter-spacing: 0.14em;
   text-transform: uppercase;
+  z-index: 2;
 }
 
 .vs-tactical-board25-reality-heading span {
@@ -474,7 +456,7 @@
   position: absolute;
   left: calc(1rem * var(--tb-scale));
   right: calc(1rem * var(--tb-scale));
-  top: calc(72px * var(--tb-scale));
+  top: calc(58px * var(--tb-scale));
   height: 0;
   overflow: visible;
   pointer-events: none;
@@ -508,11 +490,12 @@
 
 .vs-tactical-board25-reality-viewport {
   position: relative;
-  height: calc(100% - calc(2.28rem * var(--tb-scale)));
-  border-radius: calc(24px * var(--tb-scale));
-  border: 1px solid rgba(255, 85, 78, 0.16);
+  height: calc(100% - calc(1.92rem * var(--tb-scale)));
+  border-radius: 0;
+  border: 0;
   overflow: hidden;
   background: transparent;
+  margin-top: calc(1.65rem * var(--tb-scale));
 }
 
 .vs-tactical-board25-reality-viewport::before {
