@@ -90,6 +90,7 @@ const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
+const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
 
 const parseFightScaffoldMatchup = (value: string) => {
   const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
@@ -199,6 +200,7 @@ function App() {
     introFrameRef,
     clearSearchTransitionQueue,
     clearFinalTemplateAutoReturnTimeout,
+    openFightImmediately,
     goBackToLibrary,
     showSearchImmediately,
     handleIntroFrameLoad,
@@ -877,6 +879,37 @@ function App() {
     [searchFrameRef, showSearchImmediately, viewMode],
   )
 
+  const openFightByShortcutKey = useCallback(
+    (shortcutKey: string) => {
+      const shortcutIndex = FIGHT_SHORTCUT_KEYS.indexOf(shortcutKey as (typeof FIGHT_SHORTCUT_KEYS)[number])
+      if (shortcutIndex === -1) return false
+
+      const group = folderFightGroups[shortcutIndex]
+      if (!group) return false
+
+      const targetFight =
+        group.fights.find((fight) => fight.variantLocale === language) ||
+        group.fights.find((fight) => preferredVariantByMatchup[group.matchupKey] === fight.id) ||
+        group.fights[0] ||
+        null
+
+      if (!targetFight) return false
+
+      rememberPreferredFightVariant(targetFight)
+      clearFinalTemplateAutoReturnTimeout()
+      openFightImmediately(targetFight)
+      return true
+    },
+    [
+      clearFinalTemplateAutoReturnTimeout,
+      folderFightGroups,
+      language,
+      openFightImmediately,
+      preferredVariantByMatchup,
+      rememberPreferredFightVariant,
+    ],
+  )
+
   useEffect(() => {
     const isTypingTarget = (target: EventTarget | null) =>
       target instanceof HTMLInputElement ||
@@ -887,15 +920,21 @@ function App() {
     const handleSearchStageJumpKeydown = (event: KeyboardEvent) => {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
       if (isTypingTarget(event.target)) return
-      if (!/^[1-5]$/.test(event.key)) return
+      if (/^[1-5]$/.test(event.key)) {
+        event.preventDefault()
+        dispatchSearchStageJump(Number(event.key))
+        return
+      }
 
+      if (!FIGHT_SHORTCUT_KEYS.includes(event.key as (typeof FIGHT_SHORTCUT_KEYS)[number])) return
+
+      if (!openFightByShortcutKey(event.key)) return
       event.preventDefault()
-      dispatchSearchStageJump(Number(event.key))
     }
 
     window.addEventListener('keydown', handleSearchStageJumpKeydown)
     return () => window.removeEventListener('keydown', handleSearchStageJumpKeydown)
-  }, [dispatchSearchStageJump])
+  }, [dispatchSearchStageJump, openFightByShortcutKey])
 
   useEffect(() => {
     const handleSearchStageJumpMessage = (event: MessageEvent) => {
@@ -914,6 +953,23 @@ function App() {
     window.addEventListener('message', handleSearchStageJumpMessage)
     return () => window.removeEventListener('message', handleSearchStageJumpMessage)
   }, [dispatchSearchStageJump])
+
+  useEffect(() => {
+    const handleFightShortcutMessage = (event: MessageEvent) => {
+      if (event.origin !== window.location.origin) return
+      const payload = event.data
+      if (!payload || typeof payload !== 'object') return
+
+      const typed = payload as { type?: unknown; key?: unknown }
+      if (typed.type !== 'vvv-dev-open-fight-shortcut-request') return
+      if (typeof typed.key !== 'string') return
+
+      openFightByShortcutKey(typed.key)
+    }
+
+    window.addEventListener('message', handleFightShortcutMessage)
+    return () => window.removeEventListener('message', handleFightShortcutMessage)
+  }, [openFightByShortcutKey])
 
   const handleSearchFrameLoad = useCallback(() => {
     const stage = pendingSearchStageJumpRef.current

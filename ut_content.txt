@@ -1,0 +1,39 @@
+Ut=String.raw`cc -I. -O3 -g -fcommon -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -g   -o pw-inspector  pw-inspector.c
+cc -I. -O3 -g -fcommon -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -g  -c hydra-vnc.c -DLIBOPENSSL -DHAVE_ZLIB -DHAVE_MATH_H  
+cc -I. -O3 -g -fcommon -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -g  -c hydra-pcnfs.c -DLIBOPENSSL -DHAVE_ZLIB -DHAVE_MATH_H  
+cc -I. -O3 -g -fcommon -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -g  -c hydra-rexec.c -DLIBOPENSSL -DHAVE_ZLIB -DHAVE_MATH_H  
+cc -I. -O3 -g -fcommon -pie -fPIE -fstack-protector-all --param ssp-buffer-size=4 -D_FORTIFY_SOURCE=2 -Wl,-z,now -Wl,-z,relro -g  -c hydra-nntp.c -DLIBOPENSSL -DHAVE_ZLIB -DHAVE_MATH_H  
+hydra-nntp.c: In function ‘start_nntp’:
+hydra-nntp.c:204:41: warning: ‘%s’ directive writing up to 4095 bytes into a region of size 481 [-Wformat-overflow=]
+  204 |     sprintf(buffer, "AUTHINFO SASL NTLM %s\r\n", (char *)buf1);
+      |                                         ^~               ~~~~
+In file included from /usr/include/stdio.h:867,
+                 from hydra.h:3,
+                 from hydra-mod.h:4,
+                 from hydra-nntp.c:1:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:36:10: note: ‘__builtin___sprintf_chk’ output between 22 and 4117 bytes into a destination of size 500
+   36 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   37 |       __bos (__s), __fmt, __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hydra-nntp.c:221:22: warning: ‘%s’ directive writing up to 4095 bytes into a region of size 500 [-Wformat-overflow=]
+  221 |     sprintf(buffer, "%s\r\n", (char *)buf1);
+      |                      ^~               ~~~~
+In file included from /usr/include/stdio.h:867,
+                 from hydra.h:3,
+                 from hydra-mod.h:4,
+                 from hydra-nntp.c:1:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:36:10: note: ‘__builtin___sprintf_chk’ output between 3 and 4098 bytes into a destination of size 500
+   36 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   37 |       __bos (__s), __fmt, __va_arg_pack ());
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+hydra-nntp.c:192:24: warning: ‘
+   ’ directive writing 2 bytes into a region of size between 1 and 500 [-Wformat-overflow=]
+  192 |     sprintf(buffer, "%s\r\n", buffer2);
+      |                        ^~~~
+In file included from /usr/include/stdio.h:867,
+                 from hydra.h:3,
+                 from hydra-mod.h:4,
+                 from hydra-nntp.c:1:
+/usr/include/x86_64-linux-gnu/bits/stdio2.h:36:10: note: ‘__builtin___sprintf_chk’ outp

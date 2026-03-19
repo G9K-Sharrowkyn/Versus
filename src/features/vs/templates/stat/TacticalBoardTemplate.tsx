@@ -1,3 +1,4 @@
+import './TacticalBoardTemplate.css'
 import type { ReactNode } from 'react'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'

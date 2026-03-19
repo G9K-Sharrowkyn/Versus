@@ -768,11 +768,19 @@
       window.addEventListener('blur', () => postRelay('leave', window.innerWidth * 0.5, window.innerHeight * 0.5, false), { passive: true });
       window.addEventListener('keydown', e => {
         if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
-        if (!/^[1-5]$/.test(e.key)) return;
         if (!window.parent || window.parent === window) return;
+        if (/^[1-5]$/.test(e.key)) {
+          e.preventDefault();
+          window.parent.postMessage(
+            { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
+            window.location.origin
+          );
+          return;
+        }
+        if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
         e.preventDefault();
         window.parent.postMessage(
-          { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
+          { type: 'vvv-dev-open-fight-shortcut-request', key: e.key },
           window.location.origin
         );
       });

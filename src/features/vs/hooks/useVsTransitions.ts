@@ -520,6 +520,7 @@ export function useVsTransitions({
     clearFinalTemplateAutoReturnTimeout,
     clearReturnTransitionQueue,
     clearFightViewRevealTimeout,
+    openFightImmediately,
     startFightReturnTransition,
     goBackToLibrary,
     showSearchImmediately,
