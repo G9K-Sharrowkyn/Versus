@@ -1059,7 +1059,6 @@ function App() {
             templateOrderLength={templateOrder.length}
             canStepTemplateBackward={canStepTemplateBackward}
             canStepTemplateForward={canStepTemplateForward}
-            importFileName={importFileName}
             fightViewVisible={fightViewVisible}
             onBackToLibrary={goBackToLibrary}
             onStepTemplateOrder={stepTemplateOrder}

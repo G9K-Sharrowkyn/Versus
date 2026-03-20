@@ -1,6 +1,5 @@
 import { cloneElement, isValidElement, useEffect, useRef, type ReactElement, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
-import { stripFileExtension } from '../helpers'
 import { getTemplateUi } from '../templates/shared/templateUi'
 import type { TemplateId } from '../types'
 import { HeroLogoBadge } from './HeroLogoBadge'
@@ -12,7 +11,6 @@ type FightPreviewStageProps = {
   templateOrderLength: number
   canStepTemplateBackward: boolean
   canStepTemplateForward: boolean
-  importFileName: string
   fightViewVisible: boolean
   onBackToLibrary: () => void
   onStepTemplateOrder: (direction: 1 | -1) => void
@@ -37,7 +35,6 @@ export function FightPreviewStage({
   templateOrderLength,
   canStepTemplateBackward,
   canStepTemplateForward,
-  importFileName,
   fightViewVisible,
   onBackToLibrary,
   onStepTemplateOrder,
@@ -77,7 +74,7 @@ export function FightPreviewStage({
     <div
       ref={toolbarRef}
       style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
-      className={`vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-7${
+      className={`vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-6${
         isBareTacticalBoard ? ' vs-template-toolbar--integrated' : ''
       }`}
     >
@@ -113,17 +110,13 @@ export function FightPreviewStage({
         <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.active}</span>
         <span className="mt-0.5 w-full truncate">{activeTemplateLabel}</span>
       </span>
-      <span className={`${statusItemClass} flex-col`} title={stripFileExtension(importFileName) || ui.notLoaded}>
-        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.importFile}</span>
-        <span className="mt-0.5 w-full truncate">{stripFileExtension(importFileName) || ui.notLoaded}</span>
-      </span>
     </div>
   )
 
   const tacticalBoardContent =
     isBareTacticalBoard && isValidElement(children)
       ? cloneElement(children as ReactElement<Record<string, unknown>>, {
-          integratedToolbar: toolbar,
+          integratedToolbar: null,
         })
       : children
 
