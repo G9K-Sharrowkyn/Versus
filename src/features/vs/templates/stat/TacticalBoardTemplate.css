@@ -8,6 +8,7 @@
 /* Shell overrides needed for the 3D overflow */
 .vs-preview-shell--bare {
   overflow: visible;
+  container-type: size;
 }
 
 .vs-preview-shell--bare-body {
@@ -64,7 +65,7 @@
   --tb-reality-left: var(--tb-right-start);
   --tb-reality-width: var(--tb-panel-width);
   position: relative;
-  width: min(calc(1240px * var(--tb-scale)), calc(100vw - 40px));
+  width: min(calc(1240px * var(--tb-scale)), calc(100cqw - 48px), calc((100cqh - 40px) * (800 / 450)));
   aspect-ratio: 800 / 450;
   margin: 0 auto;
   border: 0;

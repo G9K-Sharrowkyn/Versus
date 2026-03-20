@@ -1,8 +1,9 @@
-﻿import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
+import '../shared/theme.css'
+import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
 import { AVERAGE_DRAW_THRESHOLD } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
-import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
+import { HighEndFighterBanner } from '../shared/highEnd'
 import { FittedText } from '../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -133,114 +134,123 @@ export function ParameterComparisonTemplate({
   }
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS as string}>
-          <HighEndTemplateHeader
-            templateId="parameter-comparison"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
 
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS as string}`}>
-            <div className={layout.MAIN_GRID_CLASS as string}>
-              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
-                <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterA, name: leftHeader }} />
-                <div className={layout.ADVANTAGES_GRID_CLASS as string}>
-                  {renderAdvantageCards(leftAdvantages, 'a', fighterA.color, common.noLeftCategoryEdge, 'left')}
-                </div>
-              </div>
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+      </div>
 
-              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.CENTER_FRAME_CLASS as string}`}>
-                <div className={layout.RADAR_WRAP_CLASS as string}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart
-                      data={rows}
-                      cx={String(layout.RADAR_CX)}
-                      cy={String(layout.RADAR_CY)}
-                      outerRadius={String(layout.RADAR_OUTER_RADIUS)}
-                      margin={{
-                        top: Number(layout.RADAR_MARGIN_TOP),
-                        right: Number(layout.RADAR_MARGIN_RIGHT),
-                        bottom: Number(layout.RADAR_MARGIN_BOTTOM),
-                        left: Number(layout.RADAR_MARGIN_LEFT),
-                      }}
-                    >
-                      <PolarGrid stroke="rgba(148,163,184,0.35)" />
-                      <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 12 }} />
-                      <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
-                      <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} isAnimationActive={false} />
-                    </RadarChart>
-                  </ResponsiveContainer>
-                </div>
-                <div className={layout.DRAW_PANEL_CLASS as string}>
-                  <FittedText
-                    as="p"
-                    slotKey={`${auditPrefix}:draw-header`}
-                    spec={slots.sectionLabel}
-                    text={drawHeader}
-                    className={layout.DRAW_HEADER_CLASS as string}
-                    templateId="parameter-comparison"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
-                  <div className={layout.DRAW_GRID_CLASS as string}>
-                    {renderAdvantageCards(drawRows, 'draw', '#cbd5e1', common.noDrawsCurrentSetup, 'draw')}
-                  </div>
-                </div>
-              </div>
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
 
-              <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
-                <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterB, name: rightHeader }} />
-                <div className={layout.ADVANTAGES_GRID_CLASS as string}>
-                  {renderAdvantageCards(rightAdvantages, 'b', fighterB.color, common.noRightCategoryEdge, 'right')}
-                </div>
+      <div className="vs-tpl-body">
+        <div className={layout.BODY_CLASS as string}>
+          <div className={layout.MAIN_GRID_CLASS as string}>
+            <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
+              <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterA, name: leftHeader }} />
+              <div className={layout.ADVANTAGES_GRID_CLASS as string}>
+                {renderAdvantageCards(leftAdvantages, 'a', fighterA.color, common.noLeftCategoryEdge, 'left')}
               </div>
             </div>
 
-            <div className={layout.BOTTOM_GRID_CLASS as string}>
-              <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-                <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
-                  <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
-                    <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterA.color }}>
-                      {Math.round(averageA)}
-                    </p>
-                  </div>
-                </div>
+            <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.CENTER_FRAME_CLASS as string}`}>
+              <div className={layout.RADAR_WRAP_CLASS as string}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart
+                    data={rows}
+                    cx={String(layout.RADAR_CX)}
+                    cy={String(layout.RADAR_CY)}
+                    outerRadius={String(layout.RADAR_OUTER_RADIUS)}
+                    margin={{
+                      top: Number(layout.RADAR_MARGIN_TOP),
+                      right: Number(layout.RADAR_MARGIN_RIGHT),
+                      bottom: Number(layout.RADAR_MARGIN_BOTTOM),
+                      left: Number(layout.RADAR_MARGIN_LEFT),
+                    }}
+                  >
+                    <PolarGrid stroke="rgba(148,163,184,0.35)" />
+                    <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 12 }} />
+                    <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
+                    <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} isAnimationActive={false} />
+                  </RadarChart>
+                </ResponsiveContainer>
               </div>
-              <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-                <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
-                  <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
-                    <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterB.color }}>
-                      {Math.round(averageB)}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className={layout.FAVORITE_STAMP_CLASS as string}
-                style={{
-                  left: favoriteLeft,
-                  transform: `translateX(-50%) rotate(${favoriteRotation}deg)`,
-                }}
-              >
+              <div className={layout.DRAW_PANEL_CLASS as string}>
                 <FittedText
                   as="p"
-                  slotKey={`${auditPrefix}:favorite`}
-                  spec={slots.parameterFavoriteStamp}
-                  text={favorite}
-                  className={layout.FAVORITE_TEXT_CLASS as string}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                  slotKey={`${auditPrefix}:draw-header`}
+                  spec={slots.sectionLabel}
+                  text={drawHeader}
+                  className={layout.DRAW_HEADER_CLASS as string}
                   templateId="parameter-comparison"
                   activeFightId={activeFightId}
                   language={language}
                 />
+                <div className={layout.DRAW_GRID_CLASS as string}>
+                  {renderAdvantageCards(drawRows, 'draw', '#cbd5e1', common.noDrawsCurrentSetup, 'draw')}
+                </div>
               </div>
+            </div>
+
+            <div className={`${shell.HIGH_END_FRAME_CLASS} ${layout.SIDE_FRAME_CLASS as string}`}>
+              <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterB, name: rightHeader }} />
+              <div className={layout.ADVANTAGES_GRID_CLASS as string}>
+                {renderAdvantageCards(rightAdvantages, 'b', fighterB.color, common.noRightCategoryEdge, 'right')}
+              </div>
+            </div>
+          </div>
+
+          <div className={layout.BOTTOM_GRID_CLASS as string}>
+            <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
+              <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
+                <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
+                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterA.color }}>
+                    {Math.round(averageA)}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className={`${shell.HIGH_END_FIGHTER_BANNER_CLASS} ${layout.SCORE_BANNER_CLASS as string}`} style={{ boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
+              <div className={layout.SCORE_BANNER_INSET_CLASS as string}>
+                <div className={layout.SCORE_VALUE_WRAP_CLASS as string}>
+                  <p className={layout.SCORE_VALUE_CLASS as string} style={{ color: fighterB.color }}>
+                    {Math.round(averageB)}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div
+              className={layout.FAVORITE_STAMP_CLASS as string}
+              style={{
+                left: favoriteLeft,
+                transform: `translateX(-50%) rotate(${favoriteRotation}deg)`,
+              }}
+            >
+              <FittedText
+                as="p"
+                slotKey={`${auditPrefix}:favorite`}
+                spec={slots.parameterFavoriteStamp}
+                text={favorite}
+                className={layout.FAVORITE_TEXT_CLASS as string}
+                style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                templateId="parameter-comparison"
+                activeFightId={activeFightId}
+                language={language}
+              />
             </div>
           </div>
         </div>
@@ -248,4 +258,3 @@ export function ParameterComparisonTemplate({
     </div>
   )
 }
-

@@ -1,0 +1,242 @@
+/* ============================================================
+   Shared template design system — mirrors TacticalBoardTemplate
+   Import this in each template CSS that adopts the 2.5D style.
+   ============================================================ */
+
+/* Shell overrides needed for 3D overflow */
+.vs-preview-shell--bare {
+  overflow: visible;
+  container-type: size;
+}
+
+.vs-preview-shell--bare-body {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px 24px 24px;
+}
+
+/* ── Surface ──────────────────────────────────────────────── */
+
+.vs-tpl-surface {
+  --scale: 1.88;
+  --type-1: calc(3.9rem * var(--scale));
+  --type-2: calc(1.16rem * var(--scale));
+  --type-3: calc(1.08rem * var(--scale));
+  --type-4: calc(0.94rem * var(--scale));
+  --type-5: calc(0.82rem * var(--scale));
+  --font-label: 'Chakra Petch', 'JetBrains Mono', monospace;
+  --color-heading: rgba(255, 141, 122, 0.8);
+  --color-heading-reflect: rgba(255, 141, 122, 0.18);
+  --color-accent: #77e2f2;
+  --color-text: #f7f0ea;
+  --color-subtext: rgba(255, 153, 130, 0.78);
+  --color-meta: rgba(255, 174, 160, 0.76);
+  --color-panel-border: rgba(255, 85, 78, 0.22);
+  --side-margin: 5.2%;
+  --reflect-y: 1.84em;
+  --reflect-blur: 0.2em;
+
+  position: relative;
+  width: min(calc(1240px * var(--scale)), calc(100cqw - 48px), calc((100cqh - 40px) * (800 / 450)));
+  aspect-ratio: 800 / 450;
+  margin: 0 auto;
+  border: 0;
+  border-radius: 50px;
+  background: transparent;
+  box-shadow: none;
+  transform: perspective(calc(2000px * var(--scale))) rotateX(42deg);
+  transform-origin: center top;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* ── Meta (top-left) ──────────────────────────────────────── */
+
+.vs-tpl-meta {
+  position: absolute;
+  top: calc(42px * var(--scale));
+  left: var(--side-margin);
+  width: 21%;
+  display: grid;
+  gap: calc(0.32rem * var(--scale));
+  color: var(--color-meta);
+  font-family: var(--font-label);
+  font-size: var(--type-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vs-tpl-meta span {
+  color: var(--color-accent);
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) rgba(119, 226, 242, 0.2);
+}
+
+.vs-tpl-meta p {
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) rgba(255, 153, 130, 0.15);
+}
+
+/* ── Heading (top-center) ─────────────────────────────────── */
+
+.vs-tpl-heading {
+  position: absolute;
+  top: calc(18px * var(--scale));
+  left: 50%;
+  width: 44%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.vs-tpl-title {
+  display: block;
+  margin: 0;
+  color: var(--color-text);
+  font-family: 'Chakra Petch', 'Syncopate', sans-serif;
+  font-size: calc(var(--type-1) - 4px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 0.96;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-shadow: 0 0.58em 0.2em rgba(247, 240, 234, 0.22);
+  transform: translateX(calc(-40px * var(--scale)));
+}
+
+.vs-tpl-subtitle {
+  display: block;
+  margin-top: calc(0.62rem * var(--scale));
+  color: var(--color-subtext);
+  font-family: var(--font-label);
+  font-size: var(--type-4);
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) rgba(255, 153, 130, 0.18);
+}
+
+/* Matchup line (A VS B) */
+.vs-tpl-matchup {
+  display: block;
+  margin-top: calc(0.42rem * var(--scale));
+  color: rgba(238, 229, 221, 0.9);
+  font-family: var(--font-label);
+  font-size: var(--type-3);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.vs-tpl-matchup-a,
+.vs-tpl-matchup-b {
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.vs-tpl-matchup-sep {
+  color: rgba(239, 228, 219, 0.48);
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) rgba(239, 228, 219, 0.16);
+}
+
+/* ── Logo (top-right) ─────────────────────────────────────── */
+
+.vs-tpl-logo {
+  position: absolute;
+  top: calc(28px * var(--scale));
+  right: var(--side-margin);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+  cursor: pointer;
+}
+
+.vs-tpl-logo > img:not(.vs-tpl-logo-reflection) {
+  width: calc(162px * var(--scale));
+  height: auto;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 2px rgba(255, 126, 74, 0.14));
+}
+
+.vs-tpl-logo-reflection {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: auto;
+  margin-top: calc(-34px * var(--scale));
+  opacity: 0.2;
+  filter: blur(calc(1.6px * var(--scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
+  pointer-events: none;
+}
+
+/* ── Panel ────────────────────────────────────────────────── */
+
+.vs-tpl-panel {
+  position: absolute;
+  background: transparent;
+  border: 1px solid var(--color-panel-border);
+  border-radius: calc(34px * var(--scale));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 85, 78, 0.06),
+    0 10px 18px rgba(0, 0, 0, 0.18),
+    0 0 32px rgba(255, 85, 78, 0.04);
+  overflow: visible;
+}
+
+/* Floating label above panel */
+.vs-tpl-panel-label {
+  position: absolute;
+  top: calc(-28px * var(--scale));
+  left: calc(18px * var(--scale));
+  display: inline-block;
+  margin: 0;
+  padding: 0 calc(4px * var(--scale));
+  color: var(--color-heading);
+  font-family: var(--font-label);
+  font-size: var(--type-2);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 1.7em 0.2em var(--color-heading-reflect);
+  z-index: 2;
+  font-kerning: none;
+  font-variant-ligatures: none;
+}
+
+/* ── Body content area (below floating header) ───────────── */
+
+.vs-tpl-body {
+  position: absolute;
+  top: calc(260px * var(--scale));
+  left: var(--side-margin);
+  right: var(--side-margin);
+  bottom: calc(30px * var(--scale));
+  display: flex;
+  flex-direction: column;
+  overflow: visible;
+}
+
+/* ── Fighter name banner (replaces HighEndFighterBanner) ─── */
+
+.vs-tpl-fighter-name {
+  display: block;
+  font-family: var(--font-label);
+  font-size: var(--type-2);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 0 var(--reflect-y) var(--reflect-blur) color-mix(in srgb, currentColor 22%, transparent);
+}

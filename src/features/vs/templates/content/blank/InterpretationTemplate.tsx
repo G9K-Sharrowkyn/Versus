@@ -1,7 +1,7 @@
-﻿import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
+import '../../shared/theme.css'
+import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { HighEndTemplateHeader } from '../../shared/highEnd'
 import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -29,7 +29,6 @@ export function InterpretationTemplate({
   const plainLines = getPlainTemplateLines(blockLines)
   const chrome = buildFightTemplateChrome('interpretation', language, blockFields)
   const ui = getTemplateUi('interpretation', language)
-  const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const tokens = ui.tokens as Record<string, string>
   const layout = ui.template as Record<string, string | number>
@@ -85,127 +84,147 @@ export function InterpretationTemplate({
   const closingQuote = pickTemplateField(blockFields, ['quote', 'line_4', 'line4']) || common.emptyFieldLabel
   const badgeSymbol = isAverageDraw ? '=' : 'V'
 
-  return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS as string}>
-          <HighEndTemplateHeader
-            templateId="interpretation"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
+  const matchupText = `${fighterA.name || fighterAFallback} VS ${fighterB.name || fighterBFallback}`
+  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
-          <div className={`${layout.EDGE_PANEL_CLASS as string} ${shell.HIGH_END_BODY_GAP_CLASS}`}>
-            <div className={layout.EDGE_PANEL_OVERLAY_CLASS as string} />
-            <div className={layout.EDGE_PANEL_GRID_CLASS as string}>
-              <div className={layout.BADGE_SHELL_CLASS as string} style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
-                <div className={layout.BADGE_CARD_CLASS as string}>
-                  <div className={layout.BADGE_SYMBOL_WRAP_CLASS as string} style={{ borderColor: leaderColor, color: leaderColor }}>
-                    {badgeSymbol}
-                  </div>
-                  <div className={layout.BADGE_TITLE_WRAP_CLASS as string}>
+  return (
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
+
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+        <div className="vs-tpl-matchup">
+          {matchupMatch ? (
+            <>
+              <span className="vs-tpl-matchup-a" style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
+              <span className="vs-tpl-matchup-sep">{matchupMatch[2]}</span>
+              <span className="vs-tpl-matchup-b" style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
+            </>
+          ) : matchupText}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className={`${layout.EDGE_PANEL_CLASS as string} flex-1`}>
+          <div className={layout.EDGE_PANEL_OVERLAY_CLASS as string} />
+          <div className={layout.EDGE_PANEL_GRID_CLASS as string}>
+            <div className={layout.BADGE_SHELL_CLASS as string} style={{ borderColor: leaderColor, backgroundColor: `${leaderColor}1A` }}>
+              <div className={layout.BADGE_CARD_CLASS as string}>
+                <div className={layout.BADGE_SYMBOL_WRAP_CLASS as string} style={{ borderColor: leaderColor, color: leaderColor }}>
+                  {badgeSymbol}
+                </div>
+                <div className={layout.BADGE_TITLE_WRAP_CLASS as string}>
+                  <FittedText
+                    as="p"
+                    slotKey={`${auditPrefix}:badge-title`}
+                    spec={slots.interpretationBadge}
+                    text={cardTitleText}
+                    className={layout.BADGE_TITLE_CLASS as string}
+                    style={{ color: leaderColor, fontFamily: 'var(--font-display)' }}
+                    templateId="interpretation"
+                    activeFightId={activeFightId}
+                    language={language}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className={layout.BAR_LIST_CLASS as string}>
+              {bars.map((bar, index) => {
+                const normalizedDelta = Math.min(bar.delta, maxDelta) / maxDelta
+                const fillWidth = minFill + normalizedDelta * fillRange
+                const labelText = isAverageDraw ? `${bar.label} (d${formatDelta(bar.delta)})` : `${bar.label} (+${formatDelta(bar.delta)})`
+                return (
+                  <div
+                    key={`interp-bar-${index}-${bar.label}`}
+                    className={layout.BAR_ROW_CLASS as string}
+                    style={{ gridTemplateColumns: `minmax(0,1fr) ${String(layout.LABEL_COLUMN_WIDTH)}` }}
+                  >
+                    <div className={layout.BAR_TRACK_CLASS as string}>
+                      <div className={layout.BAR_FILL_CLASS as string} style={{ width: `${fillWidth}%`, background: barGradient }} />
+                    </div>
                     <FittedText
                       as="p"
-                      slotKey={`${auditPrefix}:badge-title`}
-                      spec={slots.interpretationBadge}
-                      text={cardTitleText}
-                      className={layout.BADGE_TITLE_CLASS as string}
-                      style={{ color: leaderColor, fontFamily: 'var(--font-display)' }}
+                      slotKey={`${auditPrefix}:bar-${index}`}
+                      spec={slots.interpretationBarLabel}
+                      text={labelText}
+                      className={tokens.INTERPRETATION_BAR_LABEL_CLASS}
                       templateId="interpretation"
                       activeFightId={activeFightId}
                       language={language}
                     />
                   </div>
-                </div>
-              </div>
-
-              <div className={layout.BAR_LIST_CLASS as string}>
-                {bars.map((bar, index) => {
-                  const normalizedDelta = Math.min(bar.delta, maxDelta) / maxDelta
-                  const fillWidth = minFill + normalizedDelta * fillRange
-                  const labelText = isAverageDraw ? `${bar.label} (d${formatDelta(bar.delta)})` : `${bar.label} (+${formatDelta(bar.delta)})`
-                  return (
-                    <div
-                      key={`interp-bar-${index}-${bar.label}`}
-                      className={layout.BAR_ROW_CLASS as string}
-                      style={{ gridTemplateColumns: `minmax(0,1fr) ${String(layout.LABEL_COLUMN_WIDTH)}` }}
-                    >
-                      <div className={layout.BAR_TRACK_CLASS as string}>
-                        <div className={layout.BAR_FILL_CLASS as string} style={{ width: `${fillWidth}%`, background: barGradient }} />
-                      </div>
-                      <FittedText
-                        as="p"
-                        slotKey={`${auditPrefix}:bar-${index}`}
-                        spec={slots.interpretationBarLabel}
-                        text={labelText}
-                        className={tokens.INTERPRETATION_BAR_LABEL_CLASS}
-                        templateId="interpretation"
-                        activeFightId={activeFightId}
-                        language={language}
-                      />
-                    </div>
-                  )
-                })}
-              </div>
+                )
+              })}
             </div>
           </div>
+        </div>
 
-          <div className={layout.BULLET_PANEL_CLASS as string}>
-            <ul className={tokens.INTERPRETATION_BULLET_LIST_CLASS}>
-              <li>
-                <FittedText
-                  as="span"
-                  slotKey={`${auditPrefix}:bullet-1`}
-                  spec={slots.interpretationBullet}
-                  text={bullet1}
-                  templateId="interpretation"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-              </li>
-              <li>
-                <FittedText
-                  as="span"
-                  slotKey={`${auditPrefix}:bullet-2`}
-                  spec={slots.interpretationBullet}
-                  text={bullet2}
-                  templateId="interpretation"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-              </li>
-              <li>
-                <FittedText
-                  as="span"
-                  slotKey={`${auditPrefix}:bullet-3`}
-                  spec={slots.interpretationBullet}
-                  text={bullet3}
-                  templateId="interpretation"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-              </li>
-            </ul>
-          </div>
+        <div className={layout.BULLET_PANEL_CLASS as string}>
+          <ul className={tokens.INTERPRETATION_BULLET_LIST_CLASS}>
+            <li>
+              <FittedText
+                as="span"
+                slotKey={`${auditPrefix}:bullet-1`}
+                spec={slots.interpretationBullet}
+                text={bullet1}
+                templateId="interpretation"
+                activeFightId={activeFightId}
+                language={language}
+              />
+            </li>
+            <li>
+              <FittedText
+                as="span"
+                slotKey={`${auditPrefix}:bullet-2`}
+                spec={slots.interpretationBullet}
+                text={bullet2}
+                templateId="interpretation"
+                activeFightId={activeFightId}
+                language={language}
+              />
+            </li>
+            <li>
+              <FittedText
+                as="span"
+                slotKey={`${auditPrefix}:bullet-3`}
+                spec={slots.interpretationBullet}
+                text={bullet3}
+                templateId="interpretation"
+                activeFightId={activeFightId}
+                language={language}
+              />
+            </li>
+          </ul>
+        </div>
 
-          <div className={tokens.INTERPRETATION_QUOTE_CLASS}>
-            <FittedText
-              as="p"
-              slotKey={`${auditPrefix}:quote`}
-              spec={slots.interpretationQuote}
-              text={`"${closingQuote}"`}
-              templateId="interpretation"
-              activeFightId={activeFightId}
-              language={language}
-            />
-          </div>
+        <div className={tokens.INTERPRETATION_QUOTE_CLASS}>
+          <FittedText
+            as="p"
+            slotKey={`${auditPrefix}:quote`}
+            spec={slots.interpretationQuote}
+            text={`"${closingQuote}"`}
+            templateId="interpretation"
+            activeFightId={activeFightId}
+            language={language}
+          />
         </div>
       </div>
     </div>
   )
 }
-

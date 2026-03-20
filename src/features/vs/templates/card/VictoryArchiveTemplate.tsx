@@ -1,4 +1,5 @@
-﻿import { useEffect } from 'react'
+import '../shared/theme.css'
+import { useEffect } from 'react'
 import { AdjustableTemplateImage } from '../../components/AdjustableTemplateImage'
 import { preloadImageUrls } from '../../domain/imagePreloadCache'
 import { useScopedCycleIndex } from '../../hooks/useScopedCycleIndex'
@@ -17,7 +18,7 @@ import {
 } from '../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
-import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
+import { HighEndFighterBanner } from '../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -45,7 +46,6 @@ export function VictoryArchiveTemplate({
   const chrome = buildFightTemplateChrome('victory-archive', language, blockFields)
   const common = getFightCommonCopy('victory-archive', language)
   const ui = getTemplateUi('victory-archive', language)
-  const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -156,25 +156,34 @@ export function VictoryArchiveTemplate({
   }
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS}>
-          <HighEndTemplateHeader
-            templateId="victory-archive"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
-            {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
-            {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
-          </div>
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
+
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className={layout.BODY_CLASS}>
+          {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
+          {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
         </div>
       </div>
     </div>
   )
 }
-

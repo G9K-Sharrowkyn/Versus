@@ -1,4 +1,5 @@
-﻿import { type CSSProperties } from 'react'
+import '../../shared/theme.css'
+import { type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import {
@@ -12,7 +13,6 @@ import {
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
-import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -41,7 +41,6 @@ export function FightCardTemplate({
   const chrome = buildFightTemplateChrome('fight-card', language, blockFields)
   const common = getFightCommonCopy('fight-card', language)
   const ui = getTemplateUi('fight-card', language)
-  const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   const line = (position: number, keys: string[], fallback = '') =>
@@ -164,47 +163,57 @@ export function FightCardTemplate({
   }
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        {!isAuditMode ? (
-          <svg className={layout.SVG_DEFS_CLASS} aria-hidden="true">
-            <defs>
-              <filter id={layout.FILTER_ID} colorInterpolationFilters="sRGB" x={layout.FILTER_X} y={layout.FILTER_Y} width={layout.FILTER_WIDTH} height={layout.FILTER_HEIGHT}>
-                <feTurbulence type={layout.TURBULENCE_TYPE} baseFrequency={layout.TURBULENCE_BASE_1} numOctaves={Number(layout.TURBULENCE_OCTAVES_1)} />
-                <feColorMatrix type="hueRotate" result="pt1">
-                  <animate attributeName="values" values={layout.HUE_VALUES_1} dur={layout.HUE_DURATION_1} repeatCount="indefinite" calcMode="paced" />
-                </feColorMatrix>
-                <feComposite />
-                <feTurbulence type={layout.TURBULENCE_TYPE} baseFrequency={layout.TURBULENCE_BASE_2} numOctaves={Number(layout.TURBULENCE_OCTAVES_2)} seed={Number(layout.TURBULENCE_SEED_2)} />
-                <feColorMatrix type="hueRotate" result="pt2">
-                  <animate attributeName="values" values={layout.HUE_VALUES_2} dur={layout.HUE_DURATION_2} repeatCount="indefinite" calcMode="paced" />
-                </feColorMatrix>
-                <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
-                <feDisplacementMap in="SourceGraphic" scale={Number(layout.DISPLACEMENT_SCALE)} xChannelSelector={layout.DISPLACEMENT_X} yChannelSelector={layout.DISPLACEMENT_Y} />
-              </filter>
-            </defs>
-          </svg>
-        ) : null}
-        <div className={layout.CONTENT_CLASS}>
-          <HighEndTemplateHeader
-            templateId="fight-card"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.SPLIT_CLASS}`}>
-            {renderFightCardPortrait(fighterA, topName, topPalette, 'left')}
-            {renderFightCardPortrait(fighterB, bottomName, bottomPalette, 'right')}
-            <span className={layout.VS_WRAP_CLASS}>
-              <img src="/assets/VS.png" alt="VS" className={layout.VS_IMAGE_CLASS} draggable={false} />
-            </span>
-          </div>
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
+
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      {!isAuditMode ? (
+        <svg className={layout.SVG_DEFS_CLASS} aria-hidden="true">
+          <defs>
+            <filter id={layout.FILTER_ID} colorInterpolationFilters="sRGB" x={layout.FILTER_X} y={layout.FILTER_Y} width={layout.FILTER_WIDTH} height={layout.FILTER_HEIGHT}>
+              <feTurbulence type={layout.TURBULENCE_TYPE} baseFrequency={layout.TURBULENCE_BASE_1} numOctaves={Number(layout.TURBULENCE_OCTAVES_1)} />
+              <feColorMatrix type="hueRotate" result="pt1">
+                <animate attributeName="values" values={layout.HUE_VALUES_1} dur={layout.HUE_DURATION_1} repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feComposite />
+              <feTurbulence type={layout.TURBULENCE_TYPE} baseFrequency={layout.TURBULENCE_BASE_2} numOctaves={Number(layout.TURBULENCE_OCTAVES_2)} seed={Number(layout.TURBULENCE_SEED_2)} />
+              <feColorMatrix type="hueRotate" result="pt2">
+                <animate attributeName="values" values={layout.HUE_VALUES_2} dur={layout.HUE_DURATION_2} repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+              <feDisplacementMap in="SourceGraphic" scale={Number(layout.DISPLACEMENT_SCALE)} xChannelSelector={layout.DISPLACEMENT_X} yChannelSelector={layout.DISPLACEMENT_Y} />
+            </filter>
+          </defs>
+        </svg>
+      ) : null}
+
+      <div className="vs-tpl-body">
+        <div className={layout.SPLIT_CLASS}>
+          {renderFightCardPortrait(fighterA, topName, topPalette, 'left')}
+          {renderFightCardPortrait(fighterB, bottomName, bottomPalette, 'right')}
+          <span className={layout.VS_WRAP_CLASS}>
+            <img src="/assets/VS.png" alt="VS" className={layout.VS_IMAGE_CLASS} draggable={false} />
+          </span>
         </div>
       </div>
     </div>
   )
 }
-

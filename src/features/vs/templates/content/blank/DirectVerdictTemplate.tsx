@@ -1,7 +1,7 @@
-﻿import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import '../../shared/theme.css'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
-import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -60,127 +60,148 @@ export function DirectVerdictTemplate({
     line(2, ['line_3', 'line3']),
   ]
 
+  const matchupText = `${fighterAName} VS ${fighterBName}`
+  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
+
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS}>
-          <HighEndTemplateHeader
-            templateId="direct-verdict"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
 
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
-            <div className={layout.LEFT_PANEL_CLASS} style={{ boxShadow: `0 0 0 1px ${accentColor}33 inset` }}>
-              <div
-                className={layout.VERDICT_PANEL_CLASS}
-                style={{
-                  borderColor: `${accentColor}88`,
-                  background: `linear-gradient(145deg, ${accentColor}33, rgba(15,23,42,0.78))`,
-                }}
-              >
-                <p className={layout.VERDICT_LABEL_CLASS}>
-                  {common.verdictLabel}
-                </p>
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+        <div className="vs-tpl-matchup">
+          {matchupMatch ? (
+            <>
+              <span className="vs-tpl-matchup-a" style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
+              <span className="vs-tpl-matchup-sep">{matchupMatch[2]}</span>
+              <span className="vs-tpl-matchup-b" style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
+            </>
+          ) : matchupText}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className={layout.BODY_CLASS}>
+          <div className={layout.LEFT_PANEL_CLASS} style={{ boxShadow: `0 0 0 1px ${accentColor}33 inset` }}>
+            <div
+              className={layout.VERDICT_PANEL_CLASS}
+              style={{
+                borderColor: `${accentColor}88`,
+                background: `linear-gradient(145deg, ${accentColor}33, rgba(15,23,42,0.78))`,
+              }}
+            >
+              <p className={layout.VERDICT_LABEL_CLASS}>
+                {common.verdictLabel}
+              </p>
+              <FittedText
+                as="p"
+                slotKey="direct-verdict:winner"
+                spec={slots.directVerdictWinner}
+                text={winnerLabel}
+                className={layout.WINNER_TEXT_CLASS}
+                style={{ fontFamily: 'var(--font-display)' }}
+              />
+              <FittedText
+                as="p"
+                slotKey="direct-verdict:subline"
+                spec={slots.directVerdictSubline}
+                text={`${defeatsWord} ${loserLabel}`}
+                className={layout.SUBLINE_TEXT_CLASS}
+              />
+            </div>
+
+            <div className={layout.INFO_GRID_CLASS}>
+              <div className={layout.INFO_CARD_CLASS}>
+                <p className={shell.HIGH_END_LABEL_CLASS}>{outcomeText}</p>
                 <FittedText
                   as="p"
-                  slotKey="direct-verdict:winner"
-                  spec={slots.directVerdictWinner}
-                  text={winnerLabel}
-                  className={layout.WINNER_TEXT_CLASS}
-                  style={{ fontFamily: 'var(--font-display)' }}
+                  slotKey="direct-verdict:outcome"
+                  spec={slots.directVerdictCard}
+                  text={outcomeLabel}
+                  className={layout.INFO_VALUE_CLASS}
                 />
+              </div>
+              <div className={layout.INFO_CARD_CLASS}>
+                <p className={shell.HIGH_END_LABEL_CLASS}>{confidenceText}</p>
                 <FittedText
                   as="p"
-                  slotKey="direct-verdict:subline"
-                  spec={slots.directVerdictSubline}
-                  text={`${defeatsWord} ${loserLabel}`}
-                  className={layout.SUBLINE_TEXT_CLASS}
+                  slotKey="direct-verdict:certainty"
+                  spec={slots.directVerdictCard}
+                  text={certaintyLabel}
+                  className={layout.INFO_VALUE_CLASS}
                 />
-              </div>
-
-              <div className={layout.INFO_GRID_CLASS}>
-                <div className={layout.INFO_CARD_CLASS}>
-                  <p className={shell.HIGH_END_LABEL_CLASS}>{outcomeText}</p>
-                  <FittedText
-                    as="p"
-                    slotKey="direct-verdict:outcome"
-                    spec={slots.directVerdictCard}
-                    text={outcomeLabel}
-                    className={layout.INFO_VALUE_CLASS}
-                  />
-                </div>
-                <div className={layout.INFO_CARD_CLASS}>
-                  <p className={shell.HIGH_END_LABEL_CLASS}>{confidenceText}</p>
-                  <FittedText
-                    as="p"
-                    slotKey="direct-verdict:certainty"
-                    spec={slots.directVerdictCard}
-                    text={certaintyLabel}
-                    className={layout.INFO_VALUE_CLASS}
-                  />
-                </div>
-              </div>
-
-              <div className={layout.SCORE_GRID_CLASS}>
-                <div className={layout.SCORE_CARD_CLASS}>
-                  <FittedText
-                    as="p"
-                    slotKey={`direct-verdict:left-score-label:${fighterAName}`}
-                    spec={slots.scoreLabel}
-                    text={fighterAName}
-                  />
-                  <FittedText
-                    as="p"
-                    slotKey="direct-verdict:left-score"
-                    spec={slots.scoreValue}
-                    text={String(Math.round(averageA))}
-                    className={layout.SCORE_VALUE_TEXT_CLASS}
-                    style={{ color: fighterA.color }}
-                  />
-                </div>
-                <div className={layout.SCORE_CARD_CLASS}>
-                  <FittedText
-                    as="p"
-                    slotKey={`direct-verdict:right-score-label:${fighterBName}`}
-                    spec={slots.scoreLabel}
-                    text={fighterBName}
-                  />
-                  <FittedText
-                    as="p"
-                    slotKey="direct-verdict:right-score"
-                    spec={slots.scoreValue}
-                    text={String(Math.round(averageB))}
-                    className={layout.SCORE_VALUE_TEXT_CLASS}
-                    style={{ color: fighterB.color }}
-                  />
-                </div>
               </div>
             </div>
 
-            <div className={layout.RIGHT_PANEL_CLASS}>
-              <p className={shell.HIGH_END_LABEL_CLASS}>{reasonText}</p>
-              <div className={layout.REASON_GRID_CLASS}>
-                {summaryLines.map((item, index) => (
-                  <div key={`direct-verdict-line-${index}-${item}`} className={layout.REASON_CARD_CLASS}>
-                    <span className={layout.REASON_INDEX_CLASS} style={{ color: accentColor }}>
-                      {index + 1}
-                    </span>
-                    <FittedText
-                      as="span"
-                      slotKey={`direct-verdict:line:${index}`}
-                      spec={slots.directVerdictCard}
-                      text={item}
-                      className={layout.REASON_TEXT_CLASS}
-                      style={{ flex: 1 }}
-                    />
-                  </div>
-                ))}
+            <div className={layout.SCORE_GRID_CLASS}>
+              <div className={layout.SCORE_CARD_CLASS}>
+                <FittedText
+                  as="p"
+                  slotKey={`direct-verdict:left-score-label:${fighterAName}`}
+                  spec={slots.scoreLabel}
+                  text={fighterAName}
+                />
+                <FittedText
+                  as="p"
+                  slotKey="direct-verdict:left-score"
+                  spec={slots.scoreValue}
+                  text={String(Math.round(averageA))}
+                  className={layout.SCORE_VALUE_TEXT_CLASS}
+                  style={{ color: fighterA.color }}
+                />
               </div>
+              <div className={layout.SCORE_CARD_CLASS}>
+                <FittedText
+                  as="p"
+                  slotKey={`direct-verdict:right-score-label:${fighterBName}`}
+                  spec={slots.scoreLabel}
+                  text={fighterBName}
+                />
+                <FittedText
+                  as="p"
+                  slotKey="direct-verdict:right-score"
+                  spec={slots.scoreValue}
+                  text={String(Math.round(averageB))}
+                  className={layout.SCORE_VALUE_TEXT_CLASS}
+                  style={{ color: fighterB.color }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className={layout.RIGHT_PANEL_CLASS}>
+            <p className={shell.HIGH_END_LABEL_CLASS}>{reasonText}</p>
+            <div className={layout.REASON_GRID_CLASS}>
+              {summaryLines.map((item, index) => (
+                <div key={`direct-verdict-line-${index}-${item}`} className={layout.REASON_CARD_CLASS}>
+                  <span className={layout.REASON_INDEX_CLASS} style={{ color: accentColor }}>
+                    {index + 1}
+                  </span>
+                  <FittedText
+                    as="span"
+                    slotKey={`direct-verdict:line:${index}`}
+                    spec={slots.directVerdictCard}
+                    text={item}
+                    className={layout.REASON_TEXT_CLASS}
+                    style={{ flex: 1 }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -188,4 +209,3 @@ export function DirectVerdictTemplate({
     </div>
   )
 }
-

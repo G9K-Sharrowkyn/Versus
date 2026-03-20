@@ -1,4 +1,5 @@
-﻿import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
+import '../../shared/theme.css'
+import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
 import {
   humanizeScenarioToken,
   normalizeToken,
@@ -22,7 +23,6 @@ import {
 import { useScopedCycleIndex } from '../../../hooks/useScopedCycleIndex'
 import type { FightScenarioId, FightScenarioLead, ScoreRow, TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
-import { HighEndTemplateHeader } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getDefaultFightCategories as getFightDefaultCategories,
@@ -48,7 +48,6 @@ export function FightSimulationTemplate({
   const chrome = buildFightTemplateChrome('fight-simulation', language, blockFields)
   const common = getFightCommonCopy('fight-simulation', language)
   const ui = getTemplateUi('fight-simulation', language)
-  const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   const categories = getFightDefaultCategories('fight-simulation', language)
@@ -201,7 +200,6 @@ export function FightSimulationTemplate({
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
 
-  // Mini chart â€” czytamy dane z bloku battle-dynamics dla aktywnego scenariusza
   const bdLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const bdFields = parseTemplateFieldMap(bdLines)
   const bdPrefix = activeIndex === 0 ? '' : `s${activeIndex + 1}_`
@@ -213,159 +211,167 @@ export function FightSimulationTemplate({
   const miniCurveB = buildCurvePolyline(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35, 35]), 5, 96, 8, 41)
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS}>
-          <HighEndTemplateHeader
-            templateId="fight-simulation"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
 
-          <div className="mt-1 h-6 flex items-center justify-between gap-3 px-1">
-            {scenarios.length > 1 && (
-              <>
-                <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                  {active.label}
-                </p>
-                <div className="flex items-center gap-1.5">
-                  {scenarios.map((_, i) => (
-                    <div
-                      key={i}
-                      className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
-          </div>
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+      </div>
 
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.PHASES_PANEL_CLASS}`}>
-            {active.phases.map((phase, index) => (
-              <div
-                key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
-                className={`${layout.PHASE_CARD_CLASS}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
-                onClick={scenarios.length > 1 ? nextScenario : undefined}
-              >
-                <div className={layout.PHASE_CARD_HEADER_CLASS}>
-                  <p className={layout.PHASE_CARD_LABEL_CLASS}>{common.phaseLabel} {index + 1}</p>
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className="mt-1 h-6 flex items-center justify-between gap-3 px-1">
+          {scenarios.length > 1 && (
+            <>
+              <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
+                {active.label}
+              </p>
+              <div className="flex items-center gap-1.5">
+                {scenarios.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
+                  />
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+
+        <div className={layout.PHASES_PANEL_CLASS}>
+          {active.phases.map((phase, index) => (
+            <div
+              key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
+              className={`${layout.PHASE_CARD_CLASS}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
+              onClick={scenarios.length > 1 ? nextScenario : undefined}
+            >
+              <div className={layout.PHASE_CARD_HEADER_CLASS}>
+                <p className={layout.PHASE_CARD_LABEL_CLASS}>{common.phaseLabel} {index + 1}</p>
+              </div>
+              <div style={{ minHeight: '2.5rem' }}>
+                <FittedText
+                  as="p"
+                  slotKey={`fight-simulation:title:${activeIndex}:${index}`}
+                  spec={slots.phaseTitle}
+                  text={phase.title}
+                  className={layout.PHASE_TITLE_CLASS}
+                />
+              </div>
+
+              <div className={layout.SCENARIO_PANEL_CLASS}>
+                <FightScenarioCanvas
+                  scenario={phase.animation}
+                  variantToken={phase.animationVariantToken}
+                  colorA={fighterA.color}
+                  colorB={fighterB.color}
+                  lead={phase.lead}
+                />
+                <div className={layout.SCENARIO_META_CLASS}>
+                  <span className={layout.SCENARIO_META_LABEL_CLASS}>{common.scenarioPresetLabel}</span>
+                  <FittedText
+                    as="span"
+                    slotKey={`fight-simulation:scenario:${activeIndex}:${index}`}
+                    spec={slots.phaseScenarioLabel}
+                    text={phase.animationLabel}
+                    className={layout.SCENARIO_META_VALUE_CLASS}
+                    style={{ width: String(layout.SCENARIO_META_VALUE_WIDTH) }}
+                  />
                 </div>
-                <div style={{ minHeight: '2.5rem' }}>
+              </div>
+
+              {phase.mode === 'bars' ? (
+                <div className={layout.BARS_MODE_CLASS}>
                   <FittedText
                     as="p"
-                    slotKey={`fight-simulation:title:${activeIndex}:${index}`}
-                    spec={slots.phaseTitle}
-                    text={phase.title}
-                    className={layout.PHASE_TITLE_CLASS}
+                    slotKey={`fight-simulation:event:${activeIndex}:${index}`}
+                    spec={slots.phaseEvent}
+                    text={phase.event}
+                    className={layout.EVENT_TEXT_CLASS}
                   />
-                </div>
-
-                <div className={layout.SCENARIO_PANEL_CLASS}>
-                  <FightScenarioCanvas
-                    scenario={phase.animation}
-                    variantToken={phase.animationVariantToken}
-                    colorA={fighterA.color}
-                    colorB={fighterB.color}
-                    lead={phase.lead}
-                  />
-                  <div className={layout.SCENARIO_META_CLASS}>
-                    <span className={layout.SCENARIO_META_LABEL_CLASS}>{common.scenarioPresetLabel}</span>
-                    <FittedText
-                      as="span"
-                      slotKey={`fight-simulation:scenario:${activeIndex}:${index}`}
-                      spec={slots.phaseScenarioLabel}
-                      text={phase.animationLabel}
-                      className={layout.SCENARIO_META_VALUE_CLASS}
-                      style={{ width: String(layout.SCENARIO_META_VALUE_WIDTH) }}
-                    />
+                  <div className="mt-2 flex min-h-0 flex-1 overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
+                    <svg viewBox="0 0 100 49" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
+                      {['10', '18', '26', '34'].map((y) => (
+                        <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
+                      ))}
+                      <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
+                      <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
+                      <polyline points={miniCurveA.polyline} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
+                      <polyline points={miniCurveA.polyline} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
+                      <polyline points={miniCurveB.polyline} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
+                      <polyline points={miniCurveB.polyline} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
+                      {miniCurveA.points.map((pt, i) => (
+                        <circle key={`a${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
+                      ))}
+                      {miniCurveB.points.map((pt, i) => (
+                        <circle key={`b${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
+                      ))}
+                    </svg>
                   </div>
                 </div>
-
-                {phase.mode === 'bars' ? (
-                  <div className={layout.BARS_MODE_CLASS}>
-                    <FittedText
-                      as="p"
-                      slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slots.phaseEvent}
-                      text={phase.event}
-                      className={layout.EVENT_TEXT_CLASS}
-                    />
-                    <div className="mt-2 flex min-h-0 flex-1 overflow-hidden rounded-md border border-slate-600/70 bg-slate-950/75 p-2">
-                      <svg viewBox="0 0 100 49" className="w-full h-full" preserveAspectRatio="xMidYMid meet">
-                        {['10','18','26','34'].map((y) => (
-                          <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15"/>
-                        ))}
-                        <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3"/>
-                        <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3"/>
-                        <polyline points={miniCurveA.polyline} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2"/>
-                        <polyline points={miniCurveA.polyline} fill="none" stroke="#0ea5e9" strokeWidth="1.2"/>
-                        <polyline points={miniCurveB.polyline} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2"/>
-                        <polyline points={miniCurveB.polyline} fill="none" stroke="#c81e3a" strokeWidth="1.1"/>
-                        {miniCurveA.points.map((pt, i) => (
-                          <circle key={`a${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9"/>
-                        ))}
-                        {miniCurveB.points.map((pt, i) => (
-                          <circle key={`b${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444"/>
-                        ))}
-                      </svg>
-                    </div>
-                  </div>
-                ) : (
-                  <div className={layout.SPLIT_MODE_CLASS}>
-                    <FittedText
-                      as="p"
-                      slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slots.phaseEvent}
-                      text={phase.event}
-                      className={layout.EVENT_TEXT_CLASS}
-                    />
-                    <div className={layout.SPLIT_PANEL_CLASS}>
-                      <svg viewBox={layout.SPLIT_SVG_VIEWBOX} className={layout.SPLIT_SVG_CLASS}>
-                        <line x1={layout.SPLIT_LINE_TOP_X1} y1={layout.SPLIT_LINE_TOP_Y1} x2={layout.SPLIT_LINE_TOP_X2} y2={layout.SPLIT_LINE_TOP_Y2} stroke={layout.SPLIT_LINE_TOP_STROKE} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH} />
-                        <line x1={layout.SPLIT_BRANCH_A_X1} y1={layout.SPLIT_BRANCH_A_Y1} x2={layout.SPLIT_BRANCH_A_X2} y2={layout.SPLIT_BRANCH_A_Y2} stroke={layout.SPLIT_BRANCH_A_STROKE} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH} />
-                        <line x1={layout.SPLIT_BRANCH_B_X1} y1={layout.SPLIT_BRANCH_B_Y1} x2={layout.SPLIT_BRANCH_B_X2} y2={layout.SPLIT_BRANCH_B_Y2} stroke={layout.SPLIT_BRANCH_B_STROKE} strokeWidth={layout.SPLIT_BRANCH_B_WIDTH} />
-                        <circle cx={layout.SPLIT_NODE_CX} cy={layout.SPLIT_NODE_CY} r={layout.SPLIT_NODE_R} fill={layout.SPLIT_NODE_FILL} />
-                      </svg>
-                      <div className={layout.BRANCH_GRID_CLASS}>
-                        <div className={layout.BRANCH_A_CLASS}>
-                          <FittedText
-                            as="p"
-                            slotKey={`fight-simulation:branch-a:${activeIndex}:${index}`}
-                            spec={slots.phaseBranch}
-                            text={phase.branchA}
-                          />
-                        </div>
-                        <div className={layout.BRANCH_B_CLASS}>
-                          <FittedText
-                            as="p"
-                            slotKey={`fight-simulation:branch-b:${activeIndex}:${index}`}
-                            spec={slots.phaseBranch}
-                            text={phase.branchB}
-                          />
-                        </div>
+              ) : (
+                <div className={layout.SPLIT_MODE_CLASS}>
+                  <FittedText
+                    as="p"
+                    slotKey={`fight-simulation:event:${activeIndex}:${index}`}
+                    spec={slots.phaseEvent}
+                    text={phase.event}
+                    className={layout.EVENT_TEXT_CLASS}
+                  />
+                  <div className={layout.SPLIT_PANEL_CLASS}>
+                    <svg viewBox={layout.SPLIT_SVG_VIEWBOX} className={layout.SPLIT_SVG_CLASS}>
+                      <line x1={layout.SPLIT_LINE_TOP_X1} y1={layout.SPLIT_LINE_TOP_Y1} x2={layout.SPLIT_LINE_TOP_X2} y2={layout.SPLIT_LINE_TOP_Y2} stroke={layout.SPLIT_LINE_TOP_STROKE} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH} />
+                      <line x1={layout.SPLIT_BRANCH_A_X1} y1={layout.SPLIT_BRANCH_A_Y1} x2={layout.SPLIT_BRANCH_A_X2} y2={layout.SPLIT_BRANCH_A_Y2} stroke={layout.SPLIT_BRANCH_A_STROKE} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH} />
+                      <line x1={layout.SPLIT_BRANCH_B_X1} y1={layout.SPLIT_BRANCH_B_Y1} x2={layout.SPLIT_BRANCH_B_X2} y2={layout.SPLIT_BRANCH_B_Y2} stroke={layout.SPLIT_BRANCH_B_STROKE} strokeWidth={layout.SPLIT_BRANCH_B_WIDTH} />
+                      <circle cx={layout.SPLIT_NODE_CX} cy={layout.SPLIT_NODE_CY} r={layout.SPLIT_NODE_R} fill={layout.SPLIT_NODE_FILL} />
+                    </svg>
+                    <div className={layout.BRANCH_GRID_CLASS}>
+                      <div className={layout.BRANCH_A_CLASS}>
+                        <FittedText
+                          as="p"
+                          slotKey={`fight-simulation:branch-a:${activeIndex}:${index}`}
+                          spec={slots.phaseBranch}
+                          text={phase.branchA}
+                        />
+                      </div>
+                      <div className={layout.BRANCH_B_CLASS}>
+                        <FittedText
+                          as="p"
+                          slotKey={`fight-simulation:branch-b:${activeIndex}:${index}`}
+                          spec={slots.phaseBranch}
+                          text={phase.branchB}
+                        />
                       </div>
                     </div>
                   </div>
-                )}
-              </div>
-            ))}
-          </div>
+                </div>
+              )}
+            </div>
+          ))}
+        </div>
 
-          <div className={layout.END_CONDITION_CLASS}>
-            <FittedText
-              as="p"
-              slotKey={`fight-simulation:end-condition:${activeIndex}`}
-              spec={slots.endCondition}
-              text={active.endCondition}
-            />
-          </div>
+        <div className={layout.END_CONDITION_CLASS}>
+          <FittedText
+            as="p"
+            slotKey={`fight-simulation:end-condition:${activeIndex}`}
+            spec={slots.endCondition}
+            text={active.endCondition}
+          />
         </div>
       </div>
     </div>
   )
 }
-

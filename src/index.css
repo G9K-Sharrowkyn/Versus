@@ -345,39 +345,48 @@
 }
 
 .vs-template-mode .vs-stage-shell [class*='border-cyan-300/'],
-.vs-template-mode .vs-highend-panel [class*='border-cyan-300/'] {
+.vs-template-mode .vs-highend-panel [class*='border-cyan-300/'],
+.vs-template-mode .vs-tpl-surface [class*='border-cyan-300/'] {
   border-color: rgba(255, 85, 78, 0.24) !important;
 }
 
 .vs-template-mode .vs-stage-shell [class*='border-slate-'],
 .vs-template-mode .vs-highend-panel [class*='border-slate-'],
+.vs-template-mode .vs-tpl-surface [class*='border-slate-'],
 .vs-template-mode .vs-stage-shell [class*='border-white/'],
-.vs-template-mode .vs-highend-panel [class*='border-white/'] {
+.vs-template-mode .vs-highend-panel [class*='border-white/'],
+.vs-template-mode .vs-tpl-surface [class*='border-white/'] {
   border-color: rgba(255, 85, 78, 0.16) !important;
 }
 
 .vs-template-mode .vs-stage-shell [class*='bg-slate-'],
 .vs-template-mode .vs-highend-panel [class*='bg-slate-'],
+.vs-template-mode .vs-tpl-surface [class*='bg-slate-'],
 .vs-template-mode .vs-stage-shell [class*='bg-black/'],
-.vs-template-mode .vs-highend-panel [class*='bg-black/'] {
+.vs-template-mode .vs-highend-panel [class*='bg-black/'],
+.vs-template-mode .vs-tpl-surface [class*='bg-black/'] {
   background:
     linear-gradient(180deg, rgba(16, 3, 3, 0.92), rgba(8, 1, 1, 0.94)) !important;
 }
 
 .vs-template-mode .vs-stage-shell [class*='text-slate-300'],
-.vs-template-mode .vs-highend-panel [class*='text-slate-300'] {
+.vs-template-mode .vs-highend-panel [class*='text-slate-300'],
+.vs-template-mode .vs-tpl-surface [class*='text-slate-300'] {
   color: rgba(255, 177, 160, 0.8) !important;
 }
 
 .vs-template-mode .vs-stage-shell [class*='text-slate-400'],
-.vs-template-mode .vs-highend-panel [class*='text-slate-400'] {
+.vs-template-mode .vs-highend-panel [class*='text-slate-400'],
+.vs-template-mode .vs-tpl-surface [class*='text-slate-400'] {
   color: rgba(191, 112, 98, 0.74) !important;
 }
 
 .vs-template-mode .vs-stage-shell [class*='text-slate-100'],
 .vs-template-mode .vs-highend-panel [class*='text-slate-100'],
+.vs-template-mode .vs-tpl-surface [class*='text-slate-100'],
 .vs-template-mode .vs-stage-shell [class*='text-slate-200'],
-.vs-template-mode .vs-highend-panel [class*='text-slate-200'] {
+.vs-template-mode .vs-highend-panel [class*='text-slate-200'],
+.vs-template-mode .vs-tpl-surface [class*='text-slate-200'] {
   color: rgba(249, 239, 232, 0.95) !important;
 }
 

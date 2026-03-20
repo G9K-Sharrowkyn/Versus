@@ -1,8 +1,6 @@
-import { cloneElement, isValidElement, useEffect, useRef, type ReactElement, type ReactNode, type RefObject } from 'react'
+import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
-import { getTemplateUi } from '../templates/shared/templateUi'
 import type { TemplateId } from '../types'
-import { HeroLogoBadge } from './HeroLogoBadge'
 
 type FightPreviewStageProps = {
   ui: TranslationDictionary['ui']
@@ -51,9 +49,6 @@ export function FightPreviewStage({
   activeFightLocale,
   children,
 }: FightPreviewStageProps) {
-  const stageShell = getTemplateUi(activeTemplate, activeFightLocale === 'en' ? 'en' : 'pl').highEnd as Record<string, string>
-  const isBareTacticalBoard = activeTemplate === 'tactical-board'
-
   const toolbarRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -74,9 +69,7 @@ export function FightPreviewStage({
     <div
       ref={toolbarRef}
       style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
-      className={`vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-6${
-        isBareTacticalBoard ? ' vs-template-toolbar--integrated' : ''
-      }`}
+      className="vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-6"
     >
       <span className={`${toolbarItemClass} vs-template-toolbar-live font-semibold`} title={ui.liveMode}>
         {ui.liveMode}
@@ -113,81 +106,38 @@ export function FightPreviewStage({
     </div>
   )
 
-  const tacticalBoardContent =
-    isBareTacticalBoard && isValidElement(children)
-      ? cloneElement(children as ReactElement<Record<string, unknown>>, {
-          integratedToolbar: null,
-        })
-      : children
-
   return (
     <section
-      className={`flex h-full min-h-0 flex-col transition-opacity duration-200 ease-out${isBareTacticalBoard ? ' gap-0' : ' gap-3'}`}
+      className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
       style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
     >
-      {isBareTacticalBoard ? null : toolbar}
+      {toolbar}
 
       <div
         ref={previewShellRef}
         data-vs-preview-shell="true"
-        className={
-          isBareTacticalBoard
-            ? 'vs-preview-shell--bare min-h-0 flex-1 overflow-hidden'
-            : 'vs-preview-shell min-h-0 flex-1 overflow-hidden rounded-[32px] border p-3'
-        }
+        className="vs-preview-shell--bare min-h-0 flex-1 overflow-hidden"
       >
-        {isBareTacticalBoard ? (
-          <div
-            ref={previewRef}
-            data-vs-stage="true"
-            data-vs-preview-ready={previewReady ? 'true' : 'false'}
-            data-vs-preview-scale={previewScale}
-            data-vs-template={activeTemplate}
-            data-vs-folder-key={activeFightFolderKey}
-            data-vs-locale={activeFightLocale}
-            className="vs-preview-shell--bare-body vs-preview-shell--bare-body--tactical"
-            style={{
-              width: '100%',
-              height: '100%',
-              transform: 'none',
-              transformOrigin: 'top center',
-              opacity: previewReady ? 1 : 0,
-            }}
-            aria-busy={!previewReady}
-          >
-            {tacticalBoardContent}
-          </div>
-        ) : (
-          <div className="mx-auto" style={{ width: `${scaledPreviewWidth}px`, height: `${scaledPreviewHeight}px` }}>
-            <div
-              ref={previewRef}
-              data-vs-stage="true"
-              data-vs-preview-ready={previewReady ? 'true' : 'false'}
-              data-vs-preview-scale={previewScale}
-              data-vs-template={activeTemplate}
-              data-vs-folder-key={activeFightFolderKey}
-              data-vs-locale={activeFightLocale}
-              className={`${stageShell.HIGH_END_STAGE_CLASS} vs-stage-shell`}
-              style={{
-                width: `${previewBaseWidth}px`,
-                height: `${previewBaseHeight}px`,
-                transform: `scale(${previewScale})`,
-                transformOrigin: 'top left',
-                opacity: previewReady ? 1 : 0,
-              }}
-              aria-busy={!previewReady}
-            >
-              <div className={stageShell.HIGH_END_STAGE_OVERLAY_CLASS} />
-              <div className={stageShell.HIGH_END_STAGE_GRID_CLASS} />
-              <div className={stageShell.HIGH_END_STAGE_FRAME_CLASS} />
-              <div className="scan-sweep" />
-              <div key={activeTemplate} className="template-fade h-full">
-                {children}
-              </div>
-              <HeroLogoBadge />
-            </div>
-          </div>
-        )}
+        <div
+          ref={previewRef}
+          data-vs-stage="true"
+          data-vs-preview-ready={previewReady ? 'true' : 'false'}
+          data-vs-preview-scale={previewScale}
+          data-vs-template={activeTemplate}
+          data-vs-folder-key={activeFightFolderKey}
+          data-vs-locale={activeFightLocale}
+          className="vs-preview-shell--bare-body"
+          style={{
+            width: '100%',
+            height: '100%',
+            transform: 'none',
+            transformOrigin: 'top center',
+            opacity: previewReady ? 1 : 0,
+          }}
+          aria-busy={!previewReady}
+        >
+          {children}
+        </div>
       </div>
     </section>
   )

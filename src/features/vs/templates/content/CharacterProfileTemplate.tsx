@@ -1,8 +1,9 @@
-﻿import { Crosshair, Swords, WandSparkles } from 'lucide-react'
+import '../shared/theme.css'
+import { Crosshair, Swords, WandSparkles } from 'lucide-react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { Fighter, IconType, TemplatePreviewProps } from '../../types'
 import { FittedText } from '../shared/FittedText'
-import { HighEndFighterBanner, HighEndTemplateHeader } from '../shared/highEnd'
+import { HighEndFighterBanner } from '../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -92,61 +93,70 @@ export function CharacterProfileTemplate({
     if (!items.length) return null
 
     return (
-    <div className={layout.SECTION_CARD_CLASS}>
-      <div className={layout.SECTION_HEADER_CLASS}>
-        <Icon size={16} style={{ color: fighter.color }} />
-        <p className={shell.HIGH_END_LABEL_CLASS}>{label}</p>
+      <div className={layout.SECTION_CARD_CLASS}>
+        <div className={layout.SECTION_HEADER_CLASS}>
+          <Icon size={16} style={{ color: fighter.color }} />
+          <p className="text-[10px] uppercase tracking-widest text-slate-400">{label}</p>
+        </div>
+        <div className={layout.SECTION_ITEMS_CLASS}>
+          {items.map((item, index) => (
+            <div
+              key={`${sectionKey}-${side}-${index}`}
+              className={layout.SECTION_ITEM_CLASS}
+            >
+              <FittedText
+                as="p"
+                slotKey={`character-profile:${sectionKey}:${side}:${index}`}
+                spec={slots.factBody}
+                text={item}
+                className={layout.SECTION_ITEM_TEXT_CLASS}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      <div className={layout.SECTION_ITEMS_CLASS}>
-        {items.map((item, index) => (
-          <div
-            key={`${sectionKey}-${side}-${index}`}
-            className={layout.SECTION_ITEM_CLASS}
-          >
-            <FittedText
-              as="p"
-              slotKey={`character-profile:${sectionKey}:${side}:${index}`}
-              spec={slots.factBody}
-              text={item}
-              className={layout.SECTION_ITEM_TEXT_CLASS}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
     )
   }
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS}>
-          <HighEndTemplateHeader
-            templateId="character-profile"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            onToggleLanguage={onToggleLanguage}
-          />
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS}`}>
-            <div className={layout.BANNERS_CLASS}>
-              <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterA} />
-              <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterB} />
-            </div>
-            <div className={layout.SECTIONS_WRAP_CLASS}>
-              {sectionRows.map((section) => (
-                <div key={section.key} className={layout.SECTION_ROW_CLASS}>
-                  {renderSectionCard(fighterA, section.label, section.icon, section.leftItems, 'left', section.key)}
-                  {renderSectionCard(fighterB, section.label, section.icon, section.rightItems, 'right', section.key)}
-                </div>
-              ))}
-            </div>
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
+
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className={layout.BODY_CLASS}>
+          <div className={layout.BANNERS_CLASS}>
+            <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterA} />
+            <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterB} />
+          </div>
+          <div className={layout.SECTIONS_WRAP_CLASS}>
+            {sectionRows.map((section) => (
+              <div key={section.key} className={layout.SECTION_ROW_CLASS}>
+                {renderSectionCard(fighterA, section.label, section.icon, section.leftItems, 'left', section.key)}
+                {renderSectionCard(fighterB, section.label, section.icon, section.rightItems, 'right', section.key)}
+              </div>
+            ))}
           </div>
         </div>
       </div>
     </div>
   )
 }
-

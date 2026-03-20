@@ -1,8 +1,8 @@
-﻿import { Brain, Crosshair, WandSparkles } from 'lucide-react'
+import '../../shared/theme.css'
+import { Brain, Crosshair, WandSparkles } from 'lucide-react'
 import type { CSSProperties, MutableRefObject } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { HighEndTemplateHeader } from '../../shared/highEnd'
 import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -34,16 +34,14 @@ export function XFactorTemplate({
   const plainLines = getPlainTemplateLines(blockLines)
   const chrome = buildFightTemplateChrome('x-factor', language, blockFields)
   const ui = getTemplateUi('x-factor', language)
-  const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
   const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
-  
+
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
 
-  // UĹĽywamy realnych statystyk (averageA/B) jako bazy, jeĹ›li sÄ… dostÄ™pne
   const superPct = averageA ?? parsePercentValue(
     pickTemplateField(blockFields, ['a_value', 'super_value', 'left_value']),
     0,
@@ -85,6 +83,9 @@ export function XFactorTemplate({
     language,
   })
 
+  const matchupText = `${fighterAName} VS ${fighterBName}`
+  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
+
   const factorSupplement = xLabel ? (
     <div
       ref={factorFit.ref as MutableRefObject<HTMLDivElement | null>}
@@ -114,234 +115,197 @@ export function XFactorTemplate({
   ) : null
 
   return (
-    <div className={`${shell.HIGH_END_ROOT_CLASS} vs-highend-root`}>
-      <div className={`${shell.HIGH_END_PANEL_CLASS} vs-highend-panel`}>
-        <div className={shell.HIGH_END_GRID_OVERLAY_CLASS} />
-        <div className={layout.INNER_CLASS as string}>
-          <HighEndTemplateHeader
-            templateId="x-factor"
-            language={language}
-            chrome={chrome}
-            headerText={headerText}
-            subText={subText}
-            centerSupplement={factorSupplement}
-            onToggleLanguage={onToggleLanguage}
-          />
+    <div className="vs-tpl-surface">
+      <div className="vs-tpl-meta">
+        <p>{chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span></p>
+        <p>{chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span></p>
+      </div>
 
-          <div className={`${shell.HIGH_END_BODY_GAP_CLASS} ${layout.BODY_CLASS as string}`}>
-            <div className={layout.FIGHTERS_WRAP_CLASS as string}>
-              {/* FIGHTER A METER */}
-              <div>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:fighter-a`}
-                  spec={slots.fighterBannerNameLarge}
-                  text={fighterAName}
-                  className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                  style={{ color: '#38bdf8', fontFamily: 'var(--font-display)' }}
-                  templateId="x-factor"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <div className={layout.METER_ROW_CLASS as string}>
-                  <div className={layout.METER_TRACK_A_CLASS as string}>
-                    <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%` }} />
-                    {superBonusPct > 0 ? (
-                      <div
-                        className={layout.METER_BONUS_OVERLAY_CLASS as string}
-                        style={{
-                          clipPath: `inset(0% ${Math.max(0, 100 - superTotalPct)}% 0% ${Math.min(100, superPct)}%)`,
-                          background: String(layout.METER_BONUS_BG_A),
-                          opacity: 0.85
-                        }}
-                      />
-                    ) : null}
-                    {superTotalPct >= 100 && (
-                      <div className="lightning-wrapper !opacity-40">
-                        <div className="lightning" />
-                      </div>
-                    )}
-                    <div className={layout.METER_PATTERN_CLASS as string} />
-                  </div>
-                  <div
-                    className={layout.METER_VALUE_A_CLASS as string}
-                    style={{ backgroundImage: String(layout.METER_BONUS_BG_A), backgroundClip: 'padding-box' }}
-                  >
-                    <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(superPct)}%</span>
-                    <span className={layout.METER_BONUS_VALUE_A_CLASS as string}>
-                      {superBonusPct > 0 ? `+${Math.round(superBonusPct)}%` : '\u00A0'}
-                    </span>
-                  </div>
+      <div className="vs-tpl-heading">
+        <h2 className="vs-tpl-title">{headerText}</h2>
+        {subText ? <p className="vs-tpl-subtitle">{subText}</p> : null}
+        {factorSupplement}
+        <div className="vs-tpl-matchup">
+          {matchupMatch ? (
+            <>
+              <span className="vs-tpl-matchup-a" style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
+              <span className="vs-tpl-matchup-sep">{matchupMatch[2]}</span>
+              <span className="vs-tpl-matchup-b" style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
+            </>
+          ) : matchupText}
+        </div>
+      </div>
+
+      <button
+        type="button"
+        className="vs-tpl-logo"
+        title={chrome.brandMarkTitle}
+        aria-label={chrome.brandMarkAria}
+        onClick={onToggleLanguage}
+      >
+        <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
+        <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
+      </button>
+
+      <div className="vs-tpl-body">
+        <div className={layout.BODY_CLASS as string}>
+          <div className={layout.FIGHTERS_WRAP_CLASS as string}>
+            {/* FIGHTER A METER */}
+            <div>
+              <FittedText
+                as="p"
+                slotKey={`${auditPrefix}:fighter-a`}
+                spec={slots.fighterBannerNameLarge}
+                text={fighterAName}
+                className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
+                style={{ color: '#38bdf8', fontFamily: 'var(--font-display)' }}
+                templateId="x-factor"
+                activeFightId={activeFightId}
+                language={language}
+              />
+              <div className={layout.METER_ROW_CLASS as string}>
+                <div className={layout.METER_TRACK_A_CLASS as string}>
+                  <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%` }} />
+                  {superBonusPct > 0 ? (
+                    <div
+                      className={layout.METER_BONUS_OVERLAY_CLASS as string}
+                      style={{
+                        clipPath: `inset(0% ${Math.max(0, 100 - superTotalPct)}% 0% ${Math.min(100, superPct)}%)`,
+                        background: String(layout.METER_BONUS_BG_A),
+                        opacity: 0.85
+                      }}
+                    />
+                  ) : null}
+                  {superTotalPct >= 100 && (
+                    <div className="lightning-wrapper !opacity-40">
+                      <div className="lightning" />
+                    </div>
+                  )}
+                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
-              </div>
-
-              {/* FIGHTER B METER */}
-              <div>
-                <FittedText
-                  as="p"
-                  slotKey={`${auditPrefix}:fighter-b`}
-                  spec={slots.fighterBannerNameLarge}
-                  text={fighterBName}
-                  className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                  style={{ color: '#f87171', fontFamily: 'var(--font-display)' }}
-                  templateId="x-factor"
-                  activeFightId={activeFightId}
-                  language={language}
-                />
-                <div className={layout.METER_ROW_CLASS as string}>
-                  <div className={layout.METER_TRACK_B_CLASS as string}>
-                    <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${Math.min(100, hyperPct)}%` }} />
-                    {hyperBonusPct > 0 ? (
-                      <div
-                        className={layout.METER_BONUS_OVERLAY_CLASS as string}
-                        style={{
-                          clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalPct)}% 0% ${Math.min(100, hyperPct)}%)`,
-                          background: String(layout.METER_BONUS_BG_B),
-                          opacity: 0.85
-                        }}
-                      />
-                    ) : null}
-                    {hyperTotalPct >= 100 && (
-                      <div className="lightning-wrapper !opacity-40">
-                        <div className="lightning" />
-                      </div>
-                    )}
-                    <div className={layout.METER_PATTERN_CLASS as string} />
-                  </div>
-                  <div
-                    className={layout.METER_VALUE_B_CLASS as string}
-                    style={{ backgroundImage: String(layout.METER_BONUS_BG_B), backgroundClip: 'padding-box' }}
-                  >
-                    <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(hyperPct)}%</span>
-                    <span className={layout.METER_BONUS_VALUE_B_CLASS as string}>
-                      {hyperBonusPct > 0 ? `+${Math.round(hyperBonusPct)}%` : '\u00A0'}
-                    </span>
-                  </div>
+                <div
+                  className={layout.METER_VALUE_A_CLASS as string}
+                  style={{ backgroundImage: String(layout.METER_BONUS_BG_A), backgroundClip: 'padding-box' }}
+                >
+                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(superPct)}%</span>
+                  <span className={layout.METER_BONUS_VALUE_A_CLASS as string}>
+                    {superBonusPct > 0 ? `+${Math.round(superBonusPct)}%` : '\u00A0'}
+                  </span>
                 </div>
               </div>
             </div>
 
-            <div className={layout.INSIGHTS_GRID_CLASS as string}>
-              <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
-                  <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
-                    <WandSparkles size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
-                  </div>
-                  <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:mechanics-title`}
-                      spec={slots.xFactorInsightTitle}
-                      text={common.mechanicsLabel}
-                      className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
+            {/* FIGHTER B METER */}
+            <div>
+              <FittedText
+                as="p"
+                slotKey={`${auditPrefix}:fighter-b`}
+                spec={slots.fighterBannerNameLarge}
+                text={fighterBName}
+                className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
+                style={{ color: '#f87171', fontFamily: 'var(--font-display)' }}
+                templateId="x-factor"
+                activeFightId={activeFightId}
+                language={language}
+              />
+              <div className={layout.METER_ROW_CLASS as string}>
+                <div className={layout.METER_TRACK_B_CLASS as string}>
+                  <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${Math.min(100, hyperPct)}%` }} />
+                  {hyperBonusPct > 0 ? (
+                    <div
+                      className={layout.METER_BONUS_OVERLAY_CLASS as string}
+                      style={{
+                        clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalPct)}% 0% ${Math.min(100, hyperPct)}%)`,
+                        background: String(layout.METER_BONUS_BG_B),
+                        opacity: 0.85
+                      }}
                     />
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:mechanics`}
-                      spec={slots.xFactorInsightBody}
-                      text={mechanics}
-                      className={layout.INSIGHT_BODY_TEXT_CLASS as string}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
-                  </div>
+                  ) : null}
+                  {hyperTotalPct >= 100 && (
+                    <div className="lightning-wrapper !opacity-40">
+                      <div className="lightning" />
+                    </div>
+                  )}
+                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
-              </div>
-
-              <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
-                  <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
-                    <Crosshair size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
-                  </div>
-                  <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:implication-title`}
-                      spec={slots.xFactorInsightTitle}
-                      text={common.implicationLabel}
-                      className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:implication`}
-                      spec={slots.xFactorInsightBody}
-                      text={implication}
-                      className={layout.INSIGHT_BODY_TEXT_CLASS as string}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
-                  <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
-                    <Brain size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
-                  </div>
-                  <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:psychology-title`}
-                      spec={slots.xFactorInsightTitle}
-                      text={common.psychologyLabel}
-                      className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
-                    <FittedText
-                      as="p"
-                      slotKey={`${auditPrefix}:psychology`}
-                      spec={slots.xFactorInsightBody}
-                      text={psychology}
-                      className={layout.INSIGHT_BODY_TEXT_CLASS as string}
-                      templateId="x-factor"
-                      activeFightId={activeFightId}
-                      language={language}
-                    />
-                  </div>
+                <div
+                  className={layout.METER_VALUE_B_CLASS as string}
+                  style={{ backgroundImage: String(layout.METER_BONUS_BG_B), backgroundClip: 'padding-box' }}
+                >
+                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)}>{Math.round(hyperPct)}%</span>
+                  <span className={layout.METER_BONUS_VALUE_B_CLASS as string}>
+                    {hyperBonusPct > 0 ? `+${Math.round(hyperBonusPct)}%` : '\u00A0'}
+                  </span>
                 </div>
               </div>
             </div>
-
-            {(trapTop || trapBottom || trapExample || trapQuestion) && (
-              <div className="mt-4 rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3">
-                {(trapTop || trapBottom) && (
-                  <div className={statTrapLayout.HEADLINE_BAND_CLASS}>
-                    <p
-                      className={String(tokens.STAT_TRAP_HEADLINE_CLASS)}
-                      style={{ fontFamily: 'var(--font-display)', textAlign: 'center' }}
-                    >
-                      {trapTop && <span style={{ color: fighterB.color }}>{trapTop} </span>}
-                      {trapBottom && <span style={{ color: fighterA.color }}>{trapBottom}</span>}
-                    </p>
-                  </div>
-                )}
-                {trapExample && (
-                  <p className="mt-2 text-[14px] leading-[1.25] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
-                    {trapExample}
-                  </p>
-                )}
-                {trapQuestion && (
-                  <p className="mt-2 text-[13px] leading-[1.25] text-slate-200" style={{ fontFamily: 'var(--font-ui)' }}>
-                    <span className="font-bold">{common.keyQuestionLabel}</span>{' '}{trapQuestion}
-                  </p>
-                )}
-              </div>
-            )}
           </div>
+
+          <div className={layout.INSIGHTS_GRID_CLASS as string}>
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
+                  <WandSparkles size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
+                </div>
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
+                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics-title`} spec={slots.xFactorInsightTitle} text={common.mechanicsLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics`} spec={slots.xFactorInsightBody} text={mechanics} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                </div>
+              </div>
+            </div>
+
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
+                  <Crosshair size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
+                </div>
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
+                  <FittedText as="p" slotKey={`${auditPrefix}:implication-title`} spec={slots.xFactorInsightTitle} text={common.implicationLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:implication`} spec={slots.xFactorInsightBody} text={implication} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                </div>
+              </div>
+            </div>
+
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)}>
+                  <Brain size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
+                </div>
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
+                  <FittedText as="p" slotKey={`${auditPrefix}:psychology-title`} spec={slots.xFactorInsightTitle} text={common.psychologyLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:psychology`} spec={slots.xFactorInsightBody} text={psychology} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {(trapTop || trapBottom || trapExample || trapQuestion) && (
+            <div className="mt-4 rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3">
+              {(trapTop || trapBottom) && (
+                <div className={statTrapLayout.HEADLINE_BAND_CLASS}>
+                  <p
+                    className={String(tokens.STAT_TRAP_HEADLINE_CLASS)}
+                    style={{ fontFamily: 'var(--font-display)', textAlign: 'center' }}
+                  >
+                    {trapTop && <span style={{ color: fighterB.color }}>{trapTop} </span>}
+                    {trapBottom && <span style={{ color: fighterA.color }}>{trapBottom}</span>}
+                  </p>
+                </div>
+              )}
+              {trapExample && (
+                <p className="mt-2 text-[14px] leading-[1.25] text-slate-100" style={{ fontFamily: 'var(--font-ui)' }}>
+                  {trapExample}
+                </p>
+              )}
+              {trapQuestion && (
+                <p className="mt-2 text-[13px] leading-[1.25] text-slate-200" style={{ fontFamily: 'var(--font-ui)' }}>
+                  <span className="font-bold">{common.keyQuestionLabel}</span>{' '}{trapQuestion}
+                </p>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
   )
 }
-
