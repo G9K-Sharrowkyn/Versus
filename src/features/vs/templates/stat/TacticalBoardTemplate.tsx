@@ -43,11 +43,22 @@ export function TacticalBoardTemplate({
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
   const fighterAFallback = getFightTemplateDefaultField('tactical-board', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('tactical-board', 'fighter_b_fallback', language)
+  const xFactorLabel = getFightTemplateDefaultField('x-factor', 'factor', language) || 'X-FACTOR'
   const matchupText =
     pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) ||
     `${fighterA.name || fighterAFallback} VS ${fighterB.name || fighterBFallback}`
 
-  const tiles = rows.slice(0, 9)
+  const tiles = [
+    ...rows.slice(0, 9),
+    {
+      id: 'x-factor',
+      label: xFactorLabel,
+      a: 0,
+      b: 0,
+      delta: 0,
+      winner: 'draw' as const,
+    },
+  ]
 
   const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 

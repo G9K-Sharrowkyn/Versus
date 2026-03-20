@@ -326,11 +326,12 @@
 
 .vs-tactical-board25-stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: calc(0.9rem * var(--tb-scale));
   margin-top: calc(0.4rem * var(--tb-scale));
   padding-bottom: calc(0.65rem * var(--tb-scale));
-  overflow: hidden;
+  align-content: start;
+  overflow: visible;
 }
 
 /* Stat items */
