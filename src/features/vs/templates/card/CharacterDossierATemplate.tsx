@@ -50,6 +50,13 @@ export function CharacterDossierATemplate({
     .replace(/^\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\b\s*(?:(?:\/\/)|[|/-])?\s*/i, '')
     .trim()
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
+  const bodyStyle = {
+    top: 'calc(200px * var(--scale))',
+    left: '9.9%',
+    right: '9.9%',
+    bottom: 'auto',
+    height: 'calc(484px * var(--scale))',
+  } as const
 
   return (
     <div className="vs-tpl-surface">
@@ -74,7 +81,7 @@ export function CharacterDossierATemplate({
         <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
       </button>
 
-      <div className="vs-tpl-body">
+      <div className="vs-tpl-body" style={bodyStyle}>
         <div
           className={layout.BODY_FRAME_CLASS}
           style={{ background: 'transparent', borderColor: 'var(--color-panel-border)', boxShadow: 'inset 0 0 0 1px rgba(255, 85, 78, 0.06), 0 10px 18px rgba(0, 0, 0, 0.18)' }}

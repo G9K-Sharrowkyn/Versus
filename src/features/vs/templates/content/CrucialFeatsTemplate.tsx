@@ -54,6 +54,22 @@ export function CrucialFeatsTemplate({
   const pairCount = Math.max(1, leftEntries.length, rightEntries.length)
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
+  const bodyStyle = {
+    top: 'calc(200px * var(--scale))',
+    left: '9.9%',
+    right: '9.9%',
+    bottom: 'auto',
+    height: 'calc(484px * var(--scale))',
+  } as const
+  const frameStyle = {
+    minHeight: 0,
+    flex: 1,
+    border: '1px solid var(--color-panel-border)',
+    borderRadius: '0.375rem',
+    background: 'transparent',
+    padding: '0.75rem',
+    boxShadow: 'inset 0 0 0 1px rgba(255, 85, 78, 0.06), 0 10px 18px rgba(0, 0, 0, 0.18)',
+  } as const
 
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
@@ -154,10 +170,12 @@ export function CrucialFeatsTemplate({
         <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
       </button>
 
-      <div className="vs-tpl-body">
-        <div className={layout.BODY_CLASS}>
-          {renderColumn(fighterA, leftEntry, 'left')}
-          {renderColumn(fighterB, rightEntry, 'right')}
+      <div className="vs-tpl-body" style={bodyStyle}>
+        <div style={frameStyle}>
+          <div className={layout.BODY_CLASS}>
+            {renderColumn(fighterA, leftEntry, 'left')}
+            {renderColumn(fighterB, rightEntry, 'right')}
+          </div>
         </div>
       </div>
     </div>

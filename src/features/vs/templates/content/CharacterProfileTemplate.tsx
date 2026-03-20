@@ -81,6 +81,22 @@ export function CharacterProfileTemplate({
       rightItems: rightItems.slice(0, PROFILE_ITEM_COUNT),
     }
   }).filter((section) => section.leftItems.length > 0 || section.rightItems.length > 0)
+  const bodyStyle = {
+    top: 'calc(200px * var(--scale))',
+    left: '9.9%',
+    right: '9.9%',
+    bottom: 'auto',
+    height: 'calc(484px * var(--scale))',
+  } as const
+  const frameStyle = {
+    minHeight: 0,
+    flex: 1,
+    border: '1px solid var(--color-panel-border)',
+    borderRadius: '0.375rem',
+    background: 'transparent',
+    padding: '0.75rem',
+    boxShadow: 'inset 0 0 0 1px rgba(255, 85, 78, 0.06), 0 10px 18px rgba(0, 0, 0, 0.18)',
+  } as const
 
   const renderSectionCard = (
     fighter: Fighter,
@@ -141,19 +157,21 @@ export function CharacterProfileTemplate({
         <img className="vs-tpl-logo-reflection" src={chrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
       </button>
 
-      <div className="vs-tpl-body">
-        <div className={layout.BODY_CLASS}>
-          <div className={layout.BANNERS_CLASS}>
-            <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterA} />
-            <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterB} />
-          </div>
-          <div className={layout.SECTIONS_WRAP_CLASS}>
-            {sectionRows.map((section) => (
-              <div key={section.key} className={layout.SECTION_ROW_CLASS}>
-                {renderSectionCard(fighterA, section.label, section.icon, section.leftItems, 'left', section.key)}
-                {renderSectionCard(fighterB, section.label, section.icon, section.rightItems, 'right', section.key)}
-              </div>
-            ))}
+      <div className="vs-tpl-body" style={bodyStyle}>
+        <div style={frameStyle}>
+          <div className={layout.BODY_CLASS}>
+            <div className={layout.BANNERS_CLASS}>
+              <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterA} />
+              <HighEndFighterBanner templateId="character-profile" language={language} fighter={fighterB} />
+            </div>
+            <div className={layout.SECTIONS_WRAP_CLASS}>
+              {sectionRows.map((section) => (
+                <div key={section.key} className={layout.SECTION_ROW_CLASS}>
+                  {renderSectionCard(fighterA, section.label, section.icon, section.leftItems, 'left', section.key)}
+                  {renderSectionCard(fighterB, section.label, section.icon, section.rightItems, 'right', section.key)}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
