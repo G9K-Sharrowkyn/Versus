@@ -68,14 +68,14 @@ function StaticFittedText<T extends ElementType = 'p'>({
     height: `${fixedHeightPx}px`,
     maxHeight: `${fixedHeightPx}px`,
     overflow: style?.overflow || 'hidden',
-    whiteSpace: (spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
-    textAlign: spec.textAlign as CSSProperties['textAlign'],
-    textTransform: spec.textTransform as CSSProperties['textTransform'],
-    overflowWrap: (spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
-    wordBreak: (spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
-    letterSpacing: spec.letterSpacing as CSSProperties['letterSpacing'],
+    whiteSpace: (style?.whiteSpace || spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
+    textAlign: (style?.textAlign || spec.textAlign) as CSSProperties['textAlign'],
+    textTransform: (style?.textTransform || spec.textTransform) as CSSProperties['textTransform'],
+    overflowWrap: (style?.overflowWrap || spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
+    wordBreak: (style?.wordBreak || spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
+    letterSpacing: (style?.letterSpacing || spec.letterSpacing) as CSSProperties['letterSpacing'],
     fontSize: `${spec.baseFontPx}px`,
-    lineHeight: `${spec.lineHeight}`,
+    lineHeight: `${style?.lineHeight || spec.lineHeight}`,
   }
 
   return createElement(
@@ -119,14 +119,14 @@ function ShrinkFittedText<T extends ElementType = 'p'>({
     height: `${fixedHeightPx}px`,
     maxHeight: `${fixedHeightPx}px`,
     overflow: style?.overflow || 'hidden',
-    whiteSpace: (spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
-    textAlign: spec.textAlign as CSSProperties['textAlign'],
-    textTransform: spec.textTransform as CSSProperties['textTransform'],
-    overflowWrap: (spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
-    wordBreak: (spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
-    letterSpacing: spec.letterSpacing as CSSProperties['letterSpacing'],
+    whiteSpace: (style?.whiteSpace || spec.whiteSpace || 'normal') as CSSProperties['whiteSpace'],
+    textAlign: (style?.textAlign || spec.textAlign) as CSSProperties['textAlign'],
+    textTransform: (style?.textTransform || spec.textTransform) as CSSProperties['textTransform'],
+    overflowWrap: (style?.overflowWrap || spec.overflowWrap || 'anywhere') as CSSProperties['overflowWrap'],
+    wordBreak: (style?.wordBreak || spec.wordBreak || 'break-word') as CSSProperties['wordBreak'],
+    letterSpacing: (style?.letterSpacing || spec.letterSpacing) as CSSProperties['letterSpacing'],
     fontSize: `${fontPx}px`,
-    lineHeight: `${spec.lineHeight}`,
+    lineHeight: `${style?.lineHeight || spec.lineHeight}`,
   }
 
   return createElement(

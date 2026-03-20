@@ -135,7 +135,14 @@ export function TacticalBoardTemplate({
                   spec={slots.tacticalBoardTile}
                   text={row.label}
                   className="vs-tactical-board25-item-label"
-                  style={{ color: winnerColor, overflow: 'visible' }}
+                  style={{
+                    color: winnerColor,
+                    overflow: 'visible',
+                    whiteSpace: 'normal',
+                    overflowWrap: 'normal',
+                    wordBreak: 'normal',
+                    hyphens: 'none',
+                  }}
                 />
               </div>
             )

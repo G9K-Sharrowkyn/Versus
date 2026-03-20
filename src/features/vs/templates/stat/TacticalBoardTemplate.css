@@ -50,8 +50,8 @@
   --tb-reflect-4-blur: 0.2em;
   --tb-reflect-5-blur: 0.2em;
   --tb-side-margin: 5.2%;
-  --tb-center-gap: 4.8%;
-  --tb-panel-width: 34%;
+  --tb-center-gap: 2.6%;
+  --tb-panel-width: 36.5%;
   --tb-panel-top: calc(262px * var(--tb-scale));
   --tb-panel-height: calc(336px * var(--tb-scale));
   --tb-stats-width: var(--tb-panel-width);
@@ -170,13 +170,14 @@
   margin: 0;
   color: #f7f0ea;
   font-family: 'Chakra Petch', 'Syncopate', sans-serif;
-  font-size: var(--tb-type-1);
+  font-size: calc(var(--tb-type-1) - 4px);
   font-weight: 700;
   letter-spacing: 0.08em;
   line-height: 0.96;
   white-space: nowrap;
   text-transform: uppercase;
   text-shadow: 0 var(--tb-reflect-1-y) var(--tb-reflect-1-blur) rgba(247, 240, 234, 0.22);
+  transform: translateX(calc(-40px * var(--tb-scale)));
 }
 
 .vs-tactical-board25-subtitle {
