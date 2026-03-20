@@ -1,4 +1,4 @@
-import { useEffect, useRef, type ReactNode, type RefObject } from 'react'
+import type { ReactNode, RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import type { TemplateId } from '../types'
 
@@ -27,21 +27,9 @@ type FightPreviewStageProps = {
 }
 
 export function FightPreviewStage({
-  ui,
-  activeTemplateLabel,
-  templateCursor,
-  templateOrderLength,
-  canStepTemplateBackward,
-  canStepTemplateForward,
   fightViewVisible,
-  onBackToLibrary,
-  onStepTemplateOrder,
   previewShellRef,
   previewRef,
-  scaledPreviewWidth,
-  scaledPreviewHeight,
-  previewBaseWidth,
-  previewBaseHeight,
   previewScale,
   previewReady,
   activeTemplate,
@@ -49,70 +37,11 @@ export function FightPreviewStage({
   activeFightLocale,
   children,
 }: FightPreviewStageProps) {
-  const toolbarRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleMove = (e: MouseEvent) => {
-      const hue = Math.round((e.clientX / window.innerWidth) * 300 + 150)
-      toolbarRef.current?.style.setProperty('--vs-mouse-hue', String(hue))
-    }
-    window.addEventListener('mousemove', handleMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMove)
-  }, [])
-
-  const toolbarItemClass =
-    'vs-template-toolbar-item flex h-12 min-w-0 items-center justify-center rounded-xl border px-3 text-center text-sm leading-tight'
-  const buttonHueClass = `${toolbarItemClass} vs-template-toolbar-button btn-hue-shift`
-  const statusItemClass = `${toolbarItemClass} vs-template-toolbar-status`
-
-  const toolbar = (
-    <div
-      ref={toolbarRef}
-      style={{ '--vs-mouse-hue': '180' } as React.CSSProperties}
-      className="vs-template-toolbar shrink-0 grid grid-cols-1 gap-2 rounded-[28px] border p-3 sm:grid-cols-2 xl:grid-cols-6"
-    >
-      <span className={`${toolbarItemClass} vs-template-toolbar-live font-semibold`} title={ui.liveMode}>
-        {ui.liveMode}
-      </span>
-      <button className={buttonHueClass} type="button" onClick={onBackToLibrary} title={ui.backToLibrary}>
-        {ui.backToLibrary}
-      </button>
-      <button
-        className={buttonHueClass}
-        type="button"
-        onClick={() => onStepTemplateOrder(-1)}
-        title={ui.prevTemplate}
-        disabled={!canStepTemplateBackward}
-      >
-        {ui.prevTemplate}
-      </button>
-      <button
-        className={buttonHueClass}
-        type="button"
-        onClick={() => onStepTemplateOrder(1)}
-        title={ui.nextTemplate}
-        disabled={!canStepTemplateForward}
-      >
-        {ui.nextTemplate}
-      </button>
-      <span className={`${statusItemClass} flex-col`} title={`${ui.sequence} ${templateCursor + 1}/${templateOrderLength}`}>
-        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.sequence}</span>
-        <span className="mt-0.5">{templateCursor + 1}/{templateOrderLength}</span>
-      </span>
-      <span className={`${statusItemClass} flex-col`} title={`${ui.active}: ${activeTemplateLabel}`}>
-        <span className="text-[10px] uppercase tracking-[0.14em] text-slate-400">{ui.active}</span>
-        <span className="mt-0.5 w-full truncate">{activeTemplateLabel}</span>
-      </span>
-    </div>
-  )
-
   return (
     <section
       className="flex h-full min-h-0 flex-col gap-3 transition-opacity duration-200 ease-out"
       style={{ opacity: fightViewVisible ? 1 : 0, pointerEvents: fightViewVisible ? 'auto' : 'none' }}
     >
-      {toolbar}
-
       <div
         ref={previewShellRef}
         data-vs-preview-shell="true"
