@@ -42,8 +42,8 @@
   --tb-stat-label-font-weight: 400;
   --tb-reflect-1-y: 0.58em;
   --tb-reflect-2-y: 1.7em;
-  --tb-reflect-3-y: 1.84em;
-  --tb-reflect-4-y: 2.8em;
+  --tb-reflect-3-y: 1.94em;
+  --tb-reflect-4-y: 2.15em;
   --tb-reflect-5-y: 1.78em;
   --tb-reflect-1-blur: 0.2em;
   --tb-reflect-2-blur: 0.2em;
@@ -386,7 +386,7 @@
   justify-content: center;
   transform: none;
   transform-origin: top center;
-  opacity: 0.1;
+  opacity: 0.44;
   filter: blur(calc(1.25px * var(--tb-scale)));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
