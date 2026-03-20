@@ -7,7 +7,8 @@
 
 /* Shell overrides needed for the 3D overflow */
 .vs-preview-shell--bare {
-  overflow: visible;
+  overflow: clip;
+  overflow-clip-margin: 120px;
   container-type: size;
 }
 
@@ -52,8 +53,8 @@
   --tb-reflect-5-blur: 0.2em;
   --tb-panel-heading-font-size: var(--tb-type-2);
   --tb-panel-heading-letter-spacing: 0.14em;
-  --tb-panel-heading-color: rgba(255, 141, 122, 0.8);
-  --tb-panel-heading-reflect: rgba(255, 141, 122, 0.18);
+  --tb-panel-heading-color: rgba(255, 85, 78, 0.9);
+  --tb-panel-heading-reflect: rgba(255, 85, 78, 0.22);
   --tb-side-margin: 5.2%;
   --tb-center-gap: 2.6%;
   --tb-panel-width: 38.8%;
@@ -273,25 +274,25 @@
 /* Stats panel */
 
 .vs-tactical-board25-stats,
-.vs-tactical-board25-reality,
-.vs-tactical-board25-item {
+.vs-tactical-board25-reality {
   position: absolute;
   overflow: visible;
-  border: 1px solid rgba(255, 85, 78, 0.22);
+  border: none;
   background: transparent;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 85, 78, 0.06),
-    0 10px 18px rgba(0, 0, 0, 0.18),
-    0 0 32px rgba(255, 85, 78, 0.04);
 }
 
-/* Floor reflections for stats and reality panels */
 .vs-tactical-board25-stats::before,
 .vs-tactical-board25-reality::before {
-  content: none;
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: calc(2px * var(--tb-scale)) solid rgba(255, 85, 78, 1);
+  background: transparent;
+  filter: drop-shadow(0 0 calc(10px * var(--tb-scale)) rgba(255, 85, 78, 1));
+  pointer-events: none;
+  z-index: 10;
 }
 
-/* Depth shadow slabs beneath stats and item cards */
 .vs-tactical-board25-stats::after {
   content: none;
 }
@@ -302,7 +303,7 @@
   width: var(--tb-stats-width);
   min-height: var(--tb-panel-height);
   padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
-  border-radius: calc(34px * var(--tb-scale));
+  border-radius: 0;
 }
 
 .vs-tactical-board25-stats-title,
@@ -418,14 +419,10 @@
   width: var(--tb-reality-width);
   height: var(--tb-panel-height);
   padding: calc(1rem * var(--tb-scale));
-  border-radius: calc(34px * var(--tb-scale));
+  border-radius: 0;
   background: transparent;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 85, 78, 0.06),
-    0 0 32px rgba(255, 85, 78, 0.04);
 }
 
-/* Depth slab beneath reality panel */
 .vs-tactical-board25-reality::after {
   content: none;
 }
@@ -434,6 +431,6 @@
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border-radius: calc(34px * var(--tb-scale));
+  border-radius: calc(6px * var(--tb-scale));
   background: transparent;
 }
