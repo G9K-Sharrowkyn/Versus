@@ -49,11 +49,15 @@
   --tb-reflect-3-blur: 0.2em;
   --tb-reflect-4-blur: 0.2em;
   --tb-reflect-5-blur: 0.2em;
+  --tb-panel-heading-font-size: var(--tb-type-2);
+  --tb-panel-heading-letter-spacing: 0.14em;
+  --tb-panel-heading-color: rgba(255, 141, 122, 0.8);
+  --tb-panel-heading-reflect: rgba(255, 141, 122, 0.18);
   --tb-side-margin: 5.2%;
   --tb-center-gap: 2.6%;
-  --tb-panel-width: 36.5%;
-  --tb-panel-top: calc(314px * var(--tb-scale));
-  --tb-panel-height: calc(336px * var(--tb-scale));
+  --tb-panel-width: 38.8%;
+  --tb-panel-top: calc(298px * var(--tb-scale));
+  --tb-panel-height: calc(354px * var(--tb-scale));
   --tb-stats-width: var(--tb-panel-width);
   --tb-right-start: calc(50% + (var(--tb-center-gap) / 2));
   --tb-stats-left: calc(50% - (var(--tb-center-gap) / 2) - var(--tb-stats-width));
@@ -283,23 +287,7 @@
 /* Floor reflections for stats and reality panels */
 .vs-tactical-board25-stats::before,
 .vs-tactical-board25-reality::before {
-  content: '';
-  display: block;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: auto;
-  bottom: calc(-100% - calc(8px * var(--tb-scale)));
-  height: 100%;
-  border-radius: inherit;
-  transform: scaleY(-1);
-  transform-origin: bottom center;
-  border: 1px solid rgba(255, 85, 78, 0.09);
-  background: linear-gradient(180deg, rgba(16, 4, 4, 0.12), rgba(7, 1, 1, 0.18));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28) 0%, transparent 70%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.28) 0%, transparent 70%);
-  z-index: -1;
-  pointer-events: none;
+  content: none;
 }
 
 /* Depth shadow slabs beneath stats and item cards */
@@ -316,20 +304,23 @@
   border-radius: calc(34px * var(--tb-scale));
 }
 
-.vs-tactical-board25-stats-title {
+.vs-tactical-board25-stats-title,
+.vs-tactical-board25-reality-heading {
   position: absolute;
   top: calc(-28px * var(--tb-scale));
   left: calc(18px * var(--tb-scale));
   display: inline-block;
   margin: 0;
   padding: 0 calc(4px * var(--tb-scale));
-  color: rgba(255, 141, 122, 0.78);
+  color: var(--tb-panel-heading-color);
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: var(--tb-type-2);
-  letter-spacing: 0.14em;
+  font-size: var(--tb-panel-heading-font-size);
+  letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 141, 122, 0.18);
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) var(--tb-panel-heading-reflect);
   z-index: 2;
+  font-kerning: none;
+  font-variant-ligatures: none;
 }
 
 .vs-tactical-board25-stats-grid {
@@ -337,6 +328,8 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: calc(0.9rem * var(--tb-scale));
   margin-top: calc(0.4rem * var(--tb-scale));
+  padding-bottom: calc(0.65rem * var(--tb-scale));
+  overflow: hidden;
 }
 
 /* Stat items */
@@ -391,7 +384,7 @@
   justify-content: center;
   transform: none;
   transform-origin: top center;
-  opacity: 0.16;
+  opacity: 0.1;
   filter: blur(calc(1.25px * var(--tb-scale)));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
@@ -435,22 +428,8 @@
   content: none;
 }
 
-.vs-tactical-board25-reality-heading {
-  position: absolute;
-  top: calc(-28px * var(--tb-scale));
-  left: calc(18px * var(--tb-scale));
-  margin: 0;
-  padding: 0 calc(4px * var(--tb-scale));
-  color: rgba(255, 141, 122, 0.82);
-  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  font-size: var(--tb-type-2);
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  z-index: 2;
-}
-
 .vs-tactical-board25-reality-heading span {
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 141, 122, 0.18);
+  text-shadow: inherit;
 }
 
 .vs-tactical-board25-reality-labels {

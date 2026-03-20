@@ -35,8 +35,6 @@
   position: relative;
   isolation: isolate;
   background:
-    radial-gradient(circle at 14% 0%, rgba(255, 85, 78, 0.16) 0%, transparent 26%),
-    radial-gradient(circle at 82% 100%, rgba(119, 226, 242, 0.08) 0%, transparent 22%),
     linear-gradient(180deg, #170404 0%, #090101 52%, #020000 100%);
 }
 
@@ -221,8 +219,6 @@
   pointer-events: none;
   z-index: 0;
   background:
-    radial-gradient(circle at 12% 8%, rgba(255, 85, 78, 0.16), transparent 26%),
-    radial-gradient(circle at 88% 84%, rgba(119, 226, 242, 0.08), transparent 24%),
     linear-gradient(180deg, rgba(255, 85, 78, 0.04), transparent 34%);
 }
 
