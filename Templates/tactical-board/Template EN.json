@@ -443,12 +443,13 @@
       "fitMode": "shrink"
     },
     "tacticalBoardTile": {
-      "baseFontPx": 18,
-      "minFontPx": 10,
+      "baseFontPx": 28,
+      "minFontPx": 16,
       "lineHeight": 1.05,
       "maxLines": 2,
       "textAlign": "center",
-      "textTransform": "uppercase"
+      "textTransform": "uppercase",
+      "letterSpacing": "0.08em"
     },
     "interpretationBadge": {
       "baseFontPx": 46,

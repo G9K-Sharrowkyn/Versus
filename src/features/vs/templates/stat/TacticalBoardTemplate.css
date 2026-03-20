@@ -36,9 +36,9 @@
   --tb-type-4: calc(0.94rem * var(--tb-scale));
   --tb-type-5: calc(0.82rem * var(--tb-scale));
   --tb-label-font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
-  --tb-stat-label-font-size: 18px;
+  --tb-stat-label-font-size: var(--tb-type-3);
   --tb-stat-label-line-height: 1.05;
-  --tb-stat-label-letter-spacing: 0.07em;
+  --tb-stat-label-letter-spacing: 0.08em;
   --tb-stat-label-font-weight: 400;
   --tb-reflect-1-y: 0.58em;
   --tb-reflect-2-y: 1.7em;
