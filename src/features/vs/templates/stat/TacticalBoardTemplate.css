@@ -57,8 +57,8 @@
   --tb-side-margin: 5.2%;
   --tb-center-gap: 2.6%;
   --tb-panel-width: 38.8%;
-  --tb-panel-top: calc(200px * var(--tb-scale));
-  --tb-panel-height: calc(484px * var(--tb-scale));
+  --tb-panel-top: calc(182px * var(--tb-scale));
+  --tb-panel-height: calc(530px * var(--tb-scale));
   --tb-stats-width: var(--tb-panel-width);
   --tb-right-start: calc(50% + (var(--tb-center-gap) / 2));
   --tb-stats-left: calc(50% - (var(--tb-center-gap) / 2) - var(--tb-stats-width));

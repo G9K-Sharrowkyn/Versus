@@ -41,12 +41,7 @@ export function TacticalBoardTemplate({
   const realityHeader =
     pickTemplateField(blockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
-  const fighterAFallback = getFightTemplateDefaultField('tactical-board', 'fighter_a_fallback', language)
-  const fighterBFallback = getFightTemplateDefaultField('tactical-board', 'fighter_b_fallback', language)
   const xFactorLabel = getFightTemplateDefaultField('x-factor', 'factor', language) || 'X-FACTOR'
-  const matchupText =
-    pickTemplateField(blockFields, ['matchup', 'fighters', 'fight']) ||
-    `${fighterA.name || fighterAFallback} VS ${fighterB.name || fighterBFallback}`
 
   const tiles = [
     ...rows.slice(0, 9),
@@ -59,8 +54,6 @@ export function TacticalBoardTemplate({
       winner: 'draw' as const,
     },
   ]
-
-  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
   return (
     <div className="vs-tactical-board25-surface">
@@ -79,21 +72,6 @@ export function TacticalBoardTemplate({
       <div className="vs-tactical-board25-heading">
         <h2 className="vs-tactical-board25-title">{headerText}</h2>
         <p className="vs-tactical-board25-subtitle">{subText}</p>
-        <div className="vs-tactical-board25-matchup">
-          {matchupMatch ? (
-            <>
-              <span className="vs-tactical-board25-matchup-a" style={{ color: fighterA.color }}>
-                {matchupMatch[1].trim()}
-              </span>
-              <span className="vs-tactical-board25-matchup-separator">{matchupMatch[2]}</span>
-              <span className="vs-tactical-board25-matchup-b" style={{ color: fighterB.color }}>
-                {matchupMatch[3].trim()}
-              </span>
-            </>
-          ) : (
-            matchupText
-          )}
-        </div>
       </div>
 
       <button
