@@ -3,7 +3,7 @@ import type { ReactNode } from 'react'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
-import { LightningCanvas } from '../../components/LightningCanvas'
+import { AnimeLightning } from '../../components/AnimeLightning'
 import { FittedText } from '../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -41,13 +41,6 @@ export function TacticalBoardTemplate({
   const realityHeader =
     pickTemplateField(blockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
-  const linearLabel =
-    pickTemplateField(blockFields, ['linear_label']) ||
-    getFightTemplateDefaultField('tactical-board', 'linear_label', language)
-  const chaosLabel =
-    pickTemplateField(blockFields, ['chaos_label']) ||
-    getFightTemplateDefaultField('tactical-board', 'chaos_label', language)
-
   const fighterAFallback = getFightTemplateDefaultField('tactical-board', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('tactical-board', 'fighter_b_fallback', language)
   const matchupText =
@@ -55,10 +48,6 @@ export function TacticalBoardTemplate({
     `${fighterA.name || fighterAFallback} VS ${fighterB.name || fighterBFallback}`
 
   const tiles = rows.slice(0, 9)
-
-  const linearSplitX = 52
-  const chaosEndX = 90
-  const stablePoints = `14,52 ${linearSplitX},52`
 
   const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
@@ -151,53 +140,9 @@ export function TacticalBoardTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <div className="vs-tactical-board25-reality-heading">
-          <span>{realityHeader}</span>
-        </div>
-        <div className="vs-tactical-board25-reality-labels" aria-hidden="true">
-          <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--linear">
-            {linearLabel}
-          </span>
-          <span className="vs-tactical-board25-reality-label vs-tactical-board25-reality-label--chaos">
-            {chaosLabel}
-          </span>
-        </div>
+        <p className="vs-tactical-board25-reality-heading">{realityHeader}</p>
         <div className="vs-tactical-board25-reality-viewport">
-          <LightningCanvas
-            startRatio={{ x: linearSplitX / 100, y: 0.52 }}
-            endRatio={{ x: 1.08, y: 0.52 }}
-          />
-          <svg viewBox="0 0 100 100" className="vs-tactical-board25-reality-svg">
-            <line
-              x1={linearSplitX}
-              y1="10"
-              x2={linearSplitX}
-              y2="92"
-              stroke="rgba(255, 132, 118, 0.55)"
-              strokeWidth="0.8"
-              strokeDasharray="2.5 2.5"
-            />
-            <polyline
-              points={stablePoints}
-              fill="none"
-              stroke="#77e2f2"
-              strokeWidth="2.4"
-            />
-            <polyline
-              points={stablePoints}
-              fill="none"
-              stroke="rgba(119, 226, 242, 0.3)"
-              strokeWidth="4.6"
-            />
-            <line
-              x1={linearSplitX}
-              y1="52"
-              x2={chaosEndX}
-              y2="52"
-              stroke="rgba(255, 85, 78, 0.14)"
-              strokeWidth="1.3"
-            />
-          </svg>
+          <AnimeLightning />
         </div>
       </div>
     </div>

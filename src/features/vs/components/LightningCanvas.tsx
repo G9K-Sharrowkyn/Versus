@@ -404,9 +404,9 @@ export function LightningCanvas({
           const splitRatioTwoThirds = clamp01(((visibleSpanX * 2) / 3) / totalSpanX)
           const rightReachStart = Math.max(width * 0.995, options.points[1].x + 12)
           const rightReachEnd = Math.max(width * 1.08, rightReachStart + 12)
-          const branchMinY = Math.max(4, height * 0.04)
-          const branchMaxY = Math.min(height - 4, height * 0.96)
-          const spreadBoost = 1.6
+          const branchMinY = Math.max(4, height * 0.14)
+          const branchMaxY = Math.min(height - 4, height * 0.86)
+          const spreadBoost = 0.82
           const oneThirdSpread = Math.max(splitBase * 1.45, height * 0.032) * spreadBoost
           const twoThirdSpread = Math.max(splitBase * 2.35, height * 0.052) * spreadBoost
           const splitOneThird = extendStrandsTowardRightEdge(
@@ -438,7 +438,7 @@ export function LightningCanvas({
               ctx,
               varied,
               lineWidth * (1.2 + darkIndex * 0.22),
-              darkIndex % 2 === 0 ? 'rgba(118, 12, 12, 0.58)' : 'rgba(145, 20, 20, 0.48)',
+              darkIndex % 2 === 0 ? 'rgba(0, 48, 72, 0.62)' : 'rgba(12, 68, 96, 0.52)',
               glow * (0.24 + darkIndex * 0.06),
             )
           }
@@ -449,15 +449,15 @@ export function LightningCanvas({
               ctx,
               strand,
               Math.max(0.72, lineWidth * (0.52 + (strandIndex % 3 === 0 ? 0.08 : 0))),
-              bright ? 'rgba(220, 52, 52, 0.86)' : strandIndex % 2 === 0 ? 'rgba(136, 18, 18, 0.84)' : 'rgba(112, 14, 14, 0.8)',
-              glow * (bright ? 0.34 : 0.26),
+              bright ? 'rgba(152, 238, 250, 0.88)' : strandIndex % 2 === 0 ? 'rgba(64, 196, 220, 0.84)' : 'rgba(48, 172, 200, 0.8)',
+              glow * (bright ? 0.36 : 0.28),
             )
             if (bright) {
               drawLightningBolt(
                 ctx,
                 strand,
                 Math.max(0.36, lineWidth * 0.24),
-                'rgba(255, 210, 210, 0.55)',
+                'rgba(220, 252, 255, 0.62)',
                 0,
               )
             }
@@ -469,15 +469,15 @@ export function LightningCanvas({
               ctx,
               strand,
               Math.max(0.62, lineWidth * (0.4 + (strandIndex % 4 === 0 ? 0.05 : 0))),
-              bright ? 'rgba(205, 46, 46, 0.84)' : strandIndex % 2 === 0 ? 'rgba(128, 16, 16, 0.82)' : 'rgba(96, 12, 12, 0.78)',
-              glow * (bright ? 0.32 : 0.24),
+              bright ? 'rgba(80, 210, 230, 0.74)' : strandIndex % 2 === 0 ? 'rgba(40, 168, 196, 0.68)' : 'rgba(28, 140, 168, 0.62)',
+              glow * (bright ? 0.30 : 0.22),
             )
             if (bright) {
               drawLightningBolt(
                 ctx,
                 strand,
                 Math.max(0.32, lineWidth * 0.22),
-                'rgba(255, 205, 205, 0.5)',
+                'rgba(190, 248, 255, 0.48)',
                 0,
               )
             }
@@ -485,13 +485,13 @@ export function LightningCanvas({
 
           ctx.restore()
 
-          drawLightningBolt(ctx, points, lineWidth * 1.08, 'rgba(228, 62, 62, 0.82)', glow * 0.42)
+          drawLightningBolt(ctx, points, lineWidth * 1.08, 'rgba(119, 226, 242, 0.92)', glow * 0.52)
           if (Math.random() < 0.55) {
             drawLightningBolt(
               ctx,
               points,
-              Math.max(0.65, lineWidth * 0.4),
-              'rgba(255, 235, 235, 0.72)',
+              Math.max(0.65, lineWidth * 0.38),
+              'rgba(230, 252, 255, 0.80)',
               0,
             )
           }
