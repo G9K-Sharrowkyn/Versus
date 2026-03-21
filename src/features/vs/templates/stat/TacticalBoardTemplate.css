@@ -265,23 +265,43 @@
   min-height: var(--tb-panel-height);
   padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   overflow: visible;
-  /* DOCELOWA RAMKA - 10px */
+  /* Styl ramki: solidna linia 10px */
   border: 10px solid rgba(255, 85, 78, 1) !important;
   background: transparent !important;
-  /* Zastępujemy filter przez box-shadow, aby napisy NIE świeciły */
   filter: none !important;
-  box-shadow: 
-    0 0 15px rgba(255, 85, 78, 0.6),
-    inset 0 0 10px rgba(255, 85, 78, 0.2) !important;
+  box-shadow: none !important;
   border-radius: 0;
   z-index: 1;
   transform-style: preserve-3d;
 }
 
-/* Usuwamy poprzednią, zbyt dużą poświatę ::before */
+/* Płynna poświata paneli IDENTYCZNA jak w nagłówku tactical board */
 .vs-tactical-board25-stats::before,
 .vs-tactical-board25-reality::before {
-  content: none !important;
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  /* Ekstremalny inset, aby blur miał miejsce na wygaśnięcie (brak odcięć) */
+  inset: -150px;
+  transform: translate3d(0, 0, -2px);
+  /* Gradient identyczny jak w nagłówku */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 85, 78, 0.4) 15%,
+    rgba(255, 85, 78, 0.7) 50%,
+    rgba(255, 85, 78, 0.4) 85%,
+    transparent 100%
+  );
+  filter: blur(25px);
+  /* Maska wycinająca środek. 150px to nasz inset. 
+     Używamy 155px, aby cięcie było "pod" 10-pikselową ramką, co eliminuje bleed-in do środka. */
+  -webkit-mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
+  -webkit-mask-clip: border-box, content-box;
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  padding: 150px; 
+  pointer-events: none;
 }
 
 .vs-tactical-board25-stats::after,
@@ -443,11 +463,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* PRZYWRÓCONA RAMKA EMOTEK (BEZ TŁA) */
+  /* Czysta ramka bez tła */
   background: transparent !important;
-  border: 1px solid rgba(255, 85, 78, 0.3) !important;
+  border: 1px solid rgba(255, 85, 78, 0.35) !important;
   border-radius: calc(16px * var(--tb-scale));
+  box-shadow: none !important;
   transform: translateY(calc(-4px * var(--tb-scale)));
+}
+
+/* Odbicie samej ramki emotki (bez tła) */
+.vs-tactical-board25-item-icon::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border: 1px solid rgba(255, 85, 78, 0.35);
+  border-radius: inherit;
+  /* Przesunięte niżej o dodatkowe 10px */
+  transform: translateY(calc(var(--tb-reflect-3-y) + 20px));
+  filter: blur(var(--tb-reflect-3-blur));
+  opacity: 0.8;
+  pointer-events: none;
 }
 
 .vs-tactical-board25-item-icon svg {
