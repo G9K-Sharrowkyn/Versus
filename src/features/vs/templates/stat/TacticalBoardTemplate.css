@@ -265,46 +265,23 @@
   min-height: var(--tb-panel-height);
   padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   overflow: visible;
-  /* Styl ramki z breachButton: identyczny dla obu */
-  border: 1px solid rgba(255, 85, 78, 1);
-  /* Całkowita przezroczystość środka */
+  /* DOCELOWA RAMKA - 10px */
+  border: 10px solid rgba(255, 85, 78, 1) !important;
   background: transparent !important;
-  filter: none;
-  box-shadow: none;
+  /* Zastępujemy filter przez box-shadow, aby napisy NIE świeciły */
+  filter: none !important;
+  box-shadow: 
+    0 0 15px rgba(255, 85, 78, 0.6),
+    inset 0 0 10px rgba(255, 85, 78, 0.2) !important;
   border-radius: 0;
   z-index: 1;
-  /* Włączamy wsparcie dla fizycznej głębi warstw */
   transform-style: preserve-3d;
 }
 
-/* Nowa, płynna poświata dla paneli na wzór nagłówka */
+/* Usuwamy poprzednią, zbyt dużą poświatę ::before */
 .vs-tactical-board25-stats::before,
 .vs-tactical-board25-reality::before {
-  content: '' !important;
-  display: block !important;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  /* Fizyczne odsunięcie w głąb (Z), aby poświata była pod panelem */
-  transform: translate3d(-50%, -50%, -2px);
-  /* Poświata lekko wykraczająca poza ramki */
-  width: 120%;
-  height: 115%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 85, 78, 0.4) 15%,
-    rgba(255, 85, 78, 0.7) 50%,
-    rgba(255, 85, 78, 0.4) 85%,
-    transparent 100%
-  );
-  filter: blur(22px);
-  /* Wycinamy środek poświaty, aby nie barwiła wnętrza przeźroczystego panelu */
-  clip-path: polygon(
-    -20% -20%, 120% -20%, 120% 120%, -20% 120%, -20% -20%, 
-    8.5% 6.5%, 8.5% 93.5%, 91.5% 93.5%, 91.5% 6.5%, 8.5% 6.5%
-  );
-  pointer-events: none;
+  content: none !important;
 }
 
 .vs-tactical-board25-stats::after,
@@ -421,8 +398,8 @@
   font-size: var(--tb-panel-heading-font-size);
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
-  /* Poświata tekstu pasująca do nowego koloru */
-  text-shadow: 0 0 8px rgba(119, 226, 242, 0.45);
+  /* USUNIĘTA POŚWIATA TEKSTU */
+  text-shadow: none !important;
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -449,8 +426,8 @@
   padding: calc(0.74rem * var(--tb-scale)) calc(0.2rem * var(--tb-scale));
   border-radius: calc(24px * var(--tb-scale));
   border: 0;
-  background: transparent;
-  box-shadow: none;
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 /* Depth slab beneath each item card */
@@ -463,12 +440,13 @@
   flex: 0 0 auto;
   width: calc(42px * var(--tb-scale));
   height: calc(42px * var(--tb-scale));
-  border-radius: calc(16px * var(--tb-scale));
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(180deg, rgba(9, 2, 2, 0.28), rgba(4, 0, 0, 0.34));
-  border: 1px solid color-mix(in srgb, var(--item-accent) 22%, rgba(255, 85, 78, 0.14));
+  /* PRZYWRÓCONA RAMKA EMOTEK (BEZ TŁA) */
+  background: transparent !important;
+  border: 1px solid rgba(255, 85, 78, 0.3) !important;
+  border-radius: calc(16px * var(--tb-scale));
   transform: translateY(calc(-4px * var(--tb-scale)));
 }
 
@@ -511,7 +489,8 @@
   letter-spacing: var(--tb-stat-label-letter-spacing);
   line-height: var(--tb-stat-label-line-height);
   text-transform: uppercase;
-  text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent);
+  /* USUNIĘTA POŚWIATA NAZW STATYSTYK */
+  text-shadow: none !important;
 }
 
 /* Reality viewport */
