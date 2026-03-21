@@ -284,9 +284,9 @@
   top: 50%;
   left: 50%;
   transform: translate3d(-50%, -50%, -2px);
-  /* Duże wymiary dla płynnego wygasania bez odcięć */
-  width: 150%;
-  height: 130%;
+  /* 1. Mniejsze wymiary = mniejszy zasięg (zgodnie z prośbą) */
+  width: 125%;
+  height: 115%;
   /* Gradient 1:1 z nagłówka */
   background: linear-gradient(
     90deg,
@@ -297,10 +297,11 @@
     transparent 100%
   );
   filter: blur(16px);
-  /* Ostre wycięcie środka schowane pod 10px ramką panelu */
+  /* 2. Wypchnięcie poświaty: dziura w clip-path jest teraz o 1-2% większa niż panel, 
+     co gwarantuje, że glow zaczyna się POZA ramką i nie wchodzi do środka. */
   clip-path: polygon(
     -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%, 
-    17% 12%, 17% 88%, 83% 88%, 83% 12%, 17% 12%
+    9.5% 6%, 9.5% 94%, 90.5% 94%, 90.5% 6%, 9.5% 6%
   );
   pointer-events: none;
 }
