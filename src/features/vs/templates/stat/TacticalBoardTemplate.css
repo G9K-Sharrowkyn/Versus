@@ -267,17 +267,46 @@
   overflow: visible;
   /* Styl ramki z breachButton: identyczny dla obu */
   border: 1px solid rgba(255, 85, 78, 1);
-  background: #0a0202;
-  /* Identynczy, maksymalnie mocny neonowy glow */
-  filter: drop-shadow(0 0 10px rgba(255, 85, 78, 1));
+  /* Całkowita przezroczystość środka */
+  background: transparent !important;
+  filter: none;
   box-shadow: none;
   border-radius: 0;
   z-index: 1;
+  /* Włączamy wsparcie dla fizycznej głębi warstw */
+  transform-style: preserve-3d;
 }
 
-/* Wymuszamy brak jakichkolwiek dekoracji tła z innych plików */
+/* Nowa, płynna poświata dla paneli na wzór nagłówka */
 .vs-tactical-board25-stats::before,
-.vs-tactical-board25-reality::before,
+.vs-tactical-board25-reality::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  /* Fizyczne odsunięcie w głąb (Z), aby poświata była pod panelem */
+  transform: translate3d(-50%, -50%, -2px);
+  /* Poświata lekko wykraczająca poza ramki */
+  width: 120%;
+  height: 115%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 85, 78, 0.4) 15%,
+    rgba(255, 85, 78, 0.7) 50%,
+    rgba(255, 85, 78, 0.4) 85%,
+    transparent 100%
+  );
+  filter: blur(22px);
+  /* Wycinamy środek poświaty, aby nie barwiła wnętrza przeźroczystego panelu */
+  clip-path: polygon(
+    -20% -20%, 120% -20%, 120% 120%, -20% 120%, -20% -20%, 
+    8.5% 6.5%, 8.5% 93.5%, 91.5% 93.5%, 91.5% 6.5%, 8.5% 6.5%
+  );
+  pointer-events: none;
+}
+
 .vs-tactical-board25-stats::after,
 .vs-tactical-board25-reality::after {
   content: none !important;
