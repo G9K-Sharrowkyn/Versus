@@ -257,18 +257,21 @@
   pointer-events: none;
 }
 
-/* Stats panel */
-
+/* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-tactical-board25-stats,
 .vs-tactical-board25-reality {
   position: absolute;
+  top: var(--tb-panel-top);
+  min-height: var(--tb-panel-height);
+  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   overflow: visible;
-  /* Styl ramki z breachButton: intensywna czerwień */
+  /* Styl ramki z breachButton: identyczny dla obu */
   border: 1px solid rgba(255, 85, 78, 1);
   background: #0a0202;
-  /* Mocny, neonowy glow za pomocą filtra drop-shadow */
-  filter: drop-shadow(0 0 10px rgba(255, 85, 78, 0.8));
-  box-shadow: inset 0 0 0 1px rgba(255, 85, 78, 0.15);
+  /* Identynczy, maksymalnie mocny neonowy glow */
+  filter: drop-shadow(0 0 10px rgba(255, 85, 78, 1));
+  box-shadow: none;
+  border-radius: 0;
   z-index: 1;
 }
 
@@ -279,6 +282,17 @@
 .vs-tactical-board25-reality::after {
   content: none !important;
   display: none !important;
+}
+
+/* Indywidualne pozycje paneli */
+.vs-tactical-board25-stats {
+  left: var(--tb-stats-left);
+  width: var(--tb-stats-width);
+}
+
+.vs-tactical-board25-reality {
+  left: var(--tb-reality-left);
+  width: var(--tb-reality-width);
 }
 
 /* === NOWY ELEMENT — kopia signal-main z animacji (wersja z płynną poświatą) === */
@@ -472,20 +486,6 @@
 }
 
 /* Reality viewport */
-
-.vs-tactical-board25-reality {
-  top: var(--tb-panel-top);
-  left: var(--tb-reality-left);
-  width: var(--tb-reality-width);
-  height: var(--tb-panel-height);
-  padding: calc(1rem * var(--tb-scale));
-  border-radius: 0;
-  background: transparent;
-}
-
-.vs-tactical-board25-reality::after {
-  content: none;
-}
 
 .vs-tactical-board25-reality-viewport {
   position: absolute;
