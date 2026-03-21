@@ -398,8 +398,8 @@
   font-size: var(--tb-panel-heading-font-size);
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
-  /* USUNIĘTA POŚWIATA TEKSTU */
-  text-shadow: none !important;
+  /* PRZYWRÓCONE REFLEKSY (BEZ GLOW) */
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25) !important;
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -489,8 +489,8 @@
   letter-spacing: var(--tb-stat-label-letter-spacing);
   line-height: var(--tb-stat-label-line-height);
   text-transform: uppercase;
-  /* USUNIĘTA POŚWIATA NAZW STATYSTYK */
-  text-shadow: none !important;
+  /* PRZYWRÓCONE REFLEKSY NAZW STATYSTYK */
+  text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent) !important;
 }
 
 /* Reality viewport */
