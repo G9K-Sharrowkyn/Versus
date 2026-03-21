@@ -280,12 +280,12 @@
   content: '' !important;
   display: block !important;
   position: absolute;
-  top: 106%;
+  top: 100%;
   left: 50%;
   transform: translate3d(-50%, -99%, 2px);
   /* 1. Mniejsze wymiary = mniejszy zasięg (zgodnie z prośbą) */
-  width: 112%;
-  height: 115%;
+  width: 100%;
+  height: 100%;
   /* Gradient 1:1 z nagłówka */
   background: linear-gradient(
     90deg,
@@ -296,13 +296,25 @@
     transparent 100%
   );
   filter: blur(20px);
-  /* 2. Wypchnięcie poświaty: dziura w clip-path jest teraz o 1-2% większa niż panel, 
-     co gwarantuje, że glow zaczyna się POZA ramką i nie wchodzi do środka. */
+
+  /* === PANEL STEROWANIA UCINANIEM POŚWIATY === */
+  /* Zwiększaj te wartości, aby mocniej dociąć poświatę od danej strony. 
+     Przy wymiarach 112%/115%, wartości ok. 9.5% i 6% to punkt styku z ramką. */
+  --tb-glow-cut-left:   3.5%;   /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-right:  4.5%;   /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-top:    3%;     /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-bottom: 1%;     /* <--- WPISZ TUTAJ % */
+
+  /* 2. Wypchnięcie poświaty: dziura w clip-path jest teraz o 1-2% większa niż panel */
   clip-path: polygon(
     -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%, 
-    9.5% 6%, 9.5% 94%, 90.5% 94%, 90.5% 6%, 9.5% 6%
+    var(--tb-glow-cut-left) var(--tb-glow-cut-top), 
+    var(--tb-glow-cut-left) calc(100% - var(--tb-glow-cut-bottom)), 
+    calc(100% - var(--tb-glow-cut-right)) calc(100% - var(--tb-glow-cut-bottom)), 
+    calc(100% - var(--tb-glow-cut-right)) var(--tb-glow-cut-top), 
+    var(--tb-glow-cut-left) var(--tb-glow-cut-top)
   );
-  padding: 17% 23% 102% 102%;    
+  padding: 60% 55% 55% 55%;    
   pointer-events: none;
 }
 
