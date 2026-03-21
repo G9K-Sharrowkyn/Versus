@@ -57,7 +57,6 @@ export function TacticalBoardTemplate({
 
   return (
     <div className="vs-tactical-board25-surface">
-      <div className="vs-tb-signal-main">[ 0.000024] all systems drift-ready</div>
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -71,7 +70,7 @@ export function TacticalBoardTemplate({
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <h2 className="vs-tactical-board25-title">{headerText}</h2>
+        <h2 className="vs-tb-signal-main">{headerText}</h2>
         <p className="vs-tactical-board25-subtitle">{subText}</p>
       </div>
 
