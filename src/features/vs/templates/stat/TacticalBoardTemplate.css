@@ -270,7 +270,6 @@
   background: transparent !important;
   filter: none !important;
   box-shadow: none !important;
-  border-radius: 0;
   z-index: 1;
   transform-style: preserve-3d;
 }
@@ -281,12 +280,12 @@
   content: '' !important;
   display: block !important;
   position: absolute;
-  top: 50%;
+  top: 100%;
   left: 50%;
-  transform: translate3d(-50%, -50%, -2px);
+  transform: translate3d(-50%, -99%, 2px);
   /* 1. Mniejsze wymiary = mniejszy zasięg (zgodnie z prośbą) */
-  width: 125%;
-  height: 115%;
+  width: 112%;
+  height: 104%;
   /* Gradient 1:1 z nagłówka */
   background: linear-gradient(
     90deg,
@@ -296,7 +295,7 @@
     rgba(255, 85, 78, 0.4) 90%,
     transparent 100%
   );
-  filter: blur(16px);
+  filter: blur(20px);
   /* 2. Wypchnięcie poświaty: dziura w clip-path jest teraz o 1-2% większa niż panel, 
      co gwarantuje, że glow zaczyna się POZA ramką i nie wchodzi do środka. */
   clip-path: polygon(
