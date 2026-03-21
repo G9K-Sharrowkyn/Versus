@@ -92,7 +92,7 @@ export function TacticalBoardTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title">{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
         <div className="vs-tactical-board25-stats-grid">
           {tiles.map((row, index) => {
             const Icon = iconForCategory(row.id, index)
@@ -129,7 +129,7 @@ export function TacticalBoardTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading">{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>
