@@ -280,12 +280,12 @@
   content: '' !important;
   display: block !important;
   position: absolute;
-  top: 100%;
+  top: 106%;
   left: 50%;
   transform: translate3d(-50%, -99%, 2px);
   /* 1. Mniejsze wymiary = mniejszy zasięg (zgodnie z prośbą) */
   width: 112%;
-  height: 104%;
+  height: 115%;
   /* Gradient 1:1 z nagłówka */
   background: linear-gradient(
     90deg,
@@ -302,6 +302,7 @@
     -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%, 
     9.5% 6%, 9.5% 94%, 90.5% 94%, 90.5% 6%, 9.5% 6%
   );
+  padding: 17% 23% 102% 102%;    
   pointer-events: none;
 }
 
