@@ -264,21 +264,24 @@
   position: absolute;
   overflow: visible;
   border: 1px solid rgba(255, 85, 78, 0.35);
-  background: rgba(15, 2, 2, 0.2);
+  /* Solidne tło bez przezroczystości, aby nic nie prześwitywało */
+  background: #0a0202;
   box-shadow:
     inset 0 0 0 1px rgba(255, 85, 78, 0.08),
-    0 10px 24px rgba(0, 0, 0, 0.24),
+    0 10px 24px rgba(0, 0, 0, 0.45),
     0 0 40px rgba(255, 85, 78, 0.05);
-  backdrop-filter: blur(4px);
+  /* Usuwamy blur, który może tworzyć paski przy transformacjach 3D */
+  backdrop-filter: none;
+  z-index: 1;
 }
 
+/* Wymuszamy brak jakichkolwiek dekoracji tła z innych plików */
 .vs-tactical-board25-stats::before,
-.vs-tactical-board25-reality::before {
-  content: none;
-}
-
-.vs-tactical-board25-stats::after {
-  content: none;
+.vs-tactical-board25-reality::before,
+.vs-tactical-board25-stats::after,
+.vs-tactical-board25-reality::after {
+  content: none !important;
+  display: none !important;
 }
 
 /* === NOWY ELEMENT — kopia signal-main z animacji (wersja z płynną poświatą) === */
