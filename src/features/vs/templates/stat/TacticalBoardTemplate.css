@@ -284,31 +284,33 @@
 /* === NOWY ELEMENT — kopia signal-main z animacji (wersja z płynną poświatą) === */
 .vs-tb-signal-main {
   position: relative;
-  width: max-content;
-  min-width: 48%;
-  max-width: 90%;
-  margin: 0 auto;
-  min-height: calc(76px * var(--tb-scale));
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  padding: 0.12em 1.4em;
+  /* Panel dopasowuje się do tekstu, ale ma sensowne minimum */
+  width: fit-content;
+  min-width: 42%;
+  max-width: 55%;
+  margin: 0 auto;
+  min-height: calc(72px * var(--tb-scale));
+  padding: 0.1em 1.5em;
   /* Przywrócony solidny prostokąt */
   background: rgba(255, 85, 78, 0.98);
   color: #050505;
   font-family: 'Chakra Petch', 'Syncopate', sans-serif;
-  /* Przywrócony potężny rozmiar */
-  font-size: calc(var(--tb-type-1) * 0.88);
+  /* Rozmiar fontu dostosowany, by nie rozpychał panelu nadmiernie */
+  font-size: calc(var(--tb-type-1) * 0.82);
   font-weight: 800;
   line-height: 1;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   text-align: center;
+  /* Absolutny zakaz zawijania tekstu */
   white-space: nowrap;
   box-shadow: none;
   text-shadow: none;
   z-index: 5;
-  /* Optyczne wyśrodkowanie jak w oryginalnym tytule */
+  /* Optyczne wyśrodkowanie */
   transform: translateX(calc(-10px * var(--tb-scale)));
   /* Pozwalamy poświacie wystawać poza kontener */
   overflow: visible;
