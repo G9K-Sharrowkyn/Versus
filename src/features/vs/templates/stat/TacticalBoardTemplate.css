@@ -8,7 +8,7 @@
 /* Shell overrides needed for the 3D overflow */
 .vs-preview-shell--bare {
   overflow: clip;
-  overflow-clip-margin: 120px;
+  overflow-clip-margin: 300px;
   container-type: size;
 }
 
@@ -263,7 +263,7 @@
   position: absolute;
   top: var(--tb-panel-top);
   min-height: var(--tb-panel-height);
-  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
+  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   overflow: visible;
   /* Styl ramki: solidna linia 10px */
   border: 10px solid rgba(255, 85, 78, 1) !important;
@@ -281,26 +281,27 @@
   content: '' !important;
   display: block !important;
   position: absolute;
-  /* Ekstremalny inset, aby blur miał miejsce na wygaśnięcie (brak odcięć) */
-  inset: -150px;
-  transform: translate3d(0, 0, -2px);
-  /* Gradient identyczny jak w nagłówku */
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, -2px);
+  /* Duże wymiary dla płynnego wygasania bez odcięć */
+  width: 150%;
+  height: 130%;
+  /* Gradient 1:1 z nagłówka */
   background: linear-gradient(
     90deg,
     transparent 0%,
-    rgba(255, 85, 78, 0.4) 15%,
+    rgba(255, 85, 78, 0.4) 10%,
     rgba(255, 85, 78, 0.7) 50%,
-    rgba(255, 85, 78, 0.4) 85%,
+    rgba(255, 85, 78, 0.4) 90%,
     transparent 100%
   );
-  filter: blur(25px);
-  /* Maska wycinająca środek. 150px to nasz inset. 
-     Używamy 155px, aby cięcie było "pod" 10-pikselową ramką, co eliminuje bleed-in do środka. */
-  -webkit-mask-image: linear-gradient(#000, #000), linear-gradient(#000, #000);
-  -webkit-mask-clip: border-box, content-box;
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  padding: 150px; 
+  filter: blur(16px);
+  /* Ostre wycięcie środka schowane pod 10px ramką panelu */
+  clip-path: polygon(
+    -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%, 
+    17% 12%, 17% 88%, 83% 88%, 83% 12%, 17% 12%
+  );
   pointer-events: none;
 }
 
@@ -400,7 +401,7 @@
   left: var(--tb-stats-left);
   width: var(--tb-stats-width);
   min-height: var(--tb-panel-height);
-  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
+  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   border-radius: 0;
 }
 
@@ -430,7 +431,6 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: calc(0.9rem * var(--tb-scale));
   margin-top: calc(0.4rem * var(--tb-scale));
-  padding-bottom: calc(0.65rem * var(--tb-scale));
   align-content: start;
   overflow: visible;
 }
@@ -467,22 +467,15 @@
   background: transparent !important;
   border: 1px solid rgba(255, 85, 78, 0.35) !important;
   border-radius: calc(16px * var(--tb-scale));
+  /* REFLEKS SAMEJ RAMKI (BEZ TŁA) */
+  filter: drop-shadow(0 calc(var(--tb-reflect-3-y) + 12px) 1px rgba(255, 85, 78, 0.25)) !important;
   box-shadow: none !important;
   transform: translateY(calc(-4px * var(--tb-scale)));
 }
 
-/* Odbicie samej ramki emotki (bez tła) */
+/* Usuwamy poprzedni pseudo-element refleksu */
 .vs-tactical-board25-item-icon::before {
-  content: '';
-  position: absolute;
-  inset: -1px;
-  border: 1px solid rgba(255, 85, 78, 0.35);
-  border-radius: inherit;
-  /* Przesunięte niżej o dodatkowe 10px */
-  transform: translateY(calc(var(--tb-reflect-3-y) + 20px));
-  filter: blur(var(--tb-reflect-3-blur));
-  opacity: 0.8;
-  pointer-events: none;
+  content: none !important;
 }
 
 .vs-tactical-board25-item-icon svg {
@@ -528,12 +521,49 @@
   text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent) !important;
 }
 
-/* Reality viewport */
+/* Reality Viewport */
 
 .vs-tactical-board25-reality-viewport {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  border-radius: calc(6px * var(--tb-scale));
   background: transparent;
+}
+
+/* Rest of standard elements */
+.vs-tactical-board25-subtitle {
+  display: block;
+  margin-top: calc(0.85rem * var(--tb-scale));
+  color: rgba(255, 153, 130, 0.78);
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-type-4);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-3-blur) rgba(255, 153, 130, 0.18);
+}
+
+.vs-tactical-board25-logo {
+  position: absolute;
+  top: calc(28px * var(--tb-scale));
+  right: var(--tb-side-margin);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: calc(162px * var(--tb-scale));
+  filter: drop-shadow(0 0 2px rgba(255, 126, 74, 0.14));
+}
+
+.vs-tactical-board25-logo-reflection {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  margin-top: calc(-34px * var(--tb-scale));
+  opacity: 0.2;
+  filter: blur(calc(1.6px * var(--tb-scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, transparent 88%);
 }
