@@ -263,15 +263,12 @@
 .vs-tactical-board25-reality {
   position: absolute;
   overflow: visible;
-  border: 1px solid rgba(255, 85, 78, 0.35);
-  /* Solidne tło bez przezroczystości, aby nic nie prześwitywało */
+  /* Styl ramki z breachButton: intensywna czerwień */
+  border: 1px solid rgba(255, 85, 78, 1);
   background: #0a0202;
-  box-shadow:
-    inset 0 0 0 1px rgba(255, 85, 78, 0.08),
-    0 10px 24px rgba(0, 0, 0, 0.45),
-    0 0 40px rgba(255, 85, 78, 0.05);
-  /* Usuwamy blur, który może tworzyć paski przy transformacjach 3D */
-  backdrop-filter: none;
+  /* Mocny, neonowy glow za pomocą filtra drop-shadow */
+  filter: drop-shadow(0 0 10px rgba(255, 85, 78, 0.8));
+  box-shadow: inset 0 0 0 1px rgba(255, 85, 78, 0.15);
   z-index: 1;
 }
 
@@ -375,12 +372,14 @@
   display: inline-block;
   margin: 0;
   padding: 0 calc(4px * var(--tb-scale));
-  color: var(--tb-panel-heading-color);
+  /* Kolor tekstu z breachButton: jasny błękit */
+  color: #77e2f2;
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
   font-size: var(--tb-panel-heading-font-size);
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) var(--tb-panel-heading-reflect);
+  /* Poświata tekstu pasująca do nowego koloru */
+  text-shadow: 0 0 8px rgba(119, 226, 242, 0.45);
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
