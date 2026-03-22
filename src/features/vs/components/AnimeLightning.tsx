@@ -1,10 +1,10 @@
 import { useEffect, useRef } from 'react'
 
-const BOLT_COLOR = '#00c8ff'
-const ROUGHNESS = 2
-const MIN_SEG = 5
-const BOLTS_PER_FRAME = 2
-const UPDATE_MS = 33 // ~30 fps
+const BOLT_COLOR_PRIMARY = '#00ffff'
+const BOLT_COLOR_SECONDARY = '#ff00ff'
+const BOLT_COLOR_WHITE = '#ffffff'
+const UPDATE_MS = 45 
+const PARTICLE_COUNT = 30
 
 type Pt = { x: number; y: number }
 
@@ -15,64 +15,97 @@ interface Strand {
   shadowBlur: number
 }
 
-function makePts(sx: number, sy: number, ex: number, ey: number, maxDiff: number): Pt[] {
+interface Particle {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  life: number
+  size: number
+  color: string
+}
+
+interface Node {
+  x: number
+  y: number
+  phase: number // For sparkling effect
+}
+
+function makePts(sx: number, sy: number, ex: number, ey: number, maxDiff: number, jitter: number): Pt[] {
   let pts: Pt[] = [{ x: sx, y: sy }, { x: ex, y: ey }]
-  let segW = Math.max(1, ex - sx)
+  let segW = Math.max(1, Math.abs(ex - sx))
   let diff = maxDiff
 
-  while (segW > MIN_SEG) {
+  while (segW > 6) {
     const next: Pt[] = [pts[0]]
     for (let i = 0; i < pts.length - 1; i++) {
       const s = pts[i]
       const e = pts[i + 1]
-      next.push(
-        { x: (s.x + e.x) / 2, y: (s.y + e.y) / 2 + (Math.random() * 2 - 1) * diff },
-        e,
-      )
+      const isDigital = Math.random() > 0.93
+      const midX = (s.x + e.x) / 2
+      const midY = (s.y + e.y) / 2
+      
+      if (isDigital) {
+        next.push({ x: midX, y: s.y }, { x: midX, y: e.y }, e)
+      } else {
+        next.push(
+          { x: midX, y: midY + (Math.random() * 2 - 1) * diff },
+          e,
+        )
+      }
     }
     pts = next
-    diff /= ROUGHNESS
+    diff /= jitter
     segW /= 2
   }
 
   return pts
 }
 
-function makeBranchingBolt(w: number, h: number): Strand[] {
+function makeBranchingBolt(w: number, h: number, segments: Node[][]): Strand[] {
   const strands: Strand[] = []
-  const base = h / 3
+  if (segments.length < 3) return strands
+  
+  const base = h / 2.5
 
-  // ── Main bolt ───────────────────────────────────────────────
-  const mainEndX = w * 1.2 + Math.random() * w * 0.3
-  const mainEndY = Math.random() * h
-  const mainPts = makePts(0, h / 2, mainEndX, mainEndY, base)
-  strands.push({ pts: mainPts, lineWidth: 1.5, alpha: 1.0, shadowBlur: 14 })
+  // ── Level 0: Main Path through Nodes ───────────────────────
+  const path: Pt[] = [{ x: 0, y: h / 2 }]
+  for (let i = 0; i < segments.length; i++) {
+    const nodes = segments[i]
+    path.push(nodes[Math.floor(Math.random() * nodes.length)])
+  }
 
-  if (mainPts.length < 6) return strands
+  let fullMainPts: Pt[] = []
+  for (let i = 0; i < path.length - 1; i++) {
+    const s = path[i], e = path[i+1]
+    const segmentPts = makePts(s.x, s.y, e.x, e.y, base * (1 - i*0.2), 1.8)
+    fullMainPts = fullMainPts.concat(segmentPts)
+    strands.push({ pts: segmentPts, lineWidth: 2.2, alpha: 1.0, shadowBlur: 15 })
+  }
 
-  // ── First split: 30–55 % along the main bolt ────────────────
-  const s1idx = Math.floor(mainPts.length * (0.3 + Math.random() * 0.25))
-  const s1 = mainPts[Math.max(1, Math.min(s1idx, mainPts.length - 3))]
-  const b1count = 2 + Math.floor(Math.random() * 2) // 2 – 3
+  if (fullMainPts.length < 10) return strands
 
-  for (let i = 0; i < b1count; i++) {
-    const b1ex = w * 1.15 + Math.random() * w * 0.4
-    const b1ey = Math.random() * h
-    const b1pts = makePts(s1.x, s1.y, b1ex, b1ey, base * 0.65)
-    strands.push({ pts: b1pts, lineWidth: 0.9, alpha: 0.78, shadowBlur: 10 })
-
-    if (b1pts.length < 6) continue
-
-    // ── Second split: 35–60 % along each first-level branch ───
-    const s2idx = Math.floor(b1pts.length * (0.35 + Math.random() * 0.25))
-    const s2 = b1pts[Math.max(1, Math.min(s2idx, b1pts.length - 3))]
-    const b2count = 2 + Math.floor(Math.random() * 3) // 2 – 4
-
-    for (let j = 0; j < b2count; j++) {
-      const b2ex = w * 1.1 + Math.random() * w * 0.5
-      const b2ey = Math.random() * h
-      const b2pts = makePts(s2.x, s2.y, b2ex, b2ey, base * 0.36)
-      strands.push({ pts: b2pts, lineWidth: 0.55, alpha: 0.52, shadowBlur: 6 })
+  // ── Level 1 & 2: Divergence ────────────────────────────────
+  const branchCount = 8 + Math.floor(Math.random() * 6)
+  for (let b = 0; b < branchCount; b++) {
+    const startIdx = Math.floor(Math.random() * fullMainPts.length)
+    const startPt = fullMainPts[startIdx]
+    
+    const currentSegmentIdx = Math.floor((startPt.x / Math.max(1, w)) * 3)
+    const nextSegmentIdx = Math.min(currentSegmentIdx + 1, segments.length - 1)
+    
+    const possibleNodes = segments[nextSegmentIdx]
+    const targetNode = possibleNodes[Math.floor(Math.random() * possibleNodes.length)]
+    
+    const bPts = makePts(startPt.x, startPt.y, targetNode.x, targetNode.y, base * 0.5, 2.0)
+    strands.push({ pts: bPts, lineWidth: 1.0, alpha: 0.6, shadowBlur: 8 })
+    
+    // Level 3: Tiny fractal flickers from branches
+    if (bPts.length > 6 && Math.random() > 0.5) {
+      const sPt = bPts[Math.floor(bPts.length * 0.5)]
+      const endX = sPt.x + (Math.random() * 40 + 20)
+      const endY = sPt.y + (Math.random() - 0.5) * 60
+      strands.push({ pts: makePts(sPt.x, sPt.y, endX, endY, 10, 2.5), lineWidth: 0.5, alpha: 0.3, shadowBlur: 4 })
     }
   }
 
@@ -81,6 +114,8 @@ function makeBranchingBolt(w: number, h: number): Strand[] {
 
 export function AnimeLightning() {
   const ref = useRef<HTMLDivElement>(null)
+  const particlesRef = useRef<Particle[]>([])
+  const nodesRef = useRef<Node[][]>([])
 
   useEffect(() => {
     const host = ref.current
@@ -91,9 +126,19 @@ export function AnimeLightning() {
     canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;pointer-events:none;display:block;'
     host.appendChild(canvas)
 
-    let frame = 0
     let ctx: CanvasRenderingContext2D | null = null
     let prevTime = 0
+    let rafId = 0
+
+    const initNodes = (w: number, h: number) => {
+      const line1 = [] 
+      for (let i = 0; i < 3; i++) line1.push({ x: w * 0.33, y: h * (0.2 + 0.6 * Math.random()), phase: Math.random() * 10 })
+      const line2 = [] 
+      for (let i = 0; i < 6; i++) line2.push({ x: w * 0.66, y: h * (0.1 + 0.8 * Math.random()), phase: Math.random() * 10 })
+      const line3 = [] 
+      for (let i = 0; i < 12; i++) line3.push({ x: w * 0.98, y: h * Math.random(), phase: Math.random() * 10 })
+      nodesRef.current = [line1, line2, line3]
+    }
 
     const resize = () => {
       const w = Math.max(1, host.clientWidth)
@@ -104,52 +149,98 @@ export function AnimeLightning() {
       canvas.style.height = `${h}px`
       ctx = canvas.getContext('2d')
       ctx?.setTransform(dpr, 0, 0, dpr, 0, 0)
+      initNodes(w, h)
     }
     resize()
 
-    const render = (time: number) => {
-      if (time - prevTime >= UPDATE_MS) {
-        prevTime = time
-        const c = ctx
-        if (c) {
-          const w = host.clientWidth
-          const h = host.clientHeight
-
-          c.clearRect(0, 0, w, h)
-          c.strokeStyle = BOLT_COLOR
-          c.shadowColor = BOLT_COLOR
-          c.lineCap = 'round'
-          c.lineJoin = 'round'
-
-          for (let b = 0; b < BOLTS_PER_FRAME; b++) {
-            for (const s of makeBranchingBolt(w, h)) {
-              c.globalAlpha = s.alpha
-              c.lineWidth = s.lineWidth
-              c.shadowBlur = s.shadowBlur
-              c.beginPath()
-              for (const p of s.pts) c.lineTo(p.x, p.y)
-              c.stroke()
-            }
-          }
-
-          c.globalAlpha = 1
+    const drawStrands = (c: CanvasRenderingContext2D, strands: Strand[], ox: number, oy: number, color: string, alphaMult = 1) => {
+      c.strokeStyle = color
+      c.shadowColor = color
+      for (const s of strands) {
+        c.globalAlpha = s.alpha * alphaMult
+        c.lineWidth = s.lineWidth
+        c.shadowBlur = s.shadowBlur
+        c.beginPath()
+        let first = true
+        for (const p of s.pts) {
+          if (first) { c.moveTo(p.x + ox, p.y + oy); first = false }
+          else { c.lineTo(p.x + ox, p.y + oy) }
         }
+        c.stroke()
       }
-
-      frame = requestAnimationFrame(render)
     }
 
-    frame = requestAnimationFrame(render)
+    const render = (time: number) => {
+      const c = ctx
+      if (c) {
+        const w = host.clientWidth
+        const h = host.clientHeight
 
+        particlesRef.current = particlesRef.current.filter(p => {
+          p.x += p.vx; p.y += p.vy; p.life -= 0.02; return p.life > 0
+        })
+
+        if (time - prevTime >= UPDATE_MS) {
+          prevTime = time
+          c.clearRect(0, 0, w, h)
+          
+          if (nodesRef.current.length > 0) {
+            const bolt = makeBranchingBolt(w, h, nodesRef.current)
+            c.lineCap = 'butt'
+            c.lineJoin = 'miter'
+            drawStrands(c, bolt, -1.2, 0, BOLT_COLOR_SECONDARY, 0.4)
+            drawStrands(c, bolt, 1.2, 0, BOLT_COLOR_PRIMARY, 0.4)
+            drawStrands(c, bolt, 0, 0, BOLT_COLOR_WHITE, 0.8)
+
+            if (particlesRef.current.length < PARTICLE_COUNT) {
+              const randomStrand = bolt[Math.floor(Math.random() * bolt.length)]
+              if (randomStrand && randomStrand.pts.length > 2) {
+                const pt = randomStrand.pts[Math.floor(Math.random() * randomStrand.pts.length)]
+                particlesRef.current.push({
+                  x: pt.x, y: pt.y,
+                  vx: (Math.random() - 0.1) * 6 + 1, vy: (Math.random() - 0.5) * 4,
+                  life: 1.0, size: Math.random() * 2 + 1,
+                  color: Math.random() > 0.5 ? BOLT_COLOR_PRIMARY : BOLT_COLOR_SECONDARY
+                })
+              }
+            }
+          }
+        }
+
+        for (const line of nodesRef.current) {
+          for (const n of line) {
+            const sparkle = Math.abs(Math.sin(time * 0.01 + n.phase))
+            const size = 3 + sparkle * 4
+            c.globalAlpha = 0.3 + sparkle * 0.7
+            c.fillStyle = BOLT_COLOR_PRIMARY
+            c.shadowBlur = 10
+            c.shadowColor = BOLT_COLOR_PRIMARY
+            c.fillRect(n.x - size/2, n.y - size/2, size, size)
+            c.fillStyle = BOLT_COLOR_WHITE
+            c.fillRect(n.x - 1, n.y - 1, 2, 2)
+          }
+        }
+
+        c.shadowBlur = 0
+        for (const p of particlesRef.current) {
+          c.globalAlpha = p.life; c.fillStyle = p.color; c.beginPath()
+          c.rect(p.x, p.y, p.size, p.size); c.fill()
+        }
+        c.globalAlpha = 1
+      }
+      rafId = requestAnimationFrame(render)
+    }
+
+    rafId = requestAnimationFrame(render)
     const ro = new ResizeObserver(resize)
     ro.observe(host)
 
     return () => {
-      cancelAnimationFrame(frame)
+      cancelAnimationFrame(rafId)
       ro.disconnect()
       canvas.remove()
     }
   }, [])
 
-  return <div ref={ref} style={{ position: 'absolute', inset: 0 }} />
+  return <div ref={ref} style={{ position: 'absolute', inset: 0, overflow: 'hidden' }} />
 }
