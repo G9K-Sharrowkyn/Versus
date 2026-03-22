@@ -529,21 +529,19 @@
 /* Icon reflection - element z Reacta, teraz z poprawnym refleksem ramki */
 .vs-tactical-board25-item-icon-reflection {
   position: absolute;
-  inset: -1px; 
+  /* ROZSZERZENIE O 20px W KAŻDĄ STRONĘ (skalowane) */
+  left: calc(-20px * var(--tb-scale));
+  width: calc(100% + 40px * var(--tb-scale));
+  height: 300%; 
   top: 100%;
-  width: calc(100% + 2px);
-  
-  /* Zwiększona wysokość, by dół NIGDY nie był ucięty brakiem miejsca */
-  height: 250%; 
-
-  /* === 1. POZYCJA REFLEKSU (GÓRA / DÓŁ) === */
-  margin-top: -24px; 
+  /* margin-top skorygowany o rozszerzenie (-24px oryginału - 20px rozszerzenia) */
+  margin-top: calc(-44px * var(--tb-scale)); 
   
   display: flex;
-  align-items: flex-start; /* Start od góry */
+  align-items: flex-start;
   justify-content: center;
-  /* Centrowanie emotki pionowo względem ramki (42px * skala / 2) */
-  padding-top: calc(10px * var(--tb-scale));
+  /* padding-top skorygowany o rozszerzenie i dodatkowe 10px w dół (33px + 10px) */
+  padding-top: calc(43px * var(--tb-scale));
   transform: none;
   transform-origin: top center;
   
@@ -563,9 +561,10 @@
 .vs-tactical-board25-item-icon-reflection::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  /* Pozycja ramki skorygowana o 20px rozszerzenia kontenera */
+  top: calc(30px * var(--tb-scale));
+  left: calc(20px * var(--tb-scale));
+  width: calc(100% - 40px * var(--tb-scale));
   height: calc(42px * var(--tb-scale)); 
   border: 1px solid color-mix(in srgb, var(--item-accent) 35%, transparent) !important;
   border-radius: calc(16px * var(--tb-scale));
