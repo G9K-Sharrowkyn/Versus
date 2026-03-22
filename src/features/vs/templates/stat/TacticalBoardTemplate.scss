@@ -1,16 +1,40 @@
 @import "../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss";
 
+@keyframes noise-1-scaled {
+  $steps: 30;
+  @for $i from 1 through $steps {
+    #{percentage($i*(1/$steps))} {
+      $top: random(50);
+      $bottom: random(51 - $top);
+      clip-path: inset(#{$top}px 0 #{$bottom}px 0);
+    }
+  }
+}
+
+@keyframes noise-2-scaled {
+  $steps: 30;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      $top: random(50);
+      $bottom: random(51 - $top);
+      clip-path: inset(#{$top}px 0 #{$bottom}px 0);
+    }
+  }
+}
+
 /* Overrides to match the halved font size and fix background for the panel */
 .vs-tb-signal-main .glitch::before {
   left: -1px;
   text-shadow: -2.5px 0 magenta;
   background: rgba(255, 85, 78, 0.98);
+  animation: noise-1-scaled 6s linear infinite alternate-reverse, glitch 5s 5.05s infinite;
 }
 
 .vs-tb-signal-main .glitch::after {
   left: 1px;
   text-shadow: -2.5px 0 lightgreen;
   background: rgba(255, 85, 78, 0.98);
+  animation: noise-2-scaled 6s linear infinite alternate-reverse, glitch 5s 5s infinite;
 }
 
 .vs-tb-signal-main .glow {
