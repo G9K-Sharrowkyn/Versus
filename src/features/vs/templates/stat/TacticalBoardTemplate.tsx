@@ -165,6 +165,7 @@ export function TacticalBoardTemplate({
         title={chrome.brandMarkTitle}
         aria-label={chrome.brandMarkAria}
         onClick={onToggleLanguage}
+        style={{ '--logo-url': `url(${chrome.brandImageSrc})` } as any}
       >
         <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
         <img

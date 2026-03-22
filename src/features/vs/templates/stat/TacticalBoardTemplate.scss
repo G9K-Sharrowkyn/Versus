@@ -342,6 +342,11 @@
 
 /* Logo */
 
+@keyframes vs-logo-shine {
+  0% { background-position: 150% 50%; }
+  50%, 100% { background-position: -50% 50%; }
+}
+
 .vs-tactical-board25-logo {
   position: absolute;
   top: calc(28px * var(--tb-scale));
@@ -356,11 +361,42 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: visible;
+  overflow: visible; /* Restore to show reflection */
 }
 
 .vs-tactical-board25-logo::after {
-  content: none;
+  content: '';
+  position: absolute;
+  /* Exactly cover the logo image area */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(162px * var(--tb-scale));
+  height: 100%;
+  
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  
+  /* Use the logo itself as a mask - shine only appears on non-transparent logo pixels */
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  
+  /* Frequent but slow cycle: 8s total, sweep takes 4s (0% to 50%), then 4s of rest */
+  animation: vs-logo-shine 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
