@@ -57,10 +57,6 @@ export function CharacterDossierBTemplate({
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
-
   // Old Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-b'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
@@ -93,8 +89,12 @@ export function CharacterDossierBTemplate({
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
+    pickTemplateField(blockFields, ['left_header', 'categories_header', 'dossier_header']) ||
     getFightTemplateDefaultField('tactical-board', 'left_header', language) || "CHARACTER DOSSIER"
+    
+  const realityHeader =
+    pickTemplateField(blockFields, ['right_header', 'reality_header', 'visual_header']) ||
+    "VISUAL DATA SCAN"
 
   // Glitch effect for title
   const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
@@ -197,88 +197,81 @@ export function CharacterDossierBTemplate({
         />
       </button>
 
+      {/* LEFT PANEL: TEXT DATA */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
-        
-        <div className={layout.BODY_FRAME_CLASS} style={{ background: 'transparent', flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div className={layout.BODY_GRID_CLASS} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
-            <div className={layout.PORTRAIT_FRAME_CLASS} style={{ flex: 1, position: 'relative', background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
-              <AdjustableTemplateImage
-                imageUrl={fighterForCard.imageUrl}
-                alt={fighterText}
-                fallbackLabel={common.portraitSlot}
-                hintLabel=""
-                adjustKey="character-dossier-b:portrait"
-                baseAdjust={portraitBAdjust}
-                adjustments={slideImageAdjustments}
-                onAdjustChange={onSlideImageAdjustChange}
-                onAdjustCommit={onSlideImageAdjustCommit}
-                plain
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2', zIndex: 10 }}>{boardHeader}</p>
+        <div className={layout.DETAILS_CARD_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: 'transparent', height: '100%' }}>
+          <div className={layout.NAME_PLATE_CLASS} style={{ background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterForCard.color}40`, borderRight: `4px solid ${fighterForCard.color}` }}>
+            <FittedText
+              as="h3"
+              slotKey={`character-dossier-b:name:${fighterText}`}
+              spec={slots.heroName}
+              text={fighterText}
+              className={layout.HERO_NAME_CLASS}
+              style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)', fontSize: '2rem', lineHeight: 1.2 }}
+            />
+            {fighterSubtitle ? (
+              <FittedText
+                as="p"
+                slotKey={`character-dossier-b:subtitle:${fighterSubtitle}`}
+                spec={slots.heroSubtitle}
+                text={fighterSubtitle}
+                className={layout.HERO_SUBTITLE_CLASS}
+                style={{ color: '#94a3b8', fontSize: '1rem' }}
               />
-            </div>
+            ) : null}
+          </div>
 
-            <div className={layout.DETAILS_CARD_CLASS} style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1rem', background: 'transparent' }}>
-              <div className={layout.NAME_PLATE_CLASS} style={{ background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterForCard.color}40`, borderRight: `4px solid ${fighterForCard.color}` }}>
-                <FittedText
-                  as="h3"
-                  slotKey={`character-dossier-b:name:${fighterText}`}
-                  spec={slots.heroName}
-                  text={fighterText}
-                  className={layout.HERO_NAME_CLASS}
-                  style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)', fontSize: '2rem', lineHeight: 1.2 }}
-                />
-                {fighterSubtitle ? (
-                  <FittedText
-                    as="p"
-                    slotKey={`character-dossier-b:subtitle:${fighterSubtitle}`}
-                    spec={slots.heroSubtitle}
-                    text={fighterSubtitle}
-                    className={layout.HERO_SUBTITLE_CLASS}
-                    style={{ color: '#94a3b8', fontSize: '1rem' }}
-                  />
-                ) : null}
-              </div>
-
-              <div className={layout.FACTS_LIST_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1, overflowY: 'auto' }}>
-                {cardFacts.map((fact, index) => (
-                  <div key={`${fighterText}-${fact.title}-${index}`} className={layout.FACT_CARD_CLASS} style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.75rem', border: '1px solid rgba(148, 163, 184, 0.1)' }}>
-                    <FittedText
-                      as="p"
-                      slotKey={`character-dossier-b:fact-title:${index}`}
-                      spec={slots.factTitle}
-                      text={fact.title}
-                      style={{ color: fighterForCard.color, fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.25rem' }}
-                    />
-                    <FittedText
-                      as="p"
-                      slotKey={`character-dossier-b:fact-body:${index}`}
-                      spec={slots.factBody}
-                      text={fact.text}
-                      className={layout.FACT_BODY_CLASS}
-                      style={{ color: '#e2e8f0' }}
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ padding: '1rem', background: 'rgba(0, 0, 0, 0.4)', borderTop: `1px dashed ${fighterForCard.color}80`, fontStyle: 'italic', color: '#cbd5e1' }}>
+          <div className={layout.FACTS_LIST_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1, overflowY: 'auto' }}>
+            {cardFacts.map((fact, index) => (
+              <div key={`${fighterText}-${fact.title}-${index}`} className={layout.FACT_CARD_CLASS} style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.75rem', border: '1px solid rgba(148, 163, 184, 0.1)' }}>
                 <FittedText
                   as="p"
-                  slotKey="character-dossier-b:quote"
-                  spec={slots.quoteBody}
-                  text={`"${dossierQuote}"`}
-                  className={layout.QUOTE_CLASS}
+                  slotKey={`character-dossier-b:fact-title:${index}`}
+                  spec={slots.factTitle}
+                  text={fact.title}
+                  style={{ color: fighterForCard.color, fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.25rem' }}
+                />
+                <FittedText
+                  as="p"
+                  slotKey={`character-dossier-b:fact-body:${index}`}
+                  spec={slots.factBody}
+                  text={fact.text}
+                  className={layout.FACT_BODY_CLASS}
+                  style={{ color: '#e2e8f0' }}
                 />
               </div>
-            </div>
+            ))}
+          </div>
+
+          <div style={{ padding: '1rem', background: 'rgba(0, 0, 0, 0.4)', borderTop: `1px dashed ${fighterForCard.color}80`, fontStyle: 'italic', color: '#cbd5e1' }}>
+            <FittedText
+              as="p"
+              slotKey="character-dossier-b:quote"
+              spec={slots.quoteBody}
+              text={`"${dossierQuote}"`}
+              className={layout.QUOTE_CLASS}
+            />
           </div>
         </div>
       </section>
 
+      {/* RIGHT PANEL: PORTRAIT ONLY */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
+        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2', zIndex: 10 }}>{realityHeader}</p>
+        <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
+          <AdjustableTemplateImage
+            imageUrl={fighterB.imageUrl}
+            alt={fighterB.name}
+            fallbackLabel={common.portraitSlot}
+            hintLabel=""
+            adjustKey="character-dossier-b:portrait"
+            baseAdjust={portraitBAdjust}
+            adjustments={slideImageAdjustments}
+            onAdjustChange={onSlideImageAdjustChange}
+            onAdjustCommit={onSlideImageAdjustCommit}
+            plain
+          />
         </div>
       </div>
     </div>
