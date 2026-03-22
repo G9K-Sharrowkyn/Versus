@@ -1,5 +1,5 @@
 import './TacticalBoardTemplate.scss'
-import type { ReactNode } from 'react'
+import { useState, useEffect, type ReactNode } from 'react'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
@@ -43,6 +43,56 @@ export function TacticalBoardTemplate({
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
   const xFactorLabel = getFightTemplateDefaultField('x-factor', 'factor', language) || 'X-FACTOR'
 
+  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const chars = headerTextStr.split('')
+  const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+
+  useEffect(() => {
+    if (chars.length === 0) return
+
+    const MAX_CONCURRENT = 3
+    const active = new Set<number>()
+    const timeouts = new Map<number, NodeJS.Timeout>()
+    let isMounted = true
+
+    const startGlitch = () => {
+      if (!isMounted) return
+      if (active.size >= MAX_CONCURRENT) return
+
+      const available = []
+      for (let i = 0; i < chars.length; i++) {
+        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      }
+      if (available.length === 0) return
+
+      const nextIndex = available[Math.floor(Math.random() * available.length)]
+      active.add(nextIndex)
+      setActiveGlitches(new Set(active))
+
+      const duration = 2000 + Math.random() * 3000
+
+      const timeoutId = setTimeout(() => {
+        if (!isMounted) return
+        active.delete(nextIndex)
+        setActiveGlitches(new Set(active))
+        timeouts.delete(nextIndex)
+        
+        setTimeout(() => startGlitch(), Math.random() * 500)
+      }, duration)
+
+      timeouts.set(nextIndex, timeoutId)
+    }
+
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+      setTimeout(() => startGlitch(), i * 800)
+    }
+
+    return () => {
+      isMounted = false
+      timeouts.forEach(clearTimeout)
+    }
+  }, [headerTextStr])
+
   const tiles = [
     ...rows.slice(0, 9),
     {
@@ -72,8 +122,16 @@ export function TacticalBoardTemplate({
       <div className="vs-tactical-board25-heading">
         <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
           <div style={{ position: 'relative' }}>
-            <div className="glitch" data-text={typeof headerText === 'string' ? headerText : "TACTICAL BOARD"} style={{ fontSize: '4.5vw' }}>{headerText}</div>
-            <div className="glow" style={{ fontSize: '4.5vw' }}>{headerText}</div>
+            <div className="glitch-letter-container">
+              {chars.map((char, i) => (
+                char === ' ' ? <span key={i}>&nbsp;</span> : (
+                  <div key={i} className={`glitch-letter ${activeGlitches.has(i) ? 'is-glitching' : ''}`} data-text={char}>
+                    {char}
+                  </div>
+                )
+              ))}
+            </div>
+            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle">{subText}</p>

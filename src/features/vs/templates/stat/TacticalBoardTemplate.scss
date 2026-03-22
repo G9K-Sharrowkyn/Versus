@@ -22,19 +22,46 @@
   }
 }
 
-/* Overrides to match the halved font size and fix background for the panel */
-.vs-tb-signal-main .glitch::before {
-  left: -1px;
-  text-shadow: -2.5px 0 magenta;
-  background: rgba(255, 85, 78, 0.98);
-  animation: noise-1-scaled 6s linear infinite alternate-reverse, glitch 5s 5.05s infinite;
+/* Overrides for independent glitch letters */
+.vs-tb-signal-main .glitch-letter-container {
+  display: flex;
+  gap: 0;
+  font-size: 4.5vw;
+  /* Apply the structural shake (glitch) to the whole container so it moves as one unit */
+  animation: glitch 5s 5s infinite;
 }
 
-.vs-tb-signal-main .glitch::after {
-  left: 1px;
-  text-shadow: -2.5px 0 lightgreen;
+.vs-tb-signal-main .glitch-letter {
+  position: relative;
+  display: inline-block;
+}
+
+.vs-tb-signal-main .glitch-letter.is-glitching::before,
+.vs-tb-signal-main .glitch-letter.is-glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0; /* Keep left at 0 to completely prevent background gaps */
+  overflow: hidden;
   background: rgba(255, 85, 78, 0.98);
-  animation: noise-2-scaled 6s linear infinite alternate-reverse, glitch 5s 5s infinite;
+  color: transparent; /* Hide text to only show text-shadow */
+}
+
+/* Magenta / fiolet (secondary layer) */
+.vs-tb-signal-main .glitch-letter.is-glitching::before {
+  /* text is shifted -1px logically, so shadow is shifted -3.5px */
+  text-shadow: -1px 0 #050505, -3.5px 0 magenta;
+  /* Remove individual structural glitch, keep only noise */
+  animation: noise-1-scaled 3s linear infinite alternate-reverse;
+  z-index: 1;
+}
+
+/* Lightgreen (primary layer) */
+.vs-tb-signal-main .glitch-letter.is-glitching::after {
+  text-shadow: 1px 0 #050505, -0.5px 0 lightgreen;
+  /* Remove individual structural glitch, keep only noise */
+  animation: noise-2-scaled 3s linear infinite alternate-reverse;
+  z-index: 2;
 }
 
 .vs-tb-signal-main .glow {
