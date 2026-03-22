@@ -49,8 +49,10 @@
 
 /* Magenta / fiolet (secondary layer) */
 .vs-tb-signal-main .glitch-letter.is-glitching::before {
-  /* text is shifted -1px logically, so shadow is shifted -3.5px */
-  text-shadow: -1px 0 #050505, -3.5px 0 magenta;
+  /* logicznie tekst na -1px, shadow był -3.5px. Zmniejszamy wszystko o 1px w lewo (-1px dla tekstu = -2px na shadow, -1px dla magenta = -4.5px na shadow).
+     Aby było czytelnie: czarny shadow robi obrys -2px, magenta -4.5px
+  */
+  text-shadow: 0px 0 #050505, -4.5px 0 magenta;
   /* Remove individual structural glitch, keep only noise */
   animation: noise-1-scaled 3s linear infinite alternate-reverse;
   z-index: 1;
@@ -58,7 +60,10 @@
 
 /* Lightgreen (primary layer) */
 .vs-tb-signal-main .glitch-letter.is-glitching::after {
-  text-shadow: 1px 0 #050505, -0.5px 0 lightgreen;
+  /* text is shifted 1px logically, but we shift left 1px -> text offset 0, shadow base 0px.
+     Original lightgreen shadow was -0.5px. Shift left by 1px -> -1.5px.
+  */
+  text-shadow: 0 0 #050505, -1.5px 0 lightgreen;
   /* Remove individual structural glitch, keep only noise */
   animation: noise-2-scaled 3s linear infinite alternate-reverse;
   z-index: 2;
