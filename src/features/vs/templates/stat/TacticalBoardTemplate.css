@@ -508,15 +508,17 @@
   background: transparent !important;
   border: 1px solid color-mix(in srgb, var(--item-accent) 45%, transparent) !important;
   border-radius: calc(16px * var(--tb-scale));
-  /* REFLEKS W KOLORZE AKCENTU */
-  filter: drop-shadow(0 calc(var(--tb-reflect-3-y) + 12px) 1px color-mix(in srgb, var(--item-accent) 35%, transparent)) !important;
+  /* Filtry usunięte z kontenera - to one powodowały błąd poczwórnych emotek */
   box-shadow: none !important;
   transform: translateY(calc(-4px * var(--tb-scale)));
+  overflow: visible !important;
 }
 
-/* Usuwamy poprzedni pseudo-element refleksu */
-.vs-tactical-board25-item-icon::before {
+/* Usunięcie zbędnych pseudo-elementów, które psuły układ */
+.vs-tactical-board25-item-icon::before,
+.vs-tactical-board25-item-icon::after {
   content: none !important;
+  display: none !important;
 }
 
 .vs-tactical-board25-item-icon svg {
@@ -524,23 +526,49 @@
   overflow: visible;
 }
 
-/* Icon reflection - soft duplicate below the icon, not mirrored. */
+/* Icon reflection - element z Reacta, teraz z poprawnym refleksem ramki */
 .vs-tactical-board25-item-icon-reflection {
   position: absolute;
-  left: 0;
-  right: 0;
-  top: calc(100% + calc(-12px * var(--tb-scale)));
-  bottom: auto;
-  height: 100%;
+  inset: -1px; 
+  top: 100%;
+  width: calc(100% + 2px);
+  
+  /* Zwiększona wysokość, by dół NIGDY nie był ucięty brakiem miejsca */
+  height: 250%; 
+
+  /* === 1. POZYCJA REFLEKSU (GÓRA / DÓŁ) === */
+  margin-top: -24px; 
+  
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Start od góry */
   justify-content: center;
+  /* Centrowanie emotki pionowo względem ramki (42px * skala / 2) */
+  padding-top: calc(10px * var(--tb-scale));
   transform: none;
   transform-origin: top center;
-  opacity: 0.44;
-  filter: blur(calc(1.25px * var(--tb-scale)));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, transparent 80%);
+  
+  opacity: 0.8;
+  /* WIĘKSZE ROZMAZANIE CAŁOŚCI */
+  filter: blur(calc(1.2px * var(--tb-scale)));
+
+  /* === 2. ODCIĘCIE DOŁU (NARZĘDZIE) === */
+  /* Zmieniaj OSTATNIĄ wartość (np. 15%), aby uciąć dół. 0% = widać wszystko. */
+  clip-path: inset(0% 0% 0% 0%);
+  
+  pointer-events: none;
+  overflow: visible !important;
+}
+
+/* Warstwa samej odbitej ramki 1:1 */
+.vs-tactical-board25-item-icon-reflection::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: calc(42px * var(--tb-scale)); 
+  border: 1px solid color-mix(in srgb, var(--item-accent) 35%, transparent) !important;
+  border-radius: calc(16px * var(--tb-scale));
   pointer-events: none;
 }
 
