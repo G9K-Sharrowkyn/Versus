@@ -1,4 +1,4 @@
-import './TacticalBoardTemplate.css'
+import './TacticalBoardTemplate.scss'
 import type { ReactNode } from 'react'
 import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
@@ -57,6 +57,14 @@ export function TacticalBoardTemplate({
 
   return (
     <div className="vs-tactical-board25-surface">
+      {/* 1:1 Glitch Experiment Import */}
+      <div className="container">
+        <div className="glitch" data-text="ELISABÉTH">ELISABÉTH</div>
+        <div className="glow">ELISABÉTH</div>
+        <p className="subtitle">IMPRACTICAL DEVELOPER</p>
+      </div>
+      <div className="scanlines"></div>
+
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
