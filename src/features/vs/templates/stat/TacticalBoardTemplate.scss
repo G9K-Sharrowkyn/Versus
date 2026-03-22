@@ -646,7 +646,7 @@
   justify-content: center;
   /* Ramka w kolorze akcentu ikony */
   background: transparent !important;
-  border: 1px solid color-mix(in srgb, var(--item-accent) 45%, transparent) !important;
+  border: 4px solid color-mix(in srgb, var(--item-accent) 45%, transparent) !important;
   border-radius: calc(16px * var(--tb-scale));
   /* Filtry usunięte z kontenera - to one powodowały błąd poczwórnych emotek */
   box-shadow: none !important;
@@ -704,9 +704,9 @@
   /* Pozycja ramki skorygowana o 20px rozszerzenia kontenera */
   top: calc(30px * var(--tb-scale));
   left: calc(20px * var(--tb-scale));
-  width: calc(100% - 40px * var(--tb-scale));
+  width: calc(100% - 38px * var(--tb-scale));
   height: calc(42px * var(--tb-scale)); 
-  border: 1px solid color-mix(in srgb, var(--item-accent) 35%, transparent) !important;
+  border: 4px solid color-mix(in srgb, var(--item-accent) 35%, transparent) !important;
   border-radius: calc(16px * var(--tb-scale));
   pointer-events: none;
 }
