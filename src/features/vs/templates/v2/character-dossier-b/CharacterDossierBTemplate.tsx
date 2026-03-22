@@ -197,18 +197,19 @@ export function CharacterDossierBTemplate({
         />
       </button>
 
-      {/* LEFT PANEL: TEXT DATA */}
+      {/* LEFT PANEL: TEXT DATA ONLY (NO BOXES) */}
       <section className="vs-tactical-board25-stats">
         <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2', zIndex: 10 }}>{boardHeader}</p>
-        <div className={layout.DETAILS_CARD_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', background: 'transparent', height: '100%' }}>
-          <div className={layout.NAME_PLATE_CLASS} style={{ background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterForCard.color}40`, borderRight: `4px solid ${fighterForCard.color}` }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'transparent', height: '100%', padding: '0.5rem' }}>
+          {/* Header Data */}
+          <div>
             <FittedText
               as="h3"
               slotKey={`character-dossier-b:name:${fighterText}`}
               spec={slots.heroName}
               text={fighterText}
               className={layout.HERO_NAME_CLASS}
-              style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)', fontSize: '2rem', lineHeight: 1.2 }}
+              style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)', fontSize: '2.5rem', lineHeight: 1.1, textTransform: 'uppercase' }}
             />
             {fighterSubtitle ? (
               <FittedText
@@ -216,41 +217,41 @@ export function CharacterDossierBTemplate({
                 slotKey={`character-dossier-b:subtitle:${fighterSubtitle}`}
                 spec={slots.heroSubtitle}
                 text={fighterSubtitle}
-                className={layout.HERO_SUBTITLE_CLASS}
-                style={{ color: '#94a3b8', fontSize: '1rem' }}
+                style={{ color: '#94a3b8', fontSize: '1.1rem', marginTop: '0.25rem', letterSpacing: '0.05em' }}
               />
             ) : null}
           </div>
 
-          <div className={layout.FACTS_LIST_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1, overflowY: 'auto' }}>
+          {/* Facts List */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1, overflowY: 'auto' }}>
             {cardFacts.map((fact, index) => (
-              <div key={`${fighterText}-${fact.title}-${index}`} className={layout.FACT_CARD_CLASS} style={{ background: 'rgba(255, 255, 255, 0.05)', padding: '0.75rem', border: '1px solid rgba(148, 163, 184, 0.1)' }}>
+              <div key={`${fighterText}-${fact.title}-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', borderLeft: `2px solid ${fighterForCard.color}`, paddingLeft: '1rem' }}>
                 <FittedText
                   as="p"
                   slotKey={`character-dossier-b:fact-title:${index}`}
                   spec={slots.factTitle}
                   text={fact.title}
-                  style={{ color: fighterForCard.color, fontSize: '0.8rem', textTransform: 'uppercase', marginBottom: '0.25rem' }}
+                  style={{ color: fighterForCard.color, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.15em', opacity: 0.8 }}
                 />
                 <FittedText
                   as="p"
                   slotKey={`character-dossier-b:fact-body:${index}`}
                   spec={slots.factBody}
                   text={fact.text}
-                  className={layout.FACT_BODY_CLASS}
-                  style={{ color: '#e2e8f0' }}
+                  style={{ color: '#f1f5f9', fontSize: '1.2rem', fontWeight: 500 }}
                 />
               </div>
             ))}
           </div>
 
-          <div style={{ padding: '1rem', background: 'rgba(0, 0, 0, 0.4)', borderTop: `1px dashed ${fighterForCard.color}80`, fontStyle: 'italic', color: '#cbd5e1' }}>
+          {/* Quote Section */}
+          <div style={{ padding: '1rem 0', borderTop: '1px solid rgba(255,255,255,0.1)', fontStyle: 'italic', color: '#cbd5e1' }}>
             <FittedText
               as="p"
               slotKey="character-dossier-b:quote"
               spec={slots.quoteBody}
               text={`"${dossierQuote}"`}
-              className={layout.QUOTE_CLASS}
+              style={{ fontSize: '1.1rem', lineHeight: 1.4, opacity: 0.9 }}
             />
           </div>
         </div>
