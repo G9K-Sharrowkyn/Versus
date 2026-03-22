@@ -1,0 +1,356 @@
+import './FightCardTemplate.scss'
+import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
+import clsx from 'clsx'
+import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
+import {
+  type FightCardPalette,
+  fighterMonogram,
+  normalizeHexColor,
+  resolveFightCardPalette,
+  resolveFightCardStripeStyle,
+  stripFightLocaleSuffixFromLabel,
+} from '../../../helpers'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import type { TemplatePreviewProps } from '../../../types'
+import { FittedText } from '../../shared/FittedText'
+import {
+  buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplateStaticField as getFightTemplateDefaultField,
+} from '../../shared/templateCopy'
+import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
+import { AnimeLightning } from '../../../components/AnimeLightning'
+import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
+
+type FightCardTemplateProps = TemplatePreviewProps & {
+  integratedToolbar?: ReactNode
+}
+
+const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+
+function SubtleCyberpunkLabel({ text }: { text: string }) {
+  const [display, setDisplay] = useState(text)
+  useEffect(() => {
+    if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
+    const timer = setInterval(() => {
+      if (Math.random() > 0.92) {
+        const chars = text.split('')
+        const i = Math.floor(Math.random() * chars.length)
+        if (chars[i] === ' ') return
+        chars[i] = GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+        setDisplay(chars.join(''))
+        setTimeout(() => setDisplay(text), 60 + Math.random() * 80)
+      }
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [text])
+  return <>{display}</>
+}
+
+export function FightCardTemplate({
+  activeTemplateId,
+  fighterA,
+  fighterB,
+  portraitAAdjust,
+  portraitBAdjust,
+  fightLabel,
+  title,
+  subtitle,
+  templateBlocks,
+  slideImageAdjustments,
+  onSlideImageAdjustChange,
+  onSlideImageAdjustCommit,
+  language,
+  onToggleLanguage,
+  integratedToolbar,
+}: FightCardTemplateProps) {
+  const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
+  const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
+  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  
+  const realityHeader =
+    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
+    getFightTemplateDefaultField('tactical-board', 'right_header', language)
+
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const plainLines = getPlainTemplateLines(blockLines)
+  const chrome = buildFightTemplateChrome('fight-card', language, blockFields)
+  const common = getFightCommonCopy('fight-card', language)
+  const ui = getTemplateUi('fight-card', language)
+  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const layout = ui.template as Record<string, string>
+  
+  const boardHeader =
+    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
+    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "FIGHT CARD"
+
+  const line = (position: number, keys: string[], fallback = '') =>
+    pickTemplateField(blockFields, keys) || plainLines[position] || fallback
+  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const fighterAFallback = getFightTemplateDefaultField('fight-card', 'fighter_a_fallback', language)
+  const fighterBFallback = getFightTemplateDefaultField('fight-card', 'fighter_b_fallback', language)
+  const fighterFallback = getFightTemplateDefaultField('fight-card', 'fighter_fallback', language)
+  const finalLabelRaw = line(
+    0,
+    ['fight_title', 'match_title', 'title_text', 'line_1', 'line1'],
+    fightLabel || `${fighterA.name || fighterAFallback} vs ${fighterB.name || fighterBFallback}`,
+  )
+  const normalizedLabel = finalLabelRaw.replace(/\s+/g, ' ').trim()
+  const subText = subtitle || ''
+  const isAuditMode = typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true'
+  const parsedLabel = normalizedLabel.match(/^\s*(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)\s*$/i)
+  const topName = stripFightLocaleSuffixFromLabel((parsedLabel?.[1] || fighterA.name || fighterAFallback).trim())
+  const bottomName = stripFightLocaleSuffixFromLabel((parsedLabel?.[2] || fighterB.name || fighterBFallback).trim())
+  const topBasePalette = resolveFightCardPalette(topName, 'a')
+  const bottomBasePalette = resolveFightCardPalette(bottomName, 'b')
+  const topPalette: FightCardPalette = {
+    colorA:
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'top_color_a', language)) || topBasePalette.colorA,
+    colorB:
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'top_color_b', language)) || topBasePalette.colorB,
+    dark: topBasePalette.dark,
+  }
+  const bottomPalette: FightCardPalette = {
+    colorA:
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'bottom_color_a', language)) || bottomBasePalette.colorA,
+    colorB:
+      normalizeHexColor(getFightTemplateDefaultField('fight-card', 'bottom_color_b', language)) || bottomBasePalette.colorB,
+    dark: bottomBasePalette.dark,
+  }
+
+  const renderStaticLine = (text: string, palette: FightCardPalette) => {
+    const stripeStyle = resolveFightCardStripeStyle(palette)
+
+    return (
+      <FittedText
+        as="span"
+        slotKey={`fight-card:name:${text}`}
+        spec={slots.fightCardName}
+        text={text}
+        className={layout.WORDMARK_CLASS}
+        style={
+          {
+            color: palette.colorA,
+            width: '100%',
+            fontFamily: 'var(--font-display)',
+            fontSize: '4rem',
+            textAlign: 'center',
+            textTransform: 'uppercase',
+            textShadow: '0 0 20px rgba(0,0,0,0.8)',
+            '--vvv-stripe-image': stripeStyle.textureUrl,
+            '--vvv-stripe-filter': stripeStyle.textureFilter,
+          } as CSSProperties
+        }
+      />
+    )
+  }
+
+  const renderFightCardPortrait = (
+    fighter: typeof fighterA,
+    nameText: string,
+    palette: FightCardPalette,
+    side: 'left' | 'right',
+  ) => {
+    const fighterAdjust = side === 'left' ? portraitAAdjust : portraitBAdjust
+    const adjustKey = side === 'left' ? 'fight-card:portrait-a' : 'fight-card:portrait-b'
+
+    return (
+      <div
+        className={clsx(
+          layout.PORTRAIT_CLASS,
+          side === 'left' ? layout.PORTRAIT_LEFT_CLASS : layout.PORTRAIT_RIGHT_CLASS,
+        )}
+        style={
+          {
+            flex: 1,
+            position: 'relative',
+            overflow: 'hidden',
+            border: `1px solid ${fighter.color}40`,
+            '--vvv-portrait-color': fighter.color,
+            '--f': isAuditMode ? 'none' : `url(#${layout.FILTER_ID})`,
+            '--electric-y-offset': '-3px',
+            '--electric-border-color': fighter.color,
+            '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
+          } as CSSProperties
+        }
+      >
+        <div className={layout.PORTRAIT_INNER_CONTAINER_CLASS} style={{ position: 'absolute', inset: 0 }}>
+          <div className={layout.PORTRAIT_BORDER_OUTER_CLASS} style={{ position: 'absolute', inset: 0 }}>
+            <div className={layout.PORTRAIT_INNER_CLASS} style={{ position: 'absolute', inset: 0 }}>
+              {fighter.imageUrl ? (
+                <AdjustableTemplateImage
+                  imageUrl={fighter.imageUrl}
+                  alt={fighter.name || fighterFallback}
+                  fallbackLabel={common.portraitSlot}
+                  hintLabel={chrome.portraitAdjustHint}
+                  adjustKey={adjustKey}
+                  baseAdjust={fighterAdjust}
+                  adjustments={slideImageAdjustments}
+                  onAdjustChange={onSlideImageAdjustChange}
+                  onAdjustCommit={onSlideImageAdjustCommit}
+                  plain
+                />
+              ) : (
+                <div
+                  className={layout.FALLBACK_CLASS}
+                  style={{ color: fighter.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'rgba(0,0,0,0.5)' }}
+                >
+                  <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
+                    <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '6rem', opacity: 0.2 }}>{fighterMonogram(fighter.name || fighterFallback)}</p>
+                    <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
+                  </div>
+                </div>
+              )}
+              <div className={layout.PORTRAIT_NAME_CLASS} style={{ position: 'absolute', bottom: '10%', left: 0, right: 0, zIndex: 10 }}>{renderStaticLine(nameText, palette)}</div>
+              <div className={layout.PORTRAIT_NAME_FADE_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)' }} />
+            </div>
+          </div>
+          <div className={layout.PORTRAIT_GLOW_LAYER_1_CLASS} />
+          <div className={layout.PORTRAIT_GLOW_LAYER_2_CLASS} />
+        </div>
+      </div>
+    )
+  }
+
+  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const chars = headerTextStr.split('')
+  const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+
+  useEffect(() => {
+    if (chars.length === 0) return
+
+    const MAX_CONCURRENT = 3
+    const activeState = new Set<number>()
+    const timeouts = new Map<number, NodeJS.Timeout>()
+    let isMounted = true
+
+    const startGlitch = () => {
+      if (!isMounted) return
+      if (activeState.size >= MAX_CONCURRENT) return
+
+      const available = []
+      for (let i = 0; i < chars.length; i++) {
+        if (!activeState.has(i) && chars[i] !== ' ') available.push(i)
+      }
+      if (available.length === 0) return
+
+      const nextIndex = available[Math.floor(Math.random() * available.length)]
+      activeState.add(nextIndex)
+      setActiveGlitches(new Set(activeState))
+
+      const duration = 2000 + Math.random() * 3000
+
+      const timeoutId = setTimeout(() => {
+        if (!isMounted) return
+        activeState.delete(nextIndex)
+        setActiveGlitches(new Set(activeState))
+        timeouts.delete(nextIndex)
+        
+        setTimeout(() => startGlitch(), Math.random() * 500)
+      }, duration)
+
+      timeouts.set(nextIndex, timeoutId)
+    }
+
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+      setTimeout(() => startGlitch(), i * 800)
+    }
+
+    return () => {
+      isMounted = false
+      timeouts.forEach(clearTimeout)
+    }
+  }, [headerTextStr])
+
+  return (
+    <div className="vs-tactical-board25-surface">
+      <div className="vs-tactical-board25-line" />
+      {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
+
+      <div className="vs-tactical-board25-meta">
+        <p>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+        </p>
+        <p>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+        </p>
+      </div>
+
+      <div className="vs-tactical-board25-heading">
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+          <div style={{ position: 'relative' }}>
+            <div className="glitch-letter-container">
+              {chars.map((char, i) => (
+                char === ' ' ? <span key={i}>&nbsp;</span> : (
+                  <div key={i} className={`glitch-letter ${activeGlitches.has(i) ? 'is-glitching' : ''}`} data-text={char}>
+                    {char}
+                  </div>
+                )
+              ))}
+            </div>
+            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+          </div>
+        </div>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+      </div>
+
+      <button
+        type="button"
+        className="vs-tactical-board25-logo"
+        title={tacticalChrome.brandMarkTitle}
+        aria-label={tacticalChrome.brandMarkAria}
+        onClick={onToggleLanguage}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+      >
+        <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
+        <img
+          className="vs-tactical-board25-logo-reflection"
+          src={tacticalChrome.brandImageSrc}
+          alt=""
+          aria-hidden="true"
+          draggable={false}
+        />
+      </button>
+
+      {!isAuditMode ? (
+        <svg className={layout.SVG_DEFS_CLASS} aria-hidden="true" style={{ width: 0, height: 0, position: 'absolute' }}>
+          <defs>
+            <filter id={layout.FILTER_ID} colorInterpolationFilters="sRGB" x={layout.FILTER_X} y={layout.FILTER_Y} width={layout.FILTER_WIDTH} height={layout.FILTER_HEIGHT}>
+              <feTurbulence type={layout.TURBULENCE_TYPE as "fractalNoise"} baseFrequency={layout.TURBULENCE_BASE_1} numOctaves={Number(layout.TURBULENCE_OCTAVES_1)} />
+              <feColorMatrix type="hueRotate" result="pt1">
+                <animate attributeName="values" values={layout.HUE_VALUES_1} dur={layout.HUE_DURATION_1} repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feComposite />
+              <feTurbulence type={layout.TURBULENCE_TYPE as "fractalNoise"} baseFrequency={layout.TURBULENCE_BASE_2} numOctaves={Number(layout.TURBULENCE_OCTAVES_2)} seed={Number(layout.TURBULENCE_SEED_2)} />
+              <feColorMatrix type="hueRotate" result="pt2">
+                <animate attributeName="values" values={layout.HUE_VALUES_2} dur={layout.HUE_DURATION_2} repeatCount="indefinite" calcMode="paced" />
+              </feColorMatrix>
+              <feBlend in="pt1" in2="pt2" mode="normal" result="combinedNoise" />
+              <feDisplacementMap in="SourceGraphic" scale={Number(layout.DISPLACEMENT_SCALE)} xChannelSelector={layout.DISPLACEMENT_X as "R"} yChannelSelector={layout.DISPLACEMENT_Y as "G"} />
+            </filter>
+          </defs>
+        </svg>
+      ) : null}
+
+      <section className="vs-tactical-board25-stats" style={{ padding: '0', background: 'transparent', border: 'none', boxShadow: 'none' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2', padding: '0 1rem' }}>{boardHeader}</p>
+        
+        <div className={layout.SPLIT_CLASS} style={{ flex: 1, display: 'flex', position: 'relative', marginTop: '1rem', minHeight: '400px' }}>
+          {renderFightCardPortrait(fighterA, topName, topPalette, 'left')}
+          {renderFightCardPortrait(fighterB, bottomName, bottomPalette, 'right')}
+          <span className={layout.VS_WRAP_CLASS} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 20 }}>
+            <img src="/assets/VS.png" alt="VS" className={layout.VS_IMAGE_CLASS} draggable={false} style={{ width: '120px', filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.8))' }} />
+          </span>
+        </div>
+      </section>
+
+      <div className="vs-tactical-board25-reality">
+        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
+        <div className="vs-tactical-board25-reality-viewport">
+          <AnimeLightning />
+        </div>
+      </div>
+    </div>
+  )
+}

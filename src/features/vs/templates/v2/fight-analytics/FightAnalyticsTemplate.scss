@@ -1,0 +1,766 @@
+@import "../../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss";
+
+/* Custom override for the global glitch animation to prevent panel dimming */
+@keyframes glitch {
+  1% {
+    transform: rotateX(10deg) skewX(80deg);
+  }
+  2% {
+    transform: rotateX(0deg) skewX(0deg);
+  }
+}
+
+@keyframes noise-1-scaled {
+  $steps: 30;
+  @for $i from 1 through $steps {
+    #{percentage($i*(1/$steps))} {
+      $top: random(50);
+      $bottom: random(51 - $top);
+      clip-path: inset(#{$top}px 0 #{$bottom}px 0);
+    }
+  }
+}
+
+@keyframes noise-2-scaled {
+  $steps: 30;
+  @for $i from 0 through $steps {
+    #{percentage($i*(1/$steps))} {
+      $top: random(50);
+      $bottom: random(51 - $top);
+      clip-path: inset(#{$top}px 0 #{$bottom}px 0);
+    }
+  }
+}
+
+/* Overrides for independent glitch letters */
+.vs-tb-signal-main .glitch-letter-container {
+  display: flex;
+  gap: 0;
+  font-size: 4.5vw;
+  /* Apply the structural shake (glitch) to the whole container so it moves as one unit */
+  animation: glitch 5s 5s infinite;
+}
+
+.vs-tb-signal-main .glitch-letter {
+  position: relative;
+  display: inline-block;
+  z-index: 1; /* Create stacking context so slices go behind */
+}
+
+.vs-tb-signal-main .glitch-letter.is-glitching::before,
+.vs-tb-signal-main .glitch-letter.is-glitching::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: transparent; /* ONLY show the neon shadows, hide the black text so the layers don't block each other! */
+  overflow: hidden;
+}
+
+/* Magenta / fiolet (secondary layer) */
+.vs-tb-signal-main .glitch-letter.is-glitching::before {
+  text-shadow: -3.5px 0 magenta;
+  /* Remove individual structural glitch, keep only noise */
+  animation: noise-1-scaled 3s linear infinite alternate-reverse;
+  z-index: -2; /* Send behind the main letter */
+}
+
+/* Lightgreen (primary layer) */
+.vs-tb-signal-main .glitch-letter.is-glitching::after {
+  text-shadow: -1.5px 0 lightgreen;
+  /* Remove individual structural glitch, keep only noise */
+  animation: noise-2-scaled 3s linear infinite alternate-reverse;
+  z-index: -1; /* Send behind the main letter */
+}
+
+.vs-tb-signal-main .glow {
+  text-shadow: 0 0 500px rgb(223, 191, 191);
+}
+
+/* ============================================================
+   Tactical Board - 2.5D table scene
+   Isolated from index.css so all layout/visual logic lives
+   next to the component that uses it.
+   Reference: anime/cyberpunk-info-board/src/style.css
+   ============================================================ */
+
+/* Shell overrides needed for the 3D overflow */
+.vs-preview-shell--bare {
+  overflow: clip;
+  overflow-clip-margin: 300px;
+  container-type: size;
+}
+
+.vs-preview-shell--bare-body {
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 16px 24px 24px;
+}
+
+.vs-preview-shell--bare-body--tactical {
+  min-width: 100%;
+  min-height: 100%;
+}
+
+/* Surface */
+
+.vs-tactical-board25-surface {
+  --tb-scale: 1.88;
+  --tb-type-1: calc(3.9rem * var(--tb-scale));
+  --tb-type-2: calc(1.16rem * var(--tb-scale));
+  --tb-type-3: calc(1.08rem * var(--tb-scale));
+  --tb-type-4: calc(0.94rem * var(--tb-scale));
+  --tb-type-5: calc(0.82rem * var(--tb-scale));
+  --tb-label-font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  --tb-stat-label-font-size: var(--tb-type-3);
+  --tb-stat-label-line-height: 1.05;
+  --tb-stat-label-letter-spacing: 0.08em;
+  --tb-stat-label-font-weight: 400;
+  --tb-reflect-1-y: 0.58em;
+  --tb-reflect-2-y: 1.7em;
+  --tb-reflect-3-y: 1.94em;
+  --tb-reflect-4-y: 2.15em;
+  --tb-reflect-5-y: 1.78em;
+  --tb-reflect-1-blur: 0.2em;
+  --tb-reflect-2-blur: 0.2em;
+  --tb-reflect-3-blur: 0.2em;
+  --tb-reflect-4-blur: 0.2em;
+  --tb-reflect-5-blur: 0.2em;
+  --tb-panel-heading-font-size: var(--tb-type-2);
+  --tb-panel-heading-letter-spacing: 0.14em;
+  --tb-panel-heading-color: rgba(255, 85, 78, 0.9);
+  --tb-panel-heading-reflect: rgba(255, 85, 78, 0.22);
+  --tb-side-margin: 5.2%;
+  --tb-center-gap: 2.6%;
+  --tb-panel-width: 38.8%;
+  --tb-panel-top: calc(182px * var(--tb-scale));
+  --tb-panel-height: calc(530px * var(--tb-scale));
+  --tb-stats-width: var(--tb-panel-width);
+  --tb-right-start: calc(50% + (var(--tb-center-gap) / 2));
+  --tb-stats-left: calc(50% - (var(--tb-center-gap) / 2) - var(--tb-stats-width));
+  --tb-reality-left: var(--tb-right-start);
+  --tb-reality-width: var(--tb-panel-width);
+  position: relative;
+  width: min(calc(1240px * var(--tb-scale)), calc(100cqw - 48px), calc((100cqh - 40px) * (800 / 450)));
+  aspect-ratio: 800 / 450;
+  margin: 0 auto;
+  border: 0 !important;
+  border-radius: 50px;
+  background: transparent !important;
+  box-shadow: none !important;
+  /* 42deg tilt + large perspective approximates orthographic projection. */
+  transform: perspective(calc(2000px * var(--tb-scale))) rotateX(42deg);
+  transform-origin: center top;
+  isolation: isolate;
+  overflow: visible;
+}
+
+/* Rozciągnięta "podłoga" (tło) sceny */
+.vs-tactical-board25-surface::before {
+  content: '';
+  position: absolute;
+  /* Rozciągamy tło poza obszar roboczy */
+  inset: -15% -25%;
+  z-index: -2;
+  pointer-events: none;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 85, 78, 0.08);
+  /* 1:1 Black-Red Background with Scanlines from Netrunner Station */
+  background: 
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0px,
+      rgba(0, 0, 0, 0) 1px,
+      rgba(0, 0, 0, 0.2) 1px,
+      rgba(0, 0, 0, 0.2) 2px
+    ),
+    radial-gradient(
+      circle at 50% 35%,
+      rgba(50, 8, 8, 1) 0%,
+      rgba(10, 1, 1, 1) 65%,
+      rgba(0, 0, 0, 1) 100%
+    ) !important;
+  box-shadow: inset 0 0 120px rgba(0, 0, 0, 0.95);
+}
+
+/* Surface depth shadow */
+.vs-tactical-board25-surface::after {
+  content: none;
+}
+
+/* Divider line */
+/* Reference: cyberpunk-info-board #line with box-shadow floor glow */
+
+.vs-tactical-board25-line {
+  display: none;
+}
+
+/* Toolbar */
+
+.vs-tactical-board25-toolbar {
+  position: absolute;
+  top: calc(8px * var(--tb-scale));
+  left: 4.2%;
+  width: 91.6%;
+  padding-bottom: calc(14px * var(--tb-scale));
+  z-index: 3;
+  overflow: visible;
+}
+
+.vs-template-toolbar--integrated {
+  gap: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  overflow: visible;
+}
+
+.vs-tactical-board25-surface .vs-template-toolbar-item {
+  position: relative;
+  height: calc(56px * var(--tb-scale));
+  min-height: calc(56px * var(--tb-scale));
+  padding: 0 calc(1rem * var(--tb-scale));
+  border-radius: calc(20px * var(--tb-scale));
+  border-color: rgba(255, 85, 78, 0.18);
+  background: transparent;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 85, 78, 0.04),
+    0 calc(16px * var(--tb-scale)) calc(8px * var(--tb-scale)) rgba(255, 85, 78, 0.08);
+  color: rgba(255, 236, 229, 0.92);
+  text-shadow: 0 var(--tb-reflect-5-y) var(--tb-reflect-5-blur) rgba(255, 236, 229, 0.14);
+  font-size: var(--tb-type-5);
+  overflow: visible;
+}
+
+.vs-tactical-board25-surface .vs-template-toolbar-item > * {
+  overflow: visible;
+}
+
+
+/* Meta */
+
+@keyframes vs-meta-shiver {
+  0%, 98%, 100% { 
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    opacity: 0.76;
+  }
+  98.2% { 
+    transform: translate3d(2px, -1px, 0);
+    filter: contrast(1.5) brightness(1.2);
+    opacity: 1;
+  }
+  98.4% { 
+    transform: translate3d(-3px, 0, 0);
+    filter: hue-rotate(180deg);
+    opacity: 0.9;
+  }
+  98.6% { 
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    opacity: 1;
+  }
+}
+
+.vs-tactical-board25-meta {
+  position: absolute;
+  top: calc(42px * var(--tb-scale));
+  left: var(--tb-side-margin);
+  width: 21%;
+  display: grid;
+  gap: calc(0.32rem * var(--tb-scale));
+  color: rgba(255, 174, 160, 0.76);
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-type-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.vs-tactical-board25-meta p {
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(255, 153, 130, 0.15);
+  animation: vs-meta-shiver 6s infinite;
+}
+
+.vs-tactical-board25-meta p:nth-child(2) {
+  animation-delay: 3s;
+}
+
+/* Heading */
+
+.vs-tactical-board25-heading {
+  position: absolute;
+  top: calc(24px * var(--tb-scale));
+  left: 50%;
+  width: 82%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+}
+
+.vs-tactical-board25-subtitle {
+  display: block;
+  margin-top: calc(0.85rem * var(--tb-scale));
+  color: #77e2f2;
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-type-4);
+  letter-spacing: 0.14em;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-3-blur) rgba(119, 226, 242, 0.2);
+}
+
+.vs-tactical-board25-matchup {
+  display: block;
+  margin-top: calc(0.42rem * var(--tb-scale));
+  color: rgba(238, 229, 221, 0.9);
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-type-3);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.vs-tactical-board25-matchup-a {
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-3-blur) color-mix(in srgb, currentColor 24%, transparent);
+}
+
+.vs-tactical-board25-matchup-separator {
+  color: rgba(239, 228, 219, 0.48);
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(239, 228, 219, 0.16);
+}
+
+.vs-tactical-board25-matchup-b {
+  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-3-blur) color-mix(in srgb, currentColor 24%, transparent);
+}
+
+/* Logo */
+
+@keyframes vs-logo-shine {
+  0% { background-position: 150% 50%; }
+  50%, 100% { background-position: -50% 50%; }
+}
+
+.vs-tactical-board25-logo {
+  position: absolute;
+  top: calc(28px * var(--tb-scale));
+  right: var(--tb-side-margin);
+  width: auto;
+  height: auto;
+  border-radius: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible; /* Restore to show reflection */
+}
+
+.vs-tactical-board25-logo::after {
+  content: '';
+  position: absolute;
+  /* Exactly cover the logo image area */
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(162px * var(--tb-scale));
+  height: 100%;
+  
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.6) 50%,
+    rgba(255, 255, 255, 0) 60%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  
+  /* Use the logo itself as a mask - shine only appears on non-transparent logo pixels */
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-position: center;
+  
+  /* Frequent but slow cycle: 8s total, sweep takes 4s (0% to 50%), then 4s of rest */
+  animation: vs-logo-shine 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: calc(162px * var(--tb-scale));
+  height: auto;
+  display: block;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  filter: drop-shadow(0 0 2px rgba(255, 126, 74, 0.14));
+}
+
+/* Logo reflection - soft duplicate below the logo, not mirrored. */
+.vs-tactical-board25-logo-reflection {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: auto;
+  margin-top: calc(-34px * var(--tb-scale));
+  transform: none;
+  opacity: 0.2;
+  filter: blur(calc(1.6px * var(--tb-scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
+  pointer-events: none;
+}
+
+/* Wspólne style wizualne dla obu paneli (Stats i Reality) */
+.vs-tactical-board25-stats,
+.vs-tactical-board25-reality {
+  position: absolute;
+  top: var(--tb-panel-top);
+  min-height: var(--tb-panel-height);
+  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
+  overflow: visible;
+  /* Styl ramki: solidna linia 10px */
+  border: 10px solid rgba(255, 85, 78, 1) !important;
+  background: transparent !important;
+  filter: none !important;
+  box-shadow: none !important;
+  z-index: 1;
+  transform-style: preserve-3d;
+}
+
+/* Płynna poświata paneli IDENTYCZNA jak w nagłówku tactical board */
+.vs-tactical-board25-stats::before,
+.vs-tactical-board25-reality::before {
+  content: '' !important;
+  display: block !important;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translate3d(-50%, -99%, 2px);
+  /* 1. Mniejsze wymiary = mniejszy zasięg (zgodnie z prośbą) */
+  width: 100%;
+  height: 100%;
+  /* Gradient 1:1 z nagłówka */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 85, 78, 0.4) 10%,
+    rgba(255, 85, 78, 0.7) 50%,
+    rgba(255, 85, 78, 0.4) 90%,
+    transparent 100%
+  );
+  filter: blur(20px);
+
+  /* === PANEL STEROWANIA UCINANIEM POŚWIATY === */
+  /* Zwiększaj te wartości, aby mocniej dociąć poświatę od danej strony. 
+     Przy wymiarach 112%/115%, wartości ok. 9.5% i 6% to punkt styku z ramką. */
+  --tb-glow-cut-left:   3.5%;   /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-right:  4.5%;   /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-top:    3%;     /* <--- WPISZ TUTAJ % */
+  --tb-glow-cut-bottom: 1%;     /* <--- WPISZ TUTAJ % */
+
+  /* 2. Wypchnięcie poświaty: dziura w clip-path jest teraz o 1-2% większa niż panel */
+  clip-path: polygon(
+    -50% -50%, 150% -50%, 150% 150%, -50% 150%, -50% -50%, 
+    var(--tb-glow-cut-left) var(--tb-glow-cut-top), 
+    var(--tb-glow-cut-left) calc(100% - var(--tb-glow-cut-bottom)), 
+    calc(100% - var(--tb-glow-cut-right)) calc(100% - var(--tb-glow-cut-bottom)), 
+    calc(100% - var(--tb-glow-cut-right)) var(--tb-glow-cut-top), 
+    var(--tb-glow-cut-left) var(--tb-glow-cut-top)
+  );
+  padding: 60% 55% 55% 55%;    
+  pointer-events: none;
+}
+
+.vs-tactical-board25-stats::after,
+.vs-tactical-board25-reality::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Indywidualne pozycje paneli */
+.vs-tactical-board25-stats {
+  left: var(--tb-stats-left);
+  width: var(--tb-stats-width);
+}
+
+.vs-tactical-board25-reality {
+  left: var(--tb-reality-left);
+  width: var(--tb-reality-width);
+}
+
+/* === NOWY ELEMENT — kopia signal-main z animacji (wersja z płynną poświatą) === */
+.vs-tb-signal-main {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  /* Panel dopasowuje się do tekstu, ale ma sensowne minimum */
+  width: fit-content;
+  min-width: 42%;
+  max-width: 55%;
+  margin: 0 auto;
+  min-height: calc(72px * var(--tb-scale));
+  padding: 0.1em 1.5em;
+  /* Przywrócony solidny prostokąt */
+  background: rgba(255, 85, 78, 0.98);
+  color: #050505;
+  font-family: 'Chakra Petch', 'Syncopate', sans-serif;
+  /* Rozmiar fontu dostosowany, by nie rozpychał panelu nadmiernie */
+  font-size: calc(var(--tb-type-1) * 0.82);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-align: center;
+  /* Absolutny zakaz zawijania tekstu */
+  white-space: nowrap;
+  box-shadow: none;
+  text-shadow: none;
+  z-index: 5;
+  /* Optyczne wyśrodkowanie */
+  transform: translateX(calc(-10px * var(--tb-scale)));
+  /* Pozwalamy poświacie wystawać poza kontener */
+  overflow: visible;
+}
+
+/* Warstwa poświaty (glow) z gradientem */
+.vs-tb-signal-main::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* Zmniejszona poświata */
+  width: 110%;
+  height: 140%;
+  /* Gradient poświaty wygasający na boki */
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 85, 78, 0.4) 10%,
+    rgba(255, 85, 78, 0.7) 50%,
+    rgba(255, 85, 78, 0.4) 90%,
+    transparent 100%
+  );
+  filter: blur(16px);
+  z-index: -1;
+  pointer-events: none;
+}
+
+.vs-tb-signal-main::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 0 calc(3.5px * 0.5),
+      rgba(0, 0, 0, 0.15) calc(3.5px * 0.5) 3.5px
+    );
+  opacity: 0.38;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+}
+
+.vs-tactical-board25-stats {
+  top: var(--tb-panel-top);
+  left: var(--tb-stats-left);
+  width: var(--tb-stats-width);
+  min-height: var(--tb-panel-height);
+  padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
+  border-radius: 0;
+}
+
+.vs-tactical-board25-stats-title,
+.vs-tactical-board25-reality-heading {
+  position: absolute;
+  top: calc(-28px * var(--tb-scale));
+  left: calc(18px * var(--tb-scale));
+  display: inline-block;
+  margin: 0;
+  padding: 0 calc(4px * var(--tb-scale));
+  /* Kolor tekstu z breachButton: jasny błękit */
+  color: #77e2f2;
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-size: var(--tb-panel-heading-font-size);
+  letter-spacing: var(--tb-panel-heading-letter-spacing);
+  text-transform: uppercase;
+  /* PRZYWRÓCONE REFLEKSY (BEZ GLOW) */
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25) !important;
+  z-index: 2;
+  font-kerning: none;
+  font-variant-ligatures: none;
+}
+
+.vs-tactical-board25-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: calc(0.9rem * var(--tb-scale));
+  margin-top: calc(0.4rem * var(--tb-scale));
+  align-content: start;
+  overflow: visible;
+}
+
+/* Stat items */
+
+.vs-tactical-board25-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: calc(0.82rem * var(--tb-scale));
+  min-height: calc(72px * var(--tb-scale));
+  padding: calc(0.74rem * var(--tb-scale)) calc(0.2rem * var(--tb-scale));
+  border-radius: calc(24px * var(--tb-scale));
+  border: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* Depth slab beneath each item card */
+.vs-tactical-board25-item::after {
+  content: none;
+}
+
+.vs-tactical-board25-item-icon {
+  position: relative;
+  flex: 0 0 auto;
+  width: calc(42px * var(--tb-scale));
+  height: calc(42px * var(--tb-scale));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* Ramka w kolorze akcentu ikony */
+  background: transparent !important;
+  border: 4px solid color-mix(in srgb, var(--item-accent) 45%, transparent) !important;
+  border-radius: calc(16px * var(--tb-scale));
+  /* Filtry usunięte z kontenera - to one powodowały błąd poczwórnych emotek */
+  box-shadow: none !important;
+  transform: translateY(calc(-4px * var(--tb-scale)));
+  overflow: visible !important;
+}
+
+/* Usunięcie zbędnych pseudo-elementów, które psuły układ */
+.vs-tactical-board25-item-icon::before,
+.vs-tactical-board25-item-icon::after {
+  content: none !important;
+  display: none !important;
+}
+
+.vs-tactical-board25-item-icon svg {
+  display: block;
+  overflow: visible;
+}
+
+/* Icon reflection - element z Reacta, teraz z poprawnym refleksem ramki */
+.vs-tactical-board25-item-icon-reflection {
+  position: absolute;
+  /* ROZSZERZENIE O 20px W KAŻDĄ STRONĘ (skalowane) */
+  left: calc(-20px * var(--tb-scale));
+  width: calc(100% + 40px * var(--tb-scale));
+  height: 300%; 
+  top: 100%;
+  /* margin-top skorygowany o rozszerzenie (-24px oryginału - 20px rozszerzenia) */
+  margin-top: calc(-44px * var(--tb-scale)); 
+  
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* padding-top skorygowany o rozszerzenie i dodatkowe 10px w dół (33px + 10px) */
+  padding-top: calc(43px * var(--tb-scale));
+  transform: none;
+  transform-origin: top center;
+  
+  opacity: 0.8;
+  /* WIĘKSZE ROZMAZANIE CAŁOŚCI */
+  filter: blur(calc(1.2px * var(--tb-scale)));
+
+  /* === 2. ODCIĘCIE DOŁU (NARZĘDZIE) === */
+  /* Zmieniaj OSTATNIĄ wartość (np. 15%), aby uciąć dół. 0% = widać wszystko. */
+  clip-path: inset(0% 0% 0% 0%);
+  
+  pointer-events: none;
+  overflow: visible !important;
+}
+
+/* Warstwa samej odbitej ramki 1:1 */
+.vs-tactical-board25-item-icon-reflection::before {
+  content: '';
+  position: absolute;
+  /* Pozycja ramki skorygowana o 20px rozszerzenia kontenera */
+  top: calc(30px * var(--tb-scale));
+  left: calc(20px * var(--tb-scale));
+  width: calc(100% - 38px * var(--tb-scale));
+  height: calc(42px * var(--tb-scale)); 
+  border: 4px solid color-mix(in srgb, var(--item-accent) 35%, transparent) !important;
+  border-radius: calc(16px * var(--tb-scale));
+  pointer-events: none;
+}
+
+.vs-tactical-board25-item-icon-reflection svg {
+  display: block;
+  overflow: visible;
+}
+
+.vs-tactical-board25-item-label {
+  display: inline-block;
+  width: 100%;
+  font-family: var(--tb-label-font-family);
+  font-size: var(--tb-stat-label-font-size);
+  font-weight: var(--tb-stat-label-font-weight);
+  letter-spacing: var(--tb-stat-label-letter-spacing);
+  line-height: var(--tb-stat-label-line-height);
+  text-transform: uppercase;
+  /* PRZYWRÓCONE REFLEKSY NAZW STATYSTYK */
+  text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent) !important;
+}
+
+/* Reality Viewport */
+
+.vs-tactical-board25-reality-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Rest of standard elements */
+.vs-tactical-board25-logo {
+  position: absolute;
+  top: calc(28px * var(--tb-scale));
+  right: var(--tb-side-margin);
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: calc(162px * var(--tb-scale));
+  filter: drop-shadow(0 0 2px rgba(255, 126, 74, 0.14));
+}
+
+.vs-tactical-board25-logo-reflection {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  margin-top: calc(-34px * var(--tb-scale));
+  opacity: 0.2;
+  filter: blur(calc(1.6px * var(--tb-scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, transparent 88%);
+}
