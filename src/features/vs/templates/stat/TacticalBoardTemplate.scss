@@ -1,5 +1,22 @@
 @import "../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss";
 
+/* Overrides to match the halved font size */
+.vs-tb-signal-main .glitch::before {
+  left: -1px;
+  text-shadow: -2.5px 0 magenta;
+  background: rgba(255, 85, 78, 0.98);
+}
+
+.vs-tb-signal-main .glitch::after {
+  left: 1px;
+  text-shadow: -2.5px 0 lightgreen;
+  background: rgba(255, 85, 78, 0.98);
+}
+
+.vs-tb-signal-main .glow {
+  text-shadow: 0 0 500px rgb(223, 191, 191);
+}
+
 /* ============================================================
    Tactical Board - 2.5D table scene
    Isolated from index.css so all layout/visual logic lives

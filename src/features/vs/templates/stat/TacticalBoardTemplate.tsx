@@ -59,9 +59,13 @@ export function TacticalBoardTemplate({
     <div className="vs-tactical-board25-surface">
       {/* 1:1 Glitch Experiment Import */}
       <div className="container">
-        <div className="glitch" data-text="ELISABÉTH">ELISABÉTH</div>
-        <div className="glow">ELISABÉTH</div>
-        <p className="subtitle">IMPRACTICAL DEVELOPER</p>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+          <div style={{ position: 'relative' }}>
+            <div className="glitch" data-text="TACTICAL BOARD" style={{ fontSize: '4.5vw' }}>TACTICAL BOARD</div>
+            <div className="glow" style={{ fontSize: '4.5vw' }}>TACTICAL BOARD</div>
+          </div>
+        </div>
+        <p className="subtitle" style={{ position: 'relative', left: 0, marginTop: '20px', textAlign: 'center', width: '100%' }}>IMPRACTICAL DEVELOPER</p>
       </div>
       <div className="scanlines"></div>
 
