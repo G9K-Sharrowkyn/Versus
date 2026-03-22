@@ -96,6 +96,8 @@ export function CharacterDossierATemplate({
     pickTemplateField(blockFields, ['right_header', 'reality_header', 'dossier_header']) ||
     getFightTemplateDefaultField('tactical-board', 'left_header', language) || "CHARACTER DOSSIER"
 
+  const BLUE_EKSTREMALNY = '#77e2f2'
+
   // Glitch effect for title
   const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
@@ -154,10 +156,10 @@ export function CharacterDossierATemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -176,7 +178,7 @@ export function CharacterDossierATemplate({
             <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{cardTitle}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY }}>{subText}</p>
       </div>
 
       <button
@@ -197,9 +199,9 @@ export function CharacterDossierATemplate({
         />
       </button>
 
-      {/* LEFT PANEL: PORTRAIT ONLY */}
+      {/* LEFT PANEL: PORTRAIT */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2', zIndex: 10 }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" style={{ color: BLUE_EKSTREMALNY, zIndex: 10 }}>{boardHeader}</p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterA.imageUrl}
@@ -216,62 +218,30 @@ export function CharacterDossierATemplate({
         </div>
       </section>
 
-      {/* RIGHT PANEL: TEXT DATA ONLY (NO BOXES) */}
+      {/* RIGHT PANEL: TEXT CATEGORIES */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2', zIndex: 10 }}>{realityHeader}</p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', background: 'transparent', height: '100%', padding: '0.5rem' }}>
-          {/* Header Data */}
-          <div>
-            <FittedText
-              as="h3"
-              slotKey={`character-dossier-a:name:${fighterText}`}
-              spec={slots.heroName}
-              text={fighterText}
-              className={layout.HERO_NAME_CLASS}
-              style={{ color: fighterForCard.color, fontFamily: 'var(--font-display)', fontSize: '2.5rem', lineHeight: 1.1, textTransform: 'uppercase' }}
-            />
-            {fighterSubtitle ? (
-              <FittedText
-                as="p"
-                slotKey={`character-dossier-a:subtitle:${fighterSubtitle}`}
-                spec={slots.heroSubtitle}
-                text={fighterSubtitle}
-                style={{ color: '#94a3b8', fontSize: '1.1rem', marginTop: '0.25rem', letterSpacing: '0.05em' }}
-              />
-            ) : null}
+        <p className="vs-tactical-board25-reality-heading" style={{ color: BLUE_EKSTREMALNY, zIndex: 10 }}>{realityHeader}</p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem' }}>
+          
+          {/* Text Level 1: Huge Name */}
+          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
+            <h3 className="vs-dossier-text-1">{fighterText}</h3>
+            {fighterSubtitle ? <p className="vs-dossier-text-3" style={{ color: '#94a3b8', marginTop: '0.25rem' }}>{fighterSubtitle}</p> : null}
           </div>
 
-          {/* Facts List */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1, overflowY: 'auto' }}>
+          {/* Text Level 2: Large Facts */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', flex: 1, overflowY: 'auto' }}>
             {cardFacts.map((fact, index) => (
-              <div key={`${fighterText}-${fact.title}-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.25rem', borderLeft: `2px solid ${fighterForCard.color}`, paddingLeft: '1rem' }}>
-                <FittedText
-                  as="p"
-                  slotKey={`character-dossier-a:fact-title:${index}`}
-                  spec={slots.factTitle}
-                  text={fact.title}
-                  style={{ color: fighterForCard.color, fontSize: '0.85rem', textTransform: 'uppercase', letterSpacing: '0.15em', opacity: 0.8 }}
-                />
-                <FittedText
-                  as="p"
-                  slotKey={`character-dossier-a:fact-body:${index}`}
-                  spec={slots.factBody}
-                  text={fact.text}
-                  style={{ color: '#f1f5f9', fontSize: '1.2rem', fontWeight: 500 }}
-                />
+              <div key={`${fighterText}-${fact.title}-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                <p className="vs-dossier-text-3" style={{ opacity: 0.7 }}>{fact.title}</p>
+                <p className="vs-dossier-text-2">{fact.text}</p>
               </div>
             ))}
           </div>
 
-          {/* Quote Section */}
-          <div style={{ padding: '1rem 0', borderTop: '1px solid rgba(255,255,255,0.1)', fontStyle: 'italic', color: '#cbd5e1' }}>
-            <FittedText
-              as="p"
-              slotKey="character-dossier-a:quote"
-              spec={slots.quoteBody}
-              text={`"${dossierQuote}"`}
-              style={{ fontSize: '1.1rem', lineHeight: 1.4, opacity: 0.9 }}
-            />
+          {/* Text Level 3: Medium Quote */}
+          <div style={{ padding: '1rem 0', borderTop: '1px solid rgba(255,255,255,0.1)', fontStyle: 'italic' }}>
+            <p className="vs-dossier-text-3" style={{ color: '#cbd5e1', textTransform: 'none' }}>"{dossierQuote}"</p>
           </div>
         </div>
       </div>

@@ -108,10 +108,17 @@ export function CyberpunkMetaValue({ value }: Props) {
   return (
     <span
       style={{
-        color: hot ? 'rgba(0,230,255,1)' : 'inherit',
+        display: 'inline-block',
+        color: '#77e2f2',
+        fontFamily: "'Chakra Petch', 'JetBrains Mono', monospace",
+        fontSize: '1.25em',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        letterSpacing: '0.05em',
         textShadow: hot
-          ? '0 0 6px rgba(0,220,255,0.9), 0 0 14px rgba(0,220,255,0.4)'
-          : 'none',
+          ? '0 0 8px rgba(119, 226, 242, 0.9), 0 0 16px rgba(119, 226, 242, 0.4)'
+          : '0 0 4px rgba(119, 226, 242, 0.2)',
+        transition: 'all 0.1s ease-out',
       }}
     >
       {displayed}
