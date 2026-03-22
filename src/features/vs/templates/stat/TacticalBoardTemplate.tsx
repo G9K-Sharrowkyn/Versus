@@ -4,6 +4,7 @@ import { iconForCategory } from '../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../importer'
 import type { TemplatePreviewProps } from '../../types'
 import { AnimeLightning } from '../../components/AnimeLightning'
+import { CyberpunkMetaValue } from '../../components/CyberpunkMetaValue'
 import { FittedText } from '../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -13,6 +14,27 @@ import { getTemplateUi, type TemplateSlotSpec } from '../shared/templateUi'
 
 type TacticalBoardTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
+}
+
+const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+
+function SubtleCyberpunkLabel({ text }: { text: string }) {
+  const [display, setDisplay] = useState(text)
+  useEffect(() => {
+    if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
+    const timer = setInterval(() => {
+      if (Math.random() > 0.92) {
+        const chars = text.split('')
+        const i = Math.floor(Math.random() * chars.length)
+        if (chars[i] === ' ') return
+        chars[i] = GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+        setDisplay(chars.join(''))
+        setTimeout(() => setDisplay(text), 60 + Math.random() * 80)
+      }
+    }, 2500)
+    return () => clearInterval(timer)
+  }, [text])
+  return <>{display}</>
 }
 
 export function TacticalBoardTemplate({
@@ -112,10 +134,10 @@ export function TacticalBoardTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          {chrome.threatLevelLabel}: <span>{chrome.threatLevelValue}</span>
+          <SubtleCyberpunkLabel text={chrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={chrome.threatLevelValue} /></span>
         </p>
         <p>
-          {chrome.dataIntegrityLabel}: <span>{chrome.dataIntegrityValue}</span>
+          <SubtleCyberpunkLabel text={chrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={chrome.dataIntegrityValue} /></span>
         </p>
       </div>
 

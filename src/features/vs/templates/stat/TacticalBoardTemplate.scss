@@ -246,6 +246,29 @@
 
 /* Meta */
 
+@keyframes vs-meta-shiver {
+  0%, 98%, 100% { 
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    opacity: 0.76;
+  }
+  98.2% { 
+    transform: translate3d(2px, -1px, 0);
+    filter: contrast(1.5) brightness(1.2);
+    opacity: 1;
+  }
+  98.4% { 
+    transform: translate3d(-3px, 0, 0);
+    filter: hue-rotate(180deg);
+    opacity: 0.9;
+  }
+  98.6% { 
+    transform: translate3d(0, 0, 0);
+    filter: none;
+    opacity: 1;
+  }
+}
+
 .vs-tactical-board25-meta {
   position: absolute;
   top: calc(42px * var(--tb-scale));
@@ -260,13 +283,13 @@
   text-transform: uppercase;
 }
 
-.vs-tactical-board25-meta span {
-  color: #77e2f2;
-  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2);
-}
-
 .vs-tactical-board25-meta p {
   text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(255, 153, 130, 0.15);
+  animation: vs-meta-shiver 6s infinite;
+}
+
+.vs-tactical-board25-meta p:nth-child(2) {
+  animation-delay: 3s;
 }
 
 /* Heading */
