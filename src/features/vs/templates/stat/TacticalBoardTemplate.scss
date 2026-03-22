@@ -34,6 +34,7 @@
 .vs-tb-signal-main .glitch-letter {
   position: relative;
   display: inline-block;
+  z-index: 1; /* Create stacking context so slices go behind */
 }
 
 .vs-tb-signal-main .glitch-letter.is-glitching::before,
@@ -41,32 +42,27 @@
   content: attr(data-text);
   position: absolute;
   top: 0;
-  left: 0; /* Keep left at 0 to completely prevent background gaps */
+  left: 0;
+  right: 0;
+  background: transparent;
+  color: transparent; /* ONLY show the neon shadows, hide the black text so the layers don't block each other! */
   overflow: hidden;
-  background: rgba(255, 85, 78, 0.98);
-  color: transparent; /* Hide text to only show text-shadow */
 }
 
 /* Magenta / fiolet (secondary layer) */
 .vs-tb-signal-main .glitch-letter.is-glitching::before {
-  /* logicznie tekst na -1px, shadow był -3.5px. Zmniejszamy wszystko o 1px w lewo (-1px dla tekstu = -2px na shadow, -1px dla magenta = -4.5px na shadow).
-     Aby było czytelnie: czarny shadow robi obrys -2px, magenta -4.5px
-  */
-  text-shadow: 0px 0 #050505, -4.5px 0 magenta;
+  text-shadow: -3.5px 0 magenta;
   /* Remove individual structural glitch, keep only noise */
   animation: noise-1-scaled 3s linear infinite alternate-reverse;
-  z-index: 1;
+  z-index: -2; /* Send behind the main letter */
 }
 
 /* Lightgreen (primary layer) */
 .vs-tb-signal-main .glitch-letter.is-glitching::after {
-  /* text is shifted 1px logically, but we shift left 1px -> text offset 0, shadow base 0px.
-     Original lightgreen shadow was -0.5px. Shift left by 1px -> -1.5px.
-  */
-  text-shadow: 0 0 #050505, -1.5px 0 lightgreen;
+  text-shadow: -1.5px 0 lightgreen;
   /* Remove individual structural glitch, keep only noise */
   animation: noise-2-scaled 3s linear infinite alternate-reverse;
-  z-index: 2;
+  z-index: -1; /* Send behind the main letter */
 }
 
 .vs-tb-signal-main .glow {
