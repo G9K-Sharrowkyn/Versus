@@ -1,6 +1,6 @@
 @import "../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss";
 
-/* Overrides to match the halved font size */
+/* Overrides to match the halved font size and fix background for the panel */
 .vs-tb-signal-main .glitch::before {
   left: -1px;
   text-shadow: -2.5px 0 magenta;
