@@ -6,6 +6,7 @@ import { HomeView } from './features/vs/components/HomeView'
 import { PortraitEditorModal } from './features/vs/components/PortraitEditorModal'
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
+import { MarvinEditor } from './features/vs/components/MarvinEditor'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
 import { findFightVariantByLanguage, applySharedFightVisualAdjustments } from './features/vs/domain/fightVariants'
 import { preloadFightCoreImages } from './features/vs/domain/fightImagePreload'
@@ -1093,6 +1094,7 @@ function App() {
         direction={searchMorphDirection}
         handoff={searchMorphHandoff}
       />
+      <MarvinEditor activeTemplateId={activeTemplate} />
     </main>
   )
 }

@@ -730,10 +730,46 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
     }
     const isVisualsWriteRequest = requestUrl.pathname === '/api/fights/visuals' && req.method === 'POST'
     const isFightCreateRequest = requestUrl.pathname === '/api/fights/create' && req.method === 'POST'
-    if (req.method !== 'GET' && !isVisualsWriteRequest && !isFightCreateRequest) {
+    const isMarvinSaveRequest = requestUrl.pathname === '/api/marvin/save' && req.method === 'POST'
+
+    if (req.method !== 'GET' && !isVisualsWriteRequest && !isFightCreateRequest && !isMarvinSaveRequest) {
       res.statusCode = 405
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(asJson({ error: 'Method not allowed.' }))
+      return
+    }
+
+    if (isMarvinSaveRequest) {
+      try {
+        const payload = (await readJsonBody(req)) as { file: string; name: string; value: string; type: 'const' | 'css' }
+        const fullPath = path.resolve(__dirname, payload.file)
+        
+        // Security check: only allow editing files within src or Templates
+        if (!fullPath.startsWith(__dirname)) {
+          res.statusCode = 403
+          res.end(asJson({ error: 'Access denied' }))
+          return
+        }
+
+        let content = await fs.readFile(fullPath, 'utf8')
+        
+        if (payload.type === 'const') {
+          // Update React constants like const NAME_REFLECTION = "..."
+          const regex = new RegExp(`(const\\\\s+${payload.name}\\\\s*=\\\\s*["'\`])([^"'\`]*)(["'\`])`, 'g')
+          content = content.replace(regex, \`$1\${payload.value}$3\`)
+        } else if (payload.type === 'css') {
+          // Update CSS variables or properties in SCSS
+          const regex = new RegExp(`(${payload.name}\\\\s*:\\\\s*)([^;!]*)(?=;|\\\\s*!)`, 'g')
+          content = content.replace(regex, \`$1\${payload.value}\`)
+        }
+
+        await fs.writeFile(fullPath, content, 'utf8')
+        res.statusCode = 200
+        res.end(asJson({ ok: true, message: \`Updated \${payload.name} in \${payload.file}\` }))
+      } catch (error) {
+        res.statusCode = 500
+        res.end(asJson({ error: 'Marvin failed to save', details: String(error) }))
+      }
       return
     }
 
