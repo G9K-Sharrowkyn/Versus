@@ -602,7 +602,7 @@
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
   /* PRZYWRÓCONE REFLEKSY (BEZ GLOW) */
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25) !important;
+  /* Removed blue shadow override */
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -727,7 +727,7 @@
   line-height: var(--tb-stat-label-line-height);
   text-transform: uppercase;
   /* PRZYWRÓCONE REFLEKSY NAZW STATYSTYK */
-  text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent) !important;
+  /* Removed blue shadow override */
 }
 
 /* Reality Viewport */
@@ -790,7 +790,7 @@
   color: #77e2f2;
   text-transform: uppercase;
   line-height: 1;
-  text-shadow: 0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.8) !important;
+  /* Removed blue shadow override */
   margin: 0;
 }
 
@@ -801,7 +801,7 @@
   color: #94a3b8;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  text-shadow: 0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 1) !important;
+  /* Removed blue shadow override */
   margin: 0;
 }
 

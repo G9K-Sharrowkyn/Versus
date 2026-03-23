@@ -71,12 +71,12 @@ export function CharacterDossierATemplate({
   // ===========================================================================
   // --- CENTRUM STEROWANIA REFLEKSAMI ---
   // ===========================================================================
-  const REFLEKS_IMIENIA_POSTACI = "0 1.25em 0.2em rgba(119, 226, 242, 0.8)" 
-  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.8)" 
-  const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(119, 226, 242, 0.6)" 
-  const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.3)" 
-  const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)"
-  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "var(--tb-reflect-4-y)" 
+  const REFLEKS_IMIENIA_POSTACI = "none" 
+  const REFLEKS_TRESCI_FAKTOW = "none" 
+  const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
+  const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
+  const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
+  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 98px)" 
   // ===========================================================================
 
   const fighterText = fighterA.name || getFightTemplateDefaultField('character-dossier-a', 'fighter_a_fallback', language)
@@ -151,10 +151,10 @@ export function CharacterDossierATemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{cardTitle}</div>
+            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" }}>{cardTitle}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" }}>{subText}</p>
       </div>
 
       <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage} style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}>
@@ -187,25 +187,25 @@ export function CharacterDossierATemplate({
           {/* Imię Postaci */}
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
             <h3 className="vs-dossier-text-1" data-marvin-id="REFLEKS_IMIENIA_POSTACI" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_IMIENIA_POSTACI }}>{fighterText}</h3>
-            {fighterSubtitle ? <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: '#94a3b8', marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterSubtitle}</p> : null}
+            {fighterSubtitle ? <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterSubtitle}</p> : null}
           </div>
 
           {/* Lista Faktów */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
             {cardFacts.map((fact, index) => (
               <div key={`fact-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+                <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
                 <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
           </div>
 
           {/* Cytat i Czerwona Linia */}
-          <div style={{ marginTop: 'auto', position: 'relative', padding: '1.5rem 0 0.5rem 0' }}>
-            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
-            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: POZYCJA_REFLEKSU_CZERWONEJ_LINII, left: 0, filter: 'blur(2px)', opacity: 0.8 }} data-marvin-id="POZYCJA_REFLEKSU_CZERWONEJ_LINII" data-marvin-file={CURRENT_FILE} data-marvin-type="const" />
+          <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 88px) 0 0.5rem 0' }}>
+            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '88px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
+            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: `calc(${POZYCJA_REFLEKSU_CZERWONEJ_LINII} + 0px)`, left: 0, filter: 'blur(2px)', opacity: 0.8 }} data-marvin-id="POZYCJA_REFLEKSU_CZERWONEJ_LINII" data-marvin-file={CURRENT_FILE} data-marvin-type="const" />
             <div style={{ fontStyle: 'italic' }}>
-              <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_CYTATU" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: '#cbd5e1', textTransform: 'none', textShadow: REFLEKS_CYTATU }}>"{dossierQuote}"</p>
+              <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_CYTATU" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textTransform: 'none', textShadow: REFLEKS_CYTATU }}>"{dossierQuote}"</p>
             </div>
           </div>
         </div>
