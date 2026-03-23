@@ -755,17 +755,17 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         
         if (payload.type === 'const') {
           // Update React constants like const NAME_REFLECTION = "..."
-          const regex = new RegExp(`(const\\\\s+${payload.name}\\\\s*=\\\\s*["'\`])([^"'\`]*)(["'\`])`, 'g')
-          content = content.replace(regex, \`$1\${payload.value}$3\`)
+          const regex = new RegExp(`(const\\s+${payload.name}\\s*=\\s*["'\`])([^"'\`]*)(["'\`])`, 'g')
+          content = content.replace(regex, `$1${payload.value}$3`)
         } else if (payload.type === 'css') {
           // Update CSS variables or properties in SCSS
-          const regex = new RegExp(`(${payload.name}\\\\s*:\\\\s*)([^;!]*)(?=;|\\\\s*!)`, 'g')
-          content = content.replace(regex, \`$1\${payload.value}\`)
+          const regex = new RegExp(`(${payload.name}\\s*:\\s*)([^;!]*)(?=;|\\s*!)`, 'g')
+          content = content.replace(regex, `$1${payload.value}`)
         }
 
         await fs.writeFile(fullPath, content, 'utf8')
         res.statusCode = 200
-        res.end(asJson({ ok: true, message: \`Updated \${payload.name} in \${payload.file}\` }))
+        res.end(asJson({ ok: true, message: `Updated ${payload.name} in ${payload.file}` }))
       } catch (error) {
         res.statusCode = 500
         res.end(asJson({ error: 'Marvin failed to save', details: String(error) }))

@@ -157,7 +157,7 @@ export function CharacterDossierATemplate({
         <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{subText}</p>
       </div>
 
-      <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage}>
+      <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage} style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}>
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} />
       </button>
 
@@ -187,15 +187,15 @@ export function CharacterDossierATemplate({
           {/* Imię Postaci */}
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
             <h3 className="vs-dossier-text-1" data-marvin-id="REFLEKS_IMIENIA_POSTACI" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_IMIENIA_POSTACI }}>{fighterText}</h3>
-            {fighterSubtitle ? <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: '#94a3b8', marginTop: '0.25rem', textShadow: LABEL_REFLECTION }}>{fighterSubtitle}</p> : null}
+            {fighterSubtitle ? <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: '#94a3b8', marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterSubtitle}</p> : null}
           </div>
 
           {/* Lista Faktów */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
             {cardFacts.map((fact, index) => (
               <div key={`fact-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: LABEL_REFLECTION }}>{fact.title}</p>
-                <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: FACT_REFLECTION }}>{fact.text}</p>
+                <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+                <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
           </div>

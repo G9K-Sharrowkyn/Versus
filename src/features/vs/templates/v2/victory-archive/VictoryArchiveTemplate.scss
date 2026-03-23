@@ -415,14 +415,15 @@
   left: 0;
   top: 100%;
   width: 100%;
-  height: auto;
   margin-top: calc(-34px * var(--tb-scale));
-  transform: none;
   opacity: 0.2;
   filter: blur(calc(1.6px * var(--tb-scale)));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
-  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
-  pointer-events: none;
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
 
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
@@ -762,5 +763,10 @@
   margin-top: calc(-34px * var(--tb-scale));
   opacity: 0.2;
   filter: blur(calc(1.6px * var(--tb-scale)));
-  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, transparent 88%);
+  -webkit-mask-image: var(--logo-url);
+  mask-image: var(--logo-url);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
 }
