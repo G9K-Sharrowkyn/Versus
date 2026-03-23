@@ -3,14 +3,12 @@ import { useState, useEffect, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type CharacterDossierATemplateProps = TemplatePreviewProps & {
@@ -39,7 +37,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function CharacterDossierATemplate({
-  activeTemplateId,
   fighterA,
   portraitAAdjust,
   title,
@@ -52,7 +49,6 @@ export function CharacterDossierATemplate({
   onToggleLanguage,
   integratedToolbar,
 }: CharacterDossierATemplateProps) {
-  // --- KONFIGURACJA LAYOUTU ---
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
@@ -60,24 +56,17 @@ export function CharacterDossierATemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-a'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('character-dossier-a', language)
-  const ui = getTemplateUi('character-dossier-a', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
-  const layout = ui.template as Record<string, string>
-
+  
   const BLUE_EKSTREMALNY = '#77e2f2'
   const RED_LINIA = '#ff554e'
   const CURRENT_FILE = 'src/features/vs/templates/v2/character-dossier-a/CharacterDossierATemplate.tsx'
 
-  // ===========================================================================
-  // --- CENTRUM STEROWANIA REFLEKSAMI ---
-  // ===========================================================================
   const REFLEKS_IMIENIA_POSTACI = "0 1.25em 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
-  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 98px)" 
-  // ===========================================================================
+  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 80px)" 
 
   const fighterText = fighterA.name || getFightTemplateDefaultField('character-dossier-a', 'fighter_a_fallback', language)
   const cardFacts = factsA.length ? factsA : []
@@ -88,18 +77,17 @@ export function CharacterDossierATemplate({
   const fighterSubtitle = fighterA.subtitle || ""
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
   
-  const boardHeader = "POSTAĆ NIEBIESKA"
-  const realityHeader = "OPIS POSTACI"
+  const boardHeader = "Profil postaci"
+  const realityHeader = "New52"
 
   const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    if (chars.length === 0) return
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, any>()
     let isMounted = true
     const startGlitch = () => {
       if (!isMounted) return
@@ -112,14 +100,14 @@ export function CharacterDossierATemplate({
       const nextIndex = available[Math.floor(Math.random() * available.length)]
       active.add(nextIndex)
       setActiveGlitches(new Set(active))
-      const timeoutId = setTimeout(() => {
+      const t = setTimeout(() => {
         if (!isMounted) return
         active.delete(nextIndex)
         setActiveGlitches(new Set(active))
         timeouts.delete(nextIndex)
         setTimeout(() => startGlitch(), Math.random() * 500)
       }, 2000 + Math.random() * 3000)
-      timeouts.set(nextIndex, timeoutId)
+      timeouts.set(nextIndex, t)
     }
     for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) setTimeout(() => startGlitch(), i * 800)
     return () => { isMounted = false; timeouts.forEach(clearTimeout); }
@@ -140,7 +128,7 @@ export function CharacterDossierATemplate({
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, background: RED_LINIA }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -151,7 +139,7 @@ export function CharacterDossierATemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
+            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerTextStr}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: 'none' }}>{subText}</p>
@@ -163,7 +151,7 @@ export function CharacterDossierATemplate({
 
       {/* LEWY PANEL: PORTRET */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" data-marvin-id="NAGLOWK_LEWY" data-marvin-file={CURRENT_FILE} style={{ color: BLUE_EKSTREMALNY, zIndex: 10, textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" data-marvin-id="NAGLOWK_LEWY" data-marvin-file={CURRENT_FILE} style={{ color: BLUE_EKSTREMALNY, zIndex: 10, textShadow: 'none' }}>{boardHeader}</p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterA.imageUrl}
@@ -190,19 +178,19 @@ export function CharacterDossierATemplate({
             {fighterSubtitle ? <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterSubtitle}</p> : null}
           </div>
 
-          {/* Lista Faktów */}
+          {/* Lista Faktów - UKŁAD SCHODKOWY SKORYGOWANY */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
             {cardFacts.map((fact, index) => (
-              <div key={`fact-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+              <div key={`fact-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem', marginTop: index === 0 ? '1rem' : index === 1 ? '3rem' : '3.8rem' }}>
                 <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
                 <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
           </div>
 
-          {/* Cytat i Czerwona Linia */}
-          <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 88px) 0 0.5rem 0' }}>
-            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '88px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
+          {/* Cytat i Czerwona Linia - ŚREDNIO WYSOKO */}
+          <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 80px) 0 0.5rem 0' }}>
+            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '80px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
             <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: `calc(${POZYCJA_REFLEKSU_CZERWONEJ_LINII} + 0px)`, left: 0, filter: 'blur(2px)', opacity: 0.8 }} data-marvin-id="POZYCJA_REFLEKSU_CZERWONEJ_LINII" data-marvin-file={CURRENT_FILE} data-marvin-type="const" />
             <div style={{ fontStyle: 'italic' }}>
               <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_CYTATU" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textTransform: 'none', textShadow: REFLEKS_CYTATU }}>"{dossierQuote}"</p>

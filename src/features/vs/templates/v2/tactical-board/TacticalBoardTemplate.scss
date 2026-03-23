@@ -435,7 +435,7 @@
   padding: calc(1.04rem * var(--tb-scale)) calc(1.08rem * var(--tb-scale));
   overflow: visible;
   /* Styl ramki: solidna linia 10px */
-  border: 10px solid rgba(255, 85, 78, 1) !important;
+  border: 10px solid #ff554e !important;
   background: transparent !important;
   filter: none !important;
   box-shadow: none !important;
@@ -518,7 +518,7 @@
   min-height: calc(72px * var(--tb-scale));
   padding: 0.1em 1.5em;
   /* Przywrócony solidny prostokąt */
-  background: rgba(255, 85, 78, 0.98);
+  background: #ff554e;
   color: #050505;
   font-family: 'Chakra Petch', 'Syncopate', sans-serif;
   /* Rozmiar fontu dostosowany, by nie rozpychał panelu nadmiernie */
