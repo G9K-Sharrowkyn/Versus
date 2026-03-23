@@ -72,8 +72,8 @@ export function CharacterDossierBTemplate({
   // Format: "0 [Wysokość] [Rozmycie/Blur] [Kolor]"
   // ===========================================================================
   
-  const REFLEKS_IMIENIA_POSTACI = "none" 
-  const REFLEKS_TRESCI_FAKTOW = "none" 
+  const REFLEKS_IMIENIA_POSTACI = "0 1.25em 0.2em rgba(119, 226, 242, 0.4)" 
+  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
@@ -136,10 +136,10 @@ export function CharacterDossierBTemplate({
       {/* META INFO */}
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -156,10 +156,10 @@ export function CharacterDossierBTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" }}>{cardTitle}</div>
+            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: 'none' }}>{subText}</p>
       </div>
 
       <button
@@ -175,7 +175,7 @@ export function CharacterDossierBTemplate({
 
       {/* LEWY PANEL: PORTRET */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: 'none' }}>{boardHeader}</p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterB.imageUrl}
@@ -193,7 +193,7 @@ export function CharacterDossierBTemplate({
 
       {/* PRAWY PANEL: DANE POSTACI */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_NAGLOWKOW_PANELI }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: 'none' }}>{realityHeader}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           
           {/* Imię Postaci */}
