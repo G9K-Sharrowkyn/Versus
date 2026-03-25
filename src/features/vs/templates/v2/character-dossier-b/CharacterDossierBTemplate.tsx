@@ -65,7 +65,7 @@ export function CharacterDossierBTemplate({
   // Format: "0 [Wysokość] [Rozmycie/Blur] [Kolor]"
   // ===========================================================================
   
-  const REFLEKS_IMIENIA_POSTACI = "0 1.25em 0.2em rgba(119, 226, 242, 0.4)" 
+  const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
