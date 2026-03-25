@@ -187,8 +187,12 @@ export function CharacterDossierATemplate({
           {/* Lista Faktów - stałe pozycje */}
           <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
             {cardFacts.map((fact, index) => (
-              <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '160px' : '300px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+              <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
+                  <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+                  <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
+                  <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-10px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
+                </div>
                 <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
