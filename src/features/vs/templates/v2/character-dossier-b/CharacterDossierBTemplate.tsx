@@ -127,7 +127,7 @@ export function CharacterDossierBTemplate({
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
       {/* META INFO */}
-      <div className="vs-tactical-board25-meta">
+      <div className="vs-tactical-board25-meta" style={{ left: '20px' }}>
         <p>
           <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
@@ -160,7 +160,7 @@ export function CharacterDossierBTemplate({
         className="vs-tactical-board25-logo"
         title={tacticalChrome.brandMarkTitle}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})`, right: '20px' } as any}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} />
         <img className="vs-tactical-board25-logo-reflection" src={tacticalChrome.brandImageSrc} alt="" aria-hidden="true" />

@@ -136,7 +136,7 @@
   --tb-panel-heading-letter-spacing: 0.14em;
   --tb-panel-heading-color: rgba(255, 85, 78, 0.9);
   --tb-panel-heading-reflect: rgba(255, 85, 78, 0.22);
-  --tb-side-margin: 5.2%;
+  --tb-side-margin: 1.5%;
   --tb-center-gap: 2.6%;
   --tb-panel-width: 38.8%;
   --tb-panel-top: calc(182px * var(--tb-scale));
@@ -272,7 +272,7 @@
 .vs-tactical-board25-meta {
   position: absolute;
   top: calc(42px * var(--tb-scale));
-  left: var(--tb-side-margin);
+  left: 20px;
   width: 21%;
   display: grid;
   gap: calc(0.32rem * var(--tb-scale));
@@ -350,7 +350,7 @@
 .vs-tactical-board25-logo {
   position: absolute;
   top: calc(28px * var(--tb-scale));
-  right: var(--tb-side-margin);
+  right: 20px;
   width: auto;
   height: auto;
   border-radius: 0;
@@ -743,7 +743,7 @@
 .vs-tactical-board25-logo {
   position: absolute;
   top: calc(28px * var(--tb-scale));
-  right: var(--tb-side-margin);
+  right: 20px;
   background: transparent;
   display: flex;
   align-items: center;
