@@ -11,7 +11,6 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type FinalSummaryTemplateProps = TemplatePreviewProps & {
@@ -161,15 +160,15 @@ export function FinalSummaryTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -180,7 +179,7 @@ export function FinalSummaryTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -213,12 +212,12 @@ export function FinalSummaryTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
         
         <div className={layout.BODY_CLASS} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
-          <div className={layout.SIDE_FRAME_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)', boxShadow: `0 0 0 1px ${fighterA.color}33 inset` }}>
-            <div className={layout.SIDE_NAME_PLATE_CLASS} style={{ padding: '0.5rem', borderBottom: `1px solid ${fighterA.color}40`, background: `linear-gradient(90deg, ${fighterA.color}22, transparent)` }}>
+          <div className={layout.SIDE_FRAME_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', border: 'none', background: 'transparent' }}>
+            <div className={layout.SIDE_NAME_PLATE_CLASS} style={{ padding: '0.5rem', borderBottom: `1px solid ${fighterA.color}40`, border: 'none', background: 'transparent' }}>
               <p className="text-[10px] uppercase tracking-widest text-slate-400">{common.blueCorner}</p>
               <FittedText
                 as="p"
@@ -229,7 +228,7 @@ export function FinalSummaryTemplate({
                 style={{ color: fighterA.color, fontFamily: 'var(--font-display)', width: '100%', fontSize: '1.5rem' }}
               />
             </div>
-            <div className={layout.PORTRAIT_FRAME_CLASS} style={{ flex: 1, position: 'relative' }}>
+            <div className={layout.PORTRAIT_FRAME_CLASS} style={{ flex: 1, position: 'relative', border: 'none', background: 'transparent', height: 'auto' }}>
               {fighterA.imageUrl ? (
                 <AdjustableTemplateImage
                   imageUrl={fighterA.imageUrl}
@@ -257,8 +256,8 @@ export function FinalSummaryTemplate({
             </div>
           </div>
 
-          <div className={layout.CENTER_FRAME_CLASS} style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-            <div className={layout.VERDICT_PANEL_CLASS} style={{ background: 'rgba(255,255,255,0.05)', padding: '1rem', border: '1px solid rgba(255,255,255,0.1)', textAlign: 'center' }}>
+          <div className={layout.CENTER_FRAME_CLASS} style={{ flex: 1.5, display: 'flex', flexDirection: 'column', gap: '1rem', border: 'none', background: 'transparent' }}>
+            <div className={layout.VERDICT_PANEL_CLASS} style={{ padding: '1rem', textAlign: 'center', border: 'none', background: 'transparent' }}>
               <p className={layout.VERDICT_LABEL_CLASS} style={{ color: '#94a3b8', fontSize: '0.875rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{common.verdictLabel}</p>
               <FittedText
                 as="p"
@@ -271,7 +270,7 @@ export function FinalSummaryTemplate({
             </div>
 
             <div className={layout.SCORE_GRID_CLASS} style={{ display: 'flex', gap: '1rem' }}>
-              <div className={layout.SCORE_CARD_CLASS} style={{ flex: 1, padding: '1rem', background: 'rgba(0,0,0,0.4)', border: `1px solid ${fighterA.color}40`, boxShadow: `0 0 0 1px ${fighterA.color}33 inset`, textAlign: 'center' }}>
+              <div className={layout.SCORE_CARD_CLASS} style={{ flex: 1, padding: '1rem', textAlign: 'center', border: 'none', background: 'transparent' }}>
                 <FittedText
                   as="p"
                   slotKey={`final-summary:left-score-label:${fighterAName}`}
@@ -289,7 +288,7 @@ export function FinalSummaryTemplate({
                   style={{ color: fighterA.color, fontSize: '3rem', fontWeight: 'bold' }}
                 />
               </div>
-              <div className={layout.SCORE_CARD_CLASS} style={{ flex: 1, padding: '1rem', background: 'rgba(0,0,0,0.4)', border: `1px solid ${fighterB.color}40`, boxShadow: `0 0 0 1px ${fighterB.color}33 inset`, textAlign: 'center' }}>
+              <div className={layout.SCORE_CARD_CLASS} style={{ flex: 1, padding: '1rem', textAlign: 'center', border: 'none', background: 'transparent' }}>
                 <FittedText
                   as="p"
                   slotKey={`final-summary:right-score-label:${fighterBName}`}
@@ -309,18 +308,18 @@ export function FinalSummaryTemplate({
               </div>
             </div>
 
-            <div className={layout.SUMMARY_PANEL_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+            <div className={layout.SUMMARY_PANEL_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.5rem', border: 'none', background: 'transparent' }}>
               <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-2">{common.summaryLabel}</p>
               <div className={layout.SUMMARY_LIST_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', flex: 1 }}>
                 {summaryLines.map((item, index) => (
-                  <div key={`summary-line-${index}-${item}`} className={layout.SUMMARY_ITEM_CLASS} style={{ background: 'rgba(255,255,255,0.03)', padding: '0.5rem' }}>
+                  <div key={`summary-line-${index}-${item}`} className={layout.SUMMARY_ITEM_CLASS} style={{ padding: '0.25rem 0', border: 'none', background: 'transparent' }}>
                     <FittedText
                       as="p"
                       slotKey={`final-summary:line:${index}`}
                       spec={slots.summaryLine}
                       text={`${index + 1}. ${item}`}
                       className={layout.SUMMARY_LINE_TEXT_CLASS}
-                      style={{ color: '#e2e8f0', fontSize: '0.95rem' }}
+                      style={{ color: '#e2e8f0', fontSize: '1.1rem' }}
                     />
                   </div>
                 ))}
@@ -339,8 +338,8 @@ export function FinalSummaryTemplate({
             )}
           </div>
 
-          <div className={layout.SIDE_FRAME_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)', boxShadow: `0 0 0 1px ${fighterB.color}33 inset` }}>
-            <div className={layout.SIDE_NAME_PLATE_CLASS} style={{ padding: '0.5rem', borderBottom: `1px solid ${fighterB.color}40`, background: `linear-gradient(-90deg, ${fighterB.color}22, transparent)`, textAlign: 'right' }}>
+          <div className={layout.SIDE_FRAME_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', border: 'none', background: 'transparent' }}>
+            <div className={layout.SIDE_NAME_PLATE_CLASS} style={{ padding: '0.5rem', borderBottom: `1px solid ${fighterB.color}40`, textAlign: 'right', border: 'none', background: 'transparent' }}>
               <p className="text-[10px] uppercase tracking-widest text-slate-400">{common.redCorner}</p>
               <FittedText
                 as="p"
@@ -351,7 +350,7 @@ export function FinalSummaryTemplate({
                 style={{ color: fighterB.color, fontFamily: 'var(--font-display)', width: '100%', fontSize: '1.5rem' }}
               />
             </div>
-            <div className={layout.PORTRAIT_FRAME_CLASS} style={{ flex: 1, position: 'relative' }}>
+            <div className={layout.PORTRAIT_FRAME_CLASS} style={{ flex: 1, position: 'relative', border: 'none', background: 'transparent', height: 'auto' }}>
               {fighterB.imageUrl ? (
                 <AdjustableTemplateImage
                   imageUrl={fighterB.imageUrl}
@@ -381,12 +380,6 @@ export function FinalSummaryTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }

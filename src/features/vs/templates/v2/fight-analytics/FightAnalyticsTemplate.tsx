@@ -10,7 +10,6 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type FightAnalyticsTemplateProps = TemplatePreviewProps & {
@@ -142,15 +141,15 @@ export function FightAnalyticsTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -161,7 +160,7 @@ export function FightAnalyticsTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -185,44 +184,28 @@ export function FightAnalyticsTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
-        
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1, minHeight: 0 }}>
-          <div className={layout.BANNERS_GRID_CLASS} style={{ display: 'flex', gap: '1rem' }}>
-            <div style={{ flex: 1 }}>
-              <HighEndFighterBanner
-                templateId="fight-analytics"
-                language={language}
-                fighter={fighterA}
-                trailing={
-                  <div className={layout.AVERAGE_CARD_CLASS}>
-                    <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
-                    <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterA.color, fontWeight: 'bold' }}>
-                      {averageA.toFixed(1)}
-                    </p>
-                  </div>
-                }
-              />
+          <div style={{ display: 'flex', gap: '1rem' }}>
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.2rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase' }}>{fighterA.name}</span>
+              <div style={{ textAlign: 'right' }}>
+                <p style={{ fontSize: '0.7rem', color: '#94a3b8', textTransform: 'uppercase' }}>{averageShort}</p>
+                <p style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.5rem' }}>{averageA.toFixed(1)}</p>
+              </div>
             </div>
-            <div style={{ flex: 1 }}>
-              <HighEndFighterBanner
-                templateId="fight-analytics"
-                language={language}
-                fighter={fighterB}
-                trailing={
-                  <div className={layout.AVERAGE_CARD_CLASS}>
-                    <p className={layout.AVERAGE_LABEL_CLASS}>{averageShort}</p>
-                    <p className={layout.AVERAGE_VALUE_CLASS} style={{ color: fighterB.color, fontWeight: 'bold' }}>
-                      {averageB.toFixed(1)}
-                    </p>
-                  </div>
-                }
-              />
+            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+              <span style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.2rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase' }}>{fighterB.name}</span>
+              <div style={{ textAlign: 'right' }}>
+                <p style={{ fontSize: '0.7rem', color: '#94a3b8', textTransform: 'uppercase' }}>{averageShort}</p>
+                <p style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.5rem' }}>{averageB.toFixed(1)}</p>
+              </div>
             </div>
           </div>
 
-          <div className={layout.CONTENT_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+          <div className={layout.CONTENT_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', justifyContent: 'space-between', color: '#94a3b8', fontSize: '0.875rem', marginBottom: '1rem' }}>
               <p>{parameterLabel}</p>
               <div className={layout.SCALE_WRAP_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
@@ -245,7 +228,7 @@ export function FightAnalyticsTemplate({
                 <div
                   key={`row-${row.id}`}
                   className={layout.ROW_CLASS}
-                  style={{ display: 'flex', alignItems: 'center', gap: '1rem', animationDelay: `${index * 0.04}s` }}
+                  style={{ display: 'flex', alignItems: 'center', gap: '1rem', animationDelay: `${index * 0.04}s`, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0 }}
                 >
                   <FittedText
                     as="div"
@@ -279,12 +262,6 @@ export function FightAnalyticsTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }

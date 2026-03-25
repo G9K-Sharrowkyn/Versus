@@ -3,14 +3,11 @@ import { useState, useEffect, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
-import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type CharacterDossierBTemplateProps = TemplatePreviewProps & {
@@ -60,10 +57,6 @@ export function CharacterDossierBTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-dossier-b'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('character-dossier-b', language)
-  const ui = getTemplateUi('character-dossier-b', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
-  const layout = ui.template as Record<string, string>
-
   const BLUE_EKSTREMALNY = '#77e2f2'
   const RED_LINIA = '#ff554e'
 
@@ -77,8 +70,8 @@ export function CharacterDossierBTemplate({
   const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
-  
-  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 98px)" 
+
+  const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 230px)" 
   // ===========================================================================
 
   const fighterText = fighterB.name || getFightTemplateDefaultField('character-dossier-b', 'fighter_b_fallback', language)
@@ -90,7 +83,7 @@ export function CharacterDossierBTemplate({
   const fighterSubtitle = fighterB.subtitle || ""
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
   
-  const boardHeader = "POSTAĆ CZERWONA"
+  const boardHeader = "PORTRET"
   const realityHeader = "OPIS POSTACI"
 
   // Glitch effect logic
@@ -136,16 +129,16 @@ export function CharacterDossierBTemplate({
       {/* META INFO */}
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: BLUE_EKSTREMALNY, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       {/* MAIN HEADING */}
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -156,7 +149,7 @@ export function CharacterDossierBTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: 'none' }}>{subText}</p>
@@ -175,7 +168,7 @@ export function CharacterDossierBTemplate({
 
       {/* LEWY PANEL: PORTRET */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: 'none' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{boardHeader}</p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterB.imageUrl}
@@ -193,29 +186,28 @@ export function CharacterDossierBTemplate({
 
       {/* PRAWY PANEL: DANE POSTACI */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: 'none' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{realityHeader}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          
+
           {/* Imię Postaci */}
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI }}>{fighterText}</h3>
-            {fighterSubtitle ? <p className="vs-dossier-text-3" style={{ color: '#94a3b8', marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterSubtitle}</p> : null}
+          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterText}</h3>
           </div>
 
-          {/* Lista Faktów */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', flex: 1 }}>
+          {/* Lista Faktów - stałe pozycje */}
+          <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
             {cardFacts.map((fact, index) => (
-              <div key={`fact-${index}`} style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
-                <p className="vs-dossier-text-3" style={{ textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+              <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '160px' : '300px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
                 <p className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
           </div>
 
           {/* Cytat i Czerwona Linia */}
-          <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 88px) 0 0.5rem 0' }}>
-            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '88px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
-            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: POZYCJA_REFLEKSU_CZERWONEJ_LINII, left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
+          <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 250px) 0 0.5rem 0' }}>
+            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '220px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
+            <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: `calc(${POZYCJA_REFLEKSU_CZERWONEJ_LINII} + 0px)`, left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
             <div style={{ fontStyle: 'italic' }}>
               <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textTransform: 'none', textShadow: REFLEKS_CYTATU }}>"{dossierQuote}"</p>
             </div>

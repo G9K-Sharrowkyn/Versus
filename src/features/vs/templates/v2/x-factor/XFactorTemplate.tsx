@@ -11,7 +11,6 @@ import {
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 import { useSlotAutofit } from '../../shared/useSlotAutofit'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type XFactorTemplateProps = TemplatePreviewProps & {
@@ -214,15 +213,15 @@ export function XFactorTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -233,7 +232,7 @@ export function XFactorTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -260,13 +259,13 @@ export function XFactorTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
         
-        <div className={layout.BODY_CLASS as string} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+        <div className={layout.BODY_CLASS as string} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', border: 'none', background: 'transparent' }}>
           <div className={layout.FIGHTERS_WRAP_CLASS as string} style={{ display: 'flex', gap: '1rem' }}>
             {/* FIGHTER A METER */}
-            <div style={{ flex: 1, background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterA.color}40` }}>
+            <div style={{ flex: 1, padding: '0.5rem' }}>
               <FittedText
                 as="p"
                 slotKey={`${auditPrefix}:fighter-a`}
@@ -279,7 +278,7 @@ export function XFactorTemplate({
                 language={language}
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <div className={layout.METER_TRACK_A_CLASS as string} style={{ flex: 1, height: '16px', background: 'rgba(255,255,255,0.1)', position: 'relative' }}>
+                <div className={layout.METER_TRACK_A_CLASS as string} style={{ flex: 1, height: '16px', background: 'rgba(255,255,255,0.1)', position: 'relative', border: 'none' }}>
                   <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%`, height: '100%', backgroundColor: fighterA.color }} />
                   {superBonusPct > 0 ? (
                     <div
@@ -297,7 +296,7 @@ export function XFactorTemplate({
                 </div>
                 <div
                   className={layout.METER_VALUE_A_CLASS as string}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', minWidth: '50px' }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', minWidth: '50px', border: 'none', background: 'transparent' }}
                 >
                   <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterA.color, fontWeight: 'bold' }}>{Math.round(superPct)}%</span>
                   <span className={layout.METER_BONUS_VALUE_A_CLASS as string} style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>
@@ -308,7 +307,7 @@ export function XFactorTemplate({
             </div>
 
             {/* FIGHTER B METER */}
-            <div style={{ flex: 1, background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterB.color}40` }}>
+            <div style={{ flex: 1, padding: '0.5rem' }}>
               <FittedText
                 as="p"
                 slotKey={`${auditPrefix}:fighter-b`}
@@ -321,7 +320,7 @@ export function XFactorTemplate({
                 language={language}
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: 'row-reverse' }}>
-                <div className={layout.METER_TRACK_B_CLASS as string} style={{ flex: 1, height: '16px', background: 'rgba(255,255,255,0.1)', position: 'relative' }}>
+                <div className={layout.METER_TRACK_B_CLASS as string} style={{ flex: 1, height: '16px', background: 'rgba(255,255,255,0.1)', position: 'relative', border: 'none' }}>
                   <div className={layout.METER_FILL_B_CLASS as string} style={{ position: 'absolute', right: 0, width: `${Math.min(100, hyperPct)}%`, height: '100%', backgroundColor: fighterB.color }} />
                   {hyperBonusPct > 0 ? (
                     <div
@@ -339,7 +338,7 @@ export function XFactorTemplate({
                 </div>
                 <div
                   className={layout.METER_VALUE_B_CLASS as string}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: '50px' }}
+                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: '50px', border: 'none', background: 'transparent' }}
                 >
                   <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterB.color, fontWeight: 'bold' }}>{Math.round(hyperPct)}%</span>
                   <span className={layout.METER_BONUS_VALUE_B_CLASS as string} style={{ fontSize: '0.75rem', color: '#6ee7b7' }}>
@@ -351,9 +350,9 @@ export function XFactorTemplate({
           </div>
 
           <div className={layout.INSIGHTS_GRID_CLASS as string} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, background: 'rgba(0,0,0,0.4)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
               <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', height: '100%' }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#a78bfa' }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#a78bfa', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
                   <WandSparkles size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
                   <FittedText as="p" slotKey={`${auditPrefix}:mechanics-title`} spec={slots.xFactorInsightTitle} text={common.mechanicsLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
@@ -363,9 +362,9 @@ export function XFactorTemplate({
               </div>
             </div>
 
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, background: 'rgba(0,0,0,0.4)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
               <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', height: '100%' }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f472b6' }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f472b6', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
                   <Crosshair size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
                   <FittedText as="p" slotKey={`${auditPrefix}:implication-title`} spec={slots.xFactorInsightTitle} text={common.implicationLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
@@ -375,9 +374,9 @@ export function XFactorTemplate({
               </div>
             </div>
 
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, background: 'rgba(0,0,0,0.4)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
               <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', height: '100%' }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8' }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
                   <Brain size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
                   <FittedText as="p" slotKey={`${auditPrefix}:psychology-title`} spec={slots.xFactorInsightTitle} text={common.psychologyLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.2rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
@@ -389,7 +388,7 @@ export function XFactorTemplate({
           </div>
 
           {(trapTop || trapBottom || trapExample || trapQuestion) && (
-            <div className="mt-4 rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3" style={{ background: 'rgba(2, 6, 23, 0.8)', border: '1px dashed #67e8f9', padding: '1rem' }}>
+            <div style={{ padding: '0.5rem' }}>
               {(trapTop || trapBottom) && (
                 <div className={statTrapLayout.HEADLINE_BAND_CLASS} style={{ textAlign: 'center', marginBottom: '0.5rem' }}>
                   <p
@@ -416,12 +415,6 @@ export function XFactorTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }

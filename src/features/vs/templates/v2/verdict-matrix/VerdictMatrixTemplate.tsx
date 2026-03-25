@@ -10,7 +10,6 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type VerdictMatrixTemplateProps = TemplatePreviewProps & {
@@ -165,15 +164,15 @@ export function VerdictMatrixTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -184,7 +183,7 @@ export function VerdictMatrixTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -217,8 +216,8 @@ export function VerdictMatrixTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
         
         <div className="vs-tpl-body" style={{ justifyContent: 'center', flex: 1, display: 'flex', flexDirection: 'column' }}>
           <div className={`grid ${gridColsClass} overflow-hidden rounded-xl border border-cyan-300/45 bg-slate-950/40 shadow-2xl`} style={{ flex: 1 }}>
@@ -227,15 +226,15 @@ export function VerdictMatrixTemplate({
             {hasColumns ? (
               <>
                 <div className="border-b border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                  <FittedText as="p" slotKey="verdict-matrix:col-1" spec={slots.verdictMatrixHeader} text={col1 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.2rem', textTransform: 'uppercase' }} />
+                  <FittedText as="p" slotKey="verdict-matrix:col-1" spec={slots.verdictMatrixHeader} text={col1 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
                 </div>
                 <div className="border-b border-l border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                  <FittedText as="p" slotKey="verdict-matrix:col-2" spec={slots.verdictMatrixHeader} text={col2 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.2rem', textTransform: 'uppercase' }} />
+                  <FittedText as="p" slotKey="verdict-matrix:col-2" spec={slots.verdictMatrixHeader} text={col2 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
                 </div>
               </>
             ) : (
               <div className="border-b border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                <FittedText as="p" slotKey="verdict-matrix:verdict-label" spec={slots.verdictMatrixHeader} text={common.verdictLabel} className="font-bold text-cyan-200" style={{ fontSize: '1.2rem', textTransform: 'uppercase' }} />
+                <FittedText as="p" slotKey="verdict-matrix:verdict-label" spec={slots.verdictMatrixHeader} text={common.verdictLabel} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
               </div>
             )}
 
@@ -243,7 +242,7 @@ export function VerdictMatrixTemplate({
               <Fragment key={`row-group-${r}`}>
                 <div className={`relative border ${hasColumns || r > 0 ? 'border-t-0' : ''} border-cyan-300/45 bg-slate-900/72 min-h-[150px] flex items-center justify-center`}>
                   <div className="absolute left-1/2 top-1/2 w-[200px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
-                    <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100 font-bold" style={{ fontSize: '1.1rem', letterSpacing: '0.1em' }} />
+                    <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100 font-bold" style={{ fontSize: '1.25rem', letterSpacing: '0.1em' }} />
                   </div>
                 </div>
                 {Array.from({ length: effectiveColCount }, (_, c) => {
@@ -274,7 +273,7 @@ export function VerdictMatrixTemplate({
                         spec={slots.verdictMatrixBody}
                         text={body}
                         className="relative z-10 text-slate-100 font-medium"
-                        style={{ fontSize: '1.1rem', lineHeight: 1.5 }}
+                        style={{ fontSize: '1.25rem', lineHeight: 1.5 }}
                       />
                       <div
                         className="pointer-events-none absolute inset-0 flex items-center justify-center font-bold transition-opacity duration-500"
@@ -291,12 +290,6 @@ export function VerdictMatrixTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }

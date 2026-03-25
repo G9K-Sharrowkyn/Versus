@@ -3,7 +3,6 @@ import { useState, useEffect, type ReactNode } from 'react'
 import { iconForCategory, AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 import { FittedText } from '../../shared/FittedText'
 import { HighEndFighterBanner } from '../../shared/highEnd'
@@ -138,20 +137,14 @@ export function ParameterComparisonTemplate({
       return (
         <div
           key={`${slotPrefix}-adv-${row.id}`}
-          style={{
-            borderColor: `${color}7A`,
-            background: `linear-gradient(180deg, ${color}26 0%, rgba(2,6,23,0.86) 100%)`,
-            boxShadow: `0 0 0 1px ${color}22 inset`,
-            padding: '0.5rem',
-            border: `1px solid ${color}40`
-          }}
+          style={{ padding: '0.25rem 0', borderBottom: `1px solid rgba(255,255,255,0.07)` }}
         >
           <FittedText
             as="p"
             slotKey={`${auditPrefix}:${slotPrefix}-label-${row.id}`}
             spec={slots.parameterAdvantageLabel}
             text={row.label}
-            style={{ color, fontWeight: 'bold' }}
+            style={{ color, fontWeight: 'bold', fontSize: '1rem' }}
             templateId="parameter-comparison"
             activeFightId={activeFightId}
             language={language}
@@ -161,7 +154,7 @@ export function ParameterComparisonTemplate({
             slotKey={`${auditPrefix}:${slotPrefix}-value-${row.id}`}
             spec={slots.parameterAdvantageValue}
             text={valueText}
-            style={{ color: '#e2e8f0', fontSize: '0.9rem' }}
+            style={{ color: '#e2e8f0', fontSize: '0.95rem' }}
             templateId="parameter-comparison"
             activeFightId={activeFightId}
             language={language}
@@ -228,15 +221,15 @@ export function ParameterComparisonTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -247,7 +240,7 @@ export function ParameterComparisonTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -271,19 +264,19 @@ export function ParameterComparisonTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'flex', gap: '1rem', flex: 1, minHeight: 0 }}>
-             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterA.color}40` }}>
-               <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterA, name: leftHeader }} />
+             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+               <p style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.3rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', paddingBottom: '0.25rem', borderBottom: `2px solid ${fighterA.color}40` }}>{leftHeader}</p>
                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', overflowY: 'auto' }}>
                  {renderAdvantageCards(leftAdvantages, 'a', fighterA.color, common.noLeftCategoryEdge, 'left')}
                </div>
              </div>
-             
+
              <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-               <div style={{ flex: 2, background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)', position: 'relative' }}>
+               <div style={{ flex: 2, position: 'relative' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <RadarChart
                       data={rows}
@@ -298,32 +291,32 @@ export function ParameterComparisonTemplate({
                     </RadarChart>
                   </ResponsiveContainer>
                </div>
-               <div style={{ flex: 1, background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)', padding: '1rem', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+               <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
                  <p style={{ textAlign: 'center', color: '#cbd5e1', fontSize: '1.2rem', textTransform: 'uppercase' }}>{drawHeader}</p>
                  <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', overflowY: 'auto' }}>
                    {renderAdvantageCards(drawRows, 'draw', '#cbd5e1', common.noDrawsCurrentSetup, 'draw')}
                  </div>
                </div>
              </div>
-             
-             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${fighterB.color}40` }}>
-               <HighEndFighterBanner templateId="parameter-comparison" language={language} fighter={{ ...fighterB, name: rightHeader }} />
+
+             <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+               <p style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.3rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', paddingBottom: '0.25rem', borderBottom: `2px solid ${fighterB.color}40` }}>{rightHeader}</p>
                <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', overflowY: 'auto' }}>
                  {renderAdvantageCards(rightAdvantages, 'b', fighterB.color, common.noRightCategoryEdge, 'right')}
                </div>
              </div>
           </div>
-          
-          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', padding: '1rem', background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
+
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', alignItems: 'center', padding: '0.75rem 1rem' }}>
             <div style={{ padding: '0.5rem 2rem', border: `1px solid ${fighterA.color}`, background: `${fighterA.color}20` }}>
               <span style={{ color: fighterA.color, fontSize: '2rem', fontWeight: 'bold' }}>{Math.round(averageA)}</span>
             </div>
-            
+
             <div style={{ color: '#fff', fontSize: '1.5rem', textAlign: 'center' }}>
               <div>{favoriteLabel}</div>
               <div style={{ color: favoriteSide === 'a' ? fighterA.color : favoriteSide === 'b' ? fighterB.color : '#fff', fontWeight: 'bold' }}>{favorite}</div>
             </div>
-            
+
             <div style={{ padding: '0.5rem 2rem', border: `1px solid ${fighterB.color}`, background: `${fighterB.color}20` }}>
               <span style={{ color: fighterB.color, fontSize: '2rem', fontWeight: 'bold' }}>{Math.round(averageB)}</span>
             </div>
@@ -331,12 +324,6 @@ export function ParameterComparisonTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }

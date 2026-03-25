@@ -17,15 +17,12 @@ import {
   type TemplateImageEntry,
 } from '../../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../../types'
-import { FittedText } from '../../shared/FittedText'
 import { HighEndFighterBanner } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
-import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type VictoryArchiveTemplateProps = TemplatePreviewProps & {
@@ -79,14 +76,11 @@ export function VictoryArchiveTemplate({
     pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
-  // Old Template logic
+  // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['victory-archive'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('victory-archive', language)
-  const ui = getTemplateUi('victory-archive', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
-  const layout = ui.template as Record<string, string>
-  
+
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const archiveLabel = getFightTemplateDefaultField('victory-archive', 'archive_label', language)
   const subText = subtitle || archiveLabel
@@ -112,18 +106,6 @@ export function VictoryArchiveTemplate({
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
   
-  const frameStyle = {
-    minHeight: 0,
-    flex: 1,
-    border: '1px solid rgba(148, 163, 184, 0.2)',
-    borderRadius: '0.375rem',
-    background: 'rgba(2, 6, 23, 0.5)',
-    padding: '0.75rem',
-    boxShadow: 'inset 0 0 0 1px rgba(255, 255, 255, 0.06), 0 10px 18px rgba(0, 0, 0, 0.18)',
-    display: 'flex',
-    flexDirection: 'column' as const,
-  }
-
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
   const entriesUnit =
@@ -174,42 +156,32 @@ export function VictoryArchiveTemplate({
       buildLegacyTemplateImageAdjustKey('victory-archive', side, entry),
     ]
     const entryBadge = (
-      <span
-        className={layout.ENTRY_BADGE_CLASS}
-        style={{ borderColor: `${fighter.color}88`, color: fighter.color, padding: '0.25rem 0.5rem', background: 'rgba(0,0,0,0.5)', borderRadius: '4px' }}
-      >
+      <span style={{ borderColor: `${fighter.color}88`, color: fighter.color, padding: '0.25rem 0.5rem', background: 'rgba(0,0,0,0.5)', borderRadius: '4px', border: '1px solid' }}>
         {pairCount} {entriesUnit}
       </span>
     )
 
     return (
-      <div className={layout.COLUMN_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
         <HighEndFighterBanner templateId="victory-archive" language={language} fighter={fighter} trailing={entryBadge} />
-        <div className={layout.COLUMN_BODY_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', marginTop: '0.5rem' }}>
-          <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
-            <AdjustableTemplateImage
-              imageUrl={imageUrl}
-              alt={entry?.text || columnTitle}
-              fallbackLabel={common.noImage}
-              hintLabel=""
-              adjustKey={adjustKey}
-              legacyAdjustKeys={legacyAdjustKeys}
-              adjustments={slideImageAdjustments}
-              onAdjustChange={onSlideImageAdjustChange}
-              onAdjustCommit={onSlideImageAdjustCommit}
-              onActivate={nextPair}
-            />
-          </div>
-          <div className={layout.CAPTION_CARD_CLASS} style={{ padding: '0.5rem', background: 'rgba(0,0,0,0.6)', borderTop: `1px solid ${fighter.color}` }}>
-            <FittedText
-              as="p"
-              slotKey={`victory-archive:${side}:caption:${entry?.id || 'empty'}`}
-              spec={slots.imageCaption}
-              text={entry?.text || common.noEntry}
-              className={layout.CAPTION_TEXT_CLASS}
-            />
-          </div>
+        <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
+          <AdjustableTemplateImage
+            imageUrl={imageUrl}
+            alt={entry?.text || columnTitle}
+            fallbackLabel={common.noImage}
+            hintLabel=""
+            adjustKey={adjustKey}
+            legacyAdjustKeys={legacyAdjustKeys}
+            adjustments={slideImageAdjustments}
+            onAdjustChange={onSlideImageAdjustChange}
+            onAdjustCommit={onSlideImageAdjustCommit}
+            onActivate={nextPair}
+            plain
+          />
         </div>
+        {entry?.text && (
+          <p style={{ color: '#94a3b8', fontSize: '0.75rem', textAlign: 'center', padding: '0 0.5rem' }}>{entry.text}</p>
+        )}
       </div>
     )
   }
@@ -272,15 +244,15 @@ export function VictoryArchiveTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -291,7 +263,7 @@ export function VictoryArchiveTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -315,22 +287,14 @@ export function VictoryArchiveTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
-        
-        <div style={frameStyle}>
-          <div className={layout.BODY_CLASS} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
-            {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
-            {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
-          </div>
-        </div>
+      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+        {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
+      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-reality-heading" style={{ color: '#ff554e' }}>{realityHeader}</p>
+        {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
       </div>
     </div>
   )

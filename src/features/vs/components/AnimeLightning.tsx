@@ -210,14 +210,33 @@ export function AnimeLightning() {
         for (const line of nodesRef.current) {
           for (const n of line) {
             const sparkle = Math.abs(Math.sin(time * 0.01 + n.phase))
-            const size = 3 + sparkle * 4
-            c.globalAlpha = 0.3 + sparkle * 0.7
-            c.fillStyle = BOLT_COLOR_PRIMARY
-            c.shadowBlur = 10
+            const outerR = 5 + sparkle * 4
+            const gap = 3
+            const alpha = 0.3 + sparkle * 0.7
+            c.globalAlpha = alpha
+            c.strokeStyle = BOLT_COLOR_PRIMARY
+            c.shadowBlur = 12
             c.shadowColor = BOLT_COLOR_PRIMARY
-            c.fillRect(n.x - size/2, n.y - size/2, size, size)
+            c.lineWidth = 1.2
+            // Outer ring
+            c.beginPath()
+            c.arc(n.x, n.y, outerR, 0, Math.PI * 2)
+            c.stroke()
+            // Crosshair lines (4 directions, with gap)
+            c.beginPath()
+            c.moveTo(n.x - outerR - 3, n.y); c.lineTo(n.x - gap, n.y)
+            c.moveTo(n.x + gap, n.y);        c.lineTo(n.x + outerR + 3, n.y)
+            c.moveTo(n.x, n.y - outerR - 3); c.lineTo(n.x, n.y - gap)
+            c.moveTo(n.x, n.y + gap);        c.lineTo(n.x, n.y + outerR + 3)
+            c.stroke()
+            // Inner bright dot
+            c.globalAlpha = alpha
             c.fillStyle = BOLT_COLOR_WHITE
-            c.fillRect(n.x - 1, n.y - 1, 2, 2)
+            c.shadowBlur = 6
+            c.shadowColor = BOLT_COLOR_WHITE
+            c.beginPath()
+            c.arc(n.x, n.y, 1.5, 0, Math.PI * 2)
+            c.fill()
           }
         }
 

@@ -36,7 +36,7 @@
 .vs-tb-signal-main .glitch-letter-container {
   display: flex;
   gap: 0;
-  font-size: 4.5vw;
+  font-size: 3.5vw;
   /* Apply the structural shake (glitch) to the whole container so it moves as one unit */
   animation: glitch 5s 5s infinite;
 }

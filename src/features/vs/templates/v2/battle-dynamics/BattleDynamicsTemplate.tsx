@@ -10,7 +10,6 @@ import {
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 import { useScopedCycleIndex } from '../../../hooks/useScopedCycleIndex'
-import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type BattleDynamicsTemplateProps = TemplatePreviewProps & {
@@ -193,15 +192,15 @@ export function BattleDynamicsTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(119, 226, 242, 0.2)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0 }}>
+        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -212,7 +211,7 @@ export function BattleDynamicsTemplate({
                 )
               ))}
             </div>
-            <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
+            <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
@@ -236,16 +235,16 @@ export function BattleDynamicsTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
-        
-        <div className={`${layout.CHART_PANEL_CLASS as string} flex-1 flex flex-col`} style={{ background: 'rgba(2, 6, 23, 0.5)', border: '1px solid rgba(148, 163, 184, 0.2)', padding: '1rem', position: 'relative' }}>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+
+        <div className={`${layout.CHART_PANEL_CLASS as string} flex-1 flex flex-col`} style={{ padding: '0.5rem', position: 'relative' }}>
           <svg
             viewBox={layout.SVG_VIEWBOX as string}
             className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
             onClick={scenarios.length > 1 ? nextScenario : undefined}
             preserveAspectRatio="xMidYMid meet"
-            style={{ width: '100%', height: 'auto', flex: 1 }}
+            style={{ width: '100%', height: 'auto' }}
           >
             <defs>
               <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
@@ -290,8 +289,8 @@ export function BattleDynamicsTemplate({
             ))}
           </svg>
 
-          <div className="mt-auto" style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <div className={layout.ANALYSIS_PANEL_CLASS as string} style={{ minHeight: '94px', display: 'flex', flexDirection: 'column', justifyContent: 'center', background: 'rgba(0,0,0,0.3)', padding: '0.5rem', border: '1px dashed rgba(255,255,255,0.1)' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+            <div className={layout.ANALYSIS_PANEL_CLASS as string} style={{ minHeight: '94px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0.5rem', border: 'none', background: 'transparent' }}>
               <p className="mb-1 min-h-[1.25rem] text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
                 {scenarios.length > 1 && active.label ? active.label : ''}
               </p>
@@ -315,34 +314,34 @@ export function BattleDynamicsTemplate({
             </div>
 
             <div className={layout.PHASE_GRID_CLASS as string} style={{ display: 'flex', gap: '0.5rem' }}>
-              <div className={layout.PHASE_CARD_A_CLASS as string} style={{ flex: 1, padding: '0.5rem', background: 'rgba(56, 189, 248, 0.1)', border: '1px solid rgba(56, 189, 248, 0.3)' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#38bdf8', marginBottom: '0.25rem' }}>{common.phase1Label}</p>
+              <div className={layout.PHASE_CARD_A_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
+                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#38bdf8', marginBottom: '0.25rem' }}>{common.phase1Label}</p>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-1:${activeIndex}`}
                   spec={slots.battleDynamicsPhase}
                   text={active.phase1}
-                  style={{ fontSize: '0.9rem', color: '#e2e8f0' }}
+                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
                 />
               </div>
-              <div className={layout.PHASE_CARD_MID_CLASS as string} style={{ flex: 1, padding: '0.5rem', background: 'rgba(148, 163, 184, 0.1)', border: '1px solid rgba(148, 163, 184, 0.3)' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '0.25rem' }}>{common.phase2Label}</p>
+              <div className={layout.PHASE_CARD_MID_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
+                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '0.25rem' }}>{common.phase2Label}</p>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-2:${activeIndex}`}
                   spec={slots.battleDynamicsPhase}
                   text={active.phase2}
-                  style={{ fontSize: '0.9rem', color: '#e2e8f0' }}
+                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
                 />
               </div>
-              <div className={layout.PHASE_CARD_B_CLASS as string} style={{ flex: 1, padding: '0.5rem', background: 'rgba(248, 113, 113, 0.1)', border: '1px solid rgba(248, 113, 113, 0.3)' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.75rem', textTransform: 'uppercase', color: '#f87171', marginBottom: '0.25rem' }}>{common.phase3Label}</p>
+              <div className={layout.PHASE_CARD_B_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
+                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#f87171', marginBottom: '0.25rem' }}>{common.phase3Label}</p>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-3:${activeIndex}`}
                   spec={slots.battleDynamicsPhase}
                   text={active.phase3}
-                  style={{ fontSize: '0.9rem', color: '#e2e8f0' }}
+                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
                 />
               </div>
             </div>
@@ -350,12 +349,6 @@ export function BattleDynamicsTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
-        </div>
-      </div>
     </div>
   )
 }
