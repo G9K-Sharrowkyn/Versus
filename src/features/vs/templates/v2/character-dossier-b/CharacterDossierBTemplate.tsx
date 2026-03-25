@@ -1,6 +1,7 @@
 import './CharacterDossierBTemplate.scss'
 import { useState, useEffect, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
+import { GlitchText } from '../../../components/GlitchText'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
@@ -67,7 +68,7 @@ export function CharacterDossierBTemplate({
   
   const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)" 
-  const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)" 
+  const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)" 
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
   const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
 
@@ -152,7 +153,7 @@ export function CharacterDossierBTemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: 'none' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={subText} /></p>
       </div>
 
       <button
@@ -168,7 +169,7 @@ export function CharacterDossierBTemplate({
 
       {/* LEWY PANEL: PORTRET */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={boardHeader} /></p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterB.imageUrl}
@@ -186,7 +187,7 @@ export function CharacterDossierBTemplate({
 
       {/* PRAWY PANEL: DANE POSTACI */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={realityHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
 
           {/* Imię Postaci */}
@@ -199,7 +200,7 @@ export function CharacterDossierBTemplate({
             {cardFacts.map((fact, index) => (
               <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
                 <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
-                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fact.title}</p>
+                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fact.title} /></p>
                   <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
                   <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
                 </div>

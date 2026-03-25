@@ -1,5 +1,6 @@
 import './CharacterProfileTemplate.scss'
 import { useState, useEffect, type ReactNode } from 'react'
+import { GlitchText } from '../../../components/GlitchText'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
@@ -91,7 +92,7 @@ export function CharacterProfileTemplate({
   const RED_LINIA = '#ff554e'
   const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)"
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)"
-  const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
+  const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)"
   const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)"
 
   // Glitch effect for title
@@ -199,13 +200,13 @@ export function CharacterProfileTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
             <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.75)' }}>{fighterA.name}</h3>
-            {fighterA.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterA.subtitle}</p> : null}
+            {fighterA.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fighterA.subtitle} /></p> : null}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', flex: 1 }}>
             {sectionRows.map((section) => (
               section.leftItems.length > 0 ? (
                 <div key={section.key} style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{section.label}</p>
+                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
                   {section.leftItems.map((item, i) => (
                     <p key={i} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
                   ))}
@@ -220,13 +221,13 @@ export function CharacterProfileTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
             <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.75)' }}>{fighterB.name}</h3>
-            {fighterB.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW }}>{fighterB.subtitle}</p> : null}
+            {fighterB.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fighterB.subtitle} /></p> : null}
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', flex: 1 }}>
             {sectionRows.map((section) => (
               section.rightItems.length > 0 ? (
                 <div key={section.key} style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW }}>{section.label}</p>
+                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
                   {section.rightItems.map((item, i) => (
                     <p key={i} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
                   ))}
