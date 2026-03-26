@@ -28,6 +28,19 @@ const DOSSIER_BLUE_PANEL_TEXT_STYLE: CSSProperties = {
   textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.55em rgba(119, 226, 242, 0.45)',
 }
 
+const DOSSIER_RED_PANEL_TEXT_STYLE: CSSProperties = {
+  ...DOSSIER_BLUE_PANEL_TEXT_STYLE,
+  color: '#ff554e',
+  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.48em rgba(255, 85, 78, 0.62)',
+}
+
+// Alignment knobs for manual fine-tuning (edit +/- px values here).
+const TRACK_ALIGNMENT_SHIFT_PX = -12
+const SCALE_ALIGNMENT_SHIFT_PX = -30
+const VALUE_COLUMN_WIDTH_PX = 30
+const SCALE_MARKS_OFFSET_Y_PX = 24
+const SCALE_MARKS_GAP_PX = 300
+
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
@@ -191,38 +204,53 @@ export function FightAnalyticsTemplate({
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
-          <div style={{ display: 'flex', gap: '1rem' }}>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
               <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterA.name}</span>
-              <div style={{ textAlign: 'right' }}>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageShort}</p>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageA.toFixed(1)}</p>
-              </div>
+              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
+                {averageShort} {averageA.toFixed(1)}
+              </p>
             </div>
-            <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterB.name}</span>
-              <div style={{ textAlign: 'right' }}>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageShort}</p>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageB.toFixed(1)}</p>
-              </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{fighterB.name}</span>
+              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'right' }}>
+                {averageShort} {averageB.toFixed(1)}
+              </p>
             </div>
           </div>
 
           <div className={layout.CONTENT_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.65rem', alignItems: 'flex-end' }}>
-              <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{parameterLabel}</p>
-              <div className={layout.SCALE_WRAP_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{scoreScaleLabel}</span>
-                <div className={layout.SCALE_GRID_CLASS} style={{ width: '340px', position: 'relative', paddingBottom: '0.55rem' }}>
-                  <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: '1px', background: 'rgba(148, 163, 184, 0.45)', transform: 'translateY(-50%)' }} />
-                  <div className={layout.SCALE_MARKS_CLASS} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', alignItems: 'center' }}>
-                    {scaleMarks.map((mark) => (
-                      <span key={`fight-analytics-scale-${mark}`} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>
-                        {mark}
-                      </span>
-                    ))}
+            <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', marginBottom: '0.65rem', alignItems: 'flex-end', gap: '1.1rem' }}>
+              <div style={{ width: '22%' }}>
+                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{parameterLabel}</p>
+              </div>
+              <div className={layout.SCALE_WRAP_CLASS} style={{ flex: 1, marginLeft: `${SCALE_ALIGNMENT_SHIFT_PX}px` }}>
+                <div style={{ marginBottom: '0.3rem', textAlign: 'left' }}>
+                  <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{scoreScaleLabel}</span>
+                </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                  <div style={{ flex: 1, position: 'relative', minHeight: '1.35rem' }}>
+                    <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: '1px', background: 'rgba(148, 163, 184, 0.45)', transform: 'translateY(-50%)' }} />
+                    <div
+                      className={layout.SCALE_MARKS_CLASS}
+                      style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(5, minmax(0, 1fr))',
+                        alignItems: 'center',
+                        columnGap: `${SCALE_MARKS_GAP_PX}px`,
+                      }}
+                    >
+                      {scaleMarks.map((mark) => (
+                        <span
+                          key={`fight-analytics-scale-${mark}`}
+                          style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center', transform: `translateY(${SCALE_MARKS_OFFSET_Y_PX}px)` }}
+                        >
+                          {mark}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div />
+                  <div style={{ width: `${VALUE_COLUMN_WIDTH_PX}px`, flex: `0 0 ${VALUE_COLUMN_WIDTH_PX}px` }} />
                 </div>
               </div>
             </div>
@@ -237,18 +265,18 @@ export function FightAnalyticsTemplate({
                     <p className={layout.ROW_LABEL_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '22%', overflowWrap: 'anywhere' }}>
                       {row.label}
                     </p>
-                    <div className={layout.BAR_GROUP_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.28rem', marginLeft: '-0.75rem' }}>
+                    <div className={layout.BAR_GROUP_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.28rem', marginLeft: `${TRACK_ALIGNMENT_SHIFT_PX}px` }}>
                       <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
                           <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.a}%`, backgroundColor: fighterA.color, height: '100%' }} />
                         </div>
-                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '56px', textAlign: 'right' }}>{row.a}</span>
+                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: `${VALUE_COLUMN_WIDTH_PX}px`, textAlign: 'right' }}>{row.a}</span>
                       </div>
                       <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
                         <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
                           <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.b}%`, backgroundColor: fighterB.color, height: '100%' }} />
                         </div>
-                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '56px', textAlign: 'right' }}>{row.b}</span>
+                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: `${VALUE_COLUMN_WIDTH_PX}px`, textAlign: 'right' }}>{row.b}</span>
                       </div>
                     </div>
                   </div>
