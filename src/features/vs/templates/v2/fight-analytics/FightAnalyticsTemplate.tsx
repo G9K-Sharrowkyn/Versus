@@ -1,15 +1,14 @@
 import './FightAnalyticsTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
-import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
+import { getTemplateUi } from '../../shared/templateUi'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type FightAnalyticsTemplateProps = TemplatePreviewProps & {
@@ -17,6 +16,17 @@ type FightAnalyticsTemplateProps = TemplatePreviewProps & {
 }
 
 const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+
+const DOSSIER_BLUE_PANEL_TEXT_STYLE: CSSProperties = {
+  color: '#77e2f2',
+  fontFamily: "'Chakra Petch', sans-serif",
+  fontSize: 'calc(var(--tb-type-2) * 0.8)',
+  fontWeight: 800,
+  lineHeight: 1,
+  textTransform: 'uppercase',
+  margin: 0,
+  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.55em rgba(119, 226, 242, 0.45)',
+}
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -46,7 +56,6 @@ export function FightAnalyticsTemplate({
   title,
   subtitle,
   templateBlocks,
-  activeFightId,
   language,
   onToggleLanguage,
   integratedToolbar,
@@ -59,7 +68,6 @@ export function FightAnalyticsTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('fight-analytics', language)
   const ui = getTemplateUi('fight-analytics', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -76,7 +84,6 @@ export function FightAnalyticsTemplate({
     getFightTemplateDefaultField('fight-analytics', 'parameter_label', language) || common.parameterLabel
   const scoreScaleLabel =
     getFightTemplateDefaultField('fight-analytics', 'score_scale_label', language) || common.scoreScaleLabel
-  const auditPrefix = `${activeFightId || 'draft'}:fight-analytics`
   const scaleMarks = ['0', '25', '50', '75', '100']
 
   // Glitch effect for title
@@ -186,31 +193,31 @@ export function FightAnalyticsTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'flex', gap: '1rem' }}>
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.42rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase' }}>{fighterA.name}</span>
+              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterA.name}</span>
               <div style={{ textAlign: 'right' }}>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{averageShort}</p>
-                <p style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.8rem' }}>{averageA.toFixed(1)}</p>
+                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageShort}</p>
+                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageA.toFixed(1)}</p>
               </div>
             </div>
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-              <span style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.42rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase' }}>{fighterB.name}</span>
+              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterB.name}</span>
               <div style={{ textAlign: 'right' }}>
-                <p style={{ fontSize: '0.82rem', color: '#94a3b8', textTransform: 'uppercase', letterSpacing: '0.08em' }}>{averageShort}</p>
-                <p style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.8rem' }}>{averageB.toFixed(1)}</p>
+                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageShort}</p>
+                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{averageB.toFixed(1)}</p>
               </div>
             </div>
           </div>
 
           <div className={layout.CONTENT_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-            <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', justifyContent: 'space-between', color: '#94a3b8', fontSize: '1rem', marginBottom: '0.65rem', alignItems: 'flex-end' }}>
-              <p>{parameterLabel}</p>
+            <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '0.65rem', alignItems: 'flex-end' }}>
+              <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{parameterLabel}</p>
               <div className={layout.SCALE_WRAP_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <span>{scoreScaleLabel}</span>
+                <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{scoreScaleLabel}</span>
                 <div className={layout.SCALE_GRID_CLASS} style={{ width: '340px', position: 'relative', paddingBottom: '0.55rem' }}>
                   <div style={{ position: 'absolute', left: 0, right: 0, top: '50%', height: '1px', background: 'rgba(148, 163, 184, 0.45)', transform: 'translateY(-50%)' }} />
                   <div className={layout.SCALE_MARKS_CLASS} style={{ display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', alignItems: 'center' }}>
                     {scaleMarks.map((mark) => (
-                      <span key={`fight-analytics-scale-${mark}`} style={{ color: '#cbd5e1', fontSize: '0.86rem', textAlign: 'center' }}>
+                      <span key={`fight-analytics-scale-${mark}`} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>
                         {mark}
                       </span>
                     ))}
@@ -220,38 +227,36 @@ export function FightAnalyticsTemplate({
               </div>
             </div>
             
-            <div className={layout.ROWS_WRAP_CLASS} style={{ overflowY: 'auto', flex: 1, display: 'flex', flexDirection: 'column', gap: '0.62rem', justifyContent: 'flex-end', paddingBottom: '0.25rem' }}>
+            <div className={layout.ROWS_WRAP_CLASS} style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
               {rows.map((row, index) => (
-                <div
-                  key={`row-${row.id}`}
-                  className={layout.ROW_CLASS}
-                  style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', animationDelay: `${index * 0.04}s`, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0 }}
-                >
-                  <FittedText
-                    as="div"
-                    slotKey={`${auditPrefix}:row-label-${row.id}`}
-                    spec={slots.parameterAdvantageValue}
-                    text={row.label}
-                    className={layout.ROW_LABEL_CLASS}
-                    style={{ width: '22%', color: '#cbd5e1', fontSize: 'calc(var(--tb-type-3) * 0.88)', letterSpacing: '0.02em' }}
-                    templateId="fight-analytics"
-                    activeFightId={activeFightId}
-                    language={language}
-                  />
-                  <div className={layout.BAR_GROUP_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.28rem', marginLeft: '-0.75rem' }}>
-                    <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
-                        <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.a}%`, backgroundColor: fighterA.color, height: '100%' }} />
+                <div key={`row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+                  <div
+                    className={layout.ROW_CLASS}
+                    style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', animationDelay: `${index * 0.04}s`, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, overflow: 'visible' }}
+                  >
+                    <p className={layout.ROW_LABEL_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '22%', overflowWrap: 'anywhere' }}>
+                      {row.label}
+                    </p>
+                    <div className={layout.BAR_GROUP_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.28rem', marginLeft: '-0.75rem' }}>
+                      <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
+                          <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.a}%`, backgroundColor: fighterA.color, height: '100%' }} />
+                        </div>
+                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '56px', textAlign: 'right' }}>{row.a}</span>
                       </div>
-                      <span className={layout.BAR_VALUE_CLASS} style={{ width: '34px', textAlign: 'right', color: fighterA.color, fontWeight: 'bold', fontSize: '0.95rem' }}>{row.a}</span>
-                    </div>
-                    <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
-                      <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
-                        <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.b}%`, backgroundColor: fighterB.color, height: '100%' }} />
+                      <div className={layout.BAR_ROW_CLASS} style={{ display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
+                        <div className={layout.BAR_TRACK_CLASS} style={{ flex: 1, background: 'rgba(255,255,255,0.06)', height: '14px' }}>
+                          <div className={layout.BAR_FILL_CLASS} style={{ width: `${row.b}%`, backgroundColor: fighterB.color, height: '100%' }} />
+                        </div>
+                        <span className={layout.BAR_VALUE_CLASS} style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: '56px', textAlign: 'right' }}>{row.b}</span>
                       </div>
-                      <span className={layout.BAR_VALUE_CLASS} style={{ width: '34px', textAlign: 'right', color: fighterB.color, fontWeight: 'bold', fontSize: '0.95rem' }}>{row.b}</span>
                     </div>
                   </div>
+                  {index < rows.length - 1 ? (
+                    <div style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
+                      <div style={{ height: '2px', background: '#ff554e' }} />
+                    </div>
+                  ) : null}
                 </div>
               ))}
             </div>
