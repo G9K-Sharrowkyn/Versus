@@ -1,4 +1,5 @@
-@import "../../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss";
+@use "sass:math";
+@use "../../../../../../anime/Pure CSS Glitch Experiment (Twitch Intro WIP).scss" as *;
 
 /* Custom override for the global glitch animation to prevent panel dimming */
 @keyframes glitch {
@@ -13,9 +14,9 @@
 @keyframes noise-1-scaled {
   $steps: 30;
   @for $i from 1 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(50);
-      $bottom: random(51 - $top);
+    #{math.percentage(math.div($i, $steps))} {
+      $top: math.random(50);
+      $bottom: math.random(51 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);
     }
   }
@@ -24,9 +25,9 @@
 @keyframes noise-2-scaled {
   $steps: 30;
   @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(50);
-      $bottom: random(51 - $top);
+    #{math.percentage(math.div($i, $steps))} {
+      $top: math.random(50);
+      $bottom: math.random(51 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);
     }
   }
@@ -817,3 +818,7 @@
 .vs-dossier-line-with-reflection::after {
 
 }
+
+
+
+

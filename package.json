@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "prebuild": "npm run templates:sync && npm run templates:guard && npm run fights:guard && npm run i18n:audit && npm run i18n:keys",
+    "prebuild": "npm run templates:sync && npm run templates:guard && npm run fights:guard && npm run i18n:audit && npm run i18n:keys && npm run sass:guard",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
@@ -16,6 +16,7 @@
     "fights:audit:layout": "node scripts/audit-fight-layout.mjs",
     "fights:test:visuals-persistence": "node scripts/test-fight-visuals-persistence.mjs",
     "fights:snapshot:update": "node scripts/guard-fight-semantic-snapshot.mjs --update",
+    "sass:guard": "node scripts/guard-sass-deprecations.mjs",
     "i18n:audit": "node scripts/audit-text-encoding.mjs",
     "i18n:keys": "node scripts/i18n-keys-check.mjs"
   },

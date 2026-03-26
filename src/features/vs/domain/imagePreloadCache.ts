@@ -9,6 +9,7 @@ export type ImagePreloadSnapshot = {
 
 type ImagePreloadEntry = ImagePreloadSnapshot & {
   promise: Promise<ImagePreloadSnapshot>
+  image: HTMLImageElement | null
 }
 
 const imagePreloadCache = new Map<string, ImagePreloadEntry>()
@@ -60,11 +61,13 @@ export const preloadImageUrl = (url: string): Promise<ImagePreloadSnapshot> => {
     width: 0,
     height: 0,
     promise,
+    image: null,
   }
   imagePreloadCache.set(trimmed, cacheEntry)
 
   const image = new window.Image()
   image.decoding = 'async'
+  cacheEntry.image = image
 
   const finalize = (status: ImagePreloadStatus, width = 0, height = 0) => {
     cacheEntry.status = status

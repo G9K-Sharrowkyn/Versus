@@ -9,7 +9,7 @@ import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
 import { MarvinEditor } from './features/vs/components/MarvinEditor'
 import { buildFolderFightGroups, selectFolderFights, selectManualFights } from './features/vs/domain/fightLibrary'
 import { findFightVariantByLanguage, applySharedFightVisualAdjustments } from './features/vs/domain/fightVariants'
-import { preloadFightCoreImages } from './features/vs/domain/fightImagePreload'
+import { preloadAllKnownFightImages, preloadFightCoreImages } from './features/vs/domain/fightImagePreload'
 import { markPerformance, measurePerformance } from './features/vs/domain/performanceTrace'
 import { buildFightStudioState, resolveFightLanguage, type ApplyFightRecordOptions } from './features/vs/domain/fightState'
 import {
@@ -164,6 +164,8 @@ function App() {
     reason: PendingFightSelectionReason
   } | null>(null)
   const pendingFightRequestIdRef = useRef(0)
+  const globalPreloadPromiseRef = useRef<Promise<void> | null>(null)
+  const globalPreloadAbortRef = useRef<AbortController | null>(null)
   const pendingSearchStageJumpRef = useRef<number | null>(null)
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
   const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
@@ -372,6 +374,11 @@ function App() {
   const folderFights = useMemo(() => selectFolderFights(fights), [fights])
   const manualFights = useMemo(() => selectManualFights(fights), [fights])
   const folderFightGroups = useMemo(() => buildFolderFightGroups(folderFights), [folderFights])
+  const fightPreloadSignature = useMemo(
+    () => fights.map((fight) => buildFightRefreshSignature(fight)).join('\n'),
+    [fights],
+  )
+  const fightsForPreload = useMemo(() => fights, [fightPreloadSignature])
 
   const rows = useMemo<ScoreRow[]>(
     () =>
@@ -528,13 +535,26 @@ function App() {
       language: targetLanguage,
       reason,
     }
-    void preloadFightCoreImages(fight)
-    setPendingFightSelection({
+    const nextPendingSelection: PendingFightSelection = {
       requestId,
       fight,
       options,
       reason,
-    })
+    }
+    void (async () => {
+      try {
+        await globalPreloadPromiseRef.current
+      } catch {
+        // Continue regardless - we still preload selected fight below.
+      }
+      try {
+        await preloadFightCoreImages(fight)
+      } catch {
+        // Fallback to normal flow even if preload fails.
+      }
+      if (pendingFightRequestIdRef.current !== requestId) return
+      setPendingFightSelection(nextPendingSelection)
+    })()
   }, [language, pendingLocaleSwitch])
 
   useEffect(() => {
@@ -758,6 +778,27 @@ function App() {
     if (!activeFightRecord) return
     void preloadFightCoreImages(activeFightRecord)
   }, [activeFightRecord])
+
+  useEffect(() => {
+    if (!storageReady || !fightsForPreload.length) return
+
+    globalPreloadAbortRef.current?.abort()
+    const abortController = new AbortController()
+    globalPreloadAbortRef.current = abortController
+    const preloadPromise = preloadAllKnownFightImages(fightsForPreload, {
+      signal: abortController.signal,
+      batchSize: 20,
+      yieldMs: 16,
+    }).catch(() => undefined)
+    globalPreloadPromiseRef.current = preloadPromise
+
+    return () => {
+      abortController.abort()
+      if (globalPreloadAbortRef.current === abortController) {
+        globalPreloadAbortRef.current = null
+      }
+    }
+  }, [fightsForPreload, storageReady])
 
   useEffect(() => {
     const pendingPaint = pendingPaintPerfRef.current

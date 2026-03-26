@@ -97,34 +97,61 @@ export function VictoryArchiveTemplate({
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
 
   useEffect(() => {
-    const nextLeftEntry = leftEntries[pairIndex + 1] || null
-    const nextRightEntry = rightEntries[pairIndex + 1] || null
-    const preloadUrls = [
-      nextLeftEntry
-        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextLeftEntry.imageFile, {
-            templateId: 'victory-archive',
-            side: 'left',
-            slot: nextLeftEntry.slot,
-          })
-        : '',
-      nextRightEntry
-        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextRightEntry.imageFile, {
-            templateId: 'victory-archive',
-            side: 'right',
-            slot: nextRightEntry.slot,
-          })
-        : '',
-    ].filter(Boolean)
+    const orderedPairIndices = Array.from({ length: pairCount }, (_, offset) => (pairIndex + offset) % pairCount)
+    const priorityPairIndices = orderedPairIndices.slice(0, 4)
+    const secondaryPairIndices = orderedPairIndices.slice(4)
 
-    if (!preloadUrls.length) return
-    void preloadImageUrls(preloadUrls)
-  }, [activeFightFolderKey, leftEntries, pairIndex, rightEntries])
+    const collectUrlsForPairs = (indices: number[]) =>
+      indices
+        .flatMap((index) => {
+          const leftAtIndex = index < leftEntries.length ? leftEntries[index] : null
+          const rightAtIndex = index < rightEntries.length ? rightEntries[index] : null
+          const leftUrl =
+            leftAtIndex
+              ? resolveFightTemplateImageUrl(activeFightFolderKey, leftAtIndex.imageFile, {
+                  templateId: 'victory-archive',
+                  side: 'left',
+                  slot: leftAtIndex.slot,
+                })
+              : ''
+          const rightUrl =
+            rightAtIndex
+              ? resolveFightTemplateImageUrl(activeFightFolderKey, rightAtIndex.imageFile, {
+                  templateId: 'victory-archive',
+                  side: 'right',
+                  slot: rightAtIndex.slot,
+                })
+              : ''
+          return [leftUrl, rightUrl]
+        })
+        .filter(Boolean)
+
+    const priorityUrls = collectUrlsForPairs(priorityPairIndices)
+    const secondaryUrls = collectUrlsForPairs(secondaryPairIndices)
+
+    if (priorityUrls.length) {
+      void preloadImageUrls(priorityUrls)
+    }
+    if (!secondaryUrls.length || typeof window === 'undefined') return
+
+    let cancelled = false
+    const secondaryTimer = window.setTimeout(() => {
+      if (cancelled) return
+      void preloadImageUrls(secondaryUrls)
+    }, 240)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(secondaryTimer)
+    }
+  }, [activeFightFolderKey, leftEntries, pairCount, pairIndex, rightEntries])
 
   const renderColumn = (
     fighter: Fighter,
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
+    const fighterFallback = getFightTemplateDefaultField('victory-archive', 'fighter_fallback', language)
     const imageUrl = entry
       ? resolveFightTemplateImageUrl(activeFightFolderKey, entry.imageFile, {
           templateId: 'victory-archive',
@@ -138,28 +165,21 @@ export function VictoryArchiveTemplate({
       buildLegacyTemplateImageAdjustKey('victory-archive', side, entry),
     ]
     return (
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, paddingBottom: '0.7rem' }}>
-        <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
-          <div style={{ position: 'absolute', inset: 0 }}>
-            <AdjustableTemplateImage
-              imageUrl={imageUrl}
-              alt={entry?.text || fighter.name}
-              fallbackLabel={common.noImage}
-              hintLabel=""
-              adjustKey={adjustKey}
-              legacyAdjustKeys={legacyAdjustKeys}
-              adjustments={slideImageAdjustments}
-              onAdjustChange={onSlideImageAdjustChange}
-              onAdjustCommit={onSlideImageAdjustCommit}
-              onActivate={nextPair}
-              plain
-            />
-          </div>
-        </div>
-        <div style={{ minHeight: 'calc(2.8rem * var(--tb-scale))', padding: '0.45rem 0.5rem 0', display: 'flex', justifyContent: 'center' }}>
-          <p style={{ color: '#77e2f2', fontSize: 'calc(var(--tb-type-4) * 0.82)', textAlign: 'center', lineHeight: 1.12, textShadow: '0 0 8px rgba(119, 226, 242, 0.3)' }}>
-            {entry?.text || '\u00A0'}
-          </p>
+      <div style={{ flex: 1, position: 'relative', minHeight: 0, height: '100%', overflow: 'hidden' }}>
+        <div style={{ position: 'absolute', inset: 0 }}>
+          <AdjustableTemplateImage
+            imageUrl={imageUrl}
+            alt={entry?.text || fighter.name || fighterFallback}
+            fallbackLabel={common.noImage}
+            hintLabel=""
+            adjustKey={adjustKey}
+            legacyAdjustKeys={legacyAdjustKeys}
+            adjustments={slideImageAdjustments}
+            onAdjustChange={onSlideImageAdjustChange}
+            onAdjustCommit={onSlideImageAdjustCommit}
+            onActivate={nextPair}
+            plain
+          />
         </div>
       </div>
     )
@@ -266,15 +286,22 @@ export function VictoryArchiveTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={leftTitle} /></p>
         {renderColumn(fighterA, leftEntry, 'left')}
       </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={rightTitle} /></p>
         {renderColumn(fighterB, rightEntry, 'right')}
       </div>
+
+      <p className="vs-tactical-board25-subtitle vs-victory-archive-caption vs-victory-archive-caption--left">
+        {leftEntry?.text || '\u00A0'}
+      </p>
+      <p className="vs-tactical-board25-subtitle vs-victory-archive-caption vs-victory-archive-caption--right">
+        {rightEntry?.text || '\u00A0'}
+      </p>
     </div>
   )
 }

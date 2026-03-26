@@ -289,6 +289,7 @@ export function AdjustableTemplateImage({
           className="absolute block select-none"
           draggable={false}
           loading="eager"
+          fetchPriority={plain ? 'high' : 'auto'}
           decoding="async"
           style={{
             ...buildAdjustableTemplateImageStyle(displayAdjust, imageGeometry),

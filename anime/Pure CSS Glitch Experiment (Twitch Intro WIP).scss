@@ -1,3 +1,4 @@
+@use "sass:math";
 body {
   background: black;
   font-family: "Oswald", sans-serif;
@@ -53,9 +54,9 @@ body {
 @keyframes noise-1 {
   $steps: 30;
   @for $i from 1 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
+    #{math.percentage(math.div($i, $steps))} {
+      $top: math.random(100);
+      $bottom: math.random(101 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);
     }
   }
@@ -64,9 +65,9 @@ body {
 @keyframes noise-2 {
   $steps: 30;
   @for $i from 0 through $steps {
-    #{percentage($i*(1/$steps))} {
-      $top: random(100);
-      $bottom: random(101 - $top);
+    #{math.percentage(math.div($i, $steps))} {
+      $top: math.random(100);
+      $bottom: math.random(101 - $top);
       clip-path: inset(#{$top}px 0 #{$bottom}px 0);
     }
   }
@@ -134,3 +135,5 @@ body {
     transform: rotateX(0deg) skewX(0deg);
   }
 }
+
+
