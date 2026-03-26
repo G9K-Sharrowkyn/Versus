@@ -1,10 +1,4 @@
 
-2. Dossier Postaci.
-a - Blur refleksów jest za mały. Idealny jest jak w opisach postaci, w Dossier A i B. Opis pod "styl", ma idealny refleks, czcionkę i wielkość. Dostosuj resztę tekstów do tego.
-b - Czcionka dla cytatów zrób taką jakąś pochyloną i z mniejszymi odstępami pomiędzy literami.
-c - Stopień zagrożenia i integralność danych nie mają refleksów! "Ekstremalny" i procent też nie mają refleksów!
-d - W drugiej walce, Knull vs Odin, cytaty postaci są tak długie, że rozciągają swoje panele poza granice ekranu. Tak być nie może. Czcionka musi mieć mniejsze odstępy między literami i musi się zmniejszać, sam cytat, jeśli aplikacja wykryje, że jest za mało miejsca.
-
 3. Profil postaci
 a - W obu panelach "profil postaci" pod nazwą postaci jest do wywalenia. Zamiast tego, nazwę postaci trzeba powiększyć jak w Dossier postaci.
 b - Moce, narzędzia i słabości powinny być w tym samym miejscu co styl atut i mentalność z Dossier A i B!

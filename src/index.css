@@ -541,7 +541,27 @@
 .vs-tactical-board25-surface .vs-dossier-quote {
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace !important;
   font-style: italic !important;
+  font-synthesis: style !important;
   letter-spacing: 0.01em !important;
+}
+
+[data-vs-template='final-summary'] .vs-tactical-board25-surface .vs-dossier-quote {
+  font-size: calc(var(--tb-type-2, 1rem) * 0.8) !important;
+}
+
+.vs-tactical-board25-surface .vs-tactical-board25-logo {
+  right: 20px !important;
+}
+
+[data-vs-template]:not([data-vs-template='tactical-board']):not([data-vs-template='character-dossier-a']):not([data-vs-template='character-dossier-b']):not([data-vs-template='character-profile']) .vs-tactical-board25-surface :is(.vs-tactical-board25-stats, .vs-tactical-board25-reality) :is(p, li, span):not(.vs-tactical-board25-stats-title):not(.vs-tactical-board25-reality-heading):not(.vs-panel-top-label):not(.vs-dossier-text-1):not(.vs-dossier-text-3):not(.vs-dossier-quote):not(.vs-tactical-board25-item-label):not(.vs-cyberpunk-meta-value):not(.glitch-letter):not(.glow) {
+  color: #77e2f2 !important;
+  font-family: 'Chakra Petch', 'JetBrains Mono', monospace !important;
+  font-size: calc(var(--tb-type-2, 1rem) * 0.8) !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.02em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 var(--tb-reflect-2-y, 1.7em) 0.55em rgba(119, 226, 242, 0.45) !important;
 }
 
 .vs-tactical-board25-surface :is(.vs-tactical-board25-stats-title.vs-panel-top-label, .vs-tactical-board25-reality-heading.vs-panel-top-label) {

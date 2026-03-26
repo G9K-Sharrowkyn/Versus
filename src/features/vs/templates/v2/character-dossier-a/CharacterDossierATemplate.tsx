@@ -74,16 +74,8 @@ export function CharacterDossierATemplate({
     .trim()
   const subText = common.blueCorner
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
-  const quoteLength = dossierQuote.trim().length
-  const quoteFontSize =
-    quoteLength > 220
-      ? 'calc(var(--tb-type-3) * 0.58)'
-      : quoteLength > 170
-        ? 'calc(var(--tb-type-3) * 0.68)'
-        : quoteLength > 120
-          ? 'calc(var(--tb-type-3) * 0.78)'
-          : 'calc(var(--tb-type-3) * 0.9)'
-  const quoteLetterSpacing = quoteLength > 150 ? '0.01em' : '0.02em'
+  const quoteFontSize = 'calc(var(--tb-type-3) * 0.9)'
+  const quoteLetterSpacing = '0.02em'
   
   const boardHeader = "PORTRET"
   const realityHeader = "OPIS POSTACI"

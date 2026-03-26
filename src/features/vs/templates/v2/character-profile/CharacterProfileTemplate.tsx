@@ -37,6 +37,11 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 const TOOLKIT_SECTION_ORDER = ['powers', 'tools', 'weaknesses'] as const
 
 const PROFILE_ITEM_COUNT = 2
+const SECTION_TOP_BY_KEY: Record<(typeof TOOLKIT_SECTION_ORDER)[number], string> = {
+  powers: '0px',
+  tools: '235px',
+  weaknesses: '540px',
+}
 
 export function CharacterProfileTemplate({
   fighterA,
@@ -81,8 +86,8 @@ export function CharacterProfileTemplate({
 
   const BLUE_EKSTREMALNY = '#77e2f2'
   const RED_LINIA = '#ff554e'
-  const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)"
-  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)"
+  const REFLEKS_IMIENIA_POSTACI = "0 1em 0.28em rgba(119, 226, 242, 0.45)"
+  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)"
   const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)"
 
   const renderFactColumn = (side: 'left' | 'right') => {
@@ -95,10 +100,17 @@ export function CharacterProfileTemplate({
       .filter((section) => section.items.length > 0)
 
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem', minHeight: 0 }}>
+      <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
         {entries.map((section) => (
-          <div key={`${side}-${section.key}`} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.32rem' }}>
-            <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
+          <div
+            key={`${side}-${section.key}`}
+            style={{ position: 'absolute', top: SECTION_TOP_BY_KEY[section.key], left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}
+          >
+            <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
+              <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
+              <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
+              <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
+            </div>
             {section.items.map((item, itemIndex) => (
               <p key={`${side}-${section.key}-${itemIndex}`} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
             ))}
@@ -211,9 +223,9 @@ export function CharacterProfileTemplate({
 
       <section className="vs-tactical-board25-stats" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-stats-left)', width: 'var(--tb-stats-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label"><GlitchText text="Postać Niebieska" /></p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.7rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.96)' }}>{fighterA.name}</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
+          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterA.name}</h3>
           </div>
           {renderFactColumn('left')}
         </div>
@@ -221,9 +233,9 @@ export function CharacterProfileTemplate({
 
       <div className="vs-tactical-board25-reality" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-reality-left)', width: 'var(--tb-reality-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label"><GlitchText text="Postać Czerwona" /></p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.7rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.96)' }}>{fighterB.name}</h3>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
+          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterB.name}</h3>
           </div>
           {renderFactColumn('right')}
         </div>
