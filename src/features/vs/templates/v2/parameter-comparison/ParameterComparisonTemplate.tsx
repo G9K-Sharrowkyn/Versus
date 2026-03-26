@@ -35,6 +35,18 @@ const DOSSIER_RED_PANEL_TEXT_STYLE: CSSProperties = {
   textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.48em rgba(255, 85, 78, 0.62)',
 }
 
+const STAT_LABEL_COL_WIDTH = '30ch'
+const STAT_VALUE_COL_WIDTH = '7ch'
+const STAT_COL_GAP = '0.4rem'
+const STAT_ROW_TEMPLATE = `${STAT_LABEL_COL_WIDTH} ${STAT_VALUE_COL_WIDTH}`
+const STAT_TRACK_WIDTH = `calc(${STAT_LABEL_COL_WIDTH} + ${STAT_COL_GAP} + ${STAT_VALUE_COL_WIDTH})`
+const RIGHT_LABEL_START = '0.65rem'
+const COMPARISON_SEPARATOR_MARGIN = '1.58rem'
+const COMPARISON_HEADER_TOP_TUNE = '1.336rem'
+const COMPARISON_ROWS_TOP_TUNE = '2.042rem'
+const COMPARISON_ROW_DRIFT_FIX_PX = 0.79
+const COMPARISON_TEXT_OFFSET_Y_PX = 1.6
+
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
@@ -137,22 +149,17 @@ export function ParameterComparisonTemplate({
     }
   })
   
-  const renderAdvantageCards = (
-    entries: typeof rows,
-    side: 'a' | 'b' | 'draw',
-    emptyLabel: string,
-  ) => {
-    const labelStyle =
-      side === 'b'
-        ? DOSSIER_RED_PANEL_TEXT_STYLE
-        : DOSSIER_BLUE_PANEL_TEXT_STYLE
+  const buildRowValue = (row: (typeof rows)[number], side: 'a' | 'b' | 'draw') => {
+    if (side === 'draw') return `${row.a} = ${row.b}`
+    if (side === 'a') return `${row.a} > ${row.b}`
+    return `${row.b} > ${row.a}`
+  }
 
-    const valueForRow = (row: (typeof rows)[number]) => {
-      if (side === 'draw') return `${row.a} = ${row.b}`
-      if (side === 'a') return `${row.a} > ${row.b}`
-      return `${row.b} > ${row.a}`
-    }
+  const renderComparisonCell = (row: (typeof rows)[number], side: 'a' | 'b' | 'draw') => {
+    const isVisible = side === 'draw' ? row.winner === 'draw' : row.winner === side
+    if (!isVisible) return null
 
+    const labelStyle = side === 'b' ? DOSSIER_RED_PANEL_TEXT_STYLE : DOSSIER_BLUE_PANEL_TEXT_STYLE
     const valueStyle: CSSProperties = {
       ...labelStyle,
       opacity: 0.95,
@@ -161,62 +168,42 @@ export function ParameterComparisonTemplate({
       lineHeight: 1,
       fontSize: 'calc(var(--tb-type-2) * 0.8)',
       letterSpacing: '0.03em',
-      width: '7ch',
-      textAlign: side === 'b' ? 'right' : side === 'draw' ? 'center' : 'left',
+      width: STAT_VALUE_COL_WIDTH,
+      textAlign: side === 'b' ? 'right' : 'left',
     }
 
-    if (!entries.length) {
-      return (
-        <div style={{ padding: '0.75rem 0.4rem', border: '1px dashed rgba(255,85,78,0.35)', textAlign: 'center' }}>
-          <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{emptyLabel}</p>
-        </div>
-      )
+    const rowTrackStyle: CSSProperties = {
+      display: 'grid',
+      gridTemplateColumns: STAT_ROW_TEMPLATE,
+      alignItems: 'baseline',
+      columnGap: STAT_COL_GAP,
+      minHeight: 'calc(var(--tb-type-2) * 0.92)',
+      width: STAT_TRACK_WIDTH,
+      marginLeft: side === 'b' || side === 'draw' ? 'auto' : 0,
+      marginRight: side === 'a' || side === 'draw' ? 'auto' : 0,
+      transform: `translateY(${COMPARISON_TEXT_OFFSET_Y_PX}px)`,
     }
 
-    return entries.map((row, index) => {
-      return (
-        <div key={`${side}-adv-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '30ch max-content',
-              alignItems: 'baseline',
-              columnGap: '0.4rem',
-              minHeight: 'calc(var(--tb-type-2) * 0.92)',
-              marginLeft: side === 'a' ? 0 : 'auto',
-              marginRight: side === 'draw' ? 'auto' : 0,
-            }}
-          >
-            <p
-              style={{
-                ...labelStyle,
-                minWidth: 0,
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
-                textAlign: side === 'draw' ? 'center' : 'left',
-              }}
-            >
-              {row.label}
-            </p>
-            <p style={valueStyle}>{valueForRow(row)}</p>
-          </div>
-          {index < entries.length - 1 ? (
-            <div style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
-              <div
-                style={{
-                  height: '2px',
-                  width: side === 'draw' ? '44%' : '48%',
-                  marginLeft: side === 'a' ? 0 : 'auto',
-                  marginRight: side === 'b' ? 0 : 'auto',
-                  background: '#ff554e',
-                }}
-              />
-            </div>
-          ) : null}
-        </div>
-      )
-    })
+    return (
+      <div style={rowTrackStyle}>
+        <p
+          style={{
+            ...labelStyle,
+            width: STAT_LABEL_COL_WIDTH,
+            minWidth: STAT_LABEL_COL_WIDTH,
+            whiteSpace: 'nowrap',
+            overflow: 'hidden',
+            textOverflow: 'ellipsis',
+            textAlign: side === 'draw' ? 'left' : 'left',
+            lineHeight: 1,
+            paddingLeft: side === 'b' ? RIGHT_LABEL_START : 0,
+          }}
+        >
+          {row.label}
+        </p>
+        <p style={valueStyle}>{buildRowValue(row, side)}</p>
+      </div>
+    )
   }
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -322,68 +309,108 @@ export function ParameterComparisonTemplate({
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
               <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{leftHeader}</span>
               <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
                 {averageShort} {averageA.toFixed(1)}
               </p>
             </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
-              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{rightHeader}</span>
-              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'right' }}>
-                {averageShort} {averageB.toFixed(1)}
-              </p>
+            <div />
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
+                <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
+                  {rightHeader}
+                </p>
+                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {averageShort} {averageB.toFixed(1)}
+                </p>
+              </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', marginBottom: '0.65rem', alignItems: 'flex-end', gap: '1.1rem' }}>
-            <div style={{ flex: '0 0 32%' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', marginBottom: '0.65rem', alignItems: 'flex-end', paddingTop: COMPARISON_HEADER_TOP_TUNE }}>
+            <div>
               <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{advantageHeader}</p>
             </div>
-            <div style={{ flex: '0 0 36%', textAlign: 'center' }}>
-              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>{drawHeader}</p>
-            </div>
-            <div style={{ flex: '0 0 32%', textAlign: 'right' }}>
-              <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, textAlign: 'right' }}>{advantageHeader}</p>
+            <div />
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
+                <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: STAT_LABEL_COL_WIDTH, textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingLeft: RIGHT_LABEL_START }}>
+                  {advantageHeader}
+                </p>
+                <span style={{ width: STAT_VALUE_COL_WIDTH }} aria-hidden="true" />
+              </div>
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.7rem', flex: 1, minHeight: 0 }}>
-             <div style={{ flex: '0 0 32%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
-               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
-                 {renderAdvantageCards(leftAdvantages, 'a', common.noLeftCategoryEdge)}
-               </div>
-             </div>
-
-             <div style={{ flex: '0 0 36%', display: 'flex', flexDirection: 'column', gap: '0.56rem', minHeight: 0 }}>
-               <div style={{ flex: 2.4, position: 'relative', minHeight: '340px' }}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart
-                      data={animatedRows}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius="88%"
-                    >
-                      <PolarGrid stroke="rgba(148,163,184,0.35)" />
-                      <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 16 }} />
-                      <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive />
-                      <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} isAnimationActive />
-                    </RadarChart>
-                  </ResponsiveContainer>
-               </div>
-               <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', gap: '0.42rem', minHeight: 0, marginTop: '1.2rem' }}>
-                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
-                   {renderAdvantageCards(drawRows, 'draw', common.noDrawsCurrentSetup)}
-                 </div>
-               </div>
-             </div>
-
-             <div style={{ flex: '0 0 32%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
-               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
-                 {renderAdvantageCards(rightAdvantages, 'b', common.noRightCategoryEdge)}
-               </div>
-             </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', flex: 1, minHeight: 0 }}>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+              <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
+                {leftAdvantages.map((row, index) => (
+                  <div key={`comparison-left-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', animationDelay: `${index * 0.04}s` }}>
+                      {renderComparisonCell(row, 'a')}
+                    </div>
+                    {index < leftAdvantages.length - 1 ? (
+                      <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN }}>
+                        <div style={{ height: '2px', background: '#ff554e' }} />
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+              <div style={{ flex: 2.4, position: 'relative', minHeight: '340px' }}>
+                <ResponsiveContainer width="100%" height="100%">
+                  <RadarChart
+                    data={animatedRows}
+                    cx="50%"
+                    cy="50%"
+                    outerRadius="88%"
+                  >
+                    <PolarGrid stroke="rgba(148,163,184,0.35)" />
+                    <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 16 }} />
+                    <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive />
+                    <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} isAnimationActive />
+                  </RadarChart>
+                </ResponsiveContainer>
+              </div>
+              <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: '0.65rem' }}>
+                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>{drawHeader}</p>
+                <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
+                  {drawRows.map((row, index) => (
+                    <div key={`comparison-draw-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
+                      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', animationDelay: `${index * 0.04}s` }}>
+                        {renderComparisonCell(row, 'draw')}
+                      </div>
+                      {index < drawRows.length - 1 ? (
+                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN }}>
+                          <div style={{ height: '2px', background: '#ff554e' }} />
+                        </div>
+                      ) : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+              <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
+                {rightAdvantages.map((row, index) => (
+                  <div key={`comparison-right-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', animationDelay: `${index * 0.04}s` }}>
+                      {renderComparisonCell(row, 'b')}
+                    </div>
+                    {index < rightAdvantages.length - 1 ? (
+                      <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN }}>
+                        <div style={{ height: '2px', background: '#ff554e' }} />
+                      </div>
+                    ) : null}
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
 
           <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', alignItems: 'center', padding: '0.58rem 0.9rem 0.42rem', position: 'relative' }}>
