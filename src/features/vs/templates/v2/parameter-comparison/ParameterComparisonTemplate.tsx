@@ -1,24 +1,39 @@
 import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
-import { FittedText } from '../../shared/FittedText'
 import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateStaticField as getFightTemplateDefaultField,
   getTemplateCommonCopy as getFightCommonCopy
 } from '../../shared/templateCopy'
-import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
 type ParameterComparisonTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
 const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+
+const DOSSIER_BLUE_PANEL_TEXT_STYLE: CSSProperties = {
+  color: '#77e2f2',
+  fontFamily: "'Chakra Petch', sans-serif",
+  fontSize: 'calc(var(--tb-type-2) * 0.8)',
+  fontWeight: 800,
+  lineHeight: 1,
+  textTransform: 'uppercase',
+  margin: 0,
+  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.55em rgba(119, 226, 242, 0.45)',
+}
+
+const DOSSIER_RED_PANEL_TEXT_STYLE: CSSProperties = {
+  ...DOSSIER_BLUE_PANEL_TEXT_STYLE,
+  color: '#ff554e',
+  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.48em rgba(255, 85, 78, 0.62)',
+}
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -48,7 +63,6 @@ export function ParameterComparisonTemplate({
   title,
   subtitle,
   templateBlocks,
-  activeFightId,
   language,
   onToggleLanguage,
   integratedToolbar,
@@ -63,8 +77,7 @@ export function ParameterComparisonTemplate({
     'PORÓWNANIE PARAMETRÓW'
     
   const common = getFightCommonCopy('parameter-comparison', language)
-  const ui = getTemplateUi('parameter-comparison', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
+  const averageShort = common.averageShort || 'Śr.'
   
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
@@ -78,6 +91,9 @@ export function ParameterComparisonTemplate({
     pickTemplateField(blockFields, ['draw_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||
     common.drawZonesLabel
+  const advantageHeader =
+    pickTemplateField(blockFields, ['advantage_header', 'advantage_label']) ||
+    (language === 'pl' ? 'PRZEWAGA' : 'ADVANTAGE')
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')
@@ -121,63 +137,60 @@ export function ParameterComparisonTemplate({
     }
   })
   
-  const auditPrefix = `${activeFightId || 'draft'}:parameter-comparison`
   const renderAdvantageCards = (
     entries: typeof rows,
     side: 'a' | 'b' | 'draw',
-    color: string,
     emptyLabel: string,
-    slotPrefix: 'left' | 'right' | 'draw',
   ) => {
+    const labelStyle =
+      side === 'b'
+        ? DOSSIER_RED_PANEL_TEXT_STYLE
+        : DOSSIER_BLUE_PANEL_TEXT_STYLE
+
+    const valueForRow = (row: (typeof rows)[number]) => {
+      if (side === 'draw') return row.winner === 'draw' ? `${row.a} = ${row.b}` : '—'
+      if (side === 'a') return row.winner === 'a' ? `${row.a} > ${row.b}` : '—'
+      return row.winner === 'b' ? `${row.b} > ${row.a}` : '—'
+    }
+
+    const valueStyle: CSSProperties = {
+      ...labelStyle,
+      opacity: 0.95,
+      whiteSpace: 'nowrap',
+      fontSize: 'calc(var(--tb-type-2) * 0.8)',
+      letterSpacing: '0.03em',
+    }
+
     if (!entries.length) {
       return (
-        <div style={{ padding: '1rem', border: '1px dashed rgba(255,255,255,0.2)', textAlign: 'center', color: '#94a3b8' }}>
-          <FittedText
-            as="p"
-            slotKey={`${auditPrefix}:${slotPrefix}-empty`}
-            spec={slots.parameterAdvantageValue}
-            text={emptyLabel}
-            templateId="parameter-comparison"
-            activeFightId={activeFightId}
-            language={language}
-          />
+        <div style={{ padding: '0.75rem 0.4rem', border: '1px dashed rgba(255,85,78,0.35)', textAlign: 'center' }}>
+          <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{emptyLabel}</p>
         </div>
       )
     }
 
-    return entries.map((row) => {
-      const valueText =
-        side === 'draw'
-          ? `${row.a} = ${row.b}`
-          : side === 'a'
-            ? `${row.a} > ${row.b}`
-            : `${row.b} > ${row.a}`
-
+    return entries.map((row, index) => {
       return (
-        <div
-          key={`${slotPrefix}-adv-${row.id}`}
-          style={{ padding: '0.25rem 0', borderBottom: `1px solid rgba(255,255,255,0.07)` }}
-        >
-          <FittedText
-            as="p"
-            slotKey={`${auditPrefix}:${slotPrefix}-label-${row.id}`}
-            spec={slots.parameterAdvantageLabel}
-            text={row.label}
-            style={{ color, fontWeight: 'bold', fontSize: '1.02rem', lineHeight: 1.18, display: 'block' }}
-            templateId="parameter-comparison"
-            activeFightId={activeFightId}
-            language={language}
-          />
-          <FittedText
-            as="p"
-            slotKey={`${auditPrefix}:${slotPrefix}-value-${row.id}`}
-            spec={slots.parameterAdvantageValue}
-            text={valueText}
-            style={{ color: '#e2e8f0', fontSize: '0.95rem', lineHeight: 1.12, display: 'block' }}
-            templateId="parameter-comparison"
-            activeFightId={activeFightId}
-            language={language}
-          />
+        <div key={`${side}-adv-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '0.62rem', minHeight: 'calc(var(--tb-type-2) * 0.92)' }}>
+            <p
+              style={{
+                ...labelStyle,
+                flex: 1,
+                whiteSpace: 'nowrap',
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+              }}
+            >
+              {row.label}
+            </p>
+            <p style={valueStyle}>{valueForRow(row)}</p>
+          </div>
+          {index < entries.length - 1 ? (
+            <div style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
+              <div style={{ height: '2px', background: '#ff554e' }} />
+            </div>
+          ) : null}
         </div>
       )
     })
@@ -234,7 +247,7 @@ export function ParameterComparisonTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-parameter-comparison-surface">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -285,12 +298,38 @@ export function ParameterComparisonTemplate({
 
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.72rem', flex: 1, minHeight: 0 }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
+          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{leftHeader}</span>
+              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
+                {averageShort} {averageA.toFixed(1)}
+              </p>
+            </div>
+            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{rightHeader}</span>
+              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'right' }}>
+                {averageShort} {averageB.toFixed(1)}
+              </p>
+            </div>
+          </div>
+
+          <div style={{ display: 'flex', marginBottom: '0.65rem', alignItems: 'flex-end', gap: '1.1rem' }}>
+            <div style={{ flex: '0 0 30%' }}>
+              <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{advantageHeader}</p>
+            </div>
+            <div style={{ flex: '0 0 40%', textAlign: 'center' }}>
+              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>{drawHeader}</p>
+            </div>
+            <div style={{ flex: '0 0 30%', textAlign: 'right' }}>
+              <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, textAlign: 'right' }}>{advantageHeader}</p>
+            </div>
+          </div>
+
           <div style={{ display: 'flex', gap: '0.7rem', flex: 1, minHeight: 0 }}>
              <div style={{ flex: '0 0 30%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
-               <p style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.32rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', paddingBottom: '0.2rem', borderBottom: `2px solid ${fighterA.color}40`, letterSpacing: '0.04em' }}>{leftHeader}</p>
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.34rem', overflowY: 'auto', minHeight: 0 }}>
-                 {renderAdvantageCards(leftAdvantages, 'a', fighterA.color, common.noLeftCategoryEdge, 'left')}
+               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
+                 {renderAdvantageCards(leftAdvantages, 'a', common.noLeftCategoryEdge)}
                </div>
              </div>
 
@@ -311,36 +350,34 @@ export function ParameterComparisonTemplate({
                   </ResponsiveContainer>
                </div>
                <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', gap: '0.42rem', minHeight: 0 }}>
-                 <p style={{ textAlign: 'center', color: '#cbd5e1', fontSize: '1.14rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{drawHeader}</p>
-                 <div style={{ display: 'flex', flexDirection: 'column', gap: '0.34rem', overflowY: 'auto', minHeight: 0 }}>
-                   {renderAdvantageCards(drawRows, 'draw', '#cbd5e1', common.noDrawsCurrentSetup, 'draw')}
+                 <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
+                   {renderAdvantageCards(drawRows, 'draw', common.noDrawsCurrentSetup)}
                  </div>
                </div>
              </div>
 
              <div style={{ flex: '0 0 30%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
-               <p style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.32rem', fontFamily: 'var(--font-display)', textTransform: 'uppercase', paddingBottom: '0.2rem', borderBottom: `2px solid ${fighterB.color}40`, letterSpacing: '0.04em' }}>{rightHeader}</p>
-               <div style={{ display: 'flex', flexDirection: 'column', gap: '0.34rem', overflowY: 'auto', minHeight: 0 }}>
-                 {renderAdvantageCards(rightAdvantages, 'b', fighterB.color, common.noRightCategoryEdge, 'right')}
+               <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
+                 {renderAdvantageCards(rightAdvantages, 'b', common.noRightCategoryEdge)}
                </div>
              </div>
           </div>
 
           <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', alignItems: 'center', padding: '0.58rem 0.9rem 0.42rem', position: 'relative' }}>
-            <div style={{ padding: '0.5rem 2rem', border: `1px solid ${fighterA.color}`, background: `${fighterA.color}20` }}>
-              <span style={{ color: fighterA.color, fontSize: '2rem', fontWeight: 'bold' }}>{Math.round(averageA)}</span>
+            <div style={{ padding: '0.5rem 2rem', border: '1px solid rgba(255,85,78,0.6)', background: 'rgba(15, 6, 6, 0.72)' }}>
+              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{Math.round(averageA)}</span>
             </div>
 
-            <div style={{ color: '#fff', fontSize: '1.5rem', textAlign: 'center' }}>
-              <div>{favoriteLabel}</div>
-              <div style={{ color: favoriteSide === 'a' ? fighterA.color : favoriteSide === 'b' ? fighterB.color : '#fff', fontWeight: 'bold' }}>{favorite}</div>
+            <div style={{ textAlign: 'center' }}>
+              <div style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{favoriteLabel}</div>
+              <div style={favoriteSide === 'b' ? DOSSIER_RED_PANEL_TEXT_STYLE : DOSSIER_BLUE_PANEL_TEXT_STYLE}>{favorite}</div>
             </div>
 
-            <div style={{ padding: '0.5rem 2rem', border: `1px solid ${fighterB.color}`, background: `${fighterB.color}20` }}>
-              <span style={{ color: fighterB.color, fontSize: '2rem', fontWeight: 'bold' }}>{Math.round(averageB)}</span>
+            <div style={{ padding: '0.5rem 2rem', border: '1px solid rgba(255,85,78,0.6)', background: 'rgba(15, 6, 6, 0.72)' }}>
+              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{Math.round(averageB)}</span>
             </div>
           </div>
-          <div style={{ marginTop: '0.02rem', alignSelf: 'center', padding: '0.34rem 1.22rem', border: '1px solid rgba(255,255,255,0.34)', background: 'linear-gradient(180deg, rgba(2,6,23,0.72), rgba(2,6,23,0.92))', color: favoriteSide === 'a' ? fighterA.color : favoriteSide === 'b' ? fighterB.color : '#cbd5e1', fontFamily: 'var(--font-display)', fontSize: '1.02rem', letterSpacing: '0.08em', textTransform: 'uppercase', boxShadow: `0 0 0 1px ${favoriteSide === 'a' ? `${fighterA.color}33` : favoriteSide === 'b' ? `${fighterB.color}33` : 'rgba(203,213,225,0.2)'} inset` }}>
+          <div style={{ marginTop: '0.02rem', alignSelf: 'center', padding: '0.34rem 1.22rem', border: '1px solid rgba(255,85,78,0.55)', background: 'linear-gradient(180deg, rgba(15,6,6,0.72), rgba(5,2,2,0.92))', color: favoriteSide === 'b' ? '#ff554e' : '#77e2f2', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.72)', fontWeight: 800, lineHeight: 1, letterSpacing: '0.04em', textTransform: 'uppercase', boxShadow: `0 0 0 1px ${favoriteSide === 'b' ? 'rgba(255,85,78,0.35)' : 'rgba(119,226,242,0.35)'} inset` }}>
             {favoriteStamp}
           </div>
         </div>
