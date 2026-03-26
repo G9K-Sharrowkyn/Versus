@@ -131,7 +131,7 @@ export function FightAnalyticsTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-fight-analytics-surface">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -180,7 +180,7 @@ export function FightAnalyticsTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+      <section className="vs-tactical-board25-stats vs-fight-analytics-merged-panel" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
