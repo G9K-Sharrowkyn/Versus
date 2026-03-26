@@ -426,6 +426,26 @@
   mask-repeat: no-repeat;
 }
 
+.vs-crucial-feats-caption {
+  position: absolute !important;
+  top: calc(var(--tb-panel-top) + var(--tb-panel-height) + (14px * var(--tb-scale)));
+  width: var(--tb-panel-width);
+  margin: 0 !important;
+  padding: 0 calc(0.5rem * var(--tb-scale));
+  text-align: center;
+  z-index: 3;
+  transform: scale(0.78);
+  transform-origin: top center;
+}
+
+.vs-crucial-feats-caption--left {
+  left: var(--tb-stats-left);
+}
+
+.vs-crucial-feats-caption--right {
+  left: var(--tb-reality-left);
+}
+
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-tactical-board25-stats,
 .vs-tactical-board25-reality {
