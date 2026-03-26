@@ -430,6 +430,7 @@
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-victory-archive-caption {
   --vs-caption-scale: 0.78;
+  --tb-reflect-3-y: 1.45em;
   position: absolute !important;
   top: calc(var(--tb-panel-top) + var(--tb-panel-height) + (3px * var(--tb-scale)));
   width: calc(var(--tb-panel-width) / var(--vs-caption-scale));
