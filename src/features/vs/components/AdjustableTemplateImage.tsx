@@ -292,7 +292,7 @@ export function AdjustableTemplateImage({
           decoding="async"
           style={{
             ...buildAdjustableTemplateImageStyle(displayAdjust, imageGeometry),
-            opacity: isImageReady ? 1 : 0,
+            opacity: plain ? 1 : isImageReady ? 1 : 0,
           }}
           onLoad={(event) => {
             const target = event.currentTarget

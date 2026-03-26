@@ -427,15 +427,22 @@
 }
 
 .vs-crucial-feats-caption {
+  --vs-caption-scale: 0.78;
   position: absolute !important;
-  top: calc(var(--tb-panel-top) + var(--tb-panel-height) + (14px * var(--tb-scale)));
-  width: var(--tb-panel-width);
+  top: calc(var(--tb-panel-top) + var(--tb-panel-height) + (3px * var(--tb-scale)));
+  width: calc(var(--tb-panel-width) / var(--vs-caption-scale));
+  max-width: none;
   margin: 0 !important;
-  padding: 0 calc(0.5rem * var(--tb-scale));
-  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
+  text-align: left;
   z-index: 3;
-  transform: scale(0.78);
-  transform-origin: top center;
+  transform: scale(var(--vs-caption-scale));
+  transform-origin: top left;
+  white-space: normal !important;
+  overflow-wrap: normal;
+  word-break: normal;
+  hyphens: none;
 }
 
 .vs-crucial-feats-caption--left {

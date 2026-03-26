@@ -88,28 +88,54 @@ export function CrucialFeatsTemplate({
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
 
   useEffect(() => {
-    const nextLeftEntry = leftEntries[pairIndex + 1] || null
-    const nextRightEntry = rightEntries[pairIndex + 1] || null
-    const preloadUrls = [
-      nextLeftEntry
-        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextLeftEntry.imageFile, {
-            templateId: 'crucial-feats',
-            side: 'left',
-            slot: nextLeftEntry.slot,
-          })
-        : '',
-      nextRightEntry
-        ? resolveFightTemplateImageUrl(activeFightFolderKey, nextRightEntry.imageFile, {
-            templateId: 'crucial-feats',
-            side: 'right',
-            slot: nextRightEntry.slot,
-          })
-        : '',
-    ].filter(Boolean)
+    const orderedPairIndices = Array.from({ length: pairCount }, (_, offset) => (pairIndex + offset) % pairCount)
+    const priorityPairIndices = orderedPairIndices.slice(0, 4)
+    const secondaryPairIndices = orderedPairIndices.slice(4)
 
-    if (!preloadUrls.length) return
-    void preloadImageUrls(preloadUrls)
-  }, [activeFightFolderKey, leftEntries, pairIndex, rightEntries])
+    const collectUrlsForPairs = (indices: number[]) =>
+      indices
+        .flatMap((index) => {
+          const leftAtIndex = index < leftEntries.length ? leftEntries[index] : null
+          const rightAtIndex = index < rightEntries.length ? rightEntries[index] : null
+          const leftUrl =
+            leftAtIndex
+              ? resolveFightTemplateImageUrl(activeFightFolderKey, leftAtIndex.imageFile, {
+                  templateId: 'crucial-feats',
+                  side: 'left',
+                  slot: leftAtIndex.slot,
+                })
+              : ''
+          const rightUrl =
+            rightAtIndex
+              ? resolveFightTemplateImageUrl(activeFightFolderKey, rightAtIndex.imageFile, {
+                  templateId: 'crucial-feats',
+                  side: 'right',
+                  slot: rightAtIndex.slot,
+                })
+              : ''
+          return [leftUrl, rightUrl]
+        })
+        .filter(Boolean)
+
+    const priorityUrls = collectUrlsForPairs(priorityPairIndices)
+    const secondaryUrls = collectUrlsForPairs(secondaryPairIndices)
+
+    if (priorityUrls.length) {
+      void preloadImageUrls(priorityUrls)
+    }
+    if (!secondaryUrls.length || typeof window === 'undefined') return
+
+    let cancelled = false
+    const secondaryTimer = window.setTimeout(() => {
+      if (cancelled) return
+      void preloadImageUrls(secondaryUrls)
+    }, 240)
+
+    return () => {
+      cancelled = true
+      window.clearTimeout(secondaryTimer)
+    }
+  }, [activeFightFolderKey, leftEntries, pairCount, pairIndex, rightEntries])
 
   const renderColumn = (
     fighter: Fighter,
