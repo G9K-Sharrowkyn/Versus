@@ -632,6 +632,8 @@
     const world    = document.getElementById('world');
     const viewport = document.getElementById('viewport');
     const items    = [];
+    let rafHandle = 0;
+    let reverseSequenceRunning = false;
 
     const attachCardImage = (imageEl, sources) => {
       if (!imageEl || !sources.length) return;
@@ -647,6 +649,70 @@
 
       imageEl.addEventListener('error', loadNext);
       loadNext();
+    };
+
+    const postToParent = (payload) => {
+      if (!window.parent || window.parent === window) return;
+      window.parent.postMessage(payload, window.location.origin);
+    };
+
+    const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+    const runReverseExitSequence = async () => {
+      if (reverseSequenceRunning) return;
+      reverseSequenceRunning = true;
+      if (rafHandle) {
+        cancelAnimationFrame(rafHandle);
+        rafHandle = 0;
+      }
+
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 38%, rgba(33,8,8,0.94), rgba(0,0,0,0.98));color:#ff554e;font-family:var(--font-code);text-transform:uppercase;letter-spacing:0.12em;';
+      overlay.innerHTML = `
+        <div style="width:min(70vw,860px);border:1px solid rgba(255,85,78,0.8);padding:1.2rem 1.4rem 1.1rem;box-shadow:0 0 34px rgba(255,85,78,0.2) inset,0 0 24px rgba(255,85,78,0.22);background:rgba(4,1,1,0.86);">
+          <p id="rv-title" style="font-size:clamp(24px,2.9vw,44px);margin-bottom:0.65rem;">SEQUENCE // EXIT PROTOCOL</p>
+          <p id="rv-sub" style="font-size:clamp(13px,1.2vw,18px);color:rgba(255,160,150,0.88);margin-bottom:0.95rem;">Hydra runtime handoff</p>
+          <div style="height:16px;border:1px solid rgba(255,85,78,0.7);background:rgba(0,0,0,0.65);">
+            <div id="rv-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#ff554e,#ff8d84);box-shadow:0 0 12px rgba(255,85,78,0.65);"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(overlay);
+
+      const titleEl = overlay.querySelector('#rv-title');
+      const subEl = overlay.querySelector('#rv-sub');
+      const barEl = overlay.querySelector('#rv-bar');
+
+      for (let progress = 0; progress <= 100; progress += 4) {
+        if (barEl) barEl.style.width = `${progress}%`;
+        await wait(42);
+      }
+
+      if (titleEl) titleEl.textContent = 'G9K_Rubikon:Session_Authenticated';
+      if (subEl) subEl.textContent = 'glitch channel synchronisation';
+      if (titleEl) titleEl.style.color = '#77e2f2';
+      if (barEl) barEl.style.background = 'linear-gradient(90deg,#77e2f2,#b8f7ff)';
+
+      for (let pulse = 0; pulse < 12; pulse += 1) {
+        const offset = pulse % 2 === 0 ? 14 : -14;
+        overlay.style.transform = `translateX(${offset}px)`;
+        overlay.style.filter = pulse % 2 === 0 ? 'hue-rotate(140deg) contrast(1.45)' : 'hue-rotate(0deg) contrast(1.2)';
+        await wait(58);
+      }
+      overlay.style.transform = 'none';
+      overlay.style.filter = 'none';
+
+      if (titleEl) titleEl.textContent = 'Sequence Completed';
+      if (subEl) subEl.textContent = 'Signing Off';
+      if (titleEl) titleEl.style.color = '#ff554e';
+      await wait(1100);
+
+      overlay.style.transition = 'opacity 220ms linear';
+      overlay.style.opacity = '0';
+      await wait(240);
+      overlay.remove();
+
+      postToParent({ type: 'vvv-aaa-reverse-explosion-done' });
     };
 
     // --- INIT ---
@@ -786,6 +852,15 @@
       });
     }
 
+    window.addEventListener('message', event => {
+      if (event.origin !== window.location.origin && event.origin !== 'null') return;
+      const payload = event.data;
+      if (!payload || typeof payload !== 'object') return;
+      if (payload.type === 'vvv-aaa-play-reverse-explosion') {
+        void runReverseExitSequence();
+      }
+    });
+
     // --- AUTO-SCROLL (no Lenis) ---
     // Start slightly behind so "EVALUATION STARTING" begins in the distance
     const AUTO_RATE = 0.375; // px/ms — half speed vs original
@@ -806,6 +881,7 @@
 
     // --- RAF LOOP ---
     function raf(time) {
+      if (reverseSequenceRunning) return;
       const delta = prevTime !== null ? Math.min(time - prevTime, 50) : 16;
       prevTime = time;
 
@@ -898,17 +974,16 @@
       });
 
       if (autoPos >= DONE_AT) {
-        window.parent.postMessage(
-          { type: 'vvv-aaa-complete' },
-          window.parent === window ? '*' : window.location.origin
-        );
+        postToParent({ type: 'vvv-aaa-complete' });
         return; // stop RAF
       }
 
-      requestAnimationFrame(raf);
+      rafHandle = requestAnimationFrame(raf);
     }
+    postToParent({ type: 'vvv-aaa-ready' });
     init().then(() => {
-      requestAnimationFrame(raf);
+      if (reverseSequenceRunning) return;
+      rafHandle = requestAnimationFrame(raf);
     });
   })();
   </script>

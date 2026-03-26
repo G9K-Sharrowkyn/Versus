@@ -39,7 +39,6 @@ const TOOLKIT_SECTION_ORDER = ['powers', 'tools', 'weaknesses'] as const
 const PROFILE_ITEM_COUNT = 2
 
 export function CharacterProfileTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   profileA,
@@ -55,10 +54,6 @@ export function CharacterProfileTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-profile'] || [])
@@ -71,10 +66,6 @@ export function CharacterProfileTemplate({
 
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle || ''
-
-  const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "CHARACTER PROFILE"
 
   const sectionRows = TOOLKIT_SECTION_ORDER.map((sectionKey) => {
     const label = toolkitDefaults[sectionKey]
@@ -93,7 +84,29 @@ export function CharacterProfileTemplate({
   const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)"
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)"
   const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)"
-  const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)"
+
+  const renderFactColumn = (side: 'left' | 'right') => {
+    const entries = sectionRows
+      .map((section) => ({
+        key: section.key,
+        label: section.label,
+        items: side === 'left' ? section.leftItems : section.rightItems,
+      }))
+      .filter((section) => section.items.length > 0)
+
+    return (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.4rem', minHeight: 0 }}>
+        {entries.map((section) => (
+          <div key={`${side}-${section.key}`} style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '0.32rem' }}>
+            <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
+            {section.items.map((item, itemIndex) => (
+              <p key={`${side}-${section.key}-${itemIndex}`} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
+            ))}
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -105,7 +118,7 @@ export function CharacterProfileTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -196,45 +209,23 @@ export function CharacterProfileTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
+      <section className="vs-tactical-board25-stats" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-stats-left)', width: 'var(--tb-stats-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label"><GlitchText text="Postać Niebieska" /></p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.7rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.75)' }}>{fighterA.name}</h3>
-            {fighterA.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fighterA.subtitle} /></p> : null}
+            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.96)' }}>{fighterA.name}</h3>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', flex: 1 }}>
-            {sectionRows.map((section) => (
-              section.leftItems.length > 0 ? (
-                <div key={section.key} style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
-                  {section.leftItems.map((item, i) => (
-                    <p key={i} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
-                  ))}
-                </div>
-              ) : null
-            ))}
-          </div>
+          {renderFactColumn('left')}
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
+      <div className="vs-tactical-board25-reality" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-reality-left)', width: 'var(--tb-reality-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label"><GlitchText text="Postać Czerwona" /></p>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.7rem', height: '100%', padding: '0.75rem 1rem 0.75rem 1.5rem' }}>
           <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.75)' }}>{fighterB.name}</h3>
-            {fighterB.subtitle ? <p className="vs-dossier-text-3" style={{ color: RED_LINIA, marginTop: '0.25rem', textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fighterB.subtitle} /></p> : null}
+            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.96)' }}>{fighterB.name}</h3>
           </div>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', flex: 1 }}>
-            {sectionRows.map((section) => (
-              section.rightItems.length > 0 ? (
-                <div key={section.key} style={{ display: 'flex', flexDirection: 'column', gap: '0.3rem' }}>
-                  <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
-                  {section.rightItems.map((item, i) => (
-                    <p key={i} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
-                  ))}
-                </div>
-              ) : null
-            ))}
-          </div>
+          {renderFactColumn('right')}
         </div>
       </div>
     </div>

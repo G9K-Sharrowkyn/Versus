@@ -107,21 +107,44 @@ export function CyberpunkMetaValue({ value }: Props) {
 
   return (
     <span
+      className="vs-cyberpunk-meta-value"
       style={{
+        position: 'relative',
         display: 'inline-block',
-        color: '#77e2f2',
+        color: 'inherit',
         fontFamily: "'Chakra Petch', 'JetBrains Mono', monospace",
         fontSize: '1.25em',
         fontWeight: 'bold',
         textTransform: 'uppercase',
         letterSpacing: '0.05em',
-        textShadow: hot
-          ? '0 0 8px rgba(119, 226, 242, 0.9), 0 0 16px rgba(119, 226, 242, 0.4)'
-          : '0 0 4px rgba(119, 226, 242, 0.2)',
         transition: 'all 0.1s ease-out',
       }}
     >
-      {displayed}
+      <span
+        style={{
+          position: 'relative',
+          zIndex: 1,
+          textShadow: hot ? '0 0 8px currentColor, 0 0 18px currentColor' : '0 0 6px currentColor',
+        }}
+      >
+        {displayed}
+      </span>
+      <span
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          left: 0,
+          top: 0,
+          transform: 'translateY(var(--tb-reflect-3-y, 1.9em))',
+          filter: 'blur(var(--tb-reflect-3-blur, 0.2em))',
+          opacity: hot ? 0.36 : 0.3,
+          pointerEvents: 'none',
+          color: 'currentColor',
+          whiteSpace: 'pre',
+        }}
+      >
+        {displayed}
+      </span>
     </span>
   )
 }

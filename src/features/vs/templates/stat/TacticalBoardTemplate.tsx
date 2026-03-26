@@ -74,7 +74,7 @@ export function TacticalBoardTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {

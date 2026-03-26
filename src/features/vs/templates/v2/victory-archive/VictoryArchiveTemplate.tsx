@@ -1,4 +1,5 @@
 import './VictoryArchiveTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { preloadImageUrls } from '../../../domain/imagePreloadCache'
@@ -17,7 +18,6 @@ import {
   type TemplateImageEntry,
 } from '../../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../../types'
-import { HighEndFighterBanner } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -51,7 +51,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function VictoryArchiveTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   title,
@@ -71,10 +70,6 @@ export function VictoryArchiveTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['victory-archive'] || [])
@@ -85,18 +80,10 @@ export function VictoryArchiveTemplate({
   const archiveLabel = getFightTemplateDefaultField('victory-archive', 'archive_label', language)
   const subText = subtitle || archiveLabel
   
-  const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "VICTORY ARCHIVE"
-
   const fighterAText = fighterA.name || getFightTemplateDefaultField('victory-archive', 'fighter_a_fallback', language)
   const fighterBText = fighterB.name || getFightTemplateDefaultField('victory-archive', 'fighter_b_fallback', language)
-  const leftTitle =
-    pickTemplateField(blockFields, ['left_title']) ||
-    `${getFightTemplateDefaultField('victory-archive', 'left_title_prefix', language)} ${fighterAText}`
-  const rightTitle =
-    pickTemplateField(blockFields, ['right_title']) ||
-    `${getFightTemplateDefaultField('victory-archive', 'right_title_prefix', language)} ${fighterBText}`
+  const leftTitle = fighterAText
+  const rightTitle = fighterBText
     
   const leftWins = winsA.length ? winsA : DEFAULT_WINNER_CV_A
   const rightWins = winsB.length ? winsB : DEFAULT_WINNER_CV_B
@@ -108,10 +95,6 @@ export function VictoryArchiveTemplate({
   
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
-  const entriesUnit =
-    pickTemplateField(blockFields, ['entries_unit']) ||
-    getFightTemplateDefaultField('victory-archive', 'entries_unit', language) ||
-    common.entriesUnit
 
   useEffect(() => {
     const nextLeftEntry = leftEntries[pairIndex + 1] || null
@@ -139,7 +122,6 @@ export function VictoryArchiveTemplate({
 
   const renderColumn = (
     fighter: Fighter,
-    columnTitle: string,
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
   ) => {
@@ -155,33 +137,30 @@ export function VictoryArchiveTemplate({
       buildCanonicalLegacyTemplateImageAdjustKey('victory-archive', side, entry),
       buildLegacyTemplateImageAdjustKey('victory-archive', side, entry),
     ]
-    const entryBadge = (
-      <span style={{ borderColor: `${fighter.color}88`, color: fighter.color, padding: '0.25rem 0.5rem', background: 'rgba(0,0,0,0.5)', borderRadius: '4px', border: '1px solid' }}>
-        {pairCount} {entriesUnit}
-      </span>
-    )
-
     return (
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
-        <HighEndFighterBanner templateId="victory-archive" language={language} fighter={fighter} trailing={entryBadge} />
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, paddingBottom: '0.7rem' }}>
         <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
-          <AdjustableTemplateImage
-            imageUrl={imageUrl}
-            alt={entry?.text || columnTitle}
-            fallbackLabel={common.noImage}
-            hintLabel=""
-            adjustKey={adjustKey}
-            legacyAdjustKeys={legacyAdjustKeys}
-            adjustments={slideImageAdjustments}
-            onAdjustChange={onSlideImageAdjustChange}
-            onAdjustCommit={onSlideImageAdjustCommit}
-            onActivate={nextPair}
-            plain
-          />
+          <div style={{ position: 'absolute', inset: 0 }}>
+            <AdjustableTemplateImage
+              imageUrl={imageUrl}
+              alt={entry?.text || fighter.name}
+              fallbackLabel={common.noImage}
+              hintLabel=""
+              adjustKey={adjustKey}
+              legacyAdjustKeys={legacyAdjustKeys}
+              adjustments={slideImageAdjustments}
+              onAdjustChange={onSlideImageAdjustChange}
+              onAdjustCommit={onSlideImageAdjustCommit}
+              onActivate={nextPair}
+              plain
+            />
+          </div>
         </div>
-        {entry?.text && (
-          <p style={{ color: '#94a3b8', fontSize: '0.75rem', textAlign: 'center', padding: '0 0.5rem' }}>{entry.text}</p>
-        )}
+        <div style={{ minHeight: 'calc(2.8rem * var(--tb-scale))', padding: '0.45rem 0.5rem 0', display: 'flex', justifyContent: 'center' }}>
+          <p style={{ color: '#77e2f2', fontSize: 'calc(var(--tb-type-4) * 0.82)', textAlign: 'center', lineHeight: 1.12, textShadow: '0 0 8px rgba(119, 226, 242, 0.3)' }}>
+            {entry?.text || '\u00A0'}
+          </p>
+        </div>
       </div>
     )
   }
@@ -196,7 +175,7 @@ export function VictoryArchiveTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -287,14 +266,14 @@ export function VictoryArchiveTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
-        {renderColumn(fighterA, leftTitle, leftEntry, 'left')}
+      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={leftTitle} /></p>
+        {renderColumn(fighterA, leftEntry, 'left')}
       </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#ff554e' }}>{realityHeader}</p>
-        {renderColumn(fighterB, rightTitle, rightEntry, 'right')}
+      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={rightTitle} /></p>
+        {renderColumn(fighterB, rightEntry, 'right')}
       </div>
     </div>
   )

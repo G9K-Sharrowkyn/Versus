@@ -1,4 +1,5 @@
 import './StatTrapTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -38,9 +39,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function StatTrapTemplate({
-  activeTemplateId,
-  fighterA,
-  fighterB,
   title,
   subtitle,
   templateBlocks,
@@ -60,7 +58,6 @@ export function StatTrapTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['stat-trap'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('stat-trap', language)
-  const chrome = buildFightTemplateChrome('stat-trap', language, blockFields)
   const ui = getTemplateUi('stat-trap', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const tokens = ui.tokens as Record<string, string | CSSProperties>
@@ -88,7 +85,7 @@ export function StatTrapTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -180,7 +177,7 @@ export function StatTrapTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={boardHeader} /></p>
         
         <div className={layout.FRAME_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.8)', border: '1px solid rgba(148, 163, 184, 0.2)', padding: '2rem', position: 'relative' }}>
           <div className={layout.HEADLINE_BAND_CLASS} style={{ background: 'rgba(0,0,0,0.5)', padding: '1rem', borderTop: '2px solid #ef4444', borderBottom: '2px solid #eab308', marginBottom: '2rem' }}>
@@ -266,7 +263,7 @@ export function StatTrapTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={realityHeader} /></p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>

@@ -1,4 +1,5 @@
 import './BattleDynamicsTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -49,7 +50,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function BattleDynamicsTemplate({
-  activeTemplateId,
   title,
   subtitle,
   templateBlocks,
@@ -61,16 +61,11 @@ export function BattleDynamicsTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const common = getFightCommonCopy('battle-dynamics', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome('battle-dynamics', language, blockFields)
   const ui = getTemplateUi('battle-dynamics', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string | number>
@@ -82,8 +77,8 @@ export function BattleDynamicsTemplate({
   const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "BATTLE DYNAMICS"
+    pickTemplateField(blockFields, ['panel_header', 'dynamics_header']) ||
+    getFightTemplateDefaultField('battle-dynamics', 'panel_header', language) || "DYNAMIKA WALKI"
 
   const defaultACurve = [78, 64, 50, 32, 20]
   const defaultBCurve = [35, 35, 35, 35, 35]
@@ -144,7 +139,7 @@ export function BattleDynamicsTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -192,10 +187,10 @@ export function BattleDynamicsTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -236,9 +231,9 @@ export function BattleDynamicsTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
 
-        <div className={`${layout.CHART_PANEL_CLASS as string} flex-1 flex flex-col`} style={{ padding: '0.5rem', position: 'relative' }}>
+        <div className={`${layout.CHART_PANEL_CLASS as string} flex-1 flex flex-col`} style={{ padding: '0.5rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none' }}>
           <svg
             viewBox={layout.SVG_VIEWBOX as string}
             className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
@@ -272,7 +267,7 @@ export function BattleDynamicsTemplate({
               {common.endLabel}
             </text>
 
-            <text x={layout.ADVANTAGE_LABEL_X as string} y={layout.ADVANTAGE_LABEL_Y as string} fontSize={layout.ADVANTAGE_LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string} transform={layout.ADVANTAGE_LABEL_TRANSFORM as string}>
+            <text x="7" y="24" fontSize={layout.ADVANTAGE_LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string}>
               {common.advantageStaminaLabel}
             </text>
 

@@ -1,0 +1,24 @@
+Nowe funkcje:
+1. Przejścia pomiędzy templatami. Trzeba dodać jakiś rodzaj "elektronicznego" przejścia pomiędzy templatami... Coś typu... Użytkownik klika strzałkę w prawo, by przejść do następnego templata, i następny template nie pojawia się od tak z czapy, ale np. Cały template "Tablica Taktyczna", zostaje odzoomowany nieco, pojawiają się jakieś przekładnie i szyny po bokach, że niby to jest template, który porusza się na szynach, ten jeden template ucieka do góry i znika z pola widzenia, a na jego miejsce, z dołu, przejeżdża na tych szynach następny template, po czym następuje zoom, to standardowej perspektywy. Całość powinna czająć jakieś 4 sekundy. 
+
+2. Zmieńmy nieco animację początkową. Start jest identyczny, po kliknięciu pojawia się ekran logowania, użytkownik wpisuje dowolne hasło i kilka uthenticate. Wtedy, zamiast "system rebooting", trzeciej animacji, od razu przechodzi do wyszukiwarki. Zostaw tylko to fajne Glitch przejście na początku trzeciej animacji, gdzie ekran skacze i jest takie ściemnienie i rozjaśnienie. To fajne fajne. Czwartą animację, tą czarną, z trzema tekstami jeden pod drugim też pomijamy, póki co. Od razu wyszukiwarka po zalogowaniu, z przejściem. 
+
+Po wpisaniu nazwy walki do wyszukiwarki, NIE PRZECHODZI do tej fajnej animacji z lecącymi panelami z grafikami. To odsuwamy na potem. Po wpisaniu nazwy walki, pojawia się trzecia animacja, tam gdzie było system "rebooting", tylko tam wpisz coś w stylu "Fight Simulation Starting" i inne takie. Że niby "walka właśnie jest przeprowadzana, w tej chwili". I zamiast "rebooting succesful", daj coś typu "Fight Scenario Complete". Pojawia się kolorowy Glitch, jak powinien i wtedy pojawia się nowe menu, którego jeszcze nie było! 
+
+Menu w stylu "Analityka walki". Szeroka ramka, jedna, ale bez tego całego tekstu po bokach, bez logo, bez stopnia zagrożenia i integralności danych. Kopiujesz samo tło, ramkę i tytułowy panel. Tytuł panelu to będzie "Fight History", "Historia Walk". 
+
+W Panelu, będą ułożone, jedna obok drugiej, grafiki w panelach, jak w animacji prowadzącej wcześniej bezpośrednio do walki. Te fajne, przeźroczyste, gdzie jest ID napisane w lewym górnym rogu. Grafiki będą w parach. Walka Superman vs King Hyperion będzie miała te dwa panele połączone, jeden obok drugiego, w jednym grafika Supermana, w drugim Hyperion, i podpis pod spodem Superman vs King Hyperion. Adekwatnie dla każdej walki. Niech będzie to mniej więcej tak, że są cztery walki w jednym szeregu, i każda kolejna rozpoczyna nowy szereg, i nowy i nowy. Walki będzie można w końcu przewijać, ale bez żadnego paska przewijania! Przewijanie będzie za pomocą strzałek góra dół i kółka myszy. 
+
+I TERAZ NAJWAŻNIEJSZE CO DO NOWEGO MENU: W nim nie będzie wszystkim walk, jakie są w folderze Fights. To menu generalnie będzie puste. Dopiero po wpisaniu prawidłowej nazwy walki, np. "Superman vs King Hyperion", ta walka będzie się pojawiać na liście walk, jako pierwsza w szeregu. I będzie jedyna. Dopiero po wpisaniu w wyszukiwarce "Knull vs Odin" będzie sie pojawiać obok pierwszej walki ta druga, z własnymi grafikami i nazwami postaci. 
+
+Dopiero po kliknięciu w ten konkretny panel, następuje znowu animacja Glitch kolorowa, która prowadzi do "latajacej" animacji, z przesuwającymi się grafikami, która będzie prowadzić do walki.
+
+3. Gdy pierwsze dwa punkty będą skończone, dopiero wtedy robimy czyszczenie aplikacji i szeregowanie wszystkiego. Ta aplikacja, jest tak pokręcona, skomplikowana, że czasem trudno ogarnać, za co jaka funkcja odpowiada. 
+To wszystko trzeba uprościć, zatomitować, rozbić.
+
+System wygląda tak: Templaty mają treść stałą, identyczną zawsze, dla wszystkich walk. Czyli tytuły, stopień zagrożenia, integralność danych, profil postaci, czerwony narożnik, opis postaci, atut, styl, moce, narzędzia... WSZYSTKO, co jest stałe dla każdej walki.
+Z kolei plik json, w folderze Fights, mają treść zmienną, czyli inną dla każdej walki, czyli nazwy postaci, statystyki, cytaty, pokonanych przeciwników, scenariusze walki, itd. Wszystko co tyczy się tej jednej walki, i w innej walce będzie już inne, bierzemy z konkretnego folderu walki, w folderze Fights. 
+
+I to trzeba uprościć. Fights i walki json są zrobione dobrze. Ale templaty obecne... Są zbyt skomplikowane. Templaty, tak jak nazwa mówi, muszą działać tak, że użytkownik tworzy nową walkę, robiąc prosty plik json do folderu Fights, przechodzi przez animacje, wpisuje nazwę walki, i wszystko robi się już samo. Treść z json wchodzi do kolejnych templatów, robiąc kolejną walkę do wyboru w menu Fight History, i już tam wszystko jest, treść template zawsze taka sama, i treść json, w odpowiednich miejscach, wewnątrz paneli. 
+
+Poczyść kod, pousuwaj zbędne funkcje, uprość to wszystko, może podziel na osobne pliki to co można, żeby łatwiejsze to było wszystko do ogarnięcia.

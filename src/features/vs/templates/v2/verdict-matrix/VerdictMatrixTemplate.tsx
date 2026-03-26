@@ -1,8 +1,8 @@
 import './VerdictMatrixTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, Fragment } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { fighterMonogram } from '../../../helpers'
 import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -38,13 +38,11 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function VerdictMatrixTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   title,
   subtitle,
   templateBlocks,
-  activeFightId,
   language,
   onToggleLanguage,
   integratedToolbar,
@@ -52,41 +50,40 @@ export function VerdictMatrixTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const common = getFightCommonCopy('verdict-matrix', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome('verdict-matrix', language, blockFields)
   const ui = getTemplateUi('verdict-matrix', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
-  const layout = ui.template as Record<string, string | number>
 
   const headerText = title || 'MATRYCA WERDYKTU'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "VERDICT MATRIX"
+    pickTemplateField(blockFields, ['panel_header', 'matrix_header']) ||
+    getFightTemplateDefaultField('verdict-matrix', 'panel_header', language) || "MATRYCA WERDYKTU"
+
+  const fighterAFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_a_fallback', language) || 'Fighter A'
+  const fighterBFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_b_fallback', language) || 'Fighter B'
+  const fighterAName = fighterA.name || fighterAFallback
+  const fighterBName = fighterB.name || fighterBFallback
 
   const col1 = pickTemplateField(blockFields, ['col_1', 'col1'])
   const col2 = pickTemplateField(blockFields, ['col_2', 'col2'])
-  const hasColumns = Boolean(col1 || col2)
+  const matrixColumns = [col1 || 'Solar Flare: NIE', col2 || 'Solar Flare: TAK']
 
-  const rowsList = [
-    pickTemplateField(blockFields, ['row_1', 'row1']) || 'SCENARIUSZ A',
-    pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ B',
+  const matrixRows = [
+    pickTemplateField(blockFields, ['row_1', 'row1']) || 'WALKA NA SMIERC',
+    pickTemplateField(blockFields, ['row_2', 'row2']) || 'NOKAUT',
   ]
 
   const resolveWinnerSide = (text: string) => {
     if (!text) return null
     const lowerText = text.toLowerCase()
-    const nameA = fighterA.name.toLowerCase()
-    const nameB = fighterB.name.toLowerCase()
+    const nameA = fighterAName.toLowerCase()
+    const nameB = fighterBName.toLowerCase()
     const posA = lowerText.indexOf(nameA)
     const posB = lowerText.indexOf(nameB)
     if (posA !== -1 && (posB === -1 || posA < posB)) return 'a'
@@ -101,10 +98,7 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3],
   ]
 
-  const effectiveColCount = hasColumns ? 2 : 1
-  const gridColsClass = hasColumns ? 'grid-cols-[120px_1fr_1fr]' : 'grid-cols-[120px_1fr]'
-
-  const matchupText = `${fighterA.name} VS ${fighterB.name}`
+  const matchupText = `${fighterAName} VS ${fighterBName}`
   const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -116,7 +110,7 @@ export function VerdictMatrixTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -164,10 +158,10 @@ export function VerdictMatrixTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -217,69 +211,56 @@ export function VerdictMatrixTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         
-        <div className="vs-tpl-body" style={{ justifyContent: 'center', flex: 1, display: 'flex', flexDirection: 'column' }}>
-          <div className={`grid ${gridColsClass} overflow-hidden rounded-xl border border-cyan-300/45 bg-slate-950/40 shadow-2xl`} style={{ flex: 1 }}>
-            {/* Column headers */}
-            <div className="border-b border-r border-cyan-300/45 bg-slate-900/80" />
-            {hasColumns ? (
-              <>
-                <div className="border-b border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                  <FittedText as="p" slotKey="verdict-matrix:col-1" spec={slots.verdictMatrixHeader} text={col1 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
-                </div>
-                <div className="border-b border-l border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                  <FittedText as="p" slotKey="verdict-matrix:col-2" spec={slots.verdictMatrixHeader} text={col2 || ''} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
-                </div>
-              </>
-            ) : (
-              <div className="border-b border-cyan-300/45 bg-slate-900/80 p-4 text-center flex items-center justify-center">
-                <FittedText as="p" slotKey="verdict-matrix:verdict-label" spec={slots.verdictMatrixHeader} text={common.verdictLabel} className="font-bold text-cyan-200" style={{ fontSize: '1.4rem', textTransform: 'uppercase' }} />
+        <div className="vs-tpl-body" style={{ justifyContent: 'center', flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '190px minmax(0, 1fr) minmax(0, 1fr)', gridTemplateRows: '68px minmax(0, 1fr) minmax(0, 1fr)', height: '100%', width: '100%', minHeight: 0, border: '2px solid #ff554e', background: 'rgba(0,0,0,0.25)' }}>
+            <div style={{ borderRight: '2px solid rgba(255,85,78,0.7)', borderBottom: '2px solid rgba(255,85,78,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffb7b1', fontFamily: 'var(--font-display)', letterSpacing: '0.07em', textTransform: 'uppercase', fontSize: '0.95rem' }}>
+              WARIANT
+            </div>
+            {matrixColumns.map((columnLabel, index) => (
+              <div key={`matrix-col-${index}`} style={{ borderBottom: '2px solid rgba(255,85,78,0.7)', borderLeft: index === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 0.6rem' }}>
+                <FittedText as="p" slotKey={`verdict-matrix:col-${index}`} spec={slots.verdictMatrixHeader} text={columnLabel} style={{ color: '#ff554e', fontSize: '1.16rem', fontWeight: 'bold', letterSpacing: '0.06em', textTransform: 'uppercase', textAlign: 'center' }} />
               </div>
-            )}
+            ))}
 
-            {rowsList.map((row, r) => (
-              <Fragment key={`row-group-${r}`}>
-                <div className={`relative border ${hasColumns || r > 0 ? 'border-t-0' : ''} border-cyan-300/45 bg-slate-900/72 min-h-[150px] flex items-center justify-center`}>
-                  <div className="absolute left-1/2 top-1/2 w-[200px] -translate-x-1/2 -translate-y-1/2 -rotate-90">
-                    <FittedText as="p" slotKey={`verdict-matrix:row-${r}`} spec={slots.verdictMatrixRowHeader} text={row} className="text-center text-slate-100 font-bold" style={{ fontSize: '1.25rem', letterSpacing: '0.1em' }} />
-                  </div>
+            {matrixRows.map((rowLabel, rowIndex) => (
+              <Fragment key={`matrix-row-${rowIndex}`}>
+                <div style={{ borderTop: rowIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none', borderRight: '2px solid rgba(255,85,78,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 0.8rem' }}>
+                  <FittedText as="p" slotKey={`verdict-matrix:row-${rowIndex}`} spec={slots.verdictMatrixRowHeader} text={rowLabel} style={{ color: '#ffd7d4', fontSize: '1.05rem', textAlign: 'center', letterSpacing: '0.08em', textTransform: 'uppercase' }} />
                 </div>
-                {Array.from({ length: effectiveColCount }, (_, c) => {
-                  const cellIdx = r * effectiveColCount + c
-                  const body = cellData[cellIdx]
-                  if (!body) return <div key={`empty-${cellIdx}`} className="border-b border-l border-cyan-300/45 bg-slate-900/20" />
-
-                  const cellWinnerSide = resolveWinnerSide(body)
-                  const mark = cellWinnerSide === 'a' ? fighterMonogram(fighterA.name) : (cellWinnerSide === 'b' ? fighterMonogram(fighterB.name) : '')
-                  const cellAccentColor = cellWinnerSide === 'a' ? fighterA.color : (cellWinnerSide === 'b' ? fighterB.color : 'rgba(255,255,255,0.1)')
+                {matrixColumns.map((_, columnIndex) => {
+                  const cellIndex = rowIndex * 2 + columnIndex
+                  const cellText = cellData[cellIndex] || ''
+                  const winnerSide = resolveWinnerSide(cellText)
+                  const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
+                  const winnerImage = winnerSide === 'a' ? fighterA.imageUrl : winnerSide === 'b' ? fighterB.imageUrl : ''
+                  const winnerColor = winnerSide === 'a' ? fighterA.color : winnerSide === 'b' ? fighterB.color : '#cbd5e1'
 
                   return (
                     <div
-                      key={`cell-${cellIdx}`}
-                      className="relative flex flex-col items-center justify-center border border-l-0 border-t-0 p-4 text-center transition-colors duration-500"
+                      key={`matrix-cell-${rowIndex}-${columnIndex}`}
                       style={{
-                        borderColor: cellWinnerSide ? `${cellAccentColor}88` : 'rgba(34,211,238,0.45)',
-                        background: cellWinnerSide
-                          ? `linear-gradient(145deg, ${cellAccentColor}44, rgba(15,23,42,0.85))`
-                          : 'rgba(15,23,42,0.4)',
-                        boxShadow: cellWinnerSide ? `inset 0 0 30px ${cellAccentColor}22` : 'none',
-                        minHeight: '150px'
+                        position: 'relative',
+                        overflow: 'hidden',
+                        borderLeft: columnIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none',
+                        borderTop: rowIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none',
+                        background: 'rgba(10, 4, 4, 0.68)',
                       }}
                     >
-                      <FittedText
-                        as="p"
-                        slotKey={`verdict-matrix:cell-body-${cellIdx}`}
-                        spec={slots.verdictMatrixBody}
-                        text={body}
-                        className="relative z-10 text-slate-100 font-medium"
-                        style={{ fontSize: '1.25rem', lineHeight: 1.5 }}
-                      />
-                      <div
-                        className="pointer-events-none absolute inset-0 flex items-center justify-center font-bold transition-opacity duration-500"
-                        style={{ color: cellAccentColor, opacity: 0.12, fontSize: '100px', fontFamily: 'var(--font-display)' }}
-                      >
-                        {mark}
+                      {winnerImage ? (
+                        <img
+                          src={winnerImage}
+                          alt={winnerName}
+                          draggable={false}
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'saturate(0.96) contrast(1.02) brightness(0.82)' }}
+                        />
+                      ) : null}
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))' }} />
+                      <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem' }}>
+                        <p style={{ color: winnerColor, fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', textShadow: '0 0 10px color-mix(in srgb, currentColor 40%, transparent)' }}>
+                          {winnerName || common.emptyFieldLabel}
+                        </p>
                       </div>
                     </div>
                   )

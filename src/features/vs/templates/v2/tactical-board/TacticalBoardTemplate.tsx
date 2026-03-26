@@ -1,4 +1,5 @@
 import './TacticalBoardTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { iconForCategory } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
@@ -74,7 +75,7 @@ export function TacticalBoardTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -178,7 +179,7 @@ export function TacticalBoardTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         <div className="vs-tactical-board25-stats-grid">
           {tiles.map((row, index) => {
             const Icon = iconForCategory(row.id, index)
@@ -215,7 +216,7 @@ export function TacticalBoardTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#ff554e' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={realityHeader} /></p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>

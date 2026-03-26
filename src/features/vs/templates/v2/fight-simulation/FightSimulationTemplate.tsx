@@ -1,4 +1,5 @@
 import './FightSimulationTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
 import {
@@ -59,14 +60,12 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function FightSimulationTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   rows,
   title,
   subtitle,
   templateBlocks,
-  activeFightId,
   language,
   onToggleLanguage,
   integratedToolbar,
@@ -74,23 +73,18 @@ export function FightSimulationTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-simulation'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome('fight-simulation', language, blockFields)
   const common = getFightCommonCopy('fight-simulation', language)
   const ui = getTemplateUi('fight-simulation', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "FIGHT SIMULATION"
+    pickTemplateField(blockFields, ['panel_header', 'simulation_header']) ||
+    getFightTemplateDefaultField('fight-simulation', 'panel_header', language) || "SYMULACJA WALKI"
 
   const categories = getFightDefaultCategories('fight-simulation', language)
   const categoryLabel = (categoryId: string, fallback: string) =>
@@ -173,7 +167,6 @@ export function FightSimulationTemplate({
     'phase_animation', 'phaseanimation', 'animation', 'scenario', 'preset',
     'simulation_animation', 'simulationanimation',
   ])
-  const globalAnimationSelection = resolveFightScenarioSelection(globalAnimationValue, phaseDefaults[0]?.animation || 'orbit-harass')
   const globalLeadValue = pickTemplateField(blockFields, ['phase_actor', 'phaseactor', 'actor', 'lead', 'aggressor', 'attacker'])
   const globalLead = resolveFightScenarioLead(globalLeadValue, phaseDefaults[0]?.lead || 'a')
 
@@ -240,6 +233,7 @@ export function FightSimulationTemplate({
   const scopeKey = `${fighterA.name}::${fighterB.name}:fight-simulation`
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
+  const variantLabel = active.label || (activeIndex === 0 ? 'Standardowe Zasady' : 'Solar Flare')
 
   const bdLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const bdFields = parseTemplateFieldMap(bdLines)
@@ -260,7 +254,7 @@ export function FightSimulationTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -308,10 +302,10 @@ export function FightSimulationTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -352,10 +346,13 @@ export function FightSimulationTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         
         <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
           <div className="mt-1 h-6 flex items-center justify-between gap-3 px-1" style={{ marginBottom: '1rem' }}>
+            <p style={{ color: '#ff554e', fontFamily: 'var(--font-display)', fontSize: '1.08rem', letterSpacing: '0.1em', textTransform: 'uppercase', textShadow: '0 0 10px rgba(255, 85, 78, 0.45)' }}>
+              {variantLabel}
+            </p>
             {scenarios.length > 1 && (
               <>
                 <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
@@ -374,13 +371,13 @@ export function FightSimulationTemplate({
             )}
           </div>
 
-          <div className={layout.PHASES_PANEL_CLASS} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
+          <div className={layout.PHASES_PANEL_CLASS} style={{ display: 'flex', gap: '0.65rem', flex: 1, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, minHeight: 0 }}>
             {active.phases.map((phase, index) => (
               <div
                 key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
-                className={`${layout.PHASE_CARD_CLASS}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
+                className={scenarios.length > 1 ? 'cursor-pointer' : undefined}
                 onClick={scenarios.length > 1 ? nextScenario : undefined}
-                style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.75rem', position: 'relative' }}
+                style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.48rem 0.34rem 0.36rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none', minHeight: 0 }}
               >
                 <div className={layout.PHASE_CARD_HEADER_CLASS} style={{ paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
                   <p className={layout.PHASE_CARD_LABEL_CLASS} style={{ fontSize: '0.9rem', color: '#94a3b8', textTransform: 'uppercase' }}>{common.phaseLabel} {index + 1}</p>
@@ -396,7 +393,7 @@ export function FightSimulationTemplate({
                   />
                 </div>
 
-                <div className={layout.SCENARIO_PANEL_CLASS} style={{ position: 'relative', height: '140px', marginBottom: '1rem', border: 'none', background: 'transparent' }}>
+                <div style={{ position: 'relative', height: '140px', marginBottom: '0.65rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
                   <FightScenarioCanvas
                     scenario={phase.animation}
                     variantToken={phase.animationVariantToken}
@@ -404,7 +401,7 @@ export function FightSimulationTemplate({
                     colorB={fighterB.color}
                     lead={phase.lead}
                   />
-                  <div className={layout.SCENARIO_META_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.25rem', background: 'rgba(0,0,0,0.8)', display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem' }}>
+                  <div className={layout.SCENARIO_META_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.2rem 0.15rem', background: 'transparent', display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', borderTop: '1px solid rgba(255, 85, 78, 0.4)' }}>
                     <span className={layout.SCENARIO_META_LABEL_CLASS} style={{ color: '#94a3b8' }}>{common.scenarioPresetLabel}</span>
                     <FittedText
                       as="span"
@@ -427,7 +424,7 @@ export function FightSimulationTemplate({
                       className={layout.EVENT_TEXT_CLASS}
                       style={{ color: '#cbd5e1', fontSize: '1.05rem', marginBottom: '0.5rem', flex: 1 }}
                     />
-                    <div className="mt-2 flex min-h-0 overflow-hidden rounded-md p-2" style={{ height: '80px' }}>
+                    <div className="mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
                       <svg viewBox="0 0 100 49" className="w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
                         {['10', '18', '26', '34'].map((y) => (
                           <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
@@ -457,7 +454,7 @@ export function FightSimulationTemplate({
                       className={layout.EVENT_TEXT_CLASS}
                       style={{ color: '#cbd5e1', fontSize: '1.05rem', marginBottom: '0.5rem', flex: 1 }}
                     />
-                    <div className={layout.SPLIT_PANEL_CLASS} style={{ position: 'relative', marginTop: 'auto', padding: '0.5rem' }}>
+                    <div style={{ position: 'relative', marginTop: 'auto', padding: '0.5rem 0.2rem 0.2rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
                       <svg viewBox={layout.SPLIT_SVG_VIEWBOX || "0 0 200 80"} className={layout.SPLIT_SVG_CLASS} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0 }}>
                         <line x1={layout.SPLIT_LINE_TOP_X1 || "100"} y1={layout.SPLIT_LINE_TOP_Y1 || "0"} x2={layout.SPLIT_LINE_TOP_X2 || "100"} y2={layout.SPLIT_LINE_TOP_Y2 || "20"} stroke={layout.SPLIT_LINE_TOP_STROKE || "rgba(255,255,255,0.2)"} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH || "2"} />
                         <line x1={layout.SPLIT_BRANCH_A_X1 || "100"} y1={layout.SPLIT_BRANCH_A_Y1 || "20"} x2={layout.SPLIT_BRANCH_A_X2 || "50"} y2={layout.SPLIT_BRANCH_A_Y2 || "80"} stroke={layout.SPLIT_BRANCH_A_STROKE || "rgba(56,189,248,0.5)"} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH || "2"} />
@@ -465,7 +462,7 @@ export function FightSimulationTemplate({
                         <circle cx={layout.SPLIT_NODE_CX || "100"} cy={layout.SPLIT_NODE_CY || "20"} r={layout.SPLIT_NODE_R || "4"} fill={layout.SPLIT_NODE_FILL || "#fff"} />
                       </svg>
                       <div className={layout.BRANCH_GRID_CLASS} style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-                        <div className={layout.BRANCH_A_CLASS} style={{ width: '45%', padding: '0.5rem', border: 'none', background: 'transparent', color: '#e0f2fe', fontSize: '1rem', textAlign: 'center' }}>
+                        <div style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', color: '#e0f2fe', fontSize: '0.9rem', textAlign: 'center' }}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-a:${activeIndex}:${index}`}
@@ -473,7 +470,7 @@ export function FightSimulationTemplate({
                             text={phase.branchA}
                           />
                         </div>
-                        <div className={layout.BRANCH_B_CLASS} style={{ width: '45%', padding: '0.5rem', border: 'none', background: 'transparent', color: '#ffe4e6', fontSize: '1rem', textAlign: 'center' }}>
+                        <div style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', color: '#ffe4e6', fontSize: '0.9rem', textAlign: 'center' }}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-b:${activeIndex}:${index}`}
@@ -489,12 +486,13 @@ export function FightSimulationTemplate({
             ))}
           </div>
 
-          <div className={layout.END_CONDITION_CLASS} style={{ marginTop: '1rem', padding: '1rem', border: 'none', background: 'transparent', textAlign: 'center', color: '#cffafe', fontStyle: 'italic' }}>
+          <div className={layout.END_CONDITION_CLASS} style={{ marginTop: '0.55rem', padding: '0.55rem 0.4rem 0.2rem', border: 'none', background: 'transparent', textAlign: 'center', color: '#cffafe', fontStyle: 'italic' }}>
             <FittedText
               as="p"
               slotKey={`fight-simulation:end-condition:${activeIndex}`}
               spec={slots.endCondition}
               text={active.endCondition}
+              style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.42)', fontStyle: 'italic', lineHeight: 1.2 }}
             />
           </div>
         </div>

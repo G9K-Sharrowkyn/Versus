@@ -1,4 +1,5 @@
 import './MethodologyTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -40,7 +41,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function MethodologyTemplate({
-  activeTemplateId,
   rows,
   title,
   subtitle,
@@ -55,7 +55,6 @@ export function MethodologyTemplate({
   
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.methodology || [])
   const blockFields = parseTemplateFieldMap(blockLines)
-  const chrome = buildFightTemplateChrome('methodology', language, blockFields)
   const common = getFightCommonCopy('methodology', language)
   const ui = getTemplateUi('methodology', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
@@ -108,7 +107,7 @@ export function MethodologyTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -200,7 +199,7 @@ export function MethodologyTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={boardHeader} /></p>
         
         <div className={layout.BODY_CLASS as string} style={{ display: 'flex', gap: '1.5rem', flex: 1 }}>
           <div className={layout.LIST_PANEL_CLASS as string} style={{ flex: 1, display: 'flex', flexDirection: 'column', background: 'rgba(2, 6, 23, 0.5)', padding: '1.5rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
@@ -279,7 +278,7 @@ export function MethodologyTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={realityHeader} /></p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>

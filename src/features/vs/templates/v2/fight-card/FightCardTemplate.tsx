@@ -1,4 +1,5 @@
 import './FightCardTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import clsx from 'clsx'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
@@ -7,7 +8,6 @@ import {
   fighterMonogram,
   normalizeHexColor,
   resolveFightCardPalette,
-  resolveFightCardStripeStyle,
   stripFightLocaleSuffixFromLabel,
 } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
@@ -47,7 +47,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function FightCardTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   portraitAAdjust,
@@ -66,10 +65,6 @@ export function FightCardTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
@@ -81,8 +76,8 @@ export function FightCardTemplate({
   const layout = ui.template as Record<string, string>
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "FIGHT CARD"
+    pickTemplateField(blockFields, ['panel_header', 'fight_card_header']) ||
+    getFightTemplateDefaultField('fight-card', 'panel_header', language) || "KARTA WALKI"
 
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
@@ -119,8 +114,6 @@ export function FightCardTemplate({
   }
 
   const renderStaticLine = (text: string, palette: FightCardPalette) => {
-    const stripeStyle = resolveFightCardStripeStyle(palette)
-
     return (
       <FittedText
         as="span"
@@ -130,15 +123,17 @@ export function FightCardTemplate({
         className={layout.WORDMARK_CLASS}
         style={
           {
-            color: palette.colorA,
+            color: 'transparent',
             width: '100%',
             fontFamily: 'var(--font-display)',
             fontSize: '4rem',
             textAlign: 'center',
             textTransform: 'uppercase',
-            textShadow: '0 0 20px rgba(0,0,0,0.8)',
-            '--vvv-stripe-image': stripeStyle.textureUrl,
-            '--vvv-stripe-filter': stripeStyle.textureFilter,
+            textShadow: '0 0 18px rgba(0,0,0,0.9)',
+            backgroundImage: `repeating-linear-gradient(-35deg, ${palette.colorA} 0 26px, ${palette.colorB} 26px 52px)`,
+            WebkitBackgroundClip: 'text',
+            backgroundClip: 'text',
+            letterSpacing: '0.06em',
           } as CSSProperties
         }
       />
@@ -165,48 +160,38 @@ export function FightCardTemplate({
             flex: 1,
             position: 'relative',
             overflow: 'hidden',
-            border: `1px solid ${fighter.color}40`,
-            '--vvv-portrait-color': fighter.color,
-            '--f': isAuditMode ? 'none' : `url(#${layout.FILTER_ID})`,
-            '--electric-y-offset': '-3px',
-            '--electric-border-color': fighter.color,
-            '--electric-light-color': 'oklch(from var(--electric-border-color) l c h)',
+            border: `8px solid ${fighter.color}`,
+            boxShadow: `0 0 0 1px ${fighter.color}40 inset`,
           } as CSSProperties
         }
       >
-        <div className={layout.PORTRAIT_INNER_CONTAINER_CLASS} style={{ position: 'absolute', inset: 0 }}>
-          <div className={layout.PORTRAIT_BORDER_OUTER_CLASS} style={{ position: 'absolute', inset: 0 }}>
-            <div className={layout.PORTRAIT_INNER_CLASS} style={{ position: 'absolute', inset: 0 }}>
-              {fighter.imageUrl ? (
-                <AdjustableTemplateImage
-                  imageUrl={fighter.imageUrl}
-                  alt={fighter.name || fighterFallback}
-                  fallbackLabel={common.portraitSlot}
-                  hintLabel={chrome.portraitAdjustHint}
-                  adjustKey={adjustKey}
-                  baseAdjust={fighterAdjust}
-                  adjustments={slideImageAdjustments}
-                  onAdjustChange={onSlideImageAdjustChange}
-                  onAdjustCommit={onSlideImageAdjustCommit}
-                  plain
-                />
-              ) : (
-                <div
-                  className={layout.FALLBACK_CLASS}
-                  style={{ color: fighter.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'rgba(0,0,0,0.5)' }}
-                >
-                  <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
-                    <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '6rem', opacity: 0.2 }}>{fighterMonogram(fighter.name || fighterFallback)}</p>
-                    <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
-                  </div>
-                </div>
-              )}
-              <div className={layout.PORTRAIT_NAME_CLASS} style={{ position: 'absolute', bottom: '10%', left: 0, right: 0, zIndex: 10 }}>{renderStaticLine(nameText, palette)}</div>
-              <div className={layout.PORTRAIT_NAME_FADE_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '40%', background: 'linear-gradient(to top, rgba(0,0,0,0.9), transparent)' }} />
+        <div style={{ position: 'absolute', inset: 0 }}>
+          {fighter.imageUrl ? (
+            <AdjustableTemplateImage
+              imageUrl={fighter.imageUrl}
+              alt={fighter.name || fighterFallback}
+              fallbackLabel={common.portraitSlot}
+              hintLabel={chrome.portraitAdjustHint}
+              adjustKey={adjustKey}
+              baseAdjust={fighterAdjust}
+              adjustments={slideImageAdjustments}
+              onAdjustChange={onSlideImageAdjustChange}
+              onAdjustCommit={onSlideImageAdjustCommit}
+              plain
+            />
+          ) : (
+            <div
+              className={layout.FALLBACK_CLASS}
+              style={{ color: fighter.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%', background: 'rgba(0,0,0,0.5)' }}
+            >
+              <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
+                <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '6rem', opacity: 0.2 }}>{fighterMonogram(fighter.name || fighterFallback)}</p>
+                <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
+              </div>
             </div>
-          </div>
-          <div className={layout.PORTRAIT_GLOW_LAYER_1_CLASS} />
-          <div className={layout.PORTRAIT_GLOW_LAYER_2_CLASS} />
+          )}
+          <div className={layout.PORTRAIT_NAME_CLASS} style={{ position: 'absolute', bottom: '9%', left: 0, right: 0, zIndex: 10, padding: '0 0.65rem' }}>{renderStaticLine(nameText, palette)}</div>
+          <div className={layout.PORTRAIT_NAME_FADE_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '44%', background: 'linear-gradient(to top, rgba(0,0,0,0.95), transparent)' }} />
         </div>
       </div>
     )
@@ -221,7 +206,7 @@ export function FightCardTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -267,12 +252,12 @@ export function FightCardTemplate({
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
-      <div className="vs-tactical-board25-meta">
+      <div className="vs-tactical-board25-meta" style={{ left: '20px' }}>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#ff554e', textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -291,7 +276,7 @@ export function FightCardTemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2', fontWeight: 'bold', letterSpacing: '0.07em', textShadow: '0 0 8px rgba(119, 226, 242, 0.65), 0 0 18px rgba(119, 226, 242, 0.3)' }}>{subText}</p>
       </div>
 
       <button
@@ -300,7 +285,7 @@ export function FightCardTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})`, right: '20px' } as any}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
@@ -333,14 +318,11 @@ export function FightCardTemplate({
       ) : null}
 
       <section className="vs-tactical-board25-stats" style={{ padding: '0', background: 'transparent', border: 'none', boxShadow: 'none', width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e', padding: '0 1rem' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e', padding: '0 1rem' }}><GlitchText text={boardHeader} /></p>
 
         <div className={layout.SPLIT_CLASS} style={{ flex: 1, display: 'flex', position: 'relative', marginTop: '1rem' }}>
           {renderFightCardPortrait(fighterA, topName, topPalette, 'left')}
           {renderFightCardPortrait(fighterB, bottomName, bottomPalette, 'right')}
-          <span className={layout.VS_WRAP_CLASS} style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', zIndex: 20 }}>
-            <img src="/assets/VS.png" alt="VS" className={layout.VS_IMAGE_CLASS} draggable={false} style={{ width: '120px', filter: 'drop-shadow(0 0 20px rgba(0,0,0,0.8))' }} />
-          </span>
         </div>
       </section>
 

@@ -173,11 +173,9 @@ export function useVsPersistence({
       try {
         const scanned = await fetchFolderFightsFromApi()
         scanWarnings = scanned.warnings
-        if (scanWarnings.length) console.warn('[vs-fights-scan]', scanWarnings)
         mergedFights = mergeScannedFolderFights(restoredFights, scanned.fights)
       } catch (error) {
         scanWarnings = [String(error)]
-        console.warn('[vs-fights-scan] Folder scan failed, using persisted fights.', error)
       }
 
       if (restoredActiveFightId && !mergedFights.some((fight) => fight.id === restoredActiveFightId)) {
@@ -269,10 +267,8 @@ export function useVsPersistence({
             preserveTemplateSelection: true,
           })
         }
-      } catch (error) {
-        if (!disposed) {
-          console.warn('[vs-fights-live-refresh] Folder scan failed.', error)
-        }
+      } catch {
+        // Keep current state on folder scan failure.
       } finally {
         inFlight = false
       }

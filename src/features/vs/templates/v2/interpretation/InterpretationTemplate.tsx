@@ -1,4 +1,5 @@
 import './InterpretationTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
@@ -39,7 +40,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function InterpretationTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   averageA,
@@ -65,7 +65,6 @@ export function InterpretationTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.interpretation || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome('interpretation', language, blockFields)
   const ui = getTemplateUi('interpretation', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const tokens = ui.tokens as Record<string, string>
@@ -143,7 +142,7 @@ export function InterpretationTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -244,7 +243,7 @@ export function InterpretationTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={boardHeader} /></p>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', flex: 1 }}>
           <div className={`${layout.EDGE_PANEL_CLASS as string} flex-1`} style={{ display: 'flex', gap: '1rem', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: '1px solid rgba(148, 163, 184, 0.2)' }}>
@@ -364,7 +363,7 @@ export function InterpretationTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={realityHeader} /></p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>

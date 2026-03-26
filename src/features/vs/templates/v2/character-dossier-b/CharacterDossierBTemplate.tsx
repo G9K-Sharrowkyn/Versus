@@ -37,7 +37,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function CharacterDossierBTemplate({
-  activeTemplateId,
   fighterB,
   portraitBAdjust,
   title,
@@ -66,11 +65,10 @@ export function CharacterDossierBTemplate({
   // Format: "0 [Wysokość] [Rozmycie/Blur] [Kolor]"
   // ===========================================================================
   
-  const REFLEKS_IMIENIA_POSTACI = "0 1em 0.2em rgba(119, 226, 242, 0.4)" 
-  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.4em rgba(119, 226, 242, 0.4)" 
+  const REFLEKS_IMIENIA_POSTACI = "0 1em 0.28em rgba(119, 226, 242, 0.45)" 
+  const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)" 
   const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)" 
-  const REFLEKS_NAGLOWKOW_PANELI = "0 var(--tb-reflect-2-y) 0.2em rgba(119, 226, 242, 0.4)" 
-  const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.25em rgba(255, 85, 78, 0.6)"
+  const REFLEKS_CYTATU = "0 var(--tb-reflect-2-y) 0.38em rgba(255, 85, 78, 0.68)"
 
   const POZYCJA_REFLEKSU_CZERWONEJ_LINII = "calc(var(--tb-reflect-4-y) + 230px)" 
   // ===========================================================================
@@ -81,8 +79,17 @@ export function CharacterDossierBTemplate({
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
     .trim()
   const subText = common.redCorner
-  const fighterSubtitle = fighterB.subtitle || ""
   const dossierQuote = pickTemplateField(blockFields, ['quote', 'cytat']) || common.emptyFieldLabel
+  const quoteLength = dossierQuote.trim().length
+  const quoteFontSize =
+    quoteLength > 220
+      ? 'calc(var(--tb-type-3) * 0.58)'
+      : quoteLength > 170
+        ? 'calc(var(--tb-type-3) * 0.68)'
+        : quoteLength > 120
+          ? 'calc(var(--tb-type-3) * 0.78)'
+          : 'calc(var(--tb-type-3) * 0.9)'
+  const quoteLetterSpacing = quoteLength > 150 ? '0.01em' : '0.02em'
   
   const boardHeader = "PORTRET"
   const realityHeader = "OPIS POSTACI"
@@ -96,7 +103,7 @@ export function CharacterDossierBTemplate({
     if (chars.length === 0) return
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
     const startGlitch = () => {
       if (!isMounted) return
@@ -130,10 +137,10 @@ export function CharacterDossierBTemplate({
       {/* META INFO */}
       <div className="vs-tactical-board25-meta" style={{ left: '20px' }}>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 10px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: RED_LINIA, textShadow: '0 0 12px rgba(255, 85, 78, 0.75), 0 0 22px rgba(255, 85, 78, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
         </p>
       </div>
 
@@ -169,7 +176,7 @@ export function CharacterDossierBTemplate({
 
       {/* LEWY PANEL: PORTRET */}
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={boardHeader} /></p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: RED_LINIA, zIndex: 10 }}><GlitchText text={boardHeader} /></p>
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
           <AdjustableTemplateImage
             imageUrl={fighterB.imageUrl}
@@ -187,7 +194,7 @@ export function CharacterDossierBTemplate({
 
       {/* PRAWY PANEL: DANE POSTACI */}
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: RED_LINIA, zIndex: 10, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={realityHeader} /></p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: RED_LINIA, zIndex: 10 }}><GlitchText text={realityHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
 
           {/* Imię Postaci */}
@@ -214,7 +221,7 @@ export function CharacterDossierBTemplate({
             <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '220px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
             <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: `calc(${POZYCJA_REFLEKSU_CZERWONEJ_LINII} + 0px)`, left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
             <div style={{ fontStyle: 'italic' }}>
-              <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textTransform: 'none', textShadow: REFLEKS_CYTATU }}>"{dossierQuote}"</p>
+              <p className="vs-dossier-text-3 vs-dossier-quote" style={{ color: RED_LINIA, textTransform: 'none', textShadow: REFLEKS_CYTATU, fontStyle: 'italic', fontSize: quoteFontSize, letterSpacing: quoteLetterSpacing, lineHeight: 1.05, overflowWrap: 'anywhere' }}>"{dossierQuote}"</p>
             </div>
           </div>
         </div>

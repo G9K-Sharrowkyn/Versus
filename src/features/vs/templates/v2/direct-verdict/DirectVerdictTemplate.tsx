@@ -1,4 +1,5 @@
 import './DirectVerdictTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -38,7 +39,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function DirectVerdictTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   averageA,
@@ -75,7 +75,6 @@ export function DirectVerdictTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['direct-verdict'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const chrome = buildFightTemplateChrome('direct-verdict', language, blockFields)
   const ui = getTemplateUi('direct-verdict', language)
   const shell = ui.highEnd as Record<string, string>
   const slots = ui.slots as Record<string, TemplateSlotSpec>
@@ -117,7 +116,7 @@ export function DirectVerdictTemplate({
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -218,7 +217,7 @@ export function DirectVerdictTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats">
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#77e2f2' }}>{boardHeader}</p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={boardHeader} /></p>
         
         <div className={layout.BODY_CLASS} style={{ display: 'flex', gap: '1rem', flex: 1 }}>
           <div className={layout.LEFT_PANEL_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '1rem', background: 'rgba(2, 6, 23, 0.5)', padding: '1rem', border: `1px solid ${accentColor}40`, boxShadow: `0 0 0 1px ${accentColor}33 inset` }}>
@@ -343,7 +342,7 @@ export function DirectVerdictTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#77e2f2' }}>{realityHeader}</p>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#77e2f2' }}><GlitchText text={realityHeader} /></p>
         <div className="vs-tactical-board25-reality-viewport">
           <AnimeLightning />
         </div>

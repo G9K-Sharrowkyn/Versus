@@ -1,4 +1,5 @@
 import './CrucialFeatsTemplate.scss'
+import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { preloadImageUrls } from '../../../domain/imagePreloadCache'
@@ -16,7 +17,6 @@ import {
   type TemplateImageEntry,
 } from '../../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../../types'
-import { HighEndFighterBanner } from '../../shared/highEnd'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -50,7 +50,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 }
 
 export function CrucialFeatsTemplate({
-  activeTemplateId,
   fighterA,
   fighterB,
   crucialFeatsA,
@@ -70,10 +69,6 @@ export function CrucialFeatsTemplate({
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
-  
-  const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['crucial-feats'] || [])
@@ -82,10 +77,6 @@ export function CrucialFeatsTemplate({
 
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle || ''
-  
-  const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "CRUCIAL FEATS"
 
   const leftEntries = buildTemplateImageEntries(blockFields, 'left', crucialFeatsA)
   const rightEntries = buildTemplateImageEntries(blockFields, 'right', crucialFeatsB)
@@ -140,25 +131,29 @@ export function CrucialFeatsTemplate({
     ]
 
     return (
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0, paddingBottom: '0.7rem' }}>
         <div style={{ flex: 1, position: 'relative', minHeight: 0 }}>
-          <AdjustableTemplateImage
-            imageUrl={imageUrl}
-            alt={entry?.text || fighter.name || fighterFallback}
-            fallbackLabel={common.noImage}
-            hintLabel=""
-            adjustKey={adjustKey}
-            legacyAdjustKeys={legacyAdjustKeys}
-            adjustments={slideImageAdjustments}
-            onAdjustChange={onSlideImageAdjustChange}
-            onAdjustCommit={onSlideImageAdjustCommit}
-            onActivate={nextPair}
-            plain
-          />
+          <div style={{ position: 'absolute', inset: 0 }}>
+            <AdjustableTemplateImage
+              imageUrl={imageUrl}
+              alt={entry?.text || fighter.name || fighterFallback}
+              fallbackLabel={common.noImage}
+              hintLabel=""
+              adjustKey={adjustKey}
+              legacyAdjustKeys={legacyAdjustKeys}
+              adjustments={slideImageAdjustments}
+              onAdjustChange={onSlideImageAdjustChange}
+              onAdjustCommit={onSlideImageAdjustCommit}
+              onActivate={nextPair}
+              plain
+            />
+          </div>
         </div>
-        {entry?.text && (
-          <p style={{ color: '#94a3b8', fontSize: '0.75rem', textAlign: 'center', padding: '0 0.5rem' }}>{entry.text}</p>
-        )}
+        <div style={{ minHeight: 'calc(2.8rem * var(--tb-scale))', padding: '0.45rem 0.5rem 0', display: 'flex', justifyContent: 'center' }}>
+          <p style={{ color: '#77e2f2', fontSize: 'calc(var(--tb-type-4) * 0.82)', textAlign: 'center', lineHeight: 1.12, textShadow: '0 0 8px rgba(119, 226, 242, 0.3)' }}>
+            {entry?.text || '\u00A0'}
+          </p>
+        </div>
       </div>
     )
   }
@@ -173,7 +168,7 @@ export function CrucialFeatsTemplate({
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
-    const timeouts = new Map<number, NodeJS.Timeout>()
+    const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
     let isMounted = true
 
     const startGlitch = () => {
@@ -264,13 +259,13 @@ export function CrucialFeatsTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title" style={{ color: '#ff554e' }}>{fighterA.name}</p>
+      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={fighterA.name} /></p>
         {renderColumn(fighterA, leftEntry, 'left')}
       </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-reality-heading" style={{ color: '#ff554e' }}>{fighterB.name}</p>
+      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={fighterB.name} /></p>
         {renderColumn(fighterB, rightEntry, 'right')}
       </div>
     </div>
