@@ -148,17 +148,21 @@ export function ParameterComparisonTemplate({
         : DOSSIER_BLUE_PANEL_TEXT_STYLE
 
     const valueForRow = (row: (typeof rows)[number]) => {
-      if (side === 'draw') return row.winner === 'draw' ? `${row.a} = ${row.b}` : '—'
-      if (side === 'a') return row.winner === 'a' ? `${row.a} > ${row.b}` : '—'
-      return row.winner === 'b' ? `${row.b} > ${row.a}` : '—'
+      if (side === 'draw') return `${row.a} = ${row.b}`
+      if (side === 'a') return `${row.a} > ${row.b}`
+      return `${row.b} > ${row.a}`
     }
 
     const valueStyle: CSSProperties = {
       ...labelStyle,
       opacity: 0.95,
+      display: 'inline-block',
       whiteSpace: 'nowrap',
+      lineHeight: 1,
       fontSize: 'calc(var(--tb-type-2) * 0.8)',
       letterSpacing: '0.03em',
+      width: '7ch',
+      textAlign: side === 'b' ? 'right' : side === 'draw' ? 'center' : 'left',
     }
 
     if (!entries.length) {
@@ -172,14 +176,25 @@ export function ParameterComparisonTemplate({
     return entries.map((row, index) => {
       return (
         <div key={`${side}-adv-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', gap: '0.62rem', minHeight: 'calc(var(--tb-type-2) * 0.92)' }}>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '30ch max-content',
+              alignItems: 'baseline',
+              columnGap: '0.4rem',
+              minHeight: 'calc(var(--tb-type-2) * 0.92)',
+              marginLeft: side === 'a' ? 0 : 'auto',
+              marginRight: side === 'draw' ? 'auto' : 0,
+            }}
+          >
             <p
               style={{
                 ...labelStyle,
-                flex: 1,
+                minWidth: 0,
                 whiteSpace: 'nowrap',
                 overflow: 'hidden',
                 textOverflow: 'ellipsis',
+                textAlign: side === 'draw' ? 'center' : 'left',
               }}
             >
               {row.label}
@@ -188,7 +203,15 @@ export function ParameterComparisonTemplate({
           </div>
           {index < entries.length - 1 ? (
             <div style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
-              <div style={{ height: '2px', background: '#ff554e' }} />
+              <div
+                style={{
+                  height: '2px',
+                  width: side === 'draw' ? '44%' : '48%',
+                  marginLeft: side === 'a' ? 0 : 'auto',
+                  marginRight: side === 'b' ? 0 : 'auto',
+                  background: '#ff554e',
+                }}
+              />
             </div>
           ) : null}
         </div>
@@ -315,25 +338,25 @@ export function ParameterComparisonTemplate({
           </div>
 
           <div style={{ display: 'flex', marginBottom: '0.65rem', alignItems: 'flex-end', gap: '1.1rem' }}>
-            <div style={{ flex: '0 0 30%' }}>
+            <div style={{ flex: '0 0 32%' }}>
               <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{advantageHeader}</p>
             </div>
-            <div style={{ flex: '0 0 40%', textAlign: 'center' }}>
+            <div style={{ flex: '0 0 36%', textAlign: 'center' }}>
               <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>{drawHeader}</p>
             </div>
-            <div style={{ flex: '0 0 30%', textAlign: 'right' }}>
+            <div style={{ flex: '0 0 32%', textAlign: 'right' }}>
               <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, textAlign: 'right' }}>{advantageHeader}</p>
             </div>
           </div>
 
           <div style={{ display: 'flex', gap: '0.7rem', flex: 1, minHeight: 0 }}>
-             <div style={{ flex: '0 0 30%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
+             <div style={{ flex: '0 0 32%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
                <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
                  {renderAdvantageCards(leftAdvantages, 'a', common.noLeftCategoryEdge)}
                </div>
              </div>
 
-             <div style={{ flex: '0 0 40%', display: 'flex', flexDirection: 'column', gap: '0.56rem', minHeight: 0 }}>
+             <div style={{ flex: '0 0 36%', display: 'flex', flexDirection: 'column', gap: '0.56rem', minHeight: 0 }}>
                <div style={{ flex: 2.4, position: 'relative', minHeight: '340px' }}>
                   <ResponsiveContainer width="100%" height="100%">
                     <RadarChart
@@ -349,14 +372,14 @@ export function ParameterComparisonTemplate({
                     </RadarChart>
                   </ResponsiveContainer>
                </div>
-               <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', gap: '0.42rem', minHeight: 0 }}>
+               <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', gap: '0.42rem', minHeight: 0, marginTop: '1.2rem' }}>
                  <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
                    {renderAdvantageCards(drawRows, 'draw', common.noDrawsCurrentSetup)}
                  </div>
                </div>
              </div>
 
-             <div style={{ flex: '0 0 30%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
+             <div style={{ flex: '0 0 32%', display: 'flex', flexDirection: 'column', gap: '0.4rem', minHeight: 0 }}>
                <div style={{ display: 'flex', flexDirection: 'column', gap: 0, overflow: 'visible', minHeight: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
                  {renderAdvantageCards(rightAdvantages, 'b', common.noRightCategoryEdge)}
                </div>
