@@ -924,7 +924,7 @@
   position: absolute;
   left: calc(var(--xf-overcharge-x, 100%) - 1px);
   top: 50%;
-  width: 176px;
+  width: 124px;
   height: 126px;
   transform: translate(-98%, -50%);
   pointer-events: none;
@@ -953,40 +953,40 @@
 }
 
 .vs-xfactor-overcharge-arc--1 {
-  transform: translate(-2px, 0) scale(1.06, 0.98) scaleX(-1);
+  transform: translate(-2px, 0) scale(1.06, 0.98);
   animation: vs-xfactor-overcharge-chaos 0.46s ease-in-out infinite;
 }
 
 .vs-xfactor-overcharge-arc--2 {
-  transform: translate(-18px, -6px) rotate(-7deg) scale(0.9, 0.78) scaleX(-1);
+  transform: translate(-18px, -6px) rotate(-7deg) scale(0.9, 0.78);
   opacity: 0.82;
   animation: vs-xfactor-overcharge-chaos 0.39s ease-in-out infinite;
   animation-delay: 0.08s;
 }
 
 .vs-xfactor-overcharge-arc--3 {
-  transform: translate(-34px, 8px) rotate(6deg) scale(1.14, 0.92) scaleX(-1);
+  transform: translate(-34px, 8px) rotate(6deg) scale(1.14, 0.92);
   opacity: 0.74;
   animation: vs-xfactor-overcharge-chaos 0.51s ease-in-out infinite;
   animation-delay: 0.04s;
 }
 
 .vs-xfactor-overcharge-arc--4 {
-  transform: translate(-26px, -10px) rotate(-11deg) scale(0.95, 0.72) scaleX(-1);
+  transform: translate(-26px, -10px) rotate(-11deg) scale(0.95, 0.72);
   opacity: 0.66;
   animation: vs-xfactor-overcharge-chaos 0.43s ease-in-out infinite;
   animation-delay: 0.12s;
 }
 
 .vs-xfactor-overcharge-arc--5 {
-  transform: translate(-38px, 2px) rotate(9deg) scale(1.06, 0.86) scaleX(-1);
+  transform: translate(-38px, 2px) rotate(9deg) scale(1.06, 0.86);
   opacity: 0.6;
   animation: vs-xfactor-overcharge-chaos 0.37s ease-in-out infinite;
   animation-delay: 0.03s;
 }
 
 .vs-xfactor-overcharge-arc--6 {
-  transform: translate(-14px, 12px) rotate(-15deg) scale(0.88, 0.74) scaleX(-1);
+  transform: translate(-14px, 12px) rotate(-15deg) scale(0.88, 0.74);
   opacity: 0.58;
   animation: vs-xfactor-overcharge-chaos 0.41s ease-in-out infinite;
   animation-delay: 0.09s;
@@ -1005,8 +1005,6 @@
   opacity: 0.94;
   filter: saturate(1.35) contrast(1.2);
 }
-
-
 
 
 

@@ -235,6 +235,67 @@ const extendStrandsTowardRightEdge = (
     return out
   })
 
+const extendStrandsTowardLeftEdge = (
+  strands: LightningPoint[][],
+  leftStart: number,
+  leftEnd: number,
+  verticalJitter: number,
+  fanSpread: number,
+  centerY: number,
+  minY: number,
+  maxY: number,
+) =>
+  strands.map((strand, strandIndex) => {
+    if (strand.length < 2) return strand
+    const out = [...strand]
+    const last = out[out.length - 1]
+    const center = (strands.length - 1) / 2
+    const lane = strandIndex - center
+    const desiredYRaw = centerY + lane * fanSpread + (Math.random() * 2 - 1) * verticalJitter
+    const desiredY = Math.max(minY, Math.min(maxY, desiredYRaw))
+    const targetX = leftEnd + Math.random() * Math.max(2, leftStart - leftEnd)
+
+    if (last.x <= targetX + 2) {
+      if (last.x > leftEnd) {
+        const endY = Math.max(
+          minY,
+          Math.min(
+            maxY,
+            last.y * 0.32 + desiredY * 0.68 + (Math.random() * 2 - 1) * verticalJitter * 0.2,
+          ),
+        )
+        out.push({
+          x: leftEnd,
+          y: endY,
+        })
+      }
+      return out
+    }
+
+    const midX = (last.x + targetX) / 2
+    const midY = Math.max(
+      minY,
+      Math.min(
+        maxY,
+        last.y +
+          (desiredY - last.y) * (0.52 + Math.random() * 0.2) +
+          (Math.random() * 2 - 1) * verticalJitter * 0.24,
+      ),
+    )
+    out.push({
+      x: midX,
+      y: midY,
+    })
+    out.push({
+      x: targetX,
+      y: Math.max(
+        minY,
+        Math.min(maxY, desiredY + (Math.random() * 2 - 1) * verticalJitter * 0.35),
+      ),
+    })
+    return out
+  })
+
 const drawLightningBolt = (
   context: CanvasRenderingContext2D,
   points: LightningPoint[],
@@ -262,11 +323,13 @@ export function LightningCanvas({
   endRatio = { x: 0.92, y: 0.5 },
   detailMode = 'full',
   frameIntervalMs,
+  branchDirection = 'right',
 }: {
   startRatio?: LightningPoint
   endRatio?: LightningPoint
   detailMode?: 'full' | 'compact'
   frameIntervalMs?: number
+  branchDirection?: 'right' | 'left'
 }) {
   const lightningRef = useRef<HTMLDivElement | null>(null)
   const compactMode = detailMode === 'compact'
@@ -413,41 +476,90 @@ export function LightningCanvas({
           const glow = Math.max(5, options.Hfgr49fuaq * 0.65)
           const darkPasses = compactMode ? 1 : 2 + (Math.random() < 0.65 ? 1 : 0)
           const splitBase = Math.max(5.5, Math.min(width, height) * 0.024)
-          const totalSpanX = Math.max(1, end.x - start.x)
-          const visibleRightEdgeX = Math.min(width - 2, Math.max(start.x + 2, end.x))
-          const visibleSpanX = Math.max(1, visibleRightEdgeX - start.x)
+          const totalSpanX = Math.max(1, Math.abs(end.x - start.x))
+          const visibleForwardEdgeX = Math.min(width - 2, Math.max(start.x + 2, end.x))
+          const visibleSpanX = Math.max(1, Math.abs(visibleForwardEdgeX - start.x))
           // Keep split points at ~1/3 and ~2/3 of the *visible* segment, even if beam extends beyond frame.
-          const splitRatioOneThird = clamp01((visibleSpanX / 3) / totalSpanX)
-          const splitRatioTwoThirds = clamp01(((visibleSpanX * 2) / 3) / totalSpanX)
+          const splitRatioOneThirdRaw = clamp01((visibleSpanX / 3) / totalSpanX)
+          const splitRatioTwoThirdsRaw = clamp01(((visibleSpanX * 2) / 3) / totalSpanX)
+          const splitRatioOneThird =
+            branchDirection === 'left' ? clamp01(1 - splitRatioTwoThirdsRaw) : splitRatioOneThirdRaw
+          const splitRatioTwoThirds =
+            branchDirection === 'left' ? clamp01(1 - splitRatioOneThirdRaw) : splitRatioTwoThirdsRaw
           const rightReachStart = Math.max(width * 0.995, options.points[1].x + 12)
           const rightReachEnd = Math.max(width * 1.08, rightReachStart + 12)
+          const leftReachStart = Math.min(width * 0.005, options.points[1].x - 12)
+          const leftReachEnd = Math.min(width * -0.08, leftReachStart - 12)
           const branchMinY = Math.max(4, height * 0.14)
           const branchMaxY = Math.min(height - 4, height * 0.86)
           const spreadBoost = 0.82
           const oneThirdSpread = Math.max(splitBase * 1.45, height * 0.032) * spreadBoost
           const twoThirdSpread = Math.max(splitBase * 2.35, height * 0.052) * spreadBoost
-          const splitOneThirdStrands = compactMode ? 2 : 3
-          const splitTwoThirdsStrands = compactMode ? 6 : 12
-          const splitOneThird = extendStrandsTowardRightEdge(
-            buildSplitStrands(points, splitRatioOneThird, splitOneThirdStrands, oneThirdSpread, splitBase * 0.52 * spreadBoost),
-            rightReachStart,
-            rightReachEnd,
-            splitBase * 1.1 * spreadBoost,
-            height * 0.09 * spreadBoost,
-            options.points[1].y,
-            branchMinY,
-            branchMaxY,
-          )
-          const splitTwoThirds = extendStrandsTowardRightEdge(
-            buildSplitStrands(points, splitRatioTwoThirds, splitTwoThirdsStrands, twoThirdSpread, splitBase * 0.86 * spreadBoost),
-            rightReachStart,
-            rightReachEnd,
-            splitBase * 1.44 * spreadBoost,
-            height * 0.14 * spreadBoost,
-            options.points[1].y,
-            branchMinY,
-            branchMaxY,
-          )
+          const suppressAuxStrands = compactMode && branchDirection === 'left'
+          const splitOneThirdStrands = suppressAuxStrands ? 0 : compactMode ? 2 : 3
+          const splitTwoThirdsStrands = suppressAuxStrands ? 0 : compactMode ? 6 : 12
+          const splitOneThirdBase = suppressAuxStrands
+            ? []
+            : buildSplitStrands(
+                points,
+                splitRatioOneThird,
+                splitOneThirdStrands,
+                oneThirdSpread,
+                splitBase * 0.52 * spreadBoost,
+              )
+          const splitTwoThirdsBase = suppressAuxStrands
+            ? []
+            : buildSplitStrands(
+                points,
+                splitRatioTwoThirds,
+                splitTwoThirdsStrands,
+                twoThirdSpread,
+                splitBase * 0.86 * spreadBoost,
+              )
+          const splitOneThird =
+            branchDirection === 'left'
+              ? extendStrandsTowardLeftEdge(
+                  splitOneThirdBase,
+                  leftReachStart,
+                  leftReachEnd,
+                  splitBase * 1.1 * spreadBoost,
+                  height * 0.09 * spreadBoost,
+                  options.points[1].y,
+                  branchMinY,
+                  branchMaxY,
+                )
+              : extendStrandsTowardRightEdge(
+                  splitOneThirdBase,
+                  rightReachStart,
+                  rightReachEnd,
+                  splitBase * 1.1 * spreadBoost,
+                  height * 0.09 * spreadBoost,
+                  options.points[1].y,
+                  branchMinY,
+                  branchMaxY,
+                )
+          const splitTwoThirds =
+            branchDirection === 'left'
+              ? extendStrandsTowardLeftEdge(
+                  splitTwoThirdsBase,
+                  leftReachStart,
+                  leftReachEnd,
+                  splitBase * 1.44 * spreadBoost,
+                  height * 0.14 * spreadBoost,
+                  options.points[1].y,
+                  branchMinY,
+                  branchMaxY,
+                )
+              : extendStrandsTowardRightEdge(
+                  splitTwoThirdsBase,
+                  rightReachStart,
+                  rightReachEnd,
+                  splitBase * 1.44 * spreadBoost,
+                  height * 0.14 * spreadBoost,
+                  options.points[1].y,
+                  branchMinY,
+                  branchMaxY,
+                )
 
           ctx.save()
           ctx.globalCompositeOperation = 'source-over'
@@ -537,7 +649,7 @@ export function LightningCanvas({
         host.removeChild(canvas)
       }
     }
-  }, [compactMode, endRatio.x, endRatio.y, frameIntervalMs, startRatio.x, startRatio.y])
+  }, [branchDirection, compactMode, endRatio.x, endRatio.y, frameIntervalMs, startRatio.x, startRatio.y])
 
   return (
     <div className="lightning-wrapper">
