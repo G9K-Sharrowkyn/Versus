@@ -55,9 +55,10 @@ const COMPARISON_SIDE_ROWS_TOP_TUNE = `calc(${COMPARISON_ROWS_TOP_TUNE} + ${COMP
 const COMPARISON_SECOND_ROW_Y_TUNE_PX = 0.9
 const COMPARISON_SEPARATOR_Y_TUNE_PX = 6.4
 const COMPARISON_SEPARATOR_WIDTH = '66.667%'
-const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -24
+const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -82
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
+const COMPARISON_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -121,6 +122,7 @@ export function ParameterComparisonTemplate({
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')
+  const drawRowsBottomAnchored = [...drawRows].reverse()
   const fighterAText = fighterA.name || fighterAFallback
   const fighterBText = fighterB.name || fighterBFallback
   const leftPanelTextStyle = buildPanelTextStyle(DOSSIER_BLUE_COLOR, 42)
@@ -198,7 +200,7 @@ export function ParameterComparisonTemplate({
       width: STAT_TRACK_WIDTH,
       marginLeft: side === 'b' || side === 'draw' ? 'auto' : 0,
       marginRight: side === 'a' || side === 'draw' ? 'auto' : 0,
-      transform: `translate(${side === 'b' ? COMPARISON_RIGHT_COLUMN_SHIFT_X_PX : 0}px, ${COMPARISON_TEXT_OFFSET_Y_PX}px)`,
+      transform: `translate(0px, ${COMPARISON_TEXT_OFFSET_Y_PX}px)`,
     }
 
     return (
@@ -327,21 +329,27 @@ export function ParameterComparisonTemplate({
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
-              <span style={leftPanelTextStyle}>{leftHeader}</span>
-              <p style={{ ...leftPanelTextStyle, textAlign: 'left' }}>
-                {averageShort} {averageA.toFixed(1)}
-              </p>
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.16rem', width: 'fit-content' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+                <span style={leftPanelTextStyle}>{leftHeader}</span>
+                <p style={{ ...leftPanelTextStyle, textAlign: 'left' }}>
+                  {averageShort} {averageA.toFixed(1)}
+                </p>
+              </div>
+              <div style={{ height: '1px', width: '100%', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
             </div>
             <div />
             <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
-              <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
-                  {rightHeader}
-                </p>
-                <p style={{ ...rightPanelTextStyle, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
-                  {averageShort} {averageB.toFixed(1)}
-                </p>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '0.16rem', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
+                <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: '100%' }}>
+                  <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
+                    {rightHeader}
+                  </p>
+                  <p style={{ ...rightPanelTextStyle, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                    {averageShort} {averageB.toFixed(1)}
+                  </p>
+                </div>
+                <div style={{ height: '1px', width: '100%', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
               </div>
             </div>
           </div>
@@ -355,8 +363,8 @@ export function ParameterComparisonTemplate({
                 marginBottom: '0.65rem',
                 alignItems: 'flex-end',
                 paddingTop: COMPARISON_HEADER_TOP_TUNE,
-                paddingLeft: '0.25rem',
-                paddingRight: '0.25rem',
+                paddingLeft: 0,
+                paddingRight: 0,
               }}
             >
               <div>
@@ -406,15 +414,15 @@ export function ParameterComparisonTemplate({
                     </RadarChart>
                   </ResponsiveContainer>
                 </div>
-                <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: '0.65rem' }}>
-                  <p style={{ ...drawPanelTextStyle, textAlign: 'center' }}>{drawHeader}</p>
-                  <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
-                    {drawRows.map((row, index) => (
+                <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: 0 }}>
+                  <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 0, paddingTop: 0, paddingBottom: '0.12rem' }}>
+                    <p style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
+                    {drawRowsBottomAnchored.map((row, index) => (
                       <div key={`comparison-draw-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                           {renderComparisonCell(row, 'draw')}
                         </div>
-                        {index < drawRows.length - 1 ? (
+                        {index < drawRowsBottomAnchored.length - 1 ? (
                           <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, display: 'flex', justifyContent: 'center' }}>
                             <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                           </div>
@@ -428,7 +436,7 @@ export function ParameterComparisonTemplate({
                 <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_SIDE_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
                   {rightAdvantages.map((row, index) => (
                     <div key={`comparison-right-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_SIDE_ROW_STEP_EXTRA_PX}px` : 0, transform: index === 1 ? `translateY(${COMPARISON_SECOND_ROW_Y_TUNE_PX}px)` : undefined }}>
-                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
                         {renderComparisonCell(row, 'b')}
                       </div>
                       {index < rightAdvantages.length - 1 ? (
@@ -444,7 +452,7 @@ export function ParameterComparisonTemplate({
           </div>
 
           <div style={{ marginTop: '0.1rem', padding: '0.58rem 0.2rem 0.18rem' }}>
-            <div style={{ height: '1px', marginBottom: '0.42rem', background: 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)' }} />
+            <div style={{ height: '1px', marginBottom: '0.42rem', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
                 <p style={{ ...leftPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: '0 0 18px color-mix(in srgb, currentColor 50%, transparent)', marginBottom: '0.12rem' }}>
