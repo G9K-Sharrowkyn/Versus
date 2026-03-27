@@ -260,11 +260,16 @@ const drawLightningBolt = (
 export function LightningCanvas({
   startRatio = { x: 0.5, y: 0.5 },
   endRatio = { x: 0.92, y: 0.5 },
+  detailMode = 'full',
+  frameIntervalMs,
 }: {
   startRatio?: LightningPoint
   endRatio?: LightningPoint
+  detailMode?: 'full' | 'compact'
+  frameIntervalMs?: number
 }) {
   const lightningRef = useRef<HTMLDivElement | null>(null)
+  const compactMode = detailMode === 'compact'
 
   useEffect(() => {
     const host = lightningRef.current
@@ -320,6 +325,18 @@ export function LightningCanvas({
           },
         ],
         ...LIGHTNING_BASE_OPTIONS,
+        lineWidth: compactMode ? 1.45 : LIGHTNING_BASE_OPTIONS.lineWidth,
+        Dgth5ybnq: compactMode ? 18 : LIGHTNING_BASE_OPTIONS.Dgth5ybnq,
+        Nfetiw324b: compactMode ? 0.82 : LIGHTNING_BASE_OPTIONS.Nfetiw324b,
+        Hfgr49fuaq: compactMode ? 7.8 : LIGHTNING_BASE_OPTIONS.Hfgr49fuaq,
+        Korifhgnv89: compactMode ? 0.5 : LIGHTNING_BASE_OPTIONS.Korifhgnv89,
+        wr32nvjgtUUU: Math.max(
+          12,
+          Math.min(100, typeof frameIntervalMs === 'number' ? frameIntervalMs : LIGHTNING_BASE_OPTIONS.wr32nvjgtUUU),
+        ),
+        Cfg420ogHr: compactMode ? 7 : LIGHTNING_BASE_OPTIONS.Cfg420ogHr,
+        numBolts: compactMode ? 1 : LIGHTNING_BASE_OPTIONS.numBolts,
+        euygwebfBBbbf: compactMode ? 2 : LIGHTNING_BASE_OPTIONS.euygwebfBBbbf,
         width,
         height,
         canvasStyle: {
@@ -394,7 +411,7 @@ export function LightningCanvas({
 
           const lineWidth = Math.max(1.15, options.lineWidth + (Math.random() * 0.5 - 0.18))
           const glow = Math.max(5, options.Hfgr49fuaq * 0.65)
-          const darkPasses = 2 + (Math.random() < 0.65 ? 1 : 0)
+          const darkPasses = compactMode ? 1 : 2 + (Math.random() < 0.65 ? 1 : 0)
           const splitBase = Math.max(5.5, Math.min(width, height) * 0.024)
           const totalSpanX = Math.max(1, end.x - start.x)
           const visibleRightEdgeX = Math.min(width - 2, Math.max(start.x + 2, end.x))
@@ -409,8 +426,10 @@ export function LightningCanvas({
           const spreadBoost = 0.82
           const oneThirdSpread = Math.max(splitBase * 1.45, height * 0.032) * spreadBoost
           const twoThirdSpread = Math.max(splitBase * 2.35, height * 0.052) * spreadBoost
+          const splitOneThirdStrands = compactMode ? 2 : 3
+          const splitTwoThirdsStrands = compactMode ? 6 : 12
           const splitOneThird = extendStrandsTowardRightEdge(
-            buildSplitStrands(points, splitRatioOneThird, 3, oneThirdSpread, splitBase * 0.52 * spreadBoost),
+            buildSplitStrands(points, splitRatioOneThird, splitOneThirdStrands, oneThirdSpread, splitBase * 0.52 * spreadBoost),
             rightReachStart,
             rightReachEnd,
             splitBase * 1.1 * spreadBoost,
@@ -420,7 +439,7 @@ export function LightningCanvas({
             branchMaxY,
           )
           const splitTwoThirds = extendStrandsTowardRightEdge(
-            buildSplitStrands(points, splitRatioTwoThirds, 12, twoThirdSpread, splitBase * 0.86 * spreadBoost),
+            buildSplitStrands(points, splitRatioTwoThirds, splitTwoThirdsStrands, twoThirdSpread, splitBase * 0.86 * spreadBoost),
             rightReachStart,
             rightReachEnd,
             splitBase * 1.44 * spreadBoost,
@@ -518,7 +537,7 @@ export function LightningCanvas({
         host.removeChild(canvas)
       }
     }
-  }, [startRatio.x, startRatio.y, endRatio.x, endRatio.y])
+  }, [compactMode, endRatio.x, endRatio.y, frameIntervalMs, startRatio.x, startRatio.y])
 
   return (
     <div className="lightning-wrapper">

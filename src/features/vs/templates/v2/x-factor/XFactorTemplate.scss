@@ -867,7 +867,7 @@
 
 .vs-xfactor-meter-layer--bonus {
   z-index: 3;
-  background: #282f3a;
+  background: #171d27;
   overflow: hidden;
 }
 
@@ -915,8 +915,8 @@
       135deg,
       #090c13 0px,
       #090c13 8px,
-      #262d38 8px,
-      #262d38 16px
+      #1b212b 8px,
+      #1b212b 16px
     );
 }
 
@@ -946,48 +946,49 @@
   pointer-events: none;
   mix-blend-mode: screen;
   opacity: 0.88;
+  transform-origin: right center;
   filter:
     drop-shadow(0 0 7px color-mix(in srgb, var(--xf-overcharge-color, #fff) 74%, transparent))
     drop-shadow(0 0 18px color-mix(in srgb, var(--xf-overcharge-color, #fff) 52%, transparent));
 }
 
 .vs-xfactor-overcharge-arc--1 {
-  transform: translate(-2px, 0) scale(1.06, 0.98);
-  animation: vs-xfactor-overcharge-chaos 0.46s steps(2, end) infinite;
+  transform: translate(-2px, 0) scale(1.06, 0.98) scaleX(-1);
+  animation: vs-xfactor-overcharge-chaos 0.46s ease-in-out infinite;
 }
 
 .vs-xfactor-overcharge-arc--2 {
-  transform: translate(-18px, -6px) rotate(-7deg) scale(0.9, 0.78);
+  transform: translate(-18px, -6px) rotate(-7deg) scale(0.9, 0.78) scaleX(-1);
   opacity: 0.82;
-  animation: vs-xfactor-overcharge-chaos 0.39s steps(2, end) infinite;
+  animation: vs-xfactor-overcharge-chaos 0.39s ease-in-out infinite;
   animation-delay: 0.08s;
 }
 
 .vs-xfactor-overcharge-arc--3 {
-  transform: translate(-34px, 8px) rotate(6deg) scale(1.14, 0.92);
+  transform: translate(-34px, 8px) rotate(6deg) scale(1.14, 0.92) scaleX(-1);
   opacity: 0.74;
-  animation: vs-xfactor-overcharge-chaos 0.51s steps(2, end) infinite;
+  animation: vs-xfactor-overcharge-chaos 0.51s ease-in-out infinite;
   animation-delay: 0.04s;
 }
 
 .vs-xfactor-overcharge-arc--4 {
-  transform: translate(-26px, -10px) rotate(-11deg) scale(0.95, 0.72);
+  transform: translate(-26px, -10px) rotate(-11deg) scale(0.95, 0.72) scaleX(-1);
   opacity: 0.66;
-  animation: vs-xfactor-overcharge-chaos 0.43s steps(2, end) infinite;
+  animation: vs-xfactor-overcharge-chaos 0.43s ease-in-out infinite;
   animation-delay: 0.12s;
 }
 
 .vs-xfactor-overcharge-arc--5 {
-  transform: translate(-38px, 2px) rotate(9deg) scale(1.06, 0.86);
+  transform: translate(-38px, 2px) rotate(9deg) scale(1.06, 0.86) scaleX(-1);
   opacity: 0.6;
-  animation: vs-xfactor-overcharge-chaos 0.37s steps(2, end) infinite;
+  animation: vs-xfactor-overcharge-chaos 0.37s ease-in-out infinite;
   animation-delay: 0.03s;
 }
 
 .vs-xfactor-overcharge-arc--6 {
-  transform: translate(-14px, 12px) rotate(-15deg) scale(0.88, 0.74);
+  transform: translate(-14px, 12px) rotate(-15deg) scale(0.88, 0.74) scaleX(-1);
   opacity: 0.58;
-  animation: vs-xfactor-overcharge-chaos 0.41s steps(2, end) infinite;
+  animation: vs-xfactor-overcharge-chaos 0.41s ease-in-out infinite;
   animation-delay: 0.09s;
 }
 
