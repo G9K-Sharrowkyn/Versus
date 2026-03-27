@@ -296,6 +296,35 @@ const extendStrandsTowardLeftEdge = (
     return out
   })
 
+const buildChaosImpactSlots = (
+  width: number,
+  height: number,
+  endBaseX: number,
+  endJitterX: number,
+): LightningPoint[] => {
+  const xFactors = [0.03, 0.07, 0.11, 0.15, 0.19, 0.05, 0.09, 0.13, 0.17, 0.22]
+  const yFactors = [0.2, 0.28, 0.36, 0.44, 0.52, 0.24, 0.32, 0.4, 0.48, 0.58]
+
+  return xFactors.map((xFactor, slotIndex) => {
+    const yBase = height * yFactors[slotIndex]
+    return {
+      x: endBaseX + width * xFactor + (Math.random() * 2 - 1) * endJitterX * 0.22,
+      y: yBase + (Math.random() * 2 - 1) * Math.max(4, height * 0.06),
+    }
+  })
+}
+
+const shuffleIndexes = (size: number) => {
+  const indexes = Array.from({ length: size }, (_, index) => index)
+  for (let index = indexes.length - 1; index > 0; index -= 1) {
+    const swapIndex = Math.floor(Math.random() * (index + 1))
+    const tmp = indexes[index]
+    indexes[index] = indexes[swapIndex]
+    indexes[swapIndex] = tmp
+  }
+  return indexes
+}
+
 const drawLightningBolt = (
   context: CanvasRenderingContext2D,
   points: LightningPoint[],
@@ -429,23 +458,33 @@ export function LightningCanvas({
         ctx.globalCompositeOperation = 'lighter'
         ctx.globalAlpha = Math.max(0.5, Math.min(1, options.Korifhgnv89 + 0.4))
 
+        const chaosMode = compactMode && branchDirection === 'left'
         const roughness = Math.max(1.7, 1.38 + options.Nfetiw324b * 0.72)
         const minSegmentLength = Math.max(
           2.1,
           Math.min(width, height) * Math.max(0.015, options.Nfetiw324bKkekf * 0.5),
         )
-        const endJitterX = options.Cfg420ogHr * 0.24
-        const endJitterY = options.Cfg420ogHr * 0.08
-        const startJitterX = Math.max(0.2, options.euygwebfBBbbf * 0.12)
-        const startJitterY = options.euygwebfBBbbf * 0.18
-        const boltCount = Math.max(1, options.numBolts)
+        const endJitterX = options.Cfg420ogHr * 0.24 * (chaosMode ? 2.1 : 1)
+        const endJitterY = options.Cfg420ogHr * 0.08 * (chaosMode ? 3.2 : 1)
+        const startJitterX = Math.max(0.2, options.euygwebfBBbbf * 0.12) * (chaosMode ? 1.5 : 1)
+        const startJitterY = options.euygwebfBBbbf * 0.18 * (chaosMode ? 2.2 : 1)
+        const boltCount = chaosMode ? 2 : Math.max(1, options.numBolts)
         const secondaryOffsetY = -Math.max(0.65, options.Cfg420ogHr * 0.04)
+        const chaosImpactSlots = chaosMode
+          ? buildChaosImpactSlots(width, height, options.points[1].x, endJitterX)
+          : []
+        const chaosImpactOrder = chaosMode ? shuffleIndexes(chaosImpactSlots.length) : []
 
         for (let index = 0; index < boltCount; index += 1) {
           const isPrimaryBolt = index === 0
           const laneOffsetY = isPrimaryBolt
             ? 0
-            : secondaryOffsetY + (index - 1) * Math.max(0.45, options.Cfg420ogHr * 0.02)
+            : chaosMode
+              ? (index - (boltCount - 1) / 2) * Math.max(3.2, options.Cfg420ogHr * 0.26)
+              : secondaryOffsetY + (index - 1) * Math.max(0.45, options.Cfg420ogHr * 0.02)
+          const chaosEndYOffset = chaosMode
+            ? (Math.random() * 2 - 1) * Math.max(5, height * 0.08)
+            : 0
           const start = {
             x: isPrimaryBolt
               ? options.points[0].x
@@ -456,14 +495,31 @@ export function LightningCanvas({
                 laneOffsetY +
                 (Math.random() * 2 - 1) * (startJitterY + index * 0.18),
           }
-          const end = {
-            x: options.points[1].x + (Math.random() * 2 - 1) * (endJitterX + index * 2.2),
-            y: isPrimaryBolt
-              ? options.points[1].y + (Math.random() * 2 - 1) * Math.max(0.12, endJitterY * 0.2)
-              : options.points[1].y +
-                laneOffsetY +
-                (Math.random() * 2 - 1) * (endJitterY + index * 0.32),
-          }
+          const chaosSlot =
+            chaosMode && chaosImpactSlots.length > 0
+              ? chaosImpactSlots[
+                  chaosImpactOrder[
+                    (index + Math.floor(Math.random() * Math.min(4, chaosImpactOrder.length))) %
+                      chaosImpactOrder.length
+                  ]
+                ]
+              : null
+          const end = chaosSlot
+            ? {
+                x: chaosSlot.x + (Math.random() * 2 - 1) * Math.max(2, endJitterX * 0.42),
+                y: chaosSlot.y + (Math.random() * 2 - 1) * Math.max(3, height * 0.045),
+              }
+            : {
+                x: options.points[1].x + (Math.random() * 2 - 1) * (endJitterX + index * (chaosMode ? 4.2 : 2.2)),
+                y: isPrimaryBolt
+                  ? options.points[1].y +
+                    chaosEndYOffset +
+                    (Math.random() * 2 - 1) * Math.max(0.12, endJitterY * (chaosMode ? 0.58 : 0.2))
+                  : options.points[1].y +
+                    chaosEndYOffset +
+                    laneOffsetY +
+                    (Math.random() * 2 - 1) * (endJitterY + index * 0.32),
+              }
           const points = buildLightningBolt(
             start,
             end,
@@ -474,7 +530,7 @@ export function LightningCanvas({
 
           const lineWidth = Math.max(1.15, options.lineWidth + (Math.random() * 0.5 - 0.18))
           const glow = Math.max(5, options.Hfgr49fuaq * 0.65)
-          const darkPasses = compactMode ? 1 : 2 + (Math.random() < 0.65 ? 1 : 0)
+          const darkPasses = chaosMode ? 0 : compactMode ? 1 : 2 + (Math.random() < 0.65 ? 1 : 0)
           const splitBase = Math.max(5.5, Math.min(width, height) * 0.024)
           const totalSpanX = Math.max(1, Math.abs(end.x - start.x))
           const visibleForwardEdgeX = Math.min(width - 2, Math.max(start.x + 2, end.x))
