@@ -228,7 +228,7 @@ export function FightAnalyticsTemplate({
                 <span style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', textAlign: 'left', paddingLeft: ANALYTICS_RIGHT_LABEL_START }}>
                   {fighterB.name}
                 </span>
-                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
                   {averageShort} {averageB.toFixed(1)}
                 </p>
                 <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />

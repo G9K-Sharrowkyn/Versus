@@ -436,6 +436,39 @@
   text-shadow: none !important;
 }
 
+/* Favorite stamp: add moving shine sweep similar to logo */
+.vs-parameter-comparison-surface .vs-parameter-favorite-stamp {
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.vs-parameter-comparison-surface .vs-parameter-favorite-stamp::after {
+  content: '';
+  position: absolute;
+  inset: -22% -42%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 38%,
+    rgba(255, 255, 255, 0.92) 50%,
+    rgba(255, 255, 255, 0) 62%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  background-repeat: no-repeat;
+  animation: vs-logo-shine 8s linear infinite;
+  mix-blend-mode: screen;
+  opacity: 0.76;
+  filter: brightness(1.25);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vs-parameter-comparison-surface .vs-parameter-favorite-stamp .vs-parameter-favorite-stamp-text {
+  position: relative;
+  z-index: 2;
+}
+
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-tactical-board25-stats,
 .vs-tactical-board25-reality {

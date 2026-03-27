@@ -1,6 +1,6 @@
 import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -62,6 +62,46 @@ const buildPanelTextStyle = (color: string, reflectStrength = 42): CSSProperties
   textShadow: buildReflectionShadow(color, reflectStrength),
 })
 
+const splitNameForTwoRows = (name: string): [string, string] => {
+  const words = name.trim().split(/\s+/).filter(Boolean)
+  if (words.length < 2) return [name.trim(), '']
+
+  let bestIndex = 1
+  let bestScore = Number.POSITIVE_INFINITY
+  for (let index = 1; index < words.length; index += 1) {
+    const first = words.slice(0, index).join(' ')
+    const second = words.slice(index).join(' ')
+    const score = Math.abs(first.length - second.length)
+    if (score < bestScore) {
+      bestScore = score
+      bestIndex = index
+    }
+  }
+
+  return [words.slice(0, bestIndex).join(' '), words.slice(bestIndex).join(' ')]
+}
+
+const shrinkElementTextToWidth = (el: HTMLElement, maxWidthPx: number, minFontPx = COMPARISON_BOTTOM_NAME_MIN_FONT_PX) => {
+  if (maxWidthPx <= 0) return
+  let currentFontPx = Number.parseFloat(window.getComputedStyle(el).fontSize)
+  if (!Number.isFinite(currentFontPx) || currentFontPx <= 0) return
+
+  let safety = 0
+  while (el.scrollWidth > maxWidthPx + 0.5 && currentFontPx > minFontPx && safety < 20) {
+    const widthRatio = maxWidthPx / Math.max(el.scrollWidth, 1)
+    const nextFontPx = Math.max(
+      minFontPx,
+      currentFontPx * Math.min(0.95, Math.max(0.65, widthRatio)),
+    )
+    if (Math.abs(nextFontPx - currentFontPx) < 0.05) break
+    currentFontPx = nextFontPx
+    el.style.fontSize = `${currentFontPx}px`
+    safety += 1
+  }
+
+  return currentFontPx
+}
+
 const STAT_LABEL_COL_WIDTH = '30ch'
 const STAT_VALUE_COL_WIDTH = '7ch'
 const STAT_COL_GAP = '0.4rem'
@@ -82,9 +122,21 @@ const COMPARISON_SEPARATOR_WIDTH = '66.667%'
 const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -82
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
+const COMPARISON_FAVORITE_STAMP_BOTTOM_PX = 8
+const COMPARISON_FAVORITE_STAMP_WIDTH_REM = 15
+const COMPARISON_FAVORITE_STAMP_MIN_HEIGHT_REM = 3
+const COMPARISON_FAVORITE_STAMP_LEFT_POS = '37.5%'
+const COMPARISON_FAVORITE_STAMP_RIGHT_POS = '87.5%'
+const COMPARISON_FAVORITE_STAMP_DRAW_POS = '50%'
+const COMPARISON_FAVORITE_STAMP_LEFT_ROTATION_DEG = -24
+const COMPARISON_FAVORITE_STAMP_RIGHT_ROTATION_DEG = 24
 const COMPARISON_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
 const COMPARISON_BOTTOM_LEFT_NAME_SHADOW = buildReflectionShadow(DOSSIER_BLUE_COLOR, 74)
 const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_COLOR, 78)
+const COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER = 2.625
+const COMPARISON_BOTTOM_NAME_TWO_LINE_MULTIPLIER = COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER * 0.5
+const COMPARISON_BOTTOM_NAME_MIN_FONT_PX = 8
+const COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX = 0
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -157,6 +209,7 @@ export function ParameterComparisonTemplate({
   
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
+  const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
   const favoriteDrawLabel =
     pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_favorite', language) ||
@@ -168,6 +221,138 @@ export function ParameterComparisonTemplate({
     isAverageDraw
       ? favoriteDrawLabel
       : favoriteLabel || (language === 'pl' ? 'Faworyt według statystyk' : 'Stat-based favorite')
+
+  const favoriteStampLeft =
+    favoriteSide === 'a'
+      ? COMPARISON_FAVORITE_STAMP_LEFT_POS
+      : favoriteSide === 'b'
+        ? COMPARISON_FAVORITE_STAMP_RIGHT_POS
+        : COMPARISON_FAVORITE_STAMP_DRAW_POS
+  const favoriteStampRotationDeg =
+    favoriteSide === 'a'
+      ? COMPARISON_FAVORITE_STAMP_LEFT_ROTATION_DEG
+      : favoriteSide === 'b'
+        ? COMPARISON_FAVORITE_STAMP_RIGHT_ROTATION_DEG
+        : 0
+  const bottomNamesRowRef = useRef<HTMLDivElement | null>(null)
+  const leftBottomNameRef = useRef<HTMLParagraphElement | null>(null)
+  const rightBottomNameRef = useRef<HTMLParagraphElement | null>(null)
+  const drawHeaderAnchorRef = useRef<HTMLParagraphElement | null>(null)
+  const favoriteStampRef = useRef<HTMLDivElement | null>(null)
+
+  useLayoutEffect(() => {
+    const rowEl = bottomNamesRowRef.current
+    const drawHeaderEl = drawHeaderAnchorRef.current
+    const leftNameEl = leftBottomNameRef.current
+    const rightNameEl = rightBottomNameRef.current
+    const stampEl = favoriteStampRef.current
+    if (!stampEl || !rowEl || !drawHeaderEl || !leftNameEl || !rightNameEl) {
+      return
+    }
+
+    const applyBottomNameLayout = (params: {
+      el: HTMLParagraphElement
+      side: 'left' | 'right'
+      sourceText: string
+      boundaryPx: number
+      rowRect: DOMRect
+    }) => {
+      const { el, side, sourceText, boundaryPx, rowRect } = params
+      const trimmedText = sourceText.trim()
+
+      el.textContent = sourceText
+      el.style.fontSize = `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`
+      el.style.lineHeight = '0.9'
+      el.style.whiteSpace = 'nowrap'
+      el.style.maxWidth = 'none'
+      el.style.width = 'auto'
+      el.style.display = 'inline-block'
+      el.style.wordBreak = 'normal'
+      el.style.overflowWrap = 'normal'
+      el.style.textAlign = side === 'right' ? 'right' : 'left'
+      const baseFontPx = Number.parseFloat(window.getComputedStyle(el).fontSize)
+
+      const nameRect = el.getBoundingClientRect()
+      const availableWidthPx = side === 'left'
+        ? boundaryPx - (nameRect.left - rowRect.left) - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
+        : (nameRect.right - rowRect.left) - boundaryPx - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
+      const clampedWidthPx = Math.max(10, availableWidthPx)
+
+      el.style.maxWidth = `${clampedWidthPx}px`
+
+      if (el.scrollWidth <= clampedWidthPx + 0.5) return
+
+      const hasSpaces = /\s/.test(trimmedText)
+      if (hasSpaces) {
+        const oneLineMinFontPx = Number.isFinite(baseFontPx)
+          ? Math.max(COMPARISON_BOTTOM_NAME_MIN_FONT_PX, baseFontPx * 0.5)
+          : COMPARISON_BOTTOM_NAME_MIN_FONT_PX
+
+        shrinkElementTextToWidth(el, clampedWidthPx, oneLineMinFontPx)
+        if (el.scrollWidth <= clampedWidthPx + 0.5) return
+
+        const [lineA, lineB] = splitNameForTwoRows(sourceText)
+        if (lineB) {
+          el.textContent = `${lineA}\n${lineB}`
+          el.style.whiteSpace = 'pre'
+          el.style.fontSize = `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_TWO_LINE_MULTIPLIER})`
+          el.style.lineHeight = '0.92'
+          el.style.maxWidth = `${clampedWidthPx}px`
+          shrinkElementTextToWidth(el, clampedWidthPx)
+          return
+        }
+      }
+
+      el.textContent = sourceText
+      el.style.whiteSpace = 'nowrap'
+      el.style.fontSize = `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`
+      el.style.maxWidth = `${clampedWidthPx}px`
+      shrinkElementTextToWidth(el, clampedWidthPx)
+    }
+
+    const updateLayout = () => {
+      const rowRect = rowEl.getBoundingClientRect()
+      const drawHeaderRect = drawHeaderEl.getBoundingClientRect()
+      const drawLeftBoundaryPx = drawHeaderRect.left - rowRect.left
+      const drawRightBoundaryPx = drawHeaderRect.right - rowRect.left
+
+      applyBottomNameLayout({
+        el: leftNameEl,
+        side: 'left',
+        sourceText: fighterAText,
+        boundaryPx: drawLeftBoundaryPx,
+        rowRect,
+      })
+      applyBottomNameLayout({
+        el: rightNameEl,
+        side: 'right',
+        sourceText: fighterBText,
+        boundaryPx: drawRightBoundaryPx,
+        rowRect,
+      })
+
+      if (favoriteSide === 'draw') {
+        stampEl.style.left = COMPARISON_FAVORITE_STAMP_DRAW_POS
+        return
+      }
+
+      const targetNameEl = favoriteSide === 'a' ? leftNameEl : rightNameEl
+      const nameRect = targetNameEl.getBoundingClientRect()
+      const anchorPx = nameRect.left - rowRect.left + nameRect.width * (2 / 3)
+      stampEl.style.left = `${anchorPx}px`
+    }
+
+    updateLayout()
+    const resizeObserver = new ResizeObserver(() => updateLayout())
+    resizeObserver.observe(rowEl)
+    resizeObserver.observe(drawHeaderEl)
+    window.addEventListener('resize', updateLayout)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateLayout)
+    }
+  }, [favoriteSide, fighterAText, fighterBText])
 
   const [radarClock, setRadarClock] = useState(0)
   useEffect(() => {
@@ -448,7 +633,7 @@ export function ParameterComparisonTemplate({
                 </div>
                 <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: 0 }}>
                   <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 0, paddingTop: 0, paddingBottom: '0.12rem' }}>
-                    <p style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
+                    <p ref={drawHeaderAnchorRef} style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
                     {drawRowsBottomAnchored.map((row, index) => (
                       <div
                         key={`comparison-draw-row-${row.id}`}
@@ -509,24 +694,32 @@ export function ParameterComparisonTemplate({
 
           <div style={{ marginTop: '0.1rem', padding: '0.58rem 0.2rem 0.18rem' }}>
             <div style={{ height: '1px', marginBottom: '0.42rem', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
+            <div ref={bottomNamesRowRef} style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p style={{ ...leftPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_LEFT_NAME_SHADOW, marginBottom: '0.12rem' }}>
+                <p ref={leftBottomNameRef} style={{ ...leftPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_LEFT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterAText}
                 </p>
               </div>
+              <div style={{ width: '1px', minHeight: '1px' }} aria-hidden="true" />
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
+                <p ref={rightBottomNameRef} style={{ ...rightPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
+                  {fighterBText}
+                </p>
+              </div>
               <div
+                ref={favoriteStampRef}
                 className="vs-parameter-favorite-stamp"
                 style={{
-                  position: 'static',
-                  transform: 'none',
+                  position: 'absolute',
+                  left: favoriteStampLeft,
+                  bottom: `calc(0.14rem + ${COMPARISON_FAVORITE_STAMP_BOTTOM_PX}px)`,
+                  transform: `translateX(-50%) rotate(${favoriteStampRotationDeg}deg)`,
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: '26rem',
+                  width: `${COMPARISON_FAVORITE_STAMP_WIDTH_REM}rem`,
                   maxWidth: 'calc(100% - 24px)',
-                  minHeight: '3.9rem',
-                  margin: '0 auto 0.14rem',
+                  minHeight: `${COMPARISON_FAVORITE_STAMP_MIN_HEIGHT_REM}rem`,
                   border: '1px solid rgba(251, 191, 36, 1)',
                   borderRadius: '10px',
                   background:
@@ -536,15 +729,12 @@ export function ParameterComparisonTemplate({
                     '0 12px 28px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(120, 53, 15, 0.9) inset, 0 0 16px rgba(251, 191, 36, 0.28)',
                   animation: 'none',
                   textShadow: 'none',
+                  pointerEvents: 'none',
+                  zIndex: 3,
                 }}
               >
-                <p className="vs-parameter-favorite-stamp-text" style={{ margin: 0, padding: '0.12rem 0.9rem', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.68)', fontWeight: 800, lineHeight: 0.98, letterSpacing: '0.03em', textTransform: 'uppercase', whiteSpace: 'normal', overflow: 'visible', textOverflow: 'clip', display: 'block', color: '#7fe9ff', WebkitTextFillColor: '#7fe9ff', textShadow: 'none' }}>
+                <p className="vs-parameter-favorite-stamp-text" style={{ margin: 0, padding: '0.12rem 0.72rem', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.64)', fontWeight: 800, lineHeight: 0.96, letterSpacing: '0.03em', textTransform: 'uppercase', whiteSpace: 'normal', overflow: 'visible', textOverflow: 'clip', display: 'block', color: '#7fe9ff', WebkitTextFillColor: '#7fe9ff', textShadow: 'none' }}>
                   {favoriteBadgeText}
-                </p>
-              </div>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p style={{ ...rightPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
-                  {fighterBText}
                 </p>
               </div>
             </div>
