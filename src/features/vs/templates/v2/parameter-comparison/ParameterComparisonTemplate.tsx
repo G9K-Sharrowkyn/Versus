@@ -120,6 +120,9 @@ const COMPARISON_SECOND_ROW_Y_TUNE_PX = 0.9
 const COMPARISON_SEPARATOR_Y_TUNE_PX = 6.4
 const COMPARISON_SEPARATOR_WIDTH = '66.667%'
 const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -82
+const COMPARISON_RIGHT_SEPARATOR_SHIFT_X_PX = COMPARISON_RIGHT_COLUMN_SHIFT_X_PX
+const COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET = RIGHT_LABEL_START
+const COMPARISON_RIGHT_SEPARATOR_WIDTH = `calc(100% - ${RIGHT_LABEL_START})`
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
 const COMPARISON_FAVORITE_STAMP_BOTTOM_PX = 8
@@ -136,7 +139,7 @@ const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_CO
 const COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER = 2.625
 const COMPARISON_BOTTOM_NAME_TWO_LINE_MULTIPLIER = COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER * 0.5
 const COMPARISON_BOTTOM_NAME_MIN_FONT_PX = 8
-const COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX = 0
+const COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX = 4
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -235,6 +238,7 @@ export function ParameterComparisonTemplate({
         ? COMPARISON_FAVORITE_STAMP_RIGHT_ROTATION_DEG
         : 0
   const bottomNamesRowRef = useRef<HTMLDivElement | null>(null)
+  const statsPanelRef = useRef<HTMLElement | null>(null)
   const leftBottomNameRef = useRef<HTMLParagraphElement | null>(null)
   const rightBottomNameRef = useRef<HTMLParagraphElement | null>(null)
   const drawHeaderAnchorRef = useRef<HTMLParagraphElement | null>(null)
@@ -242,11 +246,12 @@ export function ParameterComparisonTemplate({
 
   useLayoutEffect(() => {
     const rowEl = bottomNamesRowRef.current
+    const layoutRootEl = statsPanelRef.current
     const drawHeaderEl = drawHeaderAnchorRef.current
     const leftNameEl = leftBottomNameRef.current
     const rightNameEl = rightBottomNameRef.current
     const stampEl = favoriteStampRef.current
-    if (!stampEl || !rowEl || !drawHeaderEl || !leftNameEl || !rightNameEl) {
+    if (!stampEl || !rowEl || !layoutRootEl || !drawHeaderEl || !leftNameEl || !rightNameEl) {
       return
     }
 
@@ -276,7 +281,10 @@ export function ParameterComparisonTemplate({
       const availableWidthPx = side === 'left'
         ? boundaryPx - (nameRect.left - rowRect.left) - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
         : (nameRect.right - rowRect.left) - boundaryPx - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
-      const clampedWidthPx = Math.max(10, availableWidthPx)
+      const localBoxWidthPx = Math.max(el.offsetWidth, el.clientWidth, 1)
+      const projectedBoxWidthPx = Math.max(nameRect.width, 1)
+      const projectionScaleX = projectedBoxWidthPx / localBoxWidthPx
+      const clampedWidthPx = Math.max(10, availableWidthPx / Math.max(0.0001, projectionScaleX))
 
       el.style.maxWidth = `${clampedWidthPx}px`
 
@@ -331,6 +339,28 @@ export function ParameterComparisonTemplate({
         rowRect,
       })
 
+      // Force right separators to end exactly where right-side values end.
+      const rightRows = layoutRootEl.querySelectorAll<HTMLElement>('[data-comp-row="true"][data-comp-side="right"]')
+      rightRows.forEach((rightRowEl) => {
+        const sepBarEl = rightRowEl.querySelector<HTMLElement>('[data-comp-separator-bar="true"]')
+        const valueEl = rightRowEl.querySelector<HTMLElement>('[data-comp-value="true"][data-comp-value-side="b"]')
+        if (!sepBarEl || !valueEl) return
+
+        const valueRect = valueEl.getBoundingClientRect()
+        for (let pass = 0; pass < 2; pass += 1) {
+          const separatorRect = sepBarEl.getBoundingClientRect()
+          const computedLocalWidthPx = Number.parseFloat(window.getComputedStyle(sepBarEl).width)
+          const projectedWidthPx = separatorRect.width
+          const projectionScaleX =
+            Number.isFinite(computedLocalWidthPx) && computedLocalWidthPx > 0
+              ? projectedWidthPx / computedLocalWidthPx
+              : 1
+          const exactProjectedWidthPx = Math.max(0, valueRect.right - separatorRect.left)
+          const targetLocalWidthPx = exactProjectedWidthPx / Math.max(0.0001, projectionScaleX)
+          sepBarEl.style.setProperty('--comp-right-sep-width', `${targetLocalWidthPx}px`)
+        }
+      })
+
       if (favoriteSide === 'draw') {
         stampEl.style.left = COMPARISON_FAVORITE_STAMP_DRAW_POS
         return
@@ -343,16 +373,40 @@ export function ParameterComparisonTemplate({
     }
 
     updateLayout()
+    const delayedReflows = [
+      window.setTimeout(updateLayout, 80),
+      window.setTimeout(updateLayout, 220),
+      window.setTimeout(updateLayout, 520),
+    ]
+
+    let isDisposed = false
+    const fontSet = typeof document !== 'undefined' ? document.fonts : null
+    const handleFontsReady = () => {
+      if (isDisposed) return
+      updateLayout()
+    }
+    if (fontSet) {
+      fontSet.ready.then(handleFontsReady).catch(() => {})
+      if (typeof fontSet.addEventListener === 'function') {
+        fontSet.addEventListener('loadingdone', handleFontsReady)
+      }
+    }
+
     const resizeObserver = new ResizeObserver(() => updateLayout())
     resizeObserver.observe(rowEl)
     resizeObserver.observe(drawHeaderEl)
     window.addEventListener('resize', updateLayout)
 
     return () => {
+      isDisposed = true
+      delayedReflows.forEach((timerId) => window.clearTimeout(timerId))
+      if (fontSet && typeof fontSet.removeEventListener === 'function') {
+        fontSet.removeEventListener('loadingdone', handleFontsReady)
+      }
       resizeObserver.disconnect()
       window.removeEventListener('resize', updateLayout)
     }
-  }, [favoriteSide, fighterAText, fighterBText])
+  }, [favoriteSide, fighterAText, fighterBText, rows])
 
   const [radarClock, setRadarClock] = useState(0)
   useEffect(() => {
@@ -429,7 +483,7 @@ export function ParameterComparisonTemplate({
         >
           {row.label}
         </p>
-        <p style={valueStyle}>{buildRowValue(row, side)}</p>
+        <p data-comp-value="true" data-comp-value-side={side} style={valueStyle}>{buildRowValue(row, side)}</p>
       </div>
     )
   }
@@ -534,7 +588,7 @@ export function ParameterComparisonTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+      <section ref={statsPanelRef} className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
@@ -633,7 +687,7 @@ export function ParameterComparisonTemplate({
                 </div>
                 <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: 0 }}>
                   <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 0, paddingTop: 0, paddingBottom: '0.12rem' }}>
-                    <p ref={drawHeaderAnchorRef} style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
+                    <p ref={drawHeaderAnchorRef} data-comp-draw-header="true" style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
                     {drawRowsBottomAnchored.map((row, index) => (
                       <div
                         key={`comparison-draw-row-${row.id}`}
@@ -680,9 +734,9 @@ export function ParameterComparisonTemplate({
                           data-comp-separator-track="true"
                           data-comp-side="right"
                           data-comp-separator-index={index}
-                          style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-end' }}
+                          style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translate(${COMPARISON_RIGHT_SEPARATOR_SHIFT_X_PX}px, ${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-start', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}
                         >
-                          <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                          <div data-comp-separator-bar="true" style={{ height: '2px', width: `var(--comp-right-sep-width, ${COMPARISON_RIGHT_SEPARATOR_WIDTH})`, background: '#ff554e', marginLeft: COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET, flexShrink: 0 }} />
                         </div>
                       ) : null}
                     </div>
@@ -696,13 +750,13 @@ export function ParameterComparisonTemplate({
             <div style={{ height: '1px', marginBottom: '0.42rem', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
             <div ref={bottomNamesRowRef} style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p ref={leftBottomNameRef} style={{ ...leftPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_LEFT_NAME_SHADOW, marginBottom: '0.12rem' }}>
+                <p ref={leftBottomNameRef} data-comp-bottom-name="left" style={{ ...leftPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_LEFT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterAText}
                 </p>
               </div>
               <div style={{ width: '1px', minHeight: '1px' }} aria-hidden="true" />
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p ref={rightBottomNameRef} style={{ ...rightPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
+                <p ref={rightBottomNameRef} data-comp-bottom-name="right" style={{ ...rightPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterBText}
                 </p>
               </div>
