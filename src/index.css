@@ -553,7 +553,7 @@
   right: 20px !important;
 }
 
-[data-vs-template]:not([data-vs-template='tactical-board']):not([data-vs-template='character-dossier-a']):not([data-vs-template='character-dossier-b']):not([data-vs-template='character-profile']) .vs-tactical-board25-surface :is(.vs-tactical-board25-stats, .vs-tactical-board25-reality) :is(p, li, span):not(.vs-tactical-board25-stats-title):not(.vs-tactical-board25-reality-heading):not(.vs-panel-top-label):not(.vs-dossier-text-1):not(.vs-dossier-text-3):not(.vs-dossier-quote):not(.vs-tactical-board25-item-label):not(.vs-cyberpunk-meta-value):not(.glitch-letter):not(.glow) {
+[data-vs-template]:not([data-vs-template='tactical-board']):not([data-vs-template='character-dossier-a']):not([data-vs-template='character-dossier-b']):not([data-vs-template='character-profile']):not([data-vs-template='parameter-comparison']) .vs-tactical-board25-surface :is(.vs-tactical-board25-stats, .vs-tactical-board25-reality) :is(p, li, span):not(.vs-tactical-board25-stats-title):not(.vs-tactical-board25-reality-heading):not(.vs-panel-top-label):not(.vs-dossier-text-1):not(.vs-dossier-text-3):not(.vs-dossier-quote):not(.vs-tactical-board25-item-label):not(.vs-cyberpunk-meta-value):not(.glitch-letter):not(.glow) {
   color: #77e2f2 !important;
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace !important;
   font-size: calc(var(--tb-type-2, 1rem) * 0.8) !important;

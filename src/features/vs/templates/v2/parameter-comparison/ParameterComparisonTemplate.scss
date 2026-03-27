@@ -427,6 +427,12 @@
   mask-repeat: no-repeat;
 }
 
+/* Gold label text without reflected/glow shadow */
+.vs-parameter-comparison-surface .vs-parameter-favorite-stamp,
+.vs-parameter-comparison-surface .vs-parameter-favorite-stamp .vs-parameter-favorite-stamp-text {
+  text-shadow: none !important;
+}
+
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-tactical-board25-stats,
 .vs-tactical-board25-reality {

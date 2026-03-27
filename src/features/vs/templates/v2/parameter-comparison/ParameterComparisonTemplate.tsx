@@ -18,22 +18,25 @@ type ParameterComparisonTemplateProps = TemplatePreviewProps & {
 
 const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
 
-const DOSSIER_BLUE_PANEL_TEXT_STYLE: CSSProperties = {
-  color: '#77e2f2',
+const DOSSIER_PANEL_TEXT_BASE_STYLE: CSSProperties = {
   fontFamily: "'Chakra Petch', sans-serif",
   fontSize: 'calc(var(--tb-type-2) * 0.8)',
   fontWeight: 800,
   lineHeight: 1,
   textTransform: 'uppercase',
   margin: 0,
-  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.55em rgba(119, 226, 242, 0.45)',
 }
 
-const DOSSIER_RED_PANEL_TEXT_STYLE: CSSProperties = {
-  ...DOSSIER_BLUE_PANEL_TEXT_STYLE,
-  color: '#ff554e',
-  textShadow: '0 var(--tb-reflect-2-y, 1.7em) 0.48em rgba(255, 85, 78, 0.62)',
-}
+const DOSSIER_BLUE_COLOR = '#77e2f2'
+const DOSSIER_RED_COLOR = '#ff554e'
+const DOSSIER_DRAW_COLOR = '#cbd5e1'
+
+const buildPanelTextStyle = (color: string, reflectStrength = 42): CSSProperties => ({
+  ...DOSSIER_PANEL_TEXT_BASE_STYLE,
+  color,
+  WebkitTextFillColor: color,
+  textShadow: `0 var(--tb-reflect-2-y, 1.7em) 0.52em color-mix(in srgb, currentColor ${reflectStrength}%, transparent)`,
+})
 
 const STAT_LABEL_COL_WIDTH = '30ch'
 const STAT_VALUE_COL_WIDTH = '7ch'
@@ -51,6 +54,10 @@ const COMPARISON_SIDE_ROW_STEP_EXTRA_PX = 17.5
 const COMPARISON_SIDE_ROWS_TOP_TUNE = `calc(${COMPARISON_ROWS_TOP_TUNE} + ${COMPARISON_SIDE_ROWS_TOP_EXTRA_PX}px)`
 const COMPARISON_SECOND_ROW_Y_TUNE_PX = 0.9
 const COMPARISON_SEPARATOR_Y_TUNE_PX = 6.4
+const COMPARISON_SEPARATOR_WIDTH = '66.667%'
+const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -24
+const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
+const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -116,10 +123,12 @@ export function ParameterComparisonTemplate({
   const drawRows = rows.filter((row) => row.winner === 'draw')
   const fighterAText = fighterA.name || fighterAFallback
   const fighterBText = fighterB.name || fighterBFallback
+  const leftPanelTextStyle = buildPanelTextStyle(DOSSIER_BLUE_COLOR, 42)
+  const rightPanelTextStyle = buildPanelTextStyle(DOSSIER_RED_COLOR, 42)
+  const drawPanelTextStyle = buildPanelTextStyle(DOSSIER_DRAW_COLOR, 34)
   
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
-  const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
   const favoriteDrawLabel =
     pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_favorite', language) ||
@@ -127,11 +136,10 @@ export function ParameterComparisonTemplate({
   const favoriteLabel =
     pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
     getFightTemplateDefaultField('parameter-comparison', 'favorite_label', language)
-  const favorite =
+  const favoriteBadgeText =
     isAverageDraw
       ? favoriteDrawLabel
-      : favoriteLabel || (averageA > averageB ? `${fighterAText} ${common.favoriteSuffix}` : `${fighterBText} ${common.favoriteSuffix}`)
-  const favoriteStamp = isAverageDraw ? favoriteDrawLabel : `PRZEWAGA: ${averageA > averageB ? fighterAText : fighterBText}`
+      : favoriteLabel || (language === 'pl' ? 'Faworyt według statystyk' : 'Stat-based favorite')
 
   const [radarClock, setRadarClock] = useState(0)
   useEffect(() => {
@@ -164,7 +172,11 @@ export function ParameterComparisonTemplate({
     const isVisible = side === 'draw' ? row.winner === 'draw' : row.winner === side
     if (!isVisible) return null
 
-    const labelStyle = side === 'b' ? DOSSIER_RED_PANEL_TEXT_STYLE : DOSSIER_BLUE_PANEL_TEXT_STYLE
+    const labelStyle = side === 'b'
+      ? rightPanelTextStyle
+      : side === 'draw'
+        ? drawPanelTextStyle
+        : leftPanelTextStyle
     const valueStyle: CSSProperties = {
       ...labelStyle,
       opacity: 0.95,
@@ -186,7 +198,7 @@ export function ParameterComparisonTemplate({
       width: STAT_TRACK_WIDTH,
       marginLeft: side === 'b' || side === 'draw' ? 'auto' : 0,
       marginRight: side === 'a' || side === 'draw' ? 'auto' : 0,
-      transform: `translateY(${COMPARISON_TEXT_OFFSET_Y_PX}px)`,
+      transform: `translate(${side === 'b' ? COMPARISON_RIGHT_COLUMN_SHIFT_X_PX : 0}px, ${COMPARISON_TEXT_OFFSET_Y_PX}px)`,
     }
 
     return (
@@ -316,18 +328,18 @@ export function ParameterComparisonTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
-              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{leftHeader}</span>
-              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
+              <span style={leftPanelTextStyle}>{leftHeader}</span>
+              <p style={{ ...leftPanelTextStyle, textAlign: 'left' }}>
                 {averageShort} {averageA.toFixed(1)}
               </p>
             </div>
             <div />
-            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
               <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
+                <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
                   {rightHeader}
                 </p>
-                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                <p style={{ ...rightPanelTextStyle, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
                   {averageShort} {averageB.toFixed(1)}
                 </p>
               </div>
@@ -348,12 +360,12 @@ export function ParameterComparisonTemplate({
               }}
             >
               <div>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{advantageHeader}</p>
+                <p style={leftPanelTextStyle}>{advantageHeader}</p>
               </div>
               <div />
-              <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+              <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
                 <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                  <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: STAT_LABEL_COL_WIDTH, textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingLeft: RIGHT_LABEL_START }}>
+                  <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingLeft: RIGHT_LABEL_START }}>
                     {advantageHeader}
                   </p>
                   <span style={{ width: STAT_VALUE_COL_WIDTH }} aria-hidden="true" />
@@ -370,8 +382,8 @@ export function ParameterComparisonTemplate({
                         {renderComparisonCell(row, 'a')}
                       </div>
                       {index < leftAdvantages.length - 1 ? (
-                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)` }}>
-                          <div style={{ height: '2px', background: '#ff554e' }} />
+                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)`, display: 'flex', justifyContent: 'flex-start' }}>
+                          <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                         </div>
                       ) : null}
                     </div>
@@ -395,7 +407,7 @@ export function ParameterComparisonTemplate({
                   </ResponsiveContainer>
                 </div>
                 <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: '0.65rem' }}>
-                  <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'center' }}>{drawHeader}</p>
+                  <p style={{ ...drawPanelTextStyle, textAlign: 'center' }}>{drawHeader}</p>
                   <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
                     {drawRows.map((row, index) => (
                       <div key={`comparison-draw-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
@@ -403,8 +415,8 @@ export function ParameterComparisonTemplate({
                           {renderComparisonCell(row, 'draw')}
                         </div>
                         {index < drawRows.length - 1 ? (
-                          <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN }}>
-                            <div style={{ height: '2px', background: '#ff554e' }} />
+                          <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, display: 'flex', justifyContent: 'center' }}>
+                            <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                           </div>
                         ) : null}
                       </div>
@@ -420,8 +432,8 @@ export function ParameterComparisonTemplate({
                         {renderComparisonCell(row, 'b')}
                       </div>
                       {index < rightAdvantages.length - 1 ? (
-                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)` }}>
-                          <div style={{ height: '2px', background: '#ff554e' }} />
+                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)`, display: 'flex', justifyContent: 'flex-end' }}>
+                          <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                         </div>
                       ) : null}
                     </div>
@@ -431,22 +443,47 @@ export function ParameterComparisonTemplate({
             </div>
           </div>
 
-          <div style={{ display: 'flex', gap: '0.8rem', justifyContent: 'center', alignItems: 'center', padding: '0.58rem 0.9rem 0.42rem', position: 'relative' }}>
-            <div style={{ padding: '0.5rem 2rem', border: '1px solid rgba(255,85,78,0.6)', background: 'rgba(15, 6, 6, 0.72)' }}>
-              <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{Math.round(averageA)}</span>
+          <div style={{ marginTop: '0.1rem', padding: '0.58rem 0.2rem 0.18rem' }}>
+            <div style={{ height: '1px', marginBottom: '0.42rem', background: 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)' }} />
+            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
+                <p style={{ ...leftPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: '0 0 18px color-mix(in srgb, currentColor 50%, transparent)', marginBottom: '0.12rem' }}>
+                  {fighterAText}
+                </p>
+              </div>
+              <div
+                className="vs-parameter-favorite-stamp"
+                style={{
+                  position: 'static',
+                  transform: 'none',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  width: '26rem',
+                  maxWidth: 'calc(100% - 24px)',
+                  minHeight: '3.9rem',
+                  margin: '0 auto 0.14rem',
+                  border: '1px solid rgba(251, 191, 36, 1)',
+                  borderRadius: '10px',
+                  background:
+                    'linear-gradient(118deg, rgba(80, 28, 4, 1) 0%, rgba(145, 86, 8, 1) 24%, rgba(230, 145, 10, 1) 49%, rgba(145, 86, 8, 1) 74%, rgba(80, 28, 4, 1) 100%)',
+                  backgroundSize: '240% 240%',
+                  boxShadow:
+                    '0 12px 28px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(120, 53, 15, 0.9) inset, 0 0 16px rgba(251, 191, 36, 0.28)',
+                  animation: 'none',
+                  textShadow: 'none',
+                }}
+              >
+                <p className="vs-parameter-favorite-stamp-text" style={{ margin: 0, padding: '0.12rem 0.9rem', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.68)', fontWeight: 800, lineHeight: 0.98, letterSpacing: '0.03em', textTransform: 'uppercase', whiteSpace: 'normal', overflow: 'visible', textOverflow: 'clip', display: 'block', color: '#7fe9ff', WebkitTextFillColor: '#7fe9ff', textShadow: 'none' }}>
+                  {favoriteBadgeText}
+                </p>
+              </div>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
+                <p style={{ ...rightPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: '0 0 18px color-mix(in srgb, currentColor 58%, transparent)', marginBottom: '0.12rem' }}>
+                  {fighterBText}
+                </p>
+              </div>
             </div>
-
-            <div style={{ textAlign: 'center' }}>
-              <div style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{favoriteLabel}</div>
-              <div style={favoriteSide === 'b' ? DOSSIER_RED_PANEL_TEXT_STYLE : DOSSIER_BLUE_PANEL_TEXT_STYLE}>{favorite}</div>
-            </div>
-
-            <div style={{ padding: '0.5rem 2rem', border: '1px solid rgba(255,85,78,0.6)', background: 'rgba(15, 6, 6, 0.72)' }}>
-              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{Math.round(averageB)}</span>
-            </div>
-          </div>
-          <div style={{ marginTop: '0.02rem', alignSelf: 'center', padding: '0.34rem 1.22rem', border: '1px solid rgba(255,85,78,0.55)', background: 'linear-gradient(180deg, rgba(15,6,6,0.72), rgba(5,2,2,0.92))', color: favoriteSide === 'b' ? '#ff554e' : '#77e2f2', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.72)', fontWeight: 800, lineHeight: 1, letterSpacing: '0.04em', textTransform: 'uppercase', boxShadow: `0 0 0 1px ${favoriteSide === 'b' ? 'rgba(255,85,78,0.35)' : 'rgba(119,226,242,0.35)'} inset` }}>
-            {favoriteStamp}
           </div>
         </div>
       </section>
