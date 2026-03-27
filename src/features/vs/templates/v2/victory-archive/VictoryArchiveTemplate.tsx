@@ -237,7 +237,7 @@ export function VictoryArchiveTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--victory-archive">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 

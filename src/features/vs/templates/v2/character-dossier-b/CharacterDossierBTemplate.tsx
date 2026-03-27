@@ -122,7 +122,7 @@ export function CharacterDossierBTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--character-dossier-b">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 

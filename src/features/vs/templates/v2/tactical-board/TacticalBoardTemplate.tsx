@@ -129,7 +129,7 @@ export function TacticalBoardTemplate({
   ]
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--tactical-board">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 

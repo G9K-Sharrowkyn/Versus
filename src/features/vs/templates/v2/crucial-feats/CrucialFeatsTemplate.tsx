@@ -229,7 +229,7 @@ export function CrucialFeatsTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--crucial-feats">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 

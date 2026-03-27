@@ -37,7 +37,7 @@
 .vs-tb-signal-main .glitch-letter-container {
   display: flex;
   gap: 0;
-  font-size: 4.5vw;
+  font-size: 3.7vw;
   /* Apply the structural shake (glitch) to the whole container so it moves as one unit */
   animation: glitch 5s 5s infinite;
 }
@@ -137,7 +137,7 @@
   --tb-panel-heading-letter-spacing: 0.14em;
   --tb-panel-heading-color: rgba(255, 85, 78, 0.9);
   --tb-panel-heading-reflect: rgba(255, 85, 78, 0.22);
-  --tb-side-margin: 5.2%;
+  --tb-side-margin: 20px;
   --tb-center-gap: 2.6%;
   --tb-panel-width: 38.8%;
   --tb-panel-top: calc(182px * var(--tb-scale));
@@ -309,12 +309,15 @@
   display: block;
   margin-top: calc(0.85rem * var(--tb-scale));
   color: #77e2f2;
-  font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
+  font-family: '"'"'Chakra Petch'"'"', '"'"'JetBrains Mono'"'"', monospace;
   font-size: var(--tb-type-4);
-  letter-spacing: 0.14em;
+  font-weight: 700;
+  letter-spacing: 0.05em;
   white-space: nowrap;
   text-transform: uppercase;
-  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-3-blur) rgba(119, 226, 242, 0.2);
+  text-shadow:
+    0 0 8px rgba(119, 226, 242, 0.9),
+    0 0 16px rgba(119, 226, 242, 0.4);
 }
 
 .vs-tactical-board25-matchup {
@@ -801,6 +804,9 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
+
+
+
 
 
 
