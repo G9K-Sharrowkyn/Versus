@@ -1,6 +1,6 @@
 import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, useLayoutEffect, useMemo, useCallback, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useMemo, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -47,12 +47,16 @@ const parseHexColor = (hex: string): [number, number, number] => {
   return [r, g, b]
 }
 
-const buildReflectionShadow = (hex: string, reflectStrength = 42): string => {
+const buildReflectionShadow = (
+  hex: string,
+  reflectStrength = 42,
+  reflectOffset: string = 'var(--tb-reflect-2-y, 1.7em)',
+): string => {
   const [r, g, b] = parseHexColor(hex)
   const reflectAlpha = clamp01(reflectStrength / 100)
   const reflectionAlpha = clamp01(Math.max(0.55, reflectAlpha))
   const glowAlpha = clamp01(Math.max(0.32, reflectionAlpha * 0.62))
-  return `0 0 10px rgba(${r}, ${g}, ${b}, ${glowAlpha.toFixed(3)}), 0 var(--tb-reflect-2-y, 1.7em) 0.62em rgba(${r}, ${g}, ${b}, ${reflectionAlpha.toFixed(3)})`
+  return `0 0 10px rgba(${r}, ${g}, ${b}, ${glowAlpha.toFixed(3)}), 0 ${reflectOffset} 0.62em rgba(${r}, ${g}, ${b}, ${reflectionAlpha.toFixed(3)})`
 }
 
 const buildPanelTextStyle = (color: string, reflectStrength = 42): CSSProperties => ({
@@ -156,8 +160,9 @@ const COMPARISON_FAVORITE_STAMP_DRAW_POS = '50%'
 const COMPARISON_FAVORITE_STAMP_LEFT_ROTATION_DEG = -24
 const COMPARISON_FAVORITE_STAMP_RIGHT_ROTATION_DEG = 24
 const COMPARISON_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
-const COMPARISON_BOTTOM_LEFT_NAME_SHADOW = buildReflectionShadow(DOSSIER_BLUE_COLOR, 74)
-const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_COLOR, 78)
+const COMPARISON_BOTTOM_NAME_REFLECT_OFFSET = '0.92em'
+const COMPARISON_BOTTOM_LEFT_NAME_SHADOW = buildReflectionShadow(DOSSIER_BLUE_COLOR, 74, COMPARISON_BOTTOM_NAME_REFLECT_OFFSET)
+const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_COLOR, 78, COMPARISON_BOTTOM_NAME_REFLECT_OFFSET)
 const COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER = 2.625
 const COMPARISON_BOTTOM_NAME_TWO_LINE_MULTIPLIER = COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER * 0.5
 const COMPARISON_BOTTOM_NAME_ONE_LINE_MIN_MULTIPLIER = 0.34
@@ -168,45 +173,16 @@ const COMPARISON_BOTTOM_NAME_BOUNDARY_TOLERANCE_PX = 1.2
 const RADAR_GROW_PHASE_MS = 3000
 const RADAR_PAUSE_PHASE_MS = 3000
 const RADAR_SLOT_DURATION_MS = RADAR_GROW_PHASE_MS + RADAR_PAUSE_PHASE_MS
-const RADAR_AXIS_TICK_STYLE = {
-  fontSize: 'calc(var(--tb-type-2) * 0.8)',
-  fontFamily: "'Chakra Petch', 'JetBrains Mono', monospace",
-  fontWeight: 700,
-  letterSpacing: '0.05em',
-  textRendering: 'geometricPrecision',
-}
 const RADAR_CHART_MARGIN = { top: 56, right: 108, bottom: 56, left: 108 }
 const RADAR_MAX_VALUE = 100
 const RADAR_TICK_RADIAL_OFFSET_PX = 3
 const RADAR_OUTER_RADIUS = '92.4%'
+const RADAR_OUTER_RADIUS_RATIO = 0.924
 const RADAR_VIEWPORT_EXPAND_X_PX = 146
 const RADAR_VIEWPORT_EXPAND_Y_PX = 72
 const RADAR_GRID_STROKE = 'rgba(148, 163, 184, 0.5)'
 const RADAR_GRID_STROKE_WIDTH = 1.2
 const RADAR_GRID_RADII = [20, 40, 60, 80, 100]
-
-const normalizeRadarLabel = (value: string) =>
-  value
-    .trim()
-    .toLowerCase()
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-
-type RadarAxisTickProps = {
-  x?: number
-  y?: number
-  cx?: number
-  cy?: number
-  textAnchor?: string
-  payload?: {
-    index?: number
-    value?: string | number
-    payload?: {
-      label?: string
-      winner?: 'a' | 'b' | 'draw'
-    }
-  }
-}
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -310,6 +286,8 @@ export function ParameterComparisonTemplate({
   const rightBottomNameRef = useRef<HTMLParagraphElement | null>(null)
   const drawHeaderAnchorRef = useRef<HTMLParagraphElement | null>(null)
   const favoriteStampRef = useRef<HTMLDivElement | null>(null)
+  const radarViewportRef = useRef<HTMLDivElement | null>(null)
+  const [radarViewportSize, setRadarViewportSize] = useState({ width: 0, height: 0 })
 
   useLayoutEffect(() => {
     const rowEl = bottomNamesRowRef.current
@@ -483,6 +461,28 @@ export function ParameterComparisonTemplate({
     }
   }, [favoriteSide, fighterAText, fighterBText, rows])
 
+  useLayoutEffect(() => {
+    const viewportEl = radarViewportRef.current
+    if (!viewportEl) return
+
+    const updateSize = () => {
+      setRadarViewportSize({
+        width: viewportEl.clientWidth,
+        height: viewportEl.clientHeight,
+      })
+    }
+
+    updateSize()
+    const resizeObserver = new ResizeObserver(updateSize)
+    resizeObserver.observe(viewportEl)
+    window.addEventListener('resize', updateSize)
+
+    return () => {
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', updateSize)
+    }
+  }, [])
+
   const [radarClock, setRadarClock] = useState(0)
   useEffect(() => {
     const startedAt = performance.now()
@@ -507,67 +507,53 @@ export function ParameterComparisonTemplate({
       b: row.b * radarProgress,
     }
   })
-  const radarWinnerByLabel = useMemo(() => {
-    const map = new Map<string, 'a' | 'b' | 'draw'>()
-    rows.forEach((row) => {
-      map.set(normalizeRadarLabel(row.label), row.winner)
-    })
-    return map
-  }, [rows])
+  const radarHtmlLabels = useMemo(() => {
+    if (!rows.length || radarViewportSize.width <= 0 || radarViewportSize.height <= 0) return []
 
-  const renderRadarAxisTick = useCallback(({ x = 0, y = 0, cx = 0, cy = 0, textAnchor = 'middle', payload }: RadarAxisTickProps) => {
-    const raw = payload?.payload?.label ?? payload?.value
-    const label = typeof raw === 'string' ? raw : String(raw ?? '')
-    if (!label) return null
-    const winnerByIndex =
-      typeof payload?.index === 'number' && payload.index >= 0 && payload.index < rows.length
-        ? rows[payload.index]?.winner
-        : undefined
-    const winner = winnerByIndex ?? payload?.payload?.winner ?? radarWinnerByLabel.get(normalizeRadarLabel(label))
-    const tickColor =
-      winner === 'a'
-        ? DOSSIER_BLUE_COLOR
-        : winner === 'b'
-          ? DOSSIER_RED_COLOR
-          : DOSSIER_DRAW_COLOR
-    const dx = x - cx
-    const dy = y - cy
-    const radius = Math.hypot(dx, dy)
-    const tunedX = radius > 0 ? x + (dx / radius) * RADAR_TICK_RADIAL_OFFSET_PX : x
-    const tunedY = radius > 0 ? y + (dy / radius) * RADAR_TICK_RADIAL_OFFSET_PX : y
-    return (
-      <text
-        x={tunedX}
-        y={tunedY}
-        textAnchor={textAnchor}
-        dominantBaseline="middle"
-        fill={tickColor}
-        stroke="rgba(0,0,0,0.35)"
-        strokeWidth={0.4}
-        paintOrder="stroke"
-        style={RADAR_AXIS_TICK_STYLE}
-      >
-        {label}
-      </text>
-    )
-  }, [radarWinnerByLabel, rows])
-  const radarLabelsLayer = useMemo(
-    () => (
-      <ResponsiveContainer width="100%" height="100%">
-        <RadarChart
-          data={rows}
-          cx="50%"
-          cy="50%"
-          outerRadius={RADAR_OUTER_RADIUS}
-          margin={RADAR_CHART_MARGIN}
-        >
-          <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
-          <PolarAngleAxis dataKey="label" axisLine={false} tickLine={false} interval={0} tick={renderRadarAxisTick} />
-        </RadarChart>
-      </ResponsiveContainer>
-    ),
-    [renderRadarAxisTick, rows],
-  )
+    const innerWidth = Math.max(0, radarViewportSize.width - RADAR_CHART_MARGIN.left - RADAR_CHART_MARGIN.right)
+    const innerHeight = Math.max(0, radarViewportSize.height - RADAR_CHART_MARGIN.top - RADAR_CHART_MARGIN.bottom)
+    const maxRadius = Math.min(innerWidth, innerHeight) / 2
+    const labelRadius = maxRadius * RADAR_OUTER_RADIUS_RATIO + RADAR_TICK_RADIAL_OFFSET_PX
+    const centerX = radarViewportSize.width / 2
+    const centerY = radarViewportSize.height / 2
+    const angleStep = (Math.PI * 2) / Math.max(1, rows.length)
+
+    return rows.map((row, index) => {
+      const angle = -Math.PI / 2 + angleStep * index
+      const cosValue = Math.cos(angle)
+      const x = centerX + cosValue * labelRadius
+      const y = centerY + Math.sin(angle) * labelRadius
+      const textAnchor = cosValue > 0.34 ? 'start' : cosValue < -0.34 ? 'end' : 'middle'
+      const transform =
+        textAnchor === 'start'
+          ? 'translate(0, -50%)'
+          : textAnchor === 'end'
+            ? 'translate(-100%, -50%)'
+            : 'translate(-50%, -50%)'
+      const tickTextStyle =
+        row.winner === 'a'
+          ? leftPanelTextStyle
+          : row.winner === 'b'
+            ? rightPanelTextStyle
+            : drawPanelTextStyle
+      return {
+        id: row.id,
+        label: row.label,
+        style: {
+          ...tickTextStyle,
+          position: 'absolute',
+          left: `${x}px`,
+          top: `${y}px`,
+          transform,
+          textAlign: textAnchor === 'end' ? 'right' : textAnchor === 'start' ? 'left' : 'center',
+          whiteSpace: 'nowrap',
+          lineHeight: 1,
+          margin: 0,
+          pointerEvents: 'none',
+        } as CSSProperties,
+      }
+    })
+  }, [drawPanelTextStyle, leftPanelTextStyle, radarViewportSize.height, radarViewportSize.width, rightPanelTextStyle, rows])
   const radarGridLayer = useMemo(
     () => (
       <ResponsiveContainer width="100%" height="100%">
@@ -585,7 +571,7 @@ export function ParameterComparisonTemplate({
             polarRadius={RADAR_GRID_RADII}
           />
           <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
-          <PolarAngleAxis dataKey="label" axisLine={false} tick={false} tickLine={false} interval={0} />
+          <PolarAngleAxis dataKey="label" axisLine={false} tick={false} tickLine={false} />
         </RadarChart>
       </ResponsiveContainer>
     ),
@@ -835,6 +821,7 @@ export function ParameterComparisonTemplate({
               <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                 <div style={{ flex: 2.8, position: 'relative', minHeight: '410px' }}>
                   <div
+                    ref={radarViewportRef}
                     style={{
                       position: 'absolute',
                       top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
@@ -842,45 +829,34 @@ export function ParameterComparisonTemplate({
                       left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
                       right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
                       pointerEvents: 'none',
+                      overflow: 'visible',
                     }}
                   >
-                    <ResponsiveContainer width="100%" height="100%">
-                      <RadarChart
-                        data={animatedRows}
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={RADAR_OUTER_RADIUS}
-                        margin={RADAR_CHART_MARGIN}
-                      >
-                        <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
-                        <Radar dataKey="a" stroke={fighterA.color} strokeWidth={2.4} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
-                        <Radar dataKey="b" stroke={fighterB.color} strokeWidth={2.4} fill={fighterB.color} fillOpacity={0.28} isAnimationActive={false} />
-                      </RadarChart>
-                    </ResponsiveContainer>
-                  </div>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
-                      bottom: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
-                      left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
-                      right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    {radarGridLayer}
-                  </div>
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
-                      bottom: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
-                      left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
-                      right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
-                      pointerEvents: 'none',
-                    }}
-                  >
-                    {radarLabelsLayer}
+                    <div style={{ position: 'absolute', inset: 0 }}>
+                      <ResponsiveContainer width="100%" height="100%">
+                        <RadarChart
+                          data={animatedRows}
+                          cx="50%"
+                          cy="50%"
+                          outerRadius={RADAR_OUTER_RADIUS}
+                          margin={RADAR_CHART_MARGIN}
+                        >
+                          <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
+                          <Radar dataKey="a" stroke={fighterA.color} strokeWidth={2.4} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
+                          <Radar dataKey="b" stroke={fighterB.color} strokeWidth={2.4} fill={fighterB.color} fillOpacity={0.28} isAnimationActive={false} />
+                        </RadarChart>
+                      </ResponsiveContainer>
+                    </div>
+                    <div style={{ position: 'absolute', inset: 0 }}>
+                      {radarGridLayer}
+                    </div>
+                    <div style={{ position: 'absolute', inset: 0, overflow: 'visible' }}>
+                      {radarHtmlLabels.map((item) => (
+                        <p key={`radar-html-label-${item.id}`} className="vs-radar-axis-html-label" style={item.style}>
+                          {item.label}
+                        </p>
+                      ))}
+                    </div>
                   </div>
                 </div>
                 <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: 0 }}>

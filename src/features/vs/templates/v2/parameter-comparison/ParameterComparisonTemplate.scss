@@ -773,6 +773,11 @@
   text-shadow: 0 var(--tb-reflect-4-y) var(--tb-reflect-4-blur) color-mix(in srgb, currentColor 22%, transparent) !important;
 }
 
+/* Radar axis labels rendered as HTML to match side-list reflection 1:1. */
+.vs-parameter-comparison-surface .vs-radar-axis-html-label {
+  pointer-events: none;
+}
+
 /* Parameter comparison uses one merged panel: keep dark background inside the frame only. */
 .vs-parameter-comparison-surface::before {
   content: none !important;
