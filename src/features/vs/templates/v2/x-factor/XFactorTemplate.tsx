@@ -329,12 +329,23 @@ export function XFactorTemplate({
                         '--xf-overcharge-x': `${superTotalVisualPct}%`,
                       } as CSSProperties}
                     >
-                      <span className="vs-xfactor-overcharge-core" />
                       <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
-                        <LightningCanvas startRatio={{ x: 0.24, y: 0.34 }} endRatio={{ x: 0.96, y: 0.5 }} />
+                        <LightningCanvas startRatio={{ x: 0.04, y: 0.22 }} endRatio={{ x: 1.28, y: 0.52 }} />
                       </div>
                       <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
-                        <LightningCanvas startRatio={{ x: 0.18, y: 0.68 }} endRatio={{ x: 0.95, y: 0.52 }} />
+                        <LightningCanvas startRatio={{ x: 0.12, y: 0.78 }} endRatio={{ x: 1.24, y: 0.34 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--3">
+                        <LightningCanvas startRatio={{ x: 0.28, y: 0.48 }} endRatio={{ x: 1.36, y: 0.62 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--4">
+                        <LightningCanvas startRatio={{ x: 0.08, y: 0.56 }} endRatio={{ x: 1.18, y: 0.8 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--5">
+                        <LightningCanvas startRatio={{ x: 0.2, y: 0.3 }} endRatio={{ x: 1.4, y: 0.42 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--6">
+                        <LightningCanvas startRatio={{ x: 0.34, y: 0.68 }} endRatio={{ x: 1.32, y: 0.7 }} />
                       </div>
                     </div>
                   )}
@@ -405,12 +416,23 @@ export function XFactorTemplate({
                         '--xf-overcharge-x': `${hyperTotalVisualPct}%`,
                       } as CSSProperties}
                     >
-                      <span className="vs-xfactor-overcharge-core" />
                       <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
-                        <LightningCanvas startRatio={{ x: 0.24, y: 0.34 }} endRatio={{ x: 0.96, y: 0.5 }} />
+                        <LightningCanvas startRatio={{ x: 0.04, y: 0.22 }} endRatio={{ x: 1.28, y: 0.52 }} />
                       </div>
                       <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
-                        <LightningCanvas startRatio={{ x: 0.18, y: 0.68 }} endRatio={{ x: 0.95, y: 0.52 }} />
+                        <LightningCanvas startRatio={{ x: 0.12, y: 0.78 }} endRatio={{ x: 1.24, y: 0.34 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--3">
+                        <LightningCanvas startRatio={{ x: 0.28, y: 0.48 }} endRatio={{ x: 1.36, y: 0.62 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--4">
+                        <LightningCanvas startRatio={{ x: 0.08, y: 0.56 }} endRatio={{ x: 1.18, y: 0.8 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--5">
+                        <LightningCanvas startRatio={{ x: 0.2, y: 0.3 }} endRatio={{ x: 1.4, y: 0.42 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--6">
+                        <LightningCanvas startRatio={{ x: 0.34, y: 0.68 }} endRatio={{ x: 1.32, y: 0.7 }} />
                       </div>
                     </div>
                   )}
