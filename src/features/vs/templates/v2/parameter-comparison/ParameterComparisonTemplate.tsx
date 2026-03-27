@@ -102,6 +102,27 @@ const shrinkElementTextToWidth = (el: HTMLElement, maxWidthPx: number, minFontPx
   return currentFontPx
 }
 
+const measureTextRect = (el: HTMLElement): DOMRect => {
+  if (typeof document === 'undefined' || typeof document.createRange !== 'function') {
+    return el.getBoundingClientRect()
+  }
+
+  const content = el.textContent || ''
+  if (!content.length) return el.getBoundingClientRect()
+
+  try {
+    const range = document.createRange()
+    range.selectNodeContents(el)
+    const rect = range.getBoundingClientRect()
+    range.detach?.()
+    if (rect.width > 0 && rect.height > 0) return rect
+  } catch {
+    // Fallback below.
+  }
+
+  return el.getBoundingClientRect()
+}
+
 const STAT_LABEL_COL_WIDTH = '30ch'
 const STAT_VALUE_COL_WIDTH = '7ch'
 const STAT_COL_GAP = '0.4rem'
@@ -124,6 +145,7 @@ const COMPARISON_RIGHT_SEPARATOR_SHIFT_X_PX = COMPARISON_RIGHT_COLUMN_SHIFT_X_PX
 const COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET = RIGHT_LABEL_START
 const COMPARISON_RIGHT_SEPARATOR_WIDTH = `calc(100% - ${RIGHT_LABEL_START})`
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
+const COMPARISON_BOTTOM_RIGHT_NAME_SHIFT_X_PX = COMPARISON_RIGHT_COLUMN_SHIFT_X_PX + 60
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
 const COMPARISON_FAVORITE_STAMP_BOTTOM_PX = 8
 const COMPARISON_FAVORITE_STAMP_WIDTH_REM = 15
@@ -138,8 +160,11 @@ const COMPARISON_BOTTOM_LEFT_NAME_SHADOW = buildReflectionShadow(DOSSIER_BLUE_CO
 const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_COLOR, 78)
 const COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER = 2.625
 const COMPARISON_BOTTOM_NAME_TWO_LINE_MULTIPLIER = COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER * 0.5
+const COMPARISON_BOTTOM_NAME_ONE_LINE_MIN_MULTIPLIER = 0.34
 const COMPARISON_BOTTOM_NAME_MIN_FONT_PX = 8
 const COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX = 4
+const COMPARISON_BOTTOM_NAME_ONE_LINE_TOLERANCE_PX = 2
+const COMPARISON_BOTTOM_NAME_BOUNDARY_TOLERANCE_PX = 1.2
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -278,9 +303,12 @@ export function ParameterComparisonTemplate({
       const baseFontPx = Number.parseFloat(window.getComputedStyle(el).fontSize)
 
       const nameRect = el.getBoundingClientRect()
+      const wrapperRect = el.parentElement?.getBoundingClientRect()
+      const projectedLeftLanePx = (wrapperRect ? wrapperRect.left : nameRect.left) - rowRect.left
+      const projectedRightLanePx = (wrapperRect ? wrapperRect.right : nameRect.right) - rowRect.left
       const availableWidthPx = side === 'left'
-        ? boundaryPx - (nameRect.left - rowRect.left) - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
-        : (nameRect.right - rowRect.left) - boundaryPx - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
+        ? boundaryPx - projectedLeftLanePx - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
+        : projectedRightLanePx - boundaryPx - COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX
       const localBoxWidthPx = Math.max(el.offsetWidth, el.clientWidth, 1)
       const projectedBoxWidthPx = Math.max(nameRect.width, 1)
       const projectionScaleX = projectedBoxWidthPx / localBoxWidthPx
@@ -288,16 +316,21 @@ export function ParameterComparisonTemplate({
 
       el.style.maxWidth = `${clampedWidthPx}px`
 
-      if (el.scrollWidth <= clampedWidthPx + 0.5) return
+      if (el.scrollWidth <= clampedWidthPx + COMPARISON_BOTTOM_NAME_ONE_LINE_TOLERANCE_PX) return
 
       const hasSpaces = /\s/.test(trimmedText)
       if (hasSpaces) {
         const oneLineMinFontPx = Number.isFinite(baseFontPx)
-          ? Math.max(COMPARISON_BOTTOM_NAME_MIN_FONT_PX, baseFontPx * 0.5)
+          ? Math.max(COMPARISON_BOTTOM_NAME_MIN_FONT_PX, baseFontPx * COMPARISON_BOTTOM_NAME_ONE_LINE_MIN_MULTIPLIER)
           : COMPARISON_BOTTOM_NAME_MIN_FONT_PX
 
         shrinkElementTextToWidth(el, clampedWidthPx, oneLineMinFontPx)
-        if (el.scrollWidth <= clampedWidthPx + 0.5) return
+        const oneLineRect = measureTextRect(el)
+        const boundaryScreenX = rowRect.left + boundaryPx
+        const projectedBoundaryOverlapPx = side === 'left'
+          ? oneLineRect.right - boundaryScreenX
+          : boundaryScreenX - oneLineRect.left
+        if (projectedBoundaryOverlapPx <= COMPARISON_BOTTOM_NAME_BOUNDARY_TOLERANCE_PX) return
 
         const [lineA, lineB] = splitNameForTwoRows(sourceText)
         if (lineB) {
@@ -755,7 +788,7 @@ export function ParameterComparisonTemplate({
                 </p>
               </div>
               <div style={{ width: '1px', minHeight: '1px' }} aria-hidden="true" />
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_RIGHT_NAME_SHIFT_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
                 <p ref={rightBottomNameRef} data-comp-bottom-name="right" style={{ ...rightPanelTextStyle, fontSize: `calc(var(--tb-type-2) * ${COMPARISON_BOTTOM_NAME_BASE_MULTIPLIER})`, lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterBText}
                 </p>
