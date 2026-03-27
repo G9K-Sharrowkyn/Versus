@@ -261,7 +261,13 @@ export function FightAnalyticsTemplate({
             
             <div className={layout.ROWS_WRAP_CLASS} style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: '2rem', paddingBottom: '2rem' }}>
               {rows.map((row, index) => (
-                <div key={`row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+                <div
+                  key={`row-${row.id}`}
+                  data-analytics-row="true"
+                  data-analytics-row-index={index}
+                  data-analytics-row-id={row.id}
+                  style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}
+                >
                   <div
                     className={layout.ROW_CLASS}
                     style={{ display: 'flex', alignItems: 'center', gap: '1.1rem', animationDelay: `${index * 0.04}s`, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, overflow: 'visible' }}
@@ -285,8 +291,8 @@ export function FightAnalyticsTemplate({
                     </div>
                   </div>
                   {index < rows.length - 1 ? (
-                    <div style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
-                      <div style={{ height: '2px', background: '#ff554e' }} />
+                    <div data-analytics-separator-track="true" data-analytics-separator-index={index} style={{ marginTop: '1.05rem', marginBottom: '1.05rem' }}>
+                      <div data-analytics-separator-bar="true" style={{ height: '2px', background: '#ff554e' }} />
                     </div>
                   ) : null}
                 </div>

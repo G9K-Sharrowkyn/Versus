@@ -405,13 +405,25 @@ export function ParameterComparisonTemplate({
               <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                 <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_SIDE_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
                   {leftAdvantages.map((row, index) => (
-                    <div key={`comparison-left-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_SIDE_ROW_STEP_EXTRA_PX}px` : 0, transform: index === 1 ? `translateY(${COMPARISON_SECOND_ROW_Y_TUNE_PX}px)` : undefined }}>
-                      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center' }}>
+                    <div
+                      key={`comparison-left-row-${row.id}`}
+                      data-comp-row="true"
+                      data-comp-side="left"
+                      data-comp-row-index={index}
+                      data-comp-row-id={row.id}
+                      style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_SIDE_ROW_STEP_EXTRA_PX}px` : 0 }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', transform: index === 1 ? `translateY(${COMPARISON_SECOND_ROW_Y_TUNE_PX}px)` : undefined }}>
                         {renderComparisonCell(row, 'a')}
                       </div>
                       {index < leftAdvantages.length - 1 ? (
-                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)`, display: 'flex', justifyContent: 'flex-start' }}>
-                          <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                        <div
+                          data-comp-separator-track="true"
+                          data-comp-side="left"
+                          data-comp-separator-index={index}
+                          style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-start' }}
+                        >
+                          <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                         </div>
                       ) : null}
                     </div>
@@ -438,13 +450,25 @@ export function ParameterComparisonTemplate({
                   <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 0, paddingTop: 0, paddingBottom: '0.12rem' }}>
                     <p style={{ ...drawPanelTextStyle, textAlign: 'center', marginBottom: '0.34rem' }}>{drawHeader}</p>
                     {drawRowsBottomAnchored.map((row, index) => (
-                      <div key={`comparison-draw-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}>
+                      <div
+                        key={`comparison-draw-row-${row.id}`}
+                        data-comp-row="true"
+                        data-comp-side="center"
+                        data-comp-row-index={index}
+                        data-comp-row-id={row.id}
+                        style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_ROW_DRIFT_FIX_PX}px` : 0 }}
+                      >
                         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                           {renderComparisonCell(row, 'draw')}
                         </div>
                         {index < drawRowsBottomAnchored.length - 1 ? (
-                          <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, display: 'flex', justifyContent: 'center' }}>
-                            <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                          <div
+                            data-comp-separator-track="true"
+                            data-comp-side="center"
+                            data-comp-separator-index={index}
+                            style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, display: 'flex', justifyContent: 'center' }}
+                          >
+                            <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                           </div>
                         ) : null}
                       </div>
@@ -455,13 +479,25 @@ export function ParameterComparisonTemplate({
               <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
                 <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start', gap: 0, paddingTop: COMPARISON_SIDE_ROWS_TOP_TUNE, paddingBottom: '2rem' }}>
                   {rightAdvantages.map((row, index) => (
-                    <div key={`comparison-right-row-${row.id}`} style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_SIDE_ROW_STEP_EXTRA_PX}px` : 0, transform: index === 1 ? `translateY(${COMPARISON_SECOND_ROW_Y_TUNE_PX}px)` : undefined }}>
-                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
+                    <div
+                      key={`comparison-right-row-${row.id}`}
+                      data-comp-row="true"
+                      data-comp-side="right"
+                      data-comp-row-index={index}
+                      data-comp-row-id={row.id}
+                      style={{ display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: index > 0 ? `${COMPARISON_SIDE_ROW_STEP_EXTRA_PX}px` : 0 }}
+                    >
+                      <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', transform: index === 1 ? `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px, ${COMPARISON_SECOND_ROW_Y_TUNE_PX}px)` : `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
                         {renderComparisonCell(row, 'b')}
                       </div>
                       {index < rightAdvantages.length - 1 ? (
-                        <div style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX}px)`, display: 'flex', justifyContent: 'flex-end' }}>
-                          <div style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                        <div
+                          data-comp-separator-track="true"
+                          data-comp-side="right"
+                          data-comp-separator-index={index}
+                          style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-end' }}
+                        >
+                          <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
                         </div>
                       ) : null}
                     </div>
