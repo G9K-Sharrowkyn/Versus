@@ -1,8 +1,9 @@
 import './CharacterProfileTemplate.scss'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
 import { GlitchText } from '../../../components/GlitchText'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { applyDossierNameAutofit } from '../../shared/dossierNameAutofit'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateStaticField as getFightTemplateDefaultField,
@@ -71,6 +72,18 @@ export function CharacterProfileTemplate({
 
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle || ''
+  const fighterAText =
+    fighterA.name ||
+    getFightTemplateDefaultField('character-profile', 'fighter_a_fallback', language) ||
+    'Postać A'
+  const fighterBText =
+    fighterB.name ||
+    getFightTemplateDefaultField('character-profile', 'fighter_b_fallback', language) ||
+    'Postać B'
+  const leftNameWrapperRef = useRef<HTMLDivElement | null>(null)
+  const leftNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
+  const rightNameWrapperRef = useRef<HTMLDivElement | null>(null)
+  const rightNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
 
   const sectionRows = TOOLKIT_SECTION_ORDER.map((sectionKey) => {
     const label = toolkitDefaults[sectionKey]
@@ -124,6 +137,74 @@ export function CharacterProfileTemplate({
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+
+  useLayoutEffect(() => {
+    const leftWrapperEl = leftNameWrapperRef.current
+    const leftHeadingEl = leftNameHeadingRef.current
+    const rightWrapperEl = rightNameWrapperRef.current
+    const rightHeadingEl = rightNameHeadingRef.current
+    if (!leftWrapperEl || !leftHeadingEl || !rightWrapperEl || !rightHeadingEl) return
+
+    const applyFit = () => {
+      applyDossierNameAutofit({
+        element: leftHeadingEl,
+        container: leftWrapperEl,
+        sourceText: fighterAText,
+        config: {
+          baseScale: 0.85,
+          twoLineScale: 0.425,
+          oneLineMinScale: 0.5,
+          minFontPx: 8,
+        },
+      })
+      applyDossierNameAutofit({
+        element: rightHeadingEl,
+        container: rightWrapperEl,
+        sourceText: fighterBText,
+        config: {
+          baseScale: 0.85,
+          twoLineScale: 0.425,
+          oneLineMinScale: 0.5,
+          minFontPx: 8,
+        },
+      })
+    }
+
+    applyFit()
+    const delayedReflows = [
+      window.setTimeout(applyFit, 80),
+      window.setTimeout(applyFit, 220),
+      window.setTimeout(applyFit, 520),
+    ]
+
+    let disposed = false
+    const fontSet = typeof document !== 'undefined' ? document.fonts : null
+    const handleFontsReady = () => {
+      if (disposed) return
+      applyFit()
+    }
+    if (fontSet) {
+      fontSet.ready.then(handleFontsReady).catch(() => {})
+      if (typeof fontSet.addEventListener === 'function') {
+        fontSet.addEventListener('loadingdone', handleFontsReady)
+      }
+    }
+
+    const resizeObserver = new ResizeObserver(() => applyFit())
+    resizeObserver.observe(leftWrapperEl)
+    resizeObserver.observe(rightWrapperEl)
+    window.addEventListener('resize', applyFit)
+
+    return () => {
+      disposed = true
+      delayedReflows.forEach((timerId) => window.clearTimeout(timerId))
+      if (fontSet && typeof fontSet.removeEventListener === 'function') {
+        fontSet.removeEventListener('loadingdone', handleFontsReady)
+      }
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', applyFit)
+    }
+  }, [fighterAText, fighterBText])
 
   useEffect(() => {
     if (chars.length === 0) return
@@ -224,8 +305,8 @@ export function CharacterProfileTemplate({
       <section className="vs-tactical-board25-stats" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-stats-left)', width: 'var(--tb-stats-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label"><GlitchText text="Postać Niebieska" /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterA.name}</h3>
+          <div ref={leftNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 ref={leftNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterAText}</h3>
           </div>
           {renderFactColumn('left')}
         </div>
@@ -234,8 +315,8 @@ export function CharacterProfileTemplate({
       <div className="vs-tactical-board25-reality" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-reality-left)', width: 'var(--tb-reality-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label"><GlitchText text="Postać Czerwona" /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterB.name}</h3>
+          <div ref={rightNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 ref={rightNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterBText}</h3>
           </div>
           {renderFactColumn('right')}
         </div>

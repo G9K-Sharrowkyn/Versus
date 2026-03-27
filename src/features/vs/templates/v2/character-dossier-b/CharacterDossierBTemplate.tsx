@@ -1,9 +1,10 @@
 import './CharacterDossierBTemplate.scss'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { GlitchText } from '../../../components/GlitchText'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
+import { applyDossierNameAutofit } from '../../shared/dossierNameAutofit'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
@@ -74,6 +75,8 @@ export function CharacterDossierBTemplate({
   // ===========================================================================
 
   const fighterText = fighterB.name || getFightTemplateDefaultField('character-dossier-b', 'fighter_b_fallback', language)
+  const fighterNameWrapperRef = useRef<HTMLDivElement | null>(null)
+  const fighterNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const cardFacts = factsB.length ? factsB : []
   const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
@@ -90,6 +93,60 @@ export function CharacterDossierBTemplate({
   const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+
+  useLayoutEffect(() => {
+    const wrapperEl = fighterNameWrapperRef.current
+    const headingEl = fighterNameHeadingRef.current
+    if (!wrapperEl || !headingEl) return
+
+    const applyFit = () => {
+      applyDossierNameAutofit({
+        element: headingEl,
+        container: wrapperEl,
+        sourceText: fighterText,
+        config: {
+          baseScale: 0.85,
+          twoLineScale: 0.425,
+          oneLineMinScale: 0.5,
+          minFontPx: 8,
+        },
+      })
+    }
+
+    applyFit()
+    const delayedReflows = [
+      window.setTimeout(applyFit, 80),
+      window.setTimeout(applyFit, 220),
+      window.setTimeout(applyFit, 520),
+    ]
+
+    let disposed = false
+    const fontSet = typeof document !== 'undefined' ? document.fonts : null
+    const handleFontsReady = () => {
+      if (disposed) return
+      applyFit()
+    }
+    if (fontSet) {
+      fontSet.ready.then(handleFontsReady).catch(() => {})
+      if (typeof fontSet.addEventListener === 'function') {
+        fontSet.addEventListener('loadingdone', handleFontsReady)
+      }
+    }
+
+    const resizeObserver = new ResizeObserver(() => applyFit())
+    resizeObserver.observe(wrapperEl)
+    window.addEventListener('resize', applyFit)
+
+    return () => {
+      disposed = true
+      delayedReflows.forEach((timerId) => window.clearTimeout(timerId))
+      if (fontSet && typeof fontSet.removeEventListener === 'function') {
+        fontSet.removeEventListener('loadingdone', handleFontsReady)
+      }
+      resizeObserver.disconnect()
+      window.removeEventListener('resize', applyFit)
+    }
+  }, [fighterText])
 
   useEffect(() => {
     if (chars.length === 0) return
@@ -190,8 +247,8 @@ export function CharacterDossierBTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
 
           {/* Imię Postaci */}
-          <div style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
-            <h3 className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)' }}>{fighterText}</h3>
+          <div ref={fighterNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+            <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterText}</h3>
           </div>
 
           {/* Lista Faktów - stałe pozycje */}
