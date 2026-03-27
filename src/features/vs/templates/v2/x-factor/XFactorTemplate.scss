@@ -880,14 +880,30 @@
 
 .vs-xfactor-meter-layer--bonus {
   z-index: 3;
+  background: #313846;
+  overflow: hidden;
+}
+
+.vs-xfactor-meter-layer--bonus::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 2px;
+  bottom: 2px;
   background-image:
     repeating-linear-gradient(
       135deg,
-      var(--xf-color-light) 0px,
+      transparent 0px,
+      transparent 8px,
       var(--xf-color-light) 8px,
-      #313846 8px,
-      #313846 16px
+      var(--xf-color-light) 16px
     );
+  animation: vs-xfactor-surface-flow 1.02s linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  pointer-events: none;
 }
 
 .vs-xfactor-meter-layer--rest {
