@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, type KeyboardEvent as ReactKeyboardEvent, type MouseEvent as ReactMouseEvent, type PointerEvent as ReactPointerEvent } from 'react'
 import clsx from 'clsx'
 import { getImagePreloadSnapshot, preloadImageUrl } from '../domain/imagePreloadCache'
 import type { PortraitAdjust } from '../types'
@@ -136,7 +136,7 @@ export function AdjustableTemplateImage({
     }
   }, [imageUrl])
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const container = containerRef.current
     if (!container) return
     const updateSize = () => {
