@@ -42,6 +42,13 @@ const VALUE_COLUMN_WIDTH_PX = 30
 const SCALE_MARKS_OFFSET_Y_PX = 24
 const SCALE_MARKS_GAP_PX = 300
 const PARAMETER_LABEL_SHIFT_X_PX = -4
+const ANALYTICS_RIGHT_HEADER_SHIFT_X_PX = -82
+const ANALYTICS_STAT_LABEL_COL_WIDTH = '30ch'
+const ANALYTICS_STAT_VALUE_COL_WIDTH = '7ch'
+const ANALYTICS_STAT_COL_GAP = '0.4rem'
+const ANALYTICS_STAT_ROW_TEMPLATE = `${ANALYTICS_STAT_LABEL_COL_WIDTH} ${ANALYTICS_STAT_VALUE_COL_WIDTH}`
+const ANALYTICS_STAT_TRACK_WIDTH = `calc(${ANALYTICS_STAT_LABEL_COL_WIDTH} + ${ANALYTICS_STAT_COL_GAP} + ${ANALYTICS_STAT_VALUE_COL_WIDTH})`
+const ANALYTICS_RIGHT_LABEL_START = '0.65rem'
 const ANALYTICS_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
@@ -207,7 +214,7 @@ export function FightAnalyticsTemplate({
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
             <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'flex-start', gap: '0.55rem' }}>
               <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterA.name}</span>
               <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
@@ -215,12 +222,17 @@ export function FightAnalyticsTemplate({
               </p>
               <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
             </div>
-            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'flex-start', gap: '0.55rem' }}>
-              <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{fighterB.name}</span>
-              <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'right' }}>
-                {averageShort} {averageB.toFixed(1)}
-              </p>
-              <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
+            <div />
+            <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${ANALYTICS_RIGHT_HEADER_SHIFT_X_PX}px)` }}>
+              <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: ANALYTICS_STAT_ROW_TEMPLATE, columnGap: ANALYTICS_STAT_COL_GAP, alignItems: 'baseline', width: ANALYTICS_STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
+                <span style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', textAlign: 'left', paddingLeft: ANALYTICS_RIGHT_LABEL_START }}>
+                  {fighterB.name}
+                </span>
+                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {averageShort} {averageB.toFixed(1)}
+                </p>
+                <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
+              </div>
             </div>
           </div>
 
