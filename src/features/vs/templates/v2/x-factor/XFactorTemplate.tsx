@@ -72,13 +72,13 @@ export function XFactorTemplate({
   const REFLEKS_TRESCI_FAKTOW = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
   const REFLEKS_ETYKIET_FAKTOW = '0 0 7px rgba(255, 85, 78, 0.82), 0 0 14px rgba(255, 85, 78, 0.35)'
   const REFLEKS_PODTYTULOW_W_DOL = '0 var(--tb-reflect-2-y) 0.28em rgba(255, 85, 78, 0.36)'
-  const REFLEKS_IMION_POSTACI = '0 0 12px color-mix(in srgb, currentColor 62%, transparent), 0 2em 0.58em color-mix(in srgb, currentColor 40%, transparent)'
+  const REFLEKS_IMION_POSTACI = '0 0 14px currentColor, 0 0 24px currentColor, 0 1.72em 0.56em currentColor'
   const REFLEKS_WARTOSCI_PROCENT = '0 0 10px color-mix(in srgb, currentColor 54%, transparent), 0 var(--tb-reflect-2-y) 0.5em color-mix(in srgb, currentColor 34%, transparent)'
-  const REFLEKS_BONUSU_PROCENT = '0 0 9px rgba(110, 231, 183, 0.58), 0 2.05em 0.5em rgba(110, 231, 183, 0.42)'
-  const REFLEKS_KLUCZOWE_PYTANIE = '0 0 10px rgba(255, 85, 78, 0.9), 0 1.95em 0.52em rgba(255, 85, 78, 0.46)'
+  const REFLEKS_BONUSU_PROCENT = '0 0 10px rgba(110, 231, 183, 0.62), 0 2.75em 0.58em rgba(110, 231, 183, 0.46)'
+  const REFLEKS_KLUCZOWE_PYTANIE = `${REFLEKS_ETYKIET_FAKTOW}, 0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)`
   const REFLEKS_EMOTEK = 'drop-shadow(0 0 8px color-mix(in srgb, currentColor 62%, transparent)) drop-shadow(0 calc(var(--tb-reflect-2-y) * 0.95) 0.52em color-mix(in srgb, currentColor 42%, transparent))'
-  const INSIGHT_ICON_SIZE = (Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24) * 1.42
-  const INSIGHT_ICON_STROKE = Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5
+  const INSIGHT_ICON_SIZE = (Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24) * 2.2
+  const INSIGHT_ICON_STROKE = (Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5) * 0.95
   const DOSSIER_NAGLOWEK_FAKTU_STYLE: CSSProperties = {
     color: RED_LINIA,
     fontFamily: 'Chakra Petch, sans-serif',
@@ -273,7 +273,7 @@ export function XFactorTemplate({
                 spec={slots.fighterBannerNameLarge}
                 text={fighterAName}
                 className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                style={{ color: fighterA.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible' }}
+                style={{ color: fighterA.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible', position: 'relative', zIndex: 4 }}
                 templateId="x-factor"
                 activeFightId={activeFightId}
                 language={language}
@@ -323,7 +323,7 @@ export function XFactorTemplate({
                 spec={slots.fighterBannerNameLarge}
                 text={fighterBName}
                 className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                style={{ color: fighterB.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible' }}
+                style={{ color: fighterB.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible', position: 'relative', zIndex: 4 }}
                 templateId="x-factor"
                 activeFightId={activeFightId}
                 language={language}
