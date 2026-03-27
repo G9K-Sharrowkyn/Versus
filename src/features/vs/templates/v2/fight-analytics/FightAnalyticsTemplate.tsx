@@ -40,6 +40,8 @@ const SCALE_ALIGNMENT_SHIFT_PX = -30
 const VALUE_COLUMN_WIDTH_PX = 30
 const SCALE_MARKS_OFFSET_Y_PX = 24
 const SCALE_MARKS_GAP_PX = 300
+const PARAMETER_LABEL_SHIFT_X_PX = -4
+const ANALYTICS_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -205,24 +207,26 @@ export function FightAnalyticsTemplate({
 
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'flex-start', gap: '0.55rem' }}>
               <span style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{fighterA.name}</span>
               <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'left' }}>
                 {averageShort} {averageA.toFixed(1)}
               </p>
+              <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
             </div>
-            <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'flex-start', gap: '0.55rem' }}>
               <span style={DOSSIER_RED_PANEL_TEXT_STYLE}>{fighterB.name}</span>
               <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, textAlign: 'right' }}>
                 {averageShort} {averageB.toFixed(1)}
               </p>
+              <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
             </div>
           </div>
 
           <div className={layout.CONTENT_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
             <div className={layout.HEADER_ROW_CLASS} style={{ display: 'flex', marginBottom: '0.65rem', alignItems: 'flex-end', gap: '1.1rem' }}>
               <div style={{ width: '22%' }}>
-                <p style={DOSSIER_BLUE_PANEL_TEXT_STYLE}>{parameterLabel}</p>
+                <p style={{ ...DOSSIER_BLUE_PANEL_TEXT_STYLE, transform: `translateX(${PARAMETER_LABEL_SHIFT_X_PX}px)` }}>{parameterLabel}</p>
               </div>
               <div className={layout.SCALE_WRAP_CLASS} style={{ flex: 1, marginLeft: `${SCALE_ALIGNMENT_SHIFT_PX}px` }}>
                 <div style={{ marginBottom: '0.3rem', textAlign: 'left' }}>

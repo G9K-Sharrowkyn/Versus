@@ -22,6 +22,7 @@ const DOSSIER_PANEL_TEXT_BASE_STYLE: CSSProperties = {
   fontFamily: "'Chakra Petch', sans-serif",
   fontSize: 'calc(var(--tb-type-2) * 0.8)',
   fontWeight: 800,
+  letterSpacing: '0.02em',
   lineHeight: 1,
   textTransform: 'uppercase',
   margin: 0,
@@ -31,11 +32,34 @@ const DOSSIER_BLUE_COLOR = '#77e2f2'
 const DOSSIER_RED_COLOR = '#ff554e'
 const DOSSIER_DRAW_COLOR = '#cbd5e1'
 
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
+
+const parseHexColor = (hex: string): [number, number, number] => {
+  const trimmed = hex.trim().replace('#', '')
+  const normalized = trimmed.length === 3
+    ? trimmed.split('').map((char) => `${char}${char}`).join('')
+    : trimmed
+  if (normalized.length !== 6) return [119, 226, 242]
+  const r = Number.parseInt(normalized.slice(0, 2), 16)
+  const g = Number.parseInt(normalized.slice(2, 4), 16)
+  const b = Number.parseInt(normalized.slice(4, 6), 16)
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return [119, 226, 242]
+  return [r, g, b]
+}
+
+const buildReflectionShadow = (hex: string, reflectStrength = 42): string => {
+  const [r, g, b] = parseHexColor(hex)
+  const reflectAlpha = clamp01(reflectStrength / 100)
+  const reflectionAlpha = clamp01(Math.max(0.55, reflectAlpha))
+  const glowAlpha = clamp01(Math.max(0.32, reflectionAlpha * 0.62))
+  return `0 0 10px rgba(${r}, ${g}, ${b}, ${glowAlpha.toFixed(3)}), 0 var(--tb-reflect-2-y, 1.7em) 0.62em rgba(${r}, ${g}, ${b}, ${reflectionAlpha.toFixed(3)})`
+}
+
 const buildPanelTextStyle = (color: string, reflectStrength = 42): CSSProperties => ({
   ...DOSSIER_PANEL_TEXT_BASE_STYLE,
   color,
   WebkitTextFillColor: color,
-  textShadow: `0 var(--tb-reflect-2-y, 1.7em) 0.52em color-mix(in srgb, currentColor ${reflectStrength}%, transparent)`,
+  textShadow: buildReflectionShadow(color, reflectStrength),
 })
 
 const STAT_LABEL_COL_WIDTH = '30ch'
@@ -59,6 +83,8 @@ const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -82
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
 const COMPARISON_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
+const COMPARISON_BOTTOM_LEFT_NAME_SHADOW = buildReflectionShadow(DOSSIER_BLUE_COLOR, 74)
+const COMPARISON_BOTTOM_RIGHT_NAME_SHADOW = buildReflectionShadow(DOSSIER_RED_COLOR, 78)
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -186,7 +212,7 @@ export function ParameterComparisonTemplate({
       whiteSpace: 'nowrap',
       lineHeight: 1,
       fontSize: 'calc(var(--tb-type-2) * 0.8)',
-      letterSpacing: '0.03em',
+      letterSpacing: '0.02em',
       width: STAT_VALUE_COL_WIDTH,
       textAlign: side === 'b' ? 'right' : 'left',
     }
@@ -211,8 +237,6 @@ export function ParameterComparisonTemplate({
             width: STAT_LABEL_COL_WIDTH,
             minWidth: STAT_LABEL_COL_WIDTH,
             whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
             textAlign: side === 'draw' ? 'left' : 'left',
             lineHeight: 1,
             paddingLeft: side === 'b' ? RIGHT_LABEL_START : 0,
@@ -329,27 +353,23 @@ export function ParameterComparisonTemplate({
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', flex: 1, minHeight: 0 }}>
           <div style={{ display: 'grid', gridTemplateColumns: '32% 36% 32%', columnGap: '0.7rem', alignItems: 'flex-start' }}>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.16rem', width: 'fit-content' }}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '0.55rem' }}>
-                <span style={leftPanelTextStyle}>{leftHeader}</span>
-                <p style={{ ...leftPanelTextStyle, textAlign: 'left' }}>
-                  {averageShort} {averageA.toFixed(1)}
-                </p>
-              </div>
-              <div style={{ height: '1px', width: '100%', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
+            <div style={{ position: 'relative', display: 'inline-flex', alignItems: 'flex-start', gap: '0.55rem' }}>
+              <span style={leftPanelTextStyle}>{leftHeader}</span>
+              <p style={{ ...leftPanelTextStyle, textAlign: 'left' }}>
+                {averageShort} {averageA.toFixed(1)}
+              </p>
+              <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: COMPARISON_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
             </div>
             <div />
             <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'stretch', gap: '0.16rem', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: '100%' }}>
-                  <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
-                    {rightHeader}
-                  </p>
-                  <p style={{ ...rightPanelTextStyle, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
-                    {averageShort} {averageB.toFixed(1)}
-                  </p>
-                </div>
-                <div style={{ height: '1px', width: '100%', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
+              <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, alignItems: 'baseline', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
+                <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', textAlign: 'left', paddingLeft: RIGHT_LABEL_START }}>
+                  {rightHeader}
+                </p>
+                <p style={{ ...rightPanelTextStyle, width: STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
+                  {averageShort} {averageB.toFixed(1)}
+                </p>
+                <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: COMPARISON_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
               </div>
             </div>
           </div>
@@ -373,7 +393,7 @@ export function ParameterComparisonTemplate({
               <div />
               <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX}px)` }}>
                 <div style={{ display: 'grid', gridTemplateColumns: STAT_ROW_TEMPLATE, columnGap: STAT_COL_GAP, width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                  <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, textAlign: 'left', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis', paddingLeft: RIGHT_LABEL_START }}>
+                  <p style={{ ...rightPanelTextStyle, width: STAT_LABEL_COL_WIDTH, textAlign: 'left', whiteSpace: 'nowrap', paddingLeft: RIGHT_LABEL_START }}>
                     {advantageHeader}
                   </p>
                   <span style={{ width: STAT_VALUE_COL_WIDTH }} aria-hidden="true" />
@@ -455,7 +475,7 @@ export function ParameterComparisonTemplate({
             <div style={{ height: '1px', marginBottom: '0.42rem', background: COMPARISON_ACCENT_UNDERLINE_BG }} />
             <div style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto minmax(0, 1fr)', alignItems: 'end', columnGap: '1.1rem' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: '0.08rem', transform: `translate(${COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p style={{ ...leftPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: '0 0 18px color-mix(in srgb, currentColor 50%, transparent)', marginBottom: '0.12rem' }}>
+                <p style={{ ...leftPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_LEFT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterAText}
                 </p>
               </div>
@@ -487,7 +507,7 @@ export function ParameterComparisonTemplate({
                 </p>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: '0.08rem', transform: `translate(${COMPARISON_RIGHT_COLUMN_SHIFT_X_PX - COMPARISON_BOTTOM_NAME_INSET_X_PX}px, ${COMPARISON_BOTTOM_NAME_DROP_Y_PX}px)` }}>
-                <p style={{ ...rightPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: '0 0 18px color-mix(in srgb, currentColor 58%, transparent)', marginBottom: '0.12rem' }}>
+                <p style={{ ...rightPanelTextStyle, fontSize: 'calc(var(--tb-type-2) * 1.75)', lineHeight: 0.9, letterSpacing: '0.012em', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', opacity: 1, textShadow: COMPARISON_BOTTOM_RIGHT_NAME_SHADOW, marginBottom: '0.12rem' }}>
                   {fighterBText}
                 </p>
               </div>
