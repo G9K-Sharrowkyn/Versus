@@ -2,6 +2,7 @@ import './XFactorTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { Brain, Crosshair, WandSparkles } from 'lucide-react'
+import { LightningCanvas } from '../../../components/LightningCanvas'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
@@ -138,8 +139,8 @@ export function XFactorTemplate({
   const hyperBonusVisualPct = Math.max(0, hyperTotalVisualPct - hyperBasePct)
   const superRestPct = Math.max(0, 100 - superTotalVisualPct)
   const hyperRestPct = Math.max(0, 100 - hyperTotalVisualPct)
-  const isSuperOvercharge = superBonusPct > 0 && superTotalPct >= 100
-  const isHyperOvercharge = hyperBonusPct > 0 && hyperTotalPct >= 100
+  const isSuperOvercharge = superTotalPct > 100
+  const isHyperOvercharge = hyperTotalPct > 100
 
   const headerText = title || 'X-FACTOR'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
@@ -321,10 +322,20 @@ export function XFactorTemplate({
                     />
                   ) : null}
                   {isSuperOvercharge && (
-                    <div className="vs-xfactor-overcharge" style={{ '--xf-overcharge-color': fighterA.color } as CSSProperties}>
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--1" />
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--2" />
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--3" />
+                    <div
+                      className="vs-xfactor-overcharge"
+                      style={{
+                        '--xf-overcharge-color': fighterA.color,
+                        '--xf-overcharge-x': `${superTotalVisualPct}%`,
+                      } as CSSProperties}
+                    >
+                      <span className="vs-xfactor-overcharge-core" />
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
+                        <LightningCanvas startRatio={{ x: 0.24, y: 0.34 }} endRatio={{ x: 0.96, y: 0.5 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
+                        <LightningCanvas startRatio={{ x: 0.18, y: 0.68 }} endRatio={{ x: 0.95, y: 0.52 }} />
+                      </div>
                     </div>
                   )}
                 </div>
@@ -387,10 +398,20 @@ export function XFactorTemplate({
                     />
                   ) : null}
                   {isHyperOvercharge && (
-                    <div className="vs-xfactor-overcharge" style={{ '--xf-overcharge-color': fighterB.color } as CSSProperties}>
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--1" />
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--2" />
-                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--3" />
+                    <div
+                      className="vs-xfactor-overcharge"
+                      style={{
+                        '--xf-overcharge-color': fighterB.color,
+                        '--xf-overcharge-x': `${hyperTotalVisualPct}%`,
+                      } as CSSProperties}
+                    >
+                      <span className="vs-xfactor-overcharge-core" />
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
+                        <LightningCanvas startRatio={{ x: 0.24, y: 0.34 }} endRatio={{ x: 0.96, y: 0.5 }} />
+                      </div>
+                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
+                        <LightningCanvas startRatio={{ x: 0.18, y: 0.68 }} endRatio={{ x: 0.95, y: 0.52 }} />
+                      </div>
                     </div>
                   )}
                 </div>
