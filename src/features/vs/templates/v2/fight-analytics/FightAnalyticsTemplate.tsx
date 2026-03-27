@@ -22,6 +22,7 @@ const DOSSIER_BLUE_PANEL_TEXT_STYLE: CSSProperties = {
   fontFamily: "'Chakra Petch', sans-serif",
   fontSize: 'calc(var(--tb-type-2) * 0.8)',
   fontWeight: 800,
+  letterSpacing: '0.02em',
   lineHeight: 1,
   textTransform: 'uppercase',
   margin: 0,
