@@ -63,16 +63,24 @@ const collectRules = (filePath) => {
   return rules
 }
 
-const isTemplateLocalSelector = (selector) => selector.startsWith('.vs-template--')
+const isTemplateLocalSelector = (selector) =>
+  selector.startsWith('.vs-template--') || selector.startsWith("[data-vs-template=")
 
 const main = () => {
   const files = walkScssFiles(V2_SCSS_DIR)
   const selectorMap = new Map()
+  const localSelectorHits = []
 
   for (const filePath of files) {
     const rules = collectRules(filePath)
     for (const [selector, blocks] of rules.entries()) {
-      if (isTemplateLocalSelector(selector)) continue
+      if (isTemplateLocalSelector(selector)) {
+        localSelectorHits.push({
+          filePath: path.relative(ROOT, filePath).replace(/\\/g, '/'),
+          selector,
+        })
+        continue
+      }
       const finalRule = blocks.join(' || ')
       if (!selectorMap.has(selector)) selectorMap.set(selector, [])
       selectorMap.get(selector).push({ filePath, finalRule })
@@ -94,6 +102,16 @@ const main = () => {
     if (uniqueRules.size > 1) {
       issues.push({ selector, variants: uniqueRules })
     }
+  }
+
+  if (localSelectorHits.length) {
+    console.error(
+      `[v2-style-guard] FAIL: found ${localSelectorHits.length} template-local selectors in v2 SCSS. Keep shared/static layout selectors centralized.`,
+    )
+    for (const hit of localSelectorHits) {
+      console.error(`  - ${hit.filePath}: ${hit.selector}`)
+    }
+    process.exit(1)
   }
 
   if (!issues.length) {

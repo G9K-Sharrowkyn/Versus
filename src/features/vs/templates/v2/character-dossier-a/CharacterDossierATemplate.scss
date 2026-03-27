@@ -277,7 +277,7 @@
   width: 21%;
   display: grid;
   gap: calc(0.32rem * var(--tb-scale));
-  color: rgba(255, 174, 160, 0.76);
+  color: #ff554e;
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
   font-size: var(--tb-type-3);
   letter-spacing: 0.08em;
@@ -285,8 +285,8 @@
 }
 
 .vs-tactical-board25-meta p {
-  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(255, 153, 130, 0.15);
-  animation: vs-meta-shiver 6s infinite;
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25);
+  animation: none;
 }
 
 .vs-tactical-board25-meta p:nth-child(2) {
@@ -828,16 +828,6 @@
   background: #ff554e;
   filter: blur(2px);
   opacity: 0.9;
-}
-
-/* Template-local overrides to prevent cross-template CSS bleed. */
-.vs-template--character-dossier-a.vs-tactical-board25-surface {
-  --tb-side-margin: 20px;
-}
-
-.vs-template--character-dossier-a .vs-tactical-board25-reality-heading,
-.vs-template--character-dossier-a .vs-tactical-board25-item-label {
-  text-shadow: none !important;
 }
 
 

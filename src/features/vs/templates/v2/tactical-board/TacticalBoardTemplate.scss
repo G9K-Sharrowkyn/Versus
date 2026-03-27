@@ -277,7 +277,7 @@
   width: 21%;
   display: grid;
   gap: calc(0.32rem * var(--tb-scale));
-  color: rgba(255, 174, 160, 0.76);
+  color: #ff554e;
   font-family: 'Chakra Petch', 'JetBrains Mono', monospace;
   font-size: var(--tb-type-3);
   letter-spacing: 0.08em;
@@ -285,8 +285,8 @@
 }
 
 .vs-tactical-board25-meta p {
-  text-shadow: 0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(255, 153, 130, 0.15);
-  animation: vs-meta-shiver 6s infinite;
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25);
+  animation: none;
 }
 
 .vs-tactical-board25-meta p:nth-child(2) {
@@ -428,31 +428,6 @@
   mask-size: contain;
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
-}
-
-/* Template-local overrides to prevent cross-template CSS bleed. */
-.vs-template--tactical-board.vs-tactical-board25-surface {
-  --tb-label-font-family: 'Chakra Petch', sans-serif;
-  --tb-stat-label-font-size: calc(var(--tb-type-2) * 0.8);
-  --tb-stat-label-line-height: 1;
-  --tb-stat-label-letter-spacing: normal;
-  --tb-stat-label-font-weight: 800;
-}
-
-.vs-template--tactical-board .vs-tactical-board25-meta {
-  color: rgba(255, 85, 78, 0.96);
-}
-
-.vs-template--tactical-board .vs-tactical-board25-meta p {
-  text-shadow:
-    0 0 8px rgba(255, 85, 78, 0.55),
-    0 var(--tb-reflect-3-y) var(--tb-reflect-4-blur) rgba(255, 85, 78, 0.35);
-}
-
-.vs-template--tactical-board .vs-tactical-board25-stats-title,
-.vs-template--tactical-board .vs-tactical-board25-reality-heading {
-  color: #ff554e;
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) color-mix(in srgb, currentColor 25%, transparent) !important;
 }
 
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
