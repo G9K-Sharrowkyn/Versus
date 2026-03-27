@@ -775,6 +775,27 @@
   mask-repeat: no-repeat;
 }
 
+/* Dossier typography aliases used by X-Factor insights (Moce/Narzędzia style). */
+.vs-dossier-text-2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: calc(var(--tb-type-2) * 0.8);
+  font-weight: 800;
+  color: #77e2f2;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+}
+
+.vs-dossier-text-3 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: var(--tb-type-3);
+  font-weight: 500;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
 
 
 

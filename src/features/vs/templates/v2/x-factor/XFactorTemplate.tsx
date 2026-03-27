@@ -1,6 +1,6 @@
 import './XFactorTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode, type MutableRefObject } from 'react'
+import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { Brain, Crosshair, WandSparkles } from 'lucide-react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -11,7 +11,6 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
-import { useSlotAutofit } from '../../shared/useSlotAutofit'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type XFactorTemplateProps = TemplatePreviewProps & {
@@ -69,6 +68,44 @@ export function XFactorTemplate({
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
   const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
+  const RED_LINIA = '#ff554e'
+  const REFLEKS_TRESCI_FAKTOW = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
+  const REFLEKS_ETYKIET_FAKTOW = '0 0 7px rgba(255, 85, 78, 0.82), 0 0 14px rgba(255, 85, 78, 0.35)'
+  const REFLEKS_PODTYTULOW_W_DOL = '0 var(--tb-reflect-2-y) 0.28em rgba(255, 85, 78, 0.36)'
+  const REFLEKS_IMION_POSTACI = '0 0 12px color-mix(in srgb, currentColor 62%, transparent), 0 2em 0.58em color-mix(in srgb, currentColor 40%, transparent)'
+  const REFLEKS_WARTOSCI_PROCENT = '0 0 10px color-mix(in srgb, currentColor 54%, transparent), 0 var(--tb-reflect-2-y) 0.5em color-mix(in srgb, currentColor 34%, transparent)'
+  const REFLEKS_BONUSU_PROCENT = '0 0 9px rgba(110, 231, 183, 0.58), 0 2.05em 0.5em rgba(110, 231, 183, 0.42)'
+  const REFLEKS_KLUCZOWE_PYTANIE = '0 0 10px rgba(255, 85, 78, 0.9), 0 1.95em 0.52em rgba(255, 85, 78, 0.46)'
+  const REFLEKS_EMOTEK = 'drop-shadow(0 0 8px color-mix(in srgb, currentColor 62%, transparent)) drop-shadow(0 calc(var(--tb-reflect-2-y) * 0.95) 0.52em color-mix(in srgb, currentColor 42%, transparent))'
+  const INSIGHT_ICON_SIZE = (Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24) * 1.42
+  const INSIGHT_ICON_STROKE = Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5
+  const DOSSIER_NAGLOWEK_FAKTU_STYLE: CSSProperties = {
+    color: RED_LINIA,
+    fontFamily: 'Chakra Petch, sans-serif',
+    fontSize: 'var(--tb-type-3)',
+    fontWeight: 700,
+    textTransform: 'uppercase',
+    letterSpacing: '0.1em',
+    textShadow: `${REFLEKS_ETYKIET_FAKTOW}, ${REFLEKS_PODTYTULOW_W_DOL}`,
+    lineHeight: 1,
+    margin: 0,
+  }
+  const DOSSIER_OPIS_FAKTU_STYLE: CSSProperties = {
+    color: '#77e2f2',
+    fontFamily: 'Chakra Petch, sans-serif',
+    fontSize: 'calc(var(--tb-type-2) * 0.8)',
+    fontWeight: 800,
+    textTransform: 'uppercase',
+    lineHeight: 1,
+    letterSpacing: '0.01em',
+    textShadow: REFLEKS_TRESCI_FAKTOW,
+    margin: 0,
+  }
+  const DOSSIER_DOLNY_TEKST_STYLE: CSSProperties = {
+    ...DOSSIER_OPIS_FAKTU_STYLE,
+    textAlign: 'center',
+    lineHeight: 1.06,
+  }
 
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
@@ -93,10 +130,8 @@ export function XFactorTemplate({
   const superTotalPct = superPct + superBonusPct
   const hyperTotalPct = hyperPct + hyperBonusPct
 
-  const xLabel = line(0, ['factor', 'headline'])
   const headerText = title || 'X-FACTOR'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
-  const factorMatch = xLabel.match(/^(.*?)(\s+VS\s+)(.*)$/i)
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
   const psychology = line(3, ['psychologia', 'psychology'])
@@ -104,48 +139,11 @@ export function XFactorTemplate({
   const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom'])
   const trapExample = pickTemplateField(blockFields, ['example'])
   const trapQuestion = pickTemplateField(blockFields, ['question'])
-  
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'x_factor_header']) ||
     getFightTemplateDefaultField('x-factor', 'panel_header', language) || "X-FACTOR"
 
   const auditPrefix = `${activeFightId || 'draft'}:x-factor`
-  const factorFit = useSlotAutofit({
-    slotKey: `${auditPrefix}:factor`,
-    spec: slots.xFactorSupplement,
-    text: xLabel,
-    templateId: 'x-factor',
-    activeFightId,
-    language,
-  })
-
-  const factorSupplement = xLabel ? (
-    <div
-      ref={factorFit.ref as MutableRefObject<HTMLDivElement | null>}
-      className={layout.FACTOR_SUPPLEMENT_CLASS as string}
-      style={{
-        display: 'block',
-        height: `${factorFit.fixedHeightPx}px`,
-        maxHeight: `${factorFit.fixedHeightPx}px`,
-        overflow: 'hidden',
-        fontFamily: 'var(--font-display)',
-        fontSize: `${factorFit.fontPx}px`,
-        lineHeight: `${slots.xFactorSupplement.lineHeight}`,
-        letterSpacing: slots.xFactorSupplement.letterSpacing,
-      }}
-      {...factorFit.dataAttributes}
-    >
-      {factorMatch ? (
-        <>
-          <span style={{ color: fighterA.color }}>{factorMatch[1].trim()}</span>
-          <span className={layout.FACTOR_SEPARATOR_CLASS as string}>{factorMatch[2]}</span>
-          <span style={{ color: fighterB.color }}>{factorMatch[3].trim()}</span>
-        </>
-      ) : (
-        xLabel
-      )}
-    </div>
-  ) : null
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -153,7 +151,8 @@ export function XFactorTemplate({
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
@@ -165,8 +164,8 @@ export function XFactorTemplate({
       if (active.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!active.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -188,7 +187,7 @@ export function XFactorTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -228,9 +227,6 @@ export function XFactorTemplate({
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
-        <div style={{ textAlign: 'center', marginTop: '0.5rem', color: '#67e8f9' }}>
-          {factorSupplement}
-        </div>
       </div>
 
       <button
@@ -239,7 +235,7 @@ export function XFactorTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as CSSProperties}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
@@ -254,44 +250,65 @@ export function XFactorTemplate({
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         
-        <div className={layout.BODY_CLASS as string} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '0.72rem', border: 'none', background: 'transparent', minHeight: 0 }}>
-          <div className={layout.FIGHTERS_WRAP_CLASS as string} style={{ display: 'flex', gap: '0.45rem', flexDirection: 'column' }}>
+        <div
+          className={layout.BODY_CLASS as string}
+          style={{
+            flex: 1,
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '0.78rem',
+            border: 'none',
+            background: 'transparent',
+            boxShadow: 'none',
+            padding: '0.34rem 0.45rem 0',
+            minHeight: 0,
+          }}
+        >
+          <div className={layout.FIGHTERS_WRAP_CLASS as string} style={{ display: 'flex', gap: '0.5rem', flexDirection: 'column' }}>
             {/* FIGHTER A METER */}
-            <div style={{ flex: 1, padding: '0.15rem 0.5rem 0.28rem' }}>
+            <div style={{ flex: 1, padding: '0.1rem 0.26rem 0.18rem' }}>
               <FittedText
                 as="p"
                 slotKey={`${auditPrefix}:fighter-a`}
                 spec={slots.fighterBannerNameLarge}
                 text={fighterAName}
                 className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                style={{ color: fighterA.color, fontFamily: 'var(--font-display)', fontSize: '1.78rem', marginBottom: '0.35rem' }}
+                style={{ color: fighterA.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible' }}
                 templateId="x-factor"
                 activeFightId={activeFightId}
                 language={language}
               />
-              <div className={layout.METER_ROW_CLASS as string} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                <div className={layout.METER_TRACK_A_CLASS as string} style={{ flex: 1, height: '18px', background: 'rgba(255,255,255,0.1)', position: 'relative', border: 'none' }}>
-                  <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%`, height: '100%', backgroundColor: fighterA.color }} />
+              <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
+                <div
+                  className={layout.METER_TRACK_A_CLASS as string}
+                  style={{ border: 'none', background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }}
+                >
+                  <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%`, backgroundColor: fighterA.color }} />
                   {superBonusPct > 0 ? (
                     <div
                       className={layout.METER_BONUS_OVERLAY_CLASS as string}
                       style={{
-                        position: 'absolute',
-                        top: 0, bottom: 0, left: 0, right: 0,
                         clipPath: `inset(0% ${Math.max(0, 100 - superTotalPct)}% 0% ${Math.min(100, superPct)}%)`,
                         background: String(layout.METER_BONUS_BG_A),
                         opacity: 0.85
                       }}
                     />
                   ) : null}
-                  <div className={layout.METER_PATTERN_CLASS as string} style={{ position: 'absolute', inset: 0, opacity: 0.2, backgroundImage: 'linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.5) 50%)', backgroundSize: '10px 100%' }} />
+                  {superTotalPct >= 100 && (
+                    <div className="lightning-wrapper !opacity-40">
+                      <div className="lightning" />
+                    </div>
+                  )}
+                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
                 <div
                   className={layout.METER_VALUE_A_CLASS as string}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end', minWidth: '50px', border: 'none', background: 'transparent' }}
+                  style={{ border: 'none', background: 'transparent', boxShadow: 'none' }}
                 >
-                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '1.24rem' }}>{Math.round(superPct)}%</span>
-                  <span className={layout.METER_BONUS_VALUE_A_CLASS as string} style={{ fontSize: '0.86rem', color: '#6ee7b7' }}>
+                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterA.color, fontWeight: 'bold', fontSize: '2.28rem', lineHeight: 1, textShadow: REFLEKS_WARTOSCI_PROCENT }}>
+                    {Math.round(superPct)}%
+                  </span>
+                  <span className={layout.METER_BONUS_VALUE_A_CLASS as string} style={{ fontSize: '1.24rem', color: '#6ee7b7', lineHeight: 1, textShadow: REFLEKS_BONUSU_PROCENT }}>
                     {superBonusPct > 0 ? `+${Math.round(superBonusPct)}%` : '\u00A0'}
                   </span>
                 </div>
@@ -299,41 +316,49 @@ export function XFactorTemplate({
             </div>
 
             {/* FIGHTER B METER */}
-            <div style={{ flex: 1, padding: '0.15rem 0.5rem 0.28rem' }}>
+            <div style={{ flex: 1, padding: '0.1rem 0.26rem 0.18rem' }}>
               <FittedText
                 as="p"
                 slotKey={`${auditPrefix}:fighter-b`}
                 spec={slots.fighterBannerNameLarge}
                 text={fighterBName}
                 className={String(tokens.X_FACTOR_FIGHTER_NAME_CLASS)}
-                style={{ color: fighterB.color, fontFamily: 'var(--font-display)', fontSize: '1.78rem', marginBottom: '0.35rem', textAlign: 'right' }}
+                style={{ color: fighterB.color, fontFamily: 'var(--font-display)', fontSize: '1.82rem', marginBottom: '0.26rem', textShadow: REFLEKS_IMION_POSTACI, overflow: 'visible' }}
                 templateId="x-factor"
                 activeFightId={activeFightId}
                 language={language}
               />
-              <div className={layout.METER_ROW_CLASS as string} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', flexDirection: 'row-reverse' }}>
-                <div className={layout.METER_TRACK_B_CLASS as string} style={{ flex: 1, height: '18px', background: 'rgba(255,255,255,0.1)', position: 'relative', border: 'none' }}>
-                  <div className={layout.METER_FILL_B_CLASS as string} style={{ position: 'absolute', right: 0, width: `${Math.min(100, hyperPct)}%`, height: '100%', backgroundColor: fighterB.color }} />
+              <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
+                <div
+                  className={layout.METER_TRACK_B_CLASS as string}
+                  style={{ border: 'none', background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }}
+                >
+                  <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${Math.min(100, hyperPct)}%`, backgroundColor: fighterB.color }} />
                   {hyperBonusPct > 0 ? (
                     <div
                       className={layout.METER_BONUS_OVERLAY_CLASS as string}
                       style={{
-                        position: 'absolute',
-                        top: 0, bottom: 0, left: 0, right: 0,
-                        clipPath: `inset(0% ${Math.min(100, hyperPct)}% 0% ${Math.max(0, 100 - hyperTotalPct)}%)`,
+                        clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalPct)}% 0% ${Math.min(100, hyperPct)}%)`,
                         background: String(layout.METER_BONUS_BG_B),
                         opacity: 0.85
                       }}
                     />
                   ) : null}
-                  <div className={layout.METER_PATTERN_CLASS as string} style={{ position: 'absolute', inset: 0, opacity: 0.2, backgroundImage: 'linear-gradient(90deg, transparent 50%, rgba(255,255,255,0.5) 50%)', backgroundSize: '10px 100%' }} />
+                  {hyperTotalPct >= 100 && (
+                    <div className="lightning-wrapper !opacity-40">
+                      <div className="lightning" />
+                    </div>
+                  )}
+                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
                 <div
                   className={layout.METER_VALUE_B_CLASS as string}
-                  style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', minWidth: '50px', border: 'none', background: 'transparent' }}
+                  style={{ border: 'none', background: 'transparent', boxShadow: 'none' }}
                 >
-                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '1.24rem' }}>{Math.round(hyperPct)}%</span>
-                  <span className={layout.METER_BONUS_VALUE_B_CLASS as string} style={{ fontSize: '0.86rem', color: '#6ee7b7' }}>
+                  <span className={String(tokens.X_FACTOR_VALUE_CLASS)} style={{ color: fighterB.color, fontWeight: 'bold', fontSize: '2.28rem', lineHeight: 1, textShadow: REFLEKS_WARTOSCI_PROCENT }}>
+                    {Math.round(hyperPct)}%
+                  </span>
+                  <span className={layout.METER_BONUS_VALUE_B_CLASS as string} style={{ fontSize: '1.24rem', color: '#6ee7b7', lineHeight: 1, textShadow: REFLEKS_BONUSU_PROCENT }}>
                     {hyperBonusPct > 0 ? `+${Math.round(hyperBonusPct)}%` : '\u00A0'}
                   </span>
                 </div>
@@ -341,51 +366,63 @@ export function XFactorTemplate({
             </div>
           </div>
 
-          <div className={layout.INSIGHTS_GRID_CLASS as string} style={{ display: 'flex', gap: '0.55rem', flex: 1.05, minHeight: 0 }}>
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.34rem', border: 'none', background: 'transparent', minHeight: 0 }}>
-              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', height: '100%', minHeight: 0 }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#a78bfa', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
-                  <WandSparkles size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
-                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics-title`} spec={slots.xFactorInsightTitle} text={common.mechanicsLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.02rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
+          <div className={layout.INSIGHTS_GRID_CLASS as string} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: '0.56rem', flex: 1.08, minHeight: 0 }}>
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ padding: '0.34rem 0.2rem', border: 'none', background: 'transparent', minHeight: 0, boxShadow: 'none' }}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.38rem', minHeight: 0 }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ color: '#a78bfa', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
+                  <WandSparkles size={INSIGHT_ICON_SIZE} strokeWidth={INSIGHT_ICON_STROKE} style={{ filter: REFLEKS_EMOTEK }} />
                 </div>
-                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ flex: 1, overflowY: 'auto' }}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics`} spec={slots.xFactorInsightBody} text={mechanics} className={layout.INSIGHT_BODY_TEXT_CLASS as string} style={{ color: '#e2e8f0', fontSize: '0.88rem', lineHeight: 1.18 }} templateId="x-factor" activeFightId={activeFightId} language={language} />
-                </div>
-              </div>
-            </div>
-
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.34rem', border: 'none', background: 'transparent', minHeight: 0 }}>
-              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', height: '100%', minHeight: 0 }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#f472b6', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
-                  <Crosshair size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
-                  <FittedText as="p" slotKey={`${auditPrefix}:implication-title`} spec={slots.xFactorInsightTitle} text={common.implicationLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.02rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
-                </div>
-                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ flex: 1, overflowY: 'auto' }}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:implication`} spec={slots.xFactorInsightBody} text={implication} className={layout.INSIGHT_BODY_TEXT_CLASS as string} style={{ color: '#e2e8f0', fontSize: '0.88rem', lineHeight: 1.18 }} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
+                  <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
+                    <GlitchText text={common.mechanicsLabel} />
+                  </p>
+                  <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
+                    {mechanics}
+                  </p>
                 </div>
               </div>
             </div>
 
-            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ flex: 1, padding: '0.34rem', border: 'none', background: 'transparent', minHeight: 0 }}>
-              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', height: '100%', minHeight: 0 }}>
-                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: '#38bdf8', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
-                  <Brain size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE) || 24} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE) || 1.5} />
-                  <FittedText as="p" slotKey={`${auditPrefix}:psychology-title`} spec={slots.xFactorInsightTitle} text={common.psychologyLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} style={{ fontSize: '1.02rem', textTransform: 'uppercase', letterSpacing: '0.1em' }} templateId="x-factor" activeFightId={activeFightId} language={language} />
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ padding: '0.34rem 0.2rem', border: 'none', background: 'transparent', minHeight: 0, boxShadow: 'none' }}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.38rem', minHeight: 0 }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ color: '#f472b6', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
+                  <Crosshair size={INSIGHT_ICON_SIZE} strokeWidth={INSIGHT_ICON_STROKE} style={{ filter: REFLEKS_EMOTEK }} />
                 </div>
-                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ flex: 1, overflowY: 'auto' }}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:psychology`} spec={slots.xFactorInsightBody} text={psychology} className={layout.INSIGHT_BODY_TEXT_CLASS as string} style={{ color: '#e2e8f0', fontSize: '0.88rem', lineHeight: 1.18 }} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
+                  <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
+                    <GlitchText text={common.implicationLabel} />
+                  </p>
+                  <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
+                    {implication}
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={String(tokens.TEMPLATE_INSIGHT_CARD_CLASS)} style={{ padding: '0.34rem 0.2rem', border: 'none', background: 'transparent', minHeight: 0, boxShadow: 'none' }}>
+              <div className={String(tokens.TEMPLATE_INSIGHT_ROW_CLASS)} style={{ display: 'flex', alignItems: 'flex-start', gap: '0.38rem', minHeight: 0 }}>
+                <div className={String(tokens.TEMPLATE_INSIGHT_ICON_WRAP_CLASS)} style={{ color: '#38bdf8', border: 'none', background: 'transparent', width: 'auto', height: 'auto', borderRadius: 0 }}>
+                  <Brain size={INSIGHT_ICON_SIZE} strokeWidth={INSIGHT_ICON_STROKE} style={{ filter: REFLEKS_EMOTEK }} />
+                </div>
+                <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
+                  <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
+                    <GlitchText text={common.psychologyLabel} />
+                  </p>
+                  <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
+                    {psychology}
+                  </p>
                 </div>
               </div>
             </div>
           </div>
 
           {(trapTop || trapBottom || trapExample || trapQuestion) && (
-            <div style={{ padding: '0.34rem 0.5rem 0' }}>
+            <div style={{ padding: '0.26rem 0.2rem 0' }}>
               {(trapTop || trapBottom) && (
                 <div className={statTrapLayout.HEADLINE_BAND_CLASS} style={{ textAlign: 'center', marginBottom: '0.34rem' }}>
                   <p
                     className={String(tokens.STAT_TRAP_HEADLINE_CLASS)}
-                    style={{ fontFamily: 'var(--font-display)', textAlign: 'center', fontSize: '1.32rem' }}
+                    style={{ fontFamily: 'var(--font-display)', textAlign: 'center', fontSize: '1.42rem' }}
                   >
                     {trapTop && <span style={{ color: fighterB.color }}>{trapTop} </span>}
                     {trapBottom && <span style={{ color: fighterA.color }}>{trapBottom}</span>}
@@ -393,13 +430,25 @@ export function XFactorTemplate({
                 </div>
               )}
               {trapExample && (
-                <p className="mt-2 text-[14px] leading-[1.25] text-slate-100" style={{ fontFamily: 'var(--font-ui)', color: '#e2e8f0', textAlign: 'center' }}>
+                <p
+                  className="vs-dossier-text-2"
+                  style={{
+                    ...DOSSIER_DOLNY_TEKST_STYLE,
+                    marginTop: '0.48rem',
+                  }}
+                >
                   {trapExample}
                 </p>
               )}
               {trapQuestion && (
-                <p className="mt-2 text-[13px] leading-[1.25] text-slate-200" style={{ fontFamily: 'var(--font-ui)', color: '#94a3b8', textAlign: 'center', marginTop: '0.5rem' }}>
-                  <span className="font-bold text-cyan-300">{common.keyQuestionLabel}</span>{' '}{trapQuestion}
+                <p
+                  className="vs-dossier-text-2"
+                  style={{
+                    ...DOSSIER_DOLNY_TEKST_STYLE,
+                    marginTop: '0.32rem',
+                  }}
+                >
+                  <span style={{ color: RED_LINIA, textShadow: REFLEKS_KLUCZOWE_PYTANIE, fontWeight: 700 }}>{common.keyQuestionLabel}</span>{' '}{trapQuestion}
                 </p>
               )}
             </div>

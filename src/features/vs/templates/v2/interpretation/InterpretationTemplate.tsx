@@ -1,6 +1,6 @@
 import './InterpretationTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -129,16 +129,14 @@ export function InterpretationTemplate({
   const closingQuote = pickTemplateField(blockFields, ['quote', 'line_4', 'line4']) || common.emptyFieldLabel
   const badgeSymbol = isAverageDraw ? '=' : 'V'
 
-  const matchupText = `${fighterA.name || fighterAFallback} VS ${fighterB.name || fighterBFallback}`
-  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
-
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
@@ -150,8 +148,8 @@ export function InterpretationTemplate({
       if (active.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!active.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -173,7 +171,7 @@ export function InterpretationTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -213,15 +211,6 @@ export function InterpretationTemplate({
           </div>
         </div>
         <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
-        <div className="vs-tpl-matchup" style={{ textAlign: 'center', marginTop: '0.5rem', fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#cbd5e1' }}>
-          {matchupMatch ? (
-            <>
-              <span className="vs-tpl-matchup-a" style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
-              <span className="vs-tpl-matchup-sep" style={{ margin: '0 0.5rem', opacity: 0.5 }}>{matchupMatch[2]}</span>
-              <span className="vs-tpl-matchup-b" style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
-            </>
-          ) : matchupText}
-        </div>
       </div>
 
       <button
@@ -230,7 +219,7 @@ export function InterpretationTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as CSSProperties}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
