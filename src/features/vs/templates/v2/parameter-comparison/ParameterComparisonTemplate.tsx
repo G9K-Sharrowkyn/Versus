@@ -1,11 +1,11 @@
 import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useMemo, useCallback, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
-import { PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from 'recharts'
+import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateStaticField as getFightTemplateDefaultField,
@@ -165,6 +165,48 @@ const COMPARISON_BOTTOM_NAME_MIN_FONT_PX = 8
 const COMPARISON_BOTTOM_NAME_BOUNDARY_INSET_PX = 4
 const COMPARISON_BOTTOM_NAME_ONE_LINE_TOLERANCE_PX = 2
 const COMPARISON_BOTTOM_NAME_BOUNDARY_TOLERANCE_PX = 1.2
+const RADAR_GROW_PHASE_MS = 3000
+const RADAR_PAUSE_PHASE_MS = 3000
+const RADAR_SLOT_DURATION_MS = RADAR_GROW_PHASE_MS + RADAR_PAUSE_PHASE_MS
+const RADAR_AXIS_TICK_STYLE = {
+  fontSize: 'calc(var(--tb-type-2) * 0.8)',
+  fontFamily: "'Chakra Petch', 'JetBrains Mono', monospace",
+  fontWeight: 700,
+  letterSpacing: '0.05em',
+  textRendering: 'geometricPrecision',
+}
+const RADAR_CHART_MARGIN = { top: 56, right: 108, bottom: 56, left: 108 }
+const RADAR_MAX_VALUE = 100
+const RADAR_TICK_RADIAL_OFFSET_PX = 3
+const RADAR_OUTER_RADIUS = '92.4%'
+const RADAR_VIEWPORT_EXPAND_X_PX = 146
+const RADAR_VIEWPORT_EXPAND_Y_PX = 72
+const RADAR_GRID_STROKE = 'rgba(148, 163, 184, 0.5)'
+const RADAR_GRID_STROKE_WIDTH = 1.2
+const RADAR_GRID_RADII = [20, 40, 60, 80, 100]
+
+const normalizeRadarLabel = (value: string) =>
+  value
+    .trim()
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+
+type RadarAxisTickProps = {
+  x?: number
+  y?: number
+  cx?: number
+  cy?: number
+  textAnchor?: string
+  payload?: {
+    index?: number
+    value?: string | number
+    payload?: {
+      label?: string
+      winner?: 'a' | 'b' | 'draw'
+    }
+  }
+}
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -446,21 +488,109 @@ export function ParameterComparisonTemplate({
     const startedAt = performance.now()
     const timer = window.setInterval(() => {
       setRadarClock(performance.now() - startedAt)
-    }, 70)
+    }, 33)
     return () => window.clearInterval(timer)
   }, [])
 
   const radarSlotCount = Math.max(1, rows.length)
-  const radarSlot = Math.floor(radarClock / 3000) % radarSlotCount
-  const radarProgress = (radarClock % 3000) / 3000
+  const radarSlot = Math.floor(radarClock / RADAR_SLOT_DURATION_MS) % radarSlotCount
+  const radarSlotElapsedMs = radarClock % RADAR_SLOT_DURATION_MS
+  const radarProgress =
+    radarSlotElapsedMs < RADAR_GROW_PHASE_MS
+      ? radarSlotElapsedMs / RADAR_GROW_PHASE_MS
+      : 1
   const animatedRows = rows.map((row, index) => {
     if (index !== radarSlot) return row
     return {
       ...row,
-      a: Math.round(row.a * radarProgress),
-      b: Math.round(row.b * radarProgress),
+      a: row.a * radarProgress,
+      b: row.b * radarProgress,
     }
   })
+  const radarWinnerByLabel = useMemo(() => {
+    const map = new Map<string, 'a' | 'b' | 'draw'>()
+    rows.forEach((row) => {
+      map.set(normalizeRadarLabel(row.label), row.winner)
+    })
+    return map
+  }, [rows])
+
+  const renderRadarAxisTick = useCallback(({ x = 0, y = 0, cx = 0, cy = 0, textAnchor = 'middle', payload }: RadarAxisTickProps) => {
+    const raw = payload?.payload?.label ?? payload?.value
+    const label = typeof raw === 'string' ? raw : String(raw ?? '')
+    if (!label) return null
+    const winnerByIndex =
+      typeof payload?.index === 'number' && payload.index >= 0 && payload.index < rows.length
+        ? rows[payload.index]?.winner
+        : undefined
+    const winner = winnerByIndex ?? payload?.payload?.winner ?? radarWinnerByLabel.get(normalizeRadarLabel(label))
+    const tickColor =
+      winner === 'a'
+        ? DOSSIER_BLUE_COLOR
+        : winner === 'b'
+          ? DOSSIER_RED_COLOR
+          : DOSSIER_DRAW_COLOR
+    const dx = x - cx
+    const dy = y - cy
+    const radius = Math.hypot(dx, dy)
+    const tunedX = radius > 0 ? x + (dx / radius) * RADAR_TICK_RADIAL_OFFSET_PX : x
+    const tunedY = radius > 0 ? y + (dy / radius) * RADAR_TICK_RADIAL_OFFSET_PX : y
+    return (
+      <text
+        x={tunedX}
+        y={tunedY}
+        textAnchor={textAnchor}
+        dominantBaseline="middle"
+        fill={tickColor}
+        stroke="rgba(0,0,0,0.35)"
+        strokeWidth={0.4}
+        paintOrder="stroke"
+        style={RADAR_AXIS_TICK_STYLE}
+      >
+        {label}
+      </text>
+    )
+  }, [radarWinnerByLabel, rows])
+  const radarLabelsLayer = useMemo(
+    () => (
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          data={rows}
+          cx="50%"
+          cy="50%"
+          outerRadius={RADAR_OUTER_RADIUS}
+          margin={RADAR_CHART_MARGIN}
+        >
+          <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
+          <PolarAngleAxis dataKey="label" axisLine={false} tickLine={false} interval={0} tick={renderRadarAxisTick} />
+        </RadarChart>
+      </ResponsiveContainer>
+    ),
+    [renderRadarAxisTick, rows],
+  )
+  const radarGridLayer = useMemo(
+    () => (
+      <ResponsiveContainer width="100%" height="100%">
+        <RadarChart
+          data={rows}
+          cx="50%"
+          cy="50%"
+          outerRadius={RADAR_OUTER_RADIUS}
+          margin={RADAR_CHART_MARGIN}
+        >
+          <PolarGrid
+            gridType="polygon"
+            stroke={RADAR_GRID_STROKE}
+            strokeWidth={RADAR_GRID_STROKE_WIDTH}
+            polarRadius={RADAR_GRID_RADII}
+          />
+          <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
+          <PolarAngleAxis dataKey="label" axisLine={false} tick={false} tickLine={false} interval={0} />
+        </RadarChart>
+      </ResponsiveContainer>
+    ),
+    [rows],
+  )
   
   const buildRowValue = (row: (typeof rows)[number], side: 'a' | 'b' | 'draw') => {
     if (side === 'draw') return `${row.a} = ${row.b}`
@@ -703,20 +833,55 @@ export function ParameterComparisonTemplate({
                 </div>
               </div>
               <div style={{ display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-                <div style={{ flex: 2.4, position: 'relative', minHeight: '340px' }}>
-                  <ResponsiveContainer width="100%" height="100%">
-                    <RadarChart
-                      data={animatedRows}
-                      cx="50%"
-                      cy="50%"
-                      outerRadius="88%"
-                    >
-                      <PolarGrid stroke="rgba(148,163,184,0.35)" />
-                      <PolarAngleAxis dataKey="label" tick={{ fill: '#CBD5E1', fontSize: 16 }} />
-                      <Radar dataKey="a" stroke={fighterA.color} fill={fighterA.color} fillOpacity={0.33} isAnimationActive />
-                      <Radar dataKey="b" stroke={fighterB.color} fill={fighterB.color} fillOpacity={0.28} isAnimationActive />
-                    </RadarChart>
-                  </ResponsiveContainer>
+                <div style={{ flex: 2.8, position: 'relative', minHeight: '410px' }}>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      bottom: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    <ResponsiveContainer width="100%" height="100%">
+                      <RadarChart
+                        data={animatedRows}
+                        cx="50%"
+                        cy="50%"
+                        outerRadius={RADAR_OUTER_RADIUS}
+                        margin={RADAR_CHART_MARGIN}
+                      >
+                        <PolarRadiusAxis axisLine={false} tick={false} domain={[0, RADAR_MAX_VALUE]} />
+                        <Radar dataKey="a" stroke={fighterA.color} strokeWidth={2.4} fill={fighterA.color} fillOpacity={0.33} isAnimationActive={false} />
+                        <Radar dataKey="b" stroke={fighterB.color} strokeWidth={2.4} fill={fighterB.color} fillOpacity={0.28} isAnimationActive={false} />
+                      </RadarChart>
+                    </ResponsiveContainer>
+                  </div>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      bottom: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {radarGridLayer}
+                  </div>
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      bottom: `-${RADAR_VIEWPORT_EXPAND_Y_PX}px`,
+                      left: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      right: `-${RADAR_VIEWPORT_EXPAND_X_PX}px`,
+                      pointerEvents: 'none',
+                    }}
+                  >
+                    {radarLabelsLayer}
+                  </div>
                 </div>
                 <div style={{ flex: 1.1, display: 'flex', flexDirection: 'column', minHeight: 0, marginTop: '0.35rem', marginBottom: 0 }}>
                   <div style={{ overflow: 'visible', flex: 1, display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', gap: 0, paddingTop: 0, paddingBottom: '0.12rem' }}>

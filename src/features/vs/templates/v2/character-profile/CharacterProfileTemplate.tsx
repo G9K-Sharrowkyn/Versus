@@ -303,7 +303,12 @@ export function CharacterProfileTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-stats-left)', width: 'var(--tb-stats-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title vs-panel-top-label"><GlitchText text="Postać Niebieska" /></p>
+        <p
+          className="vs-tactical-board25-stats-title vs-panel-top-label"
+          style={{ color: RED_LINIA, textShadow: '0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 85, 78, 0.25)' }}
+        >
+          <GlitchText text="Postać Niebieska" />
+        </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           <div ref={leftNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
             <h3 ref={leftNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterAText}</h3>
@@ -313,7 +318,12 @@ export function CharacterProfileTemplate({
       </section>
 
       <div className="vs-tactical-board25-reality" style={{ position: 'absolute', top: 'var(--tb-panel-top)', left: 'var(--tb-reality-left)', width: 'var(--tb-reality-width)', minHeight: 'var(--tb-panel-height)', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-reality-heading vs-panel-top-label"><GlitchText text="Postać Czerwona" /></p>
+        <p
+          className="vs-tactical-board25-reality-heading vs-panel-top-label"
+          style={{ color: RED_LINIA, textShadow: '0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 85, 78, 0.25)' }}
+        >
+          <GlitchText text="Postać Czerwona" />
+        </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           <div ref={rightNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
             <h3 ref={rightNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterBText}</h3>
