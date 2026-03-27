@@ -601,7 +601,7 @@
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
   /* PRZYWRÓCONE REFLEKSY (BEZ GLOW) */
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25) !important;
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) color-mix(in srgb, currentColor 30%, transparent) !important;
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -764,3 +764,4 @@
   filter: blur(calc(1.6px * var(--tb-scale)));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, transparent 88%);
 }
+

@@ -129,6 +129,17 @@ export function XFactorTemplate({
 
   const superTotalPct = superPct + superBonusPct
   const hyperTotalPct = hyperPct + hyperBonusPct
+  const clampMeterPercent = (value: number) => Math.max(0, Math.min(100, value))
+  const superBasePct = clampMeterPercent(superPct)
+  const hyperBasePct = clampMeterPercent(hyperPct)
+  const superTotalVisualPct = clampMeterPercent(superTotalPct)
+  const hyperTotalVisualPct = clampMeterPercent(hyperTotalPct)
+  const superBonusVisualPct = Math.max(0, superTotalVisualPct - superBasePct)
+  const hyperBonusVisualPct = Math.max(0, hyperTotalVisualPct - hyperBasePct)
+  const superRestPct = Math.max(0, 100 - superTotalVisualPct)
+  const hyperRestPct = Math.max(0, 100 - hyperTotalVisualPct)
+  const isSuperOvercharge = superBonusPct > 0 && superTotalPct >= 100
+  const isHyperOvercharge = hyperBonusPct > 0 && hyperTotalPct >= 100
 
   const headerText = title || 'X-FACTOR'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
@@ -280,26 +291,42 @@ export function XFactorTemplate({
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
                 <div
-                  className={layout.METER_TRACK_A_CLASS as string}
-                  style={{ border: 'none', background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }}
+                  className={`${layout.METER_TRACK_A_CLASS as string} vs-xfactor-meter-track`}
+                  style={{
+                    '--xf-color-light': fighterA.color,
+                  } as CSSProperties}
                 >
-                  <div className={layout.METER_FILL_A_CLASS as string} style={{ width: `${Math.min(100, superPct)}%`, backgroundColor: fighterA.color }} />
-                  {superBonusPct > 0 ? (
+                  {superBasePct > 0 ? (
                     <div
-                      className={layout.METER_BONUS_OVERLAY_CLASS as string}
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--main"
                       style={{
-                        clipPath: `inset(0% ${Math.max(0, 100 - superTotalPct)}% 0% ${Math.min(100, superPct)}%)`,
-                        background: String(layout.METER_BONUS_BG_A),
-                        opacity: 0.85
+                        clipPath: `inset(0% calc(${Math.max(0, 100 - superBasePct)}% - 0.6px) 0% 0%)`,
                       }}
                     />
                   ) : null}
-                  {superTotalPct >= 100 && (
-                    <div className="lightning-wrapper !opacity-40">
-                      <div className="lightning" />
+                  {superBonusVisualPct > 0 ? (
+                    <div
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--bonus"
+                      style={{
+                        clipPath: `inset(0% calc(${Math.max(0, 100 - superTotalVisualPct)}% - 0.6px) 0% calc(${superBasePct}% - 0.6px))`,
+                      } as CSSProperties}
+                    />
+                  ) : null}
+                  {superRestPct > 0 ? (
+                    <div
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--rest"
+                      style={{
+                        clipPath: `inset(0% 0% 0% calc(${superTotalVisualPct}% - 0.6px))`,
+                      }}
+                    />
+                  ) : null}
+                  {isSuperOvercharge && (
+                    <div className="vs-xfactor-overcharge" style={{ '--xf-overcharge-color': fighterA.color } as CSSProperties}>
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--1" />
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--2" />
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--3" />
                     </div>
                   )}
-                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
                 <div
                   className={layout.METER_VALUE_A_CLASS as string}
@@ -330,26 +357,42 @@ export function XFactorTemplate({
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
                 <div
-                  className={layout.METER_TRACK_B_CLASS as string}
-                  style={{ border: 'none', background: 'rgba(255,255,255,0.1)', boxShadow: 'none' }}
+                  className={`${layout.METER_TRACK_B_CLASS as string} vs-xfactor-meter-track`}
+                  style={{
+                    '--xf-color-light': fighterB.color,
+                  } as CSSProperties}
                 >
-                  <div className={layout.METER_FILL_B_CLASS as string} style={{ width: `${Math.min(100, hyperPct)}%`, backgroundColor: fighterB.color }} />
-                  {hyperBonusPct > 0 ? (
+                  {hyperBasePct > 0 ? (
                     <div
-                      className={layout.METER_BONUS_OVERLAY_CLASS as string}
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--main"
                       style={{
-                        clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalPct)}% 0% ${Math.min(100, hyperPct)}%)`,
-                        background: String(layout.METER_BONUS_BG_B),
-                        opacity: 0.85
+                        clipPath: `inset(0% calc(${Math.max(0, 100 - hyperBasePct)}% - 0.6px) 0% 0%)`,
                       }}
                     />
                   ) : null}
-                  {hyperTotalPct >= 100 && (
-                    <div className="lightning-wrapper !opacity-40">
-                      <div className="lightning" />
+                  {hyperBonusVisualPct > 0 ? (
+                    <div
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--bonus"
+                      style={{
+                        clipPath: `inset(0% calc(${Math.max(0, 100 - hyperTotalVisualPct)}% - 0.6px) 0% calc(${hyperBasePct}% - 0.6px))`,
+                      } as CSSProperties}
+                    />
+                  ) : null}
+                  {hyperRestPct > 0 ? (
+                    <div
+                      className="vs-xfactor-meter-layer vs-xfactor-meter-layer--rest"
+                      style={{
+                        clipPath: `inset(0% 0% 0% calc(${hyperTotalVisualPct}% - 0.6px))`,
+                      }}
+                    />
+                  ) : null}
+                  {isHyperOvercharge && (
+                    <div className="vs-xfactor-overcharge" style={{ '--xf-overcharge-color': fighterB.color } as CSSProperties}>
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--1" />
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--2" />
+                      <span className="vs-xfactor-overcharge-spark vs-xfactor-overcharge-spark--3" />
                     </div>
                   )}
-                  <div className={layout.METER_PATTERN_CLASS as string} />
                 </div>
                 <div
                   className={layout.METER_VALUE_B_CLASS as string}

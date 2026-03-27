@@ -606,7 +606,7 @@
   letter-spacing: var(--tb-panel-heading-letter-spacing);
   text-transform: uppercase;
   /* PRZYWRÓCONE REFLEKSY (BEZ GLOW) */
-  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25) !important;
+  text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) color-mix(in srgb, currentColor 30%, transparent) !important;
   z-index: 2;
   font-kerning: none;
   font-variant-ligatures: none;
@@ -795,6 +795,170 @@
   letter-spacing: 0.1em;
   margin: 0;
 }
+
+@keyframes vs-xfactor-surface-flow {
+  0% { background-position: 0 0; }
+  100% { background-position: 16px 0; }
+}
+
+@keyframes vs-xfactor-overcharge-core {
+  0%, 100% {
+    transform: scale(0.95);
+    opacity: 0.66;
+  }
+  50% {
+    transform: scale(1.24);
+    opacity: 1;
+  }
+}
+
+@keyframes vs-xfactor-spark-a {
+  0% {
+    transform: translate(0, 0) scale(0.5);
+    opacity: 0;
+  }
+  15% { opacity: 1; }
+  100% {
+    transform: translate(22px, -12px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes vs-xfactor-spark-b {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0;
+  }
+  20% { opacity: 1; }
+  100% {
+    transform: translate(20px, 5px) scale(0);
+    opacity: 0;
+  }
+}
+
+@keyframes vs-xfactor-spark-c {
+  0% {
+    transform: translate(0, 0) scale(0.45);
+    opacity: 0;
+  }
+  18% { opacity: 1; }
+  100% {
+    transform: translate(26px, -2px) scale(0);
+    opacity: 0;
+  }
+}
+
+.vs-xfactor-meter-track {
+  position: relative;
+  overflow: hidden !important;
+  isolation: isolate;
+  --xf-color-light: #38bdf8;
+  --xf-color-dark: color-mix(in srgb, var(--xf-color-light) 48%, #0c1420 52%);
+}
+
+.vs-xfactor-meter-layer {
+  position: absolute;
+  inset: 0;
+  background-size: auto;
+  animation: vs-xfactor-surface-flow 1.02s linear infinite;
+  will-change: background-position;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.vs-xfactor-meter-layer--main {
+  z-index: 2;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      var(--xf-color-light) 0px,
+      var(--xf-color-light) 8px,
+      var(--xf-color-dark) 8px,
+      var(--xf-color-dark) 16px
+    );
+}
+
+.vs-xfactor-meter-layer--bonus {
+  z-index: 3;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      var(--xf-color-light) 0px,
+      var(--xf-color-light) 8px,
+      #313846 8px,
+      #313846 16px
+    );
+}
+
+.vs-xfactor-meter-layer--rest {
+  z-index: 1;
+  background-image:
+    repeating-linear-gradient(
+      135deg,
+      #090c13 0px,
+      #090c13 8px,
+      #2e3542 8px,
+      #2e3542 16px
+    );
+}
+
+.vs-xfactor-overcharge {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(34%, -52%);
+  pointer-events: none;
+  z-index: 7;
+}
+
+.vs-xfactor-overcharge::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.95) 0 18%,
+    color-mix(in srgb, var(--xf-overcharge-color, #fff) 82%, #fff 18%) 40%,
+    transparent 78%
+  );
+  box-shadow:
+    0 0 15px color-mix(in srgb, var(--xf-overcharge-color, #fff) 72%, transparent),
+    0 0 24px color-mix(in srgb, var(--xf-overcharge-color, #fff) 42%, transparent);
+  animation: vs-xfactor-overcharge-core 0.66s ease-in-out infinite;
+}
+
+.vs-xfactor-overcharge-spark {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xf-overcharge-color, #fff) 85%, #fff 15%);
+  box-shadow: 0 0 8px color-mix(in srgb, var(--xf-overcharge-color, #fff) 76%, transparent);
+  opacity: 0;
+}
+
+.vs-xfactor-overcharge-spark--1 {
+  animation: vs-xfactor-spark-a 0.82s linear infinite;
+}
+
+.vs-xfactor-overcharge-spark--2 {
+  animation: vs-xfactor-spark-b 0.92s linear infinite;
+  animation-delay: 0.18s;
+}
+
+.vs-xfactor-overcharge-spark--3 {
+  animation: vs-xfactor-spark-c 0.78s linear infinite;
+  animation-delay: 0.34s;
+}
+
 
 
 
