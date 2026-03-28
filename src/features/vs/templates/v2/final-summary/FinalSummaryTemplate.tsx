@@ -85,19 +85,8 @@ export function FinalSummaryTemplate({
   const portraitBKey = 'final-summary:portrait-b'
   const portraitAFallbackAdjust = portraitAAdjust || { x: 50, y: 50, scale: 1 }
   const portraitBFallbackAdjust = portraitBAdjust || { x: 50, y: 50, scale: 1 }
-  const anchoredPortraitAAdjust = {
-    ...(slideImageAdjustments[portraitAKey] || portraitAFallbackAdjust),
-    x: 0,
-  }
-  const anchoredPortraitBAdjust = {
-    ...(slideImageAdjustments[portraitBKey] || portraitBFallbackAdjust),
-    x: 100,
-  }
-  const anchoredSlideImageAdjustments = {
-    ...slideImageAdjustments,
-    [portraitAKey]: anchoredPortraitAAdjust,
-    [portraitBKey]: anchoredPortraitBAdjust,
-  }
+  const portraitABaseAdjust = slideImageAdjustments[portraitAKey] || { ...portraitAFallbackAdjust, x: 0 }
+  const portraitBBaseAdjust = slideImageAdjustments[portraitBKey] || { ...portraitBFallbackAdjust, x: 100 }
   const summaryLines = [
     line(0, ['line_1', 'line1'], common.emptyFieldLabel),
     line(1, ['line_2', 'line2'], common.emptyFieldLabel),
@@ -280,8 +269,8 @@ export function FinalSummaryTemplate({
                   fallbackLabel={common.portraitSlot}
                   hintLabel=""
                   adjustKey={portraitAKey}
-                  baseAdjust={anchoredPortraitAAdjust}
-                  adjustments={anchoredSlideImageAdjustments}
+                  baseAdjust={portraitABaseAdjust}
+                  adjustments={slideImageAdjustments}
                   onAdjustChange={onSlideImageAdjustChange}
                   onAdjustCommit={onSlideImageAdjustCommit}
                   plain
@@ -433,8 +422,8 @@ export function FinalSummaryTemplate({
                   fallbackLabel={common.portraitSlot}
                   hintLabel=""
                   adjustKey={portraitBKey}
-                  baseAdjust={anchoredPortraitBAdjust}
-                  adjustments={anchoredSlideImageAdjustments}
+                  baseAdjust={portraitBBaseAdjust}
+                  adjustments={slideImageAdjustments}
                   onAdjustChange={onSlideImageAdjustChange}
                   onAdjustCommit={onSlideImageAdjustCommit}
                   plain
