@@ -801,37 +801,18 @@
   100% { background-position: 22.627416px 0; }
 }
 
-@keyframes vs-xfactor-overcharge-core {
+@keyframes vs-xfactor-overcharge-flicker {
   0%, 100% {
-    transform: translate(-50%, -50%) scale(0.82);
-    opacity: 0.7;
+    opacity: 0.95;
+    transform: translate(0, 0);
   }
-  45% {
-    transform: translate(-50%, -50%) scale(1.28);
-    opacity: 1;
-  }
-}
-
-@keyframes vs-xfactor-overcharge-chaos {
-  0%, 100% {
-    opacity: 0.9;
-    transform: translate(0, 0) scale(1);
-  }
-  22% {
-    opacity: 0.72;
-    transform: translate(-6px, 3px) scale(1.08);
-  }
-  44% {
-    opacity: 1;
-    transform: translate(4px, -4px) scale(0.96);
+  42% {
+    opacity: 0.82;
+    transform: translate(-1px, 1px);
   }
   67% {
-    opacity: 0.74;
-    transform: translate(-3px, -2px) scale(1.06);
-  }
-  86% {
-    opacity: 0.95;
-    transform: translate(6px, 4px) scale(0.94);
+    opacity: 0.9;
+    transform: translate(1px, -1px);
   }
 }
 
@@ -897,8 +878,8 @@
   position: absolute;
   left: calc(var(--xf-overcharge-x, 100%) - 1px);
   top: 50%;
-  width: 124px;
-  height: 126px;
+  width: 194px;
+  height: 104px;
   transform: translate(-98%, -50%);
   pointer-events: none;
   z-index: 9;
@@ -913,73 +894,33 @@
   content: none;
 }
 
-.vs-xfactor-overcharge-arc {
+.vs-xfactor-overcharge-bolt {
   position: absolute;
-  inset: -8px 0 -8px -92px;
+  inset: -18px -12px -18px -150px;
   pointer-events: none;
   mix-blend-mode: screen;
-  opacity: 0.88;
-  transform-origin: right center;
+  opacity: 0.95;
+  transform: none;
+  animation: none;
   filter:
-    drop-shadow(0 0 7px color-mix(in srgb, var(--xf-overcharge-color, #fff) 74%, transparent))
-    drop-shadow(0 0 18px color-mix(in srgb, var(--xf-overcharge-color, #fff) 52%, transparent));
+    drop-shadow(0 0 8px color-mix(in srgb, var(--xf-overcharge-color, #fff) 74%, transparent))
+    drop-shadow(0 0 19px color-mix(in srgb, var(--xf-overcharge-color, #fff) 55%, transparent));
 }
 
-.vs-xfactor-overcharge-arc--1 {
-  transform: translate(-2px, 0) scale(1.06, 0.98);
-  animation: vs-xfactor-overcharge-chaos 0.46s ease-in-out infinite;
+.vs-xfactor-overcharge-bolt--core {
+  opacity: 1;
 }
 
-.vs-xfactor-overcharge-arc--2 {
-  transform: translate(-18px, -6px) rotate(-7deg) scale(0.9, 0.78);
-  opacity: 0.82;
-  animation: vs-xfactor-overcharge-chaos 0.39s ease-in-out infinite;
-  animation-delay: 0.08s;
-}
-
-.vs-xfactor-overcharge-arc--3 {
-  transform: translate(-34px, 8px) rotate(6deg) scale(1.14, 0.92);
-  opacity: 0.74;
-  animation: vs-xfactor-overcharge-chaos 0.51s ease-in-out infinite;
-  animation-delay: 0.04s;
-}
-
-.vs-xfactor-overcharge-arc--4 {
-  transform: translate(-26px, -10px) rotate(-11deg) scale(0.95, 0.72);
-  opacity: 0.66;
-  animation: vs-xfactor-overcharge-chaos 0.43s ease-in-out infinite;
-  animation-delay: 0.12s;
-}
-
-.vs-xfactor-overcharge-arc--5 {
-  transform: translate(-38px, 2px) rotate(9deg) scale(1.06, 0.86);
-  opacity: 0.6;
-  animation: vs-xfactor-overcharge-chaos 0.37s ease-in-out infinite;
-  animation-delay: 0.03s;
-}
-
-.vs-xfactor-overcharge-arc--6 {
-  transform: translate(-14px, 12px) rotate(-15deg) scale(0.88, 0.74);
-  opacity: 0.58;
-  animation: vs-xfactor-overcharge-chaos 0.41s ease-in-out infinite;
-  animation-delay: 0.09s;
-}
-
-.vs-xfactor-overcharge-arc .lightning-wrapper {
+.vs-xfactor-overcharge-bolt .lightning-wrapper {
   overflow: visible;
   z-index: 1;
 }
 
-.vs-xfactor-overcharge-arc .lightning {
+.vs-xfactor-overcharge-bolt .lightning {
   opacity: 1;
 }
 
-.vs-xfactor-overcharge-arc .lightning-canvas {
-  opacity: 0.94;
-  filter: saturate(1.35) contrast(1.2);
+.vs-xfactor-overcharge-bolt .lightning-canvas {
+  opacity: 0.96;
+  filter: saturate(1.4) contrast(1.18);
 }
-
-
-
-
-

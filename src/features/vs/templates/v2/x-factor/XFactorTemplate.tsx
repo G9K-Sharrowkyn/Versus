@@ -2,7 +2,7 @@ import './XFactorTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { Brain, Crosshair, WandSparkles } from 'lucide-react'
-import { LightningCanvas } from '../../../components/LightningCanvas'
+import { AnimeLightningCanvas } from '../../../components/AnimeLightningCanvas'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
@@ -141,6 +141,19 @@ export function XFactorTemplate({
   const hyperRestPct = Math.max(0, 100 - hyperTotalVisualPct)
   const isSuperOvercharge = superTotalPct > 100
   const isHyperOvercharge = hyperTotalPct > 100
+  const renderOverchargeBolt = (color: string, overchargeX: number) => (
+    <div
+      className="vs-xfactor-overcharge"
+      style={{
+        '--xf-overcharge-color': color,
+        '--xf-overcharge-x': `${overchargeX}%`,
+      } as CSSProperties}
+    >
+      <div className="vs-xfactor-overcharge-bolt vs-xfactor-overcharge-bolt--core">
+        <AnimeLightningCanvas frameIntervalMs={16} />
+      </div>
+    </div>
+  )
 
   const headerText = title || (language === 'pl' ? 'Czynnik kluczowy' : 'Key Factor')
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
@@ -322,34 +335,7 @@ export function XFactorTemplate({
                       }}
                     />
                   ) : null}
-                  {isSuperOvercharge && (
-                    <div
-                      className="vs-xfactor-overcharge"
-                      style={{
-                        '--xf-overcharge-color': fighterA.color,
-                        '--xf-overcharge-x': `${superTotalVisualPct}%`,
-                      } as CSSProperties}
-                    >
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.04, y: 0.22 }} endRatio={{ x: 1.28, y: 0.52 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.12, y: 0.78 }} endRatio={{ x: 1.24, y: 0.34 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--3">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.28, y: 0.48 }} endRatio={{ x: 1.36, y: 0.62 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--4">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.08, y: 0.56 }} endRatio={{ x: 1.18, y: 0.8 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--5">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.2, y: 0.3 }} endRatio={{ x: 1.4, y: 0.42 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--6">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.34, y: 0.68 }} endRatio={{ x: 1.32, y: 0.7 }} />
-                      </div>
-                    </div>
-                  )}
+                  {isSuperOvercharge && renderOverchargeBolt(fighterA.color, superTotalVisualPct)}
                 </div>
                 <div
                   className={layout.METER_VALUE_A_CLASS as string}
@@ -409,34 +395,7 @@ export function XFactorTemplate({
                       }}
                     />
                   ) : null}
-                  {isHyperOvercharge && (
-                    <div
-                      className="vs-xfactor-overcharge"
-                      style={{
-                        '--xf-overcharge-color': fighterB.color,
-                        '--xf-overcharge-x': `${hyperTotalVisualPct}%`,
-                      } as CSSProperties}
-                    >
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--1">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.04, y: 0.22 }} endRatio={{ x: 1.28, y: 0.52 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--2">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.12, y: 0.78 }} endRatio={{ x: 1.24, y: 0.34 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--3">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.28, y: 0.48 }} endRatio={{ x: 1.36, y: 0.62 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--4">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.08, y: 0.56 }} endRatio={{ x: 1.18, y: 0.8 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--5">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.2, y: 0.3 }} endRatio={{ x: 1.4, y: 0.42 }} />
-                      </div>
-                      <div className="vs-xfactor-overcharge-arc vs-xfactor-overcharge-arc--6">
-                        <LightningCanvas detailMode="compact" frameIntervalMs={18} branchDirection="left" startRatio={{ x: 0.34, y: 0.68 }} endRatio={{ x: 1.32, y: 0.7 }} />
-                      </div>
-                    </div>
-                  )}
+                  {isHyperOvercharge && renderOverchargeBolt(fighterB.color, hyperTotalVisualPct)}
                 </div>
                 <div
                   className={layout.METER_VALUE_B_CLASS as string}

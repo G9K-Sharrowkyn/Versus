@@ -99,6 +99,46 @@ const buildLightningBolt = (
   })
 }
 
+const buildReferenceLightningBolt = (
+  start: LightningPoint,
+  end: LightningPoint,
+  maxDifference: number,
+  minSegmentLength: number,
+  roughness = 2,
+) => {
+  let points: LightningPoint[] = [start, end]
+  let segmentLength = Math.hypot(end.x - start.x, end.y - start.y)
+  let difference = maxDifference
+
+  while (segmentLength > minSegmentLength) {
+    const next: LightningPoint[] = []
+    for (let index = 0; index < points.length - 1; index += 1) {
+      const current = points[index]
+      const target = points[index + 1]
+      const dx = target.x - current.x
+      const dy = target.y - current.y
+      const length = Math.hypot(dx, dy) || 1
+      const normalX = -dy / length
+      const normalY = dx / length
+      const midX = (current.x + target.x) / 2
+      const midY = (current.y + target.y) / 2
+      const offset = (Math.random() * 2 - 1) * difference
+
+      next.push(current, {
+        x: midX + normalX * offset,
+        y: midY + normalY * offset,
+      })
+    }
+
+    next.push(points[points.length - 1])
+    points = next
+    difference /= roughness
+    segmentLength /= 2
+  }
+
+  return points
+}
+
 const varyBoltPoints = (points: LightningPoint[], intensity: number) =>
   points.map((point, index) => {
     if (index === 0 || index === points.length - 1) return point
@@ -353,12 +393,16 @@ export function LightningCanvas({
   detailMode = 'full',
   frameIntervalMs,
   branchDirection = 'right',
+  allowCompactLeftBranches = false,
+  lockAnimeSource = false,
 }: {
   startRatio?: LightningPoint
   endRatio?: LightningPoint
   detailMode?: 'full' | 'compact'
   frameIntervalMs?: number
   branchDirection?: 'right' | 'left'
+  allowCompactLeftBranches?: boolean
+  lockAnimeSource?: boolean
 }) {
   const lightningRef = useRef<HTMLDivElement | null>(null)
   const compactMode = detailMode === 'compact'
@@ -458,7 +502,49 @@ export function LightningCanvas({
         ctx.globalCompositeOperation = 'lighter'
         ctx.globalAlpha = Math.max(0.5, Math.min(1, options.Korifhgnv89 + 0.4))
 
+        const animeReferenceMode =
+          compactMode && branchDirection === 'left' && !allowCompactLeftBranches
+        if (animeReferenceMode) {
+          const sourcePoint = options.points[1]
+          const targetPoint = options.points[0]
+          const sourceJitterX = lockAnimeSource ? 0 : Math.max(2.8, width * 0.024)
+          const sourceJitterY = lockAnimeSource ? 0 : Math.max(4.8, height * 0.2)
+          const targetJitterX = Math.max(1.2, width * 0.01)
+          const targetJitterY = Math.max(2.6, height * 0.12)
+          const start = {
+            x: sourcePoint.x + (Math.random() * 2 - 1) * sourceJitterX,
+            y: sourcePoint.y + (Math.random() * 2 - 1) * sourceJitterY,
+          }
+          const end = {
+            x: targetPoint.x + (Math.random() * 2 - 1) * targetJitterX,
+            y: targetPoint.y + (Math.random() * 2 - 1) * targetJitterY,
+          }
+          const segmentLength = Math.max(16, Math.hypot(end.x - start.x, end.y - start.y))
+          const points = buildReferenceLightningBolt(
+            start,
+            end,
+            Math.max(8, segmentLength / 5),
+            Math.max(3.8, segmentLength / 28),
+            2,
+          )
+          const glow = Math.max(9, options.Hfgr49fuaq * 1.04)
+          const lineWidth = Math.max(
+            1.45,
+            options.lineWidth * 1.2 + (Math.random() * 0.18 - 0.05),
+          )
+
+          drawLightningBolt(ctx, points, lineWidth, 'hsla(188, 100%, 76%, 0.92)', glow)
+          drawLightningBolt(
+            ctx,
+            points,
+            Math.max(0.76, lineWidth * 0.42),
+            'hsla(190, 100%, 94%, 0.9)',
+            0,
+          )
+        }
+
         const chaosMode = compactMode && branchDirection === 'left'
+        if (!animeReferenceMode) {
         const roughness = Math.max(1.7, 1.38 + options.Nfetiw324b * 0.72)
         const minSegmentLength = Math.max(
           2.1,
@@ -551,7 +637,8 @@ export function LightningCanvas({
           const spreadBoost = 0.82
           const oneThirdSpread = Math.max(splitBase * 1.45, height * 0.032) * spreadBoost
           const twoThirdSpread = Math.max(splitBase * 2.35, height * 0.052) * spreadBoost
-          const suppressAuxStrands = compactMode && branchDirection === 'left'
+          const suppressAuxStrands =
+            compactMode && branchDirection === 'left' && !allowCompactLeftBranches
           const splitOneThirdStrands = suppressAuxStrands ? 0 : compactMode ? 2 : 3
           const splitTwoThirdsStrands = suppressAuxStrands ? 0 : compactMode ? 6 : 12
           const splitOneThirdBase = suppressAuxStrands
@@ -683,6 +770,7 @@ export function LightningCanvas({
             )
           }
         }
+        }
       }
 
       if (!auditMode) {
@@ -705,7 +793,17 @@ export function LightningCanvas({
         host.removeChild(canvas)
       }
     }
-  }, [branchDirection, compactMode, endRatio.x, endRatio.y, frameIntervalMs, startRatio.x, startRatio.y])
+  }, [
+    allowCompactLeftBranches,
+    branchDirection,
+    compactMode,
+    endRatio.x,
+    endRatio.y,
+    frameIntervalMs,
+    lockAnimeSource,
+    startRatio.x,
+    startRatio.y,
+  ])
 
   return (
     <div className="lightning-wrapper">
