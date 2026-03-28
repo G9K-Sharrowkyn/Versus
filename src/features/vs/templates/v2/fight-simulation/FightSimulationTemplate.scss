@@ -430,6 +430,188 @@
   mask-repeat: no-repeat;
 }
 
+@keyframes vs-fs-indicator-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(103, 232, 249, 0);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(103, 232, 249, 0.65);
+  }
+}
+
+.vs-fight-simulation-panel {
+  overflow: visible;
+}
+
+.vs-fight-simulation-inner {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow: visible;
+}
+
+.vs-fight-simulation-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin: 0.25rem 0.25rem 1rem;
+  min-height: 1.5rem;
+  overflow: visible;
+}
+
+.vs-fight-simulation-variant-label {
+  margin: 0;
+  color: #ff554e;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: var(--tb-type-3);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45);
+}
+
+.vs-fight-simulation-scenario-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.58rem;
+  overflow: visible;
+}
+
+.vs-fight-simulation-scenario-label {
+  margin: 0;
+  color: #77e2f2;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: var(--tb-type-3);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  text-transform: uppercase;
+  text-shadow: 0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45);
+}
+
+.vs-fight-simulation-indicators {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 0.52rem;
+}
+
+.vs-fight-simulation-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(71, 85, 105, 0.9);
+  transition: width 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.vs-fight-simulation-indicator.is-active {
+  width: 16px;
+  background: #67e8f9;
+  transform: scale(1.02);
+  animation: vs-fs-indicator-pulse 1.7s ease-in-out infinite;
+}
+
+.vs-fight-simulation-phases {
+  overflow: visible;
+}
+
+.vs-fight-simulation-phase-card {
+  position: relative;
+  overflow: visible;
+}
+
+.vs-fight-simulation-phase-heading {
+  width: max-content;
+  max-width: 100%;
+  position: relative;
+  display: block;
+  padding-bottom: 0.3rem;
+  margin-bottom: 0.38rem;
+}
+
+.vs-fight-simulation-phase-underline {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: #ff554e;
+  box-shadow: 0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45);
+}
+
+.vs-fight-simulation-phase-title,
+.vs-fight-simulation-event,
+.vs-fight-simulation-scenario-meta-value,
+.vs-fight-simulation-branch p,
+.vs-fight-simulation-end p {
+  overflow: visible;
+}
+
+.vs-fight-simulation-scenario-wrap {
+  overflow: hidden;
+}
+
+.vs-fight-simulation-scenario-meta {
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.vs-fight-simulation-scenario-meta-label {
+  line-height: 1;
+}
+
+.vs-fight-simulation-bars-chart-wrap {
+  border-top: 1px solid rgba(255, 85, 78, 0.38);
+}
+
+.vs-fight-simulation-bars-chart {
+  overflow: visible;
+}
+
+.vs-fight-simulation-mini-curve {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.vs-fight-simulation-mini-point {
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.vs-fight-simulation-split-wrap {
+  border-top: 1px solid rgba(255, 85, 78, 0.38);
+}
+
+.vs-fight-simulation-split-svg {
+  overflow: visible;
+}
+
+.vs-fight-simulation-branch-grid {
+  gap: 0.62rem;
+}
+
+.vs-fight-simulation-branch {
+  border-radius: 2px;
+  border: 1px solid rgba(71, 85, 105, 0.45);
+  background: rgba(2, 6, 23, 0.58);
+}
+
+.vs-fight-simulation-branch--a {
+  border-color: rgba(14, 165, 233, 0.55);
+}
+
+.vs-fight-simulation-branch--b {
+  border-color: rgba(244, 63, 94, 0.55);
+}
+
+.vs-fight-simulation-end {
+  overflow: visible;
+}
+
 /* Wspólne style wizualne dla obu paneli (Stats i Reality) */
 .vs-tactical-board25-stats,
 .vs-tactical-board25-reality {
@@ -774,10 +956,6 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
-
-
-
 
 
 

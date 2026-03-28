@@ -1,6 +1,6 @@
 import './FightSimulationTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { FightScenarioCanvas } from '../../../components/FightScenarioCanvas'
 import {
   humanizeScenarioToken,
@@ -82,9 +82,7 @@ export function FightSimulationTemplate({
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string>
   
-  const boardHeader =
-    pickTemplateField(blockFields, ['panel_header', 'simulation_header']) ||
-    getFightTemplateDefaultField('fight-simulation', 'panel_header', language) || "SYMULACJA WALKI"
+  const boardHeader = 'standard rules, odinforce cleansing'
 
   const categories = getFightDefaultCategories('fight-simulation', language)
   const categoryLabel = (categoryId: string, fallback: string) =>
@@ -234,6 +232,70 @@ export function FightSimulationTemplate({
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
   const variantLabel = active.label || (activeIndex === 0 ? 'Standardowe Zasady' : 'Solar Flare')
+  const BLUE_TEXT_COLOR = '#77e2f2'
+  const RED_LABEL_COLOR = '#ff554e'
+  const BLUE_TEXT_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
+  const RED_LABEL_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)'
+  const slotPhaseTitle: TemplateSlotSpec = {
+    ...slots.phaseTitle,
+    baseFontPx: Math.max(slots.phaseTitle.baseFontPx, 32),
+    minFontPx: Math.max(slots.phaseTitle.minFontPx, 16),
+    lineHeight: 1.06,
+    maxLines: Math.max(slots.phaseTitle.maxLines, 3),
+    fitMode: 'shrink',
+  }
+  const slotPhaseEvent: TemplateSlotSpec = {
+    ...slots.phaseEvent,
+    baseFontPx: Math.max(slots.phaseEvent.baseFontPx, 28),
+    minFontPx: Math.max(slots.phaseEvent.minFontPx, 14),
+    lineHeight: 1.08,
+    maxLines: Math.max(slots.phaseEvent.maxLines, 4),
+    fitMode: 'shrink',
+  }
+  const slotPhaseBranch: TemplateSlotSpec = {
+    ...slots.phaseBranch,
+    baseFontPx: Math.max(slots.phaseBranch.baseFontPx, 26),
+    minFontPx: Math.max(slots.phaseBranch.minFontPx, 12),
+    lineHeight: 1.08,
+    maxLines: Math.max(slots.phaseBranch.maxLines, 3),
+    fitMode: 'shrink',
+  }
+  const slotPhaseScenarioLabel: TemplateSlotSpec = {
+    ...slots.phaseScenarioLabel,
+    baseFontPx: Math.max(slots.phaseScenarioLabel.baseFontPx, 18),
+    minFontPx: Math.max(slots.phaseScenarioLabel.minFontPx, 10),
+    lineHeight: 1,
+    maxLines: Math.max(slots.phaseScenarioLabel.maxLines, 2),
+    fitMode: 'shrink',
+  }
+  const slotEndCondition: TemplateSlotSpec = {
+    ...slots.endCondition,
+    baseFontPx: Math.max(slots.endCondition.baseFontPx, 38),
+    minFontPx: Math.max(slots.endCondition.minFontPx, 18),
+    lineHeight: 1.14,
+    maxLines: Math.max(slots.endCondition.maxLines, 2),
+    fitMode: 'shrink',
+  }
+  const phaseTextBaseStyle: CSSProperties = {
+    color: BLUE_TEXT_COLOR,
+    fontFamily: "'Chakra Petch', sans-serif",
+    fontWeight: 700,
+    letterSpacing: '0.01em',
+    textShadow: BLUE_TEXT_REFLECTION,
+    overflow: 'visible',
+    paddingInline: '0.06em',
+  }
+  const phaseTitleStyle: CSSProperties = {
+    ...phaseTextBaseStyle,
+  }
+  const phaseEventStyle: CSSProperties = {
+    ...phaseTextBaseStyle,
+    marginBottom: '0.5rem',
+    flex: 1,
+  }
+  const phaseBranchStyle: CSSProperties = {
+    ...phaseTextBaseStyle,
+  }
 
   const bdLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const bdFields = parseTemplateFieldMap(bdLines)
@@ -345,55 +407,69 @@ export function FightSimulationTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+      <section className="vs-tactical-board25-stats vs-fight-simulation-panel" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
         
-        <div style={{ display: 'flex', flexDirection: 'column', flex: 1, minHeight: 0 }}>
-          <div className="mt-1 h-6 flex items-center justify-between gap-3 px-1" style={{ marginBottom: '1rem' }}>
-            <p style={{ color: '#ff554e', fontFamily: 'var(--font-display)', fontSize: '1.08rem', letterSpacing: '0.1em', textTransform: 'uppercase', textShadow: '0 0 10px rgba(255, 85, 78, 0.45)' }}>
-              {variantLabel}
+        <div className="vs-fight-simulation-inner">
+          <div className="vs-fight-simulation-top-row">
+            <p className="vs-fight-simulation-variant-label">
+              <GlitchText text={variantLabel} />
             </p>
             {scenarios.length > 1 && (
-              <>
-                <p className="text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                  {active.label}
+              <div className="vs-fight-simulation-scenario-controls">
+                <p className="vs-fight-simulation-scenario-label">
+                  <GlitchText text={active.label} />
                 </p>
-                <div className="flex items-center gap-1.5" style={{ display: 'flex', gap: '0.5rem' }}>
+                <div className="vs-fight-simulation-indicators">
                   {scenarios.map((_, i) => (
                     <div
                       key={i}
-                      className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
-                      style={{ height: '6px', borderRadius: '9999px', width: i === activeIndex ? '16px' : '6px', backgroundColor: i === activeIndex ? '#67e8f9' : '#475569' }}
+                      className={`vs-fight-simulation-indicator${i === activeIndex ? ' is-active' : ''}`}
                     />
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </div>
 
-          <div className={layout.PHASES_PANEL_CLASS} style={{ display: 'flex', gap: '0.65rem', flex: 1, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, minHeight: 0 }}>
+          <div className={`${layout.PHASES_PANEL_CLASS as string} vs-fight-simulation-phases`} style={{ display: 'flex', gap: '0.65rem', flex: 1, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, minHeight: 0 }}>
             {active.phases.map((phase, index) => (
               <div
                 key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
-                className={scenarios.length > 1 ? 'cursor-pointer' : undefined}
+                className={`${layout.PHASE_CARD_CLASS as string} vs-fight-simulation-phase-card vs-fight-simulation-phase-card--${index === 0 ? 'a' : index === 1 ? 'mid' : 'b'}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
                 onClick={scenarios.length > 1 ? nextScenario : undefined}
                 style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.48rem 0.34rem 0.36rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none', minHeight: 0 }}
               >
-                <div className={layout.PHASE_CARD_HEADER_CLASS} style={{ paddingBottom: '0.5rem', marginBottom: '0.5rem' }}>
-                  <p className={layout.PHASE_CARD_LABEL_CLASS} style={{ fontSize: '0.9rem', color: '#94a3b8', textTransform: 'uppercase' }}>{common.phaseLabel} {index + 1}</p>
+                <div className={`${layout.PHASE_CARD_HEADER_CLASS as string} vs-fight-simulation-phase-heading`}>
+                  <p
+                    className={layout.PHASE_CARD_LABEL_CLASS as string}
+                    style={{
+                      fontFamily: "'Chakra Petch', sans-serif",
+                      fontSize: 'var(--tb-type-3)',
+                      textTransform: 'uppercase',
+                      color: RED_LABEL_COLOR,
+                      marginBottom: '0.24rem',
+                      textShadow: RED_LABEL_REFLECTION,
+                      letterSpacing: '0.05em',
+                      lineHeight: 1,
+                    }}
+                  >
+                    <GlitchText text={`${common.phaseLabel} ${index + 1}`} />
+                  </p>
+                  <div className="vs-fight-simulation-phase-underline" />
                 </div>
                 <div style={{ minHeight: '3rem', marginBottom: '0.5rem' }}>
                   <FittedText
                     as="p"
                     slotKey={`fight-simulation:title:${activeIndex}:${index}`}
-                    spec={slots.phaseTitle}
+                    spec={slotPhaseTitle}
                     text={phase.title}
-                    className={layout.PHASE_TITLE_CLASS}
-                    style={{ fontSize: '1.2rem', color: '#fff', fontFamily: 'var(--font-display)' }}
+                    className={`${layout.PHASE_TITLE_CLASS as string} vs-fight-simulation-phase-title`}
+                    style={phaseTitleStyle}
                   />
                 </div>
 
-                <div style={{ position: 'relative', height: '140px', marginBottom: '0.65rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+                <div className="vs-fight-simulation-scenario-wrap" style={{ position: 'relative', height: '140px', marginBottom: '0.65rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
                   <FightScenarioCanvas
                     scenario={phase.animation}
                     variantToken={phase.animationVariantToken}
@@ -401,81 +477,97 @@ export function FightSimulationTemplate({
                     colorB={fighterB.color}
                     lead={phase.lead}
                   />
-                  <div className={layout.SCENARIO_META_CLASS} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.2rem 0.15rem', background: 'transparent', display: 'flex', justifyContent: 'space-between', fontSize: '0.75rem', borderTop: '1px solid rgba(255, 85, 78, 0.4)' }}>
-                    <span className={layout.SCENARIO_META_LABEL_CLASS} style={{ color: '#94a3b8' }}>{common.scenarioPresetLabel}</span>
+                  <div className={`${layout.SCENARIO_META_CLASS as string} vs-fight-simulation-scenario-meta`} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.2rem 0.15rem', background: 'transparent', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255, 85, 78, 0.4)' }}>
+                    <span
+                      className={`${layout.SCENARIO_META_LABEL_CLASS as string} vs-fight-simulation-scenario-meta-label`}
+                      style={{
+                        color: RED_LABEL_COLOR,
+                        fontFamily: "'Chakra Petch', sans-serif",
+                        fontSize: 'var(--tb-type-5)',
+                        fontWeight: 700,
+                        lineHeight: 1,
+                        textTransform: 'uppercase',
+                        letterSpacing: '0.05em',
+                        textShadow: RED_LABEL_REFLECTION,
+                      }}
+                    >
+                      <GlitchText text={common.scenarioPresetLabel} />
+                    </span>
                     <FittedText
                       as="span"
                       slotKey={`fight-simulation:scenario:${activeIndex}:${index}`}
-                      spec={slots.phaseScenarioLabel}
+                      spec={slotPhaseScenarioLabel}
                       text={phase.animationLabel}
-                      className={layout.SCENARIO_META_VALUE_CLASS}
-                      style={{ color: '#38bdf8', maxWidth: '60%', textAlign: 'right' }}
+                      className={`${layout.SCENARIO_META_VALUE_CLASS as string} vs-fight-simulation-scenario-meta-value`}
+                      style={{ ...phaseTextBaseStyle, maxWidth: '60%', textAlign: 'right' }}
                     />
                   </div>
                 </div>
 
                 {phase.mode === 'bars' ? (
-                  <div className={layout.BARS_MODE_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div className={`${layout.BARS_MODE_CLASS as string} vs-fight-simulation-bars-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <FittedText
                       as="p"
                       slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slots.phaseEvent}
+                      spec={slotPhaseEvent}
                       text={phase.event}
-                      className={layout.EVENT_TEXT_CLASS}
-                      style={{ color: '#cbd5e1', fontSize: '1.05rem', marginBottom: '0.5rem', flex: 1 }}
+                      className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
+                      style={phaseEventStyle}
                     />
-                    <div className="mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
-                      <svg viewBox="0 0 100 49" className="w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
+                    <div className="vs-fight-simulation-bars-chart-wrap mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
+                      <svg viewBox="0 0 100 49" className="vs-fight-simulation-bars-chart w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
                         {['10', '18', '26', '34'].map((y) => (
                           <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
                         ))}
                         <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
                         <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
-                        <polyline points={miniCurveA.polyline} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
-                        <polyline points={miniCurveA.polyline} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
-                        <polyline points={miniCurveB.polyline} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
-                        <polyline points={miniCurveB.polyline} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
+                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a-glow" points={miniCurveA.polyline} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
+                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a" points={miniCurveA.polyline} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
+                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b-glow" points={miniCurveB.polyline} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
+                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b" points={miniCurveB.polyline} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
                         {miniCurveA.points.map((pt, i) => (
-                          <circle key={`a${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
+                          <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--a" key={`a${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
                         ))}
                         {miniCurveB.points.map((pt, i) => (
-                          <circle key={`b${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
+                          <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--b" key={`b${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
                         ))}
                       </svg>
                     </div>
                   </div>
                 ) : (
-                  <div className={layout.SPLIT_MODE_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <div className={`${layout.SPLIT_MODE_CLASS as string} vs-fight-simulation-split-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
                     <FittedText
                       as="p"
                       slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slots.phaseEvent}
+                      spec={slotPhaseEvent}
                       text={phase.event}
-                      className={layout.EVENT_TEXT_CLASS}
-                      style={{ color: '#cbd5e1', fontSize: '1.05rem', marginBottom: '0.5rem', flex: 1 }}
+                      className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
+                      style={phaseEventStyle}
                     />
-                    <div style={{ position: 'relative', marginTop: 'auto', padding: '0.5rem 0.2rem 0.2rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
-                      <svg viewBox={layout.SPLIT_SVG_VIEWBOX || "0 0 200 80"} className={layout.SPLIT_SVG_CLASS} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0 }}>
+                    <div className="vs-fight-simulation-split-wrap" style={{ position: 'relative', marginTop: 'auto', padding: '0.5rem 0.2rem 0.2rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+                      <svg viewBox={layout.SPLIT_SVG_VIEWBOX || "0 0 200 80"} className={`${layout.SPLIT_SVG_CLASS as string} vs-fight-simulation-split-svg`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0 }}>
                         <line x1={layout.SPLIT_LINE_TOP_X1 || "100"} y1={layout.SPLIT_LINE_TOP_Y1 || "0"} x2={layout.SPLIT_LINE_TOP_X2 || "100"} y2={layout.SPLIT_LINE_TOP_Y2 || "20"} stroke={layout.SPLIT_LINE_TOP_STROKE || "rgba(255,255,255,0.2)"} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH || "2"} />
                         <line x1={layout.SPLIT_BRANCH_A_X1 || "100"} y1={layout.SPLIT_BRANCH_A_Y1 || "20"} x2={layout.SPLIT_BRANCH_A_X2 || "50"} y2={layout.SPLIT_BRANCH_A_Y2 || "80"} stroke={layout.SPLIT_BRANCH_A_STROKE || "rgba(56,189,248,0.5)"} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH || "2"} />
                         <line x1={layout.SPLIT_BRANCH_B_X1 || "100"} y1={layout.SPLIT_BRANCH_B_Y1 || "20"} x2={layout.SPLIT_BRANCH_B_X2 || "150"} y2={layout.SPLIT_BRANCH_B_Y2 || "80"} stroke={layout.SPLIT_BRANCH_B_STROKE || "rgba(244,63,94,0.5)"} strokeWidth={layout.SPLIT_BRANCH_B_WIDTH || "2"} />
                         <circle cx={layout.SPLIT_NODE_CX || "100"} cy={layout.SPLIT_NODE_CY || "20"} r={layout.SPLIT_NODE_R || "4"} fill={layout.SPLIT_NODE_FILL || "#fff"} />
                       </svg>
-                      <div className={layout.BRANCH_GRID_CLASS} style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-                        <div style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', color: '#e0f2fe', fontSize: '0.9rem', textAlign: 'center' }}>
+                      <div className={`${layout.BRANCH_GRID_CLASS as string} vs-fight-simulation-branch-grid`} style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
+                        <div className="vs-fight-simulation-branch vs-fight-simulation-branch--a" style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', textAlign: 'center' }}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-a:${activeIndex}:${index}`}
-                            spec={slots.phaseBranch}
+                            spec={slotPhaseBranch}
                             text={phase.branchA}
+                            style={phaseBranchStyle}
                           />
                         </div>
-                        <div style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', color: '#ffe4e6', fontSize: '0.9rem', textAlign: 'center' }}>
+                        <div className="vs-fight-simulation-branch vs-fight-simulation-branch--b" style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', textAlign: 'center' }}>
                           <FittedText
                             as="p"
                             slotKey={`fight-simulation:branch-b:${activeIndex}:${index}`}
-                            spec={slots.phaseBranch}
+                            spec={slotPhaseBranch}
                             text={phase.branchB}
+                            style={phaseBranchStyle}
                           />
                         </div>
                       </div>
@@ -486,13 +578,22 @@ export function FightSimulationTemplate({
             ))}
           </div>
 
-          <div className={layout.END_CONDITION_CLASS} style={{ marginTop: '0.55rem', padding: '0.55rem 0.4rem 0.2rem', border: 'none', background: 'transparent', textAlign: 'center', color: '#cffafe', fontStyle: 'italic' }}>
+          <div className={`${layout.END_CONDITION_CLASS as string} vs-fight-simulation-end`} style={{ marginTop: '0.55rem', padding: '0.55rem 0.4rem 0.2rem', border: 'none', background: 'transparent', textAlign: 'center', color: '#cffafe', fontStyle: 'italic' }}>
             <FittedText
               as="p"
               slotKey={`fight-simulation:end-condition:${activeIndex}`}
-              spec={slots.endCondition}
+              spec={slotEndCondition}
               text={active.endCondition}
-              style={{ color: '#ff554e', textShadow: '0 0 10px rgba(255, 85, 78, 0.42)', fontStyle: 'italic', lineHeight: 1.2 }}
+              style={{
+                color: RED_LABEL_COLOR,
+                textShadow: RED_LABEL_REFLECTION,
+                fontStyle: 'italic',
+                fontFamily: "'Chakra Petch', sans-serif",
+                fontWeight: 700,
+                letterSpacing: '0.01em',
+                overflow: 'visible',
+                paddingInline: '0.08em',
+              }}
             />
           </div>
         </div>
