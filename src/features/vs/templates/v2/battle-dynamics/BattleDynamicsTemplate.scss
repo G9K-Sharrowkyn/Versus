@@ -724,25 +724,6 @@
   }
 }
 
-@keyframes vs-bd-point-sync {
-  0%, 76% {
-    opacity: 0;
-    transform: scale(0.62);
-  }
-  90% {
-    opacity: 1;
-    transform: scale(1.12);
-  }
-  99% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(0.62);
-  }
-}
-
 @keyframes vs-bd-card-float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-2px); }
@@ -809,14 +790,7 @@
 }
 
 .vs-battle-dynamics-point {
-  transform-box: fill-box;
-  transform-origin: center;
-  animation: vs-bd-point-sync 5s linear infinite;
-}
-
-.vs-battle-dynamics-point--a:nth-of-type(odd),
-.vs-battle-dynamics-point--b:nth-of-type(odd) {
-  animation-delay: 0.2s;
+  will-change: opacity, r;
 }
 
 .vs-battle-dynamics-analysis {
@@ -969,7 +943,6 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
 
 
 

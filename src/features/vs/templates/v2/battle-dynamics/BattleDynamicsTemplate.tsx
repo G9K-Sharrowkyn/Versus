@@ -148,6 +148,12 @@ export function BattleDynamicsTemplate({
     maxLines: Math.max(slots.battleDynamicsPhase.maxLines, 5),
     fitMode: 'shrink',
   }
+  const basePointRadius = Number(layout.CURVE_POINT_R as string) || 0.56
+  const pulsePointRadius = (basePointRadius * 1.45).toFixed(3)
+  const pointRevealProgress = (index: number, total: number) => {
+    if (total <= 1) return 0
+    return (index / (total - 1)) * 0.96
+  }
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -289,10 +295,60 @@ export function BattleDynamicsTemplate({
             <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} pathLength={100} />
             <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} pathLength={100} />
             {curveB.points.map((point, index) => (
-              <circle className="vs-battle-dynamics-point vs-battle-dynamics-point--b" key={`r-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_B_POINT_FILL as string} stroke={layout.CURVE_B_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
+              <circle
+                className="vs-battle-dynamics-point vs-battle-dynamics-point--b"
+                key={`r-${index}-${point.x}`}
+                cx={point.x}
+                cy={point.y}
+                r={layout.CURVE_POINT_R as string}
+                fill={layout.CURVE_B_POINT_FILL as string}
+                stroke={layout.CURVE_B_POINT_STROKE as string}
+                strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
+                opacity="0"
+              >
+                <animate
+                  attributeName="opacity"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  values="0;0;1;1;0"
+                  keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
+                />
+                <animate
+                  attributeName="r"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
+                  keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.07, 0.998).toFixed(4)};1`}
+                />
+              </circle>
             ))}
             {curveA.points.map((point, index) => (
-              <circle className="vs-battle-dynamics-point vs-battle-dynamics-point--a" key={`b-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_A_POINT_FILL as string} stroke={layout.CURVE_A_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
+              <circle
+                className="vs-battle-dynamics-point vs-battle-dynamics-point--a"
+                key={`b-${index}-${point.x}`}
+                cx={point.x}
+                cy={point.y}
+                r={layout.CURVE_POINT_R as string}
+                fill={layout.CURVE_A_POINT_FILL as string}
+                stroke={layout.CURVE_A_POINT_STROKE as string}
+                strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
+                opacity="0"
+              >
+                <animate
+                  attributeName="opacity"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  values="0;0;1;1;0"
+                  keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
+                />
+                <animate
+                  attributeName="r"
+                  dur="5s"
+                  repeatCount="indefinite"
+                  values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
+                  keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.07, 0.998).toFixed(4)};1`}
+                />
+              </circle>
             ))}
           </svg>
 
