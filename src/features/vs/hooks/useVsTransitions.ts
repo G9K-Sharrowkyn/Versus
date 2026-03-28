@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState, type MutableRefObject, type RefObject } from 'react'
 import type { ApplyFightRecordOptions } from '../domain/fightState'
 import { buildFolderFightGroups } from '../domain/fightLibrary'
-import { FINAL_TEMPLATE_ID } from '../presets'
 import { findFightByQuery, getViewportCenterHandoff, normalizeSearchMorphHandoff, normalizeToken } from '../helpers'
-import type { FightRecord, Language, ReverseStage, SearchMorphHandoff, TemplateId } from '../types'
+import type { FightRecord, Language, ReverseStage, SearchMorphHandoff } from '../types'
 
 type RequestFightApply = (
   fight: FightRecord,
@@ -17,14 +16,10 @@ type UseVsTransitionsOptions = {
   fights: FightRecord[]
   preferredVariantByMatchup: Record<string, string>
   language: Language
-  activeTemplate: TemplateId
-  activeFightId: string | null
-  templateCursor: number
   requestFightApplyRef: RefObject<RequestFightApply | null>
   setActiveFightId: (fightId: string | null) => void
   searchTransitioningRef: MutableRefObject<boolean>
   returnTransitioningRef: MutableRefObject<boolean>
-  finalTemplateReturnDelayMs: number
   morphPowerOffMs: number
   morphRingOnMs: number
   morphFinalMs: number
@@ -39,14 +34,10 @@ export function useVsTransitions({
   fights,
   preferredVariantByMatchup,
   language,
-  activeTemplate,
-  activeFightId,
-  templateCursor,
   requestFightApplyRef,
   setActiveFightId,
   searchTransitioningRef,
   returnTransitioningRef,
-  finalTemplateReturnDelayMs,
   morphPowerOffMs,
   morphRingOnMs,
   morphFinalMs,
@@ -487,21 +478,6 @@ export function useVsTransitions({
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [],
   )
-
-  useEffect(() => {
-    clearFinalTemplateAutoReturnTimeout()
-    if (viewMode !== 'fight' || activeTemplate !== FINAL_TEMPLATE_ID) return
-    if (returnTransitioningRef.current) return
-
-    finalTemplateAutoReturnTimeoutRef.current = window.setTimeout(() => {
-      startFightReturnTransition()
-    }, finalTemplateReturnDelayMs)
-
-    return () => {
-      clearFinalTemplateAutoReturnTimeout()
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [activeTemplate, activeFightId, templateCursor, viewMode, finalTemplateReturnDelayMs])
 
   return {
     viewMode,

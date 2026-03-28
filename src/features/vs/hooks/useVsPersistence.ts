@@ -197,7 +197,10 @@ export function useVsPersistence({
         : null
 
       if (restoredActiveFight) {
-        applyFightRecordRef.current?.(restoredActiveFight, { enterIntro: false })
+        applyFightRecordRef.current?.(restoredActiveFight, {
+          enterIntro: false,
+          preserveTemplateSelection: true,
+        })
       }
       setStorageReady(true)
     }

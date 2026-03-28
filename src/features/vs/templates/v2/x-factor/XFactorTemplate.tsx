@@ -230,10 +230,20 @@ export function XFactorTemplate({
 
       <div className="vs-tactical-board25-meta">
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 0 12px rgba(119, 226, 242, 0.75), 0 0 22px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.threatLevelValue} /></span>
+          <span className="vs-tactical-board25-meta-label">
+            <SubtleCyberpunkLabel text={tacticalChrome.threatLevelLabel} />
+          </span>
+          <span className="vs-tactical-board25-meta-value">
+            <CyberpunkMetaValue value={tacticalChrome.threatLevelValue} />
+          </span>
         </p>
         <p>
-          <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />: <span style={{ color: '#77e2f2', textShadow: '0 0 12px rgba(119, 226, 242, 0.75), 0 0 22px rgba(119, 226, 242, 0.4)' }}><CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} /></span>
+          <span className="vs-tactical-board25-meta-label">
+            <SubtleCyberpunkLabel text={tacticalChrome.dataIntegrityLabel} />
+          </span>
+          <span className="vs-tactical-board25-meta-value">
+            <CyberpunkMetaValue value={tacticalChrome.dataIntegrityValue} />
+          </span>
         </p>
       </div>
 

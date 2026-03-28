@@ -1,4 +1,4 @@
-import { startTransition, useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { startTransition, useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
@@ -87,7 +87,6 @@ const MORPH_OVERLAY_BUFFER_MS = 180
 const INTRO_MOUNT_AT_MS = 0
 const INTRO_REVEAL_AT_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_MS - 220
 const FIGHTS_SCAN_POLL_MS = 1200
-const FINAL_TEMPLATE_RETURN_DELAY_MS = 5000
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
@@ -163,6 +162,10 @@ function App() {
     language: Language
     reason: PendingFightSelectionReason
   } | null>(null)
+  const activeFightIdRef = useRef<string | null>(null)
+  const activeTemplateRef = useRef<TemplateId>(initialTemplate.id)
+  const templateCursorRef = useRef(0)
+  const languageRef = useRef<Language>(DEFAULT_LANGUAGE)
   const pendingFightRequestIdRef = useRef(0)
   const globalPreloadPromiseRef = useRef<Promise<void> | null>(null)
   const globalPreloadAbortRef = useRef<AbortController | null>(null)
@@ -211,14 +214,10 @@ function App() {
     fights,
     preferredVariantByMatchup,
     language,
-    activeTemplate,
-    activeFightId,
-    templateCursor,
     requestFightApplyRef,
     setActiveFightId,
     searchTransitioningRef,
     returnTransitioningRef,
-    finalTemplateReturnDelayMs: FINAL_TEMPLATE_RETURN_DELAY_MS,
     morphPowerOffMs: MORPH_POWER_OFF_MS,
     morphRingOnMs: MORPH_RING_ON_MS,
     morphFinalMs: MORPH_FINAL_MS,
@@ -228,6 +227,13 @@ function App() {
     searchCollapseWatchdogMs: SEARCH_COLLAPSE_WATCHDOG_MS,
     reverseExplosionWatchdogMs: REVERSE_EXPLOSION_WATCHDOG_MS,
   })
+
+  useLayoutEffect(() => {
+    activeFightIdRef.current = activeFightId
+    activeTemplateRef.current = activeTemplate
+    templateCursorRef.current = templateCursor
+    languageRef.current = language
+  }, [activeFightId, activeTemplate, language, templateCursor])
 
   useAnimatedCursor({ searchFrameRef, introFrameRef })
 
@@ -465,13 +471,18 @@ function App() {
   }
 
   const applyFightRecord = useCallback<ApplyFightRecord>((fight, options) => {
-    const fightLanguage = resolveFightLanguage(fight, language)
+    const currentLanguage = languageRef.current
+    const currentActiveTemplate = activeTemplateRef.current
+    const currentTemplateCursor = templateCursorRef.current
+    const isSameFight = activeFightIdRef.current === fight.id
+    const preserveTemplateSelection = options?.preserveTemplateSelection ?? isSameFight
+    const fightLanguage = resolveFightLanguage(fight, currentLanguage)
     const nextState = buildFightStudioState({
       fight,
       language: options?.targetLanguage ?? fightLanguage,
-      activeTemplate,
-      templateCursor,
-      preserveTemplateSelection: options?.preserveTemplateSelection ?? false,
+      activeTemplate: currentActiveTemplate,
+      templateCursor: currentTemplateCursor,
+      preserveTemplateSelection,
     })
 
     setCategories(nextState.categories)
@@ -507,14 +518,11 @@ function App() {
     applyTemplateById(nextState.nextTemplate, false)
   }, [
     activeFightSignatureRef,
-    activeTemplate,
     applyTemplateById,
     clearSearchTransitionQueue,
-    language,
     setActiveFightId,
     setIntroVisible,
     setViewMode,
-    templateCursor,
   ])
 
   useEffect(() => {

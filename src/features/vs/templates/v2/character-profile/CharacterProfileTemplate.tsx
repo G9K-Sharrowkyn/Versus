@@ -101,7 +101,7 @@ export function CharacterProfileTemplate({
   const RED_LINIA = '#ff554e'
   const REFLEKS_IMIENIA_POSTACI = "0 1em 0.28em rgba(119, 226, 242, 0.45)"
   const REFLEKS_TRESCI_FAKTOW = "0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)"
-  const REFLEKS_ETYKIET_FAKTOW = "0 0 8px rgba(255, 85, 78, 0.9), 0 0 16px rgba(255, 85, 78, 0.4)"
+  const REFLEKS_ETYKIET_FAKTOW = "0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)"
 
   const renderFactColumn = (side: 'left' | 'right') => {
     const entries = sectionRows

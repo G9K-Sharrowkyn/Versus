@@ -285,8 +285,23 @@
 }
 
 .vs-tactical-board25-meta p {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: calc(0.08rem * var(--tb-scale));
+  line-height: 1.02;
   text-shadow: 0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(119, 226, 242, 0.25);
   animation: none;
+}
+
+.vs-tactical-board25-meta-label {
+  color: #ff554e;
+}
+
+.vs-tactical-board25-meta-value {
+  display: block;
+  color: #77e2f2;
+  text-shadow: 0 0 12px rgba(119, 226, 242, 0.75), 0 0 22px rgba(119, 226, 242, 0.4);
 }
 
 .vs-tactical-board25-meta p:nth-child(2) {
