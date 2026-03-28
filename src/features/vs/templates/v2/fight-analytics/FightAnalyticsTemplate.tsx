@@ -99,7 +99,7 @@ export function FightAnalyticsTemplate({
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'analytics_header']) ||
     getFightTemplateDefaultField('fight-analytics', 'panel_header', language) ||
-    'ANALITYKA WALKI'
+    (language === 'pl' ? 'Statystyki Postaci' : 'Character Statistics')
 
   const averageShort =
     getFightTemplateDefaultField('fight-analytics', 'average_short', language) || common.averageShort

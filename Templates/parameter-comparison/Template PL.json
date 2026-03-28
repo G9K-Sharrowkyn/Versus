@@ -4,7 +4,7 @@
   "metadata": {
     "activeName": "Porównanie parametrów",
     "description": "Radar w centrum, przewagi po bokach, pasek wyniku na dole.",
-    "title": "PORÓWNANIE PARAMETRÓW",
+    "title": "Graf porównawczy",
     "subtitle": "Mapa średniego profilu statystyk",
     "blockName": "Porównanie Parametrów",
     "purpose": "Radar + przewagi lewej i prawej strony."

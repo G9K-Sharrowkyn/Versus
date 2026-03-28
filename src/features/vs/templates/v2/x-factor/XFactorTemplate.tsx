@@ -142,7 +142,7 @@ export function XFactorTemplate({
   const isSuperOvercharge = superTotalPct > 100
   const isHyperOvercharge = hyperTotalPct > 100
 
-  const headerText = title || 'X-FACTOR'
+  const headerText = title || (language === 'pl' ? 'Czynnik kluczowy' : 'Key Factor')
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
@@ -153,7 +153,8 @@ export function XFactorTemplate({
   const trapQuestion = pickTemplateField(blockFields, ['question'])
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'x_factor_header']) ||
-    getFightTemplateDefaultField('x-factor', 'panel_header', language) || "X-FACTOR"
+    getFightTemplateDefaultField('x-factor', 'panel_header', language) ||
+    (language === 'pl' ? 'Czynnik kluczowy' : 'Key Factor')
 
   const auditPrefix = `${activeFightId || 'draft'}:x-factor`
 
@@ -301,7 +302,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--main"
                       style={{
-                        clipPath: `inset(0% calc(${Math.max(0, 100 - superBasePct)}% - 0.6px) 0% 0%)`,
+                        clipPath: `inset(0% ${Math.max(0, 100 - superBasePct)}% 0% 0%)`,
                       }}
                     />
                   ) : null}
@@ -309,7 +310,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--bonus"
                       style={{
-                        clipPath: `inset(0% calc(${Math.max(0, 100 - superTotalVisualPct)}% - 0.6px) 0% calc(${superBasePct}% - 0.6px))`,
+                        clipPath: `inset(0% ${Math.max(0, 100 - superTotalVisualPct)}% 0% ${superBasePct}%)`,
                       } as CSSProperties}
                     />
                   ) : null}
@@ -317,7 +318,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--rest"
                       style={{
-                        clipPath: `inset(0% 0% 0% calc(${superTotalVisualPct}% - 0.6px))`,
+                        clipPath: `inset(0% 0% 0% ${superTotalVisualPct}%)`,
                       }}
                     />
                   ) : null}
@@ -388,7 +389,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--main"
                       style={{
-                        clipPath: `inset(0% calc(${Math.max(0, 100 - hyperBasePct)}% - 0.6px) 0% 0%)`,
+                        clipPath: `inset(0% ${Math.max(0, 100 - hyperBasePct)}% 0% 0%)`,
                       }}
                     />
                   ) : null}
@@ -396,7 +397,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--bonus"
                       style={{
-                        clipPath: `inset(0% calc(${Math.max(0, 100 - hyperTotalVisualPct)}% - 0.6px) 0% calc(${hyperBasePct}% - 0.6px))`,
+                        clipPath: `inset(0% ${Math.max(0, 100 - hyperTotalVisualPct)}% 0% ${hyperBasePct}%)`,
                       } as CSSProperties}
                     />
                   ) : null}
@@ -404,7 +405,7 @@ export function XFactorTemplate({
                     <div
                       className="vs-xfactor-meter-layer vs-xfactor-meter-layer--rest"
                       style={{
-                        clipPath: `inset(0% 0% 0% calc(${hyperTotalVisualPct}% - 0.6px))`,
+                        clipPath: `inset(0% 0% 0% ${hyperTotalVisualPct}%)`,
                       }}
                     />
                   ) : null}

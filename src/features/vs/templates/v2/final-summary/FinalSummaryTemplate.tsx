@@ -79,7 +79,8 @@ export function FinalSummaryTemplate({
   
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'summary_header']) ||
-    getFightTemplateDefaultField('final-summary', 'panel_header', language) || 'PODSUMOWANIE KOŃCOWE'
+    getFightTemplateDefaultField('final-summary', 'panel_header', language) ||
+    (language === 'pl' ? 'Kto powinien wygrać?' : 'Who Should Win?')
 
   const fighterAFallback = getFightTemplateDefaultField('final-summary', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('final-summary', 'fighter_b_fallback', language)

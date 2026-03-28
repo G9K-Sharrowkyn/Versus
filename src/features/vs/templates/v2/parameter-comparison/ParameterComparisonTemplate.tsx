@@ -223,7 +223,7 @@ export function ParameterComparisonTemplate({
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'comparison_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
-    'PORÓWNANIE PARAMETRÓW'
+    (language === 'pl' ? 'Graf porównawczy' : 'Comparison Chart')
     
   const common = getFightCommonCopy('parameter-comparison', language)
   const averageShort = common.averageShort || 'Śr.'

@@ -867,45 +867,18 @@
 
 .vs-xfactor-meter-layer--bonus {
   z-index: 3;
-  background: #171d27;
-  overflow: hidden;
-}
-
-.vs-xfactor-meter-layer--bonus::before {
-  content: '';
-  position: absolute;
-  inset: 0;
   background-image:
     repeating-linear-gradient(
       135deg,
       var(--xf-color-light) 0px,
       var(--xf-color-light) 8px,
-      transparent 8px,
-      transparent 16px
+      #171d27 8px,
+      #171d27 16px
     );
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 2px,
-    #000 2px,
-    #000 calc(100% - 2px),
-    transparent calc(100% - 2px),
-    transparent 100%
-  );
-  mask-image: linear-gradient(
-    to bottom,
-    transparent 0,
-    transparent 2px,
-    #000 2px,
-    #000 calc(100% - 2px),
-    transparent calc(100% - 2px),
-    transparent 100%
-  );
-  animation: vs-xfactor-surface-flow 1.02s linear infinite;
-  will-change: background-position;
-  transform: translateZ(0);
-  backface-visibility: hidden;
-  pointer-events: none;
+}
+
+.vs-xfactor-meter-layer--bonus::before {
+  content: none;
 }
 
 .vs-xfactor-meter-layer--rest {
@@ -1005,7 +978,6 @@
   opacity: 0.94;
   filter: saturate(1.35) contrast(1.2);
 }
-
 
 
 
