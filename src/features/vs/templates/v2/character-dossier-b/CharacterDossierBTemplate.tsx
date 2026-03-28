@@ -16,7 +16,7 @@ type CharacterDossierBTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
-const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -63,7 +63,7 @@ export function CharacterDossierBTemplate({
 
   // ===========================================================================
   // --- CENTRUM STEROWANIA REFLEKSAMI (EDYTUJ TUTAJ) ---
-  // Format: "0 [Wysokość] [Rozmycie/Blur] [Kolor]"
+  // Format: "0 [WysokoÄąâ€şĂ„â€ˇ] [Rozmycie/Blur] [Kolor]"
   // ===========================================================================
   
   const REFLEKS_IMIENIA_POSTACI = "0 1em 0.28em rgba(119, 226, 242, 0.45)" 
@@ -209,7 +209,7 @@ export function CharacterDossierBTemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{cardTitle}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={subText} /></p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={(subText || '').replace(/\.\s*$/, '')} /></p>
       </div>
 
       <button
@@ -246,12 +246,12 @@ export function CharacterDossierBTemplate({
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: RED_LINIA, zIndex: 10 }}><GlitchText text={realityHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
 
-          {/* Imię Postaci */}
+          {/* ImiĂ„â„˘ Postaci */}
           <div ref={fighterNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
             <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterText}</h3>
           </div>
 
-          {/* Lista Faktów - stałe pozycje */}
+          {/* Lista FaktÄ‚Ĺ‚w - staÄąâ€še pozycje */}
           <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
             {cardFacts.map((fact, index) => (
               <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>

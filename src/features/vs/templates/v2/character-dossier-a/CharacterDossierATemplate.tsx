@@ -16,7 +16,7 @@ type CharacterDossierATemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
-const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -199,7 +199,7 @@ export function CharacterDossierATemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerTextStr}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={subText} /></p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={(subText || '').replace(/\.\s*$/, '')} /></p>
       </div>
 
       <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage} style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})`, right: '20px' } as any}>
@@ -236,12 +236,12 @@ export function CharacterDossierATemplate({
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label" data-marvin-id="NAGLOWK_PRAWY" data-marvin-file={CURRENT_FILE} style={{ color: RED_LINIA, zIndex: 10 }}><GlitchText text={realityHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           
-          {/* Imię Postaci */}
+          {/* ImiĂ„â„˘ Postaci */}
           <div ref={fighterNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
             <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1" data-marvin-id="REFLEKS_IMIENIA_POSTACI" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterText}</h3>
           </div>
 
-          {/* Lista Faktów - stałe pozycje */}
+          {/* Lista FaktÄ‚Ĺ‚w - staÄąâ€še pozycje */}
           <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
             {cardFacts.map((fact, index) => (
               <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
@@ -255,7 +255,7 @@ export function CharacterDossierATemplate({
             ))}
           </div>
 
-          {/* Cytat i Czerwona Linia - ŚREDNIO WYSOKO */}
+          {/* Cytat i Czerwona Linia - ÄąĹˇREDNIO WYSOKO */}
           <div style={{ marginTop: 'auto', position: 'relative', padding: 'calc(1.5rem + 250px) 0 0.5rem 0' }}>
             <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: '220px', left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
             <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', top: `calc(${POZYCJA_REFLEKSU_CZERWONEJ_LINII} + 0px)`, left: 0, filter: 'blur(2px)', opacity: 0.8 }} data-marvin-id="POZYCJA_REFLEKSU_CZERWONEJ_LINII" data-marvin-file={CURRENT_FILE} data-marvin-type="const" />

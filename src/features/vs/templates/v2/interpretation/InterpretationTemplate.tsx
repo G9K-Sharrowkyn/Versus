@@ -18,7 +18,7 @@ type InterpretationTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
-const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -210,7 +210,7 @@ export function InterpretationTemplate({
             <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{(subText || '').replace(/\.\s*$/, '')}</p>
       </div>
 
       <button
@@ -294,7 +294,7 @@ export function InterpretationTemplate({
           <div className={layout.BULLET_PANEL_CLASS as string} style={{ background: 'rgba(0,0,0,0.4)', padding: '1.5rem', borderLeft: `4px solid ${leaderColor}`, border: '1px solid rgba(148, 163, 184, 0.2)' }}>
             <ul className={tokens.INTERPRETATION_BULLET_LIST_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '1rem', listStyle: 'none', padding: 0, margin: 0 }}>
               <li style={{ display: 'flex', gap: '1rem' }}>
-                <span style={{ color: leaderColor }}>►</span>
+                <span style={{ color: leaderColor }}>Ă˘â€“Ĺź</span>
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-1`}
@@ -307,7 +307,7 @@ export function InterpretationTemplate({
                 />
               </li>
               <li style={{ display: 'flex', gap: '1rem' }}>
-                <span style={{ color: leaderColor }}>►</span>
+                <span style={{ color: leaderColor }}>Ă˘â€“Ĺź</span>
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-2`}
@@ -320,7 +320,7 @@ export function InterpretationTemplate({
                 />
               </li>
               <li style={{ display: 'flex', gap: '1rem' }}>
-                <span style={{ color: leaderColor }}>►</span>
+                <span style={{ color: leaderColor }}>Ă˘â€“Ĺź</span>
                 <FittedText
                   as="span"
                   slotKey={`${auditPrefix}:bullet-3`}

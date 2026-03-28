@@ -18,7 +18,7 @@ type MethodologyTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
-const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 const METHODOLOGY_ITEM_COUNT = 6
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
@@ -177,7 +177,7 @@ export function MethodologyTemplate({
             <div className="glow" style={{ fontSize: '4.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none' }}>{headerText}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{(subText || '').replace(/\.\s*$/, '')}</p>
       </div>
 
       <button
@@ -271,7 +271,7 @@ export function MethodologyTemplate({
                 className={layout.CLOSING_TEXT_CLASS as string}
                 style={{ color: '#38bdf8', fontFamily: 'var(--font-display)', fontSize: '2rem', marginBottom: '0.5rem' }}
               />
-              <p className={layout.CLOSING_SUBTEXT_CLASS as string} style={{ color: '#cbd5e1', fontSize: '1.1rem', fontStyle: 'italic' }}>{subText}</p>
+              <p className={layout.CLOSING_SUBTEXT_CLASS as string} style={{ color: '#cbd5e1', fontSize: '1.1rem', fontStyle: 'italic' }}>{(subText || '').replace(/\.\s*$/, '')}</p>
             </div>
           </div>
         </div>

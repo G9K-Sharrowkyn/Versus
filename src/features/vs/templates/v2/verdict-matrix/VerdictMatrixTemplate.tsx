@@ -3,13 +3,11 @@ import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, Fragment } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
-import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
-import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type VerdictMatrixTemplateProps = TemplatePreviewProps & {
@@ -55,8 +53,6 @@ export function VerdictMatrixTemplate({
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
-  const ui = getTemplateUi('verdict-matrix', language)
-  const slots = ui.slots as Record<string, TemplateSlotSpec>
 
   const headerText = title || 'MATRYCA WERDYKTU'
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
@@ -78,6 +74,32 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['row_1', 'row1']) || 'WALKA NA SMIERC',
     pickTemplateField(blockFields, ['row_2', 'row2']) || 'NOKAUT',
   ]
+  const stripTrailingDot = (value: string) => value.replace(/\.\s*$/, '').trim()
+  const cleanSubText = stripTrailingDot(subText || '')
+  const cleanBoardHeader = stripTrailingDot(boardHeader)
+  const cleanMatrixColumns = matrixColumns.map((label) => stripTrailingDot(label))
+  const cleanMatrixRows = matrixRows.map((label) => stripTrailingDot(label))
+  const matrixAxisBand = 'calc(36px * var(--tb-scale))'
+  const matrixAxisGap = '0.36rem'
+  const matrixAxisCellPadding = '0 0.3rem'
+  const matrixDossierLabelStyle = {
+    color: '#ff554e',
+    fontFamily: "'Chakra Petch', sans-serif",
+    fontSize: 'var(--tb-type-3)',
+    fontWeight: 700,
+    letterSpacing: '0.05em',
+    textTransform: 'uppercase' as const,
+    textAlign: 'center' as const,
+    lineHeight: 1,
+    margin: 0,
+  }
+  const matrixDossierDescriptionStyle = {
+    fontFamily: "'Chakra Petch', sans-serif",
+    fontSize: 'calc(var(--tb-type-2) * 0.8)',
+    fontWeight: 800,
+    lineHeight: 1,
+    textTransform: 'uppercase' as const,
+  }
 
   const resolveWinnerSide = (text: string) => {
     if (!text) return null
@@ -97,9 +119,6 @@ export function VerdictMatrixTemplate({
     pickTemplateField(blockFields, ['case_3', 'case3']) || plainLines[2],
     pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3],
   ]
-
-  const matchupText = `${fighterAName} VS ${fighterBName}`
-  const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
@@ -180,16 +199,7 @@ export function VerdictMatrixTemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
-        <div className="vs-tpl-matchup" style={{ textAlign: 'center', marginTop: '0.5rem', fontFamily: 'var(--font-display)', fontSize: '1.2rem', color: '#cbd5e1' }}>
-          {matchupMatch ? (
-            <>
-              <span className="vs-tpl-matchup-a" style={{ color: fighterA.color }}>{matchupMatch[1].trim()}</span>
-              <span className="vs-tpl-matchup-sep" style={{ margin: '0 0.5rem', opacity: 0.5 }}>{matchupMatch[2]}</span>
-              <span className="vs-tpl-matchup-b" style={{ color: fighterB.color }}>{matchupMatch[3].trim()}</span>
-            </>
-          ) : matchupText}
-        </div>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{cleanSubText}</p>
       </div>
 
       <button
@@ -210,24 +220,31 @@ export function VerdictMatrixTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
+      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+        <p
+          className="vs-tactical-board25-stats-title vs-panel-top-label vs-verdict-matrix-panel-title"
+          style={{ color: '#ff554e', '--tb-reflect-2-y': '0em', '--tb-reflect-2-blur': '0em' } as any}
+        >
+          <GlitchText text={cleanBoardHeader} />
+        </p>
         
-        <div className="vs-tpl-body" style={{ justifyContent: 'center', flex: 1, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '190px minmax(0, 1fr) minmax(0, 1fr)', gridTemplateRows: '68px minmax(0, 1fr) minmax(0, 1fr)', height: '100%', width: '100%', minHeight: 0, border: '2px solid #ff554e', background: 'rgba(0,0,0,0.25)' }}>
-            <div style={{ borderRight: '2px solid rgba(255,85,78,0.7)', borderBottom: '2px solid rgba(255,85,78,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: '#ffb7b1', fontFamily: 'var(--font-display)', letterSpacing: '0.07em', textTransform: 'uppercase', fontSize: '0.95rem' }}>
-              WARIANT
-            </div>
-            {matrixColumns.map((columnLabel, index) => (
-              <div key={`matrix-col-${index}`} style={{ borderBottom: '2px solid rgba(255,85,78,0.7)', borderLeft: index === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 0.6rem' }}>
-                <FittedText as="p" slotKey={`verdict-matrix:col-${index}`} spec={slots.verdictMatrixHeader} text={columnLabel} style={{ color: '#ff554e', fontSize: '1.16rem', fontWeight: 'bold', letterSpacing: '0.06em', textTransform: 'uppercase', textAlign: 'center' }} />
+        <div className="vs-verdict-matrix-body" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, gridTemplateRows: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, columnGap: matrixAxisGap, rowGap: matrixAxisGap, height: '100%', width: '100%', minHeight: 0, border: 'none', background: 'transparent' }}>
+            <div aria-hidden="true" />
+            {cleanMatrixColumns.map((columnLabel, index) => (
+              <div key={`matrix-col-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding }}>
+                <p style={{ ...matrixDossierLabelStyle, whiteSpace: 'nowrap' }}>
+                  <GlitchText text={columnLabel} />
+                </p>
               </div>
             ))}
 
-            {matrixRows.map((rowLabel, rowIndex) => (
+            {cleanMatrixRows.map((rowLabel, rowIndex) => (
               <Fragment key={`matrix-row-${rowIndex}`}>
-                <div style={{ borderTop: rowIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none', borderRight: '2px solid rgba(255,85,78,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 0.8rem' }}>
-                  <FittedText as="p" slotKey={`verdict-matrix:row-${rowIndex}`} spec={slots.verdictMatrixRowHeader} text={rowLabel} style={{ color: '#ffd7d4', fontSize: '1.05rem', textAlign: 'center', letterSpacing: '0.08em', textTransform: 'uppercase' }} />
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, overflow: 'hidden' }}>
+                  <p style={{ ...matrixDossierLabelStyle, writingMode: 'vertical-rl', transform: 'rotate(180deg)', whiteSpace: 'nowrap' }}>
+                    <GlitchText text={rowLabel} />
+                  </p>
                 </div>
                 {matrixColumns.map((_, columnIndex) => {
                   const cellIndex = rowIndex * 2 + columnIndex
@@ -243,8 +260,6 @@ export function VerdictMatrixTemplate({
                       style={{
                         position: 'relative',
                         overflow: 'hidden',
-                        borderLeft: columnIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none',
-                        borderTop: rowIndex === 1 ? '2px solid rgba(255,85,78,0.7)' : 'none',
                         background: 'rgba(10, 4, 4, 0.68)',
                       }}
                     >
@@ -258,7 +273,7 @@ export function VerdictMatrixTemplate({
                       ) : null}
                       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))' }} />
                       <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem' }}>
-                        <p style={{ color: winnerColor, fontFamily: 'var(--font-display)', fontSize: '1.15rem', fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', textShadow: '0 0 10px color-mix(in srgb, currentColor 40%, transparent)' }}>
+                        <p style={{ ...matrixDossierDescriptionStyle, color: winnerColor, letterSpacing: '0.05em', textShadow: '0 0 10px color-mix(in srgb, currentColor 40%, transparent)' }}>
                           {winnerName || common.emptyFieldLabel}
                         </p>
                       </div>

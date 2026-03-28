@@ -16,7 +16,7 @@ type ParameterComparisonTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
 }
 
-const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
+const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 
 const DOSSIER_PANEL_TEXT_BASE_STYLE: CSSProperties = {
   fontFamily: "'Chakra Petch', sans-serif",
@@ -223,10 +223,10 @@ export function ParameterComparisonTemplate({
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'comparison_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
-    (language === 'pl' ? 'Graf porównawczy' : 'Comparison Chart')
+    (language === 'pl' ? 'Graf porÄ‚Ĺ‚wnawczy' : 'Comparison Chart')
     
   const common = getFightCommonCopy('parameter-comparison', language)
-  const averageShort = common.averageShort || 'Śr.'
+  const averageShort = common.averageShort || 'ÄąĹˇr.'
   
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
@@ -266,7 +266,7 @@ export function ParameterComparisonTemplate({
   const favoriteBadgeText =
     isAverageDraw
       ? favoriteDrawLabel
-      : favoriteLabel || (language === 'pl' ? 'Faworyt według statystyk' : 'Stat-based favorite')
+      : favoriteLabel || (language === 'pl' ? 'Faworyt wedÄąâ€šug statystyk' : 'Stat-based favorite')
 
   const favoriteStampLeft =
     favoriteSide === 'a'
@@ -716,7 +716,7 @@ export function ParameterComparisonTemplate({
             <div className="glow" style={{ fontSize: '3.5vw', width: '100%', textAlign: 'center', pointerEvents: 'none', textShadow: 'none' }}>{headerText}</div>
           </div>
         </div>
-        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{subText}</p>
+        <p className="vs-tactical-board25-subtitle" style={{ color: '#77e2f2' }}>{(subText || '').replace(/\.\s*$/, '')}</p>
       </div>
 
       <button
