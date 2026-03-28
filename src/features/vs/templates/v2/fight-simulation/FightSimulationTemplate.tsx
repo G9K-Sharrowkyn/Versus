@@ -252,14 +252,6 @@ export function FightSimulationTemplate({
     maxLines: Math.max(slots.phaseEvent.maxLines, 4),
     fitMode: 'shrink',
   }
-  const slotPhaseBranch: TemplateSlotSpec = {
-    ...slots.phaseBranch,
-    baseFontPx: Math.max(slots.phaseBranch.baseFontPx, 26),
-    minFontPx: Math.max(slots.phaseBranch.minFontPx, 12),
-    lineHeight: 1.08,
-    maxLines: Math.max(slots.phaseBranch.maxLines, 3),
-    fitMode: 'shrink',
-  }
   const slotPhaseScenarioLabel: TemplateSlotSpec = {
     ...slots.phaseScenarioLabel,
     baseFontPx: Math.max(slots.phaseScenarioLabel.baseFontPx, 18),
@@ -293,10 +285,6 @@ export function FightSimulationTemplate({
     marginBottom: '0.5rem',
     flex: 1,
   }
-  const phaseBranchStyle: CSSProperties = {
-    ...phaseTextBaseStyle,
-  }
-
   const bdLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
   const bdFields = parseTemplateFieldMap(bdLines)
   const bdPrefix = activeIndex === 0 ? '' : `s${activeIndex + 1}_`
@@ -433,7 +421,13 @@ export function FightSimulationTemplate({
           </div>
 
           <div className={`${layout.PHASES_PANEL_CLASS as string} vs-fight-simulation-phases`} style={{ display: 'flex', gap: '0.65rem', flex: 1, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, minHeight: 0 }}>
-            {active.phases.map((phase, index) => (
+            {active.phases.map((phase, index) => {
+              const visiblePoints = Math.max(2, Math.min(index + 2, miniCurveA.points.length, miniCurveB.points.length))
+              const partialPointsA = miniCurveA.points.slice(0, visiblePoints)
+              const partialPointsB = miniCurveB.points.slice(0, visiblePoints)
+              const partialPolylineA = partialPointsA.map((pt) => `${pt.x},${pt.y}`).join(' ')
+              const partialPolylineB = partialPointsB.map((pt) => `${pt.x},${pt.y}`).join(' ')
+              return (
               <div
                 key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
                 className={`${layout.PHASE_CARD_CLASS as string} vs-fight-simulation-phase-card vs-fight-simulation-phase-card--${index === 0 ? 'a' : index === 1 ? 'mid' : 'b'}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
@@ -504,78 +498,38 @@ export function FightSimulationTemplate({
                   </div>
                 </div>
 
-                {phase.mode === 'bars' ? (
-                  <div className={`${layout.BARS_MODE_CLASS as string} vs-fight-simulation-bars-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <FittedText
-                      as="p"
-                      slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slotPhaseEvent}
-                      text={phase.event}
-                      className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
-                      style={phaseEventStyle}
-                    />
-                    <div className="vs-fight-simulation-bars-chart-wrap mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
-                      <svg viewBox="0 0 100 49" className="vs-fight-simulation-bars-chart w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
-                        {['10', '18', '26', '34'].map((y) => (
-                          <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
-                        ))}
-                        <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
-                        <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
-                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a-glow" points={miniCurveA.polyline} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
-                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a" points={miniCurveA.polyline} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
-                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b-glow" points={miniCurveB.polyline} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
-                        <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b" points={miniCurveB.polyline} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
-                        {miniCurveA.points.map((pt, i) => (
-                          <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--a" key={`a${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
-                        ))}
-                        {miniCurveB.points.map((pt, i) => (
-                          <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--b" key={`b${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
-                        ))}
-                      </svg>
-                    </div>
+                <div className={`${layout.BARS_MODE_CLASS as string} vs-fight-simulation-bars-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <FittedText
+                    as="p"
+                    slotKey={`fight-simulation:event:${activeIndex}:${index}`}
+                    spec={slotPhaseEvent}
+                    text={phase.event}
+                    className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
+                    style={phaseEventStyle}
+                  />
+                  <div className="vs-fight-simulation-bars-chart-wrap mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
+                    <svg viewBox="0 0 100 49" className="vs-fight-simulation-bars-chart w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
+                      {['10', '18', '26', '34'].map((y) => (
+                        <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
+                      ))}
+                      <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
+                      <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
+                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a-glow" points={partialPolylineA} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
+                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a" points={partialPolylineA} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
+                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b-glow" points={partialPolylineB} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
+                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b" points={partialPolylineB} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
+                      {partialPointsA.map((pt, i) => (
+                        <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--a" key={`a${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
+                      ))}
+                      {partialPointsB.map((pt, i) => (
+                        <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--b" key={`b${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
+                      ))}
+                    </svg>
                   </div>
-                ) : (
-                  <div className={`${layout.SPLIT_MODE_CLASS as string} vs-fight-simulation-split-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                    <FittedText
-                      as="p"
-                      slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                      spec={slotPhaseEvent}
-                      text={phase.event}
-                      className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
-                      style={phaseEventStyle}
-                    />
-                    <div className="vs-fight-simulation-split-wrap" style={{ position: 'relative', marginTop: 'auto', padding: '0.5rem 0.2rem 0.2rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
-                      <svg viewBox={layout.SPLIT_SVG_VIEWBOX || "0 0 200 80"} className={`${layout.SPLIT_SVG_CLASS as string} vs-fight-simulation-split-svg`} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', zIndex: 0 }}>
-                        <line x1={layout.SPLIT_LINE_TOP_X1 || "100"} y1={layout.SPLIT_LINE_TOP_Y1 || "0"} x2={layout.SPLIT_LINE_TOP_X2 || "100"} y2={layout.SPLIT_LINE_TOP_Y2 || "20"} stroke={layout.SPLIT_LINE_TOP_STROKE || "rgba(255,255,255,0.2)"} strokeWidth={layout.SPLIT_LINE_TOP_WIDTH || "2"} />
-                        <line x1={layout.SPLIT_BRANCH_A_X1 || "100"} y1={layout.SPLIT_BRANCH_A_Y1 || "20"} x2={layout.SPLIT_BRANCH_A_X2 || "50"} y2={layout.SPLIT_BRANCH_A_Y2 || "80"} stroke={layout.SPLIT_BRANCH_A_STROKE || "rgba(56,189,248,0.5)"} strokeWidth={layout.SPLIT_BRANCH_A_WIDTH || "2"} />
-                        <line x1={layout.SPLIT_BRANCH_B_X1 || "100"} y1={layout.SPLIT_BRANCH_B_Y1 || "20"} x2={layout.SPLIT_BRANCH_B_X2 || "150"} y2={layout.SPLIT_BRANCH_B_Y2 || "80"} stroke={layout.SPLIT_BRANCH_B_STROKE || "rgba(244,63,94,0.5)"} strokeWidth={layout.SPLIT_BRANCH_B_WIDTH || "2"} />
-                        <circle cx={layout.SPLIT_NODE_CX || "100"} cy={layout.SPLIT_NODE_CY || "20"} r={layout.SPLIT_NODE_R || "4"} fill={layout.SPLIT_NODE_FILL || "#fff"} />
-                      </svg>
-                      <div className={`${layout.BRANCH_GRID_CLASS as string} vs-fight-simulation-branch-grid`} style={{ position: 'relative', zIndex: 1, display: 'flex', justifyContent: 'space-between', marginTop: '2rem' }}>
-                        <div className="vs-fight-simulation-branch vs-fight-simulation-branch--a" style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', textAlign: 'center' }}>
-                          <FittedText
-                            as="p"
-                            slotKey={`fight-simulation:branch-a:${activeIndex}:${index}`}
-                            spec={slotPhaseBranch}
-                            text={phase.branchA}
-                            style={phaseBranchStyle}
-                          />
-                        </div>
-                        <div className="vs-fight-simulation-branch vs-fight-simulation-branch--b" style={{ width: '40%', padding: '0.25rem', border: 'none', background: 'transparent', textAlign: 'center' }}>
-                          <FittedText
-                            as="p"
-                            slotKey={`fight-simulation:branch-b:${activeIndex}:${index}`}
-                            spec={slotPhaseBranch}
-                            text={phase.branchB}
-                            style={phaseBranchStyle}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )}
+                </div>
               </div>
-            ))}
+              )
+            })}
           </div>
 
           <div className={`${layout.END_CONDITION_CLASS as string} vs-fight-simulation-end`} style={{ marginTop: '0.55rem', padding: '0.55rem 0.4rem 0.2rem', border: 'none', background: 'transparent', textAlign: 'center', color: '#cffafe', fontStyle: 'italic' }}>

@@ -80,9 +80,26 @@ export function BattleDynamicsTemplate({
     pickTemplateField(blockFields, ['panel_header', 'dynamics_header']) ||
     getFightTemplateDefaultField('battle-dynamics', 'panel_header', language) || "DYNAMIKA WALKI"
 
-  const defaultACurve = [78, 64, 50, 32, 20]
-  const defaultBCurve = [35, 35, 35, 35, 35]
+  const CURVE_POINT_COUNT = 4
+  const defaultACurve = [78, 64, 50, 32]
+  const defaultBCurve = [35, 35, 35, 35]
   const defaultYellow = [34, 36, 33, 35, 34, 36, 33, 35]
+  const normalizeCurvePointCount = (values: number[], fallback: number[]) => {
+    if (values.length > CURVE_POINT_COUNT) {
+      const maxIndex = values.length - 1
+      return Array.from({ length: CURVE_POINT_COUNT }, (_, i) => {
+        const sampleIndex = Math.round((i * maxIndex) / (CURVE_POINT_COUNT - 1))
+        return values[sampleIndex]!
+      })
+    }
+    const sliced = values.slice(0, CURVE_POINT_COUNT)
+    if (sliced.length === CURVE_POINT_COUNT) return sliced
+    const padValue = sliced.length ? sliced[sliced.length - 1]! : (fallback[fallback.length - 1] ?? 50)
+    while (sliced.length < CURVE_POINT_COUNT) sliced.push(padValue)
+    return sliced
+  }
+  const parseScenarioCurve = (raw: string, fallback: number[]) =>
+    normalizeCurvePointCount(parseCurveValues(raw, fallback), fallback)
 
   const basePhase1 = line(0, ['phase_1', 'phase1'])
   const basePhase2 = line(1, ['phase_2', 'phase2'])
@@ -91,8 +108,8 @@ export function BattleDynamicsTemplate({
 
   const scenario1: ScenarioData = {
     label: pickTemplateField(blockFields, ['s1_label']) || '',
-    aCurveValues: parseCurveValues(pickTemplateField(blockFields, ['a_curve', 'curve_a', 'blue_curve', 'left_curve']), defaultACurve),
-    bCurveValues: parseCurveValues(pickTemplateField(blockFields, ['b_curve', 'curve_b', 'red_curve', 'right_curve']), defaultBCurve),
+    aCurveValues: parseScenarioCurve(pickTemplateField(blockFields, ['a_curve', 'curve_a', 'blue_curve', 'left_curve']), defaultACurve),
+    bCurveValues: parseScenarioCurve(pickTemplateField(blockFields, ['b_curve', 'curve_b', 'red_curve', 'right_curve']), defaultBCurve),
     yellowWaveValues: parseCurveValues(pickTemplateField(blockFields, ['yellow_wave', 'wave', 'chaos_wave']), defaultYellow),
     phase1: basePhase1,
     phase2: basePhase2,
@@ -107,8 +124,8 @@ export function BattleDynamicsTemplate({
     if (!aCurveRaw && !label) return null
     return {
       label,
-      aCurveValues: parseCurveValues(aCurveRaw, defaultACurve),
-      bCurveValues: parseCurveValues(pickTemplateField(blockFields, [`${p}b_curve`]), defaultBCurve),
+      aCurveValues: parseScenarioCurve(aCurveRaw, defaultACurve),
+      bCurveValues: parseScenarioCurve(pickTemplateField(blockFields, [`${p}b_curve`]), defaultBCurve),
       yellowWaveValues: parseCurveValues(pickTemplateField(blockFields, [`${p}yellow_wave`]), defaultYellow),
       phase1: pickTemplateField(blockFields, [`${p}phase_1`]) || basePhase1,
       phase2: pickTemplateField(blockFields, [`${p}phase_2`]) || basePhase2,
