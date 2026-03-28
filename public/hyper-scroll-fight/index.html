@@ -404,6 +404,7 @@
     const FIGHTER_A = (params.get('a') || 'FIGHTER A').toUpperCase();
     const FIGHTER_B = (params.get('b') || 'FIGHTER B').toUpperCase();
     const FOLDER    = params.get('folder') || '';
+    const FLOW_MODE = params.get('flow') === 'reverse' ? 'reverse' : 'forward';
 
     // --- CONFIGURATION ---
     const CONFIG = {
@@ -634,6 +635,7 @@
     const items    = [];
     let rafHandle = 0;
     let reverseSequenceRunning = false;
+    let reverseAutoStartTimeout = 0;
 
     const attachCardImage = (imageEl, sources) => {
       if (!imageEl || !sources.length) return;
@@ -661,6 +663,10 @@
     const runReverseExitSequence = async () => {
       if (reverseSequenceRunning) return;
       reverseSequenceRunning = true;
+      if (reverseAutoStartTimeout) {
+        clearTimeout(reverseAutoStartTimeout);
+        reverseAutoStartTimeout = 0;
+      }
       if (rafHandle) {
         cancelAnimationFrame(rafHandle);
         rafHandle = 0;
@@ -857,6 +863,10 @@
       const payload = event.data;
       if (!payload || typeof payload !== 'object') return;
       if (payload.type === 'vvv-aaa-play-reverse-explosion') {
+        if (reverseAutoStartTimeout) {
+          clearTimeout(reverseAutoStartTimeout);
+          reverseAutoStartTimeout = 0;
+        }
         void runReverseExitSequence();
       }
     });
@@ -981,10 +991,17 @@
       rafHandle = requestAnimationFrame(raf);
     }
     postToParent({ type: 'vvv-aaa-ready' });
-    init().then(() => {
-      if (reverseSequenceRunning) return;
-      rafHandle = requestAnimationFrame(raf);
-    });
+    if (FLOW_MODE === 'reverse') {
+      reverseAutoStartTimeout = window.setTimeout(() => {
+        reverseAutoStartTimeout = 0;
+        void runReverseExitSequence();
+      }, 700);
+    } else {
+      init().then(() => {
+        if (reverseSequenceRunning) return;
+        rafHandle = requestAnimationFrame(raf);
+      });
+    }
   })();
   </script>
 </body>

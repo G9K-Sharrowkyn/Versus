@@ -170,6 +170,8 @@ function App() {
   const globalPreloadPromiseRef = useRef<Promise<void> | null>(null)
   const globalPreloadAbortRef = useRef<AbortController | null>(null)
   const pendingSearchStageJumpRef = useRef<number | null>(null)
+  const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
+  const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
   const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
   const [pendingLocaleSwitch, setPendingLocaleSwitch] = useState<Language | null>(null)
@@ -206,6 +208,7 @@ function App() {
     introFrameRef,
     clearSearchTransitionQueue,
     clearFinalTemplateAutoReturnTimeout,
+    scheduleFinalTemplateAutoReturn,
     openFightImmediately,
     goBackToLibrary,
     showSearchImmediately,
@@ -234,6 +237,11 @@ function App() {
     templateCursorRef.current = templateCursor
     languageRef.current = language
   }, [activeFightId, activeTemplate, language, templateCursor])
+
+  useLayoutEffect(() => {
+    clearFinalTemplateAutoReturnTimeoutFnRef.current = clearFinalTemplateAutoReturnTimeout
+    scheduleFinalTemplateAutoReturnFnRef.current = scheduleFinalTemplateAutoReturn
+  }, [clearFinalTemplateAutoReturnTimeout, scheduleFinalTemplateAutoReturn])
 
   useAnimatedCursor({ searchFrameRef, introFrameRef })
 
@@ -824,6 +832,21 @@ function App() {
     pendingPaintPerfRef.current = null
   }, [activeFightId, language, previewReady, viewMode])
 
+  useEffect(() => {
+    clearFinalTemplateAutoReturnTimeoutFnRef.current()
+    if (viewMode !== 'fight' || !fightViewVisible) return
+    if (activeTemplate !== 'fight-card') return
+    if (portraitEditor) return
+
+    scheduleFinalTemplateAutoReturnFnRef.current(10_000)
+    return () => clearFinalTemplateAutoReturnTimeoutFnRef.current()
+  }, [
+    activeTemplate,
+    fightViewVisible,
+    portraitEditor,
+    viewMode,
+  ])
+
   const currentFightLabel =
     stripFileExtension(importFileName) ||
     `${fighterA.name || tr('Postać A', 'Fighter A')} vs ${fighterB.name || tr('Postać B', 'Fighter B')}`
@@ -1093,7 +1116,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?v=15&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=16&flow=${encodeURIComponent(introFlowMode)}&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}

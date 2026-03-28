@@ -80,6 +80,16 @@ export function useVsTransitions({
     }
   }
 
+  const scheduleFinalTemplateAutoReturn = (delayMs = 10_000) => {
+    clearFinalTemplateAutoReturnTimeout()
+    finalTemplateAutoReturnTimeoutRef.current = window.setTimeout(() => {
+      finalTemplateAutoReturnTimeoutRef.current = null
+      if (returnTransitioningRef.current || searchTransitioningRef.current) return
+      if (viewMode !== 'fight') return
+      startFightReturnTransition()
+    }, delayMs)
+  }
+
   const clearSearchTransitionQueue = () => {
     for (const timeoutId of searchTransitionTimeoutsRef.current) {
       window.clearTimeout(timeoutId)
@@ -494,6 +504,7 @@ export function useVsTransitions({
     introFrameRef,
     clearSearchTransitionQueue,
     clearFinalTemplateAutoReturnTimeout,
+    scheduleFinalTemplateAutoReturn,
     clearReturnTransitionQueue,
     clearFightViewRevealTimeout,
     openFightImmediately,
