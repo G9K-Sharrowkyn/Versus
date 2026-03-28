@@ -816,12 +816,231 @@
   }
 }
 
+@keyframes vs-xfactor-edge-surge {
+  0%, 100% {
+    opacity: 0.62;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes vs-xfactor-burst-core {
+  0% {
+    transform: translate(10%, -50%) scale(0.32);
+    opacity: 0;
+  }
+  20% {
+    transform: translate(10%, -50%) scale(1.18);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(10%, -50%) scale(0.84);
+    opacity: 0.36;
+  }
+}
+
+@keyframes vs-xfactor-burst-ray {
+  0% {
+    opacity: 0;
+    transform: scaleX(0.18);
+  }
+  25% {
+    opacity: 1;
+    transform: scaleX(1.15);
+  }
+  100% {
+    opacity: 0.25;
+    transform: scaleX(0.72);
+  }
+}
+
+@keyframes vs-xfactor-burst-spark {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.2);
+  }
+  18% {
+    opacity: 1;
+    transform: translate(calc(var(--spark-x) * 0.36), calc(var(--spark-y) * 0.36)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(var(--spark-x), var(--spark-y)) scale(0.25);
+  }
+}
+
 .vs-xfactor-meter-track {
   position: relative;
   overflow: hidden !important;
   isolation: isolate;
   --xf-color-light: #38bdf8;
   --xf-color-dark: color-mix(in srgb, var(--xf-color-light) 48%, #0c1420 52%);
+}
+
+.vs-xfactor-meter-track--overcharge {
+  --xf-edge-inset: 1px;
+  overflow: hidden !important;
+}
+
+.vs-xfactor-meter-track--overcharge::after {
+  content: '';
+  position: absolute;
+  top: var(--xf-edge-inset);
+  right: calc(var(--xf-edge-inset) - 3px);
+  width: 16px;
+  height: calc(100% - 2px);
+  pointer-events: none;
+  z-index: 7;
+  background:
+    linear-gradient(
+      to left,
+      color-mix(in srgb, var(--xf-color-light) 82%, #dffbff 18%) 0%,
+      color-mix(in srgb, var(--xf-color-light) 58%, transparent) 48%,
+      transparent 100%
+    );
+  box-shadow:
+    inset 0 0 10px color-mix(in srgb, var(--xf-color-light) 62%, transparent),
+    0 0 12px color-mix(in srgb, var(--xf-color-light) 66%, transparent);
+  mix-blend-mode: screen;
+  animation: vs-xfactor-edge-surge 0.22s steps(2, end) infinite;
+}
+
+.vs-xfactor-edge-burst {
+  position: absolute;
+  top: 1px;
+  right: calc(var(--xf-edge-inset, 3px) - 8px);
+  width: 84px;
+  height: calc(100% - 2px);
+  transform: none;
+  pointer-events: none;
+  z-index: 10;
+  mix-blend-mode: screen;
+  overflow: hidden;
+}
+
+.vs-xfactor-edge-burst::before,
+.vs-xfactor-edge-burst::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  pointer-events: none;
+}
+
+.vs-xfactor-edge-burst::before {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  transform: translate(6%, -50%);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--xf-color-light) 72%, #ecfdff 28%) 0%,
+    color-mix(in srgb, var(--xf-color-light) 74%, transparent) 48%,
+    transparent 100%
+  );
+  filter: blur(1px);
+  animation: vs-xfactor-burst-core 0.42s ease-out infinite;
+}
+
+.vs-xfactor-edge-burst::after {
+  width: 52px;
+  height: 52px;
+  border-radius: 999px;
+  transform: translate(2px, -50%);
+  border: 1px solid color-mix(in srgb, var(--xf-color-light) 68%, transparent);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--xf-color-light) 48%, transparent);
+  opacity: 0.8;
+  animation: vs-xfactor-burst-core 0.64s ease-out infinite;
+}
+
+.vs-xfactor-edge-burst-ray {
+  --ray-top: 50%;
+  --ray-angle: 0deg;
+  position: absolute;
+  right: 0;
+  top: var(--ray-top);
+  width: 52px;
+  height: 2px;
+  border-radius: 999px;
+  transform-origin: right center;
+  transform: translateY(-50%) rotate(var(--ray-angle));
+  background: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--xf-color-light) 72%, #ffffff 28%) 0%,
+    color-mix(in srgb, var(--xf-color-light) 68%, transparent) 68%,
+    transparent 100%
+  );
+  box-shadow: 0 0 10px color-mix(in srgb, var(--xf-color-light) 58%, transparent);
+  animation: vs-xfactor-burst-ray 0.34s ease-out infinite;
+}
+
+.vs-xfactor-edge-burst-ray--1 {
+  --ray-top: 6%;
+  --ray-angle: -44deg;
+}
+
+.vs-xfactor-edge-burst-ray--2 {
+  --ray-top: 28%;
+  --ray-angle: -18deg;
+  animation-delay: 0.05s;
+}
+
+.vs-xfactor-edge-burst-ray--3 {
+  --ray-top: 72%;
+  --ray-angle: 22deg;
+  animation-delay: 0.09s;
+}
+
+.vs-xfactor-edge-burst-ray--4 {
+  --ray-top: 94%;
+  --ray-angle: 42deg;
+  animation-delay: 0.14s;
+}
+
+.vs-xfactor-edge-spark {
+  --spark-x: -18px;
+  --spark-y: -8px;
+  --spark-top: 50%;
+  position: absolute;
+  right: 0;
+  top: var(--spark-top);
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--xf-color-light) 84%, #ffffff 16%);
+  box-shadow:
+    0 0 7px color-mix(in srgb, var(--xf-color-light) 70%, transparent),
+    0 0 12px color-mix(in srgb, var(--xf-color-light) 46%, transparent);
+  animation: vs-xfactor-burst-spark 0.5s linear infinite;
+}
+
+.vs-xfactor-edge-spark--1 {
+  --spark-x: -24px;
+  --spark-y: -18px;
+  --spark-top: 8%;
+  animation-delay: 0.02s;
+}
+
+.vs-xfactor-edge-spark--2 {
+  --spark-x: -30px;
+  --spark-y: -10px;
+  --spark-top: 32%;
+  animation-delay: 0.12s;
+}
+
+.vs-xfactor-edge-spark--3 {
+  --spark-x: -26px;
+  --spark-y: 10px;
+  --spark-top: 68%;
+  animation-delay: 0.2s;
+}
+
+.vs-xfactor-edge-spark--4 {
+  --spark-x: -18px;
+  --spark-y: 18px;
+  --spark-top: 92%;
+  animation-delay: 0.27s;
 }
 
 .vs-xfactor-meter-layer {

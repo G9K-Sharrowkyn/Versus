@@ -306,7 +306,7 @@ export function XFactorTemplate({
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
                 <div
-                  className={`${layout.METER_TRACK_A_CLASS as string} vs-xfactor-meter-track`}
+                  className={`${layout.METER_TRACK_A_CLASS as string} vs-xfactor-meter-track${isSuperOvercharge ? ' vs-xfactor-meter-track--overcharge' : ''}`}
                   style={{
                     '--xf-color-light': fighterA.color,
                   } as CSSProperties}
@@ -335,6 +335,18 @@ export function XFactorTemplate({
                       }}
                     />
                   ) : null}
+                  {isSuperOvercharge && (
+                    <div className="vs-xfactor-edge-burst" aria-hidden="true">
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--1" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--2" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--3" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--4" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--1" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--2" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--3" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--4" />
+                    </div>
+                  )}
                   {isSuperOvercharge && renderOverchargeBolt(fighterA.color, superTotalVisualPct)}
                 </div>
                 <div
@@ -366,7 +378,7 @@ export function XFactorTemplate({
               />
               <div className={layout.METER_ROW_CLASS as string} style={{ marginTop: '0.24rem' }}>
                 <div
-                  className={`${layout.METER_TRACK_B_CLASS as string} vs-xfactor-meter-track`}
+                  className={`${layout.METER_TRACK_B_CLASS as string} vs-xfactor-meter-track${isHyperOvercharge ? ' vs-xfactor-meter-track--overcharge' : ''}`}
                   style={{
                     '--xf-color-light': fighterB.color,
                   } as CSSProperties}
@@ -395,6 +407,18 @@ export function XFactorTemplate({
                       }}
                     />
                   ) : null}
+                  {isHyperOvercharge && (
+                    <div className="vs-xfactor-edge-burst" aria-hidden="true">
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--1" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--2" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--3" />
+                      <span className="vs-xfactor-edge-burst-ray vs-xfactor-edge-burst-ray--4" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--1" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--2" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--3" />
+                      <span className="vs-xfactor-edge-spark vs-xfactor-edge-spark--4" />
+                    </div>
+                  )}
                   {isHyperOvercharge && renderOverchargeBolt(fighterB.color, hyperTotalVisualPct)}
                 </div>
                 <div
