@@ -1,6 +1,6 @@
 import './BattleDynamicsTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import { buildCurvePolyline, findTemplateBlockLines, getPlainTemplateLines, parseCurveValues, parseTemplateFieldMap, pickTemplateField, TEMPLATE_BLOCK_ALIASES } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
@@ -128,6 +128,26 @@ export function BattleDynamicsTemplate({
 
   const curveA = buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
   const curveB = buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
+  const BLUE_TEXT_COLOR = '#77e2f2'
+  const RED_LABEL_COLOR = '#ff554e'
+  const BLUE_TEXT_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
+  const RED_LABEL_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)'
+  const slotAnalysis: TemplateSlotSpec = {
+    ...slots.battleDynamicsAnalysis,
+    baseFontPx: Math.max(slots.battleDynamicsAnalysis.baseFontPx, 28),
+    minFontPx: Math.max(slots.battleDynamicsAnalysis.minFontPx, 15),
+    lineHeight: 1.1,
+    maxLines: Math.max(slots.battleDynamicsAnalysis.maxLines, 3),
+    fitMode: 'shrink',
+  }
+  const slotPhase: TemplateSlotSpec = {
+    ...slots.battleDynamicsPhase,
+    baseFontPx: Math.max(slots.battleDynamicsPhase.baseFontPx, 22),
+    minFontPx: Math.max(slots.battleDynamicsPhase.minFontPx, 13),
+    lineHeight: 1.14,
+    maxLines: Math.max(slots.battleDynamicsPhase.maxLines, 5),
+    fitMode: 'shrink',
+  }
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
@@ -218,7 +238,7 @@ export function BattleDynamicsTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as CSSProperties}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
@@ -230,16 +250,23 @@ export function BattleDynamicsTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
+      <section className="vs-tactical-board25-stats vs-battle-dynamics-panel" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
 
-        <div className={`${layout.CHART_PANEL_CLASS as string} flex-1 flex flex-col`} style={{ padding: '0.5rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+        <div className={`${layout.CHART_PANEL_CLASS as string} vs-battle-dynamics-chart-shell flex-1 flex flex-col`} style={{ padding: '0.2rem 0.5rem 0.5rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+          {active.label ? (
+            <div className="vs-battle-dynamics-scenario-top">
+              <p className="vs-battle-dynamics-scenario-top-text">
+                <GlitchText text={active.label} />
+              </p>
+            </div>
+          ) : null}
           <svg
             viewBox={layout.SVG_VIEWBOX as string}
-            className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')}${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
+            className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')} vs-battle-dynamics-chart${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
             onClick={scenarios.length > 1 ? nextScenario : undefined}
             preserveAspectRatio="xMidYMid meet"
-            style={{ width: '100%', height: 'auto' }}
+            style={{ width: '100%', height: 'auto', marginTop: '-0.58rem' }}
           >
             <defs>
               <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
@@ -257,92 +284,133 @@ export function BattleDynamicsTemplate({
             <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X2 as string} y2={layout.AXIS_Y_BOTTOM as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
             <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X1 as string} y2={layout.AXIS_Y_TOP as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
 
-            <text x={layout.START_LABEL_X as string} y={layout.LABEL_Y as string} fontSize={layout.LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string}>
-              {common.startLabel}
-            </text>
-            <text x={layout.MID_LABEL_X as string} y={layout.LABEL_Y as string} fontSize={layout.LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string}>
-              {common.fightTimeLabel}
-            </text>
-            <text x={layout.END_LABEL_X as string} y={layout.LABEL_Y as string} fontSize={layout.LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string}>
-              {common.endLabel}
-            </text>
-
-            <text x="7" y="24" fontSize={layout.ADVANTAGE_LABEL_FONT_SIZE as string} fill={layout.LABEL_FILL as string} fontWeight={layout.LABEL_WEIGHT as string}>
+            <text
+              x="7"
+              y="24"
+              fontSize={layout.ADVANTAGE_LABEL_FONT_SIZE as string}
+              fill={layout.LABEL_FILL as string}
+              fontWeight={layout.LABEL_WEIGHT as string}
+              transform={layout.ADVANTAGE_LABEL_TRANSFORM as string}
+            >
               {common.advantageStaminaLabel}
             </text>
 
             <line x1={layout.MIDLINE_X as string} y1={layout.GRID_Y1 as string} x2={layout.MIDLINE_X as string} y2={layout.GRID_Y2 as string} stroke={layout.MIDLINE_STROKE as string} strokeWidth={layout.MIDLINE_STROKE_WIDTH as string} strokeDasharray={layout.MIDLINE_DASHARRAY as string} />
-            <polyline points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} />
-            <polyline points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} />
-            <polyline points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} />
-            <polyline points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a-glow" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} />
             {curveB.points.map((point, index) => (
-              <circle key={`r-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_B_POINT_FILL as string} stroke={layout.CURVE_B_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
+              <circle className="vs-battle-dynamics-point vs-battle-dynamics-point--b" key={`r-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_B_POINT_FILL as string} stroke={layout.CURVE_B_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
             ))}
             {curveA.points.map((point, index) => (
-              <circle key={`b-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_A_POINT_FILL as string} stroke={layout.CURVE_A_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
+              <circle className="vs-battle-dynamics-point vs-battle-dynamics-point--a" key={`b-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_A_POINT_FILL as string} stroke={layout.CURVE_A_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
             ))}
           </svg>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-            <div className={layout.ANALYSIS_PANEL_CLASS as string} style={{ minHeight: '94px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0.5rem', border: 'none', background: 'transparent' }}>
-              <p className="mb-1 min-h-[1.25rem] text-center text-[13px] font-semibold uppercase tracking-[0.18em] text-cyan-200">
-                {scenarios.length > 1 && active.label ? active.label : ''}
-              </p>
-              <FittedText
-                as="p"
-                slotKey={`battle-dynamics:analysis:${activeIndex}`}
-                spec={slots.battleDynamicsAnalysis}
-                text={active.analysis}
-                className={layout.ANALYSIS_TEXT_CLASS as string}
-                style={{ textAlign: 'center', color: '#e2e8f0' }}
-              />
-              <div className="mt-1.5 h-[6px] flex justify-center gap-1.5" style={{ display: 'flex', justifyContent: 'center', gap: '6px', marginTop: '6px' }}>
-                {scenarios.length > 1 && scenarios.map((_, i) => (
-                  <div
-                    key={i}
-                    className={`h-1.5 rounded-full transition-all duration-200 ${i === activeIndex ? 'w-4 bg-cyan-300' : 'w-1.5 bg-slate-600'}`}
-                    style={{ height: '6px', borderRadius: '9999px', width: i === activeIndex ? '16px' : '6px', backgroundColor: i === activeIndex ? '#67e8f9' : '#475569' }}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className={layout.PHASE_GRID_CLASS as string} style={{ display: 'flex', gap: '0.5rem' }}>
-              <div className={layout.PHASE_CARD_A_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#38bdf8', marginBottom: '0.25rem' }}>{common.phase1Label}</p>
+          <div className="vs-battle-dynamics-phase-wrap" style={{ display: 'flex', flexDirection: 'column', gap: '0.28rem', marginTop: '-5rem' }}>
+            <div className={`${layout.PHASE_GRID_CLASS as string} vs-battle-dynamics-phase-grid`} style={{ display: 'flex', gap: '0.56rem' }}>
+              <div className={`${layout.PHASE_CARD_A_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--a`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
+                <div className="vs-battle-dynamics-phase-heading">
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase1Label} /></p>
+                  <div className="vs-battle-dynamics-phase-underline" />
+                </div>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-1:${activeIndex}`}
-                  spec={slots.battleDynamicsPhase}
+                  spec={slotPhase}
                   text={active.phase1}
-                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
+                  style={{
+                    color: BLUE_TEXT_COLOR,
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '0.01em',
+                    lineHeight: 1.14,
+                    textShadow: BLUE_TEXT_REFLECTION,
+                    overflow: 'visible',
+                    paddingInline: '0.06em',
+                  }}
                 />
               </div>
-              <div className={layout.PHASE_CARD_MID_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#94a3b8', marginBottom: '0.25rem' }}>{common.phase2Label}</p>
+              <div className={`${layout.PHASE_CARD_MID_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--mid`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
+                <div className="vs-battle-dynamics-phase-heading">
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase2Label} /></p>
+                  <div className="vs-battle-dynamics-phase-underline" />
+                </div>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-2:${activeIndex}`}
-                  spec={slots.battleDynamicsPhase}
+                  spec={slotPhase}
                   text={active.phase2}
-                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
+                  style={{
+                    color: BLUE_TEXT_COLOR,
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '0.01em',
+                    lineHeight: 1.14,
+                    textShadow: BLUE_TEXT_REFLECTION,
+                    overflow: 'visible',
+                    paddingInline: '0.06em',
+                  }}
                 />
               </div>
-              <div className={layout.PHASE_CARD_B_CLASS as string} style={{ flex: 1, padding: '0.5rem', border: 'none', background: 'transparent' }}>
-                <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontSize: '0.9rem', textTransform: 'uppercase', color: '#f87171', marginBottom: '0.25rem' }}>{common.phase3Label}</p>
+              <div className={`${layout.PHASE_CARD_B_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--b`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
+                <div className="vs-battle-dynamics-phase-heading">
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase3Label} /></p>
+                  <div className="vs-battle-dynamics-phase-underline" />
+                </div>
                 <FittedText
                   as="p"
                   slotKey={`battle-dynamics:phase-3:${activeIndex}`}
-                  spec={slots.battleDynamicsPhase}
+                  spec={slotPhase}
                   text={active.phase3}
-                  style={{ fontSize: '1.05rem', color: '#e2e8f0' }}
+                  style={{
+                    color: BLUE_TEXT_COLOR,
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 700,
+                    letterSpacing: '0.01em',
+                    lineHeight: 1.14,
+                    textShadow: BLUE_TEXT_REFLECTION,
+                    overflow: 'visible',
+                    paddingInline: '0.06em',
+                  }}
                 />
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      <div className="vs-battle-dynamics-analysis-outside">
+        <div className={`${layout.ANALYSIS_PANEL_CLASS as string} vs-battle-dynamics-analysis`} style={{ margin: 0, minHeight: '110px', display: 'flex', flexDirection: 'column', justifyContent: 'center', padding: '0.56rem 0.48rem 0.44rem', border: 'none', background: 'transparent' }}>
+          <FittedText
+            as="p"
+            slotKey={`battle-dynamics:analysis:${activeIndex}`}
+            spec={slotAnalysis}
+            text={active.analysis}
+            className={layout.ANALYSIS_TEXT_CLASS as string}
+            style={{
+              textAlign: 'center',
+              color: BLUE_TEXT_COLOR,
+              fontFamily: "'Chakra Petch', sans-serif",
+              fontWeight: 700,
+              letterSpacing: '0.01em',
+              lineHeight: 1.1,
+              textShadow: BLUE_TEXT_REFLECTION,
+              overflow: 'visible',
+              paddingInline: '0.08em',
+            }}
+          />
+          <div className="vs-battle-dynamics-indicators" style={{ display: 'flex', justifyContent: 'center', gap: '7px', marginTop: '7px' }}>
+            {scenarios.length > 1 && scenarios.map((_, i) => (
+              <div
+                key={i}
+                className={`vs-battle-dynamics-indicator${i === activeIndex ? ' is-active' : ''}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
 
     </div>
   )
