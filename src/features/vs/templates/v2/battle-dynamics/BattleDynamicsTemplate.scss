@@ -816,8 +816,22 @@
 }
 
 .vs-battle-dynamics-indicators {
+  display: flex;
   align-items: center;
   min-height: 0.52rem;
+}
+
+.vs-battle-dynamics-indicators--top-right {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  height: 1.5rem;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin: 0;
+  z-index: 5;
+  pointer-events: none;
 }
 
 .vs-battle-dynamics-indicator {
@@ -943,7 +957,5 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
-
 
 

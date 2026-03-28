@@ -267,6 +267,16 @@ export function BattleDynamicsTemplate({
               </p>
             </div>
           ) : null}
+          {scenarios.length > 1 ? (
+            <div className="vs-battle-dynamics-indicators vs-battle-dynamics-indicators--top-right">
+              {scenarios.map((_, i) => (
+                <div
+                  key={i}
+                  className={`vs-battle-dynamics-indicator${i === activeIndex ? ' is-active' : ''}`}
+                />
+              ))}
+            </div>
+          ) : null}
           <svg
             viewBox={layout.SVG_VIEWBOX as string}
             className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')} vs-battle-dynamics-chart${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
@@ -445,14 +455,6 @@ export function BattleDynamicsTemplate({
               paddingInline: '0.08em',
             }}
           />
-          <div className="vs-battle-dynamics-indicators" style={{ display: 'flex', justifyContent: 'center', gap: '7px', marginTop: '7px' }}>
-            {scenarios.length > 1 && scenarios.map((_, i) => (
-              <div
-                key={i}
-                className={`vs-battle-dynamics-indicator${i === activeIndex ? ' is-active' : ''}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
 
