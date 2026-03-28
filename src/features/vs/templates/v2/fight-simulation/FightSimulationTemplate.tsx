@@ -292,8 +292,35 @@ export function FightSimulationTemplate({
     ?? pickTemplateField(bdFields, ['a_curve', 'curve_a']) ?? ''
   const bdBCurveRaw = (bdPrefix ? pickTemplateField(bdFields, [`${bdPrefix}b_curve`]) : null)
     ?? pickTemplateField(bdFields, ['b_curve', 'curve_b']) ?? ''
-  const miniCurveA = buildCurvePolyline(parseCurveValues(bdACurveRaw, [78, 64, 50, 32, 20]), 5, 96, 8, 41)
-  const miniCurveB = buildCurvePolyline(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35, 35]), 5, 96, 8, 41)
+  const BD_CURVE_POINT_COUNT = 4
+  const normalizeBdCurvePointCount = (values: number[], fallback: number[]) => {
+    if (values.length > BD_CURVE_POINT_COUNT) {
+      const maxIndex = values.length - 1
+      return Array.from({ length: BD_CURVE_POINT_COUNT }, (_, i) => {
+        const sampleIndex = Math.round((i * maxIndex) / (BD_CURVE_POINT_COUNT - 1))
+        return values[sampleIndex]!
+      })
+    }
+    const sliced = values.slice(0, BD_CURVE_POINT_COUNT)
+    if (sliced.length === BD_CURVE_POINT_COUNT) return sliced
+    const padValue = sliced.length ? sliced[sliced.length - 1]! : (fallback[fallback.length - 1] ?? 50)
+    while (sliced.length < BD_CURVE_POINT_COUNT) sliced.push(padValue)
+    return sliced
+  }
+  const miniCurveA = buildCurvePolyline(
+    normalizeBdCurvePointCount(parseCurveValues(bdACurveRaw, [78, 64, 50, 32]), [78, 64, 50, 32]),
+    5,
+    96,
+    8,
+    41,
+  )
+  const miniCurveB = buildCurvePolyline(
+    normalizeBdCurvePointCount(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35]), [35, 35, 35, 35]),
+    5,
+    96,
+    8,
+    41,
+  )
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')

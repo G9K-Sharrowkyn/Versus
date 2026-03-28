@@ -76,7 +76,7 @@ export function BattleDynamicsTemplate({
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = subtitle
   
-  const boardHeader =
+  const boardHeaderDefault =
     pickTemplateField(blockFields, ['panel_header', 'dynamics_header']) ||
     getFightTemplateDefaultField('battle-dynamics', 'panel_header', language) || "DYNAMIKA WALKI"
 
@@ -142,6 +142,10 @@ export function BattleDynamicsTemplate({
   const scopeKey = `${activeFightId || 'draft'}:battle-dynamics`
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
+  const panelHeaderRaw = active.label || boardHeaderDefault
+  const panelHeader = panelHeaderRaw
+    .replace(/^\s*(?:FIGHT TO THE DEATH|WALKA NA ŚMIERĆ I ŻYCIE)\s*[·|/-]\s*/i, '')
+    .trim() || panelHeaderRaw
 
   const curveA = buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
   const curveB = buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
@@ -288,20 +292,13 @@ export function BattleDynamicsTemplate({
       </button>
 
       <section className="vs-tactical-board25-stats vs-battle-dynamics-panel" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)' }}>
-        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
+        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={panelHeader} /></p>
 
         <div className={`${layout.CHART_PANEL_CLASS as string} vs-battle-dynamics-chart-shell flex-1 flex flex-col`} style={{ padding: '0.2rem 0.5rem 0.5rem', position: 'relative', border: 'none', background: 'transparent', boxShadow: 'none' }}>
-          {active.label ? (
-            <div className="vs-battle-dynamics-scenario-top">
-              <p className="vs-battle-dynamics-scenario-top-text">
-                <GlitchText text={active.label} />
-              </p>
-            </div>
-          ) : null}
           {scenarios.length > 1 ? (
             <div className="vs-battle-dynamics-indicators vs-battle-dynamics-indicators--top-right">
               <p className="vs-battle-dynamics-indicators-ghost-label" aria-hidden="true">
-                {active.label}
+                {panelHeader}
               </p>
               <div className="vs-battle-dynamics-indicators-dots">
                 {scenarios.map((_, i) => (
@@ -318,7 +315,7 @@ export function BattleDynamicsTemplate({
             className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')} vs-battle-dynamics-chart${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
             onClick={scenarios.length > 1 ? nextScenario : undefined}
             preserveAspectRatio="xMidYMid meet"
-            style={{ width: '90%', height: 'auto', marginTop: '-0.58rem', marginInline: 'auto' }}
+            style={{ width: '90%', height: 'auto', marginTop: '-5rem', marginInline: 'auto' }}
           >
             <defs>
               <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
