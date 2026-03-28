@@ -80,7 +80,7 @@ export function VerdictMatrixTemplate({
   const cleanMatrixColumns = matrixColumns.map((label) => stripTrailingDot(label))
   const cleanMatrixRows = matrixRows.map((label) => stripTrailingDot(label))
   const matrixAxisBand = 'calc(36px * var(--tb-scale))'
-  const matrixAxisGap = '0.36rem'
+  const matrixAxisGap = '10px'
   const matrixAxisCellPadding = '0 0.3rem'
   const matrixDossierLabelStyle = {
     color: '#ff554e',
@@ -229,10 +229,10 @@ export function VerdictMatrixTemplate({
         </p>
         
         <div className="vs-verdict-matrix-body" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, gridTemplateRows: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, columnGap: matrixAxisGap, rowGap: matrixAxisGap, height: '100%', width: '100%', minHeight: 0, border: 'none', background: 'transparent' }}>
-            <div aria-hidden="true" />
+          <div style={{ display: 'grid', gridTemplateColumns: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, gridTemplateRows: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, columnGap: matrixAxisGap, rowGap: matrixAxisGap, height: '100%', width: '100%', minHeight: 0, border: 'none', background: 'rgba(255, 85, 78, 1)' }}>
+            <div aria-hidden="true" style={{ background: 'rgba(0, 0, 0, 0.82)' }} />
             {cleanMatrixColumns.map((columnLabel, index) => (
-              <div key={`matrix-col-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding }}>
+              <div key={`matrix-col-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, background: 'rgba(0, 0, 0, 0.82)' }}>
                 <p style={{ ...matrixDossierLabelStyle, whiteSpace: 'nowrap' }}>
                   <GlitchText text={columnLabel} />
                 </p>
@@ -241,7 +241,7 @@ export function VerdictMatrixTemplate({
 
             {cleanMatrixRows.map((rowLabel, rowIndex) => (
               <Fragment key={`matrix-row-${rowIndex}`}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, overflow: 'hidden' }}>
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, overflow: 'hidden', background: 'rgba(0, 0, 0, 0.82)' }}>
                   <p style={{ ...matrixDossierLabelStyle, writingMode: 'vertical-rl', transform: 'rotate(180deg)', whiteSpace: 'nowrap' }}>
                     <GlitchText text={rowLabel} />
                   </p>
@@ -268,11 +268,11 @@ export function VerdictMatrixTemplate({
                           src={winnerImage}
                           alt={winnerName}
                           draggable={false}
-                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'saturate(0.96) contrast(1.02) brightness(0.82)' }}
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'saturate(0.96) contrast(1.02) brightness(0.82)', zIndex: 2 }}
                         />
                       ) : null}
-                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))' }} />
-                      <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem' }}>
+                      <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))', zIndex: 1 }} />
+                      <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem', zIndex: 3 }}>
                         <p style={{ ...matrixDossierDescriptionStyle, color: winnerColor, letterSpacing: '0.05em', textShadow: '0 0 10px color-mix(in srgb, currentColor 40%, transparent)' }}>
                           {winnerName || common.emptyFieldLabel}
                         </p>
