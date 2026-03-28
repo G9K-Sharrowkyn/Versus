@@ -143,9 +143,15 @@ export function BattleDynamicsTemplate({
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
   const panelHeaderRaw = active.label || boardHeaderDefault
+  const panelSeparatorPattern = /\s*(?:\u00C2?\u00B7|,|\/|\|)\s*/g
   const panelHeader = panelHeaderRaw
-    .replace(/^\s*(?:FIGHT TO THE DEATH|WALKA NA ŚMIERĆ I ŻYCIE)\s*[·|/-]\s*/i, '')
-    .trim() || panelHeaderRaw
+    .replace(panelSeparatorPattern, ' - ')
+    .replace(/\s*-\s*/g, ' - ')
+    .trim()
+  const stripTrailingPhaseDot = (label: string) => label.replace(/\.\s*$/, '')
+  const phase1Label = stripTrailingPhaseDot(common.phase1Label)
+  const phase2Label = stripTrailingPhaseDot(common.phase2Label)
+  const phase3Label = stripTrailingPhaseDot(common.phase3Label)
 
   const curveA = buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
   const curveB = buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
@@ -399,7 +405,7 @@ export function BattleDynamicsTemplate({
             <div className={`${layout.PHASE_GRID_CLASS as string} vs-battle-dynamics-phase-grid`} style={{ display: 'flex', gap: '0.56rem' }}>
               <div className={`${layout.PHASE_CARD_A_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--a`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
                 <div className="vs-battle-dynamics-phase-heading">
-                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase1Label} /></p>
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={phase1Label} /></p>
                   <div className="vs-battle-dynamics-phase-underline" />
                 </div>
                 <FittedText
@@ -412,7 +418,7 @@ export function BattleDynamicsTemplate({
               </div>
               <div className={`${layout.PHASE_CARD_MID_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--mid`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
                 <div className="vs-battle-dynamics-phase-heading">
-                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase2Label} /></p>
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={phase2Label} /></p>
                   <div className="vs-battle-dynamics-phase-underline" />
                 </div>
                 <FittedText
@@ -425,7 +431,7 @@ export function BattleDynamicsTemplate({
               </div>
               <div className={`${layout.PHASE_CARD_B_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--b`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
                 <div className="vs-battle-dynamics-phase-heading">
-                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={common.phase3Label} /></p>
+                  <p className={layout.PHASE_LABEL_CLASS as string} style={{ fontFamily: "'Chakra Petch', sans-serif", fontSize: 'var(--tb-type-3)', textTransform: 'uppercase', color: RED_LABEL_COLOR, marginBottom: '0.24rem', textShadow: RED_LABEL_REFLECTION, letterSpacing: '0.05em', lineHeight: 1 }}><GlitchText text={phase3Label} /></p>
                   <div className="vs-battle-dynamics-phase-underline" />
                 </div>
                 <FittedText

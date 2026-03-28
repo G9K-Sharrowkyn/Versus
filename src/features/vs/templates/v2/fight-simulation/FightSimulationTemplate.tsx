@@ -232,21 +232,22 @@ export function FightSimulationTemplate({
   const scenarioFallbackLabels = language === 'pl'
     ? [
       'Standardowe zasady - Solar Flare',
-      'Standardowe zasady, bez Solar Flare',
+      'Standardowe zasady - bez Solar Flare',
       'Walka na smierc - Solar Flare',
-      'Walka na smierc, bez Solar Flare',
+      'Walka na smierc - bez Solar Flare',
     ]
     : [
       'Standard Rules - Solar Flare',
-      'Standard Rules, No Solar Flare',
+      'Standard Rules - No Solar Flare',
       'Fight to the Death - Solar Flare',
-      'Fight to the Death, No Solar Flare',
+      'Fight to the Death - No Solar Flare',
     ]
-    const panelHeaderRaw = active.label || scenarioFallbackLabels[activeIndex] || scenarioFallbackLabels[0]
-  const panelSeparatorPattern = /\s*(?:·|Â·)\s*/g
-  const panelHeader = /(?:no|bez)\s+solar\s+flare/i.test(panelHeaderRaw)
-    ? panelHeaderRaw.replace(panelSeparatorPattern, ', ')
-    : panelHeaderRaw.replace(panelSeparatorPattern, ' - ')
+  const panelHeaderRaw = active.label || scenarioFallbackLabels[activeIndex] || scenarioFallbackLabels[0]
+  const panelSeparatorPattern = /\s*(?:\u00C2?\u00B7|,|\/|\|)\s*/g
+  const panelHeader = panelHeaderRaw
+    .replace(panelSeparatorPattern, ' - ')
+    .replace(/\s*-\s*/g, ' - ')
+    .trim()
   const BLUE_TEXT_COLOR = '#77e2f2'
   const RED_LABEL_COLOR = '#ff554e'
   const BLUE_TEXT_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
@@ -444,6 +445,9 @@ export function FightSimulationTemplate({
           <div className="vs-fight-simulation-top-row">
             {scenarios.length > 1 && (
               <div className="vs-fight-simulation-scenario-controls">
+                <p className="vs-fight-simulation-indicators-ghost-label" aria-hidden="true">
+                  {panelHeader}
+                </p>
                 <div className="vs-fight-simulation-indicators">
                   {scenarios.map((_, i) => (
                     <div

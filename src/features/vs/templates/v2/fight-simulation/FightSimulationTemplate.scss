@@ -481,6 +481,21 @@
   overflow: visible;
 }
 
+.vs-fight-simulation-indicators-ghost-label {
+  margin: 0;
+  color: transparent;
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: var(--tb-type-3);
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  line-height: 1;
+  text-transform: uppercase;
+  visibility: hidden;
+  white-space: nowrap;
+  user-select: none;
+  pointer-events: none;
+}
+
 .vs-fight-simulation-scenario-label {
   margin: 0;
   color: #77e2f2;
@@ -956,6 +971,5 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
 
 
