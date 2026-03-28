@@ -134,19 +134,33 @@ export function BattleDynamicsTemplate({
   const RED_LABEL_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)'
   const slotAnalysis: TemplateSlotSpec = {
     ...slots.battleDynamicsAnalysis,
-    baseFontPx: Math.max(slots.battleDynamicsAnalysis.baseFontPx, 28),
-    minFontPx: Math.max(slots.battleDynamicsAnalysis.minFontPx, 15),
-    lineHeight: 1.1,
+    baseFontPx: Math.max(slots.battleDynamicsAnalysis.baseFontPx, 36),
+    minFontPx: Math.max(slots.battleDynamicsAnalysis.minFontPx, 19),
+    lineHeight: 1.08,
     maxLines: Math.max(slots.battleDynamicsAnalysis.maxLines, 3),
     fitMode: 'shrink',
   }
   const slotPhase: TemplateSlotSpec = {
     ...slots.battleDynamicsPhase,
-    baseFontPx: Math.max(slots.battleDynamicsPhase.baseFontPx, 22),
-    minFontPx: Math.max(slots.battleDynamicsPhase.minFontPx, 13),
-    lineHeight: 1.14,
+    baseFontPx: Math.max(slots.battleDynamicsPhase.baseFontPx, 32),
+    minFontPx: Math.max(slots.battleDynamicsPhase.minFontPx, 16),
+    lineHeight: 1.08,
     maxLines: Math.max(slots.battleDynamicsPhase.maxLines, 5),
     fitMode: 'shrink',
+  }
+  const phaseTextBaseStyle: CSSProperties = {
+    color: BLUE_TEXT_COLOR,
+    fontFamily: "'Chakra Petch', sans-serif",
+    fontWeight: 700,
+    letterSpacing: '0.01em',
+    textShadow: BLUE_TEXT_REFLECTION,
+    overflow: 'visible',
+    paddingInline: '0.06em',
+  }
+  const analysisTextStyle: CSSProperties = {
+    ...phaseTextBaseStyle,
+    textAlign: 'center',
+    paddingInline: '0.08em',
   }
   const basePointRadius = Number(layout.CURVE_POINT_R as string) || 0.56
   const pulsePointRadius = (basePointRadius * 1.45).toFixed(3)
@@ -282,7 +296,7 @@ export function BattleDynamicsTemplate({
             className={`${(layout.SVG_CLASS as string).replace('h-[300px]', 'h-[380px]')} vs-battle-dynamics-chart${scenarios.length > 1 ? ' cursor-pointer' : ''}`}
             onClick={scenarios.length > 1 ? nextScenario : undefined}
             preserveAspectRatio="xMidYMid meet"
-            style={{ width: '100%', height: 'auto', marginTop: '-0.58rem' }}
+            style={{ width: '90%', height: 'auto', marginTop: '-0.58rem', marginInline: 'auto' }}
           >
             <defs>
               <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
@@ -362,7 +376,7 @@ export function BattleDynamicsTemplate({
             ))}
           </svg>
 
-          <div className="vs-battle-dynamics-phase-wrap" style={{ display: 'flex', flexDirection: 'column', gap: '0.28rem', marginTop: '-5rem' }}>
+          <div className="vs-battle-dynamics-phase-wrap" style={{ display: 'flex', flexDirection: 'column', gap: '0.28rem', marginTop: '-6rem' }}>
             <div className={`${layout.PHASE_GRID_CLASS as string} vs-battle-dynamics-phase-grid`} style={{ display: 'flex', gap: '0.56rem' }}>
               <div className={`${layout.PHASE_CARD_A_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--a`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
                 <div className="vs-battle-dynamics-phase-heading">
@@ -374,16 +388,7 @@ export function BattleDynamicsTemplate({
                   slotKey={`battle-dynamics:phase-1:${activeIndex}`}
                   spec={slotPhase}
                   text={active.phase1}
-                  style={{
-                    color: BLUE_TEXT_COLOR,
-                    fontFamily: "'Chakra Petch', sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: '0.01em',
-                    lineHeight: 1.14,
-                    textShadow: BLUE_TEXT_REFLECTION,
-                    overflow: 'visible',
-                    paddingInline: '0.06em',
-                  }}
+                  style={phaseTextBaseStyle}
                 />
               </div>
               <div className={`${layout.PHASE_CARD_MID_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--mid`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
@@ -396,16 +401,7 @@ export function BattleDynamicsTemplate({
                   slotKey={`battle-dynamics:phase-2:${activeIndex}`}
                   spec={slotPhase}
                   text={active.phase2}
-                  style={{
-                    color: BLUE_TEXT_COLOR,
-                    fontFamily: "'Chakra Petch', sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: '0.01em',
-                    lineHeight: 1.14,
-                    textShadow: BLUE_TEXT_REFLECTION,
-                    overflow: 'visible',
-                    paddingInline: '0.06em',
-                  }}
+                  style={phaseTextBaseStyle}
                 />
               </div>
               <div className={`${layout.PHASE_CARD_B_CLASS as string} vs-battle-dynamics-phase-card vs-battle-dynamics-phase-card--b`} style={{ flex: 1, padding: '0.5rem 0.46rem 0.42rem', border: 'none', background: 'transparent' }}>
@@ -418,16 +414,7 @@ export function BattleDynamicsTemplate({
                   slotKey={`battle-dynamics:phase-3:${activeIndex}`}
                   spec={slotPhase}
                   text={active.phase3}
-                  style={{
-                    color: BLUE_TEXT_COLOR,
-                    fontFamily: "'Chakra Petch', sans-serif",
-                    fontWeight: 700,
-                    letterSpacing: '0.01em',
-                    lineHeight: 1.14,
-                    textShadow: BLUE_TEXT_REFLECTION,
-                    overflow: 'visible',
-                    paddingInline: '0.06em',
-                  }}
+                  style={phaseTextBaseStyle}
                 />
               </div>
             </div>
@@ -443,17 +430,7 @@ export function BattleDynamicsTemplate({
             spec={slotAnalysis}
             text={active.analysis}
             className={layout.ANALYSIS_TEXT_CLASS as string}
-            style={{
-              textAlign: 'center',
-              color: BLUE_TEXT_COLOR,
-              fontFamily: "'Chakra Petch', sans-serif",
-              fontWeight: 700,
-              letterSpacing: '0.01em',
-              lineHeight: 1.1,
-              textShadow: BLUE_TEXT_REFLECTION,
-              overflow: 'visible',
-              paddingInline: '0.08em',
-            }}
+            style={analysisTextStyle}
           />
         </div>
       </div>

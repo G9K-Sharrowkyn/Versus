@@ -800,7 +800,7 @@
 .vs-battle-dynamics-analysis-outside {
   position: absolute;
   left: var(--tb-stats-left);
-  top: calc(var(--tb-panel-top) + var(--tb-panel-height) + calc(-31px * var(--tb-scale)));
+  top: calc(var(--tb-panel-top) + var(--tb-panel-height) + calc(-60px * var(--tb-scale)));
   width: calc(var(--tb-panel-width) * 2 + var(--tb-center-gap));
   z-index: 2;
   pointer-events: none;
@@ -957,5 +957,4 @@
   -webkit-mask-repeat: no-repeat;
   mask-repeat: no-repeat;
 }
-
 
