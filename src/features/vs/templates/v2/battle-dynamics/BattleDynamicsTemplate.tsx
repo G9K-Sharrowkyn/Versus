@@ -284,22 +284,10 @@ export function BattleDynamicsTemplate({
             <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X2 as string} y2={layout.AXIS_Y_BOTTOM as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
             <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X1 as string} y2={layout.AXIS_Y_TOP as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
 
-            <text
-              x="7"
-              y="24"
-              fontSize={layout.ADVANTAGE_LABEL_FONT_SIZE as string}
-              fill={layout.LABEL_FILL as string}
-              fontWeight={layout.LABEL_WEIGHT as string}
-              transform={layout.ADVANTAGE_LABEL_TRANSFORM as string}
-            >
-              {common.advantageStaminaLabel}
-            </text>
-
-            <line x1={layout.MIDLINE_X as string} y1={layout.GRID_Y1 as string} x2={layout.MIDLINE_X as string} y2={layout.GRID_Y2 as string} stroke={layout.MIDLINE_STROKE as string} strokeWidth={layout.MIDLINE_STROKE_WIDTH as string} strokeDasharray={layout.MIDLINE_DASHARRAY as string} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a-glow" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a-glow" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} pathLength={100} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} pathLength={100} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} pathLength={100} />
+            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} pathLength={100} />
             {curveB.points.map((point, index) => (
               <circle className="vs-battle-dynamics-point vs-battle-dynamics-point--b" key={`r-${index}-${point.x}`} cx={point.x} cy={point.y} r={layout.CURVE_POINT_R as string} fill={layout.CURVE_B_POINT_FILL as string} stroke={layout.CURVE_B_POINT_STROKE as string} strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string} />
             ))}
