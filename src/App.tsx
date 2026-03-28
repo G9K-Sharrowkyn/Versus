@@ -88,7 +88,7 @@ const INTRO_MOUNT_AT_MS = 0
 const INTRO_REVEAL_AT_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_MS - 220
 const FIGHTS_SCAN_POLL_MS = 1200
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
-const REVERSE_EXPLOSION_WATCHDOG_MS = 5000
+const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
 
@@ -203,6 +203,7 @@ function App() {
     searchMorphDirection,
     reverseStage,
     introFlowMode,
+    searchFlowMode,
     searchMorphHandoff,
     searchFrameRef,
     introFrameRef,
@@ -212,6 +213,7 @@ function App() {
     openFightImmediately,
     goBackToLibrary,
     showSearchImmediately,
+    handleSearchFrameLoad: handleSearchFrameTransitionLoad,
     handleIntroFrameLoad,
   } = useVsTransitions({
     fights,
@@ -1045,6 +1047,8 @@ function App() {
   }, [openFightByShortcutKey])
 
   const handleSearchFrameLoad = useCallback(() => {
+    handleSearchFrameTransitionLoad()
+
     const stage = pendingSearchStageJumpRef.current
     if (!stage) return
 
@@ -1056,7 +1060,7 @@ function App() {
       window.location.origin,
     )
     pendingSearchStageJumpRef.current = null
-  }, [searchFrameRef])
+  }, [handleSearchFrameTransitionLoad, searchFrameRef])
 
   return (
     <main
@@ -1098,7 +1102,7 @@ function App() {
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
-              src="/search/1.html?v=32"
+              src={`/search/1.html?v=34&flow=${encodeURIComponent(searchFlowMode)}`}
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
               onLoad={handleSearchFrameLoad}
@@ -1116,7 +1120,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?v=16&flow=${encodeURIComponent(introFlowMode)}&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=17&flow=${encodeURIComponent(introFlowMode)}&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}

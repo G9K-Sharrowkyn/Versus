@@ -670,6 +670,12 @@
   // ── helpers ──────────────────────────────────────────────────────────────────
   const $ = id => document.getElementById(id);
   const delay = ms => new Promise(r => setTimeout(r, ms));
+  const searchParams = new URLSearchParams(window.location.search);
+  const SEARCH_FLOW_MODE = searchParams.get('flow') === 'reverse' ? 'reverse' : 'forward';
+
+  if (SEARCH_FLOW_MODE === 'reverse') {
+    $('s1')?.classList.add('off');
+  }
 
   const showStage = n => {
     for (let i = 1; i <= 6; i++) {
@@ -1040,7 +1046,10 @@
   };
 
   const primeCollapsed = () => {
-    if (!searchActive) return;
+    if (!searchActive) {
+      const token = nextStageRunToken();
+      runSearchStage(token);
+    }
     collapseStarted = true;
     clearCollapseTimers(); clearSearchSubmitResetTimer(); clearRAFs();
     searchEl.classList.remove('submitting');
@@ -1144,11 +1153,6 @@
   });
   inputEl?.addEventListener('dragstart', e => e.preventDefault());
 
-  const focusInput = () => {
-    if (!inputEl || document.body.classList.contains('search-collapsing')) return;
-    inputEl.focus({ preventScroll:true });
-  };
-
   const notifyReady = () => post({ type:'vvv-search-ready' });
 
   const activateSearch = () => {
@@ -1160,7 +1164,6 @@
       inputEl.autocomplete = 'off';
       inputEl.value = '';
       updateSearchDisplay('');
-      setTimeout(focusInput, 80);
     }
   };
 
@@ -1385,12 +1388,25 @@
   }
 
   // ── BOOT ──────────────────────────────────────────────────────────────────────
-  window.addEventListener('load', () => {
+  const boot = () => {
     applySearchStageDevLayout(readSearchStageDevLayout() || { wrapY: -1, headingY: -76, labelTopRem: -5.05 });
-    showStage(1);
     // Relay pointer events od razu — iframe zajmuje cały ekran podczas intro
     disposeRelay = bindPointerRelay();
-  });
+
+    if (SEARCH_FLOW_MODE === 'reverse') {
+      const token = nextStageRunToken();
+      clearStageArtifacts();
+      runSearchStage(token);
+      return;
+    }
+
+    showStage(1);
+  };
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot, { once: true });
+  } else {
+    boot();
+  }
   window.addEventListener('beforeunload', () => { disposeRelay(); });
 })();
 </script>

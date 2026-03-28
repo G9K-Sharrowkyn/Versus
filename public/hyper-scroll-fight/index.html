@@ -673,49 +673,188 @@
       }
 
       const overlay = document.createElement('div');
-      overlay.style.cssText = 'position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 38%, rgba(33,8,8,0.94), rgba(0,0,0,0.98));color:#ff554e;font-family:var(--font-code);text-transform:uppercase;letter-spacing:0.12em;';
+      overlay.style.cssText =
+        'position:fixed;inset:0;z-index:60;display:flex;align-items:center;justify-content:center;' +
+        'background:#000;color:#ff6666;font-family:"Courier New", Courier, monospace;overflow:hidden;';
       overlay.innerHTML = `
-        <div style="width:min(70vw,860px);border:1px solid rgba(255,85,78,0.8);padding:1.2rem 1.4rem 1.1rem;box-shadow:0 0 34px rgba(255,85,78,0.2) inset,0 0 24px rgba(255,85,78,0.22);background:rgba(4,1,1,0.86);">
-          <p id="rv-title" style="font-size:clamp(24px,2.9vw,44px);margin-bottom:0.65rem;">SEQUENCE // EXIT PROTOCOL</p>
-          <p id="rv-sub" style="font-size:clamp(13px,1.2vw,18px);color:rgba(255,160,150,0.88);margin-bottom:0.95rem;">Hydra runtime handoff</p>
-          <div style="height:16px;border:1px solid rgba(255,85,78,0.7);background:rgba(0,0,0,0.65);">
-            <div id="rv-bar" style="height:100%;width:0%;background:linear-gradient(90deg,#ff554e,#ff8d84);box-shadow:0 0 12px rgba(255,85,78,0.65);"></div>
+        <style>
+          @keyframes rv-s2-shake {
+            2%,64% { transform: translate(2px,0) skewX(0deg); }
+            4%,60% { transform: translate(-2px,0) skewX(0deg); }
+            62% { transform: translate(0,0) skewX(4deg); }
+          }
+          .s4-lines { display: flex; flex-direction: column; align-items: center; gap: 0.4em; }
+          .s4-glitch {
+            font-family: "Chakra Petch", "Courier New", monospace;
+            font-size: clamp(1.2rem, 4vw, 4rem);
+            font-weight: 900; color: #fff; position: relative;
+            text-shadow: 3px 0 rgba(255,85,78,1), -3px 0 #0cf;
+            animation: s4skew 0.2s steps(2) infinite;
+          }
+          .s4-glitch::before, .s4-glitch::after {
+            content: attr(data-text);
+            position: absolute; top:0; left:0; width:100%; height:100%;
+          }
+          .s4-glitch::before {
+            color: rgba(255,85,78,1); text-shadow: 3px 0 #0cf;
+            animation: s4g1 0.13s steps(2) infinite;
+          }
+          .s4-glitch::after {
+            color: #0cf; text-shadow: -3px 0 rgba(255,85,78,1);
+            animation: s4g2 0.13s steps(2) infinite;
+          }
+          @keyframes s4skew {
+            0%  { transform: skewX(0deg) scaleX(1); }
+            50% { transform: skewX(8deg) scaleX(1.02); }
+          }
+          @keyframes s4g1 {
+            0%  { clip-path:inset(0 0 88% 0); transform:translate(-8px,0); }
+            20% { clip-path:inset(25% 0 55% 0); transform:translate(8px,0); }
+            40% { clip-path:inset(60% 0 20% 0); transform:translate(-5px,0); }
+            60% { clip-path:inset(10% 0 75% 0); transform:translate(10px,0); }
+            80% { clip-path:inset(75% 0 8% 0);  transform:translate(-8px,0); }
+          }
+          @keyframes s4g2 {
+            0%  { clip-path:inset(65% 0 15% 0); transform:translate(6px,0); }
+            20% { clip-path:inset(5%  0 80% 0); transform:translate(-6px,0); }
+            40% { clip-path:inset(40% 0 35% 0); transform:translate(9px,0); }
+            60% { clip-path:inset(85% 0 3% 0);  transform:translate(-5px,0); }
+            80% { clip-path:inset(20% 0 65% 0); transform:translate(7px,0); }
+          }
+        </style>
+        <div style="position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg, rgba(0,0,0,0.12) 0px, rgba(0,0,0,0.12) 1px, transparent 1px, transparent 3px);"></div>
+
+        <div id="rv-s3" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,#000 0%, #280604 100%);color:#ff6666;text-shadow:0 0 4px red;text-align:center;font-size:clamp(24px,4.4vw,52px);">
+          <div style="border:0.18em solid #ff6666;box-shadow:0 0 4px red, inset 0 0 4px red;padding:1.6em 2em;animation:rv-s2-shake 1.5s linear infinite;">
+            <div id="rv-h-main">
+              <p id="rv-h-spin" style="font-size:1.1em;margin-bottom:0.4em;">[/]</p>
+              <p style="font-size:1em;letter-spacing:0.04em;">&lt; SYSTEM SHUTTING DOWN &gt;</p>
+              <p style="font-size:0.6em;margin-top:0.3em;opacity:0.8;">FIGHT SIMULATION v0.9 &middot; versusversevault.com</p>
+              <p id="rv-h-pct" style="font-size:0.65em;margin-top:0.3em;">PROCESS: 0%</p>
+              <p id="rv-h-bar" style="font-size:0.65em;margin-top:0.5em;letter-spacing:0.04em;">&nbsp;</p>
+            </div>
+            <p id="rv-h-done" style="display:none;font-size:1em;letter-spacing:0.04em;">&lt; SEQUENCE COMPLETE &gt;</p>
+          </div>
+        </div>
+
+        <div id="rv-s4" style="position:absolute;inset:0;display:none;align-items:center;justify-content:center;background:#000;overflow:hidden;">
+          <div class="s4-lines">
+            <div class="s4-glitch" data-text="G9K_Rubikon:Session_Sign_Off">G9K_Rubikon:Session_Sign_Off</div>
+            <div class="s4-glitch" data-text="Artemis_Argo:Kernel_Lost">Artemis_Argo:Kernel_Lost</div>
+            <div class="s4-glitch" data-text="Project_Ares:Power_Down">Project_Ares:Power_Down</div>
           </div>
         </div>
       `;
       document.body.appendChild(overlay);
 
-      const titleEl = overlay.querySelector('#rv-title');
-      const subEl = overlay.querySelector('#rv-sub');
-      const barEl = overlay.querySelector('#rv-bar');
+      const s3El = overlay.querySelector('#rv-s3');
+      const s4El = overlay.querySelector('#rv-s4');
+      const spinEl = overlay.querySelector('#rv-h-spin');
+      const pctEl = overlay.querySelector('#rv-h-pct');
+      const barEl = overlay.querySelector('#rv-h-bar');
+      const mainEl = overlay.querySelector('#rv-h-main');
+      const doneEl = overlay.querySelector('#rv-h-done');
 
-      for (let progress = 0; progress <= 100; progress += 4) {
-        if (barEl) barEl.style.width = `${progress}%`;
-        await wait(42);
-      }
+      const runChromaticFlash = (stageEl, options = {}) => new Promise((resolve) => {
+        const {
+          frames = 14,
+          interval = 40,
+          jitterX = 35,
+          skew = 6,
+        } = options;
 
-      if (titleEl) titleEl.textContent = 'G9K_Rubikon:Session_Authenticated';
-      if (subEl) subEl.textContent = 'glitch channel synchronisation';
-      if (titleEl) titleEl.style.color = '#77e2f2';
-      if (barEl) barEl.style.background = 'linear-gradient(90deg,#77e2f2,#b8f7ff)';
+        if (!stageEl) {
+          resolve();
+          return;
+        }
 
-      for (let pulse = 0; pulse < 12; pulse += 1) {
-        const offset = pulse % 2 === 0 ? 14 : -14;
-        overlay.style.transform = `translateX(${offset}px)`;
-        overlay.style.filter = pulse % 2 === 0 ? 'hue-rotate(140deg) contrast(1.45)' : 'hue-rotate(0deg) contrast(1.2)';
-        await wait(58);
-      }
-      overlay.style.transform = 'none';
-      overlay.style.filter = 'none';
+        const COLORS = ['rgba(255,85,78,1)', '#77e2f2', '#ff0', '#fff', '#0cf', '#f80'];
+        let frame = 0;
+        const clearFlash = () => {
+          [...stageEl.querySelectorAll('.rv-chroma-flash')].forEach((node) => node.remove());
+          stageEl.style.transform = '';
+        };
 
-      if (titleEl) titleEl.textContent = 'Sequence Completed';
-      if (subEl) subEl.textContent = 'Signing Off';
-      if (titleEl) titleEl.style.color = '#ff554e';
-      await wait(1100);
+        const timer = setInterval(() => {
+          clearFlash();
+          const n = 5 + Math.floor(Math.random() * 7);
+          for (let i = 0; i < n; i += 1) {
+            const bar = document.createElement('div');
+            bar.className = 'rv-chroma-flash';
+            bar.style.cssText =
+              `position:absolute;left:0;right:0;top:${Math.random() * 100}%;` +
+              `height:${1 + Math.random() * 14}%;z-index:10;pointer-events:none;` +
+              `background:${COLORS[Math.floor(Math.random() * COLORS.length)]};` +
+              `mix-blend-mode:screen;opacity:${0.45 + Math.random() * 0.55};`;
+            stageEl.appendChild(bar);
+          }
+          stageEl.style.transform = `translateX(${(Math.random() - 0.5) * jitterX}px) skewX(${(Math.random() - 0.5) * skew}deg)`;
+          frame += 1;
+          if (frame >= frames) {
+            clearInterval(timer);
+            clearFlash();
+            resolve();
+          }
+        }, interval);
+      });
 
-      overlay.style.transition = 'opacity 220ms linear';
-      overlay.style.opacity = '0';
-      await wait(240);
+      // 1) Glitch fullscreen
+      await runChromaticFlash(overlay, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
+
+      // 2) System rebooting / reboot successful (original Hydra logic)
+      if (s3El instanceof HTMLElement) s3El.style.display = 'flex';
+      if (s4El instanceof HTMLElement) s4El.style.display = 'none';
+      if (mainEl instanceof HTMLElement) mainEl.style.display = '';
+      if (doneEl instanceof HTMLElement) doneEl.style.display = 'none';
+      if (pctEl) pctEl.textContent = 'PROCESS: 0%';
+      if (barEl) barEl.textContent = '';
+
+      const MAX = 24;
+      const LOADED = '#';
+      const EMPTY = '.';
+      const vals = Array(MAX).fill(EMPTY);
+      const frames = ['/', '-', '\\', '|'];
+      let fi = 0;
+      const spinTimer = setInterval(() => {
+        if (!spinEl) return;
+        spinEl.textContent = `[${frames[fi++ % 4]}]`;
+      }, 110 + Math.random() * 80);
+
+      await new Promise((resolve) => {
+        const tick = setInterval(() => {
+          const emptyIdx = vals.lastIndexOf(EMPTY);
+          if (emptyIdx === -1) {
+            clearInterval(tick);
+            resolve();
+            return;
+          }
+          vals[emptyIdx] = LOADED;
+          const loaded = vals.filter((c) => c === LOADED).length;
+          if (pctEl) pctEl.textContent = `PROCESS: ${Math.floor((loaded / MAX) * 100)}%`;
+          const ls = vals.slice(0, loaded).join('');
+          const us = vals.slice(loaded).join('');
+          if (barEl) barEl.innerHTML = `(${ls}<span style="color:#fff;text-shadow:0 0 4px #fff;">${us}</span>)`;
+        }, 75 + Math.random() * 200);
+      });
+
+      clearInterval(spinTimer);
+      if (pctEl) pctEl.textContent = 'PROCESS: 100%';
+      if (barEl) barEl.innerHTML = `(${'#'.repeat(MAX)})`;
+      await wait(400);
+
+      if (mainEl instanceof HTMLElement) mainEl.style.display = 'none';
+      if (doneEl instanceof HTMLElement) doneEl.style.display = '';
+      await wait(3000);
+
+      // 3) Session authenticated black screen
+      await runChromaticFlash(s3El, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
+      if (s3El instanceof HTMLElement) s3El.style.display = 'none';
+      if (s4El instanceof HTMLElement) s4El.style.display = 'flex';
+      await wait(2500);
+
+      // 4) Color glitch then transition to search
+      await runChromaticFlash(s4El, {});
+
       overlay.remove();
 
       postToParent({ type: 'vvv-aaa-reverse-explosion-done' });
@@ -992,10 +1131,15 @@
     }
     postToParent({ type: 'vvv-aaa-ready' });
     if (FLOW_MODE === 'reverse') {
+      document.querySelectorAll('.viewport, .hud, .scanlines, .vignette, .noise').forEach((el) => {
+        if (!(el instanceof HTMLElement)) return;
+        el.style.opacity = '0';
+        el.style.pointerEvents = 'none';
+      });
       reverseAutoStartTimeout = window.setTimeout(() => {
         reverseAutoStartTimeout = 0;
         void runReverseExitSequence();
-      }, 700);
+      }, 0);
     } else {
       init().then(() => {
         if (reverseSequenceRunning) return;

@@ -54,6 +54,7 @@ export function useVsTransitions({
   const [searchMorphDirection, setSearchMorphDirection] = useState<'forward' | 'reverse'>('forward')
   const [reverseStage, setReverseStage] = useState<ReverseStage>('idle')
   const [introFlowMode, setIntroFlowMode] = useState<'forward' | 'reverse'>('forward')
+  const [searchFlowMode, setSearchFlowMode] = useState<'forward' | 'reverse'>('forward')
   const [searchMorphHandoff, setSearchMorphHandoff] = useState<SearchMorphHandoff | null>(null)
 
   const searchFrameRef = useRef<HTMLIFrameElement>(null)
@@ -245,6 +246,12 @@ export function useVsTransitions({
   const completeReverseMorphToSearch = (handoff?: SearchMorphHandoff | null) => {
     if (!returnTransitioningRef.current || reverseStageRef.current !== 'morph-reverse') return
 
+    for (const timeoutId of reverseTransitionTimeoutsRef.current) {
+      window.clearTimeout(timeoutId)
+      window.clearInterval(timeoutId)
+    }
+    reverseTransitionTimeoutsRef.current = []
+
     if (handoff) {
       setSearchMorphHandoff(handoff)
     }
@@ -289,24 +296,31 @@ export function useVsTransitions({
     setSearchMorphDirection('reverse')
     setSearchMorphHandoff(getViewportCenterHandoff())
     setSearchMorphVisible(true)
+    setSearchFlowMode('reverse')
     searchBridgeReadyRef.current = false
     reversePrimePendingRef.current = true
     setViewMode('search')
     setIntroVisible(true)
 
-    const primeReadyWatchdogTimeout = window.setTimeout(() => {
+    const dispatchReversePrime = () => {
       if (!returnTransitioningRef.current) return
       if (reverseStageRef.current !== 'morph-reverse') return
       if (!reversePrimePendingRef.current) return
       postMessageToSearchFrame({ type: 'vvv-search-prime-collapsed' })
-    }, 1200)
+    }
+
+    dispatchReversePrime()
+
+    const primePumpInterval = window.setInterval(() => {
+      dispatchReversePrime()
+    }, 90)
 
     const primeWatchdogTimeout = window.setTimeout(() => {
       if (!returnTransitioningRef.current) return
       completeReverseMorphToSearch(null)
     }, searchCollapseWatchdogMs)
 
-    reverseTransitionTimeoutsRef.current.push(primeReadyWatchdogTimeout, primeWatchdogTimeout)
+    reverseTransitionTimeoutsRef.current.push(primePumpInterval, primeWatchdogTimeout)
   }
 
   const tryDispatchReverseExplosion = () => {
@@ -375,9 +389,17 @@ export function useVsTransitions({
     clearReturnTransitionQueue()
     clearSearchTransitionQueue()
     clearFightViewRevealTimeout()
+    setSearchFlowMode('forward')
     setFightViewVisible(true)
     setIntroVisible(true)
     setViewMode('search')
+  }
+
+  const handleSearchFrameLoad = () => {
+    if (!returnTransitioningRef.current) return
+    if (reverseStageRef.current !== 'morph-reverse') return
+    if (!reversePrimePendingRef.current) return
+    tryDispatchReversePrime()
   }
 
   const handleIntroFrameLoad = () => {
@@ -489,6 +511,11 @@ export function useVsTransitions({
     [],
   )
 
+  useEffect(() => {
+    if (viewMode === 'search') return
+    setSearchFlowMode('forward')
+  }, [viewMode])
+
   return {
     viewMode,
     setViewMode,
@@ -499,6 +526,7 @@ export function useVsTransitions({
     searchMorphDirection,
     reverseStage,
     introFlowMode,
+    searchFlowMode,
     searchMorphHandoff,
     searchFrameRef,
     introFrameRef,
@@ -511,6 +539,7 @@ export function useVsTransitions({
     startFightReturnTransition,
     goBackToLibrary,
     showSearchImmediately,
+    handleSearchFrameLoad,
     handleIntroFrameLoad,
   }
 }
