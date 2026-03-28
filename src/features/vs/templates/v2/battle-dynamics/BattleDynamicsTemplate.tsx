@@ -283,12 +283,17 @@ export function BattleDynamicsTemplate({
           ) : null}
           {scenarios.length > 1 ? (
             <div className="vs-battle-dynamics-indicators vs-battle-dynamics-indicators--top-right">
-              {scenarios.map((_, i) => (
-                <div
-                  key={i}
-                  className={`vs-battle-dynamics-indicator${i === activeIndex ? ' is-active' : ''}`}
-                />
-              ))}
+              <p className="vs-battle-dynamics-indicators-ghost-label" aria-hidden="true">
+                {active.label}
+              </p>
+              <div className="vs-battle-dynamics-indicators-dots">
+                {scenarios.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`vs-battle-dynamics-indicator${i === activeIndex ? ' is-active' : ''}`}
+                  />
+                ))}
+              </div>
             </div>
           ) : null}
           <svg
