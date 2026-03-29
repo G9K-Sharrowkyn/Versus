@@ -280,13 +280,11 @@
 }
 
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
-  opacity: 1;
-  transform: translateX(188%);
+  animation: vsTemplateRailGutterLeftOut 860ms cubic-bezier(0.22, 0.82, 0.22, 1) 1180ms both;
 }
 
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
-  opacity: 1;
-  transform: translateX(-188%);
+  animation: vsTemplateRailGutterRightOut 860ms cubic-bezier(0.22, 0.82, 0.22, 1) 1180ms both;
 }
 
 .vs-template-rail-overlay::before {
@@ -477,6 +475,28 @@
   100% {
     opacity: 1;
     transform: translateX(-188%);
+  }
+}
+
+@keyframes vsTemplateRailGutterLeftOut {
+  0% {
+    opacity: 1;
+    transform: translateX(188%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-105%);
+  }
+}
+
+@keyframes vsTemplateRailGutterRightOut {
+  0% {
+    opacity: 1;
+    transform: translateX(-188%);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(105%);
   }
 }
 
