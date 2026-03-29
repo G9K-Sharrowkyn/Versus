@@ -204,49 +204,40 @@
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-exit {
-  animation: vsTemplateRailExit 1200ms cubic-bezier(0.2, 0.82, 0.22, 1) both;
+  animation: vsTemplateRailExit 1600ms linear both;
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-enter {
-  transform: translateY(120%) scale(0.96);
+  transform: translate3d(0, 120%, 0) scale(0.96);
   filter: saturate(1.18) contrast(1.20) brightness(0.78);
   opacity: 1;
-  animation: vsTemplateRailEnter 1200ms cubic-bezier(0.18, 0.9, 0.22, 1) both;
+  animation: vsTemplateRailEnter 5400ms linear both;
 }
 
 @keyframes vsTemplateRailExit {
-  0% {
-    transform: translateY(0) scale(1);
-    filter: saturate(1) contrast(1);
-    opacity: 1;
-  }
-  38% {
-    transform: translateY(0) scale(0.72);
-    filter: saturate(1.16) contrast(1.18) brightness(0.88);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-120%) scale(0.3);
-    filter: saturate(1.14) contrast(1.16) brightness(0.76);
-    opacity: 1;
-  }
+  0% { transform: translate3d(0, 0, 0) scale(1); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  50% { transform: translate3d(0, 0, 0) scale(0.72); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  100% { transform: translate3d(0, -120%, 0) scale(0.3); }
 }
 
 @keyframes vsTemplateRailEnter {
-  0% {
-    transform: translateY(120%) scale(0.96);
+  0% { 
+    transform: translate3d(0, 120%, 0) scale(0.96); 
     filter: saturate(1.18) contrast(1.20) brightness(0.78);
-    opacity: 1;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
   }
-  62% {
-    transform: translateY(0) scale(0.72);
-    filter: saturate(1.1) contrast(1.12) brightness(0.9);
-    opacity: 1;
+  14.81% { 
+    transform: translate3d(0, 0, 0) scale(0.72); 
+    filter: saturate(1.18) contrast(1.20) brightness(0.78);
   }
-  100% {
-    transform: translateY(0) scale(1);
-    filter: saturate(1) contrast(1);
-    opacity: 1;
+  33.33% { 
+    transform: translate3d(0, 0, 0) scale(0.72); 
+    filter: saturate(1.18) contrast(1.20) brightness(0.78);
+    animation-timing-function: cubic-bezier(0.15, 0.85, 0.35, 1);
+  }
+  100% { 
+    transform: translate3d(0, 0, 0) scale(1); 
+    filter: none;
   }
 }
 
@@ -254,7 +245,7 @@
   position: absolute;
   inset: 0;
   --vs-rail-gutter-width: 150px;
-  --vs-rail-gutter-offset: 120px;
+  --vs-rail-gutter-offset: 280px;
   --vs-rail-outer-inset: 18px;
   --vs-rail-inner-offset: 34px;
   --vs-rail-outer-angle: 13deg;
@@ -262,29 +253,8 @@
   --vs-rail-line-width: 3px;
   --vs-rail-gear-size: 68px;
   pointer-events: none;
-  z-index: 2147483000;
-  opacity: 0;
-  transition: opacity 280ms ease;
-}
-
-.vs-template-rail-overlay.is-active {
+  z-index: 0;
   opacity: 1;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-left {
-  animation: vsTemplateRailGutterLeftIn 500ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right {
-  animation: vsTemplateRailGutterRightIn 500ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
-  animation: vsTemplateRailGutterLeftOut 460ms cubic-bezier(0.18, 0.9, 0.22, 1) 740ms both;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
-  animation: vsTemplateRailGutterRightOut 460ms cubic-bezier(0.18, 0.9, 0.22, 1) 740ms both;
 }
 
 .vs-template-rail-overlay::before {
@@ -301,18 +271,50 @@
   z-index: 1;
 }
 
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-left {
+  animation: vsTemplateGutterIn 1600ms linear forwards;
+}
+
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right {
+  animation: vsTemplateGutterIn 1600ms linear forwards;
+}
+
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
+  animation: vsTemplateGutterLeftOut 5400ms linear forwards;
+}
+
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
+  animation: vsTemplateGutterRightOut 5400ms linear forwards;
+}
+
+@keyframes vsTemplateGutterIn {
+  0% { transform: translateX(var(--dir, -300%)); opacity: 0; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
+  50%, 100% { transform: translateX(0); opacity: 1; }
+}
+
+.vs-template-rail-gutter-left { --dir: -300%; }
+.vs-template-rail-gutter-right { --dir: 300%; }
+
+@keyframes vsTemplateGutterLeftOut {
+  0%, 33.33% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  100% { transform: translateX(-2000%); opacity: 0; }
+}
+
+@keyframes vsTemplateGutterRightOut {
+  0%, 33.33% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  100% { transform: translateX(2000%); opacity: 0; }
+}
+
 .vs-template-rail-gutter-left {
   --vs-rail-outer-side-angle: var(--vs-rail-outer-angle);
   --vs-rail-inner-side-angle: var(--vs-rail-inner-angle);
   left: var(--vs-rail-gutter-offset);
-  transform: translateX(-125%);
 }
 
 .vs-template-rail-gutter-right {
   --vs-rail-outer-side-angle: calc(var(--vs-rail-outer-angle) * -1);
   --vs-rail-inner-side-angle: calc(var(--vs-rail-inner-angle) * -1);
   right: var(--vs-rail-gutter-offset);
-  transform: translateX(125%);
 }
 
 .vs-template-rail-fill {
@@ -381,14 +383,22 @@
   background-position: 0 0, 0 0;
 }
 
-.vs-template-rail-overlay.is-exit .vs-template-rail-belt,
-.vs-template-rail-overlay.is-enter .vs-template-rail-belt {
-  animation: vsTemplateBeltMove 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+.vs-template-rail-overlay.is-exit .vs-template-rail-belt {
+  animation: vsTemplateBeltMoveExit 1600ms linear forwards;
 }
 
-@keyframes vsTemplateBeltMove {
-  0% { background-position: 0 0, 0 0; }
-  100% { background-position: 0 -174px, 0 0; }
+.vs-template-rail-overlay.is-enter .vs-template-rail-belt {
+  animation: vsTemplateBeltMoveEnter 5400ms linear forwards;
+}
+
+@keyframes vsTemplateBeltMoveExit {
+  0%, 50% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 -140px, 0 0; }
+}
+
+@keyframes vsTemplateBeltMoveEnter {
+  0% { background-position: 0 0, 0 0; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  14.81%, 100% { background-position: 0 -140px, 0 0; }
 }
 
 .vs-template-rail-gear {
@@ -428,9 +438,12 @@
   z-index: 3;
 }
 
-.vs-template-rail-overlay.is-exit .vs-template-rail-gear,
+.vs-template-rail-overlay.is-exit .vs-template-rail-gear {
+  animation: vsTemplateGearSpinExit 1600ms linear forwards;
+}
+
 .vs-template-rail-overlay.is-enter .vs-template-rail-gear {
-  animation: vsTemplateGearSpin 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: vsTemplateGearSpinEnter 5400ms linear forwards;
 }
 
 .vs-template-rail-gear-top {
@@ -441,34 +454,49 @@
   bottom: 8%;
 }
 
-.vs-template-rail-overlay.is-exit .vs-template-rail-gear-bottom,
+.vs-template-rail-overlay.is-exit .vs-template-rail-gear-bottom {
+  animation: vsTemplateGearSpinReverseExit 1600ms linear forwards;
+}
+
 .vs-template-rail-overlay.is-enter .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpinReverse 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: vsTemplateGearSpinReverseEnter 5400ms linear forwards;
 }
 
-.vs-template-rail-gutter-right .vs-template-rail-gear {
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear {
+  animation: vsTemplateGearSpinReverseExit 1600ms linear forwards;
 }
 
-.vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear,
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear {
-  animation: vsTemplateGearSpinReverse 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: vsTemplateGearSpinReverseEnter 5400ms linear forwards;
 }
 
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear-bottom,
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
+  animation: vsTemplateGearSpinExit 1600ms linear forwards;
+}
+
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpin 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+  animation: vsTemplateGearSpinEnter 5400ms linear forwards;
 }
 
-@keyframes vsTemplateGearSpin {
-  0% { transform: rotate(0deg); }
+@keyframes vsTemplateGearSpinExit {
+  0%, 50% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
   100% { transform: rotate(360deg); }
 }
 
-@keyframes vsTemplateGearSpinReverse {
-  0% { transform: rotate(0deg); }
+@keyframes vsTemplateGearSpinEnter {
+  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  14.81% { transform: rotate(360deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes vsTemplateGearSpinReverseExit {
+  0%, 50% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  100% { transform: rotate(-360deg); }
+}
+
+@keyframes vsTemplateGearSpinReverseEnter {
+  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  14.81% { transform: rotate(-360deg); }
   100% { transform: rotate(-360deg); }
 }
 
