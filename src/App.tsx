@@ -91,7 +91,7 @@ const FIGHTS_SCAN_POLL_MS = 1200
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 4000
-const TEMPLATE_RAIL_TRANSITION_HALF_MS = TEMPLATE_RAIL_TRANSITION_MS / 2
+const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 1000
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
 
@@ -151,6 +151,7 @@ function App() {
   const [portraitBAdjust, setPortraitBAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [slideImageAdjustments, setSlideImageAdjustments] = useState<Record<string, PortraitAdjust>>({})
   const [templateTransitionPhase, setTemplateTransitionPhase] = useState<TemplateTransitionPhase>('idle')
+  const [incomingTemplateId, setIncomingTemplateId] = useState<TemplateId | null>(null)
 
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
@@ -393,6 +394,13 @@ function App() {
   const activeTemplatePreset =
     localizedTemplates.find((template) => template.id === activeTemplate) || localizedTemplates[0] || initialTemplate
   const activeTemplateLabel = activeTemplatePreset.name || activeTemplate
+  const templatePresetById = useMemo(() => {
+    const byId = new Map<TemplateId, (typeof localizedTemplates)[number]>()
+    for (const template of localizedTemplates) {
+      byId.set(template.id, template)
+    }
+    return byId
+  }, [localizedTemplates])
 
   const folderFights = useMemo(() => selectFolderFights(fights), [fights])
   const manualFights = useMemo(() => selectManualFights(fights), [fights])
@@ -445,6 +453,7 @@ function App() {
     templateTransitionTimeoutsRef.current = []
     templateTransitionPhaseRef.current = 'idle'
     setTemplateTransitionPhase('idle')
+    setIncomingTemplateId(null)
   }, [])
 
   const stepTemplateOrder = useCallback((direction: 1 | -1) => {
@@ -452,21 +461,24 @@ function App() {
     if (!templateOrder.length) return
     const nextTemplateCursor = templateCursor + direction
     if (nextTemplateCursor < 0 || nextTemplateCursor >= templateOrder.length) return
+    const nextTemplateId = templateOrder[nextTemplateCursor]
 
     clearTemplateTransitionQueue()
     templateTransitionPhaseRef.current = 'exit'
     setTemplateTransitionPhase('exit')
 
     const swapTimeout = window.setTimeout(() => {
-      setTemplateCursor(nextTemplateCursor)
-      applyTemplateById(templateOrder[nextTemplateCursor], false)
+      setIncomingTemplateId(nextTemplateId)
       templateTransitionPhaseRef.current = 'enter'
       setTemplateTransitionPhase('enter')
-    }, TEMPLATE_RAIL_TRANSITION_HALF_MS)
+    }, TEMPLATE_RAIL_TRANSITION_SWAP_MS)
 
     const settleTimeout = window.setTimeout(() => {
+      setTemplateCursor(nextTemplateCursor)
+      applyTemplateById(nextTemplateId, false)
       templateTransitionPhaseRef.current = 'idle'
       setTemplateTransitionPhase('idle')
+      setIncomingTemplateId(null)
       templateTransitionTimeoutsRef.current = []
     }, TEMPLATE_RAIL_TRANSITION_MS)
 
@@ -900,9 +912,10 @@ function App() {
     stripFileExtension(importFileName) ||
     `${fighterA.name || tr('Postać A', 'Fighter A')} vs ${fighterB.name || tr('Postać B', 'Fighter B')}`
 
-  const renderedTemplate = (
+  const renderTemplate = (templateId: TemplateId, key: string) => (
     <TemplateRenderer
-      activeTemplateId={activeTemplate}
+      key={key}
+      activeTemplateId={templateId}
       language={language}
       rows={rows}
       fighterA={fighterA}
@@ -911,8 +924,8 @@ function App() {
       portraitBAdjust={portraitBAdjust}
       averageA={averageA}
       averageB={averageB}
-      title={activeTemplatePreset.title}
-      subtitle={activeTemplatePreset.subtitle}
+      title={(templatePresetById.get(templateId) || activeTemplatePreset).title}
+      subtitle={(templatePresetById.get(templateId) || activeTemplatePreset).subtitle}
       factsA={factsA}
       factsB={factsB}
       profileA={profileA}
@@ -933,6 +946,10 @@ function App() {
       onToggleLanguage={toggleLanguage}
     />
   )
+  const renderedTemplate = renderTemplate(activeTemplate, `current-${activeTemplate}`)
+  const renderedIncomingTemplate = incomingTemplateId
+    ? renderTemplate(incomingTemplateId, `incoming-${incomingTemplateId}`)
+    : null
 
   const scaledPreviewWidth = Math.round(PREVIEW_BASE_WIDTH * previewScale)
   const scaledPreviewHeight = Math.round(PREVIEW_BASE_HEIGHT * previewScale)
@@ -1198,6 +1215,7 @@ function App() {
             activeFightFolderKey={activeFightRecord?.folderKey || ''}
             activeFightLocale={activeFightRecord?.variantLocale || language}
             templateTransitionPhase={templateTransitionPhase}
+            incomingTemplate={renderedIncomingTemplate}
           >
             {renderedTemplate}
           </FightPreviewStage>

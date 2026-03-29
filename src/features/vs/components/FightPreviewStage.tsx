@@ -27,6 +27,7 @@ type FightPreviewStageProps = {
   activeFightLocale: string
   templateTransitionPhase: TemplateTransitionPhase
   children: ReactNode
+  incomingTemplate: ReactNode
 }
 
 export function FightPreviewStage({
@@ -40,14 +41,11 @@ export function FightPreviewStage({
   activeFightLocale,
   templateTransitionPhase,
   children,
+  incomingTemplate,
 }: FightPreviewStageProps) {
   const isTemplateTransitioning = templateTransitionPhase !== 'idle'
-  const transitionClass =
-    templateTransitionPhase === 'exit'
-      ? 'is-template-transition-exit'
-      : templateTransitionPhase === 'enter'
-      ? 'is-template-transition-enter'
-      : ''
+  const currentTransitionClass = templateTransitionPhase !== 'idle' ? 'is-template-transition-exit' : ''
+  const showIncomingLayer = templateTransitionPhase === 'enter' && Boolean(incomingTemplate)
 
   return (
     <section
@@ -71,7 +69,7 @@ export function FightPreviewStage({
           data-vs-folder-key={activeFightFolderKey}
           data-vs-locale={activeFightLocale}
           data-vs-template-transition={templateTransitionPhase}
-          className={`vs-preview-shell--bare-body ${isTemplateTransitioning ? 'is-template-transitioning' : ''} ${transitionClass}`}
+          className={`vs-preview-shell--bare-body ${isTemplateTransitioning ? 'is-template-transitioning' : ''}`}
           style={{
             width: '100%',
             height: '100%',
@@ -81,7 +79,14 @@ export function FightPreviewStage({
           }}
           aria-busy={!previewReady || isTemplateTransitioning}
         >
-          {children}
+          <div className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--current ${currentTransitionClass}`}>
+            {children}
+          </div>
+          {showIncomingLayer ? (
+            <div className="vs-preview-shell--bare-layer vs-preview-shell--bare-layer--incoming is-template-transition-enter">
+              {incomingTemplate}
+            </div>
+          ) : null}
         </div>
         <div
           className={`vs-template-rail-overlay ${isTemplateTransitioning ? 'is-active' : ''} ${templateTransitionPhase === 'exit' ? 'is-exit' : ''} ${templateTransitionPhase === 'enter' ? 'is-enter' : ''}`}
