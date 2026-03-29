@@ -184,6 +184,279 @@
   min-height: 100%;
 }
 
+.vs-preview-shell--bare-body.is-template-transitioning {
+  will-change: transform, filter, opacity;
+}
+
+.vs-preview-shell--bare-body.is-template-transition-exit {
+  animation: vsTemplateRailExit 2000ms cubic-bezier(0.2, 0.82, 0.22, 1) forwards;
+}
+
+.vs-preview-shell--bare-body.is-template-transition-enter {
+  animation: vsTemplateRailEnter 2000ms cubic-bezier(0.18, 0.9, 0.22, 1) forwards;
+}
+
+@keyframes vsTemplateRailExit {
+  0% {
+    transform: translateY(0) scale(1);
+    filter: saturate(1) contrast(1);
+    opacity: 1;
+  }
+  52% {
+    transform: translateY(-3%) scale(0.7);
+    filter: saturate(1.16) contrast(1.18) brightness(0.88);
+    opacity: 0.92;
+  }
+  100% {
+    transform: translateY(-132%) scale(0.7);
+    filter: saturate(1.22) contrast(1.24) brightness(0.82);
+    opacity: 0.82;
+  }
+}
+
+@keyframes vsTemplateRailEnter {
+  0% {
+    transform: translateY(132%) scale(0.7);
+    filter: saturate(1.22) contrast(1.24) brightness(0.82);
+    opacity: 0.82;
+  }
+  100% {
+    transform: translateY(0) scale(1);
+    filter: saturate(1) contrast(1);
+    opacity: 1;
+  }
+}
+
+.vs-template-rail-overlay {
+  position: absolute;
+  inset: 0;
+  --vs-rail-gutter-width: 150px;
+  --vs-rail-gutter-offset: -8px;
+  --vs-rail-outer-inset: 18px;
+  --vs-rail-inner-offset: 34px;
+  --vs-rail-outer-angle: 13deg;
+  --vs-rail-inner-angle: 13deg;
+  --vs-rail-line-width: 3px;
+  --vs-rail-gear-size: 68px;
+  pointer-events: none;
+  z-index: 2147483000;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+
+.vs-template-rail-overlay.is-active {
+  opacity: 1;
+}
+
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-left {
+  animation: vsTemplateRailGutterLeftIn 940ms cubic-bezier(0.2, 0.9, 0.2, 1) 100ms both;
+}
+
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right {
+  animation: vsTemplateRailGutterRightIn 940ms cubic-bezier(0.2, 0.9, 0.2, 1) 100ms both;
+}
+
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
+  opacity: 1;
+  transform: translateX(188%);
+}
+
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
+  opacity: 1;
+  transform: translateX(-188%);
+}
+
+.vs-template-rail-overlay::before {
+  content: none;
+}
+
+.vs-template-rail-gutter {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--vs-rail-gutter-width);
+  overflow: visible;
+  opacity: 0;
+  z-index: 1;
+}
+
+.vs-template-rail-gutter-left {
+  --vs-rail-outer-side-angle: var(--vs-rail-outer-angle);
+  --vs-rail-inner-side-angle: var(--vs-rail-inner-angle);
+  left: var(--vs-rail-gutter-offset);
+  transform: translateX(-125%);
+}
+
+.vs-template-rail-gutter-right {
+  --vs-rail-outer-side-angle: calc(var(--vs-rail-outer-angle) * -1);
+  --vs-rail-inner-side-angle: calc(var(--vs-rail-inner-angle) * -1);
+  right: var(--vs-rail-gutter-offset);
+  transform: translateX(125%);
+}
+
+.vs-template-rail-fill {
+  display: none;
+}
+
+.vs-template-rail-gutter-left .vs-template-rail-fill {
+  left: calc(var(--vs-rail-outer-inset) + var(--vs-rail-line-width));
+  width: calc(var(--vs-rail-inner-offset) + 28px);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 85, 78, 0.2) 0%,
+    rgba(255, 85, 78, 0.08) 22%,
+    rgba(255, 85, 78, 0.02) 56%,
+    rgba(255, 85, 78, 0) 100%
+  );
+  clip-path: polygon(0 0, 84% 0, 100% 100%, 0 100%);
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-fill {
+  right: calc(var(--vs-rail-outer-inset) + var(--vs-rail-line-width));
+  width: calc(var(--vs-rail-inner-offset) + 28px);
+  background: linear-gradient(
+    270deg,
+    rgba(255, 85, 78, 0.2) 0%,
+    rgba(255, 85, 78, 0.08) 22%,
+    rgba(255, 85, 78, 0.02) 56%,
+    rgba(255, 85, 78, 0) 100%
+  );
+  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+}
+
+.vs-template-rail-line {
+  position: absolute;
+  top: 0;
+  height: 168%;
+  width: var(--vs-rail-line-width);
+  z-index: 2;
+  background: rgba(255, 85, 78, 0.56);
+  box-shadow:
+    0 0 18px rgba(255, 85, 78, 0.24),
+    0 0 2px rgba(255, 85, 78, 0.66);
+}
+
+.vs-template-rail-line-outer {
+  transform-origin: top center;
+  transform: rotate(var(--vs-rail-outer-side-angle));
+  background: rgba(255, 85, 78, 0.62);
+  box-shadow:
+    0 0 20px rgba(255, 85, 78, 0.28),
+    0 0 3px rgba(255, 85, 78, 0.72);
+}
+
+.vs-template-rail-line-inner {
+  transform-origin: top center;
+  transform: rotate(var(--vs-rail-inner-side-angle));
+  background: rgba(255, 85, 78, 0.66);
+  box-shadow:
+    0 0 22px rgba(255, 85, 78, 0.3),
+    0 0 3px rgba(255, 85, 78, 0.75);
+}
+
+.vs-template-rail-gutter-left .vs-template-rail-line-outer {
+  left: var(--vs-rail-outer-inset);
+}
+
+.vs-template-rail-gutter-left .vs-template-rail-line-inner {
+  left: calc(var(--vs-rail-outer-inset) + var(--vs-rail-inner-offset));
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-line-outer {
+  right: var(--vs-rail-outer-inset);
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-line-inner {
+  right: calc(var(--vs-rail-outer-inset) + var(--vs-rail-inner-offset));
+}
+
+.vs-template-rail-gear {
+  position: absolute;
+  width: var(--vs-rail-gear-size);
+  height: var(--vs-rail-gear-size);
+  border-radius: 999px;
+  border: 3px solid rgba(255, 85, 78, 0.6);
+  background:
+    radial-gradient(circle at center, rgba(255, 85, 78, 0.5) 0 14%, rgba(8, 2, 2, 0.95) 14% 62%, transparent 62%),
+    conic-gradient(
+      from 0deg,
+      rgba(255, 85, 78, 0.85) 0deg 18deg,
+      rgba(30, 8, 8, 0.88) 18deg 42deg,
+      rgba(255, 85, 78, 0.85) 42deg 60deg,
+      rgba(30, 8, 8, 0.88) 60deg 84deg,
+      rgba(255, 85, 78, 0.85) 84deg 102deg,
+      rgba(30, 8, 8, 0.88) 102deg 126deg,
+      rgba(255, 85, 78, 0.85) 126deg 144deg,
+      rgba(30, 8, 8, 0.88) 144deg 168deg,
+      rgba(255, 85, 78, 0.85) 168deg 186deg,
+      rgba(30, 8, 8, 0.88) 186deg 210deg,
+      rgba(255, 85, 78, 0.85) 210deg 228deg,
+      rgba(30, 8, 8, 0.88) 228deg 252deg,
+      rgba(255, 85, 78, 0.85) 252deg 270deg,
+      rgba(30, 8, 8, 0.88) 270deg 294deg,
+      rgba(255, 85, 78, 0.85) 294deg 312deg,
+      rgba(30, 8, 8, 0.88) 312deg 336deg,
+      rgba(255, 85, 78, 0.85) 336deg 360deg
+    );
+  box-shadow:
+    0 0 20px rgba(255, 85, 78, 0.32),
+    inset 0 0 0 2px rgba(255, 85, 78, 0.28);
+  animation: vsTemplateGearSpin 1100ms linear infinite;
+}
+
+.vs-template-rail-gear-left-top {
+  left: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
+  top: 18px;
+}
+
+.vs-template-rail-gear-left-bottom {
+  left: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
+  bottom: 18px;
+  animation-direction: reverse;
+}
+
+.vs-template-rail-gear-right-top {
+  right: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
+  top: 18px;
+  animation-direction: reverse;
+}
+
+.vs-template-rail-gear-right-bottom {
+  right: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
+  bottom: 18px;
+}
+
+@keyframes vsTemplateGearSpin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes vsTemplateRailGutterLeftIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-105%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(188%);
+  }
+}
+
+@keyframes vsTemplateRailGutterRightIn {
+  0% {
+    opacity: 0;
+    transform: translateX(105%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(-188%);
+  }
+}
+
 .vs-template-toolbar--integrated::after {
   content: none;
 }

@@ -69,6 +69,7 @@ type PendingFightSelection = {
   options?: ApplyFightRecordOptions
   reason: PendingFightSelectionReason
 }
+type TemplateTransitionPhase = 'idle' | 'exit' | 'enter'
 type AuditRequest = {
   fightKey: string
   templateId: TemplateId | null
@@ -89,6 +90,8 @@ const INTRO_REVEAL_AT_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_M
 const FIGHTS_SCAN_POLL_MS = 1200
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
+const TEMPLATE_RAIL_TRANSITION_MS = 4000
+const TEMPLATE_RAIL_TRANSITION_HALF_MS = TEMPLATE_RAIL_TRANSITION_MS / 2
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
 
@@ -147,6 +150,7 @@ function App() {
   const [portraitAAdjust, setPortraitAAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [portraitBAdjust, setPortraitBAdjust] = useState<PortraitAdjust>({ ...PORTRAIT_ADJUST_DEFAULT })
   const [slideImageAdjustments, setSlideImageAdjustments] = useState<Record<string, PortraitAdjust>>({})
+  const [templateTransitionPhase, setTemplateTransitionPhase] = useState<TemplateTransitionPhase>('idle')
 
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
@@ -165,11 +169,13 @@ function App() {
   const activeFightIdRef = useRef<string | null>(null)
   const activeTemplateRef = useRef<TemplateId>(initialTemplate.id)
   const templateCursorRef = useRef(0)
+  const templateTransitionPhaseRef = useRef<TemplateTransitionPhase>('idle')
   const languageRef = useRef<Language>(DEFAULT_LANGUAGE)
   const pendingFightRequestIdRef = useRef(0)
   const globalPreloadPromiseRef = useRef<Promise<void> | null>(null)
   const globalPreloadAbortRef = useRef<AbortController | null>(null)
   const pendingSearchStageJumpRef = useRef<number | null>(null)
+  const templateTransitionTimeoutsRef = useRef<number[]>([])
   const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
   const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
@@ -237,8 +243,9 @@ function App() {
     activeFightIdRef.current = activeFightId
     activeTemplateRef.current = activeTemplate
     templateCursorRef.current = templateCursor
+    templateTransitionPhaseRef.current = templateTransitionPhase
     languageRef.current = language
-  }, [activeFightId, activeTemplate, language, templateCursor])
+  }, [activeFightId, activeTemplate, language, templateCursor, templateTransitionPhase])
 
   useLayoutEffect(() => {
     clearFinalTemplateAutoReturnTimeoutFnRef.current = clearFinalTemplateAutoReturnTimeout
@@ -417,9 +424,10 @@ function App() {
 
   const averageA = useMemo(() => avg(rows, 'a'), [rows])
   const averageB = useMemo(() => avg(rows, 'b'), [rows])
+  const isTemplateTransitioning = templateTransitionPhase !== 'idle'
   const maxTemplateCursor = Math.max(templateOrder.length - 1, 0)
-  const canStepTemplateBackward = templateOrder.length > 0 && templateCursor > 0
-  const canStepTemplateForward = templateOrder.length > 0 && templateCursor < maxTemplateCursor
+  const canStepTemplateBackward = !isTemplateTransitioning && templateOrder.length > 0 && templateCursor > 0
+  const canStepTemplateForward = !isTemplateTransitioning && templateOrder.length > 0 && templateCursor < maxTemplateCursor
 
   const applyTemplateById = useCallback((templateId: TemplateId, shouldFlash = true) => {
     const preset = localizedTemplates.find((template) => template.id === templateId)
@@ -430,13 +438,40 @@ function App() {
     }
   }, [flashStatus, localizedTemplates, ui.templateLoaded])
 
+  const clearTemplateTransitionQueue = useCallback(() => {
+    for (const timeoutId of templateTransitionTimeoutsRef.current) {
+      window.clearTimeout(timeoutId)
+    }
+    templateTransitionTimeoutsRef.current = []
+    templateTransitionPhaseRef.current = 'idle'
+    setTemplateTransitionPhase('idle')
+  }, [])
+
   const stepTemplateOrder = useCallback((direction: 1 | -1) => {
+    if (templateTransitionPhaseRef.current !== 'idle') return
     if (!templateOrder.length) return
     const nextTemplateCursor = templateCursor + direction
     if (nextTemplateCursor < 0 || nextTemplateCursor >= templateOrder.length) return
-    setTemplateCursor(nextTemplateCursor)
-    applyTemplateById(templateOrder[nextTemplateCursor], false)
-  }, [applyTemplateById, templateCursor, templateOrder])
+
+    clearTemplateTransitionQueue()
+    templateTransitionPhaseRef.current = 'exit'
+    setTemplateTransitionPhase('exit')
+
+    const swapTimeout = window.setTimeout(() => {
+      setTemplateCursor(nextTemplateCursor)
+      applyTemplateById(templateOrder[nextTemplateCursor], false)
+      templateTransitionPhaseRef.current = 'enter'
+      setTemplateTransitionPhase('enter')
+    }, TEMPLATE_RAIL_TRANSITION_HALF_MS)
+
+    const settleTimeout = window.setTimeout(() => {
+      templateTransitionPhaseRef.current = 'idle'
+      setTemplateTransitionPhase('idle')
+      templateTransitionTimeoutsRef.current = []
+    }, TEMPLATE_RAIL_TRANSITION_MS)
+
+    templateTransitionTimeoutsRef.current.push(swapTimeout, settleTimeout)
+  }, [applyTemplateById, clearTemplateTransitionQueue, templateCursor, templateOrder])
 
   const handleSlideImageAdjustChange = (imageKey: string, adjust: PortraitAdjust) => {
     const normalizedKey = imageKey.trim()
@@ -849,6 +884,18 @@ function App() {
     viewMode,
   ])
 
+  useEffect(() => {
+    if (viewMode === 'fight') return
+    clearTemplateTransitionQueue()
+  }, [clearTemplateTransitionQueue, viewMode])
+
+  useEffect(
+    () => () => {
+      clearTemplateTransitionQueue()
+    },
+    [clearTemplateTransitionQueue],
+  )
+
   const currentFightLabel =
     stripFileExtension(importFileName) ||
     `${fighterA.name || tr('Postać A', 'Fighter A')} vs ${fighterB.name || tr('Postać B', 'Fighter B')}`
@@ -1150,6 +1197,7 @@ function App() {
             activeTemplate={activeTemplate}
             activeFightFolderKey={activeFightRecord?.folderKey || ''}
             activeFightLocale={activeFightRecord?.variantLocale || language}
+            templateTransitionPhase={templateTransitionPhase}
           >
             {renderedTemplate}
           </FightPreviewStage>
