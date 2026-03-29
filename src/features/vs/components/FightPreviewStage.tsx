@@ -93,19 +93,21 @@ export function FightPreviewStage({
           aria-hidden="true"
         >
           <div className="vs-template-rail-gutter vs-template-rail-gutter-left">
-            <div className="vs-template-rail-fill" />
-            <div className="vs-template-rail-line vs-template-rail-line-outer" />
-            <div className="vs-template-rail-line vs-template-rail-line-inner" />
+            <div className="vs-template-rail-track">
+              <div className="vs-template-rail-fill" />
+              <div className="vs-template-rail-belt" />
+              <div className="vs-template-rail-gear vs-template-rail-gear-top" />
+              <div className="vs-template-rail-gear vs-template-rail-gear-bottom" />
+            </div>
           </div>
           <div className="vs-template-rail-gutter vs-template-rail-gutter-right">
-            <div className="vs-template-rail-fill" />
-            <div className="vs-template-rail-line vs-template-rail-line-outer" />
-            <div className="vs-template-rail-line vs-template-rail-line-inner" />
+            <div className="vs-template-rail-track">
+              <div className="vs-template-rail-fill" />
+              <div className="vs-template-rail-belt" />
+              <div className="vs-template-rail-gear vs-template-rail-gear-top" />
+              <div className="vs-template-rail-gear vs-template-rail-gear-bottom" />
+            </div>
           </div>
-          <div className="vs-template-rail-gear vs-template-rail-gear-left-top" />
-          <div className="vs-template-rail-gear vs-template-rail-gear-left-bottom" />
-          <div className="vs-template-rail-gear vs-template-rail-gear-right-top" />
-          <div className="vs-template-rail-gear vs-template-rail-gear-right-bottom" />
         </div>
       </div>
     </section>

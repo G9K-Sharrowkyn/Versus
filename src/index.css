@@ -316,85 +316,87 @@
 }
 
 .vs-template-rail-fill {
-  display: none;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 42px;
 }
 
 .vs-template-rail-gutter-left .vs-template-rail-fill {
-  left: calc(var(--vs-rail-outer-inset) + var(--vs-rail-line-width));
-  width: calc(var(--vs-rail-inner-offset) + 28px);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 85, 78, 0.2) 0%,
-    rgba(255, 85, 78, 0.08) 22%,
-    rgba(255, 85, 78, 0.02) 56%,
-    rgba(255, 85, 78, 0) 100%
-  );
-  clip-path: polygon(0 0, 84% 0, 100% 100%, 0 100%);
+  left: 100%;
+  background: linear-gradient(90deg, rgba(255, 85, 78, 0.18) 0%, transparent 100%);
 }
 
 .vs-template-rail-gutter-right .vs-template-rail-fill {
-  right: calc(var(--vs-rail-outer-inset) + var(--vs-rail-line-width));
-  width: calc(var(--vs-rail-inner-offset) + 28px);
-  background: linear-gradient(
-    270deg,
-    rgba(255, 85, 78, 0.2) 0%,
-    rgba(255, 85, 78, 0.08) 22%,
-    rgba(255, 85, 78, 0.02) 56%,
-    rgba(255, 85, 78, 0) 100%
-  );
-  clip-path: polygon(16% 0, 100% 0, 100% 100%, 0 100%);
+  right: 100%;
+  background: linear-gradient(270deg, rgba(255, 85, 78, 0.18) 0%, transparent 100%);
 }
 
-.vs-template-rail-line {
+.vs-template-rail-track {
   position: absolute;
-  top: 0;
-  height: 168%;
-  width: var(--vs-rail-line-width);
+  top: -15%;
+  height: 140%;
+  width: 46px;
   z-index: 2;
-  background: rgba(255, 85, 78, 0.56);
+}
+
+.vs-template-rail-gutter-left .vs-template-rail-track {
+  right: 36px;
+  transform-origin: top right;
+  transform: rotate(14deg);
+  --belt-angle: -14deg;
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-track {
+  left: 36px;
+  transform-origin: top left;
+  transform: rotate(-14deg);
+  --belt-angle: 14deg;
+}
+
+.vs-template-rail-belt {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(
+      calc(180deg + var(--belt-angle, 0deg)),
+      rgba(5, 1, 1, 0.98) 0px,
+      rgba(5, 1, 1, 0.98) 12px,
+      rgba(255, 100, 80, 0.9) 12px,
+      rgba(180, 40, 35, 0.95) 14px,
+      rgba(100, 15, 15, 0.95) 20px,
+      rgba(20, 2, 2, 0.98) 20px,
+      rgba(20, 2, 2, 0.98) 24px,
+      rgba(5, 1, 1, 0.98) 24px,
+      rgba(5, 1, 1, 0.98) 28px
+    ),
+    linear-gradient(90deg, rgba(20, 4, 4, 1) 0%, rgba(45, 10, 10, 1) 50%, rgba(20, 4, 4, 1) 100%);
   box-shadow:
-    0 0 18px rgba(255, 85, 78, 0.24),
-    0 0 2px rgba(255, 85, 78, 0.66);
+    inset 6px 0 8px rgba(0,0,0,0.95),
+    inset -6px 0 8px rgba(0,0,0,0.95),
+    0 0 18px rgba(255, 85, 78, 0.4);
+  border-left: 3px solid rgba(60, 15, 15, 0.9);
+  border-right: 3px solid rgba(60, 15, 15, 0.9);
+  border-radius: 4px;
+  background-position: 0 0, 0 0;
 }
 
-.vs-template-rail-line-outer {
-  transform-origin: top center;
-  transform: rotate(var(--vs-rail-outer-side-angle));
-  background: rgba(255, 85, 78, 0.62);
-  box-shadow:
-    0 0 20px rgba(255, 85, 78, 0.28),
-    0 0 3px rgba(255, 85, 78, 0.72);
+.vs-template-rail-overlay.is-exit .vs-template-rail-belt,
+.vs-template-rail-overlay.is-enter .vs-template-rail-belt {
+  animation: vsTemplateBeltMove 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.vs-template-rail-line-inner {
-  transform-origin: top center;
-  transform: rotate(var(--vs-rail-inner-side-angle));
-  background: rgba(255, 85, 78, 0.66);
-  box-shadow:
-    0 0 22px rgba(255, 85, 78, 0.3),
-    0 0 3px rgba(255, 85, 78, 0.75);
-}
-
-.vs-template-rail-gutter-left .vs-template-rail-line-outer {
-  left: var(--vs-rail-outer-inset);
-}
-
-.vs-template-rail-gutter-left .vs-template-rail-line-inner {
-  left: calc(var(--vs-rail-outer-inset) + var(--vs-rail-inner-offset));
-}
-
-.vs-template-rail-gutter-right .vs-template-rail-line-outer {
-  right: var(--vs-rail-outer-inset);
-}
-
-.vs-template-rail-gutter-right .vs-template-rail-line-inner {
-  right: calc(var(--vs-rail-outer-inset) + var(--vs-rail-inner-offset));
+@keyframes vsTemplateBeltMove {
+  0% { background-position: 0 0, 0 0; }
+  100% { background-position: 0 -174px, 0 0; }
 }
 
 .vs-template-rail-gear {
   position: absolute;
   width: var(--vs-rail-gear-size);
   height: var(--vs-rail-gear-size);
+  left: 50%;
+  margin-left: calc(var(--vs-rail-gear-size) / -2);
   border-radius: 999px;
   border: 3px solid rgba(255, 85, 78, 0.6);
   background:
@@ -422,38 +424,52 @@
   box-shadow:
     0 0 20px rgba(255, 85, 78, 0.32),
     inset 0 0 0 2px rgba(255, 85, 78, 0.28);
-  animation: vsTemplateGearSpin 1100ms linear infinite;
+  transform: rotate(0deg);
+  z-index: 3;
 }
 
-.vs-template-rail-gear-left-top {
-  left: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
-  top: 18px;
+.vs-template-rail-overlay.is-exit .vs-template-rail-gear,
+.vs-template-rail-overlay.is-enter .vs-template-rail-gear {
+  animation: vsTemplateGearSpin 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
-.vs-template-rail-gear-left-bottom {
-  left: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
-  bottom: 18px;
-  animation-direction: reverse;
+.vs-template-rail-gear-top {
+  top: 15%;
 }
 
-.vs-template-rail-gear-right-top {
-  right: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
-  top: 18px;
-  animation-direction: reverse;
+.vs-template-rail-gear-bottom {
+  bottom: 8%;
 }
 
-.vs-template-rail-gear-right-bottom {
-  right: calc(var(--vs-rail-gutter-offset) + var(--vs-rail-outer-inset) - (var(--vs-rail-gear-size) / 2));
-  bottom: 18px;
+.vs-template-rail-overlay.is-exit .vs-template-rail-gear-bottom,
+.vs-template-rail-overlay.is-enter .vs-template-rail-gear-bottom {
+  animation: vsTemplateGearSpinReverse 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-gear {
+}
+
+.vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
+}
+
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear,
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear {
+  animation: vsTemplateGearSpinReverse 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
+}
+
+.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear-bottom,
+.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
+  animation: vsTemplateGearSpin 1200ms cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
 }
 
 @keyframes vsTemplateGearSpin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes vsTemplateGearSpinReverse {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); }
 }
 
 @keyframes vsTemplateRailGutterLeftIn {
