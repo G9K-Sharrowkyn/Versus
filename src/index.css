@@ -204,14 +204,14 @@
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-exit {
-  animation: vsTemplateRailExit 2000ms cubic-bezier(0.2, 0.82, 0.22, 1) both;
+  animation: vsTemplateRailExit 1200ms cubic-bezier(0.2, 0.82, 0.22, 1) both;
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-enter {
-  transform: translateY(102%) scale(0.7);
-  filter: saturate(1.22) contrast(1.24) brightness(0.82);
-  opacity: 0.82;
-  animation: vsTemplateRailEnter 2000ms cubic-bezier(0.18, 0.9, 0.22, 1) both;
+  transform: translateY(120%) scale(1.14);
+  filter: saturate(1.18) contrast(1.20) brightness(0.78);
+  opacity: 1;
+  animation: vsTemplateRailEnter 1200ms cubic-bezier(0.18, 0.9, 0.22, 1) both;
 }
 
 @keyframes vsTemplateRailExit {
@@ -220,28 +220,28 @@
     filter: saturate(1) contrast(1);
     opacity: 1;
   }
-  42% {
-    transform: translateY(0) scale(0.7);
+  38% {
+    transform: translateY(0) scale(0.72);
     filter: saturate(1.16) contrast(1.18) brightness(0.88);
-    opacity: 0.9;
+    opacity: 1;
   }
   100% {
-    transform: translateY(-102%) scale(0.7);
-    filter: saturate(1.12) contrast(1.14) brightness(0.86);
-    opacity: 0.88;
+    transform: translateY(-120%) scale(0.3);
+    filter: saturate(1.14) contrast(1.16) brightness(0.76);
+    opacity: 1;
   }
 }
 
 @keyframes vsTemplateRailEnter {
   0% {
-    transform: translateY(102%) scale(0.7);
-    filter: saturate(1.14) contrast(1.16) brightness(0.86);
-    opacity: 0.88;
+    transform: translateY(120%) scale(1.14);
+    filter: saturate(1.18) contrast(1.20) brightness(0.78);
+    opacity: 1;
   }
   62% {
-    transform: translateY(0) scale(0.7);
+    transform: translateY(0) scale(0.72);
     filter: saturate(1.1) contrast(1.12) brightness(0.9);
-    opacity: 0.9;
+    opacity: 1;
   }
   100% {
     transform: translateY(0) scale(1);
@@ -254,7 +254,7 @@
   position: absolute;
   inset: 0;
   --vs-rail-gutter-width: 150px;
-  --vs-rail-gutter-offset: -8px;
+  --vs-rail-gutter-offset: 120px;
   --vs-rail-outer-inset: 18px;
   --vs-rail-inner-offset: 34px;
   --vs-rail-outer-angle: 13deg;
@@ -272,19 +272,19 @@
 }
 
 .vs-template-rail-overlay.is-exit .vs-template-rail-gutter-left {
-  animation: vsTemplateRailGutterLeftIn 840ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
+  animation: vsTemplateRailGutterLeftIn 500ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
 }
 
 .vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right {
-  animation: vsTemplateRailGutterRightIn 840ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
+  animation: vsTemplateRailGutterRightIn 500ms cubic-bezier(0.2, 0.82, 0.22, 1) 0ms both;
 }
 
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
-  animation: vsTemplateRailGutterLeftOut 760ms cubic-bezier(0.18, 0.9, 0.22, 1) 1240ms both;
+  animation: vsTemplateRailGutterLeftOut 460ms cubic-bezier(0.18, 0.9, 0.22, 1) 740ms both;
 }
 
 .vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
-  animation: vsTemplateRailGutterRightOut 760ms cubic-bezier(0.18, 0.9, 0.22, 1) 1240ms both;
+  animation: vsTemplateRailGutterRightOut 460ms cubic-bezier(0.18, 0.9, 0.22, 1) 740ms both;
 }
 
 .vs-template-rail-overlay::before {
