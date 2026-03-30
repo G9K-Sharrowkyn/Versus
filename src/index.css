@@ -303,12 +303,12 @@
 
 @keyframes vsTemplateGutterLeftOut {
   0%, 39.18% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
-  54.05%, 100% { transform: translateX(-1500%); opacity: 0; }
+  63.5%, 100% { transform: translateX(-300%); opacity: 0; }
 }
 
 @keyframes vsTemplateGutterRightOut {
   0%, 39.18% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
-  54.05%, 100% { transform: translateX(1500%); opacity: 0; }
+  63.5%, 100% { transform: translateX(300%); opacity: 0; }
 }
 
 .vs-template-rail-gutter-left {
