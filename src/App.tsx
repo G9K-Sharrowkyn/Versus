@@ -91,7 +91,7 @@ const FIGHTS_SCAN_POLL_MS = 1200
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 7400
-const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 1600
+const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 1800
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
 
