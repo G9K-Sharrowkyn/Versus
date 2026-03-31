@@ -743,11 +743,13 @@
       text-shadow: 0 0 6px var(--s7c-color);
     }
     .s7-card-img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: center top;
+      position: absolute;
+      display: block;
       opacity: 0.82;
       filter: saturate(0.94) contrast(1.05) brightness(0.8);
+      user-select: none;
+      -webkit-user-select: none;
+      pointer-events: none;
     }
     .s7-fight-label {
       font-family: 'Courier New', monospace;
@@ -996,6 +998,137 @@
     }, interval);
   };
 
+  // ── Portrait adjust (1:1 z AdjustableTemplateImage + helpers.ts) ─────────────
+  const ADJUST_STORAGE_KEY = 'vvv-portrait-adjust-v1';
+  const SCALE_MIN = 1.0, SCALE_MAX = 2.4;
+
+  const adjustStore = (() => {
+    try { return JSON.parse(localStorage.getItem(ADJUST_STORAGE_KEY) || '{}'); } catch { return {}; }
+  })();
+  const saveAdjustStore = () => {
+    try { localStorage.setItem(ADJUST_STORAGE_KEY, JSON.stringify(adjustStore)); } catch {}
+  };
+
+  const clampPos   = v => Math.max(0, Math.min(100, isFinite(v) ? v : 50));
+  const clampScale = v => Math.max(SCALE_MIN, Math.min(SCALE_MAX, isFinite(v) ? v : 1));
+
+  const getAdjust = key => {
+    const s = adjustStore[key];
+    return { x: clampPos(s && isFinite(s.x) ? s.x : 50),
+             y: clampPos(s && isFinite(s.y) ? s.y : 50),
+             scale: clampScale(s && isFinite(s.scale) ? s.scale : 1) };
+  };
+
+  // getTemplateImageGeometry — identycznie jak w helpers.ts
+  const getGeometry = (cw, ch, nw, nh, scale) => {
+    if (!cw || !ch || !nw || !nh) return null;
+    const cs = Math.max(cw / nw, ch / nh);
+    const w = nw * cs * clampScale(scale);
+    const h = nh * cs * clampScale(scale);
+    return { width: w, height: h, overflowX: Math.max(0, w - cw), overflowY: Math.max(0, h - ch) };
+  };
+
+  // buildAdjustableTemplateImageStyle — identycznie jak w helpers.ts
+  const buildImgStyle = (adjust, geo) => {
+    const x = clampPos(adjust.x), y = clampPos(adjust.y);
+    if (geo) {
+      return { left:'0', top:'0', width:`${geo.width}px`, height:`${geo.height}px`,
+               maxWidth:'none', maxHeight:'none',
+               transform:`translate3d(${(-geo.overflowX*x)/100}px,${(-geo.overflowY*y)/100}px,0)` };
+    }
+    return { inset:'0', width:'100%', height:'100%', objectFit:'cover',
+             objectPosition:`${x}% ${y}%`, transform:`scale(${clampScale(adjust.scale)})`,
+             transformOrigin:'center center' };
+  };
+
+  const applyImgStyle = (img, cardEl, adjust) => {
+    const geo = getGeometry(cardEl.clientWidth, cardEl.clientHeight,
+                            img.naturalWidth, img.naturalHeight, adjust.scale);
+    const s = buildImgStyle(adjust, geo);
+    Object.assign(img.style, s);
+  };
+
+  const makeInteractiveCard = (fightEl, cardEl, adjustKey) => {
+    const img = cardEl && cardEl.querySelector('.s7-card-img');
+    if (!img) return;
+
+    let adjust = getAdjust(adjustKey);
+    const apply = () => applyImgStyle(img, cardEl, adjust);
+
+    if (img.complete && img.naturalWidth) apply();
+    else img.addEventListener('load', apply, { once: true });
+
+    let drag = null;
+    let suppressClick = false;
+
+    // Capture-phase na fightEl — blokuje click gdy byl drag
+    fightEl.addEventListener('click', e => {
+      if (!suppressClick) return;
+      suppressClick = false;
+      e.stopImmediatePropagation();
+    }, true);
+
+    cardEl.addEventListener('pointerdown', e => {
+      if (e.button !== 0 && e.button !== 2) return;
+      e.stopPropagation();
+      drag = { pointerId: e.pointerId, mode: e.button === 2 ? 'zoom' : 'pan',
+               startX: e.clientX, startY: e.clientY,
+               origX: e.clientX, origY: e.clientY,   // do liczenia sumarycznej odległości
+               base: { ...adjust }, moved: false };
+      cardEl.setPointerCapture(e.pointerId);
+      cardEl.style.cursor = 'grabbing';
+    });
+
+    cardEl.addEventListener('pointermove', e => {
+      if (!drag || drag.pointerId !== e.pointerId) return;
+      e.stopPropagation();
+
+      // moved = sumaryczna odległość od początku dragia (nie per-klatka)
+      const totalDx = e.clientX - drag.origX, totalDy = e.clientY - drag.origY;
+      if (Math.abs(totalDx) + Math.abs(totalDy) > 4) drag.moved = true;
+
+      const dx = e.clientX - drag.startX, dy = e.clientY - drag.startY;
+      const rect = cardEl.getBoundingClientRect();
+      const scaleX = rect.width  > 0 ? rect.width  / cardEl.clientWidth  : 1;
+      const scaleY = rect.height > 0 ? rect.height / cardEl.clientHeight : 1;
+      const ldx = dx / Math.max(scaleX, 0.0001), ldy = dy / Math.max(scaleY, 0.0001);
+
+      if (drag.mode === 'pan') {
+        const geo = getGeometry(cardEl.clientWidth, cardEl.clientHeight,
+                                img.naturalWidth, img.naturalHeight, drag.base.scale);
+        const nx = geo && geo.overflowX > 0 ? drag.base.x - (ldx / geo.overflowX) * 100 : drag.base.x;
+        const ny = geo && geo.overflowY > 0 ? drag.base.y - (ldy / geo.overflowY) * 100 : drag.base.y;
+        adjust = { x: clampPos(nx), y: clampPos(ny), scale: drag.base.scale };
+        drag.base = { ...adjust }; drag.startX = e.clientX; drag.startY = e.clientY;
+      } else {
+        const zd = (-ldy / Math.max(1, cardEl.clientHeight)) * 1.6;
+        adjust = { x: drag.base.x, y: drag.base.y, scale: clampScale(drag.base.scale + zd) };
+        drag.base = { ...adjust }; drag.startX = e.clientX; drag.startY = e.clientY;
+      }
+      apply();
+    });
+
+    const endDrag = e => {
+      if (!drag || drag.pointerId !== e.pointerId) return;
+      e.stopPropagation();
+      if (cardEl.hasPointerCapture(e.pointerId)) cardEl.releasePointerCapture(e.pointerId);
+      cardEl.style.cursor = 'grab';
+      const wasMoved = drag.moved;
+      drag = null;
+      if (wasMoved) {
+        adjustStore[adjustKey] = adjust;
+        saveAdjustStore();
+        suppressClick = true;
+      }
+    };
+    cardEl.addEventListener('pointerup',     endDrag);
+    cardEl.addEventListener('pointercancel', endDrag);
+    cardEl.addEventListener('contextmenu',   e => e.preventDefault());
+
+    cardEl.style.cursor = 'grab';
+    cardEl.style.touchAction = 'none';
+  };
+
   // ── Fight History ─────────────────────────────────────────────────────────────
   const HISTORY_STORAGE_KEY = 'vvv-fight-history-v1';
 
@@ -1066,6 +1199,8 @@
         openFightFromHistory(fight);
       });
       grid.appendChild(el);
+      makeInteractiveCard(el, el.querySelector('.s7-card-a'), fight.matchupKey + ':a');
+      makeInteractiveCard(el, el.querySelector('.s7-card-b'), fight.matchupKey + ':b');
     });
   };
 
@@ -1419,7 +1554,15 @@
       jumpToDebugStage(p.stage);
       return;
     }
-    if (p.type === 'vvv-search-collapse')        { startCollapse();   return; }
+    if (p.type === 'vvv-search-collapse') {
+      const currentStage = document.querySelector('.stage:not(.off)');
+      if (currentStage && currentStage.id === 's7') {
+        post({ type: 'vvv-search-collapsed', handoff: buildHandoff() });
+        return;
+      }
+      startCollapse();
+      return;
+    }
     if (p.type === 'vvv-search-prime-collapsed') { primeCollapsed();   return; }
     if (p.type === 'vvv-search-expand')          { expandFromPrime();  return; }
     if (p.type === 'vvv-search-reset')           { resetCollapse(); if (searchActive) notifyReady(); return; }
