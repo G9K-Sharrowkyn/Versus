@@ -16,18 +16,25 @@
       .breachProtocolBg + div { transform: translateY(-16px) !important; position: relative !important; z-index: 3 !important; }
     </style>
     <script>
-    /* ── Mock dead nightfm-backend (Replit gone) — runs before bundle/runner ── */
+    /* ── Mock dead nightfm-backend (Replit gone) + SoundCloud (no token) ── */
     (function () {
+      function isBlocked(url) {
+        var s = typeof url === 'string' ? url
+              : (url && typeof url.url === 'string') ? url.url
+              : (url && typeof url.toString === 'function') ? url.toString() : '';
+        var sl = s.toLowerCase();
+        return sl.includes('nightfm-backend') || sl.includes('soundcloud.com');
+      }
       var blob = URL.createObjectURL(new Blob(['{}'], { type: 'application/json' }));
       var _open = XMLHttpRequest.prototype.open;
       XMLHttpRequest.prototype.open = function (method, url, async, user, pass) {
-        if (typeof url === 'string' && url.includes('nightfm-backend')) url = blob;
+        if (isBlocked(url)) url = blob;
         return async === undefined ? _open.call(this, method, url)
                                    : _open.call(this, method, url, async, user, pass);
       };
       var _fetch = window.fetch;
       window.fetch = function (url, opts) {
-        if (typeof url === 'string' && url.includes('nightfm-backend'))
+        if (isBlocked(url))
           return Promise.resolve(new Response('{}', { status: 200 }));
         return _fetch.call(this, url, opts);
       };

@@ -71,6 +71,7 @@ export function useVsTransitions({
   const introRevealPendingRef = useRef(false)
   const fightViewRevealTimeoutRef = useRef<number | null>(null)
   const reverseStageRef = useRef<ReverseStage>('idle')
+  const pendingFightForHistoryRef = useRef<FightRecord | null>(null)
 
   const morphTotalMs = morphPowerOffMs + morphRingOnMs + morphFinalMs
 
@@ -146,7 +147,7 @@ export function useVsTransitions({
     }, 24)
   }
 
-  const postMessageToSearchFrame = (payload: { type: string }) => {
+  const postMessageToSearchFrame = (payload: { type: string; [key: string]: unknown }) => {
     const target = searchFrameRef.current?.contentWindow
     if (!target || typeof window === 'undefined') return false
     target.postMessage(payload, window.location.origin)
@@ -469,6 +470,19 @@ export function useVsTransitions({
         return
       }
 
+      if (typed.type === 'vvv-fight-history-open') {
+        const fightId    = typeof typed.fightId === 'string' ? typed.fightId : ''
+        const matchupKey = typeof typed.matchupKey === 'string' ? typed.matchupKey : ''
+        const fight =
+          (fightId ? fights.find((f) => f.id === fightId) : null) ??
+          (matchupKey ? fights.find((f) => f.matchupKey === matchupKey) : null) ??
+          pendingFightForHistoryRef.current
+        if (!fight) return
+        pendingFightForHistoryRef.current = null
+        startSearchFightTransition(fight)
+        return
+      }
+
       if (typed.type !== 'vvv-search-submit' || typeof typed.query !== 'string') return
       const rawQuery = typed.query.trim()
       if (!rawQuery) return
@@ -489,8 +503,20 @@ export function useVsTransitions({
       }
 
       const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup)
-      if (!match) return
-      startSearchFightTransition(match)
+      if (!match) {
+        postMessageToSearchFrame({ type: 'vvv-fight-not-found' })
+        return
+      }
+      pendingFightForHistoryRef.current = match
+      postMessageToSearchFrame({
+        type: 'vvv-fight-located',
+        fightId: match.id,
+        matchupKey: match.matchupKey,
+        fighterAName: match.payload.fighterAName,
+        fighterBName: match.payload.fighterBName,
+        portraitADataUrl: match.portraitADataUrl,
+        portraitBDataUrl: match.portraitBDataUrl,
+      })
     }
 
     window.addEventListener('message', onMessage)

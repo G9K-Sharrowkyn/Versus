@@ -9,6 +9,12 @@ import { parseFightImageIndex } from './scripts/fightImageIndex.js'
 import { parseFightJsonFiles } from './src/features/vs/importer'
 import type { FightLocaleJsonV1, FightScansJsonV1, ParsedVsImport } from './src/features/vs/types'
 
+// 1×1 transparent GIF — sent instead of 404 for missing fight images
+const TRANSPARENT_1X1_GIF = Buffer.from(
+  'R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+  'base64',
+)
+
 const FIGHTS_DIR_CANDIDATES = [
   path.resolve(__dirname, 'Fights'),
   path.resolve(__dirname, '..', '..', 'Fights'),
@@ -931,8 +937,9 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
 
       const resolvedFileName = fileName || await resolveIndexedFightImageFile(candidateFolder, section, entryIndex)
       if (!resolvedFileName) {
-        res.statusCode = 404
-        res.end(asJson({ error: 'Image not found' }))
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'image/gif')
+        res.end(TRANSPARENT_1X1_GIF)
         return
       }
 
@@ -950,8 +957,9 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
         }
       }
 
-      res.statusCode = 404
-      res.end(asJson({ error: 'Image not found' }))
+      res.statusCode = 200
+      res.setHeader('Content-Type', 'image/gif')
+      res.end(TRANSPARENT_1X1_GIF)
       return
     }
 

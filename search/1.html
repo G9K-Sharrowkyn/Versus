@@ -574,6 +574,150 @@
       0%,100% { transform:scaleY(0.2); opacity:0.3; }
       50%     { transform:scaleY(1);   opacity:0.8; }
     }
+
+    /* ═══════════════════════════════════════════
+       STAGE 3 — CRT-only mode (no content)
+    ═══════════════════════════════════════════ */
+    #s3.s3-crt-only .hydra-box { visibility: hidden; }
+
+    /* ═══════════════════════════════════════════
+       STAGE 7 — FIGHT HISTORY
+    ═══════════════════════════════════════════ */
+    #s7 {
+      background: linear-gradient(160deg, #060d12 0%, #0a0f14 60%, #060d12 100%);
+      flex-direction: column;
+    }
+    .s7-frame {
+      position: relative;
+      width: min(1280px, 96vw);
+      height: min(820px, 92vh);
+      border: 1px solid rgba(119, 226, 242, 0.28);
+      box-shadow: 0 0 0 1px rgba(119, 226, 242, 0.08),
+                  0 0 60px rgba(119, 226, 242, 0.04),
+                  inset 0 0 40px rgba(0,0,0,0.6);
+      background: rgba(4, 10, 18, 0.92);
+      display: flex;
+      flex-direction: column;
+    }
+    .s7-frame::before, .s7-frame::after {
+      content: '';
+      position: absolute;
+      width: 20px; height: 20px;
+      border: 2px solid rgba(119, 226, 242, 0.55);
+    }
+    .s7-frame::before { top: -1px; left: -1px; border-right: none; border-bottom: none; }
+    .s7-frame::after  { bottom: -1px; right: -1px; border-left: none; border-top: none; }
+    .s7-header {
+      flex-shrink: 0;
+      padding: 0.65em 1.4em;
+      background: rgba(119, 226, 242, 0.05);
+      border-bottom: 1px solid rgba(119, 226, 242, 0.18);
+      display: flex;
+      align-items: center;
+      gap: 0.9em;
+    }
+    .s7-header-title {
+      font-family: 'Chakra Petch', 'Courier New', monospace;
+      font-size: clamp(0.85rem, 1.5vw, 1.25rem);
+      font-weight: 600;
+      color: #77e2f2;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-shadow: 0 0 14px rgba(119, 226, 242, 0.4);
+    }
+    .s7-header-sep {
+      font-family: 'Courier New', monospace;
+      font-size: 0.7rem;
+      color: rgba(119, 226, 242, 0.25);
+      letter-spacing: 0.06em;
+    }
+    .s7-header-sub {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.58rem, 0.95vw, 0.72rem);
+      color: rgba(119, 226, 242, 0.38);
+      letter-spacing: 0.08em;
+    }
+    .s7-body {
+      flex: 1;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      padding: 1.6em 1.8em 2.5em;
+    }
+    .s7-body::-webkit-scrollbar { display: none; }
+    .s7-empty {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.65rem, 1.1vw, 0.82rem);
+      color: rgba(255,255,255,0.18);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .s7-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.8em 2.2em;
+    }
+    .s7-fight {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5em;
+      cursor: pointer;
+      transition: transform 0.18s ease;
+    }
+    .s7-fight:hover { transform: translateY(-3px); }
+    .s7-cards { display: flex; gap: 5px; }
+    .s7-card {
+      width: 122px; height: 170px;
+      position: relative;
+      border: 1px solid var(--s7c-soft);
+      background: rgba(0,0,0,0.45);
+      overflow: hidden;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .s7-card-a {
+      --s7c-color: rgba(119,226,242,0.7);
+      --s7c-soft: rgba(119,226,242,0.2);
+      --s7c-strong: rgba(119,226,242,0.9);
+    }
+    .s7-card-b {
+      --s7c-color: rgba(255,85,78,0.7);
+      --s7c-soft: rgba(255,85,78,0.2);
+      --s7c-strong: rgba(255,85,78,0.9);
+    }
+    .s7-fight:hover .s7-card-a { border-color: rgba(119,226,242,0.48); box-shadow: 0 0 14px rgba(119,226,242,0.1); }
+    .s7-fight:hover .s7-card-b { border-color: rgba(255,85,78,0.48); box-shadow: 0 0 14px rgba(255,85,78,0.1); }
+    .s7-card-id {
+      position: absolute;
+      top: 0.3em; left: 0.35em;
+      font-family: 'Courier New', monospace;
+      font-size: 0.5rem;
+      color: var(--s7c-strong);
+      z-index: 2;
+      line-height: 1;
+      text-shadow: 0 0 6px var(--s7c-color);
+    }
+    .s7-card-img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: 0.82;
+      filter: saturate(0.94) contrast(1.05) brightness(0.8);
+    }
+    .s7-fight-label {
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.5rem, 0.85vw, 0.65rem);
+      color: rgba(200,200,200,0.62);
+      letter-spacing: 0.06em;
+      text-align: center;
+      text-transform: uppercase;
+      max-width: 260px;
+      line-height: 1.4;
+    }
   </style>
 </head>
 <body>
@@ -633,6 +777,21 @@
   </div>
 </div>
 
+<!-- ── STAGE 7: FIGHT HISTORY ── -->
+<div id="s7" class="stage off">
+  <div class="s7-frame">
+    <div class="s7-header">
+      <span class="s7-header-title">Fight History</span>
+      <span class="s7-header-sep">//</span>
+      <span class="s7-header-sub">HISTORIA WALK · VERSUSVERSEVAULT</span>
+    </div>
+    <div class="s7-body" id="s7-body">
+      <div class="s7-empty" id="s7-empty">[ NO FIGHT DATA LOADED ]</div>
+      <div class="s7-grid" id="s7-grid"></div>
+    </div>
+  </div>
+</div>
+
 <!-- ── STAGE 6: CYBERPUNK SEARCH ── -->
 <div id="s6" class="stage off">
   <div class="s6-wrap">
@@ -678,10 +837,12 @@
   }
 
   const showStage = n => {
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 1; i <= 7; i++) {
       const el = $(`s${i}`);
-      if (i === n) el.classList.remove('off');
-      else         el.classList.add('off');
+      if (el) {
+        if (i === n) el.classList.remove('off');
+        else         el.classList.add('off');
+      }
     }
   };
 
@@ -701,8 +862,14 @@
     const bar = $('h-bar');
     const spin = $('h-spin');
 
-    if (s3) s3.classList.remove('on');
+    if (s3) { s3.classList.remove('on'); s3.classList.remove('s3-crt-only'); }
     if (s4) s4.style.transform = '';
+    const s3Title = document.querySelector('#s3 .h-title');
+    const s3Sub   = document.querySelector('#s3 .h-sub');
+    const s3Done  = document.querySelector('#s3 .h-done');
+    if (s3Title) s3Title.textContent = '< SYSTEM REBOOTING >';
+    if (s3Sub)   s3Sub.textContent   = 'VERSUS//VAULT v2.077 \u00B7 RECOVERY SEQUENCE';
+    if (s3Done)  s3Done.textContent  = 'REBOOTING SUCCESSFUL';
     if (spin) spin.textContent = '[/]';
     if (pct) pct.textContent = '0';
     if (bar) bar.innerHTML = '&nbsp;';
@@ -743,6 +910,11 @@
 
     if (shortcut === 5) {
       runSearchStage(token);
+      return;
+    }
+
+    if (shortcut === 6) {
+      runFightHistoryStage(token);
     }
   };
 
@@ -792,6 +964,80 @@
         if (isStageRunTokenActive(token) && typeof onDone === 'function') onDone();
       }
     }, interval);
+  };
+
+  // ── Fight History ─────────────────────────────────────────────────────────────
+  const fightHistory = [];
+  let fightIdCounter = 1;
+
+  const setStage3FightMode = () => {
+    const titleEl = document.querySelector('#s3 .h-title');
+    const subEl   = document.querySelector('#s3 .h-sub');
+    const doneEl  = document.querySelector('#s3 .h-done');
+    if (titleEl) titleEl.textContent = '< FIGHT SIMULATION STARTING >';
+    if (subEl)   subEl.textContent   = 'VERSUS//VAULT v2.077 \u00B7 COMBAT ANALYSIS PROTOCOL';
+    if (doneEl)  doneEl.textContent  = 'FIGHT SCENARIO COMPLETE';
+  };
+
+  const renderFightHistory = () => {
+    const grid  = $('s7-grid');
+    const empty = $('s7-empty');
+    if (!grid) return;
+    if (fightHistory.length === 0) {
+      if (empty) empty.style.display = '';
+      grid.innerHTML = '';
+      return;
+    }
+    if (empty) empty.style.display = 'none';
+    grid.innerHTML = '';
+    fightHistory.forEach(fight => {
+      const el = document.createElement('div');
+      el.className = 's7-fight';
+      el.dataset.fightId    = fight.fightId;
+      el.dataset.matchupKey = fight.matchupKey;
+      const imgA = fight.portraitADataUrl
+        ? `<img class="s7-card-img" src="${escapeHtml(fight.portraitADataUrl)}" alt="" loading="lazy">`
+        : '';
+      const imgB = fight.portraitBDataUrl
+        ? `<img class="s7-card-img" src="${escapeHtml(fight.portraitBDataUrl)}" alt="" loading="lazy">`
+        : '';
+      el.innerHTML =
+        `<div class="s7-cards">` +
+          `<div class="s7-card s7-card-a"><span class="s7-card-id">ID-${fight.cardId}-A</span>${imgA}</div>` +
+          `<div class="s7-card s7-card-b"><span class="s7-card-id">ID-${fight.cardId}-B</span>${imgB}</div>` +
+        `</div>` +
+        `<div class="s7-fight-label">${escapeHtml(fight.fighterAName)} vs ${escapeHtml(fight.fighterBName)}</div>`;
+      el.addEventListener('click', () => openFightFromHistory(fight));
+      grid.appendChild(el);
+    });
+  };
+
+  const addFightToHistory = data => {
+    const exists = fightHistory.some(f => f.matchupKey === data.matchupKey);
+    if (exists) return;
+    fightHistory.unshift({
+      fightId:         String(data.fightId || ''),
+      matchupKey:      String(data.matchupKey || ''),
+      fighterAName:    String(data.fighterAName || ''),
+      fighterBName:    String(data.fighterBName || ''),
+      portraitADataUrl: String(data.portraitADataUrl || ''),
+      portraitBDataUrl: String(data.portraitBDataUrl || ''),
+      cardId: String(fightIdCounter++).padStart(3, '0'),
+    });
+    renderFightHistory();
+  };
+
+  const openFightFromHistory = fight => {
+    const token = nextStageRunToken();
+    runChromaticFlash($('s7'), () => {
+      if (!isStageRunTokenActive(token)) return;
+      post({ type: 'vvv-fight-history-open', fightId: fight.fightId, matchupKey: fight.matchupKey });
+    }, { frames: 14, interval: 40, jitterX: 35, skew: 6 }, token);
+  };
+
+  const runFightHistoryStage = (token = stageRunToken) => {
+    if (!isStageRunTokenActive(token)) return;
+    showStage(7);
   };
 
   // ── postMessage protocol ─────────────────────────────────────────────────────
@@ -1081,9 +1327,16 @@
     if (p.type === 'vvv-pointer-relay' && e.source !== window.parent) { post(p); return; }
     if (p.type === 'vvv-terminal-submit') {
       const token = nextStageRunToken();
+      const s3el = $('s3');
+      if (s3el) s3el.classList.add('s3-crt-only');
       showStage(3);
-      requestAnimationFrame(() => $('s3').classList.add('on'));
-      runHydra(token);
+      requestAnimationFrame(() => { const el = $('s3'); if (el) el.classList.add('on'); });
+      setTimeout(() => {
+        if (!isStageRunTokenActive(token)) return;
+        const el = $('s3');
+        if (el) { el.classList.remove('s3-crt-only'); el.classList.remove('on'); }
+        runSearchStage(token);
+      }, 2200);
       return;
     }
     if (p.type === 'vvv-dev-jump-stage-request' && Number.isInteger(p.stage)) {
@@ -1101,7 +1354,32 @@
     if (p.type === 'vvv-search-collapse')        { startCollapse();   return; }
     if (p.type === 'vvv-search-prime-collapsed') { primeCollapsed();   return; }
     if (p.type === 'vvv-search-expand')          { expandFromPrime();  return; }
-    if (p.type === 'vvv-search-reset')           { resetCollapse(); if (searchActive) notifyReady(); }
+    if (p.type === 'vvv-search-reset')           { resetCollapse(); if (searchActive) notifyReady(); return; }
+
+    if (p.type === 'vvv-fight-located') {
+      addFightToHistory({
+        fightId:         p.fightId,
+        matchupKey:      p.matchupKey,
+        fighterAName:    p.fighterAName,
+        fighterBName:    p.fighterBName,
+        portraitADataUrl: p.portraitADataUrl,
+        portraitBDataUrl: p.portraitBDataUrl,
+      });
+      const token = nextStageRunToken();
+      setStage3FightMode();
+      showStage(3);
+      requestAnimationFrame(() => { const el = $('s3'); if (el) el.classList.add('on'); });
+      runHydra(token, runFightHistoryStage);
+      return;
+    }
+
+    if (p.type === 'vvv-fight-not-found') {
+      searchSubmitPending = false;
+      searchActive = true;
+      const s6 = $('s6');
+      if (s6) { s6.classList.remove('submitting'); s6.classList.remove('collapsing'); }
+      return;
+    }
   });
 
   const collapseInputSelection = () => {
@@ -1243,7 +1521,7 @@
 
 
   // ── STAGE 3: loading bar ──────────────────────────────────────────────────────
-  const runHydra = async (token = nextStageRunToken()) => {
+  const runHydra = async (token = nextStageRunToken(), onDone = null) => {
     const spin = $('h-spin'), pct = $('h-pct'), bar = $('h-bar');
     const main = $('h-main'), done = $('h-done');
     main.style.display = ''; done.style.display = 'none';
@@ -1292,7 +1570,8 @@
     if (!isStageRunTokenActive(token)) return;
     runChromaticFlash($('s3'), () => {
       if (!isStageRunTokenActive(token)) return;
-      runGlitchBurst(token);
+      if (typeof onDone === 'function') onDone(token);
+      else runGlitchBurst(token);
     }, { frames: 12, interval: 45, jitterX: 28, skew: 4 }, token);
   };
 
@@ -1352,6 +1631,18 @@
     }
 
     if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+
+    // Stage 7 scroll via arrow keys
+    const s7el   = $('s7');
+    const s7body = $('s7-body');
+    if (s7el && !s7el.classList.contains('off') && s7body) {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        s7body.scrollBy({ top: e.key === 'ArrowDown' ? 140 : -140, behavior: 'smooth' });
+        return;
+      }
+    }
+
     if (/^[1-5]$/.test(e.key)) {
       e.preventDefault();
       jumpToDebugStage(Number(e.key));
