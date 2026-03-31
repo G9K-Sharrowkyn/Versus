@@ -351,6 +351,8 @@
       ];
 
       var postStart = null;
+      var buttonWasReady = false;
+      var postClickLatch = false;
       var breachProgressTitle = "PROXY OVERRIDE";
 
       function isVisible(el) {
@@ -445,7 +447,14 @@
           document.querySelector(".breachProgress").previousElementSibling;
 
         var box1Width = box1 ? box1.getBoundingClientRect().width : 0;
-        var preClick = isVisible(secondary) && box1Width < 40;
+        if (box1Width >= 40 && !postClickLatch) {
+          postClickLatch = true;
+          if (opening)  opening.style.visibility  = 'hidden';
+          if (secondary) secondary.style.visibility = 'hidden';
+          if (tertiary) tertiary.style.visibility  = 'hidden';
+          if (button)   button.style.visibility   = 'hidden';
+        }
+        var preClick = !postClickLatch && isVisible(secondary) && box1Width < 40;
         var buttonReady = isVisible(button) && opacityOf(button) > 0.85;
 
         if (preClick && !buttonReady) {
@@ -459,10 +468,13 @@
           }
 
           var blockIndex = Math.floor(now / 520) % secondaryBlocks.length;
-          var lineCount = Math.floor(now / 80) % 9;
+          var blockElapsed = now - Math.floor(now / 520) * 520;
+          var lineCount = Math.min(secondaryBlocks[blockIndex].length, Math.floor(blockElapsed / 65));
+          var blockLines = secondaryBlocks[blockIndex].slice(0, lineCount);
+          while (blockLines.length < 11) blockLines.push('');
 
           setText(opening, bootWindow.join("\n"));
-          setText(secondary, secondaryBlocks[blockIndex].slice(0, lineCount).join("\n"));
+          setText(secondary, blockLines.join("\n"));
           setText(tertiary, bannerTexts[blockIndex]);
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);

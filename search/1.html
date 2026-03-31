@@ -1500,7 +1500,7 @@
             const poll = setInterval(() => {
               if (parseFloat(iWin.getComputedStyle(cover).opacity) > 0.85) {
                 clearInterval(poll);
-                setTimeout(doTransition, 400);
+                doTransition();
               }
             }, 100);
             setTimeout(() => { clearInterval(poll); doTransition(); }, 8000);
