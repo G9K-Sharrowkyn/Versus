@@ -596,8 +596,8 @@
     }
     .s7-frame {
       position: relative;
-      width: min(1280px, 96vw);
-      height: min(820px, 92vh);
+      width: 98vw;
+      height: min(1600px, 96vh);
       border: 1px solid rgba(119, 226, 242, 0.28);
       box-shadow: 0 0 0 1px rgba(119, 226, 242, 0.08),
                   0 0 60px rgba(119, 226, 242, 0.04),
@@ -625,7 +625,7 @@
     }
     .s7-header-title {
       font-family: 'Chakra Petch', 'Courier New', monospace;
-      font-size: clamp(0.85rem, 1.5vw, 1.25rem);
+      font-size: clamp(1.7rem, 3vw, 2.5rem);
       font-weight: 600;
       color: #77e2f2;
       letter-spacing: 0.14em;
@@ -634,13 +634,13 @@
     }
     .s7-header-sep {
       font-family: 'Courier New', monospace;
-      font-size: 0.7rem;
+      font-size: 1.4rem;
       color: rgba(119, 226, 242, 0.25);
       letter-spacing: 0.06em;
     }
     .s7-header-sub {
       font-family: 'Courier New', monospace;
-      font-size: clamp(0.58rem, 0.95vw, 0.72rem);
+      font-size: clamp(1.16rem, 1.9vw, 1.44rem);
       color: rgba(119, 226, 242, 0.38);
       letter-spacing: 0.08em;
     }
@@ -666,20 +666,20 @@
     .s7-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 1.8em 2.2em;
+      gap: 3.6em 4.4em;
     }
     .s7-fight {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5em;
+      gap: 1em;
       cursor: pointer;
       transition: transform 0.18s ease;
     }
-    .s7-fight:hover { transform: translateY(-3px); }
-    .s7-cards { display: flex; gap: 5px; }
+    .s7-fight:hover { transform: translateY(-6px); }
+    .s7-cards { display: flex; gap: 10px; }
     .s7-card {
-      width: 122px; height: 170px;
+      width: 244px; height: 340px;
       position: relative;
       border: 1px solid var(--s7c-soft);
       background: rgba(0,0,0,0.45);
@@ -702,7 +702,7 @@
       position: absolute;
       top: 0.3em; left: 0.35em;
       font-family: 'Courier New', monospace;
-      font-size: 0.5rem;
+      font-size: 1rem;
       color: var(--s7c-strong);
       z-index: 2;
       line-height: 1;
@@ -717,12 +717,12 @@
     }
     .s7-fight-label {
       font-family: 'Courier New', monospace;
-      font-size: clamp(0.5rem, 0.85vw, 0.65rem);
+      font-size: clamp(1rem, 1.7vw, 1.3rem);
       color: rgba(200,200,200,0.62);
       letter-spacing: 0.06em;
       text-align: center;
       text-transform: uppercase;
-      max-width: 260px;
+      max-width: 520px;
       line-height: 1.4;
     }
   </style>
