@@ -64,7 +64,7 @@
     window.addEventListener('keydown', function (event) {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return;
       if (!window.parent || window.parent === window) return;
-      if (/^[1-5]$/.test(event.key)) {
+      if (/^[1-4]$/.test(event.key)) {
         event.preventDefault();
         window.parent.postMessage(
           { type: 'vvv-dev-jump-stage-request', stage: Number(event.key) },
@@ -72,7 +72,7 @@
         );
         return;
       }
-      if (!/^[6-9]$|^0$|^-$|^=$/.test(event.key)) return;
+      if (!/^[5-9]$/.test(event.key)) return;
       event.preventDefault();
       window.parent.postMessage(
         { type: 'vvv-dev-open-fight-shortcut-request', key: event.key },

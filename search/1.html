@@ -623,6 +623,40 @@
       align-items: center;
       gap: 0.9em;
     }
+    .s7-edit-btn {
+      margin-left: auto;
+      font-family: 'Courier New', monospace;
+      font-size: clamp(0.85rem, 1.4vw, 1.1rem);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(119,226,242,0.55);
+      border: 1px solid rgba(119,226,242,0.25);
+      background: transparent;
+      padding: 0.3em 1em;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .s7-edit-btn:hover { color: #77e2f2; border-color: rgba(119,226,242,0.6); }
+    .s7-edit-btn.active { color: rgba(255,85,78,0.9); border-color: rgba(255,85,78,0.5); }
+    /* delete X badge on each fight card */
+    .s7-fight .s7-delete {
+      display: none;
+      position: absolute;
+      top: -10px; right: -10px;
+      width: 28px; height: 28px;
+      background: rgba(255,85,78,0.9);
+      color: #fff;
+      font-size: 1rem;
+      line-height: 28px;
+      text-align: center;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 20;
+      font-family: 'Courier New', monospace;
+    }
+    #s7.edit-mode .s7-fight { position: relative; }
+    #s7.edit-mode .s7-fight .s7-delete { display: block; }
+    #s7.edit-mode .s7-fight:hover { transform: none; }
     .s7-header-title {
       font-family: 'Chakra Petch', 'Courier New', monospace;
       font-size: clamp(1.7rem, 3vw, 2.5rem);
@@ -791,6 +825,7 @@
       <span class="s7-header-title">Fight History</span>
       <span class="s7-header-sep">//</span>
       <span class="s7-header-sub">HISTORIA WALK · VERSUSVERSEVAULT</span>
+      <button id="s7-edit-btn" class="s7-edit-btn">[ EDIT ]</button>
     </div>
     <div class="s7-body" id="s7-body">
       <div class="s7-empty" id="s7-empty">[ NO FIGHT DATA LOADED ]</div>
@@ -904,23 +939,11 @@
     }
 
     if (shortcut === 3) {
-      showStage(3);
-      requestAnimationFrame(() => $('s3').classList.add('on'));
-      runHydra(token);
-      return;
-    }
-
-    if (shortcut === 4) {
-      showStage(4);
-      return;
-    }
-
-    if (shortcut === 5) {
       runSearchStage(token);
       return;
     }
 
-    if (shortcut === 6) {
+    if (shortcut === 4) {
       runFightHistoryStage(token);
     }
   };
@@ -974,8 +997,24 @@
   };
 
   // ── Fight History ─────────────────────────────────────────────────────────────
-  const fightHistory = [];
-  let fightIdCounter = 1;
+  const HISTORY_STORAGE_KEY = 'vvv-fight-history-v1';
+
+  const loadHistory = () => {
+    try {
+      const raw = localStorage.getItem(HISTORY_STORAGE_KEY);
+      if (!raw) return [];
+      return JSON.parse(raw);
+    } catch { return []; }
+  };
+
+  const saveHistory = () => {
+    try { localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(fightHistory)); } catch {}
+  };
+
+  const fightHistory = loadHistory();
+  let fightIdCounter = fightHistory.length
+    ? Math.max(...fightHistory.map(f => parseInt(f.cardId, 10) || 0)) + 1
+    : 1;
 
   const setStage3FightMode = () => {
     const titleEl = document.querySelector('#s3 .h-title');
@@ -1009,20 +1048,41 @@
         ? `<img class="s7-card-img" src="${escapeHtml(fight.portraitBDataUrl)}" alt="" loading="lazy">`
         : '';
       el.innerHTML =
-        `<div class="s7-cards">` +
+        `<div class="s7-cards" style="position:relative;">` +
           `<div class="s7-card s7-card-a"><span class="s7-card-id">ID-${fight.cardId}-A</span>${imgA}</div>` +
           `<div class="s7-card s7-card-b"><span class="s7-card-id">ID-${fight.cardId}-B</span>${imgB}</div>` +
+          `<span class="s7-delete">✕</span>` +
         `</div>` +
         `<div class="s7-fight-label">${escapeHtml(fight.fighterAName)} vs ${escapeHtml(fight.fighterBName)}</div>`;
-      el.addEventListener('click', () => openFightFromHistory(fight));
+      el.querySelector('.s7-delete').addEventListener('click', e => {
+        e.stopPropagation();
+        const idx = fightHistory.findIndex(f => f.matchupKey === fight.matchupKey);
+        if (idx !== -1) fightHistory.splice(idx, 1);
+        saveHistory();
+        renderFightHistory();
+      });
+      el.addEventListener('click', () => {
+        if ($('s7').classList.contains('edit-mode')) return;
+        openFightFromHistory(fight);
+      });
       grid.appendChild(el);
     });
   };
 
+  const s7EditBtn = $('s7-edit-btn');
+  if (s7EditBtn) {
+    s7EditBtn.addEventListener('click', () => {
+      const s7 = $('s7');
+      const editing = s7.classList.toggle('edit-mode');
+      s7EditBtn.textContent = editing ? '[ DONE ]' : '[ EDIT ]';
+      s7EditBtn.classList.toggle('active', editing);
+    });
+  }
+
   const addFightToHistory = data => {
     const exists = fightHistory.some(f => f.matchupKey === data.matchupKey);
     if (exists) return;
-    fightHistory.unshift({
+    fightHistory.push({
       fightId:         String(data.fightId || ''),
       matchupKey:      String(data.matchupKey || ''),
       fighterAName:    String(data.fighterAName || ''),
@@ -1031,6 +1091,7 @@
       portraitBDataUrl: String(data.portraitBDataUrl || ''),
       cardId: String(fightIdCounter++).padStart(3, '0'),
     });
+    saveHistory();
     renderFightHistory();
   };
 
@@ -1653,12 +1714,12 @@
       }
     }
 
-    if (/^[1-5]$/.test(e.key)) {
+    if (/^[1-4]$/.test(e.key)) {
       e.preventDefault();
       jumpToDebugStage(Number(e.key));
       return;
     }
-    if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
+    if (!/^[5-9]$/.test(e.key)) return;
     e.preventDefault();
     requestFightShortcut(e.key);
   });
@@ -1680,7 +1741,7 @@
         iDoc.addEventListener('pointercancel', e => postRelay('up',   e.clientX, e.clientY, false), { passive: true });
         iDoc.addEventListener('keydown', e => {
           if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
-          if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
+          if (!/^[5-9]$/.test(e.key)) return;
           e.preventDefault();
           requestFightShortcut(e.key);
         });
@@ -1701,6 +1762,7 @@
       return;
     }
 
+    renderFightHistory();
     showStage(1);
   };
   if (document.readyState === 'loading') {

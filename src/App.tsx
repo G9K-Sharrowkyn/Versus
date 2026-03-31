@@ -93,7 +93,7 @@ const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 7400
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 1800
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
-const FIGHT_SHORTCUT_KEYS = ['6', '7', '8', '9', '0', '-', '='] as const
+const FIGHT_SHORTCUT_KEYS = ['5', '6', '7', '8', '9'] as const
 
 const parseFightScaffoldMatchup = (value: string) => {
   const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
