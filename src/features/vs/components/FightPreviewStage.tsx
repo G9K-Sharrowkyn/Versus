@@ -78,23 +78,35 @@ export function FightPreviewStage({
           }}
           aria-busy={!previewReady || isTemplateTransitioning}
         >
-          {/* Current template — sits underneath during transition */}
-          <div
-            className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--current ${templateTransitionPhase === 'enter' ? 'is-template-transition-exit-active' : ''}`}
-            style={showIncomingLayer ? { zIndex: 1 } : undefined}
-          >
-            {children}
-          </div>
+          {/* Unified layer stack to preserve instances across transitions */}
+          {(() => {
+            const layers = []
+            if (children) {
+              layers.push({
+                node: children,
+                key: (children as any)?.key,
+                isIncoming: false,
+              })
+            }
+            if (showIncomingLayer) {
+              layers.push({
+                node: incomingTemplate,
+                key: (incomingTemplate as any)?.key,
+                isIncoming: true,
+              })
+            }
 
-          {/* Incoming template — rendered once, above current, visible through tile backs */}
-          {showIncomingLayer ? (
-            <div
-              className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--incoming ${templateTransitionPhase === 'enter' ? 'is-template-transition-enter' : ''}`}
-              style={{ zIndex: 2 }}
-            >
-              {incomingTemplate}
-            </div>
-          ) : null}
+            // Sort layers by z-index (incoming on top)
+            return layers.map((layer) => (
+              <div
+                key={layer.key}
+                className={`vs-preview-shell--bare-layer ${layer.isIncoming ? 'vs-preview-shell--bare-layer--incoming' : 'vs-preview-shell--bare-layer--current'} ${!layer.isIncoming && templateTransitionPhase === 'enter' ? 'is-template-transition-exit-active' : ''} ${layer.isIncoming && templateTransitionPhase === 'enter' ? 'is-template-transition-enter' : ''}`}
+                style={{ zIndex: layer.isIncoming ? 2 : 1 }}
+              >
+                {layer.node}
+              </div>
+            ))
+          })()}
 
           {/* Laser sweep — sits on top */}
           {isTemplateTransitioning && (

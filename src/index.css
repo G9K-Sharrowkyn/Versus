@@ -202,6 +202,9 @@
 }
 
 .vs-preview-shell--bare-body.is-template-transitioning {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
   will-change: transform, filter, opacity;
   transform: none !important; /* Force no scaling */
   background: transparent !important;

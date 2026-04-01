@@ -152,6 +152,7 @@ function App() {
   const [slideImageAdjustments, setSlideImageAdjustments] = useState<Record<string, PortraitAdjust>>({})
   const [templateTransitionPhase, setTemplateTransitionPhase] = useState<TemplateTransitionPhase>('idle')
   const [incomingTemplateId, setIncomingTemplateId] = useState<TemplateId | null>(null)
+  const [incomingTemplateCursor, setIncomingTemplateCursor] = useState<number | null>(null)
 
   const previewRef = useRef<HTMLDivElement>(null)
   const previewShellRef = useRef<HTMLDivElement>(null)
@@ -459,6 +460,7 @@ function App() {
     templateTransitionPhaseRef.current = 'idle'
     setTemplateTransitionPhase('idle')
     setIncomingTemplateId(null)
+    setIncomingTemplateCursor(null)
   }, [])
 
   const stepTemplateOrder = useCallback((direction: 1 | -1) => {
@@ -470,6 +472,7 @@ function App() {
 
     clearTemplateTransitionQueue()
     setIncomingTemplateId(nextTemplateId)
+    setIncomingTemplateCursor(nextTemplateCursor)
     templateTransitionPhaseRef.current = 'exit'
     setTemplateTransitionPhase('exit')
 
@@ -479,15 +482,19 @@ function App() {
     }, TEMPLATE_RAIL_TRANSITION_SWAP_MS)
 
     const settleTimeout = window.setTimeout(() => {
+      // Step 1: Update the cursor and active template
       setTemplateCursor(nextTemplateCursor)
       applyTemplateById(nextTemplateId, false)
-      // Wait two frames so the new main template mounts before the incoming layer disappears,
-      // preventing a visible flash between the two renders.
+      
+      // Step 2: Immediately clear incoming to avoid key collisions
+      setIncomingTemplateId(null)
+      setIncomingTemplateCursor(null)
+
+      // Wait two frames so the new main template mounts before the transition layer disappears
       const raf1 = window.requestAnimationFrame(() => {
         const raf2 = window.requestAnimationFrame(() => {
           templateTransitionPhaseRef.current = 'idle'
           setTemplateTransitionPhase('idle')
-          setIncomingTemplateId(null)
           templateTransitionTimeoutsRef.current = []
           templateTransitionRafsRef.current = []
         })
@@ -960,9 +967,9 @@ function App() {
       onToggleLanguage={toggleLanguage}
     />
   )
-  const renderedTemplate = renderTemplate(activeTemplate, `current-${activeTemplate}`)
-  const renderedIncomingTemplate = incomingTemplateId
-    ? renderTemplate(incomingTemplateId, `incoming-${incomingTemplateId}`)
+  const renderedTemplate = renderTemplate(activeTemplate, `tpl-idx-${templateCursor}`)
+  const renderedIncomingTemplate = (incomingTemplateId !== null && incomingTemplateCursor !== null)
+    ? renderTemplate(incomingTemplateId, `tpl-idx-${incomingTemplateCursor}`)
     : null
 
   const scaledPreviewWidth = Math.round(PREVIEW_BASE_WIDTH * previewScale)
