@@ -1,6 +1,6 @@
 import './VerdictMatrixTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode, Fragment } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode, Fragment } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
@@ -70,19 +70,79 @@ export function VerdictMatrixTemplate({
   const fighterAName = fighterA.name || fighterAFallback
   const fighterBName = fighterB.name || fighterBFallback
 
+  const caseData = [
+    pickTemplateField(blockFields, ['case_1', 'verdict', 'case1']) || plainLines[0] || '',
+    pickTemplateField(blockFields, ['case_2', 'case2']) || plainLines[1] || '',
+    pickTemplateField(blockFields, ['case_3', 'case3']) || plainLines[2] || '',
+    pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3] || '',
+  ]
+  const nonEmptyCaseCount = caseData.filter((entry) => entry.trim()).length
+
+  const explicitLayoutRaw =
+    pickTemplateField(blockFields, [
+      'layout',
+      'matrix_layout',
+      'matrix_mode',
+      'verdict_layout',
+      'verdict_matrix_layout',
+      'type',
+      'format',
+    ]) || ''
+  const explicitLayout = explicitLayoutRaw.toLowerCase()
+  const normalizedLayout = explicitLayout.replace(/\s+/g, '')
+  const layoutMatch = normalizedLayout.match(/([12])x([12])/)
+  const canonicalLayout = layoutMatch ? `${layoutMatch[1]}x${layoutMatch[2]}` : normalizedLayout
+
+  const resolveExplicitLayout = () => {
+    if (['2x2', 'quad', '4'].includes(canonicalLayout)) return '2x2' as const
+    if (['2x1', '1x2', 'double', 'dual', '2', 'two'].includes(canonicalLayout)) return '2x1' as const
+    if (['1x1', 'single', 'solo', '1', 'one'].includes(canonicalLayout)) return '1x1' as const
+    return null
+  }
+
+  const explicitLayoutMode = resolveExplicitLayout()
+
+  const layoutMode = explicitLayoutMode
+    || (() => {
+      if (nonEmptyCaseCount <= 1) return '1x1' as const
+      if (nonEmptyCaseCount === 2) return '2x1' as const
+      return '2x2' as const
+    })()
+
+  let numCols = 1
+  let numRows = 1
+  if (layoutMode === '2x2') {
+    numCols = 2
+    numRows = 2
+  } else if (layoutMode === '2x1') {
+    numCols = 2
+    numRows = 1
+  }
+
   const col1 = pickTemplateField(blockFields, ['col_1', 'col1'])
   const col2 = pickTemplateField(blockFields, ['col_2', 'col2'])
-  const matrixColumns = [col1 || 'Solar Flare: NIE', col2 || 'Solar Flare: TAK']
+  const matrixColumns: string[] = []
+  if (numCols >= 1) {
+    matrixColumns.push(col1 || (layoutMode === '2x1' ? pickTemplateField(blockFields, ['row_1', 'row1']) : (numCols === 1 ? '' : 'WARUNEK 1')))
+  }
+  if (numCols >= 2) {
+    matrixColumns.push(col2 || (layoutMode === '2x1' ? pickTemplateField(blockFields, ['row_2', 'row2']) : 'WARUNEK 2'))
+  }
 
-  const matrixRows = [
-    pickTemplateField(blockFields, ['row_1', 'row1']) || 'WALKA NA SMIERC',
-    pickTemplateField(blockFields, ['row_2', 'row2']) || 'NOKAUT',
-  ]
+  const matrixRows: string[] = []
+  if (numRows >= 1) matrixRows.push(pickTemplateField(blockFields, ['row_1', 'row1']) || (numRows === 1 ? 'WERDYKT' : 'SCENARIUSZ 1'))
+  if (numRows >= 2) matrixRows.push(pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ 2')
+
   const stripTrailingDot = (value: string) => value.replace(/\.\s*$/, '').trim()
   const cleanSubText = stripTrailingDot(subText || '')
   const cleanBoardHeader = stripTrailingDot(boardHeader)
   const cleanMatrixColumns = matrixColumns.map((label) => stripTrailingDot(label))
   const cleanMatrixRows = matrixRows.map((label) => stripTrailingDot(label))
+  
+  const isSingle = numCols === 1 && numRows === 1
+  const hideColAxis = numCols === 1
+  const hideRowAxis = numRows === 1
+
   const matrixAxisBand = 'calc(36px * var(--tb-scale))'
   const matrixAxisGap = '10px'
   const matrixAxisCellPadding = '0 0.3rem'
@@ -117,19 +177,15 @@ export function VerdictMatrixTemplate({
     return null
   }
 
-  const cellData = [
-    pickTemplateField(blockFields, ['case_1', 'verdict', 'case1']) || plainLines[0],
-    pickTemplateField(blockFields, ['case_2', 'case2']) || plainLines[1],
-    pickTemplateField(blockFields, ['case_3', 'case3']) || plainLines[2],
-    pickTemplateField(blockFields, ['case_4', 'case4']) || plainLines[3],
-  ]
+  const cellData = caseData
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
@@ -141,8 +197,8 @@ export function VerdictMatrixTemplate({
       if (activeState.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!activeState.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!activeState.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -164,7 +220,7 @@ export function VerdictMatrixTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -173,6 +229,15 @@ export function VerdictMatrixTemplate({
       timeouts.forEach(clearTimeout)
     }
   }, [headerTextStr])
+
+  const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {
+    '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
+  }
+  const panelTitleStyle: CSSProperties & Record<'--tb-reflect-2-y' | '--tb-reflect-2-blur', string> = {
+    color: '#ff554e',
+    '--tb-reflect-2-y': '0em',
+    '--tb-reflect-2-blur': '0em',
+  }
 
   return (
     <div className="vs-tactical-board25-surface">
@@ -212,7 +277,7 @@ export function VerdictMatrixTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={logoButtonStyle}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
@@ -227,31 +292,56 @@ export function VerdictMatrixTemplate({
       <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
         <p
           className="vs-tactical-board25-stats-title vs-panel-top-label vs-verdict-matrix-panel-title"
-          style={{ color: '#ff554e', '--tb-reflect-2-y': '0em', '--tb-reflect-2-blur': '0em' } as any}
+          style={panelTitleStyle}
         >
           <GlitchText text={cleanBoardHeader} />
         </p>
         
         <div className="vs-verdict-matrix-body" style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection: 'column', minHeight: 0 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, gridTemplateRows: `${matrixAxisBand} minmax(0, 1fr) minmax(0, 1fr)`, columnGap: matrixAxisGap, rowGap: matrixAxisGap, height: '100%', width: '100%', minHeight: 0, border: 'none', background: 'rgba(255, 85, 78, 1)' }}>
-            <div aria-hidden="true" style={{ background: 'rgba(0, 0, 0, 0.82)' }} />
-            {cleanMatrixColumns.map((columnLabel, index) => (
-              <div key={`matrix-col-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, background: 'rgba(0, 0, 0, 0.82)' }}>
-                <p style={{ ...matrixDossierLabelStyle, whiteSpace: 'nowrap' }}>
-                  <GlitchText text={columnLabel} />
-                </p>
-              </div>
-            ))}
+          <div style={{ 
+            display: 'grid', 
+            gridTemplateColumns: isSingle
+              ? 'minmax(0, 1fr)'
+              : hideRowAxis
+                ? matrixColumns.map(() => 'minmax(0, 1fr)').join(' ')
+                : `${matrixAxisBand} ${matrixColumns.map(() => 'minmax(0, 1fr)').join(' ')}`,
+            gridTemplateRows: isSingle 
+              ? 'minmax(0, 1fr)' 
+              : hideColAxis 
+                ? matrixRows.map(() => 'minmax(0, 1fr)').join(' ')
+                : `${matrixAxisBand} ${matrixRows.map(() => 'minmax(0, 1fr)').join(' ')}`, 
+            columnGap: isSingle ? '0' : matrixAxisGap, 
+            rowGap: isSingle ? '0' : matrixAxisGap, 
+            height: '100%', 
+            width: '100%', 
+            minHeight: 0, 
+            border: 'none', 
+            background: isSingle ? 'transparent' : 'rgba(255, 85, 78, 1)' 
+          }}>
+            {!isSingle && !hideColAxis && (
+              <>
+                {!hideRowAxis ? <div aria-hidden="true" style={{ background: 'rgba(0, 0, 0, 0.82)' }} /> : null}
+                {cleanMatrixColumns.map((columnLabel, index) => (
+                  <div key={`matrix-col-${index}`} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, background: 'rgba(0, 0, 0, 0.82)' }}>
+                    <p style={{ ...matrixDossierLabelStyle, whiteSpace: 'nowrap' }}>
+                      <GlitchText text={columnLabel} />
+                    </p>
+                  </div>
+                ))}
+              </>
+            )}
 
             {cleanMatrixRows.map((rowLabel, rowIndex) => (
               <Fragment key={`matrix-row-${rowIndex}`}>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, overflow: 'hidden', background: 'rgba(0, 0, 0, 0.82)' }}>
-                  <p style={{ ...matrixDossierLabelStyle, writingMode: 'vertical-rl', transform: 'rotate(180deg)', whiteSpace: 'nowrap' }}>
-                    <GlitchText text={rowLabel} />
-                  </p>
-                </div>
+                {!isSingle && !hideRowAxis && (
+                  <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: matrixAxisCellPadding, overflow: 'hidden', background: 'rgba(0, 0, 0, 0.82)' }}>
+                    <p style={{ ...matrixDossierLabelStyle, writingMode: 'vertical-rl', transform: 'rotate(180deg)', whiteSpace: 'nowrap' }}>
+                      <GlitchText text={rowLabel} />
+                    </p>
+                  </div>
+                )}
                 {matrixColumns.map((_, columnIndex) => {
-                  const cellIndex = rowIndex * 2 + columnIndex
+                  const cellIndex = rowIndex * numCols + columnIndex
                   const cellText = cellData[cellIndex] || ''
                   const winnerSide = resolveWinnerSide(cellText)
                   const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
@@ -265,6 +355,7 @@ export function VerdictMatrixTemplate({
                         position: 'relative',
                         overflow: 'hidden',
                         background: 'rgba(10, 4, 4, 0.68)',
+                        border: isSingle ? '10px solid rgba(255, 85, 78, 1)' : 'none'
                       }}
                     >
                       {winnerImage ? (

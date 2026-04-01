@@ -261,6 +261,11 @@ export const fightManifest: FightManifest = {
       id: 'verdict-matrix',
       aliases: ['matryca werdyktu', 'verdict matrix'],
       variableFields: [
+        field('layout', ['matrix_layout', 'matrix_mode', 'verdict_layout', 'verdict_matrix_layout', 'type', 'format']),
+        field('row_1', ['row1']),
+        field('row_2', ['row2']),
+        field('col_1', ['col1']),
+        field('col_2', ['col2']),
         field('case_1', ['case1']),
         field('case_2', ['case2']),
         field('case_3', ['case3']),
