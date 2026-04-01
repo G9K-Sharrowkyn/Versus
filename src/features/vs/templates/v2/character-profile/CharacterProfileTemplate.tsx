@@ -6,6 +6,7 @@ import type { TemplatePreviewProps } from '../../../types'
 import { applyDossierNameAutofit } from '../../shared/dossierNameAutofit'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
+  getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
@@ -64,6 +65,7 @@ export function CharacterProfileTemplate({
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-profile'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const common = getFightCommonCopy('character-profile', language)
   const toolkitDefaults = {
     powers: getFightTemplateDefaultField('character-profile', 'powers_label', language),
     tools: getFightTemplateDefaultField('character-profile', 'tools_label', language),
@@ -75,11 +77,13 @@ export function CharacterProfileTemplate({
   const fighterAText =
     fighterA.name ||
     getFightTemplateDefaultField('character-profile', 'fighter_a_fallback', language) ||
-    'PostaĂ„â€ˇ A'
+    (language === 'pl' ? 'Postać A' : 'Fighter A')
   const fighterBText =
     fighterB.name ||
     getFightTemplateDefaultField('character-profile', 'fighter_b_fallback', language) ||
-    'PostaĂ„â€ˇ B'
+    (language === 'pl' ? 'Postać B' : 'Fighter B')
+  const leftPanelHeader = common.blueCorner || (language === 'pl' ? 'Niebieski narożnik' : 'Blue corner')
+  const rightPanelHeader = common.redCorner || (language === 'pl' ? 'Czerwony narożnik' : 'Red corner')
   const leftNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const leftNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const rightNameWrapperRef = useRef<HTMLDivElement | null>(null)
@@ -307,7 +311,7 @@ export function CharacterProfileTemplate({
           className="vs-tactical-board25-stats-title vs-panel-top-label"
           style={{ color: RED_LINIA, textShadow: '0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 85, 78, 0.25)' }}
         >
-          <GlitchText text="Character Blue" />
+          <GlitchText text={leftPanelHeader} />
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           <div ref={leftNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
@@ -322,7 +326,7 @@ export function CharacterProfileTemplate({
           className="vs-tactical-board25-reality-heading vs-panel-top-label"
           style={{ color: RED_LINIA, textShadow: '0 var(--tb-reflect-2-y) var(--tb-reflect-2-blur) rgba(255, 85, 78, 0.25)' }}
         >
-          <GlitchText text="Character Red" />
+          <GlitchText text={rightPanelHeader} />
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
           <div ref={rightNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>

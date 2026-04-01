@@ -103,13 +103,13 @@
     }
   ],
   "staticFields": {
-    "fighter_a_fallback": "Postac A",
-    "fighter_b_fallback": "Postac B",
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
     "defeats_word": "pokonuje",
     "outcome_label": "Wynik",
     "confidence_label": "Pewnosc",
     "reason_label": "Dlaczego ten werdykt?",
-    "fighter_fallback": "Postac"
+    "fighter_fallback": "Postać"
   },
   "layout": {
     "HIGH_END": {

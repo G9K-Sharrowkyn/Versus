@@ -108,9 +108,9 @@
     "phase_2_actor": "b",
     "phase_2_mode": "split",
     "phase_3_mode": "split",
-    "fighter_a_fallback": "Postac A",
-    "fighter_b_fallback": "Postac B",
-    "fighter_fallback": "Postac"
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
+    "fighter_fallback": "Postać"
   },
   "layout": {
     "HIGH_END": {

@@ -196,6 +196,7 @@
     "verdict-matrix": {
       "header": "MATRYCA STABILNOŚCI",
       "subtitle": "Werdykt zależny od kontroli nad Life Equation",
+      "layout": "2x1",
       "row_1": "IDEALNA KONTROLA MOCY",
       "row_2": "NIESTABILNOŚĆ EMOCJONALNA",
       "case_1": "White Lantern Kyle Rayner 6/10. Przy pełnym skupieniu i idealnej synchronizacji z Life Equation, Kyle staje się stabilnym punktem, którego Manhattan nie może po prostu rozproszyć. Białe Światło nadpisuje przyczynowość, pozwalając Kyle'owi na realne zagrożenie bytowi Manhattana.",

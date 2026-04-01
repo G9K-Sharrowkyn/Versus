@@ -105,9 +105,9 @@
   "staticFields": {
     "board_header": "PORTRET",
     "reality_header": "OPIS POSTACI",
-    "fighter_a_fallback": "Postac A",
-    "fighter_b_fallback": "Postac B",
-    "fighter_fallback": "Postac"
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
+    "fighter_fallback": "Postać"
   },
   "layout": {
     "HIGH_END": {

@@ -107,9 +107,9 @@
     "left_title_prefix": "REKORD",
     "right_title_prefix": "REKORD",
     "entries_unit": "wpisów",
-    "fighter_a_fallback": "Postac A",
-    "fighter_b_fallback": "Postac B",
-    "fighter_fallback": "Postac"
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
+    "fighter_fallback": "Postać"
   },
   "layout": {
     "HIGH_END": {

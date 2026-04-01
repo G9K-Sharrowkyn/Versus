@@ -1,218 +1,219 @@
-{
-  "fighterA": {
-    "crucialFeats": [
-      "Survives the Source Wall and returns with the Life Equation.",
-      "Erases the Source Titans from existence using the Life Equation.",
-      "Is close to destabilizing reality.",
-      "Unwillingly creates life by his presence.",
-      "Changes The Source, code on which the reality runs."
-    ],
-    "dossier": {
-      "advantage": "Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.",
-      "mentality": "Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.",
-      "quote": "In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!",
-      "style": "Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions."
-    },
-    "name": "White Lantern Kyle Rayner",
-    "profile": {
-      "powers": [
-        "White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation."
-      ],
-      "tools": [
-        "Life Equation access and wide ring-based utility for offense, defense, and restoration."
-      ],
-      "weaknesses": [
-        "Ring dependence and concentration dependence for top-end effects.",
-        "The strongest outcomes still require setup time and execution window."
-      ]
-    },
-    "stats": {
-      "battleIq": 86,
-      "durability": 94,
-      "experience": 86,
-      "hax": 95,
-      "skills": 76,
-      "speed": 94,
-      "stamina": 93,
-      "strength": 90,
-      "style": 79
-    },
-    "version": "New 52",
-    "victories": [
-      "Relic",
-      "Third Army",
-      "Guardians of the Universe",
-      "Godkillers",
-      "Carol Ferris"
-    ]
-  },
-  "fighterB": {
-    "crucialFeats": [
-      "Experiences all time lines at once.",
-      "Maintains present across space-time states.",
-      "Survives complete desintegration.",
-      "Vaporizes Metron and Owlman.",
-      "Restructures DC Multiverse (New 52), then fully restores it in a single act of will (Doomsday Clock)."
-    ],
-    "dossier": {
-      "advantage": "Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.",
-      "mentality": "Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.",
-      "quote": "Yes. I see now. Everything ends.",
-      "style": "Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture."
-    },
-    "name": "Dr. Manhattan",
-    "profile": {
-      "powers": [
-        "Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and timeline-level perception."
-      ],
-      "tools": [
-        "Space-time intervention and causal interference instead of a regular fight."
-      ],
-      "weaknesses": [
-        "Tremendous psychological burden of the Life Equation – the code of reality slowly 'eats' the vessel's mind.",
-        "Subconscious fear can manifest as a real anomaly (e.g. Oblivion), attacking Kyle himself.",
-        "Lack of perfect mental stability makes the power chaotic and unpredictable."
-      ]
-    },
-    "stats": {
-      "battleIq": 95,
-      "durability": 99,
-      "experience": 86,
-      "hax": 100,
-      "skills": 44,
-      "speed": 96,
-      "stamina": 100,
-      "strength": 82,
-      "style": 48
-    },
-    "version": "Watchmen / Rebirth / Doomsday Clock",
-    "victories": [
-      "Rorschach",
-      "Metron",
-      "Owlman",
-      "Ozymandias",
-      "Silk Spectre / Laurie"
-    ]
-  },
-  "locale": "en",
-  "schemaVersion": 1,
-  "templateOrder": [
-    "tactical-board",
-    "character-dossier-a",
-    "character-dossier-b",
-    "character-profile",
-    "crucial-feats",
-    "victory-archive",
-    "fight-analytics",
-    "parameter-comparison",
-    "x-factor",
-    "final-summary",
-    "battle-dynamics",
-    "fight-simulation",
-    "verdict-matrix",
-    "fight-card"
-  ],
-  "templates": {
-    "battle-dynamics": {
-      "s1_label": "Life Equation: Full",
-      "a_curve": "88,90,92,95,98",
-      "b_curve": "83,82,80,78,75",
-      "yellow_wave": "35,42,38,45,40,48,42,50",
-      "phase_1": "With the full Life Equation, Kyle becomes a stable point in the continuum that Manhattan cannot instantly disperse.",
-      "phase_2": "Conceptual clash. White Light overwrites Manhattan's attempts to change causality, creating a new reality code.",
-      "phase_3": "Critical point. Kyle imposes the will to exist on every atom, forcing Dr. Manhattan to retreat or adapt.",
-      "analysis": "The full Life Equation is the only condition where the battle of gods becomes an even duel of wills.",
-      "s2_label": "Life Equation: Limited",
-      "s2_a_curve": "75,65,50,30,10",
-      "s2_b_curve": "83,87,92,97,100",
-      "s2_phase_1": "Without the ultimate key, Kyle is just an exceptionally powerful Lantern. Manhattan sees his end before the fight even begins.",
-      "s2_phase_2": "Kyle attempts to fight with constructs, but Manhattan simply erases the matter they are built from before they strike.",
-      "s2_phase_3": "End of causality. Manhattan removes the fact of Kyle's existence from the current timeline. Zero resistance.",
-      "s2_analysis": "Limited WL power allows Manhattan to control the clash with mathematical certainty."
-    },
-    "fight-card": {
-      "fight_title": "Rayner vs Manhattan",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
-    },
-    "fight-simulation": {
-      "s1_label": "Life Equation: Full",
-      "opening": "Kyle opens the fight with a White Light salvo, attempting to anchor his presence in time.",
-      "mid_fight": "Manhattan attempts to deconstruct the ring, but the Life Equation constantly regenerates the construct's structure.",
-      "late_fight": "Kyle imposes the Life Equation onto local space, forcing Manhattan to retreat into other dimensions.",
-      "end_condition": "Kyle's victory by imposing a new matrix of existence.",
-      "phase_1_animation": "solar-flare",
-      "phase_1_actor": "a",
-      "phase_1_title": "Existence Anchor",
-      "phase_1_a_label": "Will",
-      "phase_1_a_value": "94",
-      "phase_1_b_label": "Logic",
-      "phase_1_b_value": "92",
-      "phase_1_event": "Kyle uses the Life Equation to create a zone resistant to atomic manipulation.",
-      "phase_2_animation": "void-clash",
-      "phase_2_title": "Conceptual Clash",
-      "phase_2_event": "White light clashes with Manhattan's blue energy at the epicenter of reality.",
-      "phase_2_branch_a": "Kyle stabilizes the battlefield and takes the initiative.",
-      "phase_2_branch_b": "Manhattan finds a gap in the Life Equation code.",
-      "phase_3_actor": "a",
-      "phase_3_animation": "celestial-purge",
-      "phase_3_title": "Life Dominance",
-      "phase_3_event": "Kyle unleashes the full power of the Life Equation, overwriting Manhattan's presence in this timeline.",
-      "phase_3_branch_a": "Manhattan is forced out of the current dimension.",
-      "phase_3_branch_b": "Reality is reset to its ideal state.",
-      "s2_label": "Life Equation: Limited",
-      "s2_phase_1_animation": "teleport-burst",
-      "s2_phase_1_title": "Time Disruption",
-      "s2_phase_1_a_label": "Reaction",
-      "s2_phase_1_a_value": "88",
-      "s2_phase_1_b_label": "Preemption",
-      "s2_phase_1_b_value": "95",
-      "s2_phase_1_event": "Manhattan appears at several moments in time simultaneously, disorienting Kyle.",
-      "s2_phase_2_animation": "shadow-surge",
-      "s2_phase_2_token": "fullredflood",
-      "s2_phase_2_title": "Matter Decay",
-      "s2_phase_2_event": "The battlefield begins to crumble under Manhattan's mere presence.",
-      "s2_phase_2_branch_a": "Kyle struggles to maintain his armor.",
-      "s2_phase_2_branch_b": "The ring loses stability in contact with antimatter.",
-      "s2_phase_3_actor": "b",
-      "s2_phase_3_animation": "celestial-purge",
-      "s2_phase_3_title": "Causal Erasure",
-      "s2_phase_3_event": "Manhattan strikes the moment Kyle Rayner received his first ring.",
-      "s2_phase_3_branch_a": "Kyle Rayner is removed from the continuum.",
-      "s2_phase_3_branch_b": "Kyle escapes into the Source Wall, ending the clash.",
-      "s2_end_condition": "Manhattan's victory by removing the opponent from history."
-    },
-    "final-summary": {
-      "line_1": "Kyle Rayner possesses higher theoretical potential through the Life Equation, but Manhattan controls time and cause.",
-      "line_2": "Most scenarios favor Manhattan as he can strike at the moment of attack preparation before it even exists.",
-      "line_3": "This is a battle of whether creative life-will can break the mathematical certainty of an inevitable end.",
-      "winner": "Dr. Manhattan leads in most variants.",
-      "quote": "“Kyle has the power to threaten Manhattan. Manhattan more often prevents that power from fully entering the game.”"
-    },
-    "tactical-board": {
-      "lane": "Kyle must force an action window before Manhattan erases the very cause of his existence.",
-      "subtitle": "Willpower versus Causality"
-    },
-    "verdict-matrix": {
-      "header": "POWER MATRIX",
-      "subtitle": "Verdict based on Life Equation control",
-      "row_1": "FULL LIFE EQUATION",
-      "row_2": "LIMITED POWER",
-      "case_1": "White Lantern Kyle Rayner 6/10. When the full Life Equation is active, Kyle becomes a stable point Manhattan cannot simply disperse. White Light overwrites causality, and Kyle's superior hax gives him a narrow decisive edge. Manhattan still sees every threat — but Kyle's existence-rewriting power outpaces even his predictive grasp.",
-      "case_2": "Dr. Manhattan 9.5/10. Without the full Life Equation, Kyle is but a pawn in Manhattan's simulation. The Titan from Watchmen simply erases the cause for Kyle ever stepping onto the battlefield."
-    },
-    "x-factor": {
-      "a_bonus": "15",
-      "a_bonus_label": "LIFE EQUATION",
-      "a_value": "50",
-      "b_bonus": "17",
-      "b_value": "50",
-      "factor": "SETUP WINDOW VS PREEMPTION",
-      "implication": "This is why Kyle's better stats do not guarantee a win if Manhattan does not allow him to use them.",
-      "mechanics": "Kyle only needs one Life Equation window, but Manhattan sees that window before Kyle even thinks of it.",
-      "psychology": "Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.",
-      "regen": "TIME PREEMPTION",
-      "example": "If Kyle attempts to create a construct, Manhattan does not destroy the construct – he destroys the oxygen molecules in Kyle's lungs before he can even make the mental gesture.",
-      "question": "Can the Life Equation operate outside of time, protecting Kyle from an attack that has already happened in Manhattan's future?"
-    }
-  }
+﻿{
+    "fighterA":  {
+                     "crucialFeats":  [
+                                          "Survives the Source Wall and returns with the Life Equation.",
+                                          "Erases the Source Titans from existence using the Life Equation.",
+                                          "Is close to destabilizing reality.",
+                                          "Unwillingly creates life by his presence.",
+                                          "Changes The Source, code on which the reality runs."
+                                      ],
+                     "dossier":  {
+                                     "advantage":  "Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.",
+                                     "mentality":  "Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent\u0027s defense, escalating power as needed.",
+                                     "quote":  "In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!",
+                                     "style":  "Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions."
+                                 },
+                     "name":  "White Lantern Kyle Rayner",
+                     "profile":  {
+                                     "powers":  [
+                                                    "White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation."
+                                                ],
+                                     "tools":  [
+                                                   "Life Equation access and wide ring-based utility for offense, defense, and restoration."
+                                               ],
+                                     "weaknesses":  [
+                                                        "Ring dependence and concentration dependence for top-end effects.",
+                                                        "The strongest outcomes still require setup time and execution window."
+                                                    ]
+                                 },
+                     "stats":  {
+                                   "battleIq":  86,
+                                   "durability":  94,
+                                   "experience":  86,
+                                   "hax":  95,
+                                   "skills":  76,
+                                   "speed":  94,
+                                   "stamina":  93,
+                                   "strength":  90,
+                                   "style":  79
+                               },
+                     "version":  "New 52",
+                     "victories":  [
+                                       "Relic",
+                                       "Third Army",
+                                       "Guardians of the Universe",
+                                       "Godkillers",
+                                       "Carol Ferris"
+                                   ]
+                 },
+    "fighterB":  {
+                     "crucialFeats":  [
+                                          "Experiences all time lines at once.",
+                                          "Maintains present across space-time states.",
+                                          "Survives complete desintegration.",
+                                          "Vaporizes Metron and Owlman.",
+                                          "Restructures DC Multiverse (New 52), then fully restores it in a single act of will (Doomsday Clock)."
+                                      ],
+                     "dossier":  {
+                                     "advantage":  "Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.",
+                                     "mentality":  "Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.",
+                                     "quote":  "Yes. I see now. Everything ends.",
+                                     "style":  "Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture."
+                                 },
+                     "name":  "Dr. Manhattan",
+                     "profile":  {
+                                     "powers":  [
+                                                    "Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and timeline-level perception."
+                                                ],
+                                     "tools":  [
+                                                   "Space-time intervention and causal interference instead of a regular fight."
+                                               ],
+                                     "weaknesses":  [
+                                                        "Tremendous psychological burden of the Life Equation – the code of reality slowly \u0027eats\u0027 the vessel\u0027s mind.",
+                                                        "Subconscious fear can manifest as a real anomaly (e.g. Oblivion), attacking Kyle himself.",
+                                                        "Lack of perfect mental stability makes the power chaotic and unpredictable."
+                                                    ]
+                                 },
+                     "stats":  {
+                                   "battleIq":  95,
+                                   "durability":  99,
+                                   "experience":  86,
+                                   "hax":  100,
+                                   "skills":  44,
+                                   "speed":  96,
+                                   "stamina":  100,
+                                   "strength":  82,
+                                   "style":  48
+                               },
+                     "version":  "Watchmen / Rebirth / Doomsday Clock",
+                     "victories":  [
+                                       "Rorschach",
+                                       "Metron",
+                                       "Owlman",
+                                       "Ozymandias",
+                                       "Silk Spectre / Laurie"
+                                   ]
+                 },
+    "locale":  "en",
+    "schemaVersion":  1,
+    "templateOrder":  [
+                          "tactical-board",
+                          "character-dossier-a",
+                          "character-dossier-b",
+                          "character-profile",
+                          "crucial-feats",
+                          "victory-archive",
+                          "fight-analytics",
+                          "parameter-comparison",
+                          "x-factor",
+                          "final-summary",
+                          "battle-dynamics",
+                          "fight-simulation",
+                          "verdict-matrix",
+                          "fight-card"
+                      ],
+    "templates":  {
+                      "battle-dynamics":  {
+                                              "s1_label":  "Life Equation: Full",
+                                              "a_curve":  "88,90,92,95,98",
+                                              "b_curve":  "83,82,80,78,75",
+                                              "yellow_wave":  "35,42,38,45,40,48,42,50",
+                                              "phase_1":  "With the full Life Equation, Kyle becomes a stable point in the continuum that Manhattan cannot instantly disperse.",
+                                              "phase_2":  "Conceptual clash. White Light overwrites Manhattan\u0027s attempts to change causality, creating a new reality code.",
+                                              "phase_3":  "Critical point. Kyle imposes the will to exist on every atom, forcing Dr. Manhattan to retreat or adapt.",
+                                              "analysis":  "The full Life Equation is the only condition where the battle of gods becomes an even duel of wills.",
+                                              "s2_label":  "Life Equation: Limited",
+                                              "s2_a_curve":  "75,65,50,30,10",
+                                              "s2_b_curve":  "83,87,92,97,100",
+                                              "s2_phase_1":  "Without the ultimate key, Kyle is just an exceptionally powerful Lantern. Manhattan sees his end before the fight even begins.",
+                                              "s2_phase_2":  "Kyle attempts to fight with constructs, but Manhattan simply erases the matter they are built from before they strike.",
+                                              "s2_phase_3":  "End of causality. Manhattan removes the fact of Kyle\u0027s existence from the current timeline. Zero resistance.",
+                                              "s2_analysis":  "Limited WL power allows Manhattan to control the clash with mathematical certainty."
+                                          },
+                      "fight-card":  {
+                                         "fight_title":  "Rayner vs Manhattan",
+                                         "subtitle":  "SEQUENCE COMPLETE"
+                                     },
+                      "fight-simulation":  {
+                                               "s1_label":  "Life Equation: Full",
+                                               "opening":  "Kyle opens the fight with a White Light salvo, attempting to anchor his presence in time.",
+                                               "mid_fight":  "Manhattan attempts to deconstruct the ring, but the Life Equation constantly regenerates the construct\u0027s structure.",
+                                               "late_fight":  "Kyle imposes the Life Equation onto local space, forcing Manhattan to retreat into other dimensions.",
+                                               "end_condition":  "Kyle\u0027s victory by imposing a new matrix of existence.",
+                                               "phase_1_animation":  "solar-flare",
+                                               "phase_1_actor":  "a",
+                                               "phase_1_title":  "Existence Anchor",
+                                               "phase_1_a_label":  "Will",
+                                               "phase_1_a_value":  "94",
+                                               "phase_1_b_label":  "Logic",
+                                               "phase_1_b_value":  "92",
+                                               "phase_1_event":  "Kyle uses the Life Equation to create a zone resistant to atomic manipulation.",
+                                               "phase_2_animation":  "void-clash",
+                                               "phase_2_title":  "Conceptual Clash",
+                                               "phase_2_event":  "White light clashes with Manhattan\u0027s blue energy at the epicenter of reality.",
+                                               "phase_2_branch_a":  "Kyle stabilizes the battlefield and takes the initiative.",
+                                               "phase_2_branch_b":  "Manhattan finds a gap in the Life Equation code.",
+                                               "phase_3_actor":  "a",
+                                               "phase_3_animation":  "celestial-purge",
+                                               "phase_3_title":  "Life Dominance",
+                                               "phase_3_event":  "Kyle unleashes the full power of the Life Equation, overwriting Manhattan\u0027s presence in this timeline.",
+                                               "phase_3_branch_a":  "Manhattan is forced out of the current dimension.",
+                                               "phase_3_branch_b":  "Reality is reset to its ideal state.",
+                                               "s2_label":  "Life Equation: Limited",
+                                               "s2_phase_1_animation":  "teleport-burst",
+                                               "s2_phase_1_title":  "Time Disruption",
+                                               "s2_phase_1_a_label":  "Reaction",
+                                               "s2_phase_1_a_value":  "88",
+                                               "s2_phase_1_b_label":  "Preemption",
+                                               "s2_phase_1_b_value":  "95",
+                                               "s2_phase_1_event":  "Manhattan appears at several moments in time simultaneously, disorienting Kyle.",
+                                               "s2_phase_2_animation":  "shadow-surge",
+                                               "s2_phase_2_token":  "fullredflood",
+                                               "s2_phase_2_title":  "Matter Decay",
+                                               "s2_phase_2_event":  "The battlefield begins to crumble under Manhattan\u0027s mere presence.",
+                                               "s2_phase_2_branch_a":  "Kyle struggles to maintain his armor.",
+                                               "s2_phase_2_branch_b":  "The ring loses stability in contact with antimatter.",
+                                               "s2_phase_3_actor":  "b",
+                                               "s2_phase_3_animation":  "celestial-purge",
+                                               "s2_phase_3_title":  "Causal Erasure",
+                                               "s2_phase_3_event":  "Manhattan strikes the moment Kyle Rayner received his first ring.",
+                                               "s2_phase_3_branch_a":  "Kyle Rayner is removed from the continuum.",
+                                               "s2_phase_3_branch_b":  "Kyle escapes into the Source Wall, ending the clash.",
+                                               "s2_end_condition":  "Manhattan\u0027s victory by removing the opponent from history."
+                                           },
+                      "final-summary":  {
+                                            "line_1":  "Kyle Rayner possesses higher theoretical potential through the Life Equation, but Manhattan controls time and cause.",
+                                            "line_2":  "Most scenarios favor Manhattan as he can strike at the moment of attack preparation before it even exists.",
+                                            "line_3":  "This is a battle of whether creative life-will can break the mathematical certainty of an inevitable end.",
+                                            "winner":  "Dr. Manhattan leads in most variants.",
+                                            "quote":  "“Kyle has the power to threaten Manhattan. Manhattan more often prevents that power from fully entering the game.”"
+                                        },
+                      "tactical-board":  {
+                                             "lane":  "Kyle must force an action window before Manhattan erases the very cause of his existence.",
+                                             "subtitle":  "Willpower versus Causality"
+                                         },
+                      "verdict-matrix":  {
+                                             "header":  "POWER MATRIX",
+                                             "subtitle":  "Verdict based on Life Equation control",
+                                             "layout":  "2x1",
+                                             "row_1":  "FULL LIFE EQUATION",
+                                             "row_2":  "LIMITED POWER",
+                                             "case_1":  "White Lantern Kyle Rayner 6/10. When the full Life Equation is active, Kyle becomes a stable point Manhattan cannot simply disperse. White Light overwrites causality, and Kyle\u0027s superior hax gives him a narrow decisive edge. Manhattan still sees every threat — but Kyle\u0027s existence-rewriting power outpaces even his predictive grasp.",
+                                             "case_2":  "Dr. Manhattan 9.5/10. Without the full Life Equation, Kyle is but a pawn in Manhattan\u0027s simulation. The Titan from Watchmen simply erases the cause for Kyle ever stepping onto the battlefield."
+                                         },
+                      "x-factor":  {
+                                       "a_bonus":  "15",
+                                       "a_bonus_label":  "LIFE EQUATION",
+                                       "a_value":  "50",
+                                       "b_bonus":  "17",
+                                       "b_value":  "50",
+                                       "factor":  "SETUP WINDOW VS PREEMPTION",
+                                       "implication":  "This is why Kyle\u0027s better stats do not guarantee a win if Manhattan does not allow him to use them.",
+                                       "mechanics":  "Kyle only needs one Life Equation window, but Manhattan sees that window before Kyle even thinks of it.",
+                                       "psychology":  "Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.",
+                                       "regen":  "TIME PREEMPTION",
+                                       "example":  "If Kyle attempts to create a construct, Manhattan does not destroy the construct – he destroys the oxygen molecules in Kyle\u0027s lungs before he can even make the mental gesture.",
+                                       "question":  "Can the Life Equation operate outside of time, protecting Kyle from an attack that has already happened in Manhattan\u0027s future?"
+                                   }
+                  }
 }

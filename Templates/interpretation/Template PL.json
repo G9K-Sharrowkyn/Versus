@@ -103,8 +103,8 @@
     }
   ],
   "staticFields": {
-    "fighter_a_fallback": "Postac A",
-    "fighter_b_fallback": "Postac B",
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
     "draw_badge_label": "REMIS",
     "fallback_draw_edge_1": "KONTROLA TEMPA",
     "fallback_draw_edge_2": "EKONOMIA ZASOBOW",
@@ -112,7 +112,7 @@
     "fallback_lead_edge_1": "OKNO MOCY",
     "fallback_lead_edge_2": "KONTROLA TEMPA",
     "fallback_lead_edge_3": "IQ BOJOWE",
-    "fighter_fallback": "Postac"
+    "fighter_fallback": "Postać"
   },
   "layout": {
     "HIGH_END": {
