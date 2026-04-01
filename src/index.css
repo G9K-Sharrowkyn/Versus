@@ -227,14 +227,14 @@
     0 0 15px 5px rgba(119, 226, 242, 0.8),
     0 0 30px 10px rgba(119, 226, 242, 0.4),
     0 0 50px 20px rgba(255, 85, 78, 0.2);
-  animation: vs-laser-sweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: vs-laser-sweep 1.2s linear forwards;
 }
 
 @keyframes vs-laser-sweep {
-  0% { left: 0%; opacity: 0; }
-  5% { opacity: 1; }
-  95% { opacity: 1; }
-  100% { left: 100%; opacity: 0; }
+  0% { left: -10%; opacity: 0; }
+  2% { opacity: 1; }
+  98% { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
 }
 
 .vs-preview-shell--bare-layer--incoming {
@@ -245,24 +245,24 @@
 .vs-preview-shell--bare-layer.is-template-transition-enter {
   opacity: 1;
   z-index: 2;
-  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  animation: vs-laser-reveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  clip-path: polygon(-10% 0, -10% 0, -10% 100%, -10% 100%);
+  animation: vs-laser-reveal 1.2s linear forwards;
 }
 
 @keyframes vs-laser-reveal {
-  0% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
-  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  0% { clip-path: polygon(-10% 0, -10% 0, -10% 100%, -10% 100%); }
+  100% { clip-path: polygon(-10% 0, 110% 0, 110% 100%, -10% 100%); }
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-exit-active {
   opacity: 1;
   z-index: 1;
-  animation: vs-laser-hide 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  animation: vs-laser-hide 1.2s linear forwards;
 }
 
 @keyframes vs-laser-hide {
-  0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
-  100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
+  0% { clip-path: polygon(-10% 0, 110% 0, 110% 100%, -10% 100%); }
+  100% { clip-path: polygon(110% 0, 110% 0, 110% 100%, 110% 100%); }
 }
 
 .vs-template-toolbar--integrated::after {
