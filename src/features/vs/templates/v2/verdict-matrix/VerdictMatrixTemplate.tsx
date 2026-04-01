@@ -9,6 +9,7 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
+import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 
 type VerdictMatrixTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
@@ -44,6 +45,9 @@ export function VerdictMatrixTemplate({
   language,
   onToggleLanguage,
   integratedToolbar,
+  slideImageAdjustments,
+  onSlideImageAdjustChange,
+  onSlideImageAdjustCommit,
 }: VerdictMatrixTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
@@ -264,12 +268,19 @@ export function VerdictMatrixTemplate({
                       }}
                     >
                       {winnerImage ? (
-                        <img
-                          src={winnerImage}
-                          alt={winnerName}
-                          draggable={false}
-                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', filter: 'saturate(0.96) contrast(1.02) brightness(0.82)', zIndex: 2 }}
-                        />
+                        <div style={{ position: 'absolute', inset: 0, zIndex: 2, filter: 'saturate(0.96) contrast(1.02) brightness(0.82)' }}>
+                          <AdjustableTemplateImage
+                            imageUrl={winnerImage}
+                            alt={winnerName}
+                            fallbackLabel=""
+                            adjustKey={`verdict-matrix-side-${winnerSide}`}
+                            legacyAdjustKeys={[`legacy-verdict-matrix-side-${winnerSide}`]}
+                            adjustments={slideImageAdjustments}
+                            onAdjustChange={onSlideImageAdjustChange}
+                            onAdjustCommit={onSlideImageAdjustCommit}
+                            plain
+                          />
+                        </div>
                       ) : null}
                       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))', zIndex: 1 }} />
                       <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem', zIndex: 3 }}>
