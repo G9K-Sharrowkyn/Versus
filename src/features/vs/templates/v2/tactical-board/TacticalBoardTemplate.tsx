@@ -1,6 +1,6 @@
 import './TacticalBoardTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
 import { iconForCategory } from '../../../helpers'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
@@ -9,6 +9,7 @@ import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
+  getTemplatePreset as getFightTemplatePreset,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
@@ -64,14 +65,20 @@ export function TacticalBoardTemplate({
   const realityHeader =
     pickTemplateField(blockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
-  const xFactorLabel = getFightTemplateDefaultField('x-factor', 'factor', language) || 'X-FACTOR'
+  const xFactorLabel =
+    getFightTemplateDefaultField('x-factor', 'factor', language) ||
+    getFightTemplatePreset('x-factor', language).title
 
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+  const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {
+    '--logo-url': `url(${chrome.brandImageSrc})`,
+  }
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
@@ -83,8 +90,8 @@ export function TacticalBoardTemplate({
       if (active.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!active.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -106,7 +113,7 @@ export function TacticalBoardTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -166,7 +173,7 @@ export function TacticalBoardTemplate({
         title={chrome.brandMarkTitle}
         aria-label={chrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${chrome.brandImageSrc})` } as any}
+        style={logoButtonStyle}
       >
         <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
         <img

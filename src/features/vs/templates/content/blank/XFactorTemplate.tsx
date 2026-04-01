@@ -1,12 +1,13 @@
 import '../../shared/theme.css'
 import { Brain, Crosshair, WandSparkles } from 'lucide-react'
-import type { CSSProperties, MutableRefObject } from 'react'
+import type { MutableRefObject } from 'react'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parsePercentValue, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
+  getTemplatePreset as getFightTemplatePreset,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
@@ -38,6 +39,7 @@ export function XFactorTemplate({
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
   const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
+  const templatePreset = getFightTemplatePreset('x-factor', language)
 
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
@@ -63,7 +65,10 @@ export function XFactorTemplate({
   const hyperTotalPct = hyperPct + hyperBonusPct
 
   const xLabel = line(0, ['factor', 'headline'])
-  const headerText = title || 'X-FACTOR'
+  const headerText =
+    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
+    title ||
+    templatePreset.title
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   const factorMatch = xLabel.match(/^(.*?)(\s+VS\s+)(.*)$/i)
   const mechanics = line(1, ['mechanika', 'mechanics'])

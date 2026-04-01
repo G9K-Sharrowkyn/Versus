@@ -6,6 +6,7 @@ import type { TemplatePreviewProps } from '../../../types'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
+  getTemplatePreset as getFightTemplatePreset,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
@@ -54,19 +55,26 @@ export function VerdictMatrixTemplate({
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
 
   const common = getFightCommonCopy('verdict-matrix', language)
+  const templatePreset = getFightTemplatePreset('verdict-matrix', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['verdict-matrix'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
 
-  const headerText = title || 'MATRYCA WERDYKTU'
+  const headerText =
+    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
+    title ||
+    templatePreset.title ||
+    common.verdictLabel
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'matrix_header']) ||
-    getFightTemplateDefaultField('verdict-matrix', 'panel_header', language) || "MATRYCA WERDYKTU"
+    getFightTemplateDefaultField('verdict-matrix', 'panel_header', language) ||
+    templatePreset.title ||
+    common.verdictLabel
 
-  const fighterAFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_a_fallback', language) || 'Fighter A'
-  const fighterBFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_b_fallback', language) || 'Fighter B'
+  const fighterAFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_a_fallback', language) || 'A'
+  const fighterBFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_b_fallback', language) || 'B'
   const fighterAName = fighterA.name || fighterAFallback
   const fighterBName = fighterB.name || fighterBFallback
 
@@ -121,17 +129,39 @@ export function VerdictMatrixTemplate({
 
   const col1 = pickTemplateField(blockFields, ['col_1', 'col1'])
   const col2 = pickTemplateField(blockFields, ['col_2', 'col2'])
+  const defaultCol1 =
+    getFightTemplateDefaultField('verdict-matrix', 'col_left', language) ||
+    `${common.parameterLabel} 1`
+  const defaultCol2 =
+    getFightTemplateDefaultField('verdict-matrix', 'col_right', language) ||
+    `${common.parameterLabel} 2`
+  const defaultRow1 =
+    getFightTemplateDefaultField('verdict-matrix', 'row_top', language) ||
+    common.verdictLabel
+  const defaultRow2 =
+    getFightTemplateDefaultField('verdict-matrix', 'row_bottom', language) ||
+    common.verdictLabel
   const matrixColumns: string[] = []
   if (numCols >= 1) {
-    matrixColumns.push(col1 || (layoutMode === '2x1' ? pickTemplateField(blockFields, ['row_1', 'row1']) : (numCols === 1 ? '' : 'WARUNEK 1')))
+    matrixColumns.push(
+      col1 ||
+      (layoutMode === '2x1'
+        ? pickTemplateField(blockFields, ['row_1', 'row1']) || defaultCol1
+        : (numCols === 1 ? '' : defaultCol1)),
+    )
   }
   if (numCols >= 2) {
-    matrixColumns.push(col2 || (layoutMode === '2x1' ? pickTemplateField(blockFields, ['row_2', 'row2']) : 'WARUNEK 2'))
+    matrixColumns.push(
+      col2 ||
+      (layoutMode === '2x1'
+        ? pickTemplateField(blockFields, ['row_2', 'row2']) || defaultCol2
+        : defaultCol2),
+    )
   }
 
   const matrixRows: string[] = []
-  if (numRows >= 1) matrixRows.push(pickTemplateField(blockFields, ['row_1', 'row1']) || (numRows === 1 ? 'WERDYKT' : 'SCENARIUSZ 1'))
-  if (numRows >= 2) matrixRows.push(pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ 2')
+  if (numRows >= 1) matrixRows.push(pickTemplateField(blockFields, ['row_1', 'row1']) || (numRows === 1 ? common.verdictLabel : defaultRow1))
+  if (numRows >= 2) matrixRows.push(pickTemplateField(blockFields, ['row_2', 'row2']) || defaultRow2)
 
   const stripTrailingDot = (value: string) => value.replace(/\.\s*$/, '').trim()
   const cleanSubText = stripTrailingDot(subText || '')
@@ -179,7 +209,7 @@ export function VerdictMatrixTemplate({
 
   const cellData = caseData
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : templatePreset.title
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

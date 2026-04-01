@@ -83,8 +83,8 @@ export function FightSimulationTemplate({
   const layout = ui.template as Record<string, string>
   
   const categories = getFightDefaultCategories('fight-simulation', language)
-  const categoryLabel = (categoryId: string, fallback: string) =>
-    categories.find((entry) => entry.id === categoryId)?.label || fallback
+  const categoryLabel = (categoryId: string) =>
+    categories.find((entry) => entry.id === categoryId)?.label || categoryId.toUpperCase()
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
@@ -120,8 +120,8 @@ export function FightSimulationTemplate({
       animation: 'orbit-harass' as FightScenarioId,
       lead: defaultPhase1Lead,
       title: baseOpening,
-      aLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
-      bLabel: fallbackRows[0]?.label || categoryLabel('strength', 'Strength'),
+      aLabel: fallbackRows[0]?.label || categoryLabel('strength'),
+      bLabel: fallbackRows[0]?.label || categoryLabel('strength'),
       aValue: fallbackRows[0]?.a ?? 96,
       bValue: fallbackRows[0]?.b ?? 84,
       event: common.emptyFieldLabel,
@@ -133,8 +133,8 @@ export function FightSimulationTemplate({
       animation: 'clash-lock' as FightScenarioId,
       lead: defaultPhase2Lead,
       title: baseMidFight,
-      aLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
-      bLabel: fallbackRows[1]?.label || categoryLabel('speed', 'Speed'),
+      aLabel: fallbackRows[1]?.label || categoryLabel('speed'),
+      bLabel: fallbackRows[1]?.label || categoryLabel('speed'),
       aValue: fallbackRows[1]?.a ?? 92,
       bValue: fallbackRows[1]?.b ?? 88,
       event: common.emptyFieldLabel,
@@ -146,8 +146,8 @@ export function FightSimulationTemplate({
       animation: 'regen-attrition' as FightScenarioId,
       lead: 'a' as FightScenarioLead,
       title: baseLateFight,
-      aLabel: fallbackRows[2]?.label || categoryLabel('stamina', 'Stamina'),
-      bLabel: fallbackRows[2]?.label || categoryLabel('stamina', 'Stamina'),
+      aLabel: fallbackRows[2]?.label || categoryLabel('stamina'),
+      bLabel: fallbackRows[2]?.label || categoryLabel('stamina'),
       aValue: fallbackRows[2]?.a ?? 90,
       bValue: fallbackRows[2]?.b ?? 93,
       event: common.emptyFieldLabel,
@@ -189,16 +189,26 @@ export function FightSimulationTemplate({
       const variantToken = [animSelection.variantToken, phaseToken].filter(Boolean).join(' ')
       const modeToken = normalizeToken(pf([`phase_${index}_mode`, `phase_${index}_type`]))
       const fallbackTitle = index === 1 ? baseOpening : index === 2 ? baseMidFight : baseLateFight
+      const inputAnimationLabel = (animSelection.label || '').trim()
+      const extendedLabelEn = variantToken ? (FIGHT_SCENARIO_EXTENDED_LABELS_EN[variantToken] || '') : ''
+      const shouldUseInputAnimationLabel =
+        Boolean(inputAnimationLabel) &&
+        !(
+          language === 'pl' &&
+          extendedLabelEn &&
+          normalizeToken(inputAnimationLabel) === normalizeToken(extendedLabelEn)
+        )
+      const fallbackAnimationLabel = variantToken
+        ? (language === 'en'
+            ? extendedLabelEn || humanizeScenarioToken(variantToken)
+            : fightScenarioLabel(animSelection.id, language))
+        : fightScenarioLabel(animSelection.id, language)
 
       return {
         mode: parsePhaseMode(modeToken || (!pfx ? globalModeToken : ''), defaults.mode),
         animation: animSelection.id,
         animationVariantToken: variantToken,
-        animationLabel:
-          animSelection.label ||
-          (variantToken
-            ? FIGHT_SCENARIO_EXTENDED_LABELS_EN[variantToken] || humanizeScenarioToken(variantToken)
-            : fightScenarioLabel(animSelection.id, language)),
+        animationLabel: shouldUseInputAnimationLabel ? inputAnimationLabel : fallbackAnimationLabel,
         lead: resolveFightScenarioLead(
           pf([`phase_${index}_actor`, `phase_${index}_lead`]) || (!pfx ? globalLeadValue : ''),
           defaults.lead || globalLead,
@@ -341,9 +351,13 @@ export function FightSimulationTemplate({
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+  const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {
+    '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
+  }
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const activeState = new Set<number>()
@@ -355,8 +369,8 @@ export function FightSimulationTemplate({
       if (activeState.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!activeState.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!activeState.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -378,7 +392,7 @@ export function FightSimulationTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -426,7 +440,7 @@ export function FightSimulationTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={logoButtonStyle}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img

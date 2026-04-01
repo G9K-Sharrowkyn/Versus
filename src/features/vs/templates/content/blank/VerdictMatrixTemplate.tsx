@@ -7,6 +7,8 @@ import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
+  getTemplatePreset as getFightTemplatePreset,
+  getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 
@@ -16,7 +18,6 @@ export function VerdictMatrixTemplate({
   title,
   subtitle,
   templateBlocks,
-  activeFightId,
   language,
   onToggleLanguage,
 }: TemplatePreviewProps) {
@@ -27,18 +28,32 @@ export function VerdictMatrixTemplate({
   const chrome = buildFightTemplateChrome('verdict-matrix', language, blockFields)
   const ui = getTemplateUi('verdict-matrix', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
-  const layout = ui.template as Record<string, string | number>
+  const templatePreset = getFightTemplatePreset('verdict-matrix', language)
 
-  const headerText = title || 'MATRYCA WERDYKTU'
+  const headerText =
+    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
+    title ||
+    templatePreset.title ||
+    common.verdictLabel
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
 
-  const col1 = pickTemplateField(blockFields, ['col_1', 'col1'])
-  const col2 = pickTemplateField(blockFields, ['col_2', 'col2'])
+  const col1 =
+    pickTemplateField(blockFields, ['col_1', 'col1']) ||
+    getFightTemplateDefaultField('verdict-matrix', 'col_left', language)
+  const col2 =
+    pickTemplateField(blockFields, ['col_2', 'col2']) ||
+    getFightTemplateDefaultField('verdict-matrix', 'col_right', language)
   const hasColumns = Boolean(col1 || col2)
 
+  const rowTopFallback =
+    getFightTemplateDefaultField('verdict-matrix', 'row_top', language) ||
+    common.verdictLabel
+  const rowBottomFallback =
+    getFightTemplateDefaultField('verdict-matrix', 'row_bottom', language) ||
+    common.verdictLabel
   const rowsList = [
-    pickTemplateField(blockFields, ['row_1', 'row1']) || 'SCENARIUSZ A',
-    pickTemplateField(blockFields, ['row_2', 'row2']) || 'SCENARIUSZ B',
+    pickTemplateField(blockFields, ['row_1', 'row1']) || rowTopFallback,
+    pickTemplateField(blockFields, ['row_2', 'row2']) || rowBottomFallback,
   ]
 
   const resolveWinnerSide = (text: string) => {

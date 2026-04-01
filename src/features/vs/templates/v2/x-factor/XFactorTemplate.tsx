@@ -9,6 +9,7 @@ import { FittedText } from '../../shared/FittedText'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateCommonCopy as getFightCommonCopy,
+  getTemplatePreset as getFightTemplatePreset,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
@@ -69,6 +70,7 @@ export function XFactorTemplate({
   const tokens = ui.tokens as Record<string, string | number>
   const layout = ui.template as Record<string, string | number>
   const statTrapLayout = getTemplateUi('stat-trap', language).template as Record<string, string>
+  const templatePreset = getFightTemplatePreset('x-factor', language)
   const RED_LINIA = '#ff554e'
   const REFLEKS_TRESCI_FAKTOW = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
   const REFLEKS_ETYKIET_FAKTOW = '0 0 7px rgba(255, 85, 78, 0.82), 0 0 14px rgba(255, 85, 78, 0.35)'
@@ -155,7 +157,10 @@ export function XFactorTemplate({
     </div>
   )
 
-  const headerText = title || (language === 'pl' ? 'Czynnik kluczowy' : 'Key Factor')
+  const headerText =
+    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
+    title ||
+    templatePreset.title
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
@@ -167,12 +172,12 @@ export function XFactorTemplate({
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'x_factor_header']) ||
     getFightTemplateDefaultField('x-factor', 'panel_header', language) ||
-    (language === 'pl' ? 'Czynnik kluczowy' : 'Key Factor')
+    templatePreset.title
 
   const auditPrefix = `${activeFightId || 'draft'}:x-factor`
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : templatePreset.title
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
