@@ -379,17 +379,17 @@
 
   <div class="hud">
     <div class="hud-top">
-      <span>PROJECT ARES // FIGHT LOADING</span>
+      <span id="hud-top-label">PROJECT ARES // FIGHT LOADING</span>
       <div class="hud-line"></div>
       <span>FPS: <strong id="fps">60</strong></span>
     </div>
     <div style="align-self:flex-start;margin-top:auto;margin-bottom:auto;writing-mode:vertical-rl;transform:rotate(180deg);font-family:var(--font-code);font-size:10px;color:rgba(255,255,255,0.5);text-transform:uppercase;">
-      SPEED // <strong id="vel-readout">0.00</strong>
+      <span id="hud-speed-label">SPEED</span> // <strong id="vel-readout">0.00</strong>
     </div>
     <div class="hud-bottom">
-      <span>COORD: <strong id="coord">000</strong></span>
+      <span><span id="hud-coord-label">COORD</span>: <strong id="coord">000</strong></span>
       <div class="hud-line"></div>
-      <span>VVV.NEXUS-OS</span>
+      <span id="hud-os-label">VVV.NEXUS-OS</span>
     </div>
   </div>
 
@@ -401,10 +401,68 @@
   (() => {
     // --- URL PARAMS ---
     const params = new URLSearchParams(location.search);
-    const FIGHTER_A = (params.get('a') || 'FIGHTER A').toUpperCase();
-    const FIGHTER_B = (params.get('b') || 'FIGHTER B').toUpperCase();
+    const LANG = params.get('lang') === 'pl' ? 'pl' : 'en';
+    const COPY = LANG === 'pl'
+      ? {
+          fighterAFallback: 'POSTAC A',
+          fighterBFallback: 'POSTAC B',
+          hudTopLabel: 'PROJEKT ARES // LADOWANIE WALKI',
+          hudSpeedLabel: 'PREDKOSC',
+          hudCoordLabel: 'KOORD',
+          hudOsLabel: 'VVV.NEXUS-OS',
+          projectAres: 'PROJEKT ARES',
+          signalIntroKicker: 'MATRYCA EWALUACJI GOTOWA',
+          signalIntroMain: '[ 0.000024 ] WEKTORY WALKI GOTOWE',
+          signalArchiveLine: 'ARCHIWUM :: PROJEKT_ARES      [GLOWNY MODUL]',
+          signalHaloLine: 'HALO     :: VERSUSVERSEVAULT  [BRAMA KRAWEDZI]',
+          signalMatchPrefix: 'POJEDYNEK',
+          signalStatusScanLine: 'STATUS   :: SKAN PRZED WALKA  [OKNO OTWARTE]',
+          signalCombatantKicker: 'PROFIL WOJOWNIKA ZINDEKSOWANY',
+          signalHaloShortLine: 'HALO :: VERSUSVERSEVAULT [PROJEKT ARES]',
+          signalStatusThreatLine: 'STATUS :: EKSTREMALNE ZAGROZENIE',
+          signalNamePrefix: 'NAZWA',
+          processLabel: 'PROCES',
+          reverseTitle: '< SYSTEM WYLACZANY >',
+          reverseSub: 'SYMULACJA WALKI v0.9 · versusversevault.com',
+          reverseDone: '< SEKWENCJA ZAKONCZONA >',
+        }
+      : {
+          fighterAFallback: 'FIGHTER A',
+          fighterBFallback: 'FIGHTER B',
+          hudTopLabel: 'PROJECT ARES // FIGHT LOADING',
+          hudSpeedLabel: 'SPEED',
+          hudCoordLabel: 'COORD',
+          hudOsLabel: 'VVV.NEXUS-OS',
+          projectAres: 'PROJECT ARES',
+          signalIntroKicker: 'EVALUATION MATRIX READY',
+          signalIntroMain: '[ 0.000024 ] combat vectors drift-ready',
+          signalArchiveLine: 'ARCHIVE :: PROJECT_ARES      [PRIMARY SHARD]',
+          signalHaloLine: 'HALO    :: VERSUSVERSEVAULT  [EDGE GATE]',
+          signalMatchPrefix: 'MATCH',
+          signalStatusScanLine: 'STATUS  :: PRE-FIGHT SCAN    [WINDOW OPEN]',
+          signalCombatantKicker: 'COMBATANT PROFILE INDEXED',
+          signalHaloShortLine: 'HALO :: VERSUSVERSEVAULT [PROJECT ARES]',
+          signalStatusThreatLine: 'STATUS :: EXTREME THREAT',
+          signalNamePrefix: 'A. NAME',
+          processLabel: 'PROCESS',
+          reverseTitle: '< SYSTEM SHUTTING DOWN >',
+          reverseSub: 'FIGHT SIMULATION v0.9 · versusversevault.com',
+          reverseDone: '< SEQUENCE COMPLETE >',
+        };
+
+    const FIGHTER_A = (params.get('a') || COPY.fighterAFallback).toUpperCase();
+    const FIGHTER_B = (params.get('b') || COPY.fighterBFallback).toUpperCase();
     const FOLDER    = params.get('folder') || '';
     const FLOW_MODE = params.get('flow') === 'reverse' ? 'reverse' : 'forward';
+    document.title = LANG === 'pl' ? 'WPROWADZENIE DO WALKI' : 'FIGHT INTRO';
+    const hudTopLabelEl = document.getElementById('hud-top-label');
+    const hudSpeedLabelEl = document.getElementById('hud-speed-label');
+    const hudCoordLabelEl = document.getElementById('hud-coord-label');
+    const hudOsLabelEl = document.getElementById('hud-os-label');
+    if (hudTopLabelEl) hudTopLabelEl.textContent = COPY.hudTopLabel;
+    if (hudSpeedLabelEl) hudSpeedLabelEl.textContent = COPY.hudSpeedLabel;
+    if (hudCoordLabelEl) hudCoordLabelEl.textContent = COPY.hudCoordLabel;
+    if (hudOsLabelEl) hudOsLabelEl.textContent = COPY.hudOsLabel;
 
     // --- CONFIGURATION ---
     const CONFIG = {
@@ -419,34 +477,34 @@
 
     const SIGNAL_PANELS = {
       intro: {
-        kicker: 'EVALUATION MATRIX READY',
-        main: '[ 0.000024 ] combat vectors drift-ready',
+        kicker: COPY.signalIntroKicker,
+        main: COPY.signalIntroMain,
         lines: [
-          'ARCHIVE :: PROJECT_ARES      [PRIMARY SHARD]',
-          'HALO    :: VERSUSVERSEVAULT  [EDGE GATE]',
-          `MATCH   :: ${FIGHTER_A} // ${FIGHTER_B}`,
-          'STATUS  :: PRE-FIGHT SCAN    [WINDOW OPEN]'
+          COPY.signalArchiveLine,
+          COPY.signalHaloLine,
+          `${COPY.signalMatchPrefix}   :: ${FIGHTER_A} // ${FIGHTER_B}`,
+          COPY.signalStatusScanLine,
         ]
       },
       fighterA: {
-        kicker: 'COMBATANT PROFILE INDEXED',
+        kicker: COPY.signalCombatantKicker,
         main: FIGHTER_A,
         className: 'is-fighter-a',
         lines: [
-          'HALO :: VERSUSVERSEVAULT [PROJECT ARES]',
-          'STATUS :: EXTREME THREAT',
-          `A. NAME :: ${FIGHTER_A}`,
-          `MATCH :: ${FIGHTER_A} // ${FIGHTER_B}`
+          COPY.signalHaloShortLine,
+          COPY.signalStatusThreatLine,
+          `${COPY.signalNamePrefix} :: ${FIGHTER_A}`,
+          `${COPY.signalMatchPrefix} :: ${FIGHTER_A} // ${FIGHTER_B}`,
         ]
       },
       fighterB: {
-        kicker: 'COMBATANT PROFILE INDEXED',
+        kicker: COPY.signalCombatantKicker,
         main: FIGHTER_B,
         lines: [
-          'HALO :: VERSUSVERSEVAULT [PROJECT ARES]',
-          'STATUS :: EXTREME THREAT',
-          `A. NAME :: ${FIGHTER_B}`,
-          `MATCH :: ${FIGHTER_A} // ${FIGHTER_B}`
+          COPY.signalHaloShortLine,
+          COPY.signalStatusThreatLine,
+          `${COPY.signalNamePrefix} :: ${FIGHTER_B}`,
+          `${COPY.signalMatchPrefix} :: ${FIGHTER_A} // ${FIGHTER_B}`,
         ]
       }
     };
@@ -728,12 +786,12 @@
           <div style="border:0.18em solid #ff6666;box-shadow:0 0 4px red, inset 0 0 4px red;padding:1.6em 2em;animation:rv-s2-shake 1.5s linear infinite;">
             <div id="rv-h-main">
               <p id="rv-h-spin" style="font-size:1.1em;margin-bottom:0.4em;">[/]</p>
-              <p style="font-size:1em;letter-spacing:0.04em;">&lt; SYSTEM SHUTTING DOWN &gt;</p>
-              <p style="font-size:0.6em;margin-top:0.3em;opacity:0.8;">FIGHT SIMULATION v0.9 &middot; versusversevault.com</p>
-              <p id="rv-h-pct" style="font-size:0.65em;margin-top:0.3em;">PROCESS: 0%</p>
+              <p style="font-size:1em;letter-spacing:0.04em;">${COPY.reverseTitle}</p>
+              <p style="font-size:0.6em;margin-top:0.3em;opacity:0.8;">${COPY.reverseSub}</p>
+              <p id="rv-h-pct" style="font-size:0.65em;margin-top:0.3em;">${COPY.processLabel}: 0%</p>
               <p id="rv-h-bar" style="font-size:0.65em;margin-top:0.5em;letter-spacing:0.04em;">&nbsp;</p>
             </div>
-            <p id="rv-h-done" style="display:none;font-size:1em;letter-spacing:0.04em;">&lt; SEQUENCE COMPLETE &gt;</p>
+            <p id="rv-h-done" style="display:none;font-size:1em;letter-spacing:0.04em;">${COPY.reverseDone}</p>
           </div>
         </div>
 
@@ -819,7 +877,7 @@
       if (s4El instanceof HTMLElement) s4El.style.display = 'none';
       if (mainEl instanceof HTMLElement) mainEl.style.display = '';
       if (doneEl instanceof HTMLElement) doneEl.style.display = 'none';
-      if (pctEl) pctEl.textContent = 'PROCESS: 0%';
+      if (pctEl) pctEl.textContent = `${COPY.processLabel}: 0%`;
       if (barEl) barEl.textContent = '';
 
       const MAX = 24;
@@ -843,7 +901,7 @@
           }
           vals[emptyIdx] = LOADED;
           const loaded = vals.filter((c) => c === LOADED).length;
-          if (pctEl) pctEl.textContent = `PROCESS: ${Math.floor((loaded / MAX) * 100)}%`;
+          if (pctEl) pctEl.textContent = `${COPY.processLabel}: ${Math.floor((loaded / MAX) * 100)}%`;
           const ls = vals.slice(0, loaded).join('');
           const us = vals.slice(loaded).join('');
           if (barEl) barEl.innerHTML = `(${ls}<span style="color:#fff;text-shadow:0 0 4px #fff;">${us}</span>)`;
@@ -851,7 +909,7 @@
       });
 
       clearInterval(spinTimer);
-      if (pctEl) pctEl.textContent = 'PROCESS: 100%';
+      if (pctEl) pctEl.textContent = `${COPY.processLabel}: 100%`;
       if (barEl) barEl.innerHTML = `(${'#'.repeat(MAX)})`;
       await wait(400);
 
@@ -954,7 +1012,7 @@
                 <div class="card-dot"></div>
               </div>
               <div class="card-footer">
-                <span>PROJECT ARES</span>
+                <span>${COPY.projectAres}</span>
                 <span>${FIGHTER_A} vs ${FIGHTER_B}</span>
               </div>
             `;

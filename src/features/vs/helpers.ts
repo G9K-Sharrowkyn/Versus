@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import type { FightRecord, FightScenarioId, FightScenarioLead, FightVariantLocale, Fighter, ParsedVsImport, PointerRelayPayload, PortraitAdjust, ScoreRow, SearchMorphHandoff, TemplateId } from './types'
+import type { FightRecord, FightScenarioId, FightScenarioLead, FightVariantLocale, Fighter, Language, ParsedVsImport, PointerRelayPayload, PortraitAdjust, ScoreRow, SearchMorphHandoff, TemplateId } from './types'
 import { DEFAULT_MORPH_SIZE, FALLBACK_ICONS, FIGHT_SCENARIO_ALIAS_TO_ID, FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID, FIGHT_SCENARIO_EXTENDED_LABELS_EN, ICON_BY_CATEGORY } from './presets'
 
 export const clamp = (value: number) =>
@@ -353,6 +353,14 @@ export const stripFightLocaleSuffixFromLabel = (value: string) => {
 export const resolveFightVariantLocaleFromFileName = (fileName: string): FightVariantLocale =>
   splitFightNameLocaleSuffix(normalizeFightFileBaseName(fileName)).locale
 
+export const resolveFightRecordLocale = (
+  fight: Pick<FightRecord, 'variantLocale' | 'fileName'>,
+): Language | null => {
+  if (fight.variantLocale === 'pl' || fight.variantLocale === 'en') return fight.variantLocale
+  const inferred = resolveFightVariantLocaleFromFileName(fight.fileName)
+  return inferred === 'pl' || inferred === 'en' ? inferred : null
+}
+
 export const resolveFightVariantLabel = (fileName: string, locale: FightVariantLocale) => {
   const normalizedBase = normalizeFightFileBaseName(fileName)
   const split = splitFightNameLocaleSuffix(normalizedBase)
@@ -526,6 +534,8 @@ export const findFightByQuery = (
   fights: FightRecord[],
   query: string,
   preferredVariantByMatchup: Record<string, string>,
+  preferredLocale?: Language | null,
+  fallbackLocale?: Language,
 ): FightRecord | null => {
   const cleaned = stripFileExtension(query).trim()
   if (!cleaned) return null
@@ -547,6 +557,17 @@ export const findFightByQuery = (
   const preferredCandidate =
     candidates.find((fight) => preferredVariantByMatchup[fight.matchupKey] === fight.id) || null
   if (preferredCandidate) return preferredCandidate
+
+  if (preferredLocale) {
+    const localeCandidate = candidates.find((fight) => resolveFightRecordLocale(fight) === preferredLocale) || null
+    if (localeCandidate) return localeCandidate
+  }
+
+  if (fallbackLocale) {
+    const fallbackLocaleCandidate =
+      candidates.find((fight) => resolveFightRecordLocale(fight) === fallbackLocale) || null
+    if (fallbackLocaleCandidate) return fallbackLocaleCandidate
+  }
 
   return candidates[0]
 }

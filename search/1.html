@@ -874,6 +874,78 @@
   const $ = id => document.getElementById(id);
   const delay = ms => new Promise(r => setTimeout(r, ms));
   const searchParams = new URLSearchParams(window.location.search);
+  const SEARCH_LANG = searchParams.get('lang') === 'pl' ? 'pl' : 'en';
+  const COPY = SEARCH_LANG === 'pl'
+    ? {
+        documentTitle: 'Wyszukiwanie VS',
+        loadingButton: '// ŁADOWANIE... //',
+        processLabel: 'PROCES',
+        systemRebootTitle: '< RESTART SYSTEMU >',
+        systemRebootSub: 'VERSUS//VAULT v2.077 · SEKWENCJA ODZYSKIWANIA',
+        systemRebootDone: 'RESTART ZAKOŃCZONY',
+        fightModeTitle: '< START SYMULACJI WALKI >',
+        fightModeSub: 'VERSUS//VAULT v2.077 · PROTOKÓŁ ANALIZY BOJOWEJ',
+        fightModeDone: 'SCENARIUSZ WALKI ZAKOŃCZONY',
+        fightHistoryTitle: 'Historia Walk',
+        fightHistorySub: 'HISTORIA WALK · VERSUSVERSEVAULT',
+        fightHistoryEmpty: '[ BRAK DANYCH O WALKACH ]',
+        editLabel: '[ EDYTUJ ]',
+        doneLabel: '[ GOTOWE ]',
+        searchHeading: '// versusversevault.com · PROJEKT ARES //',
+        searchLabel: 'OCENA_WALKI',
+        terminalLine1: 'Witaj w <b>VERSUSVERSEVAULT</b> - bojowym węźle danych.<br>',
+        terminalLine2: 'Wprowadź dane NETRUNNERA, aby kontynuować.',
+      }
+    : {
+        documentTitle: 'VS Search',
+        loadingButton: '// LOADING... //',
+        processLabel: 'PROCESS',
+        systemRebootTitle: '< SYSTEM REBOOTING >',
+        systemRebootSub: 'VERSUS//VAULT v2.077 · RECOVERY SEQUENCE',
+        systemRebootDone: 'REBOOTING SUCCESSFUL',
+        fightModeTitle: '< FIGHT SIMULATION STARTING >',
+        fightModeSub: 'VERSUS//VAULT v2.077 · COMBAT ANALYSIS PROTOCOL',
+        fightModeDone: 'FIGHT SCENARIO COMPLETE',
+        fightHistoryTitle: 'Fight History',
+        fightHistorySub: 'FIGHT HISTORY · VERSUSVERSEVAULT',
+        fightHistoryEmpty: '[ NO FIGHT DATA LOADED ]',
+        editLabel: '[ EDIT ]',
+        doneLabel: '[ DONE ]',
+        searchHeading: '// versusversevault.com · PROJECT ARES //',
+        searchLabel: 'FIGHT_EVALUATION',
+        terminalLine1: 'Welcome to <b>VERSUSVERSEVAULT</b> - Battle data nexus.<br>',
+        terminalLine2: 'Enter NETRUNNER credentials to proceed.',
+      };
+
+  const applyLocalizedCopy = () => {
+    document.title = COPY.documentTitle;
+    const loadingButtonLabel = document.querySelector('#s1-btn span');
+    if (loadingButtonLabel) loadingButtonLabel.textContent = COPY.loadingButton;
+    const hydraTitle = document.querySelector('#s3 .h-title');
+    const hydraSub = document.querySelector('#s3 .h-sub');
+    const hydraDone = document.querySelector('#s3 .h-done');
+    const hydraPctLine = document.querySelector('#s3 .h-pct');
+    if (hydraTitle) hydraTitle.textContent = COPY.systemRebootTitle;
+    if (hydraSub) hydraSub.textContent = COPY.systemRebootSub;
+    if (hydraDone) hydraDone.textContent = COPY.systemRebootDone;
+    if (hydraPctLine) hydraPctLine.innerHTML = `${COPY.processLabel}: <span id="h-pct">0</span>%`;
+    const historyTitle = document.querySelector('.s7-header-title');
+    const historySub = document.querySelector('.s7-header-sub');
+    const historyEmpty = $('s7-empty');
+    const historyEditButton = $('s7-edit-btn');
+    if (historyTitle) historyTitle.textContent = COPY.fightHistoryTitle;
+    if (historySub) historySub.textContent = COPY.fightHistorySub;
+    if (historyEmpty) historyEmpty.textContent = COPY.fightHistoryEmpty;
+    if (historyEditButton) historyEditButton.textContent = COPY.editLabel;
+    const searchHeading = document.querySelector('.s6-heading');
+    const searchLabel = document.querySelector('.s6-label');
+    if (searchHeading) searchHeading.textContent = COPY.searchHeading;
+    if (searchLabel) {
+      searchLabel.textContent = COPY.searchLabel;
+      searchLabel.setAttribute('data-text', COPY.searchLabel);
+    }
+  };
+  applyLocalizedCopy();
   const SEARCH_FLOW_MODE = searchParams.get('flow') === 'reverse' ? 'reverse' : 'forward';
 
   if (SEARCH_FLOW_MODE === 'reverse') {
@@ -911,9 +983,9 @@
     const s3Title = document.querySelector('#s3 .h-title');
     const s3Sub   = document.querySelector('#s3 .h-sub');
     const s3Done  = document.querySelector('#s3 .h-done');
-    if (s3Title) s3Title.textContent = '< SYSTEM REBOOTING >';
-    if (s3Sub)   s3Sub.textContent   = 'VERSUS//VAULT v2.077 \u00B7 RECOVERY SEQUENCE';
-    if (s3Done)  s3Done.textContent  = 'REBOOTING SUCCESSFUL';
+    if (s3Title) s3Title.textContent = COPY.systemRebootTitle;
+    if (s3Sub)   s3Sub.textContent   = COPY.systemRebootSub;
+    if (s3Done)  s3Done.textContent  = COPY.systemRebootDone;
     if (spin) spin.textContent = '[/]';
     if (pct) pct.textContent = '0';
     if (bar) bar.innerHTML = '&nbsp;';
@@ -1145,6 +1217,7 @@
   };
 
   const fightHistory = loadHistory();
+  const normalizeHistoryLocale = value => value === 'pl' || value === 'en' ? value : SEARCH_LANG;
   let fightIdCounter = fightHistory.length
     ? Math.max(...fightHistory.map(f => parseInt(f.cardId, 10) || 0)) + 1
     : 1;
@@ -1153,9 +1226,9 @@
     const titleEl = document.querySelector('#s3 .h-title');
     const subEl   = document.querySelector('#s3 .h-sub');
     const doneEl  = document.querySelector('#s3 .h-done');
-    if (titleEl) titleEl.textContent = '< FIGHT SIMULATION STARTING >';
-    if (subEl)   subEl.textContent   = 'VERSUS//VAULT v2.077 \u00B7 COMBAT ANALYSIS PROTOCOL';
-    if (doneEl)  doneEl.textContent  = 'FIGHT SCENARIO COMPLETE';
+    if (titleEl) titleEl.textContent = COPY.fightModeTitle;
+    if (subEl)   subEl.textContent   = COPY.fightModeSub;
+    if (doneEl)  doneEl.textContent  = COPY.fightModeDone;
   };
 
   const renderFightHistory = () => {
@@ -1209,23 +1282,29 @@
     s7EditBtn.addEventListener('click', () => {
       const s7 = $('s7');
       const editing = s7.classList.toggle('edit-mode');
-      s7EditBtn.textContent = editing ? '[ DONE ]' : '[ EDIT ]';
+      s7EditBtn.textContent = editing ? COPY.doneLabel : COPY.editLabel;
       s7EditBtn.classList.toggle('active', editing);
     });
   }
 
   const addFightToHistory = data => {
-    const exists = fightHistory.some(f => f.matchupKey === data.matchupKey);
-    if (exists) return;
-    fightHistory.push({
+    const existingIndex = fightHistory.findIndex(f => f.matchupKey === data.matchupKey);
+    const existingCardId = existingIndex !== -1 ? String(fightHistory[existingIndex]?.cardId || '') : '';
+    const nextEntry = {
       fightId:         String(data.fightId || ''),
       matchupKey:      String(data.matchupKey || ''),
       fighterAName:    String(data.fighterAName || ''),
       fighterBName:    String(data.fighterBName || ''),
       portraitADataUrl: String(data.portraitADataUrl || ''),
       portraitBDataUrl: String(data.portraitBDataUrl || ''),
-      cardId: String(fightIdCounter++).padStart(3, '0'),
-    });
+      variantLocale: normalizeHistoryLocale(data.variantLocale),
+      cardId: existingCardId || String(fightIdCounter++).padStart(3, '0'),
+    };
+    if (existingIndex !== -1) {
+      fightHistory[existingIndex] = nextEntry;
+    } else {
+      fightHistory.push(nextEntry);
+    }
     saveHistory();
     renderFightHistory();
   };
@@ -1234,7 +1313,12 @@
     const token = nextStageRunToken();
     runChromaticFlash($('s7'), () => {
       if (!isStageRunTokenActive(token)) return;
-      post({ type: 'vvv-fight-history-open', fightId: fight.fightId, matchupKey: fight.matchupKey });
+      post({
+        type: 'vvv-fight-history-open',
+        fightId: fight.fightId,
+        matchupKey: fight.matchupKey,
+        preferredLocale: normalizeHistoryLocale(fight.variantLocale),
+      });
     }, { frames: 14, interval: 40, jitterX: 35, skew: 6 }, token);
   };
 
@@ -1575,6 +1659,7 @@
         fighterBName:    p.fighterBName,
         portraitADataUrl: p.portraitADataUrl,
         portraitBDataUrl: p.portraitBDataUrl,
+        variantLocale: p.variantLocale,
       });
       const token = nextStageRunToken();
       setStage3FightMode();
@@ -1617,7 +1702,7 @@
     }, 1800);
     inputEl?.blur();
     runChromaticFlash(searchEl, () => {
-      post({ type:'vvv-search-submit', query });
+      post({ type:'vvv-search-submit', query, preferredLocale: SEARCH_LANG });
     }, { frames: 12, interval: 40, jitterX: 26, skew: 4 }, stageRunToken);
   };
 
@@ -1875,8 +1960,7 @@
         const iDoc = s2IFrame.contentWindow.document;
         const termDesc = iDoc.querySelector('.term-desc');
         if (termDesc) {
-          termDesc.innerHTML = 'Welcome to <b>VERSUSVERSEVAULT</b> - Battle data nexus.<br>'
-            + 'Enter NETRUNNER credentials to proceed.';
+          termDesc.innerHTML = COPY.terminalLine1 + COPY.terminalLine2;
         }
         iDoc.addEventListener('pointermove',   e => postRelay('move', e.clientX, e.clientY),        { passive: true });
         iDoc.addEventListener('pointerdown',   e => postRelay('down', e.clientX, e.clientY, true),  { passive: true });
