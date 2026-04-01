@@ -232,15 +232,12 @@ export function useVsTransitions({
     triggerFightViewFadeIn()
   }
 
-  const parseRequestedLocale = (value: unknown): Language | null =>
-    value === 'pl' || value === 'en' ? value : null
-
   const findFightByLocale = (variants: FightRecord[], locale: Language | null) => {
     if (!locale) return null
     return variants.find((variant) => resolveFightRecordLocale(variant) === locale) || null
   }
 
-  const resolveFightFromHistorySelection = (fightId: string, matchupKey: string, preferredLocale: Language | null) => {
+  const resolveFightFromHistorySelection = (fightId: string, matchupKey: string) => {
     const exactFight = fightId ? fights.find((fight) => fight.id === fightId) || null : null
     const resolvedMatchupKey = matchupKey || exactFight?.matchupKey || ''
     const variants = resolvedMatchupKey
@@ -250,16 +247,13 @@ export function useVsTransitions({
         : []
     if (!variants.length) return exactFight
 
+    const currentLanguageVariant = findFightByLocale(variants, language)
+    if (currentLanguageVariant) return currentLanguageVariant
+
     const preferredVariantId = preferredVariantByMatchup[resolvedMatchupKey]
     const preferredVariant =
       (preferredVariantId ? variants.find((variant) => variant.id === preferredVariantId) : null) || null
     if (preferredVariant) return preferredVariant
-
-    const requestedLocaleVariant = findFightByLocale(variants, preferredLocale)
-    if (requestedLocaleVariant) return requestedLocaleVariant
-
-    const currentLanguageVariant = findFightByLocale(variants, language)
-    if (currentLanguageVariant) return currentLanguageVariant
 
     if (exactFight) {
       const exactVariant = variants.find((variant) => variant.id === exactFight.id) || null
@@ -278,11 +272,11 @@ export function useVsTransitions({
     const group = buildFolderFightGroups(fights.filter((fight) => fight.source === 'folder'))[shortcutIndex - 1]
     if (!group) return null
 
-    const preferredMatch = group.fights.find((fight) => preferredVariantByMatchup[group.matchupKey] === fight.id)
-    if (preferredMatch) return preferredMatch
-
     const languageMatch = findFightByLocale(group.fights, language)
     if (languageMatch) return languageMatch
+
+    const preferredMatch = group.fights.find((fight) => preferredVariantByMatchup[group.matchupKey] === fight.id)
+    if (preferredMatch) return preferredMatch
 
     return group.fights[0] || null
   }
@@ -516,9 +510,8 @@ export function useVsTransitions({
       if (typed.type === 'vvv-fight-history-open') {
         const fightId    = typeof typed.fightId === 'string' ? typed.fightId : ''
         const matchupKey = typeof typed.matchupKey === 'string' ? typed.matchupKey : ''
-        const preferredLocale = parseRequestedLocale(typed.preferredLocale)
         const fight =
-          resolveFightFromHistorySelection(fightId, matchupKey, preferredLocale) ??
+          resolveFightFromHistorySelection(fightId, matchupKey) ??
           pendingFightForHistoryRef.current
         if (!fight) return
         pendingFightForHistoryRef.current = null
@@ -529,7 +522,6 @@ export function useVsTransitions({
       if (typed.type !== 'vvv-search-submit' || typeof typed.query !== 'string') return
       const rawQuery = typed.query.trim()
       if (!rawQuery) return
-      const preferredLocale = parseRequestedLocale(typed.preferredLocale)
 
       const token = normalizeToken(rawQuery)
       if (token === 'add' || token === 'dodaj') {
@@ -546,7 +538,7 @@ export function useVsTransitions({
         return
       }
 
-      const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup, preferredLocale, language)
+      const match = findFightByQuery(fights, rawQuery, preferredVariantByMatchup, language, language)
       if (!match) {
         postMessageToSearchFrame({ type: 'vvv-fight-not-found' })
         return
@@ -560,7 +552,6 @@ export function useVsTransitions({
         fighterBName: match.payload.fighterBName,
         portraitADataUrl: match.portraitADataUrl,
         portraitBDataUrl: match.portraitBDataUrl,
-        variantLocale: resolveFightRecordLocale(match),
       })
     }
 

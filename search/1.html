@@ -1217,7 +1217,6 @@
   };
 
   const fightHistory = loadHistory();
-  const normalizeHistoryLocale = value => value === 'pl' || value === 'en' ? value : SEARCH_LANG;
   let fightIdCounter = fightHistory.length
     ? Math.max(...fightHistory.map(f => parseInt(f.cardId, 10) || 0)) + 1
     : 1;
@@ -1297,7 +1296,6 @@
       fighterBName:    String(data.fighterBName || ''),
       portraitADataUrl: String(data.portraitADataUrl || ''),
       portraitBDataUrl: String(data.portraitBDataUrl || ''),
-      variantLocale: normalizeHistoryLocale(data.variantLocale),
       cardId: existingCardId || String(fightIdCounter++).padStart(3, '0'),
     };
     if (existingIndex !== -1) {
@@ -1313,12 +1311,7 @@
     const token = nextStageRunToken();
     runChromaticFlash($('s7'), () => {
       if (!isStageRunTokenActive(token)) return;
-      post({
-        type: 'vvv-fight-history-open',
-        fightId: fight.fightId,
-        matchupKey: fight.matchupKey,
-        preferredLocale: normalizeHistoryLocale(fight.variantLocale),
-      });
+      post({ type: 'vvv-fight-history-open', fightId: fight.fightId, matchupKey: fight.matchupKey });
     }, { frames: 14, interval: 40, jitterX: 35, skew: 6 }, token);
   };
 
@@ -1659,7 +1652,6 @@
         fighterBName:    p.fighterBName,
         portraitADataUrl: p.portraitADataUrl,
         portraitBDataUrl: p.portraitBDataUrl,
-        variantLocale: p.variantLocale,
       });
       const token = nextStageRunToken();
       setStage3FightMode();
@@ -1702,7 +1694,7 @@
     }, 1800);
     inputEl?.blur();
     runChromaticFlash(searchEl, () => {
-      post({ type:'vvv-search-submit', query, preferredLocale: SEARCH_LANG });
+      post({ type:'vvv-search-submit', query });
     }, { frames: 12, interval: 40, jitterX: 26, skew: 4 }, stageRunToken);
   };
 

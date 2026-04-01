@@ -554,14 +554,14 @@ export const findFightByQuery = (
   if (!candidates.length) return null
   if (candidates.length === 1) return candidates[0]
 
-  const preferredCandidate =
-    candidates.find((fight) => preferredVariantByMatchup[fight.matchupKey] === fight.id) || null
-  if (preferredCandidate) return preferredCandidate
-
   if (preferredLocale) {
     const localeCandidate = candidates.find((fight) => resolveFightRecordLocale(fight) === preferredLocale) || null
     if (localeCandidate) return localeCandidate
   }
+
+  const preferredCandidate =
+    candidates.find((fight) => preferredVariantByMatchup[fight.matchupKey] === fight.id) || null
+  if (preferredCandidate) return preferredCandidate
 
   if (fallbackLocale) {
     const fallbackLocaleCandidate =

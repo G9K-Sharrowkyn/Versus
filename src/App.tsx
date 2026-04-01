@@ -77,6 +77,7 @@ type AuditRequest = {
 }
 
 const DEFAULT_LANGUAGE: Language = 'en'
+const APP_LANGUAGE_STORAGE_KEY = 'vvv-app-language-v1'
 const PREVIEW_BASE_WIDTH = 1400
 const PREVIEW_BASE_HEIGHT = 787.5
 const PREVIEW_MIN_SCALE = 0.62
@@ -104,12 +105,22 @@ const parseFightScaffoldMatchup = (value: string) => {
   return { fighterAName, fighterBName }
 }
 
+const readStoredLanguage = (): Language => {
+  if (typeof window === 'undefined') return DEFAULT_LANGUAGE
+  try {
+    const raw = localStorage.getItem(APP_LANGUAGE_STORAGE_KEY)
+    return raw === 'pl' || raw === 'en' ? raw : DEFAULT_LANGUAGE
+  } catch {
+    return DEFAULT_LANGUAGE
+  }
+}
+
 function App() {
-  const [language, setLanguage] = useState<Language>(DEFAULT_LANGUAGE)
+  const [language, setLanguage] = useState<Language>(() => readStoredLanguage())
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const translations = useMemo(() => getTranslations(language), [language])
   const ui = translations.ui
-  const initialTemplate = localizeTemplatePreset(TEMPLATE_PRESETS[0], DEFAULT_LANGUAGE)
+  const initialTemplate = localizeTemplatePreset(TEMPLATE_PRESETS[0], language)
   const localizedTemplates = useMemo(
     () => TEMPLATE_PRESETS.map((template) => localizeTemplatePreset(template, language)),
     [language],
@@ -130,11 +141,11 @@ function App() {
   }, [])
 
   const [activeTemplate, setActiveTemplate] = useState<TemplateId>(initialTemplate.id)
-  const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(DEFAULT_LANGUAGE))
+  const [categories, setCategories] = useState<Category[]>(() => defaultCategoriesFor(language))
   const [fighterA, setFighterA] = useState<Fighter>(() => cloneFighter(FIGHTER_A))
   const [fighterB, setFighterB] = useState<Fighter>(() => cloneFighter(FIGHTER_B))
-  const [factsA, setFactsA] = useState<FighterFact[]>(() => defaultFactsFor('a', DEFAULT_LANGUAGE))
-  const [factsB, setFactsB] = useState<FighterFact[]>(() => defaultFactsFor('b', DEFAULT_LANGUAGE))
+  const [factsA, setFactsA] = useState<FighterFact[]>(() => defaultFactsFor('a', language))
+  const [factsB, setFactsB] = useState<FighterFact[]>(() => defaultFactsFor('b', language))
   const [profileA, setProfileA] = useState<FighterProfileData>(EMPTY_PROFILE_DATA)
   const [profileB, setProfileB] = useState<FighterProfileData>(EMPTY_PROFILE_DATA)
   const [powersA, setPowersA] = useState<FighterFact[]>([])
@@ -172,7 +183,7 @@ function App() {
   const activeTemplateRef = useRef<TemplateId>(initialTemplate.id)
   const templateCursorRef = useRef(0)
   const templateTransitionPhaseRef = useRef<TemplateTransitionPhase>('idle')
-  const languageRef = useRef<Language>(DEFAULT_LANGUAGE)
+  const languageRef = useRef<Language>(language)
   const pendingFightRequestIdRef = useRef(0)
   const globalPreloadPromiseRef = useRef<Promise<void> | null>(null)
   const globalPreloadAbortRef = useRef<AbortController | null>(null)
@@ -249,6 +260,15 @@ function App() {
     templateTransitionPhaseRef.current = templateTransitionPhase
     languageRef.current = language
   }, [activeFightId, activeTemplate, language, templateCursor, templateTransitionPhase])
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    try {
+      localStorage.setItem(APP_LANGUAGE_STORAGE_KEY, language)
+    } catch {
+      // Ignore storage write failures.
+    }
+  }, [language])
 
   useLayoutEffect(() => {
     clearFinalTemplateAutoReturnTimeoutFnRef.current = clearFinalTemplateAutoReturnTimeout
