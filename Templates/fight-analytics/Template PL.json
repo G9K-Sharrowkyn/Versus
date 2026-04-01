@@ -103,6 +103,7 @@
     }
   ],
   "staticFields": {
+    "panel_header": "Mapa profili statystyk",
     "parameter_label": "Parametr",
     "score_scale_label": "Wynik (0-100)",
     "average_short": "Śr.",

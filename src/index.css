@@ -498,3 +498,15 @@
     inset 0 0 0 1px rgba(255, 85, 78, 0.16),
     inset 0 0 71px rgba(255, 85, 78, 0.07) !important;
 }
+
+.vs-tactical-board25-logo,
+.vs-tpl-logo {
+  outline: none;
+}
+
+.vs-tactical-board25-logo:focus,
+.vs-tactical-board25-logo:focus-visible,
+.vs-tpl-logo:focus,
+.vs-tpl-logo:focus-visible {
+  outline: none !important;
+}

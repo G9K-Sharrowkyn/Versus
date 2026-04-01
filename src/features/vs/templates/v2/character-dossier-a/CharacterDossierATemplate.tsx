@@ -1,5 +1,5 @@
 import './CharacterDossierATemplate.scss'
-import { useState, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { GlitchText } from '../../../components/GlitchText'
 import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
@@ -80,12 +80,20 @@ export function CharacterDossierATemplate({
   const quoteFontSize = 'calc(var(--tb-type-3) * 0.9)'
   const quoteLetterSpacing = '0.02em'
   
-  const boardHeader = "PORTRET"
-  const realityHeader = "OPIS POSTACI"
+  const boardHeader =
+    getFightTemplateDefaultField('character-dossier-a', 'board_header', language) ||
+    (language === 'pl' ? 'PORTRET' : 'PORTRAIT')
+  const realityHeader =
+    getFightTemplateDefaultField('character-dossier-a', 'reality_header', language) ||
+    (language === 'pl' ? 'OPIS POSTACI' : 'CHARACTER PROFILE')
 
   const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+  const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {
+    '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
+    right: '20px',
+  }
 
   useLayoutEffect(() => {
     const wrapperEl = fighterNameWrapperRef.current
@@ -142,6 +150,8 @@ export function CharacterDossierATemplate({
   }, [fighterText])
 
   useEffect(() => {
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
     const timeouts = new Map<number, ReturnType<typeof setTimeout>>()
@@ -150,8 +160,8 @@ export function CharacterDossierATemplate({
       if (!isMounted) return
       if (active.size >= MAX_CONCURRENT) return
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!active.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
       const nextIndex = available[Math.floor(Math.random() * available.length)]
@@ -166,7 +176,7 @@ export function CharacterDossierATemplate({
       }, 2000 + Math.random() * 3000)
       timeouts.set(nextIndex, t)
     }
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) setTimeout(() => startGlitch(), i * 800)
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) setTimeout(() => startGlitch(), i * 800)
     return () => { isMounted = false; timeouts.forEach(clearTimeout); }
   }, [headerTextStr])
 
@@ -202,7 +212,7 @@ export function CharacterDossierATemplate({
         <p className="vs-tactical-board25-subtitle" style={{ color: BLUE_EKSTREMALNY, textShadow: `0 0 8px ${BLUE_EKSTREMALNY}E6, 0 0 16px ${BLUE_EKSTREMALNY}66`, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={(subText || '').replace(/\.\s*$/, '')} /></p>
       </div>
 
-      <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage} style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})`, right: '20px' } as any}>
+      <button type="button" className="vs-tactical-board25-logo" onClick={onToggleLanguage} style={logoButtonStyle}>
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
           className="vs-tactical-board25-logo-reflection"

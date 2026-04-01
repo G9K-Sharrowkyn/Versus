@@ -103,6 +103,8 @@
     }
   ],
   "staticFields": {
+    "board_header": "PORTRAIT",
+    "reality_header": "CHARACTER PROFILE",
     "fighter_a_fallback": "Fighter A",
     "fighter_b_fallback": "Fighter B",
     "fighter_fallback": "Fighter"

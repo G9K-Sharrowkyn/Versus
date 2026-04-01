@@ -103,6 +103,7 @@
     }
   ],
   "staticFields": {
+    "panel_header": "COMPARISON CHART",
     "draw_header": "Draw zones",
     "favorite_label": "Stat-based favorite",
     "draw_favorite": "DRAW",

@@ -9,7 +9,8 @@ import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, Responsi
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplateStaticField as getFightTemplateDefaultField,
-  getTemplateCommonCopy as getFightCommonCopy
+  getTemplateCommonCopy as getFightCommonCopy,
+  getTemplatePreset as getFightTemplatePreset,
 } from '../../shared/templateCopy'
 
 type ParameterComparisonTemplateProps = TemplatePreviewProps & {
@@ -218,15 +219,16 @@ export function ParameterComparisonTemplate({
 }: ParameterComparisonTemplateProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['parameter-comparison'] || [])
   const blockFields = parseTemplateFieldMap(blockLines)
+  const templatePreset = getFightTemplatePreset('parameter-comparison', language)
   
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, blockFields)
   const boardHeader =
     pickTemplateField(blockFields, ['panel_header', 'comparison_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
-    (language === 'pl' ? 'Graf porÄ‚Ĺ‚wnawczy' : 'Comparison Chart')
+    templatePreset.title
     
   const common = getFightCommonCopy('parameter-comparison', language)
-  const averageShort = common.averageShort || 'ÄąĹˇr.'
+  const averageShort = common.averageShort || (language === 'pl' ? 'Śr.' : 'Avg')
   
   const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
@@ -266,7 +268,7 @@ export function ParameterComparisonTemplate({
   const favoriteBadgeText =
     isAverageDraw
       ? favoriteDrawLabel
-      : favoriteLabel || (language === 'pl' ? 'Faworyt wedÄąâ€šug statystyk' : 'Stat-based favorite')
+      : favoriteLabel || (language === 'pl' ? 'Faworyt według statystyk' : 'Stat-based favorite')
 
   const favoriteStampLeft =
     favoriteSide === 'a'
@@ -640,9 +642,13 @@ export function ParameterComparisonTemplate({
   const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
+  const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {
+    '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
+  }
 
   useEffect(() => {
-    if (chars.length === 0) return
+    const headerChars = headerTextStr.split('')
+    if (headerChars.length === 0) return
 
     const MAX_CONCURRENT = 3
     const active = new Set<number>()
@@ -654,8 +660,8 @@ export function ParameterComparisonTemplate({
       if (active.size >= MAX_CONCURRENT) return
 
       const available = []
-      for (let i = 0; i < chars.length; i++) {
-        if (!active.has(i) && chars[i] !== ' ') available.push(i)
+      for (let i = 0; i < headerChars.length; i++) {
+        if (!active.has(i) && headerChars[i] !== ' ') available.push(i)
       }
       if (available.length === 0) return
 
@@ -677,7 +683,7 @@ export function ParameterComparisonTemplate({
       timeouts.set(nextIndex, timeoutId)
     }
 
-    for (let i = 0; i < Math.min(MAX_CONCURRENT, chars.length); i++) {
+    for (let i = 0; i < Math.min(MAX_CONCURRENT, headerChars.length); i++) {
       setTimeout(() => startGlitch(), i * 800)
     }
 
@@ -725,7 +731,7 @@ export function ParameterComparisonTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={logoButtonStyle}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img

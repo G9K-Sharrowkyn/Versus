@@ -103,6 +103,8 @@
     }
   ],
   "staticFields": {
+    "board_header": "PORTRET",
+    "reality_header": "OPIS POSTACI",
     "fighter_a_fallback": "Postac A",
     "fighter_b_fallback": "Postac B",
     "fighter_fallback": "Postac"

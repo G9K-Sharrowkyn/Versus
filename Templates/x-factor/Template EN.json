@@ -103,6 +103,8 @@
     }
   ],
   "staticFields": {
+    "factor": "X-Factor",
+    "panel_header": "Critical Variable",
     "fighter_a_fallback": "Fighter A",
     "fighter_b_fallback": "Fighter B",
     "fighter_fallback": "Fighter"

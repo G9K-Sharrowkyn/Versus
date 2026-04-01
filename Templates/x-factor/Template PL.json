@@ -4,7 +4,7 @@
   "metadata": {
     "activeName": "X-Factor",
     "description": "Najważniejsza zmienna decydująca.",
-    "title": "Czynnik kluczowy",
+    "title": "Czynnik X",
     "subtitle": "Zmienna, która wpływa na werdykt bardziej niż zwykłe statystyki.",
     "blockName": "X-Factor",
     "purpose": "Najważniejsza zmienna decydująca."
@@ -103,6 +103,8 @@
     }
   ],
   "staticFields": {
+    "factor": "Czynnik X",
+    "panel_header": "Zmienna krytyczna",
     "fighter_a_fallback": "Postac A",
     "fighter_b_fallback": "Postac B",
     "fighter_fallback": "Postac"

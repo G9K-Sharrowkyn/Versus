@@ -103,6 +103,7 @@
     }
   ],
   "staticFields": {
+    "panel_header": "Stat Profile Map",
     "parameter_label": "Parameter",
     "score_scale_label": "Score (0-100)",
     "average_short": "Avg",
