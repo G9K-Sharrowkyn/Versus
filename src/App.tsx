@@ -90,8 +90,8 @@ const INTRO_REVEAL_AT_MS = MORPH_POWER_OFF_MS + MORPH_RING_ON_MS + MORPH_FINAL_M
 const FIGHTS_SCAN_POLL_MS = 1200
 const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
-const TEMPLATE_RAIL_TRANSITION_MS = 7400
-const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 1800
+const TEMPLATE_RAIL_TRANSITION_MS = 1200
+const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['5', '6', '7', '8', '9'] as const
 
@@ -177,6 +177,7 @@ function App() {
   const globalPreloadAbortRef = useRef<AbortController | null>(null)
   const pendingSearchStageJumpRef = useRef<number | null>(null)
   const templateTransitionTimeoutsRef = useRef<number[]>([])
+  const templateTransitionRafsRef = useRef<number[]>([])
   const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
   const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
@@ -450,7 +451,11 @@ function App() {
     for (const timeoutId of templateTransitionTimeoutsRef.current) {
       window.clearTimeout(timeoutId)
     }
+    for (const rafId of templateTransitionRafsRef.current) {
+      window.cancelAnimationFrame(rafId)
+    }
     templateTransitionTimeoutsRef.current = []
+    templateTransitionRafsRef.current = []
     templateTransitionPhaseRef.current = 'idle'
     setTemplateTransitionPhase('idle')
     setIncomingTemplateId(null)
@@ -464,11 +469,11 @@ function App() {
     const nextTemplateId = templateOrder[nextTemplateCursor]
 
     clearTemplateTransitionQueue()
+    setIncomingTemplateId(nextTemplateId)
     templateTransitionPhaseRef.current = 'exit'
     setTemplateTransitionPhase('exit')
 
     const swapTimeout = window.setTimeout(() => {
-      setIncomingTemplateId(nextTemplateId)
       templateTransitionPhaseRef.current = 'enter'
       setTemplateTransitionPhase('enter')
     }, TEMPLATE_RAIL_TRANSITION_SWAP_MS)
@@ -476,10 +481,19 @@ function App() {
     const settleTimeout = window.setTimeout(() => {
       setTemplateCursor(nextTemplateCursor)
       applyTemplateById(nextTemplateId, false)
-      templateTransitionPhaseRef.current = 'idle'
-      setTemplateTransitionPhase('idle')
-      setIncomingTemplateId(null)
-      templateTransitionTimeoutsRef.current = []
+      // Wait two frames so the new main template mounts before the incoming layer disappears,
+      // preventing a visible flash between the two renders.
+      const raf1 = window.requestAnimationFrame(() => {
+        const raf2 = window.requestAnimationFrame(() => {
+          templateTransitionPhaseRef.current = 'idle'
+          setTemplateTransitionPhase('idle')
+          setIncomingTemplateId(null)
+          templateTransitionTimeoutsRef.current = []
+          templateTransitionRafsRef.current = []
+        })
+        templateTransitionRafsRef.current = [raf2]
+      })
+      templateTransitionRafsRef.current = [raf1]
     }, TEMPLATE_RAIL_TRANSITION_MS)
 
     templateTransitionTimeoutsRef.current.push(swapTimeout, settleTimeout)

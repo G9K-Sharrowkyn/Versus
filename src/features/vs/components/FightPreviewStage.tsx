@@ -1,4 +1,4 @@
-import type { ReactNode, RefObject } from 'react'
+import { useMemo, type CSSProperties, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import type { TemplateId } from '../types'
 
@@ -44,8 +44,7 @@ export function FightPreviewStage({
   incomingTemplate,
 }: FightPreviewStageProps) {
   const isTemplateTransitioning = templateTransitionPhase !== 'idle'
-  const currentTransitionClass = templateTransitionPhase !== 'idle' ? 'is-template-transition-exit' : ''
-  const showIncomingLayer = templateTransitionPhase === 'enter' && Boolean(incomingTemplate)
+  const showIncomingLayer = isTemplateTransitioning && Boolean(incomingTemplate)
 
   return (
     <section
@@ -74,42 +73,45 @@ export function FightPreviewStage({
             width: '100%',
             height: '100%',
             transform: 'none',
-            transformOrigin: isTemplateTransitioning ? 'center center' : 'top center',
+            transformOrigin: 'top center',
             opacity: previewReady ? 1 : 0,
           }}
           aria-busy={!previewReady || isTemplateTransitioning}
         >
-          <div className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--current ${currentTransitionClass}`}>
+          {/* Current template — sits underneath during transition */}
+          <div
+            className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--current ${templateTransitionPhase === 'enter' ? 'is-template-transition-exit-active' : ''}`}
+            style={showIncomingLayer ? { zIndex: 1 } : undefined}
+          >
             {children}
           </div>
+
+          {/* Incoming template — rendered once, above current, visible through tile backs */}
           {showIncomingLayer ? (
-            <div className="vs-preview-shell--bare-layer vs-preview-shell--bare-layer--incoming is-template-transition-enter">
+            <div
+              className={`vs-preview-shell--bare-layer vs-preview-shell--bare-layer--incoming ${templateTransitionPhase === 'enter' ? 'is-template-transition-enter' : ''}`}
+              style={{ zIndex: 2 }}
+            >
               {incomingTemplate}
             </div>
           ) : null}
-        </div>
-        <div
-          className={`vs-template-rail-overlay ${isTemplateTransitioning ? 'is-active' : ''} ${templateTransitionPhase === 'exit' ? 'is-exit' : ''} ${templateTransitionPhase === 'enter' ? 'is-enter' : ''}`}
-          aria-hidden="true"
-        >
-          <div className="vs-template-rail-gutter vs-template-rail-gutter-left">
-            <div className="vs-template-rail-track">
-              <div className="vs-template-rail-fill" />
-              <div className="vs-template-rail-belt" />
-              <div className="vs-template-rail-gear vs-template-rail-gear-top" />
-              <div className="vs-template-rail-gear vs-template-rail-gear-bottom" />
-            </div>
-          </div>
-          <div className="vs-template-rail-gutter vs-template-rail-gutter-right">
-            <div className="vs-template-rail-track">
-              <div className="vs-template-rail-fill" />
-              <div className="vs-template-rail-belt" />
-              <div className="vs-template-rail-gear vs-template-rail-gear-top" />
-              <div className="vs-template-rail-gear vs-template-rail-gear-bottom" />
-            </div>
-          </div>
+
+          {/* Laser sweep — sits on top */}
+          {isTemplateTransitioning && (
+            <LaserSweepTransition phase={templateTransitionPhase} />
+          )}
         </div>
       </div>
     </section>
+  )
+}
+
+function LaserSweepTransition({ phase }: { phase: TemplateTransitionPhase }) {
+  if (phase !== 'enter') return null
+
+  return (
+    <div className="vs-template-laser-transition">
+      <div className="vs-template-laser-line" />
+    </div>
   )
 }

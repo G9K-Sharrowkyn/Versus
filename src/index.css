@@ -189,11 +189,11 @@
 }
 
 .vs-preview-shell--bare-layer--current {
-  z-index: 2;
+  z-index: 1;
 }
 
 .vs-preview-shell--bare-layer--incoming {
-  z-index: 1;
+  z-index: 0;
 }
 
 .vs-preview-shell--bare-body--tactical {
@@ -203,351 +203,66 @@
 
 .vs-preview-shell--bare-body.is-template-transitioning {
   will-change: transform, filter, opacity;
+  transform: none !important; /* Force no scaling */
+  background: transparent !important;
 }
 
-.vs-preview-shell--bare-layer.is-template-transition-exit {
-  animation: vsTemplateRailExit 3600ms linear both;
+/* ===== LASER SWEEP TRANSITION ===== */
+
+.vs-template-laser-transition {
+  position: absolute;
+  inset: 0;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.vs-template-laser-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 4px;
+  background: #fff;
+  box-shadow: 
+    0 0 15px 5px rgba(119, 226, 242, 0.8),
+    0 0 30px 10px rgba(119, 226, 242, 0.4),
+    0 0 50px 20px rgba(255, 85, 78, 0.2);
+  animation: vs-laser-sweep 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes vs-laser-sweep {
+  0% { left: 0%; opacity: 0; }
+  5% { opacity: 1; }
+  95% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+.vs-preview-shell--bare-layer--incoming {
+  /* Start fully clipped so it does not flash before the 'enter' phase animation starts */
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
 }
 
 .vs-preview-shell--bare-layer.is-template-transition-enter {
-  transform: translate3d(0, 120%, 0) scale(0.96);
-  filter: saturate(1.18) contrast(1.20) brightness(0.78);
   opacity: 1;
-  animation: vsTemplateRailEnter 7400ms linear both;
-}
-
-@keyframes vsTemplateRailExit {
-  0% { transform: translate3d(0, 0, 0) scale(1); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  50% { transform: translate3d(0, 0, 0) scale(0.72); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  100% { transform: translate3d(0, -120%, 0) scale(0.3); }
-}
-
-@keyframes vsTemplateRailEnter {
-  0% { 
-    transform: translate3d(0, 120%, 0) scale(0.96); 
-    filter: saturate(1.18) contrast(1.20) brightness(0.78);
-    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
-  }
-  24.32% { 
-    transform: translate3d(0, 0, 0) scale(0.72); 
-    filter: saturate(1.18) contrast(1.20) brightness(0.78);
-  }
-  39.18% { 
-    transform: translate3d(0, 0, 0) scale(0.72); 
-    filter: saturate(1.18) contrast(1.20) brightness(0.78);
-    animation-timing-function: cubic-bezier(0.1, 0.9, 0.2, 1);
-  }
-  85% {
-    transform: translate3d(0, 0, 0) scale(1); 
-    filter: none;
-  }
-  100% { 
-    transform: translate3d(0, 0, 0) scale(1); 
-    filter: none;
-  }
-}
-
-.vs-template-rail-overlay {
-  position: absolute;
-  inset: 0;
-  --vs-rail-gutter-width: 150px;
-  --vs-rail-gutter-offset: 280px;
-  --vs-rail-outer-inset: 18px;
-  --vs-rail-inner-offset: 34px;
-  --vs-rail-outer-angle: 13deg;
-  --vs-rail-inner-angle: 13deg;
-  --vs-rail-line-width: 3px;
-  --vs-rail-gear-size: 68px;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 1;
-}
-
-.vs-template-rail-overlay::before {
-  content: none;
-}
-
-.vs-template-rail-gutter {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: var(--vs-rail-gutter-width);
-  overflow: visible;
-  opacity: 0;
-  z-index: 1;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-left {
-  animation: vsTemplateGutterIn 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right {
-  animation: vsTemplateGutterIn 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-left {
-  animation: vsTemplateGutterLeftOut 7400ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right {
-  animation: vsTemplateGutterRightOut 7400ms linear forwards;
-}
-
-@keyframes vsTemplateGutterIn {
-  0% { transform: translateX(var(--dir, -300%)); opacity: 0; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
-  50%, 100% { transform: translateX(0); opacity: 1; }
-}
-
-.vs-template-rail-gutter-left { --dir: -300%; }
-.vs-template-rail-gutter-right { --dir: 300%; }
-
-@keyframes vsTemplateGutterLeftOut {
-  0%, 39.18% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
-  63.5%, 100% { transform: translateX(-300%); opacity: 0; }
-}
-
-@keyframes vsTemplateGutterRightOut {
-  0%, 39.18% { transform: translateX(0); opacity: 1; animation-timing-function: cubic-bezier(0.2, 0.82, 0.22, 1); }
-  63.5%, 100% { transform: translateX(300%); opacity: 0; }
-}
-
-.vs-template-rail-gutter-left {
-  --vs-rail-outer-side-angle: var(--vs-rail-outer-angle);
-  --vs-rail-inner-side-angle: var(--vs-rail-inner-angle);
-  left: var(--vs-rail-gutter-offset);
-}
-
-.vs-template-rail-gutter-right {
-  --vs-rail-outer-side-angle: calc(var(--vs-rail-outer-angle) * -1);
-  --vs-rail-inner-side-angle: calc(var(--vs-rail-inner-angle) * -1);
-  right: var(--vs-rail-gutter-offset);
-}
-
-.vs-template-rail-fill {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 42px;
-}
-
-.vs-template-rail-gutter-left .vs-template-rail-fill {
-  left: 100%;
-  background: linear-gradient(90deg, rgba(255, 85, 78, 0.18) 0%, transparent 100%);
-}
-
-.vs-template-rail-gutter-right .vs-template-rail-fill {
-  right: 100%;
-  background: linear-gradient(270deg, rgba(255, 85, 78, 0.18) 0%, transparent 100%);
-}
-
-.vs-template-rail-track {
-  position: absolute;
-  top: -15%;
-  height: 140%;
-  width: 46px;
   z-index: 2;
+  clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  animation: vs-laser-reveal 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.vs-template-rail-gutter-left .vs-template-rail-track {
-  right: 36px;
-  transform-origin: top right;
-  transform: rotate(14deg);
-  --belt-angle: -14deg;
+@keyframes vs-laser-reveal {
+  0% { clip-path: polygon(0 0, 0 0, 0 100%, 0 100%); }
+  100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
 }
 
-.vs-template-rail-gutter-right .vs-template-rail-track {
-  left: 36px;
-  transform-origin: top left;
-  transform: rotate(-14deg);
-  --belt-angle: 14deg;
+.vs-preview-shell--bare-layer.is-template-transition-exit-active {
+  opacity: 1;
+  z-index: 1;
+  animation: vs-laser-hide 1.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
 }
 
-.vs-template-rail-belt {
-  position: absolute;
-  inset: 0;
-  background:
-    repeating-linear-gradient(
-      calc(180deg + var(--belt-angle, 0deg)),
-      rgba(5, 1, 1, 0.98) 0px,
-      rgba(5, 1, 1, 0.98) 12px,
-      rgba(255, 100, 80, 0.9) 12px,
-      rgba(180, 40, 35, 0.95) 14px,
-      rgba(100, 15, 15, 0.95) 20px,
-      rgba(20, 2, 2, 0.98) 20px,
-      rgba(20, 2, 2, 0.98) 24px,
-      rgba(5, 1, 1, 0.98) 24px,
-      rgba(5, 1, 1, 0.98) 28px
-    ),
-    linear-gradient(90deg, rgba(20, 4, 4, 1) 0%, rgba(45, 10, 10, 1) 50%, rgba(20, 4, 4, 1) 100%);
-  box-shadow:
-    inset 6px 0 8px rgba(0,0,0,0.95),
-    inset -6px 0 8px rgba(0,0,0,0.95),
-    0 0 18px rgba(255, 85, 78, 0.4);
-  border-left: 3px solid rgba(60, 15, 15, 0.9);
-  border-right: 3px solid rgba(60, 15, 15, 0.9);
-  border-radius: 4px;
-  background-position: 0 0, 0 0;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-belt {
-  animation: vsTemplateBeltMoveExit 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-belt {
-  animation: vsTemplateBeltMoveEnter 7400ms linear forwards;
-}
-
-@keyframes vsTemplateBeltMoveExit {
-  0%, 50% { background-position: 0 0, 0 0; }
-  100% { background-position: 0 -140px, 0 0; }
-}
-
-@keyframes vsTemplateBeltMoveEnter {
-  0% { background-position: 0 0, 0 0; animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  24.32%, 100% { background-position: 0 -140px, 0 0; }
-}
-
-.vs-template-rail-gear {
-  position: absolute;
-  width: var(--vs-rail-gear-size);
-  height: var(--vs-rail-gear-size);
-  left: 50%;
-  margin-left: calc(var(--vs-rail-gear-size) / -2);
-  border-radius: 999px;
-  border: 3px solid rgba(255, 85, 78, 0.6);
-  background:
-    radial-gradient(circle at center, rgba(255, 85, 78, 0.5) 0 14%, rgba(8, 2, 2, 0.95) 14% 62%, transparent 62%),
-    conic-gradient(
-      from 0deg,
-      rgba(255, 85, 78, 0.85) 0deg 18deg,
-      rgba(30, 8, 8, 0.88) 18deg 42deg,
-      rgba(255, 85, 78, 0.85) 42deg 60deg,
-      rgba(30, 8, 8, 0.88) 60deg 84deg,
-      rgba(255, 85, 78, 0.85) 84deg 102deg,
-      rgba(30, 8, 8, 0.88) 102deg 126deg,
-      rgba(255, 85, 78, 0.85) 126deg 144deg,
-      rgba(30, 8, 8, 0.88) 144deg 168deg,
-      rgba(255, 85, 78, 0.85) 168deg 186deg,
-      rgba(30, 8, 8, 0.88) 186deg 210deg,
-      rgba(255, 85, 78, 0.85) 210deg 228deg,
-      rgba(30, 8, 8, 0.88) 228deg 252deg,
-      rgba(255, 85, 78, 0.85) 252deg 270deg,
-      rgba(30, 8, 8, 0.88) 270deg 294deg,
-      rgba(255, 85, 78, 0.85) 294deg 312deg,
-      rgba(30, 8, 8, 0.88) 312deg 336deg,
-      rgba(255, 85, 78, 0.85) 336deg 360deg
-    );
-  box-shadow:
-    0 0 20px rgba(255, 85, 78, 0.32),
-    inset 0 0 0 2px rgba(255, 85, 78, 0.28);
-  transform: rotate(0deg);
-  z-index: 3;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gear {
-  animation: vsTemplateGearSpinExit 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gear {
-  animation: vsTemplateGearSpinEnter 7400ms linear forwards;
-}
-
-.vs-template-rail-gear-top {
-  top: 15%;
-}
-
-.vs-template-rail-gear-bottom {
-  bottom: 8%;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpinReverseExit 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpinReverseEnter 7400ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear {
-  animation: vsTemplateGearSpinReverseExit 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear {
-  animation: vsTemplateGearSpinReverseEnter 7400ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-exit .vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpinExit 3600ms linear forwards;
-}
-
-.vs-template-rail-overlay.is-enter .vs-template-rail-gutter-right .vs-template-rail-gear-bottom {
-  animation: vsTemplateGearSpinEnter 7400ms linear forwards;
-}
-
-@keyframes vsTemplateGearSpinExit {
-  0%, 50% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes vsTemplateGearSpinEnter {
-  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  24.32% { transform: rotate(360deg); }
-  100% { transform: rotate(360deg); }
-}
-
-@keyframes vsTemplateGearSpinReverseExit {
-  0%, 50% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  100% { transform: rotate(-360deg); }
-}
-
-@keyframes vsTemplateGearSpinReverseEnter {
-  0% { transform: rotate(0deg); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
-  24.32% { transform: rotate(-360deg); }
-  100% { transform: rotate(-360deg); }
-}
-
-@keyframes vsTemplateRailGutterLeftIn {
-  0% {
-    opacity: 0;
-    transform: translateX(-105%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(188%);
-  }
-}
-
-@keyframes vsTemplateRailGutterRightIn {
-  0% {
-    opacity: 0;
-    transform: translateX(105%);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(-188%);
-  }
-}
-
-@keyframes vsTemplateRailGutterLeftOut {
-  0% {
-    opacity: 1;
-    transform: translateX(188%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-105%);
-  }
-}
-
-@keyframes vsTemplateRailGutterRightOut {
-  0% {
-    opacity: 1;
-    transform: translateX(-188%);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(105%);
-  }
+@keyframes vs-laser-hide {
+  0% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+  100% { clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%); }
 }
 
 .vs-template-toolbar--integrated::after {
