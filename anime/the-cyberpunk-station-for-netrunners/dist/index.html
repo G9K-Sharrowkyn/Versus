@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
   <head>
@@ -82,6 +82,64 @@
     </script>
     <script>
     (function () {
+      var stationLang = (function () {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var raw = (params.get('lang') || '').trim().toLowerCase();
+          if (raw === 'pl' || raw === 'en') return raw;
+        } catch (error) {}
+        try {
+          var stored = (localStorage.getItem('vvv-app-language-v1') || '').trim().toLowerCase();
+          if (stored === 'pl' || stored === 'en') return stored;
+        } catch (error) {}
+        return 'en';
+      })();
+
+      document.documentElement.lang = stationLang;
+      var stationTranslatePairs = stationLang === 'pl' ? [
+        ["AETHER//GRID v13.4.0 :: WAKE SEQUENCE", "AETHER//GRID v13.4.0 :: SEKWENCJA WYBUDZENIA"],
+        ["all systems drift-ready", "wszystkie systemy: drift-ready"],
+        ["KERNEL RELAY READY", "KERNEL RELAY ONLINE"],
+        ["PROXY OVERRIDE", "OVERRIDE WARSTWY PROXY"],
+        ["RUN PACKETMESH.EXE - RELAY MODE", "ODPAL PACKETMESH.EXE // TRYB PRZEKAŹNIKA"],
+        ["RUN KERNELFORK.EXE - PROXY MODE", "ODPAL KERNELFORK.EXE // TRYB PROXY"],
+        ["RUN NULLROUTE.EXE - KERNEL MODE", "ODPAL NULLROUTE.EXE // TRYB KERNELA"],
+        ["RUN CACHESTORM.EXE - HYPER MODE", "ODPAL CACHESTORM.EXE // TRYB HIPER"],
+        ["CHANNEL  ::", "KANAŁ    ::"],
+        ["VAULT    ::", "SEJF     ::"],
+        ["ARCHIVE  ::", "ARCHIWUM ::"],
+        ["ROUTE    ::", "TRASA    ::"],
+        ["CLEAR    ::", "CZYSZCZENIE ::"],
+        ["RELAY BUS", "SZYNA RELAY"],
+        ["SHADOW MIRROR", "LUSTRO CIENIA"],
+        ["CACHE TUNNEL", "TUNEL CACHE"],
+        ["ROOT VECTOR", "WEKTOR GŁÓWNY"],
+        ["INDEX GHOST", "DUCH INDEKSU"],
+        ["PRIMARY SHARD", "ODŁAMEK GŁÓWNY"],
+        ["EDGE GATE", "BRAMA BRZEGOWA"],
+        ["HYPERVISOR ACTIVE", "HIPERNADZORCA ONLINE"],
+        ["THREAD SAFE", "WĄTKI BEZPIECZNE"],
+        ["NULL GATE STABLE", "BRAMA NULL STABILNA"],
+        ["0 TRACE LOSS", "0 UTRAT ŚLADU"],
+        ["PACKET FABRIC", "SIATKA PAKIETÓW"],
+        ["EXEC READY", "EXEC ONLINE"],
+        ["CHECKSUM GREEN", "SUMA KONTROLNA OK"],
+        ["WINDOW OPEN", "OKNO OTWARTE"],
+        ["VISUAL STATE : STABLE [NO PACKET LOSS]", "STAN WIZUALNY : STABILNY [BEZ UTRATY PAKIETÓW]"],
+        ["KERNEL LOADOUT :: NULLROUTE PROFILE", "LOADOUT KERNELA :: PROFIL NULLROUTE"]
+      ] : [];
+
+      function localizeStationText(value) {
+        if (stationLang !== 'pl') return value;
+        if (typeof value !== 'string' || !value) return value;
+        var localized = value;
+        for (var idx = 0; idx < stationTranslatePairs.length; idx += 1) {
+          var pair = stationTranslatePairs[idx];
+          localized = localized.split(pair[0]).join(pair[1]);
+        }
+        return localized;
+      }
+
       var bootLines = [
         "AETHER//GRID v13.4.0 :: WAKE SEQUENCE",
         "[  0.000000] shimmer lattice lifting into phase",
@@ -364,6 +422,7 @@
       }
 
       function setText(el, value) {
+        value = localizeStationText(value);
         if (el && el.textContent !== value) {
           el.textContent = value;
         }
@@ -517,3 +576,4 @@
   </body>
   
 </html>
+

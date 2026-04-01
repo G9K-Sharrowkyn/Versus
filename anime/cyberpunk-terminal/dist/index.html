@@ -101,7 +101,8 @@
       font-size: 0.85em;
     }
     .term-lbl {
-      min-width: 6em;
+      min-width: 9.2em;
+      flex: 0 0 9.2em;
       opacity: 0.65;
       text-transform: uppercase;
       letter-spacing: 0.06em;
@@ -259,11 +260,66 @@
 
   <script>
   (() => {
+    const termLang = (() => {
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const raw = (params.get('lang') || '').trim().toLowerCase();
+        if (raw === 'pl' || raw === 'en') return raw;
+      } catch (error) {}
+      try {
+        const stored = (localStorage.getItem('vvv-app-language-v1') || '').trim().toLowerCase();
+        if (stored === 'pl' || stored === 'en') return stored;
+      } catch (error) {}
+      return 'en';
+    })();
+
+    const COPY = termLang === 'pl'
+      ? {
+          heading: 'POŁĄCZENIE NEXUS AKTYWNE',
+          termLine1: 'Witaj w <b>VERSUS//VAULT</b> - bojowym węźle danych.<br>',
+          termLine2: 'Wprowadź dane NETRUNNERA, aby kontynuować.',
+          loginLabel: 'Użytkownik',
+          passwordLabel: 'Hasło',
+          authButton: '[ AUTORYZUJ ]',
+          passPlaceholder: 'PASS NETRUNNERA',
+          passwordRequired: 'HASŁO WYMAGANE',
+          authenticating: 'AUTORYZACJA...',
+          clearanceVerified: 'DOSTĘP NADANY — G9K_Rubikon',
+        }
+      : {
+          heading: 'NEXUS LINK ESTABLISHED',
+          termLine1: 'Welcome to <b>VERSUS//VAULT</b> — Battle data nexus.<br>',
+          termLine2: 'Enter NETRUNNER credentials to proceed.',
+          loginLabel: 'Login',
+          passwordLabel: 'Password',
+          authButton: '[ AUTHENTICATE ]',
+          passPlaceholder: 'NETRUNNER PASS',
+          passwordRequired: 'PASSWORD REQUIRED',
+          authenticating: 'AUTHENTICATING...',
+          clearanceVerified: 'CLEARANCE VERIFIED — G9K_Rubikon',
+        };
+
+    document.documentElement.lang = termLang;
+
     const loginEl  = document.getElementById('t-login');
     const passEl   = document.getElementById('t-pass');
     const passMask = document.getElementById('t-pass-mask');
     const statusEl = document.getElementById('t-status');
     const authForm = document.getElementById('auth-form');
+    const headingEl = document.querySelector('.term-heading');
+    const termDescEl = document.querySelector('.term-desc');
+    const loginRowEl = loginEl ? loginEl.closest('.term-row') : null;
+    const passwordRowEl = passEl ? passEl.closest('.term-row') : null;
+    const loginLabelEl = loginRowEl ? loginRowEl.querySelector('.term-lbl') : null;
+    const passwordLabelEl = passwordRowEl ? passwordRowEl.querySelector('.term-lbl') : null;
+    const authButtonEl = document.querySelector('.term-submit');
+
+    if (headingEl) headingEl.textContent = COPY.heading;
+    if (termDescEl) termDescEl.innerHTML = COPY.termLine1 + COPY.termLine2;
+    if (loginLabelEl) loginLabelEl.textContent = COPY.loginLabel;
+    if (passwordLabelEl) passwordLabelEl.textContent = COPY.passwordLabel;
+    if (authButtonEl) authButtonEl.textContent = COPY.authButton;
+
     const PASSWORD_POOL = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@$%#&*';
     const MAX_PASS_LEN = 32;
     const HIDE_DELAY_MS = 1500;
@@ -293,7 +349,7 @@
       }
 
       if (isEmpty) {
-        display = isFocused ? '' : 'NETRUNNER PASS';
+        display = isFocused ? '' : COPY.passPlaceholder;
       }
 
       passMask.textContent = display;
@@ -426,7 +482,7 @@
     authForm.addEventListener('submit', e => {
       e.preventDefault();
       if (!passTokens.length) {
-        statusEl.textContent = 'PASSWORD REQUIRED';
+        statusEl.textContent = COPY.passwordRequired;
         statusEl.className = 'term-status';
         passEl.focus();
         syncPassFocus();
@@ -442,10 +498,10 @@
         seed: token.seed
       }));
       renderPassMask();
-      statusEl.textContent = 'AUTHENTICATING...';
+      statusEl.textContent = COPY.authenticating;
       statusEl.className = 'term-status';
       setTimeout(() => {
-        statusEl.textContent = 'CLEARANCE VERIFIED — G9K_Rubikon';
+        statusEl.textContent = COPY.clearanceVerified;
         statusEl.className = 'term-status ok';
         setTimeout(() => {
           window.parent.postMessage({ type: 'vvv-terminal-submit' }, '*');

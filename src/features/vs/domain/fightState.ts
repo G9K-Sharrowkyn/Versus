@@ -84,7 +84,7 @@ export const buildFightStudioState = ({
   preserveTemplateSelection,
 }: BuildFightStudioStateOptions): FightStudioState => {
   const payload = enforceFileNameSideOrder(fight.payload, fight.fileName || fight.name)
-  const targetLanguage = resolveFightLanguage(fight, language)
+  const targetLanguage = language
   const categoryPayload = createCategoryPayload(payload.statsA, payload.statsB)
   const importedOrder = injectDerivedTemplates(
     payload.templateOrder.length ? payload.templateOrder : DEFAULT_TEMPLATE_ORDER,

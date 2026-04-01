@@ -93,6 +93,8 @@ const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 1200
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
+const SEARCH_IFRAME_VERSION = 40
+const INTRO_IFRAME_VERSION = 18
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
 const FIGHT_SHORTCUT_KEYS = ['5', '6', '7', '8', '9'] as const
 
@@ -105,14 +107,42 @@ const parseFightScaffoldMatchup = (value: string) => {
   return { fighterAName, fighterBName }
 }
 
+const readLanguageFromUrl = (): Language | null => {
+  if (typeof window === 'undefined') return null
+  const params = new URLSearchParams(window.location.search)
+  const raw = (params.get('lang') || params.get('locale') || '').trim().toLowerCase()
+  return raw === 'pl' || raw === 'en' ? raw : null
+}
+
 const readStoredLanguage = (): Language => {
+  const fromUrl = readLanguageFromUrl()
+  if (fromUrl) return fromUrl
   if (typeof window === 'undefined') return DEFAULT_LANGUAGE
   try {
-    const raw = localStorage.getItem(APP_LANGUAGE_STORAGE_KEY)
+    const raw = localStorage.getItem(APP_LANGUAGE_STORAGE_KEY)?.trim().toLowerCase()
     return raw === 'pl' || raw === 'en' ? raw : DEFAULT_LANGUAGE
   } catch {
     return DEFAULT_LANGUAGE
   }
+}
+
+const persistLanguage = (language: Language) => {
+  if (typeof window === 'undefined') return
+  try {
+    localStorage.setItem(APP_LANGUAGE_STORAGE_KEY, language)
+  } catch {
+    // Ignore storage write failures.
+  }
+  try {
+    const currentUrl = new URL(window.location.href)
+    currentUrl.searchParams.set('lang', language)
+    currentUrl.searchParams.delete('locale')
+    const nextUrl = `${currentUrl.pathname}${currentUrl.search}${currentUrl.hash}`
+    window.history.replaceState(window.history.state, '', nextUrl)
+  } catch {
+    // Ignore URL sync failures.
+  }
+  document.documentElement.lang = language
 }
 
 function App() {
@@ -262,12 +292,7 @@ function App() {
   }, [activeFightId, activeTemplate, language, templateCursor, templateTransitionPhase])
 
   useEffect(() => {
-    if (typeof window === 'undefined') return
-    try {
-      localStorage.setItem(APP_LANGUAGE_STORAGE_KEY, language)
-    } catch {
-      // Ignore storage write failures.
-    }
+    persistLanguage(language)
   }, [language])
 
   useLayoutEffect(() => {
@@ -574,10 +599,9 @@ function App() {
     const currentTemplateCursor = templateCursorRef.current
     const isSameFight = activeFightIdRef.current === fight.id
     const preserveTemplateSelection = options?.preserveTemplateSelection ?? isSameFight
-    const fightLanguage = resolveFightLanguage(fight, currentLanguage)
     const nextState = buildFightStudioState({
       fight,
-      language: options?.targetLanguage ?? fightLanguage,
+      language: options?.targetLanguage ?? currentLanguage,
       activeTemplate: currentActiveTemplate,
       templateCursor: currentTemplateCursor,
       preserveTemplateSelection,
@@ -630,7 +654,7 @@ function App() {
   const requestFightApply = useCallback<RequestFightApply>((fight, options, reason = 'open-fight') => {
     const requestId = pendingFightRequestIdRef.current + 1
     pendingFightRequestIdRef.current = requestId
-    const targetLanguage = options?.targetLanguage ?? resolveFightLanguage(fight, language)
+    const targetLanguage = options?.targetLanguage ?? language
     if (reason !== 'language-switch' && pendingLocaleSwitch !== null) {
       setPendingLocaleSwitch(null)
     }
@@ -724,7 +748,7 @@ function App() {
     }
 
     auditAppliedRef.current = true
-    const targetLanguage = auditRequest.language ?? resolveFightLanguage(targetFight, language)
+    const targetLanguage = auditRequest.language ?? language
     const timeoutId = window.setTimeout(() => {
       rememberPreferredFightVariant(targetFight)
       applyFightRecordRef.current?.(targetFight, {
@@ -767,6 +791,8 @@ function App() {
 
   const toggleLanguage = () => {
     const nextLanguage = language === 'pl' ? 'en' : 'pl'
+    persistLanguage(nextLanguage)
+    setLanguage(nextLanguage)
 
     if (activeFightId) {
       const currentFight = fights.find((fight) => fight.id === activeFightId)
@@ -787,7 +813,6 @@ function App() {
 
     markPerformance(`vs-language-switch:fallback:${nextLanguage}:click`)
     startTransition(() => {
-      setLanguage(nextLanguage)
       if (!importFileName && !Object.keys(templateBlocks).length) {
         setCategories(defaultCategoriesFor(nextLanguage))
         setFactsA(defaultFactsFor('a', nextLanguage))
@@ -1207,7 +1232,7 @@ function App() {
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
-              src={`/search/1.html?v=34&flow=${encodeURIComponent(searchFlowMode)}&lang=${encodeURIComponent(language)}`}
+              src={`/search/1.html?v=${SEARCH_IFRAME_VERSION}&flow=${encodeURIComponent(searchFlowMode)}&lang=${encodeURIComponent(language)}`}
               title="Fight Search"
               className="relative z-0 h-full w-full border-0"
               onLoad={handleSearchFrameLoad}
@@ -1225,7 +1250,7 @@ function App() {
               <iframe
                 ref={introFrameRef}
                 key={`${activeFightId || importFileName || 'intro'}-${introFlowMode}`}
-                src={`/hyper-scroll-fight/index.html?v=17&flow=${encodeURIComponent(introFlowMode)}&lang=${encodeURIComponent(language)}&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
+                src={`/hyper-scroll-fight/index.html?v=${INTRO_IFRAME_VERSION}&flow=${encodeURIComponent(introFlowMode)}&lang=${encodeURIComponent(language)}&a=${encodeURIComponent(fighterA?.name || '')}&b=${encodeURIComponent(fighterB?.name || '')}&folder=${encodeURIComponent(activeFightRecord?.folderKey || '')}`}
                 title="Fight Intro"
                 className="relative z-0 h-full w-full border-0"
                 style={{ pointerEvents: introVisible ? 'auto' : 'none' }}
