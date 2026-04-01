@@ -519,7 +519,7 @@
       ],
       3: [
         { x: -0.42, y: -0.18, rot: -18 },
-        { x: 0.42, y: -0.08, rot: 16 },
+        { x: 0.42, y: 0.08, rot: 16 },
         { x: 0.02, y: 0.28, rot: -8 },
       ],
       4: [
@@ -758,7 +758,7 @@
       const runChromaticFlash = (stageEl, options = {}) => new Promise((resolve) => {
         const {
           frames = 14,
-          interval = 40,
+          interval = 60,
           jitterX = 35,
           skew = 6,
         } = options;
@@ -770,36 +770,49 @@
 
         const COLORS = ['rgba(255,85,78,1)', '#77e2f2', '#ff0', '#fff', '#0cf', '#f80'];
         let frame = 0;
+        
+        const POOL_SIZE = 8;
+        const pool = [];
+        for (let i = 0; i < POOL_SIZE; i++) {
+          const bar = document.createElement('div');
+          bar.className = 'rv-chroma-flash';
+          bar.style.cssText = 'position:absolute;left:0;right:0;z-index:10;pointer-events:none;display:none;';
+          stageEl.appendChild(bar);
+          pool.push(bar);
+        }
+
         const clearFlash = () => {
-          [...stageEl.querySelectorAll('.rv-chroma-flash')].forEach((node) => node.remove());
+          pool.forEach(bar => { bar.style.display = 'none'; });
           stageEl.style.transform = '';
         };
 
         const timer = setInterval(() => {
-          clearFlash();
-          const n = 5 + Math.floor(Math.random() * 7);
-          for (let i = 0; i < n; i += 1) {
-            const bar = document.createElement('div');
-            bar.className = 'rv-chroma-flash';
-            bar.style.cssText =
-              `position:absolute;left:0;right:0;top:${Math.random() * 100}%;` +
-              `height:${1 + Math.random() * 14}%;z-index:10;pointer-events:none;` +
-              `background:${COLORS[Math.floor(Math.random() * COLORS.length)]};` +
-              `mix-blend-mode:screen;opacity:${0.45 + Math.random() * 0.55};`;
-            stageEl.appendChild(bar);
+          const n = 3 + Math.floor(Math.random() * (POOL_SIZE - 3));
+          for (let i = 0; i < POOL_SIZE; i++) {
+            if (i < n) {
+              const bar = pool[i];
+              bar.style.top = `${Math.random() * 100}%`;
+              bar.style.height = `${1 + Math.random() * 10}%`;
+              bar.style.background = COLORS[Math.floor(Math.random() * COLORS.length)];
+              bar.style.opacity = `${0.3 + Math.random() * 0.4}`;
+              bar.style.display = 'block';
+            } else {
+              pool[i].style.display = 'none';
+            }
           }
-          stageEl.style.transform = `translateX(${(Math.random() - 0.5) * jitterX}px) skewX(${(Math.random() - 0.5) * skew}deg)`;
+          stageEl.style.transform = `translate3d(${(Math.random() - 0.5) * jitterX}px, 0, 0) skewX(${(Math.random() - 0.5) * skew}deg)`;
           frame += 1;
           if (frame >= frames) {
             clearInterval(timer);
             clearFlash();
+            pool.forEach(bar => bar.remove());
             resolve();
           }
         }, interval);
       });
 
       // 1) Glitch fullscreen
-      await runChromaticFlash(overlay, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
+      await runChromaticFlash(overlay, { frames: 12, interval: 50, jitterX: 28, skew: 4 });
 
       // 2) System rebooting / reboot successful (original Hydra logic)
       if (s3El instanceof HTMLElement) s3El.style.display = 'flex';
@@ -818,7 +831,7 @@
       const spinTimer = setInterval(() => {
         if (!spinEl) return;
         spinEl.textContent = `[${frames[fi++ % 4]}]`;
-      }, 110 + Math.random() * 80);
+      }, 120);
 
       await new Promise((resolve) => {
         const tick = setInterval(() => {
@@ -834,7 +847,7 @@
           const ls = vals.slice(0, loaded).join('');
           const us = vals.slice(loaded).join('');
           if (barEl) barEl.innerHTML = `(${ls}<span style="color:#fff;text-shadow:0 0 4px #fff;">${us}</span>)`;
-        }, 75 + Math.random() * 200);
+        }, 100 + Math.random() * 150);
       });
 
       clearInterval(spinTimer);
@@ -847,17 +860,53 @@
       await wait(3000);
 
       // 3) Session authenticated black screen
-      await runChromaticFlash(s3El, { frames: 12, interval: 45, jitterX: 28, skew: 4 });
+      await runChromaticFlash(s3El, { frames: 12, interval: 50, jitterX: 28, skew: 4 });
       if (s3El instanceof HTMLElement) s3El.style.display = 'none';
       if (s4El instanceof HTMLElement) s4El.style.display = 'flex';
       await wait(2500);
 
       // 4) Color glitch then transition to search
-      await runChromaticFlash(s4El, {});
+      await runChromaticFlash(s4El, { interval: 60 });
 
       overlay.remove();
 
       postToParent({ type: 'vvv-aaa-reverse-explosion-done' });
+    };
+
+    const updateMouse = e => {
+      state.mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
+      state.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+    };
+
+    const setupListeners = () => {
+      window.addEventListener('mousemove', updateMouse);
+      window.addEventListener('pointermove', e => {
+        updateMouse(e);
+        postRelay('move', e.clientX, e.clientY);
+      }, { passive: true });
+      window.addEventListener('pointerdown', e => postRelay('down', e.clientX, e.clientY, true), { passive: true });
+      window.addEventListener('pointerup', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('pointercancel', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('pointerleave', e => postRelay('leave', e.clientX, e.clientY, false), { passive: true });
+      window.addEventListener('blur', () => postRelay('leave', window.innerWidth * 0.5, window.innerHeight * 0.5, false), { passive: true });
+      window.addEventListener('keydown', e => {
+        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
+        if (!window.parent || window.parent === window) return;
+        if (/^[1-5]$/.test(e.key)) {
+          e.preventDefault();
+          window.parent.postMessage(
+            { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
+            window.location.origin
+          );
+          return;
+        }
+        if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
+        e.preventDefault();
+        window.parent.postMessage(
+          { type: 'vvv-dev-open-fight-shortcut-request', key: e.key },
+          window.location.origin
+        );
+      });
     };
 
     // --- INIT ---
@@ -962,39 +1011,7 @@
         });
       }
 
-      const updateMouse = e => {
-        state.mouseX = (e.clientX / window.innerWidth  - 0.5) * 2;
-        state.mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
-      };
-
-      window.addEventListener('mousemove', updateMouse);
-      window.addEventListener('pointermove', e => {
-        updateMouse(e);
-        postRelay('move', e.clientX, e.clientY);
-      }, { passive: true });
-      window.addEventListener('pointerdown', e => postRelay('down', e.clientX, e.clientY, true), { passive: true });
-      window.addEventListener('pointerup', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
-      window.addEventListener('pointercancel', e => postRelay('up', e.clientX, e.clientY, false), { passive: true });
-      window.addEventListener('pointerleave', e => postRelay('leave', e.clientX, e.clientY, false), { passive: true });
-      window.addEventListener('blur', () => postRelay('leave', window.innerWidth * 0.5, window.innerHeight * 0.5, false), { passive: true });
-      window.addEventListener('keydown', e => {
-        if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
-        if (!window.parent || window.parent === window) return;
-        if (/^[1-5]$/.test(e.key)) {
-          e.preventDefault();
-          window.parent.postMessage(
-            { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
-            window.location.origin
-          );
-          return;
-        }
-        if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
-        e.preventDefault();
-        window.parent.postMessage(
-          { type: 'vvv-dev-open-fight-shortcut-request', key: e.key },
-          window.location.origin
-        );
-      });
+      setupListeners();
     }
 
     window.addEventListener('message', event => {
@@ -1010,25 +1027,20 @@
       }
     });
 
-    // --- AUTO-SCROLL (no Lenis) ---
-    // Start slightly behind so "EVALUATION STARTING" begins in the distance
-    const AUTO_RATE = 0.375; // px/ms — half speed vs original
-    let autoPos  = -800;    // pre-roll: puts item i=0 at vizZ=-2000 initially
+    // --- AUTO-SCROLL ---
+    const AUTO_RATE = 0.375;
+    let autoPos  = -800;
     let prevTime = null;
     const TEXT_PASS_CAMERA_CUT_Z = 1800;
     const FINAL_CARD_FINISH_Z = 920;
     const FINAL_CARD_COMPLETE_BUFFER_MS = 5;
+    let DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500;
 
-    // Stop after last card (i=14) has passed the camera + 1.5s buffer
-    let DONE_AT = (CONFIG.itemCount - 1) * CONFIG.zGap / CONFIG.camSpeed + 1500; // ≈5980
-
-    // --- HUD elements ---
     const feedbackVel = document.getElementById('vel-readout');
     const feedbackFPS = document.getElementById('fps');
     const coordEl     = document.getElementById('coord');
     let lastFpsTime = 0;
 
-    // --- RAF LOOP ---
     function raf(time) {
       if (reverseSequenceRunning) return;
       const delta = prevTime !== null ? Math.min(time - prevTime, 50) : 16;
@@ -1049,7 +1061,7 @@
 
       const tiltX = state.mouseY * 5 - state.velocity * 0.5;
       const tiltY = state.mouseX * 5;
-      world.style.transform = `rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
+      world.style.transform = `translate3d(0,0,0) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`;
 
       const fov = 1000 - Math.min(Math.abs(state.velocity) * 10, 600);
       viewport.style.perspective = `${fov}px`;
@@ -1058,15 +1070,12 @@
 
       items.forEach(item => {
         let vizZ;
-
         if (item.type === 'star') {
-          // Stars loop infinitely for background depth
           const relZ = item.baseZ + cameraZ;
           const modC = CONFIG.loopSize;
           vizZ = ((relZ % modC) + modC) % modC;
           if (vizZ > 500) vizZ -= modC;
         } else {
-          // Content items: no looping — appear in correct sequence
           vizZ = item.baseZ + cameraZ;
         }
 
@@ -1084,7 +1093,6 @@
 
         if (alpha > 0) {
           let trans = `translate3d(${item.x}px, ${item.y}px, ${vizZ}px)`;
-
           if (item.type === 'star') {
             const stretch = Math.max(1, Math.min(1 + Math.abs(state.velocity) * 0.1, 10));
             trans += ` scale3d(1, 1, ${stretch})`;
@@ -1098,37 +1106,36 @@
               item.textNode.style.setProperty('--signal-main-scan-darkness', scanDarkness.toFixed(3));
             }
             trans += ` rotateZ(${item.rot}deg)`;
-        } else {
-          const t = time * 0.001;
-          const float = Math.sin(t + item.x) * 10;
-          if (!item.spawned && vizZ > -2200) {
-            item.spawned = true;
-            if (item.cardNode) {
-              item.cardNode.classList.remove('card-spawning');
-              item.cardNode.classList.remove('card-pre-spawn');
-              void item.cardNode.offsetWidth;
-              item.cardNode.classList.add('card-spawning');
-              if (item.spawnTimer) clearTimeout(item.spawnTimer);
-              item.spawnTimer = window.setTimeout(() => {
-                item.cardNode?.classList.remove('card-spawning');
-                item.spawnTimer = 0;
-              }, 260);
+          } else {
+            const t = time * 0.001;
+            const float = Math.sin(t + item.x) * 10;
+            if (!item.spawned && vizZ > -2200) {
+              item.spawned = true;
+              if (item.cardNode) {
+                item.cardNode.classList.remove('card-spawning');
+                item.cardNode.classList.remove('card-pre-spawn');
+                void item.cardNode.offsetWidth;
+                item.cardNode.classList.add('card-spawning');
+                if (item.spawnTimer) clearTimeout(item.spawnTimer);
+                item.spawnTimer = window.setTimeout(() => {
+                  item.cardNode?.classList.remove('card-spawning');
+                  item.spawnTimer = 0;
+                }, 260);
+              }
             }
+            trans += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
           }
-          trans += ` rotateZ(${item.rot}deg) rotateY(${float}deg)`;
-        }
-
           item.el.style.transform = trans;
         }
       });
 
       if (autoPos >= DONE_AT) {
         postToParent({ type: 'vvv-aaa-complete' });
-        return; // stop RAF
+        return;
       }
-
       rafHandle = requestAnimationFrame(raf);
     }
+
     postToParent({ type: 'vvv-aaa-ready' });
     if (FLOW_MODE === 'reverse') {
       document.querySelectorAll('.viewport, .hud, .scanlines, .vignette, .noise').forEach((el) => {
@@ -1136,6 +1143,8 @@
         el.style.opacity = '0';
         el.style.pointerEvents = 'none';
       });
+      // CRITICAL FIX: Setup mouse listeners even in reverse mode!
+      setupListeners();
       reverseAutoStartTimeout = window.setTimeout(() => {
         reverseAutoStartTimeout = 0;
         void runReverseExitSequence();
