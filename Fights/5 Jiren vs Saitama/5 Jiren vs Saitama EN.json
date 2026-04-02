@@ -116,12 +116,12 @@
   "templates": {
     "battle-dynamics": {
       "label": "Jiren: Immediate Assault",
-      "a_curve": "90,93,96,98,100",
-      "b_curve": "81,55,30,10,0",
+      "a_curve": "90,90,90,90,90",
+      "b_curve": "81,0,0,0,0",
       "yellow_wave": "10,12,11,14,12,15,13,18",
-      "phase_1": "Jiren gives no time for games. He strikes with power that shakes the infinite void, aiming for Saitama's heart.",
-      "phase_2": "Saitama attempts to react, but the initial power gap is measured in orders of magnitude. His body has not yet had time to adapt.",
-      "phase_3": "The end. Saitama is erased from reality before his limiter could even crack.",
+      "phase_1": "Jiren strikes immediately. Saitama evaporates.",
+      "phase_2": "-",
+      "phase_3": "-",
       "analysis": "With Jiren's immediate assault, Saitama lacks the time window required for non-linear power growth.",
       "s2_label": "Jiren: Passive Observation",
       "s2_a_curve": "90,88,85,80,75",
