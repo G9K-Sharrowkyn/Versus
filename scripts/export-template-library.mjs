@@ -2,20 +2,29 @@ import { mkdirSync, readdirSync, readFileSync, statSync, writeFileSync } from 'n
 import path from 'node:path'
 
 const repoRoot = process.cwd()
-const templatesRoot = path.join(repoRoot, 'Templates')
+const templatesRoot = path.join(repoRoot, 'src/features/vs/templates/content')
 const generatedModulePath = path.join(
   repoRoot,
   'src/features/vs/templates/shared/templateLibrary.generated.ts',
 )
+const typesPath = path.join(repoRoot, 'src/features/vs/types.ts')
 
 const locales = ['pl', 'en']
 
 const toImportAlias = (templateId, locale) =>
   `${templateId.replace(/[^a-z0-9]+([a-z0-9])/gi, (_, character) => character.toUpperCase()).replace(/[^a-zA-Z0-9]/g, '')}${locale.toUpperCase()}`
 
-const templateDirs = readdirSync(templatesRoot, { withFileTypes: true })
-  .filter((entry) => entry.isDirectory())
-  .map((entry) => entry.name)
+const typesSource = readFileSync(typesPath, 'utf8')
+const templateIdSectionMatch = typesSource.match(
+  /export type TemplateId =([\s\S]*?)\n\nexport type TemplatePreset/,
+)
+
+if (!templateIdSectionMatch) {
+  throw new Error('Cannot read TemplateId union from src/features/vs/types.ts')
+}
+
+const templateDirs = [...templateIdSectionMatch[1].matchAll(/\|\s'([^']+)'/g)]
+  .map((match) => match[1])
   .sort()
 
 mkdirSync(path.dirname(generatedModulePath), { recursive: true })
@@ -26,6 +35,9 @@ const registryLines = []
 for (const templateId of templateDirs) {
   for (const locale of locales) {
     const filePath = path.join(templatesRoot, templateId, `Template ${locale.toUpperCase()}.json`)
+    if (!statSync(filePath, { throwIfNoEntry: false })?.isFile()) {
+      throw new Error(`Missing template definition file: ${filePath}`)
+    }
     const json = JSON.parse(readFileSync(filePath, 'utf8'))
     if (json.id !== templateId) {
       throw new Error(`Template ${templateId} has mismatched id in ${filePath}: ${json.id}`)
@@ -33,12 +45,9 @@ for (const templateId of templateDirs) {
     if (json.locale !== locale) {
       throw new Error(`Template ${templateId} has mismatched locale in ${filePath}: ${json.locale}`)
     }
-    if (!statSync(filePath).isFile()) {
-      throw new Error(`Missing template definition file: ${filePath}`)
-    }
 
     const alias = toImportAlias(templateId, locale)
-    const relativeImport = `../../../../../Templates/${templateId}/Template ${locale.toUpperCase()}.json`
+    const relativeImport = `../content/${templateId}/Template ${locale.toUpperCase()}.json`
     importLines.push(`import ${alias} from '${relativeImport}'`)
   }
 

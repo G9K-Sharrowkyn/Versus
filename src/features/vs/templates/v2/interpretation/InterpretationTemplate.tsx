@@ -58,7 +58,6 @@ export function InterpretationTemplate({
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   
   const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const common = getFightCommonCopy('interpretation', language)
@@ -73,12 +72,11 @@ export function InterpretationTemplate({
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
     
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const headerText = title
+  const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "INTERPRETATION"
+    getFightTemplateDefaultField('tactical-board', 'left_header', language) || common.emptyFieldLabel
 
   const fighterAFallback = getFightTemplateDefaultField('interpretation', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('interpretation', 'fighter_b_fallback', language)
@@ -130,7 +128,7 @@ export function InterpretationTemplate({
   const badgeSymbol = isAverageDraw ? '=' : 'V'
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

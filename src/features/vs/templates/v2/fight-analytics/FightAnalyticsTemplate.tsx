@@ -1,7 +1,7 @@
 import './FightAnalyticsTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type CSSProperties, type ReactNode } from 'react'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -87,22 +87,19 @@ export function FightAnalyticsTemplate({
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
 
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-analytics'] || [])
-  const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('fight-analytics', language)
   const ui = getTemplateUi('fight-analytics', language)
   const layout = ui.template as Record<string, string>
   
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['panel_header', 'analytics_header']) ||
     getFightTemplateDefaultField('fight-analytics', 'panel_header', language) ||
-    (language === 'pl' ? 'Statystyki Postaci' : 'Character Statistics')
+    title
 
   const averageShort =
-    getFightTemplateDefaultField('fight-analytics', 'average_short', language) || common.averageShort
+    common.averageShort
   const parameterLabel =
     getFightTemplateDefaultField('fight-analytics', 'parameter_label', language) || common.parameterLabel
   const scoreScaleLabel =
@@ -110,7 +107,7 @@ export function FightAnalyticsTemplate({
   const scaleMarks = ['0', '25', '50', '75', '100']
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

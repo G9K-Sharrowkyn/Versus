@@ -19,13 +19,11 @@
         "Władza nad Life Equation, dostęp do całego spektrum emocjonalnego, kreacja konstrukcji o nieskończonej złożoności."
       ],
       "tools": [
-        "Pierścień Białej Latarni, który automatycznie adaptuje się do zagrożeń i pozwala na manipulację przyczynowością.",
-        "Możliwość wpływania na samą esencję życia i materii w skali uniwersalnej."
+        "Dostęp do Life Equation i szerokiej użyteczności pierścienia w ataku, obronie i odtwarzaniu."
       ],
       "weaknesses": [
-        "Potworny ciężar psychiczny Life Equation – kod rzeczywistości powoli 'zjada' umysł nosiciela.",
-        "Podświadomy lęk może zamanifestować się jako realna anomalia (np. Oblivion), atakująca samego Kyle'a.",
-        "Brak idealnego spokoju ducha sprawia, że moc staje się chaotyczna i nieprzewidywalna."
+        "Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.",
+        "Najsilniejsze rezultaty nadal wymagają czasu przygotowania i odpowiedniego okna wykonania."
       ]
     },
     "stats": {
@@ -68,8 +66,7 @@
         "Subatomowa kontrola materii, omniprezencja czasowa, nieśmiertelność i gigantyczna projekcja energii."
       ],
       "tools": [
-        "Manipulacja kwantowa, która pozwala mu na ignorowanie niemal każdej formy ataku fizycznego i energetycznego.",
-        "Zdolność do przewidywania ruchów przeciwnika poprzez wgląd w jego przyszłość."
+        "Interwencja w czasoprzestrzeń i ingerencja przyczynowa zamiast klasycznej walki."
       ],
       "weaknesses": [
         "Cząsteczki tachionów mogą zakłócać jego percepcję czasu, ograniczając go do 'tu i teraz'.",
@@ -116,7 +113,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Life Equation: Idealna Kontrola",
+      "label": "Life Equation: Idealna Kontrola",
       "a_curve": "88,90,92,95,98",
       "b_curve": "83,82,80,78,75",
       "yellow_wave": "35,42,38,45,40,48,42,50",
@@ -133,17 +130,15 @@
       "s2_analysis": "Niestabilność Kyle'a sprawia, że Manhattan kontroluje starcie z matematyczną pewnością."
     },
     "fight-card": {
-      "fight_title": "Rayner vs Manhattan",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Rayner vs Manhattan"
     },
     "fight-simulation": {
-      "s1_label": "Life Equation: Pełna",
+      "label": "Life Equation: Pełna",
       "opening": "Kyle otwiera walkę salwą Białego Światła, próbując zakotwiczyć swoją obecność w czasie.",
       "mid_fight": "Manhattan próbuje rozłożyć pierścień na atomy, ale Life Equation stale regeneruje strukturę konstrukcji.",
       "late_fight": "Kyle narzuca Równanie Życia na lokalną przestrzeń, zmuszając Manhattana do odwrotu w inne wymiary.",
       "end_condition": "Zwycięstwo Kyle'a przez narzucenie nowej matrycy istnienia.",
       "phase_1_animation": "solar-flare",
-      "phase_1_actor": "a",
       "phase_1_title": "Kotwica Istnienia",
       "phase_1_a_label": "Wola",
       "phase_1_a_value": "94",
@@ -180,14 +175,14 @@
       "s2_phase_3_event": "Manhattan kończy starcie, usuwając cząsteczki tlenu w płucach Kyle'a, zanim ten wykona gest wolą.",
       "s2_phase_3_branch_a": "Kyle Rayner zostaje usunięty z kontinuum.",
       "s2_phase_3_branch_b": "Kyle ucieka w Source Wall, kończąc starcie.",
-      "s2_end_condition": "Zwycięstwo Manhattana przez usunięcie przeciwnika z historii."
+      "s2_end_condition": "Zwycięstwo Manhattana przez usunięcie przeciwnika z historii.",
+      "s2_phase_2_token": "fullredflood"
     },
     "final-summary": {
       "line_1": "To nie jest zwykła walka – to starcie dwóch różnych definicji boskości w DC Multiverse.",
       "line_2": "Kyle Rayner walczy tu na dwóch frontach: musi powstrzymać Dr. Manhattana i jednocześnie nie dać się skonsumować własnej mocy.",
       "line_3": "Werdykt zależy wyłącznie od tego, czy ludzki umysł Kyle'a wytrzyma ciężar boskiego kodu rzeczywistości.",
-      "winner": "Kyle (Kontrola) lub Manhattan (Niestabilność).",
-      "quote": "„Kyle walczy z bogiem przed sobą i potworem wewnątrz własnej mocy.”"
+      "winner": "Kyle (Kontrola) lub Manhattan (Niestabilność)."
     },
     "tactical-board": {
       "lane": "Kyle musi wymusić okno akcji, zanim Manhattan wymaże samą przyczynę jego istnienia.",
@@ -209,12 +204,10 @@
       "b_bonus": "15",
       "b_value": "50",
       "factor": "KONTROLA PRZYCZYNOWOŚCI VS OMNIPREZENCJA",
-      "implication": "Kyle musi narzucić nową teraźniejszość, Manhattan musi ją po prostu zaobserwować.",
-      "mechanics": "Life Equation pozwala Kyle'owi nadpisywać fakty, których Manhattan jest częścią.",
-      "psychology": "Kyle walczy sercem, co czyni go nieprzewidywalnym dla istoty czystej logiki.",
-      "regen": "REKREACJA ATOMOWA",
-      "example": "Manhattan próbuje rozłożyć pierścień na atomy. Life Equation natychmiast regeneruje go z nową sygnaturą energetyczną.",
-      "question": "Czy Life Equation potrafi działać poza czasem, chroniąc Kyle'a przed atakiem, który już się wydarzył w przyszłości Manhattana?"
+      "implikacja": "Kyle musi narzucić nową teraźniejszość, Manhattan musi ją po prostu zaobserwować.",
+      "mechanika": "Life Equation pozwala Kyle'owi nadpisywać fakty, których Manhattan jest częścią.",
+      "psychologia": "Kyle walczy sercem, co czyni go nieprzewidywalnym dla istoty czystej logiki.",
+      "regen": "REKREACJA ATOMOWA"
     }
   }
 }

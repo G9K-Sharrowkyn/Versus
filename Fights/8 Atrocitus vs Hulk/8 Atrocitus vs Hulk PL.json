@@ -115,27 +115,25 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Absolut Gniewu",
+      "label": "Absolut Gniewu",
       "a_curve": "85,88,92,96,100",
       "b_curve": "84,60,40,20,5",
       "yellow_wave": "40,48,44,59,47,63,49,68",
       "phase_1": "Atrocitus pożera gniew Hulka od pierwszej sekundy. Każdy ryk zielonego giganta tylko zasila Czerwony Pierścień.",
-      "phase_2": "Plazma Atrocitusa wypala samą strukturę przestrzeni. Hulk traci grunt pod nogami, a jego regeneracja biologicalna nie ma czego odtwarzać.",
+      "phase_2": "Plazma Atrocitusa wypala samą strukturę przestrzeni. Hulk traci grunt pod nogami, a jego regeneracja biologiczna nie ma czego odtwarzać.",
       "phase_3": "Dominacja koncepcyjna. Atrocitus tłumi gniew Hulka, wyłączając jego 'silnik' i wymazując go z rzeczywistości.",
       "analysis": "W starciu z hostem Butchera, Hulk jest tylko nieskończonym paliwem. Atrocitus kontroluje każdy aspekt tej anihilacji."
     },
     "fight-card": {
-      "fight_title": "Atrocitus vs Hulk",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Atrocitus vs Hulk"
     },
     "fight-simulation": {
-      "s1_label": "Werdykt Ostateczny",
+      "label": "Werdykt Ostateczny",
       "opening": "Atrocitus szarżuje, ale zamiast uderzać, zaczyna po prostu wdychać furię Hulka.",
       "mid_fight": "Hulk wybucha energią gamma, która zostaje natychmiast skonsumowana i zamieniona w konstrukty czerwonego światła.",
       "late_fight": "Atrocitus uwalnia plazmę, która robi dziurę w rzeczywistości, wciągając do niej zdezorientowanego przeciwnika.",
       "end_condition": "Zwycięstwo Atrocitusa przez koncepcyjne wymazanie przeciwnika.",
       "phase_1_animation": "rush-ko",
-      "phase_1_actor": "a",
       "phase_1_title": "Początek Konsumpcji",
       "phase_1_a_label": "Głód",
       "phase_1_a_value": "98",
@@ -157,10 +155,9 @@
     },
     "final-summary": {
       "line_1": "Obaj wojownicy żywią się gniewem, ale Atrocitus zamienia go w kontrolę, a Hulk w czystą, niszczycielską skalę.",
-      "line_2": "Atrocitus z Butcherem to absolutny hard-counter dla Hulka. Im bardziej Hulk walczy, tym szybciej przegrywa.",
+      "line_2": "Atrocitus z Butcherem to absolutna kontra dla Hulka. Im bardziej Hulk walczy, tym szybciej przegrywa.",
       "line_3": "To starcie o to, czy pierścień podtrzymujący życie zdoła przetrwać w sercu atomowej eksplozji – Atrocitus udowadnia, że tak.",
-      "winner": "Atrocitus 9/10.",
-      "quote": "„Gniew jest ogniem. Atrocitus to ogień, który płonie. Hulk to pożar, który pożera las... a Atrocitus właśnie wypił cały tlen.”"
+      "winner": "Atrocitus 9/10."
     },
     "tactical-board": {
       "lane": "Atrocitus musi utrzymać walkę w ryzach Mocy, zanim Hulk zamieni ją w pętlę gamma.",
@@ -168,7 +165,7 @@
     },
     "verdict-matrix": {
       "header": "MATRYCA STABILNOŚCI",
-      "subtitle": "Koncepcyjna anihilacja vs 'Lucky Shot'",
+      "subtitle": "Koncepcyjna anihilacja vs fartowny cios",
       "case_1": "Atrocitus 9/10. Choć World Breaker Hulk to szczyt siły fizycznej, jest on koncepcyjną ofiarą Atrocitusa. Czerwony Pierścień nie tylko pozwala Atrocitusowi żywić się gniewem Hulka, ale posiada rzadką zdolność tłumienia furii (Rage Suppression). Atrocitus może dosłownie 'wyłączyć' szał Hulka, cofając go do postaci Bruce'a Bannera jednym impulsem woli. W połączeniu z plazmą przepalającą przestrzeń i brakiem potrzeby oddychania, Atrocitus całkowicie kontroluje starcie. Hulk zachowuje 1/10 szansy jedynie na wypadek absolutnego farta – jeśli zdołałby zniszczyć pierścień Latarni jednym, desperackim ciosem, zanim ten zdąży aktywować pełną kontrolę spektrum."
     },
     "x-factor": {
@@ -178,12 +175,10 @@
       "b_bonus": "12",
       "b_value": "50",
       "factor": "KONTROLA GNIEWU VS PĘTLA GAMMA",
-      "implication": "Atrocitus wygrywa, bo gniew przeciwnika to dla niego paliwo, a nie zagrożenie.",
-      "mechanics": "Atrocitus posiada koncepcyjną przewagę 'wyłączania' silnika Hulka poprzez tłumienie szału.",
-      "psychology": "Hulk nie rozumie, że każda sekunda walki czyni go słabszym koncepcyjnie względem Latarni.",
-      "regen": "ANNIHILACJA GAMMA",
-      "example": "Hulk wpada w furię World Breakera. Atrocitus zamiast walczyć siłowo, po prostu absorbuje tę energię i używa jej do zdławienia biologicznego gniewu Bannera.",
-      "question": "Czy Hulk jest w stanie zadać cios, zanim Atrocitus wyczuje jego gniew i zamieni go w nicość?"
+      "implikacja": "Atrocitus wygrywa, bo gniew przeciwnika to dla niego paliwo, a nie zagrożenie.",
+      "mechanika": "Atrocitus posiada koncepcyjną przewagę 'wyłączania' silnika Hulka poprzez tłumienie szału.",
+      "psychologia": "Hulk nie rozumie, że każda sekunda walki czyni go słabszym koncepcyjnie względem Latarni.",
+      "regen": "ANNIHILACJA GAMMA"
     }
   }
 }

@@ -4,42 +4,42 @@
       "crucialFeatsA": [
         "Bench-presses a weight equal to Earth's mass for five days.",
         "Reads every published medical text in seconds.",
-        "Manages to tag Flash.",
+        "Manages to tag the Flash.",
         "Flies out of a black hole without taking damage.",
-        "The only person who endured Doomsday's death aura."
+        "The only person to survive Doomsday's death aura."
       ],
       "crucialFeatsB": [
-        "Survives Earth's destruction on Earth-4023.",
-        "Comes back to life moments after Namora twists his neck one hundred and eighty degrees.",
+        "Survived Earth's destruction on Earth-4023.",
+        "Returns to life moments after Namora snaps his neck one hundred and eighty degrees.",
         "Regenerates after catastrophic injuries.",
-        "Kills Vision with a single hit from his Atomic Vision.",
-        "Overwhelms two alternate Hyperions."
+        "His Atomic Vision melts adamantium and kills Vision on the spot.",
+        "Fought two other Hyperions simultaneously and dominated the confrontation."
       ],
       "dossierA": [
         {
-          "text": "Direct combat based on powerful physical strength, speed bursts, and heavy strikes.",
+          "text": "Direct combat built on strength and speed. He dictates the pace and holds it through the entire fight.",
           "title": "Style"
         },
         {
-          "text": "Monstrous advantage in strength, speed, and durability statistics over most opponents.",
+          "text": "Monstrous statistical advantage in strength, speed, and durability over most opponents.",
           "title": "Advantage"
         },
         {
-          "text": "Usually holds back and only escalates when the stakes or threat to people force it.",
+          "text": "Usually holds back and fights below his ceiling. When the situation demands it, he goes full power without hesitation.",
           "title": "Mentality"
         }
       ],
       "dossierB": [
         {
-          "text": "Brutal close-quarters aggression. Hyperion fights like a god of war, using Atomic Vision and unimaginable strength to physically destroy and humiliate opponents.",
+          "text": "Brutal close-quarters aggression. Hyperion massacres enemies with his Atomic Vision and impossible striking power.",
           "title": "Style"
         },
         {
-          "text": "Inhuman regeneration and survivability. Returns to the fight even after decapitation or being torn to shreds.",
+          "text": "Monstrous regeneration and survivability. Hyperion returns to the fight after injuries that would be fatal to others.",
           "title": "Advantage"
         },
         {
-          "text": "Megalomaniac psychopath with a god complex. Murdered the heroes of his world not out of necessity, but for pleasure and power. Knows no mercy or hesitation.",
+          "text": "Megalo-psychopath with a god complex. He does not hesitate or calculate — he will kill anyone without a second thought if he finds even one reason.",
           "title": "Mentality"
         }
       ],
@@ -59,45 +59,45 @@
       },
       "profileA": [
         {
-          "text": "Kryptonian strength, speed, flight, and enhanced sensory perception.",
+          "text": "Kryptonian strength, speed, flight, enhanced senses, and combat perception at an elite level.",
           "title": "Powers"
         },
         {
-          "text": "Heat vision and freeze breath.",
+          "text": "Heat Vision, Freeze Breath, and full range control combined with aerial mobility.",
           "title": "Tools"
         },
         {
-          "text": "Solar Flare as a high-cost finishing option.",
+          "text": "Solar Flare as a costly but potentially decisive finishing option.",
           "title": "Tools"
         },
         {
-          "text": "Kryptonite exposure, magic susceptibility, and red-sun power loss.",
+          "text": "Magic, kryptonite, and red sun.",
           "title": "Weaknesses"
         },
         {
-          "text": "Solar Flare leaves a temporary vulnerability window if it does not end the fight.",
+          "text": "Solar Flare leaves him defenseless if he fails to end the fight immediately.",
           "title": "Weaknesses"
         }
       ],
       "profileB": [
         {
-          "text": "Extreme strength, durability, flight, and rapid regeneration.",
+          "text": "Extreme strength, flight, massive durability, and near-instantaneous regeneration even after catastrophic injuries.",
           "title": "Powers"
         },
         {
-          "text": "Atomic Vision.",
+          "text": "Atomic Vision as a lethal weapon for piercing resistance and quickly closing out advantages.",
           "title": "Tools"
         },
         {
-          "text": "Experienced in killing heroes. Knows well their weaknesses and psychology.",
+          "text": "Experience killing superheroes and the instinct to exploit their hesitation and limitations.",
           "title": "Tools"
         },
         {
-          "text": "Argonite vulnerability and psychological instability in some portrayals.",
+          "text": "Argonite.",
           "title": "Weaknesses"
         },
         {
-          "text": "Extreme arrogance can open tactical gaps against disciplined opponents.",
+          "text": "Extreme arrogance and contempt for opponents cause him to frequently surrender the initiative.",
           "title": "Weaknesses"
         }
       ],
@@ -125,8 +125,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "92,84,73,61,52",
-          "b_curve": "44,50,59,69,77"
+          "a_curve": "91,92,94,96,98",
+          "b_curve": "86,84,80,75,70"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",
@@ -144,35 +144,31 @@
           "fight_title": "Superman vs King Hyperion"
         },
         "fight-simulation": {
-          "phase_1_animation": "kite-zone",
-          "phase_1_text": "Superman sets the pace early and keeps Hyperion at range.",
-          "phase_1_title": "Opening",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Hyperion immediately launches a brutal assault, ignoring all rules and constraints. Superman must rely on his speed to counter the momentum.",
+          "phase_1_title": "Brutal Opening",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "The turning point can come when Hyperion wounds a Superman who cannot regenerate.",
-          "phase_2_title": "Turning Point",
+          "phase_2_text": "The turning point arrives when Hyperion deals the first lasting damage to someone who lacks comparable regeneration.",
+          "phase_2_title": "Pressure",
           "phase_3_actor": "a",
-          "phase_3_animation": "teleport-burst",
-          "phase_3_text": "Superman either abandons his moral code, or gets killed by a Hyperion who keeps coming back.",
-          "phase_3_title": "Endgame"
+          "phase_3_animation": "solar-flare",
+          "phase_3_text": "Superman either closes the fight with Solar Flare or gets worn down by Hyperion.",
+          "phase_3_title": "Solar Flare"
         },
         "final-summary": {
           "line_1": "Superman sets the terms of the fight more cleanly from the opening seconds.",
-          "line_2": "Superman controls the fight better, but Hyperion's regeneration gives him more of an edge with every extra moment the fight lasts.",
-          "line_3": "If Superman does not go all out from the start, Hyperion will eventually overwhelm him.",
-          "winner": "Superman holds the edge. Hyperion can still win."
-        },
-        "stat-trap": {
-          "body": "As long as Superman keeps the fight technical and under his control, the edge stays with him. Once Hyperion keeps coming back after each damaging sequence, the whole economy of the matchup starts to turn.",
-          "question": "Can Superman truly close the fight before Hyperion's regeneration starts erasing the value of every good sequence?"
+          "line_2": "He is faster, more precise, and better at keeping the fight in a safe, controlled form.",
+          "line_3": "The problem is that every unclosed sequence gives Hyperion another chance, and the longer the fight lasts, the more his regeneration starts reversing the entire economy of the matchup.",
+          "winner": "Superman holds the edge. Hyperion still has a real path to victory."
         },
         "tactical-board": {
-          "lane": "Superman wins by closing it out. Hyperion wins when the closeout fails.",
+          "lane": "Superman must convert his control advantage into a real finish before Hyperion's regeneration strips the value from every subsequent exchange.",
           "subtitle": "Hero versus Tyrant"
         },
         "verdict-matrix": {
           "case_1": "Superman 7/10",
-          "case_2": "Superman 5.5/10",
-          "case_3": "Superman 6/10",
+          "case_2": "Superman 6/10",
+          "case_3": "Superman 5.5/10",
           "case_4": "King Hyperion 6/10"
         },
         "victory-archive": {
@@ -188,10 +184,10 @@
           "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.jpg"
         },
         "x-factor": {
-          "factor": "CLOSURE QUALITY VS REGENERATION ECONOMY",
-          "implication": "If the fight runs in tournament mode instead of to the death, Hyperion's advantage grows with every minute of the fight.",
-          "mechanics": "Superman has the statistical edge, but Hyperion does not stop under any opponent's pressure.",
-          "psychology": "Hyperion can fight recklessly because mere survival brings him closer to victory."
+          "factor": "Why don't better stats guarantee victory?",
+          "implication": "The less the fight rewards a clean knockout or technical incap, the more valuable the simple fact that Hyperion keeps coming back becomes.",
+          "mechanics": "Superman has the statistical edge and better board control, but Hyperion is one of those opponents where dominance alone is not enough if it does not lead to a permanent end.",
+          "psychology": "Hyperion can afford to fight more recklessly, because surviving each sequence brings him closer to the moment when his opponent starts to crack."
         }
       },
       "templateOrder": [
@@ -200,12 +196,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -244,29 +238,29 @@
       ],
       "dossierA": [
         {
-          "text": "Bezpośrednia walka oparta na potężnej sile fizycznej, zrywach szybkości i ciężkich uderzeniach.",
+          "text": "Bezpośrednia walka na sile i szybkości. Narzuca własne tempo i trzyma je przez całą walkę.",
           "title": "Styl"
         },
         {
-          "text": "Potworna przewaga statystyk siły, szybkości i wytrzymałości nad większością przeciwników.",
+          "text": "Potworna przewaga w sile, szybkości i wytrzymałości nad większością przeciwników.",
           "title": "Atut"
         },
         {
-          "text": "Zwykle się ogranicza i eskaluje dopiero, gdy stawka lub zagrożenie dla ludzi to wymusza.",
+          "text": "Zwykle się hamuje i walczy poniżej swoich możliwości. Gdy sytuacja tego wymaga, bez wahania wchodzi na pełną moc.",
           "title": "Mentalność"
         }
       ],
       "dossierB": [
         {
-          "text": "Brutalna agresja w zwarciu. Hyperion walczy jak bóg wojny, używa Atomic Vision i niewyobrażalnej siły, by fizycznie niszczyć i upokarzać przeciwników.",
+          "text": "Brutalna agresja w zwarciu. Hyperion masakruje wrogów swoim Atomic Vision i niemożliwą siłą ciosów.",
           "title": "Styl"
         },
         {
-          "text": "Nieludzka regeneracja i przeżywalność. Wraca do walki nawet po dekapitacji czy rozerwaniu na strzępy.",
+          "text": "Potworna regeneracja i przeżywalność. Hyperion wraca do walki po obrażeniach, które byłyby śmiertelne dla innych.",
           "title": "Atut"
         },
         {
-          "text": "Megalo-psychopata z kompleksem boga. Wymordował herosów swojego świata nie z konieczności, a dla przyjemności i władzy. Nie zna litości ani wahania.",
+          "text": "Megalo-psychopata z kompleksem boga. Nie cofa się i nie kalkuluje — bez zastanowienia zabije każdego, jeśli znalazł choć jeden powód.",
           "title": "Mentalność"
         }
       ],
@@ -286,45 +280,45 @@
       },
       "profileA": [
         {
-          "text": "Kryptoniańska siła, szybkość, lot i wzmocniona percepcja zmysłowa.",
+          "text": "Kryptoniańska siła, szybkość, lot, wzmocnione zmysły i percepcja bojowa na elitarnym poziomie.",
           "title": "Moce"
         },
         {
-          "text": "Heat vision i freeze breath.",
+          "text": "Heat Vision, Freeze Breath i pełna kontrola dystansu w połączeniu z mobilnością powietzną.",
           "title": "Narzędzia"
         },
         {
-          "text": "Solar Flare jako kosztowna opcja kończąca.",
+          "text": "Solar Flare jako kosztowna, ale potencjalnie rozstrzygająca opcja kończąca.",
           "title": "Narzędzia"
         },
         {
-          "text": "Ekspozycja na kryptonit, podatność na magię i utrata mocy pod czerwonym słońcem.",
+          "text": "Magia, kryptonit i czerwone słońce.",
           "title": "Słabości"
         },
         {
-          "text": "Solar Flare zostawia chwilowe okno podatności, jeśli nie kończy walki.",
+          "text": "Solar Flare zostawia go bezbronnym, jeśli nie zdoła zakończyć walki natychmiast.",
           "title": "Słabości"
         }
       ],
       "profileB": [
         {
-          "text": "Ekstremalna siła, wytrzymałość, lot i niemal natychmiastowa regeneracja.",
+          "text": "Ekstremalna siła, lot, ogromna wytrzymałość i niemal natychmiastowa regeneracja nawet po katastrofalnych obrażeniach.",
           "title": "Moce"
         },
         {
-          "text": "Atomic Vision.",
+          "text": "Atomic Vision jako śmiercionośna broń do przebijania odporności i szybkiego domykania przewagi.",
           "title": "Narzędzia"
         },
         {
-          "text": "Doświadczenie w zabijaniu bohaterów. Zna słabości i psychologię herosów.",
+          "text": "Doświadczenie w mordowaniu superbohaterów i instynkt wykorzystywania ich zawahań oraz ograniczeń.",
           "title": "Narzędzia"
         },
         {
-          "text": "Wrażliwość na Argonite (odpowiednik Kryptonitu w jego świecie).",
+          "text": "Argonit.",
           "title": "Słabości"
         },
         {
-          "text": "Skrajna arogancja. Często lekceważy przeciwników, pozwalając im zadać pierwszy cios, co może być błędem przy kimś klasy Supermana.",
+          "text": "Skrajna arogancja i lekceważenie przeciwników sprawiają, że często oddaje inicjatywę.",
           "title": "Słabości"
         }
       ],
@@ -352,8 +346,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "92,84,73,61,52",
-          "b_curve": "44,50,59,69,77"
+          "a_curve": "91,92,94,96,98",
+          "b_curve": "86,84,80,75,70"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_superman_bench_press_earth_equivalent.jpg",
@@ -371,39 +365,31 @@
           "fight_title": "Superman vs King Hyperion"
         },
         "fight-simulation": {
-          "phase_1_animation": "kite-zone",
-          "phase_1_text": "Superman wcześnie narzuca tempo i trzyma Hyperiona na dystansie.",
-          "phase_1_title": "Otwarcie",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Hyperion szarżuje, ignorując obronę. Superman kontruje potężną szybkością.",
+          "phase_1_title": "Brutalny Start",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "Punkt zwrotny przychodzi wtedy, gdy Hyperion zrani Supermana, który nie może się regenerować.",
-          "phase_2_title": "Punkt Zwrotny",
+          "phase_2_text": "Hyperion zadaje pierwsze szkody. Superman traci inicjatywę w zwarciu.",
+          "phase_2_title": "Zagrożenie",
           "phase_3_actor": "a",
-          "phase_3_animation": "teleport-burst",
-          "phase_3_text": "Superman albo porzuca własny kodeks, albo ginie z rąk Hyperiona, który ciągle wraca.",
-          "phase_3_title": "Końcówka"
+          "phase_3_animation": "solar-flare",
+          "phase_3_text": "Superman wyzwala Solar Flare, by definitywnie zakończyć starcie.",
+          "phase_3_title": "Solar Flare"
         },
         "final-summary": {
           "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
-          "line_2": "Superman lepiej kontroluje walkę, ale regeneracja Hyperiona daje mu coraz większą przewagę z każdą dodatkową chwilą starcia.",
-          "line_3": "Jeśli Superman nie wejdzie na pełną moc od samego początku, Hyperion ostatecznie go przełamie.",
-          "winner": "Superman ma przewagę. Hyperion wciąż może wygrać."
-        },
-        "interpretation": {
-          "body": "Superman jest lepszy w niemal każdym czystym elemencie tej walki: szybszy, precyzyjniejszy i lepszy w narzucaniu tempa. King Hyperion pozostaje groźny, bo jego regeneracja i bezwzględność zamieniają każdą niezamkniętą sekwencję w kolejną, coraz gorszą wojnę na wyniszczenie. Superman prowadzi tylko wtedy, gdy utrzyma tempo i nie pozwoli walce wejść w długie wyniszczenie.",
-          "winner": "Przewaga należy do Supermana. Czas należy do Hyperiona"
-        },
-        "stat-trap": {
-          "body": "Dopóki Superman utrzymuje walkę techniczną i pod własną kontrolą, przewaga jest po jego stronie. Gdy Hyperion wciąż wraca po kolejnych obrażeniach, cała ekonomia starcia zaczyna się odwracać.",
-          "question": "Czy Superman zdoła naprawdę domknąć walkę, zanim regeneracja Hyperiona zacznie kasować wartość każdej dobrej sekwencji?"
+          "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej formie.",
+          "line_3": "Problem polega na tym, że niezamknięta sekwencja daje Hyperionowi szansę, a czas faworyzuje jego regenerację.",
+          "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
         },
         "tactical-board": {
-          "lane": "Superman musi znokautować Hyperiona szybko. W długiej walce na śmierć szaleństwo Hyperiona daje mu przewagę.",
+          "lane": "Superman musi zamienić przewagę kontroli w prawdziwe zakończenie, zanim regeneracja Hyperiona odbierze wartość każdej wymianie.",
           "subtitle": "Bohater kontra Tyran"
         },
         "verdict-matrix": {
           "case_1": "Superman 7/10",
-          "case_2": "Superman 5.5/10",
-          "case_3": "Superman 6/10",
+          "case_2": "Superman 6/10",
+          "case_3": "Superman 5.5/10",
           "case_4": "King Hyperion 6/10"
         },
         "victory-archive": {
@@ -419,10 +405,10 @@
           "right_image_5": "20_7_2_hyperion_kills_hulk_and_others.jpg"
         },
         "x-factor": {
-          "factor": "JAKOŚĆ DOMKNIĘCIA VS EKONOMIA REGENERACJI",
-          "implication": "Jeśli walka przebiega w trybie turniejowym zamiast na śmierć, przewaga Hyperiona rośnie z każdą minutą starcia.",
-          "mechanics": "Superman ma przewagę statystyczną, ale Hyperion nie zatrzymuje się pod presją żadnego przeciwnika.",
-          "psychology": "Hyperion może walczyć lekkomyślnie, bo samo przetrwanie przybliża go do zwycięstwa."
+          "factor": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa?",
+          "implication": "Im mniej walka premiuje czysty nokaut, tym bardziej rośnie wartość faktu, że Hyperion ciągle wraca.",
+          "mechanics": "Superman ma przewagę statystyczną, ale Hyperion to wróg, którego sama dominacja nie pokona bez trwałego końca.",
+          "psychology": "Hyperion walczy lekkomyślnie, bo każde przetrwanie sekwencji przybliża go do zmęczenia przeciwnika."
         }
       },
       "templateOrder": [
@@ -431,12 +417,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -525,6 +509,10 @@
           "title": "Tools"
         },
         {
+          "text": "Ability to manifest shadow armies, forcing the opponent to constantly expend energy on area-of-effect attacks.",
+          "title": "Tools"
+        },
+        {
           "text": "Strong anti-abyss or high-intensity light counters can disrupt his core advantages.",
           "title": "Weaknesses"
         },
@@ -540,6 +528,10 @@
         },
         {
           "text": "Destroyer Armor and Odinsword for top-tier cosmic warfare.",
+          "title": "Tools"
+        },
+        {
+          "text": "Reality manipulation at a galactic scale, allowing him to reset unfavorable battlefield conditions.",
           "title": "Tools"
         },
         {
@@ -575,8 +567,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "56,61,67,74,81",
-          "b_curve": "84,79,72,63,55"
+          "a_curve": "91,85,75,68,60",
+          "b_curve": "90,92,94,96,98"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_knull_decapitates_celestial_allblack.jpg",
@@ -594,45 +586,31 @@
           "fight_title": "Knull vs Odin"
         },
         "fight-simulation": {
-          "phase_1_animation": "rush-ko",
-          "phase_1_text": "Knull takes initiative immediately and tests whether standard Odinforce pressure actually checks the abyss.",
-          "phase_1_title": "First Contact",
-          "phase_2_animation": "kite-zone",
-          "phase_2_text": "Odin tries to turn a bad field back into a managed cosmic lane.",
-          "phase_2_title": "Control Check",
-          "phase_3_actor": "a",
-          "phase_3_animation": "regen-attrition",
-          "phase_3_text": "Either Odin finally creates lasting damage or Knull turns another good sequence into another round.",
-          "phase_3_title": "Loop Or Purge"
+          "phase_1_animation": "cosmic-salvo",
+          "phase_1_text": "Odinforce hits the shadow structure, shattering Knull's first attempts at dominance.",
+          "phase_1_title": "Divine Salvo",
+          "phase_2_animation": "void-clash",
+          "phase_2_text": "Odinsword collides with All-Black in the epicenter of nothingness, where light fights to survive.",
+          "phase_2_title": "Clash in the Abyss",
+          "phase_3_actor": "b",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Odin releases the ultimate Cleansing wave, burning Knull's essence from the fabric of the universe.",
+          "phase_3_title": "Celestial Cleansing"
         },
         "final-summary": {
-          "line_1": "On paper this is near-parity, with Odin holding a microscopic average edge at 92.56 to 92.22.",
-          "line_2": "In practice Knull owns the cleaner attrition and finish loop once contact and regeneration start repeating.",
-          "line_3": "Odin's real branch exists only if this full war configuration produces the right kind of anti-abyss answer.",
-          "winner": "Slight edge Knull, conditional matchup"
-        },
-        "interpretation": {
-          "body": "On paper this is almost a draw, with Odin owning a microscopic edge in control categories. In practice Knull still leads because his regeneration and blade loop are easier to convert into a finish. The fight only flips cleanly if Odin's full-loadout output is the right kind of anti-abyss answer.",
-          "winner": "Paper parity does not solve a matchup where the wrong damage can be perfect and still not stick"
-        },
-        "parameter-comparison": {
-          "draw_favorite": "STATISTICAL DRAW",
-          "left_header": "KNULL ADVANTAGES",
-          "right_header": "ODIN ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Odin can be equal on averages and still lose if the damage is impressive but not permanent.",
-          "question": "Can Odin's control actually convert into the kind of finish Knull cannot regenerate through?"
+          "line_1": "In this clash, there is no room for compromise or tournament rules - this is a fight for ultimate existence.",
+          "line_2": "Odinforce Cleansing is the only factor that lets Odin permanently break Knull's regeneration loop.",
+          "line_3": "Without this specific counter, Knull simply outlasts every attack and wins through attrition.",
+          "winner": "Odin (with Cleansing) or Knull (Standard)."
         },
         "tactical-board": {
-          "lane": "Odin must turn chaos into structure before Knull turns structure into attrition.",
-          "subtitle": "God Butcher versus All-Father"
+          "lane": "Odin must turn chaos into order before Knull turns order into attrition.",
+          "subtitle": "God Butcher vs All-Father"
         },
         "verdict-matrix": {
-          "case_1": "Odin 6.5/10",
-          "case_2": "Knull 7/10",
-          "case_3": "Odin 6.5/10",
-          "case_4": "Knull 7/10"
+          "case_1": "Odin 7.5/10",
+          "case_2": "Knull 8/10",
+          "subtitle": "Verdict depends on the use of Cleansing"
         },
         "victory-archive": {
           "left_image_1": "Knull_Celestial.jpg",
@@ -647,10 +625,10 @@
           "right_image_5": "Odin_Drax.jpg"
         },
         "x-factor": {
-          "factor": "ANTI-ABYSS COUNTER VS DIVINE DAMAGE",
-          "implication": "This is why the same stat table can point to parity while the practical baseline still leans Knull.",
-          "mechanics": "Knull wins if Odinforce is just another huge energy source. Odin flips the fight if it behaves like the right kind of anti-abyss answer.",
-          "psychology": "Knull wants repetition. Odin wants one controlled exchange that finally stays solved."
+          "factor": "COUNTER TO THE ABYSS VS DIVINE DAMAGE",
+          "implication": "Victory depends on whether Odin treats Knull as matter or as a metaphysical infection.",
+          "mechanics": "Knull wins if Odinforce is only physical energy. Odin wins if it works like an antivirus against the Abyss.",
+          "psychology": "Both fight for everything. Knull wants repeatable darkness, while Odin wants one final cleansing."
         }
       },
       "templateOrder": [
@@ -659,12 +637,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -734,7 +710,7 @@
         "version": "Ziemia-616"
       },
       "fighterB": {
-        "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, gdy galaktyki słuchają!",
+        "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, a galaktyki słuchają!",
         "version": "Ziemia-616"
       },
       "folder": "2 Knull vs Odin",
@@ -753,6 +729,10 @@
           "title": "Narzędzia"
         },
         {
+          "text": "Możliwość tworzenia armii z cieni, co zmusza przeciwnika do ciągłego wydatkowania energii na obszarowe ataki.",
+          "title": "Narzędzia"
+        },
+        {
           "text": "Silne kontry na Otchłań lub bardzo intensywne światło mogą osłabiać jego główne atuty.",
           "title": "Słabości"
         },
@@ -768,6 +748,10 @@
         },
         {
           "text": "Pancerz Destroyera i Miecz Odyna do walki na najwyższym kosmicznym poziomie.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Możliwość manipulacji rzeczywistością na poziomie galaktycznym, co pozwala mu na resetowanie niekorzystnych warunków pola walki.",
           "title": "Narzędzia"
         },
         {
@@ -803,8 +787,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "56,61,67,74,81",
-          "b_curve": "84,79,72,63,55"
+          "a_curve": "91,85,75,68,60",
+          "b_curve": "90,92,94,96,98"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_knull_decapitates_celestial_allblack.jpg",
@@ -822,45 +806,31 @@
           "fight_title": "Knull vs Odin"
         },
         "fight-simulation": {
-          "phase_1_animation": "rush-ko",
-          "phase_1_text": "Knull od razu przejmuje inicjatywę i sprawdza, czy standardowa presja Odinforce faktycznie potrafi zatrzymać Otchłań.",
-          "phase_1_title": "Pierwszy Kontakt",
-          "phase_2_animation": "kite-zone",
-          "phase_2_text": "Odin próbuje zamienić niekorzystne pole walki z powrotem w uporządkowany kosmiczny układ starcia.",
-          "phase_2_title": "Test Kontroli",
-          "phase_3_actor": "a",
-          "phase_3_animation": "regen-attrition",
-          "phase_3_text": "Albo Odin wreszcie zadaje trwałe obrażenia, albo Knull zamienia kolejną dobrą sekwencję w następną rundę.",
-          "phase_3_title": "Pętla albo Oczyszczenie"
+          "phase_1_animation": "cosmic-salvo",
+          "phase_1_text": "Odinforce uderza w strukturę cienia, rozbijając pierwsze próby dominacji Knulla.",
+          "phase_1_title": "Boska Salwa",
+          "phase_2_animation": "void-clash",
+          "phase_2_text": "Odinsword ściera się z All-Black w epicentrum nicości, gdzie światło walczy o przetrwanie.",
+          "phase_2_title": "Starcie w Otchłani",
+          "phase_3_actor": "b",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Odyn uwalnia ostateczną falę Oczyszczenia, która wypala esencję Knulla z tkaniny wszechświata.",
+          "phase_3_title": "Niebiańskie Oczyszczenie"
         },
         "final-summary": {
-          "line_1": "Na papierze to niemal parytet, z mikroskopijną przewagą średniej po stronie Odina: 92.56 do 92.22.",
-          "line_2": "W praktyce Knull ma czystszą ścieżkę wyniszczenia i domykania walki, gdy kontakt i regeneracja zaczynają się powtarzać.",
-          "line_3": "Prawdziwa droga Odina istnieje tylko wtedy, gdy ta pełna konfiguracja daje mu właściwą kontrę na Otchłań.",
-          "winner": "Lekka przewaga Knulla, ale pojedynek pozostaje warunkowy."
-        },
-        "interpretation": {
-          "body": "Odin nie wnosi do tej walki tylko większej kontroli. Wnosi też Odinforce, Destroyera i Ragnarok — narzędzia stworzone właśnie na przeciwników z najwyższej kosmicznej półki. Knull nadal jest koszmarem do domknięcia, bo All-Black, Otchłań i regeneracja potrafią zamienić nawet bardzo dobre sekwencje Odina w kolejną rundę tej samej walki. O wyniku nie decyduje więc to, kto zada więcej obrażeń, ale czy moc Odina naprawdę zdoła zatrzymać Knulla na stałe, zanim pojedynek zamieni się w wyniszczenie.",
-          "winner": "Odin nie musi tylko przebić Knulla. Musi trafić w taki sposób, po którym Knull już nie wróci"
-        },
-        "parameter-comparison": {
-          "draw_favorite": "STATYSTYCZNY REMIS",
-          "left_header": "PRZEWAGI KNULLA",
-          "right_header": "PRZEWAGI ODINA"
-        },
-        "stat-trap": {
-          "body": "Odin może być równy albo minimalnie lepszy w średnich i nadal przegrać, jeśli jego obrażenia są imponujące, ale nie zostają na stałe.",
-          "question": "Czy kontrola Odina naprawdę potrafi przełożyć się na takie zakończenie, którego Knull nie zregeneruje?"
+          "line_1": "W tym starciu nie ma miejsca na kompromisy czy turniejowe zasady – to walka o ostateczne istnienie.",
+          "line_2": "Odinforce: Oczyszczenie to jedyny czynnik, który pozwala Odynowi na trwałe pokonanie pętli regeneracji Knulla.",
+          "line_3": "Bez tej specyficznej kontry, Knull po prostu przetrzymuje każdy atak, wygrywając walkę przez atrycję.",
+          "winner": "Odin (z Oczyszczeniem) lub Knull (tryb standardowy)."
         },
         "tactical-board": {
           "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.",
           "subtitle": "Rzeźnik Bogów kontra Wszechojciec"
         },
         "verdict-matrix": {
-          "case_1": "Odin 6.5/10",
-          "case_2": "Knull 7/10",
-          "case_3": "Odin 6.5/10",
-          "case_4": "Knull 7/10"
+          "case_1": "Odin 7.5/10",
+          "case_2": "Knull 8/10",
+          "subtitle": "Werdykt zależny od użycia Oczyszczenia"
         },
         "victory-archive": {
           "left_image_1": "Knull_Celestial.jpg",
@@ -876,9 +846,9 @@
         },
         "x-factor": {
           "factor": "KONTRA NA OTCHŁAŃ VS BOSKIE OBRAŻENIA",
-          "implication": "Dlatego ta sama tabela statystyk może wskazywać parytet, a praktyczny układ i tak lekko przechyla się na stronę Knulla.",
-          "mechanics": "Knull wygrywa, jeśli Odinforce jest tylko kolejnym ogromnym źródłem energii. Odin odwraca walkę, jeśli naprawdę działa jak właściwa kontra na Otchłań.",
-          "psychology": "Knull chce, by walka się powtarzała. Odin chce jednej kontrolowanej wymiany, która wreszcie zostanie rozstrzygnięta na stałe."
+          "implication": "Zwycięstwo zależy od tego, czy Odin potraktuje Knulla jako materię, czy jako metafizyczną infekcję.",
+          "mechanics": "Knull wygrywa, jeśli Odinforce jest tylko energią fizyczną. Odin wygrywa, jeśli działa jak 'antywirus' na Otchłań.",
+          "psychology": "Obaj walczą o wszystko. Knull chce powtarzalności mroku, Odyn chce jednego, ostatecznego oczyszczenia."
         }
       },
       "templateOrder": [
@@ -887,12 +857,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -917,7 +885,7 @@
     {
       "crucialFeatsA": [
         "Survives the Source Wall and returns with the Life Equation.",
-        "Ressurects Hal Jordan.",
+        "Erases the Source Titans from existence using the Life Equation.",
         "Is close to destabilizing reality.",
         "Unwillingly creates life by his presence.",
         "Changes The Source, code on which the reality runs."
@@ -925,9 +893,9 @@
       "crucialFeatsB": [
         "Experiences all time lines at once.",
         "Maintains present across space-time states.",
-        "Survives complete desintegration.",
+        "Survives complete disintegration.",
         "Vaporizes Metron and Owlman.",
-        "Destroys DC Multiverse, creating New 52."
+        "Restructures DC Multiverse (New 52), then fully restores it in a single act of will (Doomsday Clock)."
       ],
       "dossierA": [
         {
@@ -999,11 +967,11 @@
           "title": "Tools"
         },
         {
-          "text": "In some portrayals, passivity or detachment delays decisive action.",
+          "text": "Tachyon particles can disrupt his perception of time, reducing him to a limited 'here and now' view.",
           "title": "Weaknesses"
         },
         {
-          "text": "Traditional close-quarters combat expression is narrower than his raw reality-control profile.",
+          "text": "Metaphysical existential detachment and lack of emotional engagement can lead to delays in decisive action.",
           "title": "Weaknesses"
         }
       ],
@@ -1031,8 +999,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "62,66,71,78,86",
-          "b_curve": "90,84,72,59,47"
+          "a_curve": "88,90,92,95,98",
+          "b_curve": "83,82,80,78,75"
         },
         "crucial-feats": {
           "left_image_1": "Kyle_source.jpg",
@@ -1047,47 +1015,34 @@
           "right_image_5": "Manhattan_End.jpg"
         },
         "fight-card": {
-          "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan"
+          "fight_title": "Rayner vs Manhattan"
         },
         "fight-simulation": {
-          "phase_1_animation": "teleport-burst",
-          "phase_1_text": "Kyle tries to seize initiative through speed, constructs, and layered White Light pressure.",
-          "phase_1_title": "Opening Setup",
-          "phase_2_animation": "feint-counter",
-          "phase_2_text": "Manhattan attacks the mechanism of the action instead of trading into the finished attack.",
-          "phase_2_title": "Setup Denial",
+          "phase_1_animation": "solar-flare",
+          "phase_1_text": "Kyle uses the Life Equation to create a zone resistant to atomic manipulation.",
+          "phase_1_title": "Existence Anchor",
+          "phase_2_animation": "void-clash",
+          "phase_2_text": "White light clashes with Manhattan's blue energy at the epicenter of reality.",
+          "phase_2_title": "Conceptual Clash",
           "phase_3_actor": "a",
-          "phase_3_animation": "teleport-burst",
-          "phase_3_text": "Either Kyle reaches full Life Equation expression or Manhattan keeps the fight permanently unfinished.",
-          "phase_3_title": "Rewrite Window"
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Kyle unleashes the full power of the Life Equation, overwriting Manhattan's presence in this timeline.",
+          "phase_3_title": "Life Dominance"
         },
         "final-summary": {
-          "line_1": "Kyle wins the paper comparison, 88.11 to 83.33.",
-          "line_2": "Manhattan leads the default fight because he owns the better first move and attacks the setup itself.",
-          "line_3": "Kyle flips the matchup only if Life Equation access is full and Manhattan does not proactively collapse the setup.",
-          "winner": "Dr. Manhattan leads, but the fight is conditional"
-        },
-        "interpretation": {
-          "body": "Kyle owns the broader profile, better fighting rhythm, and the more complete active toolkit. Manhattan still leads the default fight because he can attack the setup itself before Kyle's best route fully exists. Paper advantage does not survive if the fight never reaches symmetrical exchange terms.",
-          "winner": "Kyle wins the categories. Manhattan wins the part where the fight becomes real"
-        },
-        "parameter-comparison": {
-          "left_header": "KYLE ADVANTAGES",
-          "right_header": "MANHATTAN ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Kyle can be better on paper and still lose the default fight if Manhattan erases the action before rewrite comes online.",
-          "question": "Can Kyle force a real rewrite window before Manhattan attacks the setup itself?"
+          "line_1": "Kyle Rayner possesses higher theoretical potential through the Life Equation, but Manhattan controls time and cause.",
+          "line_2": "Most scenarios favor Manhattan as he can strike at the moment of attack preparation before it even exists.",
+          "line_3": "This is a battle of whether creative life-will can break the mathematical certainty of an inevitable end.",
+          "winner": "Dr. Manhattan leads in most variants."
         },
         "tactical-board": {
-          "lane": "Kyle needs a real action window. Manhattan wins by collapsing the setup before it becomes a fight.",
+          "lane": "Kyle must force an action window before Manhattan erases the very cause of his existence.",
           "subtitle": "Willpower versus Causality"
         },
         "verdict-matrix": {
-          "case_1": "Dr",
+          "case_1": "White Lantern Kyle Rayner 6/10",
           "case_2": "Dr",
-          "case_3": "Kyle 7/10",
-          "case_4": "Dr"
+          "subtitle": "Verdict based on Life Equation control"
         },
         "victory-archive": {
           "left_image_1": "Relic.jpg",
@@ -1103,8 +1058,8 @@
         },
         "x-factor": {
           "factor": "SETUP WINDOW VS PREEMPTION",
-          "implication": "If Kyle gets the full setup, the matchup flips. If Manhattan acts first, the better toolkit stays theoretical.",
-          "mechanics": "Kyle only needs one real Life Equation window, but Manhattan's whole game is stopping that window before it exists.",
+          "implication": "This is why Kyle's better stats do not guarantee a win if Manhattan does not allow him to use them.",
+          "mechanics": "Kyle only needs one Life Equation window, but Manhattan sees that window before Kyle even thinks of it.",
           "psychology": "Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished."
         }
       },
@@ -1114,12 +1069,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -1144,52 +1097,52 @@
     {
       "crucialFeatsA": [
         "Przetrwał Source Wall i wrócił z Life Equation.",
-        "Wskrzesił Hal'a Jordan'a.",
+        "Wymazuje Source Titanów z istnienia używając Life Equation.",
         "Niemal destabilizuje rzeczywistość.",
-        "Nieświadomie tworzy życie samą obecnością.",
-        "Zmienia The Source, kod na którym operuje rzeczywistość."
+        "Przeszedł przez Source Wall – miejsce, gdzie większość bytów ginie lub zostaje uwięziona.",
+        "Pokonał Relica i armię Third Army."
       ],
       "crucialFeatsB": [
-        "Widzi wszystkie linie czasowe jednocześnie.",
-        "Utrzymuje obecność w wielu stanach czasoprzestrzeni.",
-        "Przeżywa kompletną dezintegrację.",
-        "Odparowuje Metrona i Owlmana.",
-        "Niszczy multiwersum DC, tworząc New 52."
+        "Rozkłada i składa materię na poziomie subatomowym siłą woli.",
+        "Postrzega czas nie-linearnie, widząc przeszłość, teraźniejszość i przyszłość jednocześnie.",
+        "Stworzył nowe linie czasu i modyfikował historię DC Universe.",
+        "Przetrwał całkowite rozproszenie swoich atomów.",
+        "Zabił Metrona i Owlmana jednym atakiem energii."
       ],
       "dossierA": [
         {
-          "text": "Kreatywna walka konstruktami białego światła. Wykorzystuje potęgę Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne.",
+          "text": "Kreatywna manipulacja rzeczywistością. Używa konstrukcji z Białego Światła, które są stabilniejsze i potężniejsze niż jakiekolwiek inne w spektrum emocjonalnym.",
           "title": "Styl"
         },
         {
-          "text": "Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i adaptować się do każdego zagrożenia.",
+          "text": "Life Equation – dostęp do kodu źródłowego rzeczywistości. Pozwala mu nadpisywać zasady fizyki i istnienia, teoretycznie czyniąc go odpornym na manipulację materią.",
           "title": "Atut"
         },
         {
-          "text": "Wytrwały i pomysłowy. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w miarę potrzeby.",
+          "text": "Empatyczny artysta o niezłomnej woli. Walczy z sercem, co czyni jego moc nieprzewidywalną i potężną, ale także podatną na emocjonalne zachwiania.",
           "title": "Mentalność"
         }
       ],
       "dossierB": [
         {
-          "text": "Totalna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób – po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem.",
+          "text": "Natychmiastowe rozproszenie materii i manipulacja czasem. Manhattan nie walczy w tradycyjnym sensie; on po prostu usuwa przeszkody ze swojej ścieżki.",
           "title": "Styl"
         },
         {
-          "text": "Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.",
+          "text": "Absolutna kontrola nad materią i czasem. Manhattan nie używa mocy – on jest prawem fizyki. Postrzega walkę jako zbiór już dokonanych faktów.",
           "title": "Atut"
         },
         {
-          "text": "Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.",
+          "text": "Apatyczny obserwator. Pozbawiony ludzkich emocji, działa z matematyczną precyzją, eliminując zagrożenia, zanim te w ogóle zdążą o nich pomyśleć.",
           "title": "Mentalność"
         }
       ],
       "fighterA": {
-        "quote": "W najjaśniejszy dzień, nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa – nadchodzi nowy świt, niech stanie się światło!",
+        "quote": "Białe światło... to nie tylko kolor. To wszystko. To życie.",
         "version": "New 52"
       },
       "fighterB": {
-        "quote": "Tak. Już rozumiem. Wszystko się kończy.",
+        "quote": "Wszyscy jesteśmy tylko marionetkami, Laurie. Ja po prostu widzę sznurki.",
         "version": "Watchmen / Rebirth / Doomsday Clock"
       },
       "folder": "3 White Lantern Kyle Rayner vs. Dr. Manhattan",
@@ -1200,37 +1153,49 @@
       },
       "profileA": [
         {
-          "text": "Dostęp do pełnego spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja.",
+          "text": "Władza nad Life Equation, dostęp do całego spektrum emocjonalnego, kreacja konstrukcji o nieskończonej złożoności.",
           "title": "Moce"
         },
         {
-          "text": "Dostęp do Life Equation i szeroka użyteczność pierścienia w ataku, obronie i odtwarzaniu.",
+          "text": "Pierścień Białej Latarni, który automatycznie adaptuje się do zagrożeń i pozwala na manipulację przyczynowością.",
           "title": "Narzędzia"
         },
         {
-          "text": "Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.",
+          "text": "Możliwość wpływania na samą esencję życia i materii w skali uniwersalnej.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Potworny ciężar psychiczny Life Equation – kod rzeczywistości powoli 'zjada' umysł nosiciela.",
           "title": "Słabości"
         },
         {
-          "text": "Najmocniejsze rezultaty wymagają czasu przygotowania i realnego okna wykonania.",
+          "text": "Podświadomy lęk może zamanifestować się jako realna anomalia (np. Oblivion), atakująca samego Kyle'a.",
+          "title": "Słabości"
+        },
+        {
+          "text": "Brak idealnego spokoju ducha sprawia, że moc staje się chaotyczna i nieprzewidywalna.",
           "title": "Słabości"
         }
       ],
       "profileB": [
         {
-          "text": "Manipulacja atomowa, dezintegracja/rekonstrukcja materii, samoodbudowa i percepcja na poziomie linii czasu.",
+          "text": "Subatomowa kontrola materii, omniprezencja czasowa, nieśmiertelność i gigantyczna projekcja energii.",
           "title": "Moce"
         },
         {
-          "text": "Interwencja czasoprzestrzenna i ingerencja przyczynowa zamiast klasycznej walki.",
+          "text": "Manipulacja kwantowa, która pozwala mu na ignorowanie niemal każdej formy ataku fizycznego i energetycznego.",
           "title": "Narzędzia"
         },
         {
-          "text": "W części ujęć pasywność lub emocjonalny dystans opóźniają decyzję o domknięciu starcia.",
+          "text": "Zdolność do przewidywania ruchów przeciwnika poprzez wgląd w jego przyszłość.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Cząsteczki tachionów mogą zakłócać jego percepcję czasu, ograniczając go do 'tu i teraz'.",
           "title": "Słabości"
         },
         {
-          "text": "Klasyczna walka wręcz jest u niego węższa niż sugeruje sam profil kontroli rzeczywistości.",
+          "text": "Metafizyczny egzystencjalizm i brak emocjonalnego zaangażowania mogą prowadzić do zwłoki w działaniu.",
           "title": "Słabości"
         }
       ],
@@ -1258,8 +1223,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "62,66,71,78,86",
-          "b_curve": "90,84,72,59,47"
+          "a_curve": "88,90,92,95,98",
+          "b_curve": "83,82,80,78,75"
         },
         "crucial-feats": {
           "left_image_1": "Kyle_source.jpg",
@@ -1274,47 +1239,34 @@
           "right_image_5": "Manhattan_End.jpg"
         },
         "fight-card": {
-          "fight_title": "White Lantern Kyle Rayner vs. Dr. Manhattan"
+          "fight_title": "Rayner vs Manhattan"
         },
         "fight-simulation": {
-          "phase_1_animation": "teleport-burst",
-          "phase_1_text": "Kyle próbuje przejąć inicjatywę przez szybkość, konstrukty i warstwową presję White Light.",
-          "phase_1_title": "Otwarcie Przygotowania",
-          "phase_2_animation": "feint-counter",
-          "phase_2_text": "Manhattan atakuje mechanizm akcji zamiast handlować się z gotowym atakiem.",
-          "phase_2_title": "Odmowa Przygotowania",
+          "phase_1_animation": "solar-flare",
+          "phase_1_text": "Kyle Rayner emituje falę Białego Światła, która stabilizuje jego cząsteczki przeciwko manipulacji kwantowej.",
+          "phase_1_title": "Kotwica Istnienia",
+          "phase_2_animation": "clash-lock",
+          "phase_2_text": "Dr. Manhattan próbuje zmienić historię Kyle'a, ale Life Equation nadpisuje każdą próbę wymazania.",
+          "phase_2_title": "Starcie Koncepcji",
           "phase_3_actor": "a",
-          "phase_3_animation": "teleport-burst",
-          "phase_3_text": "Albo Kyle osiąga pełną ekspresję Life Equation, albo Manhattan utrzymuje walkę w stanie permanentnego niedokończenia.",
-          "phase_3_title": "Okno Przepisywania"
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Kyle narzuca Równanie Życia na Dr. Manhattana, próbując przywrócić mu ludzką esencję.",
+          "phase_3_title": "Nowy Kod"
         },
         "final-summary": {
-          "line_1": "Kyle wygrywa porównanie na papierze, 88.11 do 83.33.",
-          "line_2": "Manhattan prowadzi w domyślnej wersji walki, bo ma lepszy pierwszy ruch i atakuje samo przygotowanie.",
-          "line_3": "Kyle odwraca pojedynek tylko wtedy, gdy dostęp do Life Equation jest pełny, a Manhattan nie rozbije przygotowania proaktywnie.",
-          "winner": "Dr. Manhattan prowadzi, ale walka jest warunkowa"
-        },
-        "interpretation": {
-          "body": "Kyle nie przegrywa tej walki niższym pułapem mocy. Jego White Light i Life Equation dają mu realny argument nawet przeciw komuś takiemu jak Manhattan. Problem polega na tym, że Manhattan częściej działa pierwszy i prościej, bo nie musi rozwijać pełnej sekwencji, by uderzyć w sam moment powstania zagrożenia. Dlatego ten pojedynek rozstrzyga nie tyle to, kto może więcej w absolutnym sensie, ale kto szybciej zamienia swoje maksimum w realny stan walki.",
-          "winner": "Kyle ma moc, by zagrozić Manhattanowi. Manhattan częściej nie daje tej mocy w pełni wejść do gry"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI KYLE'A",
-          "right_header": "PRZEWAGI MANHATTANA"
-        },
-        "stat-trap": {
-          "body": "Kyle może być lepszy na papierze i nadal przegrać domyślną wersję walki, jeśli Manhattan wymaże akcję, zanim przepisywanie wejdzie online.",
-          "question": "Czy Kyle potrafi wymusić prawdziwe okno przepisywania, zanim Manhattan zaatakuje samo przygotowanie?"
+          "line_1": "To nie jest zwykła walka – to starcie dwóch różnych definicji boskości w DC Multiverse.",
+          "line_2": "Kyle Rayner walczy tu na dwóch frontach: musi powstrzymać Dr. Manhattana i jednocześnie nie dać się skonsumować własnej mocy.",
+          "line_3": "Werdykt zależy wyłącznie od tego, czy ludzki umysł Kyle'a wytrzyma ciężar boskiego kodu rzeczywistości.",
+          "winner": "Kyle (Kontrola) lub Manhattan (Niestabilność)."
         },
         "tactical-board": {
-          "lane": "Kyle potrzebuje prawdziwego okna akcji. Manhattan wygrywa, jeśli zniszczy przygotowanie, zanim to w ogóle stanie się walką.",
+          "lane": "Kyle musi wymusić okno akcji, zanim Manhattan wymaże samą przyczynę jego istnienia.",
           "subtitle": "Wola kontra Przyczynowość"
         },
         "verdict-matrix": {
-          "case_1": "Dr",
+          "case_1": "White Lantern Kyle Rayner 6/10",
           "case_2": "Dr",
-          "case_3": "Kyle 7/10",
-          "case_4": "Dr"
+          "subtitle": "Werdykt zależny od kontroli nad Life Equation"
         },
         "victory-archive": {
           "left_image_1": "Relic.jpg",
@@ -1329,10 +1281,10 @@
           "right_image_5": "Manhattan_Pandora.jpg"
         },
         "x-factor": {
-          "factor": "OKNO PRZYGOTOWANIA VS DZIAŁANIE WYPRZEDZAJĄCE",
-          "implication": "Jeśli Kyle dostanie pełne przygotowanie, pojedynek się odwraca. Jeśli Manhattan działa pierwszy, lepszy arsenał zostaje tylko teorią.",
-          "mechanics": "Kyle potrzebuje tylko jednego prawdziwego okna Life Equation, ale cała gra Manhattana polega na zatrzymaniu tego okna, zanim zaistnieje.",
-          "psychology": "Kyle chce mnożyć opcje. Manhattan chce, by walka pozostała pojedyncza i niedokończona."
+          "factor": "KONTROLA PRZYCZYNOWOŚCI VS OMNIPREZENCJA",
+          "implication": "Kyle musi narzucić nową teraźniejszość, Manhattan musi ją po prostu zaobserwować.",
+          "mechanics": "Life Equation pozwala Kyle'owi nadpisywać fakty, których Manhattan jest częścią.",
+          "psychology": "Kyle walczy sercem, co czyni go nieprzewidywalnym dla istoty czystej logiki."
         }
       },
       "templateOrder": [
@@ -1341,12 +1293,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -1356,9 +1306,9 @@
       "winsA": [
         "Relic",
         "Third Army",
-        "Guardians of the Universe",
-        "Godkillers",
-        "Carol Ferris"
+        "Source Titans",
+        "Sinestro",
+        "Highfather"
       ],
       "winsB": [
         "Rorschach",
@@ -1485,8 +1435,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "86,79,66,52,39",
-          "b_curve": "58,66,78,88,94"
+          "a_curve": "80,60,40,20,5",
+          "b_curve": "91,95,98,100,100"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
@@ -1501,41 +1451,32 @@
           "right_image_5": "Turns a Skrull to stone.jpg"
         },
         "fight-card": {
-          "fight_title": "Darth Vader vs Thanos"
+          "fight_title": "Vader vs Thanos"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Vader opens with telekinesis, precognition, and close-range lethality.",
-          "phase_1_title": "Surgical Opening",
+          "phase_1_animation": "berserk-overextend",
+          "phase_1_text": "Vader strikes with all his hate, but Thanos does not even flinch under the telekinetic pressure.",
+          "phase_1_title": "Lord's Fury",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "Thanos survives the first real solve attempt and stops respecting the duel.",
-          "phase_2_title": "First Failure",
+          "phase_2_text": "The lightsaber cuts through Thanos's armor, without leaving even a scratch.",
+          "phase_2_title": "Clash of Worlds",
           "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "Vader can still threaten moments, but the exchange no longer belongs to him.",
-          "phase_3_title": "Scale Gap Pays Out"
+          "phase_3_animation": "infinite-attrition",
+          "phase_3_text": "Thanos systematically destroys every life-support mechanism of Vader.",
+          "phase_3_title": "Inevitable End"
         },
         "final-summary": {
-          "line_1": "Vader wins precision categories, but Thanos wins the categories that actually decide the finish.",
-          "line_2": "Vader's opening remains dangerous, yet the durability and scale gap are too large to solve consistently.",
-          "line_3": "This is a stable matchup, not a branch-heavy one.",
-          "winner": "Thanos by clear margin"
-        },
-        "interpretation": {
-          "body": "On paper Thanos wins because he owns the categories that decide whether Vader can finish at all. Vader still has a dangerous first minute because his technical opening is much cleaner than Thanos's. The opening is real, but the overall fight stays Thanos's once he survives the first surgical attempt.",
-          "winner": "Better technique is not enough if it never becomes a finish route"
-        },
-        "parameter-comparison": {
-          "left_header": "VADER ADVANTAGES",
-          "right_header": "THANOS ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Vader can win the first read and still lose the fight because the target is built to survive that read.",
-          "question": "Can Vader create a lethal bypass before Thanos learns he does not need to respect the duel?"
+          "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos operates on a different level of physics.",
+          "line_2": "Vader's destructive opening is but a test for the Titan's durability, which he passes without much difficulty.",
+          "line_3": "This is a clash of whether lightsaber precision can find a gap in armor that has survived galactic explosions.",
+          "winner": "Thanos dominates unquestionably."
         },
         "tactical-board": {
-          "lane": "Vader must solve the fight fast. Thanos only needs the opening to fail once.",
+          "lane": "Vader must solve the fight fast. Thanos only needs one opening to fail.",
           "subtitle": "Sith Lord versus Titan"
+        },
+        "verdict-matrix": {
+          "subtitle": "Zero variables affecting the outcome"
         },
         "victory-archive": {
           "left_image_1": "11_7_1_darth_vader_showcase_wins_dark_woman.jpg",
@@ -1562,15 +1503,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -1605,15 +1545,15 @@
       ],
       "dossierA": [
         {
-          "text": "Brutalna szermierka formą Djem So. Vader wykorzystuje siłę cybernetyki, by przygniatać przeciwnika i łamać każdą obronę czystą presją fizyczną.",
+          "text": "Walka techniczną presją z użyciem Mocy. Łączy perfekcyjną szermierkę mieczem świetlnym z brutalną telekinezą, by dusić i miażdżyć przeciwników w zwarciu.",
           "title": "Styl"
         },
         {
-          "text": "Cybernetyczna wytrzymałość i potęga Mocy. Pancerz pozwala ignorować większość ataków, a telekineza służy do paraliżowania i miażdżenia wrogów.",
+          "text": "Elitarna precyzja i żelazna obrona. Mistrzostwo Mocy pozwala mu kontrolować otoczenie i ciało wroga, uniemożliwiając skuteczne kontrataki.",
           "title": "Atut"
         },
         {
-          "text": "Zimna, mściwa nieuchronność. Nie zna litości ani strachu – napiera bez przerwy, aż całkowicie złamie opór i wolę przeciwnika.",
+          "text": "Zimny, cierpliwy i bezlitosny. Czeka na najmniejszy błąd przeciwnika, by zakończyć walkę jednym, mściwym uderzeniem.",
           "title": "Mentalność"
         }
       ],
@@ -1705,8 +1645,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "86,79,66,52,39",
-          "b_curve": "58,66,78,88,94"
+          "a_curve": "79,60,40,20,5",
+          "b_curve": "90,95,98,100,100"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
@@ -1721,41 +1661,32 @@
           "right_image_5": "Turns a Skrull to stone.jpg"
         },
         "fight-card": {
-          "fight_title": "Darth Vader vs Thanos"
+          "fight_title": "Vader vs Thanos"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Vader otwiera walkę telekinezą, prekognicją i śmiercionośnością w bliskim dystansie.",
-          "phase_1_title": "Chirurgiczne Otwarcie",
+          "phase_1_animation": "berserk-overextend",
+          "phase_1_text": "Vader uderza z całą nienawiścią, ale Thanos nawet nie drgnie pod wpływem telekinetycznego naporu.",
+          "phase_1_title": "Furia Lorda",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "Thanos przeżywa pierwszą realną próbę rozwiązania walki i przestaje respektować pojedynek.",
-          "phase_2_title": "Pierwsza Porażka",
+          "phase_2_text": "Miecz świetlny tnie zbroję Thanosa, nie zostawiając na niej nawet zadrapania.",
+          "phase_2_title": "Zderzenie Światów",
           "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "Vader wciąż może grozić pojedynczymi momentami, ale wymiana już do niego nie należy.",
-          "phase_3_title": "Luka Skali Się Wypłaca"
+          "phase_3_animation": "brutal-execution",
+          "phase_3_text": "Thanos systematycznie niszczy każdy mechanizm podtrzymywania życia Vadera.",
+          "phase_3_title": "Nieuchronny Koniec"
         },
         "final-summary": {
-          "line_1": "Vader wygrywa kategorie precyzji, ale Thanos wygrywa kategorie, które naprawdę decydują o finiszu.",
-          "line_2": "Otwarcie Vadera pozostaje groźne, ale luka w wytrzymałości i skali jest zbyt duża, by rozwiązać ją konsekwentnie.",
-          "line_3": "To stabilny pojedynek, a nie walka oparta na wielu gałęziach.",
-          "winner": "Thanos z wyraźną przewagą"
-        },
-        "interpretation": {
-          "body": "Vader ma narzędzia, które potrafią natychmiast zabić wielu przeciwników. Problem w tym, że Thanos należy do tych nielicznych, którzy mogą to przeżyć. Telekineza, prekognicja i miecz świetlny dają Vaderowi jedną realną sekwencję otwarcia, ale ciało, odporności i własna kosmiczna projekcja Thanosa bardzo zawężają jej skuteczność. Jeśli Thanos przeżyje pierwszą idealną próbę, pojedynek szybko przestaje być walką techniki i zamienia się w starcie skali, którego Vader zwykle nie wytrzyma.",
-          "winner": "Vader ma plan na otwarcie. Thanos ma ciało, które ten plan zwykle przeżyje"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI VADERA",
-          "right_header": "PRZEWAGI THANOSA"
-        },
-        "stat-trap": {
-          "body": "Vader może wygrać pierwszy odczyt i nadal przegrać walkę, bo cel jest zbudowany tak, by ten odczyt przeżyć.",
-          "question": "Czy Vader może stworzyć śmiertelny bypass, zanim Thanos zrozumie, że nie musi respektować pojedynku?"
+          "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos operuje na innym poziomie fizyki.",
+          "line_2": "Niszczycielskie otwarcie Vadera to tylko test dla wytrzymałości Tytana, którą ten przechodzi bez większych trudności.",
+          "line_3": "To starcie o to, czy precyzja miecza świetlnego zdoła znaleźć szczelinę w pancerzu, który przetrwał wybuchy galaktyk.",
+          "winner": "Thanos dominuje bezdyskusyjnie."
         },
         "tactical-board": {
           "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.",
           "subtitle": "Lord Sith kontra Tytan"
+        },
+        "verdict-matrix": {
+          "subtitle": "Brak zmiennych wpływających na wynik"
         },
         "victory-archive": {
           "left_image_1": "11_7_1_darth_vader_showcase_wins_dark_woman.jpg",
@@ -1782,15 +1713,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -1820,8 +1750,8 @@
         "Serious Punch Squared carves a void through space.",
         "His punch reverses causality.",
         "Grabs and kicks hyperspace gates.",
-        "Achieves flight through fart.",
-        "A Serious Sneeze blows away the gas surrounding Jupiter's."
+        "Achieves flight through propulsion.",
+        "A Serious Sneeze blows away the gas surrounding Jupiter."
       ],
       "dossierA": [
         {
@@ -1875,7 +1805,15 @@
           "title": "Tools"
         },
         {
+          "text": "Gaze that predicts movements, allowing him to counter before the attack even begins.",
+          "title": "Tools"
+        },
+        {
           "text": "Limited utility compared with heavy hax specialists.",
+          "title": "Weaknesses"
+        },
+        {
+          "text": "Overconfidence in his own invulnerability may delay adaptation to non-linear growth.",
           "title": "Weaknesses"
         }
       ],
@@ -1889,7 +1827,15 @@
           "title": "Tools"
         },
         {
+          "text": "Gag-logic: ability to ignore laws of physics (kicking portals, shifting through space) when the situation requires.",
+          "title": "Tools"
+        },
+        {
           "text": "Minimal formal technique variety. Relies heavily on direct engagement.",
+          "title": "Weaknesses"
+        },
+        {
+          "text": "Boredom and lack of guard early in the fight may expose him to a quick technical knockout.",
           "title": "Weaknesses"
         }
       ],
@@ -1917,8 +1863,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "91,87,79,68,56",
-          "b_curve": "39,43,52,66,81"
+          "a_curve": "90,93,96,98,100",
+          "b_curve": "81,55,30,10,0"
         },
         "crucial-feats": {
           "left_image_1": "Tags UI Goku a few times.jpg",
@@ -1936,38 +1882,31 @@
           "fight_title": "Jiren vs Saitama"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Jiren takes immediate control through pressure, spacing, and efficiency.",
-          "phase_1_title": "Opening Control",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Jiren releases all his Ki in a single, short strike.",
+          "phase_1_title": "Absolute Verdict",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "The fight changes the first time Jiren's clean finish sequence fails to cash out.",
-          "phase_2_title": "First Failure",
-          "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "Once the opening window slips, the question stops being who started better and becomes who the fight is becoming.",
-          "phase_3_title": "Escalation Branch"
+          "phase_2_text": "Saitama attempts to evolve, but the energy surge is too fast and too dense.",
+          "phase_2_title": "Breaking the Limiter",
+          "phase_3_actor": "a",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Jiren closes the field, removing Saitama from history.",
+          "phase_3_title": "Anomaly's End"
         },
         "final-summary": {
-          "line_1": "Jiren owns the paper comparison, 89.67 vs 81.22.",
-          "line_2": "Jiren's baseline comes from better opening control and cleaner finish structure.",
-          "line_3": "Saitama only flips the matchup if survival turns into real escalation and the anomaly branch becomes live.",
-          "winner": "Jiren leads, but Saitama has a live late branch"
-        },
-        "interpretation": {
-          "body": "Jiren owns the better start, cleaner reads, and more reliable opening finish structure. Saitama keeps a real late branch only because his survivability can turn the future version of the fight into something worse. On paper the edge is Jiren's, but the fight stops being a paper fight if survival turns into escalation.",
-          "winner": "The start belongs to Jiren. The danger belongs to whatever survives it"
-        },
-        "parameter-comparison": {
-          "left_header": "JIREN ADVANTAGES",
-          "right_header": "SAITAMA ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Jiren can control the start and still lose the later exchange if the first finish never truly happens.",
-          "question": "Can Jiren finish before survival turns into escalation?"
+          "line_1": "Jiren is the peak of power, but Saitama breaks its laws.",
+          "line_2": "The first second decides – if Jiren doesn't end it immediately, Saitama takes over.",
+          "line_3": "Only Jiren's first blow gives him a chance for victory.",
+          "winner": "Jiren (Assault) or Saitama (Adaptation)."
         },
         "tactical-board": {
-          "lane": "Jiren wins by ending the early fight. Saitama wins by surviving long enough to make the early fight irrelevant.",
+          "lane": "Jiren must end the fight before Saitama starts taking it seriously.",
           "subtitle": "Discipline versus Limitlessness"
+        },
+        "verdict-matrix": {
+          "case_1": "Jiren 10/10",
+          "case_2": "Saitama 7/10",
+          "subtitle": "Verdict based on Jiren's initial output"
         },
         "victory-archive": {
           "left_image_1": "11_7_1_jiren_hit.jpg",
@@ -1983,9 +1922,9 @@
         },
         "x-factor": {
           "factor": "OPENING CONTROL VS ESCALATION TIME",
-          "implication": "If Jiren keeps the fight early, he wins cleanly. If the fight slips, Saitama becomes the more dangerous future engine.",
-          "mechanics": "Jiren's edge lives in the first clean finish window. Saitama's edge appears only if that window fails badly enough.",
-          "psychology": "Jiren wants the fight solved before it becomes strange. Saitama only needs enough fight to let strange happen."
+          "implication": "This is why Jiren can lead in stats and still lose the fight through Saitama's non-linear growth.",
+          "mechanics": "Jiren needs only one clean finish window, but Saitama is a gag character who ignores fight mathematics.",
+          "psychology": "Jiren wants the fight resolved immediately. Saitama wants to feel a thrill, which paradoxically weakens him at the start."
         }
       },
       "templateOrder": [
@@ -1994,15 +1933,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -2032,7 +1970,7 @@
         "Cios na serio tworzy próżnię w kosmosie.",
         "Jego cios cofa przyczynowość.",
         "Łapie i kopie portale hiperprzestrzenne.",
-        "Zdolność lodu dzięki pierdom.",
+        "Zdolność lotu dzięki grawitacyjnemu napędowi.",
         "Poważnie kichnięcie wydmuchuje gaz z Jowisza."
       ],
       "dossierA": [
@@ -2087,7 +2025,15 @@
           "title": "Narzędzia"
         },
         {
+          "text": "Oczy, które widzą każdy ruch przeciwnika, pozwalając mu kontrować zanim atak w ogóle się zacznie.",
+          "title": "Narzędzia"
+        },
+        {
           "text": "Ograniczone narzędzia względem specjalistów od hax.",
+          "title": "Słabości"
+        },
+        {
+          "text": "Zbyt duża pewność we własną niezniszczalność może opóźnić jego adaptację do nieliniowego wzrostu przeciwnika.",
           "title": "Słabości"
         }
       ],
@@ -2101,7 +2047,15 @@
           "title": "Narzędzia"
         },
         {
+          "text": "Logika gagu: zdolność do ignorowania praw fizyki (kopanie portali, przesuwanie się w przestrzeni), gdy sytuacja tego wymaga.",
+          "title": "Narzędzia"
+        },
+        {
           "text": "Mało formalnej różnorodności technicznej. Silnie opiera się na bezpośrednim kontakcie.",
+          "title": "Słabości"
+        },
+        {
+          "text": "Znudzenie i brak gardy we wczesnej fazie walki mogą narazić go na szybki nokaut.",
           "title": "Słabości"
         }
       ],
@@ -2129,8 +2083,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "91,87,79,68,56",
-          "b_curve": "39,43,52,66,81"
+          "a_curve": "90,90,90,90,90",
+          "b_curve": "81,0,0,0,0"
         },
         "crucial-feats": {
           "left_image_1": "Tags UI Goku a few times.jpg",
@@ -2148,38 +2102,31 @@
           "fight_title": "Jiren vs Saitama"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Jiren od razu przejmuje kontrolę przez presję, spacing i efektywność.",
-          "phase_1_title": "Kontrola Otwarcia",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Jiren uwalnia całe swoje ki w jednym, krótkim uderzeniu.",
+          "phase_1_title": "Wyrok Absolutu",
           "phase_2_animation": "clash-lock",
-          "phase_2_text": "Walka zmienia się w chwili, gdy czysta sekwencja finiszu Jirena nie domyka sprawy.",
-          "phase_2_title": "Pierwsza Porażka Planu",
-          "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "Gdy okno otwarcia się wymyka, pytanie przestaje brzmieć, kto zaczął lepiej, a zaczyna, czym ta walka się staje.",
-          "phase_3_title": "Gałąź Eskalacji"
+          "phase_2_text": "Saitama próbuje ewoluować, ale napór energii jest zbyt szybki i zbyt gęsty.",
+          "phase_2_title": "Przełamanie Limitera",
+          "phase_3_actor": "a",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Jiren domyka pole walki, usuwając Saitamę z historii.",
+          "phase_3_title": "Koniec Anomalii"
         },
         "final-summary": {
-          "line_1": "Jiren wygrywa porównanie na papierze, 89.67 vs 81.22.",
-          "line_2": "Jego domyślny układ bierze się z lepszej kontroli otwarcia i czystszej struktury finiszu.",
-          "line_3": "Saitama odwraca walkę tylko wtedy, gdy przetrwanie zmienia się w prawdziwą eskalację i gałąź anomalii staje się aktywna.",
-          "winner": "Jiren prowadzi, ale Saitama ma żywą późną gałąź"
-        },
-        "interpretation": {
-          "body": "To nie jest walka o same statystyki, tylko o to, z jakim Jirenem walczy Saitama. Spokojny, oszczędny Jiren daje mu czas, którego potrzebuje, by jego wzrost zaczął naprawdę zmieniać układ sił. Jeśli jednak Jiren od początku walczy na pełnym skupieniu i pełnej mocy, może zamknąć starcie, zanim potencjał Saitamy zdąży się rozwinąć.",
-          "winner": "Saitama ma nieskończony potencjał. Jiren może nie dać mu nawet sekundy, by go rozwinąć"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI JIRENA",
-          "right_header": "PRZEWAGI SAITAMY"
-        },
-        "stat-trap": {
-          "body": "Jiren może kontrolować start i nadal przegrać późniejszą wymianę, jeśli pierwszy finisz nigdy naprawdę nie nastąpi.",
-          "question": "Czy Jiren zdoła skończyć walkę, zanim przetrwanie zamieni się w eskalację?"
+          "line_1": "Jiren to szczyt potęgi, ale Saitama łamie jej zasady.",
+          "line_2": "Pierwsza sekunda decyduje – jeśli Jiren nie skończy tego od razu, Saitama przejmuje kontrolę.",
+          "line_3": "Tylko pierwszy cios Jirena daje mu szansę na wygraną.",
+          "winner": "Jiren (Atak) lub Saitama (Adaptacja)."
         },
         "tactical-board": {
-          "lane": "Jiren wygrywa, jeśli kończy wczesną walkę. Saitama wygrywa, jeśli przetrwa na tyle długo, że wczesna walka przestaje mieć znaczenie.",
+          "lane": "Jiren musi skończyć walkę zanim Saitama zacznie ją traktować poważnie.",
           "subtitle": "Dyscyplina kontra Bezgraniczność"
+        },
+        "verdict-matrix": {
+          "case_1": "Jiren 10/10",
+          "case_2": "Saitama 7/10",
+          "subtitle": "Werdykt zależny od pierwszego uderzenia Jirena"
         },
         "victory-archive": {
           "left_image_1": "11_7_1_jiren_hit.jpg",
@@ -2195,9 +2142,9 @@
         },
         "x-factor": {
           "factor": "KONTROLA OTWARCIA VS CZAS NA ESKALACJĘ",
-          "implication": "Jeśli Jiren utrzyma walkę we wczesnej fazie, wygrywa czysto. Jeśli walka się wymknie, Saitama staje się groźniejszym silnikiem przyszłej walki.",
-          "mechanics": "Przewaga Jirena żyje w pierwszym czystym oknie finiszu. Przewaga Saitamy pojawia się dopiero wtedy, gdy to okno zawiedzie wystarczająco mocno.",
-          "psychology": "Jiren chce rozwiązać walkę, zanim stanie się dziwna. Saitama potrzebuje tylko tyle walki, by ta dziwność się wydarzyła."
+          "implication": "Dlatego Jiren może prowadzić w statystykach, a i tak przegrać walkę przez nieliniowy wzrost Saitamy.",
+          "mechanics": "Jiren potrzebuje tylko jednego czystego okna finiszu, ale Saitama to postać typu gag, która ignoruje matematykę walki.",
+          "psychology": "Jiren chce rozwiązać walkę natychmiast. Saitama chce poczuć dreszcz emocji, co paradoksalnie go osłabia na start."
         }
       },
       "templateOrder": [
@@ -2206,15 +2153,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -2234,11 +2180,11 @@
     },
     {
       "crucialFeatsA": [
-        "One-inch punch (Long Beach).",
-        "Two-finger push-ups.",
-        "1958 inter-school boxing title (Gary Elms).",
-        "Built Jeet Kune Do by effectively combining multiple styles",
-        "Defeated Yoichi Nakachi in 11 seconds"
+        "One-inch punch demonstration (Long Beach).",
+        "Two-finger push-ups and extreme body control.",
+        "1958 inter-school boxing title.",
+        "Creation of Jeet Kune Do by combining styles.",
+        "Defeated Yoichi Nakachi in 11 seconds."
       ],
       "crucialFeatsB": [
         "Wins his first world title at age 22.",
@@ -2249,7 +2195,7 @@
       ],
       "dossierA": [
         {
-          "text": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements in favor of direct interception of the enemy's attack.",
+          "text": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements.",
           "title": "Style"
         },
         {
@@ -2257,13 +2203,13 @@
           "title": "Advantage"
         },
         {
-          "text": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest, without adhering to rigid patterns.",
+          "text": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest.",
           "title": "Mentality"
         }
       ],
       "dossierB": [
         {
-          "text": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies and score points from a safe distance.",
+          "text": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies.",
           "title": "Style"
         },
         {
@@ -2277,11 +2223,11 @@
       ],
       "fighterA": {
         "quote": "Be water, my friend.",
-        "version": "Historical Prime"
+        "version": "Prime"
       },
       "fighterB": {
         "quote": "Float like a butterfly, sting like a bee.",
-        "version": "Historical Prime"
+        "version": "Prime"
       },
       "folder": "6 Bruce Lee vs Muhammad Ali",
       "locale": "en",
@@ -2299,7 +2245,15 @@
           "title": "Tools"
         },
         {
+          "text": "Nunchaku and staff (in street scenarios), extreme power of the one-inch punch.",
+          "title": "Tools"
+        },
+        {
           "text": "Significant size and reach deficit versus heavyweight specialists.",
+          "title": "Weaknesses"
+        },
+        {
+          "text": "Lack of proven experience taking hits from professional heavyweight boxers.",
           "title": "Weaknesses"
         }
       ],
@@ -2313,7 +2267,15 @@
           "title": "Tools"
         },
         {
+          "text": "Ability to survive punishing rounds and 'rope-a-dope' - exhausting the opponent.",
+          "title": "Tools"
+        },
+        {
           "text": "Primarily boxing-centric toolkit compared with broad open-rule combat sets.",
+          "title": "Weaknesses"
+        },
+        {
+          "text": "Vulnerability to low kicks and joint attacks that boxing does not account for.",
           "title": "Weaknesses"
         }
       ],
@@ -2341,8 +2303,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "78,74,68,61,54",
-          "b_curve": "62,70,79,88,94"
+          "a_curve": "79,65,50,30,10",
+          "b_curve": "88,90,95,98,100"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
@@ -2357,41 +2319,32 @@
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
         "fight-card": {
-          "fight_title": "Bruce Lee vs Muhammad Ali"
+          "fight_title": "Lee vs Ali"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Bruce attacks rhythm with fast entries and low-line disruption before Ali can settle the ring geography.",
-          "phase_1_title": "Entry and rhythm war",
+          "phase_1_animation": "hit-and-run",
+          "phase_1_text": "Bruce moves incredibly fast, but Ali's jab is always exactly where Bruce tries to plant his foot.",
+          "phase_1_title": "Reflex Test",
           "phase_2_animation": "kite-zone",
-          "phase_2_text": "Ali taxes distance with the jab, feet, and ring control, forcing Bruce to pay for every re-entry.",
-          "phase_2_title": "Range tax",
+          "phase_2_text": "Ali controls the space, forcing Bruce into constant footwork that quickly exhausts him.",
+          "phase_2_title": "Distance Barrier",
           "phase_3_actor": "b",
-          "phase_3_animation": "corner-trap",
-          "phase_3_text": "The fight either stays ugly and narrow for Bruce or settles into repeatable heavyweight distance, where Ali's durability and pace take over.",
-          "phase_3_title": "Heavyweight reality"
+          "phase_3_animation": "infinite-attrition",
+          "phase_3_text": "Ali moves to the offensive. The weight of his punches crushes the opponent's bones and will to fight.",
+          "phase_3_title": "Heavy Execution"
         },
         "final-summary": {
-          "line_1": "Ali owns the paper comparison, 87.67 vs 78.89.",
-          "line_2": "Bruce changes the texture of the fight more than the winner identity.",
-          "line_3": "Open rules narrow the matchup, but do not flip the baseline result.",
-          "winner": "Muhammad Ali by clear margin"
-        },
-        "interpretation": {
-          "body": "Bruce owns speed, disruption, and the uglier opening texture. Ali owns the categories that settle repeated human exchanges: reach, durability, pacing, and ring management. Bruce only narrows the matchup if he prevents the fight from hardening into Ali's preferred distance game.",
-          "winner": "Muhammad Ali"
-        },
-        "parameter-comparison": {
-          "left_header": "BRUCE ADVANTAGES",
-          "right_header": "ALI ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Bruce's best edges change the texture of the fight more than the winner identity. Speed and style can win moments, but Ali's proof under sustained heavyweight pressure is the real separator.",
-          "question": "Can Bruce stop the fight from turning into Ali's range-and-tax pattern?"
+          "line_1": "This is a clash of precision versus power. Bruce Lee has speed Ali has never encountered, but Ali has a scale Bruce cannot ignore.",
+          "line_2": "Real-world combat physics favor the professional heavyweight champion. The mass and reach difference is too vast for any technique.",
+          "line_3": "Ultimately, it is a fight of whether one perfect Bruce strike can topple a man who survived 15 rounds with the world's strongest boxers.",
+          "winner": "Muhammad Ali dominates unquestionably."
         },
         "tactical-board": {
-          "lane": "Bruce wins by keeping the fight unstable. Ali wins by making every exchange look like heavyweight reality.",
+          "lane": "Bruce must keep the fight dirty and chaotic. Ali wins if he imposes boxing distance.",
           "subtitle": "Artist versus Boxer"
+        },
+        "verdict-matrix": {
+          "subtitle": "Zero variables affecting the outcome"
         },
         "victory-archive": {
           "left_image_1": "Gary Elms.jpg",
@@ -2404,6 +2357,12 @@
           "right_image_3": "12_7_2_ali_sonny_liston.jpg",
           "right_image_4": "06_6_2_ali_cleveland_speed.jpg",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
+        },
+        "x-factor": {
+          "factor": "TECHNIQUE VS PHYSICAL SCALE",
+          "implication": "This is why Ali wins unquestionably in the ring, while on the street, Bruce becomes a lethal threat.",
+          "mechanics": "Ali possesses a chin of steel and heavyweight mass. Bruce must strike perfectly at points muscles do not protect.",
+          "psychology": "Ali wants to toy with the opponent. Bruce is pure, focused professionalism."
         }
       },
       "templateOrder": [
@@ -2412,14 +2371,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
-        "victory-archive",
+        "x-factor",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -2439,54 +2398,54 @@
     },
     {
       "crucialFeatsA": [
-        "Demonstracja one-inch punch na Long Beach",
-        "Pompki na dwóch palcach i pokaz kontroli ciała",
-        "Zwycięstwo o międzyszkolny tytuł bokserski z 1958 roku nad Garym Elmsem",
-        "Stworzenie Jeet Kune Do przez skuteczne łączenie stylów",
-        "Pokonanie Yoichiego Nakachiego w 11 sekund"
+        "Pokaz one-inch punch (Long Beach).",
+        "Pompki na dwóch palcach i ekstremalna kontrola ciała.",
+        "Międzyszkolny tytuł bokserski z 1958 roku.",
+        "Stworzenie Jeet Kune Do przez łączenie stylów.",
+        "Pokonał Yoichiego Nakachiego w 11 sekund."
       ],
       "crucialFeatsB": [
-        "W wieku 22 lat, zdobywa tytuł mistrza świata po raz pierwszy.",
+        "Zdobywa pierwszy tytuł mistrza świata w wieku 22 lat.",
         "19 udanych obron tytułu mistrza świata.",
-        "Pierwszy trzykrotny mistrz świata wszechwag.",
+        "Pierwszy trzykrotny mistrz świata wagi ciężkiej.",
         "Złoto olimpijskie, Rzym 1960.",
-        "Pokonanie 21 mistrzów lub pretendentów do tytułu."
+        "Pokonał 21 mistrzów lub pretendentów do tytułu wagi ciężkiej."
       ],
       "dossierA": [
         {
-          "text": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy na rzecz bezpośredniego przechwycenia ataku wroga.",
+          "text": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy.",
           "title": "Styl"
         },
         {
-          "text": "Ekstremalnie wytrenowane ciało i nieludzka szybkość. Posiada totalną kontrolę nad mięśniami, co pozwala mu na zadawanie potężnych ciosów z zerowego dystansu.",
+          "text": "Skrajnie wytrenowane ciało i nieludzka szybkość. Dzięki pełnej kontroli mięśni potrafi zadawać potężne ciosy z zerowego dystansu.",
           "title": "Atut"
         },
         {
-          "text": "Błyskawiczna adaptacja i instynktowna precyzja. Czyta intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza, bez trzymania się sztywnych schematów.",
+          "text": "Natychmiastowa adaptacja i instynktowna precyzja. Odczytuje intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza.",
           "title": "Mentalność"
         }
       ],
       "dossierB": [
         {
-          "text": "Mistrzowska kontrola dystansu i rytmu. Wykorzystuje legendarną pracę nóg i szybki jab, by frustrować wrogów i punktować ich z bezpiecznej odległości.",
+          "text": "Mistrzowska kontrola dystansu i rytmu. Używa legendarnej pracy nóg i szybkiego panowania nad ringiem, by frustrować rywali.",
           "title": "Styl"
         },
         {
-          "text": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwą siłą jest unikanie ich i dyktowanie tempa walki.",
+          "text": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwa siła to unikanie uderzeń i dyktowanie tempa walki.",
           "title": "Atut"
         },
         {
-          "text": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wyciągnąć go z równowagi i metodycznie rozbić jego pewność siebie.",
+          "text": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wytrącić go z równowagi, i metodycznie łamie jego pewność siebie.",
           "title": "Mentalność"
         }
       ],
       "fighterA": {
         "quote": "Bądź jak woda, mój przyjacielu.",
-        "version": "Historyczny Prime"
+        "version": "Prime"
       },
       "fighterB": {
-        "quote": "Fruwaj jak motyl, żądl jak pszczoła.",
-        "version": "Historyczny Prime"
+        "quote": "Lataj jak motyl, żądl jak pszczoła.",
+        "version": "Prime"
       },
       "folder": "6 Bruce Lee vs Muhammad Ali",
       "locale": "pl",
@@ -2500,25 +2459,41 @@
           "title": "Moce"
         },
         {
-          "text": "Intercepcja w duchu JKD, kopnięcia niskie, łamanie rytmu i adaptacja między stylami.",
+          "text": "Timing przechwycenia w JKD, niskie kopnięcia, łamanie rytmu i adaptacja między stylami.",
           "title": "Narzędzia"
         },
         {
-          "text": "Wyraźny deficyt masy i zasięgu wobec specjalistów wagi ciężkiej.",
+          "text": "Nunchaku i kij (w scenariuszach ulicznych), ekstremalna siła one-inch punch.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Znacząca strata gabarytu i zasięgu względem specjalistów wagi ciężkiej.",
+          "title": "Słabości"
+        },
+        {
+          "text": "Brak potwierdzonego doświadczenia w przyjmowaniu ciosów od zawodowych bokserów wagi ciężkiej.",
           "title": "Słabości"
         }
       ],
       "profileB": [
         {
-          "text": "Elitarna szybkość bokserska wagi ciężkiej, timing, wytrzymałość i inteligencja ringowa.",
+          "text": "Elitarna szybkość, timing, odporność i ring IQ na poziomie mistrza świata wagi ciężkiej.",
           "title": "Moce"
         },
         {
-          "text": "Kontrola jabem, praca nóg, obrona ruchem głowy, klincz i kontrola tempa.",
+          "text": "Kontrola jabem, praca nóg, obrona ruchem, zarządzanie klinczem i kontrola tempa.",
           "title": "Narzędzia"
         },
         {
-          "text": "Zestaw narzędzi skupiony głównie na boksie wobec szerokich zasad otwartych.",
+          "text": "Zdolność przetrwania wyczerpujących rund i rope-a-dope - męczenie przeciwnika.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Głównie bokserski zestaw narzędzi względem szerokich zestawów walki bez zasad.",
+          "title": "Słabości"
+        },
+        {
+          "text": "Podatność na niskie kopnięcia i ataki na stawy, których boks nie uwzględnia.",
           "title": "Słabości"
         }
       ],
@@ -2546,8 +2521,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "78,74,68,61,54",
-          "b_curve": "62,70,79,88,94"
+          "a_curve": "79,65,50,30,10",
+          "b_curve": "88,90,95,98,100"
         },
         "crucial-feats": {
           "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
@@ -2562,41 +2537,32 @@
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
         },
         "fight-card": {
-          "fight_title": "Bruce Lee vs Muhammad Ali"
+          "fight_title": "Lee vs Ali"
         },
         "fight-simulation": {
-          "phase_1_animation": "feint-counter",
-          "phase_1_text": "Bruce atakuje rytm szybkimi wejściami i niskimi zakłóceniami, zanim Ali ustawi geografię ringu.",
-          "phase_1_title": "Wojna o wejście i rytm",
+          "phase_1_animation": "hit-and-run",
+          "phase_1_text": "Bruce porusza się niewiarygodnie szybko, ale jab Alego zawsze ląduje tam, gdzie Bruce chce postawić nogę.",
+          "phase_1_title": "Test Refleksu",
           "phase_2_animation": "kite-zone",
-          "phase_2_text": "Ali opodatkowuje dystans jabem, nogami i kontrolą ringu, zmuszając Bruce'a do płacenia za każde ponowne wejście.",
-          "phase_2_title": "Podatek dystansu",
+          "phase_2_text": "Ali kontroluje przestrzeń, zmuszając Bruce'a do ciągłej pracy nóg, która szybko go wyczerpuje.",
+          "phase_2_title": "Bariera Dystansu",
           "phase_3_actor": "b",
-          "phase_3_animation": "corner-trap",
-          "phase_3_text": "Walka albo pozostaje brudna i wąska dla Bruce'a, albo ustawia się w powtarzalnym dystansie ciężkich, gdzie tempo i wytrzymałość Alego przejmują kontrolę.",
-          "phase_3_title": "Rzeczywistość ciężkich"
+          "phase_3_animation": "infinite-attrition",
+          "phase_3_text": "Ali przechodzi do ofensywy. Masa jego ciosów miażdży kości i wolę walki przeciwnika.",
+          "phase_3_title": "Egzekucja Ciężkiej Wagi"
         },
         "final-summary": {
-          "line_1": "Ali wygrywa porównanie na papierze, 87.67 vs 78.89.",
-          "line_2": "Bruce zmienia bardziej teksturę walki niż tożsamość zwycięzcy.",
-          "line_3": "Otwarte zasady zawężają pojedynek, ale nie odwracają bazowego wyniku.",
-          "winner": "Muhammad Ali z wyraźną przewagą"
-        },
-        "interpretation": {
-          "body": "Ali ma przewagę od pierwszej wymiany, bo wnosi nie tylko lepszy zasięg i większą masę, ale też elitarny timing i ringową kontrolę wagi ciężkiej. Bruce może utrudnić mu walkę szybkością, kopnięciami i zmianą rytmu, ale to za mało, by zniwelować różnicę gabarytów i odporności. Zasady otwarte zwężają pojedynek tylko trochę; w ringu Ali wygrywa bardzo wyraźnie, a bez rękawic nadal pozostaje wyraźnym faworytem.",
-          "winner": "To nie styl Bruce'a rozstrzyga tę walkę. Rozstrzyga ją skala Alego"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI BRUCE'A",
-          "right_header": "PRZEWAGI ALEGO"
-        },
-        "stat-trap": {
-          "body": "Najlepsze przewagi Bruce'a zmieniają bardziej teksturę walki niż samą tożsamość zwycięzcy. Szybkość i styl mogą wygrywać momenty, ale to udowodniona odporność Alego pod długą presją ciężkich jest prawdziwym separatorem.",
-          "question": "Czy Bruce zdoła powstrzymać walkę przed wejściem w schemat dystansu i podatku Alego?"
+          "line_1": "To starcie precyzji z mocą. Bruce Lee ma szybkość, jakiej Ali nigdy nie widział, ale Ali ma skalę, której Bruce nie może zignorować.",
+          "line_2": "Realna fizyka walki faworyzuje zawodowego mistrza wagi ciężkiej. Różnica masy i zasięgu jest zbyt duża dla samej techniki.",
+          "line_3": "Ostatecznie to pytanie, czy jeden idealny cios Bruce'a może złamać człowieka, który przetrwał 15 rund z najsilniejszymi bokserami świata.",
+          "winner": "Muhammad Ali dominuje bezdyskusyjnie."
         },
         "tactical-board": {
-          "lane": "Bruce wygrywa, jeśli utrzyma walkę w niestabilnym stanie. Ali wygrywa, jeśli każda wymiana zaczyna wyglądać jak rzeczywistość walki ciężkich.",
+          "lane": "Bruce musi utrzymać walkę brudną i chaotyczną. Ali wygrywa, jeśli narzuci dystans bokserski.",
           "subtitle": "Artysta kontra Bokser"
+        },
+        "verdict-matrix": {
+          "subtitle": "Brak zmiennych wpływających na wynik"
         },
         "victory-archive": {
           "left_image_1": "Gary Elms.jpg",
@@ -2609,6 +2575,12 @@
           "right_image_3": "12_7_2_ali_sonny_liston.jpg",
           "right_image_4": "06_6_2_ali_cleveland_speed.jpg",
           "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
+        },
+        "x-factor": {
+          "factor": "TECHNIKA VS SKALA FIZYCZNA",
+          "implication": "Dlatego Ali wygrywa bezdyskusyjnie w ringu, a na ulicy Bruce staje się śmiertelnym zagrożeniem.",
+          "mechanics": "Ali ma stalową szczękę i masę ciężkiej wagi. Bruce musi trafiać idealnie w punkty, których mięśnie nie chronią.",
+          "psychology": "Ali chce bawić się przeciwnikiem. Bruce to czysty, skupiony profesjonalizm."
         }
       },
       "templateOrder": [
@@ -2617,14 +2589,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
-        "victory-archive",
+        "x-factor",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
@@ -2644,53 +2616,53 @@
     },
     {
       "crucialFeatsA": [
-        "Universe after universe has fallen before his might.",
-        "Turns DC Earth and everyone in it into stone.",
-        "Monitor ranks him on the same threat level as Spectre.",
-        "Destroys a planet with a glance.",
-        "Absorbs the Heart of Darkness."
+        "At the age of one, he ruled his own planet; at six, he destroyed it.",
+        "Defeated the Justice League and Teen Titans simultaneously.",
+        "Keeps trophies from defeated Supermen across dimensions.",
+        "Absorbs the Heart of Darkness, becoming even more powerful.",
+        "Erases opponents' atoms with a single gesture."
       ],
       "crucialFeatsB": [
-        "Possesses Ultimate Nullifier, a weapon that can destroy the entire universe.",
-        "Galactus must exist or the universe dies.",
-        "Galactus' attack encompasses three solar systems.",
-        "The whole universe was at risk of destruction when Galactus fought.",
-        "Sends Sphinx back in time to relive his life over and over for an eternity."
+        "Devours entire planets to sustain his existence.",
+        "Defeated Celestials in direct conflict.",
+        "Survived the Big Bang of the previous universe.",
+        "Overwhelms cosmic entities through sheer presence.",
+        "Wields the Power Cosmic, allowing broad manipulation of matter and energy."
       ],
       "dossierA": [
         {
-          "text": "Static dominance and devastating energy projection. Trigon utilizes his six eyes for hellfire blasts and his divine brute force to effortlessly smash any opponent.",
+          "text": "Magical domination and chaos projection. He uses infernal power to destroy minds and bodies before enemies can comprehend the scale of the threat.",
           "title": "Style"
         },
         {
-          "text": "Heart of Darkness and dark immortality. The condensed evil of a hundred galaxies grants him near-infinite magical resources and the ability to instantly regenerate from the very essence of darkness.",
+          "text": "Absolute manipulation of dimensions and souls. Trigon is not just a physical threat - he is a metaphysical infection that seizes control over the opponent's very essence.",
           "title": "Advantage"
         },
         {
-          "text": "A sadistic tyrant aiming for total conquest. He doesn't seek a challenge but revels in despair and the slow breaking of the opponent's spirit before their final annihilation.",
+          "text": "Pure evil and sadistic narcissism. He does not fight to survive, but for total domination and humiliation of all life.",
           "title": "Mentality"
         }
       ],
       "dossierB": [
         {
-          "text": "Direct Power Cosmic dominance. Galactus strikes with devastating energy blasts, immobilizes enemies with telekinesis, and uses molecular restructuring to turn opponents into pure energy with a single gesture.",
+          "text": "Cosmic manipulation and erasure. He uses the Power Cosmic to break matter to atoms and consume all available energy in a given sphere.",
           "title": "Style"
         },
         {
-          "text": "Absolute power absorption and the Ultimate Nullifier. He can absorb energy directed against him (even from gods) and, if necessary, use the Nullifier to erase entire galaxies or timelines from existence.",
+          "text": "Power Cosmic and existential scale. Galactus does not fight - he executes a consumption process. He controls the universe's fundamental forces at an unimaginable level.",
           "title": "Advantage"
         },
         {
-          "text": "A detached, eternally hungry force of nature. He feels no hatred or anger – he perceives heroes and deities like insects or fuel, acting entirely outside the categories of good and evil.",
+          "text": "An amoral force of nature. He does not kill from hatred, but from hunger. He sees planets and gods as fuel required to maintain cosmic balance.",
           "title": "Mentality"
         }
       ],
       "fighterA": {
-        "quote": "In seeking to eradicate my evil... You have made me supreme! I am now power. I am now death. I am now TRIGON!",
-        "version": "Prime Earth"
+        "quote": "Your world is mine. Your souls are my toys. Trigon is coming!",
+        "version": "DC Multiverse"
       },
       "fighterB": {
-        "quote": "Of all the creatures in the vastness of the universe, there is none like me. I was present at the birth of the universe, and I shall be there at its end.",
+        "quote": "I am not a god. I am not a monster. I am Galactus. I am inevitability.",
         "version": "Earth-616"
       },
       "folder": "7 Trigon vs Galactus",
@@ -2701,66 +2673,74 @@
       },
       "profileA": [
         {
-          "text": "Demonic energy projection, corruption, possession, regeneration, dimensional travel.",
+          "text": "Reality manipulation, infernal magic, soul absorption, and near-unbounded energy projection.",
           "title": "Powers"
         },
         {
-          "text": "Realm shaping/control and soul-pressure effects.",
+          "text": "Ability to create demon armies and corrupt heroes.",
           "title": "Tools"
         },
         {
-          "text": "Peak control is strongest inside favorable demonic environments.",
+          "text": "Dimensional control, allowing attacks from points beyond enemy perception.",
+          "title": "Tools"
+        },
+        {
+          "text": "Dependence on rituals and dimensional gates for full manifestation in some realms.",
           "title": "Weaknesses"
         },
         {
-          "text": "Broad cosmic resistance can slow his corruption tempo in neutral space.",
+          "text": "Arrogance that can make him underestimate small, precise attacks.",
           "title": "Weaknesses"
         }
       ],
       "profileB": [
         {
-          "text": "Power Cosmic, transmutation, large-scale energy projection, barriers, and matter control.",
+          "text": "Power Cosmic, and universal-scale manipulation of matter, energy, and time.",
           "title": "Powers"
         },
         {
-          "text": "Planetary or cosmic energy absorption.",
+          "text": "Ultimate Nullifier (in extreme cases) - a weapon capable of destroying entire continuums.",
           "title": "Tools"
         },
         {
-          "text": "Performance varies with feeding state.",
+          "text": "Ability to create heralds who carry out his will in lower dimensions.",
+          "title": "Tools"
+        },
+        {
+          "text": "Hunger - his power drops drastically when he does not consume planets.",
           "title": "Weaknesses"
         },
         {
-          "text": "In low-fed states, response speed and margin for error decrease.",
+          "text": "Complex technological processes required for efficient consumption.",
           "title": "Weaknesses"
         }
       ],
       "statsA": {
-        "battleIq": 86,
-        "durability": 91,
-        "experience": 94,
-        "hax": 93,
-        "skills": 75,
-        "speed": 84,
-        "stamina": 94,
-        "strength": 89,
-        "style": 80
+        "battleIq": 94,
+        "durability": 98,
+        "experience": 99,
+        "hax": 98,
+        "skills": 82,
+        "speed": 92,
+        "stamina": 99,
+        "strength": 98,
+        "style": 95
       },
       "statsB": {
-        "battleIq": 92,
-        "durability": 97,
-        "experience": 98,
-        "hax": 98,
-        "skills": 79,
+        "battleIq": 96,
+        "durability": 99,
+        "experience": 99,
+        "hax": 99,
+        "skills": 85,
         "speed": 94,
-        "stamina": 96,
-        "strength": 95,
-        "style": 85
+        "stamina": 92,
+        "strength": 99,
+        "style": 94
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "62,68,77,86,91",
-          "b_curve": "88,90,87,83,78"
+          "a_curve": "95,90,85,80,70",
+          "b_curve": "96,97,98,99,100"
         },
         "crucial-feats": {
           "left_image_1": "Universe after Universe has fallen before his.jpg",
@@ -2778,44 +2758,31 @@
           "fight_title": "Trigon vs Galactus"
         },
         "fight-simulation": {
-          "phase_1_animation": "trade-chaos",
-          "phase_1_text": "Trigon tries to convert the first exchange into corruption, possession pressure, and anti-symmetry.",
-          "phase_1_title": "Poison the opening",
-          "phase_2_animation": "kite-zone",
-          "phase_2_text": "Galactus answers with scale stabilization, barrier control, and energy economy instead of respecting Trigon's preferred rules.",
-          "phase_2_title": "Normalize the map",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Galactus strikes with pure Power Cosmic energy, ignoring Trigon's barriers.",
+          "phase_1_title": "Cosmic Pressure",
+          "phase_2_animation": "clash-lock",
+          "phase_2_text": "Two infinities collide, destroying nearby galaxies.",
+          "phase_2_title": "Collision of Powers",
           "phase_3_actor": "b",
-          "phase_3_animation": "clash-lock",
-          "phase_3_text": "The finish depends on whether the battlefield stays toxic and demonic or gets normalized into something Galactus can metabolize.",
-          "phase_3_title": "Fuel or poison"
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Galactus erases Trigon's trace from reality.",
+          "phase_3_title": "Erasure"
         },
         "final-summary": {
-          "line_1": "Galactus owns the paper comparison, 92.67 vs 87.33.",
-          "line_2": "Trigon stays dangerous when corruption and field logic replace normal combat symmetry.",
-          "line_3": "Starvation and home-realm control are the two conditions that let Trigon flip the matchup.",
-          "winner": "Galactus leads, but Trigon has live branch equity"
-        },
-        "interpretation": {
-          "body": "Galactus owns the broader raw profile. Trigon stays dangerous because his value is nonlinear and field-dependent. Neutral assumptions still favor Galactus.",
-          "winner": "Galactus"
-        },
-        "parameter-comparison": {
-          "left_header": "TRIGON ADVANTAGES",
-          "right_header": "GALACTUS ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Galactus' better averages matter mostly on neutral ground. Once the battlefield shifts under Trigon's domain logic, raw numbers stop being enough.",
-          "question": "Can Trigon poison the battlefield before Galactus turns it into fuel?"
+          "line_1": "This is a clash of ultimate extremes: Galactus's physical consumption versus Trigon's spiritual corruption.",
+          "line_2": "The outcome depends almost entirely on location and on who imposes their reality rules first.",
+          "line_3": "In the material world Galactus is unstoppable, but in the Hell Domain he becomes the victim.",
+          "winner": "Galactus (Material) or Trigon (Hell)."
         },
         "tactical-board": {
-          "lane": "Trigon wins by keeping the battlefield poisonous. Galactus wins by turning poison into fuel.",
-          "subtitle": "Demon versus Devourer"
+          "lane": "The winner must control the dimension where the fight takes place.",
+          "subtitle": "Devourer versus Demon"
         },
         "verdict-matrix": {
           "case_1": "Galactus 8/10",
-          "case_2": "Galactus 6.5/10",
-          "case_3": "Trigon 6/10",
-          "case_4": "Trigon 7.5/10"
+          "case_2": "Trigon 9/10",
+          "subtitle": "Verdict depends on battlefield domain"
         },
         "victory-archive": {
           "left_image_1": "Trophy Room includes Superman's Suit.jpg",
@@ -2830,10 +2797,10 @@
           "right_image_5": "Tyrant.jpg"
         },
         "x-factor": {
-          "factor": "POISONOUS REALM VS ENERGY ECONOMY",
-          "implication": "Whoever controls the battlefield's meaning controls the fight's branch logic.",
-          "mechanics": "If the field stays demonic, Trigon stays live.",
-          "psychology": "If the field becomes fuel, Galactus takes the fight back."
+          "factor": "ENERGY CONSUMPTION VS SOUL CORRUPTION",
+          "implication": "Galactus wants to neutralize the threat. Trigon wants to seize it.",
+          "mechanics": "The Power Cosmic is science elevated to divinity. Trigon's magic is will that destroys science.",
+          "psychology": "Galactus is hungry, but Trigon is evil. That difference in motive makes Trigon more unpredictable."
         }
       },
       "templateOrder": [
@@ -2842,12 +2809,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -2855,69 +2820,69 @@
         "fight-card"
       ],
       "winsA": [
-        "Superman",
-        "JLA + Teen Titans",
-        "The Divine",
+        "Justice League",
+        "Teen Titans",
         "Psimon",
-        "Ares"
+        "Ares",
+        "The Divine"
       ],
       "winsB": [
-        "Mephisto",
+        "Sphinx",
+        "Tyrant",
         "Silver Surfer",
-        "Celestial",
-        "Terrax",
-        "Tyrant"
+        "Thanos",
+        "Red Hulk"
       ]
     },
     {
       "crucialFeatsA": [
-        "Wszechświat za wszechświatem upadał przed jego potęgą.",
-        "Zamienia Ziemię DC i wszystkich na niej w kamień.",
-        "Monitor klasyfikuje go na tym samym poziomie zagrożenia co Spectre.",
-        "Niszczy planetę samym spojrzeniem.",
-        "Pochłania Heart of Darkness."
+        "W wieku jednego roku rządził własną planetą, w wieku 6 ją zniszczył.",
+        "Pokonał Justice League i Teen Titans jednocześnie.",
+        "Posiada trofea z pokonanych Supermanów z różnych wymiarów.",
+        "Absorbuje Serce Ciemności, stając się jeszcze potężniejszym.",
+        "Wymazuje atomy przeciwników jednym gestem."
       ],
       "crucialFeatsB": [
-        "Posiada Ultimate Nullifier, broń zdolną zniszczyć cały wszechświat.",
-        "Galactus musi istnieć, bo inaczej wszechświat umrze.",
-        "Atak Galactusa obejmuje trzy układy słoneczne.",
-        "Cały wszechświat był zagrożony zniszczeniem, gdy Galactus walczył.",
-        "Odsyła Sphinxa w przeszłość, by ten przeżywał swoje życie w kółko przez całą wieczność."
+        "Pożera całe planety, by zasilić swój byt.",
+        "Pokonał Celestiali w bezpośrednim starciu.",
+        "Przetrwał Wielki Wybuch poprzedniego wszechświata.",
+        "Niszczy byty kosmiczne samą swoją obecnością.",
+        "Posiada Power Cosmic, pozwalającą na dowolną manipulację materią i energią."
       ],
       "dossierA": [
         {
-          "text": "Statyczna dominacja i niszczycielska projekcja energii. Trigon wykorzystuje sześć oczu do wielokierunkowych wyładowani piekielnego ognia oraz brutalną siłę bóstwa, by bez wysiłku rozbijać i odrzucać każdego przeciwnika.",
+          "text": "Magiczna dominacja i sianie chaosu. Wykorzystuje potęgę piekielną, by niszczyć umysły i ciała wrogów, zanim ci zdążą zrozumieć skalę zagrożenia.",
           "title": "Styl"
         },
         {
-          "text": "Heart of Darkness i mroczna nieśmiertelność. Skondensowane zło stu galaktyk daje mu niemal nieskończone zasoby magii i zdolność do natychmiastowej regeneracji z samej esencji mroku.",
+          "text": "Absolutna manipulacja wymiarami i duszami. Trigon nie jest tylko fizycznym zagrożeniem – on jest metafizyczną infekcją, która przejmuje kontrolę nad samą esencję bytu przeciwnika.",
           "title": "Atut"
         },
         {
-          "text": "Sadystyczny tyran dążący do totalnego podboju. Nie szuka wyzwania, lecz delektuje się rozpaczą i powolnym łamaniem ducha przeciwnika przed jego ostatecznym unicestwieniem.",
+          "text": "Czyste zło i sadystyczny narcyzm. Nie walczy o przetrwanie, lecz o całkowitą dominację i upodlenie wszystkiego, co żyje.",
           "title": "Mentalność"
         }
       ],
       "dossierB": [
         {
-          "text": "Bezpośrednia dominacja Power Cosmic. Galactus uderza niszczycielskimi wyładowaniami energii, unieruchamia wrogów telekinezą i wykorzystuje restrukturyzację molekularną, by jednym gestem obracać przeciwników w czystą energię.",
+          "text": "Kosmiczna manipulacja i wymazywanie. Używa Power Cosmic, by rozkładać materię na atomy i pochłaniać całą energię dostępną w danej sferze.",
           "title": "Styl"
         },
         {
-          "text": "Absolutna absorpcja mocy i Ultimate Nullifier. Potrafi pochłonąć energię wymierzoną przeciwko niemu (nawet od bóstw), a w razie konieczności użyć Nullifiera, by wymazać całe galaktyki lub linie czasowe z istnienia.",
+          "text": "Power Cosmic i skala istnienia. Galactus nie walczy – on przeprowadza proces konsumpcji. Posiada kontrolę nad fundamentalnymi siłami wszechświata na niewyobrażalnym poziomie.",
           "title": "Atut"
         },
         {
-          "text": "Zdystansowana, wiecznie głodna siła natury. Nie czuje gniewu ani nienawiści – postrzega herosów i bóstwa jak owady lub paliwo, działając całkowicie poza kategoriami dobra i zła.",
+          "text": "Amoralna siła natury. Nie zabija z nienawiści, lecz z głodu. Patrzy na planety i bóstwa jak na pokarm potrzebny do utrzymania równowagi kosmosu.",
           "title": "Mentalność"
         }
       ],
       "fighterA": {
-        "quote": "Próbując wykorzenić moje zło... uczyniliście mnie wszechmocnym! Jestem teraz potęgą. Jestem teraz śmiercią. Jestem teraz TRIGONEM!",
-        "version": "Prime Earth"
+        "quote": "Twój świat jest mój. Wasze dusze są moimi zabawkami. Nadchodzi Trigon!",
+        "version": "DC Multiverse"
       },
       "fighterB": {
-        "quote": "Ze wszystkich stworzeń w ogromie wszechświata, nie ma nikogo takiego jak ja. Byłem przy jego narodzinach i będę przy jego końcu.",
+        "quote": "Nie jestem bogiem. Nie jestem potworem. Jestem Galactusem. Jestem nieuchronnością.",
         "version": "Ziemia-616"
       },
       "folder": "7 Trigon vs Galactus",
@@ -2928,66 +2893,74 @@
       },
       "profileA": [
         {
-          "text": "Demoniczna projekcja energii, korupcja, opętanie, regeneracja, podróże międzywymiarowe.",
+          "text": "Manipulacja rzeczywistością, magia piekielna, absorpcja dusz i nieograniczona projekcja energii.",
           "title": "Moce"
         },
         {
-          "text": "Kształtowanie i kontrola domeny oraz presja na dusze.",
+          "text": "Zdolność tworzenia armii demonów i korumpowania bohaterów.",
           "title": "Narzędzia"
         },
         {
-          "text": "Szczytowa kontrola działa najlepiej w środowisku sprzyjającym demonicznej domenie.",
+          "text": "Kontrola nad wymiarami, pozwalająca mu atakować z punktów poza postrzeganiem wroga.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Zależność od rytuałów i bram wymiarowych do pełnej manifestacji w niektórych sferach.",
           "title": "Słabości"
         },
         {
-          "text": "Szeroka odporność kosmiczna może spowalniać tempo jego korupcji na neutralnym polu.",
+          "text": "Arogancja, która pozwala mu lekceważyć drobne, precyzyjne ataki.",
           "title": "Słabości"
         }
       ],
       "profileB": [
         {
-          "text": "Power Cosmic, transmutacja, wielkoskalowa projekcja energii, bariery i kontrola materii.",
+          "text": "Power Cosmic, manipulacja materią, energią i czasem na poziomie uniwersalnym.",
           "title": "Moce"
         },
         {
-          "text": "Absorpcja energii planetarnej lub kosmicznej.",
+          "text": "Ultimate Nullifier (w ekstremalnych przypadkach) – broń zdolna zniszczyć całe kontinuum.",
           "title": "Narzędzia"
         },
         {
-          "text": "Skuteczność zależy od poziomu nasycenia.",
+          "text": "Zdolność tworzenia heroldów, którzy wykonują jego wolę w niższych wymiarach.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Głód – jego potęga drastycznie spada, gdy nie spożywa planet.",
           "title": "Słabości"
         },
         {
-          "text": "W stanie głodu spada szybkość reakcji i margines błędu.",
+          "text": "Złożoność procesów technologicznych potrzebnych do efektywnej konsumpcji.",
           "title": "Słabości"
         }
       ],
       "statsA": {
-        "battleIq": 86,
-        "durability": 91,
-        "experience": 94,
-        "hax": 93,
-        "skills": 75,
-        "speed": 84,
-        "stamina": 94,
-        "strength": 89,
-        "style": 80
+        "battleIq": 94,
+        "durability": 98,
+        "experience": 99,
+        "hax": 98,
+        "skills": 82,
+        "speed": 92,
+        "stamina": 99,
+        "strength": 98,
+        "style": 95
       },
       "statsB": {
-        "battleIq": 92,
-        "durability": 97,
-        "experience": 98,
-        "hax": 98,
-        "skills": 79,
+        "battleIq": 96,
+        "durability": 99,
+        "experience": 99,
+        "hax": 99,
+        "skills": 85,
         "speed": 94,
-        "stamina": 96,
-        "strength": 95,
-        "style": 85
+        "stamina": 92,
+        "strength": 99,
+        "style": 94
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "62,68,77,86,91",
-          "b_curve": "88,90,87,83,78"
+          "a_curve": "95,90,85,80,70",
+          "b_curve": "96,97,98,99,100"
         },
         "crucial-feats": {
           "left_image_1": "Universe after Universe has fallen before his.jpg",
@@ -3005,44 +2978,31 @@
           "fight_title": "Trigon vs Galactus"
         },
         "fight-simulation": {
-          "phase_1_animation": "trade-chaos",
-          "phase_1_text": "Trigon próbuje zamienić pierwszą wymianę w korupcję, presję opętania i anty-symetrię.",
-          "phase_1_title": "Zatruć otwarcie",
-          "phase_2_animation": "kite-zone",
-          "phase_2_text": "Galactus odpowiada stabilizacją skali, kontrolą barier i ekonomią energii zamiast respektować preferowane zasady Trigona.",
-          "phase_2_title": "Znormalizować mapę",
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Galactus uderza czystą energią Power Cosmic, ignorując bariery Trigona.",
+          "phase_1_title": "Napór Kosmosu",
+          "phase_2_animation": "clash-lock",
+          "phase_2_text": "Dwie nieskończoności ścierają się, niszcząc pobliskie galaktyki.",
+          "phase_2_title": "Zderzenie Potęg",
           "phase_3_actor": "b",
-          "phase_3_animation": "clash-lock",
-          "phase_3_text": "Finał zależy od tego, czy pole walki pozostaje toksyczne i demoniczne, czy zostaje znormalizowane do czegoś, co Galactus może metabolizować.",
-          "phase_3_title": "Paliwo albo trucizna"
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Galactus wymazuje ślad Trigona z rzeczywistości.",
+          "phase_3_title": "Wymazanie"
         },
         "final-summary": {
-          "line_1": "Galactus wygrywa porównanie na papierze, 92.67 vs 87.33.",
-          "line_2": "Trigon pozostaje groźny, gdy korupcja i logika domeny zastępują normalną symetrię walki.",
-          "line_3": "Głód i własna domena to dwa warunki, które pozwalają Trigonowi odwrócić ten pojedynek.",
-          "winner": "Galactus prowadzi, ale Trigon ma realne gałęzie zwycięstwa"
-        },
-        "interpretation": {
-          "body": "Galactus ma większą skalę i szerszy zestaw odpowiedzi. Trigon nie przegrywa jednak samą różnicą mocy, bo potrafi zamienić przestrzeń w broń i przeciągnąć walkę na własne zasady. W tym pojedynku kluczowe jest nie tylko to, kto uderza mocniej, ale kto szybciej narzuci logikę całemu polu walki.",
-          "winner": "Tu nie wystarczy być potężniejszym. Trzeba jeszcze wygrać samo pole walki"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI TRIGONA",
-          "right_header": "PRZEWAGI GALACTUSA"
-        },
-        "stat-trap": {
-          "body": "Lepsze średnie Galactusa działają głównie na neutralnym polu. Gdy przestrzeń przechodzi pod logikę domeny Trigona, same liczby przestają wystarczać.",
-          "question": "Czy Trigon zatruje pole walki, zanim Galactus zamieni je w paliwo?"
+          "line_1": "To starcie ostatecznych skrajności: fizycznej konsumpcji Galactusa i duchowej korupcji Trigona.",
+          "line_2": "Wynik zależy niemal wyłącznie od lokalizacji starcia i tego, kto pierwszy narzuci swoje zasady rzeczywistości.",
+          "line_3": "W świecie materii Galactus jest nie do powstrzymania, ale w Domenie Piekła to on staje się ofiarą.",
+          "winner": "Galactus (Materia) lub Trigon (Piekło)."
         },
         "tactical-board": {
-          "lane": "Trigon wygrywa, jeśli utrzyma pole walki w stanie toksycznym. Galactus wygrywa, jeśli zamieni tę toksyczność w paliwo.",
-          "subtitle": "Demon kontra Pożeracz"
+          "lane": "Zwycięzca musi kontrolować wymiar, w którym toczy się walka.",
+          "subtitle": "Pożeracz kontra Demon"
         },
         "verdict-matrix": {
           "case_1": "Galactus 8/10",
-          "case_2": "Galactus 6.5/10",
-          "case_3": "Trigon 6/10",
-          "case_4": "Trigon 7.5/10"
+          "case_2": "Trigon 9/10",
+          "subtitle": "Werdykt zależny od miejsca starcia"
         },
         "victory-archive": {
           "left_image_1": "Trophy Room includes Superman's Suit.jpg",
@@ -3057,10 +3017,10 @@
           "right_image_5": "Tyrant.jpg"
         },
         "x-factor": {
-          "factor": "TOKSYCZNA DOMENA VS EKONOMIA ENERGII",
-          "implication": "Kto kontroluje znaczenie pola walki, kontroluje gałąź całego starcia.",
-          "mechanics": "Jeśli pole walki pozostaje demoniczne, Trigon pozostaje realny.",
-          "psychology": "Jeśli staje się paliwem, Galactus odzyskuje walkę."
+          "factor": "KONSUMPCJA ENERGII VS KORUPCJA DUSZY",
+          "implication": "Galactus chce zneutralizować zagrożenie, Trigon chce je przejąć.",
+          "mechanics": "Power Cosmic to nauka doprowadzona do poziomu boskości. Magia Trigona to wola niszcząca naukę.",
+          "psychology": "Galactus jest głodny, ale Trigon jest zły. Ta różnica w motywacji czyni Trigona bardziej nieprzewidywalnym."
         }
       },
       "templateOrder": [
@@ -3069,12 +3029,10 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
@@ -3082,65 +3040,65 @@
         "fight-card"
       ],
       "winsA": [
-        "Superman",
-        "JLA + Teen Titans",
-        "The Divine",
+        "Justice League",
+        "Teen Titans",
         "Psimon",
-        "Ares"
+        "Ares",
+        "The Divine"
       ],
       "winsB": [
-        "Mephisto",
+        "Sphinx",
+        "Tyrant",
         "Silver Surfer",
-        "Celestial",
-        "Terrax",
-        "Tyrant"
+        "Thanos",
+        "Red Hulk"
       ]
     },
     {
       "crucialFeatsA": [
-        "Bound the Butcher inside his power battery",
-        "Kept fighting after his heart was removed",
-        "Martian Manhunter can't attack him telepathically.",
-        "Burned through the fabric of space with rage plasma",
-        "Throws around Apollo"
+        "Bound the Butcher inside his power battery.",
+        "Kept fighting after his heart was removed.",
+        "Martian Manhunter cannot attack him telepathically.",
+        "Burned through the fabric of space with rage plasma.",
+        "Throws around Apollo."
       ],
       "crucialFeatsB": [
-        "Planet and moon collateral output from World Breaker scale",
-        "Stale-mated Sentry",
-        "Regenerated after extreme damage",
-        "Worldbreaker Red She-Hulk and WBH clashing caused planet to break",
-        "Nearly sank the entire east coast with a single step"
+        "World Breaker scale enables collateral destruction of a planet and moon.",
+        "Stalemated Sentry.",
+        "Regenerated from extreme damage.",
+        "A clash between Worldbreaker Red She-Hulk and World Breaker Hulk fractured a planet.",
+        "Nearly sank the entire east coast with a single step."
       ],
       "dossierA": [
         {
-          "text": "Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma that burns through matter and space itself.",
+          "text": "Brutal, primal aggression. Atrocitus charges opponents to tear them apart with his bare hands, backed by corrosive rage plasma.",
           "title": "Style"
         },
         {
-          "text": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers and the armor of deities with his bare hands.",
+          "text": "A red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power lets him crush energy barriers with his bare hands.",
           "title": "Advantage"
         },
         {
-          "text": "A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful the more hatred and anger the enemy shows him.",
+          "text": "A furious zealot driven by revenge. He knows no mercy or hesitation - he advances with a rage that grows stronger the more hatred and anger the opponent shows.",
           "title": "Mentality"
         }
       ],
       "dossierB": [
         {
-          "text": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes.",
+          "text": "Unstoppable close-quarters destruction. He relies on pure physical force and nonstop forward pressure, crushing everything under his strikes.",
           "title": "Style"
         },
         {
-          "text": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in a war of attrition.",
+          "text": "Unlimited strength growth and regeneration. The more hurt and angry he becomes, the stronger he gets, making him nearly unbeatable in attrition.",
           "title": "Advantage"
         },
         {
-          "text": "A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.",
+          "text": "A stubborn, savage destroyer. He does not calculate or retreat - he pushes forward until all resistance is leveled.",
           "title": "Mentality"
         }
       ],
       "fighterA": {
-        "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am the one who will destroy the Guardians and all they stand for. I am wrath, I am hate, I am righteous vengeance!",
+        "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am wrath, I am hate, I am righteous vengeance!",
         "version": "New 52"
       },
       "fighterB": {
@@ -3155,25 +3113,29 @@
       },
       "profileA": [
         {
-          "text": "Red Lantern plasma output, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics.",
+          "text": "Red Lantern plasma emission, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics.",
           "title": "Powers"
         },
         {
-          "text": "Emotional-spectrum manipulation and high-pressure ranged offense.",
+          "text": "Emotional-spectrum manipulation and heavy ranged pressure.",
           "title": "Tools"
         },
         {
-          "text": "Ring or construct-output dependence and front-loaded control windows.",
+          "text": "Ability to poison an opponent's power or energy through contact with blood and plasma.",
+          "title": "Tools"
+        },
+        {
+          "text": "Ring dependence (instead of a heart).",
           "title": "Weaknesses"
         },
         {
-          "text": "Prolonged direct brawls can reduce his tactical edge.",
+          "text": "Prolonged direct brawls can reduce his tactical edge in favor of the opponent's raw strength.",
           "title": "Weaknesses"
         }
       ],
       "profileB": [
         {
-          "text": "Gamma-based strength growth, regeneration, thunderclap/shockwave output, and extreme stamina.",
+          "text": "Rage-driven strength growth, regeneration, shockwaves, and extreme stamina.",
           "title": "Powers"
         },
         {
@@ -3181,11 +3143,15 @@
           "title": "Tools"
         },
         {
-          "text": "Limited precision utility at long range versus dedicated control users.",
+          "text": "Gamma radiation output (in World Breaker mode), destroying everything nearby.",
+          "title": "Tools"
+        },
+        {
+          "text": "Limited long-range utility against dedicated control specialists.",
           "title": "Weaknesses"
         },
         {
-          "text": "Strategy set is narrower when denied sustained contact.",
+          "text": "His strategic options narrow sharply when he cannot maintain sustained contact.",
           "title": "Weaknesses"
         }
       ],
@@ -3213,8 +3179,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "84,80,72,63,54",
-          "b_curve": "58,66,76,88,96"
+          "a_curve": "85,88,92,96,100",
+          "b_curve": "84,60,40,20,5"
         },
         "crucial-feats": {
           "left_image_1": "Atrocitus_ButcherBound.jpg",
@@ -3232,38 +3198,30 @@
           "fight_title": "Atrocitus vs Hulk"
         },
         "fight-simulation": {
-          "phase_1_animation": "kite-zone",
-          "phase_1_text": "Atrocitus opens with flight, plasma, and blood-rage control to keep Hulk from building a simple rhythm.",
-          "phase_1_title": "Atrocitus starts outside the pocket",
-          "phase_2_animation": "clash-lock",
-          "phase_2_text": "Hulk absorbs the first control layer and keeps trying to collapse distance until the fight becomes physical anyway.",
-          "phase_2_title": "Hulk refuses to stay managed",
-          "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "If Atrocitus keeps the fight external, he can stay ahead. If Hulk gets a second real contact sequence, regeneration and gamma escalation start erasing the value of every partial success.",
-          "phase_3_title": "The loop decides it"
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Atrocitus activates Butcher-Sync, turning Hulk's rage into his own fuel.",
+          "phase_1_title": "Consumption Begins",
+          "phase_2_animation": "shadow-surge",
+          "phase_2_text": "The space around the warriors becomes boiling plasma that dissolves matter.",
+          "phase_2_title": "Sea of Blood",
+          "phase_3_actor": "a",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Atrocitus uses Rage Suppression, reverting Hulk to Banner inside the blast epicenter.",
+          "phase_3_title": "Final Silencing"
         },
         "final-summary": {
-          "line_1": "Atrocitus wins the paper comparison, 85.6 vs 83.9.",
-          "line_2": "Hulk wins more real fights because repeat contact and regeneration create the cleaner finish route.",
-          "line_3": "Atrocitus only flips the matchup if distance and control hold from start to finish.",
-          "winner": "World Breaker Hulk 6.5/10"
-        },
-        "interpretation": {
-          "body": "Atrocitus owns the cleaner early toolkit, better speed, and stronger control options. Hulk owns the cleaner finish route once contact becomes repeatable. This is a matchup where the paper edge belongs to the more versatile side, but the practical edge belongs to the side whose loop gets stronger every time the control plan slips.",
-          "winner": "Atrocitus wins the paper comparison, but Hulk still wins more real fights"
-        },
-        "parameter-comparison": {
-          "left_header": "ATROCITUS ADVANTAGES",
-          "right_header": "HULK ADVANTAGES"
-        },
-        "stat-trap": {
-          "body": "Better averages mean little if they do not lead to a finish. Atrocitus has the better opening, but every close-range reset makes Hulk stronger. The real question is not who has more tools, but whose plan survives the first reset.",
-          "question": "Can Atrocitus keep Hulk's rage external, or does he end up feeding the loop himself?"
+          "line_1": "Both warriors feed on rage, but Atrocitus turns it into control while Hulk turns it into raw destructive scale.",
+          "line_2": "Atrocitus with the Butcher is an absolute hard counter to Hulk. The more Hulk fights, the faster he loses.",
+          "line_3": "This clash asks whether a life-sustaining ring can survive at the core of an atomic blast - Atrocitus proves it can.",
+          "winner": "Atrocitus 9/10."
         },
         "tactical-board": {
-          "lane": "Atrocitus wins by keeping the fight structured. Hulk wins by turning structure into a repeat contact loop.",
+          "lane": "Atrocitus must keep the fight under ring control before Hulk turns it into a gamma loop.",
           "subtitle": "Butcher versus Worldbreaker"
+        },
+        "verdict-matrix": {
+          "case_1": "Atrocitus 9/10",
+          "subtitle": "Conceptual annihilation vs lucky shot"
         },
         "victory-archive": {
           "left_image_1": "Atrocitus_Bind1.jpg",
@@ -3279,9 +3237,9 @@
         },
         "x-factor": {
           "factor": "RAGE CONTROL VS GAMMA LOOP",
-          "implication": "The winner is decided by whether rage remains externally managed or becomes self-sustaining gamma escalation.",
-          "mechanics": "If Atrocitus keeps Hulk at range and manages the fight from the outside, his plasma, rituals, and flight can stay ahead of the escalation curve.",
-          "psychology": "If Hulk forces repeat contact, rage control stops being a leash and starts becoming fuel for a stronger future exchange."
+          "implication": "Atrocitus wins because the opponent's rage is fuel, not a threat.",
+          "mechanics": "Atrocitus has the conceptual edge of switching off Hulk's engine through rage suppression.",
+          "psychology": "Hulk does not realize that every second of fighting makes him conceptually weaker against the Lantern."
         }
       },
       "templateOrder": [
@@ -3290,21 +3248,20 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [
         "The Butcher Entity",
         "The Butcher's human host",
-        "Saint Walker, Indigo-1, and Star Sapphire",
+        "Saint Walker, Indigo-1 and Star Sapphire",
         "Multiple Manhunters",
         "Bleez"
       ],
@@ -3333,11 +3290,11 @@
       ],
       "dossierA": [
         {
-          "text": "Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu, która przepala materię i samą przestrzeń.",
+          "text": "Brutalna, pierwotna agresja. Atrocitus szarżuje na przeciwników, by fizycznie rozrywać ich gołymi rękami, wspierając to żrącą plazmą gniewu.",
           "title": "Styl"
         },
         {
-          "text": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii i pancerze bóstw.",
+          "text": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii.",
           "title": "Atut"
         },
         {
@@ -3360,7 +3317,7 @@
         }
       ],
       "fighterA": {
-        "quote": "Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. To ja zniszczę Strażników i wszystko, za czym stoją. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!",
+        "quote": "Jestem Atrocitus, pan i mistrz Korpusu Czerwonych Latarni. Jestem gniewem, jestem nienawiścią, jestem sprawiedliwą zemstą!",
         "version": "New 52"
       },
       "fighterB": {
@@ -3383,11 +3340,15 @@
           "title": "Narzędzia"
         },
         {
-          "text": "Zależność od pierścienia.",
+          "text": "Możliwość skażenia Mocy lub energii przeciwnika poprzez kontakt z krwią i plazmą.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Zależność od pierścienia (zamiast serca).",
           "title": "Słabości"
         },
         {
-          "text": "Długie bezpośrednie bijatyki mogą osłabiać jego przewagę taktyczną.",
+          "text": "Długie bezpośrednie bijatyki mogą osłabiać jego przewagę taktyczną na rzecz surowej siły przeciwnika.",
           "title": "Słabości"
         }
       ],
@@ -3398,6 +3359,10 @@
         },
         {
           "text": "Nieustanna presja w zwarciu.",
+          "title": "Narzędzia"
+        },
+        {
+          "text": "Emisja promieniowania gamma (w trybie World Breaker), która niszczy wszystko w otoczeniu.",
           "title": "Narzędzia"
         },
         {
@@ -3433,8 +3398,8 @@
       },
       "templateBlocks": {
         "battle-dynamics": {
-          "a_curve": "84,80,72,63,54",
-          "b_curve": "58,66,76,88,96"
+          "a_curve": "85,88,92,96,100",
+          "b_curve": "84,60,40,20,5"
         },
         "crucial-feats": {
           "left_image_1": "Atrocitus_ButcherBound.jpg",
@@ -3452,38 +3417,30 @@
           "fight_title": "Atrocitus vs Hulk"
         },
         "fight-simulation": {
-          "phase_1_animation": "kite-zone",
-          "phase_1_text": "Atrocitus otwiera walkę lotem, plazmą i kontrolą gniewu, żeby nie pozwolić Hulkowi zbudować prostego rytmu.",
-          "phase_1_title": "Atrocitus zaczyna poza zasięgiem",
-          "phase_2_animation": "clash-lock",
-          "phase_2_text": "Hulk przyjmuje pierwszą warstwę kontroli i wciąż próbuje zamknąć dystans, aż walka i tak staje się fizyczna.",
-          "phase_2_title": "Hulk nie daje się utrzymać w ryzach",
-          "phase_3_actor": "b",
-          "phase_3_animation": "trade-chaos",
-          "phase_3_text": "Jeśli Atrocitus utrzyma walkę na zewnątrz, może pozostać przed krzywą. Jeśli Hulk dostanie drugą realną sekwencję kontaktu, regeneracja i eskalacja gamma zaczynają kasować wartość każdego częściowego sukcesu.",
-          "phase_3_title": "Pętla rozstrzyga wszystko"
+          "phase_1_animation": "rush-ko",
+          "phase_1_text": "Atrocitus aktywuje Butcher-Sync, zmieniając gniew Hulka w swoje paliwo.",
+          "phase_1_title": "Początek Konsumpcji",
+          "phase_2_animation": "shadow-surge",
+          "phase_2_text": "Przestrzeń wokół wojowników zamienia się w wrzącą plazmę, która rozpuszcza materię.",
+          "phase_2_title": "Morze Krwi",
+          "phase_3_actor": "a",
+          "phase_3_animation": "celestial-purge",
+          "phase_3_text": "Atrocitus używa Rage Suppression, cofając Hulka do postaci Bannera wewnątrz epicentrum wybuchu.",
+          "phase_3_title": "Ostateczne Wyciszenie"
         },
         "final-summary": {
-          "line_1": "Atrocitus wygrywa porównanie na papierze, 85.6 vs 83.9.",
-          "line_2": "Hulk wygrywa więcej realnych walk, bo powtarzalny kontakt i regeneracja tworzą czystszą ścieżkę kończenia.",
-          "line_3": "Atrocitus odwraca ten pojedynek tylko wtedy, gdy dystans i kontrola utrzymują się od początku do końca.",
-          "winner": "World Breaker Hulk 6.5/10"
-        },
-        "interpretation": {
-          "body": "To nie jest pojedynek, w którym tylko Hulk rośnie w trakcie walki. Atrocitus również staje się groźniejszy razem z własnym gniewem. Różnica polega na tym, że Atrocitus zamienia eskalację w więcej narzędzi, presji i kontroli, a Hulk zamienia ją w coraz prostszą i cięższą przemoc w kontakcie. Dlatego o wyniku decyduje to, czy Atrocitus przełoży plazmę, lot i manipulację gniewem na realne domknięcie, zanim pojedynek osiada w powtarzalnym zwarciu.",
-          "winner": "Obaj rosną z gniewem. Pytanie brzmi, czyj gniew szybciej zamienia się w zwycięstwo"
-        },
-        "parameter-comparison": {
-          "left_header": "PRZEWAGI ATROCITUSA",
-          "right_header": "PRZEWAGI HULKA"
-        },
-        "stat-trap": {
-          "body": "Lepsze średnie nie wystarczą, jeśli nie prowadzą do domknięcia. Atrocitus ma lepszy start, ale każda wymiana w zwarciu wzmacnia Hulka. Pytanie brzmi nie kto ma więcej narzędzi, tylko czyj plan przetrwa pierwszy reset walki.",
-          "question": "Czy Atrocitus utrzyma gniew Hulka na zewnątrz, czy sam zacznie karmić tę pętlę?"
+          "line_1": "Obaj wojownicy żywią się gniewem, ale Atrocitus zamienia go w kontrolę, a Hulk w czystą, niszczycielską skalę.",
+          "line_2": "Atrocitus z Butcherem to absolutna kontra dla Hulka. Im bardziej Hulk walczy, tym szybciej przegrywa.",
+          "line_3": "To starcie o to, czy pierścień podtrzymujący życie zdoła przetrwać w sercu atomowej eksplozji – Atrocitus udowadnia, że tak.",
+          "winner": "Atrocitus 9/10."
         },
         "tactical-board": {
-          "lane": "Atrocitus wygrywa, jeśli utrzyma walkę w ryzach. Hulk wygrywa, jeśli zamieni tę strukturę w pętlę powtarzalnego kontaktu.",
+          "lane": "Atrocitus musi utrzymać walkę w ryzach Mocy, zanim Hulk zamieni ją w pętlę gamma.",
           "subtitle": "Rzeźnik kontra Worldbreaker"
+        },
+        "verdict-matrix": {
+          "case_1": "Atrocitus 9/10",
+          "subtitle": "Koncepcyjna anihilacja vs fartowny cios"
         },
         "victory-archive": {
           "left_image_1": "Atrocitus_Bind1.jpg",
@@ -3499,9 +3456,9 @@
         },
         "x-factor": {
           "factor": "KONTROLA GNIEWU VS PĘTLA GAMMA",
-          "implication": "Zwycięzcę rozstrzyga to, czy gniew pozostaje kontrolowany z zewnątrz, czy zmienia się w samonapędzającą eskalację gamma.",
-          "mechanics": "Jeśli Atrocitus utrzyma Hulka na dystans i będzie zarządzał walką z zewnątrz, jego plazma, rytuały i lot mogą wyprzedzać krzywą eskalacji.",
-          "psychology": "Jeśli Hulk wymusi powtarzalny kontakt, kontrola gniewu przestaje być smyczą i zaczyna być paliwem dla silniejszej przyszłej wymiany."
+          "implication": "Atrocitus wygrywa, bo gniew przeciwnika to dla niego paliwo, a nie zagrożenie.",
+          "mechanics": "Atrocitus posiada koncepcyjną przewagę 'wyłączania' silnika Hulka poprzez tłumienie szału.",
+          "psychology": "Hulk nie rozumie, że każda sekunda walki czyni go słabszym koncepcyjnie względem Latarni."
         }
       },
       "templateOrder": [
@@ -3510,15 +3467,14 @@
         "character-dossier-b",
         "character-profile",
         "crucial-feats",
+        "victory-archive",
         "fight-analytics",
         "parameter-comparison",
-        "interpretation",
-        "stat-trap",
         "x-factor",
-        "victory-archive",
         "final-summary",
         "battle-dynamics",
         "fight-simulation",
+        "verdict-matrix",
         "fight-card"
       ],
       "winsA": [

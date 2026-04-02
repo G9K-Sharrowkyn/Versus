@@ -1,7 +1,7 @@
 import './MethodologyTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode } from 'react'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { LightningCanvas } from '../../../components/LightningCanvas'
 import { FittedText } from '../../shared/FittedText'
@@ -53,38 +53,29 @@ export function MethodologyTemplate({
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES.methodology || [])
-  const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('methodology', language)
   const ui = getTemplateUi('methodology', language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
   const layout = ui.template as Record<string, string | number>
   
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const headerText = title
+  const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "METHODOLOGY"
+    getFightTemplateDefaultField('tactical-board', 'left_header', language) || common.emptyFieldLabel
     
   const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const listLabel =
-    pickTemplateField(blockFields, ['list_label']) ||
     getFightTemplateDefaultField('methodology', 'list_label', language)
   const realityLabel =
-    pickTemplateField(blockFields, ['reality_label']) ||
     getFightTemplateDefaultField('methodology', 'reality_label', language)
   const linearLabel =
-    pickTemplateField(blockFields, ['linear_label']) ||
     getFightTemplateDefaultField('methodology', 'linear_label', language)
   const chaosLabel =
-    pickTemplateField(blockFields, ['chaos_label']) ||
     getFightTemplateDefaultField('methodology', 'chaos_label', language)
   const closingLabel =
-    pickTemplateField(blockFields, ['closing_label']) ||
     getFightTemplateDefaultField('methodology', 'closing_label', language)
   const rowSource = rows.length
     ? rows
@@ -98,7 +89,7 @@ export function MethodologyTemplate({
   const linearLabelX = Number(layout.LINEAR_LABEL_X || 35)
   const chaosLabelX = Number(layout.CHAOS_LABEL_X || 75)
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

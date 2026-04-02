@@ -12,6 +12,7 @@ export const BASELINE_REF = '2c356c7^'
 export const CANONICAL_STAT_KEYS = ['strength', 'speed', 'durability', 'battleIq', 'hax', 'stamina', 'style', 'experience', 'skills']
 
 const CURRENT_IMPORTER_PATH = path.join(REPO_ROOT, 'src/features/vs/importer.ts')
+const CURRENT_FIGHT_MANIFEST_PATH = path.join(REPO_ROOT, 'src/features/vs/fightManifest.ts')
 const BASELINE_IMPORTER_PATH = path.join(REPO_ROOT, 'src/features/vs/.baseline-importer.ts')
 const BASELINE_TS_FILES = [
   'src/features/vs/importer.ts',
@@ -36,12 +37,12 @@ export const trimStringArray = (value) =>
 
 export const MANIFEST_OWNED_TEMPLATE_FIELDS = {
   'tactical-board': ['headline', 'left_header', 'right_header', 'linear_label', 'chaos_label'],
-  'character-dossier-a': ['header', 'world', 'style', 'advantage', 'mentality', 'quote'],
-  'character-dossier-b': ['header', 'world', 'style', 'advantage', 'mentality', 'quote'],
+  'character-dossier-a': ['header', 'style', 'advantage', 'mentality'],
+  'character-dossier-b': ['header', 'style', 'advantage', 'mentality'],
   'character-profile': ['headline', 'subtitle', 'powers_label', 'tools_label', 'weaknesses_label', 'left_title', 'right_title'],
   'crucial-feats': ['headline', 'subtitle', 'feat_label', 'left_title', 'right_title'],
   'fight-analytics': ['headline', 'subtitle', 'scale', 'threat_level', 'integrity', 'profile_mode', 'profileMode'],
-  'parameter-comparison': ['headline', 'subtitle', 'draw_header', 'favorite_label'],
+  'parameter-comparison': ['headline', 'subtitle', 'draw_header'],
   'victory-archive': ['headline', 'subtitle', 'archive_label', 'avg_label', 'left_title', 'right_title', 'win_badge'],
   'battle-dynamics': ['headline', 'subtitle'],
   'final-summary': ['headline', 'subtitle'],
@@ -50,7 +51,7 @@ export const MANIFEST_OWNED_TEMPLATE_FIELDS = {
   'fight-simulation': ['headline', 'subtitle'],
   'stat-trap': ['headline', 'subtitle'],
   'direct-verdict': ['headline', 'subtitle'],
-  'verdict-matrix': ['headline', 'subtitle', 'col_left', 'col_right', 'row_top', 'row_bottom'],
+  'verdict-matrix': ['col_left', 'col_right', 'row_top', 'row_bottom'],
   'fight-card': ['headline', 'subtitle', 'top_color_a', 'top_color_b', 'bottom_color_a', 'bottom_color_b', 'top_dark', 'bottom_dark'],
   methodology: ['headline', 'subtitle', 'list_label', 'reality_label', 'linear_label', 'chaos_label', 'closing_label'],
 }
@@ -208,6 +209,14 @@ const gitShow = (ref, relativePath) =>
   execFileSync('git', ['show', `${ref}:${relativePath}`], { encoding: 'utf8' })
 
 export const loadCurrentImporter = () => createTsModuleLoader().loadModule(CURRENT_IMPORTER_PATH)
+
+export const loadCurrentFightManifest = () => {
+  const module = createTsModuleLoader().loadModule(CURRENT_FIGHT_MANIFEST_PATH)
+  if (!module?.fightManifest?.templates) {
+    throw new Error('Failed to load fight manifest templates from src/features/vs/fightManifest.ts')
+  }
+  return module.fightManifest
+}
 
 export const loadHistoricalImporter = (ref = BASELINE_REF) => {
   const overrides = new Map()

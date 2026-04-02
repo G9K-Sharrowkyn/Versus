@@ -115,7 +115,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Standardowe zasady · Solar Flare",
+      "label": "Standardowe zasady · Solar Flare",
       "a_curve": "91,92,94,96,98",
       "b_curve": "86,84,80,75,70",
       "yellow_wave": "31,34,32,36,33,37,35,39",
@@ -146,11 +146,10 @@
       "s4_analysis": "W długiej walce na śmierć bez Solar Flare, Hyperion po prostu przetrwa Supermana."
     },
     "fight-card": {
-      "fight_title": "Superman vs King Hyperion",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Superman vs King Hyperion"
     },
     "fight-simulation": {
-      "s1_label": "Standardowe zasady · Solar Flare",
+      "label": "Standardowe zasady · Solar Flare",
       "opening": "Superman narzuca tempo szybkością i kontrolą pola.",
       "mid_fight": "Hyperion przetrwał otwarcie. Walka przechodzi w fazę atrycji.",
       "late_fight": "Superman musi użyć Solar Flare, zanim wróg zresetuje postępy regeneracją.",
@@ -233,8 +232,7 @@
       "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
       "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej formie.",
       "line_3": "Problem polega na tym, że niezamknięta sekwencja daje Hyperionowi szansę, a czas faworyzuje jego regenerację.",
-      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa.",
-      "quote": "„Przewaga należy do Supermana. Czas należy do Hyperiona.”"
+      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
     },
     "tactical-board": {
       "lane": "Superman musi zamienić przewagę kontroli w prawdziwe zakończenie, zanim regeneracja Hyperiona odbierze wartość każdej wymianie.",
@@ -257,14 +255,10 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa?",
-      "implication": "Im mniej walka premiuje czysty nokaut, tym bardziej rośnie wartość faktu, że Hyperion ciągle wraca.",
-      "mechanics": "Superman ma przewagę statystyczną, ale Hyperion to wróg, którego sama dominacja nie pokona bez trwałego końca.",
-      "psychology": "Hyperion walczy lekkomyślnie, bo każde przetrwanie sekwencji przybliża go do zmęczenia przeciwnika.",
-      "regen": "BRAK ZASAD",
-      "trap_top": "REGENERACJA I BRUTALNOŚĆ >",
-      "trap_bottom": "TECHNIKA W DŁUGIEJ WALCE",
-      "example": "Dopóki Superman utrzymuje walkę techniczną, przewaga jest po jego stronie. Gdy Hyperion przetrwa ciężkie sekwencje, układ walki odwraca się przeciw Clarkowi.",
-      "question": "Czy Superman zdoła zakończyć walkę, zanim rany zniwelują jego przewagę statystyk?"
+      "implikacja": "Im mniej walka premiuje czysty nokaut, tym bardziej rośnie wartość faktu, że Hyperion ciągle wraca.",
+      "mechanika": "Superman ma przewagę statystyczną, ale Hyperion to wróg, którego sama dominacja nie pokona bez trwałego końca.",
+      "psychologia": "Hyperion walczy lekkomyślnie, bo każde przetrwanie sekwencji przybliża go do zmęczenia przeciwnika.",
+      "regen": "BRAK ZASAD"
     }
   }
 }

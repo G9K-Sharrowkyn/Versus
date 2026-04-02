@@ -13,6 +13,7 @@
     "templates:guard": "node scripts/guard-template-library.mjs",
     "templates:styles:guard": "node scripts/guard-v2-shared-selectors.mjs",
     "fights:guard": "node scripts/guard-fight-json-integrity.mjs && node scripts/guard-fight-semantic-snapshot.mjs",
+    "fights:normalize:template-fields": "node scripts/normalize-fight-template-fields.mjs",
     "fights:audit:migration": "node scripts/audit-fight-json-migration.mjs",
     "fights:audit:layout": "node scripts/audit-fight-layout.mjs",
     "fights:test:visuals-persistence": "node scripts/test-fight-visuals-persistence.mjs",

@@ -115,15 +115,15 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Odinforce: Cleansing",
+      "label": "Odinforce: Oczyszczenie",
       "a_curve": "91,85,75,68,60",
       "b_curve": "90,92,94,96,98",
       "yellow_wave": "31,35,33,37,34,38,36,40",
       "phase_1": "Odin od początku narzuca kosmiczny porządek. Odinforce działa jako idealna kontra na struktury Otchłani.",
       "phase_2": "Knull próbuje zalać pole walki cieniami, ale boskie światło Odina wypala każdą próbę regeneracji.",
-      "phase_3": "Odinforce Cleansing domyka walkę. Knull zostaje odcięty od źródła swojej potęgi.",
+      "phase_3": "Odinforce: Oczyszczenie domyka walkę. Knull zostaje odcięty od źródła swojej potęgi.",
       "analysis": "W tym scenariuszu Odinforce jest twardą kontrą na Otchłań. Knull traci atut regeneracji.",
-      "s2_label": "Odinforce: Standard",
+      "s2_label": "Odinforce: Tryb standardowy",
       "s2_a_curve": "91,92,94,96,98",
       "s2_b_curve": "90,88,85,80,75",
       "s2_phase_1": "Początek to brutalna wymiana ciosów. Odin polega na sile, a Knull na morderczych cięciach All-Black.",
@@ -132,14 +132,13 @@
       "s2_analysis": "Brak specyficznej kontry sprawia, że Odin musi być perfekcyjny przez zbyt długi czas."
     },
     "fight-card": {
-      "fight_title": "Knull vs Odin",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Knull vs Odin"
     },
     "fight-simulation": {
-      "s1_label": "Odinforce: Cleansing",
+      "label": "Odinforce: Oczyszczenie",
       "opening": "Odin otwiera walkę salwą czystej energii, która rozprasza pierwsze pasma Otchłani Knulla.",
       "mid_fight": "Knull próbuje kontrować All-Black, ale pancerz Destroyera i bariery Odina sprawiają, że kontakt jest dla niego kosztowny.",
-      "late_fight": "Odin wyczuwa słabnącą więź Knulla z Otchłanią i uderza z pełną mocą Cleansing, kończąc pojedynek.",
+      "late_fight": "Odin wyczuwa słabnącą więź Knulla z Otchłanią i uderza z pełną mocą Oczyszczenia, kończąc pojedynek.",
       "end_condition": "Zwycięstwo przez całkowite oczyszczenie pola walki i wymazanie esencji Knulla.",
       "phase_1_animation": "cosmic-salvo",
       "phase_1_title": "Boska Salwa",
@@ -156,10 +155,10 @@
       "phase_3_actor": "b",
       "phase_3_animation": "celestial-purge",
       "phase_3_title": "Niebiańskie Oczyszczenie",
-      "phase_3_event": "Odyn uwalnia ostateczną falę Cleansing, która wypala esencję Knulla z tkaniny wszechświata.",
+      "phase_3_event": "Odyn uwalnia ostateczną falę Oczyszczenia, która wypala esencję Knulla z tkaniny wszechświata.",
       "phase_3_branch_a": "Knull zostaje wymazany z obecnego planu istnienia.",
       "phase_3_branch_b": "Cienie zostają spacyfikowane, zostawiając Knulla bezbronnym.",
-      "s2_label": "Odinforce: Standard",
+      "s2_label": "Odinforce: Tryb standardowy",
       "s2_phase_1_animation": "shadow-surge",
       "s2_phase_1_title": "Przypływ Cienia",
       "s2_phase_1_a_label": "Potęga",
@@ -184,10 +183,9 @@
     },
     "final-summary": {
       "line_1": "W tym starciu nie ma miejsca na kompromisy czy turniejowe zasady – to walka o ostateczne istnienie.",
-      "line_2": "Odinforce Cleansing to jedyny czynnik, który pozwala Odnowi na trwałe pokonanie pętli regeneracji Knulla.",
+      "line_2": "Odinforce: Oczyszczenie to jedyny czynnik, który pozwala Odynowi na trwałe pokonanie pętli regeneracji Knulla.",
       "line_3": "Bez tej specyficznej kontry, Knull po prostu przetrzymuje każdy atak, wygrywając walkę przez atrycję.",
-      "winner": "Odin (z Cleansing) lub Knull (Standard).",
-      "quote": "„Bogowie nie walczą o punkty. Bogowie walczą, by światło nie zgasło w objęciach All-Black.”"
+      "winner": "Odin (z Oczyszczeniem) lub Knull (tryb standardowy)."
     },
     "tactical-board": {
       "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.",
@@ -196,10 +194,11 @@
     "verdict-matrix": {
       "header": "MATRYCA WERDYKTU",
       "subtitle": "Werdykt zależny od użycia Oczyszczenia",
-      "row_1": "ODINFORCE: CLEANSING",
-      "row_2": "ODINFORCE: STANDARD",
-      "case_1": "Odin 7.5/10. Przy użyciu Cleansing, Odin posiada właściwe narzędzie do neutralizacji Otchłani. Jego kontrola pola walki staje się dla Knulla niemożliwa do przełamania, prowadząc do całkowitego wymazania esencji symbiontów.",
-      "case_2": "Knull 8/10. Bez specyficznej kontry na regenerację, Odin staje się tylko kolejnym, wyjątkowo potężnym bogiem do ścięcia. All-Black i pętla regeneracji Otchłani nieuchronnie wygrywają wojnę zasobów."
+      "row_1": "ODINFORCE: OCZYSZCZENIE",
+      "row_2": "ODINFORCE: TRYB STANDARDOWY",
+      "case_1": "Odin 7.5/10. Przy użyciu Oczyszczenia, Odin posiada właściwe narzędzie do neutralizacji Otchłani. Jego kontrola pola walki staje się dla Knulla niemożliwa do przełamania, prowadząc do całkowitego wymazania esencji symbiontów.",
+      "case_2": "Knull 8/10. Bez specyficznej kontry na regenerację, Odin staje się tylko kolejnym, wyjątkowo potężnym bogiem do ścięcia. All-Black i pętla regeneracji Otchłani nieuchronnie wygrywają wojnę zasobów.",
+      "layout": "2x1"
     },
     "x-factor": {
       "a_bonus": "14",
@@ -208,14 +207,10 @@
       "b_bonus": "15",
       "b_value": "50",
       "factor": "KONTRA NA OTCHŁAŃ VS BOSKIE OBRAŻENIA",
-      "implication": "Zwycięstwo zależy od tego, czy Odin potraktuje Knulla jako materię, czy jako metafizyczną infekcję.",
-      "mechanics": "Knull wygrywa, jeśli Odinforce jest tylko energią fizyczną. Odin wygrywa, jeśli działa jak 'antywirus' na Otchłań.",
-      "psychology": "Obaj walczą o wszystko. Knull chce powtarzalności mroku, Odyn chce jednego, ostatecznego oczyszczenia.",
-      "regen": "PRAWDZIWE OCZYSZCZENIE",
-      "trap_top": "REGENERACJA I OTCHŁAŃ >",
-      "trap_bottom": "KOSMICZNA KONTROLA I CLEANSING",
-      "example": "Odin uderza z mocą niszczącą galaktyki. Jeśli to tylko surowa siła, Knull po prostu składa się na nowo. Dopiero Cleansing sprawia, że rany przestają istnieć w czasie.",
-      "question": "Czy Odin zdoła utrzymać koncentrację na Cleansingu pod fizyczną presją All-Black?"
+      "implikacja": "Zwycięstwo zależy od tego, czy Odin potraktuje Knulla jako materię, czy jako metafizyczną infekcję.",
+      "mechanika": "Knull wygrywa, jeśli Odinforce jest tylko energią fizyczną. Odin wygrywa, jeśli działa jak 'antywirus' na Otchłań.",
+      "psychologia": "Obaj walczą o wszystko. Knull chce powtarzalności mroku, Odyn chce jednego, ostatecznego oczyszczenia.",
+      "regen": "PRAWDZIWE OCZYSZCZENIE"
     }
   }
 }

@@ -157,11 +157,8 @@ export function XFactorTemplate({
     </div>
   )
 
-  const headerText =
-    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
-    title ||
-    templatePreset.title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
+  const headerText = title
+  const subText = subtitle
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
   const psychology = line(3, ['psychologia', 'psychology'])
@@ -170,14 +167,13 @@ export function XFactorTemplate({
   const trapExample = pickTemplateField(blockFields, ['example'])
   const trapQuestion = pickTemplateField(blockFields, ['question'])
   const boardHeader =
-    pickTemplateField(blockFields, ['panel_header', 'x_factor_header']) ||
     getFightTemplateDefaultField('x-factor', 'panel_header', language) ||
     templatePreset.title
 
   const auditPrefix = `${activeFightId || 'draft'}:x-factor`
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : templatePreset.title
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

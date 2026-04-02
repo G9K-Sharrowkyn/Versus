@@ -87,7 +87,7 @@ export function FightSimulationTemplate({
     categories.find((entry) => entry.id === categoryId)?.label || categoryId.toUpperCase()
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle
   const baseOpening = line(0, ['opening'])
   const baseMidFight = line(1, ['mid_fight', 'midfight'])
@@ -177,7 +177,7 @@ export function FightSimulationTemplate({
 
     const label = pfx
       ? pickTemplateField(blockFields, [`${pfx}label`]) || ''
-      : pickTemplateField(blockFields, ['s1_label', 'label']) || ''
+      : pickTemplateField(blockFields, ['label', 's1_label']) || ''
     const scenarioEndCondition = pf(['end_condition', 'endcondition']) || baseEndCondition
 
     const phases = [1, 2, 3].map((index) => {
@@ -239,19 +239,9 @@ export function FightSimulationTemplate({
   const scopeKey = `${fighterA.name}::${fighterB.name}:fight-simulation`
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
-  const scenarioFallbackLabels = language === 'pl'
-    ? [
-      'Standardowe zasady - Solar Flare',
-      'Standardowe zasady - bez Solar Flare',
-      'Walka na smierc - Solar Flare',
-      'Walka na smierc - bez Solar Flare',
-    ]
-    : [
-      'Standard Rules - Solar Flare',
-      'Standard Rules - No Solar Flare',
-      'Fight to the Death - Solar Flare',
-      'Fight to the Death - No Solar Flare',
-    ]
+  const scenarioFallbackLabels = [1, 2, 3, 4].map((index) =>
+    getFightTemplateDefaultField('fight-simulation', `scenario_${index}_label`, language) || common.emptyFieldLabel,
+  )
   const panelHeaderRaw = active.label || scenarioFallbackLabels[activeIndex] || scenarioFallbackLabels[0]
   const panelSeparatorPattern = /\s*(?:\u00C2?\u00B7|,|\/|\|)\s*/g
   const panelHeader = panelHeaderRaw
@@ -348,7 +338,7 @@ export function FightSimulationTemplate({
     41,
   )
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
   const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {

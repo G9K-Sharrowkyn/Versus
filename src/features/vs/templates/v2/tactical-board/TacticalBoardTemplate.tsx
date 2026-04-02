@@ -57,19 +57,17 @@ export function TacticalBoardTemplate({
   const ui = getTemplateUi(activeTemplateId, language)
   const slots = ui.slots as Record<string, TemplateSlotSpec>
 
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
     getFightTemplateDefaultField('tactical-board', 'left_header', language)
   const realityHeader =
-    pickTemplateField(blockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
   const xFactorLabel =
     getFightTemplateDefaultField('x-factor', 'factor', language) ||
     getFightTemplatePreset('x-factor', language).title
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
   const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {

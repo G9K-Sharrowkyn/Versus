@@ -32,6 +32,7 @@ export type FightTemplateFieldSchema = {
   jsonKey?: string
   source?: 'fight' | 'scans'
   valueType?: 'string' | 'string-array'
+  allowScenarioPrefix?: boolean
 }
 
 export type FightTemplateManifest = {
@@ -68,7 +69,7 @@ const field = (
   key: string,
   aliases: string[] = [],
   starter = true,
-  options: Pick<FightTemplateFieldSchema, 'jsonKey' | 'source' | 'valueType'> = {},
+  options: Pick<FightTemplateFieldSchema, 'jsonKey' | 'source' | 'valueType' | 'allowScenarioPrefix'> = {},
 ): FightTemplateFieldSchema => ({
   key,
   aliases,
@@ -76,6 +77,7 @@ const field = (
   jsonKey: options.jsonKey,
   source: options.source,
   valueType: options.valueType,
+  allowScenarioPrefix: options.allowScenarioPrefix,
 })
 const joinFieldLabel = (entry: FightTemplateFieldSchema) => [entry.key, ...(entry.aliases || [])].join(' | ')
 const localize = (copy: LocalizedText, language: FightManifestLocale) => copy[language]
@@ -109,13 +111,19 @@ export const fightManifest: FightManifest = {
       id: 'character-dossier-a',
       aliases: ['character a', 'character card a', 'card a', 'dossier postaci a', 'karta postaci a', 'postać a'],
       legacyIds: ['character-card-a'],
-      variableFields: [],
+      variableFields: [
+        field('world'),
+        field('quote', ['cytat']),
+      ],
     },
     {
       id: 'character-dossier-b',
       aliases: ['character b', 'character card b', 'card b', 'dossier postaci b', 'karta postaci b', 'postać b'],
       legacyIds: ['character-card-b'],
-      variableFields: [],
+      variableFields: [
+        field('world'),
+        field('quote', ['cytat']),
+      ],
     },
     {
       id: 'character-profile',
@@ -175,13 +183,14 @@ export const fightManifest: FightManifest = {
       id: 'battle-dynamics',
       aliases: ['dynamika starcia', 'battle dynamics'],
       variableFields: [
-        field('a_curve', ['curve_a', 'blue_curve', 'left_curve']),
-        field('b_curve', ['curve_b', 'red_curve', 'right_curve']),
-        field('yellow_wave', ['wave', 'chaos_wave']),
-        field('phase_1', ['phase1']),
-        field('phase_2', ['phase2']),
-        field('phase_3', ['phase3']),
-        field('analysis', ['note', 'line_4', 'line4']),
+        field('label', ['s1_label'], true, { allowScenarioPrefix: true }),
+        field('a_curve', ['curve_a', 'blue_curve', 'left_curve'], true, { allowScenarioPrefix: true }),
+        field('b_curve', ['curve_b', 'red_curve', 'right_curve'], true, { allowScenarioPrefix: true }),
+        field('yellow_wave', ['wave', 'chaos_wave'], true, { allowScenarioPrefix: true }),
+        field('phase_1', ['phase1'], true, { allowScenarioPrefix: true }),
+        field('phase_2', ['phase2'], true, { allowScenarioPrefix: true }),
+        field('phase_3', ['phase3'], true, { allowScenarioPrefix: true }),
+        field('analysis', ['note', 'line_4', 'line4'], true, { allowScenarioPrefix: true }),
       ],
     },
     {
@@ -214,24 +223,26 @@ export const fightManifest: FightManifest = {
       id: 'fight-simulation',
       aliases: ['symulacja walki', 'fight simulation'],
       variableFields: [
+        field('label', ['s1_label'], true, { allowScenarioPrefix: true }),
         field('opening'),
         field('mid_fight', ['midfight']),
         field('late_fight', ['latefight']),
-        field('end_condition', ['endcondition']),
+        field('end_condition', ['endcondition'], true, { allowScenarioPrefix: true }),
         field('phase_mode', ['phasemode', 'mode', 'simulation_mode', 'simulationmode']),
         field('phase_animation', ['phaseanimation', 'animation', 'scenario', 'preset', 'simulation_animation', 'simulationanimation']),
         field('phase_actor', ['phaseactor', 'actor', 'lead', 'aggressor', 'attacker']),
-        field('phase_<N>_mode', ['phase<N>mode', 'phase_<N>_type', 'phase<N>type']),
-        field('phase_<N>_animation', ['phase<N>animation', 'phase_<N>_scenario', 'phase<N>scenario', 'phase_<N>_preset', 'phase<N>preset']),
-        field('phase_<N>_actor', ['phase<N>actor', 'phase_<N>_lead', 'phase<N>lead', 'phase_<N>_aggressor', 'phase<N>aggressor', 'phase_<N>_attacker', 'phase<N>attacker']),
-        field('phase_<N>_title', ['phase<N>title', 'phase_<N>_headline', 'phase<N>headline']),
-        field('phase_<N>_a_label', ['phase<N>alabel', 'phase_<N>_left_label', 'phase<N>leftlabel']),
-        field('phase_<N>_b_label', ['phase<N>blabel', 'phase_<N>_right_label', 'phase<N>rightlabel']),
-        field('phase_<N>_a_value', ['phase<N>avalue', 'phase_<N>_left_value', 'phase<N>leftvalue']),
-        field('phase_<N>_b_value', ['phase<N>bvalue', 'phase_<N>_right_value', 'phase<N>rightvalue']),
-        field('phase_<N>_event', ['phase<N>event', 'phase_<N>_turn', 'phase<N>turn', 'phase_<N>_pivot', 'phase<N>pivot']),
-        field('phase_<N>_branch_a', ['phase<N>brancha', 'phase_<N>_option_a', 'phase<N>optiona', 'phase_<N>_left_option', 'phase<N>leftoption']),
-        field('phase_<N>_branch_b', ['phase<N>branchb', 'phase_<N>_option_b', 'phase<N>optionb', 'phase_<N>_right_option', 'phase<N>rightoption']),
+        field('phase_<N>_mode', ['phase<N>mode', 'phase_<N>_type', 'phase<N>type'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_animation', ['phase<N>animation', 'phase_<N>_scenario', 'phase<N>scenario', 'phase_<N>_preset', 'phase<N>preset'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_token', ['phase<N>token', 'phase_<N>_variant', 'phase<N>variant'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_actor', ['phase<N>actor', 'phase_<N>_lead', 'phase<N>lead', 'phase_<N>_aggressor', 'phase<N>aggressor', 'phase_<N>_attacker', 'phase<N>attacker'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_title', ['phase<N>title', 'phase_<N>_headline', 'phase<N>headline'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_a_label', ['phase<N>alabel', 'phase_<N>_left_label', 'phase<N>leftlabel'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_b_label', ['phase<N>blabel', 'phase_<N>_right_label', 'phase<N>rightlabel'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_a_value', ['phase<N>avalue', 'phase_<N>_left_value', 'phase<N>leftvalue'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_b_value', ['phase<N>bvalue', 'phase_<N>_right_value', 'phase<N>rightvalue'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_event', ['phase<N>event', 'phase_<N>_turn', 'phase<N>turn', 'phase_<N>_pivot', 'phase<N>pivot'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_branch_a', ['phase<N>brancha', 'phase_<N>_option_a', 'phase<N>optiona', 'phase_<N>_left_option', 'phase<N>leftoption'], true, { allowScenarioPrefix: true }),
+        field('phase_<N>_branch_b', ['phase<N>branchb', 'phase_<N>_option_b', 'phase<N>optionb', 'phase_<N>_right_option', 'phase<N>rightoption'], true, { allowScenarioPrefix: true }),
       ],
     },
     {
@@ -261,6 +272,8 @@ export const fightManifest: FightManifest = {
       id: 'verdict-matrix',
       aliases: ['matryca werdyktu', 'verdict matrix'],
       variableFields: [
+        field('header', ['headline', 'title']),
+        field('subtitle', ['note']),
         field('layout', ['matrix_layout', 'matrix_mode', 'verdict_layout', 'verdict_matrix_layout', 'type', 'format']),
         field('row_1', ['row1']),
         field('row_2', ['row2']),

@@ -113,7 +113,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Ultimate Inevitability",
+      "label": "Ultimate Inevitability",
       "a_curve": "80,60,40,20,5",
       "b_curve": "91,95,98,100,100",
       "yellow_wave": "20,25,22,28,24,30,26,35",
@@ -123,17 +123,15 @@
       "analysis": "In this clash of two powers, there are no variables that could change the outcome. Thanos dominates in every dimension of physics."
     },
     "fight-card": {
-      "fight_title": "Vader vs Thanos",
-      "subtitle": "SEQUENCE COMPLETE"
+      "fight_title": "Vader vs Thanos"
     },
     "fight-simulation": {
-      "s1_label": "Final Verdict",
+      "label": "Final Verdict",
       "opening": "Vader opens the fight with a Force charge, attempting to immediately crush Thanos's helmet.",
       "mid_fight": "Thanos simply grabs the lightsaber blade, ignoring the plasma's heat and energy.",
       "late_fight": "Thanos ends the clash with a single, precise strike that destroys Vader's cybernetics.",
       "end_condition": "Thanos's victory by absolute scale advantage.",
       "phase_1_animation": "berserk-overextend",
-      "phase_1_actor": "a",
       "phase_1_title": "Lord's Fury",
       "phase_1_a_label": "Force",
       "phase_1_a_value": "92",
@@ -156,8 +154,7 @@
       "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos operates on a different level of physics.",
       "line_2": "Vader's destructive opening is but a test for the Titan's durability, which he passes without much difficulty.",
       "line_3": "This is a clash of whether lightsaber precision can find a gap in armor that has survived galactic explosions.",
-      "winner": "Thanos dominates unquestionably.",
-      "quote": "“Vader has a plan for the opening. Thanos has a body that usually survives that plan.”"
+      "winner": "Thanos dominates unquestionably."
     },
     "tactical-board": {
       "lane": "Vader must solve the fight fast. Thanos only needs one opening to fail.",
@@ -165,8 +162,7 @@
     },
     "verdict-matrix": {
       "header": "FINAL VERDICT",
-      "subtitle": "Zero variables affecting the outcome",
-      "verdict": "Thanos 10/10. This clash is ultimately settled by the difference in scale. Darth Vader is a master of the Force and swordsmanship, but Thanos is a cosmic entity who has survived galactic explosions and attacks from deities like Galactus. There is no scenario where Sith technique or Force manipulation could bypass the Titan's armor and durability."
+      "subtitle": "Zero variables affecting the outcome"
     },
     "x-factor": {
       "a_bonus": "14",
@@ -175,12 +171,10 @@
       "b_bonus": "22",
       "b_value": "50",
       "factor": "FIRST BYPASS VS DURABILITY FLOOR",
-      "implication": "If Thanos survives the first real bypass, the fight immediately shifts onto his terms.",
-      "mechanics": "Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.",
-      "psychology": "Vader wants a controlled duel. Thanos wants the fight to become a long execution.",
-      "regen": "SCALE EDGE",
-      "example": "Vader slashes Thanos's arm with a lightsaber. For most, it's the end, but Thanos simply grabs Vader by the throat with his other hand and strikes with planet-shattering force.",
-      "question": "Is a lightsaber even capable of cutting the skin of a Titan who survived a close encounter with a black hole?"
+      "implikacja": "If Thanos survives the first real bypass, the fight immediately shifts onto his terms.",
+      "mechanika": "Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.",
+      "psychologia": "Vader wants a controlled duel. Thanos wants the fight to become a long execution.",
+      "regen": "SCALE EDGE"
     }
   }
 }

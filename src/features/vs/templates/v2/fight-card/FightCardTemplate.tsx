@@ -6,7 +6,6 @@ import {
   TEMPLATE_BLOCK_ALIASES,
   findTemplateBlockLines,
   parseTemplateFieldMap,
-  pickTemplateField,
 } from '../../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../../types'
 import {
@@ -41,21 +40,6 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
   return <>{display}</>
 }
 
-const normalizeFightCardSubtitle = (value: string) => {
-  const text = value.trim()
-  if (!text) return text
-  const token = text
-    .normalize('NFD')
-    .replace(/[\u0300-\u036f]/g, '')
-    .toLowerCase()
-    .replace(/\s+/g, ' ')
-
-  if (token.includes('sekwencja')) {
-    return 'Sequence Complete'
-  }
-  return text
-}
-
 export function FightCardTemplate({
   fighterA,
   fighterB,
@@ -73,13 +57,10 @@ export function FightCardTemplate({
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
 
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
-  const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('fight-card', language)
 
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subTextRaw = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle || ''
-  const subText = normalizeFightCardSubtitle(subTextRaw || '').replace(/\.\s*$/, '')
+  const headerText = title
+  const subText = (subtitle || '').replace(/\.\s*$/, '')
 
   const fighterAFallback = getFightTemplateDefaultField('fight-card', 'fighter_a_fallback', language) || 'Fighter A'
   const fighterBFallback = getFightTemplateDefaultField('fight-card', 'fighter_b_fallback', language) || 'Fighter B'
@@ -110,7 +91,7 @@ export function FightCardTemplate({
     )
   }
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : 'TACTICAL BOARD'
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

@@ -115,7 +115,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Starcie w Świecie Materii",
+      "label": "Starcie w Świecie Materii",
       "a_curve": "95,90,85,80,70",
       "b_curve": "96,97,98,99,100",
       "yellow_wave": "20,25,22,28,24,30,26,35",
@@ -132,11 +132,10 @@
       "s2_analysis": "W sercu swojego wymiaru Trigon jest niemal niemożliwy do pokonania, nawet dla Galactusa."
     },
     "fight-card": {
-      "fight_title": "Trigon vs Galactus",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Trigon vs Galactus"
     },
     "fight-simulation": {
-      "s1_label": "Kosmiczna Neutralizacja",
+      "label": "Kosmiczna Neutralizacja",
       "opening": "Galactus używa Power Cosmic, by narzucić strukturę wymiarowi Trigona.",
       "mid_fight": "Trigon próbuje rozerwać Galactusa od środka, atakując jego kosmiczną świadomość.",
       "late_fight": "Galactus uwalnia falę energii, która wypala piekielne wpływy z lokalnego kontinuum.",
@@ -185,8 +184,7 @@
       "line_1": "To starcie ostatecznych skrajności: fizycznej konsumpcji Galactusa i duchowej korupcji Trigona.",
       "line_2": "Wynik zależy niemal wyłącznie od lokalizacji starcia i tego, kto pierwszy narzuci swoje zasady rzeczywistości.",
       "line_3": "W świecie materii Galactus jest nie do powstrzymania, ale w Domenie Piekła to on staje się ofiarą.",
-      "winner": "Galactus (Materia) lub Trigon (Piekło).",
-      "quote": "„Galactus pożera światy. Trigon pożera dusze światów.”"
+      "winner": "Galactus (Materia) lub Trigon (Piekło)."
     },
     "tactical-board": {
       "lane": "Zwycięzca musi kontrolować wymiar, w którym toczy się walka.",
@@ -207,12 +205,10 @@
       "b_bonus": "15",
       "b_value": "50",
       "factor": "KONSUMPCJA ENERGII VS KORUPCJA DUSZY",
-      "implication": "Galactus chce zneutralizować zagrożenie, Trigon chce je przejąć.",
-      "mechanics": "Power Cosmic to nauka doprowadzona do poziomu boskości. Magia Trigona to wola niszcząca naukę.",
-      "psychology": "Galactus jest głodny, ale Trigon jest zły. Ta różnica w motywacji czyni Trigona bardziej nieprzewidywalnym.",
-      "regen": "KOSMICZNA REGENERACJA",
-      "example": "Galactus próbuje rozproszyć Trigona falą energii. Trigon po prostu śmieje się i zmienia tę energię w rój demonów, które atakują systemy Galactusa.",
-      "question": "Czy Power Cosmic może zniszczyć istotę, która technicznie nie jest materią, lecz czystym konceptem zła?"
+      "implikacja": "Galactus chce zneutralizować zagrożenie, Trigon chce je przejąć.",
+      "mechanika": "Power Cosmic to nauka doprowadzona do poziomu boskości. Magia Trigona to wola niszcząca naukę.",
+      "psychologia": "Galactus jest głodny, ale Trigon jest zły. Ta różnica w motywacji czyni Trigona bardziej nieprzewidywalnym.",
+      "regen": "KOSMICZNA REGENERACJA"
     }
   }
 }

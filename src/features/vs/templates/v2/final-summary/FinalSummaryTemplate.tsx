@@ -71,7 +71,7 @@ export function FinalSummaryTemplate({
   const line = (position: number, keys: string[], fallback = '') =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
     
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle
   
 
@@ -126,7 +126,7 @@ export function FinalSummaryTemplate({
   }
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
@@ -332,7 +332,7 @@ export function FinalSummaryTemplate({
                           lineHeight: 1,
                         }}
                       >
-                        <GlitchText text={`CONCLUSION ${index + 1}`} />
+                        <GlitchText text={`${common.summaryLabel} ${index + 1}`} />
                       </p>
                       <div
                         style={{

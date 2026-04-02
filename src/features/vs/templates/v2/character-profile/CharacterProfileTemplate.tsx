@@ -1,7 +1,7 @@
 import './CharacterProfileTemplate.scss'
 import { useState, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
 import { GlitchText } from '../../../components/GlitchText'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { applyDossierNameAutofit } from '../../shared/dossierNameAutofit'
 import {
@@ -63,8 +63,6 @@ export function CharacterProfileTemplate({
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
 
   // Template logic
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['character-profile'] || [])
-  const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('character-profile', language)
   const toolkitDefaults = {
     powers: getFightTemplateDefaultField('character-profile', 'powers_label', language),
@@ -72,18 +70,16 @@ export function CharacterProfileTemplate({
     weaknesses: getFightTemplateDefaultField('character-profile', 'weaknesses_label', language),
   }
 
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle || ''
   const fighterAText =
     fighterA.name ||
-    getFightTemplateDefaultField('character-profile', 'fighter_a_fallback', language) ||
-    (language === 'pl' ? 'Postać A' : 'Fighter A')
+    getFightTemplateDefaultField('character-profile', 'fighter_a_fallback', language)
   const fighterBText =
     fighterB.name ||
-    getFightTemplateDefaultField('character-profile', 'fighter_b_fallback', language) ||
-    (language === 'pl' ? 'Postać B' : 'Fighter B')
-  const leftPanelHeader = common.blueCorner || (language === 'pl' ? 'Niebieski narożnik' : 'Blue corner')
-  const rightPanelHeader = common.redCorner || (language === 'pl' ? 'Czerwony narożnik' : 'Red corner')
+    getFightTemplateDefaultField('character-profile', 'fighter_b_fallback', language)
+  const leftPanelHeader = common.blueCorner
+  const rightPanelHeader = common.redCorner
   const leftNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const leftNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const rightNameWrapperRef = useRef<HTMLDivElement | null>(null)
@@ -138,7 +134,7 @@ export function CharacterProfileTemplate({
   }
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

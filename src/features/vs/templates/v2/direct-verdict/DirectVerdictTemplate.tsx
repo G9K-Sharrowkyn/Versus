@@ -55,7 +55,6 @@ export function DirectVerdictTemplate({
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   
   const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const common = getFightCommonCopy('direct-verdict', language)
@@ -83,12 +82,11 @@ export function DirectVerdictTemplate({
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
     
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const headerText = title
+  const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "DIRECT VERDICT"
+    getFightTemplateDefaultField('tactical-board', 'left_header', language) || common.emptyFieldLabel
 
   const winnerLabel = pickTemplateField(blockFields, ['winner', 'verdict']) || defaultWinner
   const loserLabel = pickTemplateField(blockFields, ['loser', 'opponent']) || defaultLoser
@@ -107,7 +105,7 @@ export function DirectVerdictTemplate({
   const matchupText = `${fighterAName} VS ${fighterBName}`
   const matchupMatch = matchupText.match(/^(.*?)(\s+VS\s+)(.*)$/i)
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

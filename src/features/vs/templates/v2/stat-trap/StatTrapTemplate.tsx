@@ -52,7 +52,6 @@ export function StatTrapTemplate({
   const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   
   const realityHeader =
-    pickTemplateField(tacticalBlockFields, ['right_header', 'reality_header']) ||
     getFightTemplateDefaultField('tactical-board', 'right_header', language)
 
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['stat-trap'] || [])
@@ -63,12 +62,11 @@ export function StatTrapTemplate({
   const tokens = ui.tokens as Record<string, string | CSSProperties>
   const layout = ui.template as Record<string, string>
   
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['left_header', 'categories_header']) ||
-    getFightTemplateDefaultField('tactical-board', 'left_header', language) || "STAT TRAP"
+    getFightTemplateDefaultField('tactical-board', 'left_header', language) || common.emptyFieldLabel
 
   const trapTop = pickTemplateField(blockFields, ['trap_top', 'top', 'line_1']) || common.emptyFieldLabel
   const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom', 'line_2']) || common.emptyFieldLabel
@@ -76,7 +74,7 @@ export function StatTrapTemplate({
   const questionLine = pickTemplateField(blockFields, ['question', 'line_4', 'trap']) || common.emptyFieldLabel
   const auditPrefix = `${activeFightId || 'draft'}:stat-trap`
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

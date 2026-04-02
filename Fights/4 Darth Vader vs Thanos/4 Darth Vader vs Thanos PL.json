@@ -113,7 +113,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Ostateczna Nieuchronność",
+      "label": "Ostateczna Nieuchronność",
       "a_curve": "79,60,40,20,5",
       "b_curve": "90,95,98,100,100",
       "yellow_wave": "20,25,22,28,24,30,26,35",
@@ -123,17 +123,15 @@
       "analysis": "Thanos dominuje w każdym wymiarze fizyki. Vader to mistrz, ale Thanos to siła natury."
     },
     "fight-card": {
-      "fight_title": "Vader vs Thanos",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Vader vs Thanos"
     },
     "fight-simulation": {
-      "s1_label": "Werdykt Ostateczny",
+      "label": "Werdykt Ostateczny",
       "opening": "Vader otwiera walkę szarżą Mocy, próbując natychmiast zmiażdżyć hełm Thanosa.",
       "mid_fight": "Thanos po prostu chwyta ostrze miecza świetlnego, ignorując temperaturę i energię plazmy.",
       "late_fight": "Thanos kończy starcie jednym, precyzyjnym uderzeniem, które niszczy cybernetykę Vadera.",
       "end_condition": "Zwycięstwo Thanosa przez absolutną przewagę skali.",
       "phase_1_animation": "berserk-overextend",
-      "phase_1_actor": "a",
       "phase_1_title": "Furia Lorda",
       "phase_1_a_label": "Moc",
       "phase_1_a_value": "92",
@@ -156,8 +154,7 @@
       "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos operuje na innym poziomie fizyki.",
       "line_2": "Niszczycielskie otwarcie Vadera to tylko test dla wytrzymałości Tytana, którą ten przechodzi bez większych trudności.",
       "line_3": "To starcie o to, czy precyzja miecza świetlnego zdoła znaleźć szczelinę w pancerzu, który przetrwał wybuchy galaktyk.",
-      "winner": "Thanos dominuje bezdyskusyjnie.",
-      "quote": "„Vader ma plan na otwarcie. Thanos ma ciało, które ten plan zwykle przeżyje.”"
+      "winner": "Thanos dominuje bezdyskusyjnie."
     },
     "tactical-board": {
       "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.",
@@ -165,8 +162,7 @@
     },
     "verdict-matrix": {
       "header": "WERDYKT OSTATECZNY",
-      "subtitle": "Brak zmiennych wpływających na wynik",
-      "verdict": "Thanos 10/10. To starcie ostatecznie rozstrzyga różnica skali. Darth Vader jest mistrzem Mocy i szermierki, ale Thanos to byt kosmiczny, który przetrwał wybuchy galaktyk i ataki bóstw pokroju Galactusa. Nie istnieje scenariusz, w którym technika Sitha lub manipulacja Mocą zdołałyby przebić pancerz i wytrzymałość Tytana."
+      "subtitle": "Brak zmiennych wpływających na wynik"
     },
     "x-factor": {
       "a_bonus": "14",
@@ -175,12 +171,10 @@
       "b_bonus": "22",
       "b_value": "50",
       "factor": "PIERWSZY BYPASS VS PRÓG WYTRZYMAŁOŚCI",
-      "implication": "Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.",
-      "mechanics": "Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.",
-      "psychology": "Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.",
-      "regen": "PRZEWAGA SKALI",
-      "example": "Vader tnie ramię Thanosa mieczem świetlnym. Dla większości to koniec, ale Thanos po prostu chwyta Vadera za gardło drugą ręką i uderza z siłą niszczycielską.",
-      "question": "Czy miecz świetlny jest w ogóle w stanie przeciąć skórę tytana, który przetrwał bliskie spotkanie z czarną dziurą?"
+      "implikacja": "Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.",
+      "mechanika": "Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.",
+      "psychologia": "Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.",
+      "regen": "PRZEWAGA SKALI"
     }
   }
 }

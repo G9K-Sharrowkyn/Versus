@@ -2,7 +2,7 @@ import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, useLayoutEffect, useMemo, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts'
@@ -217,21 +217,20 @@ export function ParameterComparisonTemplate({
   onToggleLanguage,
   integratedToolbar,
 }: ParameterComparisonTemplateProps) {
-  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['parameter-comparison'] || [])
-  const blockFields = parseTemplateFieldMap(blockLines)
   const templatePreset = getFightTemplatePreset('parameter-comparison', language)
   
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, blockFields)
+  const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
+  const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
+  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
   const boardHeader =
-    pickTemplateField(blockFields, ['panel_header', 'comparison_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
     templatePreset.title
     
   const common = getFightCommonCopy('parameter-comparison', language)
-  const averageShort = common.averageShort || (language === 'pl' ? 'Śr.' : 'Avg')
+  const averageShort = common.averageShort
   
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const subText = pickTemplateField(blockFields, ['subtitle', 'purpose', 'note']) || subtitle
+  const headerText = title
+  const subText = subtitle
   
   const fighterAFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_b_fallback', language)
@@ -239,12 +238,11 @@ export function ParameterComparisonTemplate({
   const rightHeader = fighterB.name || fighterBFallback
   
   const drawHeader =
-    pickTemplateField(blockFields, ['draw_header']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||
     common.drawZonesLabel
   const advantageHeader =
-    pickTemplateField(blockFields, ['advantage_header', 'advantage_label']) ||
-    (language === 'pl' ? 'PRZEWAGA' : 'ADVANTAGE')
+    getFightTemplateDefaultField('parameter-comparison', 'advantage_header', language) ||
+    common.advantage
   const leftAdvantages = rows.filter((row) => row.winner === 'a')
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')
@@ -259,16 +257,14 @@ export function ParameterComparisonTemplate({
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
   const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
   const favoriteDrawLabel =
-    pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_favorite', language) ||
     common.drawLabel
   const favoriteLabel =
-    pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
     getFightTemplateDefaultField('parameter-comparison', 'favorite_label', language)
   const favoriteBadgeText =
     isAverageDraw
       ? favoriteDrawLabel
-      : favoriteLabel || (language === 'pl' ? 'Faworyt według statystyk' : 'Stat-based favorite')
+      : favoriteLabel || common.favoriteSuffix
 
   const favoriteStampLeft =
     favoriteSide === 'a'
@@ -639,7 +635,7 @@ export function ParameterComparisonTemplate({
     )
   }
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
   const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {

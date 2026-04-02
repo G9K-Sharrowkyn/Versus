@@ -68,7 +68,7 @@
       ],
       "tools": [
         "Bezpośredni atak z bliska i szybka adaptacja w ciągu walki.",
-        "Gag-logic: zdolność do ignorowania praw fizyki (kopanie portali, przesuwanie się w przestrzeni) gdy sytuacja tego wymaga."
+        "Logika gagu: zdolność do ignorowania praw fizyki (kopanie portali, przesuwanie się w przestrzeni), gdy sytuacja tego wymaga."
       ],
       "weaknesses": [
         "Mało formalnej różnorodności technicznej. Silnie opiera się na bezpośrednim kontakcie.",
@@ -115,7 +115,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Jiren: Atak Natychmiastowy",
+      "label": "Jiren: Atak Natychmiastowy",
       "a_curve": "90,90,90,90,90",
       "b_curve": "81,0,0,0,0",
       "yellow_wave": "10,12,11,14,12,15,13,18",
@@ -132,17 +132,15 @@
       "s2_analysis": "Błąd Jirena (zwłoka) daje Saitamie jedyną ścieżkę do zwycięstwa poprzez ewolucję w trakcie walki."
     },
     "fight-card": {
-      "fight_title": "Jiren vs Saitama",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Jiren vs Saitama"
     },
     "fight-simulation": {
-      "s1_label": "Atak Natychmiastowy",
+      "label": "Atak Natychmiastowy",
       "opening": "Jiren uderza z furią boga, natychmiast skracając dystans do Saitamy.",
       "mid_fight": "Saitama próbuje zablokować cios, ale siła uderzenia przenika przez jego molekuły.",
       "late_fight": "Jiren kończy starcie salwą ki, która rozrywa kontinuum wokół przeciwnika.",
       "end_condition": "Zwycięstwo Jirena przez natychmiastową anihilację.",
       "phase_1_animation": "rush-ko",
-      "phase_1_actor": "a",
       "phase_1_title": "Wyrok Absolutu",
       "phase_1_a_label": "Moc",
       "phase_1_a_value": "100",
@@ -183,8 +181,7 @@
       "line_1": "Jiren to szczyt potęgi, ale Saitama łamie jej zasady.",
       "line_2": "Pierwsza sekunda decyduje – jeśli Jiren nie skończy tego od razu, Saitama przejmuje kontrolę.",
       "line_3": "Tylko pierwszy cios Jirena daje mu szansę na wygraną.",
-      "winner": "Jiren (Atak) lub Saitama (Adaptacja).",
-      "quote": "„Pierwsza sekunda decyduje, która nieskończoność wygrywa.”"
+      "winner": "Jiren (Atak) lub Saitama (Adaptacja)."
     },
     "tactical-board": {
       "lane": "Jiren musi skończyć walkę zanim Saitama zacznie ją traktować poważnie.",
@@ -205,12 +202,10 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "KONTROLA OTWARCIA VS CZAS NA ESKALACJĘ",
-      "implication": "Dlatego Jiren może prowadzić w statystykach, a i tak przegrać walkę przez nieliniowy wzrost Saitamy.",
-      "mechanics": "Jiren potrzebuje tylko jednego czystego okna finiszu, ale Saitama to postać typu gag, która ignoruje matematykę walki.",
-      "psychology": "Jiren chce rozwiązać walkę natychmiast. Saitama chce poczuć dreszcz emocji, co paradoxalnie go osłabia na start.",
-      "regen": "ESKALACJA ANOMALII",
-      "example": "Jiren uderza Saitamę tysiąc razy w ciągu sekundy. Saitama zamiast upaść, zaczyna rosnąć w siłę tak szybko, że Jiren traci kontakt z rzeczywistością.",
-      "question": "Czy Jiren jest w stanie zadać cios tak potężny, by znokautować Saitamę zanim jego limiter pęknie na dobre?"
+      "implikacja": "Dlatego Jiren może prowadzić w statystykach, a i tak przegrać walkę przez nieliniowy wzrost Saitamy.",
+      "mechanika": "Jiren potrzebuje tylko jednego czystego okna finiszu, ale Saitama to postać typu gag, która ignoruje matematykę walki.",
+      "psychologia": "Jiren chce rozwiązać walkę natychmiast. Saitama chce poczuć dreszcz emocji, co paradoksalnie go osłabia na start.",
+      "regen": "ESKALACJA ANOMALII"
     }
   }
 }

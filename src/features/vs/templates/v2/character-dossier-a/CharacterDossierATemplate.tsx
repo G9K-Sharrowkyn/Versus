@@ -72,7 +72,7 @@ export function CharacterDossierATemplate({
   const fighterNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const fighterNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const cardFacts = factsA.length ? factsA : []
-  const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)
+  const cardTitle = title
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
     .trim()
   const subText = common.blueCorner
@@ -81,13 +81,11 @@ export function CharacterDossierATemplate({
   const quoteLetterSpacing = '0.02em'
   
   const boardHeader =
-    getFightTemplateDefaultField('character-dossier-a', 'board_header', language) ||
-    (language === 'pl' ? 'PORTRET' : 'PORTRAIT')
+    getFightTemplateDefaultField('character-dossier-a', 'board_header', language)
   const realityHeader =
-    getFightTemplateDefaultField('character-dossier-a', 'reality_header', language) ||
-    (language === 'pl' ? 'OPIS POSTACI' : 'CHARACTER PROFILE')
+    getFightTemplateDefaultField('character-dossier-a', 'reality_header', language)
 
-  const headerTextStr = typeof cardTitle === 'string' ? cardTitle : "TACTICAL BOARD"
+  const headerTextStr = typeof cardTitle === 'string' ? cardTitle : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
   const logoButtonStyle: CSSProperties & Record<'--logo-url', string> = {

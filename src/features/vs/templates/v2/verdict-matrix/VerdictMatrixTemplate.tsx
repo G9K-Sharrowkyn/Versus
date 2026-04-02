@@ -60,15 +60,11 @@ export function VerdictMatrixTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const plainLines = getPlainTemplateLines(blockLines)
 
-  const headerText =
-    pickTemplateField(blockFields, ['headline', 'header', 'title']) ||
-    title ||
-    templatePreset.title ||
-    common.verdictLabel
+  const headerText = title
   const subText = pickTemplateField(blockFields, ['subtitle', 'note']) || subtitle
   
   const boardHeader =
-    pickTemplateField(blockFields, ['panel_header', 'matrix_header']) ||
+    pickTemplateField(blockFields, ['header']) ||
     getFightTemplateDefaultField('verdict-matrix', 'panel_header', language) ||
     templatePreset.title ||
     common.verdictLabel
@@ -209,7 +205,7 @@ export function VerdictMatrixTemplate({
 
   const cellData = caseData
 
-  const headerTextStr = typeof headerText === 'string' ? headerText : templatePreset.title
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

@@ -115,42 +115,41 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Standard Rules · Solar Flare",
-      "a_curve": "92,89,86,84,82",
-      "b_curve": "44,46,48,46,44",
+      "label": "Standard Rules · Solar Flare",
+      "a_curve": "91,92,94,96,98",
+      "b_curve": "86,84,80,75,70",
       "yellow_wave": "31,34,32,36,33,37,35,39",
       "phase_1": "Superman dictates the pace in every aspect. Speed, distance, and Solar Flare in reserve — optimal conditions for Clark.",
       "phase_2": "Under standard rules Hyperion cannot fully exploit his regeneration. Superman builds his advantage methodically.",
       "phase_3": "Solar Flare closes the fight before Hyperion's regeneration becomes a factor. This is Superman's most repeatable win condition.",
       "analysis": "Standard rules with Solar Flare is Superman's cleanest victory scenario. Hyperion has no answer for it.",
       "s2_label": "Standard Rules · No Solar Flare",
-      "s2_a_curve": "92,84,72,65,62",
-      "s2_b_curve": "44,50,56,59,58",
+      "s2_a_curve": "91,90,89,88,88",
+      "s2_b_curve": "86,87,88,86,84",
       "s2_phase_1": "Early on, Superman dictates the pace through speed, distance, and far cleaner control of exchanges.",
       "s2_phase_2": "Without Solar Flare, the mid-fight becomes a test of technical precision. Hyperion pushes, but standard rules cap his aggression.",
       "s2_phase_3": "Without Solar Flare, Superman must be technically flawless. Any breakdown in the clinch gives Hyperion a foothold.",
       "s2_analysis": "Without Solar Flare and without death rules, Superman still leads — but the margin is thin and keeps narrowing.",
       "s3_label": "Fight to the Death · Solar Flare",
-      "s3_a_curve": "92,83,71,64,67",
-      "s3_b_curve": "44,52,61,67,60",
+      "s3_a_curve": "91,85,80,88,95",
+      "s3_b_curve": "86,88,92,80,60",
       "s3_phase_1": "Superman opens aggressively — he knows time is his enemy under death rules. Solar Flare is his trump card.",
       "s3_phase_2": "Under death rules Hyperion becomes increasingly dangerous. But Solar Flare stays in Superman's arsenal as an answer to everything.",
       "s3_phase_3": "Solar Flare can definitively end the fight even under death rules. The question is whether Superman can use it before he is too weakened.",
       "s3_analysis": "Death rules erode Superman's advantages — but Solar Flare is a weapon Hyperion has no answer for.",
       "s4_label": "Fight to the Death · No Solar Flare",
-      "s4_a_curve": "92,84,73,61,52",
-      "s4_b_curve": "44,50,59,69,77",
+      "s4_a_curve": "91,80,65,50,40",
+      "s4_b_curve": "86,89,92,96,100",
       "s4_phase_1": "Early on, Superman dictates the pace through speed, distance, and far cleaner control of exchanges.",
       "s4_phase_2": "If Hyperion survives the first wave of dominance, he starts reclaiming value simply by still standing and returning to fight.",
       "s4_phase_3": "The longer the fight lasts, the less Superman's technical edge matters, and the more Hyperion's brutal regeneration economy takes over.",
       "s4_analysis": "Superman wins the controlled fight. Hyperion wins the one that goes too long and stops punishing his mistakes."
     },
     "fight-card": {
-      "fight_title": "Superman vs King Hyperion",
-      "subtitle": "SEQUENCE COMPLETE"
+      "fight_title": "Superman vs King Hyperion"
     },
     "fight-simulation": {
-      "s1_label": "Standard Rules · Solar Flare",
+      "label": "Standard Rules · Solar Flare",
       "opening": "Superman opens with speed, distance, and far cleaner control of the battlefield.",
       "mid_fight": "If Hyperion survives the first wave, the fight starts pulling away from clean control and becomes an increasingly uncomfortable war of resources.",
       "late_fight": "The endgame comes down to one question: can Superman finish the fight definitively before Hyperion resets the value of each new wave of damage through regeneration.",
@@ -233,8 +232,7 @@
       "line_1": "Superman sets the terms of the fight more cleanly from the opening seconds.",
       "line_2": "He is faster, more precise, and better at keeping the fight in a safe, controlled form.",
       "line_3": "The problem is that every unclosed sequence gives Hyperion another chance, and the longer the fight lasts, the more his regeneration starts reversing the entire economy of the matchup.",
-      "winner": "Superman holds the edge. Hyperion still has a real path to victory.",
-      "quote": "“The advantage belongs to Superman. Time belongs to Hyperion.”"
+      "winner": "Superman holds the edge. Hyperion still has a real path to victory."
     },
     "tactical-board": {
       "lane": "Superman must convert his control advantage into a real finish before Hyperion's regeneration strips the value from every subsequent exchange.",
@@ -257,14 +255,10 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "Why don't better stats guarantee victory?",
-      "implication": "The less the fight rewards a clean knockout or technical incap, the more valuable the simple fact that Hyperion keeps coming back becomes.",
-      "mechanics": "Superman has the statistical edge and better board control, but Hyperion is one of those opponents where dominance alone is not enough if it does not lead to a permanent end.",
-      "psychology": "Hyperion can afford to fight more recklessly, because surviving each sequence brings him closer to the moment when his opponent starts to crack.",
-      "regen": "NO RULES",
-      "trap_top": "REGENERATION AND BRUTALITY >",
-      "trap_bottom": "TECHNIQUE IN A LONG FIGHT",
-      "example": "As long as Superman keeps the fight technical and manages to avoid Hyperion's strikes, the edge stays on his side. When Hyperion survives the heavy sequences and comes back for more, the entire structure of the fight slowly starts turning against Clark.",
-      "question": "Can Superman truly finish the fight before Hyperion's regeneration erases the value of every good sequence?"
+      "implikacja": "The less the fight rewards a clean knockout or technical incap, the more valuable the simple fact that Hyperion keeps coming back becomes.",
+      "mechanika": "Superman has the statistical edge and better board control, but Hyperion is one of those opponents where dominance alone is not enough if it does not lead to a permanent end.",
+      "psychologia": "Hyperion can afford to fight more recklessly, because surviving each sequence brings him closer to the moment when his opponent starts to crack.",
+      "regen": "NO RULES"
     }
   }
 }

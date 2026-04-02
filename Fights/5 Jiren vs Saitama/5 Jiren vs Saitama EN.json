@@ -115,7 +115,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Jiren: Immediate Assault",
+      "label": "Jiren: Immediate Assault",
       "a_curve": "90,93,96,98,100",
       "b_curve": "81,55,30,10,0",
       "yellow_wave": "10,12,11,14,12,15,13,18",
@@ -132,17 +132,15 @@
       "s2_analysis": "Jiren's mistake (delay) grants Saitama the only path to victory through mid-fight evolution."
     },
     "fight-card": {
-      "fight_title": "Jiren vs Saitama",
-      "subtitle": "SEQUENCE COMPLETE"
+      "fight_title": "Jiren vs Saitama"
     },
     "fight-simulation": {
-      "s1_label": "Immediate Assault",
+      "label": "Immediate Assault",
       "opening": "Jiren strikes with a god's fury, immediately closing the distance to Saitama.",
       "mid_fight": "Saitama tries to block the blow, but the impact force permeates through his molecules.",
       "late_fight": "Jiren ends the clash with a Ki salvo that tears the continuum around his opponent.",
       "end_condition": "Jiren's victory through immediate annihilation.",
       "phase_1_animation": "rush-ko",
-      "phase_1_actor": "a",
       "phase_1_title": "Absolute Verdict",
       "phase_1_a_label": "Power",
       "phase_1_a_value": "100",
@@ -183,8 +181,7 @@
       "line_1": "Jiren is the peak of power, but Saitama breaks its laws.",
       "line_2": "The first second decides – if Jiren doesn't end it immediately, Saitama takes over.",
       "line_3": "Only Jiren's first blow gives him a chance for victory.",
-      "winner": "Jiren (Assault) or Saitama (Adaptation).",
-      "quote": "“The first second decides which infinity wins.”"
+      "winner": "Jiren (Assault) or Saitama (Adaptation)."
     },
     "tactical-board": {
       "lane": "Jiren must end the fight before Saitama starts taking it seriously.",
@@ -205,12 +202,10 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "OPENING CONTROL VS ESCALATION TIME",
-      "implication": "This is why Jiren can lead in stats and still lose the fight through Saitama's non-linear growth.",
-      "mechanics": "Jiren needs only one clean finish window, but Saitama is a gag character who ignores fight mathematics.",
-      "psychology": "Jiren wants the fight resolved immediately. Saitama wants to feel a thrill, which paradoxically weakens him at the start.",
-      "regen": "ANOMALY ESCALATION",
-      "example": "Jiren strikes Saitama a thousand times in a second. Instead of falling, Saitama begins to grow in strength so fast that Jiren loses contact with reality.",
-      "question": "Is Jiren able to land a blow powerful enough to knock out Saitama before his limiter breaks for good?"
+      "implikacja": "This is why Jiren can lead in stats and still lose the fight through Saitama's non-linear growth.",
+      "mechanika": "Jiren needs only one clean finish window, but Saitama is a gag character who ignores fight mathematics.",
+      "psychologia": "Jiren wants the fight resolved immediately. Saitama wants to feel a thrill, which paradoxically weakens him at the start.",
+      "regen": "ANOMALY ESCALATION"
     }
   }
 }

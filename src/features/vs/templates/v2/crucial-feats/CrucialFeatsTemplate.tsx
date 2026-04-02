@@ -12,7 +12,6 @@ import {
   buildTemplateImageEntries,
   findTemplateBlockLines,
   parseTemplateFieldMap,
-  pickTemplateField,
   resolveFightTemplateImageUrl,
   type TemplateImageEntry,
 } from '../../../importer'
@@ -75,7 +74,7 @@ export function CrucialFeatsTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('crucial-feats', language)
 
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle || ''
 
   const leftEntries = buildTemplateImageEntries(blockFields, 'left', crucialFeatsA)
@@ -178,7 +177,7 @@ export function CrucialFeatsTemplate({
   }
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

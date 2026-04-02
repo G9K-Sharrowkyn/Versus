@@ -2,7 +2,7 @@ import { readdirSync, readFileSync, statSync } from 'node:fs'
 import path from 'node:path'
 
 const repoRoot = process.cwd()
-const templatesRoot = path.join(repoRoot, 'Templates')
+const templatesRoot = path.join(repoRoot, 'src/features/vs/templates/content')
 const typesPath = path.join(repoRoot, 'src/features/vs/types.ts')
 
 const errors = []
@@ -23,6 +23,11 @@ const locales = ['pl', 'en']
 const templateDirs = readdirSync(templatesRoot, { withFileTypes: true })
   .filter((entry) => entry.isDirectory())
   .map((entry) => entry.name)
+  .filter((dirName) =>
+    locales.every((locale) =>
+      statSync(path.join(templatesRoot, dirName, `Template ${locale.toUpperCase()}.json`), { throwIfNoEntry: false })?.isFile(),
+    ),
+  )
   .sort()
 
 const unexpectedDirs = templateDirs.filter((dir) => !templateIdSet.has(dir))

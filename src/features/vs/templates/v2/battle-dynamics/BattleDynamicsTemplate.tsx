@@ -73,12 +73,12 @@ export function BattleDynamicsTemplate({
   const line = (position: number, keys: string[], fallback = common.emptyFieldLabel) =>
     pickTemplateField(blockFields, keys) || plainLines[position] || fallback
     
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
+  const headerText = title
   const subText = subtitle
   
   const boardHeaderDefault =
-    pickTemplateField(blockFields, ['panel_header', 'dynamics_header']) ||
-    getFightTemplateDefaultField('battle-dynamics', 'panel_header', language) || "DYNAMIKA WALKI"
+    getFightTemplateDefaultField('battle-dynamics', 'panel_header', language) ||
+    common.emptyFieldLabel
 
   const CURVE_POINT_COUNT = 4
   const defaultACurve = [78, 64, 50, 32]
@@ -107,7 +107,7 @@ export function BattleDynamicsTemplate({
   const baseAnalysis = pickTemplateField(blockFields, ['analysis', 'note', 'line_4', 'line4']) || common.emptyFieldLabel
 
   const scenario1: ScenarioData = {
-    label: pickTemplateField(blockFields, ['s1_label']) || '',
+    label: pickTemplateField(blockFields, ['label', 's1_label']) || '',
     aCurveValues: parseScenarioCurve(pickTemplateField(blockFields, ['a_curve', 'curve_a', 'blue_curve', 'left_curve']), defaultACurve),
     bCurveValues: parseScenarioCurve(pickTemplateField(blockFields, ['b_curve', 'curve_b', 'red_curve', 'right_curve']), defaultBCurve),
     yellowWaveValues: parseCurveValues(pickTemplateField(blockFields, ['yellow_wave', 'wave', 'chaos_wave']), defaultYellow),
@@ -197,7 +197,7 @@ export function BattleDynamicsTemplate({
   }
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

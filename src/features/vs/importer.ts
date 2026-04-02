@@ -324,15 +324,6 @@ const toFiniteNumber = (value: unknown) => {
   return Number.isFinite(numeric) ? numeric : null
 }
 
-const toSnakeCase = (value: string) =>
-  value
-    .replace(/([a-z0-9])([A-Z])/g, '$1_$2')
-    .replace(/[-\s]+/g, '_')
-    .toLowerCase()
-
-const toCamelCase = (value: string) =>
-  value.replace(/[_-]([a-z0-9])/gi, (_, char: string) => char.toUpperCase())
-
 const isFightLocaleJsonTemplateValue = (value: unknown): value is FightLocaleJsonTemplateValue =>
   value === null ||
   typeof value === 'string' ||
@@ -362,6 +353,95 @@ const normalizeTemplateJsonMap = (
     output[templateId] = normalizeTemplateJsonBlock(block)
   })
   return output
+}
+
+const TEMPLATE_FIELD_INDEX_MARKER = 'vsindexmarker'
+
+const escapeRegex = (value: string) =>
+  value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+
+const normalizeTemplateFieldSeed = (value: string) =>
+  normalizeToken(value.replace(/<N>/gi, TEMPLATE_FIELD_INDEX_MARKER))
+
+const buildTemplateFieldPattern = (value: string) => {
+  const normalized = normalizeTemplateFieldSeed(value)
+  if (!normalized) return null
+  const pattern = escapeRegex(normalized).replace(TEMPLATE_FIELD_INDEX_MARKER, '(\\d+)')
+  return new RegExp(`^${pattern}$`)
+}
+
+type TemplateSchemaFieldMatch = {
+  lineKey: string
+  valueType?: 'string' | 'string-array'
+}
+
+type ScenarioPrefixMatch = {
+  prefix: string
+  body: string
+}
+
+const splitScenarioPrefix = (normalizedKey: string): ScenarioPrefixMatch | null => {
+  const match = normalizedKey.match(/^s(\d+)(.+)$/)
+  if (!match) return null
+  const [, scenarioIndex, body] = match
+  if (!body) return null
+  return {
+    prefix: `s${scenarioIndex}_`,
+    body,
+  }
+}
+
+const resolveTemplateSchemaField = (
+  manifest: NonNullable<ReturnType<typeof getFightTemplateManifest>>,
+  jsonKey: string,
+): TemplateSchemaFieldMatch | null => {
+  const normalizedKey = normalizeToken(jsonKey)
+  if (!normalizedKey) return null
+
+  for (const entry of manifest.variableFields) {
+    const candidateSeeds = Array.from(
+      new Set([
+        entry.key,
+        entry.jsonKey || '',
+        ...(entry.aliases || []),
+      ].filter(Boolean)),
+    )
+    const patterns = candidateSeeds
+      .map((seed) => buildTemplateFieldPattern(seed))
+      .filter((pattern): pattern is RegExp => Boolean(pattern))
+    if (!patterns.length) continue
+
+    const resolveLineKey = (targetKey: string) => {
+      for (const pattern of patterns) {
+        const match = targetKey.match(pattern)
+        if (!match) continue
+        const rawIndex = match[1]
+        const lineKey = rawIndex
+          ? entry.key.replace(/<N>/gi, rawIndex)
+          : entry.key
+        return {
+          lineKey,
+          valueType: entry.valueType,
+        } satisfies TemplateSchemaFieldMatch
+      }
+      return null
+    }
+
+    const directMatch = resolveLineKey(normalizedKey)
+    if (directMatch) return directMatch
+
+    if (!entry.allowScenarioPrefix) continue
+    const scenarioMatch = splitScenarioPrefix(normalizedKey)
+    if (!scenarioMatch) continue
+    const scenarioFieldMatch = resolveLineKey(scenarioMatch.body)
+    if (!scenarioFieldMatch) continue
+    return {
+      lineKey: `${scenarioMatch.prefix}${scenarioFieldMatch.lineKey}`,
+      valueType: scenarioFieldMatch.valueType,
+    }
+  }
+
+  return null
 }
 
 const buildParsedStatsFromJson = (
@@ -434,14 +514,11 @@ const buildTemplateBlockLinesFromJson = (
   })
 
   mergedEntries.forEach(([jsonKey, value]) => {
-    const schema =
-      manifest.variableFields.find((entry) => {
-        const candidate = entry.jsonKey || toCamelCase(entry.key)
-        return candidate === jsonKey
-      }) || null
+    const schemaField = resolveTemplateSchemaField(manifest, jsonKey)
+    if (!schemaField) return
 
-    const lineKey = schema?.key || toSnakeCase(jsonKey)
-    if (schema?.valueType === 'string-array' && Array.isArray(value)) {
+    const lineKey = schemaField.lineKey
+    if (schemaField.valueType === 'string-array' && Array.isArray(value)) {
       value
         .map((entry) => toString(entry))
         .forEach((entry, index) => {

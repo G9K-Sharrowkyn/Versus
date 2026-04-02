@@ -115,7 +115,7 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Ruthless Physics",
+      "label": "Ruthless Physics",
       "a_curve": "79,65,50,30,10",
       "b_curve": "88,90,95,98,100",
       "yellow_wave": "25,35,28,42,30,48,32,55",
@@ -125,17 +125,15 @@
       "analysis": "In a clash between a professional heavyweight champion and a featherweight martial artist, the laws of physics and reach preclude any result other than Ali's dominance."
     },
     "fight-card": {
-      "fight_title": "Lee vs Ali",
-      "subtitle": "SEQUENCE COMPLETE"
+      "fight_title": "Lee vs Ali"
     },
     "fight-simulation": {
-      "s1_label": "Final Verdict",
+      "label": "Final Verdict",
       "opening": "Bruce Lee attempts to set the pace with lightning-fast dodges, but Ali 'floats like a butterfly' out of his range.",
       "mid_fight": "Ali establishes distance with a left jab. Every Bruce attempt to close in ends with a massive strike landing on his guard.",
       "late_fight": "Ali closes the distance and delivers a series of combinations that Bruce's body cannot absorb.",
       "end_condition": "Ali's victory by brutal knockout.",
       "phase_1_animation": "hit-and-run",
-      "phase_1_actor": "a",
       "phase_1_title": "Reflex Test",
       "phase_1_a_label": "Agility",
       "phase_1_a_value": "95",
@@ -158,8 +156,7 @@
       "line_1": "This is a clash of precision versus power. Bruce Lee has speed Ali has never encountered, but Ali has a scale Bruce cannot ignore.",
       "line_2": "Real-world combat physics favor the professional heavyweight champion. The mass and reach difference is too vast for any technique.",
       "line_3": "Ultimately, it is a fight of whether one perfect Bruce strike can topple a man who survived 15 rounds with the world's strongest boxers.",
-      "winner": "Muhammad Ali dominates unquestionably.",
-      "quote": "“I fear not the man who has practiced 10,000 kicks once, but I fear the man who has practiced one kick 10,000 times... unless that man is Muhammad Ali.”"
+      "winner": "Muhammad Ali dominates unquestionably."
     },
     "tactical-board": {
       "lane": "Bruce must keep the fight dirty and chaotic. Ali wins if he imposes boxing distance.",
@@ -167,8 +164,7 @@
     },
     "verdict-matrix": {
       "header": "FINAL VERDICT",
-      "subtitle": "Zero variables affecting the outcome",
-      "verdict": "Muhammad Ali 10/10. While the legend of Bruce Lee is fascinating, real-world physics and combat facts are ruthless. Ali possessed approximately a 36kg weight advantage, a massive reach advantage (hands over legs), and a proven durability against strikes Bruce never had to endure. In a clash between a professional heavyweight world champion and a martial artist several weight classes lighter, every scenario ends in a swift and brutal knockout in Ali's favor."
+      "subtitle": "Zero variables affecting the outcome"
     },
     "x-factor": {
       "a_bonus": "12",
@@ -177,12 +173,10 @@
       "b_bonus": "25",
       "b_value": "50",
       "factor": "TECHNIQUE VS PHYSICAL SCALE",
-      "implication": "This is why Ali wins unquestionably in the ring, while on the street, Bruce becomes a lethal threat.",
-      "mechanics": "Ali possesses a chin of steel and heavyweight mass. Bruce must strike perfectly at points muscles do not protect.",
-      "psychology": "Ali wants to toy with the opponent. Bruce is pure, focused professionalism.",
-      "regen": "SIZE DIFFERENCE",
-      "example": "Bruce lands a perfect side kick to Ali's knee. On the street, it's the end of the fight. In the ring, Ali might survive through adrenaline and the clinch.",
-      "question": "Is Bruce's speed enough to avoid every Ali jab for the entire fight?"
+      "implikacja": "This is why Ali wins unquestionably in the ring, while on the street, Bruce becomes a lethal threat.",
+      "mechanika": "Ali possesses a chin of steel and heavyweight mass. Bruce must strike perfectly at points muscles do not protect.",
+      "psychologia": "Ali wants to toy with the opponent. Bruce is pure, focused professionalism.",
+      "regen": "SIZE DIFFERENCE"
     }
   }
 }

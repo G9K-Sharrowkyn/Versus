@@ -13,7 +13,6 @@ import {
   buildTemplateImageEntries,
   findTemplateBlockLines,
   parseTemplateFieldMap,
-  pickTemplateField,
   resolveFightTemplateImageUrl,
   type TemplateImageEntry,
 } from '../../../importer'
@@ -76,9 +75,8 @@ export function VictoryArchiveTemplate({
   const blockFields = parseTemplateFieldMap(blockLines)
   const common = getFightCommonCopy('victory-archive', language)
 
-  const headerText = pickTemplateField(blockFields, ['headline', 'header', 'title']) || title
-  const archiveLabel = getFightTemplateDefaultField('victory-archive', 'archive_label', language)
-  const subText = subtitle || archiveLabel
+  const headerText = title
+  const subText = subtitle
   
   const fighterAText = fighterA.name || getFightTemplateDefaultField('victory-archive', 'fighter_a_fallback', language)
   const fighterBText = fighterB.name || getFightTemplateDefaultField('victory-archive', 'fighter_b_fallback', language)
@@ -186,7 +184,7 @@ export function VictoryArchiveTemplate({
   }
 
   // Glitch effect for title
-  const headerTextStr = typeof headerText === 'string' ? headerText : "TACTICAL BOARD"
+  const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 

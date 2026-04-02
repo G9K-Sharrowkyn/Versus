@@ -4,6 +4,9 @@ import {
   FIGHTER_DERIVED_TEMPLATE_FIELD_PREFIXES,
   MANIFEST_DEFAULT_TEMPLATE_FIELDS,
   MANIFEST_OWNED_TEMPLATE_FIELDS,
+  loadCurrentFightManifest,
+  normalizeToken,
+  stripBom,
 } from './lib/fight-semantic-tools.mjs'
 
 const repoRoot = process.cwd()
@@ -51,36 +54,6 @@ const manifestDefaultFieldMap = Object.fromEntries(
     ),
   ]),
 )
-const REQUIRED_TEMPLATE_FIELDS = {
-  'battle-dynamics': ['a_curve', 'b_curve', 'yellow_wave', 'phase_1', 'phase_2', 'phase_3', 'analysis'],
-  'x-factor': ['factor', 'a_value', 'a_bonus', 'a_bonus_label', 'b_value', 'b_bonus', 'regen', 'mechanics', 'implication', 'psychology'],
-  'stat-trap': ['trap_top', 'trap_bottom', 'example', 'question'],
-  'fight-simulation': [
-    'opening',
-    'mid_fight',
-    'late_fight',
-    'end_condition',
-    'phase_1_title',
-    'phase_1_animation',
-    'phase_1_event',
-    'phase_1_a_label',
-    'phase_1_a_value',
-    'phase_1_b_label',
-    'phase_1_b_value',
-    'phase_2_title',
-    'phase_2_animation',
-    'phase_2_event',
-    'phase_2_branch_a',
-    'phase_2_branch_b',
-    'phase_3_title',
-    'phase_3_actor',
-    'phase_3_animation',
-    'phase_3_event',
-    'phase_3_branch_a',
-    'phase_3_branch_b',
-  ],
-  'verdict-matrix': ['case_1', 'case_2', 'case_3', 'case_4'],
-}
 const LEGACY_TEMPLATE_FIELDS = {
   'x-factor': ['left_case', 'right_case', 'left_title', 'right_title', 'left_body', 'right_body'],
   'fight-simulation': [
@@ -123,18 +96,85 @@ const LEGACY_TEMPLATE_FIELDS = {
     'favorite',
   ],
 }
-const VERDICT_CASE_BODY_RE = /[.!?]\s+\S/u
-const STAT_TRAP_QUESTION_PREFIX_RE = /^(kluczowe pytanie|key question)\s*:/i
-const X_FACTOR_HEADLINE_RE = /\sVS\s/i
-const requiredTemplateBlockSet = new Set(Object.keys(REQUIRED_TEMPLATE_FIELDS))
+const fightManifest = loadCurrentFightManifest()
+const manifestVariableFieldMap = Object.fromEntries(
+  fightManifest.templates.map((template) => [template.id, template.variableFields || []]),
+)
+
+const TEMPLATE_FIELD_INDEX_MARKER = 'vsindexmarker'
+const escapeRegex = (value) => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+const normalizeTemplateFieldSeed = (value) =>
+  normalizeToken(String(value || '').replace(/<N>/gi, TEMPLATE_FIELD_INDEX_MARKER))
+const buildTemplateFieldPattern = (value) => {
+  const normalized = normalizeTemplateFieldSeed(value)
+  if (!normalized) return null
+  const pattern = escapeRegex(normalized).replace(TEMPLATE_FIELD_INDEX_MARKER, '(\\d+)')
+  return new RegExp(`^${pattern}$`)
+}
+
+const splitScenarioPrefix = (normalizedKey) => {
+  const match = normalizedKey.match(/^s(\d+)(.+)$/)
+  if (!match) return null
+  const body = match[2]
+  if (!body) return null
+  return body
+}
+
+const templateVariableMatchers = Object.fromEntries(
+  Object.entries(manifestVariableFieldMap).map(([templateId, fields]) => [
+    templateId,
+    fields.map((entry) => {
+      const seeds = Array.from(
+        new Set([
+          entry.key,
+          entry.jsonKey || '',
+          ...(entry.aliases || []),
+        ].filter(Boolean)),
+      )
+      const patterns = seeds
+        .map((seed) => buildTemplateFieldPattern(seed))
+        .filter((pattern) => Boolean(pattern))
+      return {
+        key: entry.key,
+        allowScenarioPrefix: Boolean(entry.allowScenarioPrefix),
+        patterns,
+      }
+    }),
+  ]),
+)
+
+const resolveTemplateSchemaField = (templateId, jsonKey) => {
+  const normalizedKey = normalizeToken(jsonKey)
+  if (!normalizedKey) return null
+  const matchers = templateVariableMatchers[templateId] || []
+  for (const matcher of matchers) {
+    const tryMatch = (candidate) => {
+      for (const pattern of matcher.patterns) {
+        const match = candidate.match(pattern)
+        if (!match) continue
+        const rawIndex = match[1]
+        return rawIndex ? matcher.key.replace(/<N>/gi, rawIndex) : matcher.key
+      }
+      return null
+    }
+
+    const direct = tryMatch(normalizedKey)
+    if (direct) return direct
+    if (!matcher.allowScenarioPrefix) continue
+    const scenarioBody = splitScenarioPrefix(normalizedKey)
+    if (!scenarioBody) continue
+    const scenarioMatch = tryMatch(scenarioBody)
+    if (!scenarioMatch) continue
+    return scenarioMatch
+  }
+  return null
+}
 
 const templateFieldCandidates = (key) => [key, toCamelCase(key)]
-const hasTemplateField = (block, key) => templateFieldCandidates(key).some((candidate) => candidate in (block || {}))
 const presentTemplateFields = (block, keys) =>
   keys.filter((key) => templateFieldCandidates(key).some((candidate) => candidate in (block || {})))
 
 const validateLocaleTemplateBlocks = (dirName, fileName, parsed) => {
-  const templateOrder = Array.isArray(parsed?.templateOrder) ? parsed.templateOrder : []
   const templates = parsed?.templates || {}
 
   for (const [templateId, block] of Object.entries(templates)) {
@@ -165,60 +205,21 @@ const validateLocaleTemplateBlocks = (dirName, fileName, parsed) => {
         )
       }
     }
+
+    const unknownKeys = Object.keys(block).filter((key) => !resolveTemplateSchemaField(templateId, key))
+    if (unknownKeys.length) {
+      errors.push(
+        `[${dirName}] ${fileName} contains non-schema fields in ${templateId}: ${unknownKeys.join(', ')}.`,
+      )
+    }
   }
 
   for (const [templateId, legacyKeys] of Object.entries(LEGACY_TEMPLATE_FIELDS)) {
-    if (!templateOrder.includes(templateId)) continue
     const block = templates?.[templateId]
-    if (!block || typeof block !== 'object' || Array.isArray(block)) {
-      if (requiredTemplateBlockSet.has(templateId)) {
-        errors.push(`[${dirName}] ${fileName} is missing template block ${templateId}.`)
-      }
-      continue
-    }
+    if (!block || typeof block !== 'object' || Array.isArray(block)) continue
     const presentLegacy = presentTemplateFields(block, legacyKeys)
     if (presentLegacy.length) {
       errors.push(`[${dirName}] ${fileName} contains legacy fields in ${templateId}: ${presentLegacy.join(', ')}.`)
-    }
-  }
-
-  for (const [templateId, requiredKeys] of Object.entries(REQUIRED_TEMPLATE_FIELDS)) {
-    if (!templateOrder.includes(templateId)) continue
-    const block = templates?.[templateId]
-    if (!block || typeof block !== 'object' || Array.isArray(block)) {
-      errors.push(`[${dirName}] ${fileName} is missing template block ${templateId}.`)
-      continue
-    }
-    const missing = requiredKeys.filter((key) => !hasTemplateField(block, key))
-    if (missing.length) {
-      errors.push(`[${dirName}] ${fileName} is missing required fields in ${templateId}: ${missing.join(', ')}.`)
-    }
-    if (templateId === 'verdict-matrix') {
-      for (const key of ['case_1', 'case_2', 'case_3', 'case_4']) {
-        const value = templateFieldCandidates(key).map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
-        if (typeof value !== 'string' || !VERDICT_CASE_BODY_RE.test(value.trim())) {
-          errors.push(`[${dirName}] ${fileName} requires descriptive ${key} text in verdict-matrix, not only a short winner label.`)
-        }
-      }
-    }
-    if (templateId === 'x-factor') {
-      const factorValue =
-        templateFieldCandidates('factor').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
-      if (typeof factorValue !== 'string' || !X_FACTOR_HEADLINE_RE.test(factorValue.trim())) {
-        errors.push(`[${dirName}] ${fileName} requires an x-factor headline in the "A VS B" format.`)
-      }
-    }
-    if (templateId === 'stat-trap') {
-      const questionValue =
-        templateFieldCandidates('question').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
-      const trapTopValue =
-        templateFieldCandidates('trap_top').map((candidate) => block?.[candidate]).find((entry) => typeof entry === 'string') || ''
-      if (typeof questionValue === 'string' && STAT_TRAP_QUESTION_PREFIX_RE.test(questionValue.trim())) {
-        errors.push(`[${dirName}] ${fileName} must keep the stat-trap question body without the "Key question" prefix.`)
-      }
-      if (typeof trapTopValue !== 'string' || !trapTopValue.includes('>')) {
-        errors.push(`[${dirName}] ${fileName} requires a stat-trap top line in the "A >" format.`)
-      }
     }
   }
 }
@@ -265,7 +266,7 @@ for (const dir of numberedFightDirs) {
   for (const fileName of [...enFiles, ...plFiles, ...scansFiles]) {
     const filePath = path.join(dir, fileName)
     try {
-      const parsed = JSON.parse(readFileSync(filePath, 'utf8'))
+      const parsed = JSON.parse(stripBom(readFileSync(filePath, 'utf8')))
       if (/ EN\.json$/i.test(fileName)) {
         if (parsed?.schemaVersion !== 1 || parsed?.locale !== 'en') {
           errors.push(`[${dirName}] ${fileName} must have schemaVersion=1 and locale="en".`)

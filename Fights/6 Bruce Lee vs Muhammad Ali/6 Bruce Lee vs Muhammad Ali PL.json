@@ -1,96 +1,98 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "Demonstracja one-inch punch na Long Beach",
-      "Pompki na dwóch palcach i pokaz kontroli ciała",
-      "Zwycięstwo o międzyszkolny tytuł bokserski z 1958 roku",
-      "Stworzenie Jeet Kune Do i rewolucja w treningu przekrojowym",
-      "Demonstracja szybkości reakcji przeciwko zawodowym zawodnikom"
+      "Pokaz one-inch punch (Long Beach).",
+      "Pompki na dwóch palcach i ekstremalna kontrola ciała.",
+      "Międzyszkolny tytuł bokserski z 1958 roku.",
+      "Stworzenie Jeet Kune Do przez łączenie stylów.",
+      "Pokonał Yoichiego Nakachiego w 11 sekund."
     ],
     "dossier": {
-      "advantage": "Niewiarygodna szybkość reakcji i ekonomia ruchu. Bruce Lee potrafi wyprowadzić cios z minimalnego dystansu z niszczycielską siłą, neutralizując ataki wroga zanim te w pełni się rozwiną.",
-      "mentality": "Analityczny filozof walki. Nie walczy schematami – dostosowuje się do przeciwnika jak woda, szukając luk w jego rytmie i psychice.",
+      "advantage": "Skrajnie wytrenowane ciało i nieludzka szybkość. Dzięki pełnej kontroli mięśni potrafi zadawać potężne ciosy z zerowego dystansu.",
+      "mentality": "Natychmiastowa adaptacja i instynktowna precyzja. Odczytuje intencje przeciwnika w ułamku sekundy, uderzając tam, gdzie obrona jest najsłabsza.",
       "quote": "Bądź jak woda, mój przyjacielu.",
-      "style": "Jeet Kune Do – przechwytywanie ataku. Skupia się na szybkości, precyzji i atakowaniu najkrótszą drogą, często wykorzystując kopnięcia w niskie partie ciała i szybkie kontry."
+      "style": "Mistrzowska synteza Jeet Kune Do. Bruce Lee łączy boks, szermierkę i Wing Chun w jeden płynny system, eliminując zbędne ruchy."
     },
     "name": "Bruce Lee",
     "profile": {
       "powers": [
-        "Elitarna kondycja, nieludzka szybkość uderzeń i precyzja anatomiczna."
+        "Elitarna ludzka szybkość, refleks, koordynacja i precyzja uderzeń."
       ],
       "tools": [
-        "Uniwersalny styl walki (JKD), techniki przechwytywania i walka przekrojowa."
+        "Timing przechwycenia w JKD, niskie kopnięcia, łamanie rytmu i adaptacja między stylami.",
+        "Nunchaku i kij (w scenariuszach ulicznych), ekstremalna siła one-inch punch."
       ],
       "weaknesses": [
-        "Znaczna różnica masy i zasięgu w starciu z gigantami wagi ciężkiej.",
-        "Brak doświadczenia w pełnowymiarowych, wielorundowych walkach z mistrzami świata boksu zawodowego."
+        "Znacząca strata gabarytu i zasięgu względem specjalistów wagi ciężkiej.",
+        "Brak potwierdzonego doświadczenia w przyjmowaniu ciosów od zawodowych bokserów wagi ciężkiej."
       ]
     },
     "stats": {
-      "battleIq": 94,
-      "durability": 68,
-      "experience": 76,
-      "hax": 60,
-      "skills": 95,
-      "speed": 96,
-      "stamina": 82,
-      "strength": 68,
-      "style": 79
+      "battleIq": 86,
+      "durability": 70,
+      "experience": 60,
+      "hax": 73,
+      "skills": 86,
+      "speed": 93,
+      "stamina": 81,
+      "strength": 70,
+      "style": 91
     },
-    "version": "Szczyt Formy",
+    "version": "Prime",
     "victories": [
-      "Chuck Norris (Filmowo/Kulturowo)",
-      "Wong Jack Man",
       "Gary Elms",
-      "Joe Lewis (Sparingowo/Treningowo)",
-      "Dan Inosanto"
+      "Yoichi Nakachi",
+      "Hawkins Chung",
+      "Wong Shun Leung",
+      "Wong Jack Man"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Trzykrotny mistrz świata wagi ciężkiej",
-      "Zwycięstwo nad George'em Foremanem (Rumble in the Jungle)",
-      "Zwycięstwo nad Joe Frazierem (Thrilla in Manila)",
-      "Złoty medal olimpijski z 1960 roku",
-      "Legendarna praca nóg i technika 'Rope-a-dope'"
+      "Zdobywa pierwszy tytuł mistrza świata w wieku 22 lat.",
+      "19 udanych obron tytułu mistrza świata.",
+      "Pierwszy trzykrotny mistrz świata wagi ciężkiej.",
+      "Złoto olimpijskie, Rzym 1960.",
+      "Pokonał 21 mistrzów lub pretendentów do tytułu wagi ciężkiej."
     ],
     "dossier": {
-      "advantage": "Niedościgniona praca nóg i psychologiczna dominacja. Ali kontroluje dystans i tempo walki, męcząc przeciwnika zarówno fizycznie, jak i mentalnie, zanim zada decydujący cios.",
-      "mentality": "Charyzmatyczny geniusz strategii. Wykorzystuje trash-talk i pewność siebie, by wyprowadzić wroga z równowagi, jednocześnie zachowując zimną krew pod największą presją.",
-      "quote": "Lataj jak motyl, żądl jak pszczoła. Ręce nie mogą trafić tego, czego oczy nie widzą.",
-      "style": "Bokserski taniec wagi ciężkiej. Ali łączy niewiarygodną szybkość rąk z mobilnością, zadając serie jabów i unikając ciosów dzięki fenomenalnemu refleksowi."
+      "advantage": "Wytrzymałość wagi ciężkiej i inteligencja ringowa. Potrafi przyjąć cios, ale jego prawdziwa siła to unikanie uderzeń i dyktowanie tempa walki.",
+      "mentality": "Charyzmatyczny showman o stalowej woli. Prowokuje przeciwnika, by wytrącić go z równowagi, i metodycznie łamie jego pewność siebie.",
+      "quote": "Lataj jak motyl, żądl jak pszczoła.",
+      "style": "Mistrzowska kontrola dystansu i rytmu. Używa legendarnej pracy nóg i szybkiego panowania nad ringiem, by frustrować rywali."
     },
     "name": "Muhammad Ali",
     "profile": {
       "powers": [
-        "Niesamowita odporność na ciosy, szybkość rąk wagi lekkiej i żelazna kondycja."
+        "Elitarna szybkość, timing, odporność i ring IQ na poziomie mistrza świata wagi ciężkiej."
       ],
       "tools": [
-        "Jab kontrolujący dystans, praca nóg i strategiczne wykorzystanie lin i uników."
+        "Kontrola jabem, praca nóg, obrona ruchem, zarządzanie klinczem i kontrola tempa.",
+        "Zdolność przetrwania wyczerpujących rund i rope-a-dope - męczenie przeciwnika."
       ],
       "weaknesses": [
-        "Ograniczenie do technik bokserskich (brak obrony przed kopnięciami w scenariuszu ulicznym).",
-        "Skłonność do przyjmowania ciosów na gardę/ciało w celu zmęczenia rywala, co może być ryzykowne przy technikach łamiących stawy."
+        "Głównie bokserski zestaw narzędzi względem szerokich zestawów walki bez zasad.",
+        "Podatność na niskie kopnięcia i ataki na stawy, których boks nie uwzględnia."
       ]
     },
     "stats": {
-      "battleIq": 92,
+      "battleIq": 93,
       "durability": 94,
-      "experience": 96,
-      "hax": 50,
-      "skills": 92,
-      "speed": 90,
-      "stamina": 96,
-      "strength": 82,
-      "style": 46
+      "experience": 97,
+      "hax": 48,
+      "skills": 94,
+      "speed": 89,
+      "stamina": 95,
+      "strength": 89,
+      "style": 90
     },
-    "version": "Prime Ali",
+    "version": "Prime",
     "victories": [
       "George Foreman",
       "Joe Frazier",
       "Sonny Liston",
-      "Ken Norton",
-      "Floyd Patterson"
+      "Cleveland Williams",
+      "Ernie Terrell"
     ]
   },
   "locale": "pl",
@@ -113,85 +115,68 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Walka Uliczna (Bez Zasad)",
-      "a_curve": "80,85,82,70,50",
-      "b_curve": "82,84,88,94,98",
-      "yellow_wave": "25,28,26,32,28,35,30,40",
-      "phase_1": "Lee atakuje niskimi kopnięciami, próbując wyłączyć mobilność Alego. Szczyt szans Bruce'a.",
-      "phase_2": "Ali adaptuje się do nietypowego dystansu. Jego masa i zasięg rąk zaczynają dyktować warunki wymian.",
-      "phase_3": "Fizyczna dominacja. Ali przełamuje gardę Lee czystą siłą i precyzją, kończąc starcie brutalnym nokautem.",
-      "analysis": "Brak zasad pomaga Lee na starcie, ale różnica wagi i surowa siła Alego są zbyt wielkie w długiej wymianie.",
-      "s2_label": "Walka w Ringu (Zasady Boksu)",
-      "s2_a_curve": "80,75,65,55,45",
-      "s2_b_curve": "82,86,90,95,100",
-      "s2_phase_1": "W ringu Ali jest u siebie. Lee próbuje dotrzymać mu kroku szybkością rąk, ale traci dystans.",
-      "s2_phase_2": "Ali systematycznie rozbija obronę Lee jabem. Bruce nie ma narzędzi (kopnięć), by powstrzymać napór.",
-      "s2_phase_3": "Techniczna egzekucja. Ali dominuje każdą sekundę, kończąc walkę wtedy, kiedy sam uzna to za stosowne.",
-      "s2_analysis": "W ringu bokserskim Ali dominuje Lee całkowicie. Różnica poziomów w tej konkretnej dyscyplinie jest absolutna."
+      "label": "Bezlitosna Fizyka",
+      "a_curve": "79,65,50,30,10",
+      "b_curve": "88,90,95,98,100",
+      "yellow_wave": "25,35,28,42,30,48,32,55",
+      "phase_1": "Bruce Lee próbuje zszokować Alego szybkością, ale jab ciężkiego mistrza wyznacza nieprzekraczalną granicę zasięgu.",
+      "phase_2": "Technika kontra masa. Każdy cios Alego, nawet blokowany, dewastuje lżejszą o 36 kg sylwetkę Bruce'a.",
+      "phase_3": "Nieuchronny finał. Przewaga skali, siły ciosu i odporności Alego domyka starcie brutalnym nokautem.",
+      "analysis": "W starciu zawodowego mistrza wagi ciężkiej z lekkim artystą sztuk walki prawa fizyki i zasięgu praktycznie wykluczają inny wynik niż dominacja Alego."
     },
     "fight-card": {
-      "fight_title": "Lee vs Ali",
-      "subtitle": "SEKWENCJA UKOŃCZONA"
+      "fight_title": "Lee vs Ali"
     },
     "fight-simulation": {
-      "s1_label": "Werdykt Ostateczny",
-      "opening": "Bruce Lee skraca dystans boczny, próbując zaatakować kolano Alego szybkim kopnięciem bocznym.",
-      "mid_fight": "Ali przyjmuje impet na nogi, ale natychmiast kontruje potężnym lewym prostym, który odrzuca Lee.",
-      "late_fight": "Ali zamyka oszołomionego Lee przy linach (lub ścianie) i kończy serią, której szybkość przekracza możliwości obronne Bruce'a.",
-      "end_condition": "Zwycięstwo Alego przez KO dzięki przewadze masy i zasięgu.",
-      "phase_1_animation": "rush-ko",
-      "phase_1_actor": "a",
-      "phase_1_title": "Próba Przechwycenia",
-      "phase_1_a_label": "Timing",
-      "phase_1_a_value": "98",
+      "label": "Werdykt Ostateczny",
+      "opening": "Bruce Lee próbuje narzucić tempo błyskawicznymi unikami, ale Ali 'lata jak motyl' poza jego zasięgiem.",
+      "mid_fight": "Ali ustawia dystans lewym prostym. Każda próba wejścia Bruce'a kończy się potężnym uderzeniem na gardę.",
+      "late_fight": "Ali skraca dystans i odpala serie kombinacji, których ciało Bruce'a nie jest w stanie absorbować.",
+      "end_condition": "Zwycięstwo Alego przez brutalny nokaut.",
+      "phase_1_animation": "hit-and-run",
+      "phase_1_title": "Test Refleksu",
+      "phase_1_a_label": "Zwinność",
+      "phase_1_a_value": "95",
       "phase_1_b_label": "Zasięg",
-      "phase_1_b_value": "92",
-      "phase_1_event": "Lee uderza w najsłabszy punkt Alego – brak obrony przed niskimi kopnięciami.",
-      "phase_2_animation": "clash-lock",
-      "phase_2_title": "Różnica Skali",
-      "phase_2_event": "Ali trafia pierwszym czystym jabem. Siła ciosu wagi ciężkiej wstrząsa całym ciałem Bruce'a.",
-      "phase_2_branch_a": "Lee próbuje zejść do parteru lub uciec z linii ciosu.",
-      "phase_2_branch_b": "Ali narzuca mordercze tempo, którego Lee nie jest w stanie utrzymać.",
+      "phase_1_b_value": "98",
+      "phase_1_event": "Bruce porusza się niewiarygodnie szybko, ale jab Alego zawsze ląduje tam, gdzie Bruce chce postawić nogę.",
+      "phase_2_animation": "kite-zone",
+      "phase_2_title": "Bariera Dystansu",
+      "phase_2_event": "Ali kontroluje przestrzeń, zmuszając Bruce'a do ciągłej pracy nóg, która szybko go wyczerpuje.",
+      "phase_2_branch_a": "Bruce znajduje lukę i trafia pojedynczym ciosem, który nie robi na Alim wrażenia.",
+      "phase_2_branch_b": "Ali trafia czystym prostym, rozbijając gardę Bruce'a.",
       "phase_3_actor": "b",
-      "phase_3_animation": "brutal-execution",
-      "phase_3_title": "Żądło Pszczoły",
-      "phase_3_event": "Ali kończy walkę precyzyjną kombinacją, wykorzystując każdą uncję swojej przewagi wagowej.",
-      "phase_3_branch_a": "Bruce Lee pada po raz pierwszy i ostatni.",
-      "phase_3_branch_b": "Ali triumfuje, udowadniając przewagę zawodowego ringu."
+      "phase_3_animation": "infinite-attrition",
+      "phase_3_title": "Egzekucja Ciężkiej Wagi",
+      "phase_3_event": "Ali przechodzi do ofensywy. Masa jego ciosów miażdży kości i wolę walki przeciwnika.",
+      "phase_3_branch_a": "Bruce pada na deski i nie jest w stanie wstać.",
+      "phase_3_branch_b": "Sędzia przerywa walkę, widząc pełną dominację Alego."
     },
     "final-summary": {
-      "line_1": "Bruce Lee to ikona i wybitny teoretyk walki, ale Muhammad Ali to jeden z najpotężniejszych atletów w historii sportów walki.",
-      "line_2": "Różnica masy (ok. 30-40 kg) i zasięgu jest w tej walce czynnikiem nie do przeskoczenia przy zbliżonym poziomie szybkości.",
-      "line_3": "Nawet w walce ulicznej, gdzie Lee ma więcej narzędzi, jeden celny cios Alego waży więcej niż cała seria kontrataków Bruce'a.",
-      "winner": "Muhammad Ali (zdecydowanie).",
-      "quote": "„Lee jest szybki jak woda, ale Ali to fala, która tę wodę po prostu pochłania.”"
+      "line_1": "To starcie precyzji z mocą. Bruce Lee ma szybkość, jakiej Ali nigdy nie widział, ale Ali ma skalę, której Bruce nie może zignorować.",
+      "line_2": "Realna fizyka walki faworyzuje zawodowego mistrza wagi ciężkiej. Różnica masy i zasięgu jest zbyt duża dla samej techniki.",
+      "line_3": "Ostatecznie to pytanie, czy jeden idealny cios Bruce'a może złamać człowieka, który przetrwał 15 rund z najsilniejszymi bokserami świata.",
+      "winner": "Muhammad Ali dominuje bezdyskusyjnie."
     },
     "tactical-board": {
-      "lane": "Bruce musi trafić idealnym kopnięciem w kolano. Ali potrzebuje tylko jednego czystego kontaktu.",
-      "subtitle": "Teoria kontra Praktyka Ringu"
+      "lane": "Bruce musi utrzymać walkę brudną i chaotyczną. Ali wygrywa, jeśli narzuci dystans bokserski.",
+      "subtitle": "Artysta kontra Bokser"
     },
     "verdict-matrix": {
-      "header": "MATRYCA REALIÓW",
-      "subtitle": "Werdykt niezależny od zasad",
-      "row_1": "WALKA ULICZNA",
-      "row_2": "ZASADY BOKSU",
-      "case_1": "Ali 8/10. Na ulicy Bruce Lee może uszkodzić kolano Alego idealnym kopnięciem. To jego jedyna realna szansa. Jeśli jednak Ali przetrwa pierwsze sekundy, jego masa i bokserska precyzja zmiażdżą Lee w każdej wymianie.",
-      "case_2": "Ali 10/10. W ringu bokserskim Bruce Lee nie ma żadnych szans. Pozbawiony kopnięć i rzutów, staje do walki na pięści z największym mistrzem w historii tej dyscypliny, ważącym o połowę więcej.",
-      "verdict": "Muhammad Ali wygrywa dzięki fizyce i skali."
+      "header": "WERDYKT OSTATECZNY",
+      "subtitle": "Brak zmiennych wpływających na wynik"
     },
     "x-factor": {
-      "a_bonus": "8",
-      "a_bonus_label": "KOPNIĘCIA",
+      "a_bonus": "12",
+      "a_bonus_label": "BRUDNE TECHNIKI",
       "a_value": "50",
-      "b_bonus": "20",
+      "b_bonus": "25",
       "b_value": "50",
-      "factor": "EKONOMIA RUCHU VS MASA MIĘŚNIOWA",
-      "implication": "W tej walce statystyka szybkości Lee (96) nie niweluje przewagi siły Alego.",
-      "mechanics": "Ali posiada tzw. 'chin' (odporność na ciosy) wagi ciężkiej. Ciosy Lee, choć szybkie, mogą nie mieć dość masy, by go znokautować.",
-      "psychology": "Ali to mistrz wojny psychologicznej – Lee musiałby zachować absolutny spokój artysty.",
-      "regen": "ODPORNOŚĆ NA CIOSY",
-      "example": "Lee trafia Alego idealnym kopnięciem w kolano. Na ulicy to koniec walki. W ringu, Ali może to przetrwać dzięki adrenalinie i klinczowi.",
-      "question": "Czy szybkość Bruce'a wystarczy, by uniknąć każdego jab'a Alego przez całą walkę?"
+      "factor": "TECHNIKA VS SKALA FIZYCZNA",
+      "implikacja": "Dlatego Ali wygrywa bezdyskusyjnie w ringu, a na ulicy Bruce staje się śmiertelnym zagrożeniem.",
+      "mechanika": "Ali ma stalową szczękę i masę ciężkiej wagi. Bruce musi trafiać idealnie w punkty, których mięśnie nie chronią.",
+      "psychologia": "Ali chce bawić się przeciwnikiem. Bruce to czysty, skupiony profesjonalizm.",
+      "regen": "RÓŻNICA GABARYTU"
     }
   }
 }

@@ -8,19 +8,19 @@
       "Throws around Apollo."
     ],
     "dossier": {
-      "advantage": "Red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power allows him to crush energy barriers.",
-      "mentality": "A furious zealot driven by revenge. He knows no mercy or hesitation – he pushes forward with a fury that grows more powerful with the enemy's anger.",
+      "advantage": "A red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power lets him crush energy barriers with his bare hands.",
+      "mentality": "A furious zealot driven by revenge. He knows no mercy or hesitation - he advances with a rage that grows stronger the more hatred and anger the opponent shows.",
       "quote": "I am Atrocitus, lord and master of the Red Lantern Corps. I am wrath, I am hate, I am righteous vengeance!",
-      "style": "Brutal, primal aggression. Atrocitus charges opponents to physically tear them apart with his bare hands, supported by corrosive rage plasma."
+      "style": "Brutal, primal aggression. Atrocitus charges opponents to tear them apart with his bare hands, backed by corrosive rage plasma."
     },
     "name": "Atrocitus",
     "profile": {
       "powers": [
-        "Red Lantern plasma output, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics."
+        "Red Lantern plasma emission, constructs, blood magic and rituals, flight, and Butcher-linked rage dynamics."
       ],
       "tools": [
-        "Emotional-spectrum manipulation and high-pressure ranged offense.",
-        "Ability to poison the opponent's Power or energy through contact with blood and plasma."
+        "Emotional-spectrum manipulation and heavy ranged pressure.",
+        "Ability to poison an opponent's power or energy through contact with blood and plasma."
       ],
       "weaknesses": [
         "Ring dependence (instead of a heart).",
@@ -42,37 +42,37 @@
     "victories": [
       "The Butcher Entity",
       "The Butcher's human host",
-      "Saint Walker, Indigo-1, and Star Sapphire",
+      "Saint Walker, Indigo-1 and Star Sapphire",
       "Multiple Manhunters",
       "Bleez"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "World Breaker scale allows for collateral planet and moon destruction.",
-      "Stale-mated Sentry.",
+      "World Breaker scale enables collateral destruction of a planet and moon.",
+      "Stalemated Sentry.",
       "Regenerated from extreme damage.",
-      "Worldbreaker Red She-Hulk and WBH clashing broke the planet.",
+      "A clash between Worldbreaker Red She-Hulk and World Breaker Hulk fractured a planet.",
       "Nearly sank the entire east coast with a single step."
     ],
     "dossier": {
-      "advantage": "Limitless strength scaling and regeneration. The more injured and angry he gets, the stronger he becomes, making him practically unbeatable in attrition.",
-      "mentality": "A stubborn and wild destroyer. He does not calculate or retreat – he pushes forward until all resistance is leveled to the ground.",
+      "advantage": "Unlimited strength growth and regeneration. The more hurt and angry he becomes, the stronger he gets, making him nearly unbeatable in attrition.",
+      "mentality": "A stubborn, savage destroyer. He does not calculate or retreat - he pushes forward until all resistance is leveled.",
       "quote": "Hulk smash!",
-      "style": "Unstoppable close-quarters destruction. Relies on pure physical strength and constant forward momentum, crushing everything under his strikes."
+      "style": "Unstoppable close-quarters destruction. He relies on pure physical force and nonstop forward pressure, crushing everything under his strikes."
     },
     "name": "Hulk",
     "profile": {
       "powers": [
-        "Gamma-based strength growth, regeneration, thunderclaps, and extreme stamina."
+        "Rage-driven strength growth, regeneration, shockwaves, and extreme stamina."
       ],
       "tools": [
         "Relentless close-range pressure.",
-        "Gamma radiation emission (in World Breaker mode), destroying everything in the vicinity."
+        "Gamma radiation output (in World Breaker mode), destroying everything nearby."
       ],
       "weaknesses": [
-        "Limited precision utility at long range versus dedicated control users.",
-        "Strategy set is narrower when denied sustained contact."
+        "Limited long-range utility against dedicated control specialists.",
+        "His strategic options narrow sharply when he cannot maintain sustained contact."
       ]
     },
     "stats": {
@@ -115,27 +115,25 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "s1_label": "Absolute Rage",
+      "label": "Absolute Rage",
       "a_curve": "85,88,92,96,100",
-      "b_curve": "70,60,40,20,5",
+      "b_curve": "84,60,40,20,5",
       "yellow_wave": "40,48,44,59,47,63,49,68",
       "phase_1": "Atrocitus devours Hulk's rage from the first second. Every roar from the Green Goliath only fuels the Red Ring.",
-      "phase_2": "Atrocitus's plasma burns the very fabric of space. Hulk loses his footing, and his biological regeneration has nothing left to recreate.",
-      "phase_3": "Conceptual dominance. Atrocitus suppresses Hulk's rage, turning off his 'engine' and erasing him from reality.",
-      "analysis": "In a clash with the host of the Butcher, Hulk is mere infinite fuel. Atrocitus controls every aspect of this annihilation."
+      "phase_2": "Atrocitus's plasma burns the very fabric of space. Hulk loses footing, and his biological regeneration has nothing left to rebuild.",
+      "phase_3": "Conceptual dominance. Atrocitus suppresses Hulk's rage, shutting down his 'engine' and erasing him from reality.",
+      "analysis": "Against the host of the Butcher, Hulk is merely infinite fuel. Atrocitus controls every aspect of this annihilation."
     },
     "fight-card": {
-      "fight_title": "Atrocitus vs Hulk",
-      "subtitle": "SEQUENCE COMPLETE"
+      "fight_title": "Atrocitus vs Hulk"
     },
     "fight-simulation": {
-      "s1_label": "Final Verdict",
-      "opening": "Atrocitus charges, but instead of striking, he begins simply inhaling Hulk's fury.",
-      "mid_fight": "Hulk erupts with gamma energy, which is immediately consumed and transformed into constructs of red light.",
+      "label": "Final Verdict",
+      "opening": "Atrocitus charges, but instead of striking, he simply starts inhaling Hulk's fury.",
+      "mid_fight": "Hulk erupts with gamma energy, which is instantly consumed and converted into red-light constructs.",
       "late_fight": "Atrocitus releases plasma that tears a hole in reality, pulling the disoriented opponent into it.",
-      "end_condition": "Atrocitus's victory through conceptual erasure of the opponent.",
+      "end_condition": "Atrocitus wins by conceptually erasing the opponent.",
       "phase_1_animation": "rush-ko",
-      "phase_1_actor": "a",
       "phase_1_title": "Consumption Begins",
       "phase_1_a_label": "Hunger",
       "phase_1_a_value": "98",
@@ -145,45 +143,42 @@
       "phase_2_animation": "shadow-surge",
       "phase_2_token": "fullredflood",
       "phase_2_title": "Sea of Blood",
-      "phase_2_event": "The space around the warriors turns into boiling plasma, dissolving matter.",
-      "phase_2_branch_a": "Hulk tries to escape the trap but has no point of support.",
-      "phase_2_branch_b": "Hulk's body begins to decay at an atomic level.",
+      "phase_2_event": "The space around the warriors becomes boiling plasma that dissolves matter.",
+      "phase_2_branch_a": "Hulk tries to escape the trap, but has no foothold.",
+      "phase_2_branch_b": "Hulk's body starts decaying at the atomic level.",
       "phase_3_actor": "a",
       "phase_3_animation": "celestial-purge",
       "phase_3_title": "Final Silencing",
-      "phase_3_event": "Atrocitus uses Rage Suppression, reverting Hulk to Banner inside the epicenter of the blast.",
+      "phase_3_event": "Atrocitus uses Rage Suppression, reverting Hulk to Banner inside the blast epicenter.",
       "phase_3_branch_a": "Bruce Banner is erased from existence.",
       "phase_3_branch_b": "The universe is cleansed of the gamma anomaly."
     },
     "final-summary": {
-      "line_1": "Both warriors feed on rage, but Atrocitus converts it into control, while Hulk converts it into sheer destructive scale.",
-      "line_2": "Atrocitus with the Butcher is an absolute hard-counter for Hulk. The more Hulk fights, the faster he loses.",
-      "line_3": "It is a clash of whether a life-sustaining ring can survive in the heart of an atomic explosion – Atrocitus proves it can.",
-      "winner": "Atrocitus 9/10.",
-      "quote": "“Rage is fire. Atrocitus is the fire that burns. Hulk is the wildfire that devours the forest... and Atrocitus just drank all the oxygen.”"
+      "line_1": "Both warriors feed on rage, but Atrocitus turns it into control while Hulk turns it into raw destructive scale.",
+      "line_2": "Atrocitus with the Butcher is an absolute hard counter to Hulk. The more Hulk fights, the faster he loses.",
+      "line_3": "This clash asks whether a life-sustaining ring can survive at the core of an atomic blast - Atrocitus proves it can.",
+      "winner": "Atrocitus 9/10."
     },
     "tactical-board": {
-      "lane": "Atrocitus must keep the fight within the Force's bounds before Hulk turns it into a gamma loop.",
+      "lane": "Atrocitus must keep the fight under ring control before Hulk turns it into a gamma loop.",
       "subtitle": "Butcher versus Worldbreaker"
     },
     "verdict-matrix": {
-      "header": "FINAL VERDICT",
-      "subtitle": "Conceptual annihilation vs 'Lucky Shot'",
-      "verdict": "Atrocitus 9/10. While World Breaker Hulk is the pinnacle of physical strength, he is a conceptual victim of Atrocitus. The Red Ring not only allows Atrocitus to feed on Hulk's rage but also possesses the rare ability of Rage Suppression. Atrocitus can literally 'turn off' Hulk's fury, reverting him to Bruce Banner with a single impulse of will. Combined with space-burning plasma and the lack of need for oxygen, Atrocitus completely controls the encounter. Hulk retains a 1/10 chance only in the event of an absolute lucky shot – if he managed to destroy the Lantern's ring with one desperate blow before full spectrum control could be activated."
+      "header": "STABILITY MATRIX",
+      "subtitle": "Conceptual annihilation vs lucky shot",
+      "case_1": "Atrocitus 9/10. Even though World Breaker Hulk is the pinnacle of physical force, he is a conceptual victim of Atrocitus. The Red Ring not only lets Atrocitus feed on Hulk's rage, but also provides the rare ability of Rage Suppression. Atrocitus can literally switch off Hulk's fury, reverting him to Bruce Banner with a single act of will. Combined with space-burning plasma and no need to breathe, Atrocitus completely controls the clash. Hulk retains only a 1/10 chance through absolute luck - if he could destroy the Lantern ring with one desperate blow before full spectrum control activates."
     },
     "x-factor": {
-      "a_bonus": "12",
-      "a_bonus_label": "PLASMA CONTROL",
+      "a_bonus": "25",
+      "a_bonus_label": "RAGE SUPPRESSION",
       "a_value": "50",
-      "b_bonus": "25",
+      "b_bonus": "12",
       "b_value": "50",
       "factor": "RAGE CONTROL VS GAMMA LOOP",
-      "implication": "Victory depends on whether Atrocitus can close the fight before the opponent's full gamma escalation.",
-      "mechanics": "Hulk grows infinitely. Atrocitus only grows to the ring's energy level, creating a hard power ceiling.",
-      "psychology": "Hulk is pure instinct. Atrocitus is intelligent fury – this difference decides the opening.",
-      "regen": "GAMMA LOOP",
-      "example": "Hulk regenerates an entire arm in a second. Atrocitus doesn't regenerate his body, but his ring replaces damaged organs with energy.",
-      "question": "Is the red rage plasma capable of poisoning gamma radiation, or will it become fuel for it?"
+      "implikacja": "Atrocitus wins because the opponent's rage is fuel, not a threat.",
+      "mechanika": "Atrocitus has the conceptual edge of switching off Hulk's engine through rage suppression.",
+      "psychologia": "Hulk does not realize that every second of fighting makes him conceptually weaker against the Lantern.",
+      "regen": "GAMMA ANNIHILATION"
     }
   }
 }
