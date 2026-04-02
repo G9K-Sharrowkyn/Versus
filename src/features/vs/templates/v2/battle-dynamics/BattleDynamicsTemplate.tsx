@@ -33,6 +33,9 @@ const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“�
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -53,14 +56,17 @@ export function BattleDynamicsTemplate({
   title,
   subtitle,
   templateBlocks,
+  fighterA,
+  fighterB,
   activeFightId,
+  activeFightFolderKey,
   language,
   onToggleLanguage,
   integratedToolbar,
 }: BattleDynamicsTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('battle-dynamics', language, tacticalBlockFields)
 
   const common = getFightCommonCopy('battle-dynamics', language)
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['battle-dynamics'] || [])
@@ -139,7 +145,12 @@ export function BattleDynamicsTemplate({
     ...[2, 3, 4].map(buildScenarioN).filter((s): s is ScenarioData => s !== null),
   ]
 
-  const scopeKey = `${activeFightId || 'draft'}:battle-dynamics`
+  const stableScenarioScope =
+    activeFightFolderKey?.trim() ||
+    [fighterA.name, fighterB.name].map((value) => value.trim()).filter(Boolean).join('::') ||
+    activeFightId ||
+    'draft'
+  const scopeKey = `${stableScenarioScope}:battle-dynamics`
   const [activeIndex, nextScenario] = useScopedCycleIndex(scopeKey, scenarios.length)
   const active = scenarios[activeIndex]!
   const panelHeaderRaw = active.label || boardHeaderDefault

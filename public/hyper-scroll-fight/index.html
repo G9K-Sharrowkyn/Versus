@@ -937,6 +937,28 @@
     };
 
     const setupListeners = () => {
+      const normalizeFightShortcutKey = event => {
+        const code = event && typeof event.code === 'string' ? event.code : '';
+        switch (code) {
+          case 'Digit5': return '5';
+          case 'Digit6': return '6';
+          case 'Digit7': return '7';
+          case 'Digit8': return '8';
+          case 'Digit9': return '9';
+          case 'Digit0': return '0';
+          case 'Minus':  return '-';
+          case 'Equal':  return '=';
+          default: break;
+        }
+
+        const key = event && typeof event.key === 'string' ? event.key : '';
+        if (/^[5-9]$/.test(key)) return key;
+        if (key === '0') return '0';
+        if (key === '-' || key === '_') return '-';
+        if (key === '=' || key === '+') return '=';
+        return '';
+      };
+
       window.addEventListener('mousemove', updateMouse);
       window.addEventListener('pointermove', e => {
         updateMouse(e);
@@ -950,7 +972,7 @@
       window.addEventListener('keydown', e => {
         if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
         if (!window.parent || window.parent === window) return;
-        if (/^[1-5]$/.test(e.key)) {
+        if (/^[1-4]$/.test(e.key)) {
           e.preventDefault();
           window.parent.postMessage(
             { type: 'vvv-dev-jump-stage-request', stage: Number(e.key) },
@@ -958,10 +980,11 @@
           );
           return;
         }
-        if (!/^[6-9]$|^0$|^-$|^=$/.test(e.key)) return;
+        const shortcutKey = normalizeFightShortcutKey(e);
+        if (!shortcutKey) return;
         e.preventDefault();
         window.parent.postMessage(
-          { type: 'vvv-dev-open-fight-shortcut-request', key: e.key },
+          { type: 'vvv-dev-open-fight-shortcut-request', key: shortcutKey },
           window.location.origin
         );
       });

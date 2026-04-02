@@ -4,6 +4,35 @@ import { TEMPLATE_LIBRARY } from './templateLibrary.generated'
 const getTemplateLocaleDefinition = (templateId: TemplateId, language: Language) =>
   TEMPLATE_LIBRARY[templateId]?.[language] || null
 
+const CHROME_TEXT_BY_LANGUAGE: Record<Language, { threatLevelLabel: string; threatLevelValue: string; dataIntegrityLabel: string }> = {
+  pl: {
+    threatLevelLabel: 'Stopień zagrożenia',
+    threatLevelValue: 'ekstremalny',
+    dataIntegrityLabel: 'Integralność danych',
+  },
+  en: {
+    threatLevelLabel: 'Threat level',
+    threatLevelValue: 'extreme',
+    dataIntegrityLabel: 'Data integrity',
+  },
+}
+
+const normalizeThreatLevelValue = (value: string, language: Language) => {
+  const trimmed = value.trim()
+  if (!trimmed) return CHROME_TEXT_BY_LANGUAGE[language].threatLevelValue
+
+  const normalized = trimmed
+    .toLowerCase()
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+
+  if (normalized === 'extreme' || normalized === 'ekstremalny') {
+    return CHROME_TEXT_BY_LANGUAGE[language].threatLevelValue
+  }
+
+  return trimmed
+}
+
 export const getTemplateMetadata = (templateId: TemplateId, language: Language) => {
   const definition = getTemplateLocaleDefinition(templateId, language)
   return definition?.metadata || null
@@ -89,17 +118,22 @@ export const getTemplateCommonCopy = (templateId: TemplateId, language: Language
   }
 
 export const getTemplateChromeCopy = (templateId: TemplateId, language: Language) =>
-  getTemplateLocaleDefinition(templateId, language)?.chrome || {
-    threatLevelLabel: '',
-    threatLevelValue: '',
-    dataIntegrityLabel: '',
-    dataIntegrityValue: '',
-    brandAlt: '',
-    brandMarkTitle: '',
-    brandMarkAria: '',
-    brandImageSrc: '/assets/VS2.png',
-    portraitAdjustHint: '',
-  }
+  (() => {
+    const chrome = getTemplateLocaleDefinition(templateId, language)?.chrome
+    const localizedChrome = CHROME_TEXT_BY_LANGUAGE[language]
+
+    return {
+      threatLevelLabel: localizedChrome.threatLevelLabel,
+      threatLevelValue: normalizeThreatLevelValue(chrome?.threatLevelValue || '', language),
+      dataIntegrityLabel: localizedChrome.dataIntegrityLabel,
+      dataIntegrityValue: chrome?.dataIntegrityValue || '99.6%',
+      brandAlt: chrome?.brandAlt || '',
+      brandMarkTitle: chrome?.brandMarkTitle || '',
+      brandMarkAria: chrome?.brandMarkAria || '',
+      brandImageSrc: chrome?.brandImageSrc || '/assets/VS2.png',
+      portraitAdjustHint: chrome?.portraitAdjustHint || '',
+    }
+  })()
 
 export const buildTemplateChrome = (
   templateId: TemplateId,
@@ -109,9 +143,9 @@ export const buildTemplateChrome = (
   const copy = getTemplateChromeCopy(templateId, language)
   return {
     threatLevelLabel: copy.threatLevelLabel,
-    threatLevelValue: fields.threatlevel || copy.threatLevelValue,
+    threatLevelValue: copy.threatLevelValue,
     dataIntegrityLabel: copy.dataIntegrityLabel,
-    dataIntegrityValue: fields.integrity || fields.dataintegrity || copy.dataIntegrityValue,
+    dataIntegrityValue: copy.dataIntegrityValue,
     brandAlt: copy.brandAlt,
     brandMarkTitle: copy.brandMarkTitle,
     brandMarkAria: fields.brandmarkaria || fields.brandaria || copy.brandMarkAria,

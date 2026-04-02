@@ -189,24 +189,24 @@
       "subtitle": "Willpower versus Causality"
     },
     "verdict-matrix": {
-      "header": "POWER MATRIX",
-      "subtitle": "Verdict based on Life Equation control",
+      "header": "2x1 VERDICT MATRIX",
+      "subtitle": "Conditional result: full Life Equation activation vs Manhattan preemption",
       "layout": "2x1",
-      "row_1": "FULL LIFE EQUATION",
-      "row_2": "LIMITED POWER",
-      "case_1": "White Lantern Kyle Rayner 6/10. When the full Life Equation is active, Kyle becomes a stable point Manhattan cannot simply disperse. White Light overwrites causality, and Kyle's superior hax gives him a narrow decisive edge. Manhattan still sees every threat — but Kyle's existence-rewriting power outpaces even his predictive grasp.",
-      "case_2": "Dr. Manhattan 9.5/10. Without the full Life Equation, Kyle is but a pawn in Manhattan's simulation. The Titan from Watchmen simply erases the cause for Kyle ever stepping onto the battlefield."
+      "row_1": "FULL LIFE EQUATION ACTIVATION (IN TIME)",
+      "row_2": "NO FULL/STABLE ACTIVATION",
+      "case_1": "Kyle Rayner 2:1 in this branch. If Kyle activates full Life Equation quickly and keeps stability, he can impose rewrite pressure that outscales Manhattan's preemptive control. Entry chance for this branch: about 40-45%.",
+      "case_2": "Dr. Manhattan 2:1 in this branch. If Kyle fails to secure full and stable activation in time, Manhattan takes initiative and closes the fight through preemption. Entry chance for this branch: about 55-60%."
     },
     "x-factor": {
       "a_bonus": "15",
       "a_bonus_label": "LIFE EQUATION",
-      "a_value": "50",
+      "a_value": "45",
       "b_bonus": "17",
-      "b_value": "50",
-      "factor": "SETUP WINDOW VS PREEMPTION",
-      "implikacja": "This is why Kyle's better stats do not guarantee a win if Manhattan does not allow him to use them.",
-      "mechanika": "Kyle only needs one Life Equation window, but Manhattan sees that window before Kyle even thinks of it.",
-      "psychologia": "Kyle wants options to multiply. Manhattan wants the fight to stay singular and unfinished.",
+      "b_value": "55",
+      "factor": "LE ACTIVATION VS PREEMPTION",
+      "implikacja": "In practice this is a tempo fight: whoever imposes conditions first takes their win branch.",
+      "mechanika": "Kyle has the ceiling to overwrite fight state, but he must trigger full LE before Manhattan closes the action window.",
+      "psychologia": "Kyle must stay stable under pressure; Manhattan wins by forcing hesitation.",
       "regen": "TIME PREEMPTION"
     }
   }

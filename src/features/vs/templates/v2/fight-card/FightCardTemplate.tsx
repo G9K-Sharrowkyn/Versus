@@ -24,6 +24,9 @@ const GLITCH_CHARS = '!@#$%^&░▓▒▌▐╠╣╦╬┼╫Ω'.split('')
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -55,7 +58,7 @@ export function FightCardTemplate({
 }: FightCardTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('fight-card', language, tacticalBlockFields)
 
   const common = getFightCommonCopy('fight-card', language)
 

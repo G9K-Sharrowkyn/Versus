@@ -93,10 +93,50 @@ const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 1200
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
-const SEARCH_IFRAME_VERSION = 40
-const INTRO_IFRAME_VERSION = 18
+const SEARCH_IFRAME_VERSION = 42
+const INTRO_IFRAME_VERSION = 19
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
-const FIGHT_SHORTCUT_KEYS = ['5', '6', '7', '8', '9'] as const
+const FIGHT_SHORTCUT_KEYS = ['5', '6', '7', '8', '9', '0', '-', '='] as const
+type FightShortcutKey = (typeof FIGHT_SHORTCUT_KEYS)[number]
+
+const FIGHT_SHORTCUT_ORDINAL: Record<FightShortcutKey, number> = {
+  '5': 1,
+  '6': 2,
+  '7': 3,
+  '8': 4,
+  '9': 5,
+  '0': 6,
+  '-': 7,
+  '=': 8,
+}
+
+const normalizeFightShortcutKey = (value: string): FightShortcutKey | null => {
+  const normalized = value === '+' ? '=' : value === '_' ? '-' : value
+  if (FIGHT_SHORTCUT_KEYS.includes(normalized as FightShortcutKey)) {
+    return normalized as FightShortcutKey
+  }
+
+  switch (value) {
+    case 'Digit5':
+      return '5'
+    case 'Digit6':
+      return '6'
+    case 'Digit7':
+      return '7'
+    case 'Digit8':
+      return '8'
+    case 'Digit9':
+      return '9'
+    case 'Digit0':
+      return '0'
+    case 'Minus':
+      return '-'
+    case 'Equal':
+      return '='
+    default:
+      return null
+  }
+}
 
 const parseFightScaffoldMatchup = (value: string) => {
   const match = value.trim().match(/^(.+?)\s+(?:vs\.?|versus|kontra|v)\s+(.+?)$/i)
@@ -1086,10 +1126,22 @@ function App() {
 
   const openFightByShortcutKey = useCallback(
     (shortcutKey: string) => {
-      const shortcutIndex = FIGHT_SHORTCUT_KEYS.indexOf(shortcutKey as (typeof FIGHT_SHORTCUT_KEYS)[number])
-      if (shortcutIndex === -1) return false
+      const normalizedShortcut = normalizeFightShortcutKey(shortcutKey)
+      if (!normalizedShortcut) return false
 
-      const group = folderFightGroups[shortcutIndex]
+      const shortcutOrdinal = FIGHT_SHORTCUT_ORDINAL[normalizedShortcut]
+      const numberedPrefix = `${shortcutOrdinal} `
+      const groupByNumber =
+        folderFightGroups.find((group) =>
+          group.fights.some((fight) => {
+            const folder = (fight.folderKey || '').trim()
+            const name = (fight.name || '').trim()
+            const fileName = (fight.fileName || '').trim()
+            return folder.startsWith(numberedPrefix) || name.startsWith(numberedPrefix) || fileName.startsWith(numberedPrefix)
+          }),
+        ) || null
+
+      const group = groupByNumber || folderFightGroups[shortcutOrdinal - 1]
       if (!group) return false
 
       const targetFight =
@@ -1125,15 +1177,16 @@ function App() {
     const handleSearchStageJumpKeydown = (event: KeyboardEvent) => {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
       if (isTypingTarget(event.target)) return
-      if (/^[1-5]$/.test(event.key)) {
+      if (/^[1-4]$/.test(event.key)) {
         event.preventDefault()
         dispatchSearchStageJump(Number(event.key))
         return
       }
 
-      if (!FIGHT_SHORTCUT_KEYS.includes(event.key as (typeof FIGHT_SHORTCUT_KEYS)[number])) return
+      const shortcutKey = normalizeFightShortcutKey(event.key) || normalizeFightShortcutKey(event.code)
+      if (!shortcutKey) return
 
-      if (!openFightByShortcutKey(event.key)) return
+      if (!openFightByShortcutKey(shortcutKey)) return
       event.preventDefault()
     }
 
@@ -1165,11 +1218,14 @@ function App() {
       const payload = event.data
       if (!payload || typeof payload !== 'object') return
 
-      const typed = payload as { type?: unknown; key?: unknown }
+      const typed = payload as { type?: unknown; key?: unknown; code?: unknown }
       if (typed.type !== 'vvv-dev-open-fight-shortcut-request') return
-      if (typeof typed.key !== 'string') return
+      const shortcutKey =
+        (typeof typed.key === 'string' ? typed.key : null) ||
+        (typeof typed.code === 'string' ? typed.code : null)
+      if (!shortcutKey) return
 
-      openFightByShortcutKey(typed.key)
+      openFightByShortcutKey(shortcutKey)
     }
 
     window.addEventListener('message', handleFightShortcutMessage)

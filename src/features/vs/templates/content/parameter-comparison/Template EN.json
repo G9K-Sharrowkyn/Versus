@@ -105,7 +105,7 @@
   "staticFields": {
     "panel_header": "COMPARISON CHART",
     "draw_header": "Draw zones",
-    "favorite_label": "Stat-based favorite",
+    "favorite_label": "Stat favorite",
     "draw_favorite": "DRAW",
     "fighter_a_fallback": "Fighter A",
     "fighter_b_fallback": "Fighter B",

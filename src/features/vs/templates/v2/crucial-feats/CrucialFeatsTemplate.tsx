@@ -32,6 +32,9 @@ const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“�
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -67,7 +70,7 @@ export function CrucialFeatsTemplate({
   // New Layout base props
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('crucial-feats', language, tacticalBlockFields)
 
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['crucial-feats'] || [])
@@ -287,10 +290,10 @@ export function CrucialFeatsTemplate({
         {renderColumn(fighterB, rightEntry, 'right')}
       </div>
 
-      <p className="vs-tactical-board25-subtitle vs-crucial-feats-caption vs-crucial-feats-caption--left">
+      <p className="vs-crucial-feats-caption vs-crucial-feats-caption--left">
         {leftEntry?.text || '\u00A0'}
       </p>
-      <p className="vs-tactical-board25-subtitle vs-crucial-feats-caption vs-crucial-feats-caption--right">
+      <p className="vs-crucial-feats-caption vs-crucial-feats-caption--right">
         {rightEntry?.text || '\u00A0'}
       </p>
     </div>

@@ -54,6 +54,9 @@ const ANALYTICS_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -85,7 +88,7 @@ export function FightAnalyticsTemplate({
 }: FightAnalyticsTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('fight-analytics', language, tacticalBlockFields)
 
   const common = getFightCommonCopy('fight-analytics', language)
   const ui = getTemplateUi('fight-analytics', language)

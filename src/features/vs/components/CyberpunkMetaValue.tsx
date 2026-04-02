@@ -56,6 +56,18 @@ function glitchifyNumber(text: string): string {
   })
 }
 
+function randomRange(min: number, max: number): number {
+  return Math.random() * (max - min) + min
+}
+
+function clamp(value: number, min: number, max: number): number {
+  return Math.min(max, Math.max(min, value))
+}
+
+function formatPercent(value: number): string {
+  return `${value.toFixed(2)}%`
+}
+
 // ── Component ────────────────────────────────────────────────────────────────
 
 type Props = {
@@ -80,7 +92,51 @@ export function CyberpunkMetaValue({ value }: Props) {
       return
     }
 
+    if (timerRef.current !== null) {
+      window.clearTimeout(timerRef.current)
+      timerRef.current = null
+    }
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+
     let cancelled = false
+
+    if (isNumeric) {
+      let center = randomRange(90, 99.99)
+      let spread = randomRange(0.05, 1.6)
+      let phaseEndsAt = Date.now() + randomRange(8000, 36000)
+
+      const tick = () => {
+        if (cancelled) return
+        const now = Date.now()
+
+        if (now >= phaseEndsAt) {
+          center = randomRange(90, 99.99)
+          spread = randomRange(0.05, 1.6)
+          phaseEndsAt = now + randomRange(8000, 36000)
+        }
+
+        const burstChance = Math.random()
+        const burstFactor = burstChance < 0.12 ? randomRange(2.1, 5.2) : 1
+        const drift = (Math.random() * 2 - 1) * spread * burstFactor
+        const nextValue = clamp(center + drift, 90, 99.99)
+
+        setDisplayed(formatPercent(nextValue))
+        setHot(burstFactor > 1 || Math.abs(drift) > spread * 1.5)
+
+        timerRef.current = window.setTimeout(tick, randomRange(70, 260))
+      }
+
+      setDisplayed(formatPercent(center))
+      timerRef.current = window.setTimeout(tick, randomRange(70, 260))
+
+      return () => {
+        cancelled = true
+        if (timerRef.current !== null) window.clearTimeout(timerRef.current)
+      }
+    }
 
     const runBurst = () => {
       if (cancelled) return

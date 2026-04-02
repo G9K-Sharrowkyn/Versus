@@ -33,6 +33,9 @@ const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“�
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -68,7 +71,7 @@ export function VictoryArchiveTemplate({
   // New Layout base props
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('victory-archive', language, tacticalBlockFields)
 
   // Template logic
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['victory-archive'] || [])
@@ -294,10 +297,10 @@ export function VictoryArchiveTemplate({
         {renderColumn(fighterB, rightEntry, 'right')}
       </div>
 
-      <p className="vs-tactical-board25-subtitle vs-victory-archive-caption vs-victory-archive-caption--left">
+      <p className="vs-victory-archive-caption vs-victory-archive-caption--left">
         {leftEntry?.text || '\u00A0'}
       </p>
-      <p className="vs-tactical-board25-subtitle vs-victory-archive-caption vs-victory-archive-caption--right">
+      <p className="vs-victory-archive-caption vs-victory-archive-caption--right">
         {rightEntry?.text || '\u00A0'}
       </p>
     </div>

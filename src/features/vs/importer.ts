@@ -424,6 +424,23 @@ const resolveTemplateSchemaField = (
           valueType: entry.valueType,
         } satisfies TemplateSchemaFieldMatch
       }
+
+      // Backward-compat: allow legacy indexed keys for array fields, e.g.
+      // left_image_1 / leftImage1 / leftImages1 coming from scans JSON.
+      if (entry.valueType === 'string-array' && !entry.key.includes('<N>')) {
+        for (const seed of candidateSeeds) {
+          const normalizedSeed = normalizeTemplateFieldSeed(seed)
+          if (!normalizedSeed || normalizedSeed.includes(TEMPLATE_FIELD_INDEX_MARKER)) continue
+          const match = targetKey.match(new RegExp(`^${escapeRegex(normalizedSeed)}(\\d+)$`))
+          if (!match) continue
+          const rawIndex = match[1]
+          return {
+            lineKey: `${entry.key}_${rawIndex}`,
+            valueType: entry.valueType,
+          } satisfies TemplateSchemaFieldMatch
+        }
+      }
+
       return null
     }
 

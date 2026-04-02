@@ -189,24 +189,24 @@
       "subtitle": "Wola kontra Przyczynowość"
     },
     "verdict-matrix": {
-      "header": "MATRYCA STABILNOŚCI",
-      "subtitle": "Werdykt zależny od kontroli nad Life Equation",
+      "header": "MATRYCA WERDYKTU 2x1",
+      "subtitle": "Warunkowy wynik: pelna aktywacja Life Equation vs preempcja Manhattana",
       "layout": "2x1",
-      "row_1": "IDEALNA KONTROLA MOCY",
-      "row_2": "NIESTABILNOŚĆ EMOCJONALNA",
-      "case_1": "White Lantern Kyle Rayner 6/10. Przy pełnym skupieniu i idealnej synchronizacji z Life Equation, Kyle staje się stabilnym punktem, którego Manhattan nie może po prostu rozproszyć. Białe Światło nadpisuje przyczynowość, pozwalając Kyle'owi na realne zagrożenie bytowi Manhattana.",
-      "case_2": "Dr. Manhattan 9.5/10. Kyle walczy z własnym umysłem. Każda sekunda lęku sprawia, że Life Equation zaczyna działać przeciwko niemu lub tworzy anomalie pokroju Obliviona. Manhattan wykorzystuje tę niestabilność, by błyskawicznie usunąć Kyle'a z kontinuum."
+      "row_1": "PELNA AKTYWACJA LIFE EQUATION (NA CZAS)",
+      "row_2": "BRAK PELNEJ/STABILNEJ AKTYWACJI",
+      "case_1": "Kyle Rayner 2:1 w tej galezi. Jesli Kyle szybko uruchomi pelne Life Equation i utrzyma stabilnosc, moze narzucic rewrite pressure wyzsze niz prewencyjna kontrola Manhattana. Szansa wejscia tej galezi: ok. 40-45%.",
+      "case_2": "Dr. Manhattan 2:1 w tej galezi. Jesli Kyle nie zdazy z pelna i stabilna aktywacja, Manhattan przejmuje inicjatywe i zamyka walke preempcja. Szansa wejscia tej galezi: ok. 55-60%."
     },
     "x-factor": {
       "a_bonus": "15",
       "a_bonus_label": "LIFE EQUATION",
-      "a_value": "50",
+      "a_value": "45",
       "b_bonus": "15",
-      "b_value": "50",
-      "factor": "KONTROLA PRZYCZYNOWOŚCI VS OMNIPREZENCJA",
-      "implikacja": "Kyle musi narzucić nową teraźniejszość, Manhattan musi ją po prostu zaobserwować.",
-      "mechanika": "Life Equation pozwala Kyle'owi nadpisywać fakty, których Manhattan jest częścią.",
-      "psychologia": "Kyle walczy sercem, co czyni go nieprzewidywalnym dla istoty czystej logiki.",
+      "b_value": "55",
+      "factor": "AKTYWACJA LE VS PREEMPCJA",
+      "implikacja": "W praktyce to walka o tempo: kto pierwszy narzuci warunki, ten bierze galezie zwyciestwa.",
+      "mechanika": "Kyle ma sufit mocy do narzucenia nowego stanu walki, ale musi odpalic pelne LE zanim Manhattan zamknie okno akcji.",
+      "psychologia": "Kyle musi utrzymac stabilnosc pod presja; Manhattan wygrywa, gdy wymusi chwile zawahania.",
       "regen": "REKREACJA ATOMOWA"
     }
   }

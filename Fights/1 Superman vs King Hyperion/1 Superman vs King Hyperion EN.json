@@ -90,7 +90,7 @@
     "victories": [
       "Magneto",
       "Wolverine",
-      "Vision",
+      "Galactus",
       "Thor",
       "Hulk"
     ]
@@ -255,8 +255,8 @@
       "b_bonus": "20",
       "b_value": "50",
       "factor": "Why don't better stats guarantee victory?",
-      "implikacja": "The less the fight rewards a clean knockout or technical incap, the more valuable the simple fact that Hyperion keeps coming back becomes.",
-      "mechanika": "Superman has the statistical edge and better board control, but Hyperion is one of those opponents where dominance alone is not enough if it does not lead to a permanent end.",
+      "implikacja": "The less the fight rewards a clean knockout, the more valuable the simple fact that Hyperion keeps coming back becomes.",
+      "mechanika": "Superman has the statistical edge, but Hyperion is one of those opponents where dominance alone is not enough if it does not lead to a permanent end.",
       "psychologia": "Hyperion can afford to fight more recklessly, because surviving each sequence brings him closer to the moment when his opponent starts to crack.",
       "regen": "NO RULES"
     }

@@ -24,6 +24,9 @@ const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“�
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -55,7 +58,7 @@ export function XFactorTemplate({
 }: XFactorTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('x-factor', language, tacticalBlockFields)
 
   const common = getFightCommonCopy('x-factor', language)
   const fighterAFallback = getFightTemplateDefaultField('x-factor', 'fighter_a_fallback', language)
@@ -540,4 +543,3 @@ export function XFactorTemplate({
     </div>
   )
 }
-

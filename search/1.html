@@ -1498,6 +1498,28 @@
     post({ type: 'vvv-dev-open-fight-shortcut-request', key: String(shortcutKey) });
   };
 
+  const normalizeFightShortcutKey = event => {
+    const code = event && typeof event.code === 'string' ? event.code : '';
+    switch (code) {
+      case 'Digit5': return '5';
+      case 'Digit6': return '6';
+      case 'Digit7': return '7';
+      case 'Digit8': return '8';
+      case 'Digit9': return '9';
+      case 'Digit0': return '0';
+      case 'Minus':  return '-';
+      case 'Equal':  return '=';
+      default: break;
+    }
+
+    const key = event && typeof event.key === 'string' ? event.key : '';
+    if (/^[5-9]$/.test(key)) return key;
+    if (key === '0') return '0';
+    if (key === '-' || key === '_') return '-';
+    if (key === '=' || key === '+') return '=';
+    return '';
+  };
+
   const escapeHtml = value =>
     String(value)
       .replaceAll('&', '&amp;')
@@ -2048,9 +2070,10 @@
       jumpToDebugStage(Number(e.key));
       return;
     }
-    if (!/^[5-9]$/.test(e.key)) return;
+    const shortcutKey = normalizeFightShortcutKey(e);
+    if (!shortcutKey) return;
     e.preventDefault();
-    requestFightShortcut(e.key);
+    requestFightShortcut(shortcutKey);
   });
 
   // ── Solution A: attach pointer listeners to s2 iframe document ───────────────
@@ -2089,9 +2112,10 @@
         iDoc.addEventListener('pointercancel', e => postRelay('up',   e.clientX, e.clientY, false), { passive: true });
         iDoc.addEventListener('keydown', e => {
           if (e.defaultPrevented || e.altKey || e.ctrlKey || e.metaKey) return;
-          if (!/^[5-9]$/.test(e.key)) return;
+          const shortcutKey = normalizeFightShortcutKey(e);
+          if (!shortcutKey) return;
           e.preventDefault();
-          requestFightShortcut(e.key);
+          requestFightShortcut(shortcutKey);
         });
       } catch(err) {}
     });
