@@ -5,7 +5,7 @@
     "activeName": "Direct verdict",
     "description": "One-sided verdict without a condition matrix.",
     "title": "DIRECT VERDICT",
-    "subtitle": "One-sided result without a condition matrix.",
+    "subtitle": "",
     "blockName": "Direct Verdict",
     "purpose": "Single-outcome verdict board without matrix logic."
   },
@@ -105,6 +105,8 @@
   "staticFields": {
     "fighter_a_fallback": "Fighter A",
     "fighter_b_fallback": "Fighter B",
+    "board_header": "OUR WINNER",
+    "winner_header": "WINNER",
     "defeats_word": "defeats",
     "outcome_label": "Outcome",
     "confidence_label": "Confidence",

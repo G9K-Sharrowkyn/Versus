@@ -108,19 +108,19 @@
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
-    "verdict-matrix",
+    "direct-verdict",
     "fight-card"
   ],
   "templates": {
     "battle-dynamics": {
       "label": "Ostateczna Nieuchronność",
-      "a_curve": "79,60,40,20,5",
-      "b_curve": "90,95,98,100,100",
+      "a_curve": "80,60,40,20,5",
+      "b_curve": "91,95,98,100,100",
       "yellow_wave": "20,25,22,28,24,30,26,35",
       "phase_1": "Vader uderza z furią Mocy, próbując narzucić swoją wolę bytowi kosmicznemu. Thanos przyjmuje ataki z ironicznym spokojem.",
       "phase_2": "Miecz świetlny i telekineza zderzają się z fizyczną niezniszczalnością. Skala Thanosa zaczyna przytłaczać systemy Lorda Sitha.",
       "phase_3": "Koniec nadziei. Każdy atom przestrzeni należy do Thanosa. Vader zostaje zredukowany do poziomu nieistotnej anomalii.",
-      "analysis": "Thanos dominuje w każdym wymiarze fizyki. Vader to mistrz, ale Thanos to siła natury."
+      "analysis": "W tym starciu dwóch potęg nie ma zmiennych, które mogłyby zmienić wynik. Thanos dominuje w każdym wymiarze fizyki."
     },
     "fight-card": {
       "fight_title": "Vader vs Thanos"
@@ -160,9 +160,14 @@
       "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.",
       "subtitle": "Lord Sith kontra Tytan"
     },
-    "verdict-matrix": {
-      "header": "WERDYKT OSTATECZNY",
-      "subtitle": "Brak zmiennych wpływających na wynik"
+    "direct-verdict": {
+      "winner": "Thanos",
+      "loser": "Darth Vader",
+      "outcome": "Absolutna przewaga skali",
+      "certainty": "Bezdyskusyjny",
+      "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos operuje na innym poziomie fizyki.",
+      "line_2": "Niszczycielskie otwarcie Vadera to tylko test dla wytrzymałości Tytana, którą ten przechodzi bez większych trudności.",
+      "line_3": "To starcie o to, czy precyzja miecza świetlnego zdoła znaleźć szczelinę w pancerzu, który przetrwał wybuchy galaktyk."
     },
     "x-factor": {
       "a_bonus": "14",

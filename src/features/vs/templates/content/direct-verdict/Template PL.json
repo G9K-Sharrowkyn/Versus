@@ -5,7 +5,7 @@
     "activeName": "Werdykt prosty",
     "description": "Jednostronny werdykt bez matrycy warunków.",
     "title": "WERDYKT PROSTY",
-    "subtitle": "Jednostronny rezultat bez matrycy warunków.",
+    "subtitle": "",
     "blockName": "Werdykt Prosty",
     "purpose": "Plansza jednostronnego werdyktu bez matrycy."
   },
@@ -105,9 +105,11 @@
   "staticFields": {
     "fighter_a_fallback": "Postać A",
     "fighter_b_fallback": "Postać B",
+    "board_header": "NASZ ZWYCIĘZCA",
+    "winner_header": "ZWYCIĘZCA",
     "defeats_word": "pokonuje",
     "outcome_label": "Wynik",
-    "confidence_label": "Pewnosc",
+    "confidence_label": "Pewność",
     "reason_label": "Dlaczego ten werdykt?",
     "fighter_fallback": "Postać"
   },

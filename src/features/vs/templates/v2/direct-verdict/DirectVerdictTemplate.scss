@@ -591,6 +591,68 @@
   border-radius: 0;
 }
 
+.vs-template--direct-verdict .vs-tactical-board25-stats {
+  position: absolute;
+  top: var(--tb-panel-top);
+  left: var(--tb-stats-left);
+  width: var(--tb-stats-width);
+  min-height: var(--tb-panel-height);
+  border: 10px solid rgba(255, 85, 78, 1) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  outline: none !important;
+  filter: none !important;
+  clip-path: none !important;
+  padding: calc(0.35rem * var(--tb-scale)) calc(0.2rem * var(--tb-scale));
+  overflow: visible !important;
+}
+
+.vs-template--direct-verdict .vs-tactical-board25-stats::before,
+.vs-template--direct-verdict .vs-tactical-board25-stats::after {
+  content: none !important;
+  display: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  border: 0 !important;
+}
+
+.vs-template--direct-verdict .vs-tactical-board25-stats > div,
+.vs-template--direct-verdict .vs-tactical-board25-stats p,
+.vs-template--direct-verdict .vs-tactical-board25-stats span,
+.vs-template--direct-verdict .vs-tactical-board25-stats h3 {
+  overflow: visible;
+}
+
+.vs-template--direct-verdict .vs-dossier-text-1 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: calc(var(--tb-type-1) * 0.55);
+  font-weight: 900;
+  color: #77e2f2;
+  text-transform: uppercase;
+  line-height: 0.9;
+  margin: 0;
+}
+
+.vs-template--direct-verdict .vs-dossier-text-2 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: calc(var(--tb-type-2) * 0.8);
+  font-weight: 800;
+  color: #77e2f2;
+  text-transform: uppercase;
+  line-height: 1;
+  margin: 0;
+}
+
+.vs-template--direct-verdict .vs-dossier-text-3 {
+  font-family: 'Chakra Petch', sans-serif;
+  font-size: var(--tb-type-3);
+  font-weight: 500;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+
 .vs-tactical-board25-stats-title,
 .vs-tactical-board25-reality-heading {
   position: absolute;

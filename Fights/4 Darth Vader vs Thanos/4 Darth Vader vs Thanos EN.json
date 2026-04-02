@@ -108,7 +108,7 @@
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
-    "verdict-matrix",
+    "direct-verdict",
     "fight-card"
   ],
   "templates": {
@@ -160,9 +160,14 @@
       "lane": "Vader must solve the fight fast. Thanos only needs one opening to fail.",
       "subtitle": "Sith Lord versus Titan"
     },
-    "verdict-matrix": {
-      "header": "FINAL VERDICT",
-      "subtitle": "Zero variables affecting the outcome"
+    "direct-verdict": {
+      "winner": "Thanos",
+      "loser": "Darth Vader",
+      "outcome": "Absolute scale advantage",
+      "certainty": "Unquestionable",
+      "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos operates on a different level of physics.",
+      "line_2": "Vader's destructive opening is but a test for the Titan's durability, which he passes without much difficulty.",
+      "line_3": "This is a clash of whether lightsaber precision can find a gap in armor that has survived galactic explosions."
     },
     "x-factor": {
       "a_bonus": "14",
