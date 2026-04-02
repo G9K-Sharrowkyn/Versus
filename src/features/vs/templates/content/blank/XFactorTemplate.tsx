@@ -74,6 +74,15 @@ export function XFactorTemplate({
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
   const psychology = line(3, ['psychologia', 'psychology'])
+  const mechanicsLabel =
+    pickTemplateField(blockFields, ['mechanika_label', 'mechanics_label']) ||
+    common.mechanicsLabel
+  const implicationLabel =
+    pickTemplateField(blockFields, ['implikacja_label', 'implication_label']) ||
+    common.implicationLabel
+  const psychologyLabel =
+    pickTemplateField(blockFields, ['psychologia_label', 'psychology_label']) ||
+    common.psychologyLabel
   const trapTop = pickTemplateField(blockFields, ['trap_top', 'top'])
   const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom'])
   const trapExample = pickTemplateField(blockFields, ['example'])
@@ -253,7 +262,7 @@ export function XFactorTemplate({
                   <WandSparkles size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics-title`} spec={slots.xFactorInsightTitle} text={common.mechanicsLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:mechanics-title`} spec={slots.xFactorInsightTitle} text={mechanicsLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
                   <FittedText as="p" slotKey={`${auditPrefix}:mechanics`} spec={slots.xFactorInsightBody} text={mechanics} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
               </div>
@@ -265,7 +274,7 @@ export function XFactorTemplate({
                   <Crosshair size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:implication-title`} spec={slots.xFactorInsightTitle} text={common.implicationLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:implication-title`} spec={slots.xFactorInsightTitle} text={implicationLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
                   <FittedText as="p" slotKey={`${auditPrefix}:implication`} spec={slots.xFactorInsightBody} text={implication} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
               </div>
@@ -277,7 +286,7 @@ export function XFactorTemplate({
                   <Brain size={Number(tokens.TEMPLATE_INSIGHT_ICON_SIZE)} strokeWidth={Number(tokens.TEMPLATE_INSIGHT_ICON_STROKE)} />
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string}>
-                  <FittedText as="p" slotKey={`${auditPrefix}:psychology-title`} spec={slots.xFactorInsightTitle} text={common.psychologyLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
+                  <FittedText as="p" slotKey={`${auditPrefix}:psychology-title`} spec={slots.xFactorInsightTitle} text={psychologyLabel} className={String(tokens.TEMPLATE_INSIGHT_TITLE_CLASS)} templateId="x-factor" activeFightId={activeFightId} language={language} />
                   <FittedText as="p" slotKey={`${auditPrefix}:psychology`} spec={slots.xFactorInsightBody} text={psychology} className={layout.INSIGHT_BODY_TEXT_CLASS as string} templateId="x-factor" activeFightId={activeFightId} language={language} />
                 </div>
               </div>

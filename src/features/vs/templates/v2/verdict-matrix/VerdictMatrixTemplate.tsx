@@ -194,13 +194,35 @@ export function VerdictMatrixTemplate({
     textTransform: 'uppercase' as const,
   }
 
+  const normalizeNameMatch = (value: string) =>
+    value
+      .toLowerCase()
+      .replace(/[.'"]/g, '')
+      .replace(/\s+/g, ' ')
+      .trim()
+
+  const buildNameVariants = (value: string) => {
+    const normalized = normalizeNameMatch(value)
+    const words = normalized.split(' ').filter(Boolean)
+    const variants = new Set<string>()
+    if (normalized) variants.add(normalized)
+    if (words.length >= 2) variants.add(words.slice(-2).join(' '))
+    return Array.from(variants)
+  }
+
   const resolveWinnerSide = (text: string) => {
     if (!text) return null
-    const lowerText = text.toLowerCase()
-    const nameA = fighterAName.toLowerCase()
-    const nameB = fighterBName.toLowerCase()
-    const posA = lowerText.indexOf(nameA)
-    const posB = lowerText.indexOf(nameB)
+    const normalizedText = normalizeNameMatch(text)
+    const variantsA = buildNameVariants(fighterAName)
+    const variantsB = buildNameVariants(fighterBName)
+    const posA = variantsA
+      .map((variant) => normalizedText.indexOf(variant))
+      .filter((index) => index !== -1)
+      .sort((left, right) => left - right)[0] ?? -1
+    const posB = variantsB
+      .map((variant) => normalizedText.indexOf(variant))
+      .filter((index) => index !== -1)
+      .sort((left, right) => left - right)[0] ?? -1
     if (posA !== -1 && (posB === -1 || posA < posB)) return 'a'
     if (posB !== -1 && (posA === -1 || posB < posA)) return 'b'
     return null

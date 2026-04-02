@@ -165,6 +165,15 @@ export function XFactorTemplate({
   const mechanics = line(1, ['mechanika', 'mechanics'])
   const implication = line(2, ['implikacja', 'implication'])
   const psychology = line(3, ['psychologia', 'psychology'])
+  const mechanicsLabel =
+    pickTemplateField(blockFields, ['mechanika_label', 'mechanics_label']) ||
+    common.mechanicsLabel
+  const implicationLabel =
+    pickTemplateField(blockFields, ['implikacja_label', 'implication_label']) ||
+    common.implicationLabel
+  const psychologyLabel =
+    pickTemplateField(blockFields, ['psychologia_label', 'psychology_label']) ||
+    common.psychologyLabel
   const trapTop = pickTemplateField(blockFields, ['trap_top', 'top'])
   const trapBottom = pickTemplateField(blockFields, ['trap_bottom', 'bottom'])
   const trapExample = pickTemplateField(blockFields, ['example'])
@@ -458,7 +467,7 @@ export function XFactorTemplate({
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
                   <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
-                    <GlitchText text={common.mechanicsLabel} />
+                    <GlitchText text={mechanicsLabel} />
                   </p>
                   <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
                     {mechanics}
@@ -474,7 +483,7 @@ export function XFactorTemplate({
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
                   <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
-                    <GlitchText text={common.implicationLabel} />
+                    <GlitchText text={implicationLabel} />
                   </p>
                   <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
                     {implication}
@@ -490,7 +499,7 @@ export function XFactorTemplate({
                 </div>
                 <div className={layout.INSIGHT_BODY_WRAP_CLASS as string} style={{ minWidth: 0, flex: 1 }}>
                   <p className="vs-dossier-text-3" style={DOSSIER_NAGLOWEK_FAKTU_STYLE}>
-                    <GlitchText text={common.psychologyLabel} />
+                    <GlitchText text={psychologyLabel} />
                   </p>
                   <p className="vs-dossier-text-2" style={DOSSIER_OPIS_FAKTU_STYLE}>
                     {psychology}

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
+import { useLayoutEffect, useMemo, useRef, useState, type MutableRefObject } from 'react'
 import type { TemplateSlotSpec } from './templateUi'
 
 type SharedSlotProps = {
@@ -121,7 +121,7 @@ export function useSlotAutofit({
     [spec.baseFontPx, spec.lineHeight, spec.maxLines],
   )
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if ((spec.fitMode || 'none') !== 'shrink') return
 
     const element = ref.current
