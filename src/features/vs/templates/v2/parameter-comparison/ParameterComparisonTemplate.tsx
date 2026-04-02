@@ -149,11 +149,18 @@ const COMPARISON_RIGHT_COLUMN_SHIFT_X_PX = -82
 const COMPARISON_RIGHT_SEPARATOR_SHIFT_X_PX = COMPARISON_RIGHT_COLUMN_SHIFT_X_PX
 const COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET = RIGHT_LABEL_START
 const COMPARISON_RIGHT_SEPARATOR_WIDTH = `calc(100% - ${RIGHT_LABEL_START})`
+const COMPARISON_SEPARATOR_REFLECT_SHADOW = '0 0 8px rgba(255, 85, 78, 0.88), 0 0 16px rgba(255, 85, 78, 0.52), 0 var(--tb-reflect-4-y, 0.42em) 0.68em rgba(255, 85, 78, 0.38)'
+const COMPARISON_SEPARATOR_BAR_STYLE: CSSProperties = {
+  height: '2px',
+  background: '#ff554e',
+  boxShadow: COMPARISON_SEPARATOR_REFLECT_SHADOW,
+}
 const COMPARISON_BOTTOM_NAME_INSET_X_PX = 72
 const COMPARISON_BOTTOM_RIGHT_NAME_SHIFT_X_PX = COMPARISON_RIGHT_COLUMN_SHIFT_X_PX + 60
 const COMPARISON_BOTTOM_NAME_DROP_Y_PX = 10
 const COMPARISON_FAVORITE_STAMP_BOTTOM_PX = 8
 const COMPARISON_FAVORITE_STAMP_WIDTH_REM = 15
+const COMPARISON_FAVORITE_STAMP_WIDTH_EN_REM = 12
 const COMPARISON_FAVORITE_STAMP_MIN_HEIGHT_REM = 3
 const COMPARISON_FAVORITE_STAMP_LEFT_POS = '37.5%'
 const COMPARISON_FAVORITE_STAMP_RIGHT_POS = '87.5%'
@@ -188,6 +195,9 @@ const RADAR_GRID_RADII = [20, 40, 60, 80, 100]
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
+    setDisplay(text)
+  }, [text])
+  useEffect(() => {
     if (typeof document !== 'undefined' && document.documentElement.dataset.vsAudit === 'true') return
     const timer = setInterval(() => {
       if (Math.random() > 0.92) {
@@ -221,7 +231,7 @@ export function ParameterComparisonTemplate({
   
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
-  const tacticalChrome = buildFightTemplateChrome('tactical-board', language, tacticalBlockFields)
+  const tacticalChrome = buildFightTemplateChrome('parameter-comparison', language, tacticalBlockFields)
   const boardHeader =
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
     templatePreset.title
@@ -265,6 +275,10 @@ export function ParameterComparisonTemplate({
     isAverageDraw
       ? favoriteDrawLabel
       : favoriteLabel || common.favoriteSuffix
+  const favoriteStampWidthRem =
+    language === 'en' ? COMPARISON_FAVORITE_STAMP_WIDTH_EN_REM : COMPARISON_FAVORITE_STAMP_WIDTH_REM
+  const favoriteStampFontSize =
+    language === 'en' ? 'calc(var(--tb-type-2) * 0.56)' : 'calc(var(--tb-type-2) * 0.64)'
 
   const favoriteStampLeft =
     favoriteSide === 'a'
@@ -813,7 +827,7 @@ export function ParameterComparisonTemplate({
                           data-comp-separator-index={index}
                           style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translateY(${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-start' }}
                         >
-                          <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                          <div data-comp-separator-bar="true" style={{ ...COMPARISON_SEPARATOR_BAR_STYLE, width: COMPARISON_SEPARATOR_WIDTH }} />
                         </div>
                       ) : null}
                     </div>
@@ -883,7 +897,7 @@ export function ParameterComparisonTemplate({
                             data-comp-separator-index={index}
                             style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, display: 'flex', justifyContent: 'center' }}
                           >
-                            <div data-comp-separator-bar="true" style={{ height: '2px', width: COMPARISON_SEPARATOR_WIDTH, background: '#ff554e' }} />
+                            <div data-comp-separator-bar="true" style={{ ...COMPARISON_SEPARATOR_BAR_STYLE, width: COMPARISON_SEPARATOR_WIDTH }} />
                           </div>
                         ) : null}
                       </div>
@@ -912,7 +926,7 @@ export function ParameterComparisonTemplate({
                           data-comp-separator-index={index}
                           style={{ marginTop: COMPARISON_SEPARATOR_MARGIN, marginBottom: COMPARISON_SEPARATOR_MARGIN, transform: `translate(${COMPARISON_RIGHT_SEPARATOR_SHIFT_X_PX}px, ${COMPARISON_SEPARATOR_Y_TUNE_PX + COMPARISON_SECOND_ROW_Y_TUNE_PX / 2}px)`, display: 'flex', justifyContent: 'flex-start', width: STAT_TRACK_WIDTH, marginLeft: 'auto' }}
                         >
-                          <div data-comp-separator-bar="true" style={{ height: '2px', width: `var(--comp-right-sep-width, ${COMPARISON_RIGHT_SEPARATOR_WIDTH})`, background: '#ff554e', marginLeft: COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET, flexShrink: 0 }} />
+                          <div data-comp-separator-bar="true" style={{ ...COMPARISON_SEPARATOR_BAR_STYLE, width: `var(--comp-right-sep-width, ${COMPARISON_RIGHT_SEPARATOR_WIDTH})`, marginLeft: COMPARISON_RIGHT_SEPARATOR_TEXT_START_OFFSET, flexShrink: 0 }} />
                         </div>
                       ) : null}
                     </div>
@@ -947,7 +961,7 @@ export function ParameterComparisonTemplate({
                   display: 'inline-flex',
                   alignItems: 'center',
                   justifyContent: 'center',
-                  width: `${COMPARISON_FAVORITE_STAMP_WIDTH_REM}rem`,
+                  width: `${favoriteStampWidthRem}rem`,
                   maxWidth: 'calc(100% - 24px)',
                   minHeight: `${COMPARISON_FAVORITE_STAMP_MIN_HEIGHT_REM}rem`,
                   border: '1px solid rgba(251, 191, 36, 1)',
@@ -963,7 +977,7 @@ export function ParameterComparisonTemplate({
                   zIndex: 3,
                 }}
               >
-                <p className="vs-parameter-favorite-stamp-text" style={{ margin: 0, padding: '0.12rem 0.72rem', fontFamily: "'Chakra Petch', sans-serif", fontSize: 'calc(var(--tb-type-2) * 0.64)', fontWeight: 800, lineHeight: 0.96, letterSpacing: '0.03em', textTransform: 'uppercase', whiteSpace: 'normal', overflow: 'visible', textOverflow: 'clip', display: 'block', color: '#7fe9ff', WebkitTextFillColor: '#7fe9ff', textShadow: 'none' }}>
+                <p className="vs-parameter-favorite-stamp-text" style={{ margin: 0, padding: language === 'en' ? '0.12rem 0.56rem' : '0.12rem 0.72rem', fontFamily: "'Chakra Petch', sans-serif", fontSize: favoriteStampFontSize, fontWeight: 800, lineHeight: 0.96, letterSpacing: '0.03em', textTransform: 'uppercase', whiteSpace: language === 'en' ? 'nowrap' : 'normal', overflow: 'visible', textOverflow: 'clip', display: 'block', textAlign: 'center', color: '#7fe9ff', WebkitTextFillColor: '#7fe9ff', textShadow: 'none' }}>
                   {favoriteBadgeText}
                 </p>
               </div>
