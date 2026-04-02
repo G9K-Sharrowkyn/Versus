@@ -67,6 +67,12 @@ export function CyberpunkMetaValue({ value }: Props) {
   const [displayed, setDisplayed] = useState(value)
   const [hot, setHot] = useState(false)
   const timerRef = useRef<number | null>(null)
+  const intervalRef = useRef<number | null>(null)
+
+  useEffect(() => {
+    setDisplayed(value)
+    setHot(false)
+  }, [value])
 
   useEffect(() => {
     // Disabled in audit / screenshot mode
@@ -94,6 +100,7 @@ export function CyberpunkMetaValue({ value }: Props) {
           timerRef.current = window.setTimeout(runBurst, Math.random() * 400 + 120)
         }
       }, 55)
+      intervalRef.current = id
     }
 
     // Initial random delay so multiple meta lines don't sync
@@ -102,6 +109,7 @@ export function CyberpunkMetaValue({ value }: Props) {
     return () => {
       cancelled = true
       if (timerRef.current !== null) window.clearTimeout(timerRef.current)
+      if (intervalRef.current !== null) window.clearInterval(intervalRef.current)
     }
   }, [value, isNumeric])
 
