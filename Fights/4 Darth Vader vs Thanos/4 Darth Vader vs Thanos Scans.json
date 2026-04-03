@@ -1,33 +1,45 @@
 {
-  "portraits": {
-    "a": "Vader.jpg",
-    "b": "Thanos.jpg"
-  },
-  "schemaVersion": 1,
-  "templates": {
-    "crucial-feats": {
-      "left_image_1": "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
-      "left_image_2": "02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg",
-      "left_image_3": "Impales himself to kill Maul.jpg",
-      "left_image_4": "04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg",
-      "left_image_5": "05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg",
-      "right_image_1": "Drax and Thanos destroy a planet in their fight.jpg",
-      "right_image_2": "07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg",
-      "right_image_3": "08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg",
-      "right_image_4": "09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg",
-      "right_image_5": "Turns a Skrull to stone.jpg"
-    },
-    "victory-archive": {
-      "left_image_1": "11_7_1_darth_vader_showcase_wins_dark_woman.jpg",
-      "left_image_2": "12_7_1_darth_vader_showcase_wins_sha_koon.jpg",
-      "left_image_3": "13_7_1_darth_vader_showcase_wins_hylon.jpg",
-      "left_image_4": "14_7_1_darth_vader_showcase_wins_celeste_morne.jpg",
-      "left_image_5": "15_7_1_darth_vader_showcase_wins_kai_hudorra.jpg",
-      "right_image_1": "16_7_2_thanos_showcase_wins_silver_surfer.jpg",
-      "right_image_2": "17_7_2_thanos_showcase_wins_hulk.jpg",
-      "right_image_3": "18_7_2_thanos_showcase_wins_beta_ray_bill_and_ronan_the_accuser.jpg",
-      "right_image_4": "19_7_2_thanos_showcase_wins_adam_warlock.jpg",
-      "right_image_5": "20_7_2_thanos_showcase_wins_thor_with_the_power_gem.jpg"
-    }
-  }
+    "portraits":  {
+                      "a":  "Vader.jpg",
+                      "b":  "Thanos.jpg"
+                  },
+    "schemaVersion":  1,
+    "templates":  {
+                      "crucial-feats":  {
+                                            "left_image_1":  "01_6_1_darth_vader_showcase_feats_picks_up_and_slams_down_a_y_wing_bomber.jpg",
+                                            "left_image_2":  "02_6_1_darth_vader_showcase_feats_slams_two_starships_together.jpg",
+                                            "left_image_3":  "Impales himself to kill Maul.jpg",
+                                            "left_image_4":  "04_6_1_darth_vader_showcase_feats_blocks_an_energy_blast_with_his_hand.jpg",
+                                            "left_image_5":  "05_6_1_darth_vader_showcase_feats_survives_a_giant_explosion_that_destroys_a_casino.jpg",
+                                            "right_image_1":  "Drax and Thanos destroy a planet in their fight.jpg",
+                                            "right_image_2":  "07_6_2_thanos_showcase_feats_survives_a_two_light_year_black_hole.jpg",
+                                            "right_image_3":  "08_6_2_thanos_showcase_feats_tanks_odin_level_energy.jpg",
+                                            "right_image_4":  "09_6_2_thanos_showcase_feats_walks_out_of_a_gas_giant_explosion_unharmed.jpg",
+                                            "right_image_5":  "Turns a Skrull to stone.jpg"
+                                        },
+                      "victory-archive":  {
+                                              "left_image_1":  "11_7_1_darth_vader_showcase_wins_dark_woman.jpg",
+                                              "left_image_2":  "12_7_1_darth_vader_showcase_wins_sha_koon.jpg",
+                                              "left_image_3":  "13_7_1_darth_vader_showcase_wins_hylon.jpg",
+                                              "left_image_4":  "14_7_1_darth_vader_showcase_wins_celeste_morne.jpg",
+                                              "left_image_5":  "15_7_1_darth_vader_showcase_wins_kai_hudorra.jpg",
+                                              "right_image_1":  "16_7_2_thanos_showcase_wins_silver_surfer.jpg",
+                                              "right_image_2":  "17_7_2_thanos_showcase_wins_hulk.jpg",
+                                              "right_image_3":  "18_7_2_thanos_showcase_wins_beta_ray_bill_and_ronan_the_accuser.jpg",
+                                              "right_image_4":  "19_7_2_thanos_showcase_wins_adam_warlock.jpg",
+                                              "right_image_5":  "20_7_2_thanos_showcase_wins_thor_with_the_power_gem.jpg"
+                                          },
+                      "fight-card":  {
+                                         "right_image":  "Thanos3.webp",
+                                         "left_image":  "Vader2.jpg"
+                                     },
+                      "direct-verdict":  {
+                                             "right_image":  "Thanos1.jpg",
+                                             "left_image":  "Vader1.jpg"
+                                         },
+                      "final-summary":  {
+                                            "right_image":  "Thanos2.jpg",
+                                            "left_image":  "Vader3.webp"
+                                        }
+                  }
 }

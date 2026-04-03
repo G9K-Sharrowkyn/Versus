@@ -1,7 +1,7 @@
 import './DirectVerdictTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, useLayoutEffect, useRef, type ReactNode } from 'react'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField, resolveFightTemplateImageUrl } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
@@ -52,6 +52,7 @@ export function DirectVerdictTemplate({
   title,
   subtitle,
   templateBlocks,
+  activeFightFolderKey,
   slideImageAdjustments,
   onSlideImageAdjustChange,
   onSlideImageAdjustCommit,
@@ -105,8 +106,18 @@ export function DirectVerdictTemplate({
   ]
   const boardHeader =
     getFightTemplateDefaultField('direct-verdict', 'board_header', language) || common.verdictLabel
+  const customLeftImageFile =
+    pickTemplateField(blockFields, ['left_image', 'left_img', 'portrait_a', 'image_a', 'fighter_a_image']) || ''
+  const customRightImageFile =
+    pickTemplateField(blockFields, ['right_image', 'right_img', 'portrait_b', 'image_b', 'fighter_b_image']) || ''
+  const leftImageUrl = customLeftImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customLeftImageFile)
+    : fighterA.imageUrl
+  const rightImageUrl = customRightImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customRightImageFile)
+    : fighterB.imageUrl
 
-  const winnerImage = winnerSide === 'a' ? fighterA.imageUrl : fighterB.imageUrl
+  const winnerImage = winnerSide === 'a' ? leftImageUrl : rightImageUrl
   const winnerBaseAdjust = winnerSide === 'a' ? portraitAAdjust : portraitBAdjust
   const winnerImageKey = `direct-verdict:winner:${winnerSide}`
   const winnerNameWrapperRef = useRef<HTMLDivElement | null>(null)

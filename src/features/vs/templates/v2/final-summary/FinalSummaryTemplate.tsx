@@ -3,7 +3,7 @@ import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type ReactNode, type CSSProperties } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { fighterMonogram } from '../../../helpers'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField, resolveFightTemplateImageUrl } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { FittedText } from '../../shared/FittedText'
 import {
@@ -50,6 +50,7 @@ export function FinalSummaryTemplate({
   title,
   subtitle,
   templateBlocks,
+  activeFightFolderKey,
   slideImageAdjustments,
   onSlideImageAdjustChange,
   onSlideImageAdjustCommit,
@@ -84,6 +85,16 @@ export function FinalSummaryTemplate({
   const fighterBName = fighterB.name || fighterBFallback
   const winnerLabel = pickTemplateField(blockFields, ['winner', 'verdict']) || common.emptyFieldLabel
   const quoteText = pickTemplateField(blockFields, ['quote'])
+  const customLeftImageFile =
+    pickTemplateField(blockFields, ['left_image', 'left_img', 'portrait_a', 'image_a', 'fighter_a_image']) || ''
+  const customRightImageFile =
+    pickTemplateField(blockFields, ['right_image', 'right_img', 'portrait_b', 'image_b', 'fighter_b_image']) || ''
+  const leftImageUrl = customLeftImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customLeftImageFile)
+    : fighterA.imageUrl
+  const rightImageUrl = customRightImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customRightImageFile)
+    : fighterB.imageUrl
   const portraitAKey = 'final-summary:portrait-a'
   const portraitBKey = 'final-summary:portrait-b'
   const portraitAFallbackAdjust = portraitAAdjust || { x: 50, y: 50, scale: 1 }
@@ -265,9 +276,9 @@ export function FinalSummaryTemplate({
         <div className={layout.BODY_CLASS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gridTemplateRows: 'minmax(0, 1fr)', alignItems: 'stretch', gap: 0, background: 'transparent', padding: 0, margin: 0, overflow: 'hidden' }}>
           <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
             <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
-              {fighterA.imageUrl ? (
+              {leftImageUrl ? (
                 <AdjustableTemplateImage
-                  imageUrl={fighterA.imageUrl}
+                  imageUrl={leftImageUrl}
                   alt={fighterAName}
                   fallbackLabel={common.portraitSlot}
                   hintLabel=""
@@ -418,9 +429,9 @@ export function FinalSummaryTemplate({
 
           <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
             <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
-              {fighterB.imageUrl ? (
+              {rightImageUrl ? (
                 <AdjustableTemplateImage
-                  imageUrl={fighterB.imageUrl}
+                  imageUrl={rightImageUrl}
                   alt={fighterBName}
                   fallbackLabel={common.portraitSlot}
                   hintLabel=""

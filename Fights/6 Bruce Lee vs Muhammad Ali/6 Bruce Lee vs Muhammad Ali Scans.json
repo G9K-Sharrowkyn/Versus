@@ -1,33 +1,45 @@
 {
-  "portraits": {
-    "a": "Bruce.jpg",
-    "b": "Ali.jpg"
-  },
-  "schemaVersion": 1,
-  "templates": {
-    "crucial-feats": {
-      "left_image_1": "01_6_1_bruce_one_inch_punch.jpg",
-      "left_image_2": "finger push-ups.jpg",
-      "left_image_3": "03_6_1_bruce_gary_elms_record.jpg",
-      "left_image_4": "04_6_1_bruce_jkd_adaptation.jpg",
-      "left_image_5": "Yoichi Nakachi.jpg",
-      "right_image_1": "1181878-1024x770.jpg",
-      "right_image_2": "Ricard Dunn.jpg",
-      "right_image_3": "First three-time heavyweight world champion.jpg",
-      "right_image_4": "gold.jpg",
-      "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
-    },
-    "victory-archive": {
-      "left_image_1": "Gary Elms.jpg",
-      "left_image_2": "Yoichi Nakachi.jpg",
-      "left_image_3": "Hawkins Chung.jpg",
-      "left_image_4": "Wong Shun Leung.jpg",
-      "left_image_5": "wong jack man.jpg",
-      "right_image_1": "05_6_2_ali_rope_a_dope.jpg",
-      "right_image_2": "07_6_2_ali_frazier_endurance.jpg",
-      "right_image_3": "12_7_2_ali_sonny_liston.jpg",
-      "right_image_4": "06_6_2_ali_cleveland_speed.jpg",
-      "right_image_5": "14_7_2_ali_ernie_terrell.jpg"
-    }
-  }
+    "portraits":  {
+                      "a":  "Bruce.jpg",
+                      "b":  "Ali.jpg"
+                  },
+    "schemaVersion":  1,
+    "templates":  {
+                      "crucial-feats":  {
+                                            "left_image_1":  "01_6_1_bruce_one_inch_punch.jpg",
+                                            "left_image_2":  "finger push-ups.jpg",
+                                            "left_image_3":  "03_6_1_bruce_gary_elms_record.jpg",
+                                            "left_image_4":  "04_6_1_bruce_jkd_adaptation.jpg",
+                                            "left_image_5":  "Yoichi Nakachi.jpg",
+                                            "right_image_1":  "1181878-1024x770.jpg",
+                                            "right_image_2":  "Ricard Dunn.jpg",
+                                            "right_image_3":  "First three-time heavyweight world champion.jpg",
+                                            "right_image_4":  "gold.jpg",
+                                            "right_image_5":  "14_7_2_ali_ernie_terrell.jpg"
+                                        },
+                      "victory-archive":  {
+                                              "left_image_1":  "Gary Elms.jpg",
+                                              "left_image_2":  "Yoichi Nakachi.jpg",
+                                              "left_image_3":  "Hawkins Chung.jpg",
+                                              "left_image_4":  "Wong Shun Leung.jpg",
+                                              "left_image_5":  "wong jack man.jpg",
+                                              "right_image_1":  "05_6_2_ali_rope_a_dope.jpg",
+                                              "right_image_2":  "07_6_2_ali_frazier_endurance.jpg",
+                                              "right_image_3":  "12_7_2_ali_sonny_liston.jpg",
+                                              "right_image_4":  "06_6_2_ali_cleveland_speed.jpg",
+                                              "right_image_5":  "14_7_2_ali_ernie_terrell.jpg"
+                                          },
+                      "fight-card":  {
+                                         "right_image":  "Ali1.webp",
+                                         "left_image":  "Bruce1.jpg"
+                                     },
+                      "final-summary":  {
+                                            "right_image":  "Ali2.jpg",
+                                            "left_image":  "Bruce2.jpg"
+                                        },
+                      "verdict-matrix":  {
+                                             "right_image":  "Ali3.jpg",
+                                             "left_image":  "Bruce3.jpg"
+                                         }
+                  }
 }

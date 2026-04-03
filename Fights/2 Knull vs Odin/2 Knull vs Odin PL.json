@@ -8,10 +8,10 @@
       "Pokrywa Ziemię symbiontem."
     ],
     "dossier": {
-      "advantage": "All-Black – miecz negujący nieśmiertelność. Broń ignoruje każdą formę pancerza i regeneracji, a sam Knull wraca do walki nawet po całkowitym spopieleniu.",
-      "mentality": "Sadystyczna pewność i brak strachu. Napawa się swoją potęgą, dążąc do błyskawicznej i bezlitosnej egzekucji każdego przeciwnika.",
+      "advantage": "All-Black to broń stworzona do zabijania bogów i przebijania nawet skrajnie wytrzymałych przeciwników. Jej cięcia potrafią omijać normalne założenia odporności i utrudniać regenerację.",
+      "mentality": "Knull walczy z absolutną pogardą i spokojem drapieżnika, który uważa zwycięstwo za nieuniknione. Nie respektuje przeciwnika i nie czuje presji, bo zakłada, że każda walka z czasem i tak przejdzie na jego warunki.",
       "quote": "Ah... widzę, że moja reputacja mnie wyprzedza... więc nie będę marnował waszego czasu... zamierzam zabić wasz świat.",
-      "style": "Agresywna nekro-szermierka. Knull uderza z niszczycielską siłą, dążąc do błyskawicznego rozczłonkowania lub dekapitacji przeciwnika."
+      "style": "Agresywna nekro-szermierka połączona z kontrolą żywej Otchłani. Knull skraca dystans, zalewa pole walki cieniem i szuka pojedynczego wejścia All-Black, które od razu może rozstrzygnąć pojedynek."
     },
     "name": "Knull",
     "profile": {
@@ -19,24 +19,23 @@
         "Śmiercionośność All-Black, kontrola żywej Otchłani, władza nad rojem symbiotów i potężna regeneracja."
       ],
       "tools": [
-        "Zatruwanie pola walki, presja symbiotycznego przejęcia i stałe zagrożenie w bliskim kontakcie.",
-        "Możliwość tworzenia armii z cieni, co zmusza przeciwnika do ciągłego wydatkowania energii na obszarowe ataki."
+        "Presja symbiotycznego przejęcia i stałe zagrożenie w bliskim kontakcie.",
+        "Żywa Otchłań pozwala mu odcinać przestrzeń i budować presję z wielu kierunków bez wchodzenia w czystą wymianę ciosów."
       ],
       "weaknesses": [
-        "Silne kontry na Otchłań lub bardzo intensywne światło mogą osłabiać jego główne atuty.",
-        "Szeroka kosmiczna kontrola energii może zmuszać go do większych wydatków na regenerację i odzyskanie tempa."
+        "Enigma Force"
       ]
     },
     "stats": {
       "battleIq": 82,
       "durability": 97,
-      "experience": 100,
-      "hax": 98,
+      "experience": 99,
+      "hax": 97,
       "skills": 86,
       "speed": 84,
-      "stamina": 99,
-      "strength": 95,
-      "style": 89
+      "stamina": 97,
+      "strength": 94,
+      "style": 88
     },
     "version": "Ziemia-616",
     "victories": [
@@ -56,7 +55,7 @@
       "Pochłania Surtura, którego przeznaczeniem jest zniszczyć Asgard i zabić bogów."
     ],
     "dossier": {
-      "advantage": "Odinforce i niszczycielska moc Odinswordu. Broń ta uwalnia energię Ragnaroku zdolną wymazać galaktyki, a Odinforce pozwala mu manipulować materią i czasem.",
+      "advantage": "Odinforce i niszczycielska moc Odinswordu. Miecz Ragnarok jest przedstawiany jako broń zdolna przynieść koniec wszystkiego, a Odinforce pozwala Odynowi manipulować materią i czasem.",
       "mentality": "Majestatyczny władca o gwałtownym temperamencie. Wyciągnięcie Odinswordu oznacza walkę bez żadnych zahamowań – uderza z furią, która nie uznaje litości ani kompromisów.",
       "quote": "Odyn jest Słońcem, gwiazdami i Księżycem, i czymś więcej. Odyn jest drogą, gniewem i cudem! Odyn jest tym, który mówi, a galaktyki słuchają!",
       "style": "Bezpośrednia walka kolosalnym Odinswordem. Odin używa niszczycielskich cięć, by fizycznie przełamać pancerz i wolę przeciwnika czystą potęgą uderzenia."
@@ -64,27 +63,26 @@
     "name": "Odin",
     "profile": {
       "powers": [
-        "Pełny Odinforce, wielkoskalowa projekcja energii, bariery, transmutacja i boska magia."
+        "Pełny Odinforce, wielkoskalowa projekcja energii, bariery, manipulacja materią, boska magia oraz zdolność czerpania mocy z Asgardu, Asgardian i innych bogów."
       ],
       "tools": [
-        "Pancerz Destroyera i Miecz Odyna do walki na najwyższym kosmicznym poziomie.",
-        "Możliwość manipulacji rzeczywistością na poziomie galaktycznym, co pozwala mu na resetowanie niekorzystnych warunków pola walki."
+        "Kontrola czasu i materii."
       ],
       "weaknesses": [
-        "Siła rażenia i precyzja potrafią się zmieniać zależnie od kontekstu, obciążenia i długości starcia.",
-        "Zbyt duża wiara we własną kontrolę może otwierać przeciwnikowi okna kontrataku."
+        "Odinsleep",
+        "Oddalenie od Asgardu / wyczerpanie Odinforce"
       ]
     },
     "stats": {
       "battleIq": 96,
-      "durability": 95,
-      "experience": 99,
-      "hax": 96,
-      "skills": 93,
-      "speed": 81,
-      "stamina": 89,
-      "strength": 92,
-      "style": 92
+      "durability": 96,
+      "experience": 100,
+      "hax": 99,
+      "skills": 94,
+      "speed": 86,
+      "stamina": 94,
+      "strength": 96,
+      "style": 93
     },
     "version": "Ziemia-616",
     "victories": [
@@ -115,77 +113,81 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "label": "Odinforce: Oczyszczenie",
+      "label": "Odyn u szczytu mocy · Kontra na Otchłań",
       "a_curve": "91,85,75,68,60",
       "b_curve": "90,92,94,96,98",
       "yellow_wave": "31,35,33,37,34,38,36,40",
-      "phase_1": "Odin od początku narzuca kosmiczny porządek. Odinforce działa jako idealna kontra na struktury Otchłani.",
-      "phase_2": "Knull próbuje zalać pole walki cieniami, ale boskie światło Odina wypala każdą próbę regeneracji.",
-      "phase_3": "Odinforce: Oczyszczenie domyka walkę. Knull zostaje odcięty od źródła swojej potęgi.",
-      "analysis": "W tym scenariuszu Odinforce jest twardą kontrą na Otchłań. Knull traci atut regeneracji.",
-      "s2_label": "Odinforce: Tryb standardowy",
+      "phase_1": "Odyn od początku narzuca tempo starcia. W swojej najwyższej formie kontroluje pojedynek tak, że sam napór Otchłani nie wystarcza Knullowi do przejęcia inicjatywy.",
+      "phase_2": "Knull próbuje zalać pole walki żywą ciemnością, ale Odyn w tej wersji realnie ogranicza odbudowę jego przewagi i spycha walkę na własne warunki.",
+      "phase_3": "Jeśli Odyn naprawdę potrafi oczyścić lub odciąć Otchłań, domyka walkę przewagą skali, kontroli i narzędzi.",
+      "analysis": "W tym scenariuszu Odyn w swojej najwyższej formie ma realną odpowiedź na Otchłań. Knull pozostaje groźny, ale nie odzyskuje już pełnej ekonomii walki.",
+      "s2_label": "Odyn u szczytu mocy · Bez pełnej odpowiedzi",
       "s2_a_curve": "91,92,94,96,98",
       "s2_b_curve": "90,88,85,80,75",
-      "s2_phase_1": "Początek to brutalna wymiana ciosów. Odin polega na sile, a Knull na morderczych cięciach All-Black.",
-      "s2_phase_2": "Bez specyficznego oczyszczenia walka zmienia się w maraton. Odin zadaje rany, które Knull po prostu ignoruje.",
-      "s2_phase_3": "Knull zaczyna przeważać dzięki ekonomii All-Black. Każda minuta faworyzuje Króla w Czerni.",
-      "s2_analysis": "Brak specyficznej kontry sprawia, że Odin musi być perfekcyjny przez zbyt długi czas."
+      "s2_phase_1": "Początek to brutalne zderzenie ogromnej mocy Odyna z All-Black i żywą Otchłanią Knulla.",
+      "s2_phase_2": "Jeśli nawet Odyn w swojej najwyższej formie nie przełamuje natury Otchłani, walka zaczyna wydłużać się na warunki coraz korzystniejsze dla Knulla.",
+      "s2_phase_3": "W długim starciu Knull odzyskuje wartość przez All-Black, presję Otchłani i sam fakt, że nadal wraca do gry.",
+      "s2_analysis": "Bez pełnej kontry na Otchłań nawet Odyn nie domyka tej walki na swoich warunkach. Wtedy Knull dostaje realną drogę do zabicia go w długim starciu."
     },
     "fight-card": {
       "fight_title": "Knull vs Odin"
     },
+    "parameter-comparison": {
+      "favorite_label": "Faworyt według statystyk",
+      "favorite_side": "b"
+    },
     "fight-simulation": {
-      "label": "Odinforce: Oczyszczenie",
-      "opening": "Odin otwiera walkę salwą czystej energii, która rozprasza pierwsze pasma Otchłani Knulla.",
-      "mid_fight": "Knull próbuje kontrować All-Black, ale pancerz Destroyera i bariery Odina sprawiają, że kontakt jest dla niego kosztowny.",
-      "late_fight": "Odin wyczuwa słabnącą więź Knulla z Otchłanią i uderza z pełną mocą Oczyszczenia, kończąc pojedynek.",
-      "end_condition": "Zwycięstwo przez całkowite oczyszczenie pola walki i wymazanie esencji Knulla.",
+      "label": "Odyn u szczytu mocy · Kontra na Otchłań",
+      "opening": "Odyn otwiera walkę salwą czystej energii, która rozrywa pierwsze pasma żywej Otchłani Knulla.",
+      "mid_fight": "Knull odpowiada All-Black i zalewa pole walki ciemnością, ale pancerz Destroyera i bariery Odyna utrudniają mu szybkie przejęcie kontroli.",
+      "late_fight": "Jeśli Odyn naprawdę potrafi oczyścić lub odciąć Otchłań, w końcówce zamyka walkę przewagą skali i narzędzi.",
+      "end_condition": "Zwycięstwo przez trwałe przełamanie związku Knulla z Otchłanią i domknięcie walki przewagą Odyna.",
       "phase_1_animation": "cosmic-salvo",
       "phase_1_title": "Boska Salwa",
       "phase_1_a_label": "Kontrola",
       "phase_1_a_value": "95",
       "phase_1_b_label": "Napór",
       "phase_1_b_value": "82",
-      "phase_1_event": "Odinforce uderza w strukturę cienia, rozbijając pierwsze próby dominacji Knulla.",
+      "phase_1_event": "Pierwsza fala mocy Odyna rozbija otwarcie Knulla i zatrzymuje jego próbę natychmiastowego przejęcia pola walki.",
       "phase_2_animation": "void-clash",
       "phase_2_title": "Starcie w Otchłani",
-      "phase_2_event": "Odinsword ściera się z All-Black w epicentrum nicości, gdzie światło walczy o przetrwanie.",
-      "phase_2_branch_a": "Odin wypycha mrok i przejmuje kontrolę nad przestrzenią.",
-      "phase_2_branch_b": "Knull owija cienie wokół boskiego ostrza, próbując je zgasić.",
+      "phase_2_event": "Odinsword ściera się z All-Black w centrum walki, gdy boska moc Odyna zderza się bezpośrednio z żywą ciemnością Knulla.",
+      "phase_2_branch_a": "Odyn wypycha mrok i odzyskuje pełną kontrolę nad przebiegiem starcia.",
+      "phase_2_branch_b": "Knull oplata boskie ostrze żywą ciemnością, próbując zatrzymać napór Odyna.",
       "phase_3_actor": "b",
       "phase_3_animation": "celestial-purge",
       "phase_3_title": "Niebiańskie Oczyszczenie",
-      "phase_3_event": "Odyn uwalnia ostateczną falę Oczyszczenia, która wypala esencję Knulla z tkaniny wszechświata.",
-      "phase_3_branch_a": "Knull zostaje wymazany z obecnego planu istnienia.",
-      "phase_3_branch_b": "Cienie zostają spacyfikowane, zostawiając Knulla bezbronnym.",
-      "s2_label": "Odinforce: Tryb standardowy",
+      "phase_3_event": "Odyn uwalnia ostateczną falę oczyszczenia, która odcina Knulla od pełnej wartości jego Otchłani i kończy walkę na warunkach Wszechojca.",
+      "phase_3_branch_a": "Knull zostaje ostatecznie złamany, zanim zdoła odbudować przewagę.",
+      "phase_3_branch_b": "Otchłań zostaje zduszona na tyle, że Knull traci drogę powrotu do walki.",
+      "s2_label": "Odyn u szczytu mocy · Bez pełnej kontry",
       "s2_phase_1_animation": "shadow-surge",
       "s2_phase_1_title": "Przypływ Cienia",
       "s2_phase_1_a_label": "Potęga",
       "s2_phase_1_a_value": "91",
       "s2_phase_1_b_label": "Opór",
       "s2_phase_1_b_value": "88",
-      "s2_phase_1_event": "Knull zalewa pole walki żywą Otchłanią, zmuszając Odina do walki w niekorzystnych warunkach.",
+      "s2_phase_1_event": "Knull zalewa pole walki żywą Otchłanią, zmuszając Odyna do walki w coraz mniej korzystnych warunkach.",
       "s2_phase_2_animation": "infinite-attrition",
       "s2_phase_2_token": "fullredflood",
       "s2_phase_2_title": "Nieskończone Wyniszczenie",
-      "s2_phase_2_event": "Odin zadaje rany, które Knull natychmiast resetuje, wciągając boga w pętlę bez wyjścia.",
-      "s2_phase_2_branch_a": "Odin próbuje przełamać pętlę czystą, brutalną siłą.",
-      "s2_phase_2_branch_b": "Knull napawa się bezsilnością boskich ataków.",
+      "s2_phase_2_event": "Odyn zadaje ciężkie obrażenia, ale bez pełnej kontry Knull odzyskuje wartość i przeciąga walkę na swoją korzyść.",
+      "s2_phase_2_branch_a": "Odyn próbuje przełamać impas czystą przewagą mocy i presją Odinswordu.",
+      "s2_phase_2_branch_b": "Knull czuje, że długie starcie coraz wyraźniej zaczyna działać na jego korzyść.",
       "s2_phase_3_actor": "a",
       "s2_phase_3_animation": "blade-entrapment",
       "s2_phase_3_token": "fullredflood",
       "s2_phase_3_title": "Sidła All-Black",
-      "s2_phase_3_event": "Ostrze Knulla powoli osacza Odina, odcinając mu drogi ucieczki i gasząc jego blask.",
-      "s2_phase_3_branch_a": "Odin w ostatniej chwili odzyskuje dystans.",
-      "s2_phase_3_branch_b": "Czerń zaczyna przelewać się przez bariery Odinforce.",
-      "s2_end_condition": "Powolne gaśnięcie boskiego światła pod naporem nieskończonej ciemności."
+      "s2_phase_3_event": "All-Black coraz częściej znajduje wejścia, a Odyn musi walczyć o to, by nie oddać Knullowi pełnej kontroli nad końcówką.",
+      "s2_phase_3_branch_a": "Odyn jeszcze raz odzyskuje dystans i odpycha napór Otchłani.",
+      "s2_phase_3_branch_b": "Knull w końcu przełamuje tempo walki i zaczyna domykać starcie na własnych warunkach.",
+      "s2_end_condition": "Długa walka bez pełnej kontry na Otchłań stopniowo przesuwa przewagę na stronę Knulla."
     },
     "final-summary": {
-      "line_1": "W tym starciu nie ma miejsca na kompromisy czy turniejowe zasady – to walka o ostateczne istnienie.",
-      "line_2": "Odinforce: Oczyszczenie to jedyny czynnik, który pozwala Odynowi na trwałe pokonanie pętli regeneracji Knulla.",
-      "line_3": "Bez tej specyficznej kontry, Knull po prostu przetrzymuje każdy atak, wygrywając walkę przez atrycję.",
-      "winner": "Odin (z Oczyszczeniem) lub Knull (tryb standardowy)."
+      "line_1": "Odyn u szczytu mocy ma wyraźną przewagę skali, kontroli i jakości narzędzi nad standardowym profilem Knulla.",
+      "line_2": "Prawdziwe pytanie nie brzmi, czy Odyn może wygrać wymianę mocy, tylko czy naprawdę potrafi oczyścić lub odciąć Otchłań.",
+      "line_3": "Jeśli tak, Odyn domyka walkę swoją przewagą. Jeśli nie, Knull nadal pozostaje groźnym matchupem przez All-Black i samą naturę Otchłani.",
+      "winner": "Odyn ma przewagę, ale to nie jest jednostronny werdykt."
     },
     "tactical-board": {
       "lane": "Odin musi zamienić chaos w porządek, zanim Knull zamieni porządek w wyniszczenie.",
@@ -193,23 +195,25 @@
     },
     "verdict-matrix": {
       "header": "MATRYCA WERDYKTU",
-      "subtitle": "Werdykt zależny od użycia Oczyszczenia",
-      "row_1": "ODINFORCE: OCZYSZCZENIE",
-      "row_2": "ODINFORCE: TRYB STANDARDOWY",
-      "case_1": "Odin 7.5/10. Przy użyciu Oczyszczenia, Odin posiada właściwe narzędzie do neutralizacji Otchłani. Jego kontrola pola walki staje się dla Knulla niemożliwa do przełamania, prowadząc do całkowitego wymazania esencji symbiontów.",
-      "case_2": "Knull 8/10. Bez specyficznej kontry na regenerację, Odin staje się tylko kolejnym, wyjątkowo potężnym bogiem do ścięcia. All-Black i pętla regeneracji Otchłani nieuchronnie wygrywają wojnę zasobów.",
+      "subtitle": "Werdykt zależny od skuteczności kontry na Otchłań",
+      "row_1": "ODYN U SZCZYTU MOCY · KONTRA NA OTCHŁAŃ",
+      "row_2": "ODYN U SZCZYTU MOCY · BEZ PEŁNEJ KONTRY",
+      "case_1": "Odyn 7.5/10. Jeśli naprawdę potrafi oczyścić lub odciąć Otchłań, jego przewaga skali, kontroli i jakości narzędzi zaczyna rozstrzygać walkę. Wtedy Knull nie odzyskuje już pełnej wartości przez sam fakt, że nadal wraca do gry.",
+      "case_1_winner": "b",
+      "case_2": "Knull 6/10. Jeśli Odyn nie ma pełnej odpowiedzi na naturę Otchłani, walka wydłuża się i staje się znacznie bardziej niebezpieczna. Prime Odin nadal ma realne okna zwycięstwa, ale All-Black i długie starcie coraz mocniej przesuwają matchup na stronę Knulla.",
+      "case_2_winner": "a",
       "layout": "2x1"
     },
     "x-factor": {
-      "a_bonus": "14",
+      "a_bonus": "0",
       "a_bonus_label": "PĘTLA REGENERACJI",
       "a_value": "50",
       "b_bonus": "15",
       "b_value": "50",
-      "factor": "KONTRA NA OTCHŁAŃ VS BOSKIE OBRAŻENIA",
-      "implikacja": "Zwycięstwo zależy od tego, czy Odin potraktuje Knulla jako materię, czy jako metafizyczną infekcję.",
-      "mechanika": "Knull wygrywa, jeśli Odinforce jest tylko energią fizyczną. Odin wygrywa, jeśli działa jak 'antywirus' na Otchłań.",
-      "psychologia": "Obaj walczą o wszystko. Knull chce powtarzalności mroku, Odyn chce jednego, ostatecznego oczyszczenia.",
+      "factor": "PEŁNY ODYN VS OTCHŁAŃ KNULLA",
+      "implikacja": "Jeśli nie, nawet Odyn u szczytu mocy może nie wystarczyć do trwałego zamknięcia starcia.",
+      "mechanika": "Jeśli Odyn w swojej najwyższej formie naprawdę oczyszcza lub neutralizuje Otchłań, Knull traci swój główny fundament walki.",
+      "psychologia": "Odyn chce narzucić porządek i zakończyć zagrożenie. Knull chce cofnąć stworzenie do pierwotnej ciemności.",
       "regen": "PRAWDZIWE OCZYSZCZENIE"
     }
   }

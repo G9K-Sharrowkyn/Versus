@@ -1,34 +1,45 @@
 {
-  "portraits": {
-    "a": "Kyle.jpg",
-    "b": "Manhattan.jpg"
-  },
-  "schemaVersion": 1,
-  "templates": {
-    "crucial-feats": {
-      "left_image_1": "Kyle_source.jpg",
-      "left_image_2": "Kyle_Resurrection1.jpg",
-      "left_image_3": "Kyle_Destabilize.jpg",
-      "left_image_4": "Kyle_Life.jpg",
-      "left_image_5": "Kyle_Oblivion.jpg",
-      "right_image_1": "06_6_2_manhattan_non_linear_perception.jpg",
-      "right_image_2": "07_6_2_manhattan_self_consistency_across_time.jpg",
-      "right_image_3": "Manhattan_Resurrection.jpg",
-      "right_image_4": "09_6_2_manhattan_metron_owlman_mobius.jpg",
-      "right_image_5": "Manhattan_End.jpg"
-    },
-        "victory-archive": {
-      "left_image_1": "Relic.jpg",
-      "left_image_2": "Third Army.jpg",
-      "left_image_3": "Kyle_Oblivion.jpg",
-      "left_image_4": "Kyle_Titans.jpg",
-      "left_image_5": "Kyle_Vessel.jpg",
-      "right_image_1": "Manhattan_disintegrate.jpg",
-      "right_image_2": "Manhattan_Reverse.jpg",
-      "right_image_3": "Manhattan_OwlMetr.jpg",
-      "right_image_4": "11_7_2_manhattan_ozymandias_confrontation.jpg",
-      "right_image_5": "Manhattan_Pandora.jpg"
-    }
-  }
+    "portraits":  {
+                      "a":  "Kyle.jpg",
+                      "b":  "Manhattan.jpg"
+                  },
+    "schemaVersion":  1,
+    "templates":  {
+                      "crucial-feats":  {
+                                            "left_image_1":  "Kyle_source.jpg",
+                                            "left_image_2":  "Kyle_Resurrection1.jpg",
+                                            "left_image_3":  "Kyle_Destabilize.jpg",
+                                            "left_image_4":  "Kyle_Life.jpg",
+                                            "left_image_5":  "Kyle_Oblivion.jpg",
+                                            "right_image_1":  "06_6_2_manhattan_non_linear_perception.jpg",
+                                            "right_image_2":  "07_6_2_manhattan_self_consistency_across_time.jpg",
+                                            "right_image_3":  "Manhattan_Resurrection.jpg",
+                                            "right_image_4":  "09_6_2_manhattan_metron_owlman_mobius.jpg",
+                                            "right_image_5":  "Manhattan_End.jpg"
+                                        },
+                      "victory-archive":  {
+                                              "left_image_1":  "Relic.jpg",
+                                              "left_image_2":  "Third Army.jpg",
+                                              "left_image_3":  "Kyle_Oblivion.jpg",
+                                              "left_image_4":  "Kyle_Titans.jpg",
+                                              "left_image_5":  "Kyle_Vessel.jpg",
+                                              "right_image_1":  "Manhattan_disintegrate.jpg",
+                                              "right_image_2":  "Manhattan_Reverse.jpg",
+                                              "right_image_3":  "Manhattan_OwlMetr.jpg",
+                                              "right_image_4":  "11_7_2_manhattan_ozymandias_confrontation.jpg",
+                                              "right_image_5":  "Manhattan_Pandora.jpg"
+                                          },
+                      "fight-card":  {
+                                         "right_image":  "Manhattan1.jpg",
+                                         "left_image":  "Kyle.jpg"
+                                     },
+                      "final-summary":  {
+                                            "right_image":  "Manhattan2.webp",
+                                            "left_image":  "Kyle2.jpg"
+                                        },
+                      "verdict-matrix":  {
+                                             "right_image":  "Manhattan3.webp",
+                                             "left_image":  "Kyle1.webp"
+                                         }
+                  }
 }
-

@@ -8,10 +8,10 @@
       "Covers the Earth in symbiotes."
     ],
     "dossier": {
-      "advantage": "All-Black – the sword that negates immortality. The weapon ignores every form of armor and regeneration, and Knull himself returns to the fight even after total incineration.",
-      "mentality": "Sadistic confidence and lack of fear. He revels in his power, striving for the swift and ruthless execution of every opponent.",
+      "advantage": "All-Black is a weapon built to kill gods and cut through even extremely durable opponents. Its strikes can bypass normal durability assumptions and hinder regeneration.",
+      "mentality": "Knull fights with contempt and the calm of a predator who sees victory as inevitable. He does not respect the opponent and feels no pressure, because he assumes any fight will eventually shift onto his terms.",
       "quote": "Ah... I see my reputation precedes me... so I won't waste your time... I am going to kill your world.",
-      "style": "Aggressive necro-swordsmanship. Knull strikes with devastating force, aiming for swift dismemberment or decapitation of the opponent."
+      "style": "Aggressive necro-swordsmanship combined with control over the living Abyss. Knull closes distance, floods the battlefield with shadow, and looks for a single All-Black entry that can decide the fight immediately."
     },
     "name": "Knull",
     "profile": {
@@ -19,24 +19,23 @@
         "All-Black necrosword lethality, living abyss manipulation, symbiote hive control, and high-end regeneration."
       ],
       "tools": [
-        "Battlefield corruption, symbiote conversion pressure, and persistent close-range threat.",
-        "Ability to manifest shadow armies, forcing the opponent to constantly expend energy on area-of-effect attacks."
+        "Symbiote conversion pressure and persistent close-range threat.",
+        "The living Abyss lets him cut off space and build pressure from multiple angles without committing to a clean exchange."
       ],
       "weaknesses": [
-        "Strong anti-abyss or high-intensity light counters can disrupt his core advantages.",
-        "Broad cosmic energy control can force him to spend more effort on recovery and tempo reset."
+        "Enigma Force"
       ]
     },
     "stats": {
       "battleIq": 82,
       "durability": 97,
-      "experience": 100,
-      "hax": 98,
+      "experience": 99,
+      "hax": 97,
       "skills": 86,
       "speed": 84,
-      "stamina": 99,
-      "strength": 95,
-      "style": 89
+      "stamina": 97,
+      "strength": 94,
+      "style": 88
     },
     "version": "Earth-616",
     "victories": [
@@ -56,7 +55,7 @@
       "Absorbs Surtur, whose destiny is to destroy Asgard and kill gods."
     ],
     "dossier": {
-      "advantage": "Odinforce and the destructive power of the Odinsword. This weapon releases Ragnarok energy capable of erasing galaxies, and the Odinforce allows him to manipulate matter and time.",
+      "advantage": "Odinforce and the destructive power of the Odinsword. Ragnarok is portrayed as a weapon capable of bringing about the end of all things, while the Odinforce allows Odin to manipulate matter and time.",
       "mentality": "Majestic ruler with a violent temperament. Drawing the Odinsword means fighting without any inhibitions – he strikes with a fury that knows no mercy or compromise.",
       "quote": "Odin is the Sun and the stars and the Moon and more. Odin is the way and the wrath and the wonder! Odin is he who speaks while galaxies obey!",
       "style": "Direct combat with the colossal Odinsword. Odin uses devastating slashes to physically break the opponent's armor and will with pure striking power."
@@ -64,27 +63,26 @@
     "name": "Odin",
     "profile": {
       "powers": [
-        "Full Odinforce, large-scale energy projection, barriers, transmutation, and divine sorcery."
+        "Full Odinforce, large-scale energy projection, barriers, matter manipulation, divine sorcery, and the ability to draw power from Asgard, the Asgardians, and other gods."
       ],
       "tools": [
-        "Destroyer Armor and Odinsword for top-tier cosmic warfare.",
-        "Reality manipulation at a galactic scale, allowing him to reset unfavorable battlefield conditions."
+        "Control over time and matter."
       ],
       "weaknesses": [
-        "Output and precision can vary with context, burden, and prolonged conflict.",
-        "Strategic overconfidence can create openings against persistent opponents."
+        "Odinsleep",
+        "Distance from Asgard / Odinforce depletion"
       ]
     },
     "stats": {
       "battleIq": 96,
-      "durability": 95,
-      "experience": 99,
-      "hax": 96,
-      "skills": 93,
-      "speed": 81,
-      "stamina": 89,
-      "strength": 92,
-      "style": 92
+      "durability": 96,
+      "experience": 100,
+      "hax": 99,
+      "skills": 94,
+      "speed": 86,
+      "stamina": 94,
+      "strength": 96,
+      "style": 93
     },
     "version": "Earth-616",
     "victories": [
@@ -115,101 +113,107 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "label": "Odinforce: Cleansing",
+      "label": "Odin at Peak Power · Abyss Counter",
       "a_curve": "91,85,75,68,60",
       "b_curve": "90,92,94,96,98",
       "yellow_wave": "31,35,33,37,34,38,36,40",
-      "phase_1": "Odin imposes cosmic order from the very start. Odinforce acts as a perfect counter to the structures of the Abyss.",
-      "phase_2": "Knull tries to flood the battlefield with shadows, but Odin's divine light burns away every regeneration attempt.",
-      "phase_3": "Odinforce Cleansing closes the fight. Knull is cut off from the source of his power.",
-      "analysis": "In this scenario, Odinforce is a hard counter to the Abyss. Knull loses his regeneration advantage.",
-      "s2_label": "Odinforce: Standard",
+      "phase_1": "Odin dictates the pace of the fight from the very start. At his highest level, he controls the duel in a way that raw Abyss pressure alone cannot easily overturn.",
+      "phase_2": "Knull tries to flood the battlefield with living darkness, but Odin in this form meaningfully limits the rebuilding of his advantage and forces the fight onto his own terms.",
+      "phase_3": "If Odin can truly purge or sever the Abyss, he closes the fight through superior scale, control, and tools.",
+      "analysis": "In this scenario, Odin at his peak has a real answer to the Abyss. Knull remains dangerous, but he no longer gets to recover the full economy of the fight.",
+      "s2_label": "Odin at Peak Power · No Full Answer",
       "s2_a_curve": "91,92,94,96,98",
       "s2_b_curve": "90,88,85,80,75",
-      "s2_phase_1": "The opening is a brutal exchange. Odin relies on raw force, while Knull uses the lethal slashes of All-Black.",
-      "s2_phase_2": "Without specific cleansing, the fight turns into a marathon. Odin inflicts wounds that Knull simply ignores.",
-      "s2_phase_3": "Knull starts to take over through the economy of All-Black. Every minute favors the King in Black.",
-      "s2_analysis": "Without a specific counter, Odin must be perfect for far too long."
+      "s2_phase_1": "The opening is a brutal collision between Odin's overwhelming power and Knull's All-Black plus the living Abyss.",
+      "s2_phase_2": "If even Odin at his peak does not break the nature of the Abyss, the fight starts stretching into conditions that favor Knull more and more.",
+      "s2_phase_3": "In a prolonged fight, Knull regains value through All-Black, Abyss pressure, and the simple fact that he keeps returning to the exchange.",
+      "s2_analysis": "Without a full counter to the Abyss, even Odin does not get to close the fight on his own terms. That gives Knull a real path to killing him in a prolonged battle."
     },
     "fight-card": {
       "fight_title": "Knull vs Odin"
     },
+    "parameter-comparison": {
+      "favorite_label": "Stat based favorite",
+      "favorite_side": "b"
+    },
     "fight-simulation": {
-      "label": "Odinforce: Cleansing",
-      "opening": "Odin opens with a salvo of pure energy that scatters Knull's first strands of the Abyss.",
-      "mid_fight": "Knull tries to answer with All-Black, but Destroyer armor and Odin's barriers make every contact costly.",
-      "late_fight": "Odin senses Knull's weakening bond with the Abyss and strikes with full Cleansing power, ending the duel.",
-      "end_condition": "Victory through total battlefield cleansing and erasure of Knull's essence.",
+      "label": "Odin at Peak Power · Abyss Counter",
+      "opening": "Odin opens with a salvo of pure energy that tears through Knull's first strands of the living Abyss.",
+      "mid_fight": "Knull answers with All-Black and floods the battlefield with darkness, but Destroyer armor and Odin's barriers make it difficult for him to seize control quickly.",
+      "late_fight": "If Odin can truly purge or sever the Abyss, he closes the endgame through superior scale and tools.",
+      "end_condition": "Victory through permanently breaking Knull's bond with the Abyss and closing the fight on Odin's terms.",
       "phase_1_animation": "cosmic-salvo",
       "phase_1_title": "Divine Salvo",
       "phase_1_a_label": "Control",
       "phase_1_a_value": "95",
       "phase_1_b_label": "Pressure",
       "phase_1_b_value": "82",
-      "phase_1_event": "Odinforce hits the shadow structure, shattering Knull's first attempts at dominance.",
+      "phase_1_event": "Odin's first wave of power breaks Knull's opening and stops his attempt to seize the battlefield immediately.",
       "phase_2_animation": "void-clash",
       "phase_2_title": "Clash in the Abyss",
-      "phase_2_event": "Odinsword collides with All-Black in the epicenter of nothingness, where light fights to survive.",
-      "phase_2_branch_a": "Odin pushes back the darkness and takes control of the space.",
-      "phase_2_branch_b": "Knull wraps shadows around the divine blade, trying to extinguish it.",
+      "phase_2_event": "Odinsword collides with All-Black at the center of the fight, as Odin's divine force meets Knull's living darkness head-on.",
+      "phase_2_branch_a": "Odin pushes back the darkness and reasserts full control over the flow of the fight.",
+      "phase_2_branch_b": "Knull wraps the divine blade in living darkness, trying to halt Odin's momentum.",
       "phase_3_actor": "b",
       "phase_3_animation": "celestial-purge",
       "phase_3_title": "Celestial Cleansing",
-      "phase_3_event": "Odin releases the ultimate Cleansing wave, burning Knull's essence from the fabric of the universe.",
-      "phase_3_branch_a": "Knull is erased from the current plane of existence.",
-      "phase_3_branch_b": "The shadows are pacified, leaving Knull defenseless.",
-      "s2_label": "Odinforce: Standard",
+      "phase_3_event": "Odin releases a final wave of cleansing that severs Knull from the full value of the Abyss and ends the fight on the All-Father's terms.",
+      "phase_3_branch_a": "Knull is decisively broken before he can rebuild his advantage.",
+      "phase_3_branch_b": "The Abyss is suppressed enough that Knull loses his path back into the fight.",
+      "s2_label": "Odin at Peak Power · No Full Counter",
       "s2_phase_1_animation": "shadow-surge",
       "s2_phase_1_title": "Shadow Surge",
       "s2_phase_1_a_label": "Power",
       "s2_phase_1_a_value": "91",
       "s2_phase_1_b_label": "Resistance",
       "s2_phase_1_b_value": "88",
-      "s2_phase_1_event": "Knull floods the battlefield with living Abyss, forcing Odin to fight under unfavorable conditions.",
+      "s2_phase_1_event": "Knull floods the battlefield with the living Abyss, forcing Odin to fight under increasingly unfavorable conditions.",
       "s2_phase_2_animation": "infinite-attrition",
       "s2_phase_2_token": "fullredflood",
       "s2_phase_2_title": "Infinite Attrition",
-      "s2_phase_2_event": "Odin deals wounds that Knull immediately resets, pulling the god into a loop with no exit.",
-      "s2_phase_2_branch_a": "Odin tries to break the loop with pure, brutal force.",
-      "s2_phase_2_branch_b": "Knull revels in the helplessness of divine attacks.",
+      "s2_phase_2_event": "Odin inflicts heavy damage, but without a full counter Knull keeps recovering value and drags the fight toward his side.",
+      "s2_phase_2_branch_a": "Odin tries to break the stalemate through raw power and constant Odinsword pressure.",
+      "s2_phase_2_branch_b": "Knull feels the longer fight turning more and more in his favor.",
       "s2_phase_3_actor": "a",
       "s2_phase_3_animation": "blade-entrapment",
       "s2_phase_3_token": "fullredflood",
       "s2_phase_3_title": "All-Black Snare",
-      "s2_phase_3_event": "Knull's blade slowly corners Odin, cutting off escape routes and dimming his radiance.",
-      "s2_phase_3_branch_a": "Odin regains distance at the last moment.",
-      "s2_phase_3_branch_b": "Blackness starts to pour through the Odinforce barriers.",
-      "s2_end_condition": "The slow fading of divine light under the pressure of endless darkness."
+      "s2_phase_3_event": "All-Black starts finding more and more openings, and Odin is forced to fight to keep Knull from taking full control of the endgame.",
+      "s2_phase_3_branch_a": "Odin regains distance one more time and pushes back the pressure of the Abyss.",
+      "s2_phase_3_branch_b": "Knull finally breaks the rhythm of the fight and starts closing it on his own terms.",
+      "s2_end_condition": "A long fight without a full counter to the Abyss gradually shifts the advantage toward Knull."
     },
     "final-summary": {
-      "line_1": "In this clash, there is no room for compromise or tournament rules - this is a fight for ultimate existence.",
-      "line_2": "Odinforce Cleansing is the only factor that lets Odin permanently break Knull's regeneration loop.",
-      "line_3": "Without this specific counter, Knull simply outlasts every attack and wins through attrition.",
-      "winner": "Odin (with Cleansing) or Knull (Standard)."
+      "line_1": "Odin at peak power has a clear edge in scale, control, and quality of tools over Knull's standard profile.",
+      "line_2": "The real question is not whether Odin can win the power exchange, but whether he can truly purge or sever the Abyss.",
+      "line_3": "If it does, Odin closes the fight on superior scale. If it does not, Knull remains a dangerous matchup through All-Black and the nature of the Abyss.",
+      "winner": "Odin has the edge, but this is not a one-sided verdict."
     },
     "tactical-board": {
       "lane": "Odin must turn chaos into order before Knull turns order into attrition.",
       "subtitle": "God Butcher vs All-Father"
     },
     "verdict-matrix": {
-      "row_1": "ODINFORCE: CLEANSING",
-      "row_2": "ODINFORCE: STANDARD",
-      "case_1": "Odin 7.5/10. With Cleansing active, Odin has the right tool to neutralize the Abyss. His battlefield control becomes impossible for Knull to break, leading to total erasure of symbiote essence.",
-      "case_2": "Knull 8/10. Without a specific counter to regeneration, Odin becomes just another exceptionally powerful god to cut down. All-Black and the Abyss regeneration loop inevitably win the resource war.",
+      "row_1": "ODIN AT PEAK POWER · ABYSS COUNTER",
+      "row_2": "ODIN AT PEAK POWER · NO FULL COUNTER",
+      "case_1": "Odin 7.5/10. If he can truly purge or sever the Abyss, his edge in scale, control, and quality of tools starts deciding the fight. At that point Knull no longer gets full value simply from continuing to come back into the exchange.",
+      "case_1_winner": "b",
+      "case_2": "Knull 6/10. If Odin has no full answer to the nature of the Abyss, the fight stretches out and becomes far more dangerous. Prime Odin still has real winning windows, but All-Black and a prolonged battle push the matchup more and more toward Knull.",
+      "case_2_winner": "a",
       "layout": "2x1",
       "header": "VERDICT MATRIX",
-      "subtitle": "Verdict depends on the use of Cleansing"
+      "subtitle": "Verdict depends on whether Odin can fully answer the Abyss"
     },
     "x-factor": {
-      "a_bonus": "14",
+      "a_bonus": "0",
       "a_bonus_label": "REGENERATION LOOP",
       "a_value": "50",
       "b_bonus": "15",
       "b_value": "50",
-      "factor": "COUNTER TO THE ABYSS VS DIVINE DAMAGE",
-      "implikacja": "Victory depends on whether Odin treats Knull as matter or as a metaphysical infection.",
-      "mechanika": "Knull wins if Odinforce is only physical energy. Odin wins if it works like an antivirus against the Abyss.",
-      "psychologia": "Both fight for everything. Knull wants repeatable darkness, while Odin wants one final cleansing.",
+      "factor": "FULL ODIN VS KNULL'S ABYSS",
+      "implikacja": "If not, even Odin at peak power may still be insufficient to close the fight permanently.",
+      "mechanika": "If Odin at his highest level truly cleanses or neutralizes the Abyss, Knull loses the core foundation of his fight.",
+      "psychologia": "Odin wants to impose order and end the threat. Knull wants to return creation to primordial darkness.",
       "regen": "TRUE CLEANSING"
     }
   }

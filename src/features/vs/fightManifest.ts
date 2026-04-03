@@ -155,6 +155,7 @@ export const fightManifest: FightManifest = {
       variableFields: [
         field('left_header'),
         field('right_header'),
+        field('favorite_side', ['winner_side', 'leader_side', 'fav_side']),
         field('favorite_label', ['favorite']),
         field('draw_favorite', ['draw_favorite_label', 'favorite_draw']),
       ],
@@ -177,6 +178,8 @@ export const fightManifest: FightManifest = {
         field('line_1', ['line1']),
         field('line_2', ['line2']),
         field('line_3', ['line3']),
+        field('left_image', ['left_img', 'portrait_a', 'image_a', 'fighter_a_image'], true, { source: 'scans' }),
+        field('right_image', ['right_img', 'portrait_b', 'image_b', 'fighter_b_image'], true, { source: 'scans' }),
       ],
     },
     {
@@ -269,6 +272,8 @@ export const fightManifest: FightManifest = {
         field('line_1', ['line1']),
         field('line_2', ['line2']),
         field('line_3', ['line3']),
+        field('left_image', ['left_img', 'portrait_a', 'image_a', 'fighter_a_image'], true, { source: 'scans' }),
+        field('right_image', ['right_img', 'portrait_b', 'image_b', 'fighter_b_image'], true, { source: 'scans' }),
       ],
     },
     {
@@ -283,9 +288,15 @@ export const fightManifest: FightManifest = {
         field('col_1', ['col1']),
         field('col_2', ['col2']),
         field('case_1', ['case1']),
+        field('case_1_winner', ['case1_winner', 'winner_1', 'winner1']),
         field('case_2', ['case2']),
+        field('case_2_winner', ['case2_winner', 'winner_2', 'winner2']),
         field('case_3', ['case3']),
+        field('case_3_winner', ['case3_winner', 'winner_3', 'winner3']),
         field('case_4', ['case4']),
+        field('case_4_winner', ['case4_winner', 'winner_4', 'winner4']),
+        field('left_image', ['left_img', 'portrait_a', 'image_a', 'fighter_a_image'], true, { source: 'scans' }),
+        field('right_image', ['right_img', 'portrait_b', 'image_b', 'fighter_b_image'], true, { source: 'scans' }),
       ],
     },
     {
@@ -295,6 +306,8 @@ export const fightManifest: FightManifest = {
       forceFinal: true,
       variableFields: [
         field('fight_title', ['match_title', 'title_text', 'line_1', 'line1']),
+        field('left_image', ['left_img', 'portrait_a', 'image_a', 'fighter_a_image'], true, { source: 'scans' }),
+        field('right_image', ['right_img', 'portrait_b', 'image_b', 'fighter_b_image'], true, { source: 'scans' }),
       ],
     },
     {

@@ -1,7 +1,7 @@
 import './VerdictMatrixTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, type CSSProperties, type ReactNode, Fragment } from 'react'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, getPlainTemplateLines, parseTemplateFieldMap, pickTemplateField, resolveFightTemplateImageUrl } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
@@ -46,6 +46,7 @@ export function VerdictMatrixTemplate({
   title,
   subtitle,
   templateBlocks,
+  activeFightFolderKey,
   language,
   onToggleLanguage,
   integratedToolbar,
@@ -76,6 +77,16 @@ export function VerdictMatrixTemplate({
   const fighterBFallback = getFightTemplateDefaultField('verdict-matrix', 'fighter_b_fallback', language) || 'B'
   const fighterAName = fighterA.name || fighterAFallback
   const fighterBName = fighterB.name || fighterBFallback
+  const customLeftImageFile =
+    pickTemplateField(blockFields, ['left_image', 'left_img', 'portrait_a', 'image_a', 'fighter_a_image']) || ''
+  const customRightImageFile =
+    pickTemplateField(blockFields, ['right_image', 'right_img', 'portrait_b', 'image_b', 'fighter_b_image']) || ''
+  const leftImageUrl = customLeftImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customLeftImageFile)
+    : fighterA.imageUrl
+  const rightImageUrl = customRightImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customRightImageFile)
+    : fighterB.imageUrl
 
   const caseData = [
     pickTemplateField(blockFields, ['case_1', 'verdict', 'case1']) || plainLines[0] || '',
@@ -229,6 +240,19 @@ export function VerdictMatrixTemplate({
   }
 
   const cellData = caseData
+
+  const resolveExplicitWinnerSide = (raw: string) => {
+    const normalized = normalizeNameMatch(raw)
+    if (!normalized) return null
+    if (['a', 'left', 'blue'].includes(normalized)) return 'a' as const
+    if (['b', 'right', 'red'].includes(normalized)) return 'b' as const
+
+    const variantsA = buildNameVariants(fighterAName)
+    const variantsB = buildNameVariants(fighterBName)
+    if (variantsA.includes(normalized)) return 'a' as const
+    if (variantsB.includes(normalized)) return 'b' as const
+    return null
+  }
 
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
@@ -394,9 +418,11 @@ export function VerdictMatrixTemplate({
                 {matrixColumns.map((_, columnIndex) => {
                   const cellIndex = rowIndex * numCols + columnIndex
                   const cellText = cellData[cellIndex] || ''
-                  const winnerSide = resolveWinnerSide(cellText)
+                  const explicitWinner =
+                    pickTemplateField(blockFields, [`case_${cellIndex + 1}_winner`, `case${cellIndex + 1}_winner`, `winner_${cellIndex + 1}`, `winner${cellIndex + 1}`])
+                  const winnerSide = resolveExplicitWinnerSide(explicitWinner) || resolveWinnerSide(cellText)
                   const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
-                  const winnerImage = winnerSide === 'a' ? fighterA.imageUrl : winnerSide === 'b' ? fighterB.imageUrl : ''
+                  const winnerImage = winnerSide === 'a' ? leftImageUrl : winnerSide === 'b' ? rightImageUrl : ''
                   const winnerColor = winnerSide === 'a' ? fighterA.color : winnerSide === 'b' ? fighterB.color : '#cbd5e1'
 
                   return (

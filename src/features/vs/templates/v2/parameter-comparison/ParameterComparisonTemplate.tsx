@@ -2,7 +2,7 @@ import './ParameterComparisonTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
 import { useState, useEffect, useLayoutEffect, useMemo, useRef, type CSSProperties, type ReactNode } from 'react'
 import { AVERAGE_DRAW_THRESHOLD } from '../../../helpers'
-import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap } from '../../../importer'
+import { TEMPLATE_BLOCK_ALIASES, findTemplateBlockLines, parseTemplateFieldMap, pickTemplateField } from '../../../importer'
 import type { TemplatePreviewProps } from '../../../types'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 import { PolarAngleAxis, PolarGrid, PolarRadiusAxis, Radar, RadarChart, ResponsiveContainer } from 'recharts'
@@ -231,6 +231,8 @@ export function ParameterComparisonTemplate({
   
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
   const tacticalBlockFields = parseTemplateFieldMap(tacticalBlockLines)
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['parameter-comparison'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
   const tacticalChrome = buildFightTemplateChrome('parameter-comparison', language, tacticalBlockFields)
   const boardHeader =
     getFightTemplateDefaultField('parameter-comparison', 'panel_header', language) ||
@@ -244,8 +246,8 @@ export function ParameterComparisonTemplate({
   
   const fighterAFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_b_fallback', language)
-  const leftHeader = fighterA.name || fighterAFallback
-  const rightHeader = fighterB.name || fighterBFallback
+  const leftHeader = pickTemplateField(blockFields, ['left_header']) || fighterA.name || fighterAFallback
+  const rightHeader = pickTemplateField(blockFields, ['right_header']) || fighterB.name || fighterBFallback
   
   const drawHeader =
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||
@@ -265,14 +267,33 @@ export function ParameterComparisonTemplate({
   
   const averageGap = Math.abs(averageA - averageB)
   const isAverageDraw = averageGap < AVERAGE_DRAW_THRESHOLD
-  const favoriteSide: 'a' | 'b' | 'draw' = isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b'
+  const favoriteSideOverrideRaw = pickTemplateField(blockFields, ['favorite_side', 'winner_side', 'leader_side', 'fav_side'])
+  const favoriteSideOverrideNormalized = favoriteSideOverrideRaw.trim().toLowerCase()
+  const favoriteSideOverride: 'a' | 'b' | 'draw' | null =
+    favoriteSideOverrideNormalized === 'a' ||
+    favoriteSideOverrideNormalized === 'left' ||
+    favoriteSideOverrideNormalized === 'blue'
+      ? 'a'
+      : favoriteSideOverrideNormalized === 'b' ||
+          favoriteSideOverrideNormalized === 'right' ||
+          favoriteSideOverrideNormalized === 'red'
+        ? 'b'
+        : favoriteSideOverrideNormalized === 'draw' ||
+            favoriteSideOverrideNormalized === 'remis'
+          ? 'draw'
+          : null
+  const favoriteSide: 'a' | 'b' | 'draw' =
+    favoriteSideOverride ||
+    (isAverageDraw ? 'draw' : averageA > averageB ? 'a' : 'b')
   const favoriteDrawLabel =
+    pickTemplateField(blockFields, ['draw_favorite', 'draw_favorite_label', 'favorite_draw']) ||
     getFightTemplateDefaultField('parameter-comparison', 'draw_favorite', language) ||
     common.drawLabel
   const favoriteLabel =
+    pickTemplateField(blockFields, ['favorite_label', 'favorite']) ||
     getFightTemplateDefaultField('parameter-comparison', 'favorite_label', language)
   const favoriteBadgeText =
-    isAverageDraw
+    favoriteSide === 'draw'
       ? favoriteDrawLabel
       : favoriteLabel || common.favoriteSuffix
   const favoriteStampWidthRem =
@@ -426,15 +447,12 @@ export function ParameterComparisonTemplate({
         }
       })
 
-      if (favoriteSide === 'draw') {
-        stampEl.style.left = COMPARISON_FAVORITE_STAMP_DRAW_POS
-        return
-      }
-
-      const targetNameEl = favoriteSide === 'a' ? leftNameEl : rightNameEl
-      const nameRect = targetNameEl.getBoundingClientRect()
-      const anchorPx = nameRect.left - rowRect.left + nameRect.width * (2 / 3)
-      stampEl.style.left = `${anchorPx}px`
+      stampEl.style.left =
+        favoriteSide === 'a'
+          ? COMPARISON_FAVORITE_STAMP_LEFT_POS
+          : favoriteSide === 'b'
+            ? COMPARISON_FAVORITE_STAMP_RIGHT_POS
+            : COMPARISON_FAVORITE_STAMP_DRAW_POS
     }
 
     updateLayout()

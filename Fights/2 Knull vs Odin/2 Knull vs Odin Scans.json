@@ -1,33 +1,45 @@
 {
-  "portraits": {
-    "a": "1.jpg",
-    "b": "2.jpg"
-  },
-  "schemaVersion": 1,
-  "templates": {
-    "crucial-feats": {
-      "left_image_1": "01_6_1_knull_decapitates_celestial_allblack.jpg",
-      "left_image_2": "Knull_Knulled.jpg",
-      "left_image_3": "Knull_BigBang.jpg",
-      "left_image_4": "Knull_gods.jpg",
-      "left_image_5": "02_6_1_knull_covers_earth_in_abyss.jpg",
-      "right_image_1": "Odin_Life2.jpg",
-      "right_image_2": "Odin_ArmCut.jpg",
-      "right_image_3": "Odin_Dome.jpg",
-      "right_image_4": "Odin_PowerOfGods.jpg",
-      "right_image_5": "Odin_Surtur.jpg"
-    },
-    "victory-archive": {
-      "left_image_1": "Knull_Celestial.jpg",
-      "left_image_2": "Knull_Sentry.jpg",
-      "left_image_3": "Knull_Surfer.jpg",
-      "left_image_4": "Knull_Jaw2.jpg",
-      "left_image_5": "Knull_Storm.jpg",
-      "right_image_1": "Odin_Infinity.jpg",
-      "right_image_2": "Odin_Seth.jpg",
-      "right_image_3": "Odin_Thanos.jpg",
-      "right_image_4": "Odin_SS.jpg",
-      "right_image_5": "Odin_Drax.jpg"
-    }
-  }
+    "portraits":  {
+                      "a":  "1.jpg",
+                      "b":  "2.jpg"
+                  },
+    "schemaVersion":  1,
+    "templates":  {
+                      "crucial-feats":  {
+                                            "left_image_1":  "01_6_1_knull_decapitates_celestial_allblack.jpg",
+                                            "left_image_2":  "Knull_Knulled.jpg",
+                                            "left_image_3":  "Knull_BigBang.jpg",
+                                            "left_image_4":  "Knull_gods.jpg",
+                                            "left_image_5":  "02_6_1_knull_covers_earth_in_abyss.jpg",
+                                            "right_image_1":  "Odin_Life2.jpg",
+                                            "right_image_2":  "Odin_ArmCut.jpg",
+                                            "right_image_3":  "Odin_Dome.jpg",
+                                            "right_image_4":  "Odin_PowerOfGods.jpg",
+                                            "right_image_5":  "Odin_Surtur.jpg"
+                                        },
+                      "victory-archive":  {
+                                              "left_image_1":  "Knull_Celestial.jpg",
+                                              "left_image_2":  "Knull_Sentry.jpg",
+                                              "left_image_3":  "Knull_Surfer.jpg",
+                                              "left_image_4":  "Knull_Jaw2.jpg",
+                                              "left_image_5":  "Knull_Storm.jpg",
+                                              "right_image_1":  "Odin_Infinity.jpg",
+                                              "right_image_2":  "Odin_Seth.jpg",
+                                              "right_image_3":  "Odin_Thanos.jpg",
+                                              "right_image_4":  "Odin_SS.jpg",
+                                              "right_image_5":  "Odin_Drax.jpg"
+                                          },
+                      "fight-card":  {
+                                         "right_image":  "Odin1.jpg",
+                                         "left_image":  "Knull1.jpg"
+                                     },
+                      "final-summary":  {
+                                            "right_image":  "Odin3.jpg",
+                                            "left_image":  "Knull3.webp"
+                                        },
+                      "verdict-matrix":  {
+                                             "right_image":  "Odin2.jpg",
+                                             "left_image":  "Knull2.webp"
+                                         }
+                  }
 }

@@ -1,33 +1,45 @@
 {
-  "portraits": {
-    "a": "Atrocitus.jpg",
-    "b": "Hulk.jpg"
-  },
-  "schemaVersion": 1,
-  "templates": {
-    "crucial-feats": {
-      "left_image_1": "Atrocitus_ButcherBound.jpg",
-      "left_image_2": "ATrocitus_Heart.jpg",
-      "left_image_3": "Martian Manhunter can't telepathically.jpg",
-      "left_image_4": "Tears a hole through reality.jpg",
-      "left_image_5": "Throws around Apollo.jpg",
-      "right_image_1": "06_6_2_hulk_planet_moon_collateral.jpg",
-      "right_image_2": "Sentry.jpg",
-      "right_image_3": "Healed around 90% of his body mass within seconds, including his eyes..jpg",
-      "right_image_4": "Worldbreaker Red She-Hulk and WBH clashing.jpg",
-      "right_image_5": "Nearly sank the entire east coast with a single step.jpg"
-    },
-    "victory-archive": {
-      "left_image_1": "Atrocitus_Bind1.jpg",
-      "left_image_2": "Atrocitus_Bind2.jpg",
-      "left_image_3": "12_7_1_atrocitus_group_overpowering.jpg",
-      "left_image_4": "03_6_1_atrocitus_blood_magic_foresight.jpg",
-      "left_image_5": "Atrocitus_Bleez.jpg",
-      "right_image_1": "Sentry.jpg",
-      "right_image_2": "Dr. Strange's mystic barrier can't withstand the punches of the most powerful creature on the face of the Earth..jpg",
-      "right_image_3": "14_7_2_hulk_iron_man.jpg",
-      "right_image_4": "Defeated the Unstoppable Juggernaut.jpg",
-      "right_image_5": "15_7_2_hulk_armcheddon.jpg"
-    }
-  }
+    "portraits":  {
+                      "a":  "Atrocitus.jpg",
+                      "b":  "Hulk.jpg"
+                  },
+    "schemaVersion":  1,
+    "templates":  {
+                      "crucial-feats":  {
+                                            "left_image_1":  "Atrocitus_ButcherBound.jpg",
+                                            "left_image_2":  "ATrocitus_Heart.jpg",
+                                            "left_image_3":  "Martian Manhunter can\u0027t telepathically.jpg",
+                                            "left_image_4":  "Tears a hole through reality.jpg",
+                                            "left_image_5":  "Throws around Apollo.jpg",
+                                            "right_image_1":  "06_6_2_hulk_planet_moon_collateral.jpg",
+                                            "right_image_2":  "Sentry.jpg",
+                                            "right_image_3":  "Healed around 90% of his body mass within seconds, including his eyes..jpg",
+                                            "right_image_4":  "Worldbreaker Red She-Hulk and WBH clashing.jpg",
+                                            "right_image_5":  "Nearly sank the entire east coast with a single step.jpg"
+                                        },
+                      "victory-archive":  {
+                                              "left_image_1":  "Atrocitus_Bind1.jpg",
+                                              "left_image_2":  "Atrocitus_Bind2.jpg",
+                                              "left_image_3":  "12_7_1_atrocitus_group_overpowering.jpg",
+                                              "left_image_4":  "03_6_1_atrocitus_blood_magic_foresight.jpg",
+                                              "left_image_5":  "Atrocitus_Bleez.jpg",
+                                              "right_image_1":  "Sentry.jpg",
+                                              "right_image_2":  "Dr. Strange\u0027s mystic barrier can\u0027t withstand the punches of the most powerful creature on the face of the Earth..jpg",
+                                              "right_image_3":  "14_7_2_hulk_iron_man.jpg",
+                                              "right_image_4":  "Defeated the Unstoppable Juggernaut.jpg",
+                                              "right_image_5":  "15_7_2_hulk_armcheddon.jpg"
+                                          },
+                      "fight-card":  {
+                                         "right_image":  "Hulk1.jpg",
+                                         "left_image":  "Atrocitus1.webp"
+                                     },
+                      "final-summary":  {
+                                            "right_image":  "Hulk2.jpg",
+                                            "left_image":  "Atrocitus2.webp"
+                                        },
+                      "verdict-matrix":  {
+                                             "right_image":  "Hulk3.webp",
+                                             "left_image":  "Atrocitus3.jpg"
+                                         }
+                  }
 }

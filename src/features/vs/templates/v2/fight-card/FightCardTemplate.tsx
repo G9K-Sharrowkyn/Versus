@@ -6,6 +6,8 @@ import {
   TEMPLATE_BLOCK_ALIASES,
   findTemplateBlockLines,
   parseTemplateFieldMap,
+  pickTemplateField,
+  resolveFightTemplateImageUrl,
 } from '../../../importer'
 import type { Fighter, TemplatePreviewProps } from '../../../types'
 import {
@@ -49,6 +51,7 @@ export function FightCardTemplate({
   title,
   subtitle,
   templateBlocks,
+  activeFightFolderKey,
   slideImageAdjustments,
   onSlideImageAdjustChange,
   onSlideImageAdjustCommit,
@@ -70,15 +73,27 @@ export function FightCardTemplate({
   const fighterFallback = getFightTemplateDefaultField('fight-card', 'fighter_fallback', language) || common.portraitSlot
   const leftTitle = fighterA.name || fighterAFallback
   const rightTitle = fighterB.name || fighterBFallback
+  const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['fight-card'] || [])
+  const blockFields = parseTemplateFieldMap(blockLines)
+  const customLeftImageFile =
+    pickTemplateField(blockFields, ['left_image', 'left_img', 'portrait_a', 'image_a', 'fighter_a_image']) || ''
+  const customRightImageFile =
+    pickTemplateField(blockFields, ['right_image', 'right_img', 'portrait_b', 'image_b', 'fighter_b_image']) || ''
+  const leftImageUrl = customLeftImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customLeftImageFile)
+    : fighterA.imageUrl
+  const rightImageUrl = customRightImageFile
+    ? resolveFightTemplateImageUrl(activeFightFolderKey, customRightImageFile)
+    : fighterB.imageUrl
 
-  const renderColumn = (fighter: Fighter, side: 'left' | 'right') => {
+  const renderColumn = (fighter: Fighter, side: 'left' | 'right', imageUrl: string) => {
     const adjustKey = side === 'left' ? 'fight-card:main-left' : 'fight-card:main-right'
     const legacyAdjustKeys = side === 'left' ? ['fight-card:portrait-a'] : ['fight-card:portrait-b']
     return (
       <div style={{ flex: 1, position: 'relative', minHeight: 0, height: '100%', overflow: 'hidden' }}>
         <div style={{ position: 'absolute', inset: 0 }}>
           <AdjustableTemplateImage
-            imageUrl={fighter.imageUrl}
+            imageUrl={imageUrl}
             alt={fighter.name || fighterFallback}
             fallbackLabel={common.noImage || common.portraitSlot}
             hintLabel=""
@@ -204,14 +219,14 @@ export function FightCardTemplate({
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
           <GlitchText text={leftTitle} />
         </p>
-        {renderColumn(fighterA, 'left')}
+        {renderColumn(fighterA, 'left', leftImageUrl)}
       </section>
 
       <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}>
           <GlitchText text={rightTitle} />
         </p>
-        {renderColumn(fighterB, 'right')}
+        {renderColumn(fighterB, 'right', rightImageUrl)}
       </div>
     </div>
   )
