@@ -211,6 +211,7 @@ export type FightScenarioId =
   | 'orbit-harass'
   | 'hit-and-run'
   | 'rush-ko'
+  | 'one-shot'
   | 'clash-lock'
   | 'kite-zone'
   | 'teleport-burst'

@@ -169,6 +169,7 @@ export const FIGHT_SCENARIO_EXTENDED_LABELS_EN: Record<string, string> = {
   slipstreamdrag: 'Slipstream Drag',
   kineticsteal: 'Kinetic Steal',
   groundshatter: 'Ground Shatter',
+  oneshot: 'One Shot',
   colossalgrapple: 'Colossal Grapple',
   mountainthrow: 'Mountain Throw',
   thunderclapshock: 'Thunderclap Shock',
@@ -254,6 +255,7 @@ export const FIGHT_SCENARIO_CANONICAL_TOKEN_TO_ID: Record<string, FightScenarioI
   orbitharass: 'orbit-harass',
   hitandrun: 'hit-and-run',
   rushko: 'rush-ko',
+  oneshot: 'one-shot',
   clashlock: 'clash-lock',
   kitezone: 'kite-zone',
   teleportburst: 'teleport-burst',
@@ -287,6 +289,7 @@ export const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   hitandrun: 'hit-and-run',
   hitrun: 'hit-and-run',
   rushko: 'rush-ko',
+  oneshot: 'one-shot',
   speedblitz: 'rush-ko',
   clashlock: 'clash-lock',
   lock: 'clash-lock',
@@ -331,6 +334,7 @@ export const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   slipstreamdrag: 'hit-and-run',
   kineticsteal: 'grapple-pin',
   groundshatter: 'rush-ko',
+  oneshot: 'one-shot',
   colossalgrapple: 'grapple-pin',
   mountainthrow: 'grapple-pin',
   thunderclapshock: 'trade-chaos',
@@ -417,5 +421,4 @@ export const DEFAULT_WINNER_CV_B = getFightDefaultVictoryArchive('b')
 
 export const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
   getFightDefaultProfileFacts(side, language)
-
 

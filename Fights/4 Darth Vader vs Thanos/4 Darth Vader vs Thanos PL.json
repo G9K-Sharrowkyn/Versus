@@ -16,14 +16,13 @@
     "name": "Darth Vader",
     "profile": {
       "powers": [
-        "Telekineza Mocy, prekognicja, techniki duszenia i miażdżenia oraz śmiercionośna biegłość miecza świetlnego."
+        "Telekineza Mocy, prekognicja oraz techniki duszenia i miażdżenia."
       ],
       "tools": [
-        "Defensywna dyscyplina szermiercza, odbijanie blasterów i energii oraz kontrola pola walki przez Moc."
+        "Defensywna dyscyplina szermiercza, śmiercionośna biegłość miecza świetlnego, odbijanie blasterów i energii oraz kontrola pola walki przez Moc."
       ],
       "weaknesses": [
-        "Zależność od cybernetycznego podtrzymania życia i podatność na długie uszkadzanie systemów.",
-        "Niższa surowa wytrzymałość fizyczna i skala niż u czołowych bytów kosmicznych."
+        "Zależność od pancerza i cybernetycznego podtrzymania życia, które przeciwnik może wyłączyć lub uszkodzić."
       ]
     },
     "stats": {
@@ -55,8 +54,8 @@
       "Wykonuje manipulację materią na poziomie molekularnym."
     ],
     "dossier": {
-      "advantage": "Niemal absolutna niezniszczalność i taktyczny geniusz. Posiada ciało zdolne przetrwać ataki bóstw oraz umysł, który błyskawicznie zamienia błąd wroga w jego nieuchronną klęskę.",
-      "mentality": "Arogancki nihilista o żelaznej dyscyplinie. Walczy z absolutną pewnością swojej wyższości, dążąc do bezlitosnego zdławienia każdego, kto stanie mu na drodze.",
+      "advantage": "Skrajna wytrzymałość i taktyczny geniusz. Thanos posiada ciało zdolne przetrwać ataki bytów boskich oraz umysł, który błyskawicznie wykorzystuje każdy błąd przeciwnika.",
+      "mentality": "Fanatyk własnego porządku o żelaznej dyscyplinie. Thanos walczy z absolutną pewnością swojej wyższości, traktując dominację nad słabszymi jako coś naturalnego i nieuniknionego.",
       "quote": "Nie zmusiłem cię do walki ze mną. Sam mnie do tego zmusiłeś. Musiałem pozostać wierny swojej naturze. Bo w końcu... jestem Thanosem.",
       "style": "Brutalna, precyzyjna walka siłowa. Thanos łączy mistrzostwo walki wręcz z niszczycielskimi wyładowaniami energii kosmicznej, by systematycznie miażdżyć każdą obronę."
     },
@@ -69,8 +68,7 @@
         "Strategiczny intelekt, adaptacja bojowa i szeroki profil odporności."
       ],
       "weaknesses": [
-        "Pycha i skłonność do testowania przeciwnika mogą otwierać wczesne okna błędu.",
-        "Bez Kamieni Nieskończoności pozostaje elitarny, ale nie ma natychmiastowej dominacji poziomu Rękawicy."
+        "Pycha i skłonność do testowania przeciwnika mogą otwierać wczesne okna błędu."
       ]
     },
     "stats": {
@@ -104,7 +102,6 @@
     "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "x-factor",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
@@ -113,48 +110,50 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "label": "Ostateczna Nieuchronność",
-      "a_curve": "80,60,40,20,5",
-      "b_curve": "91,95,98,100,100",
+      "label": "Natychmiastowa Egzekucja",
+      "preserve_curve_points": "true",
+      "a_curve": "80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+      "b_curve": "91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91",
       "yellow_wave": "20,25,22,28,24,30,26,35",
-      "phase_1": "Vader uderza z furią Mocy, próbując narzucić swoją wolę bytowi kosmicznemu. Thanos przyjmuje ataki z ironicznym spokojem.",
-      "phase_2": "Miecz świetlny i telekineza zderzają się z fizyczną niezniszczalnością. Skala Thanosa zaczyna przytłaczać systemy Lorda Sitha.",
-      "phase_3": "Koniec nadziei. Każdy atom przestrzeni należy do Thanosa. Vader zostaje zredukowany do poziomu nieistotnej anomalii.",
-      "analysis": "W tym starciu dwóch potęg nie ma zmiennych, które mogłyby zmienić wynik. Thanos dominuje w każdym wymiarze fizyki."
+      "phase_1": "Vader próbuje otwarcia Mocą i mieczem świetlnym. Thanos ignoruje atak, przejmuje inicjatywę i kończy walkę natychmiast.",
+      "phase_2": "-",
+      "phase_3": "-",
+      "analysis": "Vader nie ma realnej drogi do zabicia Thanosa. Ta walka kończy się od razu."
     },
     "fight-card": {
       "fight_title": "Vader vs Thanos"
     },
     "fight-simulation": {
       "label": "Werdykt Ostateczny",
-      "opening": "Vader otwiera walkę szarżą Mocy, próbując natychmiast zmiażdżyć hełm Thanosa.",
-      "mid_fight": "Thanos po prostu chwyta ostrze miecza świetlnego, ignorując temperaturę i energię plazmy.",
-      "late_fight": "Thanos kończy starcie jednym, precyzyjnym uderzeniem, które niszczy cybernetykę Vadera.",
-      "end_condition": "Zwycięstwo Thanosa przez absolutną przewagę skali.",
-      "phase_1_animation": "berserk-overextend",
-      "phase_1_title": "Furia Lorda",
+      "opening": "Vader otwiera walkę pełnym naporem Mocy, próbując natychmiast złamać Thanosa.",
+      "mid_fight": "Nic nie działa. Thanos ignoruje Moc i miecz świetlny bez realnych obrażeń.",
+      "late_fight": "Po jednej nieudanej próbie Vadera Thanos kończy walkę natychmiast.",
+      "end_condition": "Zwycięstwo Thanosa przez natychmiastową egzekucję.",
+      "phase_1_actor": "b",
+      "phase_1_animation": "one-shot",
+      "phase_1_title": "Jedno Uderzenie",
       "phase_1_a_label": "Moc",
       "phase_1_a_value": "92",
       "phase_1_b_label": "Opór",
       "phase_1_b_value": "99",
-      "phase_1_event": "Vader uderza z całą nienawiścią, ale Thanos nawet nie drgnie pod wpływem telekinetycznego naporu.",
+      "phase_1_event": "Thanos wchodzi raz, przełamuje obronę Vadera i kończy walkę, zanim ta naprawdę się zacznie.",
       "phase_2_animation": "clash-lock",
-      "phase_2_title": "Zderzenie Światów",
-      "phase_2_event": "Miecz świetlny tnie zbroję Thanosa, nie zostawiając na niej nawet zadrapania.",
-      "phase_2_branch_a": "Vader próbuje użyć Force Crush na sercu Thanosa.",
-      "phase_2_branch_b": "Thanos uśmiecha się i kontratakuje kosmicznym wybuchem.",
+      "phase_2_title": "-",
+      "phase_2_event": "-",
+      "phase_2_branch_a": "-",
+      "phase_2_branch_b": "-",
       "phase_3_actor": "b",
       "phase_3_animation": "brutal-execution",
-      "phase_3_title": "Nieuchronny Koniec",
-      "phase_3_event": "Thanos systematycznie niszczy każdy mechanizm podtrzymywania życia Vadera.",
-      "phase_3_branch_a": "Vader upada, tracąc połączenie z Mocą.",
-      "phase_3_branch_b": "Zbroja Vadera pęka pod ciśnieniem kosmicznej siły."
+      "phase_3_title": "-",
+      "phase_3_event": "-",
+      "phase_3_branch_a": "-",
+      "phase_3_branch_b": "-"
     },
     "final-summary": {
-      "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos operuje na innym poziomie fizyki.",
-      "line_2": "Niszczycielskie otwarcie Vadera to tylko test dla wytrzymałości Tytana, którą ten przechodzi bez większych trudności.",
-      "line_3": "To starcie o to, czy precyzja miecza świetlnego zdoła znaleźć szczelinę w pancerzu, który przetrwał wybuchy galaktyk.",
-      "winner": "Thanos dominuje bezdyskusyjnie."
+      "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos jest poza jego skalą.",
+      "line_2": "Ataki Vadera nie dają mu wiarygodnej drogi do trwałego przełamania wytrzymałości Thanosa.",
+      "line_3": "Gdy pierwsze otwarcie nie działa, walka natychmiast przechodzi w jednostronną egzekucję.",
+      "winner": "Thanos wygrywa 10/10."
     },
     "tactical-board": {
       "lane": "Vader musi rozwiązać walkę szybko. Thanos potrzebuje tylko jednego nieudanego otwarcia.",
@@ -168,18 +167,6 @@
       "line_1": "Darth Vader posiada technikę i kontrolę, które mogłyby zabić niemal każdą istotę, ale Thanos operuje na innym poziomie fizyki.",
       "line_2": "Niszczycielskie otwarcie Vadera to tylko test dla wytrzymałości Tytana, którą ten przechodzi bez większych trudności.",
       "line_3": "To starcie o to, czy precyzja miecza świetlnego zdoła znaleźć szczelinę w pancerzu, który przetrwał wybuchy galaktyk."
-    },
-    "x-factor": {
-      "a_bonus": "14",
-      "a_bonus_label": "ŚMIERTELNE OTWARCIE",
-      "a_value": "50",
-      "b_bonus": "22",
-      "b_value": "50",
-      "factor": "PIERWSZY BYPASS VS PRÓG WYTRZYMAŁOŚCI",
-      "implikacja": "Jeśli Thanos przeżyje pierwszy realny bypass, walka natychmiast przechodzi na jego warunki.",
-      "mechanika": "Vader może wygrać tylko wtedy, gdy pierwsza chirurgiczna próba naprawdę ominie kosmiczną wytrzymałość Thanosa.",
-      "psychologia": "Vader chce kontrolowanego pojedynku. Thanos chce, by walka zamieniła się w długą egzekucję.",
-      "regen": "PRZEWAGA SKALI"
     }
   }
 }

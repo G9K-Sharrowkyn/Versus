@@ -10,6 +10,10 @@ type FightScenarioFrame = {
   beam: number
   pulseA: number
   pulseB: number
+  incomingOnA?: number
+  incomingOnB?: number
+  hideA?: boolean
+  hideB?: boolean
   flood?: number
   floodColor?: string
   ghostsA?: LightningPoint[]
@@ -56,6 +60,10 @@ const clampFightFrame = (frame: FightScenarioFrame): FightScenarioFrame => {
     beam: clamp01(frame.beam),
     pulseA: clamp01(frame.pulseA),
     pulseB: clamp01(frame.pulseB),
+    incomingOnA: clamp01(frame.incomingOnA ?? 0),
+    incomingOnB: clamp01(frame.incomingOnB ?? 0),
+    hideA: frame.hideA,
+    hideB: frame.hideB,
     ghostsA,
     ghostsB,
   }
@@ -72,6 +80,10 @@ const orientFightScenarioFrame = (
     b: frame.a,
     pulseA: frame.pulseB,
     pulseB: frame.pulseA,
+    incomingOnA: frame.incomingOnB,
+    incomingOnB: frame.incomingOnA,
+    hideA: frame.hideB,
+    hideB: frame.hideA,
     ghostsA: frame.ghostsB,
     ghostsB: frame.ghostsA,
   }
@@ -258,6 +270,7 @@ const buildFightScenarioFrame = (
   t: number,
   seconds: number,
   variantToken: string | null,
+  lead: FightScenarioLead = 'a',
 ): FightScenarioFrame => {
   const p = clamp01(t)
   const finishScenarioFrame = (frame: FightScenarioFrame) =>
@@ -343,6 +356,70 @@ const buildFightScenarioFrame = (
       beam: Math.max(0, 1 - Math.abs(p - 0.34) / 0.08),
       pulseA: 0.5 + pulse01(seconds, 6.2) * 0.36,
       pulseB: 0.2 + (1 - recoil) * 0.28,
+    })
+  }
+
+  if (scenario === 'one-shot') {
+    const attackerFromLeft = lead === 'a'
+    const defenderStartX = attackerFromLeft ? 0.22 : 0.78
+    const defenderProbeX = attackerFromLeft ? 0.36 : 0.64
+    const attackerStartX = attackerFromLeft ? 0.84 : 0.16
+    const attackerImpactX = attackerFromLeft ? 0.36 : 0.64
+    const attackerEndX = attackerFromLeft ? 0.26 : 0.74
+
+    const probeForward = p < 0.16 ? smoothStep(p / 0.16) : 1
+    const probeBack = p > 0.16 && p < 0.3 ? smoothStep((p - 0.16) / 0.14) : 0
+    const charge = p < 0.58 ? smoothStep(p / 0.58) : 1
+    const hit = p > 0.58 ? smoothStep((p - 0.58) / 0.08) : 0
+    const finish = p > 0.66 ? smoothStep((p - 0.66) / 0.18) : 0
+
+    const defenderX =
+      p < 0.16
+        ? mixNumber(defenderStartX, defenderProbeX, probeForward)
+        : p < 0.3
+          ? mixNumber(defenderProbeX, defenderStartX, probeBack)
+          : defenderStartX
+
+    const attackerX =
+      p < 0.58
+        ? mixNumber(attackerStartX, attackerImpactX, charge)
+        : mixNumber(attackerImpactX, attackerEndX, finish)
+
+    const defender = {
+      x: defenderX,
+      y: 0.5 + Math.sin(seconds * 8.5) * 0.006 * (1 - hit),
+    }
+    const attacker = {
+      x: attackerX,
+      y: 0.5,
+    }
+
+    const hitFlash = Math.max(0, 1 - Math.abs(p - 0.6) / 0.06)
+    const defenderGhosts = finish > 0.02
+      ? [
+          { x: defenderStartX, y: 0.45 },
+          { x: attackerFromLeft ? defenderStartX - 0.04 : defenderStartX + 0.04, y: 0.5 },
+          { x: attackerFromLeft ? defenderStartX - 0.08 : defenderStartX + 0.08, y: 0.55 },
+        ]
+      : undefined
+
+    return finishScenarioFrame({
+      a: attackerFromLeft ? attacker : defender,
+      b: attackerFromLeft ? defender : attacker,
+      impact: hitFlash,
+      beam: p < 0.3 ? Math.max(0, 0.95 - p * 2.4) : 0,
+      pulseA: attackerFromLeft
+        ? 0.5 + charge * 0.35
+        : Math.max(0, 0.44 + probeForward * 0.14 - finish),
+      pulseB: attackerFromLeft
+        ? Math.max(0, 0.44 + probeForward * 0.14 - finish)
+        : 0.5 + charge * 0.35,
+      incomingOnA: attackerFromLeft ? Math.max(0, 1 - p * 2.4) : 0,
+      incomingOnB: attackerFromLeft ? 0 : Math.max(0, 1 - p * 2.4),
+      hideA: attackerFromLeft ? false : finish > 0.62,
+      hideB: attackerFromLeft ? finish > 0.62 : false,
+      ghostsA: attackerFromLeft ? undefined : defenderGhosts,
+      ghostsB: attackerFromLeft ? defenderGhosts : undefined,
     })
   }
 
@@ -962,6 +1039,30 @@ export function FightScenarioCanvas({
       })
     }
 
+    const drawIncomingRings = (
+      ctx: CanvasRenderingContext2D,
+      point: LightningPoint,
+      color: string,
+      strength: number,
+      seconds: number,
+    ) => {
+      if (strength <= 0.02) return
+      const center = toPixels(point)
+      const ringPhase = wrap01(seconds * 1.9)
+      ;[0, 0.22, 0.44].forEach((offset, index) => {
+        const t = wrap01(ringPhase + offset)
+        const radius = 12 + t * 28
+        ctx.beginPath()
+        ctx.arc(center.x, center.y, radius, 0, Math.PI * 2)
+        ctx.strokeStyle = rgbaFromHex(color, Math.max(0, strength * (0.85 - t * 0.55) - index * 0.05))
+        ctx.lineWidth = 2.2 - index * 0.3
+        ctx.shadowColor = rgbaFromHex(color, 0.55 * strength)
+        ctx.shadowBlur = 10
+        ctx.stroke()
+        ctx.shadowBlur = 0
+      })
+    }
+
     const drawFighter = (
       ctx: CanvasRenderingContext2D,
       point: LightningPoint,
@@ -996,14 +1097,22 @@ export function FightScenarioCanvas({
       if (startTime === 0) startTime = time
       const elapsedSeconds = (time - startTime) / 1000
       const cycle = wrap01(elapsedSeconds / 3.6)
-      const scenarioFrame = orientFightScenarioFrame(
-        buildFightScenarioFrame(scenario, cycle, elapsedSeconds, variantToken || null),
-        lead,
-      )
+      const baseFrame = buildFightScenarioFrame(scenario, cycle, elapsedSeconds, variantToken || null, lead)
+      const scenarioFrame = scenario === 'one-shot'
+        ? baseFrame
+        : orientFightScenarioFrame(baseFrame, lead)
       const pointA = toPixels(scenarioFrame.a)
       const pointB = toPixels(scenarioFrame.b)
-      pushTrail(trailA, pointA)
-      pushTrail(trailB, pointB)
+      if (scenarioFrame.hideA) {
+        trailA.length = 0
+      } else {
+        pushTrail(trailA, pointA)
+      }
+      if (scenarioFrame.hideB) {
+        trailB.length = 0
+      } else {
+        pushTrail(trailB, pointB)
+      }
 
       const ctx = context
       ctx.clearRect(0, 0, width, height)
@@ -1044,6 +1153,8 @@ export function FightScenarioCanvas({
       drawTrail(ctx, trailA, colorA, 3.6)
       drawGhosts(ctx, scenarioFrame.ghostsA, colorA)
       drawGhosts(ctx, scenarioFrame.ghostsB, colorB)
+      drawIncomingRings(ctx, scenarioFrame.a, colorA, scenarioFrame.incomingOnA ?? 0, elapsedSeconds)
+      drawIncomingRings(ctx, scenarioFrame.b, colorA, scenarioFrame.incomingOnB ?? 0, elapsedSeconds)
 
       if (scenarioFrame.beam > 0.02) {
         ctx.beginPath()
@@ -1070,8 +1181,8 @@ export function FightScenarioCanvas({
         ctx.stroke()
       }
 
-      drawFighter(ctx, pointB, colorB, 5.2, scenarioFrame.pulseB)
-      drawFighter(ctx, pointA, colorA, 5.2, scenarioFrame.pulseA)
+      if (!scenarioFrame.hideB) drawFighter(ctx, pointB, colorB, 5.2, scenarioFrame.pulseB)
+      if (!scenarioFrame.hideA) drawFighter(ctx, pointA, colorA, 5.2, scenarioFrame.pulseA)
       if (!auditMode) {
         frame = requestAnimationFrame(render)
       }

@@ -40,6 +40,30 @@ type FightSimulationTemplateProps = TemplatePreviewProps & {
 
 const GLITCH_CHARS = '!@#$%^&Ă˘â€“â€Ă˘â€“â€śĂ˘â€“â€™Ă˘â€“ĹšĂ˘â€“ÂĂ˘â€˘Â Ă˘â€˘ĹĂ˘â€˘Â¦Ă˘â€˘Â¬Ă˘â€ťÄ˝Ă˘â€˘Â«ĂŽÂ©'.split('')
 
+const buildImmediateDropPolyline = (
+  values: number[],
+  xStart: number,
+  xEnd: number,
+  yTop: number,
+  yBottom: number,
+) => {
+  const [first, ...rest] = values
+  const hasImmediateDrop = Number.isFinite(first) && first > 0 && rest.length > 0 && rest.every((value) => value === 0)
+  if (!hasImmediateDrop) return null
+  const range = yBottom - yTop
+  const startY = yBottom - ((first ?? 0) / 100) * range
+  const dropX = xStart + (xEnd - xStart) * 0.02
+  const polylinePoints = [
+    { x: xStart, y: startY },
+    { x: dropX, y: yBottom + 3 },
+  ]
+  return {
+    points: [{ x: xStart, y: startY }],
+    polyline: polylinePoints.map((point) => `${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(' '),
+    immediateDrop: true,
+  }
+}
+
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
   useEffect(() => {
@@ -311,8 +335,12 @@ export function FightSimulationTemplate({
     ?? pickTemplateField(bdFields, ['a_curve', 'curve_a']) ?? ''
   const bdBCurveRaw = (bdPrefix ? pickTemplateField(bdFields, [`${bdPrefix}b_curve`]) : null)
     ?? pickTemplateField(bdFields, ['b_curve', 'curve_b']) ?? ''
+  const bdPreserveCurvePoints =
+    ((bdPrefix ? pickTemplateField(bdFields, [`${bdPrefix}preserve_curve_points`]) : '') ||
+      pickTemplateField(bdFields, ['preserve_curve_points', 'dense_curve', 'raw_curve_points'])) === 'true'
   const BD_CURVE_POINT_COUNT = 4
   const normalizeBdCurvePointCount = (values: number[], fallback: number[]) => {
+    if (bdPreserveCurvePoints && values.length >= 2) return values
     if (values.length > BD_CURVE_POINT_COUNT) {
       const maxIndex = values.length - 1
       return Array.from({ length: BD_CURVE_POINT_COUNT }, (_, i) => {
@@ -326,19 +354,22 @@ export function FightSimulationTemplate({
     while (sliced.length < BD_CURVE_POINT_COUNT) sliced.push(padValue)
     return sliced
   }
-  const miniCurveA = buildCurvePolyline(
-    normalizeBdCurvePointCount(parseCurveValues(bdACurveRaw, [78, 64, 50, 32]), [78, 64, 50, 32]),
+  const miniCurveAValues = normalizeBdCurvePointCount(parseCurveValues(bdACurveRaw, [78, 64, 50, 32]), [78, 64, 50, 32])
+  const miniCurveBValues = normalizeBdCurvePointCount(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35]), [35, 35, 35, 35])
+  const miniCurveBFlat = miniCurveBValues.length > 1 && miniCurveBValues.every((value) => value === miniCurveBValues[0])
+  const miniCurveA = buildImmediateDropPolyline(miniCurveAValues, 5, 96, 5, 44) || buildCurvePolyline(
+    miniCurveAValues,
     5,
     96,
-    8,
-    41,
+    5,
+    44,
   )
-  const miniCurveB = buildCurvePolyline(
-    normalizeBdCurvePointCount(parseCurveValues(bdBCurveRaw, [35, 35, 35, 35]), [35, 35, 35, 35]),
+  const miniCurveB = buildImmediateDropPolyline(miniCurveBValues, 5, 96, 5, 44) || buildCurvePolyline(
+    miniCurveBValues,
     5,
     96,
-    8,
-    41,
+    5,
+    44,
   )
 
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
@@ -469,11 +500,12 @@ export function FightSimulationTemplate({
 
           <div className={`${layout.PHASES_PANEL_CLASS as string} vs-fight-simulation-phases`} style={{ display: 'flex', gap: '0.65rem', flex: 1, border: 'none', background: 'transparent', boxShadow: 'none', padding: 0, minHeight: 0 }}>
             {active.phases.map((phase, index) => {
+              const phaseDisabled = phase.title.trim() === '-' && phase.event.trim() === '-'
               const visiblePoints = Math.max(2, Math.min(index + 2, miniCurveA.points.length, miniCurveB.points.length))
-              const partialPointsA = miniCurveA.points.slice(0, visiblePoints)
-              const partialPointsB = miniCurveB.points.slice(0, visiblePoints)
-              const partialPolylineA = partialPointsA.map((pt) => `${pt.x},${pt.y}`).join(' ')
-              const partialPolylineB = partialPointsB.map((pt) => `${pt.x},${pt.y}`).join(' ')
+              const partialPointsA = 'immediateDrop' in miniCurveA ? miniCurveA.points : miniCurveA.points.slice(0, visiblePoints)
+              const partialPointsB = 'immediateDrop' in miniCurveB || miniCurveBFlat ? miniCurveB.points : miniCurveB.points.slice(0, visiblePoints)
+              const partialPolylineA = 'immediateDrop' in miniCurveA ? miniCurveA.polyline : partialPointsA.map((pt) => `${pt.x},${pt.y}`).join(' ')
+              const partialPolylineB = 'immediateDrop' in miniCurveB || miniCurveBFlat ? miniCurveB.polyline : partialPointsB.map((pt) => `${pt.x},${pt.y}`).join(' ')
               return (
               <div
                 key={`phase-sim-${activeIndex}-${index}-${phase.title}`}
@@ -510,70 +542,85 @@ export function FightSimulationTemplate({
                   />
                 </div>
 
-                <div className="vs-fight-simulation-scenario-wrap" style={{ position: 'relative', height: '140px', marginBottom: '0.65rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
-                  <FightScenarioCanvas
-                    scenario={phase.animation}
-                    variantToken={phase.animationVariantToken}
-                    colorA={fighterA.color}
-                    colorB={fighterB.color}
-                    lead={phase.lead}
-                  />
-                  <div className={`${layout.SCENARIO_META_CLASS as string} vs-fight-simulation-scenario-meta`} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.2rem 0.15rem', background: 'transparent', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255, 85, 78, 0.4)' }}>
-                    <span
-                      className={`${layout.SCENARIO_META_LABEL_CLASS as string} vs-fight-simulation-scenario-meta-label`}
-                      style={{
-                        color: RED_LABEL_COLOR,
-                        fontFamily: "'Chakra Petch', sans-serif",
-                        fontSize: 'var(--tb-type-5)',
-                        fontWeight: 700,
-                        lineHeight: 1,
-                        textTransform: 'uppercase',
-                        letterSpacing: '0.05em',
-                        textShadow: RED_LABEL_REFLECTION,
-                      }}
-                    >
-                      <GlitchText text={common.scenarioPresetLabel} />
-                    </span>
-                    <FittedText
-                      as="span"
-                      slotKey={`fight-simulation:scenario:${activeIndex}:${index}`}
-                      spec={slotPhaseScenarioLabel}
-                      text={phase.animationLabel}
-                      className={`${layout.SCENARIO_META_VALUE_CLASS as string} vs-fight-simulation-scenario-meta-value`}
-                      style={{ ...phaseTextBaseStyle, maxWidth: '60%', textAlign: 'right' }}
-                    />
+                {phaseDisabled ? (
+                  <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <p style={{ ...phaseTextBaseStyle, fontSize: '2rem', textAlign: 'center' }}>-</p>
                   </div>
-                </div>
+                ) : (
+                  <>
+                    <div className="vs-fight-simulation-scenario-wrap" style={{ position: 'relative', height: '140px', marginBottom: '0.65rem', border: 'none', background: 'transparent', boxShadow: 'none' }}>
+                      <FightScenarioCanvas
+                        scenario={phase.animation}
+                        variantToken={phase.animationVariantToken}
+                        colorA={fighterA.color}
+                        colorB={fighterB.color}
+                        lead={phase.lead}
+                      />
+                      <div className={`${layout.SCENARIO_META_CLASS as string} vs-fight-simulation-scenario-meta`} style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '0.2rem 0.15rem', background: 'transparent', display: 'flex', justifyContent: 'space-between', borderTop: '1px solid rgba(255, 85, 78, 0.4)' }}>
+                        <span
+                          className={`${layout.SCENARIO_META_LABEL_CLASS as string} vs-fight-simulation-scenario-meta-label`}
+                          style={{
+                            color: RED_LABEL_COLOR,
+                            fontFamily: "'Chakra Petch', sans-serif",
+                            fontSize: 'var(--tb-type-5)',
+                            fontWeight: 700,
+                            lineHeight: 1,
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.05em',
+                            textShadow: RED_LABEL_REFLECTION,
+                          }}
+                        >
+                          <GlitchText text={common.scenarioPresetLabel} />
+                        </span>
+                        <FittedText
+                          as="span"
+                          slotKey={`fight-simulation:scenario:${activeIndex}:${index}`}
+                          spec={slotPhaseScenarioLabel}
+                          text={phase.animationLabel}
+                          className={`${layout.SCENARIO_META_VALUE_CLASS as string} vs-fight-simulation-scenario-meta-value`}
+                          style={{ ...phaseTextBaseStyle, maxWidth: '60%', textAlign: 'right' }}
+                        />
+                      </div>
+                    </div>
 
-                <div className={`${layout.BARS_MODE_CLASS as string} vs-fight-simulation-bars-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
-                  <FittedText
-                    as="p"
-                    slotKey={`fight-simulation:event:${activeIndex}:${index}`}
-                    spec={slotPhaseEvent}
-                    text={phase.event}
-                    className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
-                    style={phaseEventStyle}
-                  />
-                  <div className="vs-fight-simulation-bars-chart-wrap mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
-                    <svg viewBox="0 0 100 49" className="vs-fight-simulation-bars-chart w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
-                      {['10', '18', '26', '34'].map((y) => (
-                        <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
-                      ))}
-                      <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
-                      <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
-                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a-glow" points={partialPolylineA} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
-                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a" points={partialPolylineA} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
-                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b-glow" points={partialPolylineB} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
-                      <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b" points={partialPolylineB} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
-                      {partialPointsA.map((pt, i) => (
-                        <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--a" key={`a${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
-                      ))}
-                      {partialPointsB.map((pt, i) => (
-                        <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--b" key={`b${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
-                      ))}
-                    </svg>
-                  </div>
-                </div>
+                    <div className={`${layout.BARS_MODE_CLASS as string} vs-fight-simulation-bars-mode`} style={{ flex: 1, display: 'flex', flexDirection: 'column' }}>
+                      <FittedText
+                        as="p"
+                        slotKey={`fight-simulation:event:${activeIndex}:${index}`}
+                        spec={slotPhaseEvent}
+                        text={phase.event}
+                        className={`${layout.EVENT_TEXT_CLASS as string} vs-fight-simulation-event`}
+                        style={phaseEventStyle}
+                      />
+                      <div className="vs-fight-simulation-bars-chart-wrap mt-2 flex min-h-0 overflow-hidden p-2" style={{ height: '290px' }}>
+                        <svg viewBox="0 0 100 49" className="vs-fight-simulation-bars-chart w-full h-full" preserveAspectRatio="xMidYMid meet" style={{ width: '100%', height: '100%' }}>
+                          <defs>
+                            <clipPath id={`fight-sim-mini-clip-${activeIndex}-${index}`}>
+                              <rect x="0" y="0" width="100" height="44" />
+                            </clipPath>
+                          </defs>
+                          {['10', '18', '26', '34'].map((y) => (
+                            <line key={y} x1="5" y1={y} x2="96" y2={y} stroke="rgba(125,211,252,0.2)" strokeWidth="0.15" />
+                          ))}
+                          <g clipPath={`url(#fight-sim-mini-clip-${activeIndex}-${index})`}>
+                            <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a-glow" points={partialPolylineA} fill="none" stroke="rgba(56,189,248,0.35)" strokeWidth="2.2" />
+                            <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--a" points={partialPolylineA} fill="none" stroke="#0ea5e9" strokeWidth="1.2" />
+                            <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b-glow" points={partialPolylineB} fill="none" stroke="rgba(244,63,94,0.4)" strokeWidth="2" />
+                            <polyline className="vs-fight-simulation-mini-curve vs-fight-simulation-mini-curve--b" points={partialPolylineB} fill="none" stroke="#c81e3a" strokeWidth="1.1" />
+                            {partialPointsA.map((pt, i) => (
+                              <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--a" key={`a${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#0ea5e9" />
+                            ))}
+                            {partialPointsB.map((pt, i) => (
+                              <circle className="vs-fight-simulation-mini-point vs-fight-simulation-mini-point--b" key={`b${index}-${i}`} cx={pt.x} cy={pt.y} r="0.9" fill="#ef4444" />
+                            ))}
+                          </g>
+                          <line x1="5" y1="44" x2="96" y2="44" stroke="#cbd5e1" strokeWidth="0.3" />
+                          <line x1="5" y1="44" x2="5" y2="5" stroke="#cbd5e1" strokeWidth="0.3" />
+                        </svg>
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
               )
             })}
@@ -603,4 +650,3 @@ export function FightSimulationTemplate({
     </div>
   )
 }
-

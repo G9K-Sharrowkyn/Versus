@@ -90,7 +90,9 @@ export function BattleDynamicsTemplate({
   const defaultACurve = [78, 64, 50, 32]
   const defaultBCurve = [35, 35, 35, 35]
   const defaultYellow = [34, 36, 33, 35, 34, 36, 33, 35]
+  const preserveCurvePoints = pickTemplateField(blockFields, ['preserve_curve_points', 'dense_curve', 'raw_curve_points']) === 'true'
   const normalizeCurvePointCount = (values: number[], fallback: number[]) => {
+    if (preserveCurvePoints && values.length >= 2) return values
     if (values.length > CURVE_POINT_COUNT) {
       const maxIndex = values.length - 1
       return Array.from({ length: CURVE_POINT_COUNT }, (_, i) => {
@@ -106,6 +108,29 @@ export function BattleDynamicsTemplate({
   }
   const parseScenarioCurve = (raw: string, fallback: number[]) =>
     normalizeCurvePointCount(parseCurveValues(raw, fallback), fallback)
+
+  const buildImmediateDropPolyline = (
+    values: number[],
+    xStart: number,
+    xEnd: number,
+    yTop: number,
+    yBottom: number,
+  ) => {
+    const [first, ...rest] = values
+    const hasImmediateDrop = Number.isFinite(first) && first > 0 && rest.length > 0 && rest.every((value) => value === 0)
+    if (!hasImmediateDrop) return null
+    const range = yBottom - yTop
+    const startY = yBottom - ((first ?? 0) / 100) * range
+    const dropX = xStart + (xEnd - xStart) * 0.02
+    const polylinePoints = [
+      { x: xStart, y: startY },
+      { x: dropX, y: yBottom + 3 },
+    ]
+    return {
+      points: [{ x: xStart, y: startY }],
+      polyline: polylinePoints.map((point) => `${point.x.toFixed(2)},${point.y.toFixed(2)}`).join(' '),
+    }
+  }
 
   const basePhase1 = line(0, ['phase_1', 'phase1'])
   const basePhase2 = line(1, ['phase_2', 'phase2'])
@@ -164,8 +189,13 @@ export function BattleDynamicsTemplate({
   const phase2Label = stripTrailingPhaseDot(common.phase2Label)
   const phase3Label = stripTrailingPhaseDot(common.phase3Label)
 
-  const curveA = buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
+  const curveA = buildImmediateDropPolyline(active.aCurveValues, 5, 96, 8, 41) || buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
   const curveB = buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
+  const axisX1 = Number(layout.AXIS_X1 as string) || 5
+  const axisX2 = Number(layout.AXIS_X2 as string) || 96
+  const axisYTop = Number(layout.AXIS_Y_TOP as string) || 8
+  const axisYBottom = Number(layout.AXIS_Y_BOTTOM as string) || 41
+  const chartClipId = `battle-dynamics-clip-${scopeKey.replace(/[^a-zA-Z0-9_-]/g, '-')}`
   const BLUE_TEXT_COLOR = '#77e2f2'
   const RED_LABEL_COLOR = '#ff554e'
   const BLUE_TEXT_REFLECTION = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
@@ -338,6 +368,9 @@ export function BattleDynamicsTemplate({
               <marker id={layout.ARROW_MARKER_ID as string} markerWidth={layout.ARROW_MARKER_WIDTH as string} markerHeight={layout.ARROW_MARKER_HEIGHT as string} refX={layout.ARROW_REF_X as string} refY={layout.ARROW_REF_Y as string} orient="auto">
                 <path d={layout.ARROW_MARKER_PATH as string} fill={layout.ARROW_FILL as string} />
               </marker>
+              <clipPath id={chartClipId}>
+                <rect x="0" y="0" width="100" height={axisYBottom} />
+              </clipPath>
             </defs>
 
             {String(layout.GRID_Y_VALUES).split(',').map((y) => (
@@ -346,70 +379,71 @@ export function BattleDynamicsTemplate({
             {String(layout.GRID_X_VALUES).split(',').map((x) => (
               <line key={`grid-x-${x}`} x1={x} y1={layout.GRID_Y1 as string} x2={x} y2={layout.GRID_Y2 as string} stroke={layout.GRID_STROKE as string} strokeWidth={layout.GRID_STROKE_WIDTH as string} />
             ))}
+            <g clipPath={`url(#${chartClipId})`}>
+              <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a-glow" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} pathLength={100} />
+              <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} pathLength={100} />
+              <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} pathLength={100} />
+              <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} pathLength={100} />
+              {curveB.points.map((point, index) => (
+                <circle
+                  className="vs-battle-dynamics-point vs-battle-dynamics-point--b"
+                  key={`r-${index}-${point.x}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r={layout.CURVE_POINT_R as string}
+                  fill={layout.CURVE_B_POINT_FILL as string}
+                  stroke={layout.CURVE_B_POINT_STROKE as string}
+                  strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
+                  opacity="0"
+                >
+                  <animate
+                    attributeName="opacity"
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values="0;0;1;1;0"
+                    keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
+                  />
+                  <animate
+                    attributeName="r"
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
+                    keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.07, 0.998).toFixed(4)};1`}
+                  />
+                </circle>
+              ))}
+              {curveA.points.map((point, index) => (
+                <circle
+                  className="vs-battle-dynamics-point vs-battle-dynamics-point--a"
+                  key={`b-${index}-${point.x}`}
+                  cx={point.x}
+                  cy={point.y}
+                  r={layout.CURVE_POINT_R as string}
+                  fill={layout.CURVE_A_POINT_FILL as string}
+                  stroke={layout.CURVE_A_POINT_STROKE as string}
+                  strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
+                  opacity="0"
+                >
+                  <animate
+                    attributeName="opacity"
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values="0;0;1;1;0"
+                    keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
+                  />
+                  <animate
+                    attributeName="r"
+                    dur="5s"
+                    repeatCount="indefinite"
+                    values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
+                    keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.07, 0.998).toFixed(4)};1`}
+                  />
+                </circle>
+              ))}
+            </g>
 
-            <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X2 as string} y2={layout.AXIS_Y_BOTTOM as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
-            <line x1={layout.AXIS_X1 as string} y1={layout.AXIS_Y_BOTTOM as string} x2={layout.AXIS_X1 as string} y2={layout.AXIS_Y_TOP as string} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
-
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a-glow" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_GLOW as string} strokeWidth={layout.CURVE_A_GLOW_WIDTH as string} pathLength={100} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--a" points={curveA.polyline} fill="none" stroke={layout.CURVE_A_STROKE as string} strokeWidth={layout.CURVE_A_STROKE_WIDTH as string} pathLength={100} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b-glow" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_GLOW as string} strokeWidth={layout.CURVE_B_GLOW_WIDTH as string} pathLength={100} />
-            <polyline className="vs-battle-dynamics-curve vs-battle-dynamics-curve--b" points={curveB.polyline} fill="none" stroke={layout.CURVE_B_STROKE as string} strokeWidth={layout.CURVE_B_STROKE_WIDTH as string} pathLength={100} />
-            {curveB.points.map((point, index) => (
-              <circle
-                className="vs-battle-dynamics-point vs-battle-dynamics-point--b"
-                key={`r-${index}-${point.x}`}
-                cx={point.x}
-                cy={point.y}
-                r={layout.CURVE_POINT_R as string}
-                fill={layout.CURVE_B_POINT_FILL as string}
-                stroke={layout.CURVE_B_POINT_STROKE as string}
-                strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
-                opacity="0"
-              >
-                <animate
-                  attributeName="opacity"
-                  dur="5s"
-                  repeatCount="indefinite"
-                  values="0;0;1;1;0"
-                  keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
-                />
-                <animate
-                  attributeName="r"
-                  dur="5s"
-                  repeatCount="indefinite"
-                  values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
-                  keyTimes={`0;${pointRevealProgress(index, curveB.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveB.points.length) + 0.07, 0.998).toFixed(4)};1`}
-                />
-              </circle>
-            ))}
-            {curveA.points.map((point, index) => (
-              <circle
-                className="vs-battle-dynamics-point vs-battle-dynamics-point--a"
-                key={`b-${index}-${point.x}`}
-                cx={point.x}
-                cy={point.y}
-                r={layout.CURVE_POINT_R as string}
-                fill={layout.CURVE_A_POINT_FILL as string}
-                stroke={layout.CURVE_A_POINT_STROKE as string}
-                strokeWidth={layout.CURVE_POINT_STROKE_WIDTH as string}
-                opacity="0"
-              >
-                <animate
-                  attributeName="opacity"
-                  dur="5s"
-                  repeatCount="indefinite"
-                  values="0;0;1;1;0"
-                  keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.002, 0.997).toFixed(4)};0.994;1`}
-                />
-                <animate
-                  attributeName="r"
-                  dur="5s"
-                  repeatCount="indefinite"
-                  values={`${basePointRadius};${basePointRadius};${pulsePointRadius};${basePointRadius};${basePointRadius}`}
-                  keyTimes={`0;${pointRevealProgress(index, curveA.points.length).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.028, 0.996).toFixed(4)};${Math.min(pointRevealProgress(index, curveA.points.length) + 0.07, 0.998).toFixed(4)};1`}
-                />
-              </circle>
-            ))}
+            <line x1={axisX1} y1={axisYBottom} x2={axisX2} y2={axisYBottom} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
+            <line x1={axisX1} y1={axisYBottom} x2={axisX1} y2={axisYTop} stroke={layout.AXIS_STROKE as string} strokeWidth={layout.AXIS_STROKE_WIDTH as string} markerEnd={`url(#${String(layout.ARROW_MARKER_ID)})`} />
           </svg>
 
           <div className="vs-battle-dynamics-phase-wrap" style={{ display: 'flex', flexDirection: 'column', gap: '0.28rem', marginTop: '-6rem' }}>

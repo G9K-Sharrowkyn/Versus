@@ -13,6 +13,7 @@ export const translationsEn = {
     'orbit-harass': 'Orbit Harass',
     'hit-and-run': 'Hit and Run',
     'rush-ko': 'Rush KO',
+    'one-shot': 'One Shot',
     'clash-lock': 'Clash Lock',
     'kite-zone': 'Kite Zone',
     'teleport-burst': 'Teleport Burst',

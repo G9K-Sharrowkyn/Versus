@@ -16,14 +16,13 @@
     "name": "Darth Vader",
     "profile": {
       "powers": [
-        "Force telekinesis, precognition, choke and crush techniques, and elite lightsaber lethality."
+        "Force telekinesis, precognition, and choke and crush techniques."
       ],
       "tools": [
-        "Defensive saber discipline, blaster and energy deflection, and Force-based battlefield control."
+        "Defensive saber discipline, elite lightsaber lethality, blaster and energy deflection, and Force-based battlefield control."
       ],
       "weaknesses": [
-        "Cybernetic life-support dependence and vulnerability to sustained system disruption.",
-        "Lower raw physical durability and scale than top cosmic entities."
+        "Dependence on armor and cybernetic life support, which an opponent can disable or damage."
       ]
     },
     "stats": {
@@ -55,8 +54,8 @@
       "Performs molecular-level matter manipulation."
     ],
     "dossier": {
-      "advantage": "Near-absolute invulnerability and tactical genius. He possesses a body capable of surviving attacks from gods and a mind that instantly turns an enemy's mistake into their inevitable defeat.",
-      "mentality": "Arrogant nihilist with iron discipline. He fights with absolute certainty of his superiority, seeking to ruthlessly crush anyone who stands in his way.",
+      "advantage": "Extreme durability and tactical genius. Thanos possesses a body capable of surviving attacks from godlike beings and a mind that capitalizes on any mistake immediately.",
+      "mentality": "A fanatic of his own order with iron discipline. Thanos fights with absolute certainty in his superiority, treating domination over the weak as something natural and inevitable.",
       "quote": "I did not force you to fight me. You forced me into doing what I did. I had to be faithful to my nature. For, after all, I am Thanos.",
       "style": "Brutal, precise powerhouse combat. Thanos combines mastery of hand-to-hand combat with devastating cosmic energy blasts to systematically crush any defense."
     },
@@ -69,8 +68,7 @@
         "Strategic intellect, combat adaptability, and broad resistance profile."
       ],
       "weaknesses": [
-        "Arrogance and tendency to test opponents can create early openings.",
-        "Without Infinity Stones, he remains elite but lacks Gauntlet-level instant authority."
+        "Arrogance and tendency to test opponents can create early openings."
       ]
     },
     "stats": {
@@ -104,7 +102,6 @@
     "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "x-factor",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
@@ -113,48 +110,50 @@
   ],
   "templates": {
     "battle-dynamics": {
-      "label": "Ultimate Inevitability",
-      "a_curve": "80,60,40,20,5",
-      "b_curve": "91,95,98,100,100",
+      "label": "Immediate Execution",
+      "preserve_curve_points": "true",
+      "a_curve": "80,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+      "b_curve": "91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91,91",
       "yellow_wave": "20,25,22,28,24,30,26,35",
-      "phase_1": "Vader strikes with Force fury, attempting to impose his will on a cosmic being. Thanos receives the attacks with ironic calm.",
-      "phase_2": "Lightsaber and telekinesis clash with physical invulnerability. Thanos's scale begins to overwhelm the Sith Lord's systems.",
-      "phase_3": "End of hope. Every atom of space belongs to Thanos. Vader is reduced to an insignificant anomaly.",
-      "analysis": "In this clash of two powers, there are no variables that could change the outcome. Thanos dominates in every dimension of physics."
+      "phase_1": "Vader attempts an opening with the Force and his lightsaber. Thanos ignores the attack, takes control, and ends the fight immediately.",
+      "phase_2": "-",
+      "phase_3": "-",
+      "analysis": "Vader has no real path to killing Thanos. This fight ends immediately."
     },
     "fight-card": {
       "fight_title": "Vader vs Thanos"
     },
     "fight-simulation": {
       "label": "Final Verdict",
-      "opening": "Vader opens the fight with a Force charge, attempting to immediately crush Thanos's helmet.",
-      "mid_fight": "Thanos simply grabs the lightsaber blade, ignoring the plasma's heat and energy.",
-      "late_fight": "Thanos ends the clash with a single, precise strike that destroys Vader's cybernetics.",
-      "end_condition": "Thanos's victory by absolute scale advantage.",
-      "phase_1_animation": "berserk-overextend",
-      "phase_1_title": "Lord's Fury",
+      "opening": "Vader opens with a full Force assault, trying to break Thanos immediately.",
+      "mid_fight": "Nothing works. Thanos ignores the Force and the lightsaber without taking real damage.",
+      "late_fight": "After Vader's first failed attempt, Thanos ends the fight immediately.",
+      "end_condition": "Thanos wins by immediate execution.",
+      "phase_1_actor": "b",
+      "phase_1_animation": "one-shot",
+      "phase_1_title": "One Hit",
       "phase_1_a_label": "Force",
       "phase_1_a_value": "92",
       "phase_1_b_label": "Resistance",
       "phase_1_b_value": "99",
-      "phase_1_event": "Vader strikes with all his hate, but Thanos does not even flinch under the telekinetic pressure.",
+      "phase_1_event": "Thanos closes the gap once, breaks through Vader's defense, and ends the fight before it truly begins.",
       "phase_2_animation": "clash-lock",
-      "phase_2_title": "Clash of Worlds",
-      "phase_2_event": "The lightsaber cuts through Thanos's armor, without leaving even a scratch.",
-      "phase_2_branch_a": "Vader attempts to use Force Crush on Thanos's heart.",
-      "phase_2_branch_b": "Thanos smiles and counterattacks with a cosmic blast.",
+      "phase_2_title": "-",
+      "phase_2_event": "-",
+      "phase_2_branch_a": "-",
+      "phase_2_branch_b": "-",
       "phase_3_actor": "b",
-      "phase_3_animation": "infinite-attrition",
-      "phase_3_title": "Inevitable End",
-      "phase_3_event": "Thanos systematically destroys every life-support mechanism of Vader.",
-      "phase_3_branch_a": "Vader falls, losing touch with the Force.",
-      "phase_3_branch_b": "Vader's armor cracks under the pressure of cosmic strength."
+      "phase_3_animation": "brutal-execution",
+      "phase_3_title": "-",
+      "phase_3_event": "-",
+      "phase_3_branch_a": "-",
+      "phase_3_branch_b": "-"
     },
     "final-summary": {
-      "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos operates on a different level of physics.",
-      "line_2": "Vader's destructive opening is but a test for the Titan's durability, which he passes without much difficulty.",
-      "line_3": "This is a clash of whether lightsaber precision can find a gap in armor that has survived galactic explosions.",
-      "winner": "Thanos dominates unquestionably."
+      "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos is beyond his scale.",
+      "line_2": "Vader's offense does not give him a reliable path to permanently breaking Thanos's durability.",
+      "line_3": "Once the first opening fails, the fight immediately turns into a one-sided execution.",
+      "winner": "Thanos wins 10/10."
     },
     "tactical-board": {
       "lane": "Vader must solve the fight fast. Thanos only needs one opening to fail.",
@@ -168,18 +167,6 @@
       "line_1": "Darth Vader possesses technique and control that could kill almost any being, but Thanos operates on a different level of physics.",
       "line_2": "Vader's destructive opening is but a test for the Titan's durability, which he passes without much difficulty.",
       "line_3": "This is a clash of whether lightsaber precision can find a gap in armor that has survived galactic explosions."
-    },
-    "x-factor": {
-      "a_bonus": "14",
-      "a_bonus_label": "LETHAL OPENING",
-      "a_value": "50",
-      "b_bonus": "22",
-      "b_value": "50",
-      "factor": "FIRST BYPASS VS DURABILITY FLOOR",
-      "implikacja": "If Thanos survives the first real bypass, the fight immediately shifts onto his terms.",
-      "mechanika": "Vader can only win if the first surgical attempt truly bypasses Thanos's cosmic durability.",
-      "psychologia": "Vader wants a controlled duel. Thanos wants the fight to become a long execution.",
-      "regen": "SCALE EDGE"
     }
   }
 }

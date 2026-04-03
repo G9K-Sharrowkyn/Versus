@@ -13,6 +13,7 @@ export const translationsPl = {
     'orbit-harass': 'Orbita i nękanie',
     'hit-and-run': 'Uderz i odejdź',
     'rush-ko': 'Szturm KO',
+    'one-shot': 'Jedno uderzenie',
     'clash-lock': 'Żelazny klincz',
     'kite-zone': 'Kiting i strefa',
     'teleport-burst': 'Teleport i zryw',
