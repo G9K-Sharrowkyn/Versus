@@ -1,14 +1,3 @@
-2. Zmieńmy nieco animację początkową. Start jest identyczny, po kliknięciu pojawia się ekran logowania, użytkownik wpisuje dowolne hasło i kilka uthenticate. Wtedy, zamiast "system rebooting", trzeciej animacji, od razu przechodzi do wyszukiwarki. Zostaw tylko to fajne Glitch przejście na początku trzeciej animacji, gdzie ekran skacze i jest takie ściemnienie i rozjaśnienie. To fajne fajne. Czwartą animację, tą czarną, z trzema tekstami jeden pod drugim też pomijamy, póki co. Od razu wyszukiwarka po zalogowaniu, z przejściem. 
-
-Po wpisaniu nazwy walki do wyszukiwarki, NIE PRZECHODZI do tej fajnej animacji z lecącymi panelami z grafikami. To odsuwamy na potem. Po wpisaniu nazwy walki, pojawia się trzecia animacja, tam gdzie było system "rebooting", tylko tam wpisz coś w stylu "Fight Simulation Starting" i inne takie. Że niby "walka właśnie jest przeprowadzana, w tej chwili". I zamiast "rebooting succesful", daj coś typu "Fight Scenario Complete". Pojawia się kolorowy Glitch, jak powinien i wtedy pojawia się nowe menu, którego jeszcze nie było! 
-
-Menu w stylu "Analityka walki". Szeroka ramka, jedna, ale bez tego całego tekstu po bokach, bez logo, bez stopnia zagrożenia i integralności danych. Kopiujesz samo tło, ramkę i tytułowy panel. Tytuł panelu to będzie "Fight History", "Historia Walk". 
-
-W Panelu, będą ułożone, jedna obok drugiej, grafiki w panelach, jak w animacji prowadzącej wcześniej bezpośrednio do walki. Te fajne, przeźroczyste, gdzie jest ID napisane w lewym górnym rogu. Grafiki będą w parach. Walka Superman vs King Hyperion będzie miała te dwa panele połączone, jeden obok drugiego, w jednym grafika Supermana, w drugim Hyperion, i podpis pod spodem Superman vs King Hyperion. Adekwatnie dla każdej walki. Niech będzie to mniej więcej tak, że są cztery walki w jednym szeregu, i każda kolejna rozpoczyna nowy szereg, i nowy i nowy. Walki będzie można w końcu przewijać, ale bez żadnego paska przewijania! Przewijanie będzie za pomocą strzałek góra dół i kółka myszy. 
-
-I TERAZ NAJWAŻNIEJSZE CO DO NOWEGO MENU: W nim nie będzie wszystkim walk, jakie są w folderze Fights. To menu generalnie będzie puste. Dopiero po wpisaniu prawidłowej nazwy walki, np. "Superman vs King Hyperion", ta walka będzie się pojawiać na liście walk, jako pierwsza w szeregu. I będzie jedyna. Dopiero po wpisaniu w wyszukiwarce "Knull vs Odin" będzie sie pojawiać obok pierwszej walki ta druga, z własnymi grafikami i nazwami postaci. 
-
-Dopiero po kliknięciu w ten konkretny panel, następuje znowu animacja Glitch kolorowa, która prowadzi do "latajacej" animacji, z przesuwającymi się grafikami, która będzie prowadzić do walki.
 
 3. Gdy pierwsze dwa punkty będą skończone, dopiero wtedy robimy czyszczenie aplikacji i szeregowanie wszystkiego. Ta aplikacja, jest tak pokręcona, skomplikowana, że czasem trudno ogarnać, za co jaka funkcja odpowiada. 
 To wszystko trzeba uprościć, zatomitować, rozbić.
