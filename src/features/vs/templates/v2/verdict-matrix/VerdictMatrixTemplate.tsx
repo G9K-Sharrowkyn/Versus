@@ -444,6 +444,8 @@ export function VerdictMatrixTemplate({
                   const winnerSide = resolveExplicitWinnerSide(explicitWinner) || resolveWinnerSide(cellText)
                   const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
                   const winnerImage = winnerSide === 'a' ? leftImageUrl : winnerSide === 'b' ? rightImageUrl : ''
+                  const winnerScore = extractScore(cellText)
+                  const winnerSummary = winnerName ? `${winnerName}${winnerScore ? `: ${winnerScore}` : ''}` : common.emptyFieldLabel
                   return (
                     <div
                       key={`matrix-cell-${rowIndex}-${columnIndex}`}
@@ -473,7 +475,7 @@ export function VerdictMatrixTemplate({
                       {!useBelowCaptions ? (
                         <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem', zIndex: 3 }}>
                           <p style={{ ...matrixDossierDescriptionStyle, color: '#77e2f2', letterSpacing: '0.05em', textShadow: '0 0 10px rgba(119, 226, 242, 0.45)' }}>
-                            {winnerName || common.emptyFieldLabel}
+                            {winnerSummary}
                           </p>
                         </div>
                       ) : null}
