@@ -190,7 +190,7 @@ export function BattleDynamicsTemplate({
   const phase3Label = stripTrailingPhaseDot(common.phase3Label)
 
   const curveA = buildImmediateDropPolyline(active.aCurveValues, 5, 96, 8, 41) || buildCurvePolyline(active.aCurveValues, 5, 96, 8, 41)
-  const curveB = buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
+  const curveB = buildImmediateDropPolyline(active.bCurveValues, 5, 96, 8, 41) || buildCurvePolyline(active.bCurveValues, 5, 96, 8, 41)
   const axisX1 = Number(layout.AXIS_X1 as string) || 5
   const axisX2 = Number(layout.AXIS_X2 as string) || 96
   const axisYTop = Number(layout.AXIS_Y_TOP as string) || 8
