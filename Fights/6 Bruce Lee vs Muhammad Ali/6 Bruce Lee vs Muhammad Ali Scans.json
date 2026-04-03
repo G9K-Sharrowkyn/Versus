@@ -37,7 +37,7 @@
                                             "right_image":  "Ali2.jpg",
                                             "left_image":  "Bruce2.jpg"
                                         },
-                      "verdict-matrix":  {
+                      "direct-verdict":  {
                                              "right_image":  "Ali3.jpg",
                                              "left_image":  "Bruce3.jpg"
                                          }

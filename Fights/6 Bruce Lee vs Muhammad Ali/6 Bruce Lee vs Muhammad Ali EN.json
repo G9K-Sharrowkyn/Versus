@@ -1,17 +1,17 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "One-inch punch demonstration (Long Beach).",
+      "One-inch punch demonstration at Long Beach.",
       "Two-finger push-ups and extreme body control.",
       "1958 inter-school boxing title.",
-      "Creation of Jeet Kune Do by combining styles.",
-      "Defeated Yoichi Nakachi in 11 seconds."
+      "Creation of Jeet Kune Do through practical style synthesis.",
+      "Witness-backed 11-second stoppage of Yoichi Nakachi."
     ],
     "dossier": {
-      "advantage": "Extremely trained body and inhuman speed. He possesses total muscle control, allowing him to deliver powerful strikes from zero distance.",
-      "mentality": "Instant adaptation and instinctive precision. He reads the opponent's intentions in a fraction of a second, striking where the defense is weakest.",
+      "advantage": "Entry speed and cross-style adaptation. Bruce can break rhythm and strike from unusual angles before the opponent settles the range.",
+      "mentality": "An analytical perfectionist. Bruce gathers information quickly, changes tempo, and looks for the shortest path to taking initiative.",
       "quote": "Be water, my friend.",
-      "style": "Masterful synthesis of Jeet Kune Do. Bruce Lee combines boxing, fencing, and Wing Chun into one fluid system, eliminating unnecessary movements."
+      "style": "A practical Jeet Kune Do synthesis. Bruce combines boxing, Wing Chun elements, and angle work into a system built to intercept movement rather than trade for long."
     },
     "name": "Bruce Lee",
     "profile": {
@@ -20,11 +20,11 @@
       ],
       "tools": [
         "JKD interception timing, low kicks, rhythm disruption, and cross-style adaptation.",
-        "Nunchaku and staff (in street scenarios), extreme power of the one-inch punch."
+        "Short-range burst power, angled entries, and fast transitions between boxing and non-boxing attacks."
       ],
       "weaknesses": [
         "Significant size and reach deficit versus heavyweight specialists.",
-        "Lack of proven experience taking hits from professional heavyweight boxers."
+        "Lack of strongly documented experience against professional heavyweight boxing pressure."
       ]
     },
     "stats": {
@@ -41,10 +41,7 @@
     "version": "Prime",
     "victories": [
       "Gary Elms",
-      "Yoichi Nakachi",
-      "Hawkins Chung",
-      "Wong Shun Leung",
-      "Wong Jack Man"
+      "Yoichi Nakachi"
     ]
   },
   "fighterB": {
@@ -56,10 +53,10 @@
       "Defeated 21 champions or heavyweight title challengers."
     ],
     "dossier": {
-      "advantage": "Heavyweight durability and ring intelligence. He can take a punch, but his true strength lies in avoiding them and dictating the fight's pace.",
-      "mentality": "A charismatic showman with a will of steel. He provokes the opponent to throw them off balance and methodically break their confidence.",
+      "advantage": "Heavyweight durability and ring control. Ali can make every entry cost the opponent more than it gives back.",
+      "mentality": "A charismatic tempo-controller. Ali talks, provokes, and drags the opponent into a rhythm of his own making, then wins through patience and certainty.",
       "quote": "Float like a butterfly, sting like a bee.",
-      "style": "Masterful control of distance and rhythm. He uses legendary footwork and a quick command of the ring to frustrate enemies."
+      "style": "Masterful control of distance and rhythm. His jab, feet, and head movement continuously reset the fight on his terms."
     },
     "name": "Muhammad Ali",
     "profile": {
@@ -68,10 +65,10 @@
       ],
       "tools": [
         "Jab control, footwork, defensive movement, clinch management, and pacing control.",
-        "Ability to survive punishing rounds and 'rope-a-dope' - exhausting the opponent."
+        "Proven ability to survive punishing rounds and turn attrition into a weapon of his own."
       ],
       "weaknesses": [
-        "Primarily boxing-centric toolkit compared with broad open-rule combat sets.",
+        "Primarily boxing-centric toolkit compared with broader open-rules scenarios.",
         "Vulnerability to low kicks and joint attacks that boxing does not account for."
       ]
     },
@@ -89,10 +86,7 @@
     "version": "Prime",
     "victories": [
       "George Foreman",
-      "Joe Frazier",
-      "Sonny Liston",
-      "Cleveland Williams",
-      "Ernie Terrell"
+      "Joe Frazier"
     ]
   },
   "locale": "en",
@@ -106,77 +100,69 @@
     "victory-archive",
     "fight-analytics",
     "parameter-comparison",
-    "x-factor",
     "final-summary",
     "battle-dynamics",
     "fight-simulation",
-    "verdict-matrix",
+    "direct-verdict",
     "fight-card"
   ],
   "templates": {
     "battle-dynamics": {
-      "label": "Ruthless Physics",
-      "a_curve": "79,65,50,30,10",
-      "b_curve": "88,90,95,98,100",
+      "label": "Heavyweight Reality",
+      "a_curve": "79,55,18,0,0",
+      "b_curve": "88,90,93,97,100",
       "yellow_wave": "25,35,28,42,30,48,32,55",
-      "phase_1": "Bruce Lee attempts to shock Ali with speed, but the heavyweight's jab sets an impassable reach boundary.",
-      "phase_2": "Technique versus mass. Every one of Ali's punches, even when blocked, wreaks havoc on Bruce's 36kg lighter frame.",
-      "phase_3": "Inevitable end. Ali's scale, striking power, and durability advantages close the clash with a brutal knockout.",
-      "analysis": "In a clash between a professional heavyweight champion and a featherweight martial artist, the laws of physics and reach preclude any result other than Ali's dominance."
+      "phase_1": "Bruce tries to enter on an angle and break rhythm, but Ali's first jab already shows the difference in reach, mass, and power.",
+      "phase_2": "Once Ali has the timing, every Bruce entry becomes a gamble against a figher with huge advantage.",
+      "phase_3": "The first truly clean Ali contact either ends the fight or decides it beyond recovery. Bruce does not have the physical margin to come back.",
+      "analysis": "This fight does not honestly narrow into any real Bruce win path. Open rules do not remove Ali's heavyweight frame, range, or the force of his bare fist."
     },
     "fight-card": {
       "fight_title": "Lee vs Ali"
     },
     "fight-simulation": {
-      "label": "Final Verdict",
-      "opening": "Bruce Lee attempts to set the pace with lightning-fast dodges, but Ali 'floats like a butterfly' out of his range.",
-      "mid_fight": "Ali establishes distance with a left jab. Every Bruce attempt to close in ends with a massive strike landing on his guard.",
-      "late_fight": "Ali closes the distance and delivers a series of combinations that Bruce's body cannot absorb.",
-      "end_condition": "Ali's victory by brutal knockout.",
+      "label": "Heavyweight Reality",
+      "opening": "Bruce tries to get in first and spoil the fight before Ali can set the jab.",
+      "mid_fight": "Ali does not need to chase. He only has to read the entry and land harder than Bruce can return.",
+      "late_fight": "Bruce has nothing that lets him survive the first truly clean heavyweight shots.",
+      "end_condition": "Ali ends the fight with a quick knockout or a brutal stoppage.",
       "phase_1_animation": "hit-and-run",
-      "phase_1_title": "Reflex Test",
-      "phase_1_a_label": "Agility",
+      "phase_1_title": "Entry Attempt",
+      "phase_1_a_label": "Speed",
       "phase_1_a_value": "95",
       "phase_1_b_label": "Reach",
       "phase_1_b_value": "98",
-      "phase_1_event": "Bruce moves incredibly fast, but Ali's jab is always exactly where Bruce tries to plant his foot.",
-      "phase_2_animation": "kite-zone",
-      "phase_2_title": "Distance Barrier",
-      "phase_2_event": "Ali controls the space, forcing Bruce into constant footwork that quickly exhausts him.",
-      "phase_2_branch_a": "Bruce finds a gap and lands a single strike that has no effect on Ali.",
-      "phase_2_branch_b": "Ali lands a clean straight, shattering Bruce's guard.",
+      "phase_1_event": "Bruce is faster, but not fast enough to disappear from Ali's jab line.",
+      "phase_2_animation": "clash-lock",
+      "phase_2_title": "First Clean Contact",
+      "phase_2_event": "Ali reads the entry and lands harder than Bruce can safely absorb.",
+      "phase_2_branch_a": "Chaos does not erase the weight-class gap.",
+      "phase_2_branch_b": "Bruce has no physical answer to that contact.",
       "phase_3_actor": "b",
-      "phase_3_animation": "infinite-attrition",
-      "phase_3_title": "Heavy Execution",
-      "phase_3_event": "Ali moves to the offensive. The weight of his punches crushes the opponent's bones and will to fight.",
-      "phase_3_branch_a": "Bruce hits the canvas, unable to rise.",
-      "phase_3_branch_b": "The referee stops the fight seeing Ali's overwhelming dominance."
+      "phase_3_animation": "seismicslam",
+      "phase_3_title": "Finish",
+      "phase_3_event": "After the first truly heavy shot, Bruce is no longer fighting on equal terms.",
+      "phase_3_branch_a": "Ali closes the fight immediately.",
+      "phase_3_branch_b": "This fight ends on his terms every time."
     },
     "final-summary": {
-      "line_1": "This is a clash of precision versus power. Bruce Lee has speed Ali has never encountered, but Ali has a scale Bruce cannot ignore.",
-      "line_2": "Real-world combat physics favor the professional heavyweight champion. The mass and reach difference is too vast for any technique.",
-      "line_3": "Ultimately, it is a fight of whether one perfect Bruce strike can topple a man who survived 15 rounds with the world's strongest boxers.",
-      "winner": "Muhammad Ali dominates unquestionably."
+      "line_1": "Bruce is faster and more creative, but that is not enough against a heavyweight world champion with this much reach, mass, and durability.",
+      "line_2": "Open rules do not solve Bruce's problem. Every entry still carries him into Ali's bare fists, clinch, and brutal physical superiority.",
+      "line_3": "Bruce has no real path to building a fight where his own strengths have time to overturn the result.",
+      "winner": "Muhammad Ali wins 10/10."
     },
     "tactical-board": {
-      "lane": "Bruce must keep the fight dirty and chaotic. Ali wins if he imposes boxing distance.",
-      "subtitle": "Artist versus Boxer"
+      "lane": "Bruce has no safe entry. Every attempt to close distance carries him into a heavier, stronger, and longer Ali.",
+      "subtitle": "World Champion versus Artist"
     },
-    "verdict-matrix": {
-      "header": "FINAL VERDICT",
-      "subtitle": "Zero variables affecting the outcome"
-    },
-    "x-factor": {
-      "a_bonus": "12",
-      "a_bonus_label": "DIRTY TECHNIQUES",
-      "a_value": "50",
-      "b_bonus": "25",
-      "b_value": "50",
-      "factor": "TECHNIQUE VS PHYSICAL SCALE",
-      "implikacja": "This is why Ali wins unquestionably in the ring, while on the street, Bruce becomes a lethal threat.",
-      "mechanika": "Ali possesses a chin of steel and heavyweight mass. Bruce must strike perfectly at points muscles do not protect.",
-      "psychologia": "Ali wants to toy with the opponent. Bruce is pure, focused professionalism.",
-      "regen": "SIZE DIFFERENCE"
+    "direct-verdict": {
+      "winner": "Muhammad Ali",
+      "loser": "Bruce Lee",
+      "outcome": "Ali 10/10",
+      "certainty": "Absolute favorite",
+      "line_1": "Ali's reach, mass, strength, durability, and ring experience create too large a gap for Bruce to overcome honestly.",
+      "line_2": "Even under open rules, Bruce still has to enter the range of a man whose bare-knuckle contact would be catastrophic for him.",
+      "line_3": "This fight does not narrow honestly into 8/10 or 9/10. Muhammad Ali wins every time."
     }
   }
 }
