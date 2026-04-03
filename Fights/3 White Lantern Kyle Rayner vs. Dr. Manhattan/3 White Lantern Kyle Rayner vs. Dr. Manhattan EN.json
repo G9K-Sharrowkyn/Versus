@@ -3,15 +3,15 @@
     "crucialFeats": [
       "Survives the Source Wall and returns with the Life Equation.",
       "Erases the Source Titans from existence using the Life Equation.",
-      "Is close to destabilizing reality.",
+      "His power nearly destabilizes reality itself.",
       "Unwillingly creates life by his presence.",
-      "Changes The Source, code on which the reality runs."
+      "Changes The Source — the code on which reality is built."
     ],
     "dossier": {
-      "advantage": "Absolute versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt to any threat.",
-      "mentality": "Persistent and resourceful. Does not panic under pressure, but constantly seeks a creative gap in the opponent's defense, escalating power as needed.",
+      "advantage": "Immense versatility and regeneration. White light allows him to heal wounds, recreate matter, and adapt his responses to vastly different threats.",
+      "mentality": "Creative, determined, and flexible under pressure. Kyle does not fight by a rigid script — he improvises, adapts quickly, and can escalate his power when the situation demands more than a normal exchange.",
       "quote": "In brightest day, there will be light, To cleanse the soul and set wrongs right. When darkness falls, look to the skies, A new dawn comes, let there be light!",
-      "style": "Creative combat with white light constructs. Utilizes the power of the Seven Spectra to create infinite offensive and defensive solutions."
+      "style": "Creative combat with white light constructs. He uses the full spectrum to create an exceptionally wide range of offensive and defensive solutions."
     },
     "name": "White Lantern Kyle Rayner",
     "profile": {
@@ -19,23 +19,23 @@
         "White Lantern spectrum access, construct creation, healing, life-force manipulation, and teleportation."
       ],
       "tools": [
-        "Life Equation access and wide ring-based utility for offense, defense, and restoration."
+        "Life Equation and the ring's versatility in offense, defense, healing, and restoration."
       ],
       "weaknesses": [
         "Ring dependence and concentration dependence for top-end effects.",
-        "The strongest outcomes still require setup time and execution window."
+        "The strongest outcomes, especially with the Life Equation, still require the right window and full control."
       ]
     },
     "stats": {
-      "battleIq": 86,
+      "battleIq": 88,
       "durability": 94,
       "experience": 86,
       "hax": 95,
-      "skills": 76,
+      "skills": 82,
       "speed": 94,
       "stamina": 93,
       "strength": 90,
-      "style": 79
+      "style": 84
     },
     "version": "New 52",
     "victories": [
@@ -55,22 +55,22 @@
       "Restructures DC Multiverse (New 52), then fully restores it in a single act of will (Doomsday Clock)."
     ],
     "dossier": {
-      "advantage": "Omnipresence and awareness of time. Sees the future of the fight before it begins, which combined with molecular manipulation makes him elusive.",
-      "mentality": "Detached observer with mathematical coldness. Acts without emotion, treating the clash as an inevitable process with a predetermined outcome.",
+      "advantage": "Sees all timelines at once and the future of the fight before it begins.",
+      "mentality": "A detached observer with a cold, fatalistic outlook. Manhattan does not react like an ordinary human, because he sees events as part of an already existing chain of cause and effect.",
       "quote": "Yes. I see now. Everything ends.",
-      "style": "Total control over matter and atoms. Does not fight in a traditional way – simply disintegrates enemies or removes them from reality with a single gesture."
+      "style": "Total control over matter and atoms. He does not fight in a traditional way — he disintegrates targets, rearranges their structure, or removes them from the flow of the fight through a single act of will."
     },
     "name": "Dr. Manhattan",
     "profile": {
       "powers": [
-        "Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and timeline-level perception."
+        "Atomic manipulation, matter disintegration/reconstruction, self-reassembly, and simultaneous time perception."
       ],
       "tools": [
         "Space-time intervention and causal interference instead of a regular fight."
       ],
       "weaknesses": [
         "Tachyon particles can disrupt his perception of time, reducing him to a limited 'here and now' view.",
-        "Metaphysical existential detachment and lack of emotional engagement can lead to delays in decisive action."
+        "Emotional detachment and fatalism can delay the moment when he chooses to act decisively."
       ]
     },
     "stats": {
@@ -182,7 +182,7 @@
       "line_1": "Kyle Rayner has the higher ceiling with full Life Equation, but Manhattan sees future and present at once, so he can preempt the very entry into that state.",
       "line_2": "Most scenarios favor Manhattan because if he closes the activation window, he wins before Kyle's edge in a normal exchange ever starts to matter.",
       "line_3": "This is not a fight about greater raw power, but about whether life-will stabilizes before preemption shuts the whole sequence down.",
-      "winner": "Dr. Manhattan leads in most variants through temporal preemption."
+      "winner": "Kyle has better stats. Manhattan still leads in most scenarios because he usually does not allow the fight to reach the point where Kyle can use that advantage."
     },
     "tactical-board": {
       "lane": "Kyle must force an action window before Manhattan erases the very cause of his existence.",
@@ -194,8 +194,8 @@
       "layout": "2x1",
       "row_1": "FULL LIFE EQUATION ACTIVATION IN TIME",
       "row_2": "INCOMPLETE OR UNSTABLE ACTIVATION",
-      "case_1": "Kyle Rayner 2:1 in this branch. If Kyle activates full Life Equation quickly and keeps stability, he can impose rewrite pressure that outscales Manhattan's preemptive control. Entry chance for this branch: about 40-45%.",
-      "case_2": "Dr. Manhattan 2:1 in this branch. If Kyle fails to secure full and stable activation in time, Manhattan takes initiative and closes the fight through preemption. Entry chance for this branch: about 55-60%."
+      "case_1": "Kyle Rayner 4/10. If Kyle activates the full Life Equation quickly and maintains stable control over it, he can reach a level where his advantage starts to genuinely outscale Manhattan's preemption.",
+      "case_2": "Dr. Manhattan 6/10. If Kyle fails to secure full and stable activation in time, Manhattan more often takes the initiative and closes the fight through preemption."
     },
     "x-factor": {
       "a_bonus": "19",

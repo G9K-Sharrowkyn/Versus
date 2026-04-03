@@ -3,15 +3,15 @@
     "crucialFeats": [
       "Przetrwał Source Wall i wrócił z Life Equation.",
       "Wymazuje Source Titanów z istnienia używając Life Equation.",
-      "Niemal destabilizuje rzeczywistość.",
+      "Jego moc niemal destabilizuje samą rzeczywistość.",
       "Nieświadomie tworzy życie samą swoją obecnością.",
-      "Zmienia The Source, kod, na którym działa rzeczywistość."
+      "Zmienia The Source — kod, na którym opiera się rzeczywistość."
     ],
     "dossier": {
-      "advantage": "Absolutna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i dostosowywać się do każdego zagrożenia.",
-      "mentality": "Wytrwały i zaradny. Nie panikuje pod presją, lecz stale szuka kreatywnej luki w obronie przeciwnika, eskalując moc w razie potrzeby.",
+      "advantage": "Ogromna wszechstronność i regeneracja. Białe światło pozwala mu leczyć rany, odtwarzać materię i dostosowywać swoje odpowiedzi do skrajnie różnych zagrożeń.",
+      "mentality": "Kreatywny, zdeterminowany i elastyczny pod presją. Kyle nie walczy schematem — improwizuje, szybko się dostosowuje i potrafi eskalować moc, gdy sytuacja wymaga czegoś więcej niż zwykłej wymiany.",
       "quote": "W najjaśniejszy dzień nastanie światło, by oczyścić duszę i naprawić zło. Gdy zapadnie mrok, spójrz w niebiosa - nadchodzi nowy świt, niech stanie się światło!",
-      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje moc Siedmiu Spektrów, by tworzyć nieskończone rozwiązania ofensywne i defensywne."
+      "style": "Kreatywna walka konstruktami białego światła. Wykorzystuje moc całego spektrum, by tworzyć niezwykle szeroki wachlarz rozwiązań ofensywnych i defensywnych."
     },
     "name": "White Lantern Kyle Rayner",
     "profile": {
@@ -19,23 +19,23 @@
         "Dostęp do spektrum White Lantern, tworzenie konstruktów, leczenie, manipulacja siłą życia i teleportacja."
       ],
       "tools": [
-        "Dostęp do Life Equation i szerokiej użyteczności pierścienia w ataku, obronie i odtwarzaniu."
+        "Life Equation oraz wszechstronność pierścienia w ataku, obronie, leczeniu i odtwarzaniu."
       ],
       "weaknesses": [
         "Zależność od pierścienia i koncentracji przy efektach najwyższego poziomu.",
-        "Najsilniejsze rezultaty nadal wymagają czasu przygotowania i odpowiedniego okna wykonania."
+        "Najsilniejsze rezultaty, zwłaszcza przy Life Equation, nadal wymagają odpowiedniego okna i pełnej kontroli."
       ]
     },
     "stats": {
-      "battleIq": 86,
+      "battleIq": 88,
       "durability": 94,
       "experience": 86,
       "hax": 95,
-      "skills": 76,
+      "skills": 82,
       "speed": 94,
       "stamina": 93,
       "strength": 90,
-      "style": 79
+      "style": 84
     },
     "version": "New 52",
     "victories": [
@@ -55,22 +55,22 @@
       "Przebudowuje multiwersum DC (New 52), a następnie w pełni je przywraca jednym aktem woli (Doomsday Clock)."
     ],
     "dossier": {
-      "advantage": "Wszechobecność i świadomość czasu. Widzi przyszłość walki, zanim ta się zacznie, co w połączeniu z manipulacją molekularną czyni go nieuchwytnym.",
-      "mentality": "Zdystansowany obserwator o matematycznym chłodzie. Działa bez emocji, traktując starcie jako nieunikniony proces o z góry ustalonym wyniku.",
+      "advantage": "Widzi wszystkie linie czasowe na raz i przyszłość walki, zanim ta się zacznie.",
+      "mentality": "Zdystansowany obserwator o chłodnym, fatalistycznym spojrzeniu. Manhattan nie reaguje jak zwykły człowiek, bo postrzega wydarzenia jako część już istniejącego ciągu przyczyn i skutków.",
       "quote": "Tak. Teraz widzę. Wszystko się kończy.",
-      "style": "Pełna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób - po prostu dezintegruje wrogów lub usuwa ich z rzeczywistości jednym gestem."
+      "style": "Pełna kontrola nad materią i atomami. Nie walczy w tradycyjny sposób — dezintegruje cele, przestawia ich strukturę albo usuwa je z przebiegu starcia jednym aktem woli."
     },
     "name": "Dr. Manhattan",
     "profile": {
       "powers": [
-        "Manipulacja atomowa, dezintegracja i rekonstrukcja materii, samoodbudowa oraz percepcja na poziomie linii czasu."
+        "Manipulacja atomowa, dezintegracja i rekonstrukcja materii, samoodbudowa oraz jednoczesna percepcja czasu."
       ],
       "tools": [
         "Interwencja w czasoprzestrzeń i ingerencja przyczynowa zamiast klasycznej walki."
       ],
       "weaknesses": [
         "Cząsteczki tachionów mogą zakłócać jego percepcję czasu, ograniczając go do 'tu i teraz'.",
-        "Metafizyczny egzystencjalizm i brak emocjonalnego zaangażowania mogą prowadzić do zwłoki w działaniu."
+        "Emocjonalny dystans i fatalizm mogą opóźniać moment, w którym zdecyduje się działać naprawdę rozstrzygająco."
       ]
     },
     "stats": {
@@ -182,7 +182,7 @@
       "line_1": "Kyle Rayner ma wyższy sufit mocy przy pełnym Life Equation, ale Manhattan widzi przyszłość i teraźniejszość naraz, więc może uprzedzić samo wejście w ten stan.",
       "line_2": "Większość scenariuszy faworyzuje Manhattana, bo jeśli zamknie okno aktywacji, wygrywa jeszcze zanim przewaga Kyle'a w zwykłej wymianie zacznie działać.",
       "line_3": "To walka nie o większą moc ogólną, lecz o to, czy wola życia zdąży się ustabilizować, zanim preempcja zamknie całą sekwencję zdarzeń.",
-      "winner": "Dr. Manhattan prowadzi w większości wariantów przez preempcję czasową."
+      "winner": "Kyle ma lepsze statystyki. Manhattan nadal prowadzi w większości scenariuszy, bo najczęściej nie dopuści do momentu, w którym Kyle wykorzysta swoją przewagę."
     },
     "tactical-board": {
       "lane": "Kyle musi wymusić okno akcji, zanim Manhattan wymaże samą przyczynę jego istnienia.",
@@ -194,8 +194,8 @@
       "layout": "2x1",
       "row_1": "PEŁNA AKTYWACJA LIFE EQUATION NA CZAS",
       "row_2": "NIEPEŁNA LUB NIESTABILNA AKTYWACJA",
-      "case_1": "Kyle Rayner 2:1 w tej gałęzi. Jeśli Kyle szybko aktywuje pełne Life Equation i utrzyma stabilność, może narzucić presję przepisywania rzeczywistości, która przewyższa prewencyjną kontrolę Manhattana. Szansa wejścia w tę gałąź: około 40-45%.",
-      "case_2": "Dr. Manhattan 2:1 w tej gałęzi. Jeśli Kyle nie zdoła na czas uzyskać pełnej i stabilnej aktywacji, Manhattan przejmuje inicjatywę i zamyka walkę przez preempcję. Szansa wejścia w tę gałąź: około 55-60%."
+      "case_1": "Kyle Rayner 4/10. Jeśli Kyle szybko aktywuje pełne Life Equation i utrzyma nad nim stabilną kontrolę, może wejść na poziom, na którym jego przewaga zaczyna realnie przewyższać preempcję Manhattana.",
+      "case_2": "Dr. Manhattan 6/10. Jeśli Kyle nie zdoła na czas uzyskać pełnej i stabilnej aktywacji, Manhattan częściej przejmuje inicjatywę i zamyka walkę przez preempcję."
     },
     "x-factor": {
       "a_bonus": "19",

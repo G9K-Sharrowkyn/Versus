@@ -182,6 +182,7 @@ export function VerdictMatrixTemplate({
   const isSingle = numCols === 1 && numRows === 1
   const hideColAxis = numCols === 1
   const hideRowAxis = numRows === 1
+  const useBelowCaptions = layoutMode === '2x1'
 
   const matrixAxisBand = 'calc(36px * var(--tb-scale))'
   const matrixAxisGap = '10px'
@@ -253,6 +254,26 @@ export function VerdictMatrixTemplate({
     if (variantsB.includes(normalized)) return 'b' as const
     return null
   }
+
+  const extractScore = (text: string) => {
+    const match = text.match(/(\d+(?:\.\d+)?)\s*\/\s*10/i)
+    return match ? `${match[1]}/10` : ''
+  }
+
+  const buildCaption = (caseIndex: number) => {
+    const cellText = cellData[caseIndex] || ''
+    const explicitWinner = pickTemplateField(
+      blockFields,
+      [`case_${caseIndex + 1}_winner`, `case${caseIndex + 1}_winner`, `winner_${caseIndex + 1}`, `winner${caseIndex + 1}`],
+    )
+    const winnerSide = resolveExplicitWinnerSide(explicitWinner) || resolveWinnerSide(cellText)
+    const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
+    const winnerScore = extractScore(cellText)
+    return winnerName ? `${winnerName}${winnerScore ? `: ${winnerScore}` : ''}` : '\u00A0'
+  }
+
+  const leftCaption = useBelowCaptions ? buildCaption(0) : ''
+  const rightCaption = useBelowCaptions ? buildCaption(1) : ''
 
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
@@ -423,8 +444,6 @@ export function VerdictMatrixTemplate({
                   const winnerSide = resolveExplicitWinnerSide(explicitWinner) || resolveWinnerSide(cellText)
                   const winnerName = winnerSide === 'a' ? fighterAName : winnerSide === 'b' ? fighterBName : ''
                   const winnerImage = winnerSide === 'a' ? leftImageUrl : winnerSide === 'b' ? rightImageUrl : ''
-                  const winnerColor = winnerSide === 'a' ? fighterA.color : winnerSide === 'b' ? fighterB.color : '#cbd5e1'
-
                   return (
                     <div
                       key={`matrix-cell-${rowIndex}-${columnIndex}`}
@@ -451,11 +470,13 @@ export function VerdictMatrixTemplate({
                         </div>
                       ) : null}
                       <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.34) 55%, rgba(0,0,0,0.74))', zIndex: 1 }} />
-                      <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem', zIndex: 3 }}>
-                        <p style={{ ...matrixDossierDescriptionStyle, color: winnerColor, letterSpacing: '0.05em', textShadow: '0 0 10px color-mix(in srgb, currentColor 40%, transparent)' }}>
-                          {winnerName || common.emptyFieldLabel}
-                        </p>
-                      </div>
+                      {!useBelowCaptions ? (
+                        <div style={{ position: 'absolute', left: 0, right: 0, bottom: '0.45rem', textAlign: 'center', padding: '0 0.4rem', zIndex: 3 }}>
+                          <p style={{ ...matrixDossierDescriptionStyle, color: '#77e2f2', letterSpacing: '0.05em', textShadow: '0 0 10px rgba(119, 226, 242, 0.45)' }}>
+                            {winnerName || common.emptyFieldLabel}
+                          </p>
+                        </div>
+                      ) : null}
                     </div>
                   )
                 })}
@@ -464,6 +485,17 @@ export function VerdictMatrixTemplate({
           </div>
         </div>
       </section>
+
+      {useBelowCaptions ? (
+        <>
+          <p className="vs-verdict-matrix-caption vs-verdict-matrix-caption--left">
+            {leftCaption}
+          </p>
+          <p className="vs-verdict-matrix-caption vs-verdict-matrix-caption--right">
+            {rightCaption}
+          </p>
+        </>
+      ) : null}
 
     </div>
   )
