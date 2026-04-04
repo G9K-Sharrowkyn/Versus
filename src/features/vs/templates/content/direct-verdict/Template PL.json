@@ -2,12 +2,12 @@
   "id": "direct-verdict",
   "locale": "pl",
   "metadata": {
-    "activeName": "Werdykt prosty",
+    "activeName": "Werdykt",
     "description": "Jednostronny werdykt bez matrycy warunków.",
-    "title": "WERDYKT PROSTY",
+    "title": "WERDYKT",
     "subtitle": "",
-    "blockName": "Werdykt Prosty",
-    "purpose": "Plansza jednostronnego werdyktu bez matrycy."
+    "blockName": "Werdykt",
+    "purpose": "Plansza jednostronnego werdyktu."
   },
   "chrome": {
     "threatLevelLabel": "Stopień zagrożenia",
