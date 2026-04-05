@@ -1,45 +1,45 @@
 {
-    "portraits":  {
-                      "a":  "Jiren.jpg",
-                      "b":  "Saitama.jpg"
-                  },
-    "schemaVersion":  1,
-    "templates":  {
-                      "crucial-feats":  {
-                                            "left_image_1":  "Tags UI Goku a few times.jpg",
-                                            "left_image_2":  "Unaffected by Android 17\u0027s Self-Destruction.jpg",
-                                            "left_image_3":  "No sells a Kamehameha from SSB Goku.jpg",
-                                            "left_image_4":  "Detects and Counters attacks coming from a different dimension.jpg",
-                                            "left_image_5":  "Belmod.jpg",
-                                            "right_image_1":  "Serious Punch Squared... generates an explosion that.jpg",
-                                            "right_image_2":  "Saitama time travels to reverse causality.jpg",
-                                            "right_image_3":  "Can freely grab and move hyperspace.jpg",
-                                            "right_image_4":  "Saitama can achieve flight.jpg",
-                                            "right_image_5":  "A Serious Sneeze blows away the gas surrounding Jupiter\u0027s.jpg"
-                                        },
-                      "victory-archive":  {
-                                              "left_image_1":  "11_7_1_jiren_hit.jpg",
-                                              "left_image_2":  "12_7_1_jiren_maji_kayo.jpg",
-                                              "left_image_3":  "13_7_1_jiren_golden_frieza.jpg",
-                                              "left_image_4":  "14_7_1_jiren_kale.jpg",
-                                              "left_image_5":  "15_7_1_jiren_vegeta.jpg",
-                                              "right_image_1":  "16_7_2_saitama_boros.jpg",
-                                              "right_image_2":  "17_7_2_saitama_elder_centipede.jpg",
-                                              "right_image_3":  "18_7_2_saitama_orochi.jpg",
-                                              "right_image_4":  "19_7_2_saitama_evil_ocean_water.jpg",
-                                              "right_image_5":  "20_7_2_saitama_garou_zero_punch.jpg"
-                                          },
-                      "fight-card":  {
-                                         "right_image":  "Saitama2.jpeg",
-                                         "left_image":  "Jiren3.webp"
-                                     },
-                      "final-summary":  {
-                                            "right_image":  "Saitama3.png",
-                                            "left_image":  "Jiren2.jpg"
-                                        },
-                      "verdict-matrix":  {
-                                             "right_image":  "Saitama1.jpg",
-                                             "left_image":  "Jiren1.webp"
-                                         }
-                  }
+  "portraits": {
+    "a": "Jiren1.jpg",
+    "b": "Saitama1.jpg"
+  },
+  "schemaVersion": 1,
+  "templates": {
+    "crucial-feats": {
+      "left_image_1": "Feat_Jiren1.jpg",
+      "left_image_2": "Feat_Jiren2.jpg",
+      "left_image_3": "Feat_Jiren3.jpg",
+      "left_image_4": "Feat_Jiren4.jpg",
+      "left_image_5": "Feat_Jiren5.jpg",
+      "right_image_1": "Feat_Saitama1.jpg",
+      "right_image_2": "Feat_Saitama2.jpg",
+      "right_image_3": "Feat_Saitama3.jpg",
+      "right_image_4": "Feat_Saitama4.webp",
+      "right_image_5": "Feat_Saitama5.jpg"
+    },
+    "victory-archive": {
+      "left_image_1": "CV_Jiren1.jpg",
+      "left_image_2": "CV_Jiren2.jpg",
+      "left_image_3": "CV_Jiren3.jpg",
+      "left_image_4": "CV_Jiren4.jpg",
+      "left_image_5": "CV_Jiren5.jpg",
+      "right_image_1": "CV_Saitama1.jpg",
+      "right_image_2": "CV_Saitama2.jpg",
+      "right_image_3": "CV_Saitama3.jpg",
+      "right_image_4": "CV_Saitama4.jpg",
+      "right_image_5": "CV_Saitama5.jpg"
+    },
+    "fight-card": {
+      "right_image": "Saitama4.png",
+      "left_image": "Jiren4.jpg"
+    },
+    "final-summary": {
+      "right_image": "Saitama2.jpg",
+      "left_image": "Jiren2.webp"
+    },
+    "verdict-matrix": {
+      "right_image": "Saitama3.jpeg",
+      "left_image": "Jiren3.webp"
+    }
+  }
 }

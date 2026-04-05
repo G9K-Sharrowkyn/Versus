@@ -1,45 +1,45 @@
 {
-    "portraits":  {
-                      "a":  "Trigon.jpg",
-                      "b":  "Galactus.jpg"
-                  },
-    "schemaVersion":  1,
-    "templates":  {
-                      "crucial-feats":  {
-                                            "left_image_1":  "Universe after Universe has fallen before his.jpg",
-                                            "left_image_2":  "Turns DC Earth and everyone in it into stone.jpg",
-                                            "left_image_3":  "Monitor ranks him on the same threat level.jpg",
-                                            "left_image_4":  "Destroys planet with a Death-Stare.jpg",
-                                            "left_image_5":  "Absorbs The Heart of Darkness....jpg",
-                                            "right_image_1":  "The Ultimate Nullifier.jpg",
-                                            "right_image_2":  "Galactus must exist or eternity.jpg",
-                                            "right_image_3":  "Galactus\u0027 blast... encompasses the star system he is in....jpg",
-                                            "right_image_4":  "The whole multiverse risked being destroyed when Galactus.jpg",
-                                            "right_image_5":  "Sphinx.jpg"
-                                        },
-                      "victory-archive":  {
-                                              "left_image_1":  "Trophy Room includes Superman\u0027s Suit.jpg",
-                                              "left_image_2":  "Stomps the JLA + Teen.jpeg",
-                                              "left_image_3":  "Slaughters the Divine.jpg",
-                                              "left_image_4":  "Dissipates Psimon\u0027s Atoms across.jpg",
-                                              "left_image_5":  "Ares.jpg",
-                                              "right_image_1":  "Galactus battles Mephisto.jpg",
-                                              "right_image_2":  "Silver.jpg",
-                                              "right_image_3":  "One shots a Celestial.jpg",
-                                              "right_image_4":  "Turns Terrax into a Worm and then Energy.jpg",
-                                              "right_image_5":  "Tyrant.jpg"
-                                          },
-                      "fight-card":  {
-                                         "right_image":  "Galactus1.jpg",
-                                         "left_image":  "Trigon1.webp"
-                                     },
-                      "final-summary":  {
-                                            "right_image":  "Galactus2.webp",
-                                            "left_image":  "Trigon2.webp"
-                                        },
-                      "verdict-matrix":  {
-                                             "right_image":  "Galactus3.jpg",
-                                             "left_image":  "Trigon3.jpg"
-                                         }
-                  }
+  "portraits": {
+    "a": "Trigon1.webp",
+    "b": "Galactus1.jpg"
+  },
+  "schemaVersion": 1,
+  "templates": {
+    "crucial-feats": {
+      "left_image_1": "Feat_Trigon1.jpg",
+      "left_image_2": "Feat_Trigon2.jpg",
+      "left_image_3": "Feat_Trigon3.jpg",
+      "left_image_4": "Feat_Trigon4.jpg",
+      "left_image_5": "Feat_Trigon5.jpg",
+      "right_image_1": "Feat_Galactus1.jpg",
+      "right_image_2": "Feat_Galactus2.jpg",
+      "right_image_3": "Feat_Galactus3.jpg",
+      "right_image_4": "Feat_Galactus4.jpg",
+      "right_image_5": "Feat_Galactus5.jpg"
+    },
+    "victory-archive": {
+      "left_image_1": "CV_Trigon1.jpeg",
+      "left_image_2": "CV_Trigon2.jpg",
+      "left_image_3": "CV_Trigon3.jpg",
+      "left_image_4": "CV_Trigon4.jpg",
+      "left_image_5": "CV_Trigon5.jpg",
+      "right_image_1": "CV_Galactus1.jpg",
+      "right_image_2": "CV_Galactus2.jpeg",
+      "right_image_3": "CV_Galactus3.jpg",
+      "right_image_4": "CV_Galactus4.jpg",
+      "right_image_5": "CV_Galactus5.jpg"
+    },
+    "fight-card": {
+      "right_image": "Galactus4.jpg",
+      "left_image": "Trigon4.jpg"
+    },
+    "final-summary": {
+      "right_image": "Galactus2.webp",
+      "left_image": "Trigon2.webp"
+    },
+    "verdict-matrix": {
+      "right_image": "Galactus3.jpg",
+      "left_image": "Trigon3.jpg"
+    }
+  }
 }
