@@ -13,10 +13,14 @@ Use this template to create one complete paper for any matchup: one-sided, close
 
 ## 2. Research rules
 ### Source priority
-1. `reddit.com/r/respectthreads`
-2. `comicvine.gamespot.com/forums/gen-discussion-1/`
-3. `marvel.fandom.com`
-4. `dc.fandom.com`
+1. `cadabattles.fandom.com`
+2. `vsbattles.fandom.com`
+3. `character-level.fandom.com`
+4. `reddit.com/r/respectthreads`
+5. `comicvine.gamespot.com/forums/gen-discussion-1/`
+6. `marvel.fandom.com`
+7. `dc.fandom.com`
+8. `quora.com`
 
 ### Source roles
 - Respect threads and ComicVine feat/respect threads are the main proof sources.

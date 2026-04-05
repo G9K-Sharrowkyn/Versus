@@ -41,7 +41,10 @@
     "version": "Prime",
     "victories": [
       "Gary Elms",
-      "Yoichi Nakachi"
+      "Yoichi Nakachi",
+      "Hawkins Chung",
+      "Wong Shun Leung",
+      "Wong Jack Man"
     ]
   },
   "fighterB": {
@@ -86,7 +89,10 @@
     "version": "Prime",
     "victories": [
       "George Foreman",
-      "Joe Frazier"
+      "Joe Frazier",
+      "Sonny Liston",
+      "Cleveland Williams",
+      "Ernie Terrell"
     ]
   },
   "locale": "pl",
