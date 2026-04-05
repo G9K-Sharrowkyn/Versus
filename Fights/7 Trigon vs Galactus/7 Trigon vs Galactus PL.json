@@ -1,11 +1,11 @@
 {
   "fighterA": {
     "crucialFeats": [
-      "W wieku jednego roku rządził własną planetą, w wieku 6 ją zniszczył.",
-      "Pokonał Justice League i Teen Titans jednocześnie.",
-      "Posiada trofea z pokonanych Supermanów z różnych wymiarów.",
-      "Absorbuje Serce Ciemności, stając się jeszcze potężniejszym.",
-      "Wymazuje atomy przeciwników jednym gestem."
+      "Wszechświat za wszechświatem upadał przed jego potęgą.",
+      "Zamienia Ziemię DC i wszystkich na niej w kamień.",
+      "Monitor klasyfikuje go na tym samym poziomie zagrożenia co Spectre.",
+      "Niszczy planetę samym spojrzeniem.",
+      "Pochłania Heart of Darkness."
     ],
     "dossier": {
       "advantage": "Dominacja nad wymiarami i duszami. Trigon nie jest tylko fizycznym zagrożeniem — atakuje samą esencję bytu przeciwnika i narzuca swoją wolę całym światom.",
@@ -40,20 +40,20 @@
     },
     "version": "DC Multiverse",
     "victories": [
-      "Justice League",
-      "Teen Titans",
-      "Psimon",
-      "Ares",
-      "The Divine"
+      "Sala trofeów zawiera kostium Supermana.",
+      "Miażdży JLA i Teen Titans.",
+      "Masakruje The Divine.",
+      "Rozprasza atomy Psimona po rzeczywistości.",
+      "Ares."
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Pożera całe planety, by zasilić swój byt.",
-      "Pokonał Celestiali w bezpośrednim starciu.",
-      "Przetrwał Wielki Wybuch poprzedniego wszechświata.",
-      "Niszczy byty kosmiczne samą swoją obecnością.",
-      "Posiada Power Cosmic, pozwalającą na dowolną manipulację materią i energią."
+      "Posiada Ultimate Nullifier, broń zdolną zniszczyć cały wszechświat.",
+      "Galactus musi istnieć, bo inaczej wszechświat umrze.",
+      "Atak Galactusa obejmuje trzy układy słoneczne.",
+      "Cały wszechświat był zagrożony zniszczeniem, gdy Galactus walczył.",
+      "Odsyła Sphinxa w przeszłość, by ten przeżywał swoje życie w kółko przez całą wieczność."
     ],
     "dossier": {
       "advantage": "Power Cosmic i skala istnienia. Galactus nie walczy – on przeprowadza proces konsumpcji. Posiada kontrolę nad fundamentalnymi siłami wszechświata na niewyobrażalnym poziomie.",
@@ -87,11 +87,11 @@
     },
     "version": "Ziemia-616",
     "victories": [
-      "Sphinx",
-      "Tyrant",
-      "Silver Surfer",
-      "Thanos",
-      "Red Hulk"
+      "Mephisto.",
+      "Sphinx.",
+      "Celestial.",
+      "Terrax.",
+      "Tyrant."
     ]
   },
   "locale": "pl",

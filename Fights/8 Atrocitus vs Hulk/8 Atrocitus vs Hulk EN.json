@@ -5,7 +5,7 @@
       "Kept fighting after his heart was removed.",
       "Martian Manhunter cannot attack him telepathically.",
       "Burned through the fabric of space with rage plasma.",
-      "Throws around Apollo."
+      "Wounds Spectre."
     ],
     "dossier": {
       "advantage": "A red ring instead of a heart and inhuman strength. The ring keeps him alive even after fatal wounds, and his physical power lets him crush energy barriers with his bare hands.",
@@ -39,17 +39,17 @@
     },
     "version": "New 52",
     "victories": [
-      "The Butcher Entity",
-      "The Butcher's human host",
-      "Saint Walker, Indigo-1 and Star Sapphire",
-      "Multiple Manhunters",
+      "Abysmus",
+      "Skallox",
+      "Black Lanterns",
+      "Guardian of the Universe",
       "Bleez"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "World Breaker scale enables collateral destruction of a planet and moon.",
-      "Stalemated Sentry.",
+      "Can return through the Green Door from the Below-Place after death.",
+      "Lifted a mountain range weighing 150 billion tons.",
       "Regenerated from extreme damage.",
       "A clash between Worldbreaker Red She-Hulk and World Breaker Hulk fractured a planet.",
       "Nearly sank the entire east coast with a single step."
@@ -87,9 +87,9 @@
     "version": "Earth-616",
     "victories": [
       "Sentry",
-      "Doctor Strange",
-      "Iron Man",
-      "Juggernaut",
+      "Dormammu",
+      "HulkBuster Iron Man",
+      "Bi-Beast and Wendigo",
       "Arm'Cheddon"
     ]
   },

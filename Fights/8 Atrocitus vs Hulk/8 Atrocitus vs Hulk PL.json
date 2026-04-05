@@ -5,7 +5,7 @@
       "Walczył dalej po wyrwaniu serca",
       "Martian Manhunter nie może zaatakować go telepatycznie.",
       "Przepalił plazmą furii samą strukturę przestrzeni",
-      "Rzuca Apollem"
+      "Rani Spectre"
     ],
     "dossier": {
       "advantage": "Czerwony pierścień zamiast serca i nieludzka siła. Pierścień utrzymuje go przy życiu nawet po śmiertelnych ranach, a jego fizyczna moc pozwala mu gołymi rękami kruszyć bariery energii.",
@@ -39,17 +39,17 @@
     },
     "version": "New 52",
     "victories": [
-      "The Butcher Entity",
-      "The Butcher's human host",
-      "Saint Walker, Indigo-1 i Star Sapphire",
-      "Multiple Manhunters",
+      "Abysmus",
+      "Skallox",
+      "Black Lanterns",
+      "Guardian of the Universe",
       "Bleez"
     ]
   },
   "fighterB": {
     "crucialFeats": [
-      "Skala World Breakera daje mu kolateralne zniszczenie planety i księżyca",
-      "Doprowadził do pata z Sentrym",
+      "Po śmierci może wrócić przez Green Door z Below-Place",
+      "Podniósł pasmo górskie ważące 150 miliardów ton",
       "Zregenerował się po skrajnych obrażeniach",
       "Starcie Worldbreaker Red She-Hulk i World Breaker Hulka doprowadziło do pęknięcia planety",
       "Jednym krokiem niemal zatopił całe wschodnie wybrzeże"
@@ -87,9 +87,9 @@
     "version": "Ziemia-616",
     "victories": [
       "Sentry",
-      "Doctor Strange",
-      "Iron Man",
-      "Juggernaut",
+      "Dormammu",
+      "HulkBuster Iron Man",
+      "Bi-Beast i Wendigo",
       "Arm'Cheddon"
     ]
   },
