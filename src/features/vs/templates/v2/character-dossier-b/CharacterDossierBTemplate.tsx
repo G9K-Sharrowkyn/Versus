@@ -78,6 +78,7 @@ export function CharacterDossierBTemplate({
   // ===========================================================================
 
   const fighterText = fighterB.name || getFightTemplateDefaultField('character-dossier-b', 'fighter_b_fallback', language)
+  const fighterVersion = fighterB.version?.trim() || ''
   const fighterNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const fighterNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
   const cardFacts = factsB.length ? factsB : []
@@ -257,8 +258,33 @@ export function CharacterDossierBTemplate({
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
 
           {/* ImiĂ„â„˘ Postaci */}
-          <div ref={fighterNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+          <div
+            ref={fighterNameWrapperRef}
+            style={{
+              borderLeft: `4px solid ${BLUE_EKSTREMALNY}`,
+              paddingLeft: '1.5rem',
+              paddingTop: '0.15rem',
+              minHeight: '6.2rem',
+              marginTop: '-0.55rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              gap: '0.45rem',
+            }}
+          >
             <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterText}</h3>
+            {fighterVersion ? (
+              <p
+                className="vs-dossier-text-2"
+                style={{
+                  textShadow: REFLEKS_TRESCI_FAKTOW,
+                  fontSize: 'calc(var(--tb-type-2) * 0.72)',
+                  lineHeight: 1,
+                }}
+              >
+                {fighterVersion}
+              </p>
+            ) : null}
           </div>
 
           {/* Lista FaktÄ‚Ĺ‚w - staÄąâ€še pozycje */}

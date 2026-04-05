@@ -495,6 +495,8 @@ export const swapImportSides = (payload: ParsedVsImport): ParsedVsImport => ({
   ...payload,
   fighterAName: payload.fighterBName,
   fighterBName: payload.fighterAName,
+  fighterAVersion: payload.fighterBVersion,
+  fighterBVersion: payload.fighterAVersion,
   statsA: payload.statsB,
   statsB: payload.statsA,
   factsA: payload.factsB,

@@ -25,6 +25,7 @@ export const defaultCategoriesFor = (language: Language): Category[] =>
 export const FIGHTER_A: Fighter = {
   name: 'Superman',
   subtitle: 'New 52',
+  version: 'New 52',
   imageUrl: '',
   color: FIGHTER_A_COLOR,
   stats: {
@@ -43,6 +44,7 @@ export const FIGHTER_A: Fighter = {
 export const FIGHTER_B: Fighter = {
   name: 'King Hyperion',
   subtitle: 'Earth-4023',
+  version: 'Earth-4023',
   imageUrl: '',
   color: FIGHTER_B_COLOR,
   stats: {
@@ -421,4 +423,3 @@ export const DEFAULT_WINNER_CV_B = getFightDefaultVictoryArchive('b')
 
 export const defaultFactsFor = (side: 'a' | 'b', language: Language): FighterFact[] =>
   getFightDefaultProfileFacts(side, language)
-

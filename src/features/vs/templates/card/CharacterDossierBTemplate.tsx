@@ -39,7 +39,7 @@ export function CharacterDossierBTemplate({
   const layout = ui.template as Record<string, string>
   const fighterForCard = {
     ...fighterB,
-    subtitle: pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterB.subtitle,
+    subtitle: fighterB.version || pickTemplateField(blockFields, ['world', 'swiat', 'version']) || fighterB.subtitle,
   }
   const cardFacts = safeFacts
   const cardTitle = (pickTemplateField(blockFields, ['header', 'title', 'headline']) || title)

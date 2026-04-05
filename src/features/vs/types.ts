@@ -19,6 +19,7 @@ export type FighterProfileData = {
 export type Fighter = {
   name: string
   subtitle: string
+  version: string
   imageUrl: string
   color: string
   stats: Record<string, number>
@@ -131,6 +132,8 @@ export type FightScansJsonV1 = {
 export type ParsedVsImport = {
   fighterAName: string
   fighterBName: string
+  fighterAVersion: string
+  fighterBVersion: string
   statsA: ParsedStat[]
   statsB: ParsedStat[]
   factsA: FighterFact[]

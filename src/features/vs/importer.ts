@@ -664,12 +664,16 @@ export const parseFightJsonFiles = (
 
   const fighterAName = toString(localeJson.fighterA?.name) || 'Fighter A'
   const fighterBName = toString(localeJson.fighterB?.name) || 'Fighter B'
+  const fighterAVersion = toString(localeJson.fighterA?.version)
+  const fighterBVersion = toString(localeJson.fighterB?.version)
   const statsA = buildParsedStatsFromJson(localeJson.fighterA?.stats, localeJson.locale)
   const statsB = buildParsedStatsFromJson(localeJson.fighterB?.stats, localeJson.locale)
 
   return {
     fighterAName,
     fighterBName,
+    fighterAVersion,
+    fighterBVersion,
     statsA,
     statsB,
     factsA: buildDossierFacts(localeJson.fighterA?.dossier, localeJson.locale),

@@ -364,6 +364,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
   const raw = value as Record<string, unknown>
   const fighterAName = typeof raw.fighterAName === 'string' ? raw.fighterAName : ''
   const fighterBName = typeof raw.fighterBName === 'string' ? raw.fighterBName : ''
+  const fighterAVersion = typeof raw.fighterAVersion === 'string' ? raw.fighterAVersion : ''
+  const fighterBVersion = typeof raw.fighterBVersion === 'string' ? raw.fighterBVersion : ''
   const statsA = toParsedStatArray(raw.statsA)
   const statsB = toParsedStatArray(raw.statsB)
   const factsA = toFactArray(raw.factsA)
@@ -384,6 +386,8 @@ export const normalizePersistedImport = (value: unknown): ParsedVsImport | null 
   return {
     fighterAName,
     fighterBName,
+    fighterAVersion,
+    fighterBVersion,
     statsA,
     statsB,
     factsA,
