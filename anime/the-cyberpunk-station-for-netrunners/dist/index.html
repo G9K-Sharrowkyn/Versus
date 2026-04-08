@@ -212,6 +212,118 @@
         return localized;
       }
 
+      var panelLabelMap = stationLang === 'pl' ? {
+        "SRC": "ŹRÓDŁO",
+        "DEST": "CEL",
+        "TRACE": "ŚLAD",
+        "GLYPH": "GLIF",
+        "NODE": "WĘZEŁ",
+        "CHANNEL": "KANAŁ",
+        "VAULT": "SEJF",
+        "ARCHIVE": "ARCHIWUM",
+        "ROUTE": "TRASA",
+        "CLEAR": "CZYSZCZENIE"
+      } : {};
+
+      var panelValueMap = stationLang === 'pl' ? {
+        "HYPERVISOR ACTIVE": "HIPERNADZORCA ONLINE",
+        "NULL GATE STABLE": "BRAMA NULL STABILNA",
+        "PACKET FABRIC": "SIATKA PAKIETÓW",
+        "CHECKSUM GREEN": "SUMA KONTROLNA OK",
+        "PHASE ALIGNED": "FAZA ZESTROJONA",
+        "SIGNAL GLIDING": "SYGNAŁ PŁYNIE",
+        "SHARD LOCKED": "ODŁAMEK ZABLOKOWANY",
+        "VECTOR SINGING": "WEKTOR ŚPIEWA",
+        "CORRIDOR OPEN": "KORYTARZ OTWARTY"
+      } : {};
+
+      var panelTagMap = stationLang === 'pl' ? {
+        "RELAY BUS": "SZYNA RELAY",
+        "SHADOW MIRROR": "LUSTRO CIENIA",
+        "CACHE TUNNEL": "TUNEL CACHE",
+        "ROOT VECTOR": "WEKTOR GŁÓWNY",
+        "INDEX GHOST": "DUCH INDEKSU",
+        "PRIMARY SHARD": "ODŁAMEK GŁÓWNY",
+        "EDGE GATE": "BRAMA BRZEGOWA",
+        "THREAD SAFE": "WĄTKI BEZPIECZNE",
+        "0 TRACE LOSS": "0 UTRAT ŚLADU",
+        "EXEC READY": "EXEC ONLINE",
+        "WINDOW OPEN": "OKNO OTWARTE",
+        "AETHER DOCK": "AETHER DOCK",
+        "PUBLIC GATE": "PUBLIC GATE",
+        "PRISM TIDE": "PRISM TIDE",
+        "TIER VEIL": "POZIOM VEIL",
+        "AWAKE": "AKTYWNY",
+        "SOFT STATIC": "MIĘKKI SZUM",
+        "SIGNED": "PODPISANY",
+        "STABLE": "STABILNA",
+        "NOON MIRROR": "NOON MIRROR",
+        "RUNTIME SLOT": "SLOT RUNTIME",
+        "DUSK CURRENT": "PRĄD ZMIERZCHU",
+        "TIER ECHO": "POZIOM ECHO",
+        "LISTENING": "NASŁUCH",
+        "LOW": "NISKI",
+        "SEALED": "ZAPIECZĘTOWANY",
+        "TRUE": "PRAWDA",
+        "GHOST WHARF": "GHOST WHARF",
+        "REPO INDEX": "INDEKS REPO",
+        "NOVA LANE": "ALEJA NOVA",
+        "TIER ARC": "POZIOM ARC",
+        "WARM": "ROZGRZANY",
+        "SCATTERED": "ROZPROSZONY",
+        "HELD": "UTRZYMANY",
+        "CLEAR": "CZYSTO",
+        "GLASS ORBIT": "GLASS ORBIT",
+        "USER SESSION": "SESJA UŻYTKOWNIKA",
+        "EMBER LINK": "EMBER LINK",
+        "TIER NINE": "POZIOM NINE",
+        "OPEN": "OTWARTY",
+        "CLEAN": "CZYSTY",
+        "PULSING": "PULSUJE",
+        "READY": "GOTOWY",
+        "LILT BASIN": "LILT BASIN",
+        "DAWN VEIL": "DAWN VEIL",
+        "ION LANE": "ALEJA ION",
+        "TIER LYRIC": "POZIOM LYRIC",
+        "SPUN": "ROZPIĘTY",
+        "QUIET": "CISZA",
+        "LOCKED": "ZABLOKOWANY",
+        "LIT": "OŚWIETLONY"
+      } : {};
+
+      function padRight(value, width) {
+        value = String(value || "");
+        while (value.length < width) value += " ";
+        return value;
+      }
+
+      function localizePanelToken(value, dictionary) {
+        if (stationLang !== 'pl') return value;
+        return dictionary[value] || localizeStationText(value);
+      }
+
+      function formatAlignedPanelRow(label, value, tag) {
+        var localizedLabel = localizePanelToken(label, panelLabelMap);
+        var localizedValue = localizePanelToken(value, panelValueMap);
+        var localizedTag = localizePanelToken(tag, panelTagMap);
+        return (
+          padRight(localizedLabel, 11) +
+          " :: " +
+          padRight(localizedValue, 20) +
+          " [" +
+          localizedTag +
+          "]"
+        );
+      }
+
+      function buildAlignedPanelBlock(lines) {
+        return lines.map(function (line) {
+          var match = line.match(/^(.*?)\s*::\s*(.*?)\s*\[(.*?)\]$/);
+          if (!match) return localizeStationText(line);
+          return formatAlignedPanelRow(match[1].trim(), match[2].trim(), match[3].trim());
+        }).join("\n");
+      }
+
       var bootLines = [
         "AETHER//GRID v13.4.0 :: WAKE SEQUENCE",
         "[  0.000000] shimmer lattice lifting into phase",
@@ -316,7 +428,7 @@
         "ROUTE    :: NULL GATE STABLE   [0 TRACE LOSS]",
         "STATUS   :: PACKET FABRIC      [EXEC READY]",
         "CLEAR    :: CHECKSUM GREEN     [WINDOW OPEN]"
-      ].join("\n");
+      ];
 
       var buttonLabels = [
         "RUN PACKETMESH.EXE - RELAY MODE",
@@ -609,7 +721,7 @@
           while (blockLines.length < 11) blockLines.push('');
 
           setText(opening, bootWindow.join("\n"));
-          setText(secondary, blockLines.join("\n"));
+          setText(secondary, buildAlignedPanelBlock(blockLines));
           setText(tertiary, bannerTexts[blockIndex]);
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);
@@ -619,7 +731,7 @@
 
         if (preClick && buttonReady) {
           setText(opening, "[  0.000024] all systems drift-ready");
-          setText(secondary, finalReadyBlock);
+          setText(secondary, buildAlignedPanelBlock(finalReadyBlock));
           setText(tertiary, finalBannerText);
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);
