@@ -548,14 +548,18 @@ const buildRawTemplateBlocksProjection = (localeBlocks = {}, scansBlocks = {}) =
 
 export const buildCurrentLocaleProjection = (localeJson, scansJson, importer) => {
   const parsed = importer.parseFightJsonFiles(localeJson, scansJson)
+  const localeTemplateBlocks = {
+    ...(localeJson?.templates && typeof localeJson.templates === 'object' ? localeJson.templates : {}),
+    ...(localeJson?.templateData && typeof localeJson.templateData === 'object' ? localeJson.templateData : {}),
+  }
   return {
     fighterA: {
-      version: trimString(localeJson?.fighterA?.version),
-      quote: trimString(localeJson?.fighterA?.dossier?.quote),
+      version: trimString(localeJson?.fighterA?.version) || pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-a'], ['world']),
+      quote: trimString(localeJson?.fighterA?.dossier?.quote) || pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-a'], ['quote']),
     },
     fighterB: {
-      version: trimString(localeJson?.fighterB?.version),
-      quote: trimString(localeJson?.fighterB?.dossier?.quote),
+      version: trimString(localeJson?.fighterB?.version) || pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-b'], ['world']),
+      quote: trimString(localeJson?.fighterB?.dossier?.quote) || pickTemplateBlockValue(localeTemplateBlocks?.['character-dossier-b'], ['quote']),
     },
     statsA: Object.fromEntries(CANONICAL_STAT_KEYS.map((key) => [key, localeJson?.fighterA?.stats?.[key] ?? null])),
     statsB: Object.fromEntries(CANONICAL_STAT_KEYS.map((key) => [key, localeJson?.fighterB?.stats?.[key] ?? null])),
@@ -568,7 +572,7 @@ export const buildCurrentLocaleProjection = (localeJson, scansJson, importer) =>
     winsA: trimStringArray(parsed.winsA),
     winsB: trimStringArray(parsed.winsB),
     templateOrder: Array.isArray(localeJson?.templateOrder) ? localeJson.templateOrder.map((item) => trimString(item)).filter(Boolean) : [],
-    templateBlocks: buildRawTemplateBlocksProjection(localeJson?.templates, scansJson?.templates),
+    templateBlocks: buildRawTemplateBlocksProjection(localeTemplateBlocks, scansJson?.templates),
     portraits: {
       a: trimString(scansJson?.portraits?.a),
       b: trimString(scansJson?.portraits?.b),

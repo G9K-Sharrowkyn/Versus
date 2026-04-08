@@ -1,102 +1,6 @@
 {
-  "fighterA": {
-    "crucialFeats": [
-      "Wyciska ciężar równy masie Ziemi przez pięć dni.",
-      "Czyta każdy opublikowany tekst medyczny w kilka sekund.",
-      "Udaje mu się trafić Flasha.",
-      "Wylatuje z czarnej dziury, nie odnosząc obrażeń.",
-      "Jako jedyny przeżywa aurę śmierci Doomsdaya."
-    ],
-    "dossier": {
-      "advantage": "Potworna przewaga w sile, szybkości i wytrzymałości nad większością przeciwników.",
-      "mentality": "Zwykle się hamuje i walczy poniżej swoich możliwości. Gdy sytuacja tego wymaga, bez wahania wchodzi na pełną moc.",
-      "quote": "To wygląda na robotę dla Supermana.",
-      "style": "Bezpośrednia walka na sile i szybkości. Narzuca własne tempo i trzyma je przez całą walkę."
-    },
-    "name": "Superman",
-    "profile": {
-      "powers": [
-        "Kryptoniańska siła, szybkość, lot, wzmocnione zmysły i percepcja bojowa na elitarnym poziomie."
-      ],
-      "tools": [
-        "Heat Vision, Freeze Breath i pełna kontrola dystansu w połączeniu z mobilnością powietzną.",
-        "Solar Flare jako kosztowna, ale potencjalnie rozstrzygająca opcja kończąca."
-      ],
-      "weaknesses": [
-        "Magia, kryptonit i czerwone słońce.",
-        "Solar Flare zostawia go bezbronnym, jeśli nie zdoła zakończyć walki natychmiast."
-      ]
-    },
-    "stats": {
-      "battleIq": 92,
-      "durability": 95,
-      "experience": 90,
-      "hax": 80,
-      "skills": 91,
-      "speed": 96,
-      "stamina": 94,
-      "strength": 96,
-      "style": 89
-    },
-    "version": "New52",
-    "victories": [
-      "Doomsday",
-      "Wraith",
-      "Parasite",
-      "Mongul",
-      "Apollo"
-    ]
-  },
-  "fighterB": {
-    "crucialFeats": [
-      "Przetrwał zniszczenie Ziemi na Earth-4023.",
-      "Wraca do życia chwilę po tym, jak Namora skręca mu kark o sto osiemdziesiąt stopni.",
-      "Regeneruje się po katastrofalnych obrażeniach.",
-      "Jego Atomic Vision topi adamantium i zabija Visiona na miejscu.",
-      "Walczył z dwoma innymi Hyperionami naraz i dominował w starciu."
-    ],
-    "dossier": {
-      "advantage": "Potworna regeneracja i przeżywalność. Hyperion wraca do walki po obrażeniach, które byłyby śmiertelne dla innych.",
-      "mentality": "Megalo-psychopata z kompleksem boga. Nie cofa się i nie kalkuluje — bez zastanowienia zabije każdego, jeśli znajdzie choć jeden powód.",
-      "quote": "Właśnie tak, skarbie... Hyperion.",
-      "style": "Brutalna agresja w zwarciu. Hyperion masakruje wrogów swoim Atomic Vision i niemożliwą siłą ciosów."
-    },
-    "name": "King Hyperion",
-    "profile": {
-      "powers": [
-        "Ekstremalna siła, lot, ogromna wytrzymałość i niemal natychmiastowa regeneracja nawet po katastrofalnych obrażeniach."
-      ],
-      "tools": [
-        "Atomic Vision jako śmiercionośna broń do przebijania odporności i szybkiego domykania przewagi.",
-        "Doświadczenie w mordowaniu superbohaterów i instynkt wykorzystywania ich zawahań oraz ograniczeń."
-      ],
-      "weaknesses": [
-        "Argonit.",
-        "Skrajna arogancja i lekceważenie przeciwników sprawiają, że często oddaje inicjatywę."
-      ]
-    },
-    "stats": {
-      "battleIq": 84,
-      "durability": 95,
-      "experience": 92,
-      "hax": 83,
-      "skills": 83,
-      "speed": 84,
-      "stamina": 94,
-      "strength": 92,
-      "style": 83
-    },
-    "version": "Earth-4023",
-    "victories": [
-      "Magneto",
-      "Wolverine",
-      "Galactus",
-      "Thor",
-      "Hulk"
-    ]
-  },
-  "locale": "pl",
   "schemaVersion": 1,
+  "locale": "pl",
   "templateOrder": [
     "tactical-board",
     "character-dossier-a",
@@ -113,7 +17,150 @@
     "verdict-matrix",
     "fight-card"
   ],
-  "templates": {
+  "templateData": {
+    "tactical-board": {
+      "subtitle": "Bohater kontra Tyran"
+    },
+    "character-dossier-a": {
+      "world": "New52",
+      "quote": "To wygląda na robotę dla Supermana.",
+      "style": "Bezpośrednia walka na sile i szybkości. Narzuca własne tempo i trzyma je przez całą walkę.",
+      "advantage": "Potworna przewaga w sile, szybkości i wytrzymałości nad większością przeciwników.",
+      "mentality": "Zwykle się hamuje i walczy poniżej swoich możliwości. Gdy sytuacja tego wymaga, bez wahania wchodzi na pełną moc."
+    },
+    "character-dossier-b": {
+      "world": "Earth-4023",
+      "quote": "Właśnie tak, skarbie... Hyperion.",
+      "style": "Brutalna agresja w zwarciu. Hyperion masakruje wrogów swoim Atomic Vision i niemożliwą siłą ciosów.",
+      "advantage": "Potworna regeneracja i przeżywalność. Hyperion wraca do walki po obrażeniach, które byłyby śmiertelne dla innych.",
+      "mentality": "Megalo-psychopata z kompleksem boga. Nie cofa się i nie kalkuluje — bez zastanowienia zabije każdego, jeśli znajdzie choć jeden powód."
+    },
+    "character-profile": {
+      "a": {
+        "powers": [
+          "Kryptoniańska siła, szybkość, lot, wzmocnione zmysły i percepcja bojowa na elitarnym poziomie."
+        ],
+        "tools": [
+          "Heat Vision, Freeze Breath i pełna kontrola dystansu w połączeniu z mobilnością powietzną.",
+          "Solar Flare jako kosztowna, ale potencjalnie rozstrzygająca opcja kończąca."
+        ],
+        "weaknesses": [
+          "Magia, kryptonit i czerwone słońce.",
+          "Solar Flare zostawia go bezbronnym, jeśli nie zdoła zakończyć walki natychmiast."
+        ]
+      },
+      "b": {
+        "powers": [
+          "Ekstremalna siła, lot, ogromna wytrzymałość i niemal natychmiastowa regeneracja nawet po katastrofalnych obrażeniach."
+        ],
+        "tools": [
+          "Atomic Vision jako śmiercionośna broń do przebijania odporności i szybkiego domykania przewagi.",
+          "Doświadczenie w mordowaniu superbohaterów i instynkt wykorzystywania ich zawahań oraz ograniczeń."
+        ],
+        "weaknesses": [
+          "Argonit.",
+          "Skrajna arogancja i lekceważenie przeciwników sprawiają, że często oddaje inicjatywę."
+        ]
+      }
+    },
+    "crucial-feats": {
+      "a": [
+        "Wyciska ciężar równy masie Ziemi przez pięć dni.",
+        "Czyta każdy opublikowany tekst medyczny w kilka sekund.",
+        "Udaje mu się trafić Flasha.",
+        "Wylatuje z czarnej dziury, nie odnosząc obrażeń.",
+        "Jako jedyny przeżywa aurę śmierci Doomsdaya."
+      ],
+      "b": [
+        "Przetrwał zniszczenie Ziemi na Earth-4023.",
+        "Wraca do życia chwilę po tym, jak Namora skręca mu kark o sto osiemdziesiąt stopni.",
+        "Regeneruje się po katastrofalnych obrażeniach.",
+        "Jego Atomic Vision topi adamantium i zabija Visiona na miejscu.",
+        "Walczył z dwoma innymi Hyperionami naraz i dominował w starciu."
+      ]
+    },
+    "victory-archive": {
+      "a": [
+        "Doomsday",
+        "Wraith",
+        "Parasite",
+        "Mongul",
+        "Apollo"
+      ],
+      "b": [
+        "Magneto",
+        "Wolverine",
+        "Galactus",
+        "Thor",
+        "Hulk"
+      ]
+    },
+    "fight-analytics": {
+      "a": {
+        "battleIq": 92,
+        "durability": 95,
+        "experience": 90,
+        "hax": 80,
+        "skills": 91,
+        "speed": 96,
+        "stamina": 94,
+        "strength": 96,
+        "style": 89
+      },
+      "b": {
+        "battleIq": 84,
+        "durability": 95,
+        "experience": 92,
+        "hax": 83,
+        "skills": 83,
+        "speed": 84,
+        "stamina": 94,
+        "strength": 92,
+        "style": 83
+      }
+    },
+    "parameter-comparison": {
+      "a": {
+        "battleIq": 92,
+        "durability": 95,
+        "experience": 90,
+        "hax": 80,
+        "skills": 91,
+        "speed": 96,
+        "stamina": 94,
+        "strength": 96,
+        "style": 89
+      },
+      "b": {
+        "battleIq": 84,
+        "durability": 95,
+        "experience": 92,
+        "hax": 83,
+        "skills": 83,
+        "speed": 84,
+        "stamina": 94,
+        "strength": 92,
+        "style": 83
+      }
+    },
+    "x-factor": {
+      "a_bonus": "10",
+      "a_bonus_label": "KONTROLA",
+      "a_value": "50",
+      "b_bonus": "20",
+      "b_value": "50",
+      "factor": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa?",
+      "implikacja": "Im mniej walka premiuje czysty nokaut, tym bardziej rośnie wartość samego faktu, że Hyperion ciągle wraca.",
+      "mechanika": "Superman ma przewagę statystyczną, ale Hyperion jest jednym z tych przeciwników, przy których sama dominacja nie wystarcza, jeśli nie prowadzi do trwałego końca.",
+      "psychologia": "Hyperion może pozwolić sobie na bardziej lekkomyślną walkę, bo samo przetrwanie kolejnych sekwencji przybliża go do momentu, w którym przeciwnik zacznie pękać.",
+      "regen": "BRAK ZASAD"
+    },
+    "final-summary": {
+      "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
+      "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej, kontrolowanej formie.",
+      "line_3": "Problem polega na tym, że każda niezamknięta sekwencja daje Hyperionowi kolejną szansę, a im dłużej trwa walka, tym bardziej jego regeneracja zaczyna odwracać całą ekonomię starcia.",
+      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
+    },
     "battle-dynamics": {
       "label": "Standardowe zasady · Solar Flare",
       "a_curve": "91,92,94,96,98",
@@ -144,9 +191,6 @@
       "s4_phase_2": "Jeśli Hyperion przetrwa pierwszą falę dominacji, zaczyna odzyskiwać wartość przez sam fakt, że wciąż stoi i wraca do walki.",
       "s4_phase_3": "Im dłużej trwa starcie, tym mniej liczy się przewaga techniczna Supermana, a tym bardziej brutalna ekonomia regeneracji Hyperiona.",
       "s4_analysis": "Superman wygrywa walkę uporządkowaną. Hyperion wygrywa tę, która trwa za długo i przestaje karać jego błędy."
-    },
-    "fight-card": {
-      "fight_title": "Superman vs King Hyperion"
     },
     "fight-simulation": {
       "label": "Standardowe zasady · Solar Flare",
@@ -228,16 +272,6 @@
       "s4_phase_3_branch_b": "Hyperion dominuje. Bez Solar Flare nie ma na niego odpowiedzi.",
       "s4_end_condition": "Bez Solar Flare na zasadach śmierci — Hyperion po prostu nie przestaje wracać."
     },
-    "final-summary": {
-      "line_1": "Superman czyściej narzuca warunki walki już od pierwszych sekund.",
-      "line_2": "To on jest szybszy, precyzyjniejszy i lepszy w utrzymywaniu pojedynku w bezpiecznej, kontrolowanej formie.",
-      "line_3": "Problem polega na tym, że każda niezamknięta sekwencja daje Hyperionowi kolejną szansę, a im dłużej trwa walka, tym bardziej jego regeneracja zaczyna odwracać całą ekonomię starcia.",
-      "winner": "Superman ma przewagę. Hyperion wciąż ma realną drogę do zwycięstwa."
-    },
-    "tactical-board": {
-      "lane": "Superman musi zamienić przewagę kontroli w prawdziwe zakończenie, zanim regeneracja Hyperiona odbierze wartość każdej kolejnej wymianie.",
-      "subtitle": "Bohater kontra Tyran"
-    },
     "verdict-matrix": {
       "col_1": "SOLAR FLARE: TAK",
       "col_2": "SOLAR FLARE: NIE",
@@ -248,17 +282,39 @@
       "case_3": "Superman 5.5/10. Solar Flare nadal daje mu realną drogę do finiszu, ale walka na śmierć mocniej premiuje przeżywalność Hyperiona.",
       "case_4": "King Hyperion 6/10. Bez Solar Flare i przy zasadach śmierci jego regeneracja zaczyna przechylać walkę na swoją stronę."
     },
-    "x-factor": {
-      "a_bonus": "10",
-      "a_bonus_label": "KONTROLA",
-      "a_value": "50",
-      "b_bonus": "20",
-      "b_value": "50",
-      "factor": "Dlaczego lepsze statystyki nie gwarantują zwycięstwa?",
-      "implikacja": "Im mniej walka premiuje czysty nokaut, tym bardziej rośnie wartość samego faktu, że Hyperion ciągle wraca.",
-      "mechanika": "Superman ma przewagę statystyczną, ale Hyperion jest jednym z tych przeciwników, przy których sama dominacja nie wystarcza, jeśli nie prowadzi do trwałego końca.",
-      "psychologia": "Hyperion może pozwolić sobie na bardziej lekkomyślną walkę, bo samo przetrwanie kolejnych sekwencji przybliża go do momentu, w którym przeciwnik zacznie pękać.",
-      "regen": "BRAK ZASAD"
+    "fight-card": {
+      "fight_title": "Superman vs King Hyperion"
+    }
+  },
+  "templates": {},
+  "fighterA": {
+    "name": "Superman",
+    "version": "New52",
+    "stats": {
+      "battleIq": 92,
+      "durability": 95,
+      "experience": 90,
+      "hax": 80,
+      "skills": 91,
+      "speed": 96,
+      "stamina": 94,
+      "strength": 96,
+      "style": 89
+    }
+  },
+  "fighterB": {
+    "name": "King Hyperion",
+    "version": "Earth-4023",
+    "stats": {
+      "battleIq": 84,
+      "durability": 95,
+      "experience": 92,
+      "hax": 83,
+      "skills": 83,
+      "speed": 84,
+      "stamina": 94,
+      "strength": 92,
+      "style": 83
     }
   }
 }

@@ -1,6 +1,7 @@
 import type { Category, FighterFact, FighterProfileData, Language, ParsedStat, ParsedVsImport, TemplateId } from './types'
 import type {
   FightLocaleJsonTemplateBlock,
+  FightLocaleJsonTemplateDataBlock,
   FightLocaleJsonTemplateValue,
   FightLocaleJsonV1,
   FightScansJsonV1,
@@ -355,6 +356,83 @@ const normalizeTemplateJsonMap = (
   return output
 }
 
+const toTemplateDataBlock = (value: unknown): FightLocaleJsonTemplateDataBlock => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+  return value as FightLocaleJsonTemplateDataBlock
+}
+
+const normalizeTemplateDataMap = (
+  value: unknown,
+): Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>> => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {}
+
+  const output: Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>> = {}
+  Object.entries(value as Record<string, unknown>).forEach(([rawTemplateId, block]) => {
+    const templateId = normalizeTemplateId(rawTemplateId)
+    if (!templateId) return
+    output[templateId] = toTemplateDataBlock(block)
+  })
+  return output
+}
+
+const mergeLocaleTemplateSources = (
+  templateBlocks: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>,
+  templateDataBlocks: Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>>,
+): Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>> => {
+  const output: Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>> = {}
+  const templateIds = new Set<TemplateId>([
+    ...Object.keys(templateBlocks).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+    ...Object.keys(templateDataBlocks).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+  ])
+
+  templateIds.forEach((templateId) => {
+    output[templateId] = {
+      ...toTemplateDataBlock(templateBlocks[templateId]),
+      ...toTemplateDataBlock(templateDataBlocks[templateId]),
+    }
+  })
+
+  return output
+}
+
+const toRecord = (value: unknown): Record<string, unknown> | null => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  return value as Record<string, unknown>
+}
+
+const TEMPLATE_SIDE_ALIASES: Record<'a' | 'b', string[]> = {
+  a: ['a', 'left', 'fighterA', 'fighter_a'],
+  b: ['b', 'right', 'fighterB', 'fighter_b'],
+}
+
+const getSideBlock = (block: FightLocaleJsonTemplateDataBlock | undefined, side: 'a' | 'b') => {
+  const record = toRecord(block)
+  if (!record) return null
+  for (const alias of TEMPLATE_SIDE_ALIASES[side]) {
+    const nested = toRecord(record[alias])
+    if (nested) return nested
+  }
+  return null
+}
+
+const pickStringField = (block: Record<string, unknown> | null, keys: string[]) => {
+  if (!block) return ''
+  for (const key of keys) {
+    const value = toString(block[key])
+    if (value) return value
+  }
+  return ''
+}
+
+const pickStringArrayField = (block: Record<string, unknown> | null, keys: string[]) => {
+  if (!block) return []
+  for (const key of keys) {
+    const value = toStringArray(block[key])
+    if (value.length) return value
+  }
+  return []
+}
+
 const TEMPLATE_FIELD_INDEX_MARKER = 'vsindexmarker'
 
 const escapeRegex = (value: string) =>
@@ -476,8 +554,78 @@ const buildParsedStatsFromJson = (
   }).filter((entry): entry is ParsedStat => Boolean(entry))
 }
 
-const buildDossierFacts = (
+const resolveDossierData = (
   dossier: FightLocaleJsonV1['fighterA']['dossier'] | undefined,
+  block: FightLocaleJsonTemplateDataBlock | undefined,
+) => {
+  const record = toRecord(block)
+  return {
+    style: pickStringField(record, ['style']) || toString(dossier?.style),
+    advantage: pickStringField(record, ['advantage']) || toString(dossier?.advantage),
+    mentality: pickStringField(record, ['mentality']) || toString(dossier?.mentality),
+    quote: pickStringField(record, ['quote', 'cytat']) || toString(dossier?.quote),
+  }
+}
+
+const resolveProfileData = (
+  profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
+  block: FightLocaleJsonTemplateDataBlock | undefined,
+  side: 'a' | 'b',
+): FighterProfileData => {
+  const sideBlock = getSideBlock(block, side)
+  const powers = pickStringArrayField(sideBlock, ['powers'])
+  const tools = pickStringArrayField(sideBlock, ['tools'])
+  const weaknesses = pickStringArrayField(sideBlock, ['weaknesses'])
+
+  return {
+    powers: powers.length ? powers : toStringArray(profile?.powers),
+    tools: tools.length ? tools : toStringArray(profile?.tools),
+    weaknesses: weaknesses.length ? weaknesses : toStringArray(profile?.weaknesses),
+  }
+}
+
+const resolveListData = (
+  fallback: string[] | undefined,
+  block: FightLocaleJsonTemplateDataBlock | undefined,
+  side: 'a' | 'b',
+) => {
+  const sideBlock = getSideBlock(block, side)
+  const sideItems = pickStringArrayField(sideBlock, ['items', 'entries', 'list'])
+  if (sideItems.length) return sideItems
+
+  const record = toRecord(block)
+  if (record) {
+    for (const alias of TEMPLATE_SIDE_ALIASES[side]) {
+      const direct = toStringArray(record[alias])
+      if (direct.length) return direct
+    }
+  }
+
+  return toStringArray(fallback)
+}
+
+const resolveStatsData = (
+  stats: Partial<Record<FightStatId, number | null>> | undefined,
+  analyticsBlock: FightLocaleJsonTemplateDataBlock | undefined,
+  comparisonBlock: FightLocaleJsonTemplateDataBlock | undefined,
+  side: 'a' | 'b',
+) => {
+  const analyticsSide = getSideBlock(analyticsBlock, side)
+  const comparisonSide = getSideBlock(comparisonBlock, side)
+  const output: Partial<Record<FightStatId, number | null>> = {}
+
+  JSON_STAT_ORDER.forEach((statId) => {
+    output[statId] =
+      toFiniteNumber(analyticsSide?.[statId]) ??
+      toFiniteNumber(comparisonSide?.[statId]) ??
+      toFiniteNumber(stats?.[statId])
+  })
+
+  return output
+}
+
+const buildDossierFacts = (
+  dossier: { style?: string; advantage?: string; mentality?: string } | undefined,
   language: Language,
 ): FighterFact[] => {
   const common = getFightCommonCopy('character-dossier-a', language)
@@ -489,7 +637,7 @@ const buildDossierFacts = (
 }
 
 const buildProfileFacts = (
-  profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
+  profile: FighterProfileData | undefined,
   language: Language,
 ) => {
   const powersLabel = getFightTemplateDefaultField('character-profile', 'powers_label', language)
@@ -504,7 +652,7 @@ const buildProfileFacts = (
 }
 
 const buildProfileData = (
-  profile: FightLocaleJsonV1['fighterA']['profile'] | undefined,
+  profile: FighterProfileData | undefined,
 ): FighterProfileData => ({
   powers: toStringArray(profile?.powers),
   tools: toStringArray(profile?.tools),
@@ -514,9 +662,9 @@ const buildProfileData = (
 const buildTemplateBlockLinesFromJson = (
   templateId: TemplateId,
   language: Language,
-  localeBlock: FightLocaleJsonTemplateBlock,
+  localeBlock: FightLocaleJsonTemplateDataBlock,
   scansBlock: FightLocaleJsonTemplateBlock,
-  supplemental: FightLocaleJsonTemplateBlock = {},
+  supplemental: FightLocaleJsonTemplateDataBlock = {},
 ) => {
   const manifest = getFightTemplateManifest(templateId)
   if (!manifest) return null
@@ -581,11 +729,11 @@ const buildTemplateBlockLinesFromJson = (
 }
 
 const buildDossierSupplementBlock = (
-  templateBlock: FightLocaleJsonTemplateBlock | undefined,
+  templateBlock: FightLocaleJsonTemplateDataBlock | undefined,
   version: unknown,
   quote: unknown,
-): FightLocaleJsonTemplateBlock => {
-  const supplement: FightLocaleJsonTemplateBlock = {}
+): FightLocaleJsonTemplateDataBlock => {
+  const supplement: FightLocaleJsonTemplateDataBlock = {}
 
   if (!toString(templateBlock?.world)) {
     const fallbackWorld = toString(version)
@@ -610,23 +758,25 @@ const buildTemplateBlocksFromJson = (
 ) => {
   const templateBlocks: Record<string, string[]> = {}
   const localeTemplates = normalizeTemplateJsonMap(localeJson.templates)
+  const localeTemplateData = normalizeTemplateDataMap(localeJson.templateData)
+  const localeTemplateBlocks = mergeLocaleTemplateSources(localeTemplates, localeTemplateData)
   const scansTemplates = normalizeTemplateJsonMap(scansJson.templates)
 
-  const supplementByTemplate: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>> = {
+  const supplementByTemplate: Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>> = {
     'character-dossier-a': buildDossierSupplementBlock(
-      localeTemplates['character-dossier-a'],
+      localeTemplateBlocks['character-dossier-a'],
       localeJson.fighterA.version,
       localeJson.fighterA.dossier?.quote,
     ),
     'character-dossier-b': buildDossierSupplementBlock(
-      localeTemplates['character-dossier-b'],
+      localeTemplateBlocks['character-dossier-b'],
       localeJson.fighterB.version,
       localeJson.fighterB.dossier?.quote,
     ),
   }
 
   const allTemplateIds = new Set<TemplateId>([
-    ...Object.keys(localeTemplates).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
+    ...Object.keys(localeTemplateBlocks).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
     ...Object.keys(scansTemplates).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
     ...Object.keys(supplementByTemplate).map((templateId) => normalizeTemplateId(templateId)).filter(Boolean) as TemplateId[],
   ])
@@ -635,7 +785,7 @@ const buildTemplateBlocksFromJson = (
     const built = buildTemplateBlockLinesFromJson(
       templateId,
       localeJson.locale,
-      localeTemplates[templateId] || {},
+      localeTemplateBlocks[templateId] || {},
       scansTemplates[templateId] || {},
       supplementByTemplate[templateId] || {},
     )
@@ -666,8 +816,22 @@ export const parseFightJsonFiles = (
   const fighterBName = toString(localeJson.fighterB?.name) || 'Fighter B'
   const fighterAVersion = toString(localeJson.fighterA?.version)
   const fighterBVersion = toString(localeJson.fighterB?.version)
-  const statsA = buildParsedStatsFromJson(localeJson.fighterA?.stats, localeJson.locale)
-  const statsB = buildParsedStatsFromJson(localeJson.fighterB?.stats, localeJson.locale)
+  const localeTemplateBlocks = mergeLocaleTemplateSources(
+    normalizeTemplateJsonMap(localeJson.templates),
+    normalizeTemplateDataMap(localeJson.templateData),
+  )
+  const dossierA = resolveDossierData(localeJson.fighterA?.dossier, localeTemplateBlocks['character-dossier-a'])
+  const dossierB = resolveDossierData(localeJson.fighterB?.dossier, localeTemplateBlocks['character-dossier-b'])
+  const profileAData = resolveProfileData(localeJson.fighterA?.profile, localeTemplateBlocks['character-profile'], 'a')
+  const profileBData = resolveProfileData(localeJson.fighterB?.profile, localeTemplateBlocks['character-profile'], 'b')
+  const statsA = buildParsedStatsFromJson(
+    resolveStatsData(localeJson.fighterA?.stats, localeTemplateBlocks['fight-analytics'], localeTemplateBlocks['parameter-comparison'], 'a'),
+    localeJson.locale,
+  )
+  const statsB = buildParsedStatsFromJson(
+    resolveStatsData(localeJson.fighterB?.stats, localeTemplateBlocks['fight-analytics'], localeTemplateBlocks['parameter-comparison'], 'b'),
+    localeJson.locale,
+  )
 
   return {
     fighterAName,
@@ -676,16 +840,16 @@ export const parseFightJsonFiles = (
     fighterBVersion,
     statsA,
     statsB,
-    factsA: buildDossierFacts(localeJson.fighterA?.dossier, localeJson.locale),
-    factsB: buildDossierFacts(localeJson.fighterB?.dossier, localeJson.locale),
-    profileA: buildProfileData(localeJson.fighterA?.profile),
-    profileB: buildProfileData(localeJson.fighterB?.profile),
-    powersA: buildProfileFacts(localeJson.fighterA?.profile, localeJson.locale),
-    powersB: buildProfileFacts(localeJson.fighterB?.profile, localeJson.locale),
-    crucialFeatsA: toStringArray(localeJson.fighterA?.crucialFeats),
-    crucialFeatsB: toStringArray(localeJson.fighterB?.crucialFeats),
-    winsA: toStringArray(localeJson.fighterA?.victories),
-    winsB: toStringArray(localeJson.fighterB?.victories),
+    factsA: buildDossierFacts(dossierA, localeJson.locale),
+    factsB: buildDossierFacts(dossierB, localeJson.locale),
+    profileA: buildProfileData(profileAData),
+    profileB: buildProfileData(profileBData),
+    powersA: buildProfileFacts(profileAData, localeJson.locale),
+    powersB: buildProfileFacts(profileBData, localeJson.locale),
+    crucialFeatsA: resolveListData(localeJson.fighterA?.crucialFeats, localeTemplateBlocks['crucial-feats'], 'a'),
+    crucialFeatsB: resolveListData(localeJson.fighterB?.crucialFeats, localeTemplateBlocks['crucial-feats'], 'b'),
+    winsA: resolveListData(localeJson.fighterA?.victories, localeTemplateBlocks['victory-archive'], 'a'),
+    winsB: resolveListData(localeJson.fighterB?.victories, localeTemplateBlocks['victory-archive'], 'b'),
     templateOrder: ensureTemplateOrderHasFinal(
       (Array.isArray(localeJson.templateOrder) ? localeJson.templateOrder : [])
         .map((templateId) => normalizeTemplateId(String(templateId)))
@@ -800,4 +964,3 @@ export const buildTemplateImageEntries = (
 
   return entries
 }
-

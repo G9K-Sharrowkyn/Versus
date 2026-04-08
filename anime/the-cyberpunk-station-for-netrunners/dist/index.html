@@ -14,6 +14,17 @@
       .breachBox3 { display: none !important; }
       .breachProgress { transform: translateY(0) scale(0.5) !important; transform-origin: left center !important; }
       .breachProtocolBg + div { transform: translateY(-16px) !important; position: relative !important; z-index: 3 !important; }
+      html.station-localizing .openingBox,
+      html.station-localizing .secondaryCode,
+      html.station-localizing .tertiaryCode,
+      html.station-localizing .breachButton,
+      html.station-localizing .breachProtocolBg pre,
+      html.station-localizing .breachBox1 a,
+      html.station-localizing .breachIcon pre,
+      html.station-localizing .breachProgress + span {
+        color: transparent !important;
+        text-shadow: none !important;
+      }
     </style>
     <script>
     /* ── Mock dead nightfm-backend (Replit gone) + SoundCloud (no token) ── */
@@ -39,6 +50,20 @@
         return _fetch.call(this, url, opts);
       };
       window.addEventListener('unhandledrejection', function (e) { e.preventDefault(); });
+    })();
+    </script>
+    <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        var raw = (params.get('lang') || '').trim().toLowerCase();
+        var stored = (localStorage.getItem('vvv-app-language-v1') || '').trim().toLowerCase();
+        var stationLang = raw === 'pl' || raw === 'en' ? raw : (stored === 'pl' || stored === 'en' ? stored : 'en');
+        document.documentElement.lang = stationLang;
+        if (stationLang === 'pl') {
+          document.documentElement.classList.add('station-localizing');
+        }
+      } catch (error) {}
     })();
     </script>
   </head>
@@ -126,7 +151,54 @@
         ["CHECKSUM GREEN", "SUMA KONTROLNA OK"],
         ["WINDOW OPEN", "OKNO OTWARTE"],
         ["VISUAL STATE : STABLE [NO PACKET LOSS]", "STAN WIZUALNY : STABILNY [BEZ UTRATY PAKIETÓW]"],
-        ["KERNEL LOADOUT :: NULLROUTE PROFILE", "LOADOUT KERNELA :: PROFIL NULLROUTE"]
+        ["KERNEL LOADOUT :: NULLROUTE PROFILE", "LOADOUT KERNELA :: PROFIL NULLROUTE"],
+        ["[  0.000000] shimmer lattice lifting into phase", "[  0.000000] migotliwa siatka wchodzi w fazę"],
+        ["[  0.000001] orbital relay cluster handshaking", "[  0.000001] orbitalny klaster relay zestawia handshake"],
+        ["[  0.000002] prism kernel unfolding cobalt threads", "[  0.000002] pryzmatyczny kernel rozwija kobaltowe wątki"],
+        ["[  0.000003] mirror garden blossoms responding", "[  0.000003] ogród luster odpowiada rozkwitem"],
+        ["[  0.000004] ghost braid weaving transit glyphs", "[  0.000004] widmowy splot tka glify tranzytu"],
+        ["[  0.000005] velvet tunnel routing silver wake", "[  0.000005] aksamitny tunel prowadzi srebrny ślad"],
+        ["[  0.000006] aurora mesh holding resonance", "[  0.000006] siatka zorzy utrzymuje rezonans"],
+        ["[  0.000007] halo pins aligned with dusk mirror", "[  0.000007] kołki halo zestrojone z lustrem zmierzchu"],
+        ["[  0.000008] opaline deck rendering false stars", "[  0.000008] opaliczny pokład renderuje fałszywe gwiazdy"],
+        ["[  0.000009] chorus engine humming below threshold", "[  0.000009] silnik chóru mruczy poniżej progu"],
+        ["[  0.000010] flare dampers holding steady", "[  0.000010] tłumiki flary trzymają stabilność"],
+        ["[  0.000011] starforge stamp signing session sigil", "[  0.000011] pieczęć kuźni gwiazd podpisuje sygnet sesji"],
+        ["[  0.000012] moonwire bus carrying soft static", "[  0.000012] szyna moonwire niesie miękki szum"],
+        ["[  0.000013] phase well depth stable", "[  0.000013] głębokość studni fazowej stabilna"],
+        ["[  0.000014] quartz envoy accepting route ribbon", "[  0.000014] kwarcowy wysłannik przyjmuje wstęgę trasy"],
+        ["[  0.000015] archive ghost :: ARTEMIS_ARGO woven", "[  0.000015] duch archiwum :: ARTEMIS_ARGO utkane"],
+        ["[  0.000016] signal marrow glowing clean", "[  0.000016] rdzeń sygnału świeci czysto"],
+        ["[  0.000017] eclipse loom pattern chamber open", "[  0.000017] komora wzorca krosna zaćmienia otwarta"],
+        ["[  0.000018] helios shard refraction responsive", "[  0.000018] refrakcja odłamka Heliosa odpowiada"],
+        ["[  0.000019] silent nodes answering in chorus", "[  0.000019] ciche węzły odpowiadają chórem"],
+        ["[  0.000020] halo sigil :: VERSUSVERSEVAULT awake", "[  0.000020] sygnet halo :: VERSUSVERSEVAULT przebudzone"],
+        ["[  0.000021] glass harbor docking lights refracted", "[  0.000021] światła dokowania szklanego portu załamane"],
+        ["[  0.000022] comet spool winding carrier line", "[  0.000022] szpula komety nawija linię nośną"],
+        ["[  0.000023] mantle lock :: PROJECT_ARES engaged", "[  0.000023] blokada płaszcza :: PROJECT_ARES aktywna"],
+        ["ALIGNING ASTRAL RELAY", "STROJENIE PRZEKAŹNIKA ASTRALNEGO"],
+        ["VEIL CIRCUIT STABLE", "OBWÓD VEIL STABILNY"],
+        ["PRISM TIDE LOCKED", "PRISM TIDE ZABLOKOWANY"],
+        ["GHOST GLASS SYNCED", "GHOST GLASS ZSYNCHRONIZOWANE"],
+        ["CORRIDOR BLOOM READY", "CORRIDOR BLOOM GOTOWY"],
+        ["SRC      ::", "ŹRÓDŁO  ::"],
+        ["DEST     ::", "CEL      ::"],
+        ["TRACE    ::", "ŚLAD     ::"],
+        ["GLYPH    ::", "GLIF     ::"],
+        ["NODE     ::", "WĘZEŁ    ::"],
+        ["[AWAKE]", "[AKTYWNY]"],
+        ["[LISTENING]", "[NASŁUCH]"],
+        ["[LOW]", "[NISKI]"],
+        ["[TRUE]", "[PRAWDA]"],
+        ["[WARM]", "[ROZGRZANY]"],
+        ["[SCATTERED]", "[ROZPROSZONY]"],
+        ["[HELD]", "[UTRZYMANY]"],
+        ["[OPEN]", "[OTWARTY]"],
+        ["[CLEAN]", "[CZYSTY]"],
+        ["[READY]", "[GOTOWY]"],
+        ["[QUIET]", "[CISZA]"],
+        ["[LOCKED]", "[ZABLOKOWANY]"],
+        ["[LIT]", "[OŚWIETLONY]"]
       ] : [];
 
       function localizeStationText(value) {
@@ -428,6 +500,10 @@
         }
       }
 
+      function revealLocalizedStationUi() {
+        document.documentElement.classList.remove("station-localizing");
+      }
+
       function opacityOf(el) {
         if (!el) return 0;
         return parseFloat(window.getComputedStyle(el).opacity || "1");
@@ -537,6 +613,7 @@
           setText(tertiary, bannerTexts[blockIndex]);
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);
+          revealLocalizedStationUi();
           postStart = null;
         }
 
@@ -546,6 +623,7 @@
           setText(tertiary, finalBannerText);
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);
+          revealLocalizedStationUi();
           postStart = null;
         }
 
@@ -563,12 +641,16 @@
           setText(icon, buildIconPanel(iconStep));
           setText(progressLabel, breachProgressTitle);
           setText(button, buttonLabels[2]);
+          revealLocalizedStationUi();
         }
 
         window.requestAnimationFrame(renderLoop);
       }
 
       window.addEventListener("load", function () {
+        if (stationLang !== 'pl') {
+          revealLocalizedStationUi();
+        }
         window.requestAnimationFrame(renderLoop);
       });
     })();

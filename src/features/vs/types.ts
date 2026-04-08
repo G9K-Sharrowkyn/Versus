@@ -88,6 +88,7 @@ export type FightLocaleJsonTemplateValue =
   | number[]
 
 export type FightLocaleJsonTemplateBlock = Record<string, FightLocaleJsonTemplateValue>
+export type FightLocaleJsonTemplateDataBlock = Record<string, unknown>
 
 export type FightLocaleJsonFighter = {
   name: string
@@ -114,6 +115,7 @@ export type FightLocaleJsonV1 = {
   fighterA: FightLocaleJsonFighter
   fighterB: FightLocaleJsonFighter
   templateOrder: TemplateId[]
+  templateData?: Partial<Record<TemplateId, FightLocaleJsonTemplateDataBlock>>
   templates: Partial<Record<TemplateId, FightLocaleJsonTemplateBlock>>
 }
 

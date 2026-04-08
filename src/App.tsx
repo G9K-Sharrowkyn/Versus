@@ -70,6 +70,13 @@ type PendingFightSelection = {
   reason: PendingFightSelectionReason
 }
 type TemplateTransitionPhase = 'idle' | 'exit' | 'enter'
+type BootFlashBand = {
+  id: string
+  top: string
+  height: string
+  background: string
+  opacity: number
+}
 type AuditRequest = {
   fightKey: string
   templateId: TemplateId | null
@@ -93,6 +100,8 @@ const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 1200
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
+const STARTUP_GLITCH_FRAMES = 14
+const STARTUP_GLITCH_INTERVAL_MS = 40
 const SEARCH_IFRAME_VERSION = 42
 const INTRO_IFRAME_VERSION = 19
 const EMPTY_PROFILE_DATA: FighterProfileData = { powers: [], tools: [], weaknesses: [] }
@@ -260,11 +269,17 @@ function App() {
   const pendingSearchStageJumpRef = useRef<number | null>(null)
   const templateTransitionTimeoutsRef = useRef<number[]>([])
   const templateTransitionRafsRef = useRef<number[]>([])
+  const startupGlitchIntervalRef = useRef<number | null>(null)
+  const startupGlitchFrameRef = useRef(0)
   const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
   const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
   const [portraitEditor, setPortraitEditor] = useState<PortraitEditorState | null>(null)
   const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
   const [pendingLocaleSwitch, setPendingLocaleSwitch] = useState<Language | null>(null)
+  const [startupGlitchActive, setStartupGlitchActive] = useState(false)
+  const [bootGateActive, setBootGateActive] = useState(true)
+  const [startupFlashBands, setStartupFlashBands] = useState<BootFlashBand[]>([])
+  const [startupFlashTransform, setStartupFlashTransform] = useState('')
 
   const {
     fights,
@@ -766,6 +781,7 @@ function App() {
   }, [applyFightRecord, pendingFightSelection])
 
   useEffect(() => {
+    if (bootGateActive) return
     if (!auditRequest?.fightKey || !storageReady || auditAppliedRef.current || !fights.length) return
 
     const requestedLocale = auditRequest.language
@@ -814,9 +830,11 @@ function App() {
     setIntroVisible,
     setViewMode,
     storageReady,
+    bootGateActive,
   ])
 
   useEffect(() => {
+    if (bootGateActive) return
     const pendingTemplate = pendingAuditTemplateRef.current
     if (!pendingTemplate || !templateOrder.length) return
     const nextTemplateCursor = templateOrder.indexOf(pendingTemplate)
@@ -827,7 +845,7 @@ function App() {
     setIntroVisible(true)
     setViewMode('fight')
     pendingAuditTemplateRef.current = null
-  }, [applyTemplateById, clearFinalTemplateAutoReturnTimeout, setIntroVisible, setViewMode, templateOrder])
+  }, [applyTemplateById, clearFinalTemplateAutoReturnTimeout, setIntroVisible, setViewMode, templateOrder, bootGateActive])
 
   const toggleLanguage = () => {
     const nextLanguage = language === 'pl' ? 'en' : 'pl'
@@ -1059,11 +1077,103 @@ function App() {
 
   const scaledPreviewWidth = Math.round(PREVIEW_BASE_WIDTH * previewScale)
   const scaledPreviewHeight = Math.round(PREVIEW_BASE_HEIGHT * previewScale)
+  const isBootView = bootGateActive || viewMode === 'boot'
   const isSearchView = viewMode === 'search'
   const isIntroView = viewMode === 'fight-intro'
   const isTemplateView = viewMode === 'fight'
   const isFightFlow = isIntroView || isTemplateView
   const canSwitchPortraitEditorSide = Boolean(portraitEditor?.mode === 'fight')
+
+  const advanceStartupChromaticFlash = useCallback(() => {
+    const colors = ['rgba(255,85,78,1)', '#77e2f2', '#ff0', '#fff', '#0cf', '#f80']
+    const bandCount = 5 + Math.floor(Math.random() * 7)
+    const nextBands: BootFlashBand[] = Array.from({ length: bandCount }, (_, index) => ({
+      id: `boot-band-${startupGlitchFrameRef.current}-${index}`,
+      top: `${Math.random() * 100}%`,
+      height: `${1 + Math.random() * 14}%`,
+      background: colors[Math.floor(Math.random() * colors.length)],
+      opacity: 0.45 + Math.random() * 0.55,
+    }))
+    const translateX = (Math.random() - 0.5) * 35
+    const skewX = (Math.random() - 0.5) * 6
+    setStartupFlashBands(nextBands)
+    setStartupFlashTransform(`translateX(${translateX}px) skewX(${skewX}deg)`)
+  }, [])
+
+  useEffect(() => {
+    if (!bootGateActive) {
+      if (startupGlitchIntervalRef.current !== null) {
+        window.clearInterval(startupGlitchIntervalRef.current)
+        startupGlitchIntervalRef.current = null
+      }
+      if (startupGlitchActive) {
+        setStartupGlitchActive(false)
+      }
+      if (startupFlashBands.length) {
+        setStartupFlashBands([])
+      }
+      if (startupFlashTransform) {
+        setStartupFlashTransform('')
+      }
+      return
+    }
+
+    const isTypingTarget = (target: EventTarget | null) =>
+      target instanceof HTMLInputElement ||
+      target instanceof HTMLTextAreaElement ||
+      target instanceof HTMLSelectElement ||
+      (target instanceof HTMLElement && target.isContentEditable)
+
+    const handleBootKeydown = (event: KeyboardEvent) => {
+      if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
+      if (isTypingTarget(event.target)) return
+      if (event.key !== ' ' && event.code !== 'Space') return
+      if (startupGlitchActive) return
+
+      event.preventDefault()
+      setStartupGlitchActive(true)
+      startupGlitchFrameRef.current = 0
+      advanceStartupChromaticFlash()
+      if (startupGlitchIntervalRef.current !== null) {
+        window.clearInterval(startupGlitchIntervalRef.current)
+      }
+      startupGlitchIntervalRef.current = window.setInterval(() => {
+        startupGlitchFrameRef.current += 1
+        if (startupGlitchFrameRef.current >= STARTUP_GLITCH_FRAMES) {
+          if (startupGlitchIntervalRef.current !== null) {
+            window.clearInterval(startupGlitchIntervalRef.current)
+            startupGlitchIntervalRef.current = null
+          }
+          setStartupFlashBands([])
+          setStartupFlashTransform('')
+          setBootGateActive(false)
+          showSearchImmediately()
+          setStartupGlitchActive(false)
+          return
+        }
+        advanceStartupChromaticFlash()
+      }, STARTUP_GLITCH_INTERVAL_MS)
+    }
+
+    window.addEventListener('keydown', handleBootKeydown)
+    return () => window.removeEventListener('keydown', handleBootKeydown)
+  }, [
+    advanceStartupChromaticFlash,
+    bootGateActive,
+    showSearchImmediately,
+    startupFlashBands.length,
+    startupFlashTransform,
+    startupGlitchActive,
+  ])
+
+  useEffect(
+    () => () => {
+      if (startupGlitchIntervalRef.current !== null) {
+        window.clearInterval(startupGlitchIntervalRef.current)
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
     if (!isTemplateView || !fightViewVisible || portraitEditor) return
@@ -1168,6 +1278,8 @@ function App() {
   )
 
   useEffect(() => {
+    if (viewMode === 'boot') return
+
     const isTypingTarget = (target: EventTarget | null) =>
       target instanceof HTMLInputElement ||
       target instanceof HTMLTextAreaElement ||
@@ -1192,7 +1304,7 @@ function App() {
 
     window.addEventListener('keydown', handleSearchStageJumpKeydown)
     return () => window.removeEventListener('keydown', handleSearchStageJumpKeydown)
-  }, [dispatchSearchStageJump, openFightByShortcutKey])
+  }, [dispatchSearchStageJump, openFightByShortcutKey, viewMode])
 
   useEffect(() => {
     const handleSearchStageJumpMessage = (event: MessageEvent) => {
@@ -1248,6 +1360,33 @@ function App() {
     pendingSearchStageJumpRef.current = null
   }, [handleSearchFrameTransitionLoad, searchFrameRef])
 
+  if (isBootView) {
+    return (
+      <main
+        data-vs-audit={auditRequest ? 'true' : 'false'}
+        data-reverse-stage={reverseStage}
+        className="h-screen overflow-hidden bg-black p-0 text-slate-100"
+      >
+        <section className="vs-boot-screen">
+          <div className="vs-boot-screen__flash" style={{ transform: startupFlashTransform }} aria-hidden="true">
+            {startupFlashBands.map((band) => (
+              <span
+                key={band.id}
+                className="vs-boot-screen__flash-band"
+                style={{
+                  top: band.top,
+                  height: band.height,
+                  background: band.background,
+                  opacity: band.opacity,
+                }}
+              />
+            ))}
+          </div>
+        </section>
+      </main>
+    )
+  }
+
   return (
     <main
       data-vs-audit={auditRequest ? 'true' : 'false'}
@@ -1255,7 +1394,9 @@ function App() {
       className={clsx(
         isTemplateView && 'vs-template-mode',
         'text-slate-100',
-        isSearchView
+        isBootView
+          ? 'h-screen overflow-hidden p-0'
+          : isSearchView
           ? 'h-screen overflow-visible p-0'
           : isIntroView
             ? 'h-screen overflow-hidden p-0'
