@@ -1368,6 +1368,23 @@ function App() {
         className="h-screen overflow-hidden bg-black p-0 text-slate-100"
       >
         <section className="vs-boot-screen">
+          <div className="vs-boot-screen__repeater" aria-hidden="true">
+            <div className="vs-boot-screen__repeater-content">
+              {Array.from({ length: 40 }).map((_, i) => (
+                <div key={i} className="vs-boot-screen__repeater-row">
+                  <div className="vs-boot-screen__repeater-track">
+                    {Array.from({ length: 20 }).map((_, j) => (
+                      <span key={j}>Darkseid is.</span>
+                    ))}
+                    {/* Duplicate for seamless horizontal loop */}
+                    {Array.from({ length: 20 }).map((_, j) => (
+                      <span key={`dup-${j}`}>Darkseid is.</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
           <div className="vs-boot-screen__flash" style={{ transform: startupFlashTransform }} aria-hidden="true">
             {startupFlashBands.map((band) => (
               <span
