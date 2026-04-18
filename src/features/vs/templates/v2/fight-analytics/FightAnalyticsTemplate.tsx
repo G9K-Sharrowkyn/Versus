@@ -42,14 +42,23 @@ const VALUE_COLUMN_WIDTH_PX = 30
 const SCALE_MARKS_OFFSET_Y_PX = 24
 const SCALE_MARKS_GAP_PX = 300
 const PARAMETER_LABEL_SHIFT_X_PX = -4
-const ANALYTICS_RIGHT_HEADER_SHIFT_X_PX = -82
+const ANALYTICS_RIGHT_HEADER_SHIFT_X_PX = -116
 const ANALYTICS_STAT_LABEL_COL_WIDTH = '30ch'
 const ANALYTICS_STAT_VALUE_COL_WIDTH = '7ch'
 const ANALYTICS_STAT_COL_GAP = '0.4rem'
 const ANALYTICS_STAT_ROW_TEMPLATE = `${ANALYTICS_STAT_LABEL_COL_WIDTH} ${ANALYTICS_STAT_VALUE_COL_WIDTH}`
 const ANALYTICS_STAT_TRACK_WIDTH = `calc(${ANALYTICS_STAT_LABEL_COL_WIDTH} + ${ANALYTICS_STAT_COL_GAP} + ${ANALYTICS_STAT_VALUE_COL_WIDTH})`
-const ANALYTICS_RIGHT_LABEL_START = '0.65rem'
+// Use marginLeft for manual nudging; negative values work (unlike paddingLeft).
+const ANALYTICS_RIGHT_LABEL_OFFSET = '-3rem'
 const ANALYTICS_ACCENT_UNDERLINE_BG = 'linear-gradient(90deg, rgba(119,226,242,0) 0%, rgba(255,85,78,0.66) 18%, rgba(255,85,78,0.66) 82%, rgba(255,85,78,0) 100%)'
+const ANALYTICS_RIGHT_HEADER_BASE_LEN = 12
+const ANALYTICS_RIGHT_HEADER_EXTRA_SHIFT_PER_CHAR_PX = 3
+const ANALYTICS_RIGHT_HEADER_EXTRA_SHIFT_MAX_PX = 40
+
+const compactFighterName = (name: string) => {
+  const trimmed = name.trim()
+  return /^demon king piccolo$/i.test(trimmed) ? 'Piccolo' : trimmed
+}
 
 function SubtleCyberpunkLabel({ text }: { text: string }) {
   const [display, setDisplay] = useState(text)
@@ -108,6 +117,13 @@ export function FightAnalyticsTemplate({
   const scoreScaleLabel =
     getFightTemplateDefaultField('fight-analytics', 'score_scale_label', language) || common.scoreScaleLabel
   const scaleMarks = ['0', '25', '50', '75', '100']
+  const rightHeaderName = compactFighterName(fighterB.name || '')
+  const rightHeaderOverLength = Math.max(0, rightHeaderName.length - ANALYTICS_RIGHT_HEADER_BASE_LEN)
+  const rightHeaderExtraShiftPx = Math.min(
+    ANALYTICS_RIGHT_HEADER_EXTRA_SHIFT_MAX_PX,
+    rightHeaderOverLength * ANALYTICS_RIGHT_HEADER_EXTRA_SHIFT_PER_CHAR_PX,
+  )
+  const rightHeaderShiftPx = ANALYTICS_RIGHT_HEADER_SHIFT_X_PX - rightHeaderExtraShiftPx
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
@@ -223,10 +239,10 @@ export function FightAnalyticsTemplate({
               <div style={{ position: 'absolute', left: 0, right: 0, top: 'calc(100% + 0.16rem)', height: '1px', background: ANALYTICS_ACCENT_UNDERLINE_BG, pointerEvents: 'none' }} />
             </div>
             <div />
-            <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${ANALYTICS_RIGHT_HEADER_SHIFT_X_PX}px)` }}>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', transform: `translateX(${rightHeaderShiftPx}px)` }}>
               <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: ANALYTICS_STAT_ROW_TEMPLATE, columnGap: ANALYTICS_STAT_COL_GAP, alignItems: 'baseline', width: ANALYTICS_STAT_TRACK_WIDTH, marginLeft: 'auto' }}>
-                <span style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_LABEL_COL_WIDTH, margin: 0, whiteSpace: 'nowrap', textAlign: 'left', paddingLeft: ANALYTICS_RIGHT_LABEL_START }}>
-                  {fighterB.name}
+                <span style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_LABEL_COL_WIDTH, margin: 0, marginLeft: ANALYTICS_RIGHT_LABEL_OFFSET, whiteSpace: 'nowrap', textAlign: 'left' }}>
+                  {rightHeaderName}
                 </span>
                 <p style={{ ...DOSSIER_RED_PANEL_TEXT_STYLE, width: ANALYTICS_STAT_VALUE_COL_WIDTH, textAlign: 'right', whiteSpace: 'nowrap' }}>
                   {averageShort} {averageB.toFixed(1)}

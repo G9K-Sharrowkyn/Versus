@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "locale": "en",
+  "templateOrder": [
+    "tactical-board",
+    "character-dossier-a",
+    "character-dossier-b",
+    "character-profile",
+    "crucial-feats",
+    "victory-archive",
+    "fight-analytics",
+    "parameter-comparison",
+    "final-summary",
+    "battle-dynamics",
+    "fight-simulation",
+    "direct-verdict",
+    "fight-card"
+  ],
+  "templateData": {
+    "tactical-board": {
+      "subtitle": "Grand Regent vs Demon King Piccolo"
+    },
+    "character-dossier-a": {
+      "world": "Invincible (Image Comics)",
+      "quote": "BRING ME THE SKULLS OF THESE TRAITORS!",
+      "style": "An absolute physical dominant — trained from birth in all manners of combat across centuries. Thragg doesn't need strategy. He walks in, crushes everything, and never lets up until the opponent falls apart.",
+      "advantage": "Inhuman stamina and thermal endurance. Thragg fights at the same intensity for days — with his guts hanging out, without skin, on the surface of a star.",
+      "mentality": "Cold, calculating tyrant. He doesn't kill from emotion — he kills because logic demands it. Every move is optimal, every victory calculated in advance."
+    },
+    "character-dossier-b": {
+      "world": "Dragon Ball",
+      "quote": "That's the problem with the human race. No respect... for the superior species.",
+      "style": "No classical martial style. Piccolo fights through raw power, range control, and a broad technique arsenal rather than formal martial training.",
+      "advantage": "Fast Namekian regeneration and very high offensive power. Piccolo hits harder than his size suggests and can return to battle after severe physical damage.",
+      "mentality": "Cruel, manipulative Demon King. Arrogant but strategic — he knows the value of fear, knows when to press and when to wait for his opponent's mistake."
+    },
+    "character-profile": {
+      "a": {
+        "powers": [
+          "Smart Atoms — adaptive biology resistant to star-level temperatures and extreme gravity. Superhuman strength, speed, endurance and flight."
+        ],
+        "tools": [
+          "No specialized combat tools — Thragg fights purely with his own body."
+        ],
+        "weaknesses": [
+          "Zero ranged attacks — no answer to energy attacks from a distance.",
+          "The Scourge Virus and Klaxus Plant can kill him."
+        ]
+      },
+      "b": {
+        "powers": [
+          "Planet level+ offensive power. Ki for precise ranged attacks."
+        ],
+        "tools": [
+          "Ki blasts — ranged weapon without precedent in Thragg's entire arsenal.",
+          "Giant form and stretching limbs — strikes where Thragg least expects it."
+        ],
+        "weaknesses": [
+          "Fighting at full power shortens his lifespan — cannot maintain peak form indefinitely.",
+          "Arrogance surrenders initiative; regeneration has limits, and critical head/brain damage can stop it."
+        ]
+      }
+    },
+    "crucial-feats": {
+      "a": [
+        "Unaffected by Dinosaurus' attacks.",
+        "Continues fighting with an exposed skull.",
+        "Casually stops bloodthirsty Kregg.",
+        "Even Conquest fears him.",
+        "Dodges Space Racer's Infinity Ray and catches up with him."
+      ],
+      "b": [
+        "Laughed off a Kamehameha from Goku.",
+        "22nd Budokai Goku stated that his speed didn't begin to compare to King Piccolo.",
+        "Creates powerful shockwaves with a swing of his hand.",
+        "Destroys an entire city.",
+        "Destroyed the pot he was trapped in with a glance."
+      ]
+    },
+    "victory-archive": {
+      "a": [
+        "Battle Beast",
+        "Omni-Man",
+        "Oliver Grayson",
+        "Thadeus",
+        "Rognarr"
+      ],
+      "b": [
+        "Goku",
+        "Chiaotzu",
+        "Shenron",
+        "Tien",
+        "King's Guard"
+      ]
+    },
+    "fight-analytics": {
+      "a": {
+        "battleIq": 74,
+        "durability": 78,
+        "experience": 92,
+        "hax": 22,
+        "skills": 58,
+        "speed": 64,
+        "stamina": 88,
+        "strength": 68,
+        "style": 86
+      },
+      "b": {
+        "battleIq": 82,
+        "durability": 75,
+        "experience": 76,
+        "hax": 84,
+        "skills": 82,
+        "speed": 78,
+        "stamina": 72,
+        "strength": 84,
+        "style": 66
+      }
+    },
+    "parameter-comparison": {
+      "a": {
+        "battleIq": 74,
+        "durability": 78,
+        "experience": 92,
+        "hax": 22,
+        "skills": 58,
+        "speed": 64,
+        "stamina": 88,
+        "strength": 68,
+        "style": 86
+      },
+      "b": {
+        "battleIq": 82,
+        "durability": 75,
+        "experience": 76,
+        "hax": 84,
+        "skills": 82,
+        "speed": 78,
+        "stamina": 72,
+        "strength": 84,
+        "style": 66
+      }
+    },
+    "final-summary": {
+      "line_1": "In Dragon Ball scaling, Ki amplifies the full combat profile: attack, speed, and body durability. On that logic, Piccolo starts ahead.",
+      "line_2": "Thragg has elite physicals and close-range pressure, but without comparable ranged power projection he does not control the flow of the matchup.",
+      "line_3": "Across the full fight, Piccolo has better damage economy, wider tactical options, and a more stable closing path.",
+      "winner": "Piccolo 10/10. Thragg has only surprise and brief initiative, but no reliable win condition."
+    },
+    "battle-dynamics": {
+      "label": "Fight Scenario",
+      "a_curve": "70,67,63,58,53",
+      "b_curve": "78,80,82,85,88",
+      "yellow_wave": "28,31,29,33,30,34,32,36",
+      "phase_1": "From the opening second, Piccolo holds the edge at every range: he can run the fight at distance or meet Thragg in direct exchanges.",
+      "phase_2": "When Thragg closes in, Piccolo does not lose control. He accepts contact, lands heavier returns, and keeps Ki pressure active.",
+      "phase_3": "The endgame is not tied to one method: Piccolo can close with ranged salvos or with a direct close-range finish.",
+      "analysis": "This is not a one-path matchup. Piccolo wins both through field control and through raw exchange power."
+    },
+    "fight-simulation": {
+      "label": "Fight Scenario",
+      "opening": "From the start, Piccolo can run either path: sustained ranged Ki pressure or hard close-range exchanges.",
+      "mid_fight": "Thragg tries to force his preferred rhythm, but Piccolo answers in both ranges and keeps initiative.",
+      "late_fight": "As the fight extends, every route leads to the same result: Piccolo's advantage becomes clearer.",
+      "end_condition": "Piccolo closes the fight by any method — long range, mid range, or clinch.",
+      "phase_1_animation": "trade-chaos",
+      "phase_1_actor": "b",
+      "phase_1_title": "Full-Spectrum Control",
+      "phase_1_a_label": "Thragg Pressure",
+      "phase_1_a_value": "86",
+      "phase_1_b_label": "Piccolo Control",
+      "phase_1_b_value": "95",
+      "phase_1_event": "Thragg comes forward aggressively, but Piccolo immediately shows he can punish with both Ki fire and direct exchange power.",
+      "phase_2_animation": "feint-counter",
+      "phase_2_title": "Clinch Is Not Enough",
+      "phase_2_event": "Even when Thragg gets in, Piccolo handles contact without losing tempo and lands the heavier return damage.",
+      "phase_2_branch_a": "Thragg drags it into a brawl — Piccolo still wins the exchanges.",
+      "phase_2_branch_b": "Thragg disengages under pressure — Piccolo retakes the Ki lane.",
+      "phase_3_actor": "b",
+      "phase_3_animation": "rush-ko",
+      "phase_3_title": "Closure",
+      "phase_3_event": "After breaking Thragg's rhythm, Piccolo chooses the finish: a controlled Ki end or a direct close-range shutdown.",
+      "phase_3_branch_a": "Piccolo closes with a short-range finishing series.",
+      "phase_3_branch_b": "Piccolo closes with a controlled Ki salvo."
+    },
+    "direct-verdict": {
+      "winner": "Piccolo",
+      "loser": "Thragg",
+      "outcome": "Piccolo 10/10",
+      "certainty": "Absolute favorite",
+      "line_1": "Ki scaling gives Piccolo the edge in the full combat profile: power, speed, and body durability.",
+      "line_2": "Thragg brings extreme physical pressure, but lacks the tools to take lasting control of the fight flow.",
+      "line_3": "At any range, Piccolo can close the fight on his own tempo — via Ki salvo or direct close-range finish."
+    },
+    "fight-card": {
+      "fight_title": "Thragg vs Demon King Piccolo"
+    }
+  },
+  "templates": {},
+  "fighterA": {
+    "name": "Thragg",
+    "version": "Invincible",
+    "stats": {
+      "battleIq": 74,
+      "durability": 78,
+      "experience": 92,
+      "hax": 22,
+      "skills": 58,
+      "speed": 64,
+      "stamina": 88,
+      "strength": 68,
+      "style": 86
+    }
+  },
+  "fighterB": {
+    "name": "Piccolo",
+    "version": "Dragon Ball",
+    "stats": {
+      "battleIq": 82,
+      "durability": 75,
+      "experience": 76,
+      "hax": 84,
+      "skills": 82,
+      "speed": 78,
+      "stamina": 72,
+      "strength": 84,
+      "style": 66
+    }
+  }
+}

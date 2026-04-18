@@ -33,6 +33,11 @@ const DOSSIER_BLUE_COLOR = '#77e2f2'
 const DOSSIER_RED_COLOR = '#ff554e'
 const DOSSIER_DRAW_COLOR = '#cbd5e1'
 
+const compactFighterName = (name: string) => {
+  const trimmed = name.trim()
+  return /^demon king piccolo$/i.test(trimmed) ? 'Piccolo' : trimmed
+}
+
 const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
 
 const parseHexColor = (hex: string): [number, number, number] => {
@@ -246,8 +251,10 @@ export function ParameterComparisonTemplate({
   
   const fighterAFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_a_fallback', language)
   const fighterBFallback = getFightTemplateDefaultField('parameter-comparison', 'fighter_b_fallback', language)
-  const leftHeader = pickTemplateField(blockFields, ['left_header']) || fighterA.name || fighterAFallback
-  const rightHeader = pickTemplateField(blockFields, ['right_header']) || fighterB.name || fighterBFallback
+  const leftHeaderRaw = pickTemplateField(blockFields, ['left_header']) || fighterA.name || fighterAFallback
+  const rightHeaderRaw = pickTemplateField(blockFields, ['right_header']) || fighterB.name || fighterBFallback
+  const leftHeader = compactFighterName(leftHeaderRaw)
+  const rightHeader = compactFighterName(rightHeaderRaw)
   
   const drawHeader =
     getFightTemplateDefaultField('parameter-comparison', 'draw_header', language) ||
@@ -259,8 +266,8 @@ export function ParameterComparisonTemplate({
   const rightAdvantages = rows.filter((row) => row.winner === 'b')
   const drawRows = rows.filter((row) => row.winner === 'draw')
   const drawRowsBottomAnchored = [...drawRows].reverse()
-  const fighterAText = fighterA.name || fighterAFallback
-  const fighterBText = fighterB.name || fighterBFallback
+  const fighterAText = compactFighterName(fighterA.name || fighterAFallback)
+  const fighterBText = compactFighterName(fighterB.name || fighterBFallback)
   const leftPanelTextStyle = buildPanelTextStyle(DOSSIER_BLUE_COLOR, 42)
   const rightPanelTextStyle = buildPanelTextStyle(DOSSIER_RED_COLOR, 42)
   const drawPanelTextStyle = buildPanelTextStyle(DOSSIER_DRAW_COLOR, 34)

@@ -336,7 +336,6 @@ export const FIGHT_SCENARIO_ALIAS_TO_ID: Record<string, FightScenarioId> = {
   slipstreamdrag: 'hit-and-run',
   kineticsteal: 'grapple-pin',
   groundshatter: 'rush-ko',
-  oneshot: 'one-shot',
   colossalgrapple: 'grapple-pin',
   mountainthrow: 'grapple-pin',
   thunderclapshock: 'trade-chaos',
