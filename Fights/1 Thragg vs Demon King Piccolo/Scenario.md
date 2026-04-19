@@ -221,7 +221,7 @@ Przewaga Thragga jest bardzo wyraźna. Thragg to potwór kondycyjny. On może wa
 
 Styl walki.
 
-86 dla Thragga i 66 dla Piccolo.
+86 dla Thragga i 10 dla Piccolo.
 
 I tutaj z kolei przewaga Thragga jest całkowicie naturalna. Thragg był trenowany od dziecka, i to czuć. Jego walka ma strukturę. Ma dyscyplinę. Ma brutalność, ale nie jest to brutalność chaotyczna, jeśli nie jest do niej zmuszony. To jest brutalność wyuczona, sprawdzona i stale szlifowana.
 
@@ -277,7 +277,7 @@ Piccolo od pierwszej sekundy ma odpowiedź na dosłownie każdy z tych planów.
 
 Jeśli Thragg startuje ostro, Piccolo może po prostu zacząć karać go z dystansu. Nie musi od razu iść all-in. Nie musi od razu udowadniać, że jest silniejszy. Wystarczy, że zacznie wymuszać na Thraggu ruch do przodu pod presją Ki. A to już jest sytuacja niekorzystna dla Viltrumity, bo każdy metr, który musi pokonać pod ostrzałem, działa na korzyść Piccolo.
 
-Ale załóżmy nawet, że Thragg robi to, co robi najlepiej. Ignoruje obrażenia, ciśnie dalej i w końcu dopada Piccolo. Ale, jak wychodzi ze statystyk, jak i skalowania, to nic że  Thragg wszedł w zwarcie. 
+Ale załóżmy nawet, że Thragg robi to, co robi najlepiej. Ignoruje obrażenia, ciśnie dalej i w końcu dopada Piccolo. Ale, jak wychodzi ze statystyk, jak i skalowania, to nic że Thragg wszedł w zwarcie. 
 Piccolo to nie Omni-Man. To nie Invincible. To nie jest ktoś, kto po wejściu Thragga nagle zaczyna przegrywać fizycznie z definicji.
 
 Piccolo w zwarciu dalej jest potworem. Nadal jest szybszy, nadal jest silniejszy, nadal ma wyższą elastyczność bojową, i nadal może wykorzystywać rzeczy, których Thragg zwyczajnie nie zna. Rozciągane kończyny, dziwne kąty ataku, nagłe przejście z kontaktu do presji energetycznej.
