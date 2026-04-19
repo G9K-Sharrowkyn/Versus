@@ -171,13 +171,15 @@
 
 .vs-tpl-logo-reflection {
   position: absolute;
-  left: 0;
+  left: calc(-8px * var(--scale));
   top: 100%;
-  width: 100%;
+  width: calc(100% + 16px * var(--scale));
   height: auto;
-  margin-top: calc(-34px * var(--scale));
+  margin-top: calc(-38px * var(--scale));
   opacity: 0.2;
-  filter: blur(calc(1.6px * var(--scale)));
+  transform: scale(1.04, 1.08);
+  transform-origin: top center;
+  filter: blur(calc(2.2px * var(--scale)));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, rgba(0, 0, 0, 0.35) 48%, transparent 88%);
   pointer-events: none;

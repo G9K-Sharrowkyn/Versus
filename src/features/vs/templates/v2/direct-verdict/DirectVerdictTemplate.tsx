@@ -67,7 +67,7 @@ export function DirectVerdictTemplate({
   const common = getFightCommonCopy('direct-verdict', language)
   const BLUE_EKSTREMALNY = '#77e2f2'
   const RED_LINIA = '#ff554e'
-  const REFLEKS_IMIENIA_POSTACI = '0 1em 0.28em rgba(119, 226, 242, 0.45)'
+  const REFLEKS_IMIENIA_POSTACI = '0 1em 0.28em color-mix(in srgb, currentColor 45%, transparent)'
   const REFLEKS_TRESCI_FAKTOW = '0 var(--tb-reflect-2-y) 0.55em rgba(119, 226, 242, 0.45)'
   const REFLEKS_ETYKIET_FAKTOW = '0 var(--tb-reflect-2-y) 0.55em rgba(255, 85, 78, 0.45)'
   const fighterAFallback = getFightTemplateDefaultField('direct-verdict', 'fighter_a_fallback', language)
@@ -287,7 +287,7 @@ export function DirectVerdictTemplate({
       >
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: RED_LINIA }}><GlitchText text={boardHeader} /></p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          <div ref={winnerNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
+          <div ref={winnerNameWrapperRef} style={{ borderLeft: `4px solid ${accentColor}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
             <h3 ref={winnerNameHeadingRef} className="vs-dossier-text-1" style={{ color: accentColor, textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{winnerLabel}</h3>
           </div>
 

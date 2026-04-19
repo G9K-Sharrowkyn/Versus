@@ -354,14 +354,15 @@
 
 .vs-cyber-logo-reflection {
   position: absolute;
-  left: 0;
+  left: calc(-8px * var(--tb-scale));
   top: 100%;
-  width: 100%;
+  width: calc(100% + 16px * var(--tb-scale));
   height: auto;
-  margin-top: calc(-34px * var(--tb-scale));
-  transform: none;
+  margin-top: calc(-38px * var(--tb-scale));
+  transform: scale(1.04, 1.08);
+  transform-origin: top center;
   opacity: 0.2;
-  filter: blur(calc(1.6px * var(--tb-scale)));
+  filter: blur(calc(2.2px * var(--tb-scale)));
   -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.58) 0%, transparent 88%);
 }
 

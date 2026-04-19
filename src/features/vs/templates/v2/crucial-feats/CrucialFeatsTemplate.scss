@@ -416,18 +416,17 @@
 /* Logo reflection - soft duplicate below the logo, not mirrored. */
 .vs-tactical-board25-logo-reflection {
   position: absolute;
-  left: 0;
+  left: calc(-8px * var(--tb-scale));
   top: 100%;
-  width: 100%;
-  margin-top: calc(-34px * var(--tb-scale));
+  width: calc(100% + 16px * var(--tb-scale));
+  margin-top: calc(-38px * var(--tb-scale));
   opacity: 0.2;
-  filter: blur(calc(1.6px * var(--tb-scale)));
-  -webkit-mask-image: var(--logo-url);
-  mask-image: var(--logo-url);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  transform: scale(1.04, 1.08);
+  transform-origin: top center;
+  filter: blur(calc(2.2px * var(--tb-scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.4) 42%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.4) 42%, transparent 88%);
+  pointer-events: none;
 }
 
 .vs-crucial-feats-caption {
@@ -796,18 +795,17 @@
 
 .vs-tactical-board25-logo-reflection {
   position: absolute;
-  left: 0;
+  left: calc(-8px * var(--tb-scale));
   top: 100%;
-  width: 100%;
-  margin-top: calc(-34px * var(--tb-scale));
+  width: calc(100% + 16px * var(--tb-scale));
+  margin-top: calc(-38px * var(--tb-scale));
   opacity: 0.2;
-  filter: blur(calc(1.6px * var(--tb-scale)));
-  -webkit-mask-image: var(--logo-url);
-  mask-image: var(--logo-url);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  transform: scale(1.04, 1.08);
+  transform-origin: top center;
+  filter: blur(calc(2.2px * var(--tb-scale)));
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.4) 42%, transparent 88%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.4) 42%, transparent 88%);
+  pointer-events: none;
 }
 
 
