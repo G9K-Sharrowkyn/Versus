@@ -103,6 +103,7 @@ const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 1200
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
+const TEMPLATE_PANEL_SWITCH_LASER_MS = 1200
 const STARTUP_GLITCH_FRAMES = 14
 const STARTUP_GLITCH_INTERVAL_MS = 40
 const SEARCH_IFRAME_VERSION = 42
@@ -219,6 +220,10 @@ const persistTemplateLayoutMode = (mode: TemplateLayoutMode) => {
 function App() {
   const [language, setLanguage] = useState<Language>(() => readStoredLanguage())
   const [templateLayoutMode, setTemplateLayoutMode] = useState<TemplateLayoutMode>(() => readStoredTemplateLayoutMode())
+  const [templateMobilePanelSide, setTemplateMobilePanelSide] = useState<'left' | 'right'>('left')
+  const [templateMobilePanelSwitchTo, setTemplateMobilePanelSwitchTo] = useState<'left' | 'right' | null>(null)
+  const [templateMobilePanelLaserVisible, setTemplateMobilePanelLaserVisible] = useState(false)
+  const [templateMobilePanelLaserNonce, setTemplateMobilePanelLaserNonce] = useState(0)
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const translations = useMemo(() => getTranslations(language), [language])
   const ui = translations.ui
@@ -293,6 +298,7 @@ function App() {
   const templateTransitionTimeoutsRef = useRef<number[]>([])
   const templateTransitionRafsRef = useRef<number[]>([])
   const startupGlitchIntervalRef = useRef<number | null>(null)
+  const templateMobilePanelLaserTimeoutRef = useRef<number | null>(null)
   const startupGlitchFrameRef = useRef(0)
   const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
   const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
@@ -376,6 +382,39 @@ function App() {
   useEffect(() => {
     persistTemplateLayoutMode(templateLayoutMode)
   }, [templateLayoutMode])
+
+  useEffect(() => {
+    if (templateLayoutMode !== 'mobile') {
+      setTemplateMobilePanelSide('left')
+      setTemplateMobilePanelSwitchTo(null)
+      setTemplateMobilePanelLaserVisible(false)
+      if (templateMobilePanelLaserTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+        templateMobilePanelLaserTimeoutRef.current = null
+      }
+    }
+  }, [templateLayoutMode])
+
+  useEffect(() => {
+    if (templateLayoutMode === 'mobile') {
+      setTemplateMobilePanelSide('left')
+      setTemplateMobilePanelSwitchTo(null)
+      setTemplateMobilePanelLaserVisible(false)
+      if (templateMobilePanelLaserTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+        templateMobilePanelLaserTimeoutRef.current = null
+      }
+    }
+  }, [activeTemplate, templateLayoutMode])
+
+  useEffect(
+    () => () => {
+      if (templateMobilePanelLaserTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+      }
+    },
+    [],
+  )
 
   useEffect(() => {
     if (typeof document === 'undefined') return
@@ -929,6 +968,23 @@ function App() {
     setTemplateLayoutMode((current) => (current === 'mobile' ? 'normal' : 'mobile'))
   }, [])
 
+  const toggleTemplateMobilePanelSide = useCallback(() => {
+    if (templateLayoutMode !== 'mobile' || templateMobilePanelSwitchTo) return
+    const nextSide = templateMobilePanelSide === 'left' ? 'right' : 'left'
+    setTemplateMobilePanelSwitchTo(nextSide)
+    setTemplateMobilePanelLaserVisible(true)
+    setTemplateMobilePanelLaserNonce((current) => current + 1)
+    if (templateMobilePanelLaserTimeoutRef.current !== null) {
+      window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+    }
+    templateMobilePanelLaserTimeoutRef.current = window.setTimeout(() => {
+      setTemplateMobilePanelSide(nextSide)
+      setTemplateMobilePanelSwitchTo(null)
+      setTemplateMobilePanelLaserVisible(false)
+      templateMobilePanelLaserTimeoutRef.current = null
+    }, TEMPLATE_PANEL_SWITCH_LASER_MS)
+  }, [templateLayoutMode, templateMobilePanelSide, templateMobilePanelSwitchTo])
+
   const openFight = (fightId: string) => {
     const fight = fights.find((item) => item.id === fightId)
     if (!fight) return
@@ -1241,6 +1297,12 @@ function App() {
         if (canStepTemplateForward) {
           stepTemplateOrder(1)
         }
+        return
+      }
+
+      if (templateLayoutMode === 'mobile' && (event.key === ' ' || event.code === 'Space')) {
+        event.preventDefault()
+        toggleTemplateMobilePanelSide()
       }
     }
 
@@ -1253,6 +1315,8 @@ function App() {
     isTemplateView,
     portraitEditor,
     stepTemplateOrder,
+    templateLayoutMode,
+    toggleTemplateMobilePanelSide,
   ])
 
   useEffect(() => {
@@ -1423,6 +1487,8 @@ function App() {
         data-vs-audit={auditRequest ? 'true' : 'false'}
         data-reverse-stage={reverseStage}
         data-vs-template-layout={templateLayoutMode}
+        data-vs-mobile-panel={templateMobilePanelSide}
+        data-vs-mobile-panel-switch={templateMobilePanelSwitchTo || 'none'}
         className="h-screen overflow-hidden bg-black p-0 text-slate-100"
       >
         <section className="vs-boot-screen">
@@ -1467,6 +1533,8 @@ function App() {
       data-vs-audit={auditRequest ? 'true' : 'false'}
       data-reverse-stage={reverseStage}
       data-vs-template-layout={templateLayoutMode}
+      data-vs-mobile-panel={templateMobilePanelSide}
+      data-vs-mobile-panel-switch={templateMobilePanelSwitchTo || 'none'}
       className={clsx(
         isTemplateView && 'vs-template-mode',
         'text-slate-100',
@@ -1554,6 +1622,8 @@ function App() {
             activeFightFolderKey={activeFightRecord?.folderKey || ''}
             activeFightLocale={activeFightRecord?.variantLocale || language}
             templateTransitionPhase={templateTransitionPhase}
+            panelSwitchLaserVisible={templateMobilePanelLaserVisible}
+            panelSwitchLaserNonce={templateMobilePanelLaserNonce}
             incomingTemplate={renderedIncomingTemplate}
           >
             {renderedTemplate}

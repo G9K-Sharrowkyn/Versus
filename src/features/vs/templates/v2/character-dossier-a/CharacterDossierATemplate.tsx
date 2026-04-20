@@ -75,6 +75,8 @@ export function CharacterDossierATemplate({
   const fighterVersion = fighterA.version?.trim() || ''
   const fighterNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const fighterNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
+  const fighterVersionRef = useRef<HTMLParagraphElement | null>(null)
+  const applyNameFitRef = useRef<(() => void) | null>(null)
   const cardFacts = factsA.length ? factsA : []
   const cardTitle = title
     .replace(/\s*(?:(?:\/\/)|[|/-])\s*(?:NIEBIESKI|CZERWONY|BLUE|RED)\s*$/i, '')
@@ -103,19 +105,79 @@ export function CharacterDossierATemplate({
     if (!wrapperEl || !headingEl) return
 
     const applyFit = () => {
+      const isMobileLayout = wrapperEl.closest("[data-vs-template-layout='mobile']") !== null
+      const versionEl = fighterVersionRef.current
+      const wrapperStyles = window.getComputedStyle(wrapperEl)
+      const paddingTopPx = Number.parseFloat(wrapperStyles.paddingTop || '0') || 0
+      const paddingBottomPx = Number.parseFloat(wrapperStyles.paddingBottom || '0') || 0
+      const wrapperRawHeightPx = wrapperEl.clientHeight > 0
+        ? wrapperEl.clientHeight
+        : wrapperEl.getBoundingClientRect().height
+      const wrapperInnerHeightPx = Math.max(12, wrapperRawHeightPx - paddingTopPx - paddingBottomPx)
+      const versionTargetHeightPx = isMobileLayout
+        ? Math.max(18, Math.min(36, wrapperInnerHeightPx * 0.24))
+        : undefined
+
+      if (versionEl && fighterVersion) {
+        applyDossierNameAutofit({
+          element: versionEl,
+          container: wrapperEl,
+          sourceText: fighterVersion,
+          config: isMobileLayout
+            ? {
+                baseScale: 0.78,
+                twoLineScale: 0.78,
+                oneLineMinScale: 0.52,
+                minFontPx: 13,
+                allowTwoRows: false,
+                maxRows: 1,
+                targetHeightPx: versionTargetHeightPx,
+              }
+            : {
+                baseScale: 0.23,
+                twoLineScale: 0.23,
+                oneLineMinScale: 0.72,
+                minFontPx: 8,
+                allowTwoRows: false,
+                maxRows: 1,
+                targetHeightPx: versionTargetHeightPx,
+              },
+        })
+      }
+
+      const versionHeightPx = versionTargetHeightPx
+        ? versionTargetHeightPx
+        : (versionEl && fighterVersion ? Math.max(0, versionEl.getBoundingClientRect().height) : 0)
+      const nameTargetHeightPx = isMobileLayout
+        ? Math.max(42, wrapperInnerHeightPx - versionHeightPx - 4)
+        : undefined
+
       applyDossierNameAutofit({
         element: headingEl,
         container: wrapperEl,
         sourceText: fighterText,
-        config: {
-          baseScale: 0.85,
-          twoLineScale: 0.425,
-          oneLineMinScale: 0.5,
-          minFontPx: 8,
-        },
+        config: isMobileLayout
+          ? {
+              baseScale: 3.05,
+              twoLineScale: 3.05,
+              oneLineMinScale: 0.42,
+              minFontPx: 14,
+              allowTwoRows: true,
+              minRows: 2,
+              maxRows: 3,
+              targetHeightPx: nameTargetHeightPx,
+            }
+          : {
+              baseScale: 0.85,
+              twoLineScale: 0.425,
+              oneLineMinScale: 0.5,
+              minFontPx: 8,
+              allowTwoRows: true,
+            },
       })
     }
 
+    applyNameFitRef.current = applyFit
     applyFit()
     const delayedReflows = [
       window.setTimeout(applyFit, 80),
@@ -141,6 +203,7 @@ export function CharacterDossierATemplate({
     window.addEventListener('resize', applyFit)
 
     return () => {
+      applyNameFitRef.current = null
       disposed = true
       delayedReflows.forEach((timerId) => window.clearTimeout(timerId))
       if (fontSet && typeof fontSet.removeEventListener === 'function') {
@@ -149,7 +212,11 @@ export function CharacterDossierATemplate({
       resizeObserver.disconnect()
       window.removeEventListener('resize', applyFit)
     }
-  }, [fighterText])
+  }, [fighterText, fighterVersion])
+
+  useLayoutEffect(() => {
+    applyNameFitRef.current?.()
+  })
 
   useEffect(() => {
     const headerChars = headerTextStr.split('')
@@ -251,6 +318,7 @@ export function CharacterDossierATemplate({
           {/* ImiĂ„â„˘ Postaci */}
           <div
             ref={fighterNameWrapperRef}
+            className="vs-dossier-identity-block"
             style={{
               borderLeft: `4px solid ${BLUE_EKSTREMALNY}`,
               paddingLeft: '1.5rem',
@@ -263,13 +331,13 @@ export function CharacterDossierATemplate({
               gap: '0.45rem',
             }}
           >
-            <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1" data-marvin-id="REFLEKS_IMIENIA_POSTACI" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterText}</h3>
+            <h3 ref={fighterNameHeadingRef} className="vs-dossier-text-1 vs-dossier-name-text" data-marvin-id="REFLEKS_IMIENIA_POSTACI" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', maxWidth: '100%', display: 'block' }}>{fighterText}</h3>
             {fighterVersion ? (
               <p
-                className="vs-dossier-text-2"
+                ref={fighterVersionRef}
+                className="vs-dossier-text-2 vs-dossier-universe-text"
                 style={{
                   textShadow: REFLEKS_TRESCI_FAKTOW,
-                  fontSize: 'calc(var(--tb-type-2) * 0.72)',
                   lineHeight: 1,
                 }}
               >
@@ -279,15 +347,15 @@ export function CharacterDossierATemplate({
           </div>
 
           {/* Lista FaktÄ‚Ĺ‚w - staÄąâ€še pozycje */}
-          <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
+          <div className="vs-dossier-facts-layout" style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
             {cardFacts.map((fact, index) => (
-              <div key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
-                <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
+              <div className="vs-dossier-fact-block" key={`fact-${index}`} style={{ position: 'absolute', top: index === 0 ? '0px' : index === 1 ? '200px' : '400px', left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+                <div className="vs-dossier-fact-title-wrap" style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
                   <p className="vs-dossier-text-3" data-marvin-id="REFLEKS_ETYKIET_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={fact.title} /></p>
                   <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
                   <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
                 </div>
-                <p className="vs-dossier-text-2" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
+                <p className="vs-dossier-text-2 vs-dossier-fact-text" data-marvin-id="REFLEKS_TRESCI_FAKTOW" data-marvin-file={CURRENT_FILE} data-marvin-type="const" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{fact.text}</p>
               </div>
             ))}
           </div>

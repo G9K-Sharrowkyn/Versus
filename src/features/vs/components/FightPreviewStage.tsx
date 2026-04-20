@@ -1,4 +1,4 @@
-import { useMemo, type CSSProperties, type ReactNode, type RefObject } from 'react'
+import { isValidElement, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import type { TemplateId } from '../types'
 
@@ -26,6 +26,8 @@ type FightPreviewStageProps = {
   activeFightFolderKey: string
   activeFightLocale: string
   templateTransitionPhase: TemplateTransitionPhase
+  panelSwitchLaserVisible: boolean
+  panelSwitchLaserNonce: number
   children: ReactNode
   incomingTemplate: ReactNode
 }
@@ -40,11 +42,15 @@ export function FightPreviewStage({
   activeFightFolderKey,
   activeFightLocale,
   templateTransitionPhase,
+  panelSwitchLaserVisible,
+  panelSwitchLaserNonce,
   children,
   incomingTemplate,
 }: FightPreviewStageProps) {
   const isTemplateTransitioning = templateTransitionPhase !== 'idle'
   const showIncomingLayer = isTemplateTransitioning && Boolean(incomingTemplate)
+  const readNodeKey = (node: ReactNode, fallback: string) =>
+    isValidElement(node) && node.key != null ? String(node.key) : fallback
 
   return (
     <section
@@ -84,14 +90,14 @@ export function FightPreviewStage({
             if (children) {
               layers.push({
                 node: children,
-                key: (children as any)?.key,
+                key: readNodeKey(children, 'current-layer'),
                 isIncoming: false,
               })
             }
             if (showIncomingLayer) {
               layers.push({
                 node: incomingTemplate,
-                key: (incomingTemplate as any)?.key,
+                key: readNodeKey(incomingTemplate, 'incoming-layer'),
                 isIncoming: true,
               })
             }
@@ -112,17 +118,32 @@ export function FightPreviewStage({
           {isTemplateTransitioning && (
             <LaserSweepTransition phase={templateTransitionPhase} />
           )}
+          {panelSwitchLaserVisible ? (
+            <LaserSweepTransition
+              key={`panel-switch-${panelSwitchLaserNonce}`}
+              phase="enter"
+              variant="panel-switch"
+            />
+          ) : null}
         </div>
       </div>
     </section>
   )
 }
 
-function LaserSweepTransition({ phase }: { phase: TemplateTransitionPhase }) {
+function LaserSweepTransition({
+  phase,
+  variant = 'template',
+}: {
+  phase: TemplateTransitionPhase
+  variant?: 'template' | 'panel-switch'
+}) {
   if (phase !== 'enter') return null
 
   return (
-    <div className="vs-template-laser-transition">
+    <div
+      className={`vs-template-laser-transition ${variant === 'panel-switch' ? 'vs-template-laser-transition--panel-switch' : ''}`}
+    >
       <div className="vs-template-laser-line" />
     </div>
   )

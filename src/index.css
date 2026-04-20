@@ -309,6 +309,16 @@
   pointer-events: none;
 }
 
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='left'] [data-vs-stage='true'] .vs-template-laser-transition--panel-switch,
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='right'] [data-vs-stage='true'] .vs-template-laser-transition--panel-switch {
+  inset: auto;
+  left: 50%;
+  width: 88%;
+  top: clamp(116px, 18dvh, 192px);
+  bottom: clamp(12px, 2.1dvh, 28px);
+  transform: translateX(-50%);
+}
+
 .vs-template-laser-line {
   position: absolute;
   top: -26%;
@@ -680,10 +690,6 @@
   transform: translateX(-50%) !important;
 }
 
-[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
-  display: none !important;
-}
-
 [data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats-title,
 [data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-reality-heading {
   top: calc(-18px * var(--tb-scale)) !important;
@@ -743,10 +749,13 @@
   line-height: 1.02 !important;
 }
 
-[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-stats {
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-reality {
   top: clamp(116px, 18dvh, 192px) !important;
   bottom: clamp(12px, 2.1dvh, 28px) !important;
   width: 88% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
   min-height: 0 !important;
   height: auto !important;
   padding: clamp(8px, 1.2dvh, 16px) clamp(10px, 1.6dvh, 18px) !important;
@@ -862,6 +871,220 @@
 
 [data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
   width: clamp(108px, 14dvh, 164px) !important;
+}
+
+/* Mobile baseline for all non-tactical templates: mirror the proven tactical frame geometry. */
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) {
+  --tb-scale: 0.82 !important;
+  width: calc(100% - 8px) !important;
+  height: calc(100% - 8px) !important;
+  width: min(calc(100cqw - 8px), 760px) !important;
+  height: calc(100cqh - 8px) !important;
+  max-height: calc(100dvh - 16px) !important;
+  aspect-ratio: auto !important;
+  border-radius: 18px !important;
+  transform: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-meta {
+  top: clamp(8px, 1.2dvh, 16px) !important;
+  left: clamp(8px, 1.2dvh, 16px) !important;
+  width: 45% !important;
+  gap: clamp(1px, 0.2dvh, 4px) !important;
+  font-size: clamp(9px, 1.15dvh, 13px) !important;
+  line-height: 1.02 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-heading {
+  top: clamp(62px, 9.2dvh, 132px) !important;
+  width: 88% !important;
+  transform: translate(-50%, -16px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tb-signal-main {
+  width: 60% !important;
+  min-height: clamp(30px, 4.2dvh, 42px) !important;
+  padding: 0.02em 0.32em !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tb-signal-main .glitch-letter-container {
+  font-size: clamp(13px, 1.95dvh, 24px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-subtitle {
+  font-size: clamp(12px, 1.8dvh, 22px) !important;
+  line-height: 1.04 !important;
+  margin-top: clamp(6px, 1dvh, 14px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-identity-block,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-identity-block {
+  height: clamp(112px, 15.5dvh, 196px) !important;
+  min-height: clamp(112px, 15.5dvh, 196px) !important;
+  margin-top: clamp(-2px, -0.2dvh, 0px) !important;
+  padding-right: clamp(4px, 0.6dvh, 10px) !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  gap: 0 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-name-text,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-name-text {
+  max-width: 100% !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-universe-text,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-universe-text {
+  margin-top: auto !important;
+  align-self: flex-start !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+  overflow: visible !important;
+  transform: none !important;
+  line-height: 1 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text {
+  font-size: clamp(12px, 1.65dvh, 26px) !important;
+  line-height: 1.02 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-facts-layout,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-facts-layout {
+  display: grid !important;
+  grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
+  gap: clamp(32px, 4.3dvh, 57px) !important;
+  height: 380px !important;
+  min-height: 380px !important;
+  align-content: stretch !important;
+  overflow: visible !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  width: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: clamp(6px, 0.85dvh, 12px) !important;
+  overflow: visible !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block:nth-child(2),
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(2) {
+  transform: translateY(20px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block:nth-child(3),
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(3) {
+  transform: translateY(40px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap {
+  min-height: clamp(24px, 3.2dvh, 38px) !important;
+  margin-bottom: 0 !important;
+  padding-bottom: 2px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap > div:nth-of-type(1),
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(1) {
+  bottom: 6px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap > div:nth-of-type(2),
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(2) {
+  bottom: -15px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text {
+  flex: 0 0 auto !important;
+  min-height: auto !important;
+  margin-top: 0 !important;
+  overflow: visible !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: clamp(108px, 14dvh, 164px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-reality {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: clamp(12px, 2.1dvh, 28px) !important;
+  min-height: 0 !important;
+  height: auto !important;
+  border-width: 4px !important;
+  padding: clamp(8px, 1.2dvh, 16px) clamp(10px, 1.6dvh, 18px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-stats {
+  left: 50% !important;
+  width: 88% !important;
+  transform: translateX(-50%) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-stats-title,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-reality-heading {
+  top: clamp(-28px, -3.2dvh, -18px) !important;
+  left: clamp(8px, 1.3dvh, 16px) !important;
+  font-size: clamp(11px, 1.5dvh, 18px) !important;
+}
+
+/* Mobile single-panel swap: Space toggles active side left <-> right. */
+[data-vs-template-layout='mobile'][data-vs-mobile-panel='left'][data-vs-mobile-panel-switch='none'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel='right'][data-vs-mobile-panel-switch='none'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel='right'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  left: 50% !important;
+  width: 88% !important;
+  transform: translateX(-50%) !important;
+}
+
+/* Reveal behavior on panel switch: old panel stays until laser sweep exposes new side. */
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='right'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  left: 50% !important;
+  width: 88% !important;
+  transform: translateX(-50%) !important;
+  z-index: 2 !important;
+  clip-path: polygon(-10% -35%, -10% -35%, -10% 135%, -10% 135%);
+  animation: vs-laser-reveal 1.2s linear forwards;
+  will-change: clip-path;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='right'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
+  z-index: 1 !important;
+  clip-path: polygon(-10% -35%, 110% -35%, 110% 135%, -10% 135%);
+  animation: vs-laser-hide 1.2s linear forwards;
+  will-change: clip-path;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='left'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
+  z-index: 2 !important;
+  clip-path: polygon(-10% -35%, -10% -35%, -10% 135%, -10% 135%);
+  animation: vs-laser-reveal 1.2s linear forwards;
+  will-change: clip-path;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='left'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  left: 50% !important;
+  width: 88% !important;
+  transform: translateX(-50%) !important;
+  z-index: 1 !important;
+  clip-path: polygon(-10% -35%, 110% -35%, 110% 135%, -10% 135%);
+  animation: vs-laser-hide 1.2s linear forwards;
+  will-change: clip-path;
 }
 
 /* Force single-column body layout in mobile template mode for all template cards. */

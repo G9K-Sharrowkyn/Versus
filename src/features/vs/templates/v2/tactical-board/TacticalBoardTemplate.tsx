@@ -256,14 +256,12 @@ export function TacticalBoardTemplate({
         </div>
       </section>
 
-      {!isTemplateMobileLayout ? (
-        <div className="vs-tactical-board25-reality">
-          <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={realityHeader} /></p>
-          <div className="vs-tactical-board25-reality-viewport">
-            <AnimeLightning />
-          </div>
+      <div className="vs-tactical-board25-reality">
+        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={realityHeader} /></p>
+        <div className="vs-tactical-board25-reality-viewport">
+          <AnimeLightning />
         </div>
-      ) : null}
+      </div>
     </div>
   )
 }
