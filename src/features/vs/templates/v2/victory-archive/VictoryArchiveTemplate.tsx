@@ -1,6 +1,6 @@
 import './VictoryArchiveTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, useMemo, type CSSProperties, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
 import { preloadImageUrls } from '../../../domain/imagePreloadCache'
 import { useScopedCycleIndex } from '../../../hooks/useScopedCycleIndex'
@@ -22,6 +22,7 @@ import {
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
+import { useTemplateMobileLayout } from '../../shared/useTemplateMobileLayout'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
 type VictoryArchiveTemplateProps = TemplatePreviewProps & {
@@ -66,6 +67,7 @@ export function VictoryArchiveTemplate({
   onSlideImageAdjustCommit,
   language,
   onToggleLanguage,
+  templateLayoutMode,
   integratedToolbar,
 }: VictoryArchiveTemplateProps) {
   // New Layout base props
@@ -93,11 +95,79 @@ export function VictoryArchiveTemplate({
   const pairCount = Math.max(1, leftEntries.length, rightEntries.length)
   const pairScope = `${activeFightFolderKey || 'standalone'}:${leftEntries.length}:${rightEntries.length}`
   const [pairIndex, nextPair] = useScopedCycleIndex(pairScope, pairCount)
+  const autoTemplateMobileLayout = useTemplateMobileLayout()
+  const isTemplateMobileLayout =
+    templateLayoutMode === 'mobile' || (templateLayoutMode == null && autoTemplateMobileLayout)
+
+  const mobileEntries = useMemo(
+    () => [
+      ...leftEntries.map((entry) => ({ side: 'left' as const, fighter: fighterA, entry })),
+      ...rightEntries.map((entry) => ({ side: 'right' as const, fighter: fighterB, entry })),
+    ],
+    [fighterA, fighterB, leftEntries, rightEntries],
+  )
+  const mobileCount = Math.max(1, mobileEntries.length)
+  const mobileScope = `${activeFightFolderKey || 'standalone'}:mobile:${leftEntries.length}:${rightEntries.length}`
+  const [mobileIndex, nextMobile] = useScopedCycleIndex(mobileScope, mobileCount)
   
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
+  const activeMobileEntry = mobileIndex < mobileEntries.length ? mobileEntries[mobileIndex] : null
+  const activeMobileTitle = activeMobileEntry
+    ? activeMobileEntry.side === 'left'
+      ? leftTitle
+      : rightTitle
+    : leftTitle
+  const mobileSinglePanelVars = isTemplateMobileLayout
+    ? ({
+        '--tb-panel-width': '78%',
+        '--tb-stats-width': 'var(--tb-panel-width)',
+        '--tb-stats-left': 'calc(50% - (var(--tb-panel-width) / 2))',
+      } as CSSProperties & Record<'--tb-panel-width' | '--tb-stats-width' | '--tb-stats-left', string>)
+    : undefined
+  const logoStyle = {
+    '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
+  } as CSSProperties & Record<'--logo-url', string>
 
   useEffect(() => {
+    if (isTemplateMobileLayout) {
+      const orderedMobileIndices = Array.from({ length: mobileCount }, (_, offset) => (mobileIndex + offset) % mobileCount)
+      const priorityMobileIndices = orderedMobileIndices.slice(0, 4)
+      const secondaryMobileIndices = orderedMobileIndices.slice(4)
+
+      const collectUrlsForMobile = (indices: number[]) =>
+        indices
+          .map((index) => {
+            const item = index < mobileEntries.length ? mobileEntries[index] : null
+            if (!item) return ''
+            return resolveFightTemplateImageUrl(activeFightFolderKey, item.entry.imageFile, {
+              templateId: 'victory-archive',
+              side: item.side,
+              slot: item.entry.slot,
+            })
+          })
+          .filter(Boolean)
+
+      const priorityUrls = collectUrlsForMobile(priorityMobileIndices)
+      const secondaryUrls = collectUrlsForMobile(secondaryMobileIndices)
+
+      if (priorityUrls.length) {
+        void preloadImageUrls(priorityUrls)
+      }
+      if (!secondaryUrls.length || typeof window === 'undefined') return
+
+      let cancelled = false
+      const secondaryTimer = window.setTimeout(() => {
+        if (cancelled) return
+        void preloadImageUrls(secondaryUrls)
+      }, 240)
+
+      return () => {
+        cancelled = true
+        window.clearTimeout(secondaryTimer)
+      }
+    }
+
     const orderedPairIndices = Array.from({ length: pairCount }, (_, offset) => (pairIndex + offset) % pairCount)
     const priorityPairIndices = orderedPairIndices.slice(0, 4)
     const secondaryPairIndices = orderedPairIndices.slice(4)
@@ -145,12 +215,23 @@ export function VictoryArchiveTemplate({
       cancelled = true
       window.clearTimeout(secondaryTimer)
     }
-  }, [activeFightFolderKey, leftEntries, pairCount, pairIndex, rightEntries])
+  }, [
+    activeFightFolderKey,
+    isTemplateMobileLayout,
+    leftEntries,
+    mobileCount,
+    mobileEntries,
+    mobileIndex,
+    pairCount,
+    pairIndex,
+    rightEntries,
+  ])
 
   const renderColumn = (
     fighter: Fighter,
     entry: TemplateImageEntry | null,
     side: 'left' | 'right',
+    onActivate: () => void,
   ) => {
     const fighterFallback = getFightTemplateDefaultField('victory-archive', 'fighter_fallback', language)
     const imageUrl = entry
@@ -178,7 +259,7 @@ export function VictoryArchiveTemplate({
             adjustments={slideImageAdjustments}
             onAdjustChange={onSlideImageAdjustChange}
             onAdjustCommit={onSlideImageAdjustCommit}
-            onActivate={nextPair}
+            onActivate={onActivate}
             plain
           />
         </div>
@@ -188,7 +269,7 @@ export function VictoryArchiveTemplate({
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
-  const chars = headerTextStr.split('')
+  const chars = useMemo(() => headerTextStr.split(''), [headerTextStr])
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
@@ -235,10 +316,13 @@ export function VictoryArchiveTemplate({
       isMounted = false
       timeouts.forEach(clearTimeout)
     }
-  }, [headerTextStr])
+  }, [chars])
 
   return (
-    <div className="vs-tactical-board25-surface vs-template--victory-archive">
+    <div
+      className="vs-tactical-board25-surface vs-template--victory-archive"
+      style={mobileSinglePanelVars}
+    >
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -275,7 +359,7 @@ export function VictoryArchiveTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={logoStyle}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img
@@ -287,22 +371,41 @@ export function VictoryArchiveTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
-        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={leftTitle} /></p>
-        {renderColumn(fighterA, leftEntry, 'left')}
-      </section>
+      {isTemplateMobileLayout ? (
+        <>
+          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+            <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={activeMobileTitle} /></p>
+            {renderColumn(
+              activeMobileEntry?.fighter || fighterA,
+              activeMobileEntry?.entry || null,
+              activeMobileEntry?.side || 'left',
+              nextMobile,
+            )}
+          </section>
+          <p className="vs-victory-archive-caption vs-victory-archive-caption--single" style={{ left: 'var(--tb-stats-left)' }}>
+            {activeMobileEntry?.entry.text || '\u00A0'}
+          </p>
+        </>
+      ) : (
+        <>
+          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+            <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={leftTitle} /></p>
+            {renderColumn(fighterA, leftEntry, 'left', nextPair)}
+          </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
-        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={rightTitle} /></p>
-        {renderColumn(fighterB, rightEntry, 'right')}
-      </div>
+          <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+            <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={rightTitle} /></p>
+            {renderColumn(fighterB, rightEntry, 'right', nextPair)}
+          </div>
 
-      <p className="vs-victory-archive-caption vs-victory-archive-caption--left">
-        {leftEntry?.text || '\u00A0'}
-      </p>
-      <p className="vs-victory-archive-caption vs-victory-archive-caption--right">
-        {rightEntry?.text || '\u00A0'}
-      </p>
+          <p className="vs-victory-archive-caption vs-victory-archive-caption--left">
+            {leftEntry?.text || '\u00A0'}
+          </p>
+          <p className="vs-victory-archive-caption vs-victory-archive-caption--right">
+            {rightEntry?.text || '\u00A0'}
+          </p>
+        </>
+      )}
     </div>
   )
 }

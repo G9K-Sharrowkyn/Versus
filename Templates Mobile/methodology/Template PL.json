@@ -1,0 +1,660 @@
+{
+  "id": "methodology",
+  "locale": "pl",
+  "metadata": {
+    "activeName": "Metodologia",
+    "description": "Plansza metodologii i nieliniowości walki.",
+    "title": "METODOLOGIA",
+    "subtitle": "Źródła danych i dynamika walki",
+    "blockName": "Metodologia",
+    "purpose": "Plansza metodologii i nieliniowości walki."
+  },
+  "chrome": {
+    "threatLevelLabel": "Stopień zagrożenia",
+    "threatLevelValue": "ekstremalny",
+    "dataIntegrityLabel": "Integralność danych",
+    "dataIntegrityValue": "99.6%",
+    "brandAlt": "VersusVerseVault",
+    "brandMarkTitle": "Sygnatura marki",
+    "brandMarkAria": "Sygnatura VersusVerseVault",
+    "brandImageSrc": "/assets/VS2.png",
+    "portraitAdjustHint": "LPM: przesuń | PPM: skaluj"
+  },
+  "common": {
+    "style": "Styl",
+    "advantage": "Atut",
+    "mentality": "Mentalność",
+    "blueCorner": "Niebieski narożnik",
+    "redCorner": "Czerwony narożnik",
+    "noImage": "Brak obrazu",
+    "portraitSlot": "Miejsce na portret",
+    "noDrawsCurrentSetup": "Brak remisów w bieżącym układzie.",
+    "baseline": "Bazowy",
+    "toolkitProfileSuffix": "profil narzędzi",
+    "noEntry": "",
+    "noDataInCategory": "",
+    "noPowersWeaknesses": "",
+    "noLeftCategoryEdge": "",
+    "noRightCategoryEdge": "",
+    "archiveLabel": "ARCHIWUM",
+    "recordPrefix": "REKORD",
+    "entriesUnit": "wpisów",
+    "averageShort": "Śr.",
+    "parameterLabel": "Parametr",
+    "scoreScaleLabel": "Wynik (0-100)",
+    "drawZonesLabel": "Strefy remisu",
+    "drawLabel": "REMIS",
+    "favoriteSuffix": "faworyt",
+    "summaryLabel": "Podsumowanie",
+    "dataLabel": "Dane",
+    "verdictLabel": "Werdykt",
+    "mechanicsLabel": "Mechanika:",
+    "implicationLabel": "Implikacja:",
+    "psychologyLabel": "Psychologia:",
+    "keyQuestionLabel": "Kluczowe pytanie:",
+    "templateBlockPreviewLabel": "Podgląd bloku template",
+    "emptyFieldLabel": "",
+    "startLabel": "POCZĄTEK",
+    "fightTimeLabel": "CZAS WALKI",
+    "endLabel": "KONIEC",
+    "advantageStaminaLabel": "PRZEWAGA / KONDYCJA",
+    "phaseLabel": "Faza",
+    "phase1Label": "Faza 1: Otwarcie.",
+    "phase2Label": "Faza 2: Środek walki.",
+    "phase3Label": "Faza 3: Końcówka.",
+    "scenarioPresetLabel": "Preset scenariusza"
+  },
+  "categories": [
+    {
+      "id": "strength",
+      "label": "Siła"
+    },
+    {
+      "id": "speed",
+      "label": "Szybkość"
+    },
+    {
+      "id": "durability",
+      "label": "Wytrzymałość"
+    },
+    {
+      "id": "battleIq",
+      "label": "IQ bojowe"
+    },
+    {
+      "id": "hax",
+      "label": "Hax"
+    },
+    {
+      "id": "stamina",
+      "label": "Kondycja"
+    },
+    {
+      "id": "style",
+      "label": "Styl walki"
+    },
+    {
+      "id": "experience",
+      "label": "Doświadczenie"
+    },
+    {
+      "id": "skills",
+      "label": "Umiejętności"
+    }
+  ],
+  "staticFields": {
+    "list_label": "Lista kontrolna",
+    "reality_label": "Rzeczywistość walki",
+    "linear_label": "Segment liniowy",
+    "chaos_label": "Segment chaosu",
+    "closing_label": "Uwagi końcowe",
+    "fighter_a_fallback": "Postać A",
+    "fighter_b_fallback": "Postać B",
+    "fighter_fallback": "Postać"
+  },
+  "layout": {
+    "HIGH_END": {
+      "HIGH_END_ROOT_CLASS": "relative z-10 flex h-full flex-col text-slate-100",
+      "HIGH_END_BACKGROUND_CLASS": "border border-cyan-300/35 bg-[linear-gradient(180deg,#06172a_0%,#0a2036_52%,#061325_100%)]",
+      "HIGH_END_STAGE_CLASS": "relative overflow-hidden rounded-[34px] border p-5 shadow-[0_0_0_1px_rgba(125,211,252,0.24),0_0_36px_rgba(3,18,33,0.72)] border border-cyan-300/35 bg-[linear-gradient(180deg,#06172a_0%,#0a2036_52%,#061325_100%)]",
+      "HIGH_END_STAGE_OVERLAY_CLASS": "pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_8%_10%,rgba(34,211,238,0.16),transparent_35%),radial-gradient(circle_at_86%_88%,rgba(59,130,246,0.16),transparent_35%)]",
+      "HIGH_END_PANEL_CLASS": "relative mt-1 min-h-0 flex-1 overflow-hidden rounded-xl p-3 border border-cyan-300/35 bg-[linear-gradient(180deg,#06172a_0%,#0a2036_52%,#061325_100%)]",
+      "HIGH_END_GRID_OVERLAY_CLASS": "pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(125,211,252,0.18)_1px,transparent_1px),linear-gradient(to_bottom,rgba(125,211,252,0.18)_1px,transparent_1px)] [background-size:7%_13%]",
+      "HIGH_END_HEADER_CLASS": "text-center text-[40px] uppercase leading-[0.98] tracking-[0.02em] text-slate-100",
+      "HIGH_END_SUBTEXT_CLASS": "mt-0.5 text-center text-[11px] uppercase leading-[1.08] tracking-[0.16em] text-slate-300",
+      "HIGH_END_TEMPLATE_HEADER_SHELL_CLASS": "grid grid-cols-[1fr_auto_1fr] items-start gap-4 border-b border-cyan-300/25 pb-1 text-[11px] text-slate-300",
+      "HIGH_END_TEMPLATE_HEADER_META_CLASS": "min-w-[238px] space-y-1 pt-0.5 text-left",
+      "HIGH_END_TEMPLATE_HEADER_CENTER_CLASS": "flex h-[92px] min-h-[92px] max-h-[92px] flex-col items-center justify-start px-3 pt-0.5 text-center",
+      "HIGH_END_TEMPLATE_HEADER_LOGO_WRAP_CLASS": "flex items-start justify-end pt-0",
+      "HIGH_END_FRAME_CLASS": "rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))]",
+      "HIGH_END_CARD_CLASS": "rounded-lg border border-cyan-300/18 bg-[linear-gradient(180deg,rgba(4,16,29,0.95),rgba(7,24,42,0.9))]",
+      "HIGH_END_SOFT_CARD_CLASS": "rounded-lg border border-cyan-300/16 bg-[linear-gradient(180deg,rgba(8,29,48,0.88),rgba(10,35,58,0.82))]",
+      "HIGH_END_INSET_CLASS": "rounded-lg border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(6,21,37,0.9),rgba(9,31,53,0.84))]",
+      "HIGH_END_FIGHTER_BANNER_CLASS": "rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] h-[80px] min-h-[80px] p-3",
+      "HIGH_END_FIGHTER_BANNER_INSET_CLASS": "rounded-lg border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(6,21,37,0.9),rgba(9,31,53,0.84))] flex h-full items-center justify-between gap-3 px-3 py-2",
+      "HIGH_END_BODY_GAP_CLASS": "mt-1",
+      "HIGH_END_LABEL_CLASS": "text-[11px] uppercase tracking-[0.18em] text-slate-300",
+      "HIGH_END_SMALL_TEXT_CLASS": "text-[10px] uppercase tracking-[0.16em] text-slate-400",
+      "HIGH_END_LOGO_BUTTON_CLASS": "flex h-[86px] aspect-[755/322] items-center justify-center overflow-hidden rounded-[14px] border border-cyan-300/35 bg-[linear-gradient(180deg,rgba(7,24,42,0.96),rgba(4,14,24,0.94))] p-0 shadow-[0_0_0_1px_rgba(125,211,252,0.08)_inset,0_10px_26px_rgba(2,8,23,0.45)] cursor-pointer transition-transform active:scale-95",
+      "HIGH_END_LOGO_IMAGE_CLASS": "h-full w-full object-contain drop-shadow-[0_0_14px_rgba(251,146,60,0.28)]",
+      "HIGH_END_FIGHTER_NAME_CLASS": "tracking-[0.03em]",
+      "HIGH_END_STAGE_GRID_CLASS": "pointer-events-none absolute inset-0 opacity-30 [background-image:linear-gradient(to_right,rgba(148,163,184,0.14)_1px,transparent_1px),linear-gradient(to_bottom,rgba(148,163,184,0.14)_1px,transparent_1px)] [background-size:34px_34px]",
+      "HIGH_END_STAGE_FRAME_CLASS": "pointer-events-none absolute inset-3 rounded-[26px] border border-white/12"
+    },
+    "TOKENS": {
+      "TEMPLATE_INSIGHT_CARD_CLASS": "rounded-md border border-slate-500/70 bg-slate-900/85 p-2",
+      "TEMPLATE_INSIGHT_ROW_CLASS": "flex items-start gap-2",
+      "TEMPLATE_INSIGHT_ICON_WRAP_CLASS": "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-sm border border-cyan-300/25 bg-slate-950/78 text-cyan-200",
+      "TEMPLATE_INSIGHT_TITLE_CLASS": "text-[16px] font-semibold uppercase leading-none text-slate-100",
+      "TEMPLATE_INSIGHT_BODY_CLASS": "mt-1 text-[15px] leading-tight text-slate-200",
+      "TEMPLATE_INSIGHT_ICON_SIZE": 18,
+      "TEMPLATE_INSIGHT_ICON_STROKE": 2.15,
+      "TEMPLATE_QUOTE_PANEL_CLASS": "mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] text-slate-100",
+      "INTERPRETATION_BULLET_LIST_CLASS": "list-disc space-y-1 pl-6 text-[20px] leading-tight text-slate-100",
+      "INTERPRETATION_QUOTE_CLASS": "mt-3 rounded-md border border-cyan-300/35 bg-slate-900/82 px-3 py-2 text-center text-[18px] text-slate-100 italic",
+      "INTERPRETATION_BAR_LABEL_CLASS": "text-[20px] font-semibold uppercase leading-none text-slate-100",
+      "STAT_TRAP_HEADLINE_CLASS": "text-[24px] uppercase leading-none",
+      "STAT_TRAP_EXAMPLE_STYLE": {
+        "fontSize": "20px",
+        "lineHeight": 1.08
+      },
+      "STAT_TRAP_QUESTION_STYLE": {
+        "fontSize": "18px",
+        "lineHeight": 1.1
+      },
+      "STAT_TRAP_WARNING_ICON_CLASS": "h-[152px] w-[176px]",
+      "X_FACTOR_SUPPLEMENT_CLASS": "mt-1 text-center text-[18px] uppercase leading-[1.05] tracking-[0.18em] text-cyan-100",
+      "X_FACTOR_FIGHTER_NAME_CLASS": "text-[58px] font-semibold uppercase leading-none tracking-[0.01em]",
+      "X_FACTOR_VALUE_CLASS": "text-[34px]",
+      "X_FACTOR_VALUE_BONUS_CLASS": "min-h-[14px] text-[14px] uppercase tracking-[0.08em]"
+    },
+    "TEMPLATE": {
+      "INNER_CLASS": "relative z-10 flex h-full flex-col text-slate-100",
+      "BODY_CLASS": "grid flex-1 grid-cols-[1fr_1.7fr] gap-3",
+      "LIST_PANEL_CLASS": "min-h-0 rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3",
+      "LIST_HEADER_CLASS": "mb-2 text-[11px] uppercase tracking-[0.18em] text-slate-300",
+      "LIST_GRID_CLASS": "grid h-full grid-rows-6 gap-1",
+      "LIST_ITEM_CLASS": "rounded border border-slate-700/60 bg-slate-900/72 px-2 py-0.5",
+      "RIGHT_COLUMN_CLASS": "grid grid-rows-[1fr_auto] gap-3",
+      "REALITY_PANEL_CLASS": "rounded-md border border-cyan-300/25 bg-[linear-gradient(180deg,rgba(5,19,34,0.94),rgba(8,28,49,0.9))] p-3",
+      "REALITY_HEADER_CLASS": "text-[11px] uppercase tracking-[0.18em] text-slate-300",
+      "REALITY_VIEWPORT_CLASS": "mt-2 h-[72%] overflow-hidden rounded-lg border border-slate-600/55 bg-slate-950/65 p-2",
+      "REALITY_CANVAS_CLASS": "relative -m-2 h-[calc(100%+1rem)] w-[calc(100%+1rem)] overflow-hidden rounded-lg",
+      "SVG_VIEWBOX": "0 0 100 100",
+      "SVG_CLASS": "relative z-10 h-full w-full",
+      "SPLIT_X": 50,
+      "LINEAR_START_X": 8,
+      "CHAOS_END_X": 92,
+      "LIGHTNING_EXTENSION": 0.42,
+      "LINEAR_LABEL_X": 25,
+      "CHAOS_LABEL_X": 75,
+      "DIVIDER_Y1": "8",
+      "DIVIDER_Y2": "92",
+      "DIVIDER_STROKE": "rgba(148,163,184,0.35)",
+      "DIVIDER_STROKE_WIDTH": "0.7",
+      "DIVIDER_DASHARRAY": "2 2",
+      "LINEAR_LABEL_Y": "14",
+      "LINEAR_LABEL_FILL": "#67e8f9",
+      "CHAOS_LABEL_Y": "14",
+      "CHAOS_LABEL_FILL": "#fda4af",
+      "LABEL_FONT_SIZE": "4",
+      "LABEL_FONT_FAMILY": "var(--font-ui)",
+      "LABEL_FONT_WEIGHT": "600",
+      "LABEL_TEXT_ANCHOR": "middle",
+      "LABEL_LETTER_SPACING": "0.04em",
+      "STABLE_LINE_STROKE": "#22d3ee",
+      "STABLE_LINE_WIDTH": "1.7",
+      "GLOW_LINE_STROKE": "rgba(34,211,238,0.3)",
+      "GLOW_LINE_WIDTH": "3.2",
+      "CLOSING_CARD_CLASS": "rounded-lg border border-cyan-300/18 bg-[linear-gradient(180deg,rgba(4,16,29,0.95),rgba(7,24,42,0.9))] px-4 py-3",
+      "CLOSING_SUBTEXT_CLASS": "mt-1 text-sm uppercase tracking-[0.15em] text-slate-300",
+      "LIST_ITEM_TEXT_CLASS": "text-slate-100",
+      "CLOSING_TEXT_CLASS": "text-slate-50"
+    }
+  },
+  "slots": {
+    "templateHeaderTitle": {
+      "baseFontPx": 40,
+      "minFontPx": 18,
+      "lineHeight": 0.98,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase"
+    },
+    "templateHeaderSubtitle": {
+      "baseFontPx": 11,
+      "minFontPx": 9,
+      "lineHeight": 1.08,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.16em"
+    },
+    "templateHeaderMeta": {
+      "baseFontPx": 11,
+      "minFontPx": 9,
+      "lineHeight": 1.08,
+      "maxLines": 1,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.16em",
+      "whiteSpace": "nowrap"
+    },
+    "matchupSupplement": {
+      "baseFontPx": 18,
+      "minFontPx": 10,
+      "lineHeight": 1.05,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.18em"
+    },
+    "fighterBannerName": {
+      "baseFontPx": 28,
+      "minFontPx": 16,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textTransform": "uppercase",
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "fighterBannerNameLarge": {
+      "baseFontPx": 58,
+      "minFontPx": 22,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textTransform": "uppercase",
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "heroName": {
+      "baseFontPx": 24,
+      "minFontPx": 14,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textTransform": "uppercase",
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "heroSubtitle": {
+      "baseFontPx": 14,
+      "minFontPx": 10,
+      "lineHeight": 1.1,
+      "maxLines": 2,
+      "textAlign": "left"
+    },
+    "heroLabel": {
+      "baseFontPx": 10,
+      "minFontPx": 8,
+      "lineHeight": 1.05,
+      "maxLines": 1,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.16em",
+      "whiteSpace": "nowrap"
+    },
+    "quoteBody": {
+      "baseFontPx": 18,
+      "minFontPx": 11,
+      "lineHeight": 1.15,
+      "maxLines": 3,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "factTitle": {
+      "baseFontPx": 10,
+      "minFontPx": 8,
+      "lineHeight": 1.05,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textTransform": "uppercase",
+      "textAlign": "left",
+      "letterSpacing": "0.2em"
+    },
+    "factBody": {
+      "baseFontPx": 14,
+      "minFontPx": 10,
+      "lineHeight": 1.15,
+      "maxLines": 2,
+      "textAlign": "left"
+    },
+    "imageCaption": {
+      "baseFontPx": 11,
+      "minFontPx": 8,
+      "lineHeight": 1.1,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "imageCaptionCentered": {
+      "baseFontPx": 11,
+      "minFontPx": 8,
+      "lineHeight": 1.1,
+      "maxLines": 2,
+      "textAlign": "center",
+      "fitMode": "shrink"
+    },
+    "sectionLabel": {
+      "baseFontPx": 11,
+      "minFontPx": 8,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.18em",
+      "whiteSpace": "nowrap"
+    },
+    "summaryWinner": {
+      "baseFontPx": 42,
+      "minFontPx": 18,
+      "lineHeight": 1.06,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "summaryLine": {
+      "baseFontPx": 15,
+      "minFontPx": 10,
+      "lineHeight": 1.16,
+      "maxLines": 3,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "scoreLabel": {
+      "baseFontPx": 12,
+      "minFontPx": 8,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.16em",
+      "whiteSpace": "nowrap",
+      "fitMode": "shrink"
+    },
+    "scoreValue": {
+      "baseFontPx": 28,
+      "minFontPx": 14,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textAlign": "left"
+    },
+    "directVerdictWinner": {
+      "baseFontPx": 46,
+      "minFontPx": 22,
+      "lineHeight": 0.98,
+      "maxLines": 2,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "directVerdictSubline": {
+      "baseFontPx": 18,
+      "minFontPx": 11,
+      "lineHeight": 1.16,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "directVerdictCard": {
+      "baseFontPx": 16,
+      "minFontPx": 10,
+      "lineHeight": 1.15,
+      "maxLines": 3,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "battleDynamicsPhase": {
+      "baseFontPx": 16,
+      "minFontPx": 10,
+      "lineHeight": 1.14,
+      "maxLines": 4,
+      "textAlign": "left"
+    },
+    "battleDynamicsAnalysis": {
+      "baseFontPx": 20,
+      "minFontPx": 12,
+      "lineHeight": 1.14,
+      "maxLines": 2,
+      "textAlign": "center",
+      "fitMode": "shrink"
+    },
+    "tacticalBoardTile": {
+      "baseFontPx": 18,
+      "minFontPx": 10,
+      "lineHeight": 1.05,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase"
+    },
+    "interpretationBadge": {
+      "baseFontPx": 46,
+      "minFontPx": 18,
+      "lineHeight": 0.94,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "interpretationBarLabel": {
+      "baseFontPx": 20,
+      "minFontPx": 11,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "interpretationBullet": {
+      "baseFontPx": 20,
+      "minFontPx": 12,
+      "lineHeight": 1.14,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "interpretationQuote": {
+      "baseFontPx": 18,
+      "minFontPx": 11,
+      "lineHeight": 1.14,
+      "maxLines": 2,
+      "textAlign": "center",
+      "fitMode": "shrink"
+    },
+    "statTrapHeadline": {
+      "baseFontPx": 24,
+      "minFontPx": 12,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "statTrapExample": {
+      "baseFontPx": 20,
+      "minFontPx": 11,
+      "lineHeight": 1.08,
+      "maxLines": 7,
+      "whiteSpace": "pre-line",
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "statTrapQuestion": {
+      "baseFontPx": 18,
+      "minFontPx": 11,
+      "lineHeight": 1.1,
+      "maxLines": 3,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "xFactorSupplement": {
+      "baseFontPx": 18,
+      "minFontPx": 10,
+      "lineHeight": 1.05,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.18em",
+      "fitMode": "shrink"
+    },
+    "xFactorInsightTitle": {
+      "baseFontPx": 16,
+      "minFontPx": 10,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textTransform": "uppercase",
+      "textAlign": "left"
+    },
+    "xFactorInsightBody": {
+      "baseFontPx": 15,
+      "minFontPx": 10,
+      "lineHeight": 1.12,
+      "maxLines": 5,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "parameterAdvantageLabel": {
+      "baseFontPx": 12,
+      "minFontPx": 8,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textTransform": "uppercase",
+      "textAlign": "left"
+    },
+    "parameterAdvantageValue": {
+      "baseFontPx": 16,
+      "minFontPx": 10,
+      "lineHeight": 1.08,
+      "maxLines": 2,
+      "textAlign": "left"
+    },
+    "parameterPanelHeader": {
+      "baseFontPx": 12,
+      "minFontPx": 8,
+      "lineHeight": 1.04,
+      "maxLines": 2,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.16em",
+      "fitMode": "shrink"
+    },
+    "parameterAdvantageList": {
+      "baseFontPx": 13,
+      "minFontPx": 8,
+      "lineHeight": 1.1,
+      "maxLines": 10,
+      "textAlign": "left",
+      "whiteSpace": "pre-line",
+      "fitMode": "shrink"
+    },
+    "parameterFavoriteStamp": {
+      "baseFontPx": 15,
+      "minFontPx": 10,
+      "lineHeight": 1.04,
+      "maxLines": 2,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "methodologyItem": {
+      "baseFontPx": 18,
+      "minFontPx": 10,
+      "lineHeight": 1.12,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "methodologyClosing": {
+      "baseFontPx": 42,
+      "minFontPx": 18,
+      "lineHeight": 1.02,
+      "maxLines": 2,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "verdictMatrixHeader": {
+      "baseFontPx": 38,
+      "minFontPx": 12,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "textAlign": "center",
+      "textTransform": "uppercase"
+    },
+    "verdictMatrixRowHeader": {
+      "baseFontPx": 16,
+      "minFontPx": 10,
+      "lineHeight": 1,
+      "maxLines": 1,
+      "whiteSpace": "nowrap",
+      "textAlign": "center",
+      "textTransform": "uppercase"
+    },
+    "verdictMatrixLead": {
+      "baseFontPx": 24,
+      "minFontPx": 12,
+      "lineHeight": 1.08,
+      "maxLines": 2,
+      "textAlign": "left",
+      "textTransform": "uppercase",
+      "fitMode": "shrink"
+    },
+    "verdictMatrixBody": {
+      "baseFontPx": 19,
+      "minFontPx": 11,
+      "lineHeight": 1.08,
+      "maxLines": 4,
+      "textAlign": "left",
+      "fitMode": "shrink"
+    },
+    "phaseTitle": {
+      "baseFontPx": 20,
+      "minFontPx": 11,
+      "lineHeight": 1.08,
+      "maxLines": 2,
+      "textAlign": "left"
+    },
+    "phaseEvent": {
+      "baseFontPx": 13,
+      "minFontPx": 9,
+      "lineHeight": 1.12,
+      "maxLines": 3,
+      "textAlign": "left"
+    },
+    "phaseBranch": {
+      "baseFontPx": 12,
+      "minFontPx": 9,
+      "lineHeight": 1.12,
+      "maxLines": 4,
+      "textAlign": "left"
+    },
+    "phaseScenarioLabel": {
+      "baseFontPx": 10,
+      "minFontPx": 8,
+      "lineHeight": 1,
+      "maxLines": 2,
+      "textAlign": "right",
+      "textTransform": "uppercase",
+      "letterSpacing": "0.14em"
+    },
+    "endCondition": {
+      "baseFontPx": 18,
+      "minFontPx": 11,
+      "lineHeight": 1.08,
+      "maxLines": 2,
+      "textAlign": "center"
+    },
+    "fightCardName": {
+      "baseFontPx": 96,
+      "minFontPx": 42,
+      "lineHeight": 0.78,
+      "maxLines": 1,
+      "textAlign": "center",
+      "textTransform": "uppercase",
+      "whiteSpace": "nowrap",
+      "fitMode": "shrink"
+    }
+  }
+}

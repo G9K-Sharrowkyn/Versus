@@ -53,6 +53,7 @@ import type {
   PortraitAdjust,
   PortraitEditorState,
   ScoreRow,
+  TemplateLayoutMode,
   TemplateId,
 } from './features/vs/types'
 
@@ -85,6 +86,8 @@ type AuditRequest = {
 
 const DEFAULT_LANGUAGE: Language = 'en'
 const APP_LANGUAGE_STORAGE_KEY = 'vvv-app-language-v1'
+const TEMPLATE_LAYOUT_MODE_STORAGE_KEY = 'vvv-template-layout-mode-v1'
+const DEFAULT_TEMPLATE_LAYOUT_MODE: TemplateLayoutMode = 'normal'
 const PREVIEW_BASE_WIDTH = 1400
 const PREVIEW_BASE_HEIGHT = 787.5
 const PREVIEW_MIN_SCALE = 0.62
@@ -194,8 +197,28 @@ const persistLanguage = (language: Language) => {
   document.documentElement.lang = language
 }
 
+const readStoredTemplateLayoutMode = (): TemplateLayoutMode => {
+  if (typeof window === 'undefined') return DEFAULT_TEMPLATE_LAYOUT_MODE
+  try {
+    const raw = localStorage.getItem(TEMPLATE_LAYOUT_MODE_STORAGE_KEY)?.trim().toLowerCase()
+    return raw === 'mobile' ? 'mobile' : 'normal'
+  } catch {
+    return DEFAULT_TEMPLATE_LAYOUT_MODE
+  }
+}
+
+const persistTemplateLayoutMode = (mode: TemplateLayoutMode) => {
+  if (typeof window === 'undefined') return
+  try {
+    localStorage.setItem(TEMPLATE_LAYOUT_MODE_STORAGE_KEY, mode)
+  } catch {
+    // Ignore storage write failures.
+  }
+}
+
 function App() {
   const [language, setLanguage] = useState<Language>(() => readStoredLanguage())
+  const [templateLayoutMode, setTemplateLayoutMode] = useState<TemplateLayoutMode>(() => readStoredTemplateLayoutMode())
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const translations = useMemo(() => getTranslations(language), [language])
   const ui = translations.ui
@@ -349,6 +372,18 @@ function App() {
   useEffect(() => {
     persistLanguage(language)
   }, [language])
+
+  useEffect(() => {
+    persistTemplateLayoutMode(templateLayoutMode)
+  }, [templateLayoutMode])
+
+  useEffect(() => {
+    if (typeof document === 'undefined') return
+    document.documentElement.dataset.vsTemplateLayout = templateLayoutMode
+    return () => {
+      delete document.documentElement.dataset.vsTemplateLayout
+    }
+  }, [templateLayoutMode])
 
   useLayoutEffect(() => {
     clearFinalTemplateAutoReturnTimeoutFnRef.current = clearFinalTemplateAutoReturnTimeout
@@ -890,6 +925,10 @@ function App() {
     })
   }
 
+  const toggleTemplateLayoutMode = useCallback(() => {
+    setTemplateLayoutMode((current) => (current === 'mobile' ? 'normal' : 'mobile'))
+  }, [])
+
   const openFight = (fightId: string) => {
     const fight = fights.find((item) => item.id === fightId)
     if (!fight) return
@@ -1068,6 +1107,7 @@ function App() {
       onSlideImageAdjustChange={handleSlideImageAdjustChange}
       onSlideImageAdjustCommit={handleSlideImageAdjustCommit}
       onToggleLanguage={toggleLanguage}
+      templateLayoutMode={templateLayoutMode}
     />
   )
   const renderedTemplate = renderTemplate(activeTemplate, `tpl-idx-${templateCursor}`)
@@ -1214,6 +1254,23 @@ function App() {
     portraitEditor,
     stepTemplateOrder,
   ])
+
+  useEffect(() => {
+    if (!isTemplateView || !fightViewVisible || portraitEditor) return
+
+    const handleMetaThreatClick = (event: MouseEvent) => {
+      const target = event.target
+      if (!(target instanceof HTMLElement)) return
+      const threatMetaLine = target.closest('.vs-tactical-board25-meta p:first-child')
+      if (!threatMetaLine) return
+
+      event.preventDefault()
+      toggleTemplateLayoutMode()
+    }
+
+    window.addEventListener('click', handleMetaThreatClick)
+    return () => window.removeEventListener('click', handleMetaThreatClick)
+  }, [fightViewVisible, isTemplateView, portraitEditor, toggleTemplateLayoutMode])
 
   const dispatchSearchStageJump = useCallback(
     (stage: number) => {
@@ -1365,6 +1422,7 @@ function App() {
       <main
         data-vs-audit={auditRequest ? 'true' : 'false'}
         data-reverse-stage={reverseStage}
+        data-vs-template-layout={templateLayoutMode}
         className="h-screen overflow-hidden bg-black p-0 text-slate-100"
       >
         <section className="vs-boot-screen">
@@ -1408,6 +1466,7 @@ function App() {
     <main
       data-vs-audit={auditRequest ? 'true' : 'false'}
       data-reverse-stage={reverseStage}
+      data-vs-template-layout={templateLayoutMode}
       className={clsx(
         isTemplateView && 'vs-template-mode',
         'text-slate-100',

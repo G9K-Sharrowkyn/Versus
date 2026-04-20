@@ -601,3 +601,270 @@
 .vs-tpl-logo:focus-visible {
   outline: none !important;
 }
+
+/* Global template mobile layout mode */
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface {
+  --tb-scale: 0.84 !important;
+  --tb-side-margin: 12px !important;
+  --tb-center-gap: 1.6% !important;
+  width: min(calc(100cqw - 12px), calc((100cqh - 12px) * (800 / 450))) !important;
+  border-radius: 20px !important;
+  transform: none !important;
+  transform-origin: center top !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-meta {
+  top: calc(12px * var(--tb-scale)) !important;
+  left: calc(10px * var(--tb-scale)) !important;
+  width: 48% !important;
+  gap: calc(0.14rem * var(--tb-scale)) !important;
+  font-size: calc(var(--tb-type-5) * 1.02) !important;
+  line-height: 1.06 !important;
+}
+
+.vs-tactical-board25-meta p:first-child,
+.vs-tactical-board25-meta p:first-child .vs-cyberpunk-meta-value {
+  cursor: pointer;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-heading {
+  top: calc(12px * var(--tb-scale)) !important;
+  width: 90% !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tb-signal-main {
+  min-height: calc(44px * var(--tb-scale)) !important;
+  min-width: 0 !important;
+  max-width: 86% !important;
+  padding: 0.05em 0.55em !important;
+  font-size: calc(var(--tb-type-1) * 0.44) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tb-signal-main .glitch-letter-container {
+  font-size: clamp(15px, 4.1vw, 24px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-subtitle {
+  margin-top: calc(0.16rem * var(--tb-scale)) !important;
+  font-size: calc(var(--tb-type-5) * 1.02) !important;
+  letter-spacing: 0.03em !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .glow {
+  font-size: clamp(16px, 4.8vw, 26px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-logo {
+  top: calc(8px * var(--tb-scale)) !important;
+  right: calc(8px * var(--tb-scale)) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: calc(104px * var(--tb-scale)) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-logo-reflection {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  top: calc(112px * var(--tb-scale)) !important;
+  min-height: calc(318px * var(--tb-scale)) !important;
+  border-width: 5px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
+  left: 50% !important;
+  width: 88% !important;
+  transform: translateX(-50%) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats-title,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-reality-heading {
+  top: calc(-18px * var(--tb-scale)) !important;
+  left: calc(10px * var(--tb-scale)) !important;
+  font-size: calc(var(--tb-type-5) * 1.16) !important;
+  letter-spacing: 0.08em !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats-grid {
+  grid-template-columns: 1fr !important;
+  gap: calc(0.36rem * var(--tb-scale)) !important;
+  margin-top: calc(0.24rem * var(--tb-scale)) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-item {
+  min-height: calc(54px * var(--tb-scale)) !important;
+  padding: calc(0.36rem * var(--tb-scale)) calc(0.12rem * var(--tb-scale)) !important;
+  gap: calc(0.4rem * var(--tb-scale)) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-item-icon {
+  width: calc(30px * var(--tb-scale)) !important;
+  height: calc(30px * var(--tb-scale)) !important;
+  border-width: 2px !important;
+  border-radius: calc(10px * var(--tb-scale)) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-item-icon-reflection {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-item-label {
+  font-size: calc(var(--tb-type-5) * 0.92) !important;
+  line-height: 1.04 !important;
+  letter-spacing: 0.03em !important;
+}
+
+/* Tactical-board specific mobile adaptive layout */
+[data-vs-template-layout='mobile'] .vs-template--tactical-board {
+  --tb-scale: 0.82 !important;
+  width: calc(100% - 8px) !important;
+  height: calc(100% - 8px) !important;
+  width: min(calc(100cqw - 8px), 760px) !important;
+  height: calc(100cqh - 8px) !important;
+  max-height: calc(100dvh - 16px) !important;
+  aspect-ratio: auto !important;
+  transform: none !important;
+  border-radius: 18px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-meta {
+  top: clamp(8px, 1.2dvh, 16px) !important;
+  left: clamp(8px, 1.2dvh, 16px) !important;
+  width: 45% !important;
+  gap: clamp(1px, 0.2dvh, 4px) !important;
+  font-size: clamp(9px, 1.15dvh, 13px) !important;
+  line-height: 1.02 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-stats {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: clamp(12px, 2.1dvh, 28px) !important;
+  width: 88% !important;
+  min-height: 0 !important;
+  height: auto !important;
+  padding: clamp(8px, 1.2dvh, 16px) clamp(10px, 1.6dvh, 18px) !important;
+  border-width: 4px !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-heading {
+  top: clamp(62px, 9.2dvh, 132px) !important;
+  width: 88% !important;
+  transform: translate(-50%, -16px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-stats-title {
+  top: clamp(-28px, -3.2dvh, -18px) !important;
+  left: clamp(8px, 1.3dvh, 16px) !important;
+  font-size: clamp(11px, 1.5dvh, 18px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-stats-grid {
+  grid-template-columns: minmax(0, 1fr) !important;
+  grid-template-rows: repeat(10, minmax(0, 1fr)) !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  margin-top: clamp(4px, 0.7dvh, 10px) !important;
+  gap: clamp(2px, 0.35dvh, 6px) !important;
+  align-content: stretch !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item {
+  display: grid !important;
+  grid-template-columns: auto 1fr !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  padding: 0 clamp(3px, 0.55dvh, 8px) !important;
+  gap: clamp(5px, 0.75dvh, 10px) !important;
+  align-items: center !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-icon {
+  width: clamp(22px, 2.8dvh, 34px) !important;
+  height: clamp(22px, 2.8dvh, 34px) !important;
+  border-width: clamp(2px, 0.24dvh, 3px) !important;
+  border-radius: clamp(8px, 0.95dvh, 14px) !important;
+  transform: none !important;
+  align-self: center !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-icon svg {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-icon-reflection svg {
+  width: 100% !important;
+  height: 100% !important;
+  transform: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-icon-reflection {
+  position: absolute !important;
+  left: 50% !important;
+  top: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  box-sizing: content-box !important;
+  border: clamp(2px, 0.24dvh, 3px) solid color-mix(in srgb, var(--item-accent) 38%, transparent) !important;
+  border-radius: clamp(8px, 0.95dvh, 14px) !important;
+  padding-top: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  margin-top: clamp(2px, 0.4dvh, 7px) !important;
+  opacity: 0.56 !important;
+  filter: blur(0.12em) !important;
+  transform: translateX(-50%) !important;
+  clip-path: none !important;
+  -webkit-mask-image: none !important;
+  mask-image: none !important;
+  overflow: visible !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-icon-reflection::before {
+  content: none !important;
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-item-label {
+  font-size: clamp(20px, 2.7dvh, 36px) !important;
+  line-height: 1.02 !important;
+  letter-spacing: 0.02em !important;
+  margin: 0 !important;
+  align-self: center !important;
+  transform: translateY(clamp(14px, 2dvh, 28px)) !important;
+  white-space: nowrap !important;
+  text-shadow: 0 1em 0.12em color-mix(in srgb, currentColor 20%, transparent) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tb-signal-main .glitch-letter-container {
+  font-size: clamp(13px, 1.95dvh, 24px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tb-signal-main {
+  width: 60% !important;
+  min-height: clamp(30px, 4.2dvh, 42px) !important;
+  padding: 0.02em 0.32em !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-subtitle {
+  font-size: clamp(12px, 1.8dvh, 22px) !important;
+  line-height: 1.04 !important;
+  margin-top: clamp(6px, 1dvh, 14px) !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--tactical-board .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
+  width: clamp(108px, 14dvh, 164px) !important;
+}
+
+/* Force single-column body layout in mobile template mode for all template cards. */
+.vs-template-mode[data-vs-template-layout='mobile'] [data-vs-preview-shell='true'] [class*='grid-cols-'] {
+  grid-template-columns: minmax(0, 1fr) !important;
+}

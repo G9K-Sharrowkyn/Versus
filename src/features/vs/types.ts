@@ -26,6 +26,7 @@ export type Fighter = {
 }
 
 export type Language = 'pl' | 'en'
+export type TemplateLayoutMode = 'normal' | 'mobile'
 export type FightStatId =
   | 'strength'
   | 'speed'
@@ -208,6 +209,7 @@ export type TemplatePreviewProps = {
   onSlideImageAdjustChange: (imageKey: string, adjust: PortraitAdjust) => void
   onSlideImageAdjustCommit: (imageKey: string, adjust: PortraitAdjust) => void
   onToggleLanguage?: () => void
+  templateLayoutMode?: TemplateLayoutMode
 }
 
 export type IconType = LucideIcon

@@ -7,6 +7,7 @@ import type { TemplatePreviewProps } from '../../../types'
 import { AnimeLightning } from '../../../components/AnimeLightning'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 import { FittedText } from '../../shared/FittedText'
+import { useTemplateMobileLayout } from '../../shared/useTemplateMobileLayout'
 import {
   buildTemplateChrome as buildFightTemplateChrome,
   getTemplatePreset as getFightTemplatePreset,
@@ -52,6 +53,7 @@ export function TacticalBoardTemplate({
   templateBlocks,
   language,
   onToggleLanguage,
+  templateLayoutMode,
   integratedToolbar,
 }: TacticalBoardTemplateProps) {
   const blockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
@@ -69,6 +71,9 @@ export function TacticalBoardTemplate({
   const xFactorLabel =
     getFightTemplateDefaultField('x-factor', 'factor', language) ||
     getFightTemplatePreset('x-factor', language).title
+  const autoTemplateMobileLayout = useTemplateMobileLayout()
+  const isTemplateMobileLayout =
+    templateLayoutMode === 'mobile' || (templateLayoutMode == null && autoTemplateMobileLayout)
 
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
   const chars = headerTextStr.split('')
@@ -137,7 +142,19 @@ export function TacticalBoardTemplate({
   ]
 
   return (
-    <div className="vs-tactical-board25-surface vs-template--tactical-board">
+    <div
+      className={`vs-tactical-board25-surface vs-template--tactical-board${isTemplateMobileLayout ? ' is-template-mobile-layout' : ''}`}
+      style={
+        isTemplateMobileLayout
+          ? ({
+              '--tb-panel-width': '88%',
+              '--tb-stats-width': 'var(--tb-panel-width)',
+              '--tb-stats-left': 'calc(50% - (var(--tb-panel-width) / 2))',
+              '--tb-scale': '0.82',
+            } as CSSProperties & Record<'--tb-panel-width' | '--tb-stats-width' | '--tb-stats-left' | '--tb-scale', string>)
+          : undefined
+      }
+    >
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -177,18 +194,34 @@ export function TacticalBoardTemplate({
         style={logoButtonStyle}
       >
         <img src={chrome.brandImageSrc} alt={chrome.brandAlt} draggable={false} />
-        <img
-          className="vs-tactical-board25-logo-reflection"
-          src={chrome.brandImageSrc}
-          alt=""
-          aria-hidden="true"
-          draggable={false}
-        />
+        {!isTemplateMobileLayout ? (
+          <img
+            className="vs-tactical-board25-logo-reflection"
+            src={chrome.brandImageSrc}
+            alt=""
+            aria-hidden="true"
+            draggable={false}
+          />
+        ) : null}
       </button>
 
-      <section className="vs-tactical-board25-stats">
+      <section
+        className="vs-tactical-board25-stats"
+        style={
+          isTemplateMobileLayout
+            ? {
+                left: '50%',
+                width: '88%',
+                transform: 'translateX(-50%)',
+              }
+            : undefined
+        }
+      >
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={boardHeader} /></p>
-        <div className="vs-tactical-board25-stats-grid">
+        <div
+          className="vs-tactical-board25-stats-grid"
+          style={isTemplateMobileLayout ? { gridTemplateColumns: '1fr' } : undefined}
+        >
           {tiles.map((row, index) => {
             const Icon = iconForCategory(row.id, index)
             const isDraw = row.winner === 'draw'
@@ -197,9 +230,9 @@ export function TacticalBoardTemplate({
             return (
               <div key={row.id} className="vs-tactical-board25-item" style={{ ['--item-accent' as string]: winnerColor }}>
                 <div className="vs-tactical-board25-item-icon">
-                  <Icon size={28} color={winnerColor} />
+                  <Icon size={isTemplateMobileLayout ? 22 : 28} color={winnerColor} />
                   <div className="vs-tactical-board25-item-icon-reflection" aria-hidden="true">
-                    <Icon size={28} color={winnerColor} />
+                    <Icon size={isTemplateMobileLayout ? 22 : 28} color={winnerColor} />
                   </div>
                 </div>
                 <FittedText
@@ -223,12 +256,14 @@ export function TacticalBoardTemplate({
         </div>
       </section>
 
-      <div className="vs-tactical-board25-reality">
-        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={realityHeader} /></p>
-        <div className="vs-tactical-board25-reality-viewport">
-          <AnimeLightning />
+      {!isTemplateMobileLayout ? (
+        <div className="vs-tactical-board25-reality">
+          <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={realityHeader} /></p>
+          <div className="vs-tactical-board25-reality-viewport">
+            <AnimeLightning />
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   )
 }
