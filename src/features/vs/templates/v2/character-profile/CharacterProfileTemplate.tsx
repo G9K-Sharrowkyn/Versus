@@ -81,12 +81,17 @@ export function CharacterProfileTemplate({
   const fighterBText =
     fighterB.name ||
     getFightTemplateDefaultField('character-profile', 'fighter_b_fallback', language)
+  const fighterAVersion = fighterA.version?.trim() || ''
+  const fighterBVersion = fighterB.version?.trim() || ''
   const leftPanelHeader = common.blueCorner
   const rightPanelHeader = common.redCorner
   const leftNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const leftNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
+  const leftVersionRef = useRef<HTMLParagraphElement | null>(null)
   const rightNameWrapperRef = useRef<HTMLDivElement | null>(null)
   const rightNameHeadingRef = useRef<HTMLHeadingElement | null>(null)
+  const rightVersionRef = useRef<HTMLParagraphElement | null>(null)
+  const applyNameFitRef = useRef<(() => void) | null>(null)
 
   const sectionRows = TOOLKIT_SECTION_ORDER.map((sectionKey) => {
     const label = toolkitDefaults[sectionKey]
@@ -116,19 +121,20 @@ export function CharacterProfileTemplate({
       .filter((section) => section.items.length > 0)
 
     return (
-      <div style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
+      <div className="vs-dossier-facts-layout vs-profile-facts-layout" style={{ position: 'relative', height: '380px', flexShrink: 0 }}>
         {entries.map((section) => (
           <div
             key={`${side}-${section.key}`}
+            className="vs-dossier-fact-block vs-profile-fact-block"
             style={{ position: 'absolute', top: SECTION_TOP_BY_KEY[section.key], left: 0, width: '100%', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}
           >
-            <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
+            <div className="vs-dossier-fact-title-wrap vs-profile-fact-title-wrap" style={{ width: 'max-content', position: 'relative', paddingBottom: '6px' }}>
               <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}><GlitchText text={section.label} /></p>
               <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
               <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
             </div>
             {section.items.map((item, itemIndex) => (
-              <p key={`${side}-${section.key}-${itemIndex}`} className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
+              <p key={`${side}-${section.key}-${itemIndex}`} className="vs-dossier-text-2 vs-dossier-fact-text vs-profile-fact-text" style={{ textShadow: REFLEKS_TRESCI_FAKTOW }}>{item}</p>
             ))}
           </div>
         ))}
@@ -148,31 +154,108 @@ export function CharacterProfileTemplate({
     const rightHeadingEl = rightNameHeadingRef.current
     if (!leftWrapperEl || !leftHeadingEl || !rightWrapperEl || !rightHeadingEl) return
 
-    const applyFit = () => {
+    const fitIdentity = ({
+      wrapperEl,
+      headingEl,
+      versionEl,
+      fighterName,
+      fighterVersion,
+    }: {
+      wrapperEl: HTMLDivElement
+      headingEl: HTMLHeadingElement
+      versionEl: HTMLParagraphElement | null
+      fighterName: string
+      fighterVersion: string
+    }) => {
+      const isMobileLayout = wrapperEl.closest("[data-vs-template-layout='mobile']") !== null
+      const wrapperStyles = window.getComputedStyle(wrapperEl)
+      const paddingTopPx = Number.parseFloat(wrapperStyles.paddingTop || '0') || 0
+      const paddingBottomPx = Number.parseFloat(wrapperStyles.paddingBottom || '0') || 0
+      const wrapperRawHeightPx = wrapperEl.clientHeight > 0
+        ? wrapperEl.clientHeight
+        : wrapperEl.getBoundingClientRect().height
+      const wrapperInnerHeightPx = Math.max(12, wrapperRawHeightPx - paddingTopPx - paddingBottomPx)
+      const versionTargetHeightPx = isMobileLayout
+        ? Math.max(18, Math.min(36, wrapperInnerHeightPx * 0.24))
+        : undefined
+
+      if (versionEl && fighterVersion) {
+        applyDossierNameAutofit({
+          element: versionEl,
+          container: wrapperEl,
+          sourceText: fighterVersion,
+          config: isMobileLayout
+            ? {
+                baseScale: 0.78,
+                twoLineScale: 0.78,
+                oneLineMinScale: 0.52,
+                minFontPx: 13,
+                allowTwoRows: false,
+                maxRows: 1,
+                targetHeightPx: versionTargetHeightPx,
+              }
+            : {
+                baseScale: 0.23,
+                twoLineScale: 0.23,
+                oneLineMinScale: 0.72,
+                minFontPx: 8,
+                allowTwoRows: false,
+                maxRows: 1,
+                targetHeightPx: versionTargetHeightPx,
+              },
+        })
+      }
+
+      const versionHeightPx = versionTargetHeightPx
+        ? versionTargetHeightPx
+        : (versionEl && fighterVersion ? Math.max(0, versionEl.getBoundingClientRect().height) : 0)
+      const nameTargetHeightPx = isMobileLayout
+        ? Math.max(42, wrapperInnerHeightPx - versionHeightPx - 4)
+        : undefined
+
       applyDossierNameAutofit({
-        element: leftHeadingEl,
-        container: leftWrapperEl,
-        sourceText: fighterAText,
-        config: {
-          baseScale: 0.85,
-          twoLineScale: 0.425,
-          oneLineMinScale: 0.5,
-          minFontPx: 8,
-        },
-      })
-      applyDossierNameAutofit({
-        element: rightHeadingEl,
-        container: rightWrapperEl,
-        sourceText: fighterBText,
-        config: {
-          baseScale: 0.85,
-          twoLineScale: 0.425,
-          oneLineMinScale: 0.5,
-          minFontPx: 8,
-        },
+        element: headingEl,
+        container: wrapperEl,
+        sourceText: fighterName,
+        config: isMobileLayout
+          ? {
+              baseScale: 3.05,
+              twoLineScale: 3.05,
+              oneLineMinScale: 0.42,
+              minFontPx: 14,
+              allowTwoRows: true,
+              minRows: 2,
+              maxRows: 3,
+              targetHeightPx: nameTargetHeightPx,
+            }
+          : {
+              baseScale: 0.85,
+              twoLineScale: 0.425,
+              oneLineMinScale: 0.5,
+              minFontPx: 8,
+              allowTwoRows: true,
+            },
       })
     }
 
+    const applyFit = () => {
+      fitIdentity({
+        wrapperEl: leftWrapperEl,
+        headingEl: leftHeadingEl,
+        versionEl: leftVersionRef.current,
+        fighterName: fighterAText,
+        fighterVersion: fighterAVersion,
+      })
+      fitIdentity({
+        wrapperEl: rightWrapperEl,
+        headingEl: rightHeadingEl,
+        versionEl: rightVersionRef.current,
+        fighterName: fighterBText,
+        fighterVersion: fighterBVersion,
+      })
+    }
+
+    applyNameFitRef.current = applyFit
     applyFit()
     const delayedReflows = [
       window.setTimeout(applyFit, 80),
@@ -199,6 +282,7 @@ export function CharacterProfileTemplate({
     window.addEventListener('resize', applyFit)
 
     return () => {
+      applyNameFitRef.current = null
       disposed = true
       delayedReflows.forEach((timerId) => window.clearTimeout(timerId))
       if (fontSet && typeof fontSet.removeEventListener === 'function') {
@@ -207,7 +291,11 @@ export function CharacterProfileTemplate({
       resizeObserver.disconnect()
       window.removeEventListener('resize', applyFit)
     }
-  }, [fighterAText, fighterBText])
+  }, [fighterAText, fighterAVersion, fighterBText, fighterBVersion])
+
+  useLayoutEffect(() => {
+    applyNameFitRef.current?.()
+  })
 
   useEffect(() => {
     if (chars.length === 0) return
@@ -256,7 +344,7 @@ export function CharacterProfileTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--character-profile">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -313,8 +401,34 @@ export function CharacterProfileTemplate({
           <GlitchText text={leftPanelHeader} />
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          <div ref={leftNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
-            <h3 ref={leftNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterAText}</h3>
+          <div
+            ref={leftNameWrapperRef}
+            className="vs-dossier-identity-block"
+            style={{
+              borderLeft: `4px solid ${BLUE_EKSTREMALNY}`,
+              paddingLeft: '1.5rem',
+              paddingTop: '0.15rem',
+              minHeight: '6.2rem',
+              marginTop: '-0.55rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              gap: '0.45rem',
+            }}
+          >
+            <h3 ref={leftNameHeadingRef} className="vs-dossier-text-1 vs-dossier-name-text" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', maxWidth: '100%', display: 'block' }}>{fighterAText}</h3>
+            {fighterAVersion ? (
+              <p
+                ref={leftVersionRef}
+                className="vs-dossier-text-2 vs-dossier-universe-text"
+                style={{
+                  textShadow: REFLEKS_TRESCI_FAKTOW,
+                  lineHeight: 1,
+                }}
+              >
+                {fighterAVersion}
+              </p>
+            ) : null}
           </div>
           {renderFactColumn('left')}
         </div>
@@ -328,8 +442,34 @@ export function CharacterProfileTemplate({
           <GlitchText text={rightPanelHeader} />
         </p>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.25rem', height: '100%', padding: '0.5rem 1rem 0.5rem 1.5rem' }}>
-          <div ref={rightNameWrapperRef} style={{ borderLeft: `4px solid ${BLUE_EKSTREMALNY}`, paddingLeft: '1.5rem', minHeight: '4.5rem' }}>
-            <h3 ref={rightNameHeadingRef} className="vs-dossier-text-1" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', textOverflow: 'clip', maxWidth: '100%', display: 'inline-block' }}>{fighterBText}</h3>
+          <div
+            ref={rightNameWrapperRef}
+            className="vs-dossier-identity-block"
+            style={{
+              borderLeft: `4px solid ${BLUE_EKSTREMALNY}`,
+              paddingLeft: '1.5rem',
+              paddingTop: '0.15rem',
+              minHeight: '6.2rem',
+              marginTop: '-0.55rem',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'flex-start',
+              gap: '0.45rem',
+            }}
+          >
+            <h3 ref={rightNameHeadingRef} className="vs-dossier-text-1 vs-dossier-name-text" style={{ textShadow: REFLEKS_IMIENIA_POSTACI, fontSize: 'calc(var(--tb-type-1) * 0.85)', whiteSpace: 'nowrap', overflow: 'visible', maxWidth: '100%', display: 'block' }}>{fighterBText}</h3>
+            {fighterBVersion ? (
+              <p
+                ref={rightVersionRef}
+                className="vs-dossier-text-2 vs-dossier-universe-text"
+                style={{
+                  textShadow: REFLEKS_TRESCI_FAKTOW,
+                  lineHeight: 1,
+                }}
+              >
+                {fighterBVersion}
+              </p>
+            ) : null}
           </div>
           {renderFactColumn('right')}
         </div>

@@ -321,13 +321,23 @@ export const AVERAGE_DRAW_THRESHOLD = 1
 export const stripFileExtension = (value: string) => value.replace(/\.[^.]+$/, '').trim()
 export const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 export const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
+export const FIGHT_MOBILE_SUFFIX_PATTERN = /(?:^|[\s._-])mobile\s*$/i
 export const stripFightFileDecoratorSuffix = (value: string) =>
   value.replace(/\.(?:txt|json)\s*(?:pl|en|eng|polski|english)?\s*$/i, '').trim()
 export const normalizeFightFileBaseName = (value: string) =>
   stripFightFileDecoratorSuffix(stripFileExtension(value))
 
-export const splitFightNameLocaleSuffix = (value: string): { base: string; locale: FightVariantLocale } => {
+export const splitFightNameMobileSuffix = (value: string): { base: string; mobile: boolean } => {
   const normalized = value.replace(/[_]+/g, ' ').trim()
+  if (!normalized) return { base: '', mobile: false }
+  const match = normalized.match(FIGHT_MOBILE_SUFFIX_PATTERN)
+  if (!match) return { base: normalized, mobile: false }
+  const base = normalized.slice(0, match.index ?? normalized.length).trim()
+  return { base: base || normalized, mobile: true }
+}
+
+export const splitFightNameLocaleSuffix = (value: string): { base: string; locale: FightVariantLocale } => {
+  const normalized = splitFightNameMobileSuffix(value).base
   if (!normalized) return { base: '', locale: 'unknown' }
   const match = normalized.match(FIGHT_LOCALE_SUFFIX_PATTERN)
   if (!match) return { base: normalized, locale: 'unknown' }
@@ -364,8 +374,8 @@ export const resolveFightRecordLocale = (
 export const resolveFightVariantLabel = (fileName: string, locale: FightVariantLocale) => {
   const normalizedBase = normalizeFightFileBaseName(fileName)
   const split = splitFightNameLocaleSuffix(normalizedBase)
-  if (split.base && split.base !== normalizedBase) {
-    const suffix = split.locale === 'pl' ? 'PL' : split.locale === 'en' ? 'EN' : split.locale.toUpperCase()
+  if (split.base && split.base !== normalizedBase && (split.locale === 'pl' || split.locale === 'en')) {
+    const suffix = split.locale === 'pl' ? 'PL' : 'EN'
     return suffix || normalizedBase
   }
   if (locale === 'pl') return 'PL'

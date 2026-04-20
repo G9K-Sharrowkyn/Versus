@@ -918,7 +918,8 @@
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-identity-block,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-identity-block {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-identity-block,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-identity-block {
   height: clamp(112px, 15.5dvh, 196px) !important;
   min-height: clamp(112px, 15.5dvh, 196px) !important;
   margin-top: clamp(-2px, -0.2dvh, 0px) !important;
@@ -929,12 +930,14 @@
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-name-text,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-name-text {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-name-text,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-name-text {
   max-width: 100% !important;
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-universe-text,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-universe-text {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-universe-text,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-universe-text {
   margin-top: auto !important;
   align-self: flex-start !important;
   max-width: 100% !important;
@@ -945,13 +948,30 @@
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-text,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-text {
   font-size: clamp(12px, 1.65dvh, 26px) !important;
   line-height: 1.02 !important;
 }
 
+/* Dossier mobile readability bump: style/advantage/mentality + body copy at 2x scale. */
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap .vs-dossier-text-3,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap .vs-dossier-text-3,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-title-wrap .vs-dossier-text-3 {
+  font-size: clamp(22px, 3dvh, 42px) !important;
+  line-height: 1 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-text {
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+}
+
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-facts-layout,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-facts-layout {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-facts-layout,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-facts-layout {
   display: grid !important;
   grid-template-rows: repeat(3, minmax(0, 1fr)) !important;
   gap: clamp(32px, 4.3dvh, 57px) !important;
@@ -962,7 +982,8 @@
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-block {
   position: relative !important;
   top: auto !important;
   left: auto !important;
@@ -976,34 +997,46 @@
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block:nth-child(2),
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(2) {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(2),
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-block:nth-child(2) {
   transform: translateY(20px) !important;
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-block:nth-child(3),
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(3) {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-block:nth-child(3),
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-block:nth-child(3) {
   transform: translateY(40px) !important;
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-title-wrap {
   min-height: clamp(24px, 3.2dvh, 38px) !important;
   margin-bottom: 0 !important;
   padding-bottom: 2px !important;
 }
 
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap,
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-title-wrap {
+  min-height: clamp(48px, 6.4dvh, 76px) !important;
+}
+
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap > div:nth-of-type(1),
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(1) {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(1),
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-title-wrap > div:nth-of-type(1) {
   bottom: 6px !important;
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-title-wrap > div:nth-of-type(2),
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(2) {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-title-wrap > div:nth-of-type(2),
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-title-wrap > div:nth-of-type(2) {
   bottom: -15px !important;
 }
 
 [data-vs-template-layout='mobile'] .vs-template--character-dossier-a .vs-dossier-fact-text,
-[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text {
+[data-vs-template-layout='mobile'] .vs-template--character-dossier-b .vs-dossier-fact-text,
+[data-vs-template-layout='mobile'] .vs-template--character-profile .vs-dossier-fact-text {
   flex: 0 0 auto !important;
   min-height: auto !important;
   margin-top: 0 !important;
@@ -1035,6 +1068,59 @@
   top: clamp(-28px, -3.2dvh, -18px) !important;
   left: clamp(8px, 1.3dvh, 16px) !important;
   font-size: clamp(11px, 1.5dvh, 18px) !important;
+}
+
+/* Crucial Feats mobile: wider title bar + caption pinned below the image panel. */
+[data-vs-template-layout='mobile'] .vs-template--crucial-feats {
+  --vs-crucial-mobile-panel-bottom: calc(clamp(12px, 2.1dvh, 28px) + 100px);
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--crucial-feats .vs-tb-signal-main {
+  width: 112% !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--crucial-feats p.vs-tactical-board25-stats-title.vs-panel-top-label,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--crucial-feats p.vs-tactical-board25-reality-heading.vs-panel-top-label {
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--crucial-feats .vs-tactical-board25-stats {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: var(--vs-crucial-mobile-panel-bottom) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--crucial-feats .vs-tactical-board25-reality {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: var(--vs-crucial-mobile-panel-bottom) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+/* Hard override for Crucial Feats: make panel visibly shorter on mobile. */
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--crucial-feats .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--crucial-feats .vs-tactical-board25-reality {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: clamp(20px, 11dvh, 120px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--crucial-feats .vs-crucial-feats-caption--single {
+  --vs-caption-scale: 1 !important;
+  top: auto !important;
+  bottom: clamp(14px, 2.2dvh, 26px) !important;
+  left: 50% !important;
+  width: 88% !important;
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+  transform: translateX(-50%) scale(var(--vs-caption-scale)) !important;
+  transform-origin: top center !important;
 }
 
 /* Mobile single-panel swap: Space toggles active side left <-> right. */

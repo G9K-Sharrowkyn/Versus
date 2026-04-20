@@ -116,6 +116,20 @@ export function CrucialFeatsTemplate({
         '--tb-stats-left': 'calc(50% - (var(--tb-panel-width) / 2))',
       } as CSSProperties & Record<'--tb-panel-width' | '--tb-stats-width' | '--tb-stats-left', string>)
     : undefined
+  const panelFrameStyle: CSSProperties = isTemplateMobileLayout
+    ? {
+        top: 'clamp(116px, 18dvh, 192px)',
+        bottom: 'calc(clamp(12px, 2.1dvh, 28px) + 100px)',
+        height: 'auto',
+        minHeight: 0,
+        padding: 0,
+        overflow: 'visible',
+      }
+    : {
+        height: 'var(--tb-panel-height)',
+        padding: 0,
+        overflow: 'visible',
+      }
   const logoStyle = {
     '--logo-url': `url(${tacticalChrome.brandImageSrc})`,
   } as CSSProperties & Record<'--logo-url', string>
@@ -365,7 +379,7 @@ export function CrucialFeatsTemplate({
 
       {isTemplateMobileLayout ? (
         <>
-          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', ...panelFrameStyle }}>
             <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={activeMobileTitle} /></p>
             {renderColumn(
               activeMobileEntry?.fighter || fighterA,
@@ -380,12 +394,12 @@ export function CrucialFeatsTemplate({
         </>
       ) : (
         <>
-          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+          <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', ...panelFrameStyle }}>
             <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={fighterA.name} /></p>
             {renderColumn(fighterA, leftEntry, 'left', nextPair)}
           </section>
 
-          <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+          <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', ...panelFrameStyle }}>
             <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}><GlitchText text={fighterB.name} /></p>
             {renderColumn(fighterB, rightEntry, 'right', nextPair)}
           </div>

@@ -2,6 +2,7 @@ import type {
   FightMetaRecord,
   FightRecord,
   FightSource,
+  TemplateLayoutMode,
   FightVariantLocale,
   FolderFightScanRecord,
   FolderFightVisualPayload,
@@ -89,10 +90,12 @@ export const normalizeFolderScanRecord = (value: unknown): FolderFightScanRecord
   }
 }
 
-export const fetchFolderFightsFromApi = async (): Promise<{ fights: FightRecord[]; warnings: string[] }> => {
+export const fetchFolderFightsFromApi = async (
+  layoutMode: TemplateLayoutMode = 'normal',
+): Promise<{ fights: FightRecord[]; warnings: string[] }> => {
   if (typeof window === 'undefined') return { fights: [], warnings: [] }
 
-  const response = await fetch('/api/fights/scan', { cache: 'no-store' })
+  const response = await fetch(`/api/fights/scan?layout=${layoutMode}`, { cache: 'no-store' })
   if (!response.ok) {
     throw new Error(`Folder scan failed (${response.status})`)
   }

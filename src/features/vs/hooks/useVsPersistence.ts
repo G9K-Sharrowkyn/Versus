@@ -21,7 +21,7 @@ import {
   normalizeVariantPrefsMap,
   sanitizePreferredVariantPrefs,
 } from '../storage'
-import type { FightRecord } from '../types'
+import type { FightRecord, TemplateLayoutMode } from '../types'
 
 type ApplyFightRecord = (
   fight: FightRecord,
@@ -33,6 +33,7 @@ type UseVsPersistenceOptions = {
   searchTransitioningRef: MutableRefObject<boolean>
   returnTransitioningRef: MutableRefObject<boolean>
   fightScanPollMs: number
+  templateLayoutMode: TemplateLayoutMode
 }
 
 export function useVsPersistence({
@@ -40,6 +41,7 @@ export function useVsPersistence({
   searchTransitioningRef,
   returnTransitioningRef,
   fightScanPollMs,
+  templateLayoutMode,
 }: UseVsPersistenceOptions) {
   const [fights, setFights] = useState<FightRecord[]>([])
   const [folderScanWarnings, setFolderScanWarnings] = useState<string[]>([])
@@ -52,6 +54,7 @@ export function useVsPersistence({
   const preferredVariantByMatchupRef = useRef<Record<string, string>>({})
   const folderScanWarningsRef = useRef<string[]>([])
   const activeFightSignatureRef = useRef('')
+  const templateLayoutModeRef = useRef<TemplateLayoutMode>(templateLayoutMode)
 
   useEffect(() => {
     fightsRef.current = fights
@@ -71,6 +74,10 @@ export function useVsPersistence({
   useEffect(() => {
     folderScanWarningsRef.current = folderScanWarnings
   }, [folderScanWarnings])
+
+  useEffect(() => {
+    templateLayoutModeRef.current = templateLayoutMode
+  }, [templateLayoutMode])
 
   useEffect(() => {
     const validById = new Set(fights.map((fight) => fight.id))
@@ -171,7 +178,7 @@ export function useVsPersistence({
       let mergedFights = restoredFights
       let scanWarnings: string[] = []
       try {
-        const scanned = await fetchFolderFightsFromApi()
+        const scanned = await fetchFolderFightsFromApi(templateLayoutModeRef.current)
         scanWarnings = scanned.warnings
         mergedFights = mergeScannedFolderFights(restoredFights, scanned.fights)
       } catch (error) {
@@ -224,7 +231,7 @@ export function useVsPersistence({
 
       inFlight = true
       try {
-        const scanned = await fetchFolderFightsFromApi()
+        const scanned = await fetchFolderFightsFromApi(templateLayoutMode)
         if (disposed) return
 
         const currentFights = fightsRef.current
@@ -289,7 +296,7 @@ export function useVsPersistence({
       window.clearInterval(intervalId)
       hot?.off('vs-fights-changed', handleImmediateRefresh)
     }
-  }, [applyFightRecordRef, fightScanPollMs, returnTransitioningRef, searchTransitioningRef, storageReady])
+  }, [applyFightRecordRef, fightScanPollMs, returnTransitioningRef, searchTransitioningRef, storageReady, templateLayoutMode])
 
   useEffect(() => {
     if (!storageReady) return

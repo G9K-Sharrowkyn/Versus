@@ -26,6 +26,7 @@ const JSON_FILE_PATTERN = /\.json(?:\s*(?:pl|en|eng|polski|english))?$/i
 const SHARED_SCANS_FILE_PATTERN = /(?:^|[\s._-])scans?$/i
 const MATCHUP_PREFIX_PATTERN = /^\s*\d+\s*[._ -]*/
 const FIGHT_LOCALE_SUFFIX_PATTERN = /(?:^|[\s._-])(pl|en|eng|polski|english)\s*$/i
+const FIGHT_MOBILE_SUFFIX_PATTERN = /(?:^|[\s._-])mobile\s*$/i
 const FIGHT_VISUALS_FILE_NAME = '.fight-visuals.json'
 const execFileAsync = promisify(execFile)
 const LEGACY_TEMPLATE_ID_MAP: Record<string, string> = {
@@ -69,6 +70,7 @@ type PersistedFightVisualsStore = {
   updatedAt: string
   folders: Record<string, PersistedFolderFightVisuals>
 }
+type ScanLayoutMode = 'normal' | 'mobile'
 
 const toPosixPath = (value: string) => value.split(path.sep).join('/')
 const normalizeFsPath = (value: string) => toPosixPath(path.resolve(value)).toLowerCase()
@@ -116,10 +118,60 @@ const splitFightNameLocaleSuffix = (value: string): { base: string; locale: 'pl'
   return { base: base || normalized, locale }
 }
 
-const toMatchupDisplayNameFromFileName = (fileName: string) => {
+const splitFightNameMobileSuffix = (value: string): { base: string; mobile: boolean } => {
+  const normalized = value.replace(/[_]+/g, ' ').trim()
+  if (!normalized) return { base: '', mobile: false }
+  const match = normalized.match(FIGHT_MOBILE_SUFFIX_PATTERN)
+  if (!match) return { base: normalized, mobile: false }
+  const base = normalized.slice(0, match.index ?? normalized.length).trim()
+  return { base: base || normalized, mobile: true }
+}
+
+const parseFightFileVariantMeta = (fileName: string) => {
   const raw = normalizeFightFileBaseName(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
-  const split = splitFightNameLocaleSuffix(raw)
-  return split.base || raw
+  const mobileSplit = splitFightNameMobileSuffix(raw)
+  const localeSplit = splitFightNameLocaleSuffix(mobileSplit.base)
+  return {
+    raw,
+    matchName: localeSplit.base || mobileSplit.base || raw,
+    locale: localeSplit.locale,
+    mobile: mobileSplit.mobile,
+  }
+}
+
+const normalizeScanLayoutMode = (value: string | null | undefined): ScanLayoutMode =>
+  String(value || '').trim().toLowerCase() === 'mobile' ? 'mobile' : 'normal'
+
+const selectLocaleCandidatesForLayout = (localeCandidates: string[], layoutMode: ScanLayoutMode) => {
+  const nonMobileCandidates = localeCandidates.filter((fileName) => !parseFightFileVariantMeta(fileName).mobile)
+  if (layoutMode !== 'mobile') {
+    return nonMobileCandidates.length ? nonMobileCandidates : localeCandidates
+  }
+
+  const mobileByLocale = new Map<'pl' | 'en', string>()
+  const mobileUnknown: string[] = []
+  localeCandidates.forEach((fileName) => {
+    const variant = parseFightFileVariantMeta(fileName)
+    if (!variant.mobile) return
+    if (variant.locale === 'pl' || variant.locale === 'en') {
+      if (!mobileByLocale.has(variant.locale)) {
+        mobileByLocale.set(variant.locale, fileName)
+      }
+      return
+    }
+    mobileUnknown.push(fileName)
+  })
+
+  const selected = new Set<string>()
+  mobileByLocale.forEach((fileName) => selected.add(fileName))
+  mobileUnknown.forEach((fileName) => selected.add(fileName))
+  nonMobileCandidates.forEach((fileName) => {
+    const variant = parseFightFileVariantMeta(fileName)
+    if ((variant.locale === 'pl' || variant.locale === 'en') && mobileByLocale.has(variant.locale)) return
+    selected.add(fileName)
+  })
+
+  return selected.size ? localeCandidates.filter((fileName) => selected.has(fileName)) : localeCandidates
 }
 
 const parseMatchupFromName = (value: string): { leftName: string; rightName: string } | null => {
@@ -506,7 +558,9 @@ const getNextFightFolderIndex = async (fightsDir: string) => {
   return maxIndex + 1
 }
 
-const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warnings: string[] }> => {
+const scanFightsDirectory = async (
+  layoutMode: ScanLayoutMode = 'normal',
+): Promise<{ fights: ScanFightRecord[]; warnings: string[] }> => {
   const warnings: string[] = []
   const fights: ScanFightRecord[] = []
   const fightsDir = await resolveFightsDir()
@@ -541,10 +595,11 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     const localeCandidates = files
       .filter((file) => JSON_FILE_PATTERN.test(file) && !isSharedScansFile(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
+    const layoutLocaleCandidates = selectLocaleCandidatesForLayout(localeCandidates, layoutMode)
     const sharedScansCandidates = files
       .filter((file) => isSharedScansFile(file))
       .sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }))
-    if (!localeCandidates.length) {
+    if (!layoutLocaleCandidates.length) {
       folderWarnings.push(`Missing fight JSON in folder "${folderName}".`)
     }
     if (sharedScansCandidates.length > 1) {
@@ -553,7 +608,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
       )
     }
 
-    if (!localeCandidates.length) {
+    if (!layoutLocaleCandidates.length) {
       warnings.push(...folderWarnings)
       continue
     }
@@ -591,11 +646,11 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
     if (!portraitAFile) folderWarnings.push(`Missing portrait A in folder "${folderName}".`)
     if (!portraitBFile) folderWarnings.push(`Missing portrait B in folder "${folderName}".`)
 
-    const hasExplicitPlVariant = localeCandidates.some(
-      (file) => splitFightNameLocaleSuffix(stripFileExtension(file)).locale === 'pl',
+    const hasExplicitPlVariant = layoutLocaleCandidates.some(
+      (file) => parseFightFileVariantMeta(file).locale === 'pl',
     )
 
-    for (const [fileIndex, fileName] of localeCandidates.entries()) {
+    for (const [fileIndex, fileName] of layoutLocaleCandidates.entries()) {
       let localeJson: FightLocaleJsonV1
       let payload: ParsedVsImport
       try {
@@ -606,7 +661,8 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
         continue
       }
 
-      const fileMatchName = toMatchupDisplayNameFromFileName(fileName) || matchName
+      const fileVariant = parseFightFileVariantMeta(fileName)
+      const fileMatchName = fileVariant.matchName || matchName
       const parsedFileMatchup = parseMatchupFromName(fileMatchName)
       const parsedFolderMatchup = parsedFileMatchup ? null : parseMatchupFromName(matchName)
       const matchupKey = parsedFileMatchup
@@ -615,10 +671,10 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
           ? buildMatchupKey(parsedFolderMatchup.leftName, parsedFolderMatchup.rightName)
           : normalizeToken(fileMatchName || matchName || folderName)
 
-      let variantLocale = splitFightNameLocaleSuffix(stripFileExtension(fileName)).locale
+      let variantLocale = fileVariant.locale
       if (variantLocale === 'unknown' && localeJson.locale) {
         variantLocale = localeJson.locale
-      } else if (variantLocale === 'unknown' && localeCandidates.length > 1 && hasExplicitPlVariant) {
+      } else if (variantLocale === 'unknown' && layoutLocaleCandidates.length > 1 && hasExplicitPlVariant) {
         variantLocale = 'en'
       }
       const variantLabel =
@@ -626,7 +682,7 @@ const scanFightsDirectory = async (): Promise<{ fights: ScanFightRecord[]; warni
           ? 'PL'
           : variantLocale === 'en'
             ? 'EN'
-            : stripFileExtension(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
+            : fileVariant.matchName || stripFileExtension(fileName).replace(MATCHUP_PREFIX_PATTERN, '').trim()
 
       fights.push({
         folderKey,
@@ -892,7 +948,8 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
 
     if (requestUrl.pathname === '/api/fights/scan') {
       try {
-        const scanned = await scanFightsDirectory()
+        const layoutMode = normalizeScanLayoutMode(requestUrl.searchParams.get('layout'))
+        const scanned = await scanFightsDirectory(layoutMode)
         res.statusCode = 200
         res.setHeader('Content-Type', 'application/json; charset=utf-8')
         res.setHeader('Cache-Control', 'no-store')

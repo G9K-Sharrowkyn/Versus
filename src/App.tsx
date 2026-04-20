@@ -325,6 +325,7 @@ function App() {
     searchTransitioningRef,
     returnTransitioningRef,
     fightScanPollMs: FIGHTS_SCAN_POLL_MS,
+    templateLayoutMode,
   })
 
   const {
