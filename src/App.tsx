@@ -1303,7 +1303,11 @@ function App() {
         return
       }
 
-      if (templateLayoutMode === 'mobile' && (event.key === ' ' || event.code === 'Space')) {
+      if (
+        templateLayoutMode === 'mobile' &&
+        activeTemplate !== 'fight-card' &&
+        (event.key === ' ' || event.code === 'Space')
+      ) {
         event.preventDefault()
         toggleTemplateMobilePanelSide()
       }
@@ -1312,31 +1316,13 @@ function App() {
     window.addEventListener('keydown', handleTemplateKeydown)
     return () => window.removeEventListener('keydown', handleTemplateKeydown)
   }, [
+    activeTemplate,
     canStepTemplateBackward,
     canStepTemplateForward,
     fightViewVisible,
     isTemplateView,
     portraitEditor,
     stepTemplateOrder,
-    templateLayoutMode,
-    toggleTemplateMobilePanelSide,
-  ])
-
-  useEffect(() => {
-    if (!isTemplateView || !fightViewVisible || portraitEditor) return
-    if (templateLayoutMode !== 'mobile') return
-    if (activeTemplate !== 'fight-card') return
-
-    const intervalId = window.setInterval(() => {
-      toggleTemplateMobilePanelSide()
-    }, 2_000)
-
-    return () => window.clearInterval(intervalId)
-  }, [
-    activeTemplate,
-    fightViewVisible,
-    isTemplateView,
-    portraitEditor,
     templateLayoutMode,
     toggleTemplateMobilePanelSide,
   ])

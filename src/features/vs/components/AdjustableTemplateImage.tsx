@@ -50,12 +50,13 @@ export function AdjustableTemplateImage({
   const [imageNaturalSizeState, setImageNaturalSizeState] = useState({ key: '', width: 0, height: 0 })
   const [loadedImageKey, setLoadedImageKey] = useState('')
   const [isInteracting, setIsInteracting] = useState(false)
+  const displayedImageUrl = loadedImageKey || imageUrl
   const imageNaturalSize = useMemo(
     () =>
-      imageNaturalSizeState.key === imageUrl
+      imageNaturalSizeState.key === displayedImageUrl
         ? { width: imageNaturalSizeState.width, height: imageNaturalSizeState.height }
         : { width: 0, height: 0 },
-    [imageNaturalSizeState.height, imageNaturalSizeState.key, imageNaturalSizeState.width, imageUrl],
+    [displayedImageUrl, imageNaturalSizeState.height, imageNaturalSizeState.key, imageNaturalSizeState.width],
   )
 
   const fallbackLegacyAdjust = legacyAdjustKeys
@@ -66,7 +67,7 @@ export function AdjustableTemplateImage({
   )
   const [liveAdjust, setLiveAdjust] = useState<PortraitAdjust>(committedAdjust)
   const displayAdjust = isInteracting ? liveAdjust : committedAdjust
-  const isImageReady = loadedImageKey === imageUrl
+  const isImageReady = Boolean(displayedImageUrl)
   const committedX = committedAdjust.x
   const committedY = committedAdjust.y
   const committedScale = committedAdjust.scale
@@ -121,8 +122,6 @@ export function AdjustableTemplateImage({
     const cached = getImagePreloadSnapshot(imageUrl)
     if (cached?.status === 'loaded') {
       commitSnapshot(imageUrl, cached.width, cached.height)
-    } else {
-      commitSnapshot('', 0, 0)
     }
 
     void preloadImageUrl(imageUrl).then((snapshot) => {
@@ -282,9 +281,9 @@ export function AdjustableTemplateImage({
         }
       }}
     >
-      {imageUrl ? (
+      {displayedImageUrl ? (
         <img
-          src={imageUrl}
+          src={displayedImageUrl}
           alt={alt}
           className="absolute block select-none"
           draggable={false}
@@ -303,10 +302,10 @@ export function AdjustableTemplateImage({
             }
             imageMetricsRef.current = nextMetrics
             setImageNaturalSizeState({
-              key: imageUrl,
+              key: displayedImageUrl,
               ...nextMetrics,
             })
-            setLoadedImageKey(imageUrl)
+            setLoadedImageKey(displayedImageUrl)
           }}
         />
       ) : (

@@ -1,7 +1,8 @@
 import './FightCardTemplate.scss'
 import { GlitchText } from '../../../components/GlitchText'
-import { useState, useEffect, type ReactNode } from 'react'
+import { useState, useEffect, useMemo, useCallback, type CSSProperties, type ReactNode } from 'react'
 import { AdjustableTemplateImage } from '../../../components/AdjustableTemplateImage'
+import { preloadImageUrls } from '../../../domain/imagePreloadCache'
 import {
   TEMPLATE_BLOCK_ALIASES,
   findTemplateBlockLines,
@@ -16,6 +17,7 @@ import {
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
+import { useTemplateMobileLayout } from '../../shared/useTemplateMobileLayout'
 
 type FightCardTemplateProps = TemplatePreviewProps & {
   integratedToolbar?: ReactNode
@@ -57,6 +59,7 @@ export function FightCardTemplate({
   onSlideImageAdjustCommit,
   language,
   onToggleLanguage,
+  templateLayoutMode,
   integratedToolbar,
 }: FightCardTemplateProps) {
   const tacticalBlockLines = findTemplateBlockLines(templateBlocks, TEMPLATE_BLOCK_ALIASES['tactical-board'] || [])
@@ -85,8 +88,48 @@ export function FightCardTemplate({
   const rightImageUrl = customRightImageFile
     ? resolveFightTemplateImageUrl(activeFightFolderKey, customRightImageFile)
     : fighterB.imageUrl
+  const autoTemplateMobileLayout = useTemplateMobileLayout()
+  const isTemplateMobileLayout =
+    templateLayoutMode === 'mobile' || (templateLayoutMode == null && autoTemplateMobileLayout)
+  const mobileEntries = useMemo(
+    () =>
+      [
+        { fighter: fighterA, imageUrl: leftImageUrl },
+        { fighter: fighterB, imageUrl: rightImageUrl },
+      ].filter((entry) => Boolean(entry.imageUrl)),
+    [fighterA, fighterB, leftImageUrl, rightImageUrl],
+  )
+  const [mobileIndex, setMobileIndex] = useState(0)
+  const safeMobileIndex = mobileEntries.length > 0 ? mobileIndex % mobileEntries.length : 0
+  const activeMobileEntry = safeMobileIndex < mobileEntries.length ? mobileEntries[safeMobileIndex] : null
 
-  const renderColumn = (fighter: Fighter, side: 'left' | 'right', imageUrl: string) => {
+  const nextMobile = useCallback(() => {
+    if (!isTemplateMobileLayout) return
+    if (mobileEntries.length <= 1) return
+    setMobileIndex((value) => (value + 1) % mobileEntries.length)
+  }, [isTemplateMobileLayout, mobileEntries.length])
+
+  useEffect(() => {
+    if (!isTemplateMobileLayout) return
+    if (mobileEntries.length <= 1) return
+
+    const intervalId = window.setInterval(() => {
+      nextMobile()
+    }, 4000)
+
+    return () => {
+      window.clearInterval(intervalId)
+    }
+  }, [isTemplateMobileLayout, mobileEntries.length, nextMobile])
+
+  useEffect(() => {
+    if (!isTemplateMobileLayout) return
+    const urls = mobileEntries.map((entry) => entry.imageUrl).filter(Boolean)
+    if (!urls.length) return
+    void preloadImageUrls(urls)
+  }, [isTemplateMobileLayout, mobileEntries])
+
+  const renderColumn = (fighter: Fighter, side: 'left' | 'right', imageUrl: string, onActivate?: () => void) => {
     const adjustKey = side === 'left' ? 'fight-card:main-left' : 'fight-card:main-right'
     const legacyAdjustKeys = side === 'left' ? ['fight-card:portrait-a'] : ['fight-card:portrait-b']
     return (
@@ -101,6 +144,7 @@ export function FightCardTemplate({
           adjustments={slideImageAdjustments}
           onAdjustChange={onSlideImageAdjustChange}
           onAdjustCommit={onSlideImageAdjustCommit}
+          onActivate={onActivate}
           plain
         />
       </div>
@@ -108,7 +152,7 @@ export function FightCardTemplate({
   }
 
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
-  const chars = headerTextStr.split('')
+  const chars = useMemo(() => headerTextStr.split(''), [headerTextStr])
   const [activeGlitches, setActiveGlitches] = useState<Set<number>>(new Set())
 
   useEffect(() => {
@@ -155,10 +199,10 @@ export function FightCardTemplate({
       isMounted = false
       timeouts.forEach(clearTimeout)
     }
-  }, [headerTextStr])
+  }, [chars])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className={`vs-tactical-board25-surface${isTemplateMobileLayout ? ' is-template-mobile-layout' : ''}`}>
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -180,7 +224,7 @@ export function FightCardTemplate({
       <div className="vs-tactical-board25-heading">
         <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
           <div style={{ position: 'relative' }}>
-            <div className="glitch-letter-container">
+            <div className="glitch-letter-container" style={isTemplateMobileLayout ? { animation: 'none' } : undefined}>
               {chars.map((char, i) =>
                 char === ' ' ? (
                   <span key={i}>&nbsp;</span>
@@ -207,25 +251,83 @@ export function FightCardTemplate({
         title={tacticalChrome.brandMarkTitle}
         aria-label={tacticalChrome.brandMarkAria}
         onClick={onToggleLanguage}
-        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as any}
+        style={{ '--logo-url': `url(${tacticalChrome.brandImageSrc})` } as CSSProperties & Record<'--logo-url', string>}
       >
         <img src={tacticalChrome.brandImageSrc} alt={tacticalChrome.brandAlt} draggable={false} />
         <img className="vs-tactical-board25-logo-reflection" src={tacticalChrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
-        <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
-          <GlitchText text={leftTitle} />
-        </p>
-        {renderColumn(fighterA, 'left', leftImageUrl)}
-      </section>
+      {isTemplateMobileLayout ? (
+        <section
+          className="vs-tactical-board25-stats"
+          style={{
+            height: 'var(--tb-panel-height)',
+            padding: 0,
+            overflow: 'hidden',
+            left: '50%',
+            width: '78%',
+            transform: 'translateX(-50%)',
+          }}
+        >
+          <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
+            <GlitchText text={activeMobileEntry?.fighter.name || leftTitle} />
+          </p>
+          <div
+            style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
+            role="button"
+            tabIndex={0}
+            onClick={nextMobile}
+            onKeyDown={(event) => {
+              if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault()
+                nextMobile()
+              }
+            }}
+          >
+            {mobileEntries.length ? (
+              mobileEntries.map((entry, index) => (
+                <img
+                  key={`${entry.imageUrl}-${index}`}
+                  src={entry.imageUrl}
+                  alt={entry.fighter.name || fighterFallback}
+                  draggable={false}
+                  loading="eager"
+                  decoding="async"
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'cover',
+                    objectPosition: '50% 50%',
+                    display: index === safeMobileIndex ? 'block' : 'none',
+                  }}
+                />
+              ))
+            ) : (
+              <div className="flex h-full w-full items-center justify-center px-4 text-center text-sm text-slate-400">
+                {common.noImage || common.portraitSlot}
+              </div>
+            )}
+          </div>
+        </section>
+      ) : (
+        <>
+          <section className="vs-tactical-board25-stats" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+            <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
+              <GlitchText text={leftTitle} />
+            </p>
+            {renderColumn(fighterA, 'left', leftImageUrl)}
+          </section>
 
-      <div className="vs-tactical-board25-reality" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
-        <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}>
-          <GlitchText text={rightTitle} />
-        </p>
-        {renderColumn(fighterB, 'right', rightImageUrl)}
-      </div>
+          <div className="vs-tactical-board25-reality" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
+            <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}>
+              <GlitchText text={rightTitle} />
+            </p>
+            {renderColumn(fighterB, 'right', rightImageUrl)}
+          </div>
+        </>
+      )}
     </div>
   )
 }

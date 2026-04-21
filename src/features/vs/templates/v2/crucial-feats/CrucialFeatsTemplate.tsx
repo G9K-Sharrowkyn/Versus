@@ -101,6 +101,19 @@ export function CrucialFeatsTemplate({
   const mobileCount = Math.max(1, mobileEntries.length)
   const mobileScope = `${activeFightFolderKey || 'standalone'}:mobile:${leftEntries.length}:${rightEntries.length}`
   const [mobileIndex, nextMobile] = useScopedCycleIndex(mobileScope, mobileCount)
+
+  useEffect(() => {
+    if (!isTemplateMobileLayout) return
+    if (mobileCount <= 1) return
+
+    const intervalId = window.setInterval(() => {
+      nextMobile()
+    }, 4000)
+
+    return () => {
+      window.clearInterval(intervalId)
+    }
+  }, [isTemplateMobileLayout, mobileCount, nextMobile])
   
   const leftEntry = pairIndex < leftEntries.length ? leftEntries[pairIndex] : null
   const rightEntry = pairIndex < rightEntries.length ? rightEntries[pairIndex] : null
