@@ -90,21 +90,19 @@ export function FightCardTemplate({
     const adjustKey = side === 'left' ? 'fight-card:main-left' : 'fight-card:main-right'
     const legacyAdjustKeys = side === 'left' ? ['fight-card:portrait-a'] : ['fight-card:portrait-b']
     return (
-      <div style={{ flex: 1, position: 'relative', minHeight: 0, height: '100%', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', inset: 0 }}>
-          <AdjustableTemplateImage
-            imageUrl={imageUrl}
-            alt={fighter.name || fighterFallback}
-            fallbackLabel={common.noImage || common.portraitSlot}
-            hintLabel=""
-            adjustKey={adjustKey}
-            legacyAdjustKeys={legacyAdjustKeys}
-            adjustments={slideImageAdjustments}
-            onAdjustChange={onSlideImageAdjustChange}
-            onAdjustCommit={onSlideImageAdjustCommit}
-            plain
-          />
-        </div>
+      <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
+        <AdjustableTemplateImage
+          imageUrl={imageUrl}
+          alt={fighter.name || fighterFallback}
+          fallbackLabel={common.noImage || common.portraitSlot}
+          hintLabel=""
+          adjustKey={adjustKey}
+          legacyAdjustKeys={legacyAdjustKeys}
+          adjustments={slideImageAdjustments}
+          onAdjustChange={onSlideImageAdjustChange}
+          onAdjustCommit={onSlideImageAdjustCommit}
+          plain
+        />
       </div>
     )
   }
@@ -215,14 +213,14 @@ export function FightCardTemplate({
         <img className="vs-tactical-board25-logo-reflection" src={tacticalChrome.brandImageSrc} alt="" aria-hidden="true" draggable={false} />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+      <section className="vs-tactical-board25-stats" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
         <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
           <GlitchText text={leftTitle} />
         </p>
         {renderColumn(fighterA, 'left', leftImageUrl)}
       </section>
 
-      <div className="vs-tactical-board25-reality" style={{ display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0, overflow: 'visible' }}>
+      <div className="vs-tactical-board25-reality" style={{ height: 'var(--tb-panel-height)', padding: 0, overflow: 'hidden' }}>
         <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}>
           <GlitchText text={rightTitle} />
         </p>

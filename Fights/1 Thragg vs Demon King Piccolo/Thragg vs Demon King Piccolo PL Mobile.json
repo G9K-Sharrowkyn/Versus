@@ -9,10 +9,7 @@
     "crucial-feats",
     "victory-archive",
     "fight-analytics",
-    "parameter-comparison",
     "final-summary",
-    "battle-dynamics",
-    "fight-simulation",
     "direct-verdict",
     "fight-card"
   ],
@@ -116,71 +113,11 @@
         "style": 10
       }
     },
-    "parameter-comparison": {
-      "a": {
-        "battleIq": 74,
-        "durability": 78,
-        "experience": 92,
-        "hax": 22,
-        "skills": 58,
-        "speed": 64,
-        "stamina": 88,
-        "strength": 68,
-        "style": 86
-      },
-      "b": {
-        "battleIq": 82,
-        "durability": 75,
-        "experience": 76,
-        "hax": 84,
-        "skills": 82,
-        "speed": 78,
-        "stamina": 72,
-        "strength": 84,
-        "style": 10
-      }
-    },
     "final-summary": {
       "line_1": "Piccolo ma przewagę mocy, szybkości i zasięgu.",
       "line_2": "Thragg jest groźny w zwarciu, ale bez odpowiedzi na Ki.",
       "line_3": "Im dłuższa walka, tym większa przewaga Piccolo.",
       "winner": "Piccolo 10/10."
-    },
-    "battle-dynamics": {
-      "label": "Scenariusz walki",
-      "a_curve": "70,67,63,58,53",
-      "b_curve": "78,80,82,85,88",
-      "yellow_wave": "28,31,29,33,30,34,32,36",
-      "phase_1": "Piccolo od startu kontroluje dystans i tempo.",
-      "phase_2": "W zwarciu dalej utrzymuje przewagę.",
-      "phase_3": "Kończy walkę Ki albo finiszem z bliska.",
-      "analysis": "Piccolo wygrywa w każdym dystansie."
-    },
-    "fight-simulation": {
-      "label": "Scenariusz walki",
-      "opening": "Piccolo zaczyna od kontroli dystansu.",
-      "mid_fight": "Thragg naciska, ale Piccolo odpowiada.",
-      "late_fight": "Przewaga Piccolo rośnie z czasem.",
-      "end_condition": "Piccolo kończy walkę Ki lub zwarciem.",
-      "phase_1_animation": "trade-chaos",
-      "phase_1_actor": "b",
-      "phase_1_title": "Pełna kontrola",
-      "phase_1_a_label": "Presja Thragga",
-      "phase_1_a_value": "86",
-      "phase_1_b_label": "Kontrola Piccolo",
-      "phase_1_b_value": "95",
-      "phase_1_event": "Thragg rusza, Piccolo kontruje Ki i ciosem.",
-      "phase_2_animation": "feint-counter",
-      "phase_2_title": "Zwarcie nie wystarcza",
-      "phase_2_event": "Zwarcie nie odbiera Piccolo kontroli.",
-      "phase_2_branch_a": "Bójka sprzyja Piccolo.",
-      "phase_2_branch_b": "Na dystansie Piccolo dominuje.",
-      "phase_3_actor": "b",
-      "phase_3_animation": "rush-ko",
-      "phase_3_title": "Domknięcie",
-      "phase_3_event": "Po przełamaniu rytmu Thragg przegrywa.",
-      "phase_3_branch_a": "Piccolo kończy w zwarciu.",
-      "phase_3_branch_b": "Piccolo kończy salwą Ki."
     },
     "direct-verdict": {
       "winner": "Piccolo",

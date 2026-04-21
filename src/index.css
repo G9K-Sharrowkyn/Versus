@@ -684,6 +684,15 @@
   border-width: 5px !important;
 }
 
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--fight-card .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--fight-card .vs-tactical-board25-reality {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: clamp(12px, 2.1dvh, 28px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
 [data-vs-template-layout='mobile'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
   left: 50% !important;
   width: 88% !important;
@@ -1043,6 +1052,22 @@
   overflow: visible !important;
 }
 
+/* Direct Verdict mobile readability bump: match character-profile scale. */
+[data-vs-template-layout='mobile'] .vs-template--direct-verdict .vs-dossier-text-1 {
+  font-size: clamp(28px, 3.9dvh, 58px) !important;
+  line-height: 0.92 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--direct-verdict .vs-dossier-text-3 {
+  font-size: clamp(22px, 3dvh, 42px) !important;
+  line-height: 1 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--direct-verdict .vs-dossier-text-2 {
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+}
+
 [data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
   width: clamp(108px, 14dvh, 164px) !important;
 }
@@ -1123,6 +1148,43 @@
   transform-origin: top center !important;
 }
 
+/* Victory Archive mobile: mirror Crucial Feats geometry/typography 1:1. */
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--victory-archive .vs-tb-signal-main {
+  width: 112% !important;
+}
+
+/* Final Summary mobile: keep title panel width exactly like dossier baseline. */
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--final-summary .vs-tb-signal-main {
+  width: 75% !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--victory-archive p.vs-tactical-board25-stats-title.vs-panel-top-label,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--victory-archive p.vs-tactical-board25-reality-heading.vs-panel-top-label {
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--victory-archive .vs-tactical-board25-stats,
+[data-vs-template-layout='mobile'] .vs-tactical-board25-surface.vs-template--victory-archive .vs-tactical-board25-reality {
+  top: clamp(116px, 18dvh, 192px) !important;
+  bottom: clamp(20px, 11dvh, 120px) !important;
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 0 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--victory-archive .vs-victory-archive-caption--single {
+  --vs-caption-scale: 1 !important;
+  top: auto !important;
+  bottom: clamp(14px, 2.2dvh, 26px) !important;
+  left: 50% !important;
+  width: 88% !important;
+  font-size: clamp(19px, 2.64dvh, 42px) !important;
+  line-height: 1.04 !important;
+  transform: translateX(-50%) scale(var(--vs-caption-scale)) !important;
+  transform-origin: top center !important;
+}
+
 /* Mobile single-panel swap: Space toggles active side left <-> right. */
 [data-vs-template-layout='mobile'][data-vs-mobile-panel='left'][data-vs-mobile-panel-switch='none'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
   display: none !important;
@@ -1132,45 +1194,47 @@
   display: none !important;
 }
 
+[data-vs-template-layout='mobile'][data-vs-mobile-panel='left'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
+  display: none !important;
+}
+
+[data-vs-template-layout='mobile'][data-vs-mobile-panel='right'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
+  display: none !important;
+}
+
 [data-vs-template-layout='mobile'][data-vs-mobile-panel='right'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
   left: 50% !important;
   width: 88% !important;
   transform: translateX(-50%) !important;
 }
 
-/* Reveal behavior on panel switch: old panel stays until laser sweep exposes new side. */
-[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='right'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
-  left: 50% !important;
-  width: 88% !important;
-  transform: translateX(-50%) !important;
-  z-index: 2 !important;
-  clip-path: polygon(-10% -35%, -10% -35%, -10% 135%, -10% 135%);
-  animation: vs-laser-reveal 1.2s linear forwards;
-  will-change: clip-path;
+/* Mobile panel swap glitch overlay (same chromatic style as search/history transition). */
+.vs-template-panel-chroma-glitch {
+  position: absolute;
+  z-index: 105;
+  pointer-events: none;
+  left: 50%;
+  width: 104%;
+  top: calc(clamp(116px, 18dvh, 192px) - 228px);
+  bottom: calc(clamp(12px, 2.1dvh, 28px) - 8px);
+  transform: translateX(-50%);
+  overflow: hidden;
+  mix-blend-mode: screen;
+  filter: saturate(1.45) contrast(1.2) brightness(1.18);
 }
 
-[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='right'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
-  z-index: 1 !important;
-  clip-path: polygon(-10% -35%, 110% -35%, 110% 135%, -10% 135%);
-  animation: vs-laser-hide 1.2s linear forwards;
-  will-change: clip-path;
+.vs-template-panel-chroma-glitch__distortion {
+  position: absolute;
+  inset: 0;
 }
 
-[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='left'] .vs-tactical-board25-surface .vs-tactical-board25-stats {
-  z-index: 2 !important;
-  clip-path: polygon(-10% -35%, -10% -35%, -10% 135%, -10% 135%);
-  animation: vs-laser-reveal 1.2s linear forwards;
-  will-change: clip-path;
-}
-
-[data-vs-template-layout='mobile'][data-vs-mobile-panel-switch='left'] .vs-tactical-board25-surface .vs-tactical-board25-reality {
-  left: 50% !important;
-  width: 88% !important;
-  transform: translateX(-50%) !important;
-  z-index: 1 !important;
-  clip-path: polygon(-10% -35%, 110% -35%, 110% 135%, -10% 135%);
-  animation: vs-laser-hide 1.2s linear forwards;
-  will-change: clip-path;
+.vs-template-panel-chroma-glitch__band {
+  position: absolute;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  pointer-events: none;
+  mix-blend-mode: screen;
 }
 
 /* Force single-column body layout in mobile template mode for all template cards. */

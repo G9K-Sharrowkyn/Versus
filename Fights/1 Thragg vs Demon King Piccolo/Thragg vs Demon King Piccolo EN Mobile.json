@@ -9,10 +9,7 @@
     "crucial-feats",
     "victory-archive",
     "fight-analytics",
-    "parameter-comparison",
     "final-summary",
-    "battle-dynamics",
-    "fight-simulation",
     "direct-verdict",
     "fight-card"
   ],
@@ -117,71 +114,11 @@
         "style": 10
       }
     },
-    "parameter-comparison": {
-      "a": {
-        "battleIq": 74,
-        "durability": 78,
-        "experience": 92,
-        "hax": 22,
-        "skills": 58,
-        "speed": 64,
-        "stamina": 88,
-        "strength": 68,
-        "style": 86
-      },
-      "b": {
-        "battleIq": 82,
-        "durability": 75,
-        "experience": 76,
-        "hax": 84,
-        "skills": 82,
-        "speed": 78,
-        "stamina": 72,
-        "strength": 84,
-        "style": 10
-      }
-    },
     "final-summary": {
       "line_1": "Piccolo has the edge in power, speed, and range.",
       "line_2": "Thragg is dangerous up close, but lacks answers to Ki.",
       "line_3": "The longer it goes, the bigger Piccolo's lead.",
       "winner": "Piccolo 10/10."
-    },
-    "battle-dynamics": {
-      "label": "Fight Scenario",
-      "a_curve": "70,67,63,58,53",
-      "b_curve": "78,80,82,85,88",
-      "yellow_wave": "28,31,29,33,30,34,32,36",
-      "phase_1": "Piccolo controls range and tempo from the start.",
-      "phase_2": "He keeps control even in close range.",
-      "phase_3": "He finishes with Ki or close combat.",
-      "analysis": "Piccolo wins at every distance."
-    },
-    "fight-simulation": {
-      "label": "Fight Scenario",
-      "opening": "Piccolo opens with range control.",
-      "mid_fight": "Thragg presses, Piccolo answers.",
-      "late_fight": "Piccolo's lead grows over time.",
-      "end_condition": "Piccolo ends it with Ki or close combat.",
-      "phase_1_animation": "trade-chaos",
-      "phase_1_actor": "b",
-      "phase_1_title": "Full control",
-      "phase_1_a_label": "Thragg pressure",
-      "phase_1_a_value": "86",
-      "phase_1_b_label": "Piccolo control",
-      "phase_1_b_value": "95",
-      "phase_1_event": "Thragg charges, Piccolo counters with Ki and strikes.",
-      "phase_2_animation": "feint-counter",
-      "phase_2_title": "Close range is not enough",
-      "phase_2_event": "Close range does not take control away from Piccolo.",
-      "phase_2_branch_a": "A brawl favors Piccolo.",
-      "phase_2_branch_b": "At range, Piccolo dominates.",
-      "phase_3_actor": "b",
-      "phase_3_animation": "rush-ko",
-      "phase_3_title": "Closing",
-      "phase_3_event": "After breaking Thragg's rhythm, Piccolo closes it out.",
-      "phase_3_branch_a": "Piccolo finishes in close range.",
-      "phase_3_branch_b": "Piccolo finishes with a Ki barrage."
     },
     "direct-verdict": {
       "winner": "Piccolo",

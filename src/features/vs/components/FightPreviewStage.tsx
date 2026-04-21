@@ -1,4 +1,4 @@
-import { isValidElement, type ReactNode, type RefObject } from 'react'
+import { isValidElement, useEffect, useState, type ReactNode, type RefObject } from 'react'
 import type { TranslationDictionary } from '../../../i18n/types'
 import type { TemplateId } from '../types'
 
@@ -26,8 +26,8 @@ type FightPreviewStageProps = {
   activeFightFolderKey: string
   activeFightLocale: string
   templateTransitionPhase: TemplateTransitionPhase
-  panelSwitchLaserVisible: boolean
-  panelSwitchLaserNonce: number
+  panelSwitchGlitchVisible: boolean
+  panelSwitchGlitchNonce: number
   children: ReactNode
   incomingTemplate: ReactNode
 }
@@ -42,8 +42,8 @@ export function FightPreviewStage({
   activeFightFolderKey,
   activeFightLocale,
   templateTransitionPhase,
-  panelSwitchLaserVisible,
-  panelSwitchLaserNonce,
+  panelSwitchGlitchVisible,
+  panelSwitchGlitchNonce,
   children,
   incomingTemplate,
 }: FightPreviewStageProps) {
@@ -118,16 +118,84 @@ export function FightPreviewStage({
           {isTemplateTransitioning && (
             <LaserSweepTransition phase={templateTransitionPhase} />
           )}
-          {panelSwitchLaserVisible ? (
-            <LaserSweepTransition
-              key={`panel-switch-${panelSwitchLaserNonce}`}
-              phase="enter"
-              variant="panel-switch"
+          {panelSwitchGlitchVisible ? (
+            <PanelSwitchGlitchTransition
+              key={`panel-switch-glitch-${panelSwitchGlitchNonce}`}
+              nonce={panelSwitchGlitchNonce}
             />
           ) : null}
         </div>
       </div>
     </section>
+  )
+}
+
+type ChromaFlashBand = {
+  id: string
+  top: string
+  height: string
+  background: string
+  opacity: number
+}
+
+const PANEL_SWITCH_GLITCH_COLORS = ['rgba(255,85,78,1)', '#77e2f2', '#ff0', '#fff', '#0cf', '#f80']
+const PANEL_SWITCH_GLITCH_FRAMES = 20
+const PANEL_SWITCH_GLITCH_INTERVAL_MS = 40
+const PANEL_SWITCH_GLITCH_JITTER_X = 55
+const PANEL_SWITCH_GLITCH_SKEW = 10
+
+function PanelSwitchGlitchTransition({ nonce }: { nonce: number }) {
+  const [bands, setBands] = useState<ChromaFlashBand[]>([])
+  const [distortionTransform, setDistortionTransform] = useState('')
+
+  useEffect(() => {
+    let frame = 0
+    const intervalId = window.setInterval(() => {
+      const nextBands: ChromaFlashBand[] = Array.from({
+        length: 9 + Math.floor(Math.random() * 10),
+      }).map((_, index) => ({
+        id: `panel-glitch-band-${nonce}-${frame}-${index}`,
+        top: `${Math.random() * 100}%`,
+        height: `${1 + Math.random() * 14}%`,
+        background: PANEL_SWITCH_GLITCH_COLORS[Math.floor(Math.random() * PANEL_SWITCH_GLITCH_COLORS.length)],
+        opacity: 0.7 + Math.random() * 0.3,
+      }))
+      setBands(nextBands)
+      setDistortionTransform(
+        `translateX(${(Math.random() - 0.5) * PANEL_SWITCH_GLITCH_JITTER_X}px) skewX(${(Math.random() - 0.5) * PANEL_SWITCH_GLITCH_SKEW}deg)`,
+      )
+      frame += 1
+      if (frame >= PANEL_SWITCH_GLITCH_FRAMES) {
+        window.clearInterval(intervalId)
+        setBands([])
+        setDistortionTransform('')
+      }
+    }, PANEL_SWITCH_GLITCH_INTERVAL_MS)
+
+    return () => {
+      window.clearInterval(intervalId)
+      setBands([])
+      setDistortionTransform('')
+    }
+  }, [nonce])
+
+  return (
+    <div className="vs-template-panel-chroma-glitch" aria-hidden="true">
+      <div className="vs-template-panel-chroma-glitch__distortion" style={{ transform: distortionTransform }}>
+        {bands.map((band) => (
+          <span
+            key={band.id}
+            className="vs-template-panel-chroma-glitch__band"
+            style={{
+              top: band.top,
+              height: band.height,
+              background: band.background,
+              opacity: band.opacity,
+            }}
+          />
+        ))}
+      </div>
+    </div>
   )
 }
 

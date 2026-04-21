@@ -108,7 +108,7 @@
     "defeats_word": "pokonuje",
     "outcome_label": "Wynik",
     "confidence_label": "Pewnosc",
-    "reason_label": "Dlaczego ten werdykt?",
+    "reason_label": "Dlaczego?",
     "fighter_fallback": "Postać"
   },
   "layout": {

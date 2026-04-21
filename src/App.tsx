@@ -103,7 +103,7 @@ const SEARCH_COLLAPSE_WATCHDOG_MS = 5000
 const REVERSE_EXPLOSION_WATCHDOG_MS = 30000
 const TEMPLATE_RAIL_TRANSITION_MS = 1200
 const TEMPLATE_RAIL_TRANSITION_SWAP_MS = 50
-const TEMPLATE_PANEL_SWITCH_LASER_MS = 1200
+const TEMPLATE_PANEL_SWITCH_GLITCH_MS = 550
 const STARTUP_GLITCH_FRAMES = 14
 const STARTUP_GLITCH_INTERVAL_MS = 40
 const SEARCH_IFRAME_VERSION = 42
@@ -222,8 +222,8 @@ function App() {
   const [templateLayoutMode, setTemplateLayoutMode] = useState<TemplateLayoutMode>(() => readStoredTemplateLayoutMode())
   const [templateMobilePanelSide, setTemplateMobilePanelSide] = useState<'left' | 'right'>('left')
   const [templateMobilePanelSwitchTo, setTemplateMobilePanelSwitchTo] = useState<'left' | 'right' | null>(null)
-  const [templateMobilePanelLaserVisible, setTemplateMobilePanelLaserVisible] = useState(false)
-  const [templateMobilePanelLaserNonce, setTemplateMobilePanelLaserNonce] = useState(0)
+  const [templateMobilePanelGlitchVisible, setTemplateMobilePanelGlitchVisible] = useState(false)
+  const [templateMobilePanelGlitchNonce, setTemplateMobilePanelGlitchNonce] = useState(0)
   const tr = (pl: string, en: string) => pickLang(language, pl, en)
   const translations = useMemo(() => getTranslations(language), [language])
   const ui = translations.ui
@@ -298,7 +298,7 @@ function App() {
   const templateTransitionTimeoutsRef = useRef<number[]>([])
   const templateTransitionRafsRef = useRef<number[]>([])
   const startupGlitchIntervalRef = useRef<number | null>(null)
-  const templateMobilePanelLaserTimeoutRef = useRef<number | null>(null)
+  const templateMobilePanelGlitchTimeoutRef = useRef<number | null>(null)
   const startupGlitchFrameRef = useRef(0)
   const clearFinalTemplateAutoReturnTimeoutFnRef = useRef<() => void>(() => {})
   const scheduleFinalTemplateAutoReturnFnRef = useRef<(delayMs?: number) => void>(() => {})
@@ -388,10 +388,10 @@ function App() {
     if (templateLayoutMode !== 'mobile') {
       setTemplateMobilePanelSide('left')
       setTemplateMobilePanelSwitchTo(null)
-      setTemplateMobilePanelLaserVisible(false)
-      if (templateMobilePanelLaserTimeoutRef.current !== null) {
-        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
-        templateMobilePanelLaserTimeoutRef.current = null
+      setTemplateMobilePanelGlitchVisible(false)
+      if (templateMobilePanelGlitchTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelGlitchTimeoutRef.current)
+        templateMobilePanelGlitchTimeoutRef.current = null
       }
     }
   }, [templateLayoutMode])
@@ -400,18 +400,18 @@ function App() {
     if (templateLayoutMode === 'mobile') {
       setTemplateMobilePanelSide('left')
       setTemplateMobilePanelSwitchTo(null)
-      setTemplateMobilePanelLaserVisible(false)
-      if (templateMobilePanelLaserTimeoutRef.current !== null) {
-        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
-        templateMobilePanelLaserTimeoutRef.current = null
+      setTemplateMobilePanelGlitchVisible(false)
+      if (templateMobilePanelGlitchTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelGlitchTimeoutRef.current)
+        templateMobilePanelGlitchTimeoutRef.current = null
       }
     }
   }, [activeTemplate, templateLayoutMode])
 
   useEffect(
     () => () => {
-      if (templateMobilePanelLaserTimeoutRef.current !== null) {
-        window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+      if (templateMobilePanelGlitchTimeoutRef.current !== null) {
+        window.clearTimeout(templateMobilePanelGlitchTimeoutRef.current)
       }
     },
     [],
@@ -973,17 +973,17 @@ function App() {
     if (templateLayoutMode !== 'mobile' || templateMobilePanelSwitchTo) return
     const nextSide = templateMobilePanelSide === 'left' ? 'right' : 'left'
     setTemplateMobilePanelSwitchTo(nextSide)
-    setTemplateMobilePanelLaserVisible(true)
-    setTemplateMobilePanelLaserNonce((current) => current + 1)
-    if (templateMobilePanelLaserTimeoutRef.current !== null) {
-      window.clearTimeout(templateMobilePanelLaserTimeoutRef.current)
+    setTemplateMobilePanelGlitchVisible(true)
+    setTemplateMobilePanelGlitchNonce((current) => current + 1)
+    if (templateMobilePanelGlitchTimeoutRef.current !== null) {
+      window.clearTimeout(templateMobilePanelGlitchTimeoutRef.current)
     }
-    templateMobilePanelLaserTimeoutRef.current = window.setTimeout(() => {
+    templateMobilePanelGlitchTimeoutRef.current = window.setTimeout(() => {
       setTemplateMobilePanelSide(nextSide)
       setTemplateMobilePanelSwitchTo(null)
-      setTemplateMobilePanelLaserVisible(false)
-      templateMobilePanelLaserTimeoutRef.current = null
-    }, TEMPLATE_PANEL_SWITCH_LASER_MS)
+      setTemplateMobilePanelGlitchVisible(false)
+      templateMobilePanelGlitchTimeoutRef.current = null
+    }, TEMPLATE_PANEL_SWITCH_GLITCH_MS)
   }, [templateLayoutMode, templateMobilePanelSide, templateMobilePanelSwitchTo])
 
   const openFight = (fightId: string) => {
@@ -1105,6 +1105,7 @@ function App() {
     clearFinalTemplateAutoReturnTimeoutFnRef.current()
     if (viewMode !== 'fight' || !fightViewVisible) return
     if (activeTemplate !== 'fight-card') return
+    if (templateLayoutMode === 'mobile') return
     if (portraitEditor) return
 
     scheduleFinalTemplateAutoReturnFnRef.current(10_000)
@@ -1113,6 +1114,7 @@ function App() {
     activeTemplate,
     fightViewVisible,
     portraitEditor,
+    templateLayoutMode,
     viewMode,
   ])
 
@@ -1316,6 +1318,25 @@ function App() {
     isTemplateView,
     portraitEditor,
     stepTemplateOrder,
+    templateLayoutMode,
+    toggleTemplateMobilePanelSide,
+  ])
+
+  useEffect(() => {
+    if (!isTemplateView || !fightViewVisible || portraitEditor) return
+    if (templateLayoutMode !== 'mobile') return
+    if (activeTemplate !== 'fight-card') return
+
+    const intervalId = window.setInterval(() => {
+      toggleTemplateMobilePanelSide()
+    }, 2_000)
+
+    return () => window.clearInterval(intervalId)
+  }, [
+    activeTemplate,
+    fightViewVisible,
+    isTemplateView,
+    portraitEditor,
     templateLayoutMode,
     toggleTemplateMobilePanelSide,
   ])
@@ -1623,8 +1644,8 @@ function App() {
             activeFightFolderKey={activeFightRecord?.folderKey || ''}
             activeFightLocale={activeFightRecord?.variantLocale || language}
             templateTransitionPhase={templateTransitionPhase}
-            panelSwitchLaserVisible={templateMobilePanelLaserVisible}
-            panelSwitchLaserNonce={templateMobilePanelLaserNonce}
+            panelSwitchGlitchVisible={templateMobilePanelGlitchVisible}
+            panelSwitchGlitchNonce={templateMobilePanelGlitchNonce}
             incomingTemplate={renderedIncomingTemplate}
           >
             {renderedTemplate}

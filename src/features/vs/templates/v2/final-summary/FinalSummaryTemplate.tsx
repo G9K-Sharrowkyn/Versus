@@ -11,6 +11,7 @@ import {
   getTemplateCommonCopy as getFightCommonCopy,
   getTemplateStaticField as getFightTemplateDefaultField,
 } from '../../shared/templateCopy'
+import { useTemplateMobileLayout } from '../../shared/useTemplateMobileLayout'
 import { getTemplateUi, type TemplateSlotSpec } from '../../shared/templateUi'
 import { CyberpunkMetaValue } from '../../../components/CyberpunkMetaValue'
 
@@ -45,6 +46,8 @@ function SubtleCyberpunkLabel({ text }: { text: string }) {
 export function FinalSummaryTemplate({
   fighterA,
   fighterB,
+  averageA,
+  averageB,
   portraitAAdjust,
   portraitBAdjust,
   title,
@@ -56,6 +59,7 @@ export function FinalSummaryTemplate({
   onSlideImageAdjustCommit,
   language,
   onToggleLanguage,
+  templateLayoutMode,
   integratedToolbar,
 }: FinalSummaryTemplateProps) {
   // New Layout base props
@@ -138,6 +142,46 @@ export function FinalSummaryTemplate({
     textAlign: 'center',
     fitMode: 'shrink',
   }
+  const summaryWinnerMobileSpec: TemplateSlotSpec = {
+    ...summaryWinnerSpec,
+    baseFontPx: 84,
+    minFontPx: 22,
+    maxLines: 2,
+  }
+  const summaryLineMobileSpec: TemplateSlotSpec = {
+    ...summaryLineSpec,
+    baseFontPx: 42,
+    minFontPx: 19,
+    maxLines: 5,
+    lineHeight: 1.04,
+  }
+  const quoteMobileSpec: TemplateSlotSpec = {
+    ...quoteSpec,
+    baseFontPx: 22,
+    minFontPx: 12,
+    maxLines: 3,
+  }
+  const autoTemplateMobileLayout = useTemplateMobileLayout()
+  const isTemplateMobileLayout =
+    templateLayoutMode === 'mobile' || (templateLayoutMode == null && autoTemplateMobileLayout)
+  const winnerLabelSafe = winnerLabel || common.emptyFieldLabel
+  const winnerLabelLower = winnerLabelSafe.toLowerCase()
+  const fighterANameLower = fighterAName.toLowerCase()
+  const fighterBNameLower = fighterBName.toLowerCase()
+  const winnerMentionsA = fighterANameLower.length > 0 && winnerLabelLower.includes(fighterANameLower)
+  const winnerMentionsB = fighterBNameLower.length > 0 && winnerLabelLower.includes(fighterBNameLower)
+  const winnerSide: 'a' | 'b' =
+    winnerMentionsA && !winnerMentionsB
+      ? 'a'
+      : winnerMentionsB && !winnerMentionsA
+        ? 'b'
+        : averageA >= averageB
+          ? 'a'
+          : 'b'
+  const winnerPortraitImageUrl = winnerSide === 'a' ? leftImageUrl : rightImageUrl
+  const winnerPortraitAdjustKey = winnerSide === 'a' ? portraitAKey : portraitBKey
+  const winnerPortraitBaseAdjust = winnerSide === 'a' ? portraitABaseAdjust : portraitBBaseAdjust
+  const boardHeader = common.verdictLabel
 
   // Glitch effect for title
   const headerTextStr = typeof headerText === 'string' ? headerText : ''
@@ -192,7 +236,7 @@ export function FinalSummaryTemplate({
   }, [headerTextStr])
 
   return (
-    <div className="vs-tactical-board25-surface">
+    <div className="vs-tactical-board25-surface vs-template--final-summary">
       <div className="vs-tactical-board25-line" />
       {integratedToolbar ? <div className="vs-tactical-board25-toolbar">{integratedToolbar}</div> : null}
 
@@ -206,7 +250,18 @@ export function FinalSummaryTemplate({
       </div>
 
       <div className="vs-tactical-board25-heading">
-        <div className="vs-tb-signal-main" style={{ transform: 'none', minWidth: 'auto', maxWidth: 'none', minHeight: 'auto', padding: '0.1em 0.5em', margin: 0, width: '75%' }}>
+        <div
+          className="vs-tb-signal-main"
+          style={{
+            transform: 'none',
+            minWidth: 'auto',
+            maxWidth: 'none',
+            minHeight: 'auto',
+            padding: '0.1em 0.5em',
+            margin: '0 auto',
+            width: '75%',
+          }}
+        >
           <div style={{ position: 'relative' }}>
             <div className="glitch-letter-container">
               {chars.map((char, i) => (
@@ -241,97 +296,53 @@ export function FinalSummaryTemplate({
         />
       </button>
 
-      <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0 }}>
-        <p
-          className="vs-tactical-board25-stats-title vs-panel-top-label"
-          style={{
-            left: 'calc(18px * var(--tb-scale))',
-            maxWidth: 'calc(33.333333% - (26px * var(--tb-scale)))',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            color: '#ff554e',
-            zIndex: 13,
-          }}
-        >
-          <GlitchText text={fighterAName} />
-        </p>
-        <p
-          className="vs-tactical-board25-reality-heading vs-panel-top-label"
-          style={{
-            left: 'calc(66.666666% + (18px * var(--tb-scale)))',
-            maxWidth: 'calc(33.333333% - (26px * var(--tb-scale)))',
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-            color: '#ff554e',
-            zIndex: 13,
-          }}
-        >
-          <GlitchText text={fighterBName} />
-        </p>
-        <div aria-hidden="true" style={{ position: 'absolute', top: '-10px', bottom: '-10px', left: 'calc(33.333333% - 5px)', width: '10px', background: 'rgba(255, 85, 78, 1)', pointerEvents: 'none', zIndex: 12 }} />
-        <div aria-hidden="true" style={{ position: 'absolute', top: '-10px', bottom: '-10px', left: 'calc(66.666666% - 5px)', width: '10px', background: 'rgba(255, 85, 78, 1)', pointerEvents: 'none', zIndex: 12 }} />
-        
-        <div className={layout.BODY_CLASS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gridTemplateRows: 'minmax(0, 1fr)', alignItems: 'stretch', gap: 0, background: 'transparent', padding: 0, margin: 0, overflow: 'hidden' }}>
-          <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
-            <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
-              {leftImageUrl ? (
-                <AdjustableTemplateImage
-                  imageUrl={leftImageUrl}
-                  alt={fighterAName}
-                  fallbackLabel={common.portraitSlot}
-                  hintLabel=""
-                  adjustKey={portraitAKey}
-                  baseAdjust={portraitABaseAdjust}
-                  adjustments={slideImageAdjustments}
-                  onAdjustChange={onSlideImageAdjustChange}
-                  onAdjustCommit={onSlideImageAdjustCommit}
-                  plain
+      {isTemplateMobileLayout ? (
+        <>
+          <section
+            className="vs-tactical-board25-stats"
+            style={{
+              width: '88%',
+              display: 'flex',
+              flexDirection: 'column',
+              height: 'auto',
+              minHeight: 0,
+              padding: '0.62rem 0.72rem 0.78rem',
+            }}
+          >
+            <p className="vs-tactical-board25-stats-title vs-panel-top-label" style={{ color: '#ff554e' }}>
+              <GlitchText text={boardHeader} />
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.46rem', flex: 1, minHeight: 0, overflow: 'visible' }}>
+              <div style={{ borderLeft: `3px solid ${DOSSIER_NAME_COLOR}`, paddingLeft: '0.55rem', minHeight: '3rem' }}>
+                <FittedText
+                  as="h3"
+                  slotKey="final-summary:winner:mobile"
+                  spec={summaryWinnerMobileSpec}
+                  text={winnerLabelSafe}
+                  className={layout.VERDICT_WINNER_CLASS}
+                  style={{
+                    margin: 0,
+                    color: DOSSIER_NAME_COLOR,
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 900,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.02em',
+                    lineHeight: 0.94,
+                    textShadow: BLUE_TEXT_REFLECTION,
+                    textAlign: 'left',
+                    maxWidth: '100%',
+                    overflow: 'visible',
+                    whiteSpace: 'normal',
+                    overflowWrap: 'normal',
+                    wordBreak: 'keep-all',
+                    hyphens: 'none',
+                  }}
                 />
-              ) : (
-                <div
-                  className={layout.FALLBACK_PORTRAIT_CLASS}
-                  style={{ color: fighterA.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
-                >
-                  <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
-                    <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '4rem', opacity: 0.2 }}>{fighterMonogram(fighterAName)}</p>
-                    <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
+              </div>
 
-          <div className={layout.CENTER_FRAME_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', height: '100%', border: 'none', background: 'transparent', minHeight: 0, minWidth: 0, padding: '0.28rem 0.34rem 0.3rem', borderRadius: 0, overflow: 'hidden' }}>
-            <div className={layout.VERDICT_PANEL_CLASS} style={{ padding: '0.55rem 0.8rem', textAlign: 'center', border: 'none', background: 'transparent', overflow: 'visible' }}>
-              <FittedText
-                as="p"
-                slotKey="final-summary:winner"
-                spec={summaryWinnerSpec}
-                text={winnerLabel}
-                className={layout.VERDICT_WINNER_CLASS}
-                style={{
-                  fontFamily: "'Chakra Petch', sans-serif",
-                  fontWeight: 900,
-                  color: DOSSIER_NAME_COLOR,
-                  letterSpacing: '0.02em',
-                  lineHeight: 0.9,
-                  textAlign: 'center',
-                  textShadow: BLUE_TEXT_REFLECTION,
-                  textTransform: 'uppercase',
-                  maxWidth: '100%',
-                  width: '100%',
-                  margin: 0,
-                  overflow: 'visible',
-                }}
-              />
-            </div>
-
-            <div className={layout.SUMMARY_PANEL_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.28rem 0.5rem 0.36rem', border: 'none', background: 'transparent', minHeight: 0, overflow: 'visible' }}>
-              <div className={layout.SUMMARY_LIST_CLASS} style={{ display: 'grid', gridTemplateRows: 'repeat(3, minmax(0, 1fr))', gap: CONCLUSION_ROW_GAP, flex: 1, minHeight: 0, overflow: 'visible', padding: '0 0.14rem' }}>
+              <div style={{ display: 'grid', gridTemplateRows: 'repeat(3, minmax(0, 1fr))', gap: '0.5rem', flex: 1, minHeight: 0 }}>
                 {summaryLines.map((item, index) => (
-                  <div key={`summary-line-${index}-${item}`} className={layout.SUMMARY_ITEM_CLASS} style={{ padding: '0.08rem 0.1rem', border: 'none', background: 'transparent', minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                  <div key={`summary-mobile-line-${index}-${item}`} style={{ minHeight: 0, display: 'flex', flexDirection: 'column' }}>
                     <div style={{ width: 'max-content', position: 'relative', paddingBottom: '0.2rem', marginBottom: '0.22rem' }}>
                       <p
                         style={{
@@ -339,7 +350,7 @@ export function FinalSummaryTemplate({
                           color: RED_SECTION_COLOR,
                           fontFamily: "'Chakra Petch', sans-serif",
                           fontWeight: 700,
-                          fontSize: CONCLUSION_TITLE_FONT_SIZE,
+                          fontSize: 'clamp(22px, 3dvh, 42px)',
                           letterSpacing: '0.05em',
                           textTransform: 'uppercase',
                           textShadow: RED_SECTION_REFLECTION,
@@ -359,84 +370,72 @@ export function FinalSummaryTemplate({
                           boxShadow: '0 0 10px rgba(255, 85, 78, 0.42)',
                         }}
                       />
-                      <div
-                        style={{
-                          position: 'absolute',
-                          left: 0,
-                          bottom: '-3px',
-                          width: '100%',
-                          height: '2px',
-                          background: RED_SECTION_COLOR,
-                          filter: 'blur(2px)',
-                          opacity: 0.8,
-                        }}
-                      />
                     </div>
                     <FittedText
                       as="p"
-                      slotKey={`final-summary:line:${index}`}
-                      spec={summaryLineSpec}
+                      slotKey={`final-summary:line:mobile:${index}`}
+                      spec={summaryLineMobileSpec}
                       text={`${index + 1}. ${item}`}
                       className={layout.SUMMARY_LINE_TEXT_CLASS}
                       style={{
+                        margin: 0,
                         color: '#77e2f2',
                         fontFamily: "'Chakra Petch', sans-serif",
                         fontWeight: 700,
+                        fontSize: 'clamp(19px, 2.64dvh, 42px)',
                         letterSpacing: '0.01em',
-                        lineHeight: 1.16,
+                        lineHeight: 1.04,
                         textShadow: BLUE_TEXT_REFLECTION,
                         textAlign: 'left',
                         overflow: 'visible',
                         boxSizing: 'border-box',
-                        paddingInline: '0.06em',
+                        paddingInline: '0.02em',
                       }}
                     />
                   </div>
                 ))}
               </div>
+
+              {quoteText ? (
+                <FittedText
+                  as="p"
+                  slotKey="final-summary:quote:mobile"
+                  spec={quoteMobileSpec}
+                  text={quoteText}
+                  className="vs-final-summary-quote"
+                  style={{
+                    margin: 0,
+                    fontStyle: 'italic',
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 700,
+                    color: '#ff554e',
+                    textAlign: 'center',
+                    textShadow: RED_QUOTE_REFLECTION,
+                    textTransform: 'none',
+                    letterSpacing: '0.02em',
+                    lineHeight: 1.08,
+                    overflow: 'visible',
+                    boxSizing: 'border-box',
+                    paddingInline: '0.08em',
+                  }}
+                />
+              ) : null}
             </div>
+          </section>
 
-            {quoteText && (
-              <FittedText
-                as="p"
-                slotKey="final-summary:quote"
-                spec={quoteSpec}
-                text={quoteText}
-                className="vs-final-summary-quote"
-                style={{
-                  marginTop: '0.08rem',
-                  padding: '0.18rem 0.1rem 0',
-                  background: 'transparent',
-                  border: 'none',
-                  borderRadius: 0,
-                  boxShadow: 'none',
-                  fontStyle: 'italic',
-                  fontFamily: "'Chakra Petch', sans-serif",
-                  fontWeight: 700,
-                  color: '#ff554e',
-                  textAlign: 'center',
-                  textShadow: RED_QUOTE_REFLECTION,
-                  textTransform: 'none',
-                  letterSpacing: '0.02em',
-                  lineHeight: 1.1,
-                  overflow: 'visible',
-                  boxSizing: 'border-box',
-                  paddingInline: '0.08em',
-                }}
-              />
-            )}
-          </div>
-
-          <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
-            <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
-              {rightImageUrl ? (
+          <div className="vs-tactical-board25-reality">
+            <p className="vs-tactical-board25-reality-heading vs-panel-top-label" style={{ color: '#ff554e' }}>
+              <GlitchText text={winnerLabelSafe} />
+            </p>
+            <div style={{ position: 'absolute', inset: 0, overflow: 'hidden', zIndex: 1 }}>
+              {winnerPortraitImageUrl ? (
                 <AdjustableTemplateImage
-                  imageUrl={rightImageUrl}
-                  alt={fighterBName}
+                  imageUrl={winnerPortraitImageUrl}
+                  alt={winnerLabelSafe}
                   fallbackLabel={common.portraitSlot}
                   hintLabel=""
-                  adjustKey={portraitBKey}
-                  baseAdjust={portraitBBaseAdjust}
+                  adjustKey={winnerPortraitAdjustKey}
+                  baseAdjust={winnerPortraitBaseAdjust}
                   adjustments={slideImageAdjustments}
                   onAdjustChange={onSlideImageAdjustChange}
                   onAdjustCommit={onSlideImageAdjustCommit}
@@ -445,18 +444,243 @@ export function FinalSummaryTemplate({
               ) : (
                 <div
                   className={layout.FALLBACK_PORTRAIT_CLASS}
-                  style={{ color: fighterB.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+                  style={{
+                    color: winnerSide === 'a' ? fighterA.color : fighterB.color,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100%',
+                  }}
                 >
                   <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
-                    <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '4rem', opacity: 0.2 }}>{fighterMonogram(fighterBName)}</p>
+                    <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '4rem', opacity: 0.2 }}>
+                      {fighterMonogram(winnerSide === 'a' ? fighterAName : fighterBName)}
+                    </p>
                     <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
                   </div>
                 </div>
               )}
             </div>
           </div>
-        </div>
-      </section>
+        </>
+      ) : (
+        <section className="vs-tactical-board25-stats" style={{ width: 'calc(var(--tb-panel-width) * 2 + var(--tb-center-gap))', display: 'flex', flexDirection: 'column', height: 'var(--tb-panel-height)', padding: 0 }}>
+          <p
+            className="vs-tactical-board25-stats-title vs-panel-top-label"
+            style={{
+              left: 'calc(18px * var(--tb-scale))',
+              maxWidth: 'calc(33.333333% - (26px * var(--tb-scale)))',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#ff554e',
+              zIndex: 13,
+            }}
+          >
+            <GlitchText text={fighterAName} />
+          </p>
+          <p
+            className="vs-tactical-board25-reality-heading vs-panel-top-label"
+            style={{
+              left: 'calc(66.666666% + (18px * var(--tb-scale)))',
+              maxWidth: 'calc(33.333333% - (26px * var(--tb-scale)))',
+              whiteSpace: 'nowrap',
+              overflow: 'hidden',
+              textOverflow: 'ellipsis',
+              color: '#ff554e',
+              zIndex: 13,
+            }}
+          >
+            <GlitchText text={fighterBName} />
+          </p>
+          <div aria-hidden="true" style={{ position: 'absolute', top: '-10px', bottom: '-10px', left: 'calc(33.333333% - 5px)', width: '10px', background: 'rgba(255, 85, 78, 1)', pointerEvents: 'none', zIndex: 12 }} />
+          <div aria-hidden="true" style={{ position: 'absolute', top: '-10px', bottom: '-10px', left: 'calc(66.666666% - 5px)', width: '10px', background: 'rgba(255, 85, 78, 1)', pointerEvents: 'none', zIndex: 12 }} />
+
+          <div className={layout.BODY_CLASS} style={{ position: 'absolute', inset: 0, display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gridTemplateRows: 'minmax(0, 1fr)', alignItems: 'stretch', gap: 0, background: 'transparent', padding: 0, margin: 0, overflow: 'hidden' }}>
+            <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
+              <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
+                {leftImageUrl ? (
+                  <AdjustableTemplateImage
+                    imageUrl={leftImageUrl}
+                    alt={fighterAName}
+                    fallbackLabel={common.portraitSlot}
+                    hintLabel=""
+                    adjustKey={portraitAKey}
+                    baseAdjust={portraitABaseAdjust}
+                    adjustments={slideImageAdjustments}
+                    onAdjustChange={onSlideImageAdjustChange}
+                    onAdjustCommit={onSlideImageAdjustCommit}
+                    plain
+                  />
+                ) : (
+                  <div
+                    className={layout.FALLBACK_PORTRAIT_CLASS}
+                    style={{ color: fighterA.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+                  >
+                    <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
+                      <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '4rem', opacity: 0.2 }}>{fighterMonogram(fighterAName)}</p>
+                      <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+
+            <div className={layout.CENTER_FRAME_CLASS} style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem', height: '100%', border: 'none', background: 'transparent', minHeight: 0, minWidth: 0, padding: '0.28rem 0.34rem 0.3rem', borderRadius: 0, overflow: 'hidden' }}>
+              <div className={layout.VERDICT_PANEL_CLASS} style={{ padding: '0.55rem 0.8rem', textAlign: 'center', border: 'none', background: 'transparent', overflow: 'visible' }}>
+                <FittedText
+                  as="p"
+                  slotKey="final-summary:winner"
+                  spec={summaryWinnerSpec}
+                  text={winnerLabel}
+                  className={layout.VERDICT_WINNER_CLASS}
+                  style={{
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 900,
+                    color: DOSSIER_NAME_COLOR,
+                    letterSpacing: '0.02em',
+                    lineHeight: 0.9,
+                    textAlign: 'center',
+                    textShadow: BLUE_TEXT_REFLECTION,
+                    textTransform: 'uppercase',
+                    maxWidth: '100%',
+                    width: '100%',
+                    margin: 0,
+                    overflow: 'visible',
+                  }}
+                />
+              </div>
+
+              <div className={layout.SUMMARY_PANEL_CLASS} style={{ flex: 1, display: 'flex', flexDirection: 'column', padding: '0.28rem 0.5rem 0.36rem', border: 'none', background: 'transparent', minHeight: 0, overflow: 'visible' }}>
+                <div className={layout.SUMMARY_LIST_CLASS} style={{ display: 'grid', gridTemplateRows: 'repeat(3, minmax(0, 1fr))', gap: CONCLUSION_ROW_GAP, flex: 1, minHeight: 0, overflow: 'visible', padding: '0 0.14rem' }}>
+                  {summaryLines.map((item, index) => (
+                    <div key={`summary-line-${index}-${item}`} className={layout.SUMMARY_ITEM_CLASS} style={{ padding: '0.08rem 0.1rem', border: 'none', background: 'transparent', minHeight: 0, display: 'flex', flexDirection: 'column', justifyContent: 'flex-start' }}>
+                      <div style={{ width: 'max-content', position: 'relative', paddingBottom: '0.2rem', marginBottom: '0.22rem' }}>
+                        <p
+                          style={{
+                            margin: 0,
+                            color: RED_SECTION_COLOR,
+                            fontFamily: "'Chakra Petch', sans-serif",
+                            fontWeight: 700,
+                            fontSize: CONCLUSION_TITLE_FONT_SIZE,
+                            letterSpacing: '0.05em',
+                            textTransform: 'uppercase',
+                            textShadow: RED_SECTION_REFLECTION,
+                            lineHeight: 1,
+                          }}
+                        >
+                          <GlitchText text={`${common.summaryLabel} ${index + 1}`} />
+                        </p>
+                        <div
+                          style={{
+                            position: 'absolute',
+                            left: 0,
+                            bottom: 0,
+                            width: '100%',
+                            height: '2px',
+                            background: RED_SECTION_COLOR,
+                            boxShadow: '0 0 10px rgba(255, 85, 78, 0.42)',
+                          }}
+                        />
+                        <div
+                          style={{
+                            position: 'absolute',
+                            left: 0,
+                            bottom: '-3px',
+                            width: '100%',
+                            height: '2px',
+                            background: RED_SECTION_COLOR,
+                            filter: 'blur(2px)',
+                            opacity: 0.8,
+                          }}
+                        />
+                      </div>
+                      <FittedText
+                        as="p"
+                        slotKey={`final-summary:line:${index}`}
+                        spec={summaryLineSpec}
+                        text={`${index + 1}. ${item}`}
+                        className={layout.SUMMARY_LINE_TEXT_CLASS}
+                        style={{
+                          color: '#77e2f2',
+                          fontFamily: "'Chakra Petch', sans-serif",
+                          fontWeight: 700,
+                          letterSpacing: '0.01em',
+                          lineHeight: 1.16,
+                          textShadow: BLUE_TEXT_REFLECTION,
+                          textAlign: 'left',
+                          overflow: 'visible',
+                          boxSizing: 'border-box',
+                          paddingInline: '0.06em',
+                        }}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {quoteText && (
+                <FittedText
+                  as="p"
+                  slotKey="final-summary:quote"
+                  spec={quoteSpec}
+                  text={quoteText}
+                  className="vs-final-summary-quote"
+                  style={{
+                    marginTop: '0.08rem',
+                    padding: '0.18rem 0.1rem 0',
+                    background: 'transparent',
+                    border: 'none',
+                    borderRadius: 0,
+                    boxShadow: 'none',
+                    fontStyle: 'italic',
+                    fontFamily: "'Chakra Petch', sans-serif",
+                    fontWeight: 700,
+                    color: '#ff554e',
+                    textAlign: 'center',
+                    textShadow: RED_QUOTE_REFLECTION,
+                    textTransform: 'none',
+                    letterSpacing: '0.02em',
+                    lineHeight: 1.1,
+                    overflow: 'visible',
+                    boxSizing: 'border-box',
+                    paddingInline: '0.08em',
+                  }}
+                />
+              )}
+            </div>
+
+            <div className={layout.SIDE_FRAME_CLASS} style={{ position: 'relative', height: '100%', border: 'none', background: 'transparent', minWidth: 0, minHeight: 0, margin: 0, padding: 0, borderRadius: 0, overflow: 'hidden' }}>
+              <div className="vs-final-summary-portrait-pane" style={{ position: 'absolute', inset: 0, border: 'none', background: 'transparent', borderRadius: 0, overflow: 'hidden' }}>
+                {rightImageUrl ? (
+                  <AdjustableTemplateImage
+                    imageUrl={rightImageUrl}
+                    alt={fighterBName}
+                    fallbackLabel={common.portraitSlot}
+                    hintLabel=""
+                    adjustKey={portraitBKey}
+                    baseAdjust={portraitBBaseAdjust}
+                    adjustments={slideImageAdjustments}
+                    onAdjustChange={onSlideImageAdjustChange}
+                    onAdjustCommit={onSlideImageAdjustCommit}
+                    plain
+                  />
+                ) : (
+                  <div
+                    className={layout.FALLBACK_PORTRAIT_CLASS}
+                    style={{ color: fighterB.color, display: 'flex', alignItems: 'center', justifyContent: 'center', height: '100%' }}
+                  >
+                    <div className={layout.FALLBACK_INNER_CLASS} style={{ textAlign: 'center' }}>
+                      <p className={layout.FALLBACK_MONOGRAM_CLASS} style={{ fontSize: '4rem', opacity: 0.2 }}>{fighterMonogram(fighterBName)}</p>
+                      <p className={layout.FALLBACK_LABEL_CLASS}>{common.portraitSlot}</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
     </div>
   )
