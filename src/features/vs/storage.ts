@@ -190,8 +190,12 @@ export const mergeScannedFolderFights = (existingFights: FightRecord[], scannedF
     }
   })
 
+  const scannedFolderIds = new Set(scannedFolderFights.map((fight) => fight.id))
+  const preservedExistingFolderFights = existingFights.filter(
+    (fight) => fight.source === 'folder' && !scannedFolderIds.has(fight.id),
+  )
   const manualFights = existingFights.filter((fight) => fight.source !== 'folder')
-  return [...mergedFolderFights, ...manualFights]
+  return [...mergedFolderFights, ...preservedExistingFolderFights, ...manualFights]
 }
 
 export const sanitizePreferredVariantPrefs = (

@@ -1068,6 +1068,16 @@
   line-height: 1.04 !important;
 }
 
+[data-vs-template-layout='mobile'] .vs-template--direct-verdict .vs-direct-verdict-key-label {
+  font-size: clamp(16px, 2.16dvh, 29px) !important;
+  line-height: 1 !important;
+}
+
+[data-vs-template-layout='mobile'] .vs-template--direct-verdict .vs-direct-verdict-key-value {
+  font-size: clamp(13px, 1.73dvh, 23px) !important;
+  line-height: 1 !important;
+}
+
 [data-vs-template-layout='mobile'] .vs-tactical-board25-surface:not(.vs-template--tactical-board) .vs-tactical-board25-logo > img:not(.vs-tactical-board25-logo-reflection) {
   width: clamp(108px, 14dvh, 164px) !important;
 }

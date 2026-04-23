@@ -294,25 +294,25 @@ export function DirectVerdictTemplate({
           <div style={{ display: 'flex', gap: '2rem' }}>
             <div style={{ minWidth: 0, flex: 1 }}>
               <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px', marginBottom: '0.6rem' }}>
-                <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}>
+                <p className="vs-dossier-text-3 vs-direct-verdict-key-label" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em', fontSize: '50%', lineHeight: 1 }}>
                   <GlitchText text={outcomeText} />
                 </p>
               <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
               <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
               </div>
-              <p className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW, fontStyle: 'normal', overflowWrap: 'anywhere' }}>
+              <p className="vs-dossier-text-2 vs-direct-verdict-key-value" style={{ textShadow: REFLEKS_TRESCI_FAKTOW, fontStyle: 'normal', overflowWrap: 'anywhere', fontSize: '50%', lineHeight: 1 }}>
                 {outcomeLabel}
               </p>
             </div>
             <div style={{ minWidth: 0, flex: 1 }}>
               <div style={{ width: 'max-content', position: 'relative', paddingBottom: '6px', marginBottom: '0.6rem' }}>
-                <p className="vs-dossier-text-3" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em' }}>
+                <p className="vs-dossier-text-3 vs-direct-verdict-key-label" style={{ color: RED_LINIA, textShadow: REFLEKS_ETYKIET_FAKTOW, fontWeight: 'bold', letterSpacing: '0.05em', fontSize: '50%', lineHeight: 1 }}>
                   <GlitchText text={confidenceText} />
                 </p>
                 <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: 0, left: 0, boxShadow: `0 0 10px ${RED_LINIA}66` }} />
                 <div style={{ width: '100%', height: '2px', background: RED_LINIA, position: 'absolute', bottom: '-45px', left: 0, filter: 'blur(2px)', opacity: 0.8 }} />
               </div>
-              <p className="vs-dossier-text-2" style={{ textShadow: REFLEKS_TRESCI_FAKTOW, fontStyle: 'normal', overflowWrap: 'anywhere' }}>
+              <p className="vs-dossier-text-2 vs-direct-verdict-key-value" style={{ textShadow: REFLEKS_TRESCI_FAKTOW, fontStyle: 'normal', overflowWrap: 'anywhere', fontSize: '50%', lineHeight: 1 }}>
                 {certaintyLabel}
               </p>
             </div>

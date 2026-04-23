@@ -652,6 +652,16 @@
   margin: 0;
 }
 
+.vs-template--direct-verdict .vs-direct-verdict-key-label {
+  font-size: calc(var(--tb-type-3) * 0.82) !important;
+  line-height: 0.95 !important;
+}
+
+.vs-template--direct-verdict .vs-direct-verdict-key-value {
+  font-size: calc(var(--tb-type-2) * 0.56) !important;
+  line-height: 0.95 !important;
+}
+
 .vs-tactical-board25-stats-title,
 .vs-tactical-board25-reality-heading {
   position: absolute;
@@ -834,7 +844,6 @@
   mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.72) 0%, rgba(0, 0, 0, 0.4) 42%, transparent 88%);
   pointer-events: none;
 }
-
 
 
 

@@ -29,9 +29,12 @@ import {
   avg,
   clamp,
   cloneFighter,
+  normalizeFightFileBaseName,
   normalizeTemplateId,
   normalizePortraitAdjust,
   normalizeSlideImageAdjustments,
+  splitFightNameLocaleSuffix,
+  splitFightNameMobileSuffix,
   stripFileExtension,
 } from './features/vs/helpers'
 import { buildFightScaffoldFightJson, buildFightScaffoldScansJson } from './features/vs/importer'
@@ -40,7 +43,12 @@ import { useDocumentFontsReady } from './features/vs/hooks/useDocumentFontsReady
 import { usePreviewScale } from './features/vs/hooks/usePreviewScale'
 import { useVsPersistence } from './features/vs/hooks/useVsPersistence'
 import { useVsTransitions } from './features/vs/hooks/useVsTransitions'
-import { buildFightRefreshSignature, collectPersistableFolderFightVisuals, saveFolderFightVisualsToApi } from './features/vs/storage'
+import {
+  buildFightRefreshSignature,
+  collectPersistableFolderFightVisuals,
+  fetchFolderFightsFromApi,
+  saveFolderFightVisualsToApi,
+} from './features/vs/storage'
 import type {
   Category,
   Fighter,
@@ -969,6 +977,102 @@ function App() {
     setTemplateLayoutMode((current) => (current === 'mobile' ? 'normal' : 'mobile'))
   }, [])
 
+  const toggleMobileContentVariant = useCallback(() => {
+    if (!activeFightId) return
+    const currentFight = fights.find((fight) => fight.id === activeFightId) || null
+    if (!currentFight) return
+
+    const isMobileVariant = (fight: FightRecord) =>
+      splitFightNameMobileSuffix(normalizeFightFileBaseName(fight.fileName)).mobile ||
+      splitFightNameMobileSuffix(fight.name).mobile
+
+    const resolveVariantBase = (fight: FightRecord) => {
+      const fileBase = splitFightNameLocaleSuffix(normalizeFightFileBaseName(fight.fileName)).base.trim()
+      if (fileBase) return fileBase
+      const nameBase = splitFightNameLocaleSuffix(fight.name).base.trim()
+      if (nameBase) return nameBase
+      return fight.matchupKey.trim()
+    }
+
+    const currentLocale = resolveFightLanguage(currentFight, language)
+    const currentIsMobile = isMobileVariant(currentFight)
+    const targetMobile = !currentIsMobile
+    const currentBase = resolveVariantBase(currentFight).toLowerCase()
+    const currentMatchup = currentFight.matchupKey.trim()
+
+    const inSameVariantSet = (fight: FightRecord) => {
+      if (fight.id === currentFight.id) return false
+      if (fight.source !== currentFight.source) return false
+      if (isMobileVariant(fight) !== targetMobile) return false
+      if (currentMatchup && fight.matchupKey.trim() === currentMatchup) return true
+      if (currentBase && resolveVariantBase(fight).toLowerCase() === currentBase) return true
+      return false
+    }
+
+    const findCounterpart = (pool: FightRecord[]) => {
+      const candidates = pool.filter(inSameVariantSet)
+      if (!candidates.length) return null
+      return (
+        candidates.find((fight) => resolveFightLanguage(fight, currentLocale) === currentLocale) ||
+        candidates[0] ||
+        null
+      )
+    }
+
+    const applyCounterpart = (counterpart: FightRecord) => {
+      rememberPreferredFightVariant(counterpart)
+      requestFightApply(
+        counterpart,
+        {
+          enterIntro: false,
+          preserveTemplateSelection: true,
+          targetLanguage: currentLocale,
+        },
+        'open-fight',
+      )
+    }
+
+    const localCounterpart = findCounterpart(fights)
+    if (localCounterpart) {
+      applyCounterpart(localCounterpart)
+      return
+    }
+
+    void (async () => {
+      try {
+        const [normalScan, mobileScan] = await Promise.all([
+          fetchFolderFightsFromApi('normal'),
+          fetchFolderFightsFromApi('mobile'),
+        ])
+        const allById = new Map<string, FightRecord>()
+        ;[...fights, ...normalScan.fights, ...mobileScan.fights].forEach((fight) => {
+          allById.set(fight.id, fight)
+        })
+        const allFights = Array.from(allById.values())
+        const remoteCounterpart = findCounterpart(allFights)
+        if (!remoteCounterpart) return
+
+        setFights((current) => {
+          const mergedById = new Map(current.map((fight) => [fight.id, fight] as const))
+          normalScan.fights.forEach((fight) => mergedById.set(fight.id, fight))
+          mobileScan.fights.forEach((fight) => mergedById.set(fight.id, fight))
+          return Array.from(mergedById.values())
+        })
+
+        applyCounterpart(remoteCounterpart)
+      } catch {
+        // Keep current variant when fallback scan fails.
+      }
+    })()
+  }, [
+    activeFightId,
+    fights,
+    language,
+    rememberPreferredFightVariant,
+    requestFightApply,
+    setFights,
+  ])
+
   const toggleTemplateMobilePanelSide = useCallback(() => {
     if (templateLayoutMode !== 'mobile' || templateMobilePanelSwitchTo) return
     const nextSide = templateMobilePanelSide === 'left' ? 'right' : 'left'
@@ -1331,18 +1435,59 @@ function App() {
     if (!isTemplateView || !fightViewVisible || portraitEditor) return
 
     const handleMetaThreatClick = (event: MouseEvent) => {
-      const target = event.target
-      if (!(target instanceof HTMLElement)) return
-      const threatMetaLine = target.closest('.vs-tactical-board25-meta p:first-child')
-      if (!threatMetaLine) return
+      const rawTarget = event.target
+      if (!(rawTarget instanceof Node)) return
+      const targetEl =
+        rawTarget instanceof HTMLElement
+          ? rawTarget
+          : rawTarget.parentElement instanceof HTMLElement
+          ? rawTarget.parentElement
+          : null
+      if (!targetEl) return
 
-      event.preventDefault()
-      toggleTemplateLayoutMode()
+      const metaRoot = targetEl.closest('.vs-tactical-board25-meta')
+      if (!(metaRoot instanceof HTMLElement)) return
+
+      const clickedValue = targetEl.closest('.vs-cyberpunk-meta-value')
+      if (clickedValue instanceof HTMLElement) {
+        const valueNodes = Array.from(metaRoot.querySelectorAll('.vs-cyberpunk-meta-value'))
+        const valueIndex = valueNodes.indexOf(clickedValue)
+        if (valueIndex === 0) {
+          event.preventDefault()
+          toggleTemplateLayoutMode()
+          return
+        }
+        if (valueIndex === 1) {
+          event.preventDefault()
+          toggleMobileContentVariant()
+          return
+        }
+      }
+
+      const metaLine = targetEl.closest('p')
+      if (!(metaLine instanceof HTMLParagraphElement)) return
+      if (metaLine.parentElement !== metaRoot) return
+      const metaLines = Array.from(metaRoot.children).filter(
+        (child): child is HTMLParagraphElement => child instanceof HTMLParagraphElement,
+      )
+      const lineIndex = metaLines.indexOf(metaLine)
+      if (lineIndex < 0) return
+
+      if (lineIndex === 0) {
+        event.preventDefault()
+        toggleTemplateLayoutMode()
+        return
+      }
+
+      if (lineIndex === 1) {
+        event.preventDefault()
+        toggleMobileContentVariant()
+      }
     }
 
     window.addEventListener('click', handleMetaThreatClick)
     return () => window.removeEventListener('click', handleMetaThreatClick)
-  }, [fightViewVisible, isTemplateView, portraitEditor, toggleTemplateLayoutMode])
+  }, [fightViewVisible, isTemplateView, portraitEditor, toggleMobileContentVariant, toggleTemplateLayoutMode])
 
   const dispatchSearchStageJump = useCallback(
     (stage: number) => {
