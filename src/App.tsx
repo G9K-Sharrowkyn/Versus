@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
 import { HomeView } from './features/vs/components/HomeView'
-import { SimpleEditor } from './features/vs/components/SimpleEditor'
 import { PortraitEditorModal } from './features/vs/components/PortraitEditorModal'
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
@@ -1696,14 +1695,14 @@ function App() {
           ? 'h-screen overflow-hidden p-0'
           : isSearchView
           ? 'h-screen overflow-visible p-0'
-          : isIntroView || viewMode === 'simple-editor'
+          : isIntroView
             ? 'h-screen overflow-hidden p-0'
             : isTemplateView
             ? 'h-screen overflow-hidden px-2 py-2 sm:px-3 sm:py-3'
             : 'min-h-screen px-3 py-4 sm:px-4 sm:py-6',
       )}
     >
-      <div className={clsx('max-w-none', isFightFlow || isSearchView || viewMode === 'simple-editor' ? 'flex h-full min-h-0 flex-col' : '')}>
+      <div className={clsx('max-w-none', isFightFlow || isSearchView ? 'flex h-full min-h-0 flex-col' : '')}>
         {viewMode === 'home' ? (
           <HomeView
             ui={ui}
@@ -1720,11 +1719,10 @@ function App() {
             onRememberPreferredFightVariant={rememberPreferredFightVariant}
             onOpenSavedFightPortraitEditor={openSavedFightPortraitEditor}
             onDeleteFight={deleteFight}
-            onOpenSimpleEditor={() => setViewMode('simple-editor')}
           />
-        ) : viewMode === 'simple-editor' ? (
-          <SimpleEditor ui={ui} onBack={goBackToLibrary} />
-        ) : viewMode === 'search' ? (
+        ) : null}
+
+        {viewMode === 'search' ? (
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
@@ -1734,7 +1732,7 @@ function App() {
               onLoad={handleSearchFrameLoad}
             />
           </section>
-        ) : viewMode === 'fight-intro' ? (
+        ) : viewMode === 'home' ? null : viewMode === 'fight-intro' ? (
           <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <div
               className="relative z-0 h-full w-full transition-opacity duration-[1200ms] ease-out"
@@ -1800,7 +1798,7 @@ function App() {
         direction={searchMorphDirection}
         handoff={searchMorphHandoff}
       />
-      {viewMode !== 'simple-editor' && <MarvinEditor activeTemplateId={activeTemplate} />}
+      <MarvinEditor activeTemplateId={activeTemplate} />
     </main>
   )
 }

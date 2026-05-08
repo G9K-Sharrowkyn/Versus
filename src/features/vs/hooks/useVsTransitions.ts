@@ -16,7 +16,7 @@ type RequestFightApply = (
   reason?: 'open-fight' | 'search-transition' | 'search-shortcut' | 'language-switch',
 ) => void
 
-type ViewMode = 'boot' | 'search' | 'home' | 'fight-intro' | 'fight' | 'simple-editor'
+type ViewMode = 'boot' | 'search' | 'home' | 'fight-intro' | 'fight'
 
 type UseVsTransitionsOptions = {
   fights: FightRecord[]

@@ -7,7 +7,6 @@ type DraftImportPanelProps = {
   ui: TranslationDictionary['ui']
   availableTemplates: TemplatePreset[]
   onCreateFightScaffold: (matchName: string, templateOrder: TemplateId[]) => Promise<string>
-  onOpenSimpleEditor: () => void
 }
 
 const FINAL_TEMPLATE_ID: TemplateId = 'fight-card'
@@ -91,7 +90,6 @@ export function DraftImportPanel({
   ui,
   availableTemplates,
   onCreateFightScaffold,
-  onOpenSimpleEditor,
 }: DraftImportPanelProps) {
   const [matchName, setMatchName] = useState('')
   const [preparedMatchName, setPreparedMatchName] = useState('')
@@ -212,9 +210,6 @@ export function DraftImportPanel({
         <div className="mt-3 flex flex-wrap gap-2">
           <button type="button" className="button-soft" onClick={handlePrepare}>
             {ui.prepareFightScaffold}
-          </button>
-          <button type="button" className="button-soft bg-cyan-600/20 hover:bg-cyan-600/30 border-cyan-500/30 text-cyan-100" onClick={onOpenSimpleEditor}>
-            Simple
           </button>
         </div>
         <p className="mt-3 text-xs text-slate-400">{ui.scaffoldHelp}</p>
