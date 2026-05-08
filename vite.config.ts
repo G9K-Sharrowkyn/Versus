@@ -3,7 +3,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http'
 import { execFile } from 'node:child_process'
 import path from 'node:path'
 import { promisify } from 'node:util'
-import { defineConfig, type Connect, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type Connect, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import { parseFightImageIndex } from './scripts/fightImageIndex.js'
 import { parseFightJsonFiles } from './src/features/vs/importer'
@@ -71,6 +71,10 @@ type PersistedFightVisualsStore = {
   folders: Record<string, PersistedFolderFightVisuals>
 }
 type ScanLayoutMode = 'normal' | 'mobile'
+type FightsApiOptions = {
+  openAiApiKey: string
+  openAiTranslationModel: string
+}
 
 const toPosixPath = (value: string) => value.split(path.sep).join('/')
 const normalizeFsPath = (value: string) => toPosixPath(path.resolve(value)).toLowerCase()
@@ -321,6 +325,101 @@ const readJsonBody = async (req: IncomingMessage) =>
     })
     req.on('error', reject)
   })
+
+const normalizeTranslationPayload = (value: unknown) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return null
+  const text = typeof (value as Record<string, unknown>).text === 'string'
+    ? ((value as Record<string, unknown>).text as string).trim()
+    : ''
+  if (!text) return null
+  if (text.length > 180_000) return null
+  return { text }
+}
+
+const redactSensitiveApiText = (value: string) =>
+  value.replace(/sk-[A-Za-z0-9_*.-]+/g, 'sk-***')
+
+const extractOpenAiResponseText = (value: unknown) => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return ''
+  const record = value as Record<string, unknown>
+  if (typeof record.output_text === 'string' && record.output_text.trim()) {
+    return record.output_text.trim()
+  }
+
+  const chunks: string[] = []
+  const output = Array.isArray(record.output) ? record.output : []
+  output.forEach((item) => {
+    if (!item || typeof item !== 'object' || Array.isArray(item)) return
+    const content = Array.isArray((item as Record<string, unknown>).content)
+      ? ((item as Record<string, unknown>).content as unknown[])
+      : []
+    content.forEach((contentItem) => {
+      if (!contentItem || typeof contentItem !== 'object' || Array.isArray(contentItem)) return
+      const contentRecord = contentItem as Record<string, unknown>
+      if (typeof contentRecord.text === 'string') {
+        chunks.push(contentRecord.text)
+      } else if (
+        contentRecord.text &&
+        typeof contentRecord.text === 'object' &&
+        !Array.isArray(contentRecord.text) &&
+        typeof (contentRecord.text as Record<string, unknown>).value === 'string'
+      ) {
+        chunks.push((contentRecord.text as Record<string, unknown>).value as string)
+      }
+    })
+  })
+
+  return chunks.join('').trim()
+}
+
+const translateTextToPolish = async (
+  text: string,
+  options: FightsApiOptions,
+) => {
+  const apiKey = options.openAiApiKey.trim()
+  if (!apiKey) {
+    throw new Error('Missing OPENAI_API_KEY on the Vite server.')
+  }
+
+  const response = await fetch('https://api.openai.com/v1/responses', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: options.openAiTranslationModel,
+      instructions: [
+        'Translate the user text from English to natural Polish.',
+        'The input has already been prepared for translation; do not summarize or rewrite its structure.',
+        'Preserve all line breaks, headings, list markers, punctuation style, placeholders, and inline formatting markers.',
+        'Keep bold and emphasis markers/tags exactly in place, including **text**, __text__, <strong>, </strong>, <b>, </b>, <em>, and </em>.',
+        'Translate the words inside formatting markers while keeping those markers around the translated words.',
+        'Return only the translated document.',
+      ].join(' '),
+      input: text,
+      store: false,
+    }),
+  })
+
+  const payload = await response.json().catch(() => null)
+  if (!response.ok) {
+    const errorMessage =
+      payload &&
+      typeof payload === 'object' &&
+      !Array.isArray(payload) &&
+      typeof (payload as { error?: { message?: unknown } }).error?.message === 'string'
+        ? redactSensitiveApiText(String((payload as { error: { message: string } }).error.message))
+        : 'OpenAI translation request failed.'
+    throw new Error(errorMessage)
+  }
+
+  const translatedText = extractOpenAiResponseText(payload)
+  if (!translatedText) {
+    throw new Error('OpenAI returned an empty translation.')
+  }
+  return translatedText
+}
 
 const resolveIndexedFightImageFile = async (
   candidateFolder: string,
@@ -771,7 +870,7 @@ const handleFightsAssetRequest = async (req: IncomingMessage, url: URL, res: Ser
   }
 }
 
-const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
+const createFightsApiMiddleware = (options: FightsApiOptions): Connect.NextHandleFunction => {
   return async (req, res, next) => {
     if (!req.url) {
       next()
@@ -792,9 +891,16 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
     }
     const isVisualsWriteRequest = requestUrl.pathname === '/api/fights/visuals' && req.method === 'POST'
     const isFightCreateRequest = requestUrl.pathname === '/api/fights/create' && req.method === 'POST'
+    const isFightTranslateRequest = requestUrl.pathname === '/api/fights/translate-pl' && req.method === 'POST'
     const isMarvinSaveRequest = requestUrl.pathname === '/api/marvin/save' && req.method === 'POST'
 
-    if (req.method !== 'GET' && !isVisualsWriteRequest && !isFightCreateRequest && !isMarvinSaveRequest) {
+    if (
+      req.method !== 'GET' &&
+      !isVisualsWriteRequest &&
+      !isFightCreateRequest &&
+      !isFightTranslateRequest &&
+      !isMarvinSaveRequest
+    ) {
       res.statusCode = 405
       res.setHeader('Content-Type', 'application/json; charset=utf-8')
       res.end(asJson({ error: 'Method not allowed.' }))
@@ -831,6 +937,30 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
       } catch (error) {
         res.statusCode = 500
         res.end(asJson({ error: 'Marvin failed to save', details: String(error) }))
+      }
+      return
+    }
+
+    if (isFightTranslateRequest) {
+      try {
+        const payload = await readJsonBody(req)
+        const normalized = normalizeTranslationPayload(payload)
+        if (!normalized) {
+          res.statusCode = 400
+          res.setHeader('Content-Type', 'application/json; charset=utf-8')
+          res.end(asJson({ error: 'Invalid translation payload.' }))
+          return
+        }
+
+        const translatedText = await translateTextToPolish(normalized.text, options)
+        res.statusCode = 200
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.setHeader('Cache-Control', 'no-store')
+        res.end(asJson({ ok: true, text: translatedText, model: options.openAiTranslationModel }))
+      } catch (error) {
+        res.statusCode = 500
+        res.setHeader('Content-Type', 'application/json; charset=utf-8')
+        res.end(asJson({ error: error instanceof Error ? redactSensitiveApiText(error.message) : 'Failed to translate text.' }))
       }
       return
     }
@@ -1056,10 +1186,10 @@ const createFightsApiMiddleware = (): Connect.NextHandleFunction => {
   }
 }
 
-const fightsApiPlugin = (): Plugin => ({
+const fightsApiPlugin = (options: FightsApiOptions): Plugin => ({
   name: 'vs-fights-api',
   configureServer(server) {
-    server.middlewares.use(createFightsApiMiddleware())
+    server.middlewares.use(createFightsApiMiddleware(options))
     const watchedDirs = FIGHTS_DIR_CANDIDATES.map((directory) => path.resolve(directory))
     const normalizedWatchedDirs = watchedDirs.map(normalizeFsPath)
     const normalizedTemplatesDir = normalizeFsPath(TEMPLATES_DIR)
@@ -1123,11 +1253,17 @@ const fightsApiPlugin = (): Plugin => ({
     server.watcher.on('all', handleTemplateFileEvent)
   },
   configurePreviewServer(server) {
-    server.middlewares.use(createFightsApiMiddleware())
+    server.middlewares.use(createFightsApiMiddleware(options))
   },
 })
 
 // https://vite.dev/config/
-export default defineConfig({
-  plugins: [react(), fightsApiPlugin()],
+export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, __dirname, '')
+  const openAiApiKey = env.OPENAI_API_KEY || process.env.OPENAI_API_KEY || ''
+  const openAiTranslationModel = env.OPENAI_TRANSLATION_MODEL || process.env.OPENAI_TRANSLATION_MODEL || 'gpt-5.4-mini'
+
+  return {
+    plugins: [react(), fightsApiPlugin({ openAiApiKey, openAiTranslationModel })],
+  }
 })

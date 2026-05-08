@@ -20,6 +20,7 @@ type HomeViewProps = {
   onRememberPreferredFightVariant: (fight: FightRecord) => void
   onOpenSavedFightPortraitEditor: (fightId: string, side: 'a' | 'b') => void
   onDeleteFight: (fightId: string) => void
+  onOpenSimpleEditor: () => void
 }
 
 export function HomeView(props: HomeViewProps) {
@@ -38,6 +39,7 @@ export function HomeView(props: HomeViewProps) {
     onRememberPreferredFightVariant,
     onOpenSavedFightPortraitEditor,
     onDeleteFight,
+    onOpenSimpleEditor,
   } = props
 
   return (
@@ -48,6 +50,7 @@ export function HomeView(props: HomeViewProps) {
           ui={ui}
           availableTemplates={availableTemplates}
           onCreateFightScaffold={onCreateFightScaffold}
+          onOpenSimpleEditor={onOpenSimpleEditor}
         />
         <FightLibraryPanel
           ui={ui}
