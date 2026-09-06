@@ -16,7 +16,7 @@ type RequestFightApply = (
   reason?: 'open-fight' | 'search-transition' | 'search-shortcut' | 'language-switch',
 ) => void
 
-type ViewMode = 'boot' | 'search' | 'home' | 'fight-intro' | 'fight'
+type ViewMode = 'launcher' | 'boot' | 'search' | 'home' | 'simple-editor' | 'advanced-editor' | 'fight-intro' | 'fight'
 
 type UseVsTransitionsOptions = {
   fights: FightRecord[]
@@ -53,7 +53,7 @@ export function useVsTransitions({
   searchCollapseWatchdogMs,
   reverseExplosionWatchdogMs,
 }: UseVsTransitionsOptions) {
-  const [viewMode, setViewMode] = useState<ViewMode>('boot')
+  const [viewMode, setViewMode] = useState<ViewMode>('launcher')
   const [introVisible, setIntroVisible] = useState(true)
   const [fightViewVisible, setFightViewVisible] = useState(true)
   const [searchMorphVisible, setSearchMorphVisible] = useState(false)
@@ -461,7 +461,7 @@ export function useVsTransitions({
       const payload = event.data
       if (!payload || typeof payload !== 'object') return
 
-      const typed = payload as { type?: unknown; query?: unknown; handoff?: unknown }
+      const typed = payload as { type?: unknown; query?: unknown; handoff?: unknown; fightId?: unknown; matchupKey?: unknown }
 
       if (typed.type === 'vvv-aaa-ready') {
         introBridgeReadyRef.current = true

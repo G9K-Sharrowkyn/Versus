@@ -3,6 +3,9 @@ import clsx from 'clsx'
 import { getTranslations } from './i18n'
 import { FightPreviewStage } from './features/vs/components/FightPreviewStage'
 import { HomeView } from './features/vs/components/HomeView'
+import { StartScreen, StudioMenuButton } from './features/vs/components/StartScreen'
+import { SimpleEditor } from './features/vs/components/SimpleEditor'
+import { AdvancedEditor } from './features/vs/components/advanced/AdvancedEditor'
 import { PortraitEditorModal } from './features/vs/components/PortraitEditorModal'
 import { SearchMorphOverlay } from './features/vs/components/SearchMorphOverlay'
 import { TemplateRenderer } from './features/vs/components/TemplateRenderer'
@@ -314,7 +317,7 @@ function App() {
   const [pendingFightSelection, setPendingFightSelection] = useState<PendingFightSelection | null>(null)
   const [pendingLocaleSwitch, setPendingLocaleSwitch] = useState<Language | null>(null)
   const [startupGlitchActive, setStartupGlitchActive] = useState(false)
-  const [bootGateActive, setBootGateActive] = useState(true)
+  const [bootGateActive, setBootGateActive] = useState(false)
   const [startupFlashBands, setStartupFlashBands] = useState<BootFlashBand[]>([])
   const [startupFlashTransform, setStartupFlashTransform] = useState('')
 
@@ -1331,6 +1334,7 @@ function App() {
       if (event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey) return
       if (isTypingTarget(event.target)) return
       if (event.key !== ' ' && event.code !== 'Space') return
+      if (event.target instanceof HTMLElement && event.target.closest('button, a')) return
       if (startupGlitchActive) return
 
       event.preventDefault()
@@ -1552,7 +1556,7 @@ function App() {
   )
 
   useEffect(() => {
-    if (viewMode === 'boot') return
+    if (viewMode === 'boot' || viewMode === 'launcher' || viewMode === 'home' || viewMode === 'simple-editor' || viewMode === 'advanced-editor') return
 
     const isTypingTarget = (target: EventTarget | null) =>
       target instanceof HTMLInputElement ||
@@ -1588,7 +1592,7 @@ function App() {
 
       const typed = payload as { type?: unknown; stage?: unknown }
       if (typed.type !== 'vvv-dev-jump-stage-request') return
-      if (!Number.isInteger(typed.stage)) return
+      if (typeof typed.stage !== 'number' || !Number.isInteger(typed.stage)) return
       if (typed.stage < 1 || typed.stage > 5) return
 
       dispatchSearchStageJump(typed.stage)
@@ -1634,6 +1638,43 @@ function App() {
     pendingSearchStageJumpRef.current = null
   }, [handleSearchFrameTransitionLoad, searchFrameRef])
 
+  const openStudioView = (nextView: 'launcher' | 'boot' | 'home' | 'simple-editor' | 'advanced-editor') => {
+    // Cancel the intro and pending fight changes before leaving their flow.
+    if (startupGlitchIntervalRef.current !== null) {
+      window.clearInterval(startupGlitchIntervalRef.current)
+      startupGlitchIntervalRef.current = null
+    }
+    pendingFightRequestIdRef.current += 1
+    setPendingFightSelection(null)
+    setPendingLocaleSwitch(null)
+    pendingSearchStageJumpRef.current = null
+    setPortraitEditor(null)
+    setStartupGlitchActive(false)
+    setStartupFlashBands([])
+    setStartupFlashTransform('')
+    goBackToLibrary()
+    setBootGateActive(nextView === 'boot')
+    setViewMode(nextView)
+    window.scrollTo(0, 0)
+  }
+
+  const studioMenuButton = (
+    <StudioMenuButton language={language} onClick={() => openStudioView('launcher')} />
+  )
+
+  if (viewMode === 'launcher') {
+    return (
+      <StartScreen
+        language={language}
+        onToggleLanguage={toggleLanguage}
+        onOpenIntro={() => openStudioView('boot')}
+        onOpenFights={() => openStudioView('home')}
+        onOpenSimple={() => openStudioView('simple-editor')}
+        onOpenAdvanced={() => openStudioView('advanced-editor')}
+      />
+    )
+  }
+
   if (isBootView) {
     return (
       <main
@@ -1644,6 +1685,7 @@ function App() {
         data-vs-mobile-panel-switch={templateMobilePanelSwitchTo || 'none'}
         className="h-screen overflow-hidden bg-black p-0 text-slate-100"
       >
+        {studioMenuButton}
         <section className="vs-boot-screen">
           <div className="vs-boot-screen__repeater" aria-hidden="true">
             <div className="vs-boot-screen__repeater-content">
@@ -1702,7 +1744,8 @@ function App() {
             : 'min-h-screen px-3 py-4 sm:px-4 sm:py-6',
       )}
     >
-      <div className={clsx('max-w-none', isFightFlow || isSearchView ? 'flex h-full min-h-0 flex-col' : '')}>
+      {(viewMode === 'home' || isSearchView) && studioMenuButton}
+      <div className={clsx('max-w-none', isFightFlow || isSearchView || viewMode === 'simple-editor' ? 'flex h-full min-h-0 flex-col' : '')}>
         {viewMode === 'home' ? (
           <HomeView
             ui={ui}
@@ -1719,10 +1762,13 @@ function App() {
             onRememberPreferredFightVariant={rememberPreferredFightVariant}
             onOpenSavedFightPortraitEditor={openSavedFightPortraitEditor}
             onDeleteFight={deleteFight}
+            onOpenSimpleEditor={() => openStudioView('simple-editor')}
           />
-        ) : null}
-
-        {viewMode === 'search' ? (
+        ) : viewMode === 'simple-editor' ? (
+          <SimpleEditor ui={ui} onBack={() => openStudioView('launcher')} onOpenAdvanced={() => openStudioView('advanced-editor')} />
+        ) : viewMode === 'advanced-editor' ? (
+          <AdvancedEditor language={language} onBack={() => openStudioView('launcher')} />
+        ) : viewMode === 'search' ? (
           <section className="relative z-0 h-full min-h-0 overflow-visible bg-[#111418]">
             <iframe
               ref={searchFrameRef}
@@ -1732,7 +1778,7 @@ function App() {
               onLoad={handleSearchFrameLoad}
             />
           </section>
-        ) : viewMode === 'home' ? null : viewMode === 'fight-intro' ? (
+        ) : viewMode === 'fight-intro' ? (
           <section className="relative z-0 h-full min-h-0 overflow-hidden bg-[#111418]">
             <div
               className="relative z-0 h-full w-full transition-opacity duration-[1200ms] ease-out"
@@ -1798,7 +1844,7 @@ function App() {
         direction={searchMorphDirection}
         handoff={searchMorphHandoff}
       />
-      <MarvinEditor activeTemplateId={activeTemplate} />
+      {viewMode !== 'simple-editor' && viewMode !== 'advanced-editor' && <MarvinEditor activeTemplateId={activeTemplate} />}
     </main>
   )
 }

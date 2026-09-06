@@ -1251,3 +1251,101 @@
 .vs-template-mode[data-vs-template-layout='mobile'] [data-vs-preview-shell='true'] [class*='grid-cols-'] {
   grid-template-columns: minmax(0, 1fr) !important;
 }
+
+/* Versus Verse Simple Editor Effects */
+@property --α {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes α-rotation {
+  to { --α: 1turn; }
+}
+
+.vs-simple-editor-frame {
+  position: relative;
+  display: inline-block;
+  padding: 8px;
+  border-radius: 1.5em;
+  border: solid 6px #0000;
+  background: rgba(237, 171, 171, 0.13);
+  box-shadow: 0 0 2em 0 rgba(0,0,0,0.45);
+  z-index: 1;
+}
+
+.vs-simple-editor-frame::before,
+.vs-simple-editor-frame::after {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: inherit;
+  border-radius: inherit;
+  background: conic-gradient(from var(--α), #f94144, #f3722c, #f8961e, #f9844a, #f9c74f, #90be6d, #43aa8b, #4d908e, #277da1, #577590, #f94144) border-box;
+  mask: conic-gradient(red 0 0) border-box subtract, conic-gradient(red 0 0) padding-box;
+  pointer-events: none;
+  animation: α-rotation 4s linear infinite;
+  z-index: 2;
+}
+
+.vs-simple-editor-frame::after {
+  filter: blur(1.5em);
+  z-index: 0;
+}
+
+.vs-simple-editor-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 1.2em;
+  position: relative;
+  z-index: 3;
+  background: #111;
+}
+
+.vs-simple-editor-sparkly {
+  overflow: hidden;
+}
+
+.vs-simple-editor-sparkly::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; top: 0; bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+  background-image: url("/stars.gif");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  mix-blend-mode: screen;
+  filter: brightness(1.1) contrast(1.1);
+}
+
+.vs-simple-editor-sparkly > * {
+  position: relative;
+  z-index: 2;
+}
+
+.vs-simple-editor-vs-divider {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 20px;
+}
+
+.vs-simple-editor-vs-text {
+  font-size: 8rem;
+  font-weight: 900;
+  color: #fff;
+  text-shadow:
+    0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 0, 231, 0.5),
+    0 0 40px rgba(0, 231, 255, 0.5);
+  font-family: 'JetBrains Mono', monospace;
+  font-style: italic;
+  letter-spacing: -4px;
+}

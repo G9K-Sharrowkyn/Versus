@@ -1,0 +1,98 @@
+.vs-launcher {
+  min-height: 100vh;
+  min-height: 100dvh;
+  color: #eef2fa;
+  background: radial-gradient(ellipse at 48% -20%, #26334b88, transparent 58%), radial-gradient(ellipse at 100% 80%, #1e16442b, transparent 50%), #090c12;
+  font-family: 'Space Grotesk', sans-serif;
+}
+.vs-launcher__shell { max-width: 1320px; min-height: 100dvh; margin: 0 auto; padding: 0 48px; display: flex; flex-direction: column; }
+.vs-launcher__header { display: flex; justify-content: space-between; align-items: center; min-height: 100px; gap: 20px; border-bottom: 1px solid #ffffff0d; }
+.vs-launcher__brand { display: flex; align-items: center; gap: 18px; font-size: 11px; font-weight: 600; letter-spacing: .18em; color: #a5b0c2; }
+.vs-launcher__mark { font: 900 27px var(--font-display); letter-spacing: -.16em; padding-right: 5px; color: #f1f5f9; }
+.vs-launcher__mark > span { color: #74dfda; }
+.vs-launcher__language { display: flex; align-items: center; gap: 10px; color: #607084; font-size: 11px; font-weight: 700; letter-spacing: .08em; padding: 10px 14px; border: 1px solid #ffffff16; border-radius: 8px; }
+.vs-launcher__language:hover { border-color: #7dd3fc66; }
+.vs-launcher__language .is-active { color: #eef2fa; }
+.vs-launcher__content { flex: 1; display: flex; flex-direction: column; justify-content: center; padding: 64px 0 70px; }
+.vs-launcher__heading { margin-bottom: 36px; }
+.vs-launcher__eyebrow { display: flex; gap: 10px; align-items: center; text-transform: uppercase; letter-spacing: .19em; font-size: 10px; font-weight: 600; color: #7eaea9; margin: 0 0 18px; }
+.vs-launcher__eyebrow > span { width: 6px; height: 6px; border-radius: 50%; background: #79ded2; box-shadow: 0 0 14px #79ded260; }
+.vs-launcher__heading h1 { font-family: var(--font-display); font-size: clamp(32px, 3.5vw, 49px); line-height: 1.15; font-weight: 600; letter-spacing: -.035em; margin: 0 0 14px; }
+.vs-launcher__heading > p:last-child { color: #8f9bb0; font-size: 15px; margin: 0; }
+.vs-launcher__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; }
+.vs-launcher__card { --card-accent: #ef8c83; position: relative; display: flex; flex-direction: column; overflow: hidden; border: 1px solid #ffffff14; border-radius: 15px; background: #10151f; text-align: left; transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease; }
+.vs-launcher__card--fights { --card-accent: #79dcd5; }
+.vs-launcher__card--simple { --card-accent: #c6a0f9; }
+.vs-launcher__card:hover { transform: translateY(-6px); border-color: var(--card-accent); box-shadow: 0 18px 42px #0005; }
+.vs-launcher__card:focus-visible, .vs-launcher__language:focus-visible, .vs-studio-menu:focus-visible { outline: 3px solid #a5f3fc; outline-offset: 5px; }
+.vs-launcher__preview { height: 214px; position: relative; display: grid; place-items: center; overflow: hidden; border-bottom: 1px solid #ffffff0b; isolation: isolate; }
+.vs-launcher__number { position: absolute; top: 17px; left: 20px; z-index: 2; font: 10px var(--font-ui); color: #c5cbd67a; }
+.vs-launcher__preview-label { position: absolute; bottom: 15px; left: 20px; display: flex; align-items: center; gap: 7px; text-transform: uppercase; font-size: 9px; letter-spacing: .13em; color: var(--card-accent); }
+.vs-launcher__card--intro .vs-launcher__preview { background: radial-gradient(ellipse at center, #6b20194d, transparent 75%), #150e11; }
+.vs-launcher__darkseid { display: flex; flex-direction: column; gap: 4px; width: max-content; transform: rotate(-9deg); font: 800 clamp(25px, 2.5vw, 36px)/1.1 var(--font-display); letter-spacing: -.025em; color: #de635123; }
+.vs-launcher__darkseid strong { color: #ec8c7c; text-shadow: 2px 0 #bf332a, -2px 0 #354a654f; }
+.vs-launcher__card--fights .vs-launcher__preview { background: radial-gradient(ellipse at center, #124e5244, transparent 75%), repeating-linear-gradient(0deg, transparent 0 23px, #ffffff03 23px 24px), repeating-linear-gradient(90deg, transparent 0 23px, #ffffff03 23px 24px), #0a171c; }
+.vs-launcher__fight-preview { position: relative; display: flex; gap: 15px; align-items: center; transform: rotate(-5deg); }
+.vs-launcher__fight-preview > div { display: flex; flex-direction: column; align-items: center; width: 75px; height: 99px; padding: 14px; border: 1px solid #5bbdb95e; border-radius: 7px; background: linear-gradient(140deg, #25424b, #10252c); box-shadow: 0 12px 22px #0004; }
+.vs-launcher__fight-preview > div > svg { width: 28px; height: 34px; color: #8dc9c8; margin-bottom: 10px; }
+.vs-launcher__fight-preview i { display: block; height: 3px; width: 100%; background: #68aaa660; margin-bottom: 6px; border-radius: 2px; }
+.vs-launcher__fight-preview i:last-child { width: 65%; align-self: flex-start; }
+.vs-launcher__fight-preview > span { font: 800 20px var(--font-display); color: #75bcb7; }
+.vs-launcher__fight-preview > b { position: absolute; right: -12px; bottom: -10px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 8px; color: #b3fff1; background: #235550; border: 1px solid #77e0ce66; }
+.vs-launcher__card--simple .vs-launcher__preview { background: radial-gradient(ellipse at 20% 45%, #265b884b, transparent 65%), radial-gradient(ellipse at 85% 65%, #7c255c66, transparent 65%), #171024; }
+.vs-launcher__simple-preview { display: flex; gap: 18px; align-items: center; }
+.vs-launcher__simple-preview > div { width: 62px; height: 97px; border: 1px solid #72c5ee; border-radius: 9px; display: grid; place-items: center; background: linear-gradient(135deg, #24628744, #20305f66); box-shadow: 0 0 24px #4b8afa33, inset 0 0 18px #4b8afa22; transform: rotate(-8deg); }
+.vs-launcher__simple-preview > div:last-child { border-color: #df8ed6; transform: rotate(8deg); background: linear-gradient(135deg, #6c338a44, #ae315144); box-shadow: 0 0 24px #ec53c133, inset 0 0 18px #ec53c122; }
+.vs-launcher__simple-preview svg { width: 30px; height: 40px; color: #bbd8f3; opacity: .8; }
+.vs-launcher__simple-preview > span { font: 800 26px var(--font-display); font-style: italic; color: #eee0ff; text-shadow: 0 0 18px #df76ff99; }
+.vs-launcher__card-body { display: flex; flex-direction: column; flex: 1; padding: 25px 25px 21px; }
+.vs-launcher__card h2 { font: 600 27px/1.2 var(--font-display); letter-spacing: -.02em; margin: 0 0 12px; color: #eef2fa; }
+.vs-launcher__card-body > p { font-size: 13px; line-height: 1.75; color: #98a5b8; margin: 0 0 20px; flex: 1; }
+.vs-launcher__detail { font-size: 10px; color: #77879e; margin-bottom: 22px; }
+.vs-launcher__action { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #ffffff0c; padding-top: 18px; color: var(--card-accent); font-size: 12px; font-weight: 600; }
+.vs-launcher__action svg { transition: transform .22s ease; }
+.vs-launcher__card:hover .vs-launcher__action svg { transform: translateX(4px); }
+.vs-launcher__footer { display: flex; justify-content: space-between; gap: 20px; border-top: 1px solid #ffffff0d; padding: 22px 0 27px; font-size: 10px; color: #627087; }
+.vs-launcher__footer > span:first-child { font-size: 9px; letter-spacing: .14em; }
+.vs-studio-menu { position: fixed; bottom: 16px; left: 16px; z-index: 10001; display: flex; align-items: center; gap: 9px; min-height: 40px; padding: 10px 14px; border: 1px solid #99b2ce4d; border-radius: 9px; background: #0b1221e8; color: #d7e6f7; font: 500 12px 'Space Grotesk', sans-serif; box-shadow: 0 4px 20px #0004; backdrop-filter: blur(12px); }
+.vs-studio-menu:hover { border-color: #90d8e1; color: white; background: #17263b; }
+.vs-gif-export { display: inline-flex; align-items: center; gap: 8px; }
+.vs-gif-export-button { display: inline-flex; align-items: center; gap: 8px; min-height: 38px; padding: 9px 13px; border: 1px solid #a9e6d566; border-radius: 8px; background: #102b32e8; color: #b8f4e7; font: 600 12px 'Space Grotesk', sans-serif; box-shadow: 0 4px 18px #0004; backdrop-filter: blur(12px); }
+.vs-gif-export-button:hover:not(:disabled) { border-color: #bdfbed; background: #19434a; color: white; }
+.vs-gif-export-button:disabled { cursor: wait; opacity: .82; }
+.vs-gif-export-spinner { animation: vs-gif-export-spin .9s linear infinite; }
+.vs-gif-export-error { max-width: 260px; color: #fecaca; font-size: 11px; line-height: 1.35; }
+@keyframes vs-gif-export-spin { to { transform: rotate(360deg); } }
+[data-gif-exporting='true'] .vs-studio-menu,
+[data-gif-exporting='true'] .vs-gif-export,
+[data-gif-exporting='true'] .vs-simple-editor-advanced,
+[data-gif-exporting='true'] .vs-simple-editor-upload { display: none !important; }
+.vs-advanced__toolbar .vs-gif-export-button { box-shadow: none; background: #19263e77; border-color: #879bb63d; color: #d8f7f0; }
+.vs-advanced__toolbar .vs-gif-export-button:hover:not(:disabled) { background: #263a52; border-color: #9cceda; }
+@media (min-width: 1600px) { .vs-launcher__preview { height: 240px; } }
+@media (max-width: 1000px) { .vs-launcher__shell { padding: 0 28px; } .vs-launcher__grid { gap: 15px; } .vs-launcher__card-body { padding: 22px 18px; } .vs-launcher__card h2 { font-size: 24px; } }
+@media (max-width: 760px) {
+  .vs-launcher__shell { padding: 0 20px; }
+  .vs-launcher__header { min-height: 80px; }
+  .vs-launcher__brand { gap: 13px; font-size: 9px; letter-spacing: .09em; }
+  .vs-launcher__content { padding: 40px 0; }
+  .vs-launcher__grid { grid-template-columns: 1fr; gap: 20px; }
+  .vs-launcher__preview { height: 190px; }
+  .vs-launcher__darkseid { font-size: 34px; }
+  .vs-launcher__card-body { padding: 24px; }
+  .vs-launcher__card-body > p { max-width: 45ch; }
+  .vs-launcher__footer { flex-wrap: wrap; gap: 10px; }
+}
+@media (prefers-reduced-motion: reduce) { .vs-launcher__card, .vs-launcher__action svg { transition: none; } .vs-launcher__card:hover { transform: none; } }
+/* Four studio entry points. */
+.vs-launcher__shell { max-width: 1480px; }
+.vs-launcher__grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.vs-launcher__card--advanced { --card-accent: #e7c090; }
+.vs-launcher__card--advanced .vs-launcher__preview { background: radial-gradient(ellipse at 75% 25%, #643e2966, transparent 70%), #1b1521; }
+.vs-launcher__advanced-preview { display: flex; gap: 9px; width: 164px; height: 119px; transform: rotate(-5deg); }
+.vs-launcher__advanced-preview > div:first-child { flex: 2; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+.vs-launcher__advanced-preview i { border: 1px solid #a898c37d; border-radius: 4px; background: #594b743d; }
+.vs-launcher__advanced-preview > div:last-child { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: space-between; border: 1px solid #e8c19070; border-radius: 4px; background: #694d372e; padding-top: 16px; color: #ddc4a6; }
+.vs-launcher__advanced-preview b { font-size: 9px; width: 100%; text-align: center; padding: 10px 0; border-top: 1px solid #e8c19070; }
+@media (min-width: 761px) and (max-width: 1199px) { .vs-launcher__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .vs-launcher__grid { grid-template-columns: 1fr; } }
