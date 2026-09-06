@@ -4,6 +4,15 @@ import type { Language } from '../../types'
 import { StudioMenuButton } from '../StartScreen'
 import { GifExportButton } from '../GifExportButton'
 import { WebmExportButton } from '../WebmExportButton'
+import {
+  VOTED_FRAME_BLEED,
+  VOTED_FRAME_BLUR,
+  VOTED_FRAME_DURATION_MS,
+  VOTED_FRAME_GLOW_RATIO,
+  VOTED_FRAME_LINE_WIDTH,
+  createVotedFrameGradient,
+  roundedRectPath,
+} from '../../frameAnimation'
 import { buildBattlePanels, parseTeamFormat, TEAM_PRESETS, type BattlePanel, type BattleSettings } from './advancedLayout'
 import './AdvancedEditor.css'
 
@@ -18,6 +27,148 @@ type LabelOverrides = {
 const TEAM_COLORS = ['#78e5ed', '#ff87b6', '#b3a0ff', '#ffd27a']
 const INITIAL_SETTINGS: BattleSettings = { mode: 'teams', teams: [2, 2], gauntletSize: 1, pairSplit: 'vertical' }
 const EMPTY_LABEL_OVERRIDES: LabelOverrides = { teams: {}, rounds: {}, challenger: '', boss: '' }
+function VotedFrameDecoration() {
+  const glowCanvasRef = useRef<HTMLCanvasElement>(null)
+  const borderCanvasRef = useRef<HTMLCanvasElement>(null)
+
+  useEffect(() => {
+    const canvas = glowCanvasRef.current
+    const borderCanvas = borderCanvasRef.current
+    const shell = canvas?.parentElement
+    const frame = shell?.querySelector<HTMLElement>('.vs-advanced__portrait--voted-frame')
+    if (!canvas || !borderCanvas || !shell || !frame) return
+
+    let animationFrame = 0
+    let lastDraw = -Infinity
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const pixelRatio = Math.max(2, Math.min(3, window.devicePixelRatio || 1))
+    const glowCanvas = document.createElement('canvas')
+
+    const draw = (timestamp: number) => {
+      const rect = frame.getBoundingClientRect()
+      if (rect.width <= 0 || rect.height <= 0) return
+      const computed = window.getComputedStyle(frame)
+      const radius = Number.parseFloat(computed.borderTopLeftRadius) || 16
+      const cssWidth = rect.width + VOTED_FRAME_BLEED * 2
+      const cssHeight = rect.height + VOTED_FRAME_BLEED * 2
+      const bitmapWidth = Math.max(1, Math.round(cssWidth * pixelRatio))
+      const bitmapHeight = Math.max(1, Math.round(cssHeight * pixelRatio))
+
+      canvas.style.left = `-${VOTED_FRAME_BLEED}px`
+      canvas.style.top = `-${VOTED_FRAME_BLEED}px`
+      canvas.style.width = `${cssWidth}px`
+      canvas.style.height = `${cssHeight}px`
+      if (canvas.width !== bitmapWidth || canvas.height !== bitmapHeight) {
+        canvas.width = bitmapWidth
+        canvas.height = bitmapHeight
+      }
+      const borderBitmapWidth = Math.max(1, Math.round(rect.width * pixelRatio))
+      const borderBitmapHeight = Math.max(1, Math.round(rect.height * pixelRatio))
+      borderCanvas.style.width = `${rect.width}px`
+      borderCanvas.style.height = `${rect.height}px`
+      if (borderCanvas.width !== borderBitmapWidth || borderCanvas.height !== borderBitmapHeight) {
+        borderCanvas.width = borderBitmapWidth
+        borderCanvas.height = borderBitmapHeight
+      }
+      const glowBitmapWidth = Math.max(1, Math.round(cssWidth * VOTED_FRAME_GLOW_RATIO))
+      const glowBitmapHeight = Math.max(1, Math.round(cssHeight * VOTED_FRAME_GLOW_RATIO))
+      if (glowCanvas.width !== glowBitmapWidth || glowCanvas.height !== glowBitmapHeight) {
+        glowCanvas.width = glowBitmapWidth
+        glowCanvas.height = glowBitmapHeight
+      }
+
+      const context = canvas.getContext('2d')
+      const borderContext = borderCanvas.getContext('2d')
+      const glowContext = glowCanvas.getContext('2d')
+      if (!context || !borderContext || !glowContext) return
+      context.setTransform(1, 0, 0, 1, 0, 0)
+      context.clearRect(0, 0, canvas.width, canvas.height)
+      glowContext.setTransform(1, 0, 0, 1, 0, 0)
+      glowContext.clearRect(0, 0, glowCanvas.width, glowCanvas.height)
+      glowContext.setTransform(VOTED_FRAME_GLOW_RATIO, 0, 0, VOTED_FRAME_GLOW_RATIO, 0, 0)
+
+      const lineWidth = VOTED_FRAME_LINE_WIDTH
+      const left = VOTED_FRAME_BLEED + lineWidth / 2
+      const top = VOTED_FRAME_BLEED + lineWidth / 2
+      const width = Math.max(1, rect.width - lineWidth)
+      const height = Math.max(1, rect.height - lineWidth)
+      const centerX = VOTED_FRAME_BLEED + rect.width / 2
+      const centerY = VOTED_FRAME_BLEED + rect.height / 2
+      const angle = reducedMotion ? 0 : ((timestamp % VOTED_FRAME_DURATION_MS) / VOTED_FRAME_DURATION_MS) * Math.PI * 2
+      const createFrameGradient = (target: CanvasRenderingContext2D) => (
+        createVotedFrameGradient(target, angle, centerX, centerY, left, top, width, height)
+      )
+
+      const strokeGlow = (blur: number, glowWidth: number) => {
+        glowContext.save()
+        glowContext.globalAlpha = 1
+        glowContext.filter = `blur(${blur}px)`
+        glowContext.lineWidth = glowWidth
+        glowContext.strokeStyle = createFrameGradient(glowContext)
+        roundedRectPath(glowContext, left, top, width, height, Math.max(1, radius - lineWidth / 2))
+        glowContext.stroke()
+        glowContext.restore()
+      }
+
+      // PostCard.css renders a complete blurred copy of the gradient border.
+      // Canvas spreads a thin stroke more faintly, so the broad and close
+      // layers reproduce the measured falloff of that CSS blur at high DPR.
+      strokeGlow(VOTED_FRAME_BLUR * VOTED_FRAME_GLOW_RATIO, lineWidth * 3)
+      strokeGlow((VOTED_FRAME_BLUR * VOTED_FRAME_GLOW_RATIO) / 2, lineWidth * 2)
+
+      context.imageSmoothingEnabled = true
+      context.imageSmoothingQuality = 'high'
+      context.drawImage(glowCanvas, 0, 0, canvas.width, canvas.height)
+
+      borderContext.setTransform(1, 0, 0, 1, 0, 0)
+      borderContext.clearRect(0, 0, borderCanvas.width, borderCanvas.height)
+      borderContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0)
+      const borderLeft = lineWidth / 2
+      const borderTop = lineWidth / 2
+      const borderWidth = Math.max(1, rect.width - lineWidth)
+      const borderHeight = Math.max(1, rect.height - lineWidth)
+      const borderGradient = createVotedFrameGradient(
+        borderContext,
+        angle,
+        rect.width / 2,
+        rect.height / 2,
+        borderLeft,
+        borderTop,
+        borderWidth,
+        borderHeight,
+      )
+      borderContext.lineWidth = lineWidth
+      borderContext.strokeStyle = borderGradient
+      roundedRectPath(borderContext, borderLeft, borderTop, borderWidth, borderHeight, Math.max(1, radius - lineWidth / 2))
+      borderContext.stroke()
+    }
+
+    const tick = (timestamp: number) => {
+      if (timestamp - lastDraw >= 1000 / 30) {
+        draw(timestamp)
+        lastDraw = timestamp
+      }
+      if (!reducedMotion) animationFrame = window.requestAnimationFrame(tick)
+    }
+
+    const resizeObserver = new ResizeObserver(() => draw(performance.now()))
+    resizeObserver.observe(frame)
+    draw(performance.now())
+    if (!reducedMotion) animationFrame = window.requestAnimationFrame(tick)
+
+    return () => {
+      resizeObserver.disconnect()
+      if (animationFrame) window.cancelAnimationFrame(animationFrame)
+    }
+  }, [])
+
+  return (
+    <>
+      <canvas ref={glowCanvasRef} className="vs-advanced__voted-frame-decoration" aria-hidden="true" />
+      <canvas ref={borderCanvasRef} className="vs-advanced__voted-frame-border" aria-hidden="true" />
+    </>
+  )
+}
 
 export function AdvancedEditor({ language, onBack }: { language: Language; onBack: () => void }) {
   const pl = language === 'pl'
@@ -43,6 +194,11 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
   const selectedPortrait = selected ? portraits[selected.id] : null
   const selectedPanel = selected ? panels.find(panel => panel.slots.includes(selected.id)) ?? null : null
   const isGauntlet = settings.mode === 'gauntlet'
+  const isOneVsOne = !isGauntlet && settings.teams.length === 2 && settings.teams.every(count => count === 1)
+  const usesVotedFrames = !isGauntlet
+    && settings.teams.length === 2
+    && settings.teams[0] === settings.teams[1]
+    && (settings.teams[0] === 1 || settings.teams[0] === 2)
   const formatLabel = isGauntlet ? `${settings.gauntletSize} vs ${settings.gauntletSize * 7}` : settings.teams.join(' vs ')
 
   const defaultTeamLabel = (index: number) => `TEAM ${index + 1}`
@@ -165,10 +321,18 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
   const renderSlot = (id: string, label: string) => {
     const portrait = portraits[id]
     const slot = { id, label }
-    return (
+    const content = portrait ? (
+      <>
+        <img src={portrait.url} alt={portrait.name || label} draggable={false} style={{ objectPosition: `${portrait.x}% ${portrait.y}%`, transform: `translate(${(50 - portrait.x) * (portrait.zoom - 1)}%, ${(50 - portrait.y) * (portrait.zoom - 1)}%) scale(${portrait.zoom})` }} />
+        {showNames && portrait.name && <span className="vs-advanced__caption"><span className="vs-advanced__caption-text">{portrait.name}</span></span>}
+      </>
+    ) : (
+      <span className="vs-advanced__placeholder"><ImagePlus aria-hidden="true" /><span>{label}</span><small>{pl ? 'Kliknij lub upuść grafikę' : 'Click or drop an image'}</small></span>
+    )
+    const portraitButton = (
       <button
         type="button" key={id} data-slot-id={id}
-        className={`vs-advanced__portrait ${selected?.id === id && !presenting ? 'is-selected' : ''}`}
+        className={`vs-advanced__portrait ${usesVotedFrames ? 'vs-advanced__portrait--voted-frame' : ''} ${selected?.id === id && !presenting ? 'is-selected' : ''}`}
         aria-label={`${portrait ? (pl ? 'Edytuj' : 'Edit') : (pl ? 'Dodaj grafikę' : 'Add image')}: ${label}`}
         disabled={presenting}
         onClick={() => portrait ? setSelected(slot) : chooseImage(slot)}
@@ -180,16 +344,17 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
           if (file) { setSelected(slot); void loadImage(id, file) }
         }}
       >
-        {portrait ? (
+        {usesVotedFrames ? (
           <>
-            <img src={portrait.url} alt={portrait.name || label} draggable={false} style={{ objectPosition: `${portrait.x}% ${portrait.y}%`, transform: `translate(${(50 - portrait.x) * (portrait.zoom - 1)}%, ${(50 - portrait.y) * (portrait.zoom - 1)}%) scale(${portrait.zoom})` }} />
-            {showNames && portrait.name && <span className="vs-advanced__caption"><span className="vs-advanced__caption-text">{portrait.name}</span></span>}
+            <span className="vs-advanced__frame-sparkles" data-gif-export-sparkles aria-hidden="true" />
+            <div className="vs-advanced__portrait-inner">{content}</div>
           </>
-        ) : (
-          <span className="vs-advanced__placeholder"><ImagePlus aria-hidden="true" /><span>{label}</span><small>{pl ? 'Kliknij lub upuść grafikę' : 'Click or drop an image'}</small></span>
-        )}
+        ) : content}
       </button>
     )
+    return usesVotedFrames
+      ? <div key={id} className="vs-advanced__portrait-shell"><VotedFrameDecoration />{portraitButton}</div>
+      : portraitButton
   }
 
   const renderPanel = (panel: BattlePanel) => {
@@ -201,7 +366,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
           ? '#ff5f6d'
           : '#78b7ff'
       : TEAM_COLORS[panel.index % TEAM_COLORS.length]
-    const singleFreeForAll = !isGauntlet && settings.teams.every(count => count === 1)
+    const singleFreeForAll = !isGauntlet && settings.teams.length > 2 && settings.teams.every(count => count === 1)
     return (
       <section
         key={panel.id} data-panel-id={panel.id} aria-label={label}
@@ -209,7 +374,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
         style={{ '--team-color': color, '--member-columns': panel.slots.length > 1 ? 2 : 1 } as CSSProperties}
       >
         {!singleFreeForAll && <span className="vs-advanced__panel-label">{panel.role === 'boss' && <Trophy size={13} aria-hidden="true" />}<span className="vs-advanced__panel-label-text">{label}</span></span>}
-        <div className={`vs-advanced__members ${isGauntlet ? `vs-advanced__members--${settings.pairSplit}` : ''}`}>
+        <div className={`vs-advanced__members ${!isGauntlet && panel.slots.length === 1 ? 'vs-advanced__members--single' : ''} ${isGauntlet ? `vs-advanced__members--${settings.pairSplit}` : ''}`}>
           {panel.slots.map((id, member) => renderSlot(id, `${label} · ${member + 1}`))}
         </div>
       </section>
@@ -277,7 +442,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
           {error && !presenting && <p className="vs-advanced__error" role="alert">{error}<button type="button" onClick={() => setError('')} aria-label={pl ? 'Zamknij komunikat' : 'Dismiss message'}><X size={15} /></button></p>}
           <div className={`vs-advanced__workspace ${selected && !presenting ? 'has-inspector' : ''}`}>
             <div className="vs-advanced__stage-wrap">
-              <div ref={exportCanvasRef} data-gif-export-root="advanced" className={`vs-advanced__canvas ${isGauntlet ? 'vs-advanced__canvas--gauntlet' : settings.teams.length > 2 ? 'vs-advanced__canvas--multi' : ''}`} style={{ '--panel-gap': `${gap}px` } as CSSProperties} data-battle-format={formatLabel}>
+              <div ref={exportCanvasRef} data-gif-export-root="advanced" className={`vs-advanced__canvas ${isGauntlet ? 'vs-advanced__canvas--gauntlet' : isOneVsOne ? 'vs-advanced__canvas--duel-1v1' : settings.teams.length > 2 ? 'vs-advanced__canvas--multi' : ''}`} style={{ '--panel-gap': `${gap}px` } as CSSProperties} data-battle-format={formatLabel}>
                 <div className="vs-advanced__cosmos vs-simple-editor-sparkly" aria-hidden="true" />
                 <div data-gif-export-foreground="advanced" className={`vs-advanced__scene ${isGauntlet ? 'vs-advanced__scene--gauntlet' : `vs-advanced__scene--teams vs-advanced__scene--${settings.teams.length}-teams`}`}>
                   {panels.map(renderPanel)}

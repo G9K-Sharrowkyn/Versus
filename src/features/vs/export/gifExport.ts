@@ -1,11 +1,14 @@
 import html2canvas from 'html2canvas'
+import { createVotedFrameRenderer, type VotedFrameLayer } from '../frameAnimation'
 
 export const GIF_EXPORT_DURATION_MS = 2_000
 export const GIF_EXPORT_FPS = 60
 export const GIF_EXPORT_LONG_EDGE = 3_840
 
 const STARFIELD_URL = '/stars.gif'
+const SPARKLES_URL = '/assets/sparkles.gif'
 export const STARFIELD_FRAME_DURATION_MS = 30
+export const SPARKLES_FRAME_DURATION_MS = 30
 
 export type GifExportProgress = {
   frame: number
@@ -45,6 +48,24 @@ type GifDecoder = {
 
 type GifDecoderConstructor = new (options: { data: ArrayBuffer; type: string }) => GifDecoder
 
+export type SparklesLayer = {
+  left: number
+  top: number
+  width: number
+  height: number
+  outerLeft: number
+  outerTop: number
+  outerWidth: number
+  outerHeight: number
+  outerRadius: number
+  innerLeft: number
+  innerTop: number
+  innerWidth: number
+  innerHeight: number
+  innerRadius: number
+  scale: number
+}
+
 type GifEncoderWorkerMessage =
   | { type: 'progress'; frame: number; frameCount: number }
   | { type: 'done'; bytes: ArrayBuffer }
@@ -68,6 +89,11 @@ const readRect = (element: HTMLElement): ElementRect => {
   }
 }
 
+const readRadius = (element: HTMLElement) => {
+  const value = Number.parseFloat(window.getComputedStyle(element).borderTopLeftRadius)
+  return Number.isFinite(value) ? value : 0
+}
+
 export const resolveGifExportSize = (element: HTMLElement, longEdge = GIF_EXPORT_LONG_EDGE) => {
   const rect = readRect(element)
   const scale = longEdge / Math.max(rect.width, rect.height)
@@ -83,31 +109,34 @@ const getImageDecoder = () => {
   return browserGlobals.ImageDecoder
 }
 
-export const loadStarfieldDecoder = async () => {
+const loadGifDecoder = async (url: string, errorLabel: string) => {
   const Decoder = getImageDecoder()
   if (!Decoder) {
     throw new Error('Eksport animowanego GIF-a wymaga aktualnego Chrome albo Edge.')
   }
 
-  const response = await fetch(new URL(STARFIELD_URL, document.baseURI), { cache: 'force-cache' })
-  if (!response.ok) throw new Error('Nie udało się wczytać animowanego tła.')
+  const response = await fetch(new URL(url, document.baseURI), { cache: 'force-cache' })
+  if (!response.ok) throw new Error(`Nie udało się wczytać ${errorLabel}.`)
 
   const decoder = new Decoder({ data: await response.arrayBuffer(), type: 'image/gif' })
   await decoder.tracks.ready
   const frameCount = decoder.tracks.selectedTrack?.frameCount ?? 0
   if (frameCount < 1) {
     decoder.close()
-    throw new Error('Animowane tło nie zawiera żadnych klatek.')
+    throw new Error(`${errorLabel} nie zawiera żadnych klatek.`)
   }
 
   return { decoder, frameCount }
 }
 
+export const loadStarfieldDecoder = () => loadGifDecoder(STARFIELD_URL, 'animowanego tła')
+export const loadSparklesDecoder = () => loadGifDecoder(SPARKLES_URL, 'animacji iskierek')
+
 const appendCaptureStyles = (clonedDocument: Document, hideAnimatedLayer: boolean, hideForeground: boolean) => {
   const captureStyle = clonedDocument.createElement('style')
   captureStyle.textContent = `
     /* html2canvas 1.4 cannot parse color-mix()/color() values. */
-    .vs-advanced__scene--teams .vs-advanced__portrait,
+    .vs-advanced__scene--teams .vs-advanced__portrait:not(.vs-advanced__portrait--voted-frame),
     .vs-advanced__scene--gauntlet .vs-advanced__portrait {
       box-shadow: 0 0 14px rgba(120, 220, 220, 0.22) !important;
     }
@@ -120,6 +149,21 @@ const appendCaptureStyles = (clonedDocument: Document, hideAnimatedLayer: boolea
     .vs-advanced__caption-text {
       position: relative !important;
       top: -0.54em !important;
+    }
+    /* html2canvas applies the translated VS line box differently from the
+       browser. Offset its rasterized glyphs back to the live position while
+       preserving each layout's own top/left anchor. */
+    .vs-advanced__versus {
+      margin-left: -0.18em !important;
+      margin-top: -0.43em !important;
+    }
+    [data-gif-export-sparkles] {
+      display: none !important;
+      background-image: none !important;
+    }
+    .vs-advanced__voted-frame-decoration,
+    .vs-advanced__voted-frame-border {
+      display: none !important;
     }
     ${hideAnimatedLayer ? `
       .vs-simple-editor-sparkly::after {
@@ -248,6 +292,38 @@ export const drawCover = (
   context.drawImage(image, cropLeft, cropTop, cropWidth, cropHeight, left, top, width, height)
 }
 
+export const drawSparklesLayer = (
+  context: CanvasRenderingContext2D,
+  image: CanvasImageSource,
+  imageWidth: number,
+  imageHeight: number,
+  layer: SparklesLayer,
+) => {
+  const tileWidth = imageWidth * layer.scale
+  const tileHeight = imageHeight * layer.scale
+  if (tileWidth <= 0 || tileHeight <= 0) return
+
+  context.save()
+  context.beginPath()
+  context.roundRect(layer.outerLeft, layer.outerTop, layer.outerWidth, layer.outerHeight, layer.outerRadius)
+  context.roundRect(layer.innerLeft, layer.innerTop, layer.innerWidth, layer.innerHeight, layer.innerRadius)
+  context.clip('evenodd')
+  context.globalCompositeOperation = 'lighten'
+  context.globalAlpha = 0.7
+  context.filter = 'brightness(1.2) contrast(1.2)'
+
+  let startX = layer.left + (layer.width - tileWidth) / 2
+  let startY = layer.top + (layer.height - tileHeight) / 2
+  while (startX > layer.left) startX -= tileWidth
+  while (startY > layer.top) startY -= tileHeight
+  for (let y = startY; y < layer.top + layer.height; y += tileHeight) {
+    for (let x = startX; x < layer.left + layer.width; x += tileWidth) {
+      context.drawImage(image, x, y, tileWidth, tileHeight)
+    }
+  }
+  context.restore()
+}
+
 export const createLayeredCapture = async (
   element: HTMLElement,
   width: number,
@@ -264,6 +340,45 @@ export const createLayeredCapture = async (
 
   await waitForFonts()
   await waitForPaint()
+  const sparkles = Array.from(foreground.querySelectorAll<HTMLElement>('[data-gif-export-sparkles]'))
+    .map<SparklesLayer | null>((layer) => {
+      const frame = layer.parentElement
+      const inner = frame?.querySelector<HTMLElement>('.vs-advanced__portrait-inner')
+      if (!frame || !inner) return null
+      const layerRect = readRect(layer)
+      const innerRect = readRect(inner)
+
+      return {
+        left: (layerRect.left - targetRect.left) * scale,
+        top: (layerRect.top - targetRect.top) * scale,
+        width: layerRect.width * scale,
+        height: layerRect.height * scale,
+        outerLeft: (layerRect.left - targetRect.left) * scale,
+        outerTop: (layerRect.top - targetRect.top) * scale,
+        outerWidth: layerRect.width * scale,
+        outerHeight: layerRect.height * scale,
+        outerRadius: readRadius(layer) * scale,
+        innerLeft: (innerRect.left - targetRect.left) * scale,
+        innerTop: (innerRect.top - targetRect.top) * scale,
+        innerWidth: innerRect.width * scale,
+        innerHeight: innerRect.height * scale,
+        innerRadius: readRadius(inner) * scale,
+        scale,
+      }
+    })
+    .filter((layer): layer is SparklesLayer => layer !== null)
+  const votedFrames = Array.from(foreground.querySelectorAll<HTMLElement>('.vs-advanced__portrait--voted-frame'))
+    .map<VotedFrameLayer>((frame) => {
+      const frameRect = readRect(frame)
+      return {
+        left: (frameRect.left - targetRect.left) * scale,
+        top: (frameRect.top - targetRect.top) * scale,
+        width: frameRect.width * scale,
+        height: frameRect.height * scale,
+        radius: readRadius(frame) * scale,
+        scale,
+      }
+    })
   const hadSparklyClass = animatedLayer.classList.contains('vs-simple-editor-sparkly')
   const previousForegroundVisibility = foreground.style.visibility
   if (hadSparklyClass) animatedLayer.classList.remove('vs-simple-editor-sparkly')
@@ -292,6 +407,8 @@ export const createLayeredCapture = async (
     animatedTop: (animatedRect.top - targetRect.top) * scale,
     animatedWidth: animatedRect.width * scale,
     animatedHeight: animatedRect.height * scale,
+    sparkles,
+    votedFrames,
   }
 }
 
@@ -381,6 +498,13 @@ export async function exportElementAsGif(element: HTMLElement, options: GifExpor
   const { width, height } = resolveGifExportSize(element, longEdge)
   const capture = await createLayeredCapture(element, width, backgroundColor)
   const decoderState = await loadStarfieldDecoder()
+  let sparklesDecoderState: Awaited<ReturnType<typeof loadSparklesDecoder>> | null = null
+  try {
+    if (capture?.sparkles.length) sparklesDecoderState = await loadSparklesDecoder()
+  } catch (error) {
+    decoderState.decoder.close()
+    throw error
+  }
   const encoder = createWorkerEncoder(width, height, frameDelays, (frame) => {
     options.onProgress?.({
       frame,
@@ -396,12 +520,16 @@ export async function exportElementAsGif(element: HTMLElement, options: GifExpor
   const context = frameCanvas.getContext('2d', { willReadFrequently: true })
   if (!context) {
     decoderState.decoder.close()
+    sparklesDecoderState?.decoder.close()
     encoder.terminate()
     throw new Error('Nie udało się utworzyć bufora eksportu GIF.')
   }
 
   let cachedSourceFrame = -1
   let cachedSourceImage: (CanvasImageSource & { close?: () => void }) | null = null
+  let cachedSparklesFrame = -1
+  let cachedSparklesImage: (CanvasImageSource & { close?: () => void }) | null = null
+  const votedFrameRenderer = capture?.votedFrames.length ? createVotedFrameRenderer(width, height) : null
 
   try {
     for (let frame = 0; frame < frameCount; frame += 1) {
@@ -438,7 +566,29 @@ export async function exportElementAsGif(element: HTMLElement, options: GifExpor
       }
       context.restore()
 
-      if (capture) context.drawImage(capture.foreground, capture.foregroundLeft, capture.foregroundTop)
+      if (capture) {
+        const frameProgress = frame / frameCount
+        votedFrameRenderer?.drawGlow(context, capture.votedFrames, frameProgress)
+        context.drawImage(capture.foreground, capture.foregroundLeft, capture.foregroundTop)
+        if (sparklesDecoderState && capture.sparkles.length) {
+          const sourceDurationMs = decoderState.frameCount * STARFIELD_FRAME_DURATION_MS
+          const sparkleFrame = Math.floor(
+            ((frameTimeMs % sourceDurationMs) / sourceDurationMs) * sparklesDecoderState.frameCount,
+          ) % sparklesDecoderState.frameCount
+          if (sparkleFrame !== cachedSparklesFrame) {
+            cachedSparklesImage?.close?.()
+            cachedSparklesImage = (await sparklesDecoderState.decoder.decode({ frameIndex: sparkleFrame })).image
+            cachedSparklesFrame = sparkleFrame
+          }
+          const sparkleImage = cachedSparklesImage
+          if (sparkleImage) {
+            const sparkleWidth = Number((sparkleImage as { displayWidth?: number; width?: number }).displayWidth ?? (sparkleImage as { width?: number }).width ?? 1)
+            const sparkleHeight = Number((sparkleImage as { displayHeight?: number; height?: number }).displayHeight ?? (sparkleImage as { height?: number }).height ?? 1)
+            capture.sparkles.forEach(layer => drawSparklesLayer(context, sparkleImage, sparkleWidth, sparkleHeight, layer))
+          }
+        }
+        votedFrameRenderer?.drawBorders(context, capture.votedFrames, frameProgress)
+      }
       const rgba = context.getImageData(0, 0, width, height).data
       await encoder.addFrame(rgba, frame)
       await waitForPaint()
@@ -456,7 +606,10 @@ export async function exportElementAsGif(element: HTMLElement, options: GifExpor
     }
   } finally {
     cachedSourceImage?.close?.()
+    cachedSparklesImage?.close?.()
     decoderState.decoder.close()
+    sparklesDecoderState?.decoder.close()
+    votedFrameRenderer?.dispose()
     encoder.terminate()
     frameCanvas.width = 1
     frameCanvas.height = 1

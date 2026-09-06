@@ -5,9 +5,12 @@ import {
   STARFIELD_FRAME_DURATION_MS,
   createLayeredCapture,
   drawCover,
+  drawSparklesLayer,
+  loadSparklesDecoder,
   loadStarfieldDecoder,
   resolveGifExportSize,
 } from './gifExport'
+import { createVotedFrameRenderer } from '../frameAnimation'
 
 export type WebmExportProgress = {
   frame: number
@@ -224,6 +227,13 @@ export async function exportElementAsWebm(element: HTMLElement, options: WebmExp
 
   const { VideoEncoder, VideoFrame } = getWebCodecs()
   const decoderState = await loadStarfieldDecoder()
+  let sparklesDecoderState: Awaited<ReturnType<typeof loadSparklesDecoder>> | null = null
+  try {
+    if (capture.sparkles.length) sparklesDecoderState = await loadSparklesDecoder()
+  } catch (error) {
+    decoderState.decoder.close()
+    throw error
+  }
   const sourceDurationMs = decoderState.frameCount * STARFIELD_FRAME_DURATION_MS
   const loopCount = Math.max(1, Math.round(requestedDurationMs / sourceDurationMs))
   const framesPerSourceLoop = Math.max(1, Math.round((sourceDurationMs / 1_000) * fps))
@@ -236,6 +246,7 @@ export async function exportElementAsWebm(element: HTMLElement, options: WebmExp
   const context = frameCanvas.getContext('2d')
   if (!context) {
     decoderState.decoder.close()
+    sparklesDecoderState?.decoder.close()
     throw new Error('Nie udało się utworzyć płótna nagrania WebM.')
   }
 
@@ -255,6 +266,9 @@ export async function exportElementAsWebm(element: HTMLElement, options: WebmExp
 
   let cachedSourceFrame = -1
   let cachedSourceImage: (CanvasImageSource & { close?: () => void }) | null = null
+  let cachedSparklesFrame = -1
+  let cachedSparklesImage: (CanvasImageSource & { close?: () => void }) | null = null
+  const votedFrameRenderer = capture.votedFrames.length ? createVotedFrameRenderer(width, height) : null
 
   const renderFrame = async (frame: number) => {
     context.clearRect(0, 0, width, height)
@@ -278,7 +292,27 @@ export async function exportElementAsWebm(element: HTMLElement, options: WebmExp
     context.filter = 'brightness(1.1) contrast(1.1)'
     drawCover(context, image, imageWidth, imageHeight, capture.animatedLeft, capture.animatedTop, capture.animatedWidth, capture.animatedHeight)
     context.restore()
+    const frameProgress = frame / frameCount
+    votedFrameRenderer?.drawGlow(context, capture.votedFrames, frameProgress)
     context.drawImage(capture.foreground, capture.foregroundLeft, capture.foregroundTop)
+
+    if (sparklesDecoderState && capture.sparkles.length) {
+      const sparkleFrame = Math.floor(
+        ((frameTimeMs % sourceDurationMs) / sourceDurationMs) * sparklesDecoderState.frameCount,
+      ) % sparklesDecoderState.frameCount
+      if (sparkleFrame !== cachedSparklesFrame) {
+        cachedSparklesImage?.close?.()
+        cachedSparklesImage = (await sparklesDecoderState.decoder.decode({ frameIndex: sparkleFrame })).image
+        cachedSparklesFrame = sparkleFrame
+      }
+      const sparkleImage = cachedSparklesImage
+      if (sparkleImage) {
+        const sparkleWidth = Number((sparkleImage as { displayWidth?: number; width?: number }).displayWidth ?? (sparkleImage as { width?: number }).width ?? 1)
+        const sparkleHeight = Number((sparkleImage as { displayHeight?: number; height?: number }).displayHeight ?? (sparkleImage as { height?: number }).height ?? 1)
+        capture.sparkles.forEach(layer => drawSparklesLayer(context, sparkleImage, sparkleWidth, sparkleHeight, layer))
+      }
+    }
+    votedFrameRenderer?.drawBorders(context, capture.votedFrames, frameProgress)
   }
 
   try {
@@ -317,7 +351,10 @@ export async function exportElementAsWebm(element: HTMLElement, options: WebmExp
     }
     const sourceImage = cachedSourceImage as { close?: () => void } | null
     sourceImage?.close?.()
+    cachedSparklesImage?.close?.()
     decoderState.decoder.close()
+    sparklesDecoderState?.decoder.close()
+    votedFrameRenderer?.dispose()
     frameCanvas.width = 1
     frameCanvas.height = 1
     capture.base.width = 1

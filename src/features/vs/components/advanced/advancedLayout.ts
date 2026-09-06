@@ -13,7 +13,7 @@ export type BattlePanel = {
   slots: string[]
 }
 
-export const TEAM_PRESETS = ['1 vs 2', '2 vs 2', '2 vs 4', '4 vs 4', '1 vs 1 vs 1 vs 1']
+export const TEAM_PRESETS = ['1 vs 1', '1 vs 2', '2 vs 2', '4 vs 4', '2 vs 4', '1 vs 1 vs 1 vs 1']
 
 export function parseTeamFormat(value: string): number[] | null {
   if (!/^\s*[1-8](?:\s*(?:vs\.?|x|×)\s*[1-8]){1,3}\s*$/i.test(value)) return null
