@@ -54,6 +54,10 @@ export const waitForPaint = () => new Promise<void>((resolve) => {
   window.requestAnimationFrame(() => window.requestAnimationFrame(() => resolve()))
 })
 
+const waitForFonts = async () => {
+  if (document.fonts?.ready) await document.fonts.ready
+}
+
 const readRect = (element: HTMLElement): ElementRect => {
   const rect = element.getBoundingClientRect()
   return {
@@ -103,8 +107,19 @@ const appendCaptureStyles = (clonedDocument: Document, hideAnimatedLayer: boolea
   const captureStyle = clonedDocument.createElement('style')
   captureStyle.textContent = `
     /* html2canvas 1.4 cannot parse color-mix()/color() values. */
-    .vs-advanced__scene--teams .vs-advanced__portrait {
+    .vs-advanced__scene--teams .vs-advanced__portrait,
+    .vs-advanced__scene--gauntlet .vs-advanced__portrait {
       box-shadow: 0 0 14px rgba(120, 220, 220, 0.22) !important;
+    }
+    /* html2canvas's canvas baseline sits a little lower than the browser's
+       baseline for these flex labels. Keep exported text centered in its pill. */
+    .vs-advanced__panel-label-text {
+      position: relative !important;
+      top: -0.54em !important;
+    }
+    .vs-advanced__caption-text {
+      position: relative !important;
+      top: -0.54em !important;
     }
     ${hideAnimatedLayer ? `
       .vs-simple-editor-sparkly::after {
@@ -247,6 +262,7 @@ export const createLayeredCapture = async (
 
   if (!animatedLayer || !foreground) return null
 
+  await waitForFonts()
   await waitForPaint()
   const hadSparklyClass = animatedLayer.classList.contains('vs-simple-editor-sparkly')
   const previousForegroundVisibility = foreground.style.visibility

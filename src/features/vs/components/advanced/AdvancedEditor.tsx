@@ -9,8 +9,15 @@ import './AdvancedEditor.css'
 
 type Portrait = { url: string; name: string; zoom: number; x: number; y: number }
 type SlotDescription = { id: string; label: string }
+type LabelOverrides = {
+  teams: Record<number, string>
+  rounds: Record<number, string>
+  challenger: string
+  boss: string
+}
 const TEAM_COLORS = ['#78e5ed', '#ff87b6', '#b3a0ff', '#ffd27a']
 const INITIAL_SETTINGS: BattleSettings = { mode: 'teams', teams: [2, 2], gauntletSize: 1, pairSplit: 'vertical' }
+const EMPTY_LABEL_OVERRIDES: LabelOverrides = { teams: {}, rounds: {}, challenger: '', boss: '' }
 
 export function AdvancedEditor({ language, onBack }: { language: Language; onBack: () => void }) {
   const pl = language === 'pl'
@@ -20,6 +27,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
   const [presenting, setPresenting] = useState(false)
   const [gap, setGap] = useState(18)
   const [showNames, setShowNames] = useState(true)
+  const [labelOverrides, setLabelOverrides] = useState<LabelOverrides>(EMPTY_LABEL_OVERRIDES)
   const [portraits, setPortraits] = useState<Record<string, Portrait>>({})
   const [selected, setSelected] = useState<SlotDescription | null>(null)
   const [error, setError] = useState('')
@@ -33,8 +41,13 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
   const parsedTeams = parseTeamFormat(format)
   const panels = buildBattlePanels(settings)
   const selectedPortrait = selected ? portraits[selected.id] : null
+  const selectedPanel = selected ? panels.find(panel => panel.slots.includes(selected.id)) ?? null : null
   const isGauntlet = settings.mode === 'gauntlet'
   const formatLabel = isGauntlet ? `${settings.gauntletSize} vs ${settings.gauntletSize * 7}` : settings.teams.join(' vs ')
+
+  const defaultTeamLabel = (index: number) => `TEAM ${index + 1}`
+  const defaultRoundLabel = (index: number) => `Fight ${index + 1}`
+  const defaultChallengerLabel = 'Main Fighter'
 
   useEffect(() => {
     const urls = urlsRef.current
@@ -61,10 +74,42 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
   }, [editing, presenting])
 
   const panelLabel = (panel: BattlePanel) => {
-    if (panel.role === 'boss') return 'BOSS'
-    if (panel.role === 'challenger') return pl ? (settings.gauntletSize === 1 ? 'GŁÓWNA POSTAĆ' : 'GŁÓWNA DRUŻYNA') : (settings.gauntletSize === 1 ? 'CHALLENGER' : 'CHALLENGERS')
-    if (panel.role === 'round') return `${pl ? 'ETAP' : 'ROUND'} ${panel.index + 1}`
-    return `${pl ? 'DRUŻYNA' : 'TEAM'} ${panel.index + 1}`
+    if (panel.role === 'boss') return labelOverrides.boss.trim() || 'BOSS'
+    if (panel.role === 'challenger') return labelOverrides.challenger.trim() || defaultChallengerLabel
+    if (panel.role === 'round') return labelOverrides.rounds[panel.index]?.trim() || defaultRoundLabel(panel.index)
+    return labelOverrides.teams[panel.index]?.trim() || defaultTeamLabel(panel.index)
+  }
+
+  const updateLabelOverride = (patch: Partial<LabelOverrides>) => {
+    setLabelOverrides(current => ({ ...current, ...patch }))
+  }
+
+  const updateTeamLabel = (index: number, value: string) => {
+    setLabelOverrides(current => ({
+      ...current,
+      teams: { ...current.teams, [index]: value },
+    }))
+  }
+
+  const updateRoundLabel = (index: number, value: string) => {
+    setLabelOverrides(current => ({
+      ...current,
+      rounds: { ...current.rounds, [index]: value },
+    }))
+  }
+
+  const panelOverride = (panel: BattlePanel) => {
+    if (panel.role === 'boss') return labelOverrides.boss
+    if (panel.role === 'challenger') return labelOverrides.challenger
+    if (panel.role === 'round') return labelOverrides.rounds[panel.index] ?? ''
+    return labelOverrides.teams[panel.index] ?? ''
+  }
+
+  const updatePanelLabel = (panel: BattlePanel, value: string) => {
+    if (panel.role === 'boss') updateLabelOverride({ boss: value })
+    else if (panel.role === 'challenger') updateLabelOverride({ challenger: value })
+    else if (panel.role === 'round') updateRoundLabel(panel.index, value)
+    else updateTeamLabel(panel.index, value)
   }
 
   const loadImage = async (slotId: string, file: File) => {
@@ -138,7 +183,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
         {portrait ? (
           <>
             <img src={portrait.url} alt={portrait.name || label} draggable={false} style={{ objectPosition: `${portrait.x}% ${portrait.y}%`, transform: `translate(${(50 - portrait.x) * (portrait.zoom - 1)}%, ${(50 - portrait.y) * (portrait.zoom - 1)}%) scale(${portrait.zoom})` }} />
-            {showNames && portrait.name && <span className="vs-advanced__caption">{portrait.name}</span>}
+            {showNames && portrait.name && <span className="vs-advanced__caption"><span className="vs-advanced__caption-text">{portrait.name}</span></span>}
           </>
         ) : (
           <span className="vs-advanced__placeholder"><ImagePlus aria-hidden="true" /><span>{label}</span><small>{pl ? 'Kliknij lub upuść grafikę' : 'Click or drop an image'}</small></span>
@@ -149,15 +194,21 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
 
   const renderPanel = (panel: BattlePanel) => {
     const label = panelLabel(panel)
-    const color = panel.role === 'boss' ? '#ffcf70' : panel.role === 'challenger' ? '#d3a0ff' : TEAM_COLORS[panel.index % TEAM_COLORS.length]
+    const color = isGauntlet
+      ? panel.role === 'boss'
+        ? '#ffcf70'
+        : panel.role === 'challenger'
+          ? '#ff5f6d'
+          : '#78b7ff'
+      : TEAM_COLORS[panel.index % TEAM_COLORS.length]
     const singleFreeForAll = !isGauntlet && settings.teams.every(count => count === 1)
     return (
       <section
         key={panel.id} data-panel-id={panel.id} aria-label={label}
-        className={`vs-advanced__panel vs-advanced__panel--${panel.role} ${isGauntlet ? 'vs-simple-editor-frame' : ''}`}
+        className={`vs-advanced__panel vs-advanced__panel--${panel.role}`}
         style={{ '--team-color': color, '--member-columns': panel.slots.length > 1 ? 2 : 1 } as CSSProperties}
       >
-        {!singleFreeForAll && <span className="vs-advanced__panel-label">{panel.role === 'boss' && <Trophy size={13} aria-hidden="true" />}{label}</span>}
+        {!singleFreeForAll && <span className="vs-advanced__panel-label">{panel.role === 'boss' && <Trophy size={13} aria-hidden="true" />}<span className="vs-advanced__panel-label-text">{label}</span></span>}
         <div className={`vs-advanced__members ${isGauntlet ? `vs-advanced__members--${settings.pairSplit}` : ''}`}>
           {panel.slots.map((id, member) => renderSlot(id, `${label} · ${member + 1}`))}
         </div>
@@ -190,6 +241,26 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
               </>
             )}
           </div>
+          <fieldset className="vs-advanced__label-editor">
+            <legend>{pl ? 'Napisy na planszy' : 'Board labels'}</legend>
+            <p>{pl ? 'Zostaw pole puste, aby użyć domyślnej nazwy.' : 'Leave a field empty to use its default label.'}</p>
+            {isGauntlet ? (
+              <div className="vs-advanced__label-grid">
+                {Array.from({ length: 6 }, (_, index) => (
+                  <label className="vs-advanced__field" key={`round-label-${index}`}><span>{defaultRoundLabel(index)}</span><input value={labelOverrides.rounds[index] ?? ''} placeholder={defaultRoundLabel(index)} onChange={event => updateRoundLabel(index, event.target.value)} /></label>
+                ))}
+                <label className="vs-advanced__field"><span>{pl ? 'Główna postać / drużyna' : 'Challenger'}</span><input value={labelOverrides.challenger} placeholder={defaultChallengerLabel} onChange={event => updateLabelOverride({ challenger: event.target.value })} /></label>
+                <label className="vs-advanced__field"><span>{pl ? 'Boss' : 'Boss'}</span><input value={labelOverrides.boss} placeholder="BOSS" onChange={event => updateLabelOverride({ boss: event.target.value })} /></label>
+              </div>
+            ) : (
+              <div className="vs-advanced__label-grid">
+                {(parsedTeams ?? settings.teams).map((_, index) => (
+                  <label className="vs-advanced__field" key={`team-label-${index}`}><span>{pl ? `Drużyna ${index + 1}` : `Team ${index + 1}`}</span><input value={labelOverrides.teams[index] ?? ''} placeholder={defaultTeamLabel(index)} onChange={event => updateTeamLabel(index, event.target.value)} /></label>
+                ))}
+              </div>
+            )}
+            <button type="button" className="vs-advanced__label-reset" onClick={() => setLabelOverrides(EMPTY_LABEL_OVERRIDES)}>{pl ? 'Przywróć domyślne napisy' : 'Restore default labels'}</button>
+          </fieldset>
           <button type="button" className="vs-advanced__primary" disabled={!isGauntlet && !parsedTeams} onClick={openBoard}>{pl ? 'Otwórz planszę' : 'Open board'}<ArrowRight size={18} /></button>
         </div>
       ) : (
@@ -222,6 +293,7 @@ export function AdvancedEditor({ language, onBack }: { language: Language; onBac
             {selected && !presenting && <aside className="vs-advanced__inspector" aria-label={pl ? 'Edycja grafiki' : 'Image editor'}>
               <div className="vs-advanced__inspector-heading"><Settings2 size={17} /><strong>{pl ? 'Grafika i kadr' : 'Image and framing'}</strong><button type="button" onClick={() => setSelected(null)} aria-label={pl ? 'Zamknij edycję grafiki' : 'Close image editor'}><X size={17} /></button></div>
               <p>{selected.label}</p>
+              {isGauntlet && selectedPanel && <label className="vs-advanced__field">{selectedPanel.role === 'round' ? (pl ? 'Nazwa etapu' : 'Fight label') : (pl ? 'Nazwa panelu' : 'Panel label')}<input value={panelOverride(selectedPanel) || panelLabel(selectedPanel)} onChange={event => updatePanelLabel(selectedPanel, event.target.value)} /></label>}
               <button type="button" className="vs-advanced__upload" onClick={() => chooseImage(selected)}><Upload size={16} />{pl ? 'Wybierz grafikę' : 'Choose image'}</button>
               {selectedPortrait && <>
                 <label className="vs-advanced__field">{pl ? 'Nazwa postaci' : 'Character name'}<input value={selectedPortrait.name} onChange={event => updatePortrait({ name: event.target.value })} /></label>
